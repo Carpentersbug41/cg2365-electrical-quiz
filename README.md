@@ -6,6 +6,7 @@ A Next.js and TypeScript application designed for City & Guilds 2365 Electrical 
 - Interactive quiz interface
 - Multiple question categories (Health & Safety, Communication, etc.)
 - Built with Next.js 15 and Tailwind CSS
+- Responsive design for mobile and desktop
 
 ## Getting Started
 
