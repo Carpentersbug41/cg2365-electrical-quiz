@@ -1,6 +1,6 @@
 {
-  "name": "health-safety-quiz",
-  "description": "A Next.js and TypeScript application for Health & Safety and Communication assessments.",
+  "name": "cg2365-electrical-quiz",
+  "description": "A Next.js and TypeScript application for City & Guilds 2365 Electrical Installation assessments.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
