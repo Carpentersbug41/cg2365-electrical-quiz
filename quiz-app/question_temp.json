@@ -1,0 +1,1602 @@
+[
+  {
+    id: 1,
+    question: "What is the maximum voltage allowed for extra-low voltage systems?",
+    options: ["50V AC", "120V AC", "230V AC", "400V AC"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 2,
+    question: "What does PPE stand for?",
+    options: ["Personal Protection Equipment", "Personal Protective Equipment", "Professional Protection Equipment", "Protective Personal Equipment"],
+    correctAnswer: 1,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 3,
+    question: "Which of these current levels is potentially lethal to humans?",
+    options: ["1 mA", "10 mA", "50 mA", "1 A"],
+    correctAnswer: 2,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 4,
+    question: "If a coworker is being electrocuted by live electrical equipment, what is the first thing you should do?",
+    options: ["Switch off the power source", "Check for breathing and pulse", "Start CPR immediately", "Call an ambulance"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 5,
+    question: "What does the term 'lockout/tagout' refer to in electrical safety?",
+    options: ["Locking and tagging a power source to prevent it from being turned on during maintenance", "Securing tools in a locked box after use", "Using tags to label electrical panels", "Turning off lights at the end of the day"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 6,
+    question: "If a circuit breaker keeps tripping, what should you do?",
+    options: ["Investigate and fix the cause of the overload or fault before resetting", "Hold the breaker in the ON position to keep power on", "Replace it with a higher-rated breaker", "Ignore it and keep resetting it"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 7,
+    question: "Which class of hard hat provides protection from high-voltage electrical shock?",
+    options: ["Class C (Conductive)", "Class E (Electrical)", "Class G (General)", "Bump cap"],
+    correctAnswer: 1,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 8,
+    question: "Why are insulating rubber mats used in front of electrical switchboards?",
+    options: ["To insulate the worker from ground and reduce shock risk", "To provide comfort while standing", "To absorb oil spills", "To protect the floor from wear"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 9,
+    question: "What is a safe practice when using power tools outdoors?",
+    options: ["Use a Residual Current Device (RCD) for the power supply", "Keep the tool's cord submerged in water for grounding", "Remove the ground pin of the plug to avoid tripping breakers", "Connect multiple extension cords together for extra length"],
+    correctAnswer: 0,
+    category: "Tools and Equipment Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 10,
+    question: "What does RCD stand for?",
+    options: ["Residual Current Device", "Rapid Circuit Disconnect", "Rated Control Device", "Residual Current Distributor"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 11,
+    question: "How can you verify that an electrical circuit is de-energized before working on it?",
+    options: ["Test the circuit with a proper voltage tester after isolating it", "Turn off the switch and assume it is off", "Unplug any connected devices and proceed", "Rely on the circuit breaker label"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 12,
+    question: "In modern wiring, what color is the insulation of the earth (ground) wire?",
+    options: ["Green and yellow", "Brown", "Blue", "Red"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 13,
+    question: "What should you do if you discover damaged insulation on a power tool's cord?",
+    options: ["Stop using it and have it repaired or replaced", "Wrap the damaged area with tape and continue using it", "Use it only at half power", "Only use it with gloves on"],
+    correctAnswer: 0,
+    category: "Tools and Equipment Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 14,
+    question: "What is the purpose of the earth (ground) wire in electrical equipment?",
+    options: ["To carry fault current safely to ground if a fault occurs", "To act as a neutral wire", "To save energy during operation", "To make the appliance run faster"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 15,
+    question: "What could cause a Residual Current Device (RCD) to trip?",
+    options: ["A leakage of current to earth (ground)", "Normal operation of equipment", "High ambient temperature", "Low supply voltage"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 16,
+    question: "What is the main danger of using a metal ladder near live electrical wires?",
+    options: ["The ladder can conduct electricity, leading to electric shock", "The ladder might rust or corrode", "The ladder could bend under weight", "The ladder may slip more easily"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 17,
+    question: "Which of these is NOT a safe practice when using a ladder?",
+    options: ["Standing on the top rungs of the ladder", "Maintaining three points of contact while climbing", "Setting the ladder at a proper angle (about 75°)", "Inspecting the ladder for damage before use"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 18,
+    question: "What does COSHH stand for?",
+    options: ["Control of Substances Hazardous to Health", "Control of Spills and Harmful Hazards", "Council on Occupational Safety and Health", "Company Operational Safety & Health Handbook"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 19,
+    question: "Under the RIDDOR regulations, what must employers do?",
+    options: ["Report certain workplace injuries, diseases, and dangerous occurrences to authorities", "Provide free safety equipment to all employees", "Conduct daily fire drills", "Give each employee a health check every month"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 20,
+    question: "What is the main legislation governing workplace health and safety in the UK?",
+    options: ["Health and Safety at Work Act 1974", "Occupational Safety and Health Act 1970", "Factories Act 1961", "Working Time Regulations 1998"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 21,
+    question: "In what year was the Health and Safety at Work Act enacted in the UK?",
+    options: ["1974", "1984", "1996", "2005"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 22,
+    question: "What is a method statement?",
+    options: ["A document detailing how to carry out a job safely and correctly", "A worker's personal medical record", "A legal contract for financial terms", "A list of tools required for a job"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 23,
+    question: "Before entering a confined space, you should:",
+    options: ["Test the atmosphere for sufficient oxygen and toxic gases", "Wear ear protection for noise", "Warm up to avoid muscle strain", "Ensure the space is dark to see hazards"],
+    correctAnswer: 0,
+    category: "Hazardous Environments",
+    section: "Health and Safety"
+  },
+  {
+    id: 24,
+    question: "What is the purpose of a risk assessment?",
+    options: ["To identify hazards and implement controls to reduce the risk of harm", "To check if workers are doing their jobs", "To calculate project costs", "To ensure employees work faster"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 25,
+    question: "What is the first step in performing a risk assessment?",
+    options: ["Identify potential hazards in the workplace or task", "Buy personal protective equipment (PPE)", "Train all employees in safety procedures", "Report all past accidents"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 26,
+    question: "If a hazardous chemical spill occurs, what should you consult for cleanup instructions?",
+    options: ["The Material Safety Data Sheet (MSDS) for that substance", "The company's financial report", "The fire evacuation plan", "The electrical schematic"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 27,
+    question: "Which type of fire extinguisher is safe to use on a live electrical fire?",
+    options: ["Carbon Dioxide (CO2) extinguisher", "Water extinguisher", "Foam extinguisher", "Wet chemical extinguisher"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 28,
+    question: "A yellow triangular sign with a black lightning bolt symbol indicates:",
+    options: ["Electrical danger/high voltage", "Mandatory high-visibility clothing area", "No open flames allowed", "Biohazard present"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 29,
+    question: "What color are fire emergency exit signs usually?",
+    options: ["Green and white", "Red and white", "Blue and white", "Yellow and black"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 30,
+    question: "A safety sign with a blue circle (and white symbol) indicates:",
+    options: ["A mandatory action that must be followed (requirement)", "A prohibition (do not do) instruction", "A warning of a hazard", "Emergency exit information"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 31,
+    question: "Which of the following is the correct way to lift a heavy object?",
+    options: ["Bend your knees and keep your back straight while lifting with your legs", "Keep your legs straight and bend your back to lift", "Lift quickly using your back to get it done faster", "Hold the object away from your body to balance"],
+    correctAnswer: 0,
+    category: "Manual Handling",
+    section: "Health and Safety"
+  },
+  {
+    id: 32,
+    question: "What is a common symptom of hearing damage from long-term noise exposure?",
+    options: ["Ringing in the ears (tinnitus)", "Sharper hearing ability", "Improved balance", "Better night vision"],
+    correctAnswer: 0,
+    category: "Noise Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 33,
+    question: "Above approximately what noise level is hearing protection recommended for prolonged exposure?",
+    options: ["85 dB(A)", "50 dB(A)", "70 dB(A)", "100 dB(A)"],
+    correctAnswer: 0,
+    category: "Noise Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 34,
+    question: "What does the unit dB (decibel) measure?",
+    options: ["Sound intensity (noise level)", "Electrical resistance", "Frequency of a sound", "Light brightness"],
+    correctAnswer: 0,
+    category: "Noise Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 35,
+    question: "What is the main purpose of a fuse or circuit breaker?",
+    options: ["To protect wiring by cutting off power during an overload or short circuit", "To stabilize the voltage in the circuit", "To save energy in the system", "To provide backup power"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 36,
+    question: "A fire extinguisher with a blue label contains:",
+    options: ["Dry Powder for class A, B, C fires and electrical", "Water for class A fires", "CO2 for electrical fires", "Foam for class B fires"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 37,
+    question: "Fires involving combustible metals (like magnesium or aluminum) are class:",
+    options: ["Class D", "Class A", "Class C", "Class F"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 38,
+    question: "If a person's clothing catches fire, what is the best action to take?",
+    options: ["Wrap them in a fire blanket to smother the flames", "Spray them with a CO2 extinguisher", "Have them run to fan out the flames", "Pour water mixed with oil on the flames"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 39,
+    question: "The fire triangle consists of which three elements?",
+    options: ["Heat, Fuel, and Oxygen", "Heat, Water, and Oxygen", "Fuel, Carbon Dioxide, and Ignition", "Fuel, Oxygen, and Electricity"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 40,
+    question: "Which of the following is a potential effect of an electric shock on the body?",
+    options: ["Severe muscle contractions and burns", "Improved circulation", "Enhanced muscle strength", "Immunity to future shocks"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 41,
+    question: "A common cause of electrical fires in homes is:",
+    options: ["Overloading outlets or circuits with too many appliances", "Using LED bulbs instead of incandescent", "Unplugging devices when not in use", "Low household voltage levels"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 42,
+    question: "On power tools, a symbol of two squares, one inside the other, means the tool:",
+    options: ["Is double insulated and does not require an earth ground", "Has two-speed settings", "Is safe to use in water", "Requires two people to operate"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 43,
+    question: "Why must large capacitors be discharged before working on a circuit?",
+    options: ["They can hold a dangerous charge even after power is off", "They can explode from air pressure if not discharged", "They block AC current when charged", "They will immediately catch fire when touched"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 44,
+    question: "Which tool can detect electrical voltage without touching the conductor?",
+    options: ["A non-contact voltage tester", "A multimeter set to resistance", "An ohmmeter", "A thermometer"],
+    correctAnswer: 0,
+    category: "Tools and Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 45,
+    question: "What is the safe way to disconnect an electrical plug from a socket?",
+    options: ["Grip and pull the plug by its body (not the cord)", "Yank the cord from a distance", "Turn off the main power first every time", "Pull the cord while twisting"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 46,
+    question: "In a UK plug, what color is the live (hot) wire?",
+    options: ["Brown", "Blue", "Green/yellow", "Black"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 47,
+    question: "If you encounter an exposed live wire or open electrical panel, you should:",
+    options: ["Keep others away and shut off power, then report it to a qualified person", "Immediately touch it to verify if it's live", "Cover it with metal to shield it", "Ignore it if it's not sparking"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 48,
+    question: "What does ELCB stand for?",
+    options: ["Earth Leakage Circuit Breaker", "Electric Line Circuit Board", "Earth Line Connection Box", "Emergency Load Control Button"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 49,
+    question: "Before climbing a ladder, always ensure that:",
+    options: ["The ladder is on a firm, level base and secured", "It is an aluminum ladder for strength", "The ladder is painted to prevent wear", "Someone is at the top to pull you up"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 50,
+    question: "When working on or near live electrical parts, you should use:",
+    options: ["Insulated tools with handles rated for the voltage", "Standard metal tools with rubber handles", "Any tools as long as your hands are dry", "Plastic tools only"],
+    correctAnswer: 0,
+    category: "Tools and Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 51,
+    question: "Why is water near electrical equipment dangerous?",
+    options: ["Water conducts electricity, increasing the risk of shock", "Water raises the electrical voltage", "Water acts as an insulator", "Water automatically trips circuit breakers"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 52,
+    question: "Why should you remove metal jewelry before working on electrical equipment?",
+    options: ["Metal jewelry can conduct electricity and cause burns or shock", "It might get dirty or scratched", "It could magnetize the equipment", "It violates electrical codes to wear jewelry"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 53,
+    question: "If an electrical appliance emits a burning smell, you should first:",
+    options: ["Disconnect the power immediately", "Pour water on the appliance", "Open windows and continue to monitor it", "Ignore it and hope it stops"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 54,
+    question: "What should you do when you see a sign that says 'Danger: High Voltage'?",
+    options: ["Keep a safe distance unless you are authorized and trained", "Assume the equipment is safe because it's labeled", "Touch it briefly to test if it's live", "Proceed as normal; the sign is just a caution"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 55,
+    question: "Why are cordless power tools often considered safer than corded tools?",
+    options: ["They use lower voltages (battery power), reducing risk of electric shock", "They are less powerful so they cannot cause harm", "They never malfunction", "They don’t produce any heat"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 56,
+    question: "Which of the following is NOT an example of Personal Protective Equipment (PPE)?",
+    options: ["A toolbox", "Safety harness", "Ear plugs", "Hard hat"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 57,
+    question: "Which type of PPE protects your lungs from dust or fumes?",
+    options: ["A respirator or dust mask", "Safety goggles", "Ear defenders", "Steel-toe boots"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 58,
+    question: "A safety harness is designed to protect you from:",
+    options: ["Falls from height", "Loud noise", "Electrical shock", "Dust inhalation"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 59,
+    question: "When should high-visibility (hi-vis) clothing be worn?",
+    options: ["When working near vehicles or in low-visibility areas to ensure you are seen", "Only at night", "Only in warehouses", "Only during emergencies"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 60,
+    question: "Which item protects your head from falling objects?",
+    options: ["A hard hat (safety helmet)", "Ear muffs", "Safety goggles", "High-visibility cap"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 61,
+    question: "Insulating gloves (rated for electrical work) protect against:",
+    options: ["Electric shock", "Cold temperatures", "Chemical spills", "Vibration injuries"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 62,
+    question: "What color label does a CO2 fire extinguisher have?",
+    options: ["Black", "Red", "Blue", "Yellow"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 63,
+    question: "When positioning an extension ladder, the base should be approximately what fraction of its length away from the wall?",
+    options: ["One quarter of its working length (4:1 ratio)", "Half of its length (1:2 ratio)", "Equal to its height (1:1 ratio)", "There is no set ratio"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 64,
+    question: "What safety measure should be in place when working at a roof edge or open side at height?",
+    options: ["Guardrails or a personal fall arrest harness to prevent falls", "Only a warning sign at ground level", "No special measures if you are careful", "A net to catch tools only"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 65,
+    question: "When lifting a heavy object with a coworker, you should:",
+    options: ["Coordinate and lift together with clear communication", "Each lift from opposite ends without talking", "Let the taller person do all the lifting", "Twist your body while lifting for better leverage"],
+    correctAnswer: 0,
+    category: "Manual Handling",
+    section: "Health and Safety"
+  },
+  {
+    id: 66,
+    question: "If an object is too heavy or bulky to lift alone, you should:",
+    options: ["Ask for help or use lifting equipment", "Lift it quickly to minimize time under strain", "Drag it across the floor by yourself", "Break the object into smaller pieces with force"],
+    correctAnswer: 0,
+    category: "Manual Handling",
+    section: "Health and Safety"
+  },
+  {
+    id: 67,
+    question: "Good housekeeping (keeping the work area tidy) is important because it:",
+    options: ["Helps prevent accidents like slips, trips, and falls", "Makes the workplace look nice for visitors", "Reduces the need for any safety training", "Allows workers to work faster by ignoring hazards"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 68,
+    question: "Which of the following could be a trip hazard in a workplace?",
+    options: ["An extension cord running across a walkway", "A closed door in a hallway", "A wall-mounted fire extinguisher", "A loud alarm sound"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 69,
+    question: "If oil or grease is spilled on the floor, what should you do?",
+    options: ["Clean it up immediately or use absorbent to prevent a slipping hazard", "Ignore it if warning signs are present", "Cover it with paper and leave it", "Wait for it to dry on its own"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 70,
+    question: "Which of the following is NOT an electrical protective device?",
+    options: ["A transformer", "A fuse", "A circuit breaker", "An RCD (Residual Current Device)"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 71,
+    question: "What does GFCI stand for?",
+    options: ["Ground Fault Circuit Interrupter", "Ground Frequency Current Indicator", "General Fuse and Circuit Isolator", "Global Fire Circuit Insulation"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 72,
+    question: "A sign saying 'DANGER: CONFINED SPACE' implies:",
+    options: ["The area may contain life-threatening hazards (low oxygen, toxic gas) and entry is restricted", "The area is very small and uncomfortable", "Only one person is allowed inside at a time", "It is a designated break area"],
+    correctAnswer: 0,
+    category: "Hazardous Environments",
+    section: "Health and Safety"
+  },
+  {
+    id: 73,
+    question: "What is a safe way to use lighting in a wet or damp environment?",
+    options: ["Use low-voltage lighting or ensure the circuit is protected by an RCD", "Use standard mains lighting with extension cords in water", "Stand in a puddle while changing the bulb to ground yourself", "Only use metal-cased lights for durability"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 74,
+    question: "What should you always do before cleaning or repairing an electrical appliance?",
+    options: ["Disconnect it from power (unplug it or switch off its breaker)", "Spray it with cleaner while it's running to see where the dirt is", "Make sure it's turned to the highest setting", "Keep it plugged in but turned off, for a quick start after"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 75,
+    question: "If live electrical work must be done in exceptional cases, which PPE is essential?",
+    options: ["Insulated gloves, insulated tools, and face protection rated for the voltage", "Only regular cloth gloves since they're dry", "No special PPE if you are careful", "Metal jewelry to divert the electricity"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 76,
+    question: "Why is it dangerous to replace a blown fuse with one of a higher amperage rating?",
+    options: ["It can allow excessive current, causing overheating and fire before the circuit is protected", "It will make the electricity bill higher", "It will cause the power to shut off more often", "It will make appliances run slower"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 77,
+    question: "Before digging or excavating at a site, you should:",
+    options: ["Check for underground utilities by reviewing plans and using cable locators", "Dig only a few inches deep to be safe", "Use only a shovel, not power equipment", "Assume there are no cables if none are visible"],
+    correctAnswer: 0,
+    category: "Worksite Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 78,
+    question: "If water is present on the floor around electrical equipment, you should:",
+    options: ["Stop using the equipment, cut power, and dry the area before continuing", "Proceed since water grounds the area", "Only use the equipment at low settings", "Wear two pairs of socks for insulation"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 79,
+    question: "What kind of footwear should an electrician wear for safety?",
+    options: ["Safety boots with insulating soles and steel toe caps (EH-rated boots)", "Rubber flip-flops to avoid grounding", "Metal cleated boots for better grip", "Any sneakers, as long as they're comfortable"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 80,
+    question: "Before using a new chemical at work, you should:",
+    options: ["Read its Safety Data Sheet (SDS) to understand the hazards and precautions", "Assume it's safe if it's commonly used elsewhere", "Mix it with water to reduce strength and then use it", "Trust that the supplier handled safety so no action is needed"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 81,
+    question: "Why should you never run a gasoline/petrol generator indoors?",
+    options: ["It produces carbon monoxide gas which can be deadly in enclosed spaces", "It will overheat without wind", "It could steal oxygen needed for breathing by cooling the air", "Generators only work outdoors due to satellite link"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 82,
+    question: "If you suspect a material contains asbestos, you should:",
+    options: ["Stop work and have a licensed professional test or remove it - do not disturb it", "Spray it with water and continue working carefully", "Wear a simple dust mask and proceed slowly", "Double-wrap it in plastic and throw it in the regular trash"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 83,
+    question: "What should you do if a power tool causes an RCD to trip every time it's used?",
+    options: ["Stop using the tool and have it inspected or repaired (it may have a fault)", "Use the tool on a circuit without an RCD", "Tape down the RCD switch to prevent it from tripping", "Wear rubber gloves and continue using the tool"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 84,
+    question: "Long-term use of vibrating tools (like jackhammers) can lead to:",
+    options: ["Hand-Arm Vibration Syndrome (HAVS)", "Improved circulation in the hands", "Carpal tunnel syndrome in the ears", "Chronic knee pain"],
+    correctAnswer: 0,
+    category: "Health Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 85,
+    question: "How can you reduce the risk of hand-arm vibration syndrome (HAVS) when using power tools?",
+    options: ["Limit the time using them and wear anti-vibration gloves; take regular breaks", "Press the tool harder to finish faster", "Only use them in cold environments to numb the pain", "Avoid taking breaks to keep your hands used to it"],
+    correctAnswer: 0,
+    category: "Health Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 86,
+    question: "What is a 'toolbox talk'?",
+    options: ["A short safety meeting or briefing on-site about specific safety topics or tasks", "A discussion where workers complain about their tools", "A box in which safety documents are kept", "A formal annual safety conference"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 87,
+    question: "How often should power tools and cords be inspected for damage?",
+    options: ["Before each use or routinely, to catch any damage or wear", "Once every five years", "Only when they stop working", "No need if they are new"],
+    correctAnswer: 0,
+    category: "Tools and Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 88,
+    question: "Portable Appliance Testing (PAT) involves:",
+    options: ["Visually inspecting and electrically testing an appliance for safety", "Checking if an appliance performs its function quickly", "Adding extra insulation tape to wires", "Testing how hot an appliance gets during use"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 89,
+    question: "How often should you press the test button on an RCD (Residual Current Device) to ensure it's working?",
+    options: ["About every 3 months (quarterly)", "Daily", "Once a decade", "Never, unless it trips"],
+    correctAnswer: 0,
+    category: "Electrical Protection",
+    section: "Health and Safety"
+  },
+  {
+    id: 90,
+    question: "If you are not trained or authorized to perform a certain dangerous task, you should:",
+    options: ["Inform a supervisor and do not proceed until properly trained or authorized", "Try it under supervision of a friend", "Read about it online and attempt it", "Go ahead to avoid delaying work"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 91,
+    question: "What should you do if you see a coworker working on live electrical equipment without proper precautions?",
+    options: ["Stop them and ensure the power is off or proper safety measures are in place", "Mind your own business to avoid conflict", "Take a photo and continue working", "Wait until they're done then tell a supervisor next week"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 92,
+    question: "Which of the following is a common sign of heat exhaustion?",
+    options: ["Heavy sweating and dizziness", "Shivering and numbness", "Itchiness and rash", "Sudden hunger"],
+    correctAnswer: 0,
+    category: "Health Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 93,
+    question: "How can you safely help someone who is being electrocuted by a live wire?",
+    options: ["Cut the power source or push them away with a non-conductive object before touching them", "Grab them with your bare hands to pull them away quickly", "Throw water on them to cool them down", "Call out to them to move away"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 94,
+    question: "If a person falls from height and might be injured, what should you do first?",
+    options: ["Keep them still and call for medical help (suspect a spinal injury)", "Help them sit or stand up immediately", "Give them food or water to help with shock", "Leave them to see if they get up on their own"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 95,
+    question: "In first aid, what does the acronym ABC stand for?",
+    options: ["Airway, Breathing, Circulation", "Alert, Breathing, Consciousness", "Airway, Bleeding, CPR", "Assess, Begin, Call"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 96,
+    question: "After ensuring the scene is safe, what is the next step when approaching an unconscious person?",
+    options: ["Check if they are responsive by gently tapping and shouting", "Begin CPR chest compressions immediately", "Give them a sip of water", "Look for emergency contacts on their phone"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 97,
+    question: "What is the recommended ratio of chest compressions to rescue breaths for adult CPR (if trained to give breaths)?",
+    options: ["30 compressions : 2 breaths", "15 compressions : 2 breaths", "10 compressions : 1 breath", "50 compressions : 5 breaths"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 98,
+    question: "What is the purpose of an Automated External Defibrillator (AED)?",
+    options: ["To deliver an electric shock to the heart to try to restore a normal rhythm", "To measure a person's heart rate over time", "To provide oxygen to a patient having an asthma attack", "To immobilize a broken limb"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 99,
+    question: "How often should fire drills be conducted in a workplace?",
+    options: ["At least once per year", "Never, if you have alarms installed", "Daily, to build habit", "Every 5 years"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 100,
+    question: "When operating machinery near overhead power lines, you should:",
+    options: ["Maintain a safe distance (e.g. at least 10 feet/3 meters) or have the lines de-energized first", "Only work at night when electricity is weaker", "Have someone touch the line to check if it's live", "Drive machinery quickly under the lines to minimize exposure"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 101,
+    question: "What does HSE stand for (in the UK)?",
+    options: ["Health and Safety Executive", "Health and Security Executive", "Hazard and Safety Enforcement", "Health and Safety Evaluation"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 102,
+    question: "What does OSHA stand for (in the USA)?",
+    options: ["Occupational Safety and Health Administration", "Organizational Safety and Hazard Agency", "Office of Safety and Health Audits", "Occupational Security and Hygiene Association"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 103,
+    question: "Which of the following is an engineering control for a hazard?",
+    options: ["Installing a ventilation system or safety guard to mitigate the hazard at its source", "Providing ear plugs to workers", "Training employees in safety procedures", "Putting up a warning sign"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 104,
+    question: "In the hierarchy of hazard control, which method is most effective?",
+    options: ["Eliminating the hazard entirely", "Using personal protective equipment (PPE)", "Administrative controls (training, policies)", "Issuing warnings and signs"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 105,
+    question: "Which of these is an example of an administrative safety control?",
+    options: ["Implementing safety training and procedures for workers", "Installing machine guarding", "Substituting a less harmful chemical", "Wearing protective gloves"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 106,
+    question: "What does ergonomics focus on?",
+    options: ["Designing workstations and tasks to fit the worker and reduce strain", "Increasing economic profit through safety", "Classifying types of machine guards", "Studying the spread of diseases at work"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 107,
+    question: "Which part of the body is most often injured by improper lifting?",
+    options: ["The back", "The ears", "The fingers", "The head"],
+    correctAnswer: 0,
+    category: "Manual Handling",
+    section: "Health and Safety"
+  },
+  {
+    id: 108,
+    question: "What is a 'near miss' incident?",
+    options: ["An event that could have caused harm but did not actually result in injury or damage", "An accident that caused a minor injury", "A failed safety inspection", "An incident that caused damage but no injuries"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 109,
+    question: "Why is it important to report near-miss incidents?",
+    options: ["To learn from them and prevent future accidents by addressing the causes", "To ensure someone is blamed, even if no one was hurt", "It isn't important since no one was injured", "So that they can be kept secret to avoid paperwork"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 110,
+    question: "If you must run a cable or hose across a walkway, how can you reduce the trip hazard?",
+    options: ["Use a cable ramp/cover or tape it down and put warning signage", "Just hope people see it and step over", "Only do it after work hours", "Paint it bright red and leave it loose"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 111,
+    question: "Which fire extinguisher type is generally not recommended in confined indoor spaces due to the risk of breathing the agent?",
+    options: ["Dry Powder extinguisher", "CO2 extinguisher", "Water mist extinguisher", "Foam extinguisher"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 112,
+    question: "How should you dispose of an empty chemical container safely?",
+    options: ["Follow the instructions on its label/SDS for proper disposal (it may need special handling)", "Throw it in the regular trash can", "Burn it in an open area", "Reuse it for storing food or drinks"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 113,
+    question: "Why do certain jobs (like entering a confined space) require a permit to work?",
+    options: ["Because they involve significant hazards and require specific safety precautions and authorization", "Because paperwork is legally required for every task", "To track how long the job takes", "To ensure two people are always in the space"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 114,
+    question: "A hot work permit is required for activities like welding or cutting because:",
+    options: ["They involve open flame or sparks and require fire prevention measures", "Workers feel very hot doing them", "They always create toxic fumes no matter what", "They require more than one person"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 115,
+    question: "Why is it important to keep tools and equipment in good condition?",
+    options: ["Damaged tools can fail or cause accidents during use", "Shiny tools make a good impression", "It ensures you can blame the tool if something goes wrong", "Manufacturers require it for warranty"],
+    correctAnswer: 0,
+    category: "Tools and Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 116,
+    question: "On a work site, a vehicle with a flashing amber beacon usually means:",
+    options: ["It is a slow-moving or maintenance vehicle; caution is needed", "It is an emergency police vehicle", "The vehicle has the right-of-way over all others", "The driver is taking a break"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 117,
+    question: "When using a mobile scaffold tower, you should always:",
+    options: ["Lock its wheels and ensure guardrails are installed before use", "Climb on the outside if it's faster", "Leave one wheel unlocked so it can move as you work", "Stand on the topmost guardrail to reach higher"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 118,
+    question: "Why do many safety harness lanyards have a built-in shock absorber?",
+    options: ["To reduce the force on the body in the event of a fall", "To make the harness more comfortable to wear", "To bounce the worker back up after a fall", "To add extra weight for stability"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 119,
+    question: "If you need to cut a cable and you suspect it could be live, what should you do?",
+    options: ["Disconnect or turn off the power and verify it's de-energized (lockout/tagout) before cutting with insulated tools", "Cut it quickly with a regular tool to minimize contact time", "Only cut the neutral wire, not the others", "Wear rubber shoes and cut it with any tool"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 120,
+    question: "How far from the edge of a trench should excavated soil (spoil) be placed?",
+    options: ["At least about 2 feet (0.6 m) away from the edge", "Right at the edge for easy refilling", "It can be piled as close as possible for efficiency", "Directly against the trench walls to reinforce them"],
+    correctAnswer: 0,
+    category: "Worksite Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 121,
+    question: "If you do not have the proper tester to verify a circuit is off, you should:",
+    options: ["Wait until you obtain the correct testing device; do not proceed without verifying zero voltage", "Assume the circuit is off if you flipped the breaker", "Use a makeshift method like touching the wire briefly", "Ask someone to hold the wires while you work"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 122,
+    question: "Before using a fire extinguisher, you should check:",
+    options: ["That it is the right type for the fire and that it is charged (gauge in the green)", "That its color matches the fire type", "Only the expiration date on the label", "If it's fully made of metal"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 123,
+    question: "If your clothes catch fire, you should:",
+    options: ["Drop to the ground and roll to smother the flames (Stop, Drop, Roll)", "Run around to fan out the flames", "Pat yourself with your hands quickly", "Stand still and wait for help"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 124,
+    question: "When using a coiled extension cable reel for high power equipment, you should:",
+    options: ["Uncoil it fully to prevent overheating", "Leave it mostly coiled to keep it tidy", "Only unwind a little to avoid tangles", "Always keep it indoors only"],
+    correctAnswer: 0,
+    category: "Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 125,
+    question: "Which ladder material is safest for electrical work?",
+    options: ["Fiberglass or wood (non-conductive)", "Aluminum", "Steel", "Any metal if painted"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 126,
+    question: "At the end of the workday, you should:",
+    options: ["Secure or shut off equipment and tidy up any hazards in your work area", "Leave immediately to avoid overtime", "Only turn off the lights", "Stack all materials in the nearest hallway"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 127,
+    question: "How often should fire extinguishers in the workplace be checked?",
+    options: ["At least monthly for visual inspection, with annual professional maintenance", "Only when they are used or discharged", "Every 10 years", "No need unless a problem is suspected"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 128,
+    question: "Maintaining three points of contact when climbing a ladder means:",
+    options: ["Two hands and one foot or two feet and one hand are on the ladder at all times", "At least three people should hold the ladder", "The ladder touches the wall at three points", "Having three ladders available as backup"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 129,
+    question: "If you accidentally drop a tool from a height, you should immediately:",
+    options: ["Shout a warning (e.g., 'Heads!') to alert those below", "Climb down as fast as possible without saying anything", "Hope for the best and continue working", "Try to catch it if possible"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 130,
+    question: "Under health and safety law, employees have a duty to:",
+    options: ["Take reasonable care of their own health and safety and that of others and cooperate with safety instructions", "Do only what management says without question", "Ensure the company's profitability", "Enforce safety rules on others as the main responsibility"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 131,
+    question: "What is the function of an emergency stop button on a machine?",
+    options: ["To immediately cut power and stop the machine in an emergency", "To boost the machine's speed momentarily", "To send an alarm to the police", "To lock the machine's settings"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 132,
+    question: "If your employer issues you PPE (like a hard hat or goggles), you should:",
+    options: ["Wear it whenever required to protect yourself", "Keep it in your locker unless an inspector comes", "Refuse to wear it if it's uncomfortable", "Only wear it when the safety inspector is around"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 133,
+    question: "If you see a colleague doing something unsafe, you should:",
+    options: ["Advise them to stop and follow safety procedures or inform a supervisor", "Mind your own business and not intervene", "Take a video but not interfere", "Assume they have special training you don't know about"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 134,
+    question: "A long-term effect of exposure to loud noise without protection is:",
+    options: ["Permanent hearing loss", "Improved pain tolerance", "Better night vision", "Enhanced sense of smell"],
+    correctAnswer: 0,
+    category: "Noise Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 135,
+    question: "Which of these is NOT a typical route for chemicals to enter the body?",
+    options: ["Through the ears (via sound)", "Inhalation (breathing in)", "Ingestion (swallowing)", "Absorption through skin or eyes"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 136,
+    question: "On a hazard label, a skull and crossbones symbol means the substance is:",
+    options: ["Toxic/poisonous (can cause death if ingested or inhaled)", "Radioactive", "Corrosive to metals", "An irritant (minor harm)"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 137,
+    question: "On chemical hazard labels, a flame icon indicates a material that is:",
+    options: ["Flammable", "Explosive", "Radioactive", "Poisonous"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 138,
+    question: "Why is it dangerous to overload a multi-plug adapter or power strip?",
+    options: ["It can overheat and start an electrical fire due to excessive current draw", "It will use up more voltage", "It shortens the length of the cables", "It makes the electricity flow slower"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 139,
+    question: "A red circle with a diagonal line through a cigarette symbol means:",
+    options: ["No smoking (smoking is prohibited in that area)", "Smoking area ahead", "Fire alarm present", "Wear respiratory protection"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 140,
+    question: "A face shield is used to protect against:",
+    options: ["Flying debris, chemical splashes, or sparks to the face", "High noise levels", "Electrical shock through the body", "Falls from heights"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 141,
+    question: "Machine guards are installed on equipment to:",
+    options: ["Protect the operator from moving parts and other hazards", "Keep the equipment polished and clean", "Increase machine speed", "Secure the machine to the floor"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 142,
+    question: "If a chemical splashes into your eyes, you should immediately:",
+    options: ["Rinse your eyes with clean water for at least 15 minutes and seek medical help", "Rub your eyes gently to remove the chemical", "Close your eyes tightly and wait for help", "Bandage your eyes closed"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 143,
+    question: "Which of the following should you NEVER use on an electrical fire?",
+    options: ["Water", "CO2 extinguisher", "Dry powder extinguisher", "Turning off the power"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 144,
+    question: "In hazard control, PPE is considered:",
+    options: ["The last line of defense, used when hazards cannot be fully eliminated or controlled otherwise", "More effective than removing the hazard", "An engineering control", "Not necessary if other controls exist"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 145,
+    question: "Before performing welding or other hot work, you should always:",
+    options: ["Remove or protect flammable materials nearby and have fire-fighting measures ready", "Open windows to let out fumes and then start immediately", "Only wear lighter clothing to stay cool", "Notify the fire department to be on standby"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 146,
+    question: "What is the emergency telephone number to call for fire or medical help in the UK?",
+    options: ["999", "911", "112", "101"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 147,
+    question: "A damaged lead-acid battery can pose which hazard?",
+    options: ["It can leak corrosive acid and release explosive gas (hydrogen)", "It can overheat and freeze nearby objects", "It emits high levels of radiation", "It produces loud noises when damaged"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 148,
+    question: "Breaking a fluorescent light tube or CFL bulb is hazardous because it may release:",
+    options: ["Mercury vapor, which is toxic", "Lead dust, which is flammable", "Asbestos fibers, which cause cancer", "Chlorine gas, which is explosive"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 149,
+    question: "If a power line falls on the ground, you should:",
+    options: ["Stay far away, keep others away, and call the utility emergency line immediately", "Try to move it with a dry stick", "Drive over it to push it aside", "Pour sand over it to insulate it"],
+    correctAnswer: 0,
+    category: "Basic Electrical Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 150,
+    question: "Why is using a phone while driving or operating machinery dangerous?",
+    options: ["It distracts your attention and greatly increases the risk of an accident", "It uses up the vehicle's battery quickly", "Phones can emit sparks causing fires", "It is not; people can multitask well"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 151,
+    question: "If you find a piece of equipment is unsafe (for example, a tool with exposed wires), you should:",
+    options: ["Stop using it immediately, tag it as 'out of service', and report it for repair", "Try to fix it yourself with tape and keep using it", "Use it only when wearing gloves", "Put it back and let someone else discover it"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 152,
+    question: "Which of the following is a form of hand protection PPE?",
+    options: ["Protective gloves appropriate to the hazard", "Ear defenders", "Safety glasses", "A face shield"],
+    correctAnswer: 0,
+    category: "Safety Equipment",
+    section: "Health and Safety"
+  },
+  {
+    id: 153,
+    question: "If a ladder or scaffold feels unstable while you're on it, you should:",
+    options: ["Climb down immediately and stabilize or reposition it before continuing work", "Move as little as possible and wait for it to settle", "Quickly finish the task before it collapses", "Ask someone to hold it while you keep working"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 154,
+    question: "What is the safest way to carry tools when climbing a ladder?",
+    options: ["Use a tool belt or hoist them up with a rope once you have climbed", "Carry them all in one hand while using the other to hold the ladder", "Throw them up to the platform ahead of you before climbing", "Hold them in your pockets or under your arm"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 155,
+    question: "When working near heavy machinery or moving vehicles, you should always:",
+    options: ["Stay visible to operators (wear hi-vis, make eye contact) and communicate your presence", "Approach from behind quickly to avoid distracting the operator", "Wear earplugs so you aren't startled by noise", "Assume the operator will always see you"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 156,
+    question: "Working alone on hazardous tasks is:",
+    options: ["More dangerous; you should have someone aware of your work or use a buddy system", "Preferred because you won't be distracted", "Illegal in all cases", "Safer since no one else can cause an accident"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 157,
+    question: "What is the proper first aid for a burn from an electrical injury (after the power is off)?",
+    options: ["Cool the burn with running water (if possible) and cover with a sterile dressing, then seek medical help", "Apply ice directly to the burn", "Break any blisters to relieve pressure", "Rub butter or oil on the burn"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 158,
+    question: "What does LOTO stand for in safety procedures?",
+    options: ["Lock Out Tag Out", "List Of Tasks and Operations", "Loss Of Time Objective", "Legal Occupational Training Order"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 159,
+    question: "What color and shape are standard hazard warning signs (indicating caution, e.g., high voltage)?",
+    options: ["Yellow triangles with black symbols", "Blue circles with white symbols", "Green rectangles with white symbols", "Red circles with a diagonal line"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 160,
+    question: "What color is used for mandatory safety signs (indicating actions you must take)?",
+    options: ["Blue (with white symbols or text)", "Red (with a cross bar)", "Yellow (triangle shape)", "Green (square shape)"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 161,
+    question: "What color is used for safety condition signs (such as first aid or emergency exits)?",
+    options: ["Green with white symbols or text", "Red with white symbols", "Blue with white symbols", "Yellow with black symbols"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 162,
+    question: "Prohibition signs (such as 'No Smoking') are usually:",
+    options: ["Red circles with a diagonal line through a black symbol", "Blue squares with white borders", "Green circles with a check mark", "Yellow triangles with a red border"],
+    correctAnswer: 0,
+    category: "Safety Signs",
+    section: "Health and Safety"
+  },
+  {
+    id: 163,
+    question: "What does CPR stand for in first aid?",
+    options: ["Cardiopulmonary Resuscitation", "Critical Pressure Response", "Circulatory Pressure Rescue", "Compression-Pulse Recovery"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 164,
+    question: "Why would you place an unconscious but breathing person in the recovery position?",
+    options: ["To keep their airway open and prevent choking on vomit", "To make them more comfortable for CPR", "So they can get up more easily", "Because it looks like they are sleeping"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 165,
+    question: "If the fire alarm sounds, what should you do?",
+    options: ["Evacuate the building immediately by the nearest exit and go to the assembly point", "Finish what you're doing, then leave", "Look for the fire and try to put it out before leaving", "Ignore it if you see no fire"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 166,
+    question: "During a fire, before opening a closed door you should:",
+    options: ["Feel the door (with the back of your hand) for heat to check if fire is on the other side", "Open it slowly and peek quickly for fire", "Open it normally, you might outrun the fire", "Knock to see if anyone responds"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 167,
+    question: "Why should you avoid using elevators during a fire evacuation?",
+    options: ["They may fail or stop, trapping you, or take you to the fire floor; use stairs instead", "They move too slowly in a fire", "The water from sprinklers can damage the elevator cables causing it to drop", "Emergency personnel need them for equipment"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 168,
+    question: "In risk management, what does ALARP stand for?",
+    options: ["As Low As Reasonably Practicable (reducing risk to the lowest feasible level)", "All Levels Avoid Real Peril", "Always Leave All Risks Protected", "Assessment of Likelihood And Risk Profile"],
+    correctAnswer: 0,
+    category: "Risk Assessment",
+    section: "Health and Safety"
+  },
+  {
+    id: 169,
+    question: "Why should machine guards or safety interlocks never be removed or bypassed?",
+    options: ["Removing guards exposes moving parts and can lead to serious injury", "It will void the warranty", "It makes the machine run slower", "It is illegal even if it improves productivity"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 170,
+    question: "What is a 'safe system of work'?",
+    options: ["A formal procedure outlining how to carry out a task safely, considering all hazards and controls", "A method to ensure work is completed quickly", "A system that requires two people for every job", "Any job done with PPE worn"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 171,
+    question: "On lifting equipment, what does SWL refer to?",
+    options: ["Safe Working Load, the maximum load the equipment can handle safely", "Standard Weight Limit, the typical weight of the gear", "Safe Wire Length, the length of rope to use", "Secure Work Latch, a type of hook"],
+    correctAnswer: 0,
+    category: "Manual Handling",
+    section: "Health and Safety"
+  },
+  {
+    id: 172,
+    question: "What is a safe practice regarding overhead cranes and suspended loads?",
+    options: ["Never stand or walk under a suspended load; loads can fall unexpectedly", "Stand directly under the load to guide it", "Only hard hats are needed to be under loads", "Touch the cable to feel if it's secure"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 173,
+    question: "Why is horseplay or practical joking at the workplace dangerous?",
+    options: ["It can distract people and lead to accidents or injuries", "It helps keep morale high during boring tasks", "Most safety rules don’t apply if it's a joke", "It is only a problem if management sees it"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 174,
+    question: "How should oil-soaked or solvent-soaked rags be disposed of or stored before disposal?",
+    options: ["In a metal container with a lid, to prevent fire (spontaneous combustion) and fume release", "Spread them out on a floor to dry", "Thrown in the general trash bin loosely", "Rinsed in hot water and reused immediately"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 175,
+    question: "If a fire is too large to control with an extinguisher, you should:",
+    options: ["Evacuate immediately and call the fire department from a safe location", "Get a bigger extinguisher and try again", "Throw water on it regardless of the source", "Hide in a room until firefighters arrive"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 176,
+    question: "When using strong solvents or chemicals in an enclosed area, you should:",
+    options: ["Ensure good ventilation (open windows or use exhaust fans) to avoid inhaling fumes", "Wear extra sweaters to absorb chemicals", "Work quickly and then seal the room", "Only use them at night"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 177,
+    question: "When storing heavy materials in a warehouse, where should the heaviest items go?",
+    options: ["On lower shelves or the floor, to reduce the risk of injury or items falling", "At eye level for convenience", "On top shelves to keep them out of the way", "Spread evenly on all shelves regardless of weight"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 178,
+    question: "What is one hazard of working in a poorly lit area?",
+    options: ["You may not see obstacles or dangers, increasing the risk of accidents", "It improves your night vision too much", "Noise levels seem higher", "It causes electrical circuits to overload"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 179,
+    question: "Why should 'Wet Floor' signs be used during and after mopping a floor?",
+    options: ["To warn people of the slip hazard until the floor is dry", "To show that cleaning staff are working", "It's required even if the floor is dry", "To block people from walking at all"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 180,
+    question: "Why must hallways and emergency exits be kept clear of obstructions?",
+    options: ["So people can evacuate quickly and safely in an emergency without tripping or delay", "To make the place look tidy for visitors", "To have space for storage when not in emergency", "So that they can be locked easily"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 181,
+    question: "What is the purpose of a fire door, and how should it be used?",
+    options: ["To slow the spread of fire and smoke; it should remain closed (not propped open) unless on an automatic closer", "To allow quick exit; it should be wedged open during work hours", "To vent heat from a room; it should be kept slightly ajar", "To mark an exit route; it can be left open if the hallway is busy"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 182,
+    question: "Class F fires involve what type of fuel?",
+    options: ["Cooking oils and fats (such as in deep-fat fryers)", "Flammable gases", "Live electrical equipment", "Metals like magnesium"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 183,
+    question: "Which type of fire extinguisher is designed for Class F fires (cooking oil/fat fires)?",
+    options: ["A Wet Chemical extinguisher", "A CO2 extinguisher", "A Water jet extinguisher", "A Dry Powder extinguisher"],
+    correctAnswer: 0,
+    category: "Fire Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 184,
+    question: "Why should you tie back long hair and avoid loose clothing when working with machines or power tools?",
+    options: ["They can get caught in moving parts, causing injury", "It might make you look unprofessional", "Loose fabric can cause static shocks", "Oil and grease will permanently stain them"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 185,
+    question: "If you see equipment with a tag that says 'Do Not Operate' or a lock on the power switch, you should:",
+    options: ["Leave it alone - do not use or turn it on (it's locked/tagged out for a reason)", "Remove the tag and use it if you need to", "Test it briefly to see if it's really out of service", "Ask the person who tagged it to operate it for you"],
+    correctAnswer: 0,
+    category: "Working Practices",
+    section: "Health and Safety"
+  },
+  {
+    id: 186,
+    question: "How should compressed gas cylinders (like oxygen or propane) be stored?",
+    options: ["Upright and secured to prevent them from falling, in a well-ventilated area away from heat sources", "Lying on their side so they can't fall over", "Upside down once half empty to keep pressure consistent", "In an enclosed cabinet with no ventilation"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 187,
+    question: "On a chemical label, a flame over a circle (flame on an O) symbol indicates:",
+    options: ["An oxidizing agent, which can intensify fire", "A simple flammable liquid", "Material that emits flammable gas when wet", "High voltage inside"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 188,
+    question: "On a chemical hazard label, an exclamation mark (!) symbol typically means:",
+    options: ["The substance is harmful/irritant (can cause health effects or skin sensitization)", "Biological hazard", "Radioactive material", "Dangerous for the environment"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 189,
+    question: "A chemical label with a pictogram showing test tubes pouring liquid on a hand and metal indicates:",
+    options: ["Corrosive material (can cause severe burns to skin and damage metals)", "Biohazardous material", "Compressed gas inside", "Explosive material"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 190,
+    question: "A pictogram of an exploding bomb on a label tells you the substance is:",
+    options: ["Explosive or self-reactive (can detonate or rapidly combust)", "Under high pressure", "Radioactive", "A health hazard"],
+    correctAnswer: 0,
+    category: "Hazardous Substances",
+    section: "Health and Safety"
+  },
+  {
+    id: 191,
+    question: "In safety terms, a 'competent person' is someone who:",
+    options: ["Has the necessary training, knowledge, and experience to perform a task safely", "Holds a managerial position", "Has at least 10 years of work experience", "Is the oldest person on the team"],
+    correctAnswer: 0,
+    category: "Regulations",
+    section: "Health and Safety"
+  },
+  {
+    id: 192,
+    question: "Why is it important to use the correct tool for a job (e.g., not use a wrench as a hammer)?",
+    options: ["Using the wrong tool can lead to injury or damage because it's not designed for that task", "It voids the warranty of tools", "It is against the law to misuse tools", "It makes the job take longer"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 193,
+    question: "If you suffer an electric shock but feel fine afterwards, what should you do?",
+    options: ["Seek medical evaluation, as internal injuries or heart effects may not be immediately apparent", "Nothing, if you feel fine you're okay", "Wait until the next day to see if symptoms develop", "Just take some pain relievers and rest"],
+    correctAnswer: 0,
+    category: "First Aid",
+    section: "Health and Safety"
+  },
+  {
+    id: 194,
+    question: "Why is taking regular breaks important for safety during long or repetitive tasks?",
+    options: ["It helps prevent fatigue which can reduce concentration and lead to accidents", "It allows workers to socialize more", "Breaks are legally required every 15 minutes", "It makes the day feel longer so you pay more attention"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 195,
+    question: "Why should employees participate in safety trainings and emergency drills?",
+    options: ["So they know what to do to prevent accidents and respond properly in emergencies", "Because it looks good on their resume", "To get OSHA certification automatically", "To have a break from work"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 196,
+    question: "Why should you not leave tools or materials lying on a ladder, scaffold, or elevated surface?",
+    options: ["They can fall and injure people below or cause you to trip when you move", "They might get dirty or wet", "It makes the site look untidy to clients", "They could get stolen more easily up high"],
+    correctAnswer: 0,
+    category: "Working at Height",
+    section: "Health and Safety"
+  },
+  {
+    id: 197,
+    question: "Why is it unsafe to use compressed air to clean dust off your clothes or skin?",
+    options: ["Compressed air can inject debris or air into your skin and bloodstream, causing serious injury", "It will ruin your clothes", "It wastes air that could be used for tools", "It might knock you over with the force"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 198,
+    question: "When work is being done near a road or traffic, what safety measures should be in place?",
+    options: ["Warning signs, cones/barriers, and high-visibility clothing to alert drivers and separate workers from traffic", "Work only at night with no lighting", "Just rely on vehicles to see you", "Have workers direct traffic without training"],
+    correctAnswer: 0,
+    category: "General Safety",
+    section: "Health and Safety"
+  },
+  {
+    id: 199,
+    question: "How can workers protect themselves from heat stress when working in hot environments?",
+    options: ["By staying hydrated, taking regular breaks in the shade or cool areas, and wearing appropriate lightweight PPE", "By drinking coffee to stay alert", "By working straight through the day without stopping", "By wearing extra layers of clothes to sweat more"],
+    correctAnswer: 0,
+    category: "Health Hazards",
+    section: "Health and Safety"
+  },
+  {
+    id: 200,
+    question: "How can workers protect themselves from cold stress when working in very cold conditions?",
+    options: ["By wearing proper layered clothing (including insulation), keeping extremities covered, and taking warm-up breaks", "By drinking alcohol to feel warmer", "By working as fast as possible without breaks", "By avoiding all movement to not feel cold"],
+    correctAnswer: 0,
+    category: "Health Hazards",
+    section: "Health and Safety"
+  }
+]
