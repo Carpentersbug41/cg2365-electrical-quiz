@@ -1601,9 +1601,1610 @@ export const communicationQuestions: Question[] = [
       correctAnswer: 0,
       category: "Workplace Relations",
       section: "Communication"
+    },
+    
+    {
+      id: 1201,
+      question: "Which role is most likely to visit site on behalf of the local authority to confirm Building Regulations are being observed?",
+      options: ["Quantity Surveyor (QS)", "Building Control Officer (Building Inspector)", "Electrical Services Inspector", "Estimator"],
+      correctAnswer: 1,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1202,
+      question: "What is the primary role of a Building Control Officer during construction?",
+      options: ["Ensure compliance with Building Regulations", "Approve electrical test results for NICEIC", "Purchase materials for the contractor", "Supervise electricians day-to-day"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1203,
+      question: "Which of the following tasks is a Building Control Officer responsible for?",
+      options: ["Checking structural safety and compliance", "Installing plumbing systems", "Issuing British Standards", "Writing manufacturer user manuals"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1204,
+      question: "What does a Water Inspector primarily check on a site visit?",
+      options: ["Electrical wiring safety", "Water supply quality and compliance", "Fire alarm panel programming", "Cable containment routes"],
+      correctAnswer: 1,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1205,
+      question: "Which visitor focuses on enforcing health and safety legislation on site?",
+      options: ["HSE Inspector", "Water Inspector", "Architect", "Buyer"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1206,
+      question: "Which inspector is most likely to check compliance with electrical safety regulations on installations?",
+      options: ["Building Control Officer", "Electrical Services Inspector", "Water Inspector", "Quantity Surveyor"],
+      correctAnswer: 1,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1207,
+      question: "What does an Electrical Services Inspector NOT typically do?",
+      options: ["Inspect wiring installations", "Check electrical systems are safe", "Ensure compliance with electrical regulations", "Provide end-user instructions for appliances"],
+      correctAnswer: 3,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1208,
+      question: "If a subcontractor has an installation problem that needs resolving, who should they normally approach first?",
+      options: ["Building Control Officer", "Site supervisor or site manager", "HSE Inspector", "Customer directly without notifying anyone"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1209,
+      question: "Which role is responsible for designing the building and producing drawings/specifications to meet client and legal requirements?",
+      options: ["Architect", "Buyer", "Water Inspector", "Electrical Services Inspector"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1210,
+      question: "A variation order can normally be signed/authorised by which party?",
+      options: ["Any operative on site", "Client or contract administrator (often the architect)", "Delivery driver", "Apprentice"],
+      correctAnswer: 1,
+      category: "Commercial Communication",
+      section: "Communication"
+    },
+    {
+      id: 1211,
+      question: "What is the role of a building services engineer in simple terms?",
+      options: ["Design and oversee building M&E systems (lighting, power, HVAC, plumbing)", "Only inspect water quality", "Only price the job", "Only enforce Building Regulations"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1212,
+      question: "What is the difference between the role of the estimator and the buyer?",
+      options: ["Estimator prices the job/tender; buyer purchases materials once the job is won", "Estimator buys materials; buyer writes drawings", "They are the same role", "Estimator enforces H&S; buyer enforces Building Regulations"],
+      correctAnswer: 0,
+      category: "Commercial Communication",
+      section: "Communication"
+    },
+    {
+      id: 1213,
+      question: "Which role is most associated with managing project costs, valuations, and commercial control?",
+      options: ["Quantity Surveyor (QS)", "Water Inspector", "HSE Inspector", "Building Control Officer"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1214,
+      question: "Which of the following is MOST likely to be employed as a subcontractor trade on a building project?",
+      options: ["Electrician", "Building Control Officer", "HSE Inspector", "Architect"],
+      correctAnswer: 0,
+      category: "Trades & Subcontractors",
+      section: "Communication"
+    },
+    {
+      id: 1215,
+      question: "Which trade area would typically install a lintel?",
+      options: ["Builder/bricklayer", "Electrician", "HVAC engineer", "Painter and decorator"],
+      correctAnswer: 0,
+      category: "Trades & Subcontractors",
+      section: "Communication"
+    },
+    {
+      id: 1216,
+      question: "Which trade area would typically install an air conditioning unit?",
+      options: ["HVAC/air-conditioning engineer", "Bricklayer", "Plasterer", "Roofer"],
+      correctAnswer: 0,
+      category: "Trades & Subcontractors",
+      section: "Communication"
+    },
+    {
+      id: 1217,
+      question: "What is the main role of the site supervisor?",
+      options: ["Day-to-day supervision: safety, quality, coordination and progress", "Issue British Standards", "Approve planning permission", "Write employment law"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1218,
+      question: "What is the main role of a trade supervisor?",
+      options: ["Oversee a specific trade team, quality, materials, progress and safety", "Inspect water fittings", "Approve Building Regulations", "Set national wiring rules"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1219,
+      question: "Which legislation is most associated with confidential handling of personal information?",
+      options: ["Data Protection legislation", "Building Regulations", "British Standards", "Codes of Practice"],
+      correctAnswer: 0,
+      category: "Data & Confidentiality",
+      section: "Communication"
+    },
+    {
+      id: 1220,
+      question: "Which area of legislation promotes fairness and prevents discrimination in the workplace?",
+      options: ["Equal opportunities / equality legislation", "Building Regulations", "Manufacturer instructions", "Delivery note requirements"],
+      correctAnswer: 0,
+      category: "Employment & Equality",
+      section: "Communication"
+    },
+    {
+      id: 1221,
+      question: "Employment legislation typically covers which of the following?",
+      options: ["Pay, contracts, working hours, and holidays", "Water quality", "Cable sizing rules", "BS 7671 inspection schedules"],
+      correctAnswer: 0,
+      category: "Employment & Equality",
+      section: "Communication"
+    },
+    {
+      id: 1222,
+      question: "Which of these is NOT statutory legislation?",
+      options: ["British Standards", "Employment Rights Act", "Data Protection legislation", "Health and Safety at Work Act"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1223,
+      question: "What are British Standards best described as?",
+      options: ["Agreed technical specifications used across industry", "A legal requirement in every case", "Customer service policies", "Only manufacturer advertising"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1224,
+      question: "Codes of Practice are usually:",
+      options: ["Guidance documents recommending best practice", "Always criminal law", "A type of invoice", "Only written by site supervisors"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1225,
+      question: "Regulations differ from legislation because regulations generally:",
+      options: ["Provide detailed enforceable requirements under a law", "Are optional tips only", "Apply only to manufacturers", "Cannot be enforced"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1226,
+      question: "Manufacturer installation instructions are mainly used for:",
+      options: ["Safe and correct product installation", "Writing employment contracts", "Approving building control inspections", "Replacing project specifications"],
+      correctAnswer: 0,
+      category: "Manufacturer Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1227,
+      question: "Service and maintenance instructions are important because they help:",
+      options: ["Maintain equipment safely and correctly", "Replace British Standards", "Avoid any testing", "Set wage rates"],
+      correctAnswer: 0,
+      category: "Manufacturer Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1228,
+      question: "User instructions are intended for:",
+      options: ["End-users operating equipment safely", "HSE inspectors to enforce law", "Architects to design buildings", "Buyers to order materials"],
+      correctAnswer: 0,
+      category: "Manufacturer Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1229,
+      question: "Which communication method is BEST when you need a permanent record that can be referenced later?",
+      options: ["Written email/report/form", "Hand signals", "Shouting across site", "Guessing based on memory"],
+      correctAnswer: 0,
+      category: "Written Communication",
+      section: "Communication"
+    },
+    {
+      id: 1230,
+      question: "Which written communication method is generally the most formal?",
+      options: ["Letter", "Text message", "Site radio message", "Hand signals"],
+      correctAnswer: 0,
+      category: "Communication Methods",
+      section: "Communication"
+    },
+    {
+      id: 1231,
+      question: "Why is email widely used in work situations?",
+      options: ["It is quick, traceable, and supports attachments", "It is only for informal chats", "It cannot be used for official documents", "It replaces all face-to-face communication"],
+      correctAnswer: 0,
+      category: "Communication Methods",
+      section: "Communication"
+    },
+    {
+      id: 1232,
+      question: "Which is the best method for immediate, brief coordination across a noisy site?",
+      options: ["Two-way radio", "Formal letter", "Invoice", "Architect specification"],
+      correctAnswer: 0,
+      category: "Communication Tools",
+      section: "Communication"
+    },
+    {
+      id: 1233,
+      question: "Which factor can distort messages when using radios on site?",
+      options: ["Poor signal and crosstalk", "Clear channels and short messages", "Using agreed call signs", "Speaking clearly and slowly"],
+      correctAnswer: 0,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1234,
+      question: "Which behaviour best reduces interpersonal barriers at work?",
+      options: ["Active listening and empathy", "Interrupting to save time", "Raising your voice", "Ignoring questions"],
+      correctAnswer: 0,
+      category: "Team Communication",
+      section: "Communication"
+    },
+    {
+      id: 1235,
+      question: "What is the best way to overcome a hearing barrier when ear defenders are being worn?",
+      options: ["Use hand signals or written notes and confirm understanding", "Remove ear defenders permanently", "Shout louder", "Skip the message"],
+      correctAnswer: 0,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1236,
+      question: "Which factor most commonly causes written instructions to be misread?",
+      options: ["Ambiguous wording and lack of context", "Clear headings", "Numbered steps", "Bullet points"],
+      correctAnswer: 0,
+      category: "Written Communication",
+      section: "Communication"
+    },
+    {
+      id: 1237,
+      question: "What is a practical step to reduce information overload in communication?",
+      options: ["Prioritise key actions and summarise", "Send all details at once with no structure", "Use all caps", "Hide attachments and context"],
+      correctAnswer: 0,
+      category: "Written Communication",
+      section: "Communication"
+    },
+    {
+      id: 1238,
+      question: "A new apprentice nods but completes the task incorrectly. What communication issue is most likely?",
+      options: ["Understanding was not checked", "They are definitely lazy", "The tools are faulty", "The job specification is irrelevant"],
+      correctAnswer: 0,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1239,
+      question: "What is the main purpose of a toolbox talk?",
+      options: ["Communicate task-specific hazards, controls, and updates", "Discuss lunch plans", "Replace contracts", "Set employee pay rates"],
+      correctAnswer: 0,
+      category: "Briefings & Toolbox Talks",
+      section: "Communication"
+    },
+    {
+      id: 1240,
+      question: "Toolbox talks are most effective when they are:",
+      options: ["Interactive and relevant to the day’s tasks", "Rare and generic", "One-way lectures only", "Full of jargon with no questions"],
+      correctAnswer: 0,
+      category: "Briefings & Toolbox Talks",
+      section: "Communication"
+    },
+    {
+      id: 1241,
+      question: "When handing over a task to a coworker, what is best practice?",
+      options: ["Explain status, risks, and next steps clearly", "Say 'carry on' with no detail", "Only give the drawing number", "Assume they know everything"],
+      correctAnswer: 0,
+      category: "Handover & Briefings",
+      section: "Communication"
+    },
+    {
+      id: 1242,
+      question: "A conflict arises between trades over access. What should you do first?",
+      options: ["Raise it to the site supervisor with facts and options", "Argue in the work area", "Ignore it until it gets worse", "Stop work for the day without telling anyone"],
+      correctAnswer: 0,
+      category: "Conflict Resolution",
+      section: "Communication"
+    },
+    {
+      id: 1243,
+      question: "What is a RACI matrix used for in projects?",
+      options: ["Clarifying responsibilities and approvals", "Choosing cable sizes", "Testing insulation resistance", "Ordering materials"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1244,
+      question: "Which document describes how a task will be carried out safely and in what sequence (in a controlled way)?",
+      options: ["Method statement", "Invoice", "Delivery note", "Timesheet"],
+      correctAnswer: 0,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1245,
+      question: "Risk assessments primarily communicate:",
+      options: ["Hazards, risks, and control measures", "Customer payment terms", "Employee holiday entitlement", "Only material quantities"],
+      correctAnswer: 0,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1246,
+      question: "Which is the best channel to report a near miss when a contractor specifies a formal process?",
+      options: ["Approved reporting system/form", "Project group chat only", "Tell a mate", "Do nothing"],
+      correctAnswer: 0,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1247,
+      question: "A revision cloud on a drawing indicates:",
+      options: ["Changes made since the last issue", "A tear in the paper", "The title block location", "The customer address"],
+      correctAnswer: 0,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1248,
+      question: "What should you do when you receive a new drawing marked Rev C?",
+      options: ["Use Rev C and withdraw/replace older versions", "Use any version available", "Use the oldest revision to be safe", "Ignore drawings and use verbal instructions only"],
+      correctAnswer: 0,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1249,
+      question: "If you identify a discrepancy between the drawing and site conditions, what should you do?",
+      options: ["Raise an RFI or report to the supervisor with details", "Proceed anyway to avoid delay", "Ignore it", "Ask the customer to redesign it on the spot"],
+      correctAnswer: 0,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1250,
+      question: "When requesting clarification from a designer, what is the most appropriate approach?",
+      options: ["Formal RFI/email referencing drawing number, revision, location, and the question", "Unofficial chat with no details", "Text message saying 'call me'", "Wait and see if it becomes a problem"],
+      correctAnswer: 0,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1251,
+      question: "Why can a face-to-face discussion be better than a text message for complex site instructions?",
+      options: ["It always creates a legal contract", "It allows questions, tone, and immediate confirmation of understanding", "It removes the need for drawings", "It guarantees no mistakes"],
+      correctAnswer: 1,
+      category: "Communication Methods",
+      section: "Communication"
+    },
+    {
+      id: 1252,
+      question: "Which method is BEST when issuing revised drawings to the whole team?",
+      options: ["Verbal mention at lunch", "Email/shared project platform with revision note and distribution list", "A personal notebook update", "A group chat with no context"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1253,
+      question: "What is the main purpose of a site diary?",
+      options: ["Record daily events and key communications", "Store personal opinions only", "Replace invoices and quotations", "Record customer Wi-Fi passwords"],
+      correctAnswer: 0,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1254,
+      question: "Which is an example of non-verbal communication on site?",
+      options: ["Email", "Body language", "Change request form", "Telephone call"],
+      correctAnswer: 1,
+      category: "Communication Methods",
+      section: "Communication"
+    },
+    {
+      id: 1255,
+      question: "When giving verbal instructions, which practice improves clarity most?",
+      options: ["Speak quickly to save time", "Use plain language and confirm understanding", "Use trade jargon only", "Avoid repeating key points"],
+      correctAnswer: 1,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1256,
+      question: "What does it mean to 'confirm understanding' after giving an instruction?",
+      options: ["Ask the person to repeat/paraphrase the instruction and confirm actions", "Ask 'understand?' and assume silence means yes", "Get a signature immediately", "Trust they understood if they nod"],
+      correctAnswer: 0,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1257,
+      question: "Which is best for immediate coordination across a noisy site?",
+      options: ["Formal letter", "Two-way radio", "Invoice", "Specification document"],
+      correctAnswer: 1,
+      category: "Communication Tools",
+      section: "Communication"
+    },
+    {
+      id: 1258,
+      question: "What should you include in a clear voicemail to a colleague?",
+      options: ["Only your name", "Your name, reason for call, required action, and callback details", "A long story", "Just 'call me'"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1259,
+      question: "Which is a common physical barrier to communication on construction sites?",
+      options: ["Noise and distance", "Shared goals", "Clear lighting", "Team briefings"],
+      correctAnswer: 0,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1260,
+      question: "How can language barriers be reduced most effectively?",
+      options: ["Speak louder", "Use translators/visual aids and check understanding", "Use more jargon", "Avoid communicating with those workers"],
+      correctAnswer: 1,
+      category: "Inclusive Communication",
+      section: "Communication"
+    },
+    {
+      id: 1261,
+      question: "What is a key advantage of written communication on projects?",
+      options: ["Instant feedback", "Permanent record and traceability", "Tone of voice is always clear", "It prevents all mistakes"],
+      correctAnswer: 1,
+      category: "Written Communication",
+      section: "Communication"
+    },
+    {
+      id: 1262,
+      question: "Which issue most often causes written instructions to be misread?",
+      options: ["Clear headings", "Ambiguous wording and missing context", "Numbered steps", "Bullet points"],
+      correctAnswer: 1,
+      category: "Written Communication",
+      section: "Communication"
+    },
+    {
+      id: 1263,
+      question: "What is a practical step to reduce information overload in messages to the team?",
+      options: ["Send everything at once", "Prioritise key actions and summarise", "Use ALL CAPS", "Hide attachments"],
+      correctAnswer: 1,
+      category: "Written Communication",
+      section: "Communication"
+    },
+    {
+      id: 1264,
+      question: "When handover happens between operatives, what should be communicated?",
+      options: ["Only the drawing number", "Status, hazards/risks, outstanding actions, and next steps", "Just 'carry on'", "Nothing—handover wastes time"],
+      correctAnswer: 1,
+      category: "Handover & Briefings",
+      section: "Communication"
+    },
+    {
+      id: 1265,
+      question: "Why is role clarity important on multi-trade sites?",
+      options: ["It increases duplication", "It avoids duplicated or missed tasks", "It replaces RAMS", "It removes the need for supervision"],
+      correctAnswer: 1,
+      category: "Team Communication",
+      section: "Communication"
+    },
+    {
+      id: 1266,
+      question: "Which tool helps clarify who is Responsible, Accountable, Consulted, and Informed?",
+      options: ["RACI matrix", "Cable schedule", "PAT register", "Delivery note"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1267,
+      question: "A conflict arises between trades over access. What is the best first step?",
+      options: ["Argue on the spot", "Raise it to the site supervisor with facts and options", "Ignore it", "Stop work for the day without telling anyone"],
+      correctAnswer: 1,
+      category: "Conflict Resolution",
+      section: "Communication"
+    },
+    {
+      id: 1268,
+      question: "Which behaviour best reduces interpersonal barriers at work?",
+      options: ["Interrupting to speed up", "Active listening and empathy", "Raising your voice", "Ignoring questions"],
+      correctAnswer: 1,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1269,
+      question: "If ear defenders create a hearing barrier, what is the safest communication method?",
+      options: ["Remove PPE permanently", "Use hand signals/written notes and confirm understanding", "Shout louder", "Skip the message"],
+      correctAnswer: 1,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1270,
+      question: "What is the main purpose of a toolbox talk?",
+      options: ["Discuss lunch plans", "Communicate task-specific hazards, controls and updates", "Review company finances", "Assign overtime only"],
+      correctAnswer: 1,
+      category: "Briefings & Toolbox Talks",
+      section: "Communication"
+    },
+    {
+      id: 1271,
+      question: "Toolbox talks are most effective when they are:",
+      options: ["Rare and generic", "Interactive and relevant to today’s tasks", "One-way lectures only", "Full of jargon with no questions"],
+      correctAnswer: 1,
+      category: "Briefings & Toolbox Talks",
+      section: "Communication"
+    },
+    {
+      id: 1272,
+      question: "Which document communicates the safe method of work for a task?",
+      options: ["Invoice", "Method statement / RAMS", "Timesheet", "Receipt"],
+      correctAnswer: 1,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1273,
+      question: "Risk assessments primarily communicate:",
+      options: ["Hazards, risks, and control measures", "Customer payment terms", "Only materials required", "Employee holidays"],
+      correctAnswer: 0,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1274,
+      question: "When should you stop work to communicate a serious safety concern?",
+      options: ["End of the week", "Immediately if there is imminent danger", "Never—just carry on", "Only during breaks"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1275,
+      question: "Which is the best channel to report a near miss if the contractor specifies a system?",
+      options: ["Tell a friend", "Approved reporting system/form", "Unofficial chat group", "Do nothing"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1276,
+      question: "What is the purpose of safety signage on site?",
+      options: ["Decoration", "Communicate warnings, mandatory actions, and information", "Advertising", "Approve designs"],
+      correctAnswer: 1,
+      category: "Safety Communication",
+      section: "Communication"
+    },
+    {
+      id: 1277,
+      question: "If you spot a discrepancy between drawing and site conditions, what should you do?",
+      options: ["Proceed anyway", "Raise an RFI or report to the supervisor with details", "Ignore it", "Ask the customer to redesign immediately"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1278,
+      question: "A revision cloud and letter on a drawing indicate:",
+      options: ["A change since the last issue", "The drawing is void", "The delivery address", "Hours to be worked"],
+      correctAnswer: 0,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1279,
+      question: "What should you do when a new drawing revision (e.g., Rev C) is issued?",
+      options: ["Use any version available", "Use the latest revision and withdraw/replace older versions", "Use the oldest version", "Ignore drawings and rely on memory"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1280,
+      question: "Which practice helps teams find the latest documents quickly?",
+      options: ["Random filenames", "Include project, discipline, drawing number, and revision in the filename", "Name every file 'final'", "Use personal nicknames for drawings"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1281,
+      question: "Why are distribution lists important when issuing drawings or key information?",
+      options: ["To increase email traffic", "To ensure the right people receive the latest information", "To replace inductions", "To remove the need for revisions"],
+      correctAnswer: 1,
+      category: "Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1282,
+      question: "What is an RFI primarily used for?",
+      options: ["Ordering materials", "Formally requesting clarification on drawings/specifications", "Recording training", "Replacing method statements"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1283,
+      question: "Which details should be included in an RFI to reduce delays?",
+      options: ["Only a photo", "Drawing number, revision, exact location, and clear question", "A message saying 'please advise' only", "No references to keep it simple"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1284,
+      question: "What is the most appropriate way to record a verbal instruction that changes scope?",
+      options: ["Rely on memory", "Follow up in writing (email/variation note) summarising what was agreed", "Tell a colleague only", "Wait until the end of the job"],
+      correctAnswer: 1,
+      category: "Scope Changes & Variations",
+      section: "Communication"
+    },
+    {
+      id: 1285,
+      question: "Which statement best describes the main role of a Quantity Surveyor (QS)?",
+      options: ["Manage costs, valuations, and commercial aspects of the project", "Inspect water quality and backflow prevention", "Enforce H&S legislation on site", "Approve Building Regulations completion certificates"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1286,
+      question: "Which statement best describes the role of the architect in the command chain?",
+      options: ["Design the building and produce drawings/specifications to meet client and legal requirements", "Purchase materials for the job", "Inspect electrical installations for compliance", "Produce payroll and timesheets"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1287,
+      question: "A variation order is most commonly authorised (signed) by:",
+      options: ["Any apprentice", "Client or contract administrator (often the architect)", "Delivery driver", "Water Inspector"],
+      correctAnswer: 1,
+      category: "Scope Changes & Variations",
+      section: "Communication"
+    },
+    {
+      id: 1288,
+      question: "What does a building services engineer typically do?",
+      options: ["Design/oversee M&E systems such as power, lighting, HVAC and plumbing", "Only price the job", "Only enforce H&S law", "Only install containment"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1289,
+      question: "What is the key difference between an estimator and a buyer?",
+      options: ["Estimator prices the job/tender; buyer purchases materials once the job is won", "Estimator buys materials; buyer prices the tender", "They do the same job", "Estimator enforces Building Regulations; buyer enforces H&S law"],
+      correctAnswer: 0,
+      category: "Commercial Communication",
+      section: "Communication"
+    },
+    {
+      id: 1290,
+      question: "Which is most likely to visit site on behalf of the local authority to check Building Regulations?",
+      options: ["Building Control Officer (Building Inspector)", "Estimator", "Buyer", "Trade supervisor"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1291,
+      question: "Which inspector focuses on enforcing health and safety legislation?",
+      options: ["HSE Inspector", "Water Inspector", "Architect", "Quantity Surveyor"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1292,
+      question: "Which inspector primarily checks water supply quality and compliance with water regulations?",
+      options: ["Water Inspector", "Building Control Officer", "Electrical Services Inspector", "Buyer"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1293,
+      question: "Which inspector checks electrical installations are safe and meet relevant electrical requirements?",
+      options: ["Electrical Services Inspector", "Water Inspector", "Architect", "Clerk of Works"],
+      correctAnswer: 0,
+      category: "Inspectors & Authorities",
+      section: "Communication"
+    },
+    {
+      id: 1294,
+      question: "Which is NOT statutory legislation (but is widely followed)?",
+      options: ["British Standards", "Health and Safety at Work Act", "Employment Rights Act", "Data Protection legislation"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1295,
+      question: "What are British Standards?",
+      options: ["Agreed technical specifications", "Only optional personal preferences", "Employment contracts", "Customer cancellation rights"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1296,
+      question: "Codes of Practice are best described as:",
+      options: ["Recommended best-practice guidance", "Always criminal law", "Project invoices", "Only for end-users"],
+      correctAnswer: 0,
+      category: "Legislation & Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1297,
+      question: "Why are manufacturer installation instructions important?",
+      options: ["They help ensure safe and correct installation and operation", "They replace BS 7671 completely", "They are only for inspectors", "They are optional in all cases"],
+      correctAnswer: 0,
+      category: "Manufacturer Guidance",
+      section: "Communication"
+    },
+    {
+      id: 1298,
+      question: "When speaking to a customer at their property, what should you do first?",
+      options: ["Start filming", "Introduce yourself, show ID if required, and explain the purpose", "Ask for Wi-Fi", "Walk in without speaking"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1299,
+      question: "A customer is upset about dust. What is the best response?",
+      options: ["Dismiss it", "Listen, apologise, explain controls, and act", "Blame another trade", "Ignore them"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1300,
+      question: "Confidential information about clients or drawings should be:",
+      options: ["Posted on social media for advice", "Discussed only with authorised people and stored securely", "Shared with anyone on site", "Saved on any device without protection"],
+      correctAnswer: 1,
+      category: "Data & Confidentiality",
+      section: "Communication"
+    },
+
+    {
+      id: 1301,
+      question: "What is the main purpose of minutes or a written meeting note after a site meeting?",
+      options: ["To replace drawings completely", "To record decisions, actions, owners, and deadlines for accountability", "To increase paperwork for no reason", "To avoid speaking to people"],
+      correctAnswer: 1,
+      category: "Meetings & Minutes",
+      section: "Communication"
+    },
+    {
+      id: 1302,
+      question: "Which is the best way to confirm actions at the end of a meeting?",
+      options: ["Leave without summarising", "Agree actions, who is responsible, and due dates, then circulate a short summary", "Assume everyone will remember", "Only discuss problems and no actions"],
+      correctAnswer: 1,
+      category: "Meetings & Minutes",
+      section: "Communication"
+    },
+    {
+      id: 1303,
+      question: "Which document is most useful for tracking open issues and who is responsible for them?",
+      options: ["Action log", "Delivery note", "Timesheet", "Holiday request form"],
+      correctAnswer: 0,
+      category: "Meetings & Minutes",
+      section: "Communication"
+    },
+    {
+      id: 1304,
+      question: "Why is it important to use the latest drawing revision on site?",
+      options: ["Old drawings are always illegal", "To avoid installing to superseded information and causing rework/safety issues", "To reduce the need for materials", "Because revisions are only for the office"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1305,
+      question: "What should you do if you find multiple printed copies of different drawing revisions on site?",
+      options: ["Use whichever is nearest", "Withdraw old revisions and re-issue the latest to the team", "Keep both and let everyone decide", "Ignore the issue if the work looks similar"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1306,
+      question: "Which approach best supports good document control for drawings?",
+      options: ["Saving files as 'final final v9'", "Using a controlled naming system including drawing number, revision, and date", "Keeping drawings only on personal phones", "Removing revision letters to avoid confusion"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1307,
+      question: "What is the best communication method to request a design change or clarification formally?",
+      options: ["A casual chat message", "A formal RFI/email referencing drawing/section and the issue", "Telling a colleague only", "Waiting until the job is finished"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1308,
+      question: "If you receive a verbal instruction that changes the scope of work, what should you do next?",
+      options: ["Do nothing and rely on memory", "Confirm in writing (email/variation note) summarising what was agreed", "Change it but don’t tell anyone", "Wait for the client to complain"],
+      correctAnswer: 1,
+      category: "Scope Changes & Variations",
+      section: "Communication"
+    },
+    {
+      id: 1309,
+      question: "What is the biggest risk of relying only on verbal changes with no record?",
+      options: ["Better teamwork", "Disputes, unclear scope, and costly rework", "Faster certification", "Lower customer expectations"],
+      correctAnswer: 1,
+      category: "Scope Changes & Variations",
+      section: "Communication"
+    },
+    {
+      id: 1310,
+      question: "Which role most commonly manages day-to-day running of the site and coordinates trades under the main contractor?",
+      options: ["Site manager", "Water Inspector", "Architect", "Building Control Officer"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1311,
+      question: "Who does an operative normally report day-to-day issues to first on site?",
+      options: ["Building Control Officer", "Immediate supervisor/foreman/trade supervisor", "HSE Inspector", "Quantity Surveyor"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1312,
+      question: "If there is a serious imminent danger, how should it be communicated?",
+      options: ["Wait until the end of the shift", "Stop work and report immediately following site procedure", "Only write it in a diary later", "Tell only your friend"],
+      correctAnswer: 1,
+      category: "Safety Communication",
+      section: "Communication"
+    },
+    {
+      id: 1313,
+      question: "What is the main purpose of a permit-to-work system?",
+      options: ["To record overtime", "To control high-risk activities through formal authorisation and communication", "To replace risk assessments", "To order materials"],
+      correctAnswer: 1,
+      category: "Safety Communication",
+      section: "Communication"
+    },
+    {
+      id: 1314,
+      question: "Which is a good example of a high-risk activity that may require a permit-to-work (site dependent)?",
+      options: ["Installing a faceplate", "Hot works or working in confined spaces", "Writing an email", "Completing a timesheet"],
+      correctAnswer: 1,
+      category: "Safety Communication",
+      section: "Communication"
+    },
+    {
+      id: 1315,
+      question: "Why are RAMS briefings important before starting work?",
+      options: ["They replace training forever", "They ensure everyone understands hazards, controls, and the safe method of work", "They are only for managers", "They are only for customers"],
+      correctAnswer: 1,
+      category: "Safety Communication",
+      section: "Communication"
+    },
+    {
+      id: 1316,
+      question: "What is the best way to make sure a new apprentice understands a task?",
+      options: ["Ask 'yeah?' and walk off", "Use show-and-tell, ask them to repeat key steps, and supervise", "Give them the tools and leave", "Only send them a long email"],
+      correctAnswer: 1,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1317,
+      question: "Which is an example of a language barrier control on site?",
+      options: ["Only speaking faster", "Using diagrams/pictures, demonstrations, and checking understanding", "Avoiding communication", "Using slang and abbreviations"],
+      correctAnswer: 1,
+      category: "Inclusive Communication",
+      section: "Communication"
+    },
+    {
+      id: 1318,
+      question: "Which is an example of a physical barrier to communication?",
+      options: ["Noise, distance, and PPE", "Clear lighting", "Shared goals", "Good teamwork"],
+      correctAnswer: 0,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1319,
+      question: "What should you do if you cannot hear instructions due to plant noise?",
+      options: ["Pretend you heard it", "Ask for repetition and move to a quieter area or use agreed signals/radio", "Guess the instruction", "Ignore the task"],
+      correctAnswer: 1,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1320,
+      question: "What is a good practice when using a two-way radio on site?",
+      options: ["Talk over others to be first", "Keep messages short, clear, and confirm the message was received", "Use jokes and slang to reduce stress", "Discuss confidential details openly"],
+      correctAnswer: 1,
+      category: "Communication Tools",
+      section: "Communication"
+    },
+    {
+      id: 1321,
+      question: "Why might the phonetic alphabet be used on radios?",
+      options: ["To make messages longer", "To prevent confusion between similar-sounding letters/numbers", "To avoid using call signs", "To replace written records"],
+      correctAnswer: 1,
+      category: "Communication Tools",
+      section: "Communication"
+    },
+    {
+      id: 1322,
+      question: "Which method is BEST when communicating a complex change that affects multiple trades?",
+      options: ["Tell one person and hope it spreads", "Use controlled issue (email/platform), briefing, and confirm impacted parties understand", "Only update your own notebook", "Wait until the clash happens"],
+      correctAnswer: 1,
+      category: "Team Communication",
+      section: "Communication"
+    },
+    {
+      id: 1323,
+      question: "What is the main purpose of coordination meetings between trades?",
+      options: ["To argue about delays", "To plan sequence, access, interfaces, and reduce clashes", "To reduce documentation", "To replace inspections"],
+      correctAnswer: 1,
+      category: "Team Communication",
+      section: "Communication"
+    },
+    {
+      id: 1324,
+      question: "Which document is commonly used to list defects or incomplete items near the end of a project?",
+      options: ["Snag list", "Invoice", "Delivery note", "Induction record"],
+      correctAnswer: 0,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1325,
+      question: "Why is it useful to attach photos to a snag/defect report?",
+      options: ["To make the report longer", "To provide clear evidence of location and issue, reducing misunderstandings", "To replace any written description", "To avoid fixing the defect"],
+      correctAnswer: 1,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1326,
+      question: "Which document is used to confirm that materials delivered match what was ordered?",
+      options: ["Delivery note", "Toolbox talk sheet", "Method statement", "Drawing legend"],
+      correctAnswer: 0,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1327,
+      question: "If delivered materials are damaged or short, what should you do?",
+      options: ["Sign for them anyway", "Record it on the delivery note and report it following company procedure", "Hide them and re-order quietly", "Do nothing"],
+      correctAnswer: 1,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1328,
+      question: "What is the purpose of a quotation when dealing with customers?",
+      options: ["A fixed price offer for agreed work (usually binding once accepted)", "A rough idea with no commitment", "A record of hours worked", "A tool inspection sheet"],
+      correctAnswer: 0,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1329,
+      question: "What is the main difference between an estimate and a quotation?",
+      options: ["Estimate is approximate; quotation is fixed once accepted", "Estimate is always binding; quotation is not", "Estimate never includes VAT; quotation always does", "There is no difference"],
+      correctAnswer: 0,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1330,
+      question: "What should a good quotation include to reduce disputes?",
+      options: ["Only a logo", "Scope, price, exclusions, and validity period", "Only labour hours", "Only materials list with no context"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1331,
+      question: "What is the main purpose of an invoice?",
+      options: ["Request payment for goods/services provided", "Provide a safe system of work", "Confirm drawing revisions", "Replace handover documentation"],
+      correctAnswer: 0,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1332,
+      question: "Which detail is essential on an invoice for clear communication?",
+      options: ["Weather forecast", "Unique invoice number and payment terms", "Employee home address", "Site gossip"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1333,
+      question: "What is the purpose of handover information at completion?",
+      options: ["To recruit apprentices", "To explain what was installed, how to operate it, and any maintenance needs", "To replace all test results", "To avoid talking to customers"],
+      correctAnswer: 1,
+      category: "Customer Handover",
+      section: "Communication"
+    },
+    {
+      id: 1334,
+      question: "Which item is commonly included in handover information?",
+      options: ["Holiday rota", "Operating instructions and relevant test/certification documents", "Employee payslips", "Supplier discount codes"],
+      correctAnswer: 1,
+      category: "Customer Handover",
+      section: "Communication"
+    },
+    {
+      id: 1335,
+      question: "When should you provide handover information to the customer?",
+      options: ["Only at the start", "At completion, before final payment where applicable", "Only for large projects", "Only if the customer complains"],
+      correctAnswer: 1,
+      category: "Customer Handover",
+      section: "Communication"
+    },
+    {
+      id: 1336,
+      question: "Which is the most professional approach when a customer is upset about disruption?",
+      options: ["Dismiss it as normal", "Listen, apologise, explain controls, and take action", "Blame another trade", "Ignore the customer"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1337,
+      question: "What should you avoid when discussing issues with customers?",
+      options: ["Clear explanation", "Jargon and internal disputes", "Polite tone", "Agreeing next steps"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1338,
+      question: "If you cannot make an agreed appointment time, what should you do?",
+      options: ["Say nothing", "Notify the customer ASAP with a reason and new time", "Turn up the next day without notice", "Send an emoji only"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1339,
+      question: "Confidential customer/project information should be:",
+      options: ["Shared in group chats freely", "Discussed only with authorised people and stored securely", "Posted online for advice", "Left on a dashboard visible to all"],
+      correctAnswer: 1,
+      category: "Data & Confidentiality",
+      section: "Communication"
+    },
+    {
+      id: 1340,
+      question: "Which is best practice for protecting personal data in the workplace?",
+      options: ["Share passwords to save time", "Use secure storage/access and only share on a need-to-know basis", "Post documents on site noticeboards", "Keep copies on any personal device"],
+      correctAnswer: 1,
+      category: "Data & Confidentiality",
+      section: "Communication"
+    },
+    {
+      id: 1341,
+      question: "Equality, diversity and inclusion (EDI) in communication means:",
+      options: ["Using offensive humour", "Treating people fairly and avoiding discriminatory language", "Ignoring different needs", "Only speaking to supervisors"],
+      correctAnswer: 1,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1342,
+      question: "Why are company policies and procedures important for working relationships?",
+      options: ["They only apply to managers", "They set consistent standards and reduce conflict/misunderstanding", "They replace laws", "They are optional for everyone"],
+      correctAnswer: 1,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1343,
+      question: "Which document sets out terms and conditions of employment?",
+      options: ["Contract of employment", "Delivery note", "Invoice", "Toolbox talk sheet"],
+      correctAnswer: 0,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1344,
+      question: "Which policy is most likely to cover punctuality and attendance expectations?",
+      options: ["Timekeeping policy", "Environmental policy", "Cable identification policy", "Permit-to-work policy"],
+      correctAnswer: 0,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1345,
+      question: "What is the main limit of authority for an apprentice?",
+      options: ["They can sign off all work", "They must work under supervision and cannot certify/sign off unsupervised work", "They can approve variations", "They can change company policies"],
+      correctAnswer: 1,
+      category: "Limits of Authority",
+      section: "Communication"
+    },
+    {
+      id: 1346,
+      question: "Why is it important to stay within your limits of authority?",
+      options: ["To avoid learning", "To prevent unsafe decisions, contractual issues, and disciplinary problems", "To reduce communication", "To avoid asking questions"],
+      correctAnswer: 1,
+      category: "Limits of Authority",
+      section: "Communication"
+    },
+    {
+      id: 1347,
+      question: "Which communication is most appropriate for confirming an agreed action with a deadline?",
+      options: ["A vague verbal comment", "A short written confirmation (email/message on approved system) stating who/what/when", "A joke in the group chat", "No follow-up"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1348,
+      question: "What is the best way to communicate a technical issue to the designer/engineer?",
+      options: ["Say 'it’s wrong' with no details", "Provide facts: location, drawing reference, what you found, and what you need clarified", "Wait until the end of the job", "Only tell the customer"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1349,
+      question: "If you receive conflicting instructions from two people, what should you do?",
+      options: ["Pick the one you like", "Clarify through the correct line of command and document the agreed instruction", "Do both instructions", "Ignore both and continue your own way"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1350,
+      question: "Which line of command is most appropriate for escalating a site problem you cannot resolve?",
+      options: ["Go straight to the local authority", "Supervisor/foreman → site manager → project manager (as per site procedure)", "Ask a random trade", "Post it on social media"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1351,
+      question: "In the typical site command chain, who should you speak to first if you need a quick decision about today’s task sequence?",
+      options: ["Building Control Officer", "Your supervisor/foreman or trade supervisor", "Water Inspector", "Customer’s neighbour"],
+      correctAnswer: 1,
+      category: "Command Chain",
+      section: "Communication"
+    },
+    {
+      id: 1352,
+      question: "Which role is MOST likely to coordinate multiple trades day-to-day under the main contractor?",
+      options: ["Site manager", "Architect", "Electrical Services Inspector", "Buyer"],
+      correctAnswer: 0,
+      category: "Project Roles",
+      section: "Communication"
+    },
+    {
+      id: 1353,
+      question: "If a design detail is unclear on a drawing, what is the most professional first step?",
+      options: ["Make a guess and continue", "Raise an RFI or query through your supervisor using drawing refs", "Ask a random trade for permission", "Wait until the end of the job"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1354,
+      question: "Which person is most likely to issue or manage the drawing revision process (design side)?",
+      options: ["Design team/consultant (e.g., architect/engineer responsible for the drawing)", "Delivery driver", "HSE Inspector", "Apprentice"],
+      correctAnswer: 0,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1355,
+      question: "What is the main purpose of a distribution list when sending revised documents?",
+      options: ["To increase email traffic", "To ensure all relevant stakeholders receive the latest information", "To avoid adding revision numbers", "To replace toolbox talks"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1356,
+      question: "If you receive a drawing marked 'Superseded', what should you do?",
+      options: ["Use it if it’s readable", "Do not use it—request/locate the current revision", "Mark it up and issue it yourself", "Use it only for containment routes"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1357,
+      question: "Which part of a drawing is most useful for confirming you have the correct revision before starting work?",
+      options: ["The scale bar only", "The title block (including revision/date)", "Random notes in the margins", "Any symbol will do"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1358,
+      question: "Why should site mark-ups include date, location, and description?",
+      options: ["So they look neat", "To provide traceability and reduce misunderstandings when sent back to design", "To replace test results", "To avoid using drawings"],
+      correctAnswer: 1,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1359,
+      question: "Which option is the best example of a clear, actionable instruction?",
+      options: ["Sort it out ASAP", "Install containment as per Drawing E-102 Rev B, gridline C4–D4, by 16:00 today", "Do the usual", "Make it look right"],
+      correctAnswer: 1,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1360,
+      question: "What is the best way to reduce errors when giving verbal instructions on a busy site?",
+      options: ["Speak quickly", "Use plain language, repeat key points, and confirm understanding", "Only use abbreviations", "Avoid questions"],
+      correctAnswer: 1,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1361,
+      question: "If a colleague misunderstands an instruction, what is the most professional response?",
+      options: ["Blame them publicly", "Clarify calmly, restate the instruction, and confirm understanding", "Ignore it", "Report them immediately without speaking to them"],
+      correctAnswer: 1,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1362,
+      question: "Which is the BEST approach when a message must be shared across multiple trades?",
+      options: ["Tell one person and assume it spreads", "Issue via the agreed platform and confirm key parties received it", "Write it on a scrap of paper", "Say it once during break"],
+      correctAnswer: 1,
+      category: "Team Communication",
+      section: "Communication"
+    },
+    {
+      id: 1363,
+      question: "What is the main benefit of using an approved reporting system for incidents/near misses?",
+      options: ["It hides the issue", "It creates a consistent record and ensures the right people are informed", "It avoids investigations", "It replaces risk assessments permanently"],
+      correctAnswer: 1,
+      category: "Reporting & Escalation",
+      section: "Communication"
+    },
+    {
+      id: 1364,
+      question: "Which is the most appropriate place to record a key site instruction that affects the day’s plan?",
+      options: ["Personal memory only", "Site diary / daily briefing record (as per site procedure)", "A private text to a friend", "No record is needed"],
+      correctAnswer: 1,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1365,
+      question: "When a customer asks for a change that affects scope, what should you do first?",
+      options: ["Agree and start immediately", "Explain it needs approval/variation and confirm in writing through the proper route", "Refuse all changes", "Charge extra without telling them"],
+      correctAnswer: 1,
+      category: "Scope Changes & Variations",
+      section: "Communication"
+    },
+    {
+      id: 1366,
+      question: "Which statement best describes a professional approach to customer communication?",
+      options: ["Use slang to be friendly", "Be clear, polite, explain impacts, and confirm agreements in writing where needed", "Avoid talking to customers", "Only communicate through other trades"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1367,
+      question: "If a customer complains about dust/noise, what should you communicate?",
+      options: ["That it’s not your problem", "What controls you will use (e.g., dust sheets, vacuum, timing) and what you’ll do next", "That they should leave the property", "That nothing can be done"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1368,
+      question: "Why should you avoid discussing internal disputes between trades in front of customers?",
+      options: ["It makes you look busy", "It damages trust and professionalism and can confuse the customer", "It helps the customer choose sides", "It replaces formal reporting"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1369,
+      question: "What is the best way to communicate appointment delays to a customer?",
+      options: ["Say nothing", "Notify ASAP, apologise, give a revised ETA, and confirm if needed", "Turn up whenever", "Ask another trade to explain for you"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1370,
+      question: "Which is the best example of protecting confidentiality in communication?",
+      options: ["Sharing client details in a public group chat", "Only sharing information with authorised people and using secure storage", "Leaving drawings on a dashboard", "Taking photos and posting online"],
+      correctAnswer: 1,
+      category: "Data & Confidentiality",
+      section: "Communication"
+    },
+    {
+      id: 1371,
+      question: "If you need to communicate a sensitive issue (e.g., complaint), what is best practice?",
+      options: ["Discuss loudly on site", "Use a private channel and share only with those who need to know", "Post it on the noticeboard", "Tell everyone to be safe"],
+      correctAnswer: 1,
+      category: "Data & Confidentiality",
+      section: "Communication"
+    },
+    {
+      id: 1372,
+      question: "What does EDI mean in the context of communication?",
+      options: ["Email Delivery Instructions", "Equality, Diversity and Inclusion—communicating respectfully and fairly", "Electrical Design Information", "Emergency Drill Information"],
+      correctAnswer: 1,
+      category: "Workplace Relations",
+      section: "Communication"
+    },
+    {
+      id: 1373,
+      question: "Which is a good example of inclusive communication on site?",
+      options: ["Only using slang", "Using simple language, visual aids, and checking understanding", "Avoiding questions to save time", "Speaking faster when confused"],
+      correctAnswer: 1,
+      category: "Inclusive Communication",
+      section: "Communication"
+    },
+    {
+      id: 1374,
+      question: "If someone’s first language isn’t English, what is the safest approach?",
+      options: ["Assume they understand", "Use demonstrations/visuals and ask them to repeat back key steps", "Only communicate through jokes", "Avoid giving them tasks"],
+      correctAnswer: 1,
+      category: "Inclusive Communication",
+      section: "Communication"
+    },
+    {
+      id: 1375,
+      question: "Which is a common cause of communication breakdowns on busy sites?",
+      options: ["Too much confirmation", "Noise, time pressure, and assumptions", "Clear written instructions", "Structured briefings"],
+      correctAnswer: 1,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1376,
+      question: "What is the best response if you didn’t understand an instruction?",
+      options: ["Guess and hope", "Ask for clarification immediately and confirm the instruction", "Do nothing", "Ask the customer instead"],
+      correctAnswer: 1,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1377,
+      question: "Which is the best way to communicate when wearing PPE that limits hearing/vision?",
+      options: ["Remove PPE", "Use agreed hand signals/written notes/radio and confirm understanding", "Shout closer to faceshields", "Skip communication"],
+      correctAnswer: 1,
+      category: "Communication Barriers",
+      section: "Communication"
+    },
+    {
+      id: 1378,
+      question: "What is the main benefit of 'repeat-back' communication?",
+      options: ["It wastes time", "It confirms the message received matches the message sent", "It replaces written records", "It avoids teamwork"],
+      correctAnswer: 1,
+      category: "Effective Communication",
+      section: "Communication"
+    },
+    {
+      id: 1379,
+      question: "In radio communication, why is it useful to keep messages short and structured?",
+      options: ["So nobody understands", "To reduce crosstalk and improve accuracy", "To avoid responsibility", "To remove the need for call signs"],
+      correctAnswer: 1,
+      category: "Communication Tools",
+      section: "Communication"
+    },
+    {
+      id: 1380,
+      question: "Which is the most professional subject line for a technical query?",
+      options: ["Help", "Question", "RFI – Drawing E-102 Rev B – Clarification required (containment route)", "URGENT!!!!"],
+      correctAnswer: 2,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1381,
+      question: "What should a good RFI include?",
+      options: ["No references to keep it simple", "Drawing number, revision, exact location, problem description, and clear question", "Only your opinion", "A photo with no context"],
+      correctAnswer: 1,
+      category: "Professional Communication",
+      section: "Communication"
+    },
+    {
+      id: 1382,
+      question: "Why is it important to quote drawing numbers and revisions in emails?",
+      options: ["It makes emails longer", "It ensures everyone is referencing the same information", "It replaces inspections", "It avoids using attachments"],
+      correctAnswer: 1,
+      category: "Drawings & Document Control",
+      section: "Communication"
+    },
+    {
+      id: 1383,
+      question: "Which is the best method to communicate a confirmed scope change to all impacted parties?",
+      options: ["Verbal only", "Formal written confirmation (variation/updated instruction) plus briefing if needed", "A sticky note", "A quick joke in the group chat"],
+      correctAnswer: 1,
+      category: "Scope Changes & Variations",
+      section: "Communication"
+    },
+    {
+      id: 1384,
+      question: "What is the purpose of a snag list/punch list?",
+      options: ["To plan holidays", "To record defects/incomplete items so they can be tracked and closed out", "To replace handover info", "To order materials automatically"],
+      correctAnswer: 1,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1385,
+      question: "Which information makes a snag report most useful?",
+      options: ["Only 'fix this'", "Location, description, reference (room/asset), and photo where helpful", "Your feelings about it", "No details to save time"],
+      correctAnswer: 1,
+      category: "Documentation & Records",
+      section: "Communication"
+    },
+    {
+      id: 1386,
+      question: "What is the purpose of a delivery note in communication and records?",
+      options: ["To certify electrical work", "To confirm what was delivered and quantities received", "To approve variations", "To replace purchase orders"],
+      correctAnswer: 1,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1387,
+      question: "If materials arrive damaged/short, what should be communicated and recorded?",
+      options: ["Nothing—just hide it", "Record it on the delivery note and report it through the correct procedure", "Only tell the driver verbally", "Send it back without any note"],
+      correctAnswer: 1,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1388,
+      question: "What is the main purpose of a timesheet from a project communication perspective?",
+      options: ["To set cable sizes", "To record hours worked against tasks for costing and planning", "To issue drawings", "To approve inspectors"],
+      correctAnswer: 1,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1389,
+      question: "Why is accurate time recording important?",
+      options: ["It helps with costing, payroll, and project planning", "It replaces all meetings", "It avoids the need for drawings", "It prevents all defects"],
+      correctAnswer: 0,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1390,
+      question: "What is the main purpose of a job specification?",
+      options: ["To define tasks, standards, and materials required", "To request payment", "To record plant deliveries only", "To replace risk assessments"],
+      correctAnswer: 0,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1391,
+      question: "Which is most likely to be included in a job specification?",
+      options: ["Only company history", "Scope of work and performance criteria", "Only a customer complaint log", "Only employee holiday dates"],
+      correctAnswer: 1,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1392,
+      question: "Why should electricians follow the job specification closely?",
+      options: ["It removes the need for testing", "It ensures work meets agreed requirements and reduces rework", "It guarantees cheapest materials", "It replaces the programme"],
+      correctAnswer: 1,
+      category: "Workplace Documents",
+      section: "Communication"
+    },
+    {
+      id: 1393,
+      question: "Which statement best describes a quotation?",
+      options: ["A fixed price offer for agreed work (once accepted, it’s usually binding)", "A rough cost with no assumptions", "A record of hours worked", "A delivery receipt"],
+      correctAnswer: 0,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1394,
+      question: "Which is the best time to give an estimate rather than a quotation?",
+      options: ["When the scope is uncertain and may change", "When everything is clearly defined", "After the work is finished", "Only when asked by inspectors"],
+      correctAnswer: 0,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1395,
+      question: "What should be communicated clearly when giving an estimate?",
+      options: ["That nothing will ever change", "Assumptions, exclusions, and that it may vary if scope changes", "Only the cheapest price", "Only labour and no materials"],
+      correctAnswer: 1,
+      category: "Customer Communication",
+      section: "Communication"
+    },
+    {
+      id: 1396,
+      question: "What is the purpose of a work programme (schedule) in communication?",
+      options: ["To sequence tasks and allocate timeframes", "To replace drawings", "To certify electrical work", "To set employee pay"],
+      correctAnswer: 0,
+      category: "Project Planning",
+      section: "Communication"
+    },
+    {
+      id: 1397,
+      question: "If programme dates change, what should the electrical team do?",
+      options: ["Ignore it", "Re-plan activities and notify affected parties", "Stop recording hours", "Throw away delivery notes"],
+      correctAnswer: 1,
+      category: "Project Planning",
+      section: "Communication"
+    },
+    {
+      id: 1398,
+      question: "What is the main purpose of a customer service policy in a company?",
+      options: ["Set standards for communication, complaints handling, and professionalism", "Replace employment contracts", "Set cable current ratings", "Approve drawing revisions"],
+      correctAnswer: 0,
+      category: "Company Policies",
+      section: "Communication"
+    },
+    {
+      id: 1399,
+      question: "Why are behaviour policies important in workplace communication?",
+      options: ["They promote respect, professionalism, and consistent expectations", "They replace legislation", "They are only for managers", "They stop the need for training"],
+      correctAnswer: 0,
+      category: "Company Policies",
+      section: "Communication"
+    },
+    {
+      id: 1400,
+      question: "If you receive conflicting instructions from different people, what should you do?",
+      options: ["Do both instructions", "Clarify via the correct line of command and document the agreed instruction", "Pick the easiest one", "Ignore everyone and continue"],
+      correctAnswer: 1,
+      category: "Command Chain",
+      section: "Communication"
     }
-  
-  
+
   
   
 ];

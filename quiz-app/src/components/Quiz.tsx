@@ -44,6 +44,7 @@ const getRandomQuestions = (count: number, section?: string): Question[] => {
 // Function to play error sound
 const playErrorSound = () => {
   if (typeof window !== 'undefined') {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     const oscillator = audioContext.createOscillator();
     const gainNode = audioContext.createGain();
