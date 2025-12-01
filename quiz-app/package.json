@@ -1,5 +1,6 @@
 {
-  "name": "quiz-app",
+  "name": "health-safety-quiz",
+  "description": "A Next.js and TypeScript application for Health & Safety and Communication assessments.",
   "version": "0.1.0",
   "private": true,
   "scripts": {
