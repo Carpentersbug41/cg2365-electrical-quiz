@@ -31,7 +31,7 @@ const ElectronApp: React.FC = () => {
              <MousePointerClick className="w-6 h-6 text-cyan-400" />
           </div>
           <h3 className="text-xl font-bold text-white mb-2">Current</h3>
-          <p className="text-slate-400 text-sm">Understand electron flow rate. Why does "Amps" mean "Quantity"?</p>
+          <p className="text-slate-400 text-sm">Understand electron flow rate. Why does &quot;Amps&quot; mean &quot;Quantity&quot;?</p>
         </button>
 
         <button 
@@ -42,7 +42,7 @@ const ElectronApp: React.FC = () => {
              <Zap className="w-6 h-6 text-yellow-400" />
           </div>
           <h3 className="text-xl font-bold text-white mb-2">Voltage</h3>
-          <p className="text-slate-400 text-sm">Visualize the "push". How does potential difference affect motion?</p>
+          <p className="text-slate-400 text-sm">Visualize the &quot;push&quot;. How does potential difference affect motion?</p>
         </button>
 
         <button 
@@ -64,7 +64,7 @@ const ElectronApp: React.FC = () => {
              <Activity className="w-6 h-6 text-green-400" />
           </div>
           <h3 className="text-xl font-bold text-white mb-2">Real Circuit</h3>
-          <p className="text-slate-400 text-sm">Combine them all. Ohm's Law, Geometry, and Heating effects.</p>
+          <p className="text-slate-400 text-sm">Combine them all. Ohm&apos;s Law, Geometry, and Heating effects.</p>
         </button>
       </div>
       

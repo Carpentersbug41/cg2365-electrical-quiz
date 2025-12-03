@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SimulationParams } from '../types';
 import SimulationCanvas from './SimulationCanvas';
 import { Slider } from './Slider';
-import { BASE_ELECTRONS, BASE_ATOMS, REF_CURRENT, MIN_E_SCALE, MAX_E_SCALE } from '../constants';
-import { clamp, lerp } from '../utils/math';
-import { Flame, Activity, ArrowRight, BatteryWarning } from 'lucide-react';
+import { REF_CURRENT, BASE_ELECTRONS, BASE_ATOMS } from '../constants';
+import { clamp } from '../utils/math';
+import { Flame, Activity, BatteryWarning } from 'lucide-react';
 
 interface Props {
   onBack: () => void;
@@ -163,7 +163,7 @@ const RealMode: React.FC<Props> = ({ onBack }) => {
                 onChange={(v) => setVoltage(v * 60)} 
               />
               <p className="text-xs text-slate-500 mt-2">
-                Pressure. The "push" from the battery.
+                Pressure. The &quot;push&quot; from the battery.
               </p>
             </div>
 

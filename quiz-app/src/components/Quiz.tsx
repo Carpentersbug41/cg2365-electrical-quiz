@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { questions as allQuestions, Question } from '@/data/questions';
 import confetti from 'canvas-confetti';
 import Image from 'next/image';

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AppMode, SimulationParams } from '../types';
 import SimulationCanvas from './SimulationCanvas';
 import { Slider } from './Slider'; // We will create this
-import { Info, MousePointerClick, Zap, ShieldAlert, ArrowRight } from 'lucide-react';
-import { BASE_ELECTRONS, BASE_ATOMS, R_REF } from '../constants';
+import { Info, MousePointerClick, Zap, ShieldAlert } from 'lucide-react';
 
 interface Props {
   mode: AppMode;

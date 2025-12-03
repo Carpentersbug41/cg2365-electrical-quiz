@@ -1,5 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Electron, Atom, SimulationParams, Vector2 } from '../types';
+import React, { useRef, useEffect } from 'react';
+import { Electron, Atom, SimulationParams } from '../types';
 import { 
   BASE_SPEED, 
   JITTER_STRENGTH, 
@@ -7,7 +7,7 @@ import {
   MIN_WIRE_HEIGHT, 
   MAX_WIRE_HEIGHT 
 } from '../constants';
-import { vecAdd, vecSub, vecScale, vecNorm, randomUnitVector, vecLen, clamp, lerp } from '../utils/math';
+import { vecAdd, vecScale, vecNorm, randomUnitVector, vecLen, clamp, lerp } from '../utils/math';
 
 interface Props {
   params: SimulationParams;
@@ -69,10 +69,7 @@ const SimulationCanvas: React.FC<Props> = ({ params, width, height }) => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let time = 0;
-
     const render = () => {
-      time += 1;
       
       // Calculate Wire Geometry
       const wireH = lerp(MIN_WIRE_HEIGHT, MAX_WIRE_HEIGHT, params.wireThickness);
@@ -163,7 +160,7 @@ const SimulationCanvas: React.FC<Props> = ({ params, width, height }) => {
         electron.vel = vecScale(direction, BASE_SPEED);
 
         // 2. Move
-        let nextPos = vecAdd(electron.pos, electron.vel);
+        const nextPos = vecAdd(electron.pos, electron.vel);
 
         // 3. Collision with Atoms
         // Improved collision: Push out instead of random scatter
