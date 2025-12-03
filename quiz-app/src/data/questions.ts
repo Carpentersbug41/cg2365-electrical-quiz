@@ -5,6 +5,7 @@ export interface Question {
   correctAnswer: number;
   category: string;
   section: string; // e.g., "Health and Safety", "Communication"
+  image?: string; // Optional path to an image
 }
 
 import { healthAndSafetyQuestions } from './healthAndSafetyQuestions';
@@ -16,4 +17,3 @@ export const questions: Question[] = [
   ...communicationQuestions,
   ...scienceQuestions,
 ];
-

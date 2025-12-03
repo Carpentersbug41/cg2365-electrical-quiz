@@ -1,116 +1,58 @@
-'use client';
-
-import { useState } from 'react';
-import Quiz from '@/components/Quiz';
-import { questions } from '@/data/questions';
+import Link from 'next/link';
 
 export default function Home() {
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
-  
-  // Calculate question counts for each section
-  const healthAndSafetyCount = questions.filter(q => q.section === "Health and Safety").length;
-  const communicationCount = questions.filter(q => q.section === "Communication").length;
-  const scienceCount = questions.filter(q => q.section === "Science 2365 Level 2").length;
-
-  // Section selection screen
-  if (!selectedSection) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4 flex items-center justify-center">
-        <div className="max-w-4xl w-full">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-800 mb-4">
-                2365 Quiz Platform
-              </h1>
-              <p className="text-xl text-gray-600">
-                Select a test section to begin
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-              {/* Health and Safety Section */}
-              <button
-                onClick={() => setSelectedSection("Health and Safety")}
-                className="group relative p-8 bg-gradient-to-br from-red-500 to-red-600 text-white rounded-2xl hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col justify-between"
-              >
-                <div className="text-center w-full">
-                  <div className="text-6xl mb-4">⚡</div>
-                  <h2 className="text-2xl font-bold mb-3">Health & Safety</h2>
-                  <p className="text-red-100 text-lg mb-4">
-                    2365 Level 2 & 3 (201/601)
-                  </p>
-                </div>
-                <div className="bg-white/20 rounded-lg p-3 backdrop-blur-sm w-full">
-                  <p className="text-sm font-semibold">{healthAndSafetyCount} Questions Available</p>
-                </div>
-              </button>
-
-              {/* Communication Section */}
-              <button
-                onClick={() => setSelectedSection("Communication")}
-                className="group relative p-8 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col justify-between"
-              >
-                <div className="text-center w-full">
-                  <div className="text-6xl mb-4">💬</div>
-                  <h2 className="text-2xl font-bold mb-3">Communication</h2>
-                  <p className="text-blue-100 text-lg mb-4">
-                    2365 Level 2 (210)
-                  </p>
-                </div>
-                <div className="bg-white/20 rounded-lg p-3 backdrop-blur-sm w-full">
-                  <p className="text-sm font-semibold">{communicationCount} Questions Available</p>
-                </div>
-              </button>
-
-              {/* Science Section */}
-              <button
-                onClick={() => setSelectedSection("Science 2365 Level 2")}
-                className="group relative p-8 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col justify-between"
-              >
-                <div className="text-center w-full">
-                  <div className="text-6xl mb-4">🔬</div>
-                  <h2 className="text-2xl font-bold mb-3">Science</h2>
-                  <p className="text-green-100 text-lg mb-4">
-                    2365 Level 2 (202)
-                  </p>
-                </div>
-                <div className="bg-white/20 rounded-lg p-3 backdrop-blur-sm w-full">
-                  <p className="text-sm font-semibold">{scienceCount} Questions Available</p>
-                </div>
-              </button>
-            </div>
-
-            <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
-              <h3 className="font-semibold text-indigo-900 mb-3 flex items-center text-lg">
-                <span className="text-2xl mr-3">ℹ️</span>
-                Getting Started
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li className="flex items-start">
-                  <span className="mr-3 text-indigo-600 font-bold">1.</span>
-                  <span>Choose a test section from the options above</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-indigo-600 font-bold">2.</span>
-                  <span>Select how many questions you want to practice</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-indigo-600 font-bold">3.</span>
-                  <span>Answer all questions and review your results</span>
-                </li>
-              </ul>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex flex-col items-center justify-center p-8">
+      <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 text-center">
+        Electrical Learning Hub
+      </h1>
+      <p className="text-slate-400 text-xl mb-12 text-center max-w-2xl">
+        Master electrical concepts with interactive quizzes and real-time circuit simulations.
+      </p>
+      
+      <div className="grid md:grid-cols-2 gap-8 max-w-5xl w-full">
+        
+        {/* Quiz Link */}
+        <Link 
+          href="/quiz"
+          className="group relative bg-white rounded-2xl shadow-2xl overflow-hidden hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
+        >
+          <div className="h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+          <div className="p-8 flex flex-col h-full items-center text-center">
+            <div className="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300 bg-blue-50 rounded-full p-6">📝</div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">2365 Quiz</h2>
+            <p className="text-gray-600 text-lg mb-8">
+              Comprehensive practice questions for Health & Safety, Communication, and Science levels.
+            </p>
+            <div className="mt-auto px-8 py-3 bg-blue-600 text-white rounded-full font-bold group-hover:bg-blue-700 transition-colors shadow-lg shadow-blue-500/30">
+              Start Quiz &rarr;
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
+        </Link>
 
-  // Quiz screen with selected section
-  return (
-    <Quiz 
-      section={selectedSection} 
-      onBack={() => setSelectedSection(null)} 
-    />
+        {/* Simulation Link */}
+        <Link 
+          href="/electron-simulation"
+          className="group relative bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
+        >
+          <div className="h-2 bg-gradient-to-r from-cyan-400 to-blue-500"></div>
+          <div className="p-8 flex flex-col h-full items-center text-center">
+            <div className="text-7xl mb-6 group-hover:scale-110 transition-transform duration-300 bg-cyan-900/20 rounded-full p-6">⚡</div>
+            <h2 className="text-3xl font-bold text-white mb-4">Circuit Simulator</h2>
+            <p className="text-slate-400 text-lg mb-8">
+              Visualize voltage, current, and resistance. Watch electrons flow and collide in real-time.
+            </p>
+            <div className="mt-auto px-8 py-3 bg-cyan-500 text-white rounded-full font-bold group-hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/30">
+              Launch Sim &rarr;
+            </div>
+          </div>
+        </Link>
+
+      </div>
+
+      <footer className="mt-16 text-slate-500 text-sm">
+        © 2025 Electrical Learning Hub
+      </footer>
+    </div>
   );
 }
