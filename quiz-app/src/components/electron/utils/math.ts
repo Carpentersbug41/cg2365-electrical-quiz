@@ -17,3 +17,5 @@ export const randomUnitVector = (): Vector2 => {
 export const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
 export const clamp = (x: number, min: number, max: number): number => Math.min(Math.max(x, min), max);
 
+
+

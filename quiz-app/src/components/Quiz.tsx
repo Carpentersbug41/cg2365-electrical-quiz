@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { questions as allQuestions, Question } from '@/data/questions';
 import confetti from 'canvas-confetti';
-import Image from 'next/image';
 
 interface QuizProps {
   section?: string;
@@ -64,6 +63,42 @@ const createOscillator = (type: OscillatorType, freq: number, duration: number, 
   oscillator.stop(audioContext.currentTime + duration);
 };
 
+// Sound Effects
+const playErrorSound = () => {
+  createOscillator('sawtooth', 200, 0.5, 0.3); // Low buzz
+};
+
+const playCorrectSound = () => {
+  createOscillator('sine', 880, 0.1, 0.2); // High ping (A5)
+  setTimeout(() => createOscillator('sine', 1760, 0.3, 0.1), 50); // Higher ping (A6)
+};
+
+const playStreakSound = (streak: number) => {
+  // Pitch goes up with streak
+  const baseFreq = 440;
+  const multiplier = 1 + (streak * 0.1);
+  createOscillator('square', baseFreq * multiplier, 0.4, 0.1);
+  
+  // Add a little harmony for big streaks
+  if (streak % 5 === 0) {
+    setTimeout(() => createOscillator('sine', baseFreq * multiplier * 1.5, 0.6, 0.1), 100);
+    setTimeout(() => createOscillator('sine', baseFreq * multiplier * 2, 0.8, 0.1), 200);
+  }
+};
+
+const playCompletionSound = (score: number, total: number) => {
+  const percentage = (score / total);
+  if (percentage > 0.5) {
+    // Major chord arpeggio
+    [0, 200, 400, 600].forEach((delay, i) => {
+      setTimeout(() => {
+        const freqs = [523.25, 659.25, 783.99, 1046.50]; // C major
+        createOscillator('triangle', freqs[i], 0.5, 0.2);
+      }, delay);
+    });
+  }
+};
+
 export default function Quiz({ section, onBack }: QuizProps = {}) {
   const [quizStarted, setQuizStarted] = useState(false);
   const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
@@ -77,48 +112,8 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
   const [streak, setStreak] = useState(0);
   const [points, setPoints] = useState(0);
   const [pointAnimation, setPointAnimation] = useState<number | null>(null);
-  
-  // Settings
-  const [soundEnabled, setSoundEnabled] = useState(true);
 
   const questions = selectedQuestions;
-
-  // Sound Effects wrappers
-  const playErrorSound = () => {
-    if (!soundEnabled) return;
-    createOscillator('sawtooth', 200, 0.5, 0.3);
-  };
-
-  const playCorrectSound = () => {
-    if (!soundEnabled) return;
-    createOscillator('sine', 880, 0.1, 0.2);
-    setTimeout(() => createOscillator('sine', 1760, 0.3, 0.1), 50);
-  };
-
-  const playStreakSound = (streakCount: number) => {
-    if (!soundEnabled) return;
-    const baseFreq = 440;
-    const multiplier = 1 + (streakCount * 0.1);
-    createOscillator('square', baseFreq * multiplier, 0.4, 0.1);
-    
-    if (streakCount % 5 === 0) {
-      setTimeout(() => createOscillator('sine', baseFreq * multiplier * 1.5, 0.6, 0.1), 100);
-      setTimeout(() => createOscillator('sine', baseFreq * multiplier * 2, 0.8, 0.1), 200);
-    }
-  };
-
-  const playCompletionSound = (score: number, total: number) => {
-    if (!soundEnabled) return;
-    const percentage = (score / total);
-    if (percentage > 0.5) {
-      [0, 200, 400, 600].forEach((delay, i) => {
-        setTimeout(() => {
-          const freqs = [523.25, 659.25, 783.99, 1046.50];
-          createOscillator('triangle', freqs[i], 0.5, 0.2);
-        }, delay);
-      });
-    }
-  };
 
   const handleAnswerSelect = (answerIndex: number) => {
     // Prevent changing answer once selected
@@ -137,10 +132,12 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
       const newStreak = streak + 1;
       setStreak(newStreak);
       
+      // Points Calculation: Base 100 + Streak Bonus
       const earnedPoints = 100 + (newStreak * 10);
       setPoints(p => p + earnedPoints);
       setPointAnimation(earnedPoints);
       
+      // Sounds & Visuals
       if (newStreak % 5 === 0) {
          playStreakSound(newStreak);
          confetti({
@@ -152,6 +149,7 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
         playCorrectSound();
       }
 
+      // Clear point animation
       setTimeout(() => setPointAnimation(null), 1000);
 
     } else {
@@ -160,10 +158,14 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
       playErrorSound();
       setWrongAnswerFlash(answerIndex);
       
+      // Clear the flash animation
       setTimeout(() => {
         setWrongAnswerFlash(null);
       }, 1000);
     }
+    
+    // Auto-advance after a short delay (optional, but good for flow)
+    // Keeping manual navigation for now as per original design, but could add auto-advance option later.
   };
 
   // Clear flash when changing questions
@@ -232,6 +234,7 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
     setPoints(0);
   };
   
+  // Get questions for the selected section
   const sectionQuestions = section 
     ? allQuestions.filter(q => q.section === section)
     : allQuestions;
@@ -245,38 +248,6 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
   const answeredCount = selectedAnswers.filter(a => a !== null).length;
   const score = calculateScore();
   const percentage = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
-
-  // Styles
-  const globalStyles = (
-    <style jsx>{`
-      @keyframes flashRed {
-        0%, 100% { background-color: rgb(254 242 242); border-color: rgb(239 68 68); transform: scale(1); }
-        25% { background-color: rgb(239 68 68); border-color: rgb(220 38 38); transform: scale(1.02); }
-        50% { background-color: rgb(254 242 242); border-color: rgb(239 68 68); transform: scale(1); }
-        75% { background-color: rgb(239 68 68); border-color: rgb(220 38 38); transform: scale(1.02); }
-      }
-      .flash-wrong { animation: flashRed 0.8s ease-in-out; }
-      
-      @keyframes floatUp {
-        0% { transform: translateY(0); opacity: 1; }
-        100% { transform: translateY(-20px); opacity: 0; }
-      }
-      .float-points { animation: floatUp 1s ease-out forwards; }
-
-      @keyframes slideIn {
-        0% { opacity: 0; transform: translateX(20px); }
-        100% { opacity: 1; transform: translateX(0); }
-      }
-      .slide-in { animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-      @keyframes pulse-streak {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-      }
-      .animate-pulse-fast { animation: pulse-streak 0.5s ease-in-out; }
-    `}</style>
-  );
 
   // Start Screen
   if (!quizStarted) {
@@ -334,15 +305,19 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
               <ul className="space-y-2 text-gray-700">
                 <li className="flex items-start">
                   <span className="mr-2">✓</span>
-                  <span>Questions are randomly selected</span>
+                  <span>Questions are randomly selected from the question bank</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">✓</span>
-                  <span>Earn streak bonuses for correct answers! 🔥</span>
+                  <span>Earn streak bonuses for consecutive correct answers! 🔥</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">✓</span>
-                  <span>Instant feedback to help you learn</span>
+                  <span>All questions must be answered before submitting</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">✓</span>
+                  <span>Review your answers after completing the quiz</span>
                 </li>
               </ul>
             </div>
@@ -353,6 +328,7 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
   }
 
   if (showResults) {
+    // Get all incorrect questions
     const incorrectQuestions = questions
       .map((q, index) => ({
         question: q,
@@ -363,7 +339,6 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
-        {globalStyles}
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-2xl shadow-2xl p-8 mb-6">
             <div className="text-center mb-8">
@@ -391,7 +366,7 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
               </div>
 
               <div className="text-lg text-gray-700 mb-8">
-                {percentage >= 80 && "Excellent! You have a strong understanding of this topic! ⚡"}
+                {percentage >= 80 && "Excellent! You have a strong understanding of 2365 electrical health and safety! ⚡"}
                 {percentage >= 60 && percentage < 80 && "Good job! Review the questions you missed to improve further. 📚"}
                 {percentage < 60 && "Keep studying! Review the material and try again. 💪"}
               </div>
@@ -413,6 +388,7 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
             </div>
           </div>
 
+          {/* Incorrect Questions Section */}
           {incorrectQuestions.length > 0 && (
             <div className="bg-white rounded-2xl shadow-2xl p-8">
               <h3 className="text-2xl font-bold text-red-700 mb-6 flex items-center">
@@ -431,18 +407,6 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
                         Question {index + 1}: {question.question}
                       </h4>
                     </div>
-
-                    {/* Image in Review Mode */}
-                    {question.image && (
-                        <div className="mb-4 relative w-full h-48 md:h-64 bg-gray-100 rounded-lg overflow-hidden">
-                            <Image 
-                                src={question.image} 
-                                alt="Question Diagram" 
-                                fill
-                                className="object-contain"
-                            />
-                        </div>
-                    )}
 
                     <div className="space-y-3">
                       <div className="bg-white p-4 rounded-lg border-2 border-red-300">
@@ -493,7 +457,40 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
-      {globalStyles}
+      <style jsx>{`
+        @keyframes flashRed {
+          0%, 100% { 
+            background-color: rgb(254 242 242);
+            border-color: rgb(239 68 68);
+            transform: scale(1);
+          }
+          25% { 
+            background-color: rgb(239 68 68);
+            border-color: rgb(220 38 38);
+            transform: scale(1.02);
+          }
+          50% { 
+            background-color: rgb(254 242 242);
+            border-color: rgb(239 68 68);
+            transform: scale(1);
+          }
+          75% { 
+            background-color: rgb(239 68 68);
+            border-color: rgb(220 38 38);
+            transform: scale(1.02);
+          }
+        }
+        .flash-wrong {
+          animation: flashRed 0.8s ease-in-out;
+        }
+        @keyframes floatUp {
+          0% { transform: translateY(0); opacity: 1; }
+          100% { transform: translateY(-20px); opacity: 0; }
+        }
+        .float-points {
+          animation: floatUp 1s ease-out forwards;
+        }
+      `}</style>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="bg-white rounded-2xl shadow-2xl p-6 mb-6">
@@ -502,7 +499,7 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
               <h1 className="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
                 {section || "Health & Safety"} Quiz
                 {streak > 1 && (
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-orange-100 text-orange-800 animate-pulse-fast">
+                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-orange-100 text-orange-800 animate-pulse">
                         🔥 {streak} Streak!
                     </span>
                 )}
@@ -528,15 +525,6 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
                   {answeredCount}/{questions.length}
                 </div>
               </div>
-
-              {/* Sound Toggle */}
-              <button 
-                onClick={() => setSoundEnabled(!soundEnabled)}
-                className={`p-2 rounded-full transition-colors ${soundEnabled ? 'bg-indigo-100 text-indigo-600 hover:bg-indigo-200' : 'bg-gray-200 text-gray-500 hover:bg-gray-300'}`}
-                title={soundEnabled ? "Mute Sound" : "Enable Sound"}
-              >
-                {soundEnabled ? "🔊" : "🔇"}
-              </button>
             </div>
           </div>
           
@@ -550,115 +538,99 @@ export default function Quiz({ section, onBack }: QuizProps = {}) {
         </div>
 
         {/* Question Card */}
-        <div className="bg-white rounded-2xl shadow-2xl p-8 mb-6 relative overflow-hidden min-h-[400px]">
+        <div className="bg-white rounded-2xl shadow-2xl p-8 mb-6 relative overflow-hidden">
           {/* Decorative background element */}
           <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-bl-full -mr-16 -mt-16 z-0 opacity-50 pointer-events-none"></div>
           
-          <div key={currentQuestion} className="slide-in relative z-10">
-            <div className="mb-6">
-              <div className="flex items-start justify-between mb-4">
-                <span className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-4 py-2 rounded-full">
-                  {currentQ.category}
-                </span>
-                <span className="text-lg font-bold text-gray-400">
-                  Q{currentQuestion + 1}
-                </span>
-              </div>
+          <div className="mb-6 relative z-10">
+            <div className="flex items-start justify-between mb-4">
+              <span className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-4 py-2 rounded-full">
+                {currentQ.category}
+              </span>
+              <span className="text-lg font-bold text-gray-400">
+                Q{currentQuestion + 1}
+              </span>
+            </div>
+            
+            <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
+              {currentQ.question}
+            </h2>
+          </div>
+
+          {/* Options */}
+          <div className="space-y-3 relative z-10">
+            {currentQ.options.map((option, index) => {
+              const isSelected = selectedAnswers[currentQuestion] === index;
+              const showCorrectAnswer = isReviewing && index === currentQ.correctAnswer;
+              const showWrongAnswer = isReviewing && isSelected && index !== currentQ.correctAnswer;
+              const isFlashing = wrongAnswerFlash === index;
               
-               {/* Image Display */}
-               {currentQ.image && (
-                  <div className="mb-6 relative w-full h-64 bg-gray-50 rounded-xl border border-gray-100 overflow-hidden shadow-inner">
-                      <Image 
-                        src={currentQ.image} 
-                        alt="Question Diagram" 
-                        fill
-                        className="object-contain p-2"
-                        priority
-                      />
-                  </div>
-               )}
-
-              <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
-                {currentQ.question}
-              </h2>
-            </div>
-
-            {/* Options */}
-            <div className="space-y-3">
-              {currentQ.options.map((option, index) => {
-                const isSelected = selectedAnswers[currentQuestion] === index;
-                // Instant feedback logic: Show Green/Red immediately if answered, or during review
-                const showCorrectAnswer = (isReviewing || isAnswered) && index === currentQ.correctAnswer;
-                const showWrongAnswer = (isReviewing || isAnswered) && isSelected && index !== currentQ.correctAnswer;
-                const isFlashing = wrongAnswerFlash === index;
-                
-                return (
-                  <button
-                    key={index}
-                    onClick={() => !isReviewing && !isAnswered && handleAnswerSelect(index)}
-                    disabled={isReviewing || isAnswered}
-                    className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 transform ${
+              return (
+                <button
+                  key={index}
+                  onClick={() => !isReviewing && !isAnswered && handleAnswerSelect(index)}
+                  disabled={isReviewing || isAnswered}
+                  className={`w-full text-left p-5 rounded-xl border-2 transition-all duration-200 transform ${
+                    showCorrectAnswer
+                      ? 'border-green-500 bg-green-50 scale-[1.02] shadow-md'
+                      : showWrongAnswer
+                      ? 'border-red-500 bg-red-50'
+                      : isSelected
+                      ? 'border-indigo-500 bg-indigo-50 scale-[1.02] shadow-md'
+                      : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 hover:scale-[1.01] hover:shadow-sm'
+                  } ${isReviewing || isAnswered ? 'cursor-default' : 'cursor-pointer'} ${isFlashing ? 'flash-wrong' : ''}`}
+                >
+                  <div className="flex items-center">
+                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 transition-colors duration-300 ${
                       showCorrectAnswer
-                        ? 'border-green-500 bg-green-50 scale-[1.02] shadow-md'
+                        ? 'border-green-500 bg-green-500'
                         : showWrongAnswer
-                        ? 'border-red-500 bg-red-50'
+                        ? 'border-red-500 bg-red-500'
                         : isSelected
-                        ? 'border-indigo-500 bg-indigo-50 scale-[1.02] shadow-md'
-                        : 'border-gray-200 hover:border-indigo-300 hover:bg-indigo-50 hover:scale-[1.01] hover:shadow-sm'
-                    } ${isReviewing || isAnswered ? 'cursor-default' : 'cursor-pointer'} ${isFlashing ? 'flash-wrong' : ''}`}
-                  >
-                    <div className="flex items-center">
-                      <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center mr-4 flex-shrink-0 transition-colors duration-300 ${
-                        showCorrectAnswer
-                          ? 'border-green-500 bg-green-500'
-                          : showWrongAnswer
-                          ? 'border-red-500 bg-red-500'
-                          : isSelected
-                          ? 'border-indigo-500 bg-indigo-500'
-                          : 'border-gray-300 group-hover:border-indigo-400'
-                      }`}>
-                        {(showCorrectAnswer || (isSelected && !showWrongAnswer)) && (
-                          <span className="text-white font-bold">
-                            {showCorrectAnswer ? '✓' : (isSelected ? '✓' : '')}
-                          </span>
-                        )}
-                        {showWrongAnswer && (
-                          <span className="text-white font-bold">✗</span>
-                        )}
-                      </div>
-                      <span className={`text-lg transition-colors duration-200 ${
-                        showCorrectAnswer ? 'text-green-800 font-semibold' :
-                        showWrongAnswer ? 'text-red-800' :
-                        isSelected ? 'text-indigo-800 font-semibold' : 'text-gray-700'
-                      }`}>
-                        {option}
-                      </span>
+                        ? 'border-indigo-500 bg-indigo-500'
+                        : 'border-gray-300 group-hover:border-indigo-400'
+                    }`}>
+                      {(showCorrectAnswer || (isSelected && !showWrongAnswer)) && (
+                        <span className="text-white font-bold">
+                          {showCorrectAnswer ? '✓' : (isSelected ? '✓' : '')}
+                        </span>
+                      )}
+                      {showWrongAnswer && (
+                        <span className="text-white font-bold">✗</span>
+                      )}
                     </div>
-                  </button>
-                );
-              })}
-            </div>
-
-            {(isReviewing || (isAnswered && !isCorrect)) && (
-              <div className={`mt-6 p-4 rounded-lg animate-pulse-fast ${
-                isCorrect ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'
-              }`}>
-                <div className="flex items-start">
-                  <span className="text-2xl mr-3">{isCorrect ? '✓' : '✗'}</span>
-                  <div>
-                    <div className={`font-bold mb-1 ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
-                      {isCorrect ? 'Correct!' : 'Incorrect'}
-                    </div>
-                    {!isCorrect && (
-                      <div className="text-gray-700">
-                        The correct answer is: <strong>{currentQ.options[currentQ.correctAnswer]}</strong>
-                      </div>
-                    )}
+                    <span className={`text-lg transition-colors duration-200 ${
+                      showCorrectAnswer ? 'text-green-800 font-semibold' :
+                      showWrongAnswer ? 'text-red-800' :
+                      isSelected ? 'text-indigo-800 font-semibold' : 'text-gray-700'
+                    }`}>
+                      {option}
+                    </span>
                   </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {isReviewing && (
+            <div className={`mt-6 p-4 rounded-lg ${
+              isCorrect ? 'bg-green-100 border border-green-300' : 'bg-red-100 border border-red-300'
+            }`}>
+              <div className="flex items-start">
+                <span className="text-2xl mr-3">{isCorrect ? '✓' : '✗'}</span>
+                <div>
+                  <div className={`font-bold mb-1 ${isCorrect ? 'text-green-800' : 'text-red-800'}`}>
+                    {isCorrect ? 'Correct!' : 'Incorrect'}
+                  </div>
+                  {!isCorrect && (
+                    <div className="text-gray-700">
+                      The correct answer is: <strong>{currentQ.options[currentQ.correctAnswer]}</strong>
+                    </div>
+                  )}
                 </div>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Navigation */}
