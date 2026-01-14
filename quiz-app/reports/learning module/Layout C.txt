@@ -1,0 +1,351 @@
+﻿<!--
+LAYOUT C: Focus Mode (Assessment / Quiz) — Low-level HTML Spec (v1)
+Purpose:
+- Used for strict assessment, timed drills, mastery checks.
+- Minimal UI to preserve test validity: no lesson navigation, no teaching content, no distractions.
+- Tutor is hidden/locked during attempt (to prevent coaching). It can be:
+  - completely hidden until submission, OR
+  - limited to “Clarify question text” requests only (no method hints).
+
+
+Key behaviours:
+- Desktop + Mobile: single focused column, large touch targets.
+- Progress indicator at top (e.g., Q3/10 + timer optional).
+- No sidebar. No scrolling lesson content. Each question is the primary surface.
+- After submission: results view appears with marking breakdown and “Fix” pathway.
+
+
+Why we need this layout:
+- Assessment conditions must differ from learning conditions (avoid mode bleed).
+- Learners need clarity: “This is a test. Get on with it.”
+- Allows clean scoring, mastery gating, and fair re-tests.
+
+
+Notes:
+- This layout assumes the backend handles marking and returns:
+  - correctness,
+  - units/working penalties,
+  - misconception codes (if applicable),
+  - next steps (review links / remediation).
+-->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Focus Mode Layout (C) — Unit 202 Quiz</title>
+
+
+  <style>
+    :root {
+      --bg: #0b0c0f;
+      --panel: #12141a;
+      --panel-2: #171a22;
+      --text: #e8eaf0;
+      --muted: #a9b0c3;
+      --border: #2a2f3d;
+      --focus: #7aa2ff;
+
+
+      --header-height: 56px;
+      --max-width: 720px;
+      --gap: 14px;
+      --radius: 14px;
+    }
+
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .btn:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+
+    .badge {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+
+
+    /* TOP STRIP (assessment-only)
+       WHY: show progress/timer, remove lesson navigation.
+       IMPORTANT: Keep it minimal; no links that encourage leaving mid-test.
+    */
+    .topstrip {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,12,15,0.92);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topstrip .left, .topstrip .right { display: flex; gap: 10px; align-items: center; }
+
+
+    /* MAIN */
+    .wrap {
+      min-height: calc(100vh - var(--header-height));
+      display: grid;
+      grid-template-columns: 1fr minmax(0, var(--max-width)) 1fr;
+      padding: 16px;
+      gap: 16px;
+    }
+    .main {
+      grid-column: 2;
+      display: grid;
+      gap: var(--gap);
+      padding-bottom: 80px;
+    }
+
+
+    /* QUESTION CARD
+       WHY: single focus surface; large click/tap targets.
+    */
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .card h1, .card h2 { margin: 0 0 10px 0; }
+    .card h1 { font-size: 16px; }
+    .card h2 { font-size: 14px; }
+    .card p {
+      margin: 0 0 10px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+
+    /* Answer inputs */
+    .answer {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .answer label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .answer input, .answer textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 12px;
+      color: var(--text);
+      resize: vertical;
+      min-height: 44px;
+    }
+    .answer input:focus, .answer textarea:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+
+    /* MCQ options */
+    .options {
+      display: grid;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .option {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+      cursor: pointer;
+      display: grid;
+      gap: 6px;
+    }
+    .option strong { font-size: 13px; }
+    .option span { font-size: 12px; color: var(--muted); }
+    .option:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+    .option input { margin: 0; }
+
+
+    /* Footer controls */
+    .controls {
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .controls .group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+
+    /* Tutor: locked during attempt
+       WHY: prevent coaching. Allow “Clarify question” only if enabled.
+       For MVP: easiest is hidden until submission.
+    */
+    .tutor-locked {
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: var(--radius);
+      padding: 14px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.02);
+      display: grid;
+      gap: 10px;
+    }
+
+
+    /* Results panel (shown after submission) */
+    .results {
+      border: 1px solid rgba(122,162,255,0.35);
+      background: rgba(122,162,255,0.08);
+    }
+    .score {
+      font-size: 24px;
+      line-height: 1;
+      margin: 0;
+    }
+
+
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; padding: 12px; }
+      .main { grid-column: 1; }
+      .controls { position: sticky; bottom: 10px; z-index: 5; }
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- TOP STRIP -->
+  <header class="topstrip" aria-label="Assessment header">
+    <div class="left">
+      <span class="badge">Focus Mode</span>
+      <span class="badge">Unit 202 Quiz</span>
+      <span class="badge" aria-label="Progress">Q 3 / 10</span>
+    </div>
+
+
+    <div class="right">
+      <!-- WHY: optional timer for drills; keep minimal. -->
+      <span class="badge" aria-label="Timer">Time: 04:12</span>
+      <!-- WHY: allow exit, but make it explicit (avoid accidental navigation). -->
+      <button class="btn" type="button" aria-label="Exit quiz">Exit</button>
+    </div>
+  </header>
+
+
+  <main class="wrap" aria-label="Focus Mode assessment layout">
+    <section class="main">
+      <!-- QUESTION -->
+      <article class="card" id="quiz-q3">
+        <h1>Question 3 — Total resistance (Series)</h1>
+        <p>
+          R1 = 5 Ω and R2 = 7 Ω are connected in series.
+          Calculate the total resistance.
+        </p>
+
+
+        <div class="answer">
+          <label for="ans-q3">Answer (include units):</label>
+          <input id="ans-q3" type="text" placeholder="e.g., 12 Ω" />
+        </div>
+
+
+        <div class="controls" style="margin-top: 14px;">
+          <div class="group">
+            <button class="btn" type="button">Previous</button>
+            <button class="btn" type="button">Next</button>
+          </div>
+          <div class="group">
+            <button class="btn" type="button">Flag</button>
+            <button class="btn" type="button">Submit Answer</button>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- OPTIONAL: CLARIFY QUESTION ONLY (locked tutor)
+           WHY: if you allow any tutor help mid-test, it must be strictly constrained.
+           MVP recommendation: hide this panel entirely during attempt.
+      -->
+      <section class="tutor-locked" aria-label="Tutor (locked during attempt)">
+        <strong>Tutor is locked during the quiz.</strong>
+        <span>You can only request clarification of question wording (no method hints).</span>
+        <div class="controls">
+          <div class="group">
+            <button class="btn" type="button">Clarify question</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- RESULTS (shown after submission) -->
+      <article class="card results" id="quiz-results" aria-label="Results (post-submission)">
+        <h2>Results (after submission)</h2>
+        <p class="score">Score: 7 / 10</p>
+        <p>
+          <!-- WHY: assessment output should be clear + actionable. -->
+          Next step: Fix the misconceptions flagged below, then retake after a delay.
+        </p>
+
+
+        <ul>
+          <li><strong>Q3:</strong> Incorrect — missing units (Ω). (Fix: UNITS_MISSING)</li>
+          <li><strong>Q6:</strong> Incorrect — used parallel rule in a series problem. (Fix: USED_PARALLEL_RULE)</li>
+        </ul>
+
+
+        <div class="controls" style="margin-top: 10px;">
+          <div class="group">
+            <button class="btn" type="button">Review wrong answers</button>
+            <button class="btn" type="button">Start Fix Mode</button>
+          </div>
+          <div class="group">
+            <button class="btn" type="button">Schedule Retest</button>
+          </div>
+        </div>
+      </article>
+
+
+      <!-- NOTE: In a real attempt flow, quiz-results would be hidden until submission. -->
+    </section>
+  </main>
+
+
+  <!--
+  Implementation hooks (for dev):
+  - Focus Mode should disable lesson navigation and reduce UI noise.
+  - Tutor must be locked/hidden during attempt_state="attempting".
+  - After submission, backend returns marking + misconception codes for Fix Mode routing.
+  - Mastery gating can be applied at quiz completion (pass + delayed re-check).
+  -->
+</body>
+</html>

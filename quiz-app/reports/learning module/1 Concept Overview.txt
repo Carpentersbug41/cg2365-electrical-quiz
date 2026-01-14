@@ -1,0 +1,108 @@
+﻿# Concept Overview (One-Pager) — v1
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science (MVP: Series/Parallel)  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) What we’re building
+A web-based learning system for **City & Guilds 2365 Level 2 (Unit 202)** that teaches electrical science with:
+- clear, structured lesson pages (the “truth”)
+- an embedded AI tutor that behaves like a **teacher + assessor**
+- practice and testing that produces **measurable mastery**, not vague “understanding”
+
+
+This is not “ChatGPT in a box”. It’s a course system where learning is driven by **practice, feedback, and re-testing**.
+
+
+---
+
+
+## 2) Why we’re building it
+Many learners struggle because:
+- teaching quality varies (subject experts aren’t always strong teachers)
+- learners memorise formulas without understanding how to choose and apply them
+- existing “AI tutor” products often explain well but don’t assess or enforce learning standards
+
+
+Our goal is **deep understanding + exam readiness** using a system that reliably teaches and checks knowledge.
+
+
+---
+
+
+## 3) Who it’s for
+- Learners studying **2365 Level 2**, especially those stuck on Unit 202.
+- Learners who want step-by-step learning and clear feedback.
+- Tutors/centres that want consistent teaching quality.
+
+
+---
+
+
+## 4) The core approach (how it works at a high level)
+### 4.1 Lesson pages are the single source of truth
+- Each lesson is a structured page with: outcomes, explanations, examples, practice, and review.
+- The AI tutor is constrained to teach from the lesson content + approved question bank.
+
+
+### 4.2 The tutor runs a learning loop (not a chat)
+The tutor operates in three behaviours:
+- **Teach (Coach):** explains in small steps and asks questions for the learner to answer.
+- **Check (Assessor):** runs quizzes/tests with strict marking.
+- **Fix (Remediate):** targets specific misunderstandings and immediately retests.
+
+
+### 4.3 Learning is measured and enforced
+- Learners don’t “move on” just because they read the page.
+- Progress is based on **retrieval practice** and passing checks, followed by **delayed re-checks** to confirm learning sticks.
+
+
+---
+
+
+## 5) What makes it different
+- **Syllabus-tight:** teaches exactly what Unit 202 requires.
+- **Assessor-grade:** uses mark-scheme-style checking rather than vibes.
+- **Scalable:** consistent lesson structure means we can produce many lessons without quality collapse.
+- **Grounded:** tutor must reference course content (and refuses unsupported tangents in MVP).
+
+
+---
+
+
+## 6) MVP scope (first slice)
+We build one end-to-end learning slice to prove the system:
+- Series vs parallel rules + calculations + discrimination practice
+- A small tagged question set (enough to validate tutoring + marking + mastery)
+- Tutor behaviours (Teach/Check/Fix)
+- Basic progress tracking and review prompts
+
+
+If the slice works, the rest of Unit 202 becomes repeatable content production.
+
+
+---
+
+
+## 7) What we are not doing (for MVP)
+- Not building a full LMS
+- Not covering all units immediately
+- Not adding advanced features (analytics, community, video) until the core learning loop works
+
+
+---
+
+
+## 8) Next planning docs
+- Layout Template System (three layouts)
+- Learning Method Rules (non-negotiables)
+- Example Lesson Walkthrough (with placeholders)
+- Tutor Overview (high-level contract)
+- QA/Evaluation Overview (Golden Set + invariants)
+
+
+---

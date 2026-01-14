@@ -1,0 +1,101 @@
+﻿# Goals, Scope, and MVP Slice — v1 (High Level)
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) Goals (what success means)
+### Primary goals
+- **Deep understanding** of Unit 202 concepts (not just formula memorisation).
+- **Exam readiness** through consistent, mark-scheme-aligned checking.
+- **Reliable teaching quality** independent of instructor variation.
+- **Scalable content production** (repeatable lessons without quality drift).
+
+
+### Secondary goals
+- Reduce learner frustration and dropout by providing clear steps and corrective feedback.
+- Enable independent study (the system acts as the “teacher in the room”).
+
+
+---
+
+
+## 2) Non-goals (what we are not trying to do)
+- Not a general-purpose electrical assistant or regs interpreter.
+- Not a full Learning Management System (no complex admin, cohorts, etc. in MVP).
+- Not video-first teaching.
+- Not covering all 2365 units or levels at once.
+
+
+---
+
+
+## 3) Scope (what’s included)
+### Included (MVP scope)
+- Unit 202 lesson pages for a **single pilot topic cluster**.
+- Embedded tutor behaviours: **Teach (Coach)**, **Check (Assessor)**, **Fix (Remediate)**.
+- Practice questions and quizzes tied directly to lesson outcomes.
+- Basic progress tracking at the level of:
+  - completion,
+  - quiz attempts,
+  - pass/fail thresholds,
+  - review reminders.
+
+
+### Included (post-MVP, still Unit 202)
+- Expand from pilot cluster to the full Unit 202 syllabus lesson-by-lesson.
+- Improve question variety and coverage.
+- Add richer review scheduling and more robust mastery evidence.
+
+
+---
+
+
+## 4) MVP Slice (the smallest thing that proves the concept)
+### Why a slice
+We want to validate:
+- learners actually learn,
+- the tutor behaves correctly (coach vs assessor),
+- content scales via templates,
+- checking and remediation feel “assessor-grade”.
+
+
+### The slice (pilot module)
+- **Series and parallel circuits**:
+  - rules + “why”
+  - basic calculations
+  - discrimination (choosing the correct rule)
+  - targeted remediation for common misunderstandings
+- A small but meaningful question bank for this slice (enough to test loop quality).
+- A simple mastery gate (pass + delayed re-check) to confirm learning sticks.
+
+
+---
+
+
+## 5) Success criteria for the MVP slice (high level)
+- Learners can correctly:
+  - identify series vs parallel situations,
+  - apply the correct rules,
+  - complete standard calculations with acceptable accuracy.
+- The system produces:
+  - clear feedback,
+  - consistent marking,
+  - repeatable improvement across attempts.
+- The content + tutor pattern feels repeatable for scaling to the rest of Unit 202.
+
+
+---
+
+
+## 6) Boundaries and constraints (high level)
+- Keep build lightweight: prioritize the learning loop over polish.
+- Keep prompts and tutoring grounded in course content for MVP.
+- Avoid complex feature work until the slice proves learning value.
+
+
+---

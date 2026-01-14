@@ -1,0 +1,76 @@
+﻿# Learning Method Rules (Non-Negotiables) — v1 (High Level)
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1 (high-level)  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) Purpose
+These rules ensure the product teaches effectively **at scale**.  
+They are deliberately short and enforceable. The detailed implementation lives in templates and the tutor system.
+
+
+---
+
+
+## 2) Core learning principle
+Learning is driven by **active recall + feedback + re-testing**, not passive reading or chat.
+
+
+---
+
+
+## 3) Non-negotiable learning behaviours
+1) **Small-step instruction**
+- Concepts are introduced in manageable chunks to reduce overload.
+
+
+2) **Worked examples before independence**
+- Learners see a clear model before being expected to solve similar problems alone.
+
+
+3) **Retrieval practice is mandatory**
+- Learners must attempt answers regularly (not just read explanations).
+
+
+4) **Feedback must be specific and actionable**
+- When wrong, the learner is told *what to change* and *why*, then immediately retested.
+
+
+5) **Spaced review is built in**
+- Previously learned material is revisited after delays to make learning stick.
+
+
+6) **Interleaving after basics**
+- Once learners understand fundamentals, practice mixes similar concepts so they learn to choose the correct rule/method.
+
+
+7) **Assessment conditions differ from learning conditions**
+- “Teaching” and “testing” are separated so tests measure learning, not coaching.
+
+
+8) **Mastery requires delayed confirmation**
+- Passing once is performance; mastery requires passing again after a delay.
+
+
+---
+
+
+## 4) Tutor behaviour rules (high level)
+- **Teach = Coach:** supportive, step-by-step, encourages attempts.
+- **Check = Assessor:** strict marking; minimal help during attempts.
+- **Fix = Remediate:** targets a specific misunderstanding and retests.
+
+
+---
+
+
+## 5) Grounding rule (trust)
+For MVP, the tutor must stay within the course content and approved question bank.  
+If something isn’t covered, it must say so rather than improvise.
+
+
+---

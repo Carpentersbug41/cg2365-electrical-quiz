@@ -1,0 +1,199 @@
+{
+  "id": "202-4A",
+  "title": "202.4A — Series Circuits: Rules and Calculations",
+  "description": "Learn the three series circuit rules (current, voltage, resistance), understand why they're true, and apply them to basic calculations.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Series Circuits",
+  "learningOutcomes": [
+    "State the three series rules for current, voltage, and resistance",
+    "Explain why current is the same in a series circuit",
+    "Calculate total resistance in simple series circuits"
+  ],
+  "prerequisites": ["ohms-law-basics"],
+  "blocks": [
+    {
+      "id": "202-4A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the three series rules for current, voltage, and resistance.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain why current is the same in a series circuit.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate total resistance in simple series circuits.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Series",
+            "definition": "Components connected in a single path with one loop and no branches."
+          },
+          {
+            "term": "Current (I)",
+            "definition": "Flow of electric charge, measured in amperes (A)."
+          },
+          {
+            "term": "Voltage (V)",
+            "definition": "Electrical 'push' or potential difference, measured in volts (V)."
+          },
+          {
+            "term": "Resistance (R)",
+            "definition": "Opposition to current flow, measured in ohms (Ω)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Simple Series Circuit",
+        "description": "Two resistors (R1 and R2) connected in series with a power supply.",
+        "videoUrl": "https://www.youtube.com/watch?v=82cRVrBHUfQ",
+        "diagramType": "series",
+        "elementIds": ["R1", "R2", "loop", "supply", "wire"],
+        "placeholderText": "Series circuit diagram showing R1 = 6 Ω and R2 = 3 Ω connected in a single loop with a 9V supply."
+      }
+    },
+    {
+      "id": "202-4A-explain-rules",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The 3 Series Rules",
+        "content": "**Rule 1 (Current):** Current is the same everywhere in a series circuit.\n\n**Rule 2 (Voltage):** Supply voltage is shared between components. The voltage drops across each component add up to the total supply voltage.\n\n**Rule 3 (Resistance):** Total resistance is the sum of individual resistances.\n\n**Why these rules work:**\n\nKeep your eyes on the diagram: there's only **one path** (no branches). Since charge has nowhere else to go, the same current must flow through each component. Think of water in a single pipe — the same amount flows everywhere.\n\nFor voltage, energy is used up as current passes through each resistor, so the supply voltage is divided between them.\n\nFor resistance, each resistor adds to the total opposition to current flow, so we simply add them together."
+      }
+    },
+    {
+      "id": "202-4A-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Total Resistance",
+        "given": "R1 = 6 Ω, R2 = 3 Ω connected in series",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the series resistance formula",
+            "formula": "R_total = R1 + R2",
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 2,
+            "description": "Substitute the values",
+            "formula": "R_total = R1 + R2",
+            "calculation": "R_total = 6 + 3",
+            "result": null
+          },
+          {
+            "stepNumber": 3,
+            "description": "Calculate the result",
+            "formula": null,
+            "calculation": "R_total = 9",
+            "result": "9 Ω"
+          }
+        ],
+        "notes": "Always include units in your final answer. Resistance is measured in ohms (Ω)."
+      }
+    },
+    {
+      "id": "202-4A-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "R1 = 4 Ω, R2 = 8 Ω connected in series. Find the total resistance.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What is the formula for total resistance in series?",
+            "expectedAnswer": ["Rtotal = R1 + R2", "R total = R1 + R2", "Rt = R1 + R2", "add them"],
+            "hint": "In series, resistances ADD together."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Now substitute the values. What is R_total = ?",
+            "expectedAnswer": ["12", "12 Ω", "12Ω", "12 ohms"],
+            "hint": "R_total = 4 + 8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-4A-P1",
+            "questionText": "R1 = 5 Ω, R2 = 7 Ω (series). Find R_total.",
+            "answerType": "numeric",
+            "expectedAnswer": ["12", "12 Ω", "12Ω"],
+            "hint": "Use the series resistance formula: R_total = R1 + R2"
+          },
+          {
+            "id": "202-4A-P2",
+            "questionText": "Explain in one sentence: why is current the same everywhere in a series circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "single path",
+              "one loop",
+              "no branches",
+              "nowhere else to go",
+              "same current flows through"
+            ],
+            "hint": "Think about the topology — how many paths are there?"
+          },
+          {
+            "id": "202-4A-P3",
+            "questionText": "Three resistors in series: R1 = 2 Ω, R2 = 3 Ω, R3 = 5 Ω. Find R_total.",
+            "answerType": "numeric",
+            "expectedAnswer": ["10", "10 Ω", "10Ω"],
+            "hint": "Add all three resistances together."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-spaced-review",
+      "type": "spaced-review",
+      "order": 8,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          "Rearrange V = I × R to find I.",
+          "Convert 250 mA into amps.",
+          "State the unit symbol for resistance.",
+          "What is the relationship between voltage, current, and resistance?"
+        ],
+        "notes": "These questions review Ohm's Law and units, which are prerequisites for series circuits."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-13",
+    "updated": "2026-01-13",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
+

@@ -1,0 +1,620 @@
+﻿<!--
+LAYOUT A: Split-Vis (Diagram Persistent) — Low-level HTML Spec (v1)
+Purpose:
+- Used for circuit topology / spatial reasoning lessons (series/parallel/mixed, current paths, meter placement).
+- The diagram MUST remain visible while the learner reads, chats with tutor, or answers questions.
+- Prevents split-attention: learner shouldn’t have to scroll away from the diagram to follow explanations.
+
+
+Key behaviours:
+- Desktop: 50/50 split view. Left = sticky diagram stage. Right = scrollable learning stream.
+- Mobile: top sticky diagram (approx 30% height) + bottom scrollable stream (approx 70%).
+- Tutor is NOT hidden in a separate “sidebar ghetto” here. It lives in the learning stream (close to questions).
+- Diagram actions exist (highlight, focus, clear) even as placeholders initially.
+
+
+Notes:
+- This is a layout shell. It assumes content is rendered as blocks (outcomes, vocab, explanation, practice, etc.).
+- Diagram may be placeholder image first; later replaced with SVG/interactive component.
+-->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Split-Vis Layout (A) — Unit 202 Lesson</title>
+
+
+  <style>
+    /*
+    DESIGN INTENT (not aesthetic polish):
+    - Clear separation of “Diagram Context” and “Learning Stream”
+    - Sticky diagram zone to reduce cognitive load
+    - Mobile keyboard safety: diagram remains visible but not too tall
+    */
+
+
+    :root {
+      --bg: #0b0c0f;
+      --panel: #12141a;
+      --panel-2: #171a22;
+      --text: #e8eaf0;
+      --muted: #a9b0c3;
+      --border: #2a2f3d;
+      --focus: #7aa2ff;
+
+
+      /* Layout sizing knobs */
+      --max-content-width: 760px; /* keeps readability inside right panel */
+      --desktop-split-left: 50%;
+      --desktop-split-right: 50%;
+      --mobile-diagram-height: 30vh; /* sticky diagram height on mobile */
+      --header-height: 56px;
+      --gap: 16px;
+      --radius: 14px;
+    }
+
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+
+    a { color: inherit; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+
+
+    /* TOP BAR
+       Why: consistent navigation + lesson identity. Keep simple.
+       In Focus Mode (Layout C) this bar is minimized; here it can exist normally.
+    */
+    .topbar {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,12,15,0.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar .left, .topbar .right { display: flex; gap: 10px; align-items: center; }
+    .badge {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+
+    /* MAIN SPLIT WRAP */
+    .split {
+      height: calc(100vh - var(--header-height));
+      display: grid;
+      grid-template-columns: var(--desktop-split-left) var(--desktop-split-right);
+      gap: 0;
+    }
+
+
+    /* LEFT: Diagram Stage
+       Why: persistent visual context.
+       Sticky within its own column so the diagram doesn't disappear.
+    */
+    .diagram-col {
+      border-right: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      padding: 16px;
+      position: relative;
+    }
+
+
+    /* Sticky container to keep diagram visible while right column scrolls */
+    .diagram-stage {
+      position: sticky;
+      top: calc(var(--header-height) + 16px); /* sits below topbar */
+      height: calc(100vh - var(--header-height) - 32px);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+
+    .diagram-header {
+      padding: 12px 12px 0 12px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .diagram-title {
+      display: grid;
+      gap: 4px;
+    }
+    .diagram-title h1 {
+      font-size: 16px;
+      margin: 0;
+      line-height: 1.2;
+    }
+    .diagram-title p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+
+    /* Diagram canvas placeholder
+       Later: replace with SVG component (interactive).
+    */
+    .diagram-canvas {
+      margin: 0 12px;
+      background: var(--panel-2);
+      border: 1px dashed rgba(255,255,255,0.18);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      padding: 12px;
+      overflow: hidden;
+    }
+    .diagram-canvas .placeholder {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      max-width: 360px;
+    }
+
+
+    /* Diagram controls
+       Why: essential for topology lessons (highlight paths, focus components).
+       For MVP: these can be no-op buttons.
+    */
+    .diagram-controls {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,0.15);
+      flex-wrap: wrap;
+    }
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .chip:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+
+    /* RIGHT: Learning Stream
+       Why: scrollable content with tutor embedded near practice.
+       Contains blocks: outcomes, vocab, explanation, worked example, practice, tutor chat, spaced review.
+    */
+    .content-col {
+      padding: 16px;
+      overflow: auto; /* right column scrolls independently */
+    }
+
+
+    .content-wrap {
+      max-width: var(--max-content-width);
+      margin: 0 auto;
+      display: grid;
+      gap: 14px;
+      padding-bottom: 64px;
+    }
+
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+
+
+    .card h2 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+
+    .meta-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+
+    /* Tutor stream embedded in content
+       Why: keeps help near questions; avoids “separate panel” that learners ignore.
+    */
+    .tutor {
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: rgba(255,255,255,0.02);
+    }
+    .tutor-head {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.12);
+    }
+    .tutor-head strong { font-size: 13px; }
+    .tutor-head span { font-size: 12px; color: var(--muted); }
+    .chat {
+      padding: 12px 14px;
+      display: grid;
+      gap: 10px;
+    }
+    .msg {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .msg.assistant { background: rgba(255,255,255,0.03); }
+    .msg.user { background: rgba(122,162,255,0.10); border-color: rgba(122,162,255,0.30); }
+
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,0.10);
+    }
+    .chat-input input {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--text);
+    }
+    .chat-input input:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+
+    /* PRACTICE block: step-based entry (placeholder)
+       Why: supports structured marking + reduces LLM guessing about misconceptions.
+    */
+    .practice-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+      display: grid;
+      gap: 10px;
+    }
+    .practice-item label {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .practice-item input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--text);
+    }
+
+
+    /* MOBILE BEHAVIOUR
+       Why: keep diagram visible without stealing the whole screen.
+       - Diagram becomes top sticky region.
+       - Content scrolls below it.
+       - This is the evidence-based “sticky diagram” behaviour.
+    */
+    @media (max-width: 900px) {
+      .split {
+        grid-template-columns: 1fr;
+        grid-template-rows: var(--mobile-diagram-height) 1fr;
+        height: auto;
+        min-height: calc(100vh - var(--header-height));
+      }
+
+
+      .diagram-col {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 10px;
+        position: sticky; /* makes diagram stick under topbar while content scrolls */
+        top: var(--header-height);
+        z-index: 9;
+        background: rgba(11,12,15,0.92);
+        backdrop-filter: blur(8px);
+      }
+
+
+      .diagram-stage {
+        position: relative; /* sticky handled by column on mobile */
+        top: 0;
+        height: calc(var(--mobile-diagram-height) - 20px);
+        grid-template-rows: auto 1fr auto;
+      }
+
+
+      .content-col {
+        overflow: visible;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- TOP BAR -->
+  <header class="topbar" aria-label="Lesson navigation">
+    <div class="left">
+      <button class="btn" type="button" aria-label="Back to module">← Back</button>
+      <span class="badge">Unit 202</span>
+      <span class="badge">Layout A: Split-Vis</span>
+    </div>
+    <div class="right">
+      <!-- Why: quick access to quiz/review from any lesson -->
+      <button class="btn" type="button">Review</button>
+      <button class="btn" type="button">Quiz</button>
+    </div>
+  </header>
+
+
+  <!-- MAIN SPLIT -->
+  <main class="split" aria-label="Split-Vis lesson layout">
+    <!-- LEFT: DIAGRAM CONTEXT -->
+    <section class="diagram-col" aria-label="Diagram stage">
+      <div class="diagram-stage" data-template="split-vis">
+        <div class="diagram-header">
+          <div class="diagram-title">
+            <h1>202.4A — Series rules (I, V, R)</h1>
+            <p>Diagram stays visible while you read, chat, and answer.</p>
+          </div>
+
+
+          <!-- Why: mobile needs quick expand when diagram is small -->
+          <button class="btn" type="button" aria-label="Expand diagram">
+            Expand
+          </button>
+        </div>
+
+
+        <!-- Diagram canvas placeholder -->
+        <figure class="diagram-canvas" aria-label="Circuit diagram">
+          <!--
+          Replace later with:
+          - inline SVG component (interactive),
+          - or a rendered diagram from templates.
+          Keep stable element IDs (R1, R2, loop, branchA) to support tutor actions.
+          -->
+          <div class="placeholder">
+            <strong>[DIAGRAM PLACEHOLDER]</strong><br/>
+            Series circuit with R1 and R2.<br/>
+            Elements: <code>R1</code>, <code>R2</code>, <code>loop</code>
+          </div>
+        </figure>
+
+
+        <!-- Diagram controls -->
+        <div class="diagram-controls" aria-label="Diagram controls">
+          <!-- Why: tutor can trigger these actions; learner can also click them -->
+          <button class="chip" type="button" data-action="highlight" data-ids="loop">Highlight current path</button>
+          <button class="chip" type="button" data-action="highlight" data-ids="R1">Highlight R1</button>
+          <button class="chip" type="button" data-action="highlight" data-ids="R2">Highlight R2</button>
+          <button class="chip" type="button" data-action="clear">Clear highlights</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- RIGHT: LEARNING STREAM -->
+    <section class="content-col" aria-label="Lesson content">
+      <div class="content-wrap">
+        <!-- Outcomes -->
+        <article class="card" id="202-4A-outcomes">
+          <h2>Learning outcomes</h2>
+          <ul>
+            <li>State the three series rules for current, voltage, and resistance.</li>
+            <li>Explain why current is the same in a series circuit.</li>
+            <li>Calculate total resistance in simple series circuits.</li>
+          </ul>
+          <div class="meta-row">
+            <span class="badge">Remember</span>
+            <span class="badge">Understand</span>
+            <span class="badge">Apply</span>
+          </div>
+        </article>
+
+
+        <!-- Vocabulary -->
+        <article class="card" id="202-4A-vocab">
+          <h2>Key vocabulary</h2>
+          <ul>
+            <li><strong>Series:</strong> components in a single path (one loop).</li>
+            <li><strong>Current (I):</strong> flow of charge (amps).</li>
+            <li><strong>Voltage (V):</strong> electrical “push” (volts).</li>
+            <li><strong>Resistance (R):</strong> opposition to current (ohms).</li>
+          </ul>
+        </article>
+
+
+        <!-- Explanation -->
+        <article class="card" id="202-4A-explain-rules">
+          <h2>The 3 series rules</h2>
+          <p><strong>Rule 1 (Current):</strong> Current is the same everywhere in a series circuit.</p>
+          <p><strong>Rule 2 (Voltage):</strong> Supply voltage is shared between components (voltage drops add up).</p>
+          <p><strong>Rule 3 (Resistance):</strong> Total resistance is the sum of individual resistances.</p>
+          <p>
+            <!-- Why: tie explanation to diagram context.
+                 Tutor can trigger highlight(loop) while explaining. -->
+            Keep your eyes on the diagram: there’s only <em>one loop</em>, so the same current must pass through each component.
+          </p>
+        </article>
+
+
+        <!-- Worked Example (I Do) -->
+        <article class="card" id="202-4A-worked-example">
+          <h2>Worked example (I Do)</h2>
+          <p>Given: R1 = 6 Ω, R2 = 3 Ω in series.</p>
+          <p><strong>Step 1:</strong> Series resistances add: R<sub>total</sub> = R1 + R2</p>
+          <p><strong>Step 2:</strong> R<sub>total</sub> = 6 + 3 = <strong>9 Ω</strong></p>
+          <p class="badge">Answers shown here by design (worked model).</p>
+        </article>
+
+
+        <!-- Guided Practice (We Do) -->
+        <article class="card" id="202-4A-guided">
+          <h2>Guided practice (We Do)</h2>
+          <div class="practice-item">
+            <div>
+              <p><strong>Try this:</strong> R1 = 4 Ω, R2 = 8 Ω in series.</p>
+              <p><em>Step 1:</em> What is the rule for total resistance in series?</p>
+            </div>
+            <div>
+              <label for="we-do-step1">Type the rule (e.g., Rtotal = ...)</label>
+              <input id="we-do-step1" type="text" placeholder="Rtotal = R1 + R2" />
+            </div>
+
+
+            <!-- Why: structured “step entry” is easier to mark deterministically. -->
+            <button class="btn" type="button">Check Step 1</button>
+          </div>
+        </article>
+
+
+        <!-- Independent Practice (You Do) -->
+        <article class="card" id="202-4A-practice">
+          <h2>Your turn (You Do)</h2>
+
+
+          <div class="practice-item">
+            <p><strong>Q1:</strong> R1 = 5 Ω, R2 = 7 Ω (series). Find R<sub>total</sub>.</p>
+            <label for="q1">Answer (include units):</label>
+            <input id="q1" type="text" placeholder="e.g., 12 Ω" />
+            <button class="btn" type="button">Submit</button>
+          </div>
+
+
+          <div class="practice-item">
+            <p><strong>Q2:</strong> Explain in one sentence: why is current the same in series?</p>
+            <label for="q2">Answer:</label>
+            <input id="q2" type="text" placeholder="Because..." />
+            <button class="btn" type="button">Submit</button>
+          </div>
+        </article>
+
+
+        <!-- Tutor embedded near practice -->
+        <section class="tutor" id="tutor" aria-label="Tutor chat">
+          <div class="tutor-head">
+            <div>
+              <strong>Tutor</strong>
+              <span>Mode: Teach (Coach)</span>
+            </div>
+            <button class="btn" type="button">Switch to Check</button>
+          </div>
+
+
+          <div class="chat" aria-live="polite">
+            <div class="msg assistant">
+              Let’s do it step-by-step. In a <strong>series</strong> circuit, do resistances <strong>add</strong> or use the <strong>1/R</strong> rule?
+              <br/><br/>
+              Type: <strong>add</strong> or <strong>1/R</strong>.
+              <!-- Why: scaffolded binary choice reduces overwhelm when stuck. -->
+            </div>
+            <div class="msg user">I don't know.</div>
+            <div class="msg assistant">
+              No stress — keep the diagram in view. There’s <strong>one path</strong> (no branches), so resistances <strong>add</strong>.
+              Now type the series rule for R<sub>total</sub>.
+              <!-- Tutor would trigger diagram highlight(loop) in real implementation -->
+            </div>
+          </div>
+
+
+          <div class="chat-input">
+            <label class="sr-only" for="chatbox">Message tutor</label>
+            <input id="chatbox" type="text" placeholder="Type your answer…" />
+            <button class="btn" type="button">Send</button>
+          </div>
+        </section>
+
+
+        <!-- Answer key toggle (placeholder)
+             Why: answers should not be front-loaded except for worked examples.
+        -->
+        <article class="card" id="202-4A-answers">
+          <h2>Answers (hidden by default)</h2>
+          <p>
+            <button class="btn" type="button" aria-expanded="false">
+              Reveal answers
+            </button>
+          </p>
+          <p class="sr-only">Answers content would appear here when revealed.</p>
+        </article>
+
+
+        <!-- Spaced review -->
+        <article class="card" id="202-4A-spaced-review">
+          <h2>Spaced review (from prerequisites)</h2>
+          <ul>
+            <li>Rearrange: V = I × R to find I.</li>
+            <li>Convert: 250 mA into amps.</li>
+            <li>State the unit symbol for resistance.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+  </main>
+
+
+  <!--
+  Implementation hooks (for dev):
+  - data-template="split-vis" to choose this layout
+  - diagram controls emit actions that can be mirrored by tutor "diagram_actions"
+  - right column scroll container: .content-col (so diagram can stay sticky)
+  - block IDs (202-4A-*) support chunking + citations later
+  -->
+</body>
+</html>

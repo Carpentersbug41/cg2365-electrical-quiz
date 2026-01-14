@@ -21,3 +21,8 @@ export const Slider: React.FC<Props> = ({ value, onChange }) => {
 
 
 
+
+
+
+
+

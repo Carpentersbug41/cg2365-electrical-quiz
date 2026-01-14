@@ -1,0 +1,275 @@
+{
+  "id": "202-7A",
+  "title": "202.7A — Alternating Current (AC) Principles",
+  "description": "Learn the fundamental differences between AC and DC, understand frequency, and explore UK mains supply characteristics (230V, 50Hz).",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "AC Principles",
+  "learningOutcomes": [
+    "State the key differences between AC and DC current",
+    "Explain what frequency means and identify the UK mains frequency",
+    "Describe the characteristics of UK mains supply (voltage and frequency)"
+  ],
+  "prerequisites": ["202-1A", "202-2A"],
+  "blocks": [
+    {
+      "id": "202-7A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the key differences between AC and DC current.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain what frequency means and identify the UK mains frequency.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Describe the characteristics of UK mains supply (voltage and frequency).",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Alternating Current (AC)",
+            "definition": "Electric current that periodically reverses direction, flowing forwards then backwards in a regular pattern."
+          },
+          {
+            "term": "Direct Current (DC)",
+            "definition": "Electric current that flows in only one direction continuously, such as from a battery."
+          },
+          {
+            "term": "Frequency (f)",
+            "definition": "The number of complete cycles per second in an AC supply, measured in hertz (Hz)."
+          },
+          {
+            "term": "Hertz (Hz)",
+            "definition": "The SI unit of frequency. One hertz equals one cycle per second."
+          },
+          {
+            "term": "Mains Supply",
+            "definition": "The main electrical power supply to homes and buildings. In the UK, this is 230V AC at 50Hz."
+          },
+          {
+            "term": "Cycle",
+            "definition": "One complete sequence of an AC waveform: forward, peak, reverse, bottom, and back to start."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7A-diagram-ac-dc",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "AC vs DC Current Flow",
+        "description": "Visual comparison showing how DC flows constantly in one direction while AC alternates back and forth",
+        "diagramType": "waveform",
+        "elements": [
+          {
+            "id": "dc-wave",
+            "type": "line",
+            "label": "DC Current: Steady, one direction",
+            "description": "A flat horizontal line showing constant current flow"
+          },
+          {
+            "id": "ac-wave",
+            "type": "sine-wave",
+            "label": "AC Current: Alternates direction",
+            "description": "A sine wave showing current reversing direction regularly"
+          }
+        ],
+        "annotations": [
+          "DC: Current flows continuously in one direction (like a battery)",
+          "AC: Current reverses direction many times per second (like mains power)",
+          "One complete back-and-forth cycle = 1 cycle",
+          "UK mains: 50 cycles per second = 50 Hz"
+        ]
+      }
+    },
+    {
+      "id": "202-7A-explain-ac-vs-dc",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "AC vs DC: What's the Difference?",
+        "content": "**Direct Current (DC)**\nDC flows in **one direction only**, from positive to negative, continuously. Think of a battery — the current always flows the same way through your circuit.\n\n**Common DC sources:**\n- Batteries (AA, car battery, phone battery)\n- Solar panels\n- DC power supplies\n- USB chargers (output DC even though they plug into AC mains)\n\n**Alternating Current (AC)**\nAC **reverses direction** periodically. It flows forward, then backward, then forward again, in a continuous cycle. The electrons don't travel far — they just vibrate back and forth.\n\n**Common AC sources:**\n- Mains electricity (wall sockets)\n- Generators in power stations\n- Car alternators\n\n**Why use AC for mains?**\n- **Easy to transform**: AC voltage can be easily stepped up or down using transformers\n- **Efficient transmission**: High voltage AC loses less energy over long distances\n- **Easy to generate**: Power stations naturally produce AC from rotating generators\n\n**Key Point:** Although AC reverses direction, we still measure it in amps (A) and volts (V), just like DC. But AC has an extra property: **frequency**."
+      }
+    },
+    {
+      "id": "202-7A-explain-frequency",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Understanding Frequency",
+        "content": "**What is Frequency?**\nFrequency measures **how many times per second** the current completes a full cycle (forward-backward-forward). It's measured in **hertz (Hz)**.\n\n**1 Hz = 1 cycle per second**\n\n**UK Mains Frequency: 50 Hz**\nThis means:\n- The current reverses direction 100 times per second (50 cycles × 2 directions)\n- One complete cycle takes 1/50 = 0.02 seconds (20 milliseconds)\n\n**Why 50 Hz?**\n- Historical standard in the UK and most of Europe, Africa, Asia, Australia\n- Works well with the power grid and electrical equipment\n- Different countries use different frequencies:\n  - **UK, Europe, most of world:** 50 Hz\n  - **USA, parts of Americas:** 60 Hz\n\n**At Level 2, you don't need to:**\n- Calculate waveforms or use sine/cosine\n- Work with peak voltages vs RMS\n- Analyze phase angles\n\n**You DO need to know:**\n- UK mains is 50 Hz\n- Frequency is measured in hertz (Hz)\n- 50 Hz means 50 cycles per second\n- AC alternates, DC doesn't"
+      }
+    },
+    {
+      "id": "202-7A-explain-mains",
+      "type": "explanation",
+      "order": 6,
+      "content": {
+        "title": "UK Mains Supply Characteristics",
+        "content": "**Standard UK Mains Supply:**\n- **Voltage:** 230 V (volts)\n- **Frequency:** 50 Hz (hertz)\n- **Type:** Single-phase AC\n\n**What does 230V mean?**\nThis is the **nominal voltage** — the standard voltage supplied to homes and most buildings. It can vary slightly (e.g., 220V to 240V is acceptable), but we call it 230V.\n\n**Historical Note:**\nOlder installations may have been rated at 240V. The UK adopted the European standard of 230V, but the actual voltage didn't change much — equipment rated for 240V still works fine.\n\n**Wiring Colors (Important for Safety):**\n- **Live (L):** Brown wire — carries the AC voltage\n- **Neutral (N):** Blue wire — return path (near 0V)\n- **Earth (E):** Green/Yellow striped — safety connection (0V)\n\n**Safety Notes:**\n- Mains AC at 230V is **dangerous** and can be fatal\n- Always isolate circuits before working on them\n- Never work on live mains equipment unless qualified\n- Use appropriate PPE and follow regulations\n\n**Common Mains-Powered Devices:**\n- Lighting circuits\n- Household appliances (kettles, TVs, washing machines)\n- Power tools\n- Heating systems"
+      }
+    },
+    {
+      "id": "202-7A-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example: AC Characteristics",
+        "given": "A device is rated for \"230V AC, 50 Hz\". Explain what each part means.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the voltage rating: 230V. This is the nominal operating voltage. The device is designed to work with UK mains supply voltage.",
+            "formula": null,
+            "calculation": null,
+            "result": "230V = UK mains voltage (standard)"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Identify the current type: AC. This means the current alternates direction. The device requires AC, not DC. It won't work properly on a 230V DC supply.",
+            "formula": null,
+            "calculation": null,
+            "result": "AC = Alternating Current (reverses direction)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Identify the frequency: 50 Hz. This means 50 cycles per second. This is the UK standard frequency. Some equipment is frequency-sensitive (like clocks or motors).",
+            "formula": "f = 50 Hz = 50 cycles per second",
+            "calculation": null,
+            "result": "50 Hz = UK mains frequency"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Conclusion: This device is designed for UK mains supply. Plug it into a standard UK wall socket and it will work correctly. Don't use it in countries with different voltage/frequency without a transformer.",
+            "formula": null,
+            "calculation": null,
+            "result": "Device compatible with UK mains (230V, 50Hz AC)"
+          }
+        ],
+        "notes": "Always check device ratings before connecting to power. Using wrong voltage or wrong current type (AC vs DC) can damage equipment or create safety hazards."
+      }
+    },
+    {
+      "id": "202-7A-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "You have a 12V DC battery and a 230V AC mains socket. Compare these two supplies.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Does the battery supply AC or DC?",
+            "expectedAnswer": ["DC", "Direct Current", "dc"],
+            "hint": "Batteries always supply current in one direction only."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Does the mains socket supply AC or DC?",
+            "expectedAnswer": ["AC", "Alternating Current", "ac"],
+            "hint": "Wall sockets in homes supply alternating current."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What is the frequency of the DC battery supply?",
+            "expectedAnswer": ["0", "0 Hz", "zero", "0Hz", "none", "no frequency"],
+            "hint": "DC doesn't alternate, so it has no frequency (0 Hz)."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What is the frequency of the UK mains socket?",
+            "expectedAnswer": ["50", "50 Hz", "50Hz", "50 hertz"],
+            "hint": "UK mains frequency is a standard value you need to memorize."
+          },
+          {
+            "stepNumber": 5,
+            "prompt": "Which voltage is safer to work with: 12V or 230V?",
+            "expectedAnswer": ["12V", "12 V", "12", "the battery", "battery"],
+            "hint": "Lower voltages are generally safer. 230V mains can be fatal."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7A-practice",
+      "type": "practice",
+      "order": 9,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-7A-P1",
+            "questionText": "What type of current do batteries supply?",
+            "answerType": "short-text",
+            "expectedAnswer": ["DC", "Direct Current", "direct current", "dc"],
+            "hint": "Think about whether battery current changes direction or stays constant."
+          },
+          {
+            "id": "202-7A-P2",
+            "questionText": "What is the frequency of UK mains supply?",
+            "answerType": "numeric",
+            "expectedAnswer": ["50", "50 Hz", "50Hz"],
+            "hint": "This is a standard value: UK uses 50 cycles per second."
+          },
+          {
+            "id": "202-7A-P3",
+            "questionText": "What is the nominal voltage of UK mains supply?",
+            "answerType": "numeric",
+            "expectedAnswer": ["230", "230V", "230 V"],
+            "hint": "This is the standard UK household voltage."
+          },
+          {
+            "id": "202-7A-P4",
+            "questionText": "If an AC supply has a frequency of 50 Hz, how many complete cycles occur in one second?",
+            "answerType": "numeric",
+            "expectedAnswer": ["50", "50 cycles"],
+            "hint": "Hertz means 'cycles per second'."
+          },
+          {
+            "id": "202-7A-P5",
+            "questionText": "What does 'AC' stand for?",
+            "answerType": "short-text",
+            "expectedAnswer": ["Alternating Current", "alternating current"],
+            "hint": "AC is an abbreviation. What do the letters stand for?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (Previous Topics)",
+        "questions": [
+          "State Ohm's Law (the formula relating voltage, current, and resistance).",
+          "What is the SI unit for electrical power?",
+          "In a series circuit, what happens to the current at every point?",
+          "Calculate: If V = 230V and I = 10A, what is the power P? (Use P = VI)"
+        ],
+        "notes": "These questions review key concepts from previous lessons to reinforce foundational knowledge."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-14",
+    "updated": "2026-01-14",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
+

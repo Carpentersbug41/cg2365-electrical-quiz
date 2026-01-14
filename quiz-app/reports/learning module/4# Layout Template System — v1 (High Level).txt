@@ -1,0 +1,73 @@
+﻿# Layout Template System — v1 (High Level)
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1 (high-level)  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) Purpose
+We use a small number of reusable layout templates so the product stays:
+- **scalable** (no bespoke page design),
+- **consistent** (learners don’t re-learn the UI every page),
+- and **fit for purpose** (different cognitive tasks need different presentation).
+
+
+This prevents “template drift” and keeps authoring repeatable.
+
+
+---
+
+
+## 2) Core principle
+We standardize **layouts**, not individual pages.  
+Pages select one layout and then follow the course’s lesson structure and tutor rules.
+
+
+---
+
+
+## 3) The “Holy Trinity” of layouts (MVP)
+### Layout A — Split-Vis (Diagram Persistent)
+**Use for:** spatial/topology learning (e.g., series/parallel/mixed circuits, current paths, voltage across branches, meter connection visuals).  
+**Requirement:** the learner can read/answer while the diagram remains visible.
+
+
+### Layout B — Linear Flow (Reading + Practice)
+**Use for:** definitions, formulas, non-spatial explanations, standard practice, and reference-style content.  
+**Requirement:** a clean reading experience with low distraction and easy practice entry.
+
+
+### Layout C — Focus Mode (Assessment)
+**Use for:** quizzes, timed drills, mastery checks.  
+**Requirement:** minimal UI and reduced help so assessment measures learning rather than coaching.
+
+
+---
+
+
+## 4) Why we need multiple layouts (high level)
+- Some topics are **diagram-dependent**; learners must not lose the visual context while reading or answering.
+- Some topics are best taught in a **normal reading flow** with worked examples and practice.
+- Assessment must feel **different from learning** to preserve test validity and learner expectations.
+
+
+---
+
+
+## 5) Tutor behaviour alignment (high level)
+- Layout A and B support **Teach (Coach)** and **Fix** behaviours.
+- Layout C enforces **Check (Assessor)** behaviour (limited help until submission).
+
+
+---
+
+
+## 6) MVP boundary
+This doc intentionally does not define pixel layouts, components, or rendering technology.  
+Those details belong in the implementation spec once the concept and three layouts are agreed.
+
+
+---

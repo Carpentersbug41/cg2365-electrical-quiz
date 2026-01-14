@@ -1,0 +1,87 @@
+﻿# Tutor Overview (Teach / Check / Fix) — v1 (High Level)
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1 (high-level)  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) Purpose
+Define, at a high level, how the embedded AI tutor behaves so it supports learning rather than replacing it.
+
+
+This tutor is not a general chatbot. It is a structured teaching and assessment component of the course.
+
+
+---
+
+
+## 2) Core principle
+The tutor exists to run a learning loop:
+**prompt → learner attempt → feedback → retest → progress/review.**
+
+
+---
+
+
+## 3) The three tutor behaviours (modes)
+### A) Teach (Coach)
+**Goal:** help learners acquire new understanding.
+
+
+High-level rules:
+- teaches in small steps
+- asks the learner to answer frequently (active recall)
+- supports “conceptually correct” answers early (does not over-penalize minor formatting)
+- scaffolds when the learner is stuck (hints, step prompts)
+- avoids giving full solutions before an attempt (except worked models)
+
+
+### B) Check (Assessor)
+**Goal:** measure learning and decide progression.
+
+
+High-level rules:
+- behaves like a strict assessor during quizzes/tests
+- minimal help during attempts
+- returns clear results (score, what was wrong, what to do next)
+- links outcomes back to what the learner should review
+
+
+### C) Fix (Remediate)
+**Goal:** correct specific misunderstandings efficiently.
+
+
+High-level rules:
+- targets a specific misunderstanding (misconception)
+- gives the shortest correction that resolves it
+- retests immediately with a near-identical question
+- escalates scaffolding only if repeated failure occurs
+
+
+---
+
+
+## 4) Trust and grounding (high level)
+For MVP:
+- the tutor is constrained to course lesson content and the approved question bank
+- if something is not covered, it must say so rather than improvise
+
+
+This preserves reliability and prevents “confident nonsense.”
+
+
+---
+
+
+## 5) Where the tutor appears (high level)
+- During learning pages, tutor supports Teach and Fix behaviours.
+- During quizzes/tests, tutor is constrained to Check behaviour (assessment conditions differ from learning conditions).
+
+
+Exact UI placement is defined in the Layout Template System and implemented later.
+
+
+---

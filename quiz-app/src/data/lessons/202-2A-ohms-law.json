@@ -1,0 +1,220 @@
+{
+  "id": "202-2A",
+  "title": "202.2A — Ohm's Law: Calculations and Applications",
+  "description": "Master Ohm's Law (V=IR), learn to rearrange formulas, solve basic circuit calculations, and understand how voltage, current, and resistance interact.",
+  "layout": "linear-flow",
+  "unit": "Unit 202",
+  "topic": "Ohm's Law",
+  "learningOutcomes": [
+    "State Ohm's Law and write the formula V = IR",
+    "Rearrange Ohm's Law to solve for voltage, current, or resistance",
+    "Calculate unknown values in circuits using Ohm's Law",
+    "Predict how changes in V, I, or R affect circuit behavior"
+  ],
+  "prerequisites": ["202-1A"],
+  "blocks": [
+    {
+      "id": "202-2A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State Ohm's Law and write the formula V = IR",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Rearrange Ohm's Law to solve for voltage, current, or resistance",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate unknown values in circuits using Ohm's Law",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Predict how changes in V, I, or R affect circuit behavior",
+            "bloomLevel": "analyze"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-2A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Ohm's Law",
+            "definition": "The fundamental relationship between voltage, current, and resistance, expressed as V = IR"
+          },
+          {
+            "term": "Voltage (V)",
+            "definition": "Electrical pressure or potential difference that pushes current through a circuit, measured in volts (V)"
+          },
+          {
+            "term": "Current (I)",
+            "definition": "The rate of flow of electric charge through a conductor, measured in amperes (A)"
+          },
+          {
+            "term": "Resistance (R)",
+            "definition": "The opposition to current flow in a circuit, measured in ohms (Ω)"
+          },
+          {
+            "term": "Directly Proportional",
+            "definition": "When one quantity increases, the other increases by the same factor (V and I are directly proportional when R is constant)"
+          },
+          {
+            "term": "Inversely Proportional",
+            "definition": "When one quantity increases, the other decreases (I and R are inversely proportional when V is constant)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-2A-explain-ohms-law",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "Understanding Ohm's Law",
+        "content": "**Ohm's Law** is one of the most important principles in electrical work. It describes the relationship between voltage, current, and resistance in any circuit.\n\n**The Formula:**\n\n**V = I × R**\n\nWhere:\n- **V** = Voltage in volts (V)\n- **I** = Current in amperes (A)\n- **R** = Resistance in ohms (Ω)\n\n**What It Means:**\n\nOhm's Law tells us that the voltage across a component equals the current flowing through it multiplied by its resistance.\n\n**Think of it like water in a pipe:**\n- **Voltage (V)** is like water pressure - the push that makes water flow\n- **Current (I)** is like the flow rate - how much water flows per second\n- **Resistance (R)** is like the pipe width - narrow pipes resist flow more\n\nHigher pressure (voltage) creates more flow (current). A narrower pipe (higher resistance) reduces flow (current).\n\n**The Three Forms:**\n\nWe can rearrange Ohm's Law to solve for any variable:\n\n1. **V = I × R** (to find voltage)\n2. **I = V ÷ R** (to find current)\n3. **R = V ÷ I** (to find resistance)\n\n**How They Relate:**\n\n- If you **increase voltage**, current increases (V and I are directly proportional)\n- If you **increase resistance**, current decreases (I and R are inversely proportional)\n- Voltage is the product of current and resistance\n\nRemember: You need to know **any two** values to calculate the third!"
+      }
+    },
+    {
+      "id": "202-2A-worked-example",
+      "type": "worked-example",
+      "order": 4,
+      "content": {
+        "title": "Worked Example: Finding Current",
+        "given": "A circuit has a 12V battery and a 6Ω resistor. Calculate the current flowing through the resistor.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Write down what you know",
+            "formula": null,
+            "calculation": "V = 12V, R = 6Ω, I = ?",
+            "result": null
+          },
+          {
+            "stepNumber": 2,
+            "description": "Choose the correct formula to find current",
+            "formula": "I = V ÷ R",
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 3,
+            "description": "Substitute the values into the formula",
+            "formula": "I = V ÷ R",
+            "calculation": "I = 12 ÷ 6",
+            "result": null
+          },
+          {
+            "stepNumber": 4,
+            "description": "Calculate the answer",
+            "formula": null,
+            "calculation": "I = 2A",
+            "result": "2A"
+          }
+        ],
+        "notes": "Always include units in your answer! Current is measured in amperes (A). Check your answer makes sense: higher voltage with moderate resistance should give reasonable current."
+      }
+    },
+    {
+      "id": "202-2A-guided",
+      "type": "guided-practice",
+      "order": 5,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A circuit has a current of 3A flowing through it, and the resistance is 4Ω. What is the supply voltage?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What values do you know? Write them down with units.",
+            "expectedAnswer": ["I = 3A, R = 4Ω", "3A and 4Ω", "I=3A R=4Ω", "current 3A resistance 4Ω"],
+            "hint": "Look for the current (in A) and resistance (in Ω) given in the problem."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Which formula do you need to find voltage?",
+            "expectedAnswer": ["V = I × R", "V=IR", "V = IR", "voltage = current × resistance"],
+            "hint": "Remember the three forms of Ohm's Law. Which one has V on the left side?"
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Substitute the values and calculate V.",
+            "expectedAnswer": ["12V", "12 V", "V = 12V", "12 volts", "V=12V"],
+            "hint": "Multiply current by resistance: V = 3 × 4"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-2A-practice",
+      "type": "practice",
+      "order": 6,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-2A-P1",
+            "questionText": "A 9V battery is connected to a 3Ω resistor. Calculate the current.",
+            "answerType": "numeric",
+            "expectedAnswer": ["3A", "3 A", "3", "3 amperes", "I = 3A"],
+            "hint": "Use I = V ÷ R. Divide voltage by resistance."
+          },
+          {
+            "id": "202-2A-P2",
+            "questionText": "A circuit has 0.5A current and 20Ω resistance. Find the voltage.",
+            "answerType": "numeric",
+            "expectedAnswer": ["10V", "10 V", "10", "10 volts", "V = 10V"],
+            "hint": "Use V = I × R. Multiply current by resistance."
+          },
+          {
+            "id": "202-2A-P3",
+            "questionText": "If voltage is 24V and current is 2A, what is the resistance?",
+            "answerType": "numeric",
+            "expectedAnswer": ["12Ω", "12 Ω", "12", "12 ohms", "R = 12Ω"],
+            "hint": "Use R = V ÷ I. Divide voltage by current."
+          },
+          {
+            "id": "202-2A-P4",
+            "questionText": "What happens to current if you double the voltage while keeping resistance constant?",
+            "answerType": "short-text",
+            "expectedAnswer": ["doubles", "current doubles", "it doubles", "increases by 2x", "becomes twice as much", "multiplied by 2"],
+            "hint": "V and I are directly proportional. If V increases, I increases by the same factor."
+          },
+          {
+            "id": "202-2A-P5",
+            "questionText": "What happens to current if you double the resistance while keeping voltage constant?",
+            "answerType": "short-text",
+            "expectedAnswer": ["halves", "current halves", "it halves", "decreases by half", "becomes half", "divided by 2", "cuts in half"],
+            "hint": "I and R are inversely proportional. If R increases, I decreases."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-2A-spaced-review",
+      "type": "spaced-review",
+      "order": 7,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          "What is the symbol and unit for voltage?",
+          "What is the symbol and unit for current?",
+          "What is the symbol and unit for resistance?",
+          "Convert 2500mA to amperes."
+        ],
+        "notes": "These questions review electrical quantities and units from lesson 202-1A, reinforcing the foundation needed for Ohm's Law calculations."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-14",
+    "updated": "2026-01-14",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
+

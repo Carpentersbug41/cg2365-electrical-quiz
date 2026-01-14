@@ -1,0 +1,89 @@
+﻿# QA / Evaluation Overview (Golden Set + Invariants) — v1 (High Level)
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1 (high-level)  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) Purpose
+Ensure the product stays trustworthy and effective as we iterate.
+
+
+This overview defines:
+- what must never break (invariants)
+- a small fixed set of scenarios to prevent drift (Golden Set)
+- how we decide whether changes are safe to ship
+
+
+---
+
+
+## 2) What must never break (invariants)
+1) **Mode separation**
+- Teach coaches, Check assesses, Fix remediates — no mixing.
+
+
+2) **Grounding**
+- Tutor stays within course content + approved question bank (MVP).
+- If unsupported, it says so rather than inventing answers.
+
+
+3) **Learner attempts first**
+- The system encourages attempts; it doesn’t become an “answer vending machine.”
+
+
+4) **Assessment integrity**
+- Tests feel different from learning and do not provide coaching mid-attempt.
+
+
+5) **Consistency over time**
+- Prompt updates and content updates must not degrade behaviour or reliability.
+
+
+---
+
+
+## 3) Golden Set (small regression suite)
+A Golden Set is a fixed list of ~20 scenarios representing:
+- confused learner
+- confident learner
+- “lazy” learner asking for answers
+- assessment conditions
+- common misunderstandings
+
+
+Each scenario has expected behaviours (not exact wording), such as:
+- correct mode behaviour
+- no answer before attempt (where required)
+- appropriate refusal when out-of-scope
+- clean, consistent result formatting
+
+
+We run the Golden Set after changes to prompts, content structure, retrieval, or marking.
+
+
+---
+
+
+## 4) How we use QA (simple and practical)
+- If a change breaks an invariant, it does not ship.
+- If Golden Set pass rate drops below an agreed threshold, it does not ship.
+- Manual “quick run-through” is done before releasing a new lesson bundle.
+
+
+---
+
+
+## 5) Why this matters (high level)
+The biggest risk in AI-driven products is drift:
+- the tutor slowly becomes less strict, less grounded, or more inconsistent,
+- which destroys learner trust.
+
+
+The Golden Set + invariants give us a lightweight, repeatable safety net while we scale.
+
+
+---

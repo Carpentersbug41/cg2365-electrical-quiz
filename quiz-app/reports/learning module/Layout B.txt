@@ -1,0 +1,511 @@
+﻿<!--
+LAYOUT B: Linear Flow (Reading + Practice) — Low-level HTML Spec (v1)
+Purpose:
+- Used for definitions, formulas, non-spatial explanations, standard worked examples (maths-only),
+  and reference-style pages (dense recap) without needing a persistent diagram.
+- Optimized for low cognitive load: a normal reading column with clear headings, short blocks,
+  and embedded practice questions.
+
+
+Key behaviours:
+- Desktop: single centered column (readability max-width). Optional collapsible tutor sidebar.
+- Mobile: same single column. Tutor becomes a floating button that opens a bottom sheet.
+- Tutor is available, but does not dominate the page. The learner should read + practise first.
+
+
+Why we need this layout:
+- Most content does not benefit from Split-Vis (diagram persistent).
+- A clean linear reading experience reduces visual noise and supports comprehension.
+- Keeps authoring and rendering simple for the majority of pages.
+
+
+Notes:
+- Still uses the same block IDs and lesson structure so RAG/citations remain consistent.
+- Worked-example-heavy is NOT a separate layout; it’s just more practice blocks within this layout.
+-->
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linear Flow Layout (B) — Unit 202 Lesson</title>
+
+
+  <style>
+    :root {
+      --bg: #0b0c0f;
+      --panel: #12141a;
+      --panel-2: #171a22;
+      --text: #e8eaf0;
+      --muted: #a9b0c3;
+      --border: #2a2f3d;
+      --focus: #7aa2ff;
+
+
+      --header-height: 56px;
+      --max-width: 650px; /* WHY: readability sweet spot */
+      --gap: 14px;
+      --radius: 14px;
+    }
+
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+
+    a { color: inherit; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); border: 0;
+    }
+
+
+    /* TOP BAR
+       WHY: consistent nav + lesson identity; keep minimal.
+    */
+    .topbar {
+      height: var(--header-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,12,15,0.85);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .topbar .left, .topbar .right { display: flex; gap: 10px; align-items: center; }
+
+
+    .badge {
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .btn:focus { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+
+    /* PAGE WRAP
+       WHY: central reading column for comprehension and reduced cognitive load.
+    */
+    .page {
+      min-height: calc(100vh - var(--header-height));
+      display: grid;
+      grid-template-columns: 1fr minmax(0, var(--max-width)) 1fr;
+      padding: 16px;
+      gap: 16px;
+    }
+
+
+    .content {
+      grid-column: 2;
+      display: grid;
+      gap: var(--gap);
+      padding-bottom: 80px;
+    }
+
+
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .hero h1 {
+      margin: 0 0 6px 0;
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+    }
+    .card h2 {
+      margin: 0 0 8px 0;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+    .card p, .card li {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .meta-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+
+    /* Practice item
+       WHY: structured entry supports deterministic marking and clear feedback.
+    */
+    .practice-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: rgba(255,255,255,0.02);
+      display: grid;
+      gap: 10px;
+    }
+    .practice-item label {
+      font-size: 12px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .practice-item input, .practice-item textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: var(--text);
+      resize: vertical;
+      min-height: 42px;
+    }
+    .practice-item input:focus, .practice-item textarea:focus {
+      outline: 2px solid var(--focus);
+      outline-offset: 2px;
+    }
+
+
+    /* Optional right sidebar (desktop only)
+       WHY: tutor is available but not dominant; collapsible to preserve reading flow.
+       NOTE: Not required for MVP; can be added later.
+    */
+    .aside {
+      grid-column: 3;
+      display: none; /* default off; can enable for wide screens */
+    }
+
+
+    /* Tutor floating button (mobile + fallback)
+       WHY: keeps tutor accessible without cluttering the reading flow.
+    */
+    .tutor-fab {
+      position: fixed;
+      right: 14px;
+      bottom: 14px;
+      z-index: 20;
+      border-radius: 999px;
+      padding: 12px 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+
+
+    /* Tutor sheet (placeholder)
+       WHY: mobile-friendly chat that doesn't steal the whole page.
+       For MVP: this can be a simple modal/div.
+    */
+    .tutor-sheet {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 62vh;
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      z-index: 30;
+      display: none; /* closed by default */
+      overflow: hidden;
+    }
+    .tutor-sheet.open { display: grid; grid-template-rows: auto 1fr auto; }
+    .tutor-head {
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.12);
+    }
+    .tutor-head strong { font-size: 13px; }
+    .tutor-head span { font-size: 12px; color: var(--muted); }
+    .chat {
+      padding: 12px 14px;
+      display: grid;
+      gap: 10px;
+      overflow: auto;
+    }
+    .msg {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+    .msg.assistant { background: rgba(255,255,255,0.03); }
+    .msg.user { background: rgba(122,162,255,0.10); border-color: rgba(122,162,255,0.30); }
+
+
+    .chat-input {
+      display: flex;
+      gap: 10px;
+      padding: 12px 14px;
+      border-top: 1px solid var(--border);
+      background: rgba(0,0,0,0.10);
+    }
+    .chat-input input {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--text);
+    }
+
+
+    /* RESPONSIVE
+       WHY: keep reading experience consistent on mobile.
+    */
+    @media (max-width: 900px) {
+      .page { grid-template-columns: 1fr; padding: 12px; }
+      .content { grid-column: 1; }
+    }
+
+
+    /* OPTIONAL: enable a desktop sidebar tutor on very wide screens
+       NOTE: left disabled for MVP simplicity.
+    */
+    @media (min-width: 1200px) {
+      .page {
+        grid-template-columns: 1fr minmax(0, var(--max-width)) 320px;
+      }
+      .aside { display: block; }
+    }
+  </style>
+</head>
+
+
+<body>
+  <!-- TOP BAR -->
+  <header class="topbar" aria-label="Lesson navigation">
+    <div class="left">
+      <button class="btn" type="button" aria-label="Back to module">← Back</button>
+      <span class="badge">Unit 202</span>
+      <span class="badge">Layout B: Linear Flow</span>
+    </div>
+    <div class="right">
+      <button class="btn" type="button">Review</button>
+      <button class="btn" type="button">Quiz</button>
+    </div>
+  </header>
+
+
+  <!-- MAIN PAGE -->
+  <main class="page" aria-label="Linear Flow lesson layout">
+    <!-- CONTENT COLUMN -->
+    <section class="content" aria-label="Lesson content">
+      <!-- HERO -->
+      <header class="hero" id="lesson-hero">
+        <h1>202.X — Ohm’s Law (V = I × R) + rearranging</h1>
+        <p>
+          This page is linear by design: read, then practise. Use the tutor if you get stuck.
+          <!-- WHY: reinforces expected behaviour—practice driven, not chat driven -->
+        </p>
+        <div class="meta-row">
+          <span class="badge">Remember</span>
+          <span class="badge">Understand</span>
+          <span class="badge">Apply</span>
+        </div>
+      </header>
+
+
+      <!-- OUTCOMES -->
+      <article class="card" id="202-x-outcomes">
+        <h2>Learning outcomes</h2>
+        <ul>
+          <li>State the Ohm’s Law relationship between V, I, and R.</li>
+          <li>Rearrange the formula to find I or R.</li>
+          <li>Solve basic one-step calculation questions using correct units.</li>
+        </ul>
+      </article>
+
+
+      <!-- VOCAB -->
+      <article class="card" id="202-x-vocab">
+        <h2>Key vocabulary</h2>
+        <ul>
+          <li><strong>Voltage (V):</strong> electrical “push” (volts).</li>
+          <li><strong>Current (I):</strong> flow of charge (amps).</li>
+          <li><strong>Resistance (R):</strong> opposition to current (ohms).</li>
+        </ul>
+      </article>
+
+
+      <!-- EXPLANATION -->
+      <article class="card" id="202-x-explain">
+        <h2>Core idea</h2>
+        <p><strong>Ohm’s Law:</strong> V = I × R</p>
+        <p>
+          If you know two values, you can calculate the third.
+          <!-- WHY: keep explanation short; practice does the learning -->
+        </p>
+        <p class="badge">Tip: If you rearrange, do it step-by-step (don’t jump).</p>
+      </article>
+
+
+      <!-- WORKED EXAMPLE (I DO) -->
+      <article class="card" id="202-x-worked-example">
+        <h2>Worked example (I Do)</h2>
+        <p>Given: V = 12 V, R = 6 Ω. Find I.</p>
+        <p><strong>Step 1:</strong> Start with V = I × R</p>
+        <p><strong>Step 2:</strong> Rearrange for I: I = V ÷ R</p>
+        <p><strong>Step 3:</strong> I = 12 ÷ 6 = <strong>2 A</strong></p>
+        <p class="badge">Answers shown here by design (worked model).</p>
+      </article>
+
+
+      <!-- GUIDED PRACTICE (WE DO) -->
+      <article class="card" id="202-x-guided">
+        <h2>Guided practice (We Do)</h2>
+        <div class="practice-item">
+          <p><strong>Try this:</strong> V = 9 V, R = 3 Ω. Find I.</p>
+          <label for="we-step1">Step 1 — write the rearranged formula for I</label>
+          <input id="we-step1" type="text" placeholder="I = V ÷ R" />
+          <button class="btn" type="button">Check Step 1</button>
+          <!-- WHY: step-based entry supports deterministic marking and clearer feedback -->
+        </div>
+      </article>
+
+
+      <!-- INDEPENDENT PRACTICE (YOU DO) -->
+      <article class="card" id="202-x-practice">
+        <h2>Your turn (You Do)</h2>
+
+
+        <div class="practice-item">
+          <p><strong>Q1:</strong> V = 24 V, R = 8 Ω. Find I.</p>
+          <label for="q1">Answer (include units):</label>
+          <input id="q1" type="text" placeholder="e.g., 3 A" />
+          <button class="btn" type="button">Submit</button>
+        </div>
+
+
+        <div class="practice-item">
+          <p><strong>Q2:</strong> I = 2 A, R = 5 Ω. Find V.</p>
+          <label for="q2">Answer (include units):</label>
+          <input id="q2" type="text" placeholder="e.g., 10 V" />
+          <button class="btn" type="button">Submit</button>
+        </div>
+      </article>
+
+
+      <!-- ANSWERS TOGGLE -->
+      <article class="card" id="202-x-answers">
+        <h2>Answers (hidden by default)</h2>
+        <p>
+          <button class="btn" type="button" aria-expanded="false">
+            Reveal answers
+          </button>
+          <!-- WHY: prevents passive consumption; learner attempts first -->
+        </p>
+        <p class="sr-only">Answers content would appear here when revealed.</p>
+      </article>
+
+
+      <!-- SPACED REVIEW -->
+      <article class="card" id="202-x-spaced-review">
+        <h2>Spaced review</h2>
+        <ul>
+          <li>State the unit symbol for current.</li>
+          <li>Convert 500 mA into amps.</li>
+          <li>Rearrange V = I × R to find R.</li>
+        </ul>
+      </article>
+    </section>
+
+
+    <!-- OPTIONAL DESKTOP ASIDE (can be enabled later) -->
+    <aside class="aside" aria-label="Optional tutor sidebar">
+      <div class="card">
+        <h2>Tutor (optional sidebar)</h2>
+        <p>On wide screens, the tutor can live here. For MVP, we default to the floating button.</p>
+      </div>
+    </aside>
+  </main>
+
+
+  <!-- TUTOR FAB (mobile + default access) -->
+  <button class="btn tutor-fab" type="button" aria-controls="tutor-sheet" aria-expanded="false">
+    Tutor
+    <!-- WHY: keeps tutor accessible without crowding the reading flow -->
+  </button>
+
+
+  <!-- TUTOR SHEET (placeholder) -->
+  <section class="tutor-sheet" id="tutor-sheet" aria-label="Tutor panel">
+    <div class="tutor-head">
+      <div>
+        <strong>Tutor</strong>
+        <span>Mode: Teach (Coach)</span>
+      </div>
+      <button class="btn" type="button" aria-label="Close tutor">Close</button>
+    </div>
+
+
+    <div class="chat" aria-live="polite">
+      <div class="msg assistant">
+        If you’re stuck, tell me which part: formula, rearranging, or units.
+        <!-- WHY: triage question reduces cognitive load and gets the learner moving -->
+      </div>
+      <div class="msg user">Rearranging.</div>
+      <div class="msg assistant">
+        Great — start from V = I × R. To isolate I, what do we do to both sides?
+      </div>
+    </div>
+
+
+    <div class="chat-input">
+      <label class="sr-only" for="chatbox">Message tutor</label>
+      <input id="chatbox" type="text" placeholder="Type your answer…" />
+      <button class="btn" type="button">Send</button>
+    </div>
+  </section>
+
+
+  <!--
+  Implementation hooks (for dev):
+  - Layout B uses a single reading column with stable block IDs.
+  - Tutor access defaults to FAB + bottom sheet; sidebar can be enabled on wide screens.
+  - Same block IDs (202-x-*) support chunking + retrieval + citations later.
+  -->
+</body>
+</html>

@@ -5,6 +5,7 @@ A comprehensive multiple-choice quiz application with 50 questions covering heal
 ## Features
 
 - ⚡ **50 Comprehensive Questions** - Covering all major health and safety topics for 2365 electrical
+- 🤖 **AI Chat Assistant** - Get help understanding questions and concepts with Google Gemini AI
 - 🎯 **Interactive UI** - Beautiful, modern interface with smooth transitions
 - 📊 **Progress Tracking** - Visual progress bar and question counter
 - 🔍 **Review Mode** - Review all answers with correct/incorrect indicators
@@ -57,6 +58,33 @@ npm run dev
 ```
 
 4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Chat Assistant Setup (Optional)
+
+The quiz includes an AI-powered chat assistant to help students understand questions and concepts. To enable this feature:
+
+1. **Get a Gemini API Key:**
+   - **Important:** This is different from a general Google Cloud API key
+   - Visit [Google AI Studio](https://aistudio.google.com/app/apikey) (not Google Cloud Console)
+   - Sign in with your Google account
+   - Click "Create API Key"
+   - Copy your API key (it will start with `AIza...`)
+
+2. **Configure the API Key:**
+   - Rename `env.txt` to `.env.local` in the quiz-app directory
+   - Open `.env.local` and replace `your_gemini_api_key_here` with your actual API key
+   - Save the file
+
+3. **Restart the development server** if it's already running
+
+**Note:** The chat assistant will gracefully degrade if no API key is configured. The quiz will work normally, but the chat feature won't be available.
+
+#### Chat Assistant Features:
+- 🎓 Educational tutor specialized in 2365 Electrical Installation
+- 💬 3 queries per question to help you understand concepts
+- 🔄 Fresh context for each question
+- 📱 Responsive design (sidebar on desktop, modal on mobile)
+- 🚫 Rate limiting to prevent abuse
 
 ## Deployment to Vercel
 

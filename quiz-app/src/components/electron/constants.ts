@@ -19,3 +19,8 @@ export const RHO_COPPER = 0.5; // Resistivity constant for the simulation
 
 
 
+
+
+
+
+

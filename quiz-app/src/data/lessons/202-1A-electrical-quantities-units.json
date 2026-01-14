@@ -1,0 +1,219 @@
+{
+  "id": "202-1A",
+  "title": "202.1A — Electrical Quantities: Units and Measurements",
+  "description": "Learn the fundamental electrical quantities (current, voltage, resistance, power), their SI units, and how to convert between different unit prefixes.",
+  "layout": "linear-flow",
+  "unit": "Unit 202",
+  "topic": "Electrical Quantities",
+  "learningOutcomes": [
+    "State the four fundamental electrical quantities and their SI units",
+    "Explain the meaning of common unit prefixes (kilo, milli, micro)",
+    "Convert between different unit prefixes for electrical quantities"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "202-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the four fundamental electrical quantities and their SI units.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the meaning of common unit prefixes (kilo, milli, micro).",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Convert between different unit prefixes for electrical quantities.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Current (I)",
+            "definition": "The rate of flow of electric charge, measured in amperes (A)."
+          },
+          {
+            "term": "Voltage (V)",
+            "definition": "Electrical potential difference or 'push', measured in volts (V)."
+          },
+          {
+            "term": "Resistance (R)",
+            "definition": "Opposition to the flow of current through a material, measured in ohms (Ω)."
+          },
+          {
+            "term": "Power (P)",
+            "definition": "The rate at which electrical energy is transferred or converted, measured in watts (W)."
+          },
+          {
+            "term": "Unit Prefix",
+            "definition": "A multiplier added to a unit to express larger or smaller values (e.g., kilo = ×1000, milli = ÷1000)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-1A-explain-quantities",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "The Four Fundamental Electrical Quantities",
+        "content": "In electrical work, we use four main quantities to describe what's happening in a circuit:\n\n**1. Current (I)** — measured in **amperes (A)**\nCurrent is the flow of electric charge through a conductor. Think of it like water flowing through a pipe — the more charge flowing per second, the higher the current.\n\n**2. Voltage (V)** — measured in **volts (V)**\nVoltage is the electrical 'pressure' or potential difference that pushes current through a circuit. Like water pressure in a pipe system, higher voltage means more 'push'.\n\n**3. Resistance (R)** — measured in **ohms (Ω)**\nResistance is the opposition to current flow. Materials with high resistance (like rubber) don't allow current to flow easily. Materials with low resistance (like copper wire) allow current to flow easily.\n\n**4. Power (P)** — measured in **watts (W)**\nPower is the rate at which electrical energy is being used or transferred. A 100W light bulb uses energy faster than a 60W bulb.\n\n**Remember the units:**\n- **A** for amperes (current)\n- **V** for volts (voltage)  \n- **Ω** for ohms (resistance)\n- **W** for watts (power)"
+      }
+    },
+    {
+      "id": "202-1A-explain-prefixes",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Unit Prefixes: Making Numbers Manageable",
+        "content": "Electrical values can be very large or very small. Instead of writing 2,500 A or 0.005 A, we use **prefixes** to make numbers easier to read and write.\n\n**Common Prefixes (Large Values):**\n- **kilo (k)** = ×1,000 (one thousand)\n- **mega (M)** = ×1,000,000 (one million)\n\n**Common Prefixes (Small Values):**\n- **milli (m)** = ÷1,000 (one thousandth)\n- **micro (μ)** = ÷1,000,000 (one millionth)\n\n**Examples:**\n- 2,500 Ω = 2.5 kΩ (2.5 kilo-ohms)\n- 0.005 A = 5 mA (5 milliamps)\n- 0.000022 A = 22 μA (22 microamps)\n- 230,000 W = 230 kW (230 kilowatts)\n\n**Conversion Tips:**\n- To convert **from base unit to smaller prefix** (A → mA), **multiply** by 1000\n- To convert **from smaller prefix to base unit** (mA → A), **divide** by 1000\n- To convert **from base unit to larger prefix** (Ω → kΩ), **divide** by 1000\n- To convert **from larger prefix to base unit** (kΩ → Ω), **multiply** by 1000"
+      }
+    },
+    {
+      "id": "202-1A-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Unit Conversions",
+        "given": "Convert: (a) 2500 mA to A, (b) 2.2 kΩ to Ω",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Convert 2500 mA to A. Remember: milli means ÷1000, so to go from mA to A, divide by 1000.",
+            "formula": "A = mA ÷ 1000",
+            "calculation": "2500 ÷ 1000",
+            "result": "2.5 A"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Convert 2.2 kΩ to Ω. Remember: kilo means ×1000, so to go from kΩ to Ω, multiply by 1000.",
+            "formula": "Ω = kΩ × 1000",
+            "calculation": "2.2 × 1000",
+            "result": "2200 Ω"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Check your answers make sense: 2500 milliamps is quite a large current, so 2.5 amps is reasonable. 2.2 kilo-ohms should be thousands of ohms, and 2200 is correct.",
+            "formula": null,
+            "calculation": null,
+            "result": "Both conversions verified ✓"
+          }
+        ],
+        "notes": "Always include the unit in your answer. When converting, think about whether the number should get bigger or smaller."
+      }
+    },
+    {
+      "id": "202-1A-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "Convert: (a) 0.5 A to mA, (b) 4700 Ω to kΩ",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "To convert 0.5 A to mA, should you multiply or divide by 1000?",
+            "expectedAnswer": ["multiply", "multiply by 1000", "×1000", "times 1000"],
+            "hint": "You're going from a larger unit (A) to a smaller unit (mA), so the number should get bigger."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Calculate: 0.5 A = ? mA",
+            "expectedAnswer": ["500", "500 mA", "500mA"],
+            "hint": "0.5 × 1000 = ?"
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "To convert 4700 Ω to kΩ, should you multiply or divide by 1000?",
+            "expectedAnswer": ["divide", "divide by 1000", "÷1000", "divided by 1000"],
+            "hint": "You're going from a smaller unit (Ω) to a larger unit (kΩ), so the number should get smaller."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Calculate: 4700 Ω = ? kΩ",
+            "expectedAnswer": ["4.7", "4.7 kΩ", "4.7kΩ"],
+            "hint": "4700 ÷ 1000 = ?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-1A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-1A-P1",
+            "questionText": "What is the SI unit for electrical current?",
+            "answerType": "short-text",
+            "expectedAnswer": ["ampere", "amperes", "A", "amp", "amps"],
+            "hint": "Think about the symbol 'A' — what does it stand for?"
+          },
+          {
+            "id": "202-1A-P2",
+            "questionText": "Convert 3.5 A to mA.",
+            "answerType": "numeric",
+            "expectedAnswer": ["3500", "3500 mA", "3500mA"],
+            "hint": "To convert from A to mA, multiply by 1000."
+          },
+          {
+            "id": "202-1A-P3",
+            "questionText": "Convert 6800 Ω to kΩ.",
+            "answerType": "numeric",
+            "expectedAnswer": ["6.8", "6.8 kΩ", "6.8kΩ"],
+            "hint": "To convert from Ω to kΩ, divide by 1000."
+          },
+          {
+            "id": "202-1A-P4",
+            "questionText": "What does the prefix 'kilo' mean?",
+            "answerType": "short-text",
+            "expectedAnswer": ["multiply by 1000", "times 1000", "×1000", "one thousand", "1000"],
+            "hint": "A kilometre is 1000 metres. What does kilo represent?"
+          },
+          {
+            "id": "202-1A-P5",
+            "questionText": "A circuit has a resistance of 0.0047 Ω. Express this in milliohms (mΩ).",
+            "answerType": "numeric",
+            "expectedAnswer": ["4.7", "4.7 mΩ", "4.7mΩ"],
+            "hint": "To convert from Ω to mΩ, multiply by 1000."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-1A-spaced-review",
+      "type": "spaced-review",
+      "order": 8,
+      "content": {
+        "title": "Spaced Review (Mathematical Foundations)",
+        "questions": [
+          "Calculate: 250 ÷ 1000",
+          "Calculate: 4.5 × 1000",
+          "What is 0.003 written in standard form (scientific notation)?",
+          "Round 4.768 to 1 decimal place."
+        ],
+        "notes": "These questions review basic mathematical operations needed for unit conversions and electrical calculations."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-14",
+    "updated": "2026-01-14",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
+

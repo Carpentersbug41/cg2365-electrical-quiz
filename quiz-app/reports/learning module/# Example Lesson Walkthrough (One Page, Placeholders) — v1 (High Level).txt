@@ -1,0 +1,110 @@
+﻿# Example Lesson Walkthrough (One Page, Placeholders) — v1 (High Level)
+**Project:** C&G 2365 Level 2 — Unit 202 Electrical Science  
+**Audience:** Planner / Developer / Stakeholders  
+**Status:** Draft v1 (high-level)  
+**Last updated:** 2026-01-13
+
+
+---
+
+
+## 1) Purpose
+This walkthrough demonstrates the *intended learner experience* on a single lesson page using placeholders.
+It shows how lesson content + tutor behaviours + practice + checking fit together without going into implementation detail.
+
+
+---
+
+
+## 2) Example lesson
+**Lesson:** 202.4A — Series circuits: rules (I, V, R) + why they’re true  
+**Intended layout:** Split-Vis (diagram persistent)  
+**Diagram:** Placeholder (to be replaced later)
+
+
+---
+
+
+## 3) What the learner sees (page flow)
+### A) Quick start (top of page)
+- **Title**
+- **Learning outcomes (2–4 bullets)**
+- **Key vocabulary** (short list)
+- **Diagram placeholder** (visible and labelled)
+
+
+### B) Core teaching (short)
+- A brief explanation of the three series rules (I, V, R)
+- A short “why” explanation tied to the diagram (single loop, no branches)
+
+
+### C) Worked model (I Do)
+- One fully worked example:
+  - Given a simple series circuit with two resistors and supply voltage
+  - Show how to find total resistance (and optionally current)
+
+
+### D) Guided practice (We Do)
+- A similar problem where:
+  - the learner provides Step 1 (e.g., identify the rule or compute R_total)
+  - the system confirms/corrects and prompts Step 2
+
+
+### E) Independent practice (You Do)
+- 3–5 questions:
+  - one discrimination item (“Is this series or parallel?”)
+  - one calculation item
+  - one short explanation (“Why is current the same in series?”)
+
+
+### F) Answers (behind reveal)
+- Answer key hidden by default
+- Learner can reveal after attempting
+
+
+### G) Spaced review (end of page)
+- 2–3 short questions from prerequisite topics (e.g., Ohm’s Law rearranging)
+
+
+---
+
+
+## 4) What the tutor does during the lesson (high level)
+### Teach (Coach)
+- Prompts the learner with **one question at a time**
+- If stuck: provides a scaffold (binary choice / fill-the-blank / step prompt)
+- Encourages an attempt before giving a full solution
+
+
+### Fix (Remediate)
+- If the learner applies the wrong rule (e.g., uses parallel thinking):
+  - gives a short correction
+  - retests immediately with a near-identical variant
+
+
+### Check (Assessor) — not used on this page by default
+- The page may link to a separate Focus Mode quiz for formal checking
+
+
+---
+
+
+## 5) What “success” looks like on this page
+By the end, the learner can:
+- state the three series rules correctly
+- explain “why” (single path/no branches) in simple terms
+- correctly identify series circuits
+- complete basic series calculations reliably
+- answer at least one spaced review item correctly
+
+
+---
+
+
+## 6) Why this matters (high level)
+This single page demonstrates the repeatable pattern:
+**structured lesson → guided practice → independent practice → delayed checking via quizzes + review.**
+If this works well, scaling to more pages is repetition, not reinvention.
+
+
+---

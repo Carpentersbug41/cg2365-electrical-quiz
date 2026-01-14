@@ -1,0 +1,261 @@
+{
+  "id": "201-1A",
+  "title": "201.1A — Health & Safety Legislation: Understanding Your Responsibilities",
+  "description": "Learn the purpose of health and safety legislation, understand the Health and Safety at Work Act and Electricity at Work Regulations, and know the responsibilities of employers and employees.",
+  "layout": "linear-flow",
+  "unit": "Unit 201",
+  "topic": "Health & Safety Legislation",
+  "learningOutcomes": [
+    "State the purpose of health and safety legislation in the workplace",
+    "Explain the key requirements of the Health and Safety at Work Act and Electricity at Work Regulations",
+    "Identify the specific responsibilities of employers and employees under safety legislation"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "201-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the purpose of health and safety legislation in the workplace.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the key requirements of the Health and Safety at Work Act and Electricity at Work Regulations.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify the specific responsibilities of employers and employees under safety legislation.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Health and Safety at Work Act (HASAWA)",
+            "definition": "The primary piece of UK legislation covering workplace health and safety. Sets out duties for employers and employees to ensure safety at work."
+          },
+          {
+            "term": "Electricity at Work Regulations (1989)",
+            "definition": "Specific regulations covering the safe use of electricity in the workplace. Applies to all electrical systems, equipment, and work activities."
+          },
+          {
+            "term": "Employer Duties",
+            "definition": "Legal responsibilities that employers must fulfill to ensure the health, safety, and welfare of their employees and others affected by their work."
+          },
+          {
+            "term": "Employee Duties",
+            "definition": "Legal responsibilities that employees must fulfill to take reasonable care for their own safety and that of others who may be affected by their actions."
+          },
+          {
+            "term": "Competent Person",
+            "definition": "Someone with sufficient training, experience, knowledge, and other qualities to enable them to properly perform a specific task safely."
+          },
+          {
+            "term": "Reasonably Practicable",
+            "definition": "A legal term meaning that safety measures should be implemented unless the cost is grossly disproportionate to the risk reduction achieved."
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-1A-explain-purpose",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "Why Do Health & Safety Regulations Exist?",
+        "content": "Health and safety legislation exists to **protect people** from harm in the workplace. Without these laws, there would be no legal requirement for employers to provide safe working conditions.\n\n**The Core Purpose:**\n- **Prevent accidents, injuries, and deaths** in the workplace\n- **Establish clear responsibilities** for employers and employees\n- **Set minimum safety standards** that everyone must follow\n- **Provide legal enforcement** to ensure compliance\n- **Create a culture of safety** across all industries\n\n**The Electrical Context:**\nElectricity is particularly dangerous because:\n- It can cause **fatal electric shocks** even at relatively low voltages\n- It can cause **severe burns** from arc faults and short circuits\n- It can cause **fires** if electrical systems are not properly maintained\n- Risks are often **invisible** — you cannot see electricity\n\nThat's why specific regulations exist for electrical work, in addition to general workplace safety laws.\n\n**Key Principle:**\nHealth and safety regulations are **not optional** — they are **legal requirements**. Breaking them can result in prosecution, fines, or even imprisonment for serious breaches."
+      }
+    },
+    {
+      "id": "201-1A-explain-hasawa",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Health and Safety at Work Act (1974)",
+        "content": "The **Health and Safety at Work Act (HASAWA)** is the **primary legislation** covering workplace safety in the UK. It applies to **all workplaces** and **all work activities**.\n\n**What You Need to Know (Not the Full Legal Text):**\n\nThe HASAWA establishes the **fundamental principle**: Employers and employees both have legal duties to ensure safety.\n\n**The Act requires:**\n1. **Safe systems of work** must be provided\n2. **Safe equipment and machinery** must be used\n3. **Information, instruction, training, and supervision** must be provided\n4. **Safe working environment** must be maintained\n5. **Welfare facilities** must be provided (toilets, washing, rest areas)\n\n**Important Concept: \"So Far As Is Reasonably Practicable\"**\nThe Act uses this phrase throughout. It means you must do everything reasonable to ensure safety, **unless** the cost or effort is grossly disproportionate to the risk.\n\n**Example:**\n- Installing guardrails around an open hole is **reasonably practicable** ✓\n- Building a £10 million safety system to prevent a minor scratch is **not reasonably practicable** ✗\n\n**Key Point for Exams:**\nYou don't need to memorize the full legal text. You need to understand **who is responsible for what**, and **why** the regulations exist."
+      }
+    },
+    {
+      "id": "201-1A-explain-eawr",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Electricity at Work Regulations 1989 (EAWR)",
+        "content": "The **Electricity at Work Regulations (EAWR)** are **specific regulations** that apply to electrical work and electrical systems. They work **alongside** the Health and Safety at Work Act.\n\n**What You Need to Know:**\n\nThe EAWR set out requirements for **all electrical systems, equipment, and work activities** involving electricity.\n\n**Key Requirements:**\n\n**1. Construction and Maintenance (Regulation 4)**\n- All electrical systems must be constructed and maintained to prevent danger\n- Systems must be suitable for their use and environment\n- Regular maintenance and inspection are required\n\n**2. Work on or Near Live Conductors (Regulation 14)**\n- **Work on live conductors should be avoided wherever possible**\n- Live working is only permitted if it is **unreasonable** to make the system dead\n- If live working is necessary, **precautions must be taken** (e.g., insulated tools, barriers)\n\n**3. Competence (Regulation 16)**\n- **No person shall work on electrical systems unless they are competent** to do so\n- Competence means adequate **training, knowledge, experience, and supervision**\n\n**4. Isolation and Switching (Regulation 12-13)**\n- Means of isolation must be provided for every circuit\n- Systems must be properly isolated before work begins\n- Clear procedures for **safe isolation** must be followed\n\n**Why These Regulations Matter:**\n- Electricity can kill — even 230V mains can be fatal\n- Electrical faults cause thousands of fires every year\n- Only competent people should work with electricity\n- Following the regulations **protects you and others**\n\n**Key Point for Exams:**\nFocus on **what** the regulations require (safe systems, competent people, avoid live working) and **why** (to prevent death, injury, and fire)."
+      }
+    },
+    {
+      "id": "201-1A-explain-responsibilities",
+      "type": "explanation",
+      "order": 6,
+      "content": {
+        "title": "Employer vs Employee Responsibilities",
+        "content": "Health and safety is a **shared responsibility**. Both employers and employees have **legal duties** under the regulations.\n\n---\n\n## Employer Responsibilities\n\n**Under the Health and Safety at Work Act, employers MUST:**\n\n1. **Provide a safe workplace**\n   - Safe premises, equipment, and systems of work\n   - Safe access and egress (ways in and out)\n\n2. **Provide information, instruction, and training**\n   - Employees must know how to work safely\n   - Training must be appropriate for the tasks performed\n\n3. **Provide supervision**\n   - Especially for inexperienced or young workers\n\n4. **Conduct risk assessments**\n   - Identify hazards and implement control measures\n\n5. **Provide PPE (Personal Protective Equipment)**\n   - When risks cannot be controlled by other means\n   - Must be suitable, maintained, and employees trained in its use\n\n6. **Provide welfare facilities**\n   - Toilets, washing facilities, drinking water, rest areas\n\n7. **Have a written health and safety policy**\n   - If 5 or more employees\n\n8. **Consult with employees**\n   - On matters affecting their health and safety\n\n**Under the Electricity at Work Regulations, employers MUST also:**\n- Ensure electrical systems are safe and properly maintained\n- Ensure only **competent persons** work on electrical systems\n- Provide safe isolation procedures\n\n---\n\n## Employee Responsibilities\n\n**Under the Health and Safety at Work Act, employees MUST:**\n\n1. **Take reasonable care for their own safety**\n   - Follow safety procedures and instructions\n   - Use equipment properly\n\n2. **Take reasonable care for the safety of others**\n   - Your actions can affect colleagues and the public\n\n3. **Cooperate with the employer**\n   - On health and safety matters\n   - Follow training and instructions given\n\n4. **Not interfere with safety equipment**\n   - Do not misuse or damage safety equipment\n   - Do not remove guards or safety devices\n\n5. **Report hazards and defects**\n   - Tell your employer about unsafe conditions or equipment\n   - Report accidents and near-misses\n\n**Under the Electricity at Work Regulations, employees MUST also:**\n- Only perform electrical work if they are **competent** to do so\n- Follow safe isolation procedures\n- Use appropriate PPE and equipment\n\n---\n\n## Key Differences (Exam Focus)\n\n**Employers are responsible for:**\n- **Providing** safe systems, equipment, training, PPE, supervision\n- **Creating** policies and procedures\n- **Conducting** risk assessments\n\n**Employees are responsible for:**\n- **Following** the safe systems and procedures provided\n- **Using** equipment and PPE correctly\n- **Cooperating** with safety arrangements\n- **Reporting** problems\n\n**Remember:** Both have **legal duties**. An employer cannot blame an employee if they haven't provided proper training. An employee cannot ignore safety rules just because they find them inconvenient.\n\n**Shared Goal:** Everyone goes home safe at the end of the day."
+      }
+    },
+    {
+      "id": "201-1A-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example: Applying Responsibilities",
+        "given": "Scenario: An apprentice electrician is asked to work on a live consumer unit (fuseboard) to replace a circuit breaker. The apprentice has not received training on live working procedures.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the hazard: Working on a live electrical system presents a risk of electric shock, which can be fatal.",
+            "formula": null,
+            "calculation": null,
+            "result": "Hazard identified: Live electrical work"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Apply the Electricity at Work Regulations: Regulation 14 states that work on live conductors should be avoided wherever possible. The circuit should be isolated (made dead) first.",
+            "formula": null,
+            "calculation": null,
+            "result": "Requirement: Avoid live working — isolate the circuit"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Apply the competence requirement: Regulation 16 states no person shall work on electrical systems unless competent. The apprentice has not received training on live working.",
+            "formula": null,
+            "calculation": null,
+            "result": "Apprentice is NOT competent for this task"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Identify employer responsibilities: The employer must ensure only competent persons work on electrical systems, provide appropriate training, and ensure safe systems of work are followed (isolation before work).",
+            "formula": null,
+            "calculation": null,
+            "result": "Employer must: train staff, enforce isolation procedures, supervise apprentices"
+          },
+          {
+            "stepNumber": 5,
+            "description": "Identify employee responsibilities: The apprentice must take reasonable care for their own safety and cooperate with the employer. They should NOT perform work they are not trained for, and should report the unsafe instruction.",
+            "formula": null,
+            "calculation": null,
+            "result": "Apprentice must: refuse unsafe work, report the issue, seek guidance"
+          },
+          {
+            "stepNumber": 6,
+            "description": "Correct action: The apprentice should politely refuse, explain they are not trained for live working, and request that the circuit be isolated first or that a qualified electrician perform the task.",
+            "formula": null,
+            "calculation": null,
+            "result": "Safe outcome: Task performed by competent person on dead circuit ✓"
+          }
+        ],
+        "notes": "This example shows how regulations work together: EAWR sets the technical requirements (avoid live working, competence), HASAWA sets the shared responsibilities (employer provides training, employee refuses unsafe work). Understanding responsibilities helps you make safe decisions."
+      }
+    },
+    {
+      "id": "201-1A-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "Scenario: An employer asks an employee to use a faulty power tool. The tool has a damaged cable with exposed wires. The employee has not been trained on inspecting tools for safety.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What is the main hazard in this situation?",
+            "expectedAnswer": ["electric shock", "shock", "electrocution", "electrical hazard", "exposed wires"],
+            "hint": "Think about what could happen if someone touches exposed wires on a power tool."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Which regulation requires the employer to provide safe equipment?",
+            "expectedAnswer": ["Health and Safety at Work Act", "HASAWA", "Health and Safety at Work", "HSWA"],
+            "hint": "This is the main piece of legislation covering general workplace safety."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What should the employer have done before asking the employee to use the tool?",
+            "expectedAnswer": ["inspect the tool", "check the tool", "maintain the tool", "ensure tool is safe", "provide safe equipment", "repair the tool", "replace the tool"],
+            "hint": "Employers must provide safe equipment. What should they do with faulty equipment?"
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What should the employee do in this situation?",
+            "expectedAnswer": ["refuse to use it", "report the fault", "not use the tool", "tell the employer", "stop work", "report the hazard"],
+            "hint": "Employees must take reasonable care for their own safety. What would be the safe action?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-1A-practice",
+      "type": "practice",
+      "order": 9,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "201-1A-P1",
+            "questionText": "What is the main purpose of health and safety legislation?",
+            "answerType": "short-text",
+            "expectedAnswer": ["protect people", "prevent accidents", "prevent harm", "prevent injury", "prevent death", "ensure safety", "keep people safe"],
+            "hint": "Think about why these laws exist — what are they trying to prevent?"
+          },
+          {
+            "id": "201-1A-P2",
+            "questionText": "State one employer responsibility under the Health and Safety at Work Act.",
+            "answerType": "short-text",
+            "expectedAnswer": ["provide safe workplace", "provide training", "provide PPE", "provide safe equipment", "conduct risk assessments", "provide supervision", "provide information", "provide instruction", "provide safe systems", "provide welfare facilities"],
+            "hint": "What must employers provide to keep their workers safe?"
+          },
+          {
+            "id": "201-1A-P3",
+            "questionText": "State one employee responsibility under the Health and Safety at Work Act.",
+            "answerType": "short-text",
+            "expectedAnswer": ["take reasonable care", "follow instructions", "use equipment properly", "cooperate with employer", "report hazards", "not interfere with safety equipment", "look after their own safety", "look after others' safety"],
+            "hint": "What must employees do to contribute to workplace safety?"
+          },
+          {
+            "id": "201-1A-P4",
+            "questionText": "According to the Electricity at Work Regulations, should work on live conductors be avoided?",
+            "answerType": "short-text",
+            "expectedAnswer": ["yes", "yes it should be avoided", "it should be avoided", "avoid it", "avoided wherever possible"],
+            "hint": "Is working on live electrical systems safe? What does Regulation 14 say?"
+          },
+          {
+            "id": "201-1A-P5",
+            "questionText": "What does it mean for someone to be 'competent' to perform electrical work?",
+            "answerType": "short-text",
+            "expectedAnswer": ["sufficient training", "adequate training", "trained and experienced", "has training and experience", "has knowledge and skills", "qualified and trained", "properly trained"],
+            "hint": "What qualities must someone have before they can safely work on electrical systems?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (General Knowledge)",
+        "questions": [
+          "What is the UK mains voltage?",
+          "What does PPE stand for?",
+          "Name one type of personal protective equipment used by electricians.",
+          "Why is electricity dangerous?"
+        ],
+        "notes": "These questions review general electrical knowledge and safety concepts that support understanding of health and safety regulations."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-14",
+    "updated": "2026-01-14",
+    "version": "1.0",
+    "author": "C&G 2365 Health & Safety Team"
+  }
+}
