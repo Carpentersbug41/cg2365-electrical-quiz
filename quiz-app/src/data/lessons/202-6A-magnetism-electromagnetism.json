@@ -73,6 +73,7 @@
       "content": {
         "title": "Magnetic Field Patterns",
         "description": "Magnetic field lines show the direction and strength of a magnetic field. They always run from the north pole to the south pole outside the magnet, and form closed loops. Field lines are closest together where the field is strongest (at the poles).",
+        "videoUrl": "https://www.youtube.com/watch?v=N8D8k7JCEwk",
         "diagramType": "concept",
         "elementIds": ["bar-magnet", "north-pole", "south-pole", "field-lines", "attraction", "repulsion", "solenoid"],
         "placeholderText": "Magnetic field pattern diagrams showing: Bar magnet with field lines from N to S; Unlike poles (N-S) attracting with connected field lines; Like poles (N-N or S-S) repelling with separated field lines; Electromagnet (solenoid) with current creating field similar to bar magnet. Field lines are closest together at poles where field is strongest."

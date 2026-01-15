@@ -8,7 +8,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { seriesCircuitsQuestions } from '@/data/questions/seriesCircuitsQuestions';
 import { MarkingRequest, MarkingResponse, MarkingResult } from '@/lib/marking/types';
 import { markNumeric, markShortText, markMCQ } from '@/lib/marking/markingService';
-import lesson202_4A from '@/data/lessons/202-4A-series-circuits.json';
+import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
 import { logMarkingRequest, logMarkingResponse, logMarkingError } from '@/lib/observability/loggingService';
 
 // Initialize Gemini API
@@ -120,7 +120,7 @@ export async function POST(request: NextRequest) {
       questionType = question.answerType || 'short-text';
     } else {
       // Check if it's a practice question from lesson
-      const practiceBlock = lesson202_4A.blocks.find((block: any) => block.type === 'practice');
+      const practiceBlock = lesson202_3A.blocks.find((block: any) => block.type === 'practice');
       const practiceQuestion = practiceBlock?.content?.questions?.find((q: any) => q.id === questionId);
       
       if (practiceQuestion && typeof practiceQuestion === 'object') {
@@ -131,7 +131,7 @@ export async function POST(request: NextRequest) {
         questionType = practiceQuestion.answerType || answerType || 'short-text';
       } else {
         // Check if it's a guided practice question
-        const guidedBlock = lesson202_4A.blocks.find((block: any) => block.type === 'guided-practice');
+        const guidedBlock = lesson202_3A.blocks.find((block: any) => block.type === 'guided-practice');
         const step = guidedBlock?.content?.steps?.find((s: any) => 
           (s.prompt && s.prompt === questionId) || 
           (s.description && s.description === questionId) ||

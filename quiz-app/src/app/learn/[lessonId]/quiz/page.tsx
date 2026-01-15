@@ -12,6 +12,7 @@ import Quiz from '@/components/Quiz';
 import { filterQuestionsByLesson } from '@/lib/questions/questionFilter';
 import { getLessonById } from '@/data/lessons/lessonIndex';
 import { Question } from '@/data/questions';
+import { getCumulativeQuestions, getCumulativeQuizMetadata } from '@/lib/questions/cumulativeQuestions';
 
 interface PageProps {
   params: Promise<{ lessonId: string }>;
@@ -21,23 +22,35 @@ export default function LessonQuizPage({ params }: PageProps) {
   const [lessonId, setLessonId] = useState<string | null>(null);
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
   const [lesson, setLesson] = useState<any>(null);
+  const [isCumulative, setIsCumulative] = useState(false);
+  const [cumulativeMetadata, setCumulativeMetadata] = useState<any>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const isRetest = searchParams.get('retest') === 'true';
+  const cumulativeMode = searchParams.get('mode') === 'cumulative';
 
   useEffect(() => {
     params.then(({ lessonId: id }) => {
       setLessonId(id);
+      setIsCumulative(cumulativeMode);
       
       // Get lesson metadata
       const lessonData = getLessonById(id);
       setLesson(lessonData);
       
-      // Filter questions for this lesson
-      const questions = filterQuestionsByLesson(id);
+      // Get questions based on mode
+      let questions: Question[];
+      if (cumulativeMode) {
+        questions = getCumulativeQuestions(id);
+        const metadata = getCumulativeQuizMetadata(id);
+        setCumulativeMetadata(metadata);
+      } else {
+        questions = filterQuestionsByLesson(id);
+      }
+      
       setLessonQuestions(questions);
     });
-  }, [params]);
+  }, [params, cumulativeMode]);
 
   if (!lessonId || !lesson) {
     return (
@@ -105,9 +118,18 @@ export default function LessonQuizPage({ params }: PageProps) {
               <span className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 rounded-full">
                 {lesson.unit}
               </span>
+              {isCumulative && (
+                <span className="px-3 py-1 text-xs font-medium text-orange-700 dark:text-orange-300 bg-orange-100 dark:bg-orange-900/30 rounded-full border border-orange-300 dark:border-orange-700 flex items-center gap-1">
+                  <span>🔄</span> Cumulative
+                </span>
+              )}
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-400">
-              <span className="hidden md:inline">{lesson.title}</span>
+              <span className="hidden md:inline">
+                {isCumulative && cumulativeMetadata && !cumulativeMetadata.isFirstInUnit
+                  ? `${lesson.title} + ${cumulativeMetadata.previousLessons.length} previous`
+                  : lesson.title}
+              </span>
               <span className="px-2 py-1 bg-gray-100 dark:bg-slate-700 rounded text-xs font-medium">
                 {lessonQuestions.length} questions
               </span>

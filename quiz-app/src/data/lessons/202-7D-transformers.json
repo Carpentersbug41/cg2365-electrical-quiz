@@ -1,0 +1,251 @@
+{
+  "id": "202-7D",
+  "title": "202.7D — Transformers: Mutual Induction Basics",
+  "description": "Understand how transformers use mutual induction to step up or step down AC voltage through electromagnetic coupling.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Transformers",
+  "learningOutcomes": [
+    "Describe the basic construction of a transformer including primary coil, secondary coil, and iron core",
+    "Explain how mutual induction allows energy transfer between coils without direct connection",
+    "Identify step-up and step-down transformers based on turns ratio and voltage change"
+  ],
+  "prerequisites": ["202-6A", "202-7A"],
+  "blocks": [
+    {
+      "id": "202-7D-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Describe the basic construction of a transformer including primary coil, secondary coil, and iron core",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain how mutual induction allows energy transfer between coils without direct connection",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify step-up and step-down transformers based on turns ratio and voltage change",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7D-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Transformer",
+            "definition": "A device that uses mutual induction to transfer electrical energy between two coils, changing AC voltage levels"
+          },
+          {
+            "term": "Mutual Induction",
+            "definition": "When a changing magnetic field in one coil induces a voltage in a nearby coil without direct electrical connection"
+          },
+          {
+            "term": "Primary Coil",
+            "definition": "The coil connected to the AC supply that creates the changing magnetic field"
+          },
+          {
+            "term": "Secondary Coil",
+            "definition": "The coil in which voltage is induced by the changing magnetic field from the primary"
+          },
+          {
+            "term": "Step-up Transformer",
+            "definition": "A transformer with more secondary turns than primary turns, increasing voltage"
+          },
+          {
+            "term": "Step-down Transformer",
+            "definition": "A transformer with fewer secondary turns than primary turns, decreasing voltage"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7D-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Basic Transformer Construction",
+        "description": "Shows primary and secondary coils wound around a soft iron core. AC supply on primary creates changing magnetic flux in core, inducing voltage in secondary.",
+        "videoUrl": "https://www.youtube.com/watch?v=vEj07LJDJgY",
+        "diagramType": "transformer",
+        "elementIds": ["primary-coil", "secondary-coil", "iron-core", "ac-supply"],
+        "placeholderText": "Diagram shows: Primary coil (connected to AC supply) and secondary coil (induces output voltage) both wound around a shared soft iron core. The changing AC current in primary creates changing magnetic flux in the core, which cuts through the secondary coil turns, inducing an AC voltage."
+      }
+    },
+    {
+      "id": "202-7D-explain-construction",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "How Transformers Work",
+        "content": "A transformer has three essential parts:\n\n**1. Primary Coil**\nThis coil is connected to the AC supply. When AC flows through it, the current constantly changes direction and magnitude. This changing current creates a changing magnetic field around the primary coil.\n\n**2. Soft Iron Core**\nBoth coils are wound around a soft iron core. Iron is used because it:\n- Easily magnetizes (high permeability)\n- Concentrates the magnetic field lines\n- Links the magnetic field from primary to secondary efficiently\n- Loses magnetism quickly when current changes (soft iron)\n\n**3. Secondary Coil**\nThis coil is wound around the same core as the primary, but has **no direct electrical connection** to it. The changing magnetic field in the core cuts through the secondary coil's turns, **inducing** a voltage in the secondary by electromagnetic induction.\n\n**Why AC is Essential:**\nTransformers **only work with AC** (alternating current), not DC (direct current). This is because:\n- AC constantly changes, creating a constantly changing magnetic field\n- A **changing** magnetic field is required for induction\n- DC creates a steady magnetic field that doesn't induce voltage (except at switch-on/off)\n\n**Energy Transfer Without Connection:**\nThe primary and secondary are electrically isolated - no current flows between them. Energy transfers through the magnetic field in the core. This is called **mutual induction**."
+      }
+    },
+    {
+      "id": "202-7D-explain-mutual-induction",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Mutual Induction Explained",
+        "content": "**Mutual induction** is the key principle that makes transformers work.\n\n**The Process:**\n\n**Step 1:** AC supply connected to primary → AC current flows in primary coil\n\n**Step 2:** Changing current in primary → Changing magnetic field around primary\n\n**Step 3:** Iron core concentrates and links this field → Magnetic flux flows through core\n\n**Step 4:** Changing magnetic flux cuts through secondary coil turns → Voltage induced in secondary\n\n**Step 5:** If a load is connected to secondary → Current flows in secondary circuit\n\n**Key Point:**\nThe primary and secondary coils are **magnetically linked** but **electrically isolated**. No direct connection exists, yet energy transfers efficiently through the magnetic field.\n\n**Why It's Called 'Mutual':**\nBecause the induction works both ways:\n- Primary creates field that induces voltage in secondary\n- Secondary's magnetic field also affects the primary (though we focus on primary → secondary transfer)\n\nThis mutual coupling through the shared magnetic field is what defines mutual induction."
+      }
+    },
+    {
+      "id": "202-7D-explain-step-up-down",
+      "type": "explanation",
+      "order": 6,
+      "content": {
+        "title": "Step-Up and Step-Down Transformers",
+        "content": "Transformers can increase (step up) or decrease (step down) AC voltage. The voltage change depends on the **turns ratio** - the number of turns (loops of wire) on each coil.\n\n**The Turns Rule (Level 2):**\n\n**More secondary turns than primary → Step-up (voltage increases)**\n- Example: Primary has 100 turns, secondary has 200 turns\n- Voltage doubles\n- Used for: Power transmission (increase voltage, reduce current losses)\n\n**Fewer secondary turns than primary → Step-down (voltage decreases)**\n- Example: Primary has 200 turns, secondary has 100 turns\n- Voltage halves\n- Used for: Phone chargers, doorbells, LED drivers (reduce mains to safe levels)\n\n**Equal turns → 1:1 transformer (voltage stays same)**\n- Used for: Isolation (safety), blocking DC while passing AC\n\n**Important Level 2 Understanding:**\n\nAt Level 2, you need to know:\n✅ More turns on secondary = step-up = voltage increases\n✅ Fewer turns on secondary = step-down = voltage decreases\n✅ Transformers don't create energy - power in ≈ power out (ignoring losses)\n✅ If voltage increases, current decreases (power conservation)\n✅ If voltage decreases, current increases (power conservation)\n\n**Practical Examples:**\n- **Power station to national grid:** 25kV → 400kV (step-up)\n- **National grid to local substation:** 400kV → 11kV (step-down)\n- **Local substation to homes:** 11kV → 230V (step-down)\n- **Phone charger:** 230V → 5V (step-down)"
+      }
+    },
+    {
+      "id": "202-7D-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example: Identifying Transformer Type",
+        "given": "A transformer has 500 turns on the primary coil and 100 turns on the secondary coil. The primary is connected to 230V AC mains supply. Determine if this is a step-up or step-down transformer and estimate the secondary voltage.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Compare the number of turns",
+            "formula": null,
+            "calculation": "Primary turns: 500\nSecondary turns: 100\nSecondary has FEWER turns than primary",
+            "result": "Fewer secondary turns indicates step-down"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Determine the transformer type",
+            "formula": null,
+            "calculation": "Since secondary has fewer turns, voltage will decrease",
+            "result": "This is a STEP-DOWN transformer"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Estimate the secondary voltage using the turns ratio (Level 2 approach)",
+            "formula": "Turns ratio = Secondary turns ÷ Primary turns",
+            "calculation": "Turns ratio = 100 ÷ 500 = 1/5 = 0.2\n\nSecondary voltage ≈ Primary voltage × Turns ratio\nSecondary voltage ≈ 230V × 0.2 = 46V",
+            "result": "Secondary voltage ≈ 46V AC"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Check the result makes sense",
+            "formula": null,
+            "calculation": "Secondary has 1/5 the turns, so voltage should be 1/5 of input\n230V ÷ 5 = 46V ✓",
+            "result": "Result confirmed: 46V output"
+          }
+        ],
+        "notes": "Remember: Fewer secondary turns = step-down = voltage decreases. The turns ratio (100/500 = 1/5) tells us the secondary voltage is 1/5 of the primary voltage."
+      }
+    },
+    {
+      "id": "202-7D-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A transformer has 200 turns on the primary and 1000 turns on the secondary. The primary is connected to 50V AC.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Does the secondary have more or fewer turns than the primary?",
+            "expectedAnswer": ["more", "more turns", "1000 is more than 200", "secondary has more"],
+            "hint": "Compare 1000 (secondary) with 200 (primary)"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Is this a step-up or step-down transformer?",
+            "expectedAnswer": ["step-up", "step up", "steps up"],
+            "hint": "When secondary has MORE turns, voltage increases (steps up)"
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What is the turns ratio? (secondary ÷ primary)",
+            "expectedAnswer": ["5", "5:1", "5 to 1", "1000/200 = 5"],
+            "hint": "Divide secondary turns (1000) by primary turns (200)"
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What is the secondary voltage? (Use turns ratio × primary voltage)",
+            "expectedAnswer": ["250V", "250 V", "250 volts", "50 × 5 = 250V"],
+            "hint": "Multiply the primary voltage (50V) by the turns ratio (5)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7D-practice",
+      "type": "practice",
+      "order": 9,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-7D-P1",
+            "questionText": "A transformer has 400 turns on primary and 100 turns on secondary. Is this step-up or step-down?",
+            "answerType": "short-text",
+            "expectedAnswer": ["step-down", "step down", "steps down", "down"],
+            "hint": "Compare turns: secondary (100) vs primary (400). Fewer secondary turns means..."
+          },
+          {
+            "id": "202-7D-P2",
+            "questionText": "Why must transformers use AC, not DC?",
+            "answerType": "short-text",
+            "expectedAnswer": ["changing magnetic field", "AC changes", "DC doesn't change", "induction needs change", "changing field required"],
+            "hint": "Think about what causes induction. Does DC current create a changing or steady magnetic field?"
+          },
+          {
+            "id": "202-7D-P3",
+            "questionText": "A step-up transformer has 100 primary turns and 500 secondary turns. If primary voltage is 20V, what is secondary voltage?",
+            "answerType": "numeric",
+            "expectedAnswer": ["100V", "100 V", "100"],
+            "hint": "Turns ratio = 500/100 = 5. Secondary voltage = 20V × 5"
+          },
+          {
+            "id": "202-7D-P4",
+            "questionText": "Name the three main parts of a transformer",
+            "answerType": "short-text",
+            "expectedAnswer": ["primary coil, secondary coil, iron core", "primary, secondary, core", "two coils and core", "primary coil secondary coil core"],
+            "hint": "Two coils (what are they called?) and a core (what material?)"
+          },
+          {
+            "id": "202-7D-P5",
+            "questionText": "A transformer has 800 primary turns and 200 secondary turns. Primary is 240V. Calculate secondary voltage.",
+            "answerType": "numeric",
+            "expectedAnswer": ["60V", "60 V", "60"],
+            "hint": "Turns ratio = 200/800 = 0.25 (or 1/4). Secondary voltage = 240V × 0.25"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7D-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          "What is an electromagnet and how does it differ from a permanent magnet? (202-6A)",
+          "Why does the strength of an electromagnet increase when you add more turns to the coil? (202-6A)",
+          "What is the frequency of UK mains AC supply? (202-7A)",
+          "Explain what 'alternating current' means - how does the current behave over time? (202-7A)"
+        ],
+        "notes": "These questions review magnetism (202-6A) and AC principles (202-7A), both essential prerequisites for understanding how transformers use changing magnetic fields to transfer AC energy."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-15",
+    "updated": "2026-01-15",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

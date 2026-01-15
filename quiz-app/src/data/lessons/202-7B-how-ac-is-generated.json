@@ -1,0 +1,243 @@
+{
+  "id": "202-7B",
+  "title": "202.7B — How AC is Generated: Single-Loop Generator",
+  "description": "Understand how rotating a loop of wire in a magnetic field generates alternating current with a sine wave pattern. Learn the basic components of a simple AC generator and how rotation position affects voltage.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "AC Generation",
+  "learningOutcomes": [
+    "Describe the basic components of a simple AC generator (loop, magnet, slip rings, brushes)",
+    "Explain how rotation in a magnetic field produces alternating current",
+    "Relate generator rotation position to corresponding points on the AC sine wave"
+  ],
+  "prerequisites": ["202-6A", "202-7A"],
+  "blocks": [
+    {
+      "id": "202-7B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Describe the basic components of a simple AC generator (loop, magnet, slip rings, brushes).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain how rotation in a magnetic field produces alternating current.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Relate generator rotation position to corresponding points on the AC sine wave.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Generator (AC)",
+            "definition": "A device that converts mechanical rotation into electrical energy by rotating a conductor in a magnetic field."
+          },
+          {
+            "term": "Armature",
+            "definition": "The rotating loop or coil of wire in a generator that cuts through the magnetic field."
+          },
+          {
+            "term": "Slip Rings",
+            "definition": "Continuous metal rings attached to the rotating armature that maintain electrical contact as it spins."
+          },
+          {
+            "term": "Brushes",
+            "definition": "Fixed carbon contacts that press against slip rings to transfer current from the rotating armature to the external circuit."
+          },
+          {
+            "term": "Sine Wave",
+            "definition": "The smooth, wave-like pattern of AC voltage that results from continuous rotation in a magnetic field."
+          },
+          {
+            "term": "Electromagnetic Induction",
+            "definition": "The process by which a voltage is generated when a conductor moves through (cuts) a magnetic field."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Simple AC Generator: Rotation → Sine Wave",
+        "description": "A single loop of wire rotates between the poles of a magnet. As it spins, the loop cuts through the magnetic field at different angles, generating a voltage that varies from zero to maximum positive, back through zero, to maximum negative, creating a sine wave pattern.",
+        "videoUrl": "https://www.youtube.com/watch?v=PgmgL2R5dFE",
+        "diagramType": "generator",
+        "elementIds": ["rotating-loop", "north-pole", "south-pole", "slip-rings", "brushes", "sine-wave", "rotation-angles"],
+        "placeholderText": "AC Generator diagram showing: (1) Rotating loop/armature between N-S magnetic poles, (2) Slip rings and brushes for electrical connection, (3) Rotation positions at 0°, 90°, 180°, 270°, 360°, (4) Corresponding sine wave showing voltage varying from zero → max positive → zero → max negative → zero as the loop completes one rotation. At 0° and 180° (loop parallel to field): voltage = 0. At 90° and 270° (loop perpendicular to field): voltage = maximum."
+      }
+    },
+    {
+      "id": "202-7B-explain-components",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Basic Components of an AC Generator",
+        "content": "**What is a Generator?**\n\nAn AC generator (also called an **alternator**) converts **mechanical rotation** (from a turbine, engine, or wind) into **electrical energy**. It's the fundamental device that produces AC electricity in power stations.\n\n**The Four Essential Components:**\n\n**1. Rotating Loop (Armature)**\n- A loop or coil of wire that rotates\n- The conductor that \"cuts\" through the magnetic field\n- More turns = more voltage generated\n- In real generators, this is a coil with many turns on an iron core\n\n**2. Permanent Magnet (or Electromagnet)**\n- Creates a fixed magnetic field between North and South poles\n- The loop rotates within this field\n- In power stations, large electromagnets are used instead of permanent magnets\n\n**3. Slip Rings**\n- Two continuous metal rings attached to each end of the rotating loop\n- Rotate with the armature\n- Allow continuous electrical connection while spinning\n- Each ring connects to one end of the loop\n\n**4. Brushes**\n- Two fixed carbon contacts\n- Press lightly against the slip rings\n- Transfer the generated current from the rotating loop to the external circuit\n- One brush connects to each slip ring\n\n**Why These Components?**\n\n- The **loop** must rotate to cut the magnetic field (this generates the voltage)\n- The **magnet** provides the magnetic field to be cut\n- The **slip rings and brushes** solve a problem: how to get electricity out of something that's spinning without wires getting tangled\n\n**The Key Principle:**\n\nWhen a conductor (the loop) **moves through** a magnetic field, a voltage is **induced** in it. This is called **electromagnetic induction** (discovered by Michael Faraday in 1831). The faster the loop rotates, the more voltage is generated.\n\n**Real-World Examples:**\n- **Power stations**: Steam or water spins massive generators\n- **Car alternators**: Engine spins generator to charge battery\n- **Bicycle dynamos**: Wheel rotation powers lights\n- **Wind turbines**: Wind spins blades, which rotate generator"
+      }
+    },
+    {
+      "id": "202-7B-explain-how-it-works",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "How Rotation Produces AC: The Sine Wave Explained",
+        "content": "**The Basic Principle:**\n\nAs the loop rotates through the magnetic field, the **angle** at which it cuts the field continuously changes. This changing angle produces a voltage that smoothly varies up and down — creating a **sine wave**.\n\n**Following One Complete Rotation (0° to 360°):**\n\n**Position 1: 0° (Horizontal — Loop Parallel to Field)**\n- Loop is moving **parallel** to the field lines\n- Not cutting through any field lines\n- **Voltage = ZERO**\n- Sine wave: Starting point\n\n**Position 2: 90° (Vertical — Loop Perpendicular to Field)**\n- Loop is cutting through field lines at **maximum rate**\n- **Voltage = MAXIMUM POSITIVE**\n- Sine wave: Peak (top)\n- Current flows in one direction through the external circuit\n\n**Position 3: 180° (Horizontal — Loop Parallel to Field Again)**\n- Loop is again moving **parallel** to field lines\n- Not cutting through field lines\n- **Voltage = ZERO**\n- Sine wave: Crossing zero (middle)\n\n**Position 4: 270° (Vertical — Loop Perpendicular, Opposite Side)**\n- Loop cutting through field lines at **maximum rate** again\n- BUT now moving in the **opposite direction** through the field\n- **Voltage = MAXIMUM NEGATIVE**\n- Sine wave: Trough (bottom)\n- Current flows in **opposite direction** through external circuit\n\n**Position 5: 360° (Back to Start)**\n- Loop returns to original horizontal position\n- **Voltage = ZERO**\n- One complete **cycle** finished\n- Sine wave: Completed one full wave\n\n**Why It's a SINE Wave:**\n\nThe voltage follows a mathematical **sine** function because:\n- At 0° and 180°: The loop moves parallel (sin 0° = sin 180° = 0)\n- At 90°: Maximum cutting (sin 90° = +1)\n- At 270°: Maximum cutting, opposite direction (sin 270° = -1)\n\n**The Alternating Part:**\n\n- From 0° to 180°: Current flows in **one direction** (positive half-cycle)\n- From 180° to 360°: Current flows in the **opposite direction** (negative half-cycle)\n- This **reversal** is why it's called **Alternating Current**\n\n**Frequency and Speed:**\n\n- One complete rotation (360°) = One AC cycle\n- If the loop rotates **50 times per second** → Frequency = **50 Hz** (UK mains)\n- If it rotates **60 times per second** → Frequency = **60 Hz** (USA mains)\n\n**Key Insight:**\n\nThe **smooth continuous rotation** produces a **smooth continuous sine wave**. There are no sudden jumps — the voltage smoothly increases, decreases, reverses, and repeats. This is why AC from generators is naturally a sine wave."
+      }
+    },
+    {
+      "id": "202-7B-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Tracing One Complete Rotation",
+        "given": "A simple AC generator loop starts at 0° (horizontal) and rotates clockwise through 360°. Describe the voltage output at key positions.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "At 0° (start position): The loop is horizontal, moving parallel to the magnetic field. It's not cutting any field lines.",
+            "formula": null,
+            "calculation": null,
+            "result": "Voltage = 0V (sine wave starts at zero)"
+          },
+          {
+            "stepNumber": 2,
+            "description": "At 90° (quarter turn): The loop is now vertical, cutting through the field at maximum rate. The sides of the loop move through the strongest part of the field.",
+            "formula": null,
+            "calculation": null,
+            "result": "Voltage = Maximum Positive (sine wave at peak)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "At 180° (half turn): The loop is horizontal again, moving parallel to the field. Once again, it's not cutting field lines.",
+            "formula": null,
+            "calculation": null,
+            "result": "Voltage = 0V (sine wave crosses zero going downward)"
+          },
+          {
+            "stepNumber": 4,
+            "description": "At 270° (three-quarter turn): The loop is vertical again, but now moving through the field in the opposite direction compared to 90°. This reverses the induced voltage.",
+            "formula": null,
+            "calculation": null,
+            "result": "Voltage = Maximum Negative (sine wave at trough/bottom)"
+          },
+          {
+            "stepNumber": 5,
+            "description": "At 360° (full turn): The loop returns to its starting position (horizontal). Back to the beginning of a new cycle.",
+            "formula": null,
+            "calculation": null,
+            "result": "Voltage = 0V (sine wave completes one cycle, ready to repeat)"
+          }
+        ],
+        "notes": "The voltage smoothly transitions between these key points, creating the characteristic sine wave shape. One complete 360° rotation produces one complete AC cycle."
+      }
+    },
+    {
+      "id": "202-7B-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A generator loop is rotating in a magnetic field. At a certain moment, the loop is perpendicular to the field (vertical position). What can you say about the voltage being generated at this moment?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "When the loop is perpendicular (vertical), is it cutting through the field lines at maximum rate or minimum rate?",
+            "expectedAnswer": ["maximum", "maximum rate", "max", "fastest", "most"],
+            "hint": "Think about when the loop cuts through the most field lines per unit time."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "So what is the voltage at this moment: zero, maximum positive, or maximum negative?",
+            "expectedAnswer": ["maximum", "maximum positive", "maximum negative", "max positive", "max negative", "max", "peak"],
+            "hint": "When cutting rate is maximum, voltage is at its peak (could be positive or negative depending on direction)."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Where on the sine wave does this correspond to: the peak (top), the trough (bottom), or the zero crossing (middle)?",
+            "expectedAnswer": ["peak", "trough", "top", "bottom", "maximum", "peak or trough"],
+            "hint": "Perpendicular position gives maximum voltage, which appears at the highest and lowest points of the sine wave."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-7B-P1",
+            "questionText": "Name the two components that allow electrical connection to be maintained while the generator loop rotates.",
+            "answerType": "short-text",
+            "expectedAnswer": ["slip rings and brushes", "slip rings brushes", "brushes and slip rings", "slip rings", "brushes"],
+            "hint": "One part rotates with the loop, the other part stays fixed and presses against the rotating part."
+          },
+          {
+            "id": "202-7B-P2",
+            "questionText": "At what rotation angle is the generator voltage zero? (Choose from 0°, 45°, 90°, or 180°)",
+            "answerType": "short-text",
+            "expectedAnswer": ["0", "180", "0 or 180", "0° or 180°", "0 degrees", "180 degrees", "0° and 180°"],
+            "hint": "Voltage is zero when the loop moves parallel to the magnetic field, not cutting through it."
+          },
+          {
+            "id": "202-7B-P3",
+            "questionText": "If a generator loop rotates 50 times per second, what is the frequency of the AC output?",
+            "answerType": "numeric",
+            "expectedAnswer": ["50", "50 Hz", "50Hz"],
+            "hint": "One rotation = one cycle. Frequency is cycles per second."
+          },
+          {
+            "id": "202-7B-P4",
+            "questionText": "Explain in one sentence why the generator produces alternating current rather than direct current.",
+            "answerType": "short-text",
+            "expectedAnswer": ["direction reverses", "voltage reverses", "current reverses direction", "polarity changes", "alternates direction", "changes direction"],
+            "hint": "Think about what happens when the loop passes through the 180° position."
+          },
+          {
+            "id": "202-7B-P5",
+            "questionText": "What is the name of the process by which a voltage is generated when a conductor moves through a magnetic field?",
+            "answerType": "short-text",
+            "expectedAnswer": ["electromagnetic induction", "induction", "faraday's law", "faraday induction"],
+            "hint": "This fundamental principle was discovered by Michael Faraday in 1831."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7B-spaced-review",
+      "type": "spaced-review",
+      "order": 9,
+      "content": {
+        "title": "Spaced Review (Previous Topics)",
+        "questions": [
+          "What are the two rules for magnetic pole behavior? (Hint: like poles ___, unlike poles ___)",
+          "What is the frequency of UK mains supply?",
+          "Does AC or DC flow from a battery?",
+          "Name one advantage of an electromagnet over a permanent magnet."
+        ],
+        "notes": "These questions review magnetism (202-6A) and AC principles (202-7A), reinforcing the prerequisites for understanding AC generation."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-15",
+    "updated": "2026-01-15",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

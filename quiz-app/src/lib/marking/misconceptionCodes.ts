@@ -13,7 +13,7 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     description: 'Applied the parallel resistance formula (1/Rtotal = 1/R1 + 1/R2) in a series circuit.',
     commonIn: ['series circuits', 'mixed circuits'],
     fixPrompt: 'In **series**, resistances simply ADD together: R_total = R1 + R2. The 1/R formula is for **parallel** circuits only.',
-    relatedBlockIds: ['202-4A-explain-rules', '202-4A-worked-example'],
+    relatedBlockIds: ['202-3A-explain-rules', '202-3A-worked-example'],
     severity: 'critical',
   },
 
@@ -53,7 +53,7 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     description: 'Multiplied values when they should be added (e.g., R1 × R2 instead of R1 + R2).',
     commonIn: ['series circuits'],
     fixPrompt: 'In series, resistances **add**: R_total = R1 + R2. Multiplication is not used here.',
-    relatedBlockIds: ['202-4A-explain-rules'],
+    relatedBlockIds: ['202-3A-explain-rules'],
     severity: 'critical',
   },
 
@@ -63,7 +63,7 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     description: 'Divided values incorrectly.',
     commonIn: ['series circuits', 'voltage calculations'],
     fixPrompt: 'Review the formula. In series, we **add** resistances, we don\'t divide them.',
-    relatedBlockIds: ['202-4A-explain-rules'],
+    relatedBlockIds: ['202-3A-explain-rules'],
     severity: 'moderate',
   },
 
@@ -123,7 +123,7 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     description: 'Confused series and parallel circuit characteristics (e.g., thinking current divides in series).',
     commonIn: ['series circuits', 'parallel circuits'],
     fixPrompt: '**Series**: one path, same current everywhere, voltage divides. **Parallel**: multiple paths, current divides, same voltage across branches.',
-    relatedBlockIds: ['202-4A-explain-rules'],
+    relatedBlockIds: ['202-3A-explain-rules'],
     severity: 'critical',
   },
 
@@ -143,7 +143,7 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     description: 'Assumed voltage splits equally between components regardless of their resistance values.',
     commonIn: ['series circuits', 'voltage calculations'],
     fixPrompt: 'Voltage in series does NOT split equally unless resistances are equal. Use the voltage divider: V_R1 = V_total × (R1 / (R1 + R2)).',
-    relatedBlockIds: ['202-4A-explain-rules'],
+    relatedBlockIds: ['202-3A-explain-rules'],
     severity: 'moderate',
   },
 
@@ -153,7 +153,7 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     description: 'Made an error when calculating voltage drops using the voltage divider principle.',
     commonIn: ['series circuits', 'voltage calculations'],
     fixPrompt: 'Remember the voltage divider formula: V_R1 = V_total × (R1 / (R1 + R2)). The voltage drop is proportional to resistance.',
-    relatedBlockIds: ['202-4A-explain-rules'],
+    relatedBlockIds: ['202-3A-explain-rules'],
     severity: 'moderate',
   },
 
@@ -498,6 +498,417 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     severity: 'moderate',
   },
 
+  CONFUSED_AC_DC_GENERATOR_PARTS: {
+    code: 'CONFUSED_AC_DC_GENERATOR_PARTS',
+    name: 'Confused AC and DC Generator Components',
+    description: 'Mixed up slip rings (AC generator) with commutator (DC generator).',
+    commonIn: ['AC generation', 'generators'],
+    fixPrompt: '**AC generators** use slip rings (continuous). **DC generators** use a commutator (split ring). Different components for different current types.',
+    relatedBlockIds: ['202-7B-explain-components'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_PARALLEL_PERPENDICULAR: {
+    code: 'CONFUSED_PARALLEL_PERPENDICULAR',
+    name: 'Confused Parallel and Perpendicular Positions',
+    description: 'Mixed up when generator voltage is maximum (perpendicular) vs zero (parallel to field).',
+    commonIn: ['AC generation', 'electromagnetic induction'],
+    fixPrompt: '**Perpendicular to field** (loop vertical) = maximum voltage. **Parallel to field** (loop horizontal) = zero voltage.',
+    relatedBlockIds: ['202-7B-explain-how-it-works'],
+    severity: 'critical',
+  },
+
+  DID_NOT_CONVERT_RPM_TO_RPS: {
+    code: 'DID_NOT_CONVERT_RPM_TO_RPS',
+    name: 'Forgot to Convert RPM to Revolutions per Second',
+    description: 'Used rpm directly as Hz without dividing by 60 to convert to revolutions per second.',
+    commonIn: ['AC generation', 'frequency calculations'],
+    fixPrompt: 'Frequency (Hz) = revolutions per second. To convert rpm to Hz: **divide by 60**. Example: 3000 rpm = 3000/60 = 50 Hz.',
+    relatedBlockIds: ['202-7B-explain-how-it-works'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_POSITIVE_NEGATIVE_PEAKS: {
+    code: 'CONFUSED_POSITIVE_NEGATIVE_PEAKS',
+    name: 'Confused Positive and Negative Peaks',
+    description: 'Mixed up which rotation position produces positive peak vs negative peak on sine wave.',
+    commonIn: ['AC generation', 'waveform'],
+    fixPrompt: '90° = positive peak (first perpendicular position). 270° = negative peak (opposite perpendicular position).',
+    relatedBlockIds: ['202-7B-explain-how-it-works'],
+    severity: 'moderate',
+  },
+
+  // AC Waveform Specific Misconceptions
+  CONFUSED_TERMINOLOGY: {
+    code: 'CONFUSED_TERMINOLOGY',
+    name: 'Confused Technical Terminology',
+    description: 'Mixed up technical terms or used incorrect terminology.',
+    commonIn: ['AC waveforms', 'terminology'],
+    fixPrompt: 'Review the vocabulary carefully. Each term (RMS, peak, period, frequency) has a specific meaning.',
+    relatedBlockIds: ['202-7C-vocab'],
+    severity: 'minor',
+  },
+
+  CONFUSED_PEAK_DEFINITIONS: {
+    code: 'CONFUSED_PEAK_DEFINITIONS',
+    name: 'Confused Peak Measurement Definitions',
+    description: 'Mixed up different types of peak measurements (peak, peak-to-peak, amplitude).',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: '**Peak** = maximum in one direction. **Peak-to-peak** = total from +peak to -peak. **Amplitude** = same as peak.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_METER_READING: {
+    code: 'CONFUSED_METER_READING',
+    name: 'Misunderstood Meter Display',
+    description: 'Didn\'t understand what type of value meters display (RMS, peak, average).',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: 'Multimeters in AC mode display **RMS voltage**, not peak or average.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  USED_F_INSTEAD_OF_1_F: {
+    code: 'USED_F_INSTEAD_OF_1_F',
+    name: 'Used Frequency Instead of 1/f',
+    description: 'Used frequency value directly instead of calculating 1/f for period.',
+    commonIn: ['AC waveforms', 'period calculations'],
+    fixPrompt: 'Period T = **1/f**, not just f. If f = 50Hz, then T = 1/50 = 0.02 seconds.',
+    relatedBlockIds: ['202-7C-explain-time'],
+    severity: 'critical',
+  },
+
+  CONFUSED_PEAK_TO_PEAK: {
+    code: 'CONFUSED_PEAK_TO_PEAK',
+    name: 'Confused Peak-to-Peak Measurement',
+    description: 'Used peak-to-peak value when peak or RMS was needed, or vice versa.',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: 'Peak-to-peak = 2 × peak. Make sure you\'re using the right measurement for the context.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CALCULATED_RMS_WRONG: {
+    code: 'CALCULATED_RMS_WRONG',
+    name: 'RMS Calculation Error',
+    description: 'Made an error calculating RMS from peak or peak-to-peak.',
+    commonIn: ['AC waveforms', 'calculations'],
+    fixPrompt: 'RMS = 0.707 × peak (or peak = 1.414 × RMS). Check your calculation.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  FORMULA_WRONG: {
+    code: 'FORMULA_WRONG',
+    name: 'Used Wrong Formula',
+    description: 'Applied incorrect formula or relationship.',
+    commonIn: ['all calculations'],
+    fixPrompt: 'Review the correct formula. T = 1/f, RMS = 0.707 × peak, peak-to-peak = 2 × peak.',
+    relatedBlockIds: ['202-7C-explain-measurements', '202-7C-explain-time'],
+    severity: 'critical',
+  },
+
+  CONFUSED_AVERAGE_RMS: {
+    code: 'CONFUSED_AVERAGE_RMS',
+    name: 'Confused Average with RMS',
+    description: 'Mixed up average voltage (zero for AC) with RMS voltage.',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: '**Average** voltage for pure AC = 0V (positive cancels negative). **RMS** is the effective value we use.',
+    relatedBlockIds: ['202-7C-explain-average'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_AVERAGE_PEAK: {
+    code: 'CONFUSED_AVERAGE_PEAK',
+    name: 'Confused Average with Peak',
+    description: 'Mixed up average voltage with peak voltage.',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: '**Average** = 0V for symmetrical AC. **Peak** = maximum voltage reached.',
+    relatedBlockIds: ['202-7C-explain-average'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_AMPLITUDE_RMS: {
+    code: 'CONFUSED_AMPLITUDE_RMS',
+    name: 'Confused Amplitude with RMS',
+    description: 'Mixed up amplitude (peak value) with RMS value.',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: '**Amplitude** = peak value (maximum displacement). **RMS** = effective value (0.707 × peak).',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_TIME_VOLTAGE: {
+    code: 'CONFUSED_TIME_VOLTAGE',
+    name: 'Confused Time and Voltage Measurements',
+    description: 'Mixed up time-based measurements (period, frequency) with voltage measurements.',
+    commonIn: ['AC waveforms'],
+    fixPrompt: '**Period/frequency** measure time. **RMS/peak/amplitude** measure voltage. Different concepts!',
+    relatedBlockIds: ['202-7C-explain-time', '202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  USED_PEAK_NOT_P_P: {
+    code: 'USED_PEAK_NOT_P_P',
+    name: 'Used Peak Instead of Peak-to-Peak',
+    description: 'Used peak value when peak-to-peak was asked for.',
+    commonIn: ['AC waveforms', 'calculations'],
+    fixPrompt: 'Peak-to-peak = **2 × peak**. Don\'t forget to double it!',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  INVERSE_WRONG: {
+    code: 'INVERSE_WRONG',
+    name: 'Inverse Relationship Error',
+    description: 'Got an inverse relationship backwards (when one increases, other decreases).',
+    commonIn: ['AC waveforms', 'period-frequency'],
+    fixPrompt: 'Period and frequency are **inversely related**: T = 1/f. When frequency increases, period decreases.',
+    relatedBlockIds: ['202-7C-explain-time'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_RELATIONSHIP: {
+    code: 'CONFUSED_RELATIONSHIP',
+    name: 'Misunderstood Relationship',
+    description: 'Didn\'t understand how concepts relate to each other.',
+    commonIn: ['AC waveforms', 'conceptual'],
+    fixPrompt: 'Review how these measurements relate: RMS = 0.707 × peak, T = 1/f, peak-to-peak = 2 × peak.',
+    relatedBlockIds: ['202-7C-explain-measurements', '202-7C-explain-time'],
+    severity: 'moderate',
+  },
+
+  WRONG_REASON: {
+    code: 'WRONG_REASON',
+    name: 'Incorrect Reasoning',
+    description: 'May have right answer but for wrong reason, or wrong explanation.',
+    commonIn: ['conceptual questions'],
+    fixPrompt: 'Review the explanation. Understanding WHY is as important as knowing WHAT.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'minor',
+  },
+
+  CONFUSED_PEAK_CURRENT: {
+    code: 'CONFUSED_PEAK_CURRENT',
+    name: 'Confused Peak Voltage with Current',
+    description: 'Mixed up peak voltage with current-related concepts.',
+    commonIn: ['AC waveforms'],
+    fixPrompt: 'Peak voltage and peak current are different. Make sure you\'re working with the right quantity.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_PEAK_POWER: {
+    code: 'CONFUSED_PEAK_POWER',
+    name: 'Confused Peak Voltage with Power',
+    description: 'Mixed up peak voltage with power calculations.',
+    commonIn: ['AC waveforms', 'power'],
+    fixPrompt: 'Use **RMS** voltage for power calculations, not peak. Power = V_RMS × I_RMS.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  COUNTED_BOTH_PEAKS: {
+    code: 'COUNTED_BOTH_PEAKS',
+    name: 'Counted Positive and Negative Peaks',
+    description: 'Counted both peaks per cycle when only one was asked for.',
+    commonIn: ['AC waveforms', 'frequency'],
+    fixPrompt: 'One cycle = one positive peak + one negative peak. Frequency (Hz) = cycles per second, not peaks.',
+    relatedBlockIds: ['202-7C-explain-time'],
+    severity: 'moderate',
+  },
+
+  WRONG_MULTIPLIER: {
+    code: 'WRONG_MULTIPLIER',
+    name: 'Used Wrong Multiplication Factor',
+    description: 'Used incorrect multiplier (e.g., wrong conversion factor).',
+    commonIn: ['AC waveforms', 'calculations'],
+    fixPrompt: 'Check the correct factors: RMS = 0.707 × peak, peak = 1.414 × RMS, peak-to-peak = 2 × peak.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_INSTRUMENTS: {
+    code: 'CONFUSED_INSTRUMENTS',
+    name: 'Confused Instrument Readings',
+    description: 'Didn\'t understand what different instruments display (multimeter vs oscilloscope).',
+    commonIn: ['AC waveforms', 'measurements'],
+    fixPrompt: '**Multimeter** (AC mode) shows RMS. **Oscilloscope** shows actual waveform with peak values visible.',
+    relatedBlockIds: ['202-7C-worked-example'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_PERIOD_FREQUENCY: {
+    code: 'CONFUSED_PERIOD_FREQUENCY',
+    name: 'Confused Period with Frequency',
+    description: 'Mixed up period (time per cycle) with frequency (cycles per second).',
+    commonIn: ['AC waveforms', 'time measurements'],
+    fixPrompt: '**Period (T)** = time for one cycle (seconds). **Frequency (f)** = cycles per second (Hz). Related by T = 1/f.',
+    relatedBlockIds: ['202-7C-explain-time'],
+    severity: 'moderate',
+  },
+
+  DIVIDED_WRONG: {
+    code: 'DIVIDED_WRONG',
+    name: 'Division Error',
+    description: 'Made an error in division calculation.',
+    commonIn: ['calculations'],
+    fixPrompt: 'Check your division carefully. Use a calculator if needed.',
+    relatedBlockIds: [],
+    severity: 'minor',
+  },
+
+  MULTIPLIED_BY_2_WRONG: {
+    code: 'MULTIPLIED_BY_2_WRONG',
+    name: 'Incorrectly Multiplied by 2',
+    description: 'Multiplied by 2 when shouldn\'t have, or forgot to multiply by 2.',
+    commonIn: ['AC waveforms', 'peak-to-peak'],
+    fixPrompt: 'Peak-to-peak = 2 × peak. Check whether you need to multiply by 2 or not.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  USED_0707_WRONG_WAY: {
+    code: 'USED_0707_WRONG_WAY',
+    name: 'Applied 0.707 Factor Incorrectly',
+    description: 'Applied the 0.707 conversion factor the wrong way around.',
+    commonIn: ['AC waveforms', 'RMS calculations'],
+    fixPrompt: 'RMS = 0.707 × peak (multiply). Peak = RMS / 0.707 (divide) or peak = 1.414 × RMS.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  USED_RMS_NOT_PEAK: {
+    code: 'USED_RMS_NOT_PEAK',
+    name: 'Used RMS When Peak Needed',
+    description: 'Used RMS value when peak voltage was required.',
+    commonIn: ['AC waveforms', 'applications'],
+    fixPrompt: 'For insulation/capacitor ratings, use **peak voltage**, not RMS. Peak = 1.414 × RMS.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'critical',
+  },
+
+  USED_PEAK_TO_PEAK: {
+    code: 'USED_PEAK_TO_PEAK',
+    name: 'Used Peak-to-Peak Incorrectly',
+    description: 'Used peak-to-peak value when another measurement was needed.',
+    commonIn: ['AC waveforms'],
+    fixPrompt: 'Check which measurement is needed: RMS, peak, or peak-to-peak. They\'re all different!',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  WRONG_DIAGNOSIS: {
+    code: 'WRONG_DIAGNOSIS',
+    name: 'Incorrect Problem Diagnosis',
+    description: 'Misdiagnosed what the problem or situation indicates.',
+    commonIn: ['application questions'],
+    fixPrompt: 'Review the information carefully. What do the measurements tell you?',
+    relatedBlockIds: ['202-7C-worked-example'],
+    severity: 'moderate',
+  },
+
+  WRONG_INTERPRETATION: {
+    code: 'WRONG_INTERPRETATION',
+    name: 'Misinterpreted Information',
+    description: 'Incorrectly interpreted the given information or measurements.',
+    commonIn: ['application questions'],
+    fixPrompt: 'Read the question carefully. What do the values actually represent?',
+    relatedBlockIds: ['202-7C-worked-example'],
+    severity: 'moderate',
+  },
+
+  WRONG_ACTION: {
+    code: 'WRONG_ACTION',
+    name: 'Recommended Wrong Action',
+    description: 'Suggested incorrect action to take in a situation.',
+    commonIn: ['application questions'],
+    fixPrompt: 'Think through the consequences. What would be the safe and correct action?',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_VOLTAGE_FREQUENCY: {
+    code: 'CONFUSED_VOLTAGE_FREQUENCY',
+    name: 'Confused Voltage with Frequency',
+    description: 'Mixed up voltage and frequency as if they\'re related.',
+    commonIn: ['AC waveforms'],
+    fixPrompt: '**Voltage** and **frequency** are independent. Voltage can change without frequency changing.',
+    relatedBlockIds: ['202-7C-explain-measurements', '202-7C-explain-time'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_DISTORTION_EFFECT: {
+    code: 'CONFUSED_DISTORTION_EFFECT',
+    name: 'Misunderstood Waveform Distortion',
+    description: 'Didn\'t understand how waveform distortion affects measurements.',
+    commonIn: ['AC waveforms', 'advanced'],
+    fixPrompt: 'The 0.707 factor only works for pure sine waves. Distorted waveforms have different RMS-to-peak ratios.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  FORGOT_TO_HALVE_P_P: {
+    code: 'FORGOT_TO_HALVE_P_P',
+    name: 'Forgot to Divide Peak-to-Peak by 2',
+    description: 'Used peak-to-peak value without dividing by 2 to get peak.',
+    commonIn: ['AC waveforms', 'calculations'],
+    fixPrompt: 'Peak = peak-to-peak / 2. Don\'t forget to divide by 2!',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  CALCULATED_PEAK_NOT_P_P: {
+    code: 'CALCULATED_PEAK_NOT_P_P',
+    name: 'Calculated Peak Instead of Peak-to-Peak',
+    description: 'Calculated peak value when peak-to-peak was asked for.',
+    commonIn: ['AC waveforms', 'calculations'],
+    fixPrompt: 'If peak-to-peak is needed, remember: peak-to-peak = 2 × peak.',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  MULTIPLIED_BY_2_ONLY: {
+    code: 'MULTIPLIED_BY_2_ONLY',
+    name: 'Only Multiplied by 2',
+    description: 'Only multiplied by 2 without doing other necessary conversions.',
+    commonIn: ['AC waveforms', 'calculations'],
+    fixPrompt: 'Converting RMS to peak-to-peak requires TWO steps: RMS × 1.414 (to get peak), then × 2 (to get peak-to-peak).',
+    relatedBlockIds: ['202-7C-explain-measurements'],
+    severity: 'moderate',
+  },
+
+  WRONG_DECIMAL: {
+    code: 'WRONG_DECIMAL',
+    name: 'Decimal Point Error',
+    description: 'Made an error with decimal point placement.',
+    commonIn: ['calculations'],
+    fixPrompt: 'Check your decimal point carefully. Is your answer in the right range?',
+    relatedBlockIds: [],
+    severity: 'minor',
+  },
+
+  USED_T_INSTEAD_OF_1_T: {
+    code: 'USED_T_INSTEAD_OF_1_T',
+    name: 'Used T Instead of 1/T',
+    description: 'Used period value directly instead of calculating 1/T for frequency.',
+    commonIn: ['AC waveforms', 'frequency calculations'],
+    fixPrompt: 'Frequency f = **1/T**, not just T. If T = 0.02s, then f = 1/0.02 = 50Hz.',
+    relatedBlockIds: ['202-7C-explain-time'],
+    severity: 'critical',
+  },
+
+  WRONG_CALCULATION: {
+    code: 'WRONG_CALCULATION',
+    name: 'General Calculation Error',
+    description: 'Made a calculation error (not fitting other specific categories).',
+    commonIn: ['calculations'],
+    fixPrompt: 'Check your calculation step by step. Verify each operation.',
+    relatedBlockIds: [],
+    severity: 'minor',
+  },
+
   CONFUSED_RESISTANCE_WITH_AC_DC: {
     code: 'CONFUSED_RESISTANCE_WITH_AC_DC',
     name: 'Thought Resistance Changes with AC/DC',
@@ -567,6 +978,297 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     fixPrompt: 'Magnetic field lines point **from North to South** outside the magnet.',
     relatedBlockIds: ['202-6A-explain-basics'],
     severity: 'moderate',
+  },
+
+  // Cable-related Misconceptions
+  CONFUSED_CABLE_COMPONENTS: {
+    code: 'CONFUSED_CABLE_COMPONENTS',
+    name: 'Confused Cable Components',
+    description: 'Mixed up the different parts of a cable (conductor, insulation, sheath, CPC).',
+    commonIn: ['cables', 'construction'],
+    fixPrompt: '**Conductor** carries current, **insulation** prevents shock, **sheath** protects from damage, **CPC** provides earth path.',
+    relatedBlockIds: ['203-1A-explain-construction'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_CONDUCTOR_COLOURS: {
+    code: 'CONFUSED_CONDUCTOR_COLOURS',
+    name: 'Confused Conductor Colours',
+    description: 'Mixed up the UK wiring colour codes.',
+    commonIn: ['cables', 'wiring'],
+    fixPrompt: 'Current UK code: **Brown** = Live, **Blue** = Neutral, **Green/Yellow** = Earth.',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'critical',
+  },
+
+  OLD_COLOUR_CODE: {
+    code: 'OLD_COLOUR_CODE',
+    name: 'Used Old Colour Code',
+    description: 'Used the old UK colour code (red/black) instead of current standard.',
+    commonIn: ['cables', 'wiring'],
+    fixPrompt: 'Old code was red/black. **Current UK code** (post-2004): Brown = Live, Blue = Neutral, Green/Yellow = Earth.',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_CABLE_MATERIALS: {
+    code: 'CONFUSED_CABLE_MATERIALS',
+    name: 'Confused Cable Materials',
+    description: 'Mixed up which materials are used for conductors vs insulation.',
+    commonIn: ['cables', 'construction'],
+    fixPrompt: '**Conductors** are metal (copper/aluminium). **Insulation** is non-conductive (PVC, rubber).',
+    relatedBlockIds: ['203-1A-explain-construction'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_CABLE_APPLICATIONS: {
+    code: 'CONFUSED_CABLE_APPLICATIONS',
+    name: 'Confused Cable Applications',
+    description: 'Used wrong cable type for the application (e.g., flex for fixed wiring).',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: '**T&E** for fixed domestic, **singles** for commercial, **flex** for portable, **SWA** for outdoor/underground.',
+    relatedBlockIds: ['203-1A-explain-types', '203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  CONFUSED_CPC_FORMS: {
+    code: 'CONFUSED_CPC_FORMS',
+    name: 'Confused CPC Forms',
+    description: 'Didn\'t know whether CPC should be bare or insulated in different cable types.',
+    commonIn: ['cables', 'construction'],
+    fixPrompt: 'T&E has **bare CPC**. Flex has **green/yellow insulated CPC**.',
+    relatedBlockIds: ['203-1A-explain-construction'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_CONDUCTOR_TYPES: {
+    code: 'CONFUSED_CONDUCTOR_TYPES',
+    name: 'Confused Conductor Types',
+    description: 'Mixed up solid vs stranded conductors.',
+    commonIn: ['cables', 'construction'],
+    fixPrompt: '**Solid** conductors (T&E) for fixed wiring. **Stranded** conductors (flex) for flexibility.',
+    relatedBlockIds: ['203-1A-explain-types'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_CABLE_SIZES: {
+    code: 'CONFUSED_CABLE_SIZES',
+    name: 'Confused Cable Sizes',
+    description: 'Used wrong cable size for the circuit type.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Lighting: 1.0-1.5mm². Sockets: 2.5mm². Cookers: 6-10mm². Size depends on load!',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'critical',
+  },
+
+  CONFUSED_BURIAL_DEPTHS: {
+    code: 'CONFUSED_BURIAL_DEPTHS',
+    name: 'Confused Burial Depths',
+    description: 'Didn\'t know correct burial depth for underground cables.',
+    commonIn: ['cables', 'installation'],
+    fixPrompt: 'Underground cables: **600mm deep** (or 450mm if under paving).',
+    relatedBlockIds: ['203-1A-worked-example'],
+    severity: 'moderate',
+  },
+
+  CURRENT_COLOUR_CODE: {
+    code: 'CURRENT_COLOUR_CODE',
+    name: 'Used Current Code Instead of Old',
+    description: 'Used current colour code when old code was being referenced.',
+    commonIn: ['cables', 'wiring'],
+    fixPrompt: 'Old UK code (pre-2004): Red = Live, Black = Neutral. Current code: Brown = Live, Blue = Neutral.',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'minor',
+  },
+
+  CONFUSED_WITH_FLEX: {
+    code: 'CONFUSED_WITH_FLEX',
+    name: 'Confused Cable with Flex',
+    description: 'Mixed up characteristics of fixed cable (T&E) with flexible cord.',
+    commonIn: ['cables', 'types'],
+    fixPrompt: '**T&E** is flat, solid conductors, for fixed wiring. **Flex** is round, stranded, for portable.',
+    relatedBlockIds: ['203-1A-explain-types'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_WITH_TE: {
+    code: 'CONFUSED_WITH_TE',
+    name: 'Confused Flex with T&E',
+    description: 'Mixed up characteristics of flex with Twin & Earth cable.',
+    commonIn: ['cables', 'types'],
+    fixPrompt: '**Flex** is round, stranded, for portable use. **T&E** is flat, solid, for fixed wiring.',
+    relatedBlockIds: ['203-1A-explain-types'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_CPC_PURPOSE: {
+    code: 'CONFUSED_CPC_PURPOSE',
+    name: 'Misunderstood CPC Purpose',
+    description: 'Didn\'t understand the function of the Circuit Protective Conductor.',
+    commonIn: ['cables', 'safety'],
+    fixPrompt: 'CPC provides **low-resistance path to earth** for fault protection, not for carrying normal current.',
+    relatedBlockIds: ['203-1A-explain-construction'],
+    severity: 'critical',
+  },
+
+  UNDERESTIMATED_ENVIRONMENTAL_FACTORS: {
+    code: 'UNDERESTIMATED_ENVIRONMENTAL_FACTORS',
+    name: 'Underestimated Environmental Factors',
+    description: 'Didn\'t consider environmental factors (chemicals, moisture, temperature) when selecting cable.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Always assess **temperature, moisture, mechanical risk, and chemical exposure** when selecting cables.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  IGNORED_TEMPERATURE_EFFECTS: {
+    code: 'IGNORED_TEMPERATURE_EFFECTS',
+    name: 'Ignored Temperature Effects',
+    description: 'Didn\'t account for high ambient temperature reducing cable current capacity.',
+    commonIn: ['cables', 'derating'],
+    fixPrompt: 'High temperature requires **derating** (larger cable size) because heat reduces current capacity.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  ASSUMED_COPPER_ALWAYS_BEST: {
+    code: 'ASSUMED_COPPER_ALWAYS_BEST',
+    name: 'Assumed Copper Always Best',
+    description: 'Didn\'t understand that aluminium can be better for some large installations.',
+    commonIn: ['cables', 'materials'],
+    fixPrompt: 'Copper has better conductivity, but **aluminium** is lighter and cheaper for very large conductors.',
+    relatedBlockIds: ['203-1A-explain-construction'],
+    severity: 'minor',
+  },
+
+  IGNORED_CONDENSATION_RISK: {
+    code: 'IGNORED_CONDENSATION_RISK',
+    name: 'Ignored Condensation Risk',
+    description: 'Didn\'t consider condensation when cable passes between hot and cold areas.',
+    commonIn: ['cables', 'installation'],
+    fixPrompt: 'Temperature differences cause **condensation** inside cables. Requires sealing or drainage.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'moderate',
+  },
+
+  IGNORED_GROUPING_EFFECTS: {
+    code: 'IGNORED_GROUPING_EFFECTS',
+    name: 'Ignored Cable Grouping Effects',
+    description: 'Didn\'t account for derating when multiple cables are bundled together.',
+    commonIn: ['cables', 'derating'],
+    fixPrompt: 'Bundled cables heat each other. Apply **grouping factors** (derating) when cables are together.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  OVERSIMPLIFIED_INSTALLATION: {
+    code: 'OVERSIMPLIFIED_INSTALLATION',
+    name: 'Oversimplified Installation Method',
+    description: 'Didn\'t consider complexity of installation method requirements.',
+    commonIn: ['cables', 'installation'],
+    fixPrompt: 'Installation method depends on **protection needs, aesthetics, environment, and cable type**.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'moderate',
+  },
+
+  MISUNDERSTOOD_SWA_TERMINATION: {
+    code: 'MISUNDERSTOOD_SWA_TERMINATION',
+    name: 'Misunderstood SWA Termination',
+    description: 'Didn\'t understand why SWA needs special glands.',
+    commonIn: ['cables', 'SWA'],
+    fixPrompt: 'SWA glands provide **mechanical retention, armour termination, and earth continuity**.',
+    relatedBlockIds: ['203-1A-explain-types'],
+    severity: 'moderate',
+  },
+
+  IGNORED_EMC_REQUIREMENTS: {
+    code: 'IGNORED_EMC_REQUIREMENTS',
+    name: 'Ignored EMC Requirements',
+    description: 'Didn\'t consider electromagnetic compatibility in sensitive environments.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Sensitive equipment areas need cables with **EMC consideration** (screening, routing) to minimize interference.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'moderate',
+  },
+
+  IGNORED_FIRE_REQUIREMENTS: {
+    code: 'IGNORED_FIRE_REQUIREMENTS',
+    name: 'Ignored Fire Requirements',
+    description: 'Didn\'t consider fire performance requirements for escape routes.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Escape routes need **Low Smoke & Fume (LSF)** or **fire-resistant** cables.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  SIMPLIFIED_INSTALLATION_METHOD: {
+    code: 'SIMPLIFIED_INSTALLATION_METHOD',
+    name: 'Simplified Installation Method',
+    description: 'Selected cable size based on only one installation method when multiple methods used.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Use **most onerous (worst-case) installation method** when route includes multiple methods.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  IGNORED_IP_REQUIREMENTS: {
+    code: 'IGNORED_IP_REQUIREMENTS',
+    name: 'Ignored IP Rating Requirements',
+    description: 'Didn\'t consider IP rating requirements for bathroom zones or damp locations.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Bathrooms and damp areas require appropriate **IP ratings** and moisture-resistant cables.',
+    relatedBlockIds: ['203-1A-explain-selection'],
+    severity: 'critical',
+  },
+
+  COUNTED_CPC_AS_INSULATED: {
+    code: 'COUNTED_CPC_AS_INSULATED',
+    name: 'Counted CPC as Insulated Conductor',
+    description: 'Incorrectly counted the bare CPC as an insulated conductor.',
+    commonIn: ['cables', 'identification'],
+    fixPrompt: 'T&E has **two insulated conductors** plus a bare CPC. Don\'t count the CPC as insulated.',
+    relatedBlockIds: ['203-1A-explain-construction'],
+    severity: 'minor',
+  },
+
+  CONFUSED_VOLTAGE_RATINGS: {
+    code: 'CONFUSED_VOLTAGE_RATINGS',
+    name: 'Confused Cable Voltage Ratings',
+    description: 'Mixed up cable voltage rating with supply voltage.',
+    commonIn: ['cables', 'identification'],
+    fixPrompt: 'Cable rating 300/500V means **cable capability**, not the supply voltage. 230V mains uses 300/500V rated cable.',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'moderate',
+  },
+
+  CONFUSED_BS_STANDARDS: {
+    code: 'CONFUSED_BS_STANDARDS',
+    name: 'Confused British Standards',
+    description: 'Mixed up different British Standards.',
+    commonIn: ['cables', 'standards'],
+    fixPrompt: '**BS 6004** = PVC cables, **BS 7671** = Wiring Regulations, **BS 1363** = Plugs/Sockets.',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'minor',
+  },
+
+  UNDERESTIMATED_OUTDOOR_REQUIREMENTS: {
+    code: 'UNDERESTIMATED_OUTDOOR_REQUIREMENTS',
+    name: 'Underestimated Outdoor Requirements',
+    description: 'Didn\'t realize outdoor cables need special protection even above ground.',
+    commonIn: ['cables', 'selection'],
+    fixPrompt: 'Outdoor cables need **weather resistance and mechanical protection** whether buried or above ground. Use SWA.',
+    relatedBlockIds: ['203-1A-worked-example'],
+    severity: 'critical',
+  },
+
+  ASSUMED_COLOUR_CODE_UNIVERSAL: {
+    code: 'ASSUMED_COLOUR_CODE_UNIVERSAL',
+    name: 'Assumed Colour Code is Universal',
+    description: 'Assumed all wiring uses current colour code without checking.',
+    commonIn: ['cables', 'safety'],
+    fixPrompt: 'Older installations use different colours. **Always test** to verify - never assume!',
+    relatedBlockIds: ['203-1A-explain-identification'],
+    severity: 'critical',
   },
 
   OTHER: {

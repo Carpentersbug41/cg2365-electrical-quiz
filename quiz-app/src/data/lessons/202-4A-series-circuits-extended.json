@@ -1,6 +1,6 @@
 {
-    "id": "202-4B",
-    "title": "202.4B — Parallel Circuits: Rules and Calculations",
+    "id": "202-4A",
+    "title": "202.4A — Parallel Circuits: Rules and Calculations",
     "description": "Learn the three parallel circuit rules (voltage, current, resistance), understand why they're true using the diagram, and apply them to basic calculations (including branch currents and total resistance).",
     "layout": "split-vis",
     "unit": "Unit 202",
@@ -11,10 +11,10 @@
       "Calculate total resistance for two resistors in parallel",
       "Calculate branch currents and total current in a parallel circuit"
     ],
-    "prerequisites": ["202-4A", "ohms-law-basics"],
+    "prerequisites": ["202-3A", "ohms-law-basics"],
     "blocks": [
       {
-        "id": "202-4B-outcomes",
+        "id": "202-4A-outcomes",
         "type": "outcomes",
         "order": 1,
         "content": {
@@ -27,7 +27,7 @@
         }
       },
       {
-        "id": "202-4B-vocab",
+        "id": "202-4A-vocab",
         "type": "vocab",
         "order": 2,
         "content": {
@@ -42,20 +42,20 @@
         }
       },
       {
-        "id": "202-4B-diagram",
+        "id": "202-4A-diagram",
         "type": "diagram",
         "order": 3,
         "content": {
           "title": "Simple Parallel Circuit",
           "description": "Two resistors (R1 and R2) connected in parallel across the same supply (same two junctions).",
-          "videoUrl": "https://www.youtube.com/watch?v=aBIdFS0jwuU",
+          "videoUrl": "https://www.youtube.com/watch?v=7jcdRn5qGio",
           "diagramType": "parallel",
           "elementIds": ["R1", "R2", "branch1", "branch2", "junctionA", "junctionB", "supply", "wire"],
           "placeholderText": "Parallel circuit diagram showing R1 = 6 Ω and R2 = 3 Ω on two branches across a 12V supply. Label the two junctions (A and B) clearly: current splits at junctionA and rejoins at junctionB."
         }
       },
       {
-        "id": "202-4B-explain-rules",
+        "id": "202-4A-explain-rules",
         "type": "explanation",
         "order": 4,
         "content": {
@@ -64,7 +64,7 @@
         }
       },
       {
-        "id": "202-4B-worked-example",
+        "id": "202-4A-worked-example",
         "type": "worked-example",
         "order": 5,
         "content": {
@@ -79,7 +79,7 @@
         }
       },
       {
-        "id": "202-4B-worked-example-2",
+        "id": "202-4A-worked-example-2",
         "type": "worked-example",
         "order": 6,
         "content": {
@@ -96,14 +96,14 @@
         }
       },
       {
-        "id": "202-4B-discrimination",
+        "id": "202-4A-discrimination",
         "type": "practice",
         "order": 7,
         "content": {
           "title": "Quick Discrimination Check (Series or Parallel?)",
           "questions": [
             {
-              "id": "202-4B-D1",
+              "id": "202-4A-D1",
               "questionText": "If a circuit has two junctions and two branches between the same junctions, is it series or parallel?",
               "answerType": "short-text",
               "expectedAnswer": ["parallel", "Parallel"],
@@ -117,7 +117,7 @@
         }
       },
       {
-        "id": "202-4B-guided",
+        "id": "202-4A-guided",
         "type": "guided-practice",
         "order": 8,
         "content": {
@@ -156,14 +156,14 @@
         }
       },
       {
-        "id": "202-4B-practice",
+        "id": "202-4A-practice",
         "type": "practice",
         "order": 9,
         "content": {
           "title": "Your Turn (You Do)",
           "questions": [
             {
-              "id": "202-4B-P1",
+              "id": "202-4A-P1",
               "questionText": "R1 = 6 Ω, R2 = 6 Ω (parallel). Find R_total.",
               "answerType": "numeric",
               "expectedAnswer": ["3", "3 Ω", "3Ω"],
@@ -171,7 +171,7 @@
               "marking": { "type": "numeric", "value": 3, "unit": "ohm", "tolerance": 0 }
             },
             {
-              "id": "202-4B-P2",
+              "id": "202-4A-P2",
               "questionText": "Explain in one sentence: why is the voltage the same across each branch in a parallel circuit?",
               "answerType": "short-text",
               "expectedAnswer": ["same two points", "same junctions", "same nodes", "connected across the same supply", "same potential difference"],
@@ -179,7 +179,7 @@
               "marking": { "type": "keywords", "anyOf": ["same two points", "same junctions", "same nodes", "junctiona", "junctionb", "same potential difference"] }
             },
             {
-              "id": "202-4B-P3",
+              "id": "202-4A-P3",
               "questionText": "R1 = 2 Ω, R2 = 3 Ω (parallel). Find R_total (round to 2 d.p. if needed).",
               "answerType": "numeric",
               "expectedAnswer": ["1.2", "1.20", "1.2 Ω", "1.20 Ω", "1.2Ω"],
@@ -187,7 +187,7 @@
               "marking": { "type": "numeric", "value": 1.2, "unit": "ohm", "tolerance": 0.02 }
             },
             {
-              "id": "202-4B-P4",
+              "id": "202-4A-P4",
               "questionText": "Supply V = 9 V. Two resistors in parallel: R1 = 3 Ω and R2 = 6 Ω. Find I1, I2, and I_total (include A).",
               "answerType": "numeric",
               "expectedAnswer": ["I1=3A, I2=1.5A, Itotal=4.5A", "3, 1.5, 4.5", "3A, 1.5A, 4.5A"],
@@ -202,7 +202,7 @@
               }
             },
             {
-              "id": "202-4B-P5",
+              "id": "202-4A-P5",
               "questionText": "Which is true in a parallel circuit? (Type A, B, or C)\nA) Current is the same everywhere\nB) Voltage is the same across each branch\nC) Resistances add directly",
               "answerType": "short-text",
               "expectedAnswer": ["B", "b"],
@@ -216,7 +216,7 @@
         }
       },
       {
-        "id": "202-4B-spaced-review",
+        "id": "202-4A-spaced-review",
         "type": "spaced-review",
         "order": 10,
         "content": {

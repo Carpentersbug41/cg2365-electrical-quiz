@@ -183,6 +183,20 @@ I check against these criteria before presenting:
 
 **I automatically integrate the files into your codebase**, updating all necessary imports and registries.
 
+**⚠️ INTEGRATION CHECKLIST - ALL STEPS REQUIRED:**
+
+| Step | File | Action | Critical? |
+|------|------|--------|-----------|
+| 1 | `questions/index.ts` | Import & export new questions | Required |
+| 2 | `questions.ts` | Add to main array | Required |
+| 3 | `lessonIndex.ts` | Register lesson with order | Required |
+| 4 | `questions/types.ts` | Add new tags/codes (if any) | If applicable |
+| 5 | `misconceptionCodes.ts` | Add code definitions (if any) | If applicable |
+| 6 | **`learn/[lessonId]/page.tsx`** | **Import + add to LESSONS registry** | **🚨 CRITICAL** |
+| 7 | **`learn/page.tsx`** | **Import + add to LESSONS array** | **🚨 CRITICAL** |
+
+**❌ If steps 6 & 7 are skipped, the lesson will exist in the database but be INVISIBLE on the website!**
+
 **Files I Create:**
 1. `quiz-app/src/data/lessons/[LESSON-ID]-[topic-slug].json`
 2. `quiz-app/src/data/questions/[topic]Questions.ts`
@@ -190,9 +204,46 @@ I check against these criteria before presenting:
 **Files I Update (Auto-Integration):**
 3. `quiz-app/src/data/questions/index.ts` - Add import and export
 4. `quiz-app/src/data/questions.ts` - Add to main questions array
-5. `quiz-app/src/data/lessons/lessonIndex.ts` - Add lesson entry
-6. `quiz-app/src/app/learn/[lessonId]/page.tsx` - Import lesson JSON
-7. `quiz-app/src/app/learn/page.tsx` - Add to lessons list
+5. `quiz-app/src/data/lessons/lessonIndex.ts` - Add lesson entry (with order for cumulative)
+
+**🚨 CRITICAL: Page Files (MUST UPDATE or lesson won't display!) 🚨**
+
+These are THE MOST IMPORTANT steps - **the lesson will be invisible without them:**
+
+6. **`quiz-app/src/app/learn/[lessonId]/page.tsx`**
+   - Add import: `import lesson[ID] from '@/data/lessons/[FILENAME].json';`
+   - Add to LESSONS registry: `'[ID]': lesson[ID] as Lesson,`
+   
+7. **`quiz-app/src/app/learn/page.tsx`**
+   - Add import: `import lesson[ID] from '@/data/lessons/[FILENAME].json';`
+   - Add to LESSONS array: `lesson[ID],`
+
+**⚠️ WARNING: If you skip steps 6 & 7, the lesson will NOT appear on the website! ⚠️**
+
+**Example for lesson 202-7C:**
+```typescript
+// In learn/[lessonId]/page.tsx:
+import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
+
+const LESSONS: Record<string, Lesson> = {
+  // ... existing lessons ...
+  '202-7C': lesson202_7C as Lesson,
+};
+
+// In learn/page.tsx:
+import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
+
+const LESSONS = [
+  // ... existing lessons ...
+  lesson202_7C,
+];
+```
+
+**Automatic Features Enabled:**
+- ✅ Regular lesson-specific quiz (blue button)
+- ✅ Cumulative quiz (orange button) - automatically includes current + all previous lessons in unit
+- ✅ Progress tracking
+- ✅ Mastery gates
 
 **Then I present:**
 
@@ -215,14 +266,18 @@ Generated and integrated:
    - All misconception codes mapped
    - Learning outcomes covered: [X/X]
 
-Updated 5 integration files:
+Updated 7 integration files:
 ✅ questions/index.ts
 ✅ questions.ts
 ✅ lessonIndex.ts
-✅ learn/[lessonId]/page.tsx
-✅ learn/page.tsx
+✅ questions/types.ts (if new tags/codes added)
+✅ misconceptionCodes.ts (if new codes added)
+✅ learn/[lessonId]/page.tsx ⚠️ CRITICAL - Import + Registry
+✅ learn/page.tsx ⚠️ CRITICAL - Import + Array
 
 Validation Status: ✅ All checks passed
+
+🚨 VERIFY DISPLAY INTEGRATION: The lesson WILL NOT SHOW without the page file updates! 🚨
 
 Ready to test! Just restart your dev server.
 ```
@@ -296,6 +351,23 @@ I'll make updates and re-validate before presenting again.
 | | Distractors are plausible | ✅ |
 | | Misconception mapping is accurate | ✅ |
 
+### Cumulative Quiz Requirements
+
+| Category | Requirement | Check |
+|----------|------------|-------|
+| **Functionality** | Orange cumulative button appears on lesson page | ✅ |
+| | Regular blue quiz button still works | ✅ |
+| | Cumulative quiz loads without errors | ✅ |
+| | Questions include current + previous lessons | ✅ |
+| **Question Selection** | ~20 questions total (or all available if less) | ✅ |
+| | 50/50 split between current and previous | ✅ |
+| | Questions properly shuffled (interleaved) | ✅ |
+| | Only includes lessons from same unit | ✅ |
+| **UI/UX** | Orange "Cumulative" badge shows in quiz header | ✅ |
+| | Header shows "Current + N previous" metadata | ✅ |
+| | First lesson in unit works (no crash) | ✅ |
+| | Tooltip explains cumulative functionality | ✅ |
+
 ---
 
 ## 🚀 Testing (You Execute)
@@ -315,13 +387,21 @@ npm run dev
 http://localhost:3000/learn
 ```
 
+**🚨 FIRST CHECK - Does lesson appear?**
+- ⚠️ If lesson is NOT visible on `/learn` page → **Page files NOT updated!**
+- ⚠️ Go back and update `learn/page.tsx` and `learn/[lessonId]/page.tsx`
+
 **Verify:**
-- ✅ New lesson appears in the lessons list
-- ✅ Clicking opens the lesson page
+- ✅ **New lesson appears in the lessons list** ← **MUST SEE THIS FIRST!**
+- ✅ Clicking opens the lesson page at `/learn/[lesson-id]`
 - ✅ All blocks render correctly
 - ✅ Complete lesson → quiz button appears
 - ✅ Quiz loads with 50 questions
 - ✅ Questions display and grade properly
+- ✅ Orange "Cumulative" button appears next to regular quiz button
+- ✅ Cumulative quiz loads with mixed questions (current + previous lessons)
+- ✅ Cumulative badge shows in quiz header
+- ✅ Both quiz modes work independently
 
 ### 3. Commit (Once Approved)
 
@@ -331,7 +411,17 @@ git add quiz-app/src/app/learn/
 git commit -m "feat: Add [LESSON-ID] [Topic] lesson and quiz (50 questions)"
 ```
 
-**Note:** All 7 integration files are already updated automatically!
+**Note:** All 7-9 integration files must be updated (depending on whether new tags/codes were needed)!
+
+**🚨 CRITICAL CHECK before committing:**
+```bash
+# Verify the lesson appears in both page files:
+grep "lesson202-[ID]" quiz-app/src/app/learn/page.tsx
+grep "lesson202-[ID]" quiz-app/src/app/learn/[lessonId]/page.tsx
+
+# Both commands should show the import and usage!
+# If either returns nothing, the lesson WON'T DISPLAY!
+```
 
 ---
 

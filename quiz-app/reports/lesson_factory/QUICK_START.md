@@ -106,7 +106,10 @@ Generated files ready for review:
    - Auto-integrated into codebase
 
 Validation: ✅ All checks passed
-Integration: ✅ Auto-integrated (5 files updated)
+Integration: ✅ Auto-integrated (7-9 files updated)
+
+🚨 CRITICAL: Page files updated (learn/page.tsx, learn/[lessonId]/page.tsx)
+   Without these, lesson will NOT display on website!
 
 [Complete file contents below]
 
@@ -152,6 +155,12 @@ Rework: Difficulty distribution should be 40% easy, 40% medium, 20% hard
 - [ ] Difficulty feels right
 - [ ] Good mix of question types
 
+### Cumulative Quiz
+- [ ] Orange cumulative button appears on lesson page
+- [ ] Cumulative quiz includes questions from current + previous lessons
+- [ ] Questions are properly mixed (not blocked by lesson)
+- [ ] First lesson in unit works (shows only current lesson questions)
+
 ---
 
 ## 🚀 Testing After Generation
@@ -160,10 +169,16 @@ Rework: Difficulty distribution should be 40% easy, 40% medium, 20% hard
 
 1. **Restart dev server**: `npm run dev`
 2. **Navigate to**: `http://localhost:3000/learn`
-3. **Test**: Click new lesson, complete it, take quiz (50 questions)
-4. **Commit** when approved: `git add quiz-app/src && git commit -m "feat: Add [LESSON-ID] [Topic]"`
+3. **🚨 FIRST: Verify lesson appears in list** ← If NOT visible, page files weren't updated!
+4. **Test lesson**: Click new lesson, complete it, verify all blocks render
+5. **Test regular quiz**: Click blue "Quiz" button, verify 50 questions load
+6. **Test cumulative quiz**: Click orange "🔄 Cumulative" button, verify mixed questions
+7. **Commit** when approved: `git add quiz-app/src && git commit -m "feat: Add [LESSON-ID] [Topic]"`
 
-**Files auto-updated:** `questions.ts`, `questions/index.ts`, `lessonIndex.ts`, `learn/[lessonId]/page.tsx`, `learn/page.tsx`
+**Files auto-updated:** 
+- Data: `questions.ts`, `questions/index.ts`, `lessonIndex.ts`
+- Types: `questions/types.ts`, `misconceptionCodes.ts` (if new tags/codes)
+- **Display: `learn/[lessonId]/page.tsx`, `learn/page.tsx`** ← **CRITICAL for visibility!**
 
 ---
 

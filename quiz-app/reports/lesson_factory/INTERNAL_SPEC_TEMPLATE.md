@@ -289,6 +289,16 @@ POST_GENERATION_CHECKS:
   - [ ] Explanations are educational
   - [ ] Difficulty matches cognitive load
   - [ ] All learning outcomes covered
+  
+CUMULATIVE_QUIZ_CHECKS:
+  - [ ] Regular quiz button works (lesson-only questions)
+  - [ ] Cumulative quiz button appears and works
+  - [ ] Cumulative quiz includes current + previous lessons
+  - [ ] Question sampling is appropriate (~20 questions, 50/50 split)
+  - [ ] First lesson in unit handles cumulative gracefully
+  - [ ] Questions are properly shuffled (not blocked)
+  - [ ] Cumulative badge shows in quiz header
+  - [ ] Unit isolation maintained (no cross-unit mixing)
 ```
 
 ---

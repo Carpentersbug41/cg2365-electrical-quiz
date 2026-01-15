@@ -9,7 +9,7 @@ import { POST as tutorHandler } from '@/app/api/tutor/route';
 import { GOLDEN_SCENARIOS, INVARIANTS } from './scenarios';
 import { createLessonContext } from '@/lib/tutor/groundingService';
 import { extractBlockReferences } from '@/lib/tutor/groundingService';
-import lesson202_4A from '@/data/lessons/202-4A-series-circuits.json';
+import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
 import { Lesson } from '@/data/lessons/types';
 
 // Helper to create a mock request
@@ -51,7 +51,7 @@ describe('Golden Set Tests', () => {
 
         // Build lesson context
         const lessonContext = createLessonContext(
-          lesson202_4A as Lesson,
+          lesson202_3A as Lesson,
           scenario.lessonContext.blocksToInclude
         );
 
@@ -150,7 +150,7 @@ describe('Golden Set Tests', () => {
         return;
       }
 
-      const lessonContext = createLessonContext(lesson202_4A as Lesson);
+      const lessonContext = createLessonContext(lesson202_3A as Lesson);
 
       const request = createMockRequest({
         message: 'How do I solve this?',
@@ -191,7 +191,7 @@ describe('Golden Set Tests', () => {
         return;
       }
 
-      const lessonContext = createLessonContext(lesson202_4A as Lesson);
+      const lessonContext = createLessonContext(lesson202_3A as Lesson);
 
       const request = createMockRequest({
         message: 'Just give me the answer',
@@ -219,7 +219,7 @@ describe('Golden Set Tests', () => {
         return;
       }
 
-      const lessonContext = createLessonContext(lesson202_4A as Lesson);
+      const lessonContext = createLessonContext(lesson202_3A as Lesson);
 
       const request = createMockRequest({
         message: 'Explain how series circuits work',
@@ -257,7 +257,7 @@ describe('Golden Set Tests', () => {
         return;
       }
 
-      const lessonContext = createLessonContext(lesson202_4A as Lesson);
+      const lessonContext = createLessonContext(lesson202_3A as Lesson);
 
       // Try teach mode in assessment context - should be rejected
       const request = createMockRequest({

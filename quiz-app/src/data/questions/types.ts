@@ -63,6 +63,50 @@ export type MisconceptionCode =
   | 'CONFUSED_TRANSFORMER_WITH_AC_DC' // Mixed up transformer function with AC/DC conversion
   | 'CONFUSED_VOLTAGE_WITH_POWER' // Mixed up voltage with power
   | 'CONFUSED_FREQUENCY_WITH_VOLTAGE_RATIO' // Thought frequency affects transformer voltage ratio
+  // AC Generation specific
+  | 'CONFUSED_AC_DC_GENERATOR_PARTS' // Mixed up slip rings with commutator
+  | 'CONFUSED_PARALLEL_PERPENDICULAR' // Mixed up when generator voltage is max vs zero
+  | 'DID_NOT_CONVERT_RPM_TO_RPS' // Forgot to convert rpm to revolutions per second
+  | 'CONFUSED_POSITIVE_NEGATIVE_PEAKS' // Mixed up which rotation position produces which peak
+  // AC Waveform specific
+  | 'CONFUSED_TERMINOLOGY'       // Mixed up technical terminology
+  | 'CONFUSED_PEAK_DEFINITIONS'  // Confused different peak measurements
+  | 'CONFUSED_METER_READING'     // Misunderstood what meters display
+  | 'USED_F_INSTEAD_OF_1_F'      // Used frequency directly instead of 1/f for period
+  | 'CONFUSED_PEAK_TO_PEAK'      // Confused peak-to-peak with peak or RMS
+  | 'CALCULATED_RMS_WRONG'       // Error in RMS calculation
+  | 'FORMULA_WRONG'              // Used wrong formula
+  | 'CONFUSED_AVERAGE_RMS'       // Confused average voltage with RMS
+  | 'CONFUSED_AVERAGE_PEAK'      // Confused average voltage with peak
+  | 'CONFUSED_AMPLITUDE_RMS'     // Confused amplitude with RMS
+  | 'CONFUSED_TIME_VOLTAGE'      // Mixed up time and voltage measurements
+  | 'USED_PEAK_NOT_P_P'          // Used peak value instead of peak-to-peak
+  | 'INVERSE_WRONG'              // Got inverse relationship backwards
+  | 'CONFUSED_RELATIONSHIP'      // Misunderstood relationship between concepts
+  | 'WRONG_REASON'               // Correct answer but wrong reasoning
+  | 'CONFUSED_PEAK_CURRENT'      // Confused peak voltage with current
+  | 'CONFUSED_PEAK_POWER'        // Confused peak voltage with power
+  | 'COUNTED_BOTH_PEAKS'         // Counted both positive and negative peaks
+  | 'WRONG_MULTIPLIER'           // Used wrong multiplication factor
+  | 'CONFUSED_INSTRUMENTS'       // Misunderstood instrument readings
+  | 'CONFUSED_PERIOD_FREQUENCY'  // Mixed up period and frequency
+  | 'DIVIDED_WRONG'              // Division error in calculation
+  | 'MULTIPLIED_BY_2_WRONG'      // Incorrectly multiplied by 2
+  | 'USED_0707_WRONG_WAY'        // Applied 0.707 factor incorrectly
+  | 'USED_RMS_NOT_PEAK'          // Used RMS when peak was needed
+  | 'USED_PEAK_TO_PEAK'          // Used peak-to-peak when other value needed
+  | 'WRONG_DIAGNOSIS'            // Incorrect diagnosis of problem
+  | 'WRONG_INTERPRETATION'       // Misinterpreted information
+  | 'WRONG_ACTION'               // Recommended wrong action
+  | 'CONFUSED_VOLTAGE_FREQUENCY' // Mixed up voltage and frequency
+  | 'CONFUSED_DISTORTION_EFFECT' // Misunderstood effect of waveform distortion
+  | 'FORGOT_TO_HALVE_P_P'        // Forgot to divide peak-to-peak by 2
+  | 'CALCULATED_PEAK_NOT_P_P'    // Calculated peak instead of peak-to-peak
+  | 'MULTIPLIED_BY_2_ONLY'       // Only multiplied by 2 without other conversion
+  | 'WRONG_DECIMAL'              // Decimal point error
+  | 'USED_T_INSTEAD_OF_1_T'      // Used T directly instead of 1/T
+  | 'WRONG_CALCULATION'          // General calculation error
+  | 'WRONG_UNITS'                // Used wrong units
   // Magnetism specific (from existing lessons)
   | 'CONFUSED_WITH_ELECTRICAL_CHARGE' // Mixed up magnetic poles with electrical charge
   | 'CONFUSED_POLE_BEHAVIOR'    // Misunderstood how magnetic poles attract/repel
@@ -103,7 +147,40 @@ export type QuestionTag =
   | 'electromagnets'    // Electromagnet principles
   | 'motors'            // Electric motor principles
   | 'relays'            // Relay operation
-  | 'transformers';     // Transformer principles
+  | 'transformers'      // Transformer principles
+  // AC Generation specific tags
+  | 'generator-components'  // Generator parts and functions
+  | 'generator-principle'   // How generators work
+  | 'electromagnetic-induction' // Electromagnetic induction principle
+  | 'rotation-position' // Generator rotation angle and voltage
+  | 'waveform'          // AC waveform/sine wave concepts
+  | 'rotation-speed'    // Rotation speed and frequency relationship
+  | 'voltage-output'    // Generator voltage output
+  | 'ac-principle'      // AC generation principles
+  | 'energy-conversion' // Energy conversion in generators
+  | 'coil-design'       // Generator coil design factors
+  | 'voltage-factors'   // Factors affecting voltage
+  | 'real-world'        // Real-world generator applications
+  | 'rotation-direction' // Direction of rotation effects
+  | 'time-period'       // Time period and frequency
+  | 'visual'            // Visual interpretation of diagrams
+  | 'ac-vs-dc'          // AC vs DC generator differences
+  | 'connections'       // Connections to other concepts
+  | 'terminology'       // Generator terminology
+  | 'load-response'     // Generator response to load changes
+  | 'efficiency'        // Generator efficiency
+  | 'generator-design'  // Generator design considerations
+  | 'advanced'          // Advanced generator concepts
+  | 'mathematical'      // Mathematical relationships
+  // AC Waveform specific tags
+  | 'ac-waveforms'      // AC waveform characteristics
+  | 'rms'               // RMS voltage/current
+  | 'peak-voltage'      // Peak voltage
+  | 'peak-to-peak'      // Peak-to-peak voltage
+  | 'period'            // Period (time for one cycle)
+  | 'average-voltage'   // Average voltage
+  | 'amplitude'         // Amplitude/peak value
+  | 'efficiency';       // Efficiency calculations
 
 /**
  * Answer Type: Determines marking strategy

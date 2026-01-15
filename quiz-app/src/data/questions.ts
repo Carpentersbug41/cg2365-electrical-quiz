@@ -17,6 +17,9 @@ import { seriesCircuitsQuestions } from './questions/seriesCircuitsQuestions';
 import { powerEnergyQuestions } from './questions/powerEnergyQuestions';
 import { magnetismElectromagnetismQuestions } from './questions/magnetismElectromagnetismQuestions';
 import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
+import { acGenerationQuestions } from './questions/acGenerationQuestions';
+import { acWaveformQuestions } from './questions/acWaveformQuestions';
+import { transformersQuestions } from './questions/transformersQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -28,4 +31,7 @@ export const questions: Question[] = [
   ...powerEnergyQuestions,
   ...magnetismElectromagnetismQuestions,
   ...acPrinciplesQuestions,
+  ...acGenerationQuestions,
+  ...acWaveformQuestions,
+  ...transformersQuestions,
 ];

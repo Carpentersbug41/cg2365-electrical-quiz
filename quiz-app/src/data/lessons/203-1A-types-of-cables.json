@@ -1,0 +1,247 @@
+{
+  "id": "203-1A",
+  "title": "203.1A — Types of Cables: Construction and Applications",
+  "description": "Learn about cable construction (conductor, insulation, sheath, CPC), identify common cable types (T&E, singles, flex), select appropriate cables for different environments, and understand cable identification standards.",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Types of Cables",
+  "learningOutcomes": [
+    "Identify the four main components of cable construction",
+    "Describe common cable types and their typical applications",
+    "Select appropriate cables based on environmental conditions"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the four main components of cable construction (conductor, insulation, sheath, CPC).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe common cable types (T&E, singles, flex) and their typical applications.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select appropriate cables based on environmental conditions (heat, moisture, mechanical damage).",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conductor",
+            "definition": "The copper or aluminium core that carries electrical current through the cable."
+          },
+          {
+            "term": "Insulation",
+            "definition": "The non-conductive material (usually PVC) that surrounds the conductor to prevent electric shock and short circuits."
+          },
+          {
+            "term": "Sheath",
+            "definition": "The outer protective layer that protects the cable from mechanical damage, moisture, and environmental factors."
+          },
+          {
+            "term": "CPC (Circuit Protective Conductor)",
+            "definition": "The earth wire within a cable, typically bare copper or green/yellow insulated, providing a path to earth for fault protection."
+          },
+          {
+            "term": "Twin and Earth (T&E)",
+            "definition": "A flat cable containing two insulated conductors (live and neutral) and a bare CPC, commonly used for fixed domestic wiring."
+          },
+          {
+            "term": "Flexible Cord (Flex)",
+            "definition": "A cable with fine stranded conductors designed to be flexible, typically used for connecting portable appliances."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Cable Construction Components",
+        "description": "Cross-section showing the four main parts of a typical electrical cable",
+        "videoUrl": "https://www.youtube.com/watch?v=VtTUkUpQ-Rc",
+        "diagramType": "concept",
+        "elementIds": ["conductor", "insulation", "sheath", "cpc"],
+        "placeholderText": "Visual representation of cable construction showing: (1) Conductor - copper/aluminium core, (2) Insulation - PVC layer around conductor, (3) Sheath - outer protective layer, (4) CPC - earth conductor (bare or green/yellow)."
+      }
+    },
+    {
+      "id": "203-1A-explain-construction",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Cable Construction: The Four Key Components",
+        "content": "Every electrical cable is built with multiple layers, each serving a specific purpose:\n\n**1. Conductor**\nThe conductor is the metal core (usually copper, sometimes aluminium) that actually carries the electric current. Copper is preferred because it has low resistance and conducts electricity efficiently. Conductors can be:\n- **Solid** — a single thick wire (used in fixed installations)\n- **Stranded** — multiple thin wires twisted together (more flexible)\n\n**2. Insulation**\nThe insulation is a layer of non-conductive material (usually PVC) that surrounds each conductor. Its job is to:\n- Prevent electric shock if someone touches the cable\n- Stop conductors from short-circuiting against each other or other metallic objects\n- Provide colour coding for identification (brown = live, blue = neutral, green/yellow = earth)\n\n**3. Sheath**\nThe sheath is the tough outer layer that protects everything inside. It:\n- Protects against mechanical damage (crushing, abrasion, impact)\n- Provides resistance to moisture, oils, and chemicals\n- Gives structural strength to the cable\n- Is usually grey, white, or black PVC (though specialized cables may differ)\n\n**4. CPC (Circuit Protective Conductor)**\nThe CPC, also called the earth conductor or earth wire, provides a low-resistance path to earth. If a fault occurs (e.g., live touches the metal casing of an appliance), current flows through the CPC, tripping the protective device and preventing electric shock. The CPC can be:\n- **Bare copper** — no insulation (common in T&E cables)\n- **Green/yellow insulated** — in flexible cords and some cables\n\n**Why multiple layers?**\nEach layer has a specific job. The conductor carries current, insulation prevents shocks, the sheath protects from damage, and the CPC provides safety. All four work together to create a safe, reliable electrical cable."
+      }
+    },
+    {
+      "id": "203-1A-explain-types",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Common Cable Types and Where They're Used",
+        "content": "Different installations require different cable types. Here are the most common:\n\n**Twin and Earth (T&E) Cable**\n- **Construction:** Flat cable with two insulated conductors (brown live, blue neutral) and a bare CPC between them, all enclosed in a grey or white PVC sheath\n- **Conductor type:** Solid (rigid)\n- **Common sizes:** 1.0mm², 1.5mm², 2.5mm², 4mm², 6mm², 10mm²\n- **Typical uses:**\n  - Fixed wiring in domestic properties\n  - Lighting circuits (1.0mm² or 1.5mm²)\n  - Socket circuits (2.5mm²)\n  - Cooker circuits (6mm² or 10mm²)\n  - Any permanent installation clipped directly to surfaces or run through walls/ceilings\n\n**Singles in Conduit or Trunking**\n- **Construction:** Individual insulated conductors (no outer sheath), run together inside protective conduit (plastic/metal tube) or trunking (enclosed channels)\n- **Conductor type:** Usually solid (can be stranded for larger sizes)\n- **Common colours:** Brown (live), blue (neutral), green/yellow (earth)\n- **Typical uses:**\n  - Commercial and industrial installations\n  - Where cables need mechanical protection or fire resistance\n  - Where cable runs may need to be modified later (singles can be pulled out and replaced)\n  - Neat, professional-looking installations\n\n**Flexible Cord (Flex)**\n- **Construction:** Round cable with two or three insulated conductors (live, neutral, and optionally earth), all with fine stranded cores for flexibility\n- **Conductor type:** Stranded (many fine wires twisted together)\n- **Common sizes:** 0.5mm², 0.75mm², 1.0mm², 1.5mm²\n- **Typical uses:**\n  - Connecting portable appliances (kettles, toasters, vacuum cleaners)\n  - Pendants and portable lights\n  - Extension leads\n  - Any application where the cable needs to move or bend regularly\n- **Note:** Flex is NOT suitable for fixed installations because it's easily damaged and not designed to be clipped directly to surfaces\n\n**Other Specialized Cables (for awareness):**\n- **SWA (Steel Wire Armoured):** Has a layer of steel wires for protection, used outdoors and underground\n- **MICC (Mineral Insulated Copper Clad):** Fire-resistant cable for high-risk environments\n- **Data cables:** Cat5e/Cat6 for networking, coaxial for TV aerials"
+      }
+    },
+    {
+      "id": "203-1A-explain-selection",
+      "type": "explanation",
+      "order": 6,
+      "content": {
+        "title": "Selecting Cables for the Environment",
+        "content": "Choosing the right cable depends on where it will be installed and what conditions it will face:\n\n**Environmental Factors to Consider:**\n\n**1. Temperature**\n- Standard PVC cables are rated for normal ambient temperatures (typically up to 30°C)\n- In hot environments (near boilers, in roof spaces during summer), cables must be **derated** — you may need a larger size because heat reduces current-carrying capacity\n- Extremely hot environments may require heat-resistant insulation (e.g., silicone or PTFE)\n\n**2. Moisture and Water**\n- Standard T&E and singles are suitable for **dry locations only**\n- Bathrooms, kitchens, and outdoor installations need cables with better moisture resistance\n- **Underground cables** must be SWA (Steel Wire Armoured) to resist moisture and mechanical damage\n- **Outdoor fixed wiring** may use SWA or special outdoor-rated cable\n- **Flex** can handle occasional damp but should not be permanently exposed to water\n\n**3. Mechanical Damage**\n- Cables clipped to walls in accessible areas are at **low risk** — T&E is fine\n- Cables buried in walls/floors are at **medium risk** — T&E is acceptable if properly installed in safe zones\n- Cables exposed to impact or crushing (workshops, industrial areas, underground) need **armoured cable (SWA)** or protection via conduit/trunking\n- Portable equipment uses **flex** because it's designed for repeated bending, but it's vulnerable to cuts and crushing\n\n**4. Chemical Exposure**\n- Standard PVC insulation resists most household chemicals\n- Industrial environments with oils, solvents, or aggressive chemicals may need specialized cable types\n\n**5. Fire Risk**\n- High-fire-risk environments (escape routes, public buildings) may require **low smoke and fume (LSF)** cables or **fire-resistant (FP)** cables\n- Domestic installations typically use standard PVC cables\n\n**Selection Process:**\n1. Identify the location and environment\n2. Assess temperature, moisture, and mechanical risk\n3. Choose the cable type (T&E for fixed domestic, singles for commercial, flex for portable, SWA for outdoors)\n4. Calculate the required conductor size based on current rating and installation method (covered in later lessons)\n5. Check cable meets any specific regulations (e.g., fire performance, EMC requirements)"
+      }
+    },
+    {
+      "id": "203-1A-explain-identification",
+      "type": "explanation",
+      "order": 7,
+      "content": {
+        "title": "Cable Identification: Sizes, Colours, and Markings",
+        "content": "Being able to identify cables correctly is essential for safe electrical work.\n\n**Conductor Sizes**\nCable sizes are given by the cross-sectional area of the conductor in **mm²** (square millimetres):\n- **0.5mm², 0.75mm², 1.0mm²** — small flex cables for low-power appliances\n- **1.0mm², 1.5mm²** — lighting circuits (fixed wiring)\n- **2.5mm²** — standard socket circuits\n- **4mm², 6mm²** — high-power circuits (cookers, showers)\n- **10mm², 16mm², 25mm² and above** — large loads, submains, industrial applications\n\n**Larger conductor = more current-carrying capacity** (but also heavier, more expensive, harder to work with)\n\n**Colour Coding (Current UK Standard)**\nSince 2004, the UK uses harmonized European colours:\n- **Brown** — Live (Line)\n- **Blue** — Neutral\n- **Green/Yellow** — Earth (CPC)\n\nIn older installations (pre-2004), you might see:\n- **Red** — old live\n- **Black** — old neutral\n- **Green or bare copper** — old earth\n\n**Never assume** — always test to verify which conductor is which!\n\n**Cable Markings**\nMost cables have text printed on the sheath that includes:\n- **Manufacturer name or logo**\n- **Cable type:** e.g., \"6242Y\" (T&E with 2 conductors + earth)\n- **Voltage rating:** e.g., \"300/500V\"\n- **British Standard:** e.g., \"BS 6004\"\n- **Conductor size:** e.g., \"2.5mm²\"\n- **Number of cores:** e.g., \"2C + E\" (2 cores plus earth)\n\n**Example marking on T&E cable:**\n```\nVENDOR 6242Y 2.5mm² BS 6004 300/500V\n```\nThis tells you:\n- It's Twin and Earth (6242Y)\n- 2.5mm² conductors\n- Meets British Standard 6004\n- Rated for 300V to earth, 500V between conductors\n\n**Why identification matters:**\n- Installing the wrong cable size can cause overheating and fires\n- Using indoor cable outdoors can lead to premature failure and danger\n- Mixing up live and neutral can cause shock hazards\n- Knowing the cable type helps you interpret test results correctly"
+      }
+    },
+    {
+      "id": "203-1A-worked-example",
+      "type": "worked-example",
+      "order": 8,
+      "content": {
+        "title": "Worked Example: Selecting a Cable for a Garden Shed",
+        "given": "You need to run a power cable from the main house to a garden shed 15 meters away. The cable will be buried underground in the garden. The shed will have two sockets and a light. What type of cable should you use?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Assess the environmental conditions",
+            "formula": null,
+            "calculation": null,
+            "result": "Underground burial means: constant moisture exposure, mechanical damage risk (digging, roots, ground movement), and normal temperature (buried cables protected from extremes)"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Rule out unsuitable cable types",
+            "formula": null,
+            "calculation": null,
+            "result": "T&E: NOT suitable (not for burial/moisture). Singles in conduit: NOT suitable (standard conduit not for direct burial). Flex: NOT suitable (not for fixed installations)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Select the appropriate cable type",
+            "formula": null,
+            "calculation": null,
+            "result": "SWA (Steel Wire Armoured) cable is correct because: designed for underground, steel armour protects against mechanical damage, moisture-resistant sheath, can be buried directly"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Note additional requirements",
+            "formula": null,
+            "calculation": null,
+            "result": "Bury at least 600mm deep (450mm if paving). Protect at building entries. Need termination glands. Cable size depends on load calculations (later lessons)"
+          }
+        ],
+        "notes": "For this garden shed installation, you would specify SWA cable, buried at least 600mm deep, with appropriate glands at each end. The conductor size would be determined by load calculations and voltage drop requirements."
+      }
+    },
+    {
+      "id": "203-1A-guided-practice",
+      "type": "guided-practice",
+      "order": 9,
+      "content": {
+        "title": "Guided Practice: Cable Selection Scenarios",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Scenario 1: You're wiring a new lighting circuit in a house. The cable will be clipped to the surface of ceiling joists in the loft space. What cable type should you use?",
+            "expectedAnswer": ["Twin and Earth", "T&E", "Twin and earth cable", "6242Y"],
+            "hint": "This is a standard fixed domestic installation in a dry location. The cable type commonly used for this is flat, with two insulated conductors and a bare CPC."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Scenario 2: You need to connect a table lamp to a wall socket. The cable needs to be flexible because the lamp may be moved around. What cable type should you use?",
+            "expectedAnswer": ["Flex", "Flexible cord", "Flexible cable", "3-core flex"],
+            "hint": "This is connecting a portable appliance that needs to move. The cable must be flexible and designed for repeated bending."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Scenario 3: You're installing cables in a commercial office with metal trunking running along the walls. What cable type should you use inside the trunking?",
+            "expectedAnswer": ["Singles", "Single core cables", "Individual singles", "Singles in trunking"],
+            "hint": "In commercial installations with trunking or conduit, individual insulated conductors are typically used rather than sheathed cables."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-practice",
+      "type": "practice",
+      "order": 10,
+      "content": {
+        "title": "Practice Questions",
+        "questions": [
+          {
+            "id": "203-1A-P1",
+            "questionText": "What are the four main components of cable construction? (Name all four)",
+            "answerType": "short-text",
+            "expectedAnswer": ["conductor, insulation, sheath, CPC", "conductor insulation sheath CPC", "CPC conductor insulation sheath"],
+            "hint": "Think about what carries the current, what prevents shock, what protects from damage, and what provides earth protection."
+          },
+          {
+            "id": "203-1A-P2",
+            "questionText": "What type of cable is commonly used for fixed domestic socket circuits?",
+            "answerType": "short-text",
+            "expectedAnswer": ["Twin and Earth", "T&E", "Twin and earth cable", "2.5mm² T&E"],
+            "hint": "It's a flat cable with two insulated conductors and a bare CPC, typically 2.5mm² for sockets."
+          },
+          {
+            "id": "203-1A-P3",
+            "questionText": "Why is flex not suitable for fixed installations?",
+            "answerType": "short-text",
+            "expectedAnswer": ["easily damaged", "not designed for fixed use", "vulnerable to damage", "not robust enough"],
+            "hint": "Think about the construction of flex — it's designed for flexibility, not permanent installation."
+          },
+          {
+            "id": "203-1A-P4",
+            "questionText": "What type of cable should be used for underground installations?",
+            "answerType": "short-text",
+            "expectedAnswer": ["SWA", "Steel Wire Armoured", "Armoured cable", "Steel wire armoured cable"],
+            "hint": "Underground cables need protection from moisture and mechanical damage — this cable has a layer of steel wires."
+          },
+          {
+            "id": "203-1A-P5",
+            "questionText": "What is the current UK standard colour for the live conductor?",
+            "answerType": "short-text",
+            "expectedAnswer": ["Brown", "brown"],
+            "hint": "Remember the current (post-2004) colour code: Brown live, Blue neutral, Green/Yellow earth."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-spaced-review",
+      "type": "spaced-review",
+      "order": 11,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          "Name the four main components of cable construction.",
+          "What is the difference between solid and stranded conductors?",
+          "Why is T&E cable flat in shape?",
+          "What does the CPC provide in a cable?"
+        ],
+        "notes": "This is a foundational lesson in a new unit. Review your understanding of the four cable construction components and the main cable types (T&E, singles, flex) before moving to the next lesson."
+      }
+    }
+  ]
+}

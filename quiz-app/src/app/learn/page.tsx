@@ -10,11 +10,15 @@ import Link from 'next/link';
 import lesson201_1A from '@/data/lessons/201-1A-health-safety-legislation.json';
 import lesson202_1A from '@/data/lessons/202-1A-electrical-quantities-units.json';
 import lesson202_2A from '@/data/lessons/202-2A-ohms-law.json';
-import lesson202_4A from '@/data/lessons/202-4A-series-circuits.json';
-import lesson202_4B from '@/data/lessons/202-4B-series-circuits-extended.json';
+import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
+import lesson202_4A from '@/data/lessons/202-4A-series-circuits-extended.json';
 import lesson202_5A from '@/data/lessons/202-5A-power-energy.json';
 import lesson202_6A from '@/data/lessons/202-6A-magnetism-electromagnetism.json';
 import lesson202_7A from '@/data/lessons/202-7A-ac-principles.json';
+import lesson202_7B from '@/data/lessons/202-7B-how-ac-is-generated.json';
+import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
+import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
+import lesson203_1A from '@/data/lessons/203-1A-types-of-cables.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -23,12 +27,50 @@ const LESSONS = [
   lesson201_1A,
   lesson202_1A,
   lesson202_2A,
+  lesson202_3A,
   lesson202_4A,
-  lesson202_4B,
   lesson202_5A,
   lesson202_6A,
   lesson202_7A,
+  lesson202_7B,
+  lesson202_7C,
+  lesson202_7D,
+  lesson203_1A,
 ];
+
+// Color schemes for different units (analogous color scheme)
+const getUnitColors = (lessonId: string) => {
+  const unitNumber = lessonId.split('-')[0];
+  
+  const colorSchemes = {
+    '201': {
+      border: 'border-blue-200 dark:border-blue-900',
+      borderHover: 'hover:border-blue-400 dark:hover:border-blue-600',
+      badge: 'text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/30 border-blue-300 dark:border-blue-700',
+      text: 'text-blue-600 dark:text-blue-400',
+      textHover: 'group-hover:text-blue-600 dark:group-hover:text-blue-400',
+      button: 'bg-blue-600 dark:bg-blue-500 group-hover:bg-blue-700 dark:group-hover:bg-blue-600',
+    },
+    '202': {
+      border: 'border-indigo-200 dark:border-indigo-900',
+      borderHover: 'hover:border-indigo-400 dark:hover:border-indigo-600',
+      badge: 'text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 border-indigo-300 dark:border-indigo-700',
+      text: 'text-indigo-600 dark:text-indigo-400',
+      textHover: 'group-hover:text-indigo-600 dark:group-hover:text-indigo-400',
+      button: 'bg-indigo-600 dark:bg-indigo-500 group-hover:bg-indigo-700 dark:group-hover:bg-indigo-600',
+    },
+    '203': {
+      border: 'border-violet-200 dark:border-violet-900',
+      borderHover: 'hover:border-violet-400 dark:hover:border-violet-600',
+      badge: 'text-violet-700 dark:text-violet-300 bg-violet-100 dark:bg-violet-900/30 border-violet-300 dark:border-violet-700',
+      text: 'text-violet-600 dark:text-violet-400',
+      textHover: 'group-hover:text-violet-600 dark:group-hover:text-violet-400',
+      button: 'bg-violet-600 dark:bg-violet-500 group-hover:bg-violet-700 dark:group-hover:bg-violet-600',
+    },
+  };
+  
+  return colorSchemes[unitNumber as keyof typeof colorSchemes] || colorSchemes['202'];
+};
 
 export default function LearnPage() {
   const [lessonsProgress, setLessonsProgress] = useState<Record<string, QuizProgress | null>>({});
@@ -68,71 +110,244 @@ export default function LearnPage() {
           <ReviewDashboard />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {LESSONS.map((lesson) => {
-            const progress = lessonsProgress[lesson.id];
-            const hasMastery = progress?.masteryAchieved;
-            const isPending = progress?.masteryPending;
-            
-            return (
-              <Link
-                key={lesson.id}
-                href={`/learn/${lesson.id}`}
-                className="group"
-              >
-                <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-indigo-200 dark:border-indigo-900 p-6 hover:shadow-xl hover:border-indigo-400 dark:hover:border-indigo-600 transition-all duration-200 h-full flex flex-col">
-                  {/* Lesson Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 rounded-full border border-indigo-300 dark:border-indigo-700">
-                        {lesson.unit}
+        {/* Unit 201: Health & Safety */}
+        <div className="mb-12">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-blue-900 dark:text-blue-300 mb-2">
+              Unit 201 - Health & Safety
+            </h2>
+            <p className="text-gray-600 dark:text-slate-300">
+              Essential health and safety legislation for electrical installations
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {LESSONS.filter(lesson => lesson.id.startsWith('201')).map((lesson) => {
+              const progress = lessonsProgress[lesson.id];
+              const hasMastery = progress?.masteryAchieved;
+              const isPending = progress?.masteryPending;
+              const colors = getUnitColors(lesson.id);
+              
+              return (
+                <Link
+                  key={lesson.id}
+                  href={`/learn/${lesson.id}`}
+                  className="group"
+                >
+                  <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col`}>
+                    {/* Lesson Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`px-3 py-1 text-xs font-medium ${colors.badge} rounded-full border`}>
+                          {lesson.unit}
+                        </span>
+                        {hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 flex items-center gap-1">
+                            <span>🏆</span> Mastered
+                          </span>
+                        )}
+                        {isPending && !hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
+                            <span>⏳</span> Pending
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-2xl group-hover:scale-110 transition-transform">
+                        {hasMastery ? '🏆' : '📚'}
                       </span>
-                      {hasMastery && (
-                        <span className="px-3 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 flex items-center gap-1">
-                          <span>🏆</span> Mastered
-                        </span>
-                      )}
-                      {isPending && !hasMastery && (
-                        <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
-                          <span>⏳</span> Pending
-                        </span>
-                      )}
                     </div>
-                    <span className="text-2xl group-hover:scale-110 transition-transform">
-                      {hasMastery ? '🏆' : '📚'}
+
+                  {/* Lesson Title */}
+                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-2 ${colors.textHover} transition-colors`}>
+                    {lesson.title}
+                  </h3>
+
+                  {/* Lesson Description */}
+                  <p className="text-gray-600 dark:text-slate-300 text-sm mb-4 flex-1">
+                    {lesson.description}
+                  </p>
+
+                  {/* Lesson Meta */}
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-4 border-t border-gray-200 dark:border-slate-700">
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>✓</span>
+                      {lesson.learningOutcomes.length} Outcomes
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>📝</span>
+                      {lesson.blocks.filter(b => b.type === 'practice').length} Practice
                     </span>
                   </div>
 
-                {/* Lesson Title */}
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                  {lesson.title}
-                </h2>
-
-                {/* Lesson Description */}
-                <p className="text-gray-600 dark:text-slate-300 text-sm mb-4 flex-1">
-                  {lesson.description}
-                </p>
-
-                {/* Lesson Meta */}
-                <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-4 border-t border-gray-200 dark:border-slate-700">
-                  <span className="flex items-center gap-1">
-                    <span className="text-indigo-600 dark:text-indigo-400">✓</span>
-                    {lesson.learningOutcomes.length} Outcomes
-                  </span>
-                  <span className="flex items-center gap-1">
-                    <span className="text-indigo-600 dark:text-indigo-400">📝</span>
-                    {lesson.blocks.filter(b => b.type === 'practice').length} Practice
-                  </span>
+                  {/* Start Button */}
+                  <button className={`mt-4 w-full px-4 py-2 ${colors.button} text-white rounded-lg font-semibold transition-colors shadow-md`}>
+                    {hasMastery ? 'Review Lesson' : isPending ? 'Review Lesson' : 'Start Lesson'} →
+                  </button>
                 </div>
+              </Link>
+              );
+            })}
+          </div>
+        </div>
 
-                {/* Start Button */}
-                <button className="mt-4 w-full px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold group-hover:bg-indigo-700 dark:group-hover:bg-indigo-600 transition-colors shadow-md">
-                  {hasMastery ? 'Review Lesson' : isPending ? 'Review Lesson' : 'Start Lesson'} →
-                </button>
-              </div>
-            </Link>
-            );
-          })}
+        {/* Unit 202: Science */}
+        <div className="mb-12">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-indigo-900 dark:text-indigo-300 mb-2">
+              Unit 202 - Science
+            </h2>
+            <p className="text-gray-600 dark:text-slate-300">
+              Fundamental electrical principles and circuit theory
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {LESSONS.filter(lesson => lesson.id.startsWith('202')).map((lesson) => {
+              const progress = lessonsProgress[lesson.id];
+              const hasMastery = progress?.masteryAchieved;
+              const isPending = progress?.masteryPending;
+              const colors = getUnitColors(lesson.id);
+              
+              return (
+                <Link
+                  key={lesson.id}
+                  href={`/learn/${lesson.id}`}
+                  className="group"
+                >
+                  <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col`}>
+                    {/* Lesson Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`px-3 py-1 text-xs font-medium ${colors.badge} rounded-full border`}>
+                          {lesson.unit}
+                        </span>
+                        {hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 flex items-center gap-1">
+                            <span>🏆</span> Mastered
+                          </span>
+                        )}
+                        {isPending && !hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
+                            <span>⏳</span> Pending
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-2xl group-hover:scale-110 transition-transform">
+                        {hasMastery ? '🏆' : '📚'}
+                      </span>
+                    </div>
+
+                  {/* Lesson Title */}
+                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-2 ${colors.textHover} transition-colors`}>
+                    {lesson.title}
+                  </h3>
+
+                  {/* Lesson Description */}
+                  <p className="text-gray-600 dark:text-slate-300 text-sm mb-4 flex-1">
+                    {lesson.description}
+                  </p>
+
+                  {/* Lesson Meta */}
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-4 border-t border-gray-200 dark:border-slate-700">
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>✓</span>
+                      {lesson.learningOutcomes.length} Outcomes
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>📝</span>
+                      {lesson.blocks.filter(b => b.type === 'practice').length} Practice
+                    </span>
+                  </div>
+
+                  {/* Start Button */}
+                  <button className={`mt-4 w-full px-4 py-2 ${colors.button} text-white rounded-lg font-semibold transition-colors shadow-md`}>
+                    {hasMastery ? 'Review Lesson' : isPending ? 'Review Lesson' : 'Start Lesson'} →
+                  </button>
+                </div>
+              </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Unit 203: Electrical Installations Technology */}
+        <div className="mb-12">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-violet-900 dark:text-violet-300 mb-2">
+              Unit 203 - Electrical Installations Technology
+            </h2>
+            <p className="text-gray-600 dark:text-slate-300">
+              Practical installation techniques, cable selection, and wiring systems
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {LESSONS.filter(lesson => lesson.id.startsWith('203')).map((lesson) => {
+              const progress = lessonsProgress[lesson.id];
+              const hasMastery = progress?.masteryAchieved;
+              const isPending = progress?.masteryPending;
+              const colors = getUnitColors(lesson.id);
+              
+              return (
+                <Link
+                  key={lesson.id}
+                  href={`/learn/${lesson.id}`}
+                  className="group"
+                >
+                  <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col`}>
+                    {/* Lesson Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`px-3 py-1 text-xs font-medium ${colors.badge} rounded-full border`}>
+                          {lesson.unit}
+                        </span>
+                        {hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 flex items-center gap-1">
+                            <span>🏆</span> Mastered
+                          </span>
+                        )}
+                        {isPending && !hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
+                            <span>⏳</span> Pending
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-2xl group-hover:scale-110 transition-transform">
+                        {hasMastery ? '🏆' : '📚'}
+                      </span>
+                    </div>
+
+                  {/* Lesson Title */}
+                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-2 ${colors.textHover} transition-colors`}>
+                    {lesson.title}
+                  </h3>
+
+                  {/* Lesson Description */}
+                  <p className="text-gray-600 dark:text-slate-300 text-sm mb-4 flex-1">
+                    {lesson.description}
+                  </p>
+
+                  {/* Lesson Meta */}
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-4 border-t border-gray-200 dark:border-slate-700">
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>✓</span>
+                      {lesson.learningOutcomes.length} Outcomes
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>📝</span>
+                      {lesson.blocks.filter(b => b.type === 'practice').length} Practice
+                    </span>
+                  </div>
+
+                  {/* Start Button */}
+                  <button className={`mt-4 w-full px-4 py-2 ${colors.button} text-white rounded-lg font-semibold transition-colors shadow-md`}>
+                    {hasMastery ? 'Review Lesson' : isPending ? 'Review Lesson' : 'Start Lesson'} →
+                  </button>
+                </div>
+              </Link>
+              );
+            })}
+          </div>
         </div>
 
         {/* Interleaved Quiz Section */}
@@ -174,7 +389,7 @@ export default function LearnPage() {
                   <div className="flex flex-wrap gap-3 text-sm">
                     <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
                       <span className="font-semibold">Prerequisites:</span>
-                      <span>202-4A & 202-4B</span>
+                      <span>202-3A & 202-4A</span>
                     </div>
                     <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
                       <span className="font-semibold">Questions:</span>

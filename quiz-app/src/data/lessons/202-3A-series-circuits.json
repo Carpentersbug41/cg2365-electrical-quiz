@@ -1,6 +1,6 @@
 {
-  "id": "202-4A",
-  "title": "202.4A — Series Circuits: Rules and Calculations",
+  "id": "202-3A",
+  "title": "202.3A — Series Circuits: Rules and Calculations",
   "description": "Learn the three series circuit rules (current, voltage, resistance), understand why they're true, and apply them to basic calculations.",
   "layout": "split-vis",
   "unit": "Unit 202",
@@ -13,7 +13,7 @@
   "prerequisites": ["ohms-law-basics"],
   "blocks": [
     {
-      "id": "202-4A-outcomes",
+      "id": "202-3A-outcomes",
       "type": "outcomes",
       "order": 1,
       "content": {
@@ -34,7 +34,7 @@
       }
     },
     {
-      "id": "202-4A-vocab",
+      "id": "202-3A-vocab",
       "type": "vocab",
       "order": 2,
       "content": {
@@ -59,7 +59,7 @@
       }
     },
     {
-      "id": "202-4A-diagram",
+      "id": "202-3A-diagram",
       "type": "diagram",
       "order": 3,
       "content": {
@@ -72,7 +72,7 @@
       }
     },
     {
-      "id": "202-4A-explain-rules",
+      "id": "202-3A-explain-rules",
       "type": "explanation",
       "order": 4,
       "content": {
@@ -81,7 +81,7 @@
       }
     },
     {
-      "id": "202-4A-worked-example",
+      "id": "202-3A-worked-example",
       "type": "worked-example",
       "order": 5,
       "content": {
@@ -114,7 +114,7 @@
       }
     },
     {
-      "id": "202-4A-guided",
+      "id": "202-3A-guided",
       "type": "guided-practice",
       "order": 6,
       "content": {
@@ -137,21 +137,21 @@
       }
     },
     {
-      "id": "202-4A-practice",
+      "id": "202-3A-practice",
       "type": "practice",
       "order": 7,
       "content": {
         "title": "Your Turn (You Do)",
         "questions": [
           {
-            "id": "202-4A-P1",
+            "id": "202-3A-P1",
             "questionText": "R1 = 5 Ω, R2 = 7 Ω (series). Find R_total.",
             "answerType": "numeric",
             "expectedAnswer": ["12", "12 Ω", "12Ω"],
             "hint": "Use the series resistance formula: R_total = R1 + R2"
           },
           {
-            "id": "202-4A-P2",
+            "id": "202-3A-P2",
             "questionText": "Explain in one sentence: why is current the same everywhere in a series circuit?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -164,7 +164,7 @@
             "hint": "Think about the topology — how many paths are there?"
           },
           {
-            "id": "202-4A-P3",
+            "id": "202-3A-P3",
             "questionText": "Three resistors in series: R1 = 2 Ω, R2 = 3 Ω, R3 = 5 Ω. Find R_total.",
             "answerType": "numeric",
             "expectedAnswer": ["10", "10 Ω", "10Ω"],
@@ -174,7 +174,7 @@
       }
     },
     {
-      "id": "202-4A-spaced-review",
+      "id": "202-3A-spaced-review",
       "type": "spaced-review",
       "order": 8,
       "content": {

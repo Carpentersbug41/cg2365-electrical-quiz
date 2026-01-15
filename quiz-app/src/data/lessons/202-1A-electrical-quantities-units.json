@@ -63,9 +63,22 @@
       }
     },
     {
+      "id": "202-1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Electrical Quantities, Units & Symbols",
+        "description": "Overview of the fundamental electrical quantities and their units",
+        "videoUrl": "https://www.youtube.com/watch?v=oNqiPyRyWmQ",
+        "diagramType": "concept",
+        "elementIds": ["current", "voltage", "resistance", "power"],
+        "placeholderText": "Visual representation of the four fundamental electrical quantities: Current (I, A), Voltage (V, V), Resistance (R, Ω), and Power (P, W)."
+      }
+    },
+    {
       "id": "202-1A-explain-quantities",
       "type": "explanation",
-      "order": 3,
+      "order": 4,
       "content": {
         "title": "The Four Fundamental Electrical Quantities",
         "content": "In electrical work, we use four main quantities to describe what's happening in a circuit:\n\n**1. Current (I)** — measured in **amperes (A)**\nCurrent is the flow of electric charge through a conductor. Think of it like water flowing through a pipe — the more charge flowing per second, the higher the current.\n\n**2. Voltage (V)** — measured in **volts (V)**\nVoltage is the electrical 'pressure' or potential difference that pushes current through a circuit. Like water pressure in a pipe system, higher voltage means more 'push'.\n\n**3. Resistance (R)** — measured in **ohms (Ω)**\nResistance is the opposition to current flow. Materials with high resistance (like rubber) don't allow current to flow easily. Materials with low resistance (like copper wire) allow current to flow easily.\n\n**4. Power (P)** — measured in **watts (W)**\nPower is the rate at which electrical energy is being used or transferred. A 100W light bulb uses energy faster than a 60W bulb.\n\n**Remember the units:**\n- **A** for amperes (current)\n- **V** for volts (voltage)  \n- **Ω** for ohms (resistance)\n- **W** for watts (power)"
@@ -74,7 +87,7 @@
     {
       "id": "202-1A-explain-prefixes",
       "type": "explanation",
-      "order": 4,
+      "order": 5,
       "content": {
         "title": "Unit Prefixes: Making Numbers Manageable",
         "content": "Electrical values can be very large or very small. Instead of writing 2,500 A or 0.005 A, we use **prefixes** to make numbers easier to read and write.\n\n**Common Prefixes (Large Values):**\n- **kilo (k)** = ×1,000 (one thousand)\n- **mega (M)** = ×1,000,000 (one million)\n\n**Common Prefixes (Small Values):**\n- **milli (m)** = ÷1,000 (one thousandth)\n- **micro (μ)** = ÷1,000,000 (one millionth)\n\n**Examples:**\n- 2,500 Ω = 2.5 kΩ (2.5 kilo-ohms)\n- 0.005 A = 5 mA (5 milliamps)\n- 0.000022 A = 22 μA (22 microamps)\n- 230,000 W = 230 kW (230 kilowatts)\n\n**Conversion Tips:**\n- To convert **from base unit to smaller prefix** (A → mA), **multiply** by 1000\n- To convert **from smaller prefix to base unit** (mA → A), **divide** by 1000\n- To convert **from base unit to larger prefix** (Ω → kΩ), **divide** by 1000\n- To convert **from larger prefix to base unit** (kΩ → Ω), **multiply** by 1000"
@@ -83,7 +96,7 @@
     {
       "id": "202-1A-worked-example",
       "type": "worked-example",
-      "order": 5,
+      "order": 6,
       "content": {
         "title": "Worked Example: Unit Conversions",
         "given": "Convert: (a) 2500 mA to A, (b) 2.2 kΩ to Ω",
@@ -116,7 +129,7 @@
     {
       "id": "202-1A-guided",
       "type": "guided-practice",
-      "order": 6,
+      "order": 7,
       "content": {
         "title": "Guided Practice (We Do)",
         "problem": "Convert: (a) 0.5 A to mA, (b) 4700 Ω to kΩ",
@@ -151,7 +164,7 @@
     {
       "id": "202-1A-practice",
       "type": "practice",
-      "order": 7,
+      "order": 8,
       "content": {
         "title": "Your Turn (You Do)",
         "questions": [
@@ -196,7 +209,7 @@
     {
       "id": "202-1A-spaced-review",
       "type": "spaced-review",
-      "order": 8,
+      "order": 9,
       "content": {
         "title": "Spaced Review (Mathematical Foundations)",
         "questions": [

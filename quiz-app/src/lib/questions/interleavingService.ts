@@ -208,7 +208,7 @@ export const SERIES_PARALLEL_INTERLEAVED_CONFIG: InterleavedQuizConfig = {
 
 /**
  * Create the Series/Parallel mixed quiz
- * This is what learners should take after completing both lesson 202-4A and 202-4B
+ * This is what learners should take after completing both lesson 202-3A and 202-4A
  */
 export function createSeriesParallelMixedQuiz(
   allQuestions: TaggedQuestion[]

@@ -1,0 +1,307 @@
+{
+  "id": "202-7C",
+  "title": "202.7C — Sine-Wave Characteristics: Vocabulary and Measurements",
+  "description": "Learn the essential vocabulary for describing AC sine waves including RMS, peak, peak-to-peak, period, frequency, and amplitude values.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "AC Waveform Characteristics",
+  "learningOutcomes": [
+    "Define and identify key sine-wave measurements (RMS, peak, peak-to-peak, period, amplitude)",
+    "Explain the relationship between period and frequency",
+    "Recognize which voltage value (RMS vs peak) applies in different practical contexts"
+  ],
+  "prerequisites": ["202-7A", "202-7B"],
+  "blocks": [
+    {
+      "id": "202-7C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define and identify key sine-wave measurements (RMS, peak, peak-to-peak, period, amplitude).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the relationship between period and frequency.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Recognize which voltage value (RMS vs peak) applies in different practical contexts.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "RMS (Root Mean Square)",
+            "definition": "The effective value of AC that produces the same heating effect as DC. For UK mains, RMS = 230V (what we normally quote)."
+          },
+          {
+            "term": "Peak Voltage (Vpk)",
+            "definition": "The maximum voltage reached in one direction during an AC cycle. For UK mains, peak ≈ 325V."
+          },
+          {
+            "term": "Peak-to-Peak Voltage (Vp-p)",
+            "definition": "The total voltage difference from positive peak to negative peak. Peak-to-peak = 2 × peak."
+          },
+          {
+            "term": "Period (T)",
+            "definition": "The time taken for one complete cycle of the waveform, measured in seconds. UK mains: T = 0.02s (20ms)."
+          },
+          {
+            "term": "Amplitude",
+            "definition": "The maximum displacement from zero (same as peak value). Shows the 'height' of the waveform."
+          },
+          {
+            "term": "Average Voltage",
+            "definition": "The mathematical average over one complete cycle. For a symmetrical AC sine wave, average = 0V (positive cancels negative)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Sine Wave Measurements",
+        "description": "Key measurement points on an AC sine wave showing peak, peak-to-peak, RMS, period, and amplitude",
+        "videoUrl": "https://www.youtube.com/watch?v=UqQ-aB9POGE",
+        "diagramType": "waveform",
+        "elements": [
+          {
+            "id": "sine-wave",
+            "type": "sine-wave",
+            "label": "AC Sine Wave",
+            "description": "Complete waveform showing one full cycle"
+          },
+          {
+            "id": "peak-positive",
+            "type": "marker",
+            "label": "Peak (Vpk)",
+            "description": "Maximum positive voltage"
+          },
+          {
+            "id": "peak-negative",
+            "type": "marker",
+            "label": "Negative Peak (-Vpk)",
+            "description": "Maximum negative voltage"
+          },
+          {
+            "id": "peak-to-peak",
+            "type": "measurement",
+            "label": "Peak-to-Peak (Vp-p)",
+            "description": "Total voltage swing from top to bottom"
+          },
+          {
+            "id": "rms-line",
+            "type": "reference-line",
+            "label": "RMS Value (0.707 × peak)",
+            "description": "Effective voltage value"
+          },
+          {
+            "id": "period",
+            "type": "time-measurement",
+            "label": "Period (T)",
+            "description": "Time for one complete cycle"
+          }
+        ],
+        "annotations": [
+          "Peak = Maximum voltage in one direction",
+          "Peak-to-peak = 2 × peak (total voltage range)",
+          "RMS = 0.707 × peak (the voltage we normally quote)",
+          "Period = time for one cycle (T = 1/f)",
+          "UK mains: 230V RMS = 325V peak"
+        ]
+      }
+    },
+    {
+      "id": "202-7C-explain-measurements",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Understanding AC Voltage Measurements",
+        "content": "When we measure AC, we can describe the voltage in **several different ways**. Each measurement tells us something different about the waveform.\n\n**Why Multiple Measurements?**\nUnlike DC (which has one steady voltage), AC constantly changes. We need different ways to describe its behavior:\n- How high does it go? (peak)\n- How much does it vary? (peak-to-peak)\n- What's the effective power? (RMS)\n- How long is one cycle? (period)\n\n**The Most Important: RMS**\n**RMS (Root Mean Square)** is the most useful measurement because it tells us the **effective value** — the voltage that produces the same heating/power effect as DC.\n\n- When we say \"UK mains is 230V\", we mean **230V RMS**\n- RMS is what multimeters show (in AC mode)\n- RMS is what equipment ratings use\n- Formula: **RMS = 0.707 × peak** (you don't need to calculate this at Level 2)\n\n**Peak Voltage**\nThe **peak** is the maximum voltage reached in one direction.\n\n- UK mains: **325V peak** (even though we call it \"230V\")\n- Peak = 1.414 × RMS\n- Important for insulation ratings and safety clearances\n- Capacitors need peak voltage ratings, not RMS\n\n**Peak-to-Peak Voltage**\nThe **peak-to-peak** is the total voltage swing from top to bottom.\n\n- Peak-to-peak = 2 × peak\n- UK mains: 650V peak-to-peak (325V positive to 325V negative)\n- Useful for oscilloscope measurements\n- Shows the full range of voltage variation"
+      }
+    },
+    {
+      "id": "202-7C-explain-time",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Time Measurements: Period and Frequency",
+        "content": "AC sine waves repeat in a regular pattern. We can measure this repetition in two ways: **period** (time) or **frequency** (cycles per second).\n\n**Period (T)**\nThe **period** is the time taken for **one complete cycle**.\n\n- Symbol: T\n- Units: seconds (s), often milliseconds (ms)\n- UK mains: **T = 0.02 seconds = 20 ms**\n- One cycle = positive peak → zero → negative peak → zero → back to start\n\n**Frequency (f)**\nThe **frequency** is the number of cycles per second.\n\n- Symbol: f\n- Units: hertz (Hz)\n- UK mains: **f = 50 Hz** (50 cycles per second)\n- Already covered in lesson 202-7A\n\n**The Relationship: Period and Frequency**\nPeriod and frequency are **inversely related** — when one goes up, the other goes down.\n\n**Formula:** **T = 1/f** (period = 1 divided by frequency)\n\n**Examples:**\n- 50 Hz → T = 1/50 = 0.02 s (20 ms)\n- 60 Hz → T = 1/60 = 0.0167 s (16.7 ms)\n- 1000 Hz (1 kHz) → T = 1/1000 = 0.001 s (1 ms)\n\n**At Level 2, you should know:**\n- UK mains is 50 Hz (frequency)\n- One cycle takes 20 ms (period)\n- T = 1/f (the relationship)\n\n**You don't need to calculate periods for unusual frequencies at this level.**"
+      }
+    },
+    {
+      "id": "202-7C-explain-average",
+      "type": "explanation",
+      "order": 6,
+      "content": {
+        "title": "Average Voltage: Why It's Zero",
+        "content": "**What is Average Voltage?**\nThe **average voltage** is the mathematical average over one complete cycle. For a pure sine wave, this average is **zero**.\n\n**Why Zero?**\nA symmetrical AC waveform spends equal time positive and negative:\n- First half of cycle: voltage is **positive** (e.g., +325V down to 0V)\n- Second half of cycle: voltage is **negative** (e.g., 0V down to -325V)\n- The positive and negative halves **cancel out exactly**\n- Mathematical average = 0V\n\n**But AC Clearly Does Work!**\nThis seems confusing — if the average is zero, how does AC power anything?\n\n**The answer: Power depends on RMS, not average.**\n- Current and voltage are both reversing together\n- Power = V × I, and this is always positive (both forward, or both backward)\n- The **heating effect** doesn't cancel out\n- That's why we use RMS, not average, for AC power\n\n**Average Voltage for Rectified AC**\nIf you convert AC to DC (using a rectifier), you get a **pulsating DC** that's always positive. Now the average is **not zero** — it's about 0.637 × peak.\n\n**At Level 2:**\n- Know that average voltage for pure AC = 0V\n- Understand this is because positive cancels negative\n- Recognize that RMS is the useful value, not average\n- You don't need to calculate average values\n\n**Summary Table:**\n\n| Measurement | UK Mains Example | When Used |\n|-------------|------------------|----------|\n| **RMS** | 230V | Equipment ratings, power calculations |\n| **Peak** | 325V | Insulation ratings, capacitor voltage |\n| **Peak-to-Peak** | 650V | Oscilloscope measurements |\n| **Average** | 0V | (Not useful for pure AC) |\n| **Period** | 20 ms | Timing calculations |\n| **Frequency** | 50 Hz | Standard specification |"
+      }
+    },
+    {
+      "id": "202-7C-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example: Interpreting AC Measurements",
+        "given": "An AC supply is specified as 230V, 50 Hz. A multimeter shows 230V. An oscilloscope shows the waveform reaches +325V and -325V.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify what the \"230V\" specification means. This is the RMS (effective) voltage. Equipment ratings and specifications almost always use RMS.",
+            "formula": "Specified voltage = RMS voltage",
+            "calculation": null,
+            "result": "230V RMS"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Identify what the multimeter shows. In AC mode, multimeters display RMS voltage. The multimeter reading confirms the specification.",
+            "formula": "Multimeter (AC mode) = RMS",
+            "calculation": "Reading = 230V",
+            "result": "Multimeter confirms 230V RMS"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Identify what the oscilloscope shows. The scope displays the actual waveform, so we can see the peak values: +325V and -325V.",
+            "formula": "Peak voltage = 325V",
+            "calculation": "Peak-to-peak = 325 - (-325) = 650V",
+            "result": "Peak = 325V, Peak-to-peak = 650V"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Verify the relationship between RMS and peak. For a sine wave, peak ≈ 1.414 × RMS (or RMS ≈ 0.707 × peak).",
+            "formula": "RMS ≈ 0.707 × peak",
+            "calculation": "230V ≈ 0.707 × 325V = 230V ✓",
+            "result": "Relationship confirmed: measurements are consistent"
+          },
+          {
+            "stepNumber": 5,
+            "description": "Calculate the period from the frequency. Period T = 1/f.",
+            "formula": "T = 1/f",
+            "calculation": "T = 1/50 = 0.02 s = 20 ms",
+            "result": "Period = 20 milliseconds per cycle"
+          }
+        ],
+        "notes": "When working with AC: specifications and meters almost always show RMS. Oscilloscopes show the actual waveform with peak values. Both are correct — they're just different ways of describing the same AC supply."
+      }
+    },
+    {
+      "id": "202-7C-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A device is rated \"110V AC, 60 Hz\". You measure the waveform on an oscilloscope and see it reaches a maximum of +155V and a minimum of -155V.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What type of voltage does the \"110V\" rating represent: RMS, peak, or peak-to-peak?",
+            "expectedAnswer": ["RMS", "rms", "root mean square", "effective"],
+            "hint": "Equipment ratings almost always use RMS (the effective voltage)."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "What is the peak voltage you observed on the oscilloscope?",
+            "expectedAnswer": ["155V", "155 V", "155"],
+            "hint": "The peak is the maximum voltage in one direction."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What is the peak-to-peak voltage?",
+            "expectedAnswer": ["310V", "310 V", "310"],
+            "hint": "Peak-to-peak is the total voltage from positive peak to negative peak. Add the magnitudes: 155 + 155."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Calculate the period T (in seconds) for a 60 Hz supply. Use T = 1/f.",
+            "expectedAnswer": ["0.0167", "0.01667", "0.017", "16.7ms", "16.7 ms", "1/60"],
+            "hint": "T = 1/f. So T = 1/60."
+          },
+          {
+            "stepNumber": 5,
+            "prompt": "Are these measurements consistent? Does RMS ≈ 0.707 × peak?",
+            "expectedAnswer": ["yes", "consistent", "correct", "true"],
+            "hint": "Check: 0.707 × 155 ≈ 110. So yes, they match!"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7C-practice",
+      "type": "practice",
+      "order": 9,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-7C-P1",
+            "questionText": "What does RMS stand for?",
+            "answerType": "short-text",
+            "expectedAnswer": ["Root Mean Square", "root mean square"],
+            "hint": "R-M-S. Three words."
+          },
+          {
+            "id": "202-7C-P2",
+            "questionText": "For UK mains (230V, 50 Hz), what is the peak voltage? (approximately)",
+            "answerType": "numeric",
+            "expectedAnswer": ["325", "325V", "325 V", "320", "330"],
+            "hint": "Peak is about 1.4 times the RMS value. 230 × 1.4 ≈ ?"
+          },
+          {
+            "id": "202-7C-P3",
+            "questionText": "What is the period (in milliseconds) for UK mains at 50 Hz? Use T = 1/f.",
+            "answerType": "numeric",
+            "expectedAnswer": ["20", "20ms", "20 ms", "0.02", "0.02s"],
+            "hint": "T = 1/50 = 0.02 seconds. Convert to milliseconds."
+          },
+          {
+            "id": "202-7C-P4",
+            "questionText": "If the peak voltage is 100V, what is the peak-to-peak voltage?",
+            "answerType": "numeric",
+            "expectedAnswer": ["200", "200V", "200 V"],
+            "hint": "Peak-to-peak = 2 × peak."
+          },
+          {
+            "id": "202-7C-P5",
+            "questionText": "When you use a multimeter in AC voltage mode, what type of voltage does it display: RMS, peak, or average?",
+            "answerType": "short-text",
+            "expectedAnswer": ["RMS", "rms", "root mean square"],
+            "hint": "Multimeters show the effective voltage value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (Previous Topics)",
+        "questions": [
+          "What is the frequency of UK mains supply?",
+          "What does AC stand for, and how does it differ from DC?",
+          "In a simple generator, what produces the alternating current?",
+          "State one advantage of using AC for mains electricity distribution."
+        ],
+        "notes": "These questions review AC principles and generation from lessons 202-7A and 202-7B."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-15",
+    "updated": "2026-01-15",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

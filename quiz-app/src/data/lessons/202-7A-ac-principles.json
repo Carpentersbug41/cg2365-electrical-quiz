@@ -73,6 +73,7 @@
       "content": {
         "title": "AC vs DC Current Flow",
         "description": "Visual comparison showing how DC flows constantly in one direction while AC alternates back and forth",
+        "videoUrl": "https://www.youtube.com/watch?v=kUIrN6jNrxo",
         "diagramType": "waveform",
         "elements": [
           {

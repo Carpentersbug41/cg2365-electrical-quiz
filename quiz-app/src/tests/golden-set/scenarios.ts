@@ -41,8 +41,8 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'I don\'t understand how to add series resistances',
     lessonContext: {
-      lessonId: '202-4A',
-      blocksToInclude: ['202-4A-explain-rules', '202-4A-worked-example'],
+      lessonId: '202-3A',
+      blocksToInclude: ['202-3A-explain-rules', '202-3A-worked-example'],
     },
     expectedBehaviors: {
       mustInclude: ['step', 'add', 'R1 + R2'],
@@ -61,7 +61,7 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'check',
     userMessage: 'How do I calculate total resistance in series?',
     lessonContext: {
-      lessonId: '202-4A',
+      lessonId: '202-3A',
     },
     expectedBehaviors: {
       mustInclude: ['assessment', 'cannot provide', 'after you submit'],
@@ -79,7 +79,7 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'Can you explain three-phase power systems?',
     lessonContext: {
-      lessonId: '202-4A',
+      lessonId: '202-3A',
     },
     expectedBehaviors: {
       mustInclude: ['not covered', 'this lesson', 'series circuits'],
@@ -97,10 +97,10 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'What is 5 + 7?',
     lessonContext: {
-      lessonId: '202-4A',
+      lessonId: '202-3A',
     },
     questionContext: {
-      questionId: '202-4A-P1',
+      questionId: '202-3A-P1',
       questionText: 'R1 = 5 Ω, R2 = 7 Ω (series). Find R_total.',
       category: 'Series Circuits',
     },
@@ -119,8 +119,8 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'fix',
     userMessage: 'I used 1/Rtotal = 1/R1 + 1/R2',
     lessonContext: {
-      lessonId: '202-4A',
-      blocksToInclude: ['202-4A-explain-rules'],
+      lessonId: '202-3A',
+      blocksToInclude: ['202-3A-explain-rules'],
     },
     expectedBehaviors: {
       mustInclude: ['series', 'add', 'R1 + R2'],
@@ -139,12 +139,12 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'What are the three series rules?',
     lessonContext: {
-      lessonId: '202-4A',
-      blocksToInclude: ['202-4A-explain-rules'],
+      lessonId: '202-3A',
+      blocksToInclude: ['202-3A-explain-rules'],
     },
     expectedBehaviors: {
       mustCiteBlocks: true,
-      mustInclude: ['202-4A'],
+      mustInclude: ['202-3A'],
     },
     invariants: ['grounding', 'citation-required'],
   },
@@ -157,7 +157,7 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'I\'m completely lost on series circuits',
     lessonContext: {
-      lessonId: '202-4A',
+      lessonId: '202-3A',
     },
     expectedBehaviors: {
       mustInclude: ['step', 'start', 'one path'],
@@ -174,8 +174,8 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'How do I know if it\'s series or parallel?',
     lessonContext: {
-      lessonId: '202-4A',
-      blocksToInclude: ['202-4A-explain-rules', '202-4A-diagram'],
+      lessonId: '202-3A',
+      blocksToInclude: ['202-3A-explain-rules', '202-3A-diagram'],
     },
     expectedBehaviors: {
       mustInclude: ['one path', 'branches', 'loops'],
@@ -192,7 +192,7 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'check',
     userMessage: 'What does R_total mean in this question?',
     lessonContext: {
-      lessonId: '202-4A',
+      lessonId: '202-3A',
     },
     questionContext: {
       questionId: '3004',
@@ -214,8 +214,8 @@ export const GOLDEN_SCENARIOS: GoldenScenario[] = [
     mode: 'teach',
     userMessage: 'In series, do resistances add or use 1/R formula?',
     lessonContext: {
-      lessonId: '202-4A',
-      blocksToInclude: ['202-4A-explain-rules'],
+      lessonId: '202-3A',
+      blocksToInclude: ['202-3A-explain-rules'],
     },
     expectedBehaviors: {
       mustInclude: ['add', 'series', 'R1 + R2'],

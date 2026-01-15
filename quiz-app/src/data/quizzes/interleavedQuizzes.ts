@@ -28,7 +28,7 @@ export const SERIES_PARALLEL_MIXED_QUIZ: QuizConfig = {
   description: 'Test your ability to identify and apply the correct rules for series and parallel circuits. This quiz mixes both types to develop real-world problem-solving skills.',
   unit: 'Unit 202',
   type: 'interleaved',
-  prerequisites: ['202-4A', '202-4B'], // Must complete both lessons first
+  prerequisites: ['202-3A', '202-4A'], // Must complete both lessons first
   tags: ['series', 'parallel', 'discrimination', 'interleaved'],
   estimatedTime: 20,
   passingScore: 70,

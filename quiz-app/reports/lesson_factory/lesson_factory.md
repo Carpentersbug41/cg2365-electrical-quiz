@@ -867,10 +867,14 @@ For each question:
 Questions are passed to LayoutC dynamically:
 
 ```typescript
-// Filter questions by lesson
+// Filter questions by lesson (regular quiz)
 const quizQuestions = seriesCircuitsQuestions.filter(
   q => q.learningOutcomeId.startsWith('202-4A')
 );
+
+// OR get cumulative questions (current + all previous in unit)
+import { getCumulativeQuestions } from '@/lib/questions/cumulativeQuestions';
+const cumulativeQuestions = getCumulativeQuestions('202-4A');
 
 // Render quiz
 <LayoutC
@@ -883,6 +887,127 @@ const quizQuestions = seriesCircuitsQuestions.filter(
   }}
 />
 ```
+
+---
+
+## Cumulative / Interleaving Quizzes
+
+### Overview
+In addition to regular lesson-specific quizzes, the system supports **cumulative quizzes** that combine questions from the current lesson with all previous lessons in the same unit.
+
+### Features
+- **Automatic generation** - No additional quiz files needed
+- **Within-unit only** - Unit 202 lessons only mix with other Unit 202 lessons
+- **50/50 split** - Default: 10 questions from current lesson, 10 from previous lessons
+- **Smart sampling** - Randomly samples from question pools to ensure variety
+- **Spaced repetition** - Each new lesson naturally reviews all earlier content
+- **Visual distinction** - Orange "Cumulative" button vs blue "Quiz" button
+
+### Access
+Students access cumulative quizzes via the orange "🔄 Cumulative" button on lesson pages:
+- `/learn/[lessonId]/quiz` - Regular quiz (current lesson only)
+- `/learn/[lessonId]/quiz?mode=cumulative` - Cumulative quiz (current + previous)
+
+### Question Selection Logic
+```typescript
+// Example: Lesson 202-4B (4th lesson in Unit 202)
+// Cumulative quiz includes:
+// - 202-1A (Electrical Quantities)
+// - 202-2A (Ohm's Law)
+// - 202-4A (Series Circuits)
+// - 202-4B (Series Circuits Extended) ← current
+
+// Result: ~20 questions
+// - 10 from 202-4B (current, 50%)
+// - 10 from 202-1A, 202-2A, 202-4A combined (previous, 50%)
+// - Shuffled for proper interleaving
+```
+
+### Benefits for Learning
+1. **Built-in spaced repetition** - Previous content reviewed automatically
+2. **Discrimination practice** - Students must identify which concept applies
+3. **Exam preparation** - Mimics real exam conditions (mixed topics)
+4. **Early warning system** - Poor performance indicates gaps in earlier lessons
+
+### Implementation
+Cumulative quizzes use the same question banks - no additional question authoring required. The system:
+1. Identifies current lesson's position in unit
+2. Gets all previous lessons in same unit (by order)
+3. Samples questions with configurable weighting
+4. Shuffles for true interleaving effect
+
+**See:** `CUMULATIVE_QUIZ_IMPLEMENTATION.md` for complete technical details.
+
+---
+
+## Testing Cumulative / Interleaving Quizzes
+
+### Required Tests for Each New Lesson
+
+When generating a new lesson, verify both quiz modes work correctly:
+
+**Test 1: Regular Quiz (Blue Button)**
+1. Navigate to `/learn/[lessonId]`
+2. Click blue "Quiz" button
+3. Verify: Only shows questions from current lesson
+4. Complete quiz and verify grading works
+
+**Test 2: Cumulative Quiz (Orange Button)**
+1. Navigate to `/learn/[lessonId]`
+2. Click orange "🔄 Cumulative" button
+3. Verify: Shows mix of current + previous lessons in unit
+4. Check header shows orange "Cumulative" badge
+5. Verify question count is appropriate (~20 questions)
+6. Complete quiz and verify grading works
+
+**Test 3: First Lesson in Unit**
+1. If lesson is first in its unit (e.g., 202-1A, 201-1A)
+2. Cumulative quiz should work without errors
+3. Should show only current lesson questions (no previous to include)
+
+**Test 4: Question Quality**
+1. Questions should be properly shuffled (not blocked by lesson)
+2. Should see variety from different lessons (if not first lesson)
+3. Questions should not repeat within same quiz attempt
+
+### Validation Checklist
+
+```
+Cumulative Quiz Validation for [LESSON-ID]:
+- [ ] Orange cumulative button visible on lesson page
+- [ ] Blue regular quiz button still visible and functional
+- [ ] Cumulative button has 🔄 icon
+- [ ] Tooltip explains functionality
+- [ ] Clicking cumulative button loads quiz at /learn/[lessonId]/quiz?mode=cumulative
+- [ ] Quiz header shows orange "Cumulative" badge
+- [ ] Header shows "Current Lesson + N previous" (if not first lesson)
+- [ ] Question count is appropriate:
+  - First lesson: ~10-15 questions (current only)
+  - Later lessons: ~20 questions (50/50 split)
+- [ ] Questions are properly mixed (not all from one lesson, then another)
+- [ ] Only includes lessons from same unit (no cross-unit mixing)
+- [ ] Grading works correctly
+- [ ] Results screen shows appropriate feedback
+- [ ] Both quiz modes work independently (no interference)
+```
+
+### Common Issues to Check
+
+**Issue: Cumulative quiz shows same questions as regular quiz**
+- Check: Is this the first lesson in the unit? (Expected behavior)
+- Check: Are there questions from previous lessons in the unit?
+
+**Issue: Cumulative quiz crashes or shows no questions**
+- Check: Are all previous lessons properly registered in `lessonIndex.ts`?
+- Check: Do previous lessons have questions in the question bank?
+- Check: Is the `order` field correctly set in `lessonIndex.ts`?
+
+**Issue: Questions are blocked (all from one lesson, then another)**
+- Check: Is the shuffle function working? (Should see mixed questions)
+
+**Issue: Cumulative quiz includes questions from different unit**
+- Check: `unitNumber` field in `lessonIndex.ts` must match correctly
+- Check: Questions are being filtered by unit properly
 
 ---
 

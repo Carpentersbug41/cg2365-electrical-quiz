@@ -12,6 +12,10 @@ import { ohmsLawQuestions } from './ohmsLawQuestions';
 import { powerEnergyQuestions } from './powerEnergyQuestions';
 import { magnetismElectromagnetismQuestions } from './magnetismElectromagnetismQuestions';
 import { acPrinciplesQuestions } from './acPrinciplesQuestions';
+import { acGenerationQuestions } from './acGenerationQuestions';
+import { acWaveformQuestions } from './acWaveformQuestions';
+import { transformersQuestions } from './transformersQuestions';
+import { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 
 /**
  * All tagged questions from all banks
@@ -24,7 +28,11 @@ export const allTaggedQuestions: TaggedQuestion[] = [
   ...parallelCircuitsQuestions,
   ...powerEnergyQuestions,
   ...magnetismElectromagnetismQuestions,
-  ...acPrinciplesQuestions
+  ...acPrinciplesQuestions,
+  ...acGenerationQuestions,
+  ...acWaveformQuestions,
+  ...transformersQuestions,
+  ...cablesApplicationsQuestions
 ];
 
 /**
@@ -38,6 +46,10 @@ export { parallelCircuitsQuestions } from './parallelCircuitsQuestions';
 export { powerEnergyQuestions } from './powerEnergyQuestions';
 export { magnetismElectromagnetismQuestions } from './magnetismElectromagnetismQuestions';
 export { acPrinciplesQuestions } from './acPrinciplesQuestions';
+export { acGenerationQuestions } from './acGenerationQuestions';
+export { acWaveformQuestions } from './acWaveformQuestions';
+export { transformersQuestions } from './transformersQuestions';
+export { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 
 /**
  * Filter questions by tags

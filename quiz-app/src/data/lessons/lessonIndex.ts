@@ -59,24 +59,24 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 2,
   },
   {
-    id: '202-4A',
+    id: '202-3A',
     title: 'Series Circuits: Rules and Calculations',
     unit: 'Unit 202',
     unitNumber: '202',
     topic: 'Series Circuits',
     description: 'Learn the three series circuit rules and apply them to basic calculations.',
-    questionCount: getLessonQuestionCount('202-4A'),
+    questionCount: getLessonQuestionCount('202-3A'),
     available: true,
     order: 3,
   },
   {
-    id: '202-4B',
-    title: 'Series Circuits: Extended',
+    id: '202-4A',
+    title: 'Parallel Circuits: Rules and Calculations',
     unit: 'Unit 202',
     unitNumber: '202',
-    topic: 'Series Circuits',
-    description: 'Advanced series circuit calculations and applications.',
-    questionCount: getLessonQuestionCount('202-4B'),
+    topic: 'Parallel Circuits',
+    description: 'Learn the three parallel circuit rules and apply them to calculations.',
+    questionCount: getLessonQuestionCount('202-4A'),
     available: true,
     order: 4,
   },
@@ -113,8 +113,53 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 7,
   },
+  {
+    id: '202-7B',
+    title: 'How AC is Generated: Single-Loop Generator',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'AC Generation',
+    description: 'Understand how rotating a loop of wire in a magnetic field generates alternating current with a sine wave pattern. Learn the basic components of a simple AC generator.',
+    questionCount: getLessonQuestionCount('202-7B'),
+    available: true,
+    order: 7.1,
+  },
+  {
+    id: '202-7C',
+    title: 'Sine-Wave Characteristics: Vocabulary and Measurements',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'AC Waveform Characteristics',
+    description: 'Learn the essential vocabulary for describing AC sine waves including RMS, peak, peak-to-peak, period, frequency, and amplitude values.',
+    questionCount: getLessonQuestionCount('202-7C'),
+    available: true,
+    order: 7.2,
+  },
+  {
+    id: '202-7D',
+    title: 'Transformers: Mutual Induction Basics',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Transformers',
+    description: 'Understand how transformers use mutual induction to step up or step down AC voltage through electromagnetic coupling.',
+    questionCount: getLessonQuestionCount('202-7D'),
+    available: true,
+    order: 7.3,
+  },
+
+  // Unit 203: Electrical Installations Technology
+  {
+    id: '203-1A',
+    title: 'Types of Cables: Construction and Applications',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Types of Cables',
+    description: 'Learn about cable construction (conductor, insulation, sheath, CPC), identify common cable types (T&E, singles, flex), select appropriate cables for different environments, and understand cable identification standards.',
+    questionCount: getLessonQuestionCount('203-1A'),
+    available: true,
+    order: 1,
+  },
   // Future lessons can be added here
-  // Unit 201: Health & Safety
   // Unit 210: Communication
 ];
 
@@ -178,23 +223,29 @@ export function getAvailableLessons(): LessonIndexEntry[] {
  * Unit metadata for display
  */
 export const unitMetadata = {
-  '202': {
-    name: 'Science',
-    fullName: 'Science 2365 Level 2',
-    icon: '🔬',
-    color: 'green',
-  },
   '201': {
     name: 'Health & Safety',
     fullName: 'Health & Safety 2365 Level 2 & 3',
     icon: '⚡',
-    color: 'red',
+    color: 'blue',
+  },
+  '202': {
+    name: 'Science',
+    fullName: 'Science 2365 Level 2',
+    icon: '🔬',
+    color: 'indigo',
+  },
+  '203': {
+    name: 'Electrical Installations',
+    fullName: 'Electrical Installations Technology',
+    icon: '🔌',
+    color: 'violet',
   },
   '210': {
     name: 'Communication',
     fullName: 'Communication 2365 Level 2',
     icon: '💬',
-    color: 'blue',
+    color: 'cyan',
   },
 };
 

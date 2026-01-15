@@ -68,9 +68,22 @@
       }
     },
     {
+      "id": "202-5A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Power & Energy",
+        "description": "Understanding electrical power and energy consumption",
+        "videoUrl": "https://www.youtube.com/watch?v=H4ntPCEGldY",
+        "diagramType": "concept",
+        "elementIds": ["power", "energy", "voltage", "current"],
+        "placeholderText": "Visual representation of power calculations (P = V × I) and the relationship between power, energy, and time."
+      }
+    },
+    {
       "id": "202-5A-explain-power",
       "type": "explanation",
-      "order": 3,
+      "order": 4,
       "content": {
         "title": "Understanding Electrical Power",
         "content": "**What is Power?**\n\nPower is the **rate** at which energy is transferred or used. Think of it like speed — speed tells you how fast you're covering distance, and power tells you how fast you're using energy.\n\n**The Basic Power Formula:**\n\n**P = V × I**\n\nWhere:\n- **P** = Power in watts (W)\n- **V** = Voltage in volts (V)\n- **I** = Current in amperes (A)\n\nThis formula tells us that power equals voltage multiplied by current.\n\n**What It Means:**\n\nIf you have a circuit with **higher voltage** or **higher current**, you'll have **higher power**. More electrical \"push\" (voltage) or more electrical \"flow\" (current) means more energy being transferred every second.\n\n**Alternative Power Formulas:**\n\nBy combining P = V × I with Ohm's Law (V = I × R), we get two more useful forms:\n\n1. **P = I² × R** (power in terms of current and resistance)\n2. **P = V² ÷ R** (power in terms of voltage and resistance)\n\n**When to Use Each Formula:**\n- Use **P = V × I** when you know voltage and current\n- Use **P = I² × R** when you know current and resistance\n- Use **P = V² ÷ R** when you know voltage and resistance\n\n**Power Units:**\n- **Watts (W)** for small devices (phone chargers, light bulbs)\n- **Kilowatts (kW)** for larger appliances (kettles, heaters, washing machines)\n- Remember: **1 kW = 1000 W**"
@@ -79,7 +92,7 @@
     {
       "id": "202-5A-explain-energy",
       "type": "explanation",
-      "order": 4,
+      "order": 5,
       "content": {
         "title": "Power vs Energy: Understanding the Difference",
         "content": "**Power vs Energy — What's the Difference?**\n\n- **Power (P)** is the **rate** of energy transfer (how fast)\n- **Energy (E)** is the **total amount** transferred (how much)\n\n**Think of it like filling a bath:**\n- Power is like the **flow rate** from the tap (litres per minute)\n- Energy is like the **total water** in the bath (litres)\n\nA high-power tap fills the bath faster, but the total water depends on how long you leave it running.\n\n**Energy Formula:**\n\n**Energy (E) = Power (P) × Time (t)**\n\n**E = P × t**\n\nWhere:\n- **E** = Energy in joules (J) or kilowatt-hours (kWh)\n- **P** = Power in watts (W) or kilowatts (kW)\n- **t** = Time in seconds (s) or hours (h)\n\n**Energy Units:**\n\n1. **Joule (J)** — the SI unit\n   - 1 joule = 1 watt for 1 second\n   - Used in physics and science\n\n2. **Kilowatt-hour (kWh)** — the practical unit\n   - 1 kWh = 1 kilowatt for 1 hour\n   - Used for electricity bills\n   - 1 kWh = 3,600,000 joules\n\n**Why Higher-Power Appliances Draw More Current:**\n\nFrom P = V × I, we can rearrange to get: **I = P ÷ V**\n\nSince voltage (V) is fixed at 230V in UK homes:\n- A **3kW kettle** draws: I = 3000 ÷ 230 = **13A**\n- A **10W phone charger** draws: I = 10 ÷ 230 = **0.04A**\n\nHigher power = higher current (when voltage is constant). This is why high-power appliances need thicker cables and bigger fuses — to handle the higher current safely."
@@ -88,7 +101,7 @@
     {
       "id": "202-5A-worked-example-1",
       "type": "worked-example",
-      "order": 5,
+      "order": 6,
       "content": {
         "title": "Worked Example: Calculating Power",
         "given": "A heating element is connected to a 230V supply and draws 8A of current. Calculate the power consumed.",
@@ -128,7 +141,7 @@
     {
       "id": "202-5A-worked-example-2",
       "type": "worked-example",
-      "order": 6,
+      "order": 7,
       "content": {
         "title": "Worked Example: Calculating Energy and Cost",
         "given": "A 2.5kW electric heater runs for 4 hours. Electricity costs 30p per kWh. Calculate (a) the energy consumed, and (b) the cost.",
@@ -168,7 +181,7 @@
     {
       "id": "202-5A-guided",
       "type": "guided-practice",
-      "order": 7,
+      "order": 8,
       "content": {
         "title": "Guided Practice (We Do)",
         "problem": "A 12V car battery supplies 5A to a car radio. Calculate the power consumed by the radio.",
@@ -197,7 +210,7 @@
     {
       "id": "202-5A-practice",
       "type": "practice",
-      "order": 8,
+      "order": 9,
       "content": {
         "title": "Your Turn (You Do)",
         "questions": [
@@ -242,7 +255,7 @@
     {
       "id": "202-5A-spaced-review",
       "type": "spaced-review",
-      "order": 9,
+      "order": 10,
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [

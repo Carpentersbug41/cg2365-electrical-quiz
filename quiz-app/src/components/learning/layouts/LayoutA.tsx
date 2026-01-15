@@ -104,6 +104,14 @@ export default function LayoutA({ lesson }: LayoutProps) {
           >
             Quiz
           </button>
+          <button 
+            onClick={() => window.location.href = `/learn/${lesson.id}/quiz?mode=cumulative`}
+            className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 hover:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 rounded-lg transition-all shadow-sm flex items-center gap-1"
+            title="Quiz with questions from this lesson and all previous lessons in this unit"
+          >
+            <span>🔄</span>
+            <span className="hidden sm:inline">Cumulative</span>
+          </button>
         </div>
       </header>
 

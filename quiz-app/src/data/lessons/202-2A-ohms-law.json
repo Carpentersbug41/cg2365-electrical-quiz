@@ -72,9 +72,22 @@
       }
     },
     {
+      "id": "202-2A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Ohm's Law",
+        "description": "Visual explanation of the relationship between voltage, current, and resistance",
+        "videoUrl": "https://www.youtube.com/watch?v=GLQmjNbjc7g",
+        "diagramType": "concept",
+        "elementIds": ["voltage", "current", "resistance", "formula"],
+        "placeholderText": "Visual representation of Ohm's Law showing the relationship V = I × R and how voltage, current, and resistance interact in a circuit."
+      }
+    },
+    {
       "id": "202-2A-explain-ohms-law",
       "type": "explanation",
-      "order": 3,
+      "order": 4,
       "content": {
         "title": "Understanding Ohm's Law",
         "content": "**Ohm's Law** is one of the most important principles in electrical work. It describes the relationship between voltage, current, and resistance in any circuit.\n\n**The Formula:**\n\n**V = I × R**\n\nWhere:\n- **V** = Voltage in volts (V)\n- **I** = Current in amperes (A)\n- **R** = Resistance in ohms (Ω)\n\n**What It Means:**\n\nOhm's Law tells us that the voltage across a component equals the current flowing through it multiplied by its resistance.\n\n**Think of it like water in a pipe:**\n- **Voltage (V)** is like water pressure - the push that makes water flow\n- **Current (I)** is like the flow rate - how much water flows per second\n- **Resistance (R)** is like the pipe width - narrow pipes resist flow more\n\nHigher pressure (voltage) creates more flow (current). A narrower pipe (higher resistance) reduces flow (current).\n\n**The Three Forms:**\n\nWe can rearrange Ohm's Law to solve for any variable:\n\n1. **V = I × R** (to find voltage)\n2. **I = V ÷ R** (to find current)\n3. **R = V ÷ I** (to find resistance)\n\n**How They Relate:**\n\n- If you **increase voltage**, current increases (V and I are directly proportional)\n- If you **increase resistance**, current decreases (I and R are inversely proportional)\n- Voltage is the product of current and resistance\n\nRemember: You need to know **any two** values to calculate the third!"
@@ -83,7 +96,7 @@
     {
       "id": "202-2A-worked-example",
       "type": "worked-example",
-      "order": 4,
+      "order": 5,
       "content": {
         "title": "Worked Example: Finding Current",
         "given": "A circuit has a 12V battery and a 6Ω resistor. Calculate the current flowing through the resistor.",
@@ -123,7 +136,7 @@
     {
       "id": "202-2A-guided",
       "type": "guided-practice",
-      "order": 5,
+      "order": 6,
       "content": {
         "title": "Guided Practice (We Do)",
         "problem": "A circuit has a current of 3A flowing through it, and the resistance is 4Ω. What is the supply voltage?",
@@ -152,7 +165,7 @@
     {
       "id": "202-2A-practice",
       "type": "practice",
-      "order": 6,
+      "order": 7,
       "content": {
         "title": "Your Turn (You Do)",
         "questions": [
@@ -197,7 +210,7 @@
     {
       "id": "202-2A-spaced-review",
       "type": "spaced-review",
-      "order": 7,
+      "order": 8,
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [
