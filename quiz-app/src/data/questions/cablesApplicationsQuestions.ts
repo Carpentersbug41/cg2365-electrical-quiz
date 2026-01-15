@@ -21,16 +21,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "The conductor is the metal core (usually copper or aluminium) that carries the electric current through the cable.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_COMPONENTS',
-      2: 'CONFUSED_CABLE_COMPONENTS',
-      3: 'CONFUSED_CABLE_COMPONENTS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -46,7 +46,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
@@ -71,16 +71,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Since 2004, the UK uses brown for live (line), blue for neutral, and green/yellow for earth.",
     misconceptionCodes: {
-      1: 'CONFUSED_CONDUCTOR_COLOURS',
-      2: 'CONFUSED_CONDUCTOR_COLOURS',
-      3: 'OLD_COLOUR_CODE'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -96,16 +96,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "The neutral conductor is blue in the current UK colour code (post-2004).",
     misconceptionCodes: {
-      1: 'CONFUSED_CONDUCTOR_COLOURS',
-      2: 'OLD_COLOUR_CODE',
-      3: 'CONFUSED_CONDUCTOR_COLOURS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -121,7 +121,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
@@ -146,7 +146,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
@@ -171,15 +171,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Insulation is the non-conductive material that surrounds conductors to prevent electric shock and short circuits.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_COMPONENTS',
-      2: 'CONFUSED_CABLE_COMPONENTS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -196,15 +196,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Cable conductors are typically made from copper (sometimes aluminium) because it has low resistance and conducts electricity efficiently.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_MATERIALS',
-      2: 'CONFUSED_CABLE_MATERIALS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -221,16 +221,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Flexible cord (flex) has stranded conductors designed for flexibility, making it suitable for portable appliances.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_APPLICATIONS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -246,7 +246,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
@@ -271,16 +271,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "The sheath is the outer protective layer that protects the cable from mechanical damage, moisture, and environmental factors.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_COMPONENTS',
-      2: 'CONFUSED_CABLE_COMPONENTS',
-      3: 'CONFUSED_CABLE_COMPONENTS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -296,16 +296,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Twin and Earth cable has solid (single strand) conductors, while flex has stranded conductors for flexibility.",
     misconceptionCodes: {
-      1: 'CONFUSED_CONDUCTOR_TYPES',
-      2: 'CONFUSED_CONDUCTOR_TYPES',
-      3: 'CONFUSED_CONDUCTOR_TYPES'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -321,16 +321,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "2.5mm² T&E cable is the standard size for domestic socket circuits.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_SIZES',
-      2: 'CONFUSED_CABLE_SIZES',
-      3: 'CONFUSED_CABLE_SIZES'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -346,16 +346,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "Lighting circuits typically use 1.0mm² or 1.5mm² T&E cable because lighting loads are relatively small.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_SIZES',
-      2: 'CONFUSED_CABLE_SIZES',
-      3: 'CONFUSED_CABLE_SIZES'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -371,16 +371,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "SWA cable is designed for underground installation with its steel armour protecting against moisture and mechanical damage.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_APPLICATIONS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -398,7 +398,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
@@ -406,7 +406,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     explanation: "Flex is designed for flexibility and movement, making it vulnerable to damage. It's not suitable for permanent installation clipped to surfaces.",
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -423,16 +423,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "In T&E cable, the CPC is typically bare copper (no insulation), positioned between the two insulated conductors.",
     misconceptionCodes: {
-      1: 'CONFUSED_CPC_FORMS',
-      2: 'CONFUSED_CONDUCTOR_COLOURS',
-      3: 'CONFUSED_CONDUCTOR_COLOURS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -448,14 +448,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "Flexible cord has fine stranded conductors (many thin wires twisted together) to allow repeated bending without breaking.",
     misconceptionCodes: {
-      1: 'CONFUSED_CONDUCTOR_TYPES',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -473,16 +473,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 45,
     explanation: "Singles in conduit or trunking are commonly used in commercial and industrial installations for neat, professional-looking cable runs with mechanical protection.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_APPLICATIONS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -498,7 +498,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 3,
@@ -523,7 +523,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 3,
@@ -531,8 +531,8 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     explanation: "Singles in trunking can be pulled out and replaced easily, and the trunking provides excellent mechanical protection and a neat professional appearance.",
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -548,14 +548,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "Twin and Earth has two insulated conductors (live and neutral) plus a bare CPC, despite being called '2-core + earth'.",
     misconceptionCodes: {
-      1: 'COUNTED_CPC_AS_INSULATED',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -573,7 +573,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 3,
@@ -598,16 +598,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 45,
     explanation: "Twin and Earth is the standard cable for domestic fixed wiring, suitable for clipping to surfaces and burying in walls within safe zones.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_APPLICATIONS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -623,15 +623,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 45,
     explanation: "SWA cable should be buried at least 600mm deep in gardens (or 450mm if covered by paving) to protect against digging damage.",
     misconceptionCodes: {
-      1: 'CONFUSED_BURIAL_DEPTHS',
-      2: 'CONFUSED_BURIAL_DEPTHS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -648,16 +648,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 30,
     explanation: "Before 2004, the UK used red for live. The current code (post-2004) uses brown for live.",
     misconceptionCodes: {
-      1: 'CURRENT_COLOUR_CODE',
-      2: 'CONFUSED_CONDUCTOR_COLOURS',
-      3: 'CURRENT_COLOUR_CODE'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -673,14 +673,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Twin and Earth cable is flat in cross-section, with the bare CPC positioned between the two insulated conductors.",
     misconceptionCodes: {
-      1: 'CONFUSED_WITH_FLEX',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -698,14 +698,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 1,
     estimatedTime: 30,
     explanation: "Flexible cord is round in cross-section, with all conductors (including earth if present) being insulated.",
     misconceptionCodes: {
-      1: 'CONFUSED_WITH_TE',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -723,7 +723,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
@@ -732,7 +732,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_CABLE_MATERIALS'
+      3: 'OTHER'
     }
   },
 
@@ -748,16 +748,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 45,
     explanation: "The CPC provides a low-resistance path to earth. If a fault occurs, current flows through the CPC, tripping the protective device and preventing electric shock.",
     misconceptionCodes: {
-      1: 'CONFUSED_CPC_PURPOSE',
-      2: 'CONFUSED_CABLE_COMPONENTS',
-      3: 'CONFUSED_CABLE_COMPONENTS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -773,15 +773,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 60,
     explanation: "Industrial environments with oils, solvents, or aggressive chemicals may require specialized cable types with chemical-resistant insulation rather than standard PVC.",
     misconceptionCodes: {
-      1: 'UNDERESTIMATED_ENVIRONMENTAL_FACTORS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -798,15 +798,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 60,
     explanation: "High ambient temperatures reduce current-carrying capacity. The cable must be derated (a larger size selected) to ensure it can safely carry the required current without overheating.",
     misconceptionCodes: {
-      1: 'IGNORED_TEMPERATURE_EFFECTS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -823,7 +823,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
@@ -832,7 +832,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_CONDUCTOR_TYPES'
+      3: 'OTHER'
     }
   },
 
@@ -848,14 +848,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 45,
     explanation: "Domestic cables are typically rated 300/500V (300V to earth, 500V between conductors), which is well above the 230V mains supply.",
     misconceptionCodes: {
-      1: 'CONFUSED_VOLTAGE_RATINGS',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -873,16 +873,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 45,
     explanation: "BS 6004 is the British Standard for PVC-insulated cables (non-armoured) for electric power and lighting, including T&E cable.",
     misconceptionCodes: {
-      1: 'CONFUSED_BS_STANDARDS',
-      2: 'CONFUSED_BS_STANDARDS',
-      3: 'CONFUSED_BS_STANDARDS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -898,16 +898,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 60,
     explanation: "Even above ground, outdoor cables need weather resistance and mechanical protection. SWA cable is suitable for outdoor installation whether buried or clipped to structures.",
     misconceptionCodes: {
-      1: 'UNDERESTIMATED_OUTDOOR_REQUIREMENTS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -923,7 +923,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
@@ -948,14 +948,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 45,
     explanation: "Older installations use different colour codes (red/black vs brown/blue), and even in new installations, wiring could have been done incorrectly. Always test to verify.",
     misconceptionCodes: {
-      1: 'ASSUMED_COLOUR_CODE_UNIVERSAL',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -973,16 +973,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 2,
     estimatedTime: 45,
     explanation: "Cooker circuits are fixed installations in domestic properties, so Twin and Earth cable is appropriate. The size (6mm²) is selected based on the load.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_APPLICATIONS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -998,16 +998,16 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 3,
     estimatedTime: 60,
     explanation: "3-core + earth Twin and Earth cable is used for two-way switching (e.g., stairs lighting controlled from two locations), providing the extra conductor needed for the switching arrangement.",
     misconceptionCodes: {
-      1: 'CONFUSED_CABLE_APPLICATIONS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
-      3: 'CONFUSED_CABLE_APPLICATIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     }
   },
 
@@ -1025,15 +1025,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 75,
     explanation: "Escape routes and high-fire-risk areas may require Low Smoke and Fume (LSF) cables or fire-resistant cables to maintain safety during a fire and minimize toxic fumes.",
     misconceptionCodes: {
-      1: 'IGNORED_FIRE_REQUIREMENTS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -1050,14 +1050,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 90,
     explanation: "When a cable run includes multiple installation methods, you must select the cable size based on the worst-case (most onerous) method, which is typically the one with poorest heat dissipation.",
     misconceptionCodes: {
-      1: 'SIMPLIFIED_INSTALLATION_METHOD',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -1075,7 +1075,7 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'discrimination'],
+    tags: ['application', 'discrimination'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 4,
@@ -1100,15 +1100,15 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 90,
     explanation: "Bathroom zones have strict requirements for IP ratings and moisture protection. Cables in zones must be suitable for damp locations, and specific regulations apply to what can be installed.",
     misconceptionCodes: {
-      1: 'IGNORED_IP_REQUIREMENTS',
-      2: 'CONFUSED_CABLE_APPLICATIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     }
   },
@@ -1125,14 +1125,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO1",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 75,
     explanation: "While copper has better conductivity, aluminium is significantly lighter and cheaper. For very large conductor sizes (e.g., in distribution networks), these advantages can outweigh the need for larger cross-sectional area.",
     misconceptionCodes: {
-      1: 'ASSUMED_COPPER_ALWAYS_BEST',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -1150,14 +1150,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 5,
     estimatedTime: 90,
     explanation: "When cables pass between areas with significant temperature differences, moisture from warm air can condense inside the cable at the cold end, potentially causing corrosion and breakdown. Proper sealing or drainage may be needed.",
     misconceptionCodes: {
-      1: 'IGNORED_CONDENSATION_RISK',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -1175,14 +1175,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 90,
     explanation: "When multiple cables are grouped (bundled together or in the same enclosure), they heat each other and cannot dissipate heat effectively. This requires derating factors to be applied when selecting cable sizes.",
     misconceptionCodes: {
-      1: 'IGNORED_GROUPING_EFFECTS',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -1200,14 +1200,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 75,
     explanation: "The choice between clipped direct and enclosure depends on multiple factors: level of mechanical protection needed, environmental conditions, aesthetic requirements, and cable type. Some cables (like singles) must be in enclosures.",
     misconceptionCodes: {
-      1: 'OVERSIMPLIFIED_INSTALLATION',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -1225,14 +1225,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'conceptual'],
+    tags: ['application', 'conceptual'],
     learningOutcomeId: "203-1A-LO2",
     answerType: 'mcq',
     difficulty: 4,
     estimatedTime: 75,
     explanation: "SWA glands provide mechanical retention (clamping), properly terminate the steel wire armour (which acts as a CPC), and ensure electrical continuity of the earth path. They also maintain IP ratings.",
     misconceptionCodes: {
-      1: 'MISUNDERSTOOD_SWA_TERMINATION',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }
@@ -1250,14 +1250,14 @@ export const cablesApplicationsQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: "Electrical Installations Technology",
     category: "Types of Cables",
-    tags: ['cables', 'application'],
+    tags: ['application', 'application'],
     learningOutcomeId: "203-1A-LO3",
     answerType: 'mcq',
     difficulty: 5,
     estimatedTime: 90,
     explanation: "In environments with sensitive electronic equipment, electromagnetic compatibility (EMC) is crucial. Power cables may need screening or special routing to minimize electromagnetic interference with data equipment.",
     misconceptionCodes: {
-      1: 'IGNORED_EMC_REQUIREMENTS',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     }

@@ -3,8 +3,10 @@
  * Global test configuration and environment setup
  */
 
+import { beforeAll, afterAll } from 'vitest';
+
 // Set test environment variables
-process.env.NODE_ENV = 'test';
+// Note: NODE_ENV is read-only in TypeScript, but vitest sets it automatically
 
 // Mock console methods to reduce noise in test output (optional)
 const originalError = console.error;
@@ -12,7 +14,7 @@ const originalWarn = console.warn;
 
 beforeAll(() => {
   // Optionally suppress certain console messages during tests
-  console.error = (...args: any[]) => {
+  console.error = (...args: unknown[]) => {
     // Only suppress specific errors if needed
     const message = args[0]?.toString() || '';
     if (message.includes('Warning:') || message.includes('React')) {
@@ -21,7 +23,7 @@ beforeAll(() => {
     originalError(...args);
   };
 
-  console.warn = (...args: any[]) => {
+  console.warn = (...args: unknown[]) => {
     const message = args[0]?.toString() || '';
     if (message.includes('Warning:')) {
       return;

@@ -138,7 +138,13 @@ export function secureContent(
   };
 } {
   let processedContent = content;
-  const security: any = {
+  const security: {
+    scanned: boolean;
+    injectionDetected: boolean;
+    sanitized: boolean;
+    wrapped: boolean;
+    matches?: Array<{ pattern: string; match: string }>;
+  } = {
     scanned: false,
     injectionDetected: false,
     sanitized: false,

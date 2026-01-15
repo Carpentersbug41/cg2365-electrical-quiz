@@ -3,7 +3,7 @@
  * Central export for all question collections
  */
 
-import { TaggedQuestion } from './types';
+import { TaggedQuestion, QuestionTag } from './types';
 import { healthSafetyLegislationQuestions } from './healthSafetyLegislationQuestions';
 import { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
 import { parallelCircuitsQuestions } from './parallelCircuitsQuestions';
@@ -54,9 +54,9 @@ export { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 /**
  * Filter questions by tags
  */
-export function getQuestionsByTags(tags: string[]): TaggedQuestion[] {
+export function getQuestionsByTags(tags: QuestionTag[]): TaggedQuestion[] {
   return allTaggedQuestions.filter(q => 
-    tags.some(tag => q.tags.includes(tag as any))
+    tags.some(tag => q.tags.includes(tag))
   );
 }
 

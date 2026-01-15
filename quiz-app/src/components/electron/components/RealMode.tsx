@@ -163,7 +163,7 @@ const RealMode: React.FC<Props> = ({ onBack }) => {
                 onChange={(v) => setVoltage(v * 60)} 
               />
               <p className="text-xs text-slate-500 mt-2">
-                Pressure. The "push" from the battery.
+                Pressure. The &quot;push&quot; from the battery.
               </p>
             </div>
 

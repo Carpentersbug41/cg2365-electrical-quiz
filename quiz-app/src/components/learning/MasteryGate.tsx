@@ -70,7 +70,7 @@ export default function MasteryGate({
             Mastery Achieved!
           </h3>
           <p className="text-green-700 dark:text-green-400 mb-4">
-            You've demonstrated true understanding of <strong>{lessonTitle}</strong> through delayed recall.
+            You&apos;ve demonstrated true understanding of <strong>{lessonTitle}</strong> through delayed recall.
           </p>
           <div className="flex items-center justify-center gap-2 text-sm text-green-600 dark:text-green-400">
             <svg
@@ -111,7 +111,7 @@ export default function MasteryGate({
             {isDue || isReady ? (
               <>
                 <p className="text-amber-800 dark:text-amber-300 mb-4">
-                  You passed <strong>{lessonTitle}</strong>! Now let's confirm your mastery with a delayed retest.
+                  You passed <strong>{lessonTitle}</strong>! Now let&apos;s confirm your mastery with a delayed retest.
                 </p>
                 <p className="text-sm text-amber-700 dark:text-amber-400 mb-4">
                   This measures true learning - can you recall it after a delay?

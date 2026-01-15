@@ -10,6 +10,7 @@ import { formatLessonContextForLLM, validateGrounding, extractBlockReferences } 
 import { TutorRequest, TutorResponse, TutorMode, ContextType } from '@/lib/tutor/types';
 import { applyContextBudget, logContextBudget, DEFAULT_CONTEXT_BUDGET } from '@/lib/tutor/contextBudgetService';
 import { logTutorRequest, logTutorResponse, logTutorError, logGroundingFailure, logRateLimitExceeded } from '@/lib/observability/loggingService';
+import { Block, OutcomesBlockContent } from '@/data/lessons/types';
 
 // Initialize Gemini API
 const apiKey = process.env.GEMINI_API_KEY;
@@ -193,10 +194,10 @@ export async function POST(request: NextRequest) {
       // Convert LessonContext blocks back to Block format for budget calculation
       const lessonBlocks = lessonContext.blocks.map((b, index) => ({
         id: b.id,
-        type: b.type as any,
-        content: {} as any, // Content already formatted in lessonContext
+        type: b.type as 'outcomes' | 'vocab' | 'explanation' | 'worked-example' | 'guided-practice' | 'practice' | 'spaced-review' | 'diagram',
+        content: {} as OutcomesBlockContent, // Placeholder - content already formatted in lessonContext
         order: index,
-      }));
+      })) as Block[];
 
       // Create a map of formatted contents
       const formattedContents = new Map<string, string>(

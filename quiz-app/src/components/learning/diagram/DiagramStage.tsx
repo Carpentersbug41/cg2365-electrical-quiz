@@ -12,7 +12,25 @@ import { DiagramBlockContent } from '@/data/lessons/types';
 // YouTube IFrame API types
 declare global {
   interface Window {
-    YT: any;
+    YT: {
+      Player: new (elementId: string | HTMLElement, config: {
+        videoId: string;
+        playerVars?: Record<string, string | number>;
+        events?: {
+          onReady?: (event: { target: unknown }) => void;
+          onStateChange?: (event: { data: number }) => void;
+        };
+      }) => {
+        playVideo: () => void;
+        pauseVideo: () => void;
+        seekTo: (seconds: number, allowSeekAhead: boolean) => void;
+        destroy: () => void;
+      };
+      PlayerState: {
+        PLAYING: number;
+        PAUSED: number;
+      };
+    };
     onYouTubeIframeAPIReady: () => void;
   }
 }
@@ -25,7 +43,7 @@ export default function DiagramStage({
   onToggleExpand 
 }: DiagramStageProps) {
   const content = block.content as DiagramBlockContent;
-  const playerRef = useRef<any>(null);
+  const playerRef = useRef<{ playVideo: () => void; pauseVideo: () => void; seekTo: (seconds: number, allowSeekAhead: boolean) => void; destroy: () => void } | null>(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
   const videoContainerRef = useRef<HTMLDivElement>(null);
 
@@ -100,7 +118,7 @@ export default function DiagramStage({
     if (action === 'jumpToTimestamp' && timestamp) {
       jumpToTimestamp(timestamp);
     }
-    onAction(action as any, targetIds);
+    onAction(action as 'highlight' | 'focus' | 'clear' | 'jumpToTimestamp', targetIds);
   };
 
   return (

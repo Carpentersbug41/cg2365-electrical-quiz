@@ -49,16 +49,15 @@ Score: ${deterministicResult.score}${misconceptionInfo}
 
 Write brief, encouraging feedback for the student (2-3 sentences max). ${deterministicResult.isCorrect ? 'Celebrate their success.' : 'Help them understand what went wrong without giving the full solution.'}`;
 
-  let usedModel = modelName;
-
   try {
     // Try primary model
     const model = genAI.getGenerativeModel({ model: modelName, systemInstruction });
     const result = await model.generateContent(prompt);
     return result.response.text();
-  } catch (error: any) {
+  } catch (error: unknown) {
     // If quota exceeded, try fallback model
-    if (error?.message?.includes('429') || error?.message?.includes('quota') || error?.message?.includes('Too Many Requests')) {
+    const errorMessage = error instanceof Error ? error.message : '';
+    if (errorMessage.includes('429') || errorMessage.includes('quota') || errorMessage.includes('Too Many Requests')) {
       console.log(`⚠️  Primary model (${modelName}) quota exceeded for feedback, trying fallback: ${fallbackModelName}`);
       
       try {
@@ -120,8 +119,8 @@ export async function POST(request: NextRequest) {
       questionType = question.answerType || 'short-text';
     } else {
       // Check if it's a practice question from lesson
-      const practiceBlock = lesson202_3A.blocks.find((block: any) => block.type === 'practice');
-      const practiceQuestion = practiceBlock?.content?.questions?.find((q: any) => q.id === questionId);
+      const practiceBlock = lesson202_3A.blocks.find((block: { type: string }) => block.type === 'practice');
+      const practiceQuestion = practiceBlock?.content?.questions?.find((q: unknown) => typeof q === 'object' && q !== null && 'id' in q && (q as { id: string }).id === questionId);
       
       if (practiceQuestion && typeof practiceQuestion === 'object') {
         // Practice question found
@@ -131,16 +130,16 @@ export async function POST(request: NextRequest) {
         questionType = practiceQuestion.answerType || answerType || 'short-text';
       } else {
         // Check if it's a guided practice question
-        const guidedBlock = lesson202_3A.blocks.find((block: any) => block.type === 'guided-practice');
-        const step = guidedBlock?.content?.steps?.find((s: any) => 
+        const guidedBlock = lesson202_3A.blocks.find((block: { type: string }) => block.type === 'guided-practice');
+        const step = guidedBlock?.content?.steps?.find((s: { prompt?: string; description?: string; stepNumber: number }) => 
           (s.prompt && s.prompt === questionId) || 
           (s.description && s.description === questionId) ||
           s.stepNumber.toString() === questionId.toString()
         );
         
         if (step) {
-          questionText = (step as any).prompt || (step as any).description || questionId;
-          expectedAnswers = (step as any).expectedAnswer || validationConfig?.requiredKeywords || ['any answer'];
+          questionText = (step as { prompt?: string; description?: string }).prompt || (step as { prompt?: string; description?: string }).description || questionId;
+          expectedAnswers = (step as { expectedAnswer?: string[] }).expectedAnswer || validationConfig?.requiredKeywords || ['any answer'];
           questionContext = 'guided-practice';
           questionType = answerType || 'short-text';
         } else {

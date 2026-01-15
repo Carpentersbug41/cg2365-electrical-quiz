@@ -190,7 +190,7 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
         <div className="mt-6 bg-green-100 rounded-xl p-4 border-2 border-green-300">
           <p className="text-green-900 font-semibold text-center flex items-center justify-center gap-2">
             <span className="text-2xl">🎉</span>
-            Great job! You've completed all steps correctly.
+            Great job! You&apos;ve completed all steps correctly.
           </p>
         </div>
       )}

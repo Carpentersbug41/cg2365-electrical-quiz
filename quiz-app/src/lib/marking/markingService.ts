@@ -289,12 +289,21 @@ export function markAnswer(
 
   // Numeric
   if (question.answerType === 'numeric') {
-    return markNumeric(userAnswerStr, expectedAnswers, {
-      ...config,
+    const numericConfig: AnswerValidationConfig = {
+      strategy: config?.strategy || 'numeric-tolerance',
       unitsRequired: config?.unitsRequired !== false, // Default true
       tolerance: config?.tolerance || (question.tolerance || 0.01),
       unitsList: config?.unitsList || (question.requiredUnits ? [question.requiredUnits] : undefined),
-    });
+      ...(config?.caseSensitive !== undefined && { caseSensitive: config.caseSensitive }),
+      ...(config?.trimWhitespace !== undefined && { trimWhitespace: config.trimWhitespace }),
+      ...(config?.acceptVariations !== undefined && { acceptVariations: config.acceptVariations }),
+      ...(config?.requiredKeywords && { requiredKeywords: config.requiredKeywords }),
+      ...(config?.forbiddenKeywords && { forbiddenKeywords: config.forbiddenKeywords }),
+      ...(config?.toleranceType && { toleranceType: config.toleranceType }),
+      ...(config?.regexPattern && { regexPattern: config.regexPattern }),
+      ...(config?.partialCreditRules && { partialCreditRules: config.partialCreditRules }),
+    };
+    return markNumeric(userAnswerStr, expectedAnswers, numericConfig);
   }
 
   // Short text

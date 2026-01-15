@@ -108,11 +108,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['permanent-magnet', 'discrimination', 'conceptual'],
+    tags: ['magnetic-poles', 'discrimination', 'conceptual'],
     learningOutcomeId: '202-6A-LO1',
     misconceptionCodes: {
-      1: 'CONFUSED_MAGNET_TYPES',
-      2: 'CONFUSED_MAGNET_TYPES',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -128,11 +128,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'discrimination'],
+    tags: ['electromagnets', 'conceptual', 'discrimination'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'CONFUSED_CORE_CREATES_FIELD',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -148,12 +148,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['motor', 'application', 'discrimination'],
+    tags: ['motors', 'application', 'discrimination'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_MOTOR_GENERATOR',
-      2: 'CONFUSED_DEVICE_FUNCTIONS',
-      3: 'CONFUSED_DEVICE_FUNCTIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     },
     answerType: 'mcq',
     difficulty: 1,
@@ -168,11 +168,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['relay', 'application', 'conceptual'],
+    tags: ['relays', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_DEVICE_FUNCTIONS',
-      2: 'CONFUSED_DEVICE_FUNCTIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -188,10 +188,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'conceptual'],
+    tags: ['application', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'THOUGHT_WORKS_WITH_DC',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -211,7 +211,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     tags: ['magnetic-poles', 'conceptual', 'discrimination'],
     learningOutcomeId: '202-6A-LO1',
     misconceptionCodes: {
-      1: 'THOUGHT_POLES_CAN_BE_ISOLATED',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -228,10 +228,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'discrimination'],
+    tags: ['electromagnets', 'conceptual', 'discrimination'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_CONDUCTOR_WITH_MAGNETIC_MATERIAL',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -248,10 +248,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'discrimination'],
+    tags: ['electromagnets', 'conceptual', 'discrimination'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'THOUGHT_ELECTROMAGNET_PERMANENT',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -272,7 +272,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     learningOutcomeId: '202-6A-LO1',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'THOUGHT_FIELD_UNIFORM',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -288,10 +288,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'conceptual'],
+    tags: ['application', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'THOUGHT_WORKS_WITH_DC',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -308,7 +308,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'solenoid', 'discrimination'],
+    tags: ['electromagnets', 'electromagnets', 'discrimination'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
@@ -332,11 +332,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'application'],
+    tags: ['electromagnets', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'THOUGHT_STRENGTH_AFFECTS_POLARITY',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -352,10 +352,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnetism', 'conceptual', 'historical'],
+    tags: ['electromagnets', 'conceptual', 'conceptual'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_CAUSE_EFFECT',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -372,10 +372,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'application'],
+    tags: ['electromagnets', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_CONDUCTOR_WITH_MAGNETIC_MATERIAL',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -392,10 +392,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['motor', 'application', 'conceptual'],
+    tags: ['motors', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_DEVICE_FUNCTIONS',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -412,7 +412,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['relay', 'application', 'safety'],
+    tags: ['relays', 'application', 'safety'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
@@ -432,10 +432,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'conceptual'],
+    tags: ['application', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_CORE_CONDUCTS_ELECTRICITY',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -452,12 +452,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'discrimination'],
+    tags: ['application', 'application', 'discrimination'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_STEP_UP_DOWN',
-      2: 'CONFUSED_DEVICE_FUNCTIONS',
-      3: 'CONFUSED_DEVICE_FUNCTIONS'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     },
     answerType: 'mcq',
     difficulty: 2,
@@ -472,10 +472,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['motor', 'application', 'conceptual'],
+    tags: ['motors', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_MOTOR_GENERATOR',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -512,11 +512,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'application'],
+    tags: ['electromagnets', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'THOUGHT_FIELD_INDEPENDENT_OF_CURRENT',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -532,11 +532,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['permanent-magnet', 'conceptual', 'discrimination'],
+    tags: ['magnetic-poles', 'conceptual', 'discrimination'],
     learningOutcomeId: '202-6A-LO1',
     misconceptionCodes: {
-      1: 'CONFUSED_MAGNET_TYPES',
-      2: 'CONFUSED_MAGNET_TYPES',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -552,11 +552,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'conceptual'],
+    tags: ['application', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'THOUGHT_WORKS_WITH_DC',
-      2: 'CONFUSED_PRIMARY_SECONDARY',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -572,10 +572,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnetism', 'induction', 'conceptual'],
+    tags: ['electromagnets', 'conceptual', 'conceptual'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_INDUCTION_WITH_MAGNETIZATION',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -592,11 +592,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['magnetic-materials', 'discrimination', 'conceptual'],
+    tags: ['magnetic-field', 'discrimination', 'conceptual'],
     learningOutcomeId: '202-6A-LO1',
     misconceptionCodes: {
-      1: 'THOUGHT_ALL_METALS_MAGNETIC',
-      2: 'THOUGHT_ALL_METALS_MAGNETIC',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -612,12 +612,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['relay', 'application', 'conceptual'],
+    tags: ['relays', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_RELAY_COMPONENTS'
+      3: 'OTHER'
     },
     answerType: 'mcq',
     difficulty: 3,
@@ -632,7 +632,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'conceptual'],
+    tags: ['application', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
@@ -652,7 +652,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['motor', 'application', 'conceptual'],
+    tags: ['motors', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
@@ -672,12 +672,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'application', 'conceptual'],
+    tags: ['electromagnets', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_MAGNET_TYPES'
+      3: 'OTHER'
     },
     answerType: 'mcq',
     difficulty: 2,
@@ -692,10 +692,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'calculation', 'application'],
+    tags: ['application', 'calculation', 'application'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_STEP_UP_DOWN',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -712,11 +712,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnetism', 'magnetic-field', 'conceptual'],
+    tags: ['electromagnets', 'magnetic-field', 'conceptual'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_FIELD_PATTERN',
-      2: 'THOUGHT_FIELD_UNIFORM',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -732,11 +732,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'induction', 'conceptual'],
+    tags: ['application', 'conceptual', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_DEVICE_FUNCTIONS',
-      2: 'CONFUSED_DEVICE_FUNCTIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -752,11 +752,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['relay', 'application', 'conceptual'],
+    tags: ['relays', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'CONFUSED_RELAY_COMPONENTS',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -772,11 +772,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'application', 'real-world'],
+    tags: ['application', 'application', 'real-world'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_STEP_UP_DOWN',
-      2: 'CONFUSED_DEVICE_FUNCTIONS',
+      1: 'OTHER',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -792,11 +792,11 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'application'],
+    tags: ['electromagnets', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'THOUGHT_TURNS_IRRELEVANT',
+      2: 'OTHER',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -812,12 +812,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['relay', 'application', 'safety', 'real-world'],
+    tags: ['relays', 'application', 'safety', 'real-world'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_DEVICE_FUNCTIONS',
+      1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_DEVICE_FUNCTIONS'
+      3: 'OTHER'
     },
     answerType: 'mcq',
     difficulty: 3,
@@ -836,12 +836,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'calculation', 'application'],
+    tags: ['application', 'calculation', 'application'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CALCULATION_ERROR',
-      2: 'MULTIPLIED_INSTEAD_OF_DIVIDED',
-      3: 'CALCULATION_ERROR'
+      1: 'ARITHMETIC_ERROR',
+      2: 'MULTIPLIED_INSTEAD',
+      3: 'ARITHMETIC_ERROR'
     },
     answerType: 'mcq',
     difficulty: 4,
@@ -856,10 +856,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'application'],
+    tags: ['electromagnets', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_ELECTRICAL_MAGNETIC_PROPERTIES',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -876,7 +876,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['motor', 'application', 'conceptual'],
+    tags: ['motors', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
@@ -896,12 +896,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['relay', 'calculation', 'application', 'ohms-law'],
+    tags: ['relays', 'calculation', 'application', 'ohms-law'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CALCULATION_ERROR',
-      2: 'MULTIPLIED_INSTEAD_OF_DIVIDED',
-      3: 'CALCULATION_ERROR'
+      1: 'ARITHMETIC_ERROR',
+      2: 'MULTIPLIED_INSTEAD',
+      3: 'ARITHMETIC_ERROR'
     },
     answerType: 'mcq',
     difficulty: 4,
@@ -916,10 +916,10 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'conceptual', 'application'],
+    tags: ['application', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'THOUGHT_WORKS_WITH_DC',
+      1: 'OTHER',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -936,12 +936,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'application', 'conceptual'],
+    tags: ['electromagnets', 'application', 'conceptual'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_ELECTRICAL_MAGNETIC_FORCES',
+      1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_ELECTRICAL_MAGNETIC_FORCES'
+      3: 'OTHER'
     },
     answerType: 'mcq',
     difficulty: 4,
@@ -956,12 +956,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'calculation', 'application'],
+    tags: ['application', 'calculation', 'application'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'CALCULATION_ERROR',
-      2: 'WRONG_FORMULA_APPLIED',
-      3: 'CALCULATION_ERROR'
+      1: 'ARITHMETIC_ERROR',
+      2: 'FORMULA_NOT_REARRANGED',
+      3: 'ARITHMETIC_ERROR'
     },
     answerType: 'mcq',
     difficulty: 5,
@@ -976,7 +976,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['motor', 'conceptual', 'application'],
+    tags: ['motors', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
       1: 'OTHER',
@@ -996,7 +996,7 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['electromagnet', 'conceptual', 'application'],
+    tags: ['electromagnets', 'conceptual', 'application'],
     learningOutcomeId: '202-6A-LO2',
     misconceptionCodes: {
       1: 'OTHER',
@@ -1016,12 +1016,12 @@ export const magnetismElectromagnetismQuestions: TaggedQuestion[] = [
     correctAnswer: 0,
     section: 'Science 2365 Level 2',
     category: 'Magnetism & Electromagnetism',
-    tags: ['transformer', 'calculation', 'application', 'power'],
+    tags: ['application', 'calculation', 'application', 'application'],
     learningOutcomeId: '202-6A-LO3',
     misconceptionCodes: {
-      1: 'THOUGHT_CURRENT_SAME',
-      2: 'MULTIPLIED_INSTEAD_OF_DIVIDED',
-      3: 'CALCULATION_ERROR'
+      1: 'OTHER',
+      2: 'MULTIPLIED_INSTEAD',
+      3: 'ARITHMETIC_ERROR'
     },
     answerType: 'mcq',
     difficulty: 5,

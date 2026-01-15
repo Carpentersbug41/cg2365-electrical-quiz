@@ -4,7 +4,7 @@
  */
 
 import { questions } from '@/data/questions';
-import { TaggedQuestion } from '@/data/questions/types';
+import { TaggedQuestion, QuestionTag } from '@/data/questions/types';
 
 /**
  * Filter questions by lesson ID
@@ -30,14 +30,14 @@ export function filterQuestionsBySection(section: string) {
  * Filter questions by tags
  * Returns questions that have ALL specified tags
  */
-export function filterQuestionsByTags(tags: string[]) {
+export function filterQuestionsByTags(tags: QuestionTag[]) {
   // #region agent log
   fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'questionFilter.ts:33',message:'filterQuestionsByTags called',data:{requestedTags:tags},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});
   // #endregion
   return questions.filter(q => {
     const taggedQ = q as TaggedQuestion;
     if (!taggedQ.tags) return false;
-    const hasAllTags = tags.every(tag => taggedQ.tags.includes(tag as any));
+    const hasAllTags = tags.every(tag => taggedQ.tags.includes(tag));
     // #region agent log
     if (hasAllTags) {
       fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'questionFilter.ts:36',message:'Question matches tags',data:{questionId:taggedQ.id,tags:taggedQ.tags,requestedTags:tags},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'C'})}).catch(()=>{});

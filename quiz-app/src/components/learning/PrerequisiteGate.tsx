@@ -118,7 +118,7 @@ export default function PrerequisiteGate({
               Why the Wait?
             </h4>
             <p className="text-amber-800 dark:text-amber-300 text-sm leading-relaxed">
-              Interleaved practice is most effective <strong>after</strong> you've mastered each concept separately. 
+              Interleaved practice is most effective <strong>after</strong> you&apos;ve mastered each concept separately. 
               Complete and master the prerequisite lessons first, then come back here to practice discrimination between concepts.
             </p>
           </div>

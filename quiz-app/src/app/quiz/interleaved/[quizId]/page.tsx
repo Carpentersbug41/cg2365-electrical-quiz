@@ -29,7 +29,7 @@ export default function InterleavedQuizPage({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const [isEligible, setIsEligible] = useState(false);
   const [missingPrereqs, setMissingPrereqs] = useState<string[]>([]);
-  const [quizConfig, setQuizConfig] = useState<ReturnType<typeof getQuizConfig>>(null);
+  const [quizConfig, setQuizConfig] = useState<ReturnType<typeof getQuizConfig> | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -242,7 +242,7 @@ export default function InterleavedQuizPage({ params }: PageProps) {
       <div className="max-w-4xl mx-auto px-4 pb-12">
         <Quiz 
           questions={questions}
-          sectionName={config?.title || 'Interleaved Quiz'}
+          section={config?.title || 'Interleaved Quiz'}
         />
       </div>
     </div>

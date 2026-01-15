@@ -13,7 +13,7 @@ import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
 import { Lesson } from '@/data/lessons/types';
 
 // Helper to create a mock request
-function createMockRequest(body: any): Request {
+function createMockRequest(body: Record<string, unknown>): Request {
   return new Request('http://localhost:3000/api/tutor', {
     method: 'POST',
     headers: {

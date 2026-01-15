@@ -45,10 +45,10 @@ export function generateVariantFromTemplate(
   questionText: string;
   expectedAnswer: string;
   acceptableAnswers?: string[];
-  parameters: Record<string, any>;
+  parameters: Record<string, number | string>;
 } {
   const rng = new SeededRandom(seed);
-  const parameters: Record<string, any> = {};
+  const parameters: Record<string, number | string> = {};
 
   // Generate parameter values
   for (const [paramName, paramConfig] of Object.entries(template.parameters)) {
@@ -110,9 +110,9 @@ export function generateVariantFromTemplate(
  * Safely evaluate a formula with parameters
  * Uses a restricted evaluator to prevent code injection
  */
-function evaluateFormula(formula: string, parameters: Record<string, any>): number {
+function evaluateFormula(formula: string, parameters: Record<string, number | string>): number {
   // Create a restricted context with only parameters and Math functions
-  const context: Record<string, any> = { ...parameters, Math };
+  const context: Record<string, number | string | typeof Math> = { ...parameters, Math };
 
   // Replace parameter names in formula
   let evaluableFormula = formula;
@@ -168,11 +168,16 @@ export function getQuestionVariant(
       const generated = generateVariantFromTemplate(originalQuestion.variantTemplate, seed);
 
       // Create a new question object with generated values
+      // Use a numeric ID based on original ID and attempt number
+      const variantId = originalQuestion.id * 1000 + attemptNumber;
+      
+      // For MCQ questions, correctAnswer must be a number (index)
+      // For other types, we use acceptableAnswers and set correctAnswer to 0 as placeholder
       const variantQuestion: TaggedQuestion = {
         ...originalQuestion,
-        id: `${originalQuestion.id}-var${attemptNumber}`,
+        id: variantId,
         question: generated.questionText,
-        correctAnswer: generated.expectedAnswer,
+        correctAnswer: originalQuestion.answerType === 'mcq' ? originalQuestion.correctAnswer : 0,
         acceptableAnswers: generated.acceptableAnswers || [generated.expectedAnswer],
       };
 

@@ -7,6 +7,7 @@
  */
 
 import { TaggedQuestion, QuestionTag } from '@/data/questions/types';
+import { getQuizProgress } from '@/lib/progress/progressService';
 
 export interface InterleavedQuizConfig {
   /**
@@ -285,9 +286,6 @@ export function checkInterleavingEligibility(
     return { eligible: false, missingPrerequisites: prerequisites };
   }
 
-  // Import dynamically to avoid circular dependencies
-  const { getQuizProgress } = require('@/lib/progress/progressService');
-  
   const missingPrerequisites: string[] = [];
   
   for (const prereqId of prerequisites) {

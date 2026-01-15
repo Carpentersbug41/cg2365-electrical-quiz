@@ -38,7 +38,7 @@ export interface LogEntry {
   level: LogLevel;
   eventType: LogEventType;
   message: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   duration?: number; // milliseconds
   error?: {
     message: string;
@@ -128,7 +128,7 @@ function createLogEntry(
   level: LogLevel,
   eventType: LogEventType,
   message: string,
-  metadata?: Record<string, any>,
+  metadata?: Record<string, unknown>,
   duration?: number,
   error?: Error
 ): LogEntry {
@@ -164,7 +164,7 @@ export function logTutorRequest(
   mode: string,
   lessonId?: string,
   blockIds?: string[],
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): void {
   const entry = createLogEntry('info', 'tutor-request', `Tutor request: ${mode}`, {
     mode,
@@ -182,7 +182,7 @@ export function logTutorResponse(
   mode: string,
   responseTime: number,
   blockReferences?: string[],
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): void {
   const entry = createLogEntry('info', 'tutor-response', `Tutor response: ${mode}`, {
     mode,
@@ -198,7 +198,7 @@ export function logTutorResponse(
 export function logTutorError(
   mode: string,
   error: Error,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): void {
   const entry = createLogEntry('error', 'tutor-error', `Tutor error: ${mode}`, {
     mode,
@@ -230,7 +230,7 @@ export function logGroundingFailure(
 export function logMarkingRequest(
   questionId: string,
   answerType: string,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): void {
   const entry = createLogEntry('info', 'marking-request', `Marking request: ${questionId}`, {
     questionId,
@@ -247,7 +247,7 @@ export function logMarkingResponse(
   questionId: string,
   isCorrect: boolean,
   misconceptionCode?: string,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): void {
   const entry = createLogEntry('info', 'marking-response', `Marking result: ${isCorrect ? 'correct' : 'incorrect'}`, {
     questionId,
@@ -264,7 +264,7 @@ export function logMarkingResponse(
 export function logMarkingError(
   questionId: string,
   error: Error,
-  metadata?: Record<string, any>
+  metadata?: Record<string, unknown>
 ): void {
   const entry = createLogEntry('error', 'marking-error', `Marking error: ${questionId}`, {
     questionId,
@@ -279,7 +279,7 @@ export function logMarkingError(
 export function logGoldenSetResult(
   testName: string,
   passed: boolean,
-  details?: Record<string, any>
+  details?: Record<string, unknown>
 ): void {
   const entry = createLogEntry(
     passed ? 'info' : 'error',

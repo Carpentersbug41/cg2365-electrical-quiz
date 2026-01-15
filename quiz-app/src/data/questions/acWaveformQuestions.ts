@@ -48,8 +48,8 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO3",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
-      2: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
+      2: 'CONFUSED_RMS_WITH_PEAK',
       3: 'OTHER'
     },
     difficulty: 1,
@@ -72,7 +72,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'MULTIPLIED_INSTEAD',
       3: 'CONFUSED_PEAK_TO_PEAK'
     },
@@ -145,7 +145,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'CONFUSED_PEAK_DEFINITIONS',
-      2: 'CONFUSED_PEAK_RMS',
+      2: 'CONFUSED_RMS_WITH_PEAK',
       3: 'OTHER'
     },
     difficulty: 1,
@@ -170,7 +170,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'USED_PEAK_NOT_P_P',
       2: 'DIVIDED_INSTEAD',
-      3: 'CONFUSED_RMS_CALC'
+      3: 'OTHER'
     },
     difficulty: 2,
     estimatedTime: 40,
@@ -240,7 +240,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'CONFUSED_AVERAGE_RMS',
       3: 'OTHER'
     },
@@ -336,7 +336,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO3",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -506,7 +506,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'MULTIPLIED_BY_2_WRONG',
       3: 'USED_0707_WRONG_WAY'
     },
@@ -530,7 +530,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO3",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -578,7 +578,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'WRONG_MULTIPLIER',
       3: 'WRONG_MULTIPLIER'
     },
@@ -603,7 +603,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'CONFUSED_INSTRUMENTS',
-      2: 'CONFUSED_PEAK_RMS',
+      2: 'CONFUSED_RMS_WITH_PEAK',
       3: 'WRONG_REASON'
     },
     difficulty: 3,
@@ -650,7 +650,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'MULTIPLIED_BY_2_WRONG',
       3: 'DIVIDED_WRONG'
     },
@@ -699,7 +699,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'WRONG_MULTIPLIER',
-      2: 'WRONG_REASONING',
+      2: 'OTHER',
       3: 'WRONG_MULTIPLIER'
     },
     difficulty: 3,
@@ -746,7 +746,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO3",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'CONFUSED_PEAK_TO_PEAK',
       3: 'CONFUSED_AVERAGE_RMS'
     },
@@ -820,7 +820,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'MULTIPLIED_BY_2_WRONG',
       3: 'DIVIDED_WRONG'
     },
@@ -892,7 +892,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO1",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'CONFUSED_PEAK_RMS',
+      1: 'CONFUSED_RMS_WITH_PEAK',
       2: 'MULTIPLIED_BY_2_WRONG',
       3: 'USED_0707_WRONG_WAY'
     },
@@ -966,7 +966,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'MULTIPLIED_BY_2_ONLY',
       2: 'CALCULATED_PEAK_NOT_P_P',
-      3: 'CONFUSED_PEAK_RMS'
+      3: 'CONFUSED_RMS_WITH_PEAK'
     },
     difficulty: 4,
     estimatedTime: 85,
@@ -1040,7 +1040,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'WRONG_DIAGNOSIS',
       2: 'WRONG_DIAGNOSIS',
-      3: 'WRONG_REASONING'
+      3: 'OTHER'
     },
     difficulty: 5,
     estimatedTime: 100,
@@ -1064,7 +1064,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'WRONG_INTERPRETATION',
       2: 'WRONG_INTERPRETATION',
-      3: 'WRONG_REASONING'
+      3: 'OTHER'
     },
     difficulty: 4,
     estimatedTime: 80,
@@ -1087,8 +1087,8 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'CONFUSED_AVERAGE_RMS',
-      2: 'WRONG_REASONING',
-      3: 'WRONG_REASONING'
+      2: 'OTHER',
+      3: 'OTHER'
     },
     difficulty: 4,
     estimatedTime: 75,
@@ -1111,7 +1111,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'WRONG_ACTION',
-      2: 'WRONG_REASONING',
+      2: 'OTHER',
       3: 'WRONG_ACTION'
     },
     difficulty: 5,
@@ -1135,7 +1135,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'CONFUSED_VOLTAGE_FREQUENCY',
-      2: 'WRONG_REASONING',
+      2: 'OTHER',
       3: 'WRONG_CALCULATION'
     },
     difficulty: 4,
@@ -1158,9 +1158,9 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO3",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'WRONG_REASONING',
-      2: 'WRONG_REASONING',
-      3: 'WRONG_REASONING'
+      1: 'OTHER',
+      2: 'OTHER',
+      3: 'OTHER'
     },
     difficulty: 5,
     estimatedTime: 90,
@@ -1183,7 +1183,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     answerType: 'mcq',
     misconceptionCodes: {
       1: 'INVERSE_WRONG',
-      2: 'WRONG_REASONING',
+      2: 'OTHER',
       3: 'CONFUSED_VOLTAGE_FREQUENCY'
     },
     difficulty: 4,
@@ -1206,7 +1206,7 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO3",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'WRONG_REASONING',
+      1: 'OTHER',
       2: 'CONFUSED_DISTORTION_EFFECT',
       3: 'CONFUSED_DISTORTION_EFFECT'
     },
@@ -1230,9 +1230,9 @@ export const acWaveformQuestions: TaggedQuestion[] = [
     learningOutcomeId: "202-7C-LO2",
     answerType: 'mcq',
     misconceptionCodes: {
-      1: 'WRONG_REASONING',
-      2: 'CONFUSED_FREQUENCY_VOLTAGE',
-      3: 'WRONG_REASONING'
+      1: 'OTHER',
+      2: 'CONFUSED_FREQUENCY_WITH_VOLTAGE',
+      3: 'OTHER'
     },
     difficulty: 5,
     estimatedTime: 100,

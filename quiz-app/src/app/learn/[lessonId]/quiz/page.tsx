@@ -21,9 +21,15 @@ interface PageProps {
 export default function LessonQuizPage({ params }: PageProps) {
   const [lessonId, setLessonId] = useState<string | null>(null);
   const [lessonQuestions, setLessonQuestions] = useState<Question[]>([]);
-  const [lesson, setLesson] = useState<any>(null);
+  const [lesson, setLesson] = useState<{ id: string; title: string; unit: string } | null>(null);
   const [isCumulative, setIsCumulative] = useState(false);
-  const [cumulativeMetadata, setCumulativeMetadata] = useState<any>(null);
+  const [cumulativeMetadata, setCumulativeMetadata] = useState<{
+    currentLesson: { id: string; title: string; order: number; unitNumber: string };
+    includedLessons: unknown[];
+    previousLessons: unknown[];
+    isFirstInUnit: boolean;
+    totalLessonsIncluded: number;
+  } | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
   const isRetest = searchParams.get('retest') === 'true';
@@ -36,7 +42,7 @@ export default function LessonQuizPage({ params }: PageProps) {
       
       // Get lesson metadata
       const lessonData = getLessonById(id);
-      setLesson(lessonData);
+      setLesson(lessonData || null);
       
       // Get questions based on mode
       let questions: Question[];

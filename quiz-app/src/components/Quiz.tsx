@@ -246,7 +246,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
         totalQuestions: questions.length,
         percentage,
         answers: questions.map((q, idx) => ({
-          questionId: q.id,
+          questionId: q.id.toString(),
           userAnswer: selectedAnswers[idx]?.toString() || '',
           isCorrect: selectedAnswers[idx] === q.correctAnswer,
         })),

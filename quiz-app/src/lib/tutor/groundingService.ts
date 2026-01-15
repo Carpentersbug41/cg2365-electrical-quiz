@@ -12,30 +12,30 @@ import { secureContent } from './securityService';
  * Format a single block for LLM consumption
  */
 function formatBlockForContext(block: Block): string {
-  const content = block.content as any;
+  const content = block.content as unknown as Record<string, unknown>;
   
   switch (block.type) {
     case 'outcomes':
       return `[${block.id}]
 Learning Outcomes:
-${content.outcomes.map((o: any, i: number) => `${i + 1}. ${o.text} (${o.bloomLevel})`).join('\n')}`;
+${(content.outcomes as Array<{ text: string; bloomLevel: string }>).map((o, i: number) => `${i + 1}. ${o.text} (${o.bloomLevel})`).join('\n')}`;
 
     case 'vocab':
       return `[${block.id}]
 Key Vocabulary:
-${content.terms.map((t: any) => `- **${t.term}**: ${t.definition}`).join('\n')}`;
+${(content.terms as Array<{ term: string; definition: string }>).map((t) => `- **${t.term}**: ${t.definition}`).join('\n')}`;
 
     case 'explanation':
       return `[${block.id}]
-${content.title}
-${content.content}
-${content.subsections ? content.subsections.map((s: any) => `\n**${s.title}**\n${s.content}`).join('\n') : ''}`;
+${content.title as string}
+${content.content as string}
+${content.subsections ? (content.subsections as Array<{ title: string; content: string }>).map((s) => `\n**${s.title}**\n${s.content}`).join('\n') : ''}`;
 
     case 'worked-example':
       return `[${block.id}]
-Worked Example: ${content.title}
-Given: ${content.given}
-${content.steps.map((step: any) => {
+Worked Example: ${content.title as string}
+Given: ${content.given as string}
+${(content.steps as Array<{ stepNumber: number; description: string; formula?: string; calculation?: string; result?: string }>).map((step) => {
   let stepText = `Step ${step.stepNumber}: ${step.description}`;
   if (step.formula) stepText += `\n  Formula: ${step.formula}`;
   if (step.calculation) stepText += `\n  Calculation: ${step.calculation}`;
@@ -46,32 +46,32 @@ ${content.notes ? `\nNote: ${content.notes}` : ''}`;
 
     case 'guided-practice':
       return `[${block.id}]
-Guided Practice: ${content.title}
-Problem: ${content.problem}
-${content.steps.map((step: any) => 
+Guided Practice: ${content.title as string}
+Problem: ${content.problem as string}
+${(content.steps as Array<{ stepNumber: number; prompt: string; expectedAnswer: string | string[] }>).map((step) => 
   `Step ${step.stepNumber}: ${step.prompt}\nExpected: ${Array.isArray(step.expectedAnswer) ? step.expectedAnswer.join(' or ') : step.expectedAnswer}`
 ).join('\n')}`;
 
     case 'practice':
       return `[${block.id}]
-Practice Questions: ${content.title}
-${content.questions.map((q: any, i: number) => 
+Practice Questions: ${content.title as string}
+${(content.questions as Array<{ questionText: string; answerType: string; hint?: string }>).map((q, i: number) => 
   `Q${i + 1}: ${q.questionText}\nAnswer type: ${q.answerType}${q.hint ? `\nHint available: ${q.hint}` : ''}`
 ).join('\n\n')}`;
 
     case 'spaced-review':
       return `[${block.id}]
-Spaced Review: ${content.title}
-${content.questions.map((q: any, i: number) => `${i + 1}. ${q}`).join('\n')}
-${content.notes ? `\nNote: ${content.notes}` : ''}`;
+Spaced Review: ${content.title as string}
+${(content.questions as Array<string>).map((q, i: number) => `${i + 1}. ${q}`).join('\n')}
+${content.notes ? `\nNote: ${content.notes as string}` : ''}`;
 
     case 'diagram':
       return `[${block.id}]
-Diagram: ${content.title}
-Description: ${content.description}
-Type: ${content.diagramType}
-Elements: ${content.elementIds.join(', ')}
-${content.placeholderText ? `Diagram shows: ${content.placeholderText}` : ''}`;
+Diagram: ${content.title as string}
+Description: ${content.description as string}
+Type: ${content.diagramType as string}
+Elements: ${(content.elementIds as string[]).join(', ')}
+${content.placeholderText ? `Diagram shows: ${content.placeholderText as string}` : ''}`;
 
     default:
       return `[${block.id}]\n${JSON.stringify(content, null, 2)}`;
@@ -91,7 +91,7 @@ export function createLessonContext(
   }
 ): LessonContext {
   // Filter blocks if specific IDs provided, otherwise use all
-  let blocksToInclude = blockIds
+  const blocksToInclude = blockIds
     ? lesson.blocks.filter(b => blockIds.includes(b.id))
     : lesson.blocks;
 

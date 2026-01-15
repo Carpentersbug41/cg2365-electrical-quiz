@@ -44,9 +44,12 @@ export default function LayoutA({ lesson }: LayoutProps) {
   const diagramBlock = lesson.blocks.find(b => b.type === 'diagram');
   const contentBlocks = lesson.blocks.filter(b => b.type !== 'diagram').sort((a, b) => a.order - b.order);
 
-  const handleDiagramAction = (action: 'highlight' | 'focus' | 'clear', elementIds?: string[]) => {
+  const handleDiagramAction = (action: 'highlight' | 'focus' | 'clear' | 'jumpToTimestamp', elementIds?: string[]) => {
     if (action === 'clear') {
       setHighlightedElements([]);
+    } else if (action === 'jumpToTimestamp') {
+      // Handled by DiagramStage internally
+      return;
     } else if (elementIds) {
       setHighlightedElements(elementIds);
     }

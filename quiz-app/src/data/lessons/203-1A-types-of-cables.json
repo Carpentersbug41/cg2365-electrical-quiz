@@ -243,5 +243,11 @@
         "notes": "This is a foundational lesson in a new unit. Review your understanding of the four cable construction components and the main cable types (T&E, singles, flex) before moving to the next lesson."
       }
     }
-  ]
+  ],
+  "metadata": {
+    "created": "2026-01-15",
+    "updated": "2026-01-15",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
 }

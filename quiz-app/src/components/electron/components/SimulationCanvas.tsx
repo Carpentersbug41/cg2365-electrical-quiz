@@ -163,7 +163,7 @@ const SimulationCanvas: React.FC<Props> = ({ params, width, height }) => {
         electron.vel = vecScale(direction, BASE_SPEED);
 
         // 2. Move
-        let nextPos = vecAdd(electron.pos, electron.vel);
+        const nextPos = vecAdd(electron.pos, electron.vel);
 
         // 3. Collision with Atoms
         // Improved collision: Push out instead of random scatter

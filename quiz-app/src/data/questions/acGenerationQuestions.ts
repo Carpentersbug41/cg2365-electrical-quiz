@@ -252,7 +252,7 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     tags: ['ac-principle', 'conceptual', 'explanation'],
     learningOutcomeId: '202-7B-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_AC_DC',
+      1: 'CONFUSED_AC_DC_SOURCES',
       2: 'OTHER',
       3: 'OTHER'
     },
@@ -459,7 +459,7 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_VOLTAGE_WITH_FREQUENCY'
+      3: 'CONFUSED_VOLTAGE_FREQUENCY'
     },
     answerType: 'mcq',
     difficulty: 2,
@@ -498,7 +498,7 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     learningOutcomeId: '202-7B-LO2',
     misconceptionCodes: {
       1: 'HALVED_INSTEAD_OF_DOUBLED',
-      2: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
+      2: 'CONFUSED_VOLTAGE_FREQUENCY',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -577,8 +577,8 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     tags: ['frequency', 'rotation-speed', 'conceptual'],
     learningOutcomeId: '202-7B-LO3',
     misconceptionCodes: {
-      1: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
-      2: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
+      1: 'CONFUSED_VOLTAGE_FREQUENCY',
+      2: 'CONFUSED_VOLTAGE_FREQUENCY',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -659,7 +659,7 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_AC_DC'
+      3: 'CONFUSED_AC_DC_SOURCES'
     },
     answerType: 'mcq',
     difficulty: 2,
@@ -698,8 +698,8 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     learningOutcomeId: '202-7B-LO2',
     misconceptionCodes: {
       1: 'OTHER',
-      2: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
-      3: 'CONFUSED_AC_DC'
+      2: 'CONFUSED_VOLTAGE_FREQUENCY',
+      3: 'CONFUSED_AC_DC_SOURCES'
     },
     answerType: 'mcq',
     difficulty: 3,
@@ -777,9 +777,9 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     tags: ['voltage-factors', 'conceptual', 'coil-design'],
     learningOutcomeId: '202-7B-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
+      1: 'CONFUSED_VOLTAGE_FREQUENCY',
       2: 'OTHER',
-      3: 'CONFUSED_VOLTAGE_WITH_FREQUENCY'
+      3: 'CONFUSED_VOLTAGE_FREQUENCY'
     },
     answerType: 'mcq',
     difficulty: 2,
@@ -799,7 +799,7 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_AC_DC'
+      3: 'CONFUSED_AC_DC_SOURCES'
     },
     answerType: 'mcq',
     difficulty: 2,
@@ -882,8 +882,8 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     tags: ['voltage-factors', 'application', 'conceptual', 'coil-design'],
     learningOutcomeId: '202-7B-LO2',
     misconceptionCodes: {
-      1: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
-      2: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
+      1: 'CONFUSED_VOLTAGE_FREQUENCY',
+      2: 'CONFUSED_VOLTAGE_FREQUENCY',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -982,8 +982,8 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     tags: ['application', 'real-world', 'generator-design', 'advanced'],
     learningOutcomeId: '202-7B-LO1',
     misconceptionCodes: {
-      1: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
-      2: 'CONFUSED_VOLTAGE_WITH_FREQUENCY',
+      1: 'CONFUSED_VOLTAGE_FREQUENCY',
+      2: 'CONFUSED_VOLTAGE_FREQUENCY',
       3: 'OTHER'
     },
     answerType: 'mcq',
@@ -1004,7 +1004,7 @@ export const acGenerationQuestions: TaggedQuestion[] = [
     misconceptionCodes: {
       1: 'OTHER',
       2: 'OTHER',
-      3: 'CONFUSED_VOLTAGE_WITH_FREQUENCY'
+      3: 'CONFUSED_VOLTAGE_FREQUENCY'
     },
     answerType: 'mcq',
     difficulty: 4,
