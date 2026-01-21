@@ -90,3 +90,115 @@ If none of the above works:
    - Project name
    - Recent commit SHA
    - Screenshot of webhook settings
+
+---
+
+## Adding Environment Variables (API Keys)
+
+Your application requires Google Gemini API keys to function. Here's how to add them to Vercel:
+
+### Step 1: Get Your Gemini API Key
+
+1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey) or [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new API key for Google Gemini
+3. Copy the API key (it will look like: `AIzaSy...`)
+
+### Step 2: Add Environment Variables in Vercel
+
+1. **Go to Vercel Dashboard**
+   - Navigate to: https://vercel.com/dashboard
+   - Select your project: `cg2365-electrical-quiz`
+
+2. **Open Settings**
+   - Click on **Settings** tab
+   - Click on **Environment Variables** in the left sidebar
+
+3. **Add Required Variables**
+
+   **Required:**
+   - **Name:** `GEMINI_API_KEY`
+   - **Value:** Your Google Gemini API key (e.g., `AIzaSy...`)
+   - **Environment:** Select all (Production, Preview, Development)
+   - Click **Save**
+
+   **Optional (but recommended):**
+   - **Name:** `GEMINI_MODEL`
+   - **Value:** `gemini-3-flash-preview` (or your preferred model)
+   - **Environment:** Select all
+   - Click **Save**
+
+   - **Name:** `GEMINI_FALLBACK_MODEL`
+   - **Value:** `gemini-2.5-flash` (fallback if primary model fails)
+   - **Environment:** Select all
+   - Click **Save**
+
+### Step 3: Redeploy Your Application
+
+After adding environment variables:
+
+1. **Option A: Redeploy from Dashboard**
+   - Go to **Deployments** tab
+   - Click **⋯** (three dots) on the latest deployment
+   - Click **Redeploy**
+   - ✅ Environment variables will be included
+
+2. **Option B: Trigger New Deployment**
+   - Make a small change and push to GitHub
+   - Or create an empty commit:
+     ```bash
+     git commit --allow-empty -m "Trigger deployment with env vars"
+     git push
+     ```
+
+### Step 4: Verify Environment Variables Are Set
+
+After deployment, check the build logs:
+
+1. Go to **Deployments** → Latest deployment → **Build Logs**
+2. Look for:
+   ```
+   GEMINI_MODEL from env: gemini-3-flash-preview
+   GEMINI_API_KEY present: true
+   ```
+3. If you see `GEMINI_API_KEY present: false`, the variable wasn't set correctly
+
+### Troubleshooting Environment Variables
+
+**Problem: Variables not showing up in build**
+- ✅ Make sure you selected all environments (Production, Preview, Development)
+- ✅ Redeploy after adding variables (they don't apply to existing deployments)
+- ✅ Check for typos in variable names (case-sensitive!)
+
+**Problem: API calls failing**
+- ✅ Verify your API key is valid and has quota remaining
+- ✅ Check Google Cloud Console for API key restrictions
+- ✅ Ensure the model name matches a valid Gemini model
+
+**Problem: Variables work locally but not on Vercel**
+- ✅ Local `.env.local` file doesn't sync to Vercel
+- ✅ You must add variables in Vercel dashboard
+- ✅ `.env.local` is gitignored (as it should be!)
+
+### Environment Variable Reference
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `GEMINI_API_KEY` | ✅ Yes | - | Google Gemini API key |
+| `GEMINI_MODEL` | ❌ No | `gemini-1.5-flash` | Primary model to use |
+| `GEMINI_FALLBACK_MODEL` | ❌ No | `gemini-2.5-flash` | Fallback model if primary fails |
+
+### Security Best Practices
+
+1. **Never commit API keys to Git**
+   - ✅ `.env.local` is already in `.gitignore`
+   - ✅ Only add keys in Vercel dashboard
+
+2. **Use different keys for different environments** (optional)
+   - Production: Production environment only
+   - Preview: Preview environment only
+   - Development: Development environment only
+
+3. **Rotate keys periodically**
+   - If a key is exposed, regenerate it immediately
+   - Update in Vercel dashboard
+   - Redeploy application

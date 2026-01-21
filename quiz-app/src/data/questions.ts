@@ -14,6 +14,7 @@ import { scienceQuestions } from './scienceQuestions';
 import { electricalQuantitiesQuestions } from './questions/electricalQuantitiesQuestions';
 import { ohmsLawQuestions } from './questions/ohmsLawQuestions';
 import { seriesCircuitsQuestions } from './questions/seriesCircuitsQuestions';
+import { parallelCircuitsQuestions } from './questions/parallelCircuitsQuestions';
 import { powerEnergyQuestions } from './questions/powerEnergyQuestions';
 import { magnetismElectromagnetismQuestions } from './questions/magnetismElectromagnetismQuestions';
 import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
@@ -28,6 +29,7 @@ export const questions: Question[] = [
   ...electricalQuantitiesQuestions,
   ...ohmsLawQuestions,
   ...seriesCircuitsQuestions,
+  ...parallelCircuitsQuestions,
   ...powerEnergyQuestions,
   ...magnetismElectromagnetismQuestions,
   ...acPrinciplesQuestions,

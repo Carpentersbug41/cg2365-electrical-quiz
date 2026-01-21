@@ -10,7 +10,10 @@
     "Explain the relationship between period and frequency",
     "Recognize which voltage value (RMS vs peak) applies in different practical contexts"
   ],
-  "prerequisites": ["202-7A", "202-7B"],
+  "prerequisites": [
+    "202-7A",
+    "202-7B"
+  ],
   "blocks": [
     {
       "id": "202-7C-outcomes",
@@ -132,6 +135,50 @@
       }
     },
     {
+      "id": "202-7C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: AC Voltage Measurements",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-7C-C1-L1-A",
+            "questionText": "What does RMS stand for?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Root Mean Square",
+            "hint": "Three words abbreviated as R-M-S."
+          },
+          {
+            "id": "202-7C-C1-L1-B",
+            "questionText": "For UK mains (230V), is this value RMS, peak, or peak-to-peak?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "RMS",
+            "hint": "When we say '230V UK mains', we're using the effective value."
+          },
+          {
+            "id": "202-7C-C1-L1-C",
+            "questionText": "What is the peak voltage for UK mains supply (approximately)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "325V",
+            "hint": "Peak is about 1.414 times RMS: 230 × 1.414 ≈ ?"
+          },
+          {
+            "id": "202-7C-C1-L2",
+            "questionText": "How do RMS, peak, and peak-to-peak measurements relate to each other for describing the same AC waveform?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "RMS (230V) is the effective value, peak (325V) is the maximum in one direction, and peak-to-peak (650V) is double the peak showing the full voltage swing. All three describe the same AC supply but measure different aspects: effective power (RMS), maximum reached (peak), and total variation (peak-to-peak).",
+            "hint": "Think about what each measurement tells you about the same waveform."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-7C-explain-time",
       "type": "explanation",
       "order": 5,
@@ -141,12 +188,100 @@
       }
     },
     {
+      "id": "202-7C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Period and Frequency",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-7C-C2-L1-A",
+            "questionText": "What is the frequency of UK mains supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "50 Hz",
+            "hint": "How many cycles per second for UK electricity?"
+          },
+          {
+            "id": "202-7C-C2-L1-B",
+            "questionText": "What is the period of UK mains supply (in milliseconds)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "20 ms",
+            "hint": "How long does one complete cycle take? 0.02 seconds = ? ms"
+          },
+          {
+            "id": "202-7C-C2-L1-C",
+            "questionText": "What is the formula relating period (T) and frequency (f)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "T = 1/f",
+            "hint": "Period equals 1 divided by what?"
+          },
+          {
+            "id": "202-7C-C2-L2",
+            "questionText": "How does the inverse relationship between period and frequency affect AC waveforms?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Because period and frequency are inversely related (T = 1/f), when frequency increases, each cycle takes less time (shorter period). When frequency decreases, each cycle takes more time (longer period). This relationship means you can calculate one from the other: high frequency = short period, low frequency = long period.",
+            "hint": "Think about what happens when one value goes up - what happens to the other?"
+          }
+        ]
+      }
+    },
+    {
       "id": "202-7C-explain-average",
       "type": "explanation",
       "order": 6,
       "content": {
         "title": "Average Voltage: Why It's Zero",
         "content": "**What is Average Voltage?**\nThe **average voltage** is the mathematical average over one complete cycle. For a pure sine wave, this average is **zero**.\n\n**Why Zero?**\nA symmetrical AC waveform spends equal time positive and negative:\n- First half of cycle: voltage is **positive** (e.g., +325V down to 0V)\n- Second half of cycle: voltage is **negative** (e.g., 0V down to -325V)\n- The positive and negative halves **cancel out exactly**\n- Mathematical average = 0V\n\n**But AC Clearly Does Work!**\nThis seems confusing — if the average is zero, how does AC power anything?\n\n**The answer: Power depends on RMS, not average.**\n- Current and voltage are both reversing together\n- Power = V × I, and this is always positive (both forward, or both backward)\n- The **heating effect** doesn't cancel out\n- That's why we use RMS, not average, for AC power\n\n**Average Voltage for Rectified AC**\nIf you convert AC to DC (using a rectifier), you get a **pulsating DC** that's always positive. Now the average is **not zero** — it's about 0.637 × peak.\n\n**At Level 2:**\n- Know that average voltage for pure AC = 0V\n- Understand this is because positive cancels negative\n- Recognize that RMS is the useful value, not average\n- You don't need to calculate average values\n\n**Summary Table:**\n\n| Measurement | UK Mains Example | When Used |\n|-------------|------------------|----------|\n| **RMS** | 230V | Equipment ratings, power calculations |\n| **Peak** | 325V | Insulation ratings, capacitor voltage |\n| **Peak-to-Peak** | 650V | Oscilloscope measurements |\n| **Average** | 0V | (Not useful for pure AC) |\n| **Period** | 20 ms | Timing calculations |\n| **Frequency** | 50 Hz | Standard specification |"
+      }
+    },
+    {
+      "id": "202-7C-check-3",
+      "type": "practice",
+      "order": 6.5,
+      "content": {
+        "title": "Check Your Understanding: Average Voltage",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-7C-C3-L1-A",
+            "questionText": "What is the average voltage of a pure AC sine wave over one complete cycle?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Zero",
+            "hint": "Think about positive and negative halves canceling out."
+          },
+          {
+            "id": "202-7C-C3-L1-B",
+            "questionText": "Which voltage measurement (RMS, peak, or average) is used for AC power calculations?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "RMS",
+            "hint": "We use the effective value, not average or peak."
+          },
+          {
+            "id": "202-7C-C3-L1-C",
+            "questionText": "Why doesn't the average voltage work for AC power calculations?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Because it's zero",
+            "hint": "The positive and negative halves cancel out to give what value?"
+          },
+          {
+            "id": "202-7C-C3-L2",
+            "questionText": "How do the concepts of average voltage and RMS voltage work together to explain why we use RMS for AC power ratings?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Average voltage is zero for AC because positive and negative cancel out, but AC clearly delivers power and does work. RMS solves this problem by giving the effective value that produces the same heating effect as DC. That's why equipment is rated in RMS (230V), not average (0V) or peak (325V).",
+            "hint": "Think about why average doesn't work and what RMS provides instead."
+          }
+        ]
       }
     },
     {
@@ -207,31 +342,56 @@
           {
             "stepNumber": 1,
             "prompt": "What type of voltage does the \"110V\" rating represent: RMS, peak, or peak-to-peak?",
-            "expectedAnswer": ["RMS", "rms", "root mean square", "effective"],
+            "expectedAnswer": [
+              "RMS",
+              "rms",
+              "root mean square",
+              "effective"
+            ],
             "hint": "Equipment ratings almost always use RMS (the effective voltage)."
           },
           {
             "stepNumber": 2,
             "prompt": "What is the peak voltage you observed on the oscilloscope?",
-            "expectedAnswer": ["155V", "155 V", "155"],
+            "expectedAnswer": [
+              "155V",
+              "155 V",
+              "155"
+            ],
             "hint": "The peak is the maximum voltage in one direction."
           },
           {
             "stepNumber": 3,
             "prompt": "What is the peak-to-peak voltage?",
-            "expectedAnswer": ["310V", "310 V", "310"],
+            "expectedAnswer": [
+              "310V",
+              "310 V",
+              "310"
+            ],
             "hint": "Peak-to-peak is the total voltage from positive peak to negative peak. Add the magnitudes: 155 + 155."
           },
           {
             "stepNumber": 4,
             "prompt": "Calculate the period T (in seconds) for a 60 Hz supply. Use T = 1/f.",
-            "expectedAnswer": ["0.0167", "0.01667", "0.017", "16.7ms", "16.7 ms", "1/60"],
+            "expectedAnswer": [
+              "0.0167",
+              "0.01667",
+              "0.017",
+              "16.7ms",
+              "16.7 ms",
+              "1/60"
+            ],
             "hint": "T = 1/f. So T = 1/60."
           },
           {
             "stepNumber": 5,
             "prompt": "Are these measurements consistent? Does RMS ≈ 0.707 × peak?",
-            "expectedAnswer": ["yes", "consistent", "correct", "true"],
+            "expectedAnswer": [
+              "yes",
+              "consistent",
+              "correct",
+              "true"
+            ],
             "hint": "Check: 0.707 × 155 ≈ 110. So yes, they match!"
           }
         ]
@@ -248,36 +408,55 @@
             "id": "202-7C-P1",
             "questionText": "What does RMS stand for?",
             "answerType": "short-text",
-            "expectedAnswer": ["Root Mean Square", "root mean square"],
+            "expectedAnswer": "Root Mean Square",
             "hint": "R-M-S. Three words."
           },
           {
             "id": "202-7C-P2",
             "questionText": "For UK mains (230V, 50 Hz), what is the peak voltage? (approximately)",
             "answerType": "numeric",
-            "expectedAnswer": ["325", "325V", "325 V", "320", "330"],
+            "expectedAnswer": "325",
             "hint": "Peak is about 1.4 times the RMS value. 230 × 1.4 ≈ ?"
           },
           {
             "id": "202-7C-P3",
             "questionText": "What is the period (in milliseconds) for UK mains at 50 Hz? Use T = 1/f.",
             "answerType": "numeric",
-            "expectedAnswer": ["20", "20ms", "20 ms", "0.02", "0.02s"],
+            "expectedAnswer": "20",
             "hint": "T = 1/50 = 0.02 seconds. Convert to milliseconds."
           },
           {
             "id": "202-7C-P4",
             "questionText": "If the peak voltage is 100V, what is the peak-to-peak voltage?",
             "answerType": "numeric",
-            "expectedAnswer": ["200", "200V", "200 V"],
+            "expectedAnswer": "200",
             "hint": "Peak-to-peak = 2 × peak."
           },
           {
             "id": "202-7C-P5",
             "questionText": "When you use a multimeter in AC voltage mode, what type of voltage does it display: RMS, peak, or average?",
             "answerType": "short-text",
-            "expectedAnswer": ["RMS", "rms", "root mean square"],
+            "expectedAnswer": "RMS",
             "hint": "Multimeters show the effective voltage value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-7C-INT-1",
+            "questionText": "You've learned about RMS, peak, peak-to-peak, period, frequency, and average voltage measurements. Explain: Why do we need multiple ways to measure the same AC waveform? When would an electrician use RMS versus peak versus period? Give practical examples. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Multiple measurements are needed because each tells us something different about AC behavior. RMS (230V) is used for power calculations and equipment ratings because it gives the effective value. Peak (325V) is used for insulation ratings and capacitor selection because components must handle the maximum voltage. Period and frequency (20ms, 50Hz) are used for timing calculations and generator speed. Average (0V) isn't useful for pure AC but matters after rectification. Each measurement serves a specific practical purpose in electrical work.",
+            "hint": "Think about what each measurement tells you and when that information would be important."
           }
         ]
       }
@@ -303,5 +482,12 @@
     "updated": "2026-01-15",
     "version": "1.0",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }

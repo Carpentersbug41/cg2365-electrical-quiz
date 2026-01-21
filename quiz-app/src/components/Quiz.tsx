@@ -20,6 +20,19 @@ interface QuizProps {
   questions?: Question[]; // Optional: pass custom filtered questions
   lessonId?: string; // For mastery tracking
   isRetest?: boolean; // True if this is a delayed mastery retest
+  onComplete?: (results: {
+    score: number;
+    totalQuestions: number;
+    percentage: number;
+    passed: boolean;
+    wrongAnswers: Array<{
+      questionId: string;
+      questionText: string;
+      userAnswer: number;
+      correctAnswer: number;
+      options: string[];
+    }>;
+  }) => void;
 }
 
 // Function to shuffle answer options within a question
@@ -114,7 +127,7 @@ const playCompletionSound = (score: number, total: number) => {
   }
 };
 
-export default function Quiz({ section, onBack, questions: customQuestions, lessonId, isRetest = false }: QuizProps = {}) {
+export default function Quiz({ section, onBack, questions: customQuestions, lessonId, isRetest = false, onComplete }: QuizProps = {}) {
   const [quizStarted, setQuizStarted] = useState(false);
   const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -222,6 +235,28 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
     const percentage = (score / questions.length) * 100;
     const passed = percentage >= 80; // 80% pass threshold
     
+    // If onComplete callback provided, call it instead of showing built-in results
+    if (onComplete) {
+      const wrongAnswers = questions
+        .map((q, idx) => ({
+          questionId: q.id.toString(),
+          questionText: q.question,
+          userAnswer: selectedAnswers[idx] ?? -1,
+          correctAnswer: q.correctAnswer,
+          options: q.options,
+        }))
+        .filter((_, idx) => selectedAnswers[idx] !== questions[idx].correctAnswer);
+      
+      onComplete({
+        score,
+        totalQuestions: questions.length,
+        percentage,
+        passed,
+        wrongAnswers,
+      });
+      return; // Don't show built-in results screen
+    }
+    
     playCompletionSound(score, questions.length);
     
     if (score === questions.length) {
@@ -322,7 +357,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
   // Start Screen
   if (!quizStarted) {
     const maxQuestions = sectionQuestions.length;
-    const questionOptions = [5, 10, 20, 30, 50].filter(n => n <= maxQuestions);
+    const questionOptions = [10, 20, 30, 50].filter(n => n <= maxQuestions);
     
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4 flex items-center justify-center">

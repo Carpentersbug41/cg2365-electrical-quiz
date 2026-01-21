@@ -56,9 +56,11 @@ I create a complete specification including:
 
 3. **Content Planning**
    - Explanation focus and approach
+   - **Understanding checks after each explanation** (3×L1 Recall + 1×L2 Connection)
    - Worked example scenario with 3-4 steps
    - Guided practice problem
    - 3-5 Practice questions with variety
+   - **Integrative question at end** (Big Picture - L2/L3 Synthesis)
    - Spaced review topics from prerequisites
 
 4. **Quiz Planning**
@@ -86,9 +88,11 @@ I create the complete lesson file following this structure:
     // 2. Vocab block (3-6 terms)
     // 3. Diagram block (if applicable)
     // 4. Explanation block
+    // 4.5. Understanding Check (3×L1 Recall + 1×L2 Connection) - after each major explanation
     // 5. Worked example block
     // 6. Guided practice block
     // 7. Practice block (3-5 questions)
+    // 9.5. Integrative Question (Big Picture - L2/L3 Synthesis)
     // 8. Spaced review block
   ],
   "metadata": {

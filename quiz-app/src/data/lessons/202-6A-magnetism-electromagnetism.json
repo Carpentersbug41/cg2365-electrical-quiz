@@ -10,7 +10,9 @@
     "Explain the relationship between electricity and magnetism in electromagnets",
     "Describe the basic principles of operation for motors, relays, and transformers"
   ],
-  "prerequisites": ["202-2A"],
+  "prerequisites": [
+    "202-2A"
+  ],
   "blocks": [
     {
       "id": "202-6A-outcomes",
@@ -75,7 +77,15 @@
         "description": "Magnetic field lines show the direction and strength of a magnetic field. They always run from the north pole to the south pole outside the magnet, and form closed loops. Field lines are closest together where the field is strongest (at the poles).",
         "videoUrl": "https://www.youtube.com/watch?v=N8D8k7JCEwk",
         "diagramType": "concept",
-        "elementIds": ["bar-magnet", "north-pole", "south-pole", "field-lines", "attraction", "repulsion", "solenoid"],
+        "elementIds": [
+          "bar-magnet",
+          "north-pole",
+          "south-pole",
+          "field-lines",
+          "attraction",
+          "repulsion",
+          "solenoid"
+        ],
         "placeholderText": "Magnetic field pattern diagrams showing: Bar magnet with field lines from N to S; Unlike poles (N-S) attracting with connected field lines; Like poles (N-N or S-S) repelling with separated field lines; Electromagnet (solenoid) with current creating field similar to bar magnet. Field lines are closest together at poles where field is strongest."
       }
     },
@@ -89,6 +99,50 @@
       }
     },
     {
+      "id": "202-6A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Permanent Magnets and Magnetic Fields",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-6A-C1-L1-A",
+            "questionText": "What are the two poles that every magnet has?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "North and South",
+            "hint": "Think about the ends of a magnet where the field is strongest."
+          },
+          {
+            "id": "202-6A-C1-L1-B",
+            "questionText": "What happens when you bring two like poles together (N-N or S-S)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "They repel",
+            "hint": "Do like poles attract or push apart?"
+          },
+          {
+            "id": "202-6A-C1-L1-C",
+            "questionText": "Where is the magnetic field strongest on a magnet?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "At the poles",
+            "hint": "Look at where field lines are closest together."
+          },
+          {
+            "id": "202-6A-C1-L2",
+            "questionText": "How do these properties (two poles, attraction/repulsion, strongest at poles) work together to create the magnetic field pattern we see around a magnet?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "The magnet has two poles (N and S) that create field lines running from north to south. Like poles repel and unlike poles attract, creating the pattern. Field lines are closest together at the poles where the field is strongest.",
+            "hint": "Combine what you know about poles, field lines, and field strength."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-6A-explain-electromagnetism",
       "type": "explanation",
       "order": 5,
@@ -98,12 +152,100 @@
       }
     },
     {
+      "id": "202-6A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Electromagnetism",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-6A-C2-L1-A",
+            "questionText": "What creates a magnetic field around a wire?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Electric current flowing through the wire",
+            "hint": "Think about what Ørsted discovered in 1820."
+          },
+          {
+            "id": "202-6A-C2-L1-B",
+            "questionText": "What is a solenoid?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "A coil of wire that produces a magnetic field when current flows through it",
+            "hint": "It's a coil that acts like an electromagnet."
+          },
+          {
+            "id": "202-6A-C2-L1-C",
+            "questionText": "Name one advantage of an electromagnet over a permanent magnet.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "It can be switched on and off",
+            "hint": "What can you do with an electromagnet that you can't do with a bar magnet?"
+          },
+          {
+            "id": "202-6A-C2-L2",
+            "questionText": "How do these three concepts (current creating magnetic fields, solenoids, and switchable electromagnets) relate to make electromagnets useful in electrical engineering?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Current creates magnetic fields, and coiling the wire into a solenoid makes this field much stronger. Because electromagnets can be switched on and off by controlling the current, they're more useful than permanent magnets for devices like relays, motors, and transformers.",
+            "hint": "Think about why being able to control the magnetic field is important."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-6A-explain-applications",
       "type": "explanation",
       "order": 6,
       "content": {
         "title": "Applications: Motors, Relays, and Transformers",
         "content": "Electromagnetism is the basis for three essential electrical devices:\n\n---\n\n## 1. Electric Motors\n\n**Purpose**: Convert electrical energy into mechanical motion (rotation)\n\n**Basic Principle:**\n- A current-carrying coil is placed in a magnetic field\n- The magnetic field exerts a force on the coil\n- This force causes the coil to **rotate**\n- A **commutator** (split ring) reverses current direction every half turn to keep rotation continuous\n\n**Where Used:**\n- Power tools (drills, sanders)\n- Fans and pumps\n- Washing machines\n- Electric vehicles\n\n**Key Point**: Motors use the interaction between an electromagnet (rotor) and permanent magnets or electromagnets (stator) to produce continuous rotation.\n\n---\n\n## 2. Relays\n\n**Purpose**: Use a small current to control a much larger current safely\n\n**Basic Principle:**\n- A small current energizes an electromagnet\n- The electromagnet attracts an iron armature\n- The armature closes (or opens) contacts in a **separate high-power circuit**\n- When current stops, a spring returns the armature to rest position\n\n**Why Important:**\n- **Safety**: Control high voltage/current from a safe low-voltage switch\n- **Isolation**: Keep control circuit separate from power circuit\n- **Remote switching**: Control distant or inaccessible circuits\n\n**Where Used:**\n- Car starter systems (small ignition key switch controls high-current starter motor)\n- Industrial control systems\n- Safety interlocks\n- Automation systems\n\n**Example**: Your doorbell uses a relay — pressing the button (low current) activates a relay that rings the bell (higher current).\n\n---\n\n## 3. Transformers\n\n**Purpose**: Change AC voltage up or down\n\n**Basic Principle (Introductory):**\n- Two coils of wire (primary and secondary) wrapped around an **iron core**\n- AC current in primary coil creates a **changing magnetic field**\n- The changing field **induces** a voltage in the secondary coil\n- The voltage ratio depends on the **turns ratio** between coils\n\n**Types:**\n- **Step-up transformer**: Increases voltage (more turns on secondary)\n- **Step-down transformer**: Decreases voltage (fewer turns on secondary)\n\n**Where Used:**\n- Power distribution (transmission at high voltage, then stepped down for homes)\n- Phone chargers and laptop power supplies\n- Doorbells (mains voltage stepped down to safe low voltage)\n- Welding equipment\n\n**Important**: Transformers **only work with AC** (alternating current), not DC, because they need a changing magnetic field.\n\n---\n\n## Summary Table\n\n| Device | Input | Output | Uses Electromagnet? |\n|--------|-------|--------|---------------------|\n| **Motor** | Electrical energy | Mechanical rotation | Yes (rotating coil) |\n| **Relay** | Small current | Switched high current | Yes (to move armature) |\n| **Transformer** | AC voltage (one level) | AC voltage (different level) | Yes (creates changing field) |\n\nAll three devices rely on the fundamental principle of **electromagnetism**: the interaction between electricity and magnetism."
+      }
+    },
+    {
+      "id": "202-6A-check-3",
+      "type": "practice",
+      "order": 6.5,
+      "content": {
+        "title": "Check Your Understanding: Applications",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-6A-C3-L1-A",
+            "questionText": "What does an electric motor convert electrical energy into?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Mechanical motion or rotation",
+            "hint": "Motors make things move or spin."
+          },
+          {
+            "id": "202-6A-C3-L1-B",
+            "questionText": "What is the purpose of a relay?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "To use a small current to control a much larger current safely",
+            "hint": "Think about controlling high-power circuits from low-power switches."
+          },
+          {
+            "id": "202-6A-C3-L1-C",
+            "questionText": "Do transformers work with AC or DC, and why?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "AC only, because transformers need a changing magnetic field",
+            "hint": "Remember that transformers need the field to keep changing."
+          },
+          {
+            "id": "202-6A-C3-L2",
+            "questionText": "How do motors, relays, and transformers all use the same principle of electromagnetism in different ways?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "All three use electromagnets to do different jobs: motors use electromagnetic force to create rotation, relays use electromagnets to mechanically switch contacts, and transformers use changing electromagnetic fields to transfer energy between coils. They all rely on the link between electricity and magnetism.",
+            "hint": "Think about what electromagnetic effect each device uses."
+          }
+        ]
       }
     },
     {
@@ -157,19 +299,36 @@
           {
             "stepNumber": 1,
             "prompt": "Why is it dangerous to connect a doorbell directly to 230V mains?",
-            "expectedAnswer": ["dangerous", "unsafe", "could cause electric shock", "too high voltage", "safety risk"],
+            "expectedAnswer": [
+              "dangerous",
+              "unsafe",
+              "could cause electric shock",
+              "too high voltage",
+              "safety risk"
+            ],
             "hint": "Think about what happens if someone touches the doorbell button with wet hands."
           },
           {
             "stepNumber": 2,
             "prompt": "What does the transformer do to make it safe?",
-            "expectedAnswer": ["reduces voltage", "steps down voltage", "lowers voltage to 12V", "converts to safe voltage"],
+            "expectedAnswer": [
+              "reduces voltage",
+              "steps down voltage",
+              "lowers voltage to 12V",
+              "converts to safe voltage"
+            ],
             "hint": "The transformer changes the voltage level."
           },
           {
             "stepNumber": 3,
             "prompt": "Why does a transformer only work with AC and not DC?",
-            "expectedAnswer": ["needs changing field", "needs alternating current", "DC doesn't change", "AC creates changing magnetic field", "transformer needs varying field"],
+            "expectedAnswer": [
+              "needs changing field",
+              "needs alternating current",
+              "DC doesn't change",
+              "AC creates changing magnetic field",
+              "transformer needs varying field"
+            ],
             "hint": "A transformer works by electromagnetic induction, which requires the magnetic field to be constantly changing."
           }
         ]
@@ -186,36 +345,55 @@
             "id": "202-6A-P1",
             "questionText": "What happens when you bring two north poles of magnets close together?",
             "answerType": "short-text",
-            "expectedAnswer": ["repel", "push apart", "they repel", "repel each other", "push away"],
+            "expectedAnswer": "repel",
             "hint": "Remember: like poles repel, unlike poles attract."
           },
           {
             "id": "202-6A-P2",
             "questionText": "What is the main advantage of an electromagnet over a permanent magnet?",
             "answerType": "short-text",
-            "expectedAnswer": ["can turn on and off", "switchable", "can control strength", "controllable", "can be turned off"],
+            "expectedAnswer": "can turn on and off",
             "hint": "Think about what you can do with an electromagnet that you can't do with a bar magnet."
           },
           {
             "id": "202-6A-P3",
             "questionText": "Name the device that converts electrical energy into rotational mechanical motion.",
             "answerType": "short-text",
-            "expectedAnswer": ["motor", "electric motor", "electrical motor"],
+            "expectedAnswer": "motor",
             "hint": "This device makes things spin or rotate using electricity."
           },
           {
             "id": "202-6A-P4",
             "questionText": "In a relay, what does the small current control?",
             "answerType": "short-text",
-            "expectedAnswer": ["large current", "high current", "separate circuit", "power circuit", "another circuit"],
+            "expectedAnswer": "large current",
             "hint": "Relays use a small current to safely switch something else."
           },
           {
             "id": "202-6A-P5",
             "questionText": "Why do transformers only work with AC, not DC?",
             "answerType": "short-text",
-            "expectedAnswer": ["need changing field", "need alternating current", "DC doesn't change", "requires changing magnetic field", "AC changes constantly"],
+            "expectedAnswer": "need changing field",
             "hint": "Transformers rely on electromagnetic induction, which requires the field to be changing."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-6A-INT-1",
+            "questionText": "You've learned about permanent magnets, electromagnets, and three key electromagnetic devices (motors, relays, transformers). Explain: Why is the ability to switch electromagnets on and off so important for these practical applications? How does this controllability make electromagnetic devices more useful than permanent magnets in electrical systems? (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "The ability to switch electromagnets on and off by controlling electric current makes them essential for practical applications. Motors need the magnetic field to reverse continuously to maintain rotation. Relays need to switch on when activated and release when turned off. Transformers need constantly changing magnetic fields to transfer energy between coils. This controllability means electromagnets can respond dynamically to electrical signals, while permanent magnets have fixed, unchangeable fields that cannot perform these functions.",
+            "hint": "Think about what each device needs to do and why a fixed magnetic field wouldn't work."
           }
         ]
       }
@@ -241,6 +419,12 @@
     "updated": "2026-01-14",
     "version": "1.0",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }
-

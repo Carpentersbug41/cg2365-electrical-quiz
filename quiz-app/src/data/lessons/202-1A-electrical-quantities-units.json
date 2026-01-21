@@ -71,7 +71,12 @@
         "description": "Overview of the fundamental electrical quantities and their units",
         "videoUrl": "https://www.youtube.com/watch?v=oNqiPyRyWmQ",
         "diagramType": "concept",
-        "elementIds": ["current", "voltage", "resistance", "power"],
+        "elementIds": [
+          "current",
+          "voltage",
+          "resistance",
+          "power"
+        ],
         "placeholderText": "Visual representation of the four fundamental electrical quantities: Current (I, A), Voltage (V, V), Resistance (R, Ω), and Power (P, W)."
       }
     },
@@ -85,12 +90,100 @@
       }
     },
     {
+      "id": "202-1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The Four Fundamental Electrical Quantities",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-1A-C1-L1-A",
+            "questionText": "What is current and what is its SI unit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Current is the rate of flow of electric charge, measured in amperes (A)",
+            "hint": "Think about what 'I' represents and its unit."
+          },
+          {
+            "id": "202-1A-C1-L1-B",
+            "questionText": "What is voltage and what is its SI unit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Voltage is electrical potential difference or 'push', measured in volts (V)",
+            "hint": "What quantity provides the electrical 'pressure'?"
+          },
+          {
+            "id": "202-1A-C1-L1-C",
+            "questionText": "What is resistance and what is its SI unit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Resistance is the opposition to current flow, measured in ohms (Ω)",
+            "hint": "What quantity opposes the flow of electricity?"
+          },
+          {
+            "id": "202-1A-C1-L2",
+            "questionText": "How do these three quantities (voltage, current, and resistance) work together in an electrical circuit using the water analogy?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Voltage acts as the electrical pressure that pushes current (the flow of charge) through the circuit. Resistance opposes this flow - like friction in a pipe. Higher voltage increases flow, while higher resistance decreases it.",
+            "hint": "Think about pressure, flow rate, and what slows down the flow."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-1A-explain-prefixes",
       "type": "explanation",
       "order": 5,
       "content": {
         "title": "Unit Prefixes: Making Numbers Manageable",
         "content": "Electrical values can be very large or very small. Instead of writing 2,500 A or 0.005 A, we use **prefixes** to make numbers easier to read and write.\n\n**Common Prefixes (Large Values):**\n- **kilo (k)** = ×1,000 (one thousand)\n- **mega (M)** = ×1,000,000 (one million)\n\n**Common Prefixes (Small Values):**\n- **milli (m)** = ÷1,000 (one thousandth)\n- **micro (μ)** = ÷1,000,000 (one millionth)\n\n**Examples:**\n- 2,500 Ω = 2.5 kΩ (2.5 kilo-ohms)\n- 0.005 A = 5 mA (5 milliamps)\n- 0.000022 A = 22 μA (22 microamps)\n- 230,000 W = 230 kW (230 kilowatts)\n\n**Conversion Tips:**\n- To convert **from base unit to smaller prefix** (A → mA), **multiply** by 1000\n- To convert **from smaller prefix to base unit** (mA → A), **divide** by 1000\n- To convert **from base unit to larger prefix** (Ω → kΩ), **divide** by 1000\n- To convert **from larger prefix to base unit** (kΩ → Ω), **multiply** by 1000"
+      }
+    },
+    {
+      "id": "202-1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Unit Prefixes",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-1A-C2-L1-A",
+            "questionText": "What does the prefix 'kilo' (k) mean?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Kilo means multiply by 1,000 or ×1000",
+            "hint": "What number does 'k' represent?"
+          },
+          {
+            "id": "202-1A-C2-L1-B",
+            "questionText": "What does the prefix 'milli' (m) mean?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Milli means divide by 1,000 or ×0.001",
+            "hint": "What fraction does 'm' represent?"
+          },
+          {
+            "id": "202-1A-C2-L1-C",
+            "questionText": "What does the prefix 'micro' (μ) mean?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Micro means divide by 1,000,000 or ×0.000001",
+            "hint": "What very small fraction does 'μ' represent?"
+          },
+          {
+            "id": "202-1A-C2-L2",
+            "questionText": "Why do electricians use prefixes like kilo, milli, and micro rather than writing out long numbers with many zeros?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Prefixes make large and small numbers more manageable and easier to read. They reduce errors by eliminating the need to count zeros, and make communication clearer (e.g., 22 μA is much easier than 0.000022 A).",
+            "hint": "Think about readability, errors, and communication."
+          }
+        ]
       }
     },
     {
@@ -137,25 +230,43 @@
           {
             "stepNumber": 1,
             "prompt": "To convert 0.5 A to mA, should you multiply or divide by 1000?",
-            "expectedAnswer": ["multiply", "multiply by 1000", "×1000", "times 1000"],
+            "expectedAnswer": [
+              "multiply",
+              "multiply by 1000",
+              "×1000",
+              "times 1000"
+            ],
             "hint": "You're going from a larger unit (A) to a smaller unit (mA), so the number should get bigger."
           },
           {
             "stepNumber": 2,
             "prompt": "Calculate: 0.5 A = ? mA",
-            "expectedAnswer": ["500", "500 mA", "500mA"],
+            "expectedAnswer": [
+              "500",
+              "500 mA",
+              "500mA"
+            ],
             "hint": "0.5 × 1000 = ?"
           },
           {
             "stepNumber": 3,
             "prompt": "To convert 4700 Ω to kΩ, should you multiply or divide by 1000?",
-            "expectedAnswer": ["divide", "divide by 1000", "÷1000", "divided by 1000"],
+            "expectedAnswer": [
+              "divide",
+              "divide by 1000",
+              "÷1000",
+              "divided by 1000"
+            ],
             "hint": "You're going from a smaller unit (Ω) to a larger unit (kΩ), so the number should get smaller."
           },
           {
             "stepNumber": 4,
             "prompt": "Calculate: 4700 Ω = ? kΩ",
-            "expectedAnswer": ["4.7", "4.7 kΩ", "4.7kΩ"],
+            "expectedAnswer": [
+              "4.7",
+              "4.7 kΩ",
+              "4.7kΩ"
+            ],
             "hint": "4700 ÷ 1000 = ?"
           }
         ]
@@ -172,36 +283,55 @@
             "id": "202-1A-P1",
             "questionText": "What is the SI unit for electrical current?",
             "answerType": "short-text",
-            "expectedAnswer": ["ampere", "amperes", "A", "amp", "amps"],
+            "expectedAnswer": "ampere",
             "hint": "Think about the symbol 'A' — what does it stand for?"
           },
           {
             "id": "202-1A-P2",
             "questionText": "Convert 3.5 A to mA.",
             "answerType": "numeric",
-            "expectedAnswer": ["3500", "3500 mA", "3500mA"],
+            "expectedAnswer": "3500",
             "hint": "To convert from A to mA, multiply by 1000."
           },
           {
             "id": "202-1A-P3",
             "questionText": "Convert 6800 Ω to kΩ.",
             "answerType": "numeric",
-            "expectedAnswer": ["6.8", "6.8 kΩ", "6.8kΩ"],
+            "expectedAnswer": "6.8",
             "hint": "To convert from Ω to kΩ, divide by 1000."
           },
           {
             "id": "202-1A-P4",
             "questionText": "What does the prefix 'kilo' mean?",
             "answerType": "short-text",
-            "expectedAnswer": ["multiply by 1000", "times 1000", "×1000", "one thousand", "1000"],
+            "expectedAnswer": "multiply by 1000",
             "hint": "A kilometre is 1000 metres. What does kilo represent?"
           },
           {
             "id": "202-1A-P5",
             "questionText": "A circuit has a resistance of 0.0047 Ω. Express this in milliohms (mΩ).",
             "answerType": "numeric",
-            "expectedAnswer": ["4.7", "4.7 mΩ", "4.7mΩ"],
+            "expectedAnswer": "4.7",
             "hint": "To convert from Ω to mΩ, multiply by 1000."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-1A-integrative",
+      "type": "practice",
+      "order": 8.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-1A-INT-1",
+            "questionText": "You've learned about the four fundamental quantities (current, voltage, resistance, power) and unit prefixes (kilo, milli, micro). Explain: Why is it important for an electrician to understand both the quantities AND the prefixes when working with electrical values? Give practical examples. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Understanding the quantities helps electricians know what they're measuring - current flow, electrical pressure, opposition, or energy rate. Understanding prefixes allows them to work with real-world values efficiently, converting between units like 0.005 A to 5 mA or 2,500 Ω to 2.5 kΩ. Together, this knowledge enables clear communication, accurate calculations, and proper equipment selection. Without both, an electrician might misread values or make calculation errors that could affect safety or system performance.",
+            "hint": "Think about measurement, communication, calculations, and real-world applications."
           }
         ]
       }
@@ -229,4 +359,3 @@
     "author": "C&G 2365 Learning Team"
   }
 }
-

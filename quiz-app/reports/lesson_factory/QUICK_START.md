@@ -92,11 +92,13 @@ Questions: Include more calculation problems
 Generated files ready for review:
 
 1. 202-3A-series-circuits.json (450 lines)
-   - 8 blocks (outcomes → vocab → diagram → explanation → 
-     worked example → guided practice → practice → spaced review)
+   - 8-10 blocks (outcomes → vocab → diagram → explanation → 
+     **understanding check (3×L1 + 1×L2)** → worked example → 
+     guided practice → practice → **integrative question** → spaced review)
    - Layout: split-vis
    - Prerequisites: 202-1A, 202-2A
    - Learning outcomes: 3 (remember, understand, apply)
+   - New: Progressive depth-of-processing questions after each explanation
 
 2. seriesCircuitsQuestions.ts (50 questions)
    - Difficulty: 15 easy, 25 medium, 10 hard

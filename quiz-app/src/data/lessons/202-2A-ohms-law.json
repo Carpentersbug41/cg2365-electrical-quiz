@@ -11,7 +11,9 @@
     "Calculate unknown values in circuits using Ohm's Law",
     "Predict how changes in V, I, or R affect circuit behavior"
   ],
-  "prerequisites": ["202-1A"],
+  "prerequisites": [
+    "202-1A"
+  ],
   "blocks": [
     {
       "id": "202-2A-outcomes",
@@ -80,7 +82,12 @@
         "description": "Visual explanation of the relationship between voltage, current, and resistance",
         "videoUrl": "https://www.youtube.com/watch?v=GLQmjNbjc7g",
         "diagramType": "concept",
-        "elementIds": ["voltage", "current", "resistance", "formula"],
+        "elementIds": [
+          "voltage",
+          "current",
+          "resistance",
+          "formula"
+        ],
         "placeholderText": "Visual representation of Ohm's Law showing the relationship V = I × R and how voltage, current, and resistance interact in a circuit."
       }
     },
@@ -91,6 +98,50 @@
       "content": {
         "title": "Understanding Ohm's Law",
         "content": "**Ohm's Law** is one of the most important principles in electrical work. It describes the relationship between voltage, current, and resistance in any circuit.\n\n**The Formula:**\n\n**V = I × R**\n\nWhere:\n- **V** = Voltage in volts (V)\n- **I** = Current in amperes (A)\n- **R** = Resistance in ohms (Ω)\n\n**What It Means:**\n\nOhm's Law tells us that the voltage across a component equals the current flowing through it multiplied by its resistance.\n\n**Think of it like water in a pipe:**\n- **Voltage (V)** is like water pressure - the push that makes water flow\n- **Current (I)** is like the flow rate - how much water flows per second\n- **Resistance (R)** is like the pipe width - narrow pipes resist flow more\n\nHigher pressure (voltage) creates more flow (current). A narrower pipe (higher resistance) reduces flow (current).\n\n**The Three Forms:**\n\nWe can rearrange Ohm's Law to solve for any variable:\n\n1. **V = I × R** (to find voltage)\n2. **I = V ÷ R** (to find current)\n3. **R = V ÷ I** (to find resistance)\n\n**How They Relate:**\n\n- If you **increase voltage**, current increases (V and I are directly proportional)\n- If you **increase resistance**, current decreases (I and R are inversely proportional)\n- Voltage is the product of current and resistance\n\nRemember: You need to know **any two** values to calculate the third!"
+      }
+    },
+    {
+      "id": "202-2A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Ohm's Law",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-2A-C1-L1-A",
+            "questionText": "What is Ohm's Law formula?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "V = I × R",
+            "hint": "What formula relates voltage, current, and resistance?"
+          },
+          {
+            "id": "202-2A-C1-L1-B",
+            "questionText": "What does V represent in Ohm's Law?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Voltage in volts",
+            "hint": "What is the first variable in V = I × R?"
+          },
+          {
+            "id": "202-2A-C1-L1-C",
+            "questionText": "What do I and R represent in Ohm's Law?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "I is current in amperes and R is resistance in ohms",
+            "hint": "What are the other two variables in the formula?"
+          },
+          {
+            "id": "202-2A-C1-L2",
+            "questionText": "How does changing voltage OR resistance affect the current in a circuit, based on Ohm's Law?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Increasing voltage increases current (direct relationship). Increasing resistance decreases current (inverse relationship). The formula I = V ÷ R shows current depends on both.",
+            "hint": "Think about V = I × R - what happens if V goes up or R goes up?"
+          }
+        ]
       }
     },
     {
@@ -144,19 +195,35 @@
           {
             "stepNumber": 1,
             "prompt": "What values do you know? Write them down with units.",
-            "expectedAnswer": ["I = 3A, R = 4Ω", "3A and 4Ω", "I=3A R=4Ω", "current 3A resistance 4Ω"],
+            "expectedAnswer": [
+              "I = 3A, R = 4Ω",
+              "3A and 4Ω",
+              "I=3A R=4Ω",
+              "current 3A resistance 4Ω"
+            ],
             "hint": "Look for the current (in A) and resistance (in Ω) given in the problem."
           },
           {
             "stepNumber": 2,
             "prompt": "Which formula do you need to find voltage?",
-            "expectedAnswer": ["V = I × R", "V=IR", "V = IR", "voltage = current × resistance"],
+            "expectedAnswer": [
+              "V = I × R",
+              "V=IR",
+              "V = IR",
+              "voltage = current × resistance"
+            ],
             "hint": "Remember the three forms of Ohm's Law. Which one has V on the left side?"
           },
           {
             "stepNumber": 3,
             "prompt": "Substitute the values and calculate V.",
-            "expectedAnswer": ["12V", "12 V", "V = 12V", "12 volts", "V=12V"],
+            "expectedAnswer": [
+              "12V",
+              "12 V",
+              "V = 12V",
+              "12 volts",
+              "V=12V"
+            ],
             "hint": "Multiply current by resistance: V = 3 × 4"
           }
         ]
@@ -173,36 +240,55 @@
             "id": "202-2A-P1",
             "questionText": "A 9V battery is connected to a 3Ω resistor. Calculate the current.",
             "answerType": "numeric",
-            "expectedAnswer": ["3A", "3 A", "3", "3 amperes", "I = 3A"],
+            "expectedAnswer": "3A",
             "hint": "Use I = V ÷ R. Divide voltage by resistance."
           },
           {
             "id": "202-2A-P2",
             "questionText": "A circuit has 0.5A current and 20Ω resistance. Find the voltage.",
             "answerType": "numeric",
-            "expectedAnswer": ["10V", "10 V", "10", "10 volts", "V = 10V"],
+            "expectedAnswer": "10V",
             "hint": "Use V = I × R. Multiply current by resistance."
           },
           {
             "id": "202-2A-P3",
             "questionText": "If voltage is 24V and current is 2A, what is the resistance?",
             "answerType": "numeric",
-            "expectedAnswer": ["12Ω", "12 Ω", "12", "12 ohms", "R = 12Ω"],
+            "expectedAnswer": "12Ω",
             "hint": "Use R = V ÷ I. Divide voltage by current."
           },
           {
             "id": "202-2A-P4",
             "questionText": "What happens to current if you double the voltage while keeping resistance constant?",
             "answerType": "short-text",
-            "expectedAnswer": ["doubles", "current doubles", "it doubles", "increases by 2x", "becomes twice as much", "multiplied by 2"],
+            "expectedAnswer": "doubles",
             "hint": "V and I are directly proportional. If V increases, I increases by the same factor."
           },
           {
             "id": "202-2A-P5",
             "questionText": "What happens to current if you double the resistance while keeping voltage constant?",
             "answerType": "short-text",
-            "expectedAnswer": ["halves", "current halves", "it halves", "decreases by half", "becomes half", "divided by 2", "cuts in half"],
+            "expectedAnswer": "halves",
             "hint": "I and R are inversely proportional. If R increases, I decreases."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-2A-integrative",
+      "type": "practice",
+      "order": 7.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-2A-INT-1",
+            "questionText": "You've learned Ohm's Law (V = I × R) and how to rearrange it. Explain: Why is Ohm's Law so fundamental to electrical work? How do electricians use it in practice? Give examples of when you'd need each form of the formula. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Ohm's Law is fundamental because it describes the relationship between the three most important electrical quantities in any circuit. Electricians use V = I × R to calculate voltage drops, I = V ÷ R to determine current draw and check if cables can handle the load, and R = V ÷ I to find resistance for troubleshooting or selecting components. Understanding this relationship is essential for circuit design, fault finding, and ensuring electrical safety.",
+            "hint": "Think about voltage calculations, current safety checks, and troubleshooting resistance."
           }
         ]
       }
@@ -228,6 +314,12 @@
     "updated": "2026-01-14",
     "version": "1.0",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }
-

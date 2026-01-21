@@ -15,6 +15,24 @@ function normalizeAnswer(answer: string): string {
 }
 
 /**
+ * Count keyword matches in user answer
+ * Returns the number of keywords found (case-insensitive)
+ */
+function countKeywordMatches(userAnswer: string, keywords: string[]): number {
+  const normalizedUser = normalizeAnswer(userAnswer);
+  let matchCount = 0;
+  
+  for (const keyword of keywords) {
+    const normalizedKeyword = normalizeAnswer(keyword);
+    if (normalizedUser.includes(normalizedKeyword)) {
+      matchCount++;
+    }
+  }
+  
+  return matchCount;
+}
+
+/**
  * Extract numeric value and units from answer
  */
 function parseNumericAnswer(answer: string): { value: number | null; units: string | null } {
@@ -70,8 +88,8 @@ export function markMCQ(
     expectedAnswer: question.options[question.correctAnswer],
     misconceptionCode,
     feedback: isCorrect
-      ? '✓ Correct!'
-      : `✗ Incorrect. The correct answer is: ${question.options[question.correctAnswer]}`,
+      ? 'Correct.'
+      : `Not quite. The correct answer is: ${question.options[question.correctAnswer]}`,
     metadata: {
       markedAt: new Date(),
       markingStrategy: 'exact-match',
@@ -119,7 +137,7 @@ export function markNumeric(
       score: 0,
       userAnswer,
       expectedAnswer: expectedAnswers,
-      feedback: '✗ Invalid numeric answer format.',
+      feedback: 'Incorrect. Invalid numeric format.',
       metadata: {
         markedAt: new Date(),
         markingStrategy: 'numeric-tolerance',
@@ -154,7 +172,7 @@ export function markNumeric(
             userAnswer,
             expectedAnswer: expectedAnswers,
             misconceptionCode: 'UNITS_MISSING',
-            feedback: '⚠ Value is correct, but units are missing or incorrect.',
+            feedback: 'Close, but not correct. Value is correct, but units are missing or incorrect.',
             partialCredit: {
               awarded: true,
               points: 0.7,
@@ -179,7 +197,7 @@ export function markNumeric(
         score: 1,
         userAnswer,
         expectedAnswer: expectedAnswers,
-        feedback: '✓ Correct!',
+        feedback: 'Correct.',
         metadata: {
           markedAt: new Date(),
           markingStrategy: 'numeric-tolerance',
@@ -194,7 +212,7 @@ export function markNumeric(
     score: 0,
     userAnswer,
     expectedAnswer: expectedAnswers,
-    feedback: `✗ Incorrect. Expected: ${expectedAnswers.join(' or ')}`,
+    feedback: `Incorrect. Expected: ${expectedAnswers.join(' or ')}`,
     metadata: {
       markedAt: new Date(),
       markingStrategy: 'numeric-tolerance',
@@ -212,22 +230,51 @@ export function markShortText(
 ): MarkingResult {
   const normalizedUser = normalizeAnswer(userAnswer);
 
-  // Check for keyword matches
+  // Check for keyword matches with minimum threshold (for conceptual questions)
   if (config?.requiredKeywords) {
-    const hasAllKeywords = config.requiredKeywords.every(keyword =>
-      normalizedUser.includes(normalizeAnswer(keyword))
-    );
-
-    if (hasAllKeywords) {
+    const keywordCount = countKeywordMatches(userAnswer, config.requiredKeywords);
+    const minimumRequired = config.minimumKeywordCount || config.requiredKeywords.length;
+    
+    if (keywordCount >= minimumRequired) {
+      // Calculate partial credit based on keyword match ratio
+      const keywordRatio = keywordCount / config.requiredKeywords.length;
+      const score = keywordRatio >= 0.8 ? 1 : keywordRatio;
+      
       return {
-        isCorrect: true,
-        score: 1,
+        isCorrect: keywordCount >= minimumRequired,
+        score,
         userAnswer,
         expectedAnswer: expectedAnswers,
-        feedback: '✓ Correct! Your answer contains the key concepts.',
+        feedback: keywordCount === config.requiredKeywords.length
+          ? 'Correct. Your answer contains all the key concepts.'
+          : `Correct. Your answer contains ${keywordCount} out of ${config.requiredKeywords.length} key concepts.`,
+        partialCredit: score < 1 ? {
+          awarded: true,
+          points: score,
+          reason: `Includes ${keywordCount} of ${config.requiredKeywords.length} key concepts`,
+        } : undefined,
         metadata: {
           markedAt: new Date(),
-          markingStrategy: 'contains-keywords',
+          markingStrategy: 'keyword-counting',
+          keywordMatches: keywordCount,
+          keywordsRequired: minimumRequired,
+          keywordsTotal: config.requiredKeywords.length,
+        },
+      };
+    } else {
+      // Not enough keywords
+      return {
+        isCorrect: false,
+        score: 0,
+        userAnswer,
+        expectedAnswer: expectedAnswers,
+        feedback: `Not quite. Your answer needs more detail. Include at least ${minimumRequired} of these key concepts: ${config.requiredKeywords.join(', ')}`,
+        metadata: {
+          markedAt: new Date(),
+          markingStrategy: 'keyword-counting',
+          keywordMatches: keywordCount,
+          keywordsRequired: minimumRequired,
+          keywordsTotal: config.requiredKeywords.length,
         },
       };
     }
@@ -243,7 +290,7 @@ export function markShortText(
         score: 1,
         userAnswer,
         expectedAnswer: expectedAnswers,
-        feedback: '✓ Correct!',
+        feedback: 'Correct.',
         metadata: {
           markedAt: new Date(),
           markingStrategy: 'normalized-match',
@@ -258,7 +305,7 @@ export function markShortText(
     score: 0,
     userAnswer,
     expectedAnswer: expectedAnswers,
-    feedback: `✗ Incorrect. Expected concepts: ${expectedAnswers.join(' or ')}`,
+    feedback: `Not quite. Expected concepts: ${expectedAnswers.join(' or ')}`,
     metadata: {
       markedAt: new Date(),
       markingStrategy: 'normalized-match',

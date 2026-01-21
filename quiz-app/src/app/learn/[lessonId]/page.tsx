@@ -1,12 +1,14 @@
 /**
  * Dynamic Lesson Page
  * Renders lessons using appropriate layout based on lesson data
+ * Includes diagnostic gate for prerequisite checking
  */
 
 import { notFound } from 'next/navigation';
 import { Lesson } from '@/data/lessons/types';
 import LayoutA from '@/components/learning/layouts/LayoutA';
 import LayoutB from '@/components/learning/layouts/LayoutB';
+import DiagnosticGate from '@/components/learning/DiagnosticGate';
 
 // Import lesson data
 import lesson201_1A from '@/data/lessons/201-1A-health-safety-legislation.json';
@@ -54,6 +56,15 @@ export default async function LessonPage({ params }: PageProps) {
 
   // Select layout component based on lesson layout type
   const LayoutComponent = lesson.layout === 'split-vis' ? LayoutA : LayoutB;
+
+  // Check if diagnostic gate is required
+  if (lesson.diagnostic?.enabled) {
+    return (
+      <DiagnosticGate lessonId={lessonId} diagnostic={lesson.diagnostic}>
+        <LayoutComponent lesson={lesson} />
+      </DiagnosticGate>
+    );
+  }
 
   return <LayoutComponent lesson={lesson} />;
 }

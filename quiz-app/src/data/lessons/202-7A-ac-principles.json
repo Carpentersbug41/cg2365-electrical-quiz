@@ -10,7 +10,10 @@
     "Explain what frequency means and identify the UK mains frequency",
     "Describe the characteristics of UK mains supply (voltage and frequency)"
   ],
-  "prerequisites": ["202-1A", "202-2A"],
+  "prerequisites": [
+    "202-1A",
+    "202-2A"
+  ],
   "blocks": [
     {
       "id": "202-7A-outcomes",
@@ -107,6 +110,50 @@
       }
     },
     {
+      "id": "202-7A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: AC vs DC",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-7A-C1-L1-A",
+            "questionText": "What does AC stand for?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Alternating Current",
+            "hint": "Think about the full name for AC."
+          },
+          {
+            "id": "202-7A-C1-L1-B",
+            "questionText": "What does 'alternating' mean in the context of electric current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "The current changes direction, flowing forwards then backwards regularly",
+            "hint": "Think about what makes AC different from DC - how does the direction change?"
+          },
+          {
+            "id": "202-7A-C1-L1-C",
+            "questionText": "How does DC current flow?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "DC flows in only one direction continuously",
+            "hint": "DC stands for Direct Current - think about what 'direct' means."
+          },
+          {
+            "id": "202-7A-C1-L2",
+            "questionText": "How do these characteristics (AC alternating direction vs DC one direction) affect which type is better for different applications?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "AC is better for mains supply because it can be easily transformed to different voltages for transmission. DC is better for electronics and batteries because it provides steady voltage.",
+            "hint": "Think about what each type is used for and why - consider transformers and long-distance transmission."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-7A-explain-frequency",
       "type": "explanation",
       "order": 5,
@@ -116,12 +163,100 @@
       }
     },
     {
+      "id": "202-7A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Frequency",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-7A-C2-L1-A",
+            "questionText": "What is frequency?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "The number of complete cycles per second",
+            "hint": "Think about what frequency measures in AC current."
+          },
+          {
+            "id": "202-7A-C2-L1-B",
+            "questionText": "What is the unit of frequency?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Hertz or Hz",
+            "hint": "What unit is used to measure cycles per second?"
+          },
+          {
+            "id": "202-7A-C2-L1-C",
+            "questionText": "What is the frequency of UK mains supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "50 Hz or 50 hertz",
+            "hint": "This is a standard value you need to know for the UK."
+          },
+          {
+            "id": "202-7A-C2-L2",
+            "questionText": "How does the frequency value (50 Hz) relate to how many times AC current changes direction in one second?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "50 Hz means 50 complete cycles per second, so the current reverses direction 100 times per second (twice per cycle - forward then backward)",
+            "hint": "Think about what happens in one complete cycle and how many cycles occur per second."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-7A-explain-mains",
       "type": "explanation",
       "order": 6,
       "content": {
         "title": "UK Mains Supply Characteristics",
         "content": "**Standard UK Mains Supply:**\n- **Voltage:** 230 V (volts)\n- **Frequency:** 50 Hz (hertz)\n- **Type:** Single-phase AC\n\n**What does 230V mean?**\nThis is the **nominal voltage** — the standard voltage supplied to homes and most buildings. It can vary slightly (e.g., 220V to 240V is acceptable), but we call it 230V.\n\n**Historical Note:**\nOlder installations may have been rated at 240V. The UK adopted the European standard of 230V, but the actual voltage didn't change much — equipment rated for 240V still works fine.\n\n**Wiring Colors (Important for Safety):**\n- **Live (L):** Brown wire — carries the AC voltage\n- **Neutral (N):** Blue wire — return path (near 0V)\n- **Earth (E):** Green/Yellow striped — safety connection (0V)\n\n**Safety Notes:**\n- Mains AC at 230V is **dangerous** and can be fatal\n- Always isolate circuits before working on them\n- Never work on live mains equipment unless qualified\n- Use appropriate PPE and follow regulations\n\n**Common Mains-Powered Devices:**\n- Lighting circuits\n- Household appliances (kettles, TVs, washing machines)\n- Power tools\n- Heating systems"
+      }
+    },
+    {
+      "id": "202-7A-check-3",
+      "type": "practice",
+      "order": 6.5,
+      "content": {
+        "title": "Check Your Understanding: UK Mains Supply",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-7A-C3-L1-A",
+            "questionText": "What is the voltage of UK mains supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "230V or 230 volts",
+            "hint": "This is the standard voltage for UK homes."
+          },
+          {
+            "id": "202-7A-C3-L1-B",
+            "questionText": "What is the frequency of UK mains supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "50 Hz or 50 hertz",
+            "hint": "You learned this in the frequency section."
+          },
+          {
+            "id": "202-7A-C3-L1-C",
+            "questionText": "Is UK mains supply AC or DC?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "AC or Alternating Current",
+            "hint": "Think about whether UK wall sockets provide alternating or direct current."
+          },
+          {
+            "id": "202-7A-C3-L2",
+            "questionText": "Why is UK mains supply AC rather than DC?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "AC can be easily transformed to different voltages using transformers, making it efficient for long-distance transmission from power stations to homes",
+            "hint": "Think about transformers and how electricity travels long distances."
+          }
+        ]
       }
     },
     {
@@ -175,31 +310,57 @@
           {
             "stepNumber": 1,
             "prompt": "Does the battery supply AC or DC?",
-            "expectedAnswer": ["DC", "Direct Current", "dc"],
+            "expectedAnswer": [
+              "DC",
+              "Direct Current",
+              "dc"
+            ],
             "hint": "Batteries always supply current in one direction only."
           },
           {
             "stepNumber": 2,
             "prompt": "Does the mains socket supply AC or DC?",
-            "expectedAnswer": ["AC", "Alternating Current", "ac"],
+            "expectedAnswer": [
+              "AC",
+              "Alternating Current",
+              "ac"
+            ],
             "hint": "Wall sockets in homes supply alternating current."
           },
           {
             "stepNumber": 3,
             "prompt": "What is the frequency of the DC battery supply?",
-            "expectedAnswer": ["0", "0 Hz", "zero", "0Hz", "none", "no frequency"],
+            "expectedAnswer": [
+              "0",
+              "0 Hz",
+              "zero",
+              "0Hz",
+              "none",
+              "no frequency"
+            ],
             "hint": "DC doesn't alternate, so it has no frequency (0 Hz)."
           },
           {
             "stepNumber": 4,
             "prompt": "What is the frequency of the UK mains socket?",
-            "expectedAnswer": ["50", "50 Hz", "50Hz", "50 hertz"],
+            "expectedAnswer": [
+              "50",
+              "50 Hz",
+              "50Hz",
+              "50 hertz"
+            ],
             "hint": "UK mains frequency is a standard value you need to memorize."
           },
           {
             "stepNumber": 5,
             "prompt": "Which voltage is safer to work with: 12V or 230V?",
-            "expectedAnswer": ["12V", "12 V", "12", "the battery", "battery"],
+            "expectedAnswer": [
+              "12V",
+              "12 V",
+              "12",
+              "the battery",
+              "battery"
+            ],
             "hint": "Lower voltages are generally safer. 230V mains can be fatal."
           }
         ]
@@ -216,36 +377,55 @@
             "id": "202-7A-P1",
             "questionText": "What type of current do batteries supply?",
             "answerType": "short-text",
-            "expectedAnswer": ["DC", "Direct Current", "direct current", "dc"],
+            "expectedAnswer": "DC",
             "hint": "Think about whether battery current changes direction or stays constant."
           },
           {
             "id": "202-7A-P2",
             "questionText": "What is the frequency of UK mains supply?",
             "answerType": "numeric",
-            "expectedAnswer": ["50", "50 Hz", "50Hz"],
+            "expectedAnswer": "50",
             "hint": "This is a standard value: UK uses 50 cycles per second."
           },
           {
             "id": "202-7A-P3",
             "questionText": "What is the nominal voltage of UK mains supply?",
             "answerType": "numeric",
-            "expectedAnswer": ["230", "230V", "230 V"],
+            "expectedAnswer": "230",
             "hint": "This is the standard UK household voltage."
           },
           {
             "id": "202-7A-P4",
             "questionText": "If an AC supply has a frequency of 50 Hz, how many complete cycles occur in one second?",
             "answerType": "numeric",
-            "expectedAnswer": ["50", "50 cycles"],
+            "expectedAnswer": "50",
             "hint": "Hertz means 'cycles per second'."
           },
           {
             "id": "202-7A-P5",
             "questionText": "What does 'AC' stand for?",
             "answerType": "short-text",
-            "expectedAnswer": ["Alternating Current", "alternating current"],
+            "expectedAnswer": "Alternating Current",
             "hint": "AC is an abbreviation. What do the letters stand for?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-7A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-7A-INT-1",
+            "questionText": "You've learned about AC vs DC, frequency (50 Hz), and UK mains supply (230V AC). Now explain: Why does the UK use 230V AC at 50Hz for the national grid rather than DC? What are the practical advantages? (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "The UK uses 230V AC at 50 Hz because AC can be easily transformed to different voltages using transformers. This allows power stations to transmit electricity at very high voltages (reducing losses over long distances) then step it down to safe 230V for homes. The 50 Hz frequency is standardized across Europe for equipment compatibility. DC cannot be easily transformed, making it inefficient for national transmission.",
+            "hint": "Think about transformers, transmission efficiency, and standardization."
           }
         ]
       }
@@ -271,6 +451,12 @@
     "updated": "2026-01-14",
     "version": "1.0",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }
-

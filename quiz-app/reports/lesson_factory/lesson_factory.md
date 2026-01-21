@@ -278,7 +278,66 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 
 ---
 
-### 7. Practice Block
+### 7A. Understanding Check Blocks (After Explanations)
+**Purpose:** Progressive depth-of-processing questions to reinforce learning immediately after explanation  
+**When:** After each major explanation block (order: X.5, e.g., 4.5, 5.5), use 4 questions: 3×L1 (Recall) + 1×L2 (Connection)
+
+```json
+{
+  "id": "[LESSON-ID]-check-[N]",
+  "type": "practice",
+  "order": 4.5,
+  "content": {
+    "title": "Check Your Understanding: [Topic]",
+    "mode": "conceptual",
+    "sequential": true,
+    "questions": [
+      {
+        "id": "[LESSON-ID]-C1-L1-A",
+        "questionText": "[Simple recall question]",
+        "answerType": "short-text",
+        "cognitiveLevel": "recall",
+        "expectedAnswer": "[Simple factual answer]",
+        "hint": "[Gentle hint pointing to explanation]"
+      },
+      {
+        "id": "[LESSON-ID]-C1-L1-B",
+        "questionText": "[Another recall question, building on first]",
+        "answerType": "short-text",
+        "cognitiveLevel": "recall",
+        "expectedAnswer": "[Another fact]",
+        "hint": "[Hint]"
+      },
+      {
+        "id": "[LESSON-ID]-C1-L1-C",
+        "questionText": "[Third recall question]",
+        "answerType": "short-text",
+        "cognitiveLevel": "recall",
+        "expectedAnswer": "[Third fact]",
+        "hint": "[Hint]"
+      },
+      {
+        "id": "[LESSON-ID]-C1-L2",
+        "questionText": "[Connection question relating Q1, Q2, Q3]",
+        "answerType": "short-text",
+        "cognitiveLevel": "connection",
+        "expectedAnswer": "[Answer showing relationship between previous concepts]",
+        "hint": "[Hint about how concepts connect]"
+      }
+    ]
+  }
+}
+```
+
+**Cognitive Levels:** `recall` (Level 1), `connection` (Level 2), `synthesis` (Level 3 - for integrative only)
+
+**Question Structure:**
+- **Q1-3 (Level 1 - Recall):** Simple factual questions building foundational knowledge
+- **Q4 (Level 2 - Connection):** Relates the three facts, shows relationships
+
+---
+
+### 7B. Practice Block
 **Purpose:** Independent student work ("You Do")  
 **When:** After guided practice (order: 7), include 3-5 questions
 
@@ -317,6 +376,36 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 
 ---
 
+### 7C. Integrative Question Block (End of Lesson)
+**Purpose:** Deep synthesis question tying together all lesson concepts  
+**When:** After practice block, before spaced review (order: 7.5 or 9.5)
+
+```json
+{
+  "id": "[LESSON-ID]-integrative",
+  "type": "practice",
+  "order": 9.5,
+  "content": {
+    "title": "Putting It All Together",
+    "mode": "integrative",
+    "questions": [
+      {
+        "id": "[LESSON-ID]-INT-1",
+        "questionText": "[2-3 sentence deeper question tying up concepts] (3-4 sentences)",
+        "answerType": "short-text",
+        "cognitiveLevel": "synthesis",
+        "expectedAnswer": "[Comprehensive answer showing integration]",
+        "hint": "[Strategic hint about what to include]"
+      }
+    ]
+  }
+}
+```
+
+**Purpose:** This "Big Picture Question" reinforces understanding once foundational knowledge is established
+
+---
+
 ### 8. Spaced Review Block
 **Purpose:** Review prerequisites to strengthen retention  
 **When:** End of lesson (order: 8)
@@ -348,10 +437,16 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 2. Vocab (build foundation)
 3. Diagram (if applicable - spatial concepts)
 4. Explanation (teach concepts)
+   - **4.5. Understanding Check** (3×L1 Recall + 1×L2 Connection) - After each major explanation
 5. Worked Example (demonstrate)
 6. Guided Practice (scaffold)
 7. Practice (apply independently)
+   - **7.5 or 9.5. Integrative Question** (Big Picture - L2/L3 Synthesis)
 8. Spaced Review (reinforce prerequisites)
+
+**New Question Structure:**
+- **After each explanation:** 4 questions (3×L1 + 1×L2) for immediate reinforcement
+- **End of lesson:** 1 integrative question (L2/L3) to tie everything together
 
 ---
 

@@ -81,26 +81,32 @@ export interface GuidedPracticeBlockContent {
 
 /**
  * Practice Block: Independent practice questions
+ * All questions use LLM semantic evaluation
  */
 export interface PracticeBlockContent {
   title: string;
+  sequential?: boolean; // Forces sequential question unlocking
   questions: {
     id: string;
     questionText: string;
-    answerType: 'short-text' | 'numeric' | 'mcq';
-    expectedAnswer: string | string[];
-    options?: string[]; // For MCQ
-    correctOptionIndex?: number; // For MCQ
+    expectedAnswer: string | string[]; // Model answer for LLM comparison
+    cognitiveLevel?: 'recall' | 'connection' | 'synthesis'; // Depth of cognitive processing
     hint?: string;
   }[];
 }
 
 /**
  * Spaced Review Block: Review questions from prerequisites
+ * All questions use LLM semantic evaluation
  */
 export interface SpacedReviewBlockContent {
   title: string;
-  questions: string[];
+  questions: {
+    id: string;
+    questionText: string;
+    expectedAnswer: string | string[]; // Model answer for LLM comparison
+    hint?: string;
+  }[];
   notes?: string;
 }
 
@@ -159,6 +165,17 @@ export interface BlockIdAliasMap {
 }
 
 /**
+ * Diagnostic Configuration: For prerequisite readiness checks
+ */
+export interface DiagnosticConfig {
+  enabled: boolean;
+  questionCount: number;
+  passThreshold: number;
+  sourceType: 'cumulative';
+  allowSkip: boolean;
+}
+
+/**
  * Lesson: Complete lesson structure
  */
 export interface Lesson {
@@ -179,6 +196,7 @@ export interface Lesson {
     contentVersion?: number; // Version number for breaking changes
   };
   blockIdAliases?: BlockIdAliasMap; // Mapping for renamed blocks
+  diagnostic?: DiagnosticConfig; // Optional diagnostic gate configuration
 }
 
 /**

@@ -4,27 +4,25 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import { getPromptForMode, TUTOR_MODE_CONFIGS } from '@/lib/tutor/prompts';
 import { formatLessonContextForLLM, validateGrounding, extractBlockReferences } from '@/lib/tutor/groundingService';
 import { TutorRequest, TutorResponse, TutorMode, ContextType } from '@/lib/tutor/types';
 import { applyContextBudget, logContextBudget, DEFAULT_CONTEXT_BUDGET } from '@/lib/tutor/contextBudgetService';
 import { logTutorRequest, logTutorResponse, logTutorError, logGroundingFailure, logRateLimitExceeded } from '@/lib/observability/loggingService';
 import { Block, OutcomesBlockContent } from '@/data/lessons/types';
+import { getGeminiModel, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
+import { createLLMClientWithFallback, ChatHistoryEntry } from '@/lib/llm/client';
 
-// Initialize Gemini API
-const apiKey = process.env.GEMINI_API_KEY;
-const modelName = process.env.GEMINI_MODEL;
+// Initialize LLM client (will be created on first request with fallback support)
+let llmClientPromise: Promise<Awaited<ReturnType<typeof createLLMClientWithFallback>>> | null = null;
+let modelName: string | null = null;
 
-// Debug: Log environment variables (remove in production)
-console.log('GEMINI_MODEL from env:', modelName);
-console.log('GEMINI_API_KEY present:', !!apiKey);
-
-if (!apiKey) {
-  console.error('GEMINI_API_KEY is not set in environment variables');
+try {
+  modelName = getGeminiModel();
+} catch (error) {
+  // Model name will be validated in the POST handler
+  console.warn('GEMINI_MODEL not set:', error instanceof Error ? error.message : error);
 }
-
-const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 
 // Rate limiting store (in-memory)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -73,26 +71,23 @@ function isAskingForAnswer(message: string): boolean {
 }
 
 /**
- * Helper: Call Gemini with given system instruction and message
+ * Helper: Call LLM with given system instruction and message
  */
-async function callGemini(
+async function callLLM(
+  client: Awaited<ReturnType<typeof createLLMClientWithFallback>>,
   modelName: string,
   systemInstruction: string,
   message: string,
   history: { role: string; content: string }[],
   temperature: number
 ): Promise<string> {
-  if (!genAI) {
-    throw new Error('Gemini API not initialized');
-  }
-
-  const model = genAI.getGenerativeModel({
+  const model = client.getGenerativeModel({
     model: modelName,
     systemInstruction,
   });
 
-  const formattedHistory = history.map(msg => ({
-    role: msg.role === 'user' ? 'user' : 'model',
+  const formattedHistory: ChatHistoryEntry[] = history.map(msg => ({
+    role: (msg.role === 'user' ? 'user' : 'model') as 'user' | 'model',
     parts: [{ text: msg.content }],
   }));
 
@@ -112,20 +107,31 @@ export async function POST(request: NextRequest) {
   const startTime = Date.now();
 
   try {
-    // Check if API is configured
-    if (!genAI) {
+    // Initialize LLM client if not already initialized
+    if (!llmClientPromise) {
+      llmClientPromise = createLLMClientWithFallback();
+    }
+
+    let client;
+    try {
+      client = await llmClientPromise;
+    } catch (error) {
       return NextResponse.json(
-        { error: 'Tutor is not configured. Please check API key configuration.' },
+        { error: 'Tutor is not configured. Please check API key or Vertex AI configuration.' },
         { status: 503 }
       );
     }
 
     // Check if model is configured
     if (!modelName) {
-      return NextResponse.json(
-        { error: 'GEMINI_MODEL is not set in environment variables. Please set it in .env.local' },
-        { status: 503 }
-      );
+      try {
+        modelName = getGeminiModel();
+      } catch (error) {
+        return NextResponse.json(
+          { error: error instanceof Error ? error.message : 'GEMINI_MODEL is not set in environment variables. Please set it in .env.local' },
+          { status: 503 }
+        );
+      }
     }
 
     // Rate limiting
@@ -251,7 +257,8 @@ ${userProgress.identifiedMisconceptions ? `Identified misconceptions: ${userProg
     console.log(`Using Gemini model: ${modelName}`);
 
     // Generate initial response
-    let response = await callGemini(
+    let response = await callLLM(
+      client,
       modelName,
       contextualPrompt,
       message,
@@ -275,7 +282,8 @@ ${userProgress.identifiedMisconceptions ? `Identified misconceptions: ${userProg
         
         const stricterPrompt = contextualPrompt + `\n\nREMINDER: You MUST cite at least one [block-id] in your response when explaining concepts from the lesson.`;
         
-        response = await callGemini(
+        response = await callLLM(
+          client,
           modelName,
           stricterPrompt,
           message,

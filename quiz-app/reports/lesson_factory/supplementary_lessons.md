@@ -193,9 +193,11 @@ Supplementary lessons use **exactly the same structure** as core lessons:
 2. **Vocab** (3-6 key terms)
 3. **Diagram** (if visual/spatial concept)
 4. **Explanation** (clear, structured teaching)
+   - **4.5. Understanding Check** (3×L1 Recall + 1×L2 Connection after each explanation)
 5. **Worked Example** (3-4 steps)
 6. **Guided Practice** (2-3 scaffolded prompts)
 7. **Practice** (3-5 independent questions)
+   - **7.5/9.5. Integrative Question** (Big Picture - L2/L3 Synthesis)
 8. **Spaced Review** (4 questions from prerequisites)
 
 ### Quiz Structure
@@ -286,9 +288,11 @@ blocks:
   2. Vocab (generator, armature, slip rings, brushes)
   3. Diagram (animated/video showing rotation → sine wave)
   4. Explanation (step-by-step: 0°, 90°, 180°, 270°, 360°)
+     4.5. Understanding Check (3×L1: parts, rotation, output + 1×L2: why sine wave)
   5. Worked Example (trace one rotation, identify wave points)
   6. Guided Practice (given rotation angle, find current direction)
   7. Practice (5 questions: conceptual + diagram interpretation)
+     9.5. Integrative Question (why AC generation produces sine wave)
   8. Spaced Review (magnetism + AC principles)
 
 quiz: 50 questions

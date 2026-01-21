@@ -125,6 +125,20 @@ EXPLANATION_BLOCK:
     - "[Main concept 3]"
   analogies: "[Any helpful comparisons]"
   formulas: ["[Formula 1]", "[Formula 2]"]
+
+UNDERSTANDING_CHECK: (after each major explanation)
+  title: "Check Your Understanding: [Topic]"
+  mode: "conceptual"
+  sequential: true
+  questions: (4 questions: 3×L1 + 1×L2)
+    - L1-A (recall): "[Simple fact question]"
+      expected: "[Factual answer]"
+    - L1-B (recall): "[Another simple fact, building on first]"
+      expected: "[Another fact]"
+    - L1-C (recall): "[Third simple fact]"
+      expected: "[Third fact]"
+    - L2 (connection): "[How do Q1, Q2, Q3 relate? Why matters?]"
+      expected: "[Answer showing relationships]"
   
 WORKED_EXAMPLE:
   title: "Worked Example: [Problem Type]"
@@ -151,6 +165,16 @@ PRACTICE_QUESTIONS: (3-5 questions)
     question: "[Problem or question]"
     answer: ["[variations]"]
     hint: "[Helpful guidance]"
+
+INTEGRATIVE_QUESTION: (1 question at end)
+  title: "Putting It All Together"
+  mode: "integrative"
+  question:
+    - id: "[LESSON-ID]-INT-1"
+      text: "[2-3 sentence question tying up all lesson concepts] (3-4 sentences)"
+      cognitiveLevel: "synthesis"
+      expected: "[Comprehensive answer integrating multiple concepts]"
+      hint: "[What to include in answer]"
     
 SPACED_REVIEW: (4 questions)
   - "[Question reviewing prerequisite topic]"

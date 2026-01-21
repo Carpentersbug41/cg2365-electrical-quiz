@@ -72,22 +72,45 @@ export function getCumulativeQuestions(
   // Get questions from all previous lessons
   const previousLessons = relevantLessons.filter(l => l.order < currentLesson.order);
   const previousQuestions: TaggedQuestion[] = [];
-  
-  previousLessons.forEach(lesson => {
-    const lessonQuestions = filterQuestionsByLesson(lesson.id);
-    previousQuestions.push(...lessonQuestions);
-  });
 
   // Calculate question counts
   const currentCount = Math.floor(maxQuestions * currentWeight);
   const previousCount = maxQuestions - currentCount;
 
-  // Sample questions
+  // EQUAL DISTRIBUTION ALGORITHM
+  // Distribute questions equally across all previous lessons to avoid bias
+  if (previousCount > 0 && previousLessons.length > 0) {
+    // Calculate base questions per lesson
+    const questionsPerLesson = Math.floor(previousCount / previousLessons.length);
+    const remainder = previousCount % previousLessons.length;
+    
+    console.log(`[Cumulative Questions] Distributing ${previousCount} questions across ${previousLessons.length} lessons`);
+    console.log(`[Cumulative Questions] Base per lesson: ${questionsPerLesson}, Remainder: ${remainder}`);
+    
+    // Distribute questions equally across lessons
+    previousLessons.forEach((lesson, index) => {
+      const lessonQuestions = filterQuestionsByLesson(lesson.id);
+      
+      // Give extra question to first N lessons to handle remainder
+      const questionsToTake = questionsPerLesson + (index < remainder ? 1 : 0);
+      
+      console.log(`[Cumulative Questions] Lesson ${lesson.id}: ${lessonQuestions.length} available, taking ${questionsToTake}`);
+      
+      // Sample from this specific lesson
+      const selectedFromLesson = sample(lessonQuestions, questionsToTake);
+      previousQuestions.push(...selectedFromLesson);
+      
+      console.log(`[Cumulative Questions] Lesson ${lesson.id}: actually selected ${selectedFromLesson.length}`);
+    });
+    
+    console.log(`[Cumulative Questions] Total selected from previous lessons: ${previousQuestions.length}`);
+  }
+
+  // Sample questions from current lesson
   const selectedCurrent = sample(currentQuestions, currentCount);
-  const selectedPrevious = sample(previousQuestions, previousCount);
 
   // Combine and shuffle
-  const allQuestions = [...selectedCurrent, ...selectedPrevious];
+  const allQuestions = [...selectedCurrent, ...previousQuestions];
   return shuffle(allQuestions);
 }
 

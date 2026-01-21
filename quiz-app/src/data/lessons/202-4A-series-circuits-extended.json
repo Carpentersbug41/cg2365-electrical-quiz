@@ -1,245 +1,385 @@
 {
-    "id": "202-4A",
-    "title": "202.4A — Parallel Circuits: Rules and Calculations",
-    "description": "Learn the three parallel circuit rules (voltage, current, resistance), understand why they're true using the diagram, and apply them to basic calculations (including branch currents and total resistance).",
-    "layout": "split-vis",
-    "unit": "Unit 202",
-    "topic": "Parallel Circuits",
-    "learningOutcomes": [
-      "State the three parallel rules for voltage, current, and resistance",
-      "Explain (using the diagram) why voltage is the same across branches in a parallel circuit",
-      "Calculate total resistance for two resistors in parallel",
-      "Calculate branch currents and total current in a parallel circuit"
-    ],
-    "prerequisites": ["202-3A", "ohms-law-basics"],
-    "blocks": [
-      {
-        "id": "202-4A-outcomes",
-        "type": "outcomes",
-        "order": 1,
-        "content": {
-          "outcomes": [
-            { "text": "State the three parallel rules for voltage, current, and resistance.", "bloomLevel": "remember" },
-            { "text": "Explain (using the diagram) why voltage is the same across branches in a parallel circuit.", "bloomLevel": "understand" },
-            { "text": "Calculate total resistance for two resistors in parallel.", "bloomLevel": "apply" },
-            { "text": "Calculate branch currents and total current in a parallel circuit.", "bloomLevel": "apply" }
-          ]
-        }
-      },
-      {
-        "id": "202-4A-vocab",
-        "type": "vocab",
-        "order": 2,
-        "content": {
-          "terms": [
-            { "term": "Parallel", "definition": "Components connected on separate branches so there is more than one path for current." },
-            { "term": "Branch", "definition": "A separate path in a parallel circuit (one route current can take)." },
-            { "term": "Junction (Node)", "definition": "A point where branches connect. In parallel circuits, branches share the same two junctions." },
-            { "term": "Current (I)", "definition": "Flow of electric charge, measured in amperes (A)." },
-            { "term": "Voltage (V)", "definition": "Potential difference across two points, measured in volts (V)." },
-            { "term": "Resistance (R)", "definition": "Opposition to current flow, measured in ohms (Ω)." }
-          ]
-        }
-      },
-      {
-        "id": "202-4A-diagram",
-        "type": "diagram",
-        "order": 3,
-        "content": {
-          "title": "Simple Parallel Circuit",
-          "description": "Two resistors (R1 and R2) connected in parallel across the same supply (same two junctions).",
-          "videoUrl": "https://www.youtube.com/watch?v=7jcdRn5qGio",
-          "diagramType": "parallel",
-          "elementIds": ["R1", "R2", "branch1", "branch2", "junctionA", "junctionB", "supply", "wire"],
-          "placeholderText": "Parallel circuit diagram showing R1 = 6 Ω and R2 = 3 Ω on two branches across a 12V supply. Label the two junctions (A and B) clearly: current splits at junctionA and rejoins at junctionB."
-        }
-      },
-      {
-        "id": "202-4A-explain-rules",
-        "type": "explanation",
-        "order": 4,
-        "content": {
-          "title": "The 3 Parallel Rules (and why they’re true)",
-          "content": "**Rule 1 (Voltage):** Voltage is the same across each branch in a parallel circuit.\n\n**Rule 2 (Current):** Total current is shared between branches. Branch currents add up to the total current.\n\n**Rule 3 (Resistance):** Total resistance is **lower** than the smallest branch resistance. For two resistors in parallel:\n\n- **1/R_total = 1/R1 + 1/R2**\n\n---\n\n### Why these rules work (diagram-anchored)\nLook at the diagram: both branches connect to the **same two junctions** — `junctionA` and `junctionB`.\n\n- **Voltage (V):** Voltage is the potential difference between two points. Because each branch starts at `junctionA` and ends at `junctionB`, each branch has the **same two points**, so each branch has the **same voltage**.\n\n- **Current (I):** At `junctionA`, current has a choice of paths. It **splits** into branch currents and then **rejoins** at `junctionB`. That’s why:\n  - **I_total = I1 + I2 (+ ...)**\n\n- **Resistance (R):** Adding branches gives current **more paths**. More paths makes it easier for current to flow overall, so total resistance **goes down**.\n\n---\n\n### Sanity checks (use these to catch mistakes)\n- **V_branch = V_supply** (each branch is across the same two junctions)\n- **R_total < smallest resistor** (parallel always lowers total resistance)\n\n---\n\n### One-line summary (memorise this)\n**Parallel:** **V same** • **I splits (adds up)** • **R uses 1/R (R_total < smallest)**"
-        }
-      },
-      {
-        "id": "202-4A-worked-example",
-        "type": "worked-example",
-        "order": 5,
-        "content": {
-          "title": "Worked Example 1: Total Resistance (Fractions First)",
-          "given": "R1 = 6 Ω, R2 = 3 Ω connected in parallel",
-          "steps": [
-            { "stepNumber": 1, "description": "Use the two-resistor parallel formula", "formula": "1/R_total = 1/R1 + 1/R2", "calculation": null, "result": null },
-            { "stepNumber": 2, "description": "Substitute values and add using a common denominator", "formula": "1/R_total = 1/6 + 1/3", "calculation": "1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2", "result": null },
-            { "stepNumber": 3, "description": "Invert to get R_total", "formula": "R_total = 1 / (1/R_total)", "calculation": "R_total = 1 / (1/2) = 2", "result": "2 Ω" }
-          ],
-          "notes": "Fractions first avoids rounding errors. In parallel, R_total is always less than the smallest resistor."
-        }
-      },
-      {
-        "id": "202-4A-worked-example-2",
-        "type": "worked-example",
-        "order": 6,
-        "content": {
-          "title": "Worked Example 2: Branch Currents and Total Current",
-          "given": "Supply V = 12 V. R1 = 6 Ω and R2 = 3 Ω in parallel.",
-          "steps": [
-            { "stepNumber": 1, "description": "Use the parallel voltage rule", "formula": "V1 = V2 = V_supply", "calculation": "V1 = 12 V, V2 = 12 V", "result": "V across each branch = 12 V" },
-            { "stepNumber": 2, "description": "Find branch current I1", "formula": "I1 = V1 / R1", "calculation": "I1 = 12 / 6 = 2", "result": "2 A" },
-            { "stepNumber": 3, "description": "Find branch current I2", "formula": "I2 = V2 / R2", "calculation": "I2 = 12 / 3 = 4", "result": "4 A" },
-            { "stepNumber": 4, "description": "Add branch currents to get total current", "formula": "I_total = I1 + I2", "calculation": "I_total = 2 + 4 = 6", "result": "6 A" },
-            { "stepNumber": 5, "description": "Quick check (optional)", "formula": "R_total = V / I_total", "calculation": "R_total = 12 / 6 = 2", "result": "2 Ω (matches Worked Example 1)" }
-          ],
-          "notes": "Parallel workflow: V same → find each branch current → add to get I_total. Then (optional) check R_total = V/I_total."
-        }
-      },
-      {
-        "id": "202-4A-discrimination",
-        "type": "practice",
-        "order": 7,
-        "content": {
-          "title": "Quick Discrimination Check (Series or Parallel?)",
-          "questions": [
-            {
-              "id": "202-4A-D1",
-              "questionText": "If a circuit has two junctions and two branches between the same junctions, is it series or parallel?",
-              "answerType": "short-text",
-              "expectedAnswer": ["parallel", "Parallel"],
-              "hint": "More than one path for current = parallel.",
-              "marking": { "type": "keywords", "anyOf": ["parallel"] },
-              "misconceptionMap": {
-                "series": "TOPOLOGY_MISCLASSIFIED_SERIES"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "id": "202-4A-guided",
-        "type": "guided-practice",
-        "order": 8,
-        "content": {
-          "title": "Guided Practice (We Do)",
-          "problem": "Supply V = 9 V. R1 = 6 Ω and R2 = 12 Ω in parallel.",
-          "steps": [
-            {
-              "stepNumber": 1,
-              "prompt": "Step 1 — What is the parallel rule for voltage across branches?",
-              "expectedAnswer": ["V is the same", "same voltage", "V1=V2", "voltage same across each branch"],
-              "hint": "Each branch is connected to the same two junctions.",
-              "marking": { "type": "keywords", "anyOf": ["same voltage", "v1=v2", "same across each branch", "same two junctions"] }
-            },
-            {
-              "stepNumber": 2,
-              "prompt": "Step 2 — Find I1 in branch 1 (R1 = 6 Ω). Include A.",
-              "expectedAnswer": ["1.5", "1.5 A", "1.50 A", "1.5A"],
-              "hint": "V across R1 is 9 V. Use I = V/R.",
-              "marking": { "type": "numeric", "value": 1.5, "unit": "amp", "tolerance": 0.01 }
-            },
-            {
-              "stepNumber": 3,
-              "prompt": "Step 3 — Find I2 in branch 2 (R2 = 12 Ω). Include A.",
-              "expectedAnswer": ["0.75", "0.75 A", "0.750 A", "0.75A"],
-              "hint": "V across R2 is 9 V. Use I = V/R.",
-              "marking": { "type": "numeric", "value": 0.75, "unit": "amp", "tolerance": 0.01 }
-            },
-            {
-              "stepNumber": 4,
-              "prompt": "Step 4 — Find total current I_total. Include A.",
-              "expectedAnswer": ["2.25", "2.25 A", "2.250 A", "2.25A"],
-              "hint": "Parallel current rule: I_total = I1 + I2.",
-              "marking": { "type": "numeric", "value": 2.25, "unit": "amp", "tolerance": 0.01 }
-            }
-          ]
-        }
-      },
-      {
-        "id": "202-4A-practice",
-        "type": "practice",
-        "order": 9,
-        "content": {
-          "title": "Your Turn (You Do)",
-          "questions": [
-            {
-              "id": "202-4A-P1",
-              "questionText": "R1 = 6 Ω, R2 = 6 Ω (parallel). Find R_total.",
-              "answerType": "numeric",
-              "expectedAnswer": ["3", "3 Ω", "3Ω"],
-              "hint": "Two equal resistors in parallel halves the resistance.",
-              "marking": { "type": "numeric", "value": 3, "unit": "ohm", "tolerance": 0 }
-            },
-            {
-              "id": "202-4A-P2",
-              "questionText": "Explain in one sentence: why is the voltage the same across each branch in a parallel circuit?",
-              "answerType": "short-text",
-              "expectedAnswer": ["same two points", "same junctions", "same nodes", "connected across the same supply", "same potential difference"],
-              "hint": "Each branch starts at junctionA and ends at junctionB.",
-              "marking": { "type": "keywords", "anyOf": ["same two points", "same junctions", "same nodes", "junctiona", "junctionb", "same potential difference"] }
-            },
-            {
-              "id": "202-4A-P3",
-              "questionText": "R1 = 2 Ω, R2 = 3 Ω (parallel). Find R_total (round to 2 d.p. if needed).",
-              "answerType": "numeric",
-              "expectedAnswer": ["1.2", "1.20", "1.2 Ω", "1.20 Ω", "1.2Ω"],
-              "hint": "1/R_total = 1/2 + 1/3 then invert.",
-              "marking": { "type": "numeric", "value": 1.2, "unit": "ohm", "tolerance": 0.02 }
-            },
-            {
-              "id": "202-4A-P4",
-              "questionText": "Supply V = 9 V. Two resistors in parallel: R1 = 3 Ω and R2 = 6 Ω. Find I1, I2, and I_total (include A).",
-              "answerType": "numeric",
-              "expectedAnswer": ["I1=3A, I2=1.5A, Itotal=4.5A", "3, 1.5, 4.5", "3A, 1.5A, 4.5A"],
-              "hint": "Parallel: V same. Use I = V/R for each branch, then add currents.",
-              "marking": {
-                "type": "multi-numeric",
-                "parts": [
-                  { "label": "I1", "value": 3, "unit": "amp", "tolerance": 0.02 },
-                  { "label": "I2", "value": 1.5, "unit": "amp", "tolerance": 0.02 },
-                  { "label": "I_total", "value": 4.5, "unit": "amp", "tolerance": 0.03 }
-                ]
-              }
-            },
-            {
-              "id": "202-4A-P5",
-              "questionText": "Which is true in a parallel circuit? (Type A, B, or C)\nA) Current is the same everywhere\nB) Voltage is the same across each branch\nC) Resistances add directly",
-              "answerType": "short-text",
-              "expectedAnswer": ["B", "b"],
-              "hint": "Parallel: V same, I splits, R uses 1/R.",
-              "misconceptionMap": {
-                "A": "SERIES_CURRENT_SAME_MISCONCEPTION",
-                "C": "SERIES_RESISTANCE_ADDS_MISCONCEPTION"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "id": "202-4A-spaced-review",
-        "type": "spaced-review",
-        "order": 10,
-        "content": {
-          "title": "Spaced Review (from prerequisites)",
-          "questions": [
-            "State the three series rules (I, V, R).",
-            "Rearrange V = I × R to find I.",
-            "Convert 0.5 A into mA.",
-            "In parallel, does total resistance increase or decrease when you add a branch?",
-            "In parallel, do branch currents add up or stay the same?"
-          ],
-          "notes": "Parallel builds on series rules, Ohm’s Law, and unit conversions."
-        }
+  "id": "202-4A",
+  "title": "202.4A — Parallel Circuits: Rules and Calculations",
+  "description": "Learn the three parallel circuit rules (voltage, current, resistance), understand why they're true using the diagram, and apply them to basic calculations (including branch currents and total resistance).",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Parallel Circuits",
+  "learningOutcomes": [
+    "State the three parallel rules for voltage, current, and resistance",
+    "Explain (using the diagram) why voltage is the same across branches in a parallel circuit",
+    "Calculate total resistance for two resistors in parallel",
+    "Calculate branch currents and total current in a parallel circuit"
+  ],
+  "prerequisites": [
+    "202-3A",
+    "ohms-law-basics"
+  ],
+  "blocks": [
+    {
+      "id": "202-4A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the three parallel rules for voltage, current, and resistance.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain (using the diagram) why voltage is the same across branches in a parallel circuit.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate total resistance for two resistors in parallel.",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Calculate branch currents and total current in a parallel circuit.",
+            "bloomLevel": "apply"
+          }
+        ]
       }
-    ],
-    "metadata": {
-      "created": "2026-01-13",
-      "updated": "2026-01-13",
-      "version": "1.2",
-      "author": "C&G 2365 Learning Team"
+    },
+    {
+      "id": "202-4A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Parallel",
+            "definition": "Components connected on separate branches so there is more than one path for current."
+          },
+          {
+            "term": "Branch",
+            "definition": "A separate path in a parallel circuit (one route current can take)."
+          },
+          {
+            "term": "Junction (Node)",
+            "definition": "A point where branches connect. In parallel circuits, branches share the same two junctions."
+          },
+          {
+            "term": "Current (I)",
+            "definition": "Flow of electric charge, measured in amperes (A)."
+          },
+          {
+            "term": "Voltage (V)",
+            "definition": "Potential difference across two points, measured in volts (V)."
+          },
+          {
+            "term": "Resistance (R)",
+            "definition": "Opposition to current flow, measured in ohms (Ω)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Simple Parallel Circuit",
+        "description": "Two resistors (R1 and R2) connected in parallel across the same supply (same two junctions).",
+        "videoUrl": "https://www.youtube.com/watch?v=7jcdRn5qGio",
+        "diagramType": "parallel",
+        "elementIds": [
+          "R1",
+          "R2",
+          "branch1",
+          "branch2",
+          "junctionA",
+          "junctionB",
+          "supply",
+          "wire"
+        ],
+        "placeholderText": "Parallel circuit diagram showing R1 = 6 Ω and R2 = 3 Ω on two branches across a 12V supply. Label the two junctions (A and B) clearly: current splits at junctionA and rejoins at junctionB."
+      }
+    },
+    {
+      "id": "202-4A-explain-rules",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The 3 Parallel Rules (and why they’re true)",
+        "content": "**Rule 1 (Voltage):** Voltage is the same across each branch in a parallel circuit.\n\n**Rule 2 (Current):** Total current is shared between branches. Branch currents add up to the total current.\n\n**Rule 3 (Resistance):** Total resistance is **lower** than the smallest branch resistance. For two resistors in parallel:\n\n- **1/R_total = 1/R1 + 1/R2**\n\n---\n\n### Why these rules work (diagram-anchored)\nLook at the diagram: both branches connect to the **same two junctions** — `junctionA` and `junctionB`.\n\n- **Voltage (V):** Voltage is the potential difference between two points. Because each branch starts at `junctionA` and ends at `junctionB`, each branch has the **same two points**, so each branch has the **same voltage**.\n\n- **Current (I):** At `junctionA`, current has a choice of paths. It **splits** into branch currents and then **rejoins** at `junctionB`. That’s why:\n  - **I_total = I1 + I2 (+ ...)**\n\n- **Resistance (R):** Adding branches gives current **more paths**. More paths makes it easier for current to flow overall, so total resistance **goes down**.\n\n---\n\n### Sanity checks (use these to catch mistakes)\n- **V_branch = V_supply** (each branch is across the same two junctions)\n- **R_total < smallest resistor** (parallel always lowers total resistance)\n\n---\n\n### One-line summary (memorise this)\n**Parallel:** **V same** • **I splits (adds up)** • **R uses 1/R (R_total < smallest)**"
+      }
+    },
+    {
+      "id": "202-4A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The 3 Parallel Rules",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4A-C1-L1-A",
+            "questionText": "What is Rule 1 about voltage in a parallel circuit?",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Voltage is the same across all branches in a parallel circuit",
+            "hint": "What stays constant across every branch?"
+          },
+          {
+            "id": "202-4A-C1-L1-B",
+            "questionText": "What is Rule 2 about current in a parallel circuit?",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Currents add up - total current equals the sum of branch currents",
+            "hint": "How do the branch currents relate to the total current?"
+          },
+          {
+            "id": "202-4A-C1-L1-C",
+            "questionText": "What is Rule 3 about resistance in a parallel circuit?",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Total resistance is less than the smallest branch resistance",
+            "hint": "Does adding parallel branches increase or decrease total resistance?"
+          },
+          {
+            "id": "202-4A-C1-L2",
+            "questionText": "Why do these three rules make sense when you think about multiple paths between the same two junctions?",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "All branches connect to the same two junction points, so voltage is the same (Rule 1). Current splits at the junction to flow through multiple paths, then rejoins (Rule 2). More paths make it easier for current to flow, reducing total resistance (Rule 3).",
+            "hint": "Think about junctions, multiple paths, and how current divides and recombines."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example 1: Total Resistance (Fractions First)",
+        "given": "R1 = 6 Ω, R2 = 3 Ω connected in parallel",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Use the two-resistor parallel formula",
+            "formula": "1/R_total = 1/R1 + 1/R2",
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 2,
+            "description": "Substitute values and add using a common denominator",
+            "formula": "1/R_total = 1/6 + 1/3",
+            "calculation": "1/6 + 1/3 = 1/6 + 2/6 = 3/6 = 1/2",
+            "result": null
+          },
+          {
+            "stepNumber": 3,
+            "description": "Invert to get R_total",
+            "formula": "R_total = 1 / (1/R_total)",
+            "calculation": "R_total = 1 / (1/2) = 2",
+            "result": "2 Ω"
+          }
+        ],
+        "notes": "Fractions first avoids rounding errors. In parallel, R_total is always less than the smallest resistor."
+      }
+    },
+    {
+      "id": "202-4A-worked-example-2",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example 2: Branch Currents and Total Current",
+        "given": "Supply V = 12 V. R1 = 6 Ω and R2 = 3 Ω in parallel.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Use the parallel voltage rule",
+            "formula": "V1 = V2 = V_supply",
+            "calculation": "V1 = 12 V, V2 = 12 V",
+            "result": "V across each branch = 12 V"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Find branch current I1",
+            "formula": "I1 = V1 / R1",
+            "calculation": "I1 = 12 / 6 = 2",
+            "result": "2 A"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Find branch current I2",
+            "formula": "I2 = V2 / R2",
+            "calculation": "I2 = 12 / 3 = 4",
+            "result": "4 A"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Add branch currents to get total current",
+            "formula": "I_total = I1 + I2",
+            "calculation": "I_total = 2 + 4 = 6",
+            "result": "6 A"
+          },
+          {
+            "stepNumber": 5,
+            "description": "Quick check (optional)",
+            "formula": "R_total = V / I_total",
+            "calculation": "R_total = 12 / 6 = 2",
+            "result": "2 Ω (matches Worked Example 1)"
+          }
+        ],
+        "notes": "Parallel workflow: V same → find each branch current → add to get I_total. Then (optional) check R_total = V/I_total."
+      }
+    },
+    {
+      "id": "202-4A-discrimination",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Quick Discrimination Check (Series or Parallel?)",
+        "questions": [
+          {
+            "id": "202-4A-D1",
+            "questionText": "If a circuit has two junctions and two branches between the same junctions, is it series or parallel?",
+            "expectedAnswer": "Parallel. A circuit with two junctions and multiple branches between them is a parallel circuit because current has more than one path to flow through.",
+            "hint": "More than one path for current = parallel."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "Supply V = 9 V. R1 = 6 Ω and R2 = 12 Ω in parallel.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Step 1 — What is the parallel rule for voltage across branches?",
+            "expectedAnswer": [
+              "V is the same",
+              "same voltage",
+              "V1=V2",
+              "voltage same across each branch"
+            ],
+            "hint": "Each branch is connected to the same two junctions."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Step 2 — Find I1 in branch 1 (R1 = 6 Ω). Include A.",
+            "expectedAnswer": [
+              "1.5",
+              "1.5 A",
+              "1.50 A",
+              "1.5A"
+            ],
+            "hint": "V across R1 is 9 V. Use I = V/R."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Step 3 — Find I2 in branch 2 (R2 = 12 Ω). Include A.",
+            "expectedAnswer": [
+              "0.75",
+              "0.75 A",
+              "0.750 A",
+              "0.75A"
+            ],
+            "hint": "V across R2 is 9 V. Use I = V/R."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Step 4 — Find total current I_total. Include A.",
+            "expectedAnswer": [
+              "2.25",
+              "2.25 A",
+              "2.250 A",
+              "2.25A"
+            ],
+            "hint": "Parallel current rule: I_total = I1 + I2."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-practice",
+      "type": "practice",
+      "order": 9,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-4A-P1",
+            "questionText": "R1 = 6 Ω, R2 = 6 Ω (parallel). Find R_total.",
+            "expectedAnswer": "3 Ω. When two equal resistors are in parallel, the total resistance is half: 6/2 = 3 Ω",
+            "hint": "Two equal resistors in parallel halves the resistance."
+          },
+          {
+            "id": "202-4A-P2",
+            "questionText": "Explain in one sentence: why is the voltage the same across each branch in a parallel circuit?",
+            "expectedAnswer": "Voltage is the same across each branch because all branches are connected between the same two junction points (junctionA and junctionB), so they all have the same potential difference.",
+            "hint": "Each branch starts at junctionA and ends at junctionB."
+          },
+          {
+            "id": "202-4A-P3",
+            "questionText": "R1 = 2 Ω, R2 = 3 Ω (parallel). Find R_total (round to 2 d.p. if needed).",
+            "expectedAnswer": "1.2 Ω. Using 1/R_total = 1/2 + 1/3 = 3/6 + 2/6 = 5/6, so R_total = 6/5 = 1.2 Ω",
+            "hint": "1/R_total = 1/2 + 1/3 then invert."
+          },
+          {
+            "id": "202-4A-P4",
+            "questionText": "Supply V = 9 V. Two resistors in parallel: R1 = 3 Ω and R2 = 6 Ω. Find I1, I2, and I_total (include A).",
+            "expectedAnswer": "I1 = 3 A (9V / 3Ω), I2 = 1.5 A (9V / 6Ω), I_total = 4.5 A (3A + 1.5A). In parallel, voltage is same across branches, so use I = V/R for each, then add currents.",
+            "hint": "Parallel: V same. Use I = V/R for each branch, then add currents."
+          },
+          {
+            "id": "202-4A-P5",
+            "questionText": "Which is true in a parallel circuit? (Type A, B, or C)\nA) Current is the same everywhere\nB) Voltage is the same across each branch\nC) Resistances add directly",
+            "expectedAnswer": "B. Voltage is the same across each branch in a parallel circuit because all branches connect to the same two junctions.",
+            "hint": "Parallel: V same, I splits, R uses 1/R."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "questions": [
+          {
+            "id": "202-4A-INT-1",
+            "questionText": "You've learned the 3 parallel circuit rules (voltage same across branches, currents add up, total resistance less than smallest). Explain: How are parallel circuits fundamentally different from series circuits, and why would an electrician choose one over the other? (3-4 sentences)",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Parallel circuits have multiple paths while series have one path. In parallel, if one component fails, others keep working because they have independent paths. Parallel circuits are used for household wiring so lights and appliances can work independently. Series circuits are simpler and used where components must work together, like Christmas lights or safety chains. Understanding both types allows electricians to design systems appropriately.",
+            "hint": "Think about multiple paths vs single path, component independence, and practical applications."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          "State the three series rules (I, V, R).",
+          "Rearrange V = I × R to find I.",
+          "Convert 0.5 A into mA.",
+          "In parallel, does total resistance increase or decrease when you add a branch?",
+          "In parallel, do branch currents add up or stay the same?"
+        ],
+        "notes": "Parallel builds on series rules, Ohm’s Law, and unit conversions."
+      }
     }
+  ],
+  "metadata": {
+    "created": "2026-01-13",
+    "updated": "2026-01-13",
+    "version": "1.2",
+    "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
-  
-
-
-
+}

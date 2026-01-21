@@ -16,6 +16,45 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
   const [feedback, setFeedback] = useState<(MarkingResponse | null)[]>(new Array(content.steps.length).fill(null));
   const [showHint, setShowHint] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [attemptCount, setAttemptCount] = useState<number[]>(new Array(content.steps.length).fill(0));
+  const [revealedAnswers, setRevealedAnswers] = useState<boolean[]>(new Array(content.steps.length).fill(false));
+
+  // Soft ding sound for correct answers
+  const playSoftDing = () => {
+    if (typeof window === 'undefined') return;
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioContext) {
+        console.debug('Web Audio API not supported');
+        return;
+      }
+      
+      const audioContext = new AudioContext();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.type = 'sine';
+      oscillator.frequency.value = 880; // Soft A5 note
+      
+      // More audible but still subtle
+      gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.2);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.2);
+      
+      // Clean up after sound finishes
+      setTimeout(() => {
+        audioContext.close();
+      }, 300);
+    } catch (error) {
+      console.debug('Audio playback failed:', error);
+    }
+  };
 
   const handleAnswerChange = (stepIndex: number, value: string) => {
     const newAnswers = [...answers];
@@ -28,25 +67,19 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
     
     try {
       const step = content.steps[stepIndex];
-      const expectedAnswers = Array.isArray(step.expectedAnswer) 
-        ? step.expectedAnswer 
-        : [step.expectedAnswer];
 
       const response = await fetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           questionId: step.prompt,
+          questionText: step.prompt,
           userAnswer: answers[stepIndex],
-          answerType: 'short-text',
-          validationConfig: {
-            strategy: 'ai-assisted',
-            requiredKeywords: expectedAnswers,
-          },
-          context: {
-            lessonId: block.id,
-            attemptNumber: 1,
-          },
+          expectedAnswer: Array.isArray(step.expectedAnswer) 
+            ? step.expectedAnswer[0] 
+            : step.expectedAnswer,
+          answerType: 'conceptual',
+          cognitiveLevel: 'recall',
         }),
       });
 
@@ -55,6 +88,18 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
       const newFeedback = [...feedback];
       newFeedback[stepIndex] = result;
       setFeedback(newFeedback);
+
+      // Play soft ding for correct answers
+      if (result.isCorrect) {
+        playSoftDing();
+      }
+
+      // Increment attempt count if answer is incorrect
+      if (!result.isCorrect) {
+        const newAttemptCount = [...attemptCount];
+        newAttemptCount[stepIndex] = (newAttemptCount[stepIndex] || 0) + 1;
+        setAttemptCount(newAttemptCount);
+      }
 
       if (result.isCorrect && stepIndex < content.steps.length - 1) {
         setTimeout(() => {
@@ -130,9 +175,8 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                     {feedback[stepIndex]?.isCorrect && (
                       <div className="mt-3 bg-green-50 rounded-lg p-3 border border-green-300">
                         <p className="text-sm text-green-800 font-medium">
-                          ✓ {feedback[stepIndex]!.feedback}
+                          {feedback[stepIndex]!.feedback}
                         </p>
-                        <p className="text-xs text-green-700 mt-1">Moving to next step...</p>
                       </div>
                     )}
                     
@@ -167,6 +211,20 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                             {showHint ? 'Hide' : 'Show'} Hint
                           </button>
                         )}
+                        
+                        {/* Show Answer Button - appears after 2 failed attempts */}
+                        {attemptCount[stepIndex] >= 2 && !revealedAnswers[stepIndex] && (
+                          <button
+                            onClick={() => {
+                              const newRevealed = [...revealedAnswers];
+                              newRevealed[stepIndex] = true;
+                              setRevealedAnswers(newRevealed);
+                            }}
+                            className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 transition-colors text-sm border-2 border-amber-600"
+                          >
+                            👁️ Show Answer
+                          </button>
+                        )}
                       </div>
                     )}
                     
@@ -175,6 +233,18 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                         <p className="text-sm text-amber-900 flex items-start gap-2">
                           <span className="text-amber-600 flex-shrink-0">💡</span>
                           <span>{step.hint}</span>
+                        </p>
+                      </div>
+                    )}
+                    
+                    {/* Display Revealed Answer */}
+                    {revealedAnswers[stepIndex] && stepIndex === currentStep && (
+                      <div className="mt-3 bg-amber-50 rounded-lg p-4 border-2 border-amber-300">
+                        <p className="text-sm font-semibold text-amber-900 mb-2">Expected Answer:</p>
+                        <p className="text-gray-800">
+                          {Array.isArray(step.expectedAnswer) 
+                            ? step.expectedAnswer[0] 
+                            : step.expectedAnswer}
                         </p>
                       </div>
                     )}
@@ -187,10 +257,9 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
       </div>
 
       {feedback.every(f => f?.isCorrect) && feedback.every(f => f !== null) && (
-        <div className="mt-6 bg-green-100 rounded-xl p-4 border-2 border-green-300">
-          <p className="text-green-900 font-semibold text-center flex items-center justify-center gap-2">
-            <span className="text-2xl">🎉</span>
-            Great job! You&apos;ve completed all steps correctly.
+        <div className="mt-6 bg-green-50 rounded-xl p-4 border border-green-300">
+          <p className="text-green-900 font-medium text-center">
+            All steps completed.
           </p>
         </div>
       )}

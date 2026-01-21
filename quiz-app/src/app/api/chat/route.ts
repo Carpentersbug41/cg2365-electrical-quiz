@@ -1,15 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { getGeminiModel, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
+import { createLLMClientWithFallback } from '@/lib/llm/client';
 
-// Initialize Gemini API
-const apiKey = process.env.GEMINI_API_KEY;
-const modelName = process.env.GEMINI_MODEL;
+// Initialize LLM client (will be created on first request with fallback support)
+let llmClientPromise: Promise<Awaited<ReturnType<typeof createLLMClientWithFallback>>> | null = null;
+let modelName: string | null = null;
 
-if (!apiKey) {
-  console.error('GEMINI_API_KEY is not set in environment variables');
+try {
+  modelName = getGeminiModel();
+} catch (error) {
+  // Model name will be validated in the POST handler
+  console.warn('GEMINI_MODEL not set:', error instanceof Error ? error.message : error);
 }
-
-const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : null;
 
 // Rate limiting store (in-memory, resets on server restart)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
@@ -35,20 +37,31 @@ function checkRateLimit(identifier: string): boolean {
 
 export async function POST(request: NextRequest) {
   try {
-    // Check if API is configured
-    if (!genAI) {
+    // Initialize LLM client if not already initialized
+    if (!llmClientPromise) {
+      llmClientPromise = createLLMClientWithFallback();
+    }
+
+    let client;
+    try {
+      client = await llmClientPromise;
+    } catch (error) {
       return NextResponse.json(
-        { error: 'Chat assistant is not configured. Please check API key configuration.' },
+        { error: 'Chat assistant is not configured. Please check API key or Vertex AI configuration.' },
         { status: 503 }
       );
     }
 
     // Check if model is configured
     if (!modelName) {
-      return NextResponse.json(
-        { error: 'GEMINI_MODEL is not set in environment variables. Please set it in .env.local' },
-        { status: 503 }
-      );
+      try {
+        modelName = getGeminiModel();
+      } catch (error) {
+        return NextResponse.json(
+          { error: error instanceof Error ? error.message : 'GEMINI_MODEL is not set in environment variables. Please set it in .env.local' },
+          { status: 503 }
+        );
+      }
     }
 
     // Rate limiting
@@ -169,15 +182,14 @@ REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writi
 
     // Initialize model
     console.log(`Using Gemini model: ${modelName}`);
-    const model = genAI.getGenerativeModel({ 
+    const model = client.getGenerativeModel({ 
       model: modelName,
       systemInstruction: systemPrompt,
     });
 
     // Generate response
     const result = await model.generateContent(message);
-    const response = result.response;
-    const text = response.text();
+    const text = result.response.text();
 
     return NextResponse.json({ response: text });
   } catch (error) {

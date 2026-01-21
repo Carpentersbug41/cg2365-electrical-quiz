@@ -10,7 +10,9 @@
     "Explain why current is the same in a series circuit",
     "Calculate total resistance in simple series circuits"
   ],
-  "prerequisites": ["ohms-law-basics"],
+  "prerequisites": [
+    "ohms-law-basics"
+  ],
   "blocks": [
     {
       "id": "202-3A-outcomes",
@@ -67,7 +69,13 @@
         "description": "Two resistors (R1 and R2) connected in series with a power supply.",
         "videoUrl": "https://www.youtube.com/watch?v=82cRVrBHUfQ",
         "diagramType": "series",
-        "elementIds": ["R1", "R2", "loop", "supply", "wire"],
+        "elementIds": [
+          "R1",
+          "R2",
+          "loop",
+          "supply",
+          "wire"
+        ],
         "placeholderText": "Series circuit diagram showing R1 = 6 Ω and R2 = 3 Ω connected in a single loop with a 9V supply."
       }
     },
@@ -78,6 +86,45 @@
       "content": {
         "title": "The 3 Series Rules",
         "content": "**Rule 1 (Current):** Current is the same everywhere in a series circuit.\n\n**Rule 2 (Voltage):** Supply voltage is shared between components. The voltage drops across each component add up to the total supply voltage.\n\n**Rule 3 (Resistance):** Total resistance is the sum of individual resistances.\n\n**Why these rules work:**\n\nKeep your eyes on the diagram: there's only **one path** (no branches). Since charge has nowhere else to go, the same current must flow through each component. Think of water in a single pipe — the same amount flows everywhere.\n\nFor voltage, energy is used up as current passes through each resistor, so the supply voltage is divided between them.\n\nFor resistance, each resistor adds to the total opposition to current flow, so we simply add them together."
+      }
+    },
+    {
+      "id": "202-3A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The 3 Series Rules",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-3A-C1-L1-A",
+            "questionText": "What is Rule 1 about current in a series circuit?",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Current is the same everywhere in a series circuit",
+            "hint": "What stays constant at every point in a series circuit?"
+          },
+          {
+            "id": "202-3A-C1-L1-B",
+            "questionText": "What is Rule 2 about voltage in a series circuit?",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Voltages add up - the individual voltage drops equal the supply voltage",
+            "hint": "How do the voltage drops relate to the total supply voltage?"
+          },
+          {
+            "id": "202-3A-C1-L1-C",
+            "questionText": "What is Rule 3 about resistance in a series circuit?",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Resistances add up - total resistance equals the sum of individual resistances",
+            "hint": "How do you calculate total resistance in series?"
+          },
+          {
+            "id": "202-3A-C1-L2",
+            "questionText": "Why does having 'only one path' cause these three rules to work the way they do in series circuits?",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "With only one path, all current must flow through every component (Rule 1). As current flows through each resistor, energy is used causing voltage drops that add up (Rule 2). Each resistor adds opposition in the single path, so resistances add (Rule 3).",
+            "hint": "Think about how the single path affects current flow, energy use, and total opposition."
+          }
+        ]
       }
     },
     {
@@ -124,13 +171,23 @@
           {
             "stepNumber": 1,
             "prompt": "What is the formula for total resistance in series?",
-            "expectedAnswer": ["Rtotal = R1 + R2", "R total = R1 + R2", "Rt = R1 + R2", "add them"],
+            "expectedAnswer": [
+              "Rtotal = R1 + R2",
+              "R total = R1 + R2",
+              "Rt = R1 + R2",
+              "add them"
+            ],
             "hint": "In series, resistances ADD together."
           },
           {
             "stepNumber": 2,
             "prompt": "Now substitute the values. What is R_total = ?",
-            "expectedAnswer": ["12", "12 Ω", "12Ω", "12 ohms"],
+            "expectedAnswer": [
+              "12",
+              "12 Ω",
+              "12Ω",
+              "12 ohms"
+            ],
             "hint": "R_total = 4 + 8"
           }
         ]
@@ -146,29 +203,37 @@
           {
             "id": "202-3A-P1",
             "questionText": "R1 = 5 Ω, R2 = 7 Ω (series). Find R_total.",
-            "answerType": "numeric",
-            "expectedAnswer": ["12", "12 Ω", "12Ω"],
+            "expectedAnswer": "12 Ω (The total resistance is 12 ohms because in series circuits, resistances add together: 5 + 7 = 12)",
             "hint": "Use the series resistance formula: R_total = R1 + R2"
           },
           {
             "id": "202-3A-P2",
             "questionText": "Explain in one sentence: why is current the same everywhere in a series circuit?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "single path",
-              "one loop",
-              "no branches",
-              "nowhere else to go",
-              "same current flows through"
-            ],
+            "expectedAnswer": "Current is the same everywhere in a series circuit because there is only one path for the current to flow through, so the same amount of charge must pass through every point",
             "hint": "Think about the topology — how many paths are there?"
           },
           {
             "id": "202-3A-P3",
             "questionText": "Three resistors in series: R1 = 2 Ω, R2 = 3 Ω, R3 = 5 Ω. Find R_total.",
-            "answerType": "numeric",
-            "expectedAnswer": ["10", "10 Ω", "10Ω"],
+            "expectedAnswer": "10 Ω (Total resistance is 10 ohms: 2 + 3 + 5 = 10)",
             "hint": "Add all three resistances together."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3A-integrative",
+      "type": "practice",
+      "order": 7.5,
+      "content": {
+        "title": "Putting It All Together",
+        "questions": [
+          {
+            "id": "202-3A-INT-1",
+            "questionText": "You've learned the 3 series circuit rules (current same everywhere, voltages add up, resistances add up). Explain: Why are these rules essential for electrical work? How would an electrician use them when designing or troubleshooting a series circuit? (3-4 sentences)",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "The 3 series rules allow electricians to predict circuit behavior and perform calculations. Rule 1 ensures current ratings are consistent throughout. Rule 2 helps calculate voltage drops across components to ensure each gets appropriate voltage. Rule 3 enables calculation of total resistance to determine current draw and ensure cables can safely handle the load. Together, these rules are fundamental for circuit design, component selection, and fault finding.",
+            "hint": "Think about circuit design, safety calculations, and troubleshooting applications."
           }
         ]
       }
@@ -180,10 +245,26 @@
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [
-          "Rearrange V = I × R to find I.",
-          "Convert 250 mA into amps.",
-          "State the unit symbol for resistance.",
-          "What is the relationship between voltage, current, and resistance?"
+          {
+            "id": "202-3A-SR1",
+            "questionText": "Rearrange V = I × R to find I.",
+            "expectedAnswer": "I = V / R (or I = V ÷ R). To find current, divide voltage by resistance."
+          },
+          {
+            "id": "202-3A-SR2",
+            "questionText": "Convert 250 mA into amps.",
+            "expectedAnswer": "0.25 A (or 0.25 amps). To convert milliamps to amps, divide by 1000: 250 ÷ 1000 = 0.25"
+          },
+          {
+            "id": "202-3A-SR3",
+            "questionText": "State the unit symbol for resistance.",
+            "expectedAnswer": "Ω (omega). Resistance is measured in ohms, symbol Ω."
+          },
+          {
+            "id": "202-3A-SR4",
+            "questionText": "What is the relationship between voltage, current, and resistance?",
+            "expectedAnswer": "V = I × R (Ohm's Law). Voltage equals current multiplied by resistance. This fundamental relationship shows that voltage is directly proportional to both current and resistance."
+          }
         ],
         "notes": "These questions review Ohm's Law and units, which are prerequisites for series circuits."
       }
@@ -194,6 +275,12 @@
     "updated": "2026-01-13",
     "version": "1.0",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }
-

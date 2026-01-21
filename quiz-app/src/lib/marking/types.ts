@@ -25,11 +25,20 @@ export interface MarkingResult {
     points: number;
     reason: string;
   };
+  canRetry?: boolean;
+  serviceUnavailable?: boolean;
   metadata?: {
-    markedAt: Date;
+    markedAt?: Date;
     markingStrategy: string;
     confidence?: number; // For AI-assisted marking
     feedbackEnhanced?: boolean; // True if LLM enhanced the feedback wording
+    keywordMatches?: number; // DEPRECATED: Number of keywords matched
+    keywordsRequired?: number; // DEPRECATED: Minimum keywords needed
+    keywordsTotal?: number; // DEPRECATED: Total keywords available
+    errorCode?: string; // Error code for LLM service failures
+    errorType?: string; // Error type classification
+    timestamp?: Date; // Timestamp for errors
+    modelUsed?: string; // LLM model used for marking
   };
 }
 
@@ -54,6 +63,7 @@ export type MarkingStrategy =
   | 'normalized-match'      // After trimming, lowercasing
   | 'numeric-tolerance'     // Within tolerance range
   | 'contains-keywords'     // Contains required keywords
+  | 'keyword-counting'      // NEW: Counts keywords and checks minimum threshold
   | 'regex-pattern'         // Matches regex
   | 'ai-assisted'           // LLM judges conceptual correctness
   | 'step-validation';      // Validates each step
@@ -67,6 +77,7 @@ export interface AnswerValidationConfig {
   trimWhitespace?: boolean;
   acceptVariations?: boolean;
   requiredKeywords?: string[];
+  minimumKeywordCount?: number; // NEW: Minimum keywords needed to pass (for conceptual questions)
   forbiddenKeywords?: string[];
   unitsRequired?: boolean;
   unitsList?: string[]; // Acceptable units
@@ -88,6 +99,10 @@ export interface MarkingRequest {
   answerType: string;
   expectedAnswers?: string[]; // Optional: for questions not in question bank
   validationConfig?: AnswerValidationConfig;
+  // For LLM-based marking
+  questionText?: string;
+  expectedAnswer?: string; // Model answer for conceptual questions
+  cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis';
   context?: {
     lessonId: string;
     attemptNumber: number;
