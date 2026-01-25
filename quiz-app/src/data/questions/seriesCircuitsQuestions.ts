@@ -2,1296 +2,1417 @@ import { TaggedQuestion } from './types';
 
 /**
  * Series Circuits Question Bank
- * Aligned with lesson 202-3A learning outcomes
- * Includes tagging and misconception codes for targeted feedback
+ * Aligned with lesson 202-202.3AAA learning outcomes
+ * Generated: 2026-01-25
  */
 
-// #region agent log
-fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'seriesCircuitsQuestions.ts:9',message:'Loading seriesCircuitsQuestions',data:{questionCount:0},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-// #endregion
-
 export const seriesCircuitsQuestions: TaggedQuestion[] = [
-  // Discrimination Questions (Identify series vs parallel)
   {
-    id: 3001,
-    question: "Two resistors are connected one after the other with no branches. What type of circuit is this?",
-    options: [
-      "Series circuit",
-      "Parallel circuit",
-      "Mixed circuit",
-      "Short circuit"
+    "id": 4051,
+    "question": "Which of the following describes the connection of components in a series circuit?",
+    "options": [
+      "Components are connected end-to-end to form a single path for current",
+      "Components are connected side-by-side across the same two points",
+      "Current has multiple paths to return to the source",
+      "Each component is connected directly to the supply independently"
     ],
-    correctAnswer: 0,
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'discrimination', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "When components are connected one after the other with no branches, they form a series circuit. There is only one path for current to flow."
-  },
-
-  // Current Rule Questions
-  {
-    id: 3002,
-    question: "In a series circuit, how does the current through R1 compare to the current through R2?",
-    options: [
-      "Current through R1 is always higher",
-      "Current through R2 is always higher",
-      "Current is the same through both",
-      "Current divides between them"
-    ],
-    correctAnswer: 2,
-    misconceptionCodes: {
-      3: 'TOPOLOGY_CONFUSION' // Thinking it divides like in parallel
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'current-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "In a series circuit, current is the same everywhere because there is only one path. The same current flows through all components."
-  },
-
-  {
-    id: 3003,
-    question: "Why is the current the same everywhere in a series circuit?",
-    options: [
-      "Because resistance is equal in all components",
-      "Because voltage is the same across all components",
-      "Because there is only one path with no branches",
-      "Because of Ohm's Law"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "terminology",
+      "conceptual"
     ],
-    correctAnswer: 2,
-    misconceptionCodes: {
-      0: 'CONFUSED_I_V_R',
-      1: 'TOPOLOGY_CONFUSION',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'current-rule', 'explanation'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Current is the same everywhere in series because there's only one path for the charge to flow. Like water in a single pipe, it must all flow together."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, there is only one path for the current to flow, meaning all components are connected one after another in a single loop."
   },
-
-  // Resistance Rule - Calculation Questions
   {
-    id: 3004,
-    question: "R1 = 5 Ω and R2 = 7 Ω are connected in series. Calculate the total resistance.",
-    options: [
-      "12 Ω",
-      "2 Ω",
-      "35 Ω",
-      "2.9 Ω"
+    "id": 4052,
+    "question": "If a circuit consists of three resistors in series, what happens to the total resistance if a fourth resistor is added in series?",
+    "options": [
+      "The total resistance increases",
+      "The total resistance decreases",
+      "The total resistance stays the same",
+      "The total resistance becomes zero"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'USED_PARALLEL_RULE',      // 7 - 5
-      2: 'MULTIPLIED_INSTEAD',      // 5 × 7
-      3: 'RECIPROCAL_ERROR'         // Tried parallel reciprocal
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "CONFUSED_I_V_R",
+      "3": "OTHER"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "In series, resistances ADD: R_total = R1 + R2 = 5 + 7 = 12 Ω"
-  },
-
-  {
-    id: 3005,
-    question: "Three resistors in series: R1 = 2 Ω, R2 = 3 Ω, R3 = 5 Ω. Find R_total.",
-    options: [
-      "10 Ω",
-      "0.97 Ω",
-      "30 Ω",
-      "1.03 Ω"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "resistance-rule",
+      "conceptual"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'RECIPROCAL_ERROR',
-      2: 'MULTIPLIED_INSTEAD',
-      3: 'USED_PARALLEL_RULE'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "In series, add all resistances: R_total = 2 + 3 + 5 = 10 Ω"
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, the total resistance is the sum of all individual resistances (RT = R1 + R2 + ...). Adding more resistors increases the total resistance."
   },
-
   {
-    id: 3006,
-    question: "R1 = 10 Ω and R2 = 15 Ω are in series. What is the total resistance?",
-    options: [
-      "25 Ω",
-      "6 Ω",
-      "5 Ω",
-      "150 Ω"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'RECIPROCAL_ERROR',
-      2: 'DIVIDED_INSTEAD',
-      3: 'MULTIPLIED_INSTEAD'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 1,
-    estimatedTime: 45,
-    explanation: "In series circuits, resistances add: 10 + 15 = 25 Ω"
-  },
-
-  {
-    id: 3007,
-    question: "Four 5 Ω resistors are connected in series. What is the total resistance?",
-    options: [
-      "20 Ω",
-      "1.25 Ω",
-      "5 Ω",
-      "25 Ω"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'USED_PARALLEL_RULE',
-      2: 'OTHER',
-      3: 'MULTIPLIED_INSTEAD'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "In series, add all resistances: 5 + 5 + 5 + 5 = 20 Ω (or 4 × 5 when all equal)"
-  },
-
-  // Voltage Rule Questions
-  {
-    id: 3008,
-    question: "In a series circuit with a 12V supply, R1 has a 7V drop. What is the voltage drop across R2?",
-    options: [
-      "5 V",
-      "7 V",
-      "12 V",
-      "19 V"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 3,
-    estimatedTime: 75,
-    explanation: "In series, voltage drops add up to the supply voltage: V_R2 = V_supply - V_R1 = 12 - 7 = 5 V"
-  },
-
-  {
-    id: 3009,
-    question: "What happens to the voltage in a series circuit?",
-    options: [
-      "The supply voltage is shared between components",
-      "Each component gets the full supply voltage",
-      "Voltage increases through each component",
-      "Voltage is always equal across all components"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'OTHER',
-      3: 'TOPOLOGY_CONFUSION'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "In series, the supply voltage is divided among components. Each component gets a portion of the total voltage."
-  },
-
-  // Mixed Application Questions
-  {
-    id: 3010,
-    question: "Two resistors (6 Ω and 3 Ω) are in series with a 9V battery. What is the circuit current?",
-    options: [
-      "1 A",
-      "1.5 A",
-      "3 A",
-      "0.67 A"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'FORMULA_NOT_REARRANGED',
-      2: 'USED_PARALLEL_RULE',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'calculation', 'application', 'ohms-law'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'A',
-    difficulty: 3,
-    estimatedTime: 90,
-    explanation: "First find total resistance: R_total = 6 + 3 = 9 Ω. Then use Ohm's Law: I = V/R = 9/9 = 1 A"
-  },
-
-  {
-    id: 3011,
-    question: "In a series circuit, if one component fails (open circuit), what happens?",
-    options: [
-      "The whole circuit stops working",
-      "Only that component stops working",
-      "The other components work harder",
-      "Current increases in the other components"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'OTHER',
-      3: 'CONFUSED_I_V_R'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'conceptual', 'application'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "In series, there's only one path. If that path is broken, no current can flow anywhere in the circuit."
-  },
-
-  // Formula Recognition
-  {
-    id: 3012,
-    question: "Which formula is correct for total resistance in a series circuit?",
-    options: [
-      "R_total = R1 + R2 + R3 + ...",
-      "1/R_total = 1/R1 + 1/R2 + 1/R3 + ...",
-      "R_total = R1 × R2 × R3 × ...",
-      "R_total = (R1 + R2) / 2"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'USED_PARALLEL_RULE',
-      2: 'MULTIPLIED_INSTEAD',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "In series, resistances simply add together: R_total = R1 + R2 + R3 + ..."
-  },
-
-  {
-    id: 3013,
-    question: "R1 = 8 Ω, R2 = 4 Ω, R3 = 3 Ω in series. Find R_total.",
-    options: [
-      "15 Ω",
-      "1.6 Ω",
-      "96 Ω",
-      "5 Ω"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'RECIPROCAL_ERROR',
-      2: 'MULTIPLIED_INSTEAD',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Add all resistances: 8 + 4 + 3 = 15 Ω"
-  },
-
-  // Discrimination - identify topology
-  {
-    id: 3014,
-    question: "A circuit has three bulbs where the same current flows through each bulb. What type of connection is this?",
-    options: [
-      "Series connection",
-      "Parallel connection",
-      "Could be either",
-      "Short circuit"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'discrimination', 'conceptual', 'current-rule'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "When current is the same through all components, they must be in series. In parallel, current divides."
-  },
-
-  {
-    id: 3015,
-    question: "R1 = 12 Ω, R2 = 18 Ω in series. What is the total resistance?",
-    options: [
-      "30 Ω",
-      "7.2 Ω",
-      "6 Ω",
-      "216 Ω"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'RECIPROCAL_ERROR',
-      2: 'DIVIDED_INSTEAD',
-      3: 'MULTIPLIED_INSTEAD'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 1,
-    estimatedTime: 45,
-    explanation: "In series, add the resistances: 12 + 18 = 30 Ω"
-  },
-
-  // Harder application question
-  {
-    id: 3016,
-    question: "Three 6 Ω resistors in series are connected to a 18V supply. What is the current through each resistor?",
-    options: [
-      "1 A",
-      "3 A",
-      "6 A",
-      "0.33 A"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'FORMULA_NOT_REARRANGED',
-      3: 'USED_PARALLEL_RULE'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'calculation', 'application', 'current-rule', 'ohms-law'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'A',
-    difficulty: 4,
-    estimatedTime: 120,
-    explanation: "Total resistance = 6 + 6 + 6 = 18 Ω. Current I = V/R = 18/18 = 1 A. In series, current is same through all resistors."
-  },
-
-  {
-    id: 3017,
-    question: "If R_total in a series circuit increases, what happens to the circuit current (assuming constant voltage)?",
-    options: [
-      "Current decreases",
-      "Current increases",
-      "Current stays the same",
-      "Current becomes zero"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'conceptual', 'ohms-law'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "From Ohm's Law (I = V/R), if resistance increases and voltage stays constant, current decreases."
-  },
-
-  {
-    id: 3018,
-    question: "Two identical resistors in series have a combined resistance of 20 Ω. What is the value of each resistor?",
-    options: [
-      "10 Ω",
+    "id": 4053,
+    "question": "A series circuit has two resistors: R1 = 15 Ω and R2 = 25 Ω. What is the total resistance (RT)?",
+    "options": [
       "40 Ω",
-      "20 Ω",
-      "5 Ω"
+      "9.38 Ω",
+      "375 Ω",
+      "10 Ω"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'MULTIPLIED_INSTEAD',
-      2: 'OTHER',
-      3: 'DIVIDED_INSTEAD'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "OTHER"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "If R1 + R2 = 20 Ω and R1 = R2, then 2R = 20, so R = 10 Ω"
-  },
-
-  {
-    id: 3019,
-    question: "Which statement about series circuits is TRUE?",
-    options: [
-      "The same current flows through all components",
-      "Each component has the same voltage across it",
-      "Total resistance is always less than the smallest resistor",
-      "Current divides between the components"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "resistance-rule",
+      "calculation"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'USED_PARALLEL_RULE',
-      3: 'TOPOLOGY_CONFUSION'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'conceptual', 'discrimination'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "The defining characteristic of series circuits is that current is the same through all components (one path, no branches)."
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "For resistors in series, simply add the values together: 15 Ω + 25 Ω = 40 Ω."
   },
-
   {
-    id: 3020,
-    question: "In a series circuit with R1 = 6 Ω and R2 = 6 Ω, if the voltage across R1 is 3V, what is the voltage across R2?",
-    options: [
-      "3 V",
-      "6 V",
-      "0 V",
-      "9 V"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 3,
-    estimatedTime: 90,
-    explanation: "With equal resistances in series, voltage divides equally. If R1 = R2 and V_R1 = 3V, then V_R2 = 3V also."
-  },
-
-  // ----------------------------
-  // +30 NEW QUESTIONS (3021–3050)
-  // ----------------------------
-
-  {
-    id: 3021,
-    question: "Which statement about voltage in a series circuit is TRUE?",
-    options: [
-      "The voltage drops across components add up to the supply voltage",
-      "Each component gets the full supply voltage",
-      "Voltage is the same across every component",
-      "Voltage increases after each component"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'TOPOLOGY_CONFUSION',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "In series, the supply voltage is shared. The drops across each component add up to the supply voltage."
-  },
-
-  {
-    id: 3022,
-    question: "A 24V supply is connected to two resistors in series: 8 Ω and 4 Ω. What is the circuit current?",
-    options: [
+    "id": 4054,
+    "question": "In a series circuit with a 12 V supply and a total resistance of 6 Ω, what is the current flowing through the circuit?",
+    "options": [
       "2 A",
-      "3 A",
-      "6 A",
-      "0.5 A"
+      "0.5 A",
+      "72 A",
+      "18 A"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'ARITHMETIC_ERROR',
-      2: 'CONFUSED_I_V_R',
-      3: 'FORMULA_NOT_REARRANGED'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "OTHER"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'calculation', 'ohms-law', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'A',
-    difficulty: 3,
-    estimatedTime: 90,
-    explanation: "R_total = 8 + 4 = 12 Ω. I = V/R = 24/12 = 2 A."
-  },
-
-  {
-    id: 3023,
-    question: "A 12V supply is connected to two resistors in series: R1 = 2 Ω and R2 = 4 Ω. What is the voltage drop across R2?",
-    options: [
-      "8 V",
-      "6 V",
-      "4 V",
-      "2 V"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "ohms-law",
+      "calculation"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'VOLTAGE_EQUAL_SPLIT_ERROR',
-      2: 'CONFUSED_I_V_R',
-      3: 'VOLTAGE_DIVIDER_ERROR'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 4,
-    estimatedTime: 120,
-    explanation: "R_total = 2 + 4 = 6 Ω. I = 12/6 = 2 A. V_R2 = I × R2 = 2 × 4 = 8 V."
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 60,
+    "explanation": "Using Ohm's Law (I = V / R), the current is 12 V / 6 Ω = 2 A."
   },
-
   {
-    id: 3024,
-    question: "Where must an ammeter be connected to measure current through a component in a series circuit?",
-    options: [
-      "In series with the component",
-      "In parallel across the component",
-      "Across the supply only",
-      "It doesn't matter where it goes"
+    "id": 4055,
+    "question": "Which statement correctly describes the current in a series circuit?",
+    "options": [
+      "The current is the same at all points in the circuit",
+      "The current is shared between the components",
+      "The current is highest near the positive terminal",
+      "The current decreases after passing through each resistor"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'METER_CONNECTION_ERROR',
-      2: 'METER_CONNECTION_ERROR',
-      3: 'OTHER'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'measurement', 'current-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "An ammeter must be connected in series so all current flows through it."
-  },
-
-  {
-    id: 3025,
-    question: "Where must a voltmeter be connected to measure the voltage drop across a resistor in a series circuit?",
-    options: [
-      "In parallel across the resistor",
-      "In series with the resistor",
-      "In series with the supply only",
-      "Across a different resistor"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "current-rule",
+      "conceptual"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'METER_CONNECTION_ERROR',
-      2: 'METER_CONNECTION_ERROR',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'measurement', 'voltage-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "A voltmeter measures potential difference between two points, so it must be connected across (in parallel with) the component."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, there is only one path for electrons to follow, so the current flow (Amperes) must be identical at every point."
   },
-
   {
-    id: 3026,
-    question: "Two resistors in series have R_total = 15 Ω. If one resistor is 9 Ω, what is the other resistor?",
-    options: [
-      "6 Ω",
-      "24 Ω",
-      "4 Ω",
-      "1.67 Ω"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'MULTIPLIED_INSTEAD',
-      2: 'ARITHMETIC_ERROR',
-      3: 'USED_PARALLEL_RULE'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 3,
-    estimatedTime: 75,
-    explanation: "In series: R_total = R1 + R2. So R2 = 15 - 9 = 6 Ω."
-  },
-
-  {
-    id: 3027,
-    question: "What happens to total resistance when you add another resistor in series (same supply voltage)?",
-    options: [
-      "Total resistance increases",
-      "Total resistance decreases",
-      "Total resistance stays the same",
-      "Total resistance becomes zero"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'USED_PARALLEL_RULE',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 40,
-    explanation: "In series, resistances add. Adding another resistor increases the total resistance."
-  },
-
-  {
-    id: 3028,
-    question: "A series circuit has a fixed total resistance. If the supply voltage doubles, what happens to the current?",
-    options: [
-      "Current doubles",
-      "Current halves",
-      "Current stays the same",
-      "Current becomes zero"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'CONFUSED_I_V_R',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'ohms-law', 'conceptual'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "Ohm’s Law: I = V/R. If R stays constant, doubling V doubles I."
-  },
-
-  {
-    id: 3029,
-    question: "Which formula can be used to find the voltage drop across R1 in a two-resistor series circuit?",
-    options: [
-      "V_R1 = V_total × (R1 / (R1 + R2))",
-      "V_R1 = V_total × (R2 / (R1 + R2))",
-      "V_R1 = I_total ÷ R1",
-      "V_R1 = R1 ÷ V_total"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'VOLTAGE_DIVIDER_ERROR',
-      2: 'CONFUSED_I_V_R',
-      3: 'CONFUSED_I_V_R'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'formula', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Voltage divider: in series, voltage drop is proportional to resistance. For R1, V_R1 = V_total × R1/(R1+R2)."
-  },
-
-  {
-    id: 3030,
-    question: "Two resistors in series: R1 = 2 Ω and R2 = 8 Ω across a 10V supply. What is the voltage drop across R1?",
-    options: [
+    "id": 4056,
+    "question": "A 24 V battery is connected to two identical 12 Ω resistors in series. What is the voltage drop across each resistor?",
+    "options": [
+      "12 V",
+      "24 V",
       "2 V",
-      "8 V",
-      "5 V",
-      "10 V"
+      "6 V"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'VOLTAGE_DIVIDER_ERROR',
-      2: 'VOLTAGE_EQUAL_SPLIT_ERROR',
-      3: 'TOPOLOGY_CONFUSION'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "DIVIDED_INSTEAD",
+      "3": "OTHER"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 4,
-    estimatedTime: 120,
-    explanation: "R_total = 10 Ω, I = 10/10 = 1 A. V_R1 = I×R1 = 1×2 = 2 V (also 10×2/10 = 2 V)."
-  },
-
-  {
-    id: 3031,
-    question: "In a series circuit, which resistor will have the larger voltage drop?",
-    options: [
-      "The resistor with the larger resistance",
-      "The resistor with the smaller resistance",
-      "They always have equal voltage drops",
-      "The one closest to the supply"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "voltage-rule",
+      "calculation"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'VOLTAGE_DIVIDER_ERROR',
-      2: 'VOLTAGE_EQUAL_SPLIT_ERROR',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "In series, the same current flows through each resistor. Voltage drop is V = I×R, so a larger R gives a larger voltage drop."
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Since the resistors are identical, the 24 V supply is shared equally between them. 24 V / 2 = 12 V each."
   },
-
   {
-    id: 3032,
-    question: "A string of Christmas lights is wired in series. If one bulb fails open-circuit, why do all bulbs go out?",
-    options: [
-      "Because the single path for current is broken",
-      "Because voltage becomes zero everywhere",
-      "Because current increases too much",
-      "Because resistance becomes zero"
+    "id": 4057,
+    "question": "An electrician is testing a series lighting circuit. If one lamp fails 'open circuit', what will happen to the remaining lamps?",
+    "options": [
+      "All lamps will go out",
+      "The other lamps will get brighter",
+      "The other lamps will stay on as normal",
+      "Only the lamps before the fault will stay on"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'CONFUSED_I_V_R',
-      3: 'OTHER'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'application', 'conceptual', 'current-rule'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "In series, there is only one path. An open circuit breaks the path, so no current flows anywhere."
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Because there is only one path for current, an open circuit anywhere (like a blown bulb) breaks the entire loop and stops current flow to all components."
   },
-
   {
-    id: 3033,
-    question: "Two identical resistors are in series across a 12V supply. What is the voltage across each resistor?",
-    options: [
-      "6 V",
+    "id": 4058,
+    "question": "What is the total resistance of a series circuit containing a 1.2 kΩ resistor and a 300 Ω resistor?",
+    "options": [
+      "1500 Ω",
+      "1.5 Ω",
+      "301.2 Ω",
+      "240 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "UNITS_MISSING",
+      "3": "USED_PARALLEL_RULE"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "units",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "First convert 1.2 kΩ to 1200 Ω. Then add: 1200 Ω + 300 Ω = 1500 Ω."
+  },
+  {
+    "id": 4059,
+    "question": "How should an ammeter be connected to measure the total current in a series circuit?",
+    "options": [
+      "In series with the components",
+      "In parallel across the supply",
+      "In parallel across the largest resistor",
+      "Between the neutral and earth terminals"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Ammeters have very low resistance and must be connected in series so that the circuit current flows through them."
+  },
+  {
+    "id": 4060,
+    "question": "A series circuit has a total resistance of 100 Ω and a current of 0.5 A. What is the total power dissipated by the circuit?",
+    "options": [
+      "25 W",
+      "50 W",
+      "200 W",
+      "0.005 W"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "power",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Using the formula P = I²R: (0.5 * 0.5) * 100 = 0.25 * 100 = 25 W. Alternatively, find V first (V=I*R=50V) then P=V*I (50*0.5=25W)."
+  },
+  {
+    "id": 4061,
+    "question": "In a series circuit containing three resistors, how many paths are available for the current to flow through?",
+    "options": [
+      "One path",
+      "Two paths",
+      "Three paths",
+      "A different path for each resistor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "A series circuit is defined by having only one continuous path for current to flow from the source, through all components, and back to the source."
+  },
+  {
+    "id": 4062,
+    "question": "Three resistors with values of 15 Ω, 25 Ω, and 60 Ω are connected in series. What is the total resistance of the circuit?",
+    "options": [
+      "100 Ω",
+      "7.32 Ω",
+      "22,500 Ω",
+      "60 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "resistance-rule",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, the total resistance (Rt) is found by adding the individual resistances together: 15 + 25 + 60 = 100 Ω."
+  },
+  {
+    "id": 4063,
+    "question": "If a 230 V supply is connected to two 50 Ω resistors connected in series, what is the total current flowing through the circuit?",
+    "options": [
+      "2.3 A",
+      "4.6 A",
+      "23,000 A",
+      "0.43 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "ohms-law",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "First, find total resistance: 50 + 50 = 100 Ω. Then use Ohm's Law (I = V / R): 230 / 100 = 2.3 A."
+  },
+  {
+    "id": 4064,
+    "question": "Which statement correctly describes the behavior of current in a series circuit?",
+    "options": [
+      "The current remains the same at all points in the circuit",
+      "The current divides proportionally between the resistors",
+      "The current decreases as it passes through each resistor",
+      "The current is highest at the positive terminal and lowest at the negative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "current-rule",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, there is only one path for electrons to flow, meaning the current (the rate of flow) must be identical at every point in the loop."
+  },
+  {
+    "id": 4065,
+    "question": "An electrician is fault-finding on a set of decorative lights wired in series. If one lamp fails and creates an open circuit, what will happen to the remaining lamps?",
+    "options": [
+      "All of the lamps will stop working",
+      "The remaining lamps will become brighter",
+      "Only the failed lamp will go out",
+      "The circuit fuse will immediately blow"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Because there is only one path for current in a series circuit, a break anywhere (an open circuit) stops the flow of electricity to all components in that circuit."
+  },
+  {
+    "id": 4066,
+    "question": "A series circuit consists of three 100 Ω resistors. If one resistor develops an open-circuit fault, what will be the current flow through the remaining two resistors?",
+    "options": [
+      "0 A",
+      "The same current as before",
+      "An increased current",
+      "Half of the original current"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "USED_SERIES_RULE"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "current-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In a series circuit, there is only one path for current. If any part of the path is broken (open-circuit), current cannot flow anywhere in the circuit."
+  },
+  {
+    "id": 4067,
+    "question": "An electrician connects a 1.2 kΩ resistor and an 800 Ω resistor in series. What is the total resistance (Rt) of this combination?",
+    "options": [
+      "2000 Ω",
+      "480 Ω",
+      "1.2008 kΩ",
+      "400 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "WRONG_UNITS",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "resistance-rule",
+      "units"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In series, total resistance is the sum of individual resistances. 1.2 kΩ is 1200 Ω. 1200 + 800 = 2000 Ω."
+  },
+  {
+    "id": 4068,
+    "question": "A 230 V supply is connected to three resistors in series: 10 Ω, 15 Ω, and 25 Ω. What is the total current flowing through the 15 Ω resistor?",
+    "options": [
+      "4.6 A",
+      "15.33 A",
+      "23 A",
+      "1.53 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "DIVIDED_INSTEAD",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "ohms-law",
+      "current-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "First find Rt: 10 + 15 + 25 = 50 Ω. Then find total current: I = V / Rt = 230 / 50 = 4.6 A. In series, current is the same everywhere."
+  },
+  {
+    "id": 4069,
+    "question": "In a series circuit containing resistors of 50 Ω, 100 Ω, and 150 Ω, which resistor will have the largest voltage drop across it?",
+    "options": [
+      "The 150 Ω resistor",
+      "The 50 Ω resistor",
+      "The 100 Ω resistor",
+      "All resistors will have the same voltage drop"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "VOLTAGE_RULE"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "voltage-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In a series circuit, voltage drop is proportional to resistance (V = I x R). Since current is the same for all, the highest resistance has the highest voltage drop."
+  },
+  {
+    "id": 4070,
+    "question": "Two resistors, 40 Ω and 60 Ω, are connected in series to a 12 V DC source. Calculate the voltage drop across the 60 Ω resistor.",
+    "options": [
+      "7.2 V",
+      "4.8 V",
       "12 V",
-      "3 V",
-      "9 V"
+      "0.2 V"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'VOLTAGE_DIVIDER_ERROR',
-      3: 'VOLTAGE_DIVIDER_ERROR'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "DIVIDED_INSTEAD"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 3,
-    estimatedTime: 75,
-    explanation: "Equal resistors in series share the voltage equally. 12V ÷ 2 = 6V each."
-  },
-
-  {
-    id: 3034,
-    question: "A circuit current is 500 mA in a series circuit. What is this current in amps (A)?",
-    options: [
-      "0.5 A",
-      "5 A",
-      "0.05 A",
-      "500 A"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "voltage-rule",
+      "ohms-law"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'ARITHMETIC_ERROR',
-      2: 'ARITHMETIC_ERROR',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'units', 'conversion', 'ohms-law'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    requiredUnits: 'A',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "1000 mA = 1 A, so 500 mA = 0.5 A."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Rt = 40 + 60 = 100 Ω. I = V / Rt = 12 / 100 = 0.12 A. V(60Ω) = I * R = 0.12 * 60 = 7.2 V."
   },
-
   {
-    id: 3035,
-    question: "A series circuit has a 9V supply and a current of 0.5A. What is the total resistance?",
-    options: [
-      "18 Ω",
-      "4.5 Ω",
-      "9 Ω",
-      "0.056 Ω"
+    "id": 4071,
+    "question": "A string of 20 identical decorative lamps is connected in series to a 230 V mains supply. What is the voltage drop across each individual lamp?",
+    "options": [
+      "11.5 V",
+      "230 V",
+      "4600 V",
+      "0.08 V"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'FORMULA_NOT_REARRANGED',
-      2: 'CONFUSED_I_V_R',
-      3: 'RECIPROCAL_ERROR'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "RECIPROCAL_ERROR"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'ohms-law', 'calculation', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 3,
-    estimatedTime: 75,
-    explanation: "Ohm’s Law: R = V/I = 9/0.5 = 18 Ω."
-  },
-
-  {
-    id: 3036,
-    question: "Two resistors are in series. R_total = 18 Ω and R1 = 10 Ω. What is R2?",
-    options: [
-      "8 Ω",
-      "28 Ω",
-      "1.8 Ω",
-      "0.56 Ω"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "voltage-rule"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'MULTIPLIED_INSTEAD',
-      2: 'DIVIDED_INSTEAD',
-      3: 'RECIPROCAL_ERROR'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "R_total = R1 + R2 → R2 = 18 - 10 = 8 Ω."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In a series circuit with identical components, the supply voltage is shared equally. 230 V / 20 lamps = 11.5 V per lamp."
   },
-
   {
-    id: 3037,
-    question: "A circuit has one loop and no junctions. What does that tell you about the current?",
-    options: [
-      "The current is the same everywhere in the circuit",
-      "The current splits into branches",
-      "The current is zero",
-      "The current increases after each component"
+    "id": 4072,
+    "question": "A series circuit has a total resistance of 100 Ω and is connected to a 230 V supply. What is the total power dissipated by the circuit?",
+    "options": [
+      "529 W",
+      "23,000 W",
+      "2.3 W",
+      "43.4 W"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'OTHER',
-      3: 'OTHER'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
+      "3": "FORMULA_NOT_REARRANGED"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'current-rule', 'conceptual', 'topology'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "One loop and no junctions means a series path. With one path, the same current flows through every component."
-  },
-
-  {
-    id: 3038,
-    question: "A series circuit has a 6V supply and total resistance of 3 Ω. What is the circuit current?",
-    options: [
-      "2 A",
-      "0.5 A",
-      "9 A",
-      "3 A"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "power"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'FORMULA_NOT_REARRANGED',
-      2: 'MULTIPLIED_INSTEAD',
-      3: 'ARITHMETIC_ERROR'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'ohms-law', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'A',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "I = V/R = 6/3 = 2 A."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "First find current: I = V / R = 230 / 100 = 2.3 A. Then find power: P = V * I = 230 * 2.3 = 529 W (or use P = V² / R)."
   },
-
   {
-    id: 3039,
-    question: "A series circuit current is 0.2A. What is the voltage drop across a 20 Ω resistor in that circuit?",
-    options: [
-      "4 V",
-      "0.01 V",
-      "10 V",
-      "20 V"
+    "id": 4073,
+    "question": "What is the effect on the total circuit current if an additional resistor is added in series to an existing circuit, assuming the supply voltage remains constant?",
+    "options": [
+      "The current decreases because total resistance has increased",
+      "The current increases because there are more components",
+      "The current remains the same because voltage is constant",
+      "The current decreases because total resistance has decreased"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'MULTIPLIED_INSTEAD',
-      3: 'ARITHMETIC_ERROR'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "FORMULA_NOT_REARRANGED"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'ohms-law'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 3,
-    estimatedTime: 75,
-    explanation: "V = I × R = 0.2 × 20 = 4 V."
-  },
-
-  {
-    id: 3040,
-    question: "Which set of resistors gives a total of 30 Ω when connected in series?",
-    options: [
-      "10 Ω, 10 Ω, 10 Ω",
-      "60 Ω and 60 Ω",
-      "15 Ω and 15 Ω in parallel",
-      "5 Ω and 25 Ω in parallel"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "resistance-rule",
+      "current-rule"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'DIVIDED_INSTEAD',
-      2: 'TOPOLOGY_CONFUSION',
-      3: 'TOPOLOGY_CONFUSION'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'discrimination', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "In series, resistances add. 10 + 10 + 10 = 30 Ω."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Adding resistors in series increases the total resistance (Rt). According to Ohm's Law (I = V/R), if resistance increases while voltage is fixed, the current must decrease."
   },
-
   {
-    id: 3041,
-    question: "Which description best matches a series circuit?",
-    options: [
-      "One path for current, no branches",
-      "Multiple branches, same voltage across each branch",
-      "Two paths for current, current splits at junctions",
-      "A circuit with no resistance"
+    "id": 4074,
+    "question": "A circuit contains three 20 Ω resistors in series. If a technician accidentally places a low-resistance link (short circuit) across one of the resistors, what will happen to the circuit current?",
+    "options": [
+      "The current will increase",
+      "The current will decrease",
+      "The current will remain exactly the same",
+      "The current will drop to zero"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'TOPOLOGY_CONFUSION',
-      3: 'OTHER'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "SIGN_ERROR"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'discrimination', 'topology', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 35,
-    explanation: "A series circuit has one continuous path (one loop) with no branches."
-  },
-
-  {
-    id: 3042,
-    question: "A student says: 'The current through R1 is 2A, so the current through R2 must be 2A too.' In a series circuit, is the student correct?",
-    options: [
-      "Yes, current is the same everywhere in series",
-      "No, current always splits between resistors",
-      "No, current depends on which resistor is larger",
-      "Only if both resistors are the same value"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "current-rule"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'CONFUSED_I_V_R',
-      3: 'VOLTAGE_EQUAL_SPLIT_ERROR'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'current-rule', 'conceptual'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 55,
-    explanation: "In series there is only one path, so the same current flows through every component."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Shorting out a resistor removes its resistance from the circuit. The total resistance decreases from 60 Ω to 40 Ω. Since R decreased, the current (I = V/R) will increase."
   },
-
   {
-    id: 3043,
-    question: "In a series circuit, the voltage drop across R1 and R2 together is 10V, and the drop across R3 is 2V. What is the supply voltage?",
-    options: [
-      "12 V",
-      "8 V",
-      "10 V",
-      "20 V"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'ARITHMETIC_ERROR',
-      2: 'CONFUSED_I_V_R',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "In series, voltage drops add to the supply: V_supply = 10 + 2 = 12 V."
-  },
-
-  {
-    id: 3044,
-    question: "Which equation describes the series voltage rule?",
-    options: [
-      "V_total = V1 + V2 + V3 + ...",
-      "V_total = V1 = V2 = V3 = ...",
-      "1/V_total = 1/V1 + 1/V2 + 1/V3 + ...",
-      "V_total = V1 × V2 × V3 × ..."
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'TOPOLOGY_CONFUSION',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'formula', 'conceptual'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 40,
-    explanation: "In series, the supply voltage is shared and the drops add up: V_total = V1 + V2 + ..."
-  },
-
-  {
-    id: 3045,
-    question: "Two resistors are in series across 12V. The voltage across R1 is 9V. If R2 = 2 Ω, what is R1?",
-    options: [
-      "6 Ω",
-      "18 Ω",
-      "0.67 Ω",
-      "4 Ω"
-    ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'MULTIPLIED_INSTEAD',
-      2: 'USED_PARALLEL_RULE',
-      3: 'VOLTAGE_DIVIDER_ERROR'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'voltage-divider'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 5,
-    estimatedTime: 150,
-    explanation: "If V_total = 12V and V_R1 = 9V, then V_R2 = 3V. Same current flows: I = V_R2/R2 = 3/2 = 1.5A. Then R1 = V_R1/I = 9/1.5 = 6 Ω."
-  },
-
-  {
-    id: 3046,
-    question: "A series circuit has a 20V supply and a current of 2A. What is the total resistance?",
-    options: [
-      "10 Ω",
+    "id": 4075,
+    "question": "A 110 V series circuit has a total current flow of 2 A. The circuit consists of two resistors. If one resistor is known to be 15 Ω, what is the value of the second resistor?",
+    "options": [
       "40 Ω",
-      "18 Ω",
-      "0.1 Ω"
+      "55 Ω",
+      "70 Ω",
+      "220 Ω"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'MULTIPLIED_INSTEAD',
-      2: 'ARITHMETIC_ERROR',
-      3: 'RECIPROCAL_ERROR'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "USED_SERIES_RULE",
+      "3": "MULTIPLIED_INSTEAD"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'ohms-law', 'calculation'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'Ω',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "R = V/I = 20/2 = 10 Ω."
-  },
-
-  {
-    id: 3047,
-    question: "Which statement about total resistance in a series circuit is TRUE?",
-    options: [
-      "Total resistance is the sum of all resistors",
-      "Total resistance is always less than the smallest resistor",
-      "Total resistance is found using 1/R_total = 1/R1 + 1/R2 + ...",
-      "Total resistance is found by multiplying the resistors"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "resistance-rule",
+      "ohms-law"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'USED_PARALLEL_RULE',
-      2: 'USED_PARALLEL_RULE',
-      3: 'MULTIPLIED_INSTEAD'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'resistance-rule', 'conceptual', 'discrimination'],
-    learningOutcomeId: "202-3A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 35,
-    explanation: "Series resistors add directly: R_total = R1 + R2 + ..."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "First find total resistance: Rt = V / I = 110 / 2 = 55 Ω. In series, Rt = R1 + R2. Therefore, R2 = Rt - R1 = 55 - 15 = 40 Ω."
   },
-
   {
-    id: 3048,
-    question: "A resistor in a series circuit is bypassed by a wire (shorted). What happens to the total resistance of the circuit?",
-    options: [
-      "Total resistance decreases",
-      "Total resistance increases",
-      "Total resistance stays the same",
-      "Total resistance becomes infinite"
+    "id": 4076,
+    "question": "A series circuit consists of two resistors: R1 = 1.2 kΩ and R2 = 470 Ω. What is the total resistance (RT) of the circuit?",
+    "options": [
+      "1.67 kΩ",
+      "730 Ω",
+      "338 Ω",
+      "1.247 kΩ"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'OTHER',
-      3: 'OTHER'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "USED_PARALLEL_RULE",
+      "3": "WRONG_UNITS"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'application', 'conceptual', 'faults'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 5,
-    estimatedTime: 120,
-    explanation: "A short provides a very low-resistance path that effectively removes that resistor from the circuit, lowering the total resistance."
-  },
-
-  {
-    id: 3049,
-    question: "In a series circuit, one resistor increases in value (e.g., from heating). Assuming supply voltage stays constant, what happens to the circuit current?",
-    options: [
-      "Current decreases",
-      "Current increases",
-      "Current stays the same",
-      "Current becomes zero instantly"
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "resistance-rule",
+      "units"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'CONFUSED_I_V_R',
-      2: 'OTHER',
-      3: 'OTHER'
-    },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'ohms-law', 'conceptual', 'application'],
-    learningOutcomeId: "202-3A-LO2",
-    answerType: 'mcq',
-    difficulty: 3,
-    estimatedTime: 60,
-    explanation: "If total resistance increases and voltage stays constant, Ohm’s Law says current must decrease (I = V/R)."
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In a series circuit, total resistance is the sum of all individual resistances. 1.2 kΩ = 1200 Ω. 1200 + 470 = 1670 Ω, which is 1.67 kΩ."
   },
-
   {
-    id: 3050,
-    question: "A 9V supply is connected to three series resistors: 1 Ω, 2 Ω, and 6 Ω. What is the voltage drop across the 6 Ω resistor?",
-    options: [
+    "id": 4077,
+    "question": "Three resistors are connected in series to a 230 V supply. If the resistance of one resistor is increased, what effect does this have on the total circuit current?",
+    "options": [
+      "The current decreases throughout the entire circuit",
+      "The current only decreases at the point of that specific resistor",
+      "The current increases because the resistance is higher",
+      "The current remains the same as it is a series circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "DIVIDED_INSTEAD",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "According to Ohm's Law (I = V/R), if the total resistance of a circuit increases while the voltage remains constant, the total current must decrease. In series, current is the same at all points."
+  },
+  {
+    "id": 4078,
+    "question": "A series circuit has a 230 V supply and two resistors of 20 Ω and 30 Ω. Calculate the total current flowing through the 30 Ω resistor.",
+    "options": [
+      "4.6 A",
+      "7.66 A",
+      "11.5 A",
+      "11,500 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "ohms-law",
+      "current-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "First find total resistance: RT = 20 + 30 = 50 Ω. Then use Ohm's Law: I = V / RT = 230 / 50 = 4.6 A. In series, current is the same everywhere."
+  },
+  {
+    "id": 4079,
+    "question": "An electrician is testing a string of 20 decorative lamps connected in series. If the 5th lamp in the string burns out (creating an open circuit), what will happen to the remaining lamps?",
+    "options": [
+      "All lamps will go out because the path for current is broken",
+      "Only the 5th lamp will go out; the others stay lit",
+      "The remaining 19 lamps will get slightly brighter",
+      "All lamps after the 5th one will go out, but the first 4 stay lit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "A series circuit provides only one path for current. If any component fails and creates an open circuit, the path is broken and current stops flowing entirely."
+  },
+  {
+    "id": 4080,
+    "question": "Calculate the voltage drop across a 200 Ω resistor that is connected in series with a 100 Ω resistor across a 12 V DC supply.",
+    "options": [
+      "8 V",
+      "4 V",
       "6 V",
-      "3 V",
-      "9 V",
-      "2 V"
+      "12 V"
     ],
-    correctAnswer: 0,
-    misconceptionCodes: {
-      1: 'VOLTAGE_EQUAL_SPLIT_ERROR',
-      2: 'TOPOLOGY_CONFUSION',
-      3: 'VOLTAGE_DIVIDER_ERROR'
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "ROUNDING_ERROR",
+      "3": "TOPOLOGY_CONFUSION"
     },
-    section: "Science 2365 Level 2",
-    category: "Series Circuits",
-    tags: ['series', 'voltage-rule', 'calculation', 'voltage-divider', 'application'],
-    learningOutcomeId: "202-3A-LO3",
-    answerType: 'mcq',
-    requiredUnits: 'V',
-    difficulty: 5,
-    estimatedTime: 150,
-    explanation: "R_total = 1 + 2 + 6 = 9 Ω. I = 9V/9Ω = 1A. V_6Ω = I×R = 1×6 = 6V."
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "voltage-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 100,
+    "explanation": "RT = 100 + 200 = 300 Ω. I = V / RT = 12 / 300 = 0.04 A. Voltage drop across 200 Ω is V = I * R = 0.04 * 200 = 8 V."
+  },
+  {
+    "id": 4081,
+    "question": "When using test instruments on a series circuit, how must an ammeter and a voltmeter be connected to measure the current through and voltage across a specific load?",
+    "options": [
+      "Ammeter in series with the load; Voltmeter in parallel across the load",
+      "Ammeter in parallel across the load; Voltmeter in series with the load",
+      "Both instruments must be connected in series with the load",
+      "Both instruments must be connected in parallel across the load"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Ammeters have low resistance and must be in series to measure flow. Voltmeters have high resistance and must be in parallel to measure potential difference."
+  },
+  {
+    "id": 4082,
+    "question": "A series circuit draws 2 A from a supply. It contains two resistors: R1 = 10 Ω and R2 = 15 Ω. Calculate the total power dissipated by the circuit.",
+    "options": [
+      "100 W",
+      "50 W",
+      "40 W",
+      "60 W"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "DIVIDED_INSTEAD",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "power"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "RT = 10 + 15 = 25 Ω. Power P = I² * R. P = 2² * 25 = 4 * 25 = 100 W."
+  },
+  {
+    "id": 4083,
+    "question": "A circuit contains two identical resistors in series. If a copper link is accidentally placed across one of the resistors (creating a short circuit), what happens to the total circuit current?",
+    "options": [
+      "The current increases because the total resistance has halved",
+      "The current stops flowing because it takes the path of least resistance",
+      "The current decreases because the circuit is now unbalanced",
+      "The current remains the same because the supply voltage is constant"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Shorting a resistor removes its resistance from the circuit. Total resistance (RT) drops, and since I = V/R, the total current increases."
+  },
+  {
+    "id": 4084,
+    "question": "Three resistors with values of 10 Ω, 20 Ω, and 70 Ω are connected in series across a 100 V supply. Which resistor will have the largest voltage drop across it?",
+    "options": [
+      "The 70 Ω resistor",
+      "The 10 Ω resistor",
+      "The 20 Ω resistor",
+      "All resistors will have the same voltage drop"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "voltage-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, current is constant. Since V = I * R, the component with the highest resistance will always have the highest voltage drop."
+  },
+  {
+    "id": 4085,
+    "question": "A series circuit is connected to a 24 V DC supply. An ammeter shows the total current is 0.5 A. If one resistor in the circuit is 10 Ω, what is the value of the second resistor?",
+    "options": [
+      "38 Ω",
+      "48 Ω",
+      "12 Ω",
+      "20 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "calculation",
+      "resistance-rule",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "First find RT using Ohm's Law: RT = V / I = 24 / 0.5 = 48 Ω. Since RT = R1 + R2, then R2 = RT - R1 = 48 - 10 = 38 Ω."
+  },
+  {
+    "id": 4086,
+    "question": "A series circuit consists of three resistors with values of 10 Ω, 25 Ω, and 15 Ω connected to a 230 V DC supply. What is the total current flowing through the circuit?",
+    "options": [
+      "4.6 A",
+      "46 A",
+      "11,500 A",
+      "4.6 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "ROUNDING_ERROR",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "ohms-law",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "First, calculate total resistance: Rt = R1 + R2 + R3 = 10 + 25 + 15 = 50 Ω. Then use Ohm's Law (I = V / R): I = 230 / 50 = 4.6 A."
+  },
+  {
+    "id": 4087,
+    "question": "An electrician is troubleshooting a set of series-connected decorative lights. If one bulb fails by creating an 'open circuit', what will happen to the rest of the bulbs in the string?",
+    "options": [
+      "All bulbs will go out because the path for current is broken",
+      "All other bulbs will stay lit because current takes an alternative path",
+      "The remaining bulbs will get brighter as they receive more voltage",
+      "The fuse will blow immediately due to a short circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In a series circuit, there is only one path for current. If any component creates an open circuit, current flow stops entirely for the whole circuit."
+  },
+  {
+    "id": 4088,
+    "question": "A 24 V DC supply is connected to two resistors in series: R1 is 40 Ω and R2 is 60 Ω. Calculate the voltage drop across the 60 Ω resistor.",
+    "options": [
+      "14.4 V",
+      "9.6 V",
+      "24.0 V",
+      "0.24 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "USED_PARALLEL_RULE",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "voltage-rule",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 120,
+    "explanation": "Total resistance Rt = 40 + 60 = 100 Ω. Circuit current I = V / Rt = 24 / 100 = 0.24 A. Voltage drop across R2 = I × R2 = 0.24 × 60 = 14.4 V."
+  },
+  {
+    "id": 4089,
+    "question": "A heating element with a resistance of 100 Ω is connected in series with a 150 Ω current-limiting resistor. If the total supply voltage is 250 V, what is the total power consumed by the circuit?",
+    "options": [
+      "250 W",
+      "625 W",
+      "62,500 W",
+      "1 W"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "power",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 100,
+    "explanation": "Total resistance Rt = 100 + 150 = 250 Ω. Circuit current I = 250 V / 250 Ω = 1 A. Total power P = V × I = 250 V × 1 A = 250 W."
+  },
+  {
+    "id": 4090,
+    "question": "If an additional resistor is added in series to a functioning circuit while the supply voltage remains constant, how will the total resistance and circuit current be affected?",
+    "options": [
+      "Total resistance increases and current decreases",
+      "Total resistance decreases and current increases",
+      "Total resistance increases and current increases",
+      "Total resistance increases and current stays the same"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "CONFUSED_I_V_R",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "series",
+      "resistance-rule",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Adding resistors in series increases the total resistance (Rt = R1 + R2...). According to Ohm's Law (I = V / R), if resistance increases and voltage is fixed, the current must decrease."
+  },
+  {
+    "id": 4091,
+    "question": "A series circuit consists of three resistors: 220 Ω, 1.2 kΩ, and 470 Ω. If the circuit is connected to a 230 V supply, what is the total current flowing through the 1.2 kΩ resistor?",
+    "options": [
+      "121.7 mA",
+      "514.3 mA",
+      "189.0 mA",
+      "121.7 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "calculation",
+      "resistance-rule",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "First, convert all to ohms: 220 + 1200 + 470 = 1890 Ω. Using Ohm's Law (I = V / R), 230 / 1890 = 0.12169 A, which is 121.7 mA. In a series circuit, current is the same at all points."
+  },
+  {
+    "id": 4092,
+    "question": "A 110 V DC supply feeds two resistors in series: R1 = 50 Ω and R2 = 150 Ω. If a voltmeter is connected specifically across R2, what will be the recorded voltage drop?",
+    "options": [
+      "82.5 V",
+      "27.5 V",
+      "110.0 V",
+      "55.0 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "voltage-rule",
+      "calculation",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Total resistance RT = 50 + 150 = 200 Ω. Total current I = V / RT = 110 / 200 = 0.55 A. Voltage drop across R2 = I * R2 = 0.55 * 150 = 82.5 V."
+  },
+  {
+    "id": 4093,
+    "question": "In a series circuit containing three identical decorative lamps, a technician accidentally places a low-resistance 'short' across the terminals of the second lamp. What is the immediate effect on the remaining two lamps?",
+    "options": [
+      "They will become brighter",
+      "They will become dimmer",
+      "They will both go out",
+      "They will remain at the same brightness"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "USED_PARALLEL_RULE"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "conceptual",
+      "resistance-rule",
+      "current-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO3",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Shorting one lamp removes its resistance from the circuit. The total resistance (RT) decreases, which increases the total current (I = V / RT). Since current increases, the remaining lamps dissipate more power and appear brighter."
+  },
+  {
+    "id": 4094,
+    "question": "A 24 V power supply is connected to two 10 Ω resistors in series. What is the total power dissipated by the entire circuit?",
+    "options": [
+      "28.8 W",
+      "57.6 W",
+      "96.0 W",
+      "14.4 W"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "USED_PARALLEL_RULE",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "calculation",
+      "power",
+      "resistance-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Total resistance RT = 10 + 10 = 20 Ω. Total Power P = V² / RT = 24² / 20 = 576 / 20 = 28.8 W."
+  },
+  {
+    "id": 4095,
+    "question": "A light-dependent resistor (LDR) and a fixed resistor are connected in series across a constant DC voltage source. If the light level decreases, causing the LDR resistance to increase, what happens to the voltage measured across the fixed resistor?",
+    "options": [
+      "The voltage decreases",
+      "The voltage increases",
+      "The voltage remains constant",
+      "The voltage drops to zero immediately"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "conceptual",
+      "application",
+      "voltage-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "As LDR resistance increases, total circuit resistance increases. This reduces the total current. Since V_fixed = I * R_fixed, a lower current results in a lower voltage drop across the fixed resistor."
+  },
+  {
+    "id": 4096,
+    "question": "A series circuit with a 230 V supply has a total current of 2 A. It contains three resistors. R1 is 40 Ω and R2 is 25 Ω. What is the value of the third resistor (R3)?",
+    "options": [
+      "50 Ω",
+      "65 Ω",
+      "115 Ω",
+      "3.5 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "CONFUSED_I_V_R",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "calculation",
+      "resistance-rule",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Total resistance RT = V / I = 230 / 2 = 115 Ω. In series, RT = R1 + R2 + R3. Therefore, 115 = 40 + 25 + R3. R3 = 115 - 65 = 50 Ω."
+  },
+  {
+    "id": 4097,
+    "question": "Which of the following describes the correct procedure for measuring the voltage drop across the second resistor in a series string of four resistors?",
+    "options": [
+      "Connect a voltmeter in parallel across only the second resistor while the circuit is energized",
+      "Connect an ammeter in series with the second resistor while the circuit is energized",
+      "Connect a voltmeter in series between the first and second resistor",
+      "Connect a voltmeter across the supply terminals while the circuit is de-energized"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "application",
+      "terminology",
+      "voltage-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO3",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Voltmeters must always be connected in parallel (across) the component being measured while the circuit is powered to measure potential difference."
+  },
+  {
+    "id": 4098,
+    "question": "If the number of resistors in a series circuit is increased while the supply voltage remains constant, which statement regarding the total circuit parameters is true?",
+    "options": [
+      "Total resistance increases and total current decreases",
+      "Total resistance increases and total current increases",
+      "Total resistance decreases and total current increases",
+      "Total resistance remains the same but voltage drops increase"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "CONFUSED_I_V_R",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "conceptual",
+      "resistance-rule",
+      "current-rule"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO2",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "In a series circuit, RT = R1 + R2 + ... Rn. Adding more resistors increases RT. According to Ohm's Law (I = V / R), if R increases and V is constant, I must decrease."
+  },
+  {
+    "id": 4099,
+    "question": "Two heating elements with resistances of 15 Ω and 25 Ω are connected in series to a 240 V mains supply. Calculate the voltage drop across the 25 Ω element.",
+    "options": [
+      "150 V",
+      "90 V",
+      "240 V",
+      "40 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "CONFUSED_I_V_R",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "calculation",
+      "voltage-rule",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "RT = 15 + 25 = 40 Ω. Total current I = 240 / 40 = 6 A. Voltage across 25 Ω element = I * R = 6 * 25 = 150 V."
+  },
+  {
+    "id": 4100,
+    "question": "An electrician is troubleshooting a string of 50 series-connected architectural lights. If the 25th bulb in the chain develops an 'open circuit' fault, what will the ammeter read when connected at the start of the circuit?",
+    "options": [
+      "0 A",
+      "The normal operating current",
+      "Double the normal operating current",
+      "A very small leakage current in mA"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "USED_PARALLEL_RULE",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Series Circuits",
+    "tags": [
+      "application",
+      "current-rule",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202.3AAA-LO3",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "In a series circuit, there is only one path for current. If any component creates an open circuit (break), the resistance becomes effectively infinite and current stops flowing entirely (0 A) throughout the whole circuit."
   }
 ];
-
-// #region agent log
-(()=>{const invalidCodes=new Set();const invalidTags=new Set();seriesCircuitsQuestions.forEach((q,i)=>{if(q.misconceptionCodes){Object.values(q.misconceptionCodes).forEach(code=>{if(!['USED_PARALLEL_RULE','USED_SERIES_RULE','UNITS_MISSING','WRONG_UNITS','MULTIPLIED_INSTEAD','DIVIDED_INSTEAD','RECIPROCAL_ERROR','SIGN_ERROR','ROUNDING_ERROR','FORMULA_NOT_REARRANGED','CONFUSED_I_V_R','TOPOLOGY_CONFUSION','OTHER'].includes(code)){invalidCodes.add(code);}});}if(q.tags){q.tags.forEach(tag=>{if(!['series','parallel','mixed-circuit','ohms-law','current-rule','voltage-rule','resistance-rule','calculation','discrimination','explanation','conceptual','application'].includes(tag)){invalidTags.add(tag);}});}});fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'seriesCircuitsQuestions.ts:1289',message:'Questions loaded - checking invalid codes/tags',data:{questionCount:seriesCircuitsQuestions.length,invalidCodes:Array.from(invalidCodes),invalidTags:Array.from(invalidTags)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});})();
-// #endregion

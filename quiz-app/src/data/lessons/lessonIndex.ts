@@ -158,7 +158,18 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 7.3,
   },
 
-  // Unit 203: Electrical Installations Technology
+  
+  {
+    id: '202-202.3AAA',
+    title: 'Series Circuits',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Series Circuits',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-202.3AAA'),
+    available: true,
+    order: 8.3,
+  },// Unit 203: Electrical Installations Technology
   {
     id: '203-1A',
     title: 'Types of Cables: Construction and Applications',

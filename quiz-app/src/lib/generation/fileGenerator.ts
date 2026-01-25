@@ -220,7 +220,7 @@ export class FileGenerator {
           systemInstruction: systemPrompt,
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: type === 'lesson' ? 8000 : 4000,
+            maxOutputTokens: type === 'lesson' ? 8000 : 8000, // Increased from 4000 to prevent truncation
           },
         });
 

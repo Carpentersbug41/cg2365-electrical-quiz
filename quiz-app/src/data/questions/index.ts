@@ -16,11 +16,13 @@ import { acGenerationQuestions } from './acGenerationQuestions';
 import { acWaveformQuestions } from './acWaveformQuestions';
 import { transformersQuestions } from './transformersQuestions';
 import { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
+import { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...seriesCircuitsQuestions,
   ...healthSafetyLegislationQuestions,
   ...electricalQuantitiesQuestions,
   ...ohmsLawQuestions,
@@ -50,6 +52,7 @@ export { acGenerationQuestions } from './acGenerationQuestions';
 export { acWaveformQuestions } from './acWaveformQuestions';
 export { transformersQuestions } from './transformersQuestions';
 export { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
+export { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
 
 /**
  * Filter questions by tags
