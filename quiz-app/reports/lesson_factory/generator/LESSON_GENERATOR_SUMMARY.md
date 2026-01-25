@@ -25,6 +25,9 @@ Fill form:
 - Section: **Science 2365 Level 2**
 - Layout: **Auto**
 - Prerequisites: **202-7A, 202-7B** (optional)
+- Must-Have Topics: (optional, e.g., "Capacitive reactance, Phase relationships")
+- Additional Instructions: (optional, e.g., "Include lots of worked examples")
+- YouTube Video URL: (optional, e.g., "https://youtube.com/watch?v=...")
 
 Click **"Generate Lesson"** and wait 3-5 minutes.
 
@@ -339,6 +342,11 @@ Generate your first lesson and see the magic happen!
 ---
 
 **Built**: 2026-01-22  
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 **Status**: ✅ Production Ready  
 **Time to Value**: Immediate
+
+**Recent Updates:**
+- Added Must-Have Topics field for guaranteed topic coverage
+- Added Additional Instructions field for custom LLM guidance
+- Added YouTube Video URL field for video embedding in lessons

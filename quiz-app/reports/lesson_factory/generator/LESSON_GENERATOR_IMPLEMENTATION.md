@@ -139,6 +139,9 @@ Updates these 7 files automatically:
 | Section | ✅ | Course section | Science 2365 Level 2 |
 | Layout | ⚪ | Auto/manual | Auto |
 | Prerequisites | ⚪ | Comma-separated | 202-1A, 202-2A |
+| Must-Have Topics | ⚪ | Guaranteed subtopics | Emergency procedures |
+| Additional Instructions | ⚪ | Custom LLM guidance | Make it detailed |
+| YouTube Video URL | ⚪ | Video embedding | https://youtube.com/... |
 
 ---
 
@@ -748,6 +751,11 @@ Start with a simple test lesson, review the output, then scale up to production 
 ---
 
 **Implementation Date**: 2026-01-22  
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 **Status**: ✅ Production Ready  
 **All Todos**: ✅ Complete (10/10)
+
+**Recent Updates:**
+- Added Must-Have Topics field for guaranteed topic coverage
+- Added Additional Instructions field for custom LLM guidance  
+- Added YouTube Video URL field for video embedding in lessons

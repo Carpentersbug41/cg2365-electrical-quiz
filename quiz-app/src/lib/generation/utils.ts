@@ -138,13 +138,20 @@ export function safeJsonParse<T>(json: string): { success: boolean; data?: T; er
  * Clean markdown code blocks from LLM response
  */
 export function cleanCodeBlocks(text: string): string {
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:137',message:'cleanCodeBlocks called',data:{inputLength:text.length,hasJsonMarker:text.includes('```json'),hasTsMarker:text.includes('```typescript')||text.includes('```ts'),hasGenericMarker:text.includes('```')},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'B'})}).catch(()=>{});
+  // #endregion
   // Remove ```json and ``` markers
-  return text
+  const result = text
     .replace(/```json\s*/g, '')
     .replace(/```typescript\s*/g, '')
     .replace(/```ts\s*/g, '')
     .replace(/```\s*/g, '')
     .trim();
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:147',message:'cleanCodeBlocks result',data:{outputLength:result.length,removedChars:text.length-result.length},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'B'})}).catch(()=>{});
+  // #endregion
+  return result;
 }
 
 /**
@@ -168,11 +175,35 @@ export function extractJson(text: string): string {
 export function extractTypeScriptArray(text: string): string {
   const cleaned = cleanCodeBlocks(text);
   
-  // Try to find array
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:166',message:'extractTypeScriptArray after cleanCodeBlocks',data:{cleanedLength:cleaned.length,startsWithBracket:cleaned[0]==='[',cleanedStart:cleaned.substring(0,100),cleanedEnd:cleaned.substring(cleaned.length-200)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D'})}).catch(()=>{});
+  // #endregion
+  
+  // If text starts with [ and ends with ], it's likely already a complete array
+  const trimmed = cleaned.trim();
+  const endsWithBracket = trimmed.endsWith(']');
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:173',message:'Checking bracket conditions',data:{startsWithBracket:trimmed.startsWith('['),endsWithBracket:endsWithBracket,lastChar:trimmed[trimmed.length-1],last50:trimmed.substring(trimmed.length-50)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D,E'})}).catch(()=>{});
+  // #endregion
+  if (trimmed.startsWith('[') && endsWithBracket) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:179',message:'Text is already bracketed array',data:{length:trimmed.length},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
+    return trimmed;
+  }
+  
+  // Otherwise try to find array with regex (shouldn't happen if LLM follows instructions)
   const arrayMatch = cleaned.match(/\[[\s\S]*\]/);
   if (arrayMatch) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:186',message:'Array regex matched',data:{matchedLength:arrayMatch[0].length,matchStart:arrayMatch[0].substring(0,100)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
     return arrayMatch[0];
   }
+  
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:193',message:'No array match, returning cleaned text',data:{cleanedSample:cleaned.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D,E'})}).catch(()=>{});
+  // #endregion
   
   return cleaned;
 }

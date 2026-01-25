@@ -39,36 +39,37 @@ export class QuizPromptBuilder {
 OBJECTIVE: Generate high-quality multiple-choice questions with plausible distractors based on real student misconceptions.
 
 CRITICAL OUTPUT REQUIREMENT:
-- Return ONLY valid TypeScript/JavaScript array syntax
+- Return ONLY valid JSON array syntax with QUOTED property names
+- All object keys MUST be in double quotes (e.g., "id": not id:)
 - No markdown code blocks
 - No explanations outside the array
-- Must be parseable as JavaScript
+- Must be parseable with JSON.parse()
 
-QUESTION STRUCTURE:
+QUESTION STRUCTURE (valid JSON with quoted keys):
 
 {
-  id: [unique number starting from given ID],
-  question: "[Clear, unambiguous question text]",
-  options: [
+  "id": [unique number starting from given ID],
+  "question": "[Clear, unambiguous question text]",
+  "options": [
     "[Correct answer]",
     "[Wrong answer based on misconception 1]",
     "[Wrong answer based on misconception 2]",
     "[Wrong answer based on misconception 3]"
   ],
-  correctAnswer: 0,
-  misconceptionCodes: {
-    1: "VALID_MISCONCEPTION_CODE",
-    2: "VALID_MISCONCEPTION_CODE",
-    3: "VALID_MISCONCEPTION_CODE"
+  "correctAnswer": 0,
+  "misconceptionCodes": {
+    "1": "VALID_MISCONCEPTION_CODE",
+    "2": "VALID_MISCONCEPTION_CODE",
+    "3": "VALID_MISCONCEPTION_CODE"
   },
-  section: "[Section name]",
-  category: "[Topic]",
-  tags: ["[tag1]", "[tag2]", "[tag3]"],
-  learningOutcomeId: "${lessonId}-LO1",
-  answerType: "mcq",
-  difficulty: ${difficulty === 'easy' ? '1' : difficulty === 'medium' ? '3' : '5'},
-  estimatedTime: ${difficulty === 'easy' ? '45' : difficulty === 'medium' ? '75' : '120'},
-  explanation: "[Brief explanation of why correct answer is right]"
+  "section": "[Section name]",
+  "category": "[Topic]",
+  "tags": ["[tag1]", "[tag2]", "[tag3]"],
+  "learningOutcomeId": "${lessonId}-LO1",
+  "answerType": "mcq",
+  "difficulty": ${difficulty === 'easy' ? '1' : difficulty === 'medium' ? '3' : '5'},
+  "estimatedTime": ${difficulty === 'easy' ? '45' : difficulty === 'medium' ? '75' : '120'},
+  "explanation": "[Brief explanation of why correct answer is right]"
 }
 
 DIFFICULTY LEVEL: ${difficulty.toUpperCase()} (${difficultyMap[difficulty]})
@@ -132,10 +133,10 @@ QUALITY STANDARDS:
 - Write for Level 2 students (practical focus)
 
 OUTPUT FORMAT:
-- Pure JavaScript array syntax
+- Pure JSON array syntax with ALL keys quoted
 - No markdown
 - No comments
-- Must be parseable`;
+- Must be valid JSON parseable with JSON.parse()`;
   }
 
   /**
@@ -179,13 +180,14 @@ ${this.getBatchDistribution(request.topic, difficulty, count)}
 TOPIC CONTEXT:
 ${this.getTopicContext(request.topic, request.section)}${mustHaveSection}${additionalInstructionsSection}
 
-Generate ${count} questions now. Return as JavaScript array:
+Generate ${count} questions now. Return as valid JSON array with ALL keys quoted:
 
 [
-  { id: ${startId}, question: "...", ... },
-  { id: ${startId + 1}, question: "...", ... },
-  // etc.
-]`;
+  { "id": ${startId}, "question": "...", ... },
+  { "id": ${startId + 1}, "question": "...", ... }
+]
+
+IMPORTANT: Use double quotes for ALL property names. Do NOT use unquoted keys like id: or question:`;
   }
 
   /**

@@ -32,6 +32,9 @@ http://localhost:3000/generate
 - **Section**: Select section type
 - **Layout**: Choose "Auto" to let AI decide, or specify
 - **Prerequisites**: Optional, comma-separated (e.g., "202-1A, 202-2A")
+- **Must-Have Topics**: Optional, specific subtopics to guarantee coverage
+- **Additional Instructions**: Optional, custom LLM instructions (style, tone, depth)
+- **YouTube Video URL**: Optional, video to embed in diagram block
 
 ### 4. Click Generate
 
@@ -166,6 +169,41 @@ Result:
 - `workplaceRiskAssessmentQuestions.ts` (50 questions)
 - Branch: `feat/lesson-201-2A-1737564234`
 
+## Custom Fields Usage
+
+### Must-Have Topics
+
+Guarantee specific subtopics are covered:
+
+```
+Must-Have Topics:
+- Emergency procedures
+- First aid for electric shock
+- Reporting requirements
+```
+
+### Additional Instructions
+
+Customize LLM generation style:
+
+```
+Additional Instructions:
+- Make this lesson very detailed and text-heavy
+- Use lots of real-world examples
+- Focus on practical applications over theory
+- Keep language simple for beginners
+```
+
+### YouTube Video URL
+
+Embed instructional videos:
+
+```
+YouTube Video URL: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
+
+The video will be embedded in the diagram block (split-vis layout) and stored in lesson metadata for future reference.
+
 ## Troubleshooting
 
 ### "Rate limit exceeded"
@@ -217,6 +255,9 @@ After generation:
   section: string;
   layout?: 'split-vis' | 'linear-flow';
   prerequisites?: string[];
+  mustHaveTopics?: string;        // NEW: Guaranteed topic coverage
+  additionalInstructions?: string; // NEW: Custom LLM guidance
+  youtubeUrl?: string;            // NEW: Video embedding
 }
 ```
 
@@ -292,6 +333,12 @@ At Gemini Flash pricing (~$0.02/million tokens):
 
 ---
 
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 **Created**: 2026-01-22  
+**Updated**: 2026-01-22  
 **Status**: Ready for Production Use
+
+**Recent Updates:**
+- Added Must-Have Topics field for guaranteed topic coverage
+- Added Additional Instructions field for custom LLM guidance
+- Added YouTube Video URL field for video embedding

@@ -16,19 +16,22 @@ In your browser: **http://localhost:3000/generate**
 ![Generator Form](images/generator-form.png)
 
 ```
-┌─────────────────────────────────┐
-│   Lesson Generator              │
-├─────────────────────────────────┤
-│                                 │
-│  Unit Number: [202 ▼]          │
-│  Lesson ID: [7E____]           │
-│  Topic: [Capacitors_______]     │
-│  Section: [Science 2365 ▼]     │
-│  Layout: [Auto ▼]              │
-│  Prerequisites: [202-7A, ___]   │
-│                                 │
-│  [Generate Lesson]              │
-└─────────────────────────────────┘
+┌─────────────────────────────────────────┐
+│   Lesson Generator                      │
+├─────────────────────────────────────────┤
+│                                         │
+│  Unit Number: [202 ▼]                  │
+│  Lesson ID: [7E____]                   │
+│  Topic: [Capacitors_____________]       │
+│  Section: [Science 2365 ▼]             │
+│  Layout: [Auto ▼]                      │
+│  Prerequisites: [202-7A, ___]           │
+│  Must-Have Topics: [___________]        │
+│  Additional Instructions: [________]    │
+│  YouTube Video URL: [______________]    │
+│                                         │
+│  [Generate Lesson]                      │
+└─────────────────────────────────────────┘
 ```
 
 ### 4. Wait 3-5 Minutes
@@ -121,6 +124,88 @@ Comma-separated lesson IDs:
 
 Leave blank if foundational lesson.
 
+### Must-Have Topics (Optional)
+Guarantee specific subtopics are covered in the lesson.
+
+**When to use:**
+- You need certain concepts absolutely covered
+- Curriculum mandates specific content
+- You want to ensure comprehensive treatment of important points
+
+**Format:**
+```
+- Risk assessment procedures
+- Emergency shutdown
+- PPE requirements
+```
+
+or
+
+```
+Capacitive reactance, Phase relationships, Power factor
+```
+
+**How it works:**
+The LLM receives strong instructions to include these topics explicitly, ensuring they appear in the explanation block, examples, and quiz questions.
+
+### Additional Instructions (Optional)
+Custom guidance for the LLM to control tone, style, depth, and approach.
+
+**When to use:**
+- You want a specific teaching style
+- Content needs particular focus or emphasis
+- Special audience requirements (beginners, advanced, visual learners, etc.)
+
+**Examples:**
+
+Detailed technical content:
+```
+Make this lesson very detailed and text-heavy. Include lots of 
+worked examples with step-by-step explanations. Focus on the 
+mathematical approach.
+```
+
+Practical focus:
+```
+Focus heavily on real-world applications and troubleshooting scenarios. 
+Include common mistakes and how to avoid them. Use practical language.
+```
+
+Beginner-friendly:
+```
+Keep language simple and clear for absolute beginners. Use analogies 
+and avoid jargon. Include visual descriptions.
+```
+
+Safety emphasis:
+```
+Emphasize safety throughout. Include warnings about hazards. Reference 
+relevant regulations and best practices.
+```
+
+**How it works:**
+These instructions are injected directly into both the lesson and quiz generation prompts, influencing the LLM's output style, depth, and focus.
+
+### YouTube Video URL (Optional)
+Embed an instructional video in the lesson.
+
+**When to use:**
+- You have a relevant YouTube video that explains the concept
+- Visual demonstration would enhance learning
+- You want to provide supplementary video content
+
+**Format:**
+```
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
+
+**Where it appears:**
+1. **Diagram Block** (split-vis layout): Video embedded in left panel
+2. **Lesson Metadata**: Stored for future reference and retrieval
+
+**How it works:**
+The URL is placed in the `videoUrl` field of the diagram block and also stored in `metadata.youtubeUrl` for potential future use in other layouts or features.
+
 ---
 
 ## 🎬 Example Generations
@@ -135,15 +220,21 @@ Topic: RC Time Constants
 Section: Science 2365 Level 2
 Layout: split-vis
 Prerequisites: 202-7E
+Must-Have Topics: Time constant formula, Charging curves, Discharging curves
+Additional Instructions: Include multiple worked examples with different RC values. 
+                         Focus on practical circuit design applications.
+YouTube Video URL: https://www.youtube.com/watch?v=example123
 ```
 
 **Output:**
-- Full lesson with diagram, formulas, worked examples
+- Full lesson with diagram, formulas, worked examples emphasizing applications
+- Video embedded in diagram block showing RC circuit behavior
+- Guaranteed coverage of time constants, charging, and discharging
 - 50 questions (60% calculation, 40% conceptual)
 - ~4 minutes generation time
 - Branch: feat/lesson-202-9A-[timestamp]
 
-**Use Case**: Teaching new electrical concepts with math
+**Use Case**: Teaching new electrical concepts with math, with guaranteed topic coverage and custom style
 
 ---
 
@@ -157,15 +248,25 @@ Topic: Manual Handling Techniques
 Section: Health & Safety Level 1
 Layout: linear-flow
 Prerequisites: 201-1A
+Must-Have Topics: 
+  - Risk assessment for manual handling
+  - Correct lifting techniques
+  - Team lifting procedures
+  - Reporting injuries
+Additional Instructions: Focus on practical scenarios and real-world examples. 
+                         Include common mistakes and how to prevent injuries. 
+                         Use clear, simple language for all experience levels.
 ```
 
 **Output:**
-- Full lesson with procedures, regulations, examples
+- Full lesson with procedures, regulations, practical examples
+- Guaranteed coverage of all must-have topics
+- Style focused on practical application with clear language
 - 50 questions (70% conceptual, 30% application)
 - ~3 minutes generation time
 - Branch: feat/lesson-201-3A-[timestamp]
 
-**Use Case**: Teaching safety procedures and regulations
+**Use Case**: Teaching safety procedures with mandatory content and beginner-friendly style
 
 ---
 
@@ -310,6 +411,15 @@ After 5-10 lessons, you'll see patterns in what needs manual adjustment.
 ### Tip 6: Prompt Refinement
 Update prompt builders based on recurring issues for continuous improvement.
 
+### Tip 7: Use Must-Have Topics for Compliance
+When curriculum mandates specific content coverage, use Must-Have Topics to guarantee all required points are addressed.
+
+### Tip 8: Additional Instructions for Consistency
+If generating a series of related lessons, use Additional Instructions to maintain consistent style and depth across the series.
+
+### Tip 9: YouTube Videos Enhance Learning
+Add instructional videos when available - they significantly improve student engagement, especially for visual/spatial concepts.
+
 ---
 
 ## 📈 Quality Improvement Loop
@@ -387,6 +497,17 @@ The system is complete and ready to use.
 **Access it now**: http://localhost:3000/generate
 
 Start with a test lesson, review the quality, then scale up to full production use.
+
+---
+
+**Document Version**: 1.1.0  
+**Last Updated**: 2026-01-22  
+**Status**: Production Ready
+
+**Recent Updates:**
+- Added Must-Have Topics field for guaranteed content coverage
+- Added Additional Instructions field for custom LLM guidance
+- Added YouTube Video URL field for video embedding in lessons
 
 **Happy generating!** 🚀
 

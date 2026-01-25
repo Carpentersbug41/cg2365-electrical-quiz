@@ -1,0 +1,278 @@
+{
+  "id": "202-TETS",
+  "title": "202.TETS — Electrical Testing: Fundamental Principles",
+  "description": "An introduction to the core concepts of electrical testing, including instrument safety, continuity, and insulation resistance principles for Level 2 students.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Electrical Testing",
+  "learningOutcomes": [
+    "Identify the primary reasons for conducting electrical tests in a circuit",
+    "Describe the safety requirements for test leads and equipment according to GS38",
+    "Calculate expected conductor resistance using resistivity values and physical dimensions"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "202-TETS-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the purpose of initial verification and testing",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the difference between continuity and insulation resistance testing",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate the resistance of a conductor based on its length and cross-sectional area",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-TETS-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Continuity",
+            "definition": "A low-resistance path that allows current to flow uninterrupted through a conductor or circuit."
+          },
+          {
+            "term": "Insulation Resistance",
+            "definition": "The resistance offered by non-conductive materials to prevent leakage current between live parts and earth."
+          },
+          {
+            "term": "GS38",
+            "definition": "Health and Safety Executive guidance note specifying safety requirements for electrical test equipment and leads."
+          },
+          {
+            "term": "Calibration",
+            "definition": "The process of verifying that a test instrument is measuring accurately against a known standard."
+          },
+          {
+            "term": "Low Resistance Ohmmeter",
+            "definition": "A specialized instrument used to measure very small resistance values, typically in ohms or milliohms."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-TETS-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Continuity Testing Setup",
+        "description": "This diagram illustrates how a low-resistance ohmmeter is connected to verify the continuity of a protective conductor.",
+        "videoUrl": "https://www.youtube.com/watch?v=82cRVrBHUfQ",
+        "diagramType": "circuit",
+        "elementIds": [
+          "tester",
+          "probes",
+          "conductor"
+        ],
+        "placeholderText": "A diagram showing a test instrument with two leads connected to either end of a copper cable, displaying a low resistance value in Ohms."
+      }
+    },
+    {
+      "id": "202-TETS-explain-testing",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Science and Safety of Electrical Testing",
+        "content": "Electrical testing is a critical phase in any installation work, ensuring that the system is safe for use and complies with BS 7671 regulations. At its core, testing involves using calibrated instruments to verify the physical properties of the installation. \n\n**1. Safety and GS38 Compliance**\nBefore any test is performed, the equipment must be checked. Under HSE Guidance Note GS38, test leads must have: \n1. Shrouded or recessed terminals to prevent accidental contact with live parts.\n2. Maximum 4mm of exposed metal tip (or use of retractable shrouds).\n3. Internal fuses to protect the user in case of a fault.\n4. Finger guards to prevent hands from slipping onto the probes.\n\n**2. Continuity Testing**\nContinuity testing is performed to ensure that conductors (like line, neutral, and earth) are continuous and that connections are secure. We use a low-resistance ohmmeter, which applies a small voltage to measure the resistance of the path. For a circuit to be safe, the protective earth conductor must have a very low resistance to ensure that fault current can flow quickly enough to trip the circuit breaker. \n\n**3. Insulation Resistance (IR)**\nWhile continuity looks for a path, IR testing looks for the absence of a path. We want to ensure that electricity does not &quot;leak&quot; out of the conductors through damaged insulation. An IR tester applies a high voltage (typically 500V DC for a 230V system) and measures the resistance in Megohms (MΩ). A high reading (e.g., &gt;200MΩ) indicates healthy insulation, while a low reading suggests a potential fire or shock hazard. \n\n**4. Conductor Resistance Principles**\nAs an electrician, you must be able to predict what a test result should be. The resistance of a conductor is determined by its material (resistivity), its length, and its cross-sectional area (CSA). \n\nFormula: R = (ρ × L) / A \n\nWhere ρ (rho) is the resistivity of copper (0.0172 micro-ohm meters), L is length, and A is area. In practice, we often use &quot;milliohms per meter&quot; values from tables to simplify these calculations during onsite testing."
+      }
+    },
+    {
+      "id": "202-TETS-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Testing Basics",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-TETS-C1-L1-A",
+            "questionText": "What is the maximum allowable exposed metal tip on a GS38 compliant test probe?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "4mm",
+            "hint": "It is a small number to prevent accidental short circuits."
+          },
+          {
+            "id": "202-TETS-C1-L1-B",
+            "questionText": "What unit of measurement is typically used for Insulation Resistance test results?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Megohms",
+            "hint": "Think of very large resistance values."
+          },
+          {
+            "id": "202-TETS-C1-L1-C",
+            "questionText": "Which instrument is used to verify that a protective conductor is unbroken?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Low resistance ohmmeter",
+            "hint": "It measures continuity."
+          },
+          {
+            "id": "202-TETS-C1-L2",
+            "questionText": "Why must an Insulation Resistance test be carried out at a higher voltage than the circuit&apos;s nominal operating voltage?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "To stress the insulation and identify potential weaknesses",
+            "hint": "Think about finding faults that might only appear under pressure."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-TETS-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Calculating Conductor Resistance",
+        "given": "A 50-meter length of 2.5mm² copper twin and earth cable. The resistance of 2.5mm² copper is approximately 7.41 mΩ/m at 20°C.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the resistance per meter (R1) for the conductor size.",
+            "formula": "7.41 mΩ/m",
+            "calculation": null,
+            "result": "7.41 mΩ/m"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Multiply the resistance per meter by the total length of the conductor.",
+            "formula": "R_total = (R1 × Length) / 1000",
+            "calculation": "(7.41 × 50) / 1000",
+            "result": "0.3705 Ω"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Round the result to two decimal places for practical recording.",
+            "formula": null,
+            "calculation": null,
+            "result": "0.37 Ω"
+          }
+        ],
+        "notes": "Always ensure you are using the correct mΩ/m value for the specific cross-sectional area of the cable."
+      }
+    },
+    {
+      "id": "202-TETS-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Resistance Prediction",
+        "problem": "Calculate the expected resistance for a 30m run of 1.5mm² copper cable, given that 1.5mm² copper has a resistance of 12.1 mΩ/m.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What is the total resistance in milliohms before converting to Ohms?",
+            "expectedAnswer": [
+              "363",
+              "363mΩ"
+            ],
+            "hint": "Multiply 12.1 by 30."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Convert 363mΩ into Ohms (Ω).",
+            "expectedAnswer": [
+              "0.363",
+              "0.36"
+            ],
+            "hint": "Divide the milliohm value by 1000."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-TETS-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Practice Questions",
+        "questions": [
+          {
+            "id": "202-TETS-P1",
+            "questionText": "A 100m reel of 6mm² copper cable (3.08 mΩ/m) is tested for continuity. What should the resistance reading be?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.308",
+              "0.31"
+            ],
+            "hint": "Multiply 3.08 by 100 and divide by 1000."
+          },
+          {
+            "id": "202-TETS-P2",
+            "questionText": "Which document provides the specific safety requirements for test leads used by electricians?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "GS38",
+              "HSE GS38"
+            ],
+            "hint": "It starts with GS."
+          },
+          {
+            "id": "202-TETS-P3",
+            "questionText": "During an Insulation Resistance test, a reading of 0.02 MΩ is obtained. Is this result considered a pass or a fail for a standard 230V circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Fail"
+            ],
+            "hint": "The minimum acceptable value is usually 1.0 MΩ, though much higher is expected."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-TETS-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-TETS-INT-1",
+            "questionText": "Explain the sequence of events an electrician must follow to safely test the continuity of a ring final circuit, including instrument selection and safety checks.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "First, verify the test instrument and leads meet GS38 standards and are in calibration. Select a low-resistance ohmmeter. Null the leads to account for their own resistance. Ensure the circuit is safely isolated from the supply. Measure the resistance of the conductors at the consumer unit to ensure a low-ohm continuous loop exists.",
+            "hint": "Think about safety first, then the instrument, then the measurement."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-TETS-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review: Electrical Science Basics",
+        "questions": [
+          "What is the formula for Ohm&apos;s Law relating Voltage, Current, and Resistance?",
+          "If a circuit has a voltage of 230V and a resistance of 10 Ohms, what is the current flow?",
+          "Define the term &apos;Resistivity&apos; in relation to conductor materials.",
+          "What happens to the resistance of a conductor if its length is doubled?"
+        ],
+        "notes": "Reviewing basic circuit calculations and material properties to support testing concepts."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-25",
+    "updated": "2026-01-25",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "youtubeUrl": "https://www.youtube.com/watch?v=82cRVrBHUfQ"
+  }
+}

@@ -26,6 +26,9 @@ In your browser: **http://localhost:3000/generate**
 │  Section: [Science 2365 ▼]     │
 │  Layout: [Auto ▼]              │
 │  Prerequisites: [202-7A, ___]   │
+│  Must-Have Topics: [optional]   │
+│  Additional Instructions: [opt] │
+│  YouTube Video URL: [optional]   │
 │                                 │
 │  [Generate Lesson]              │
 └─────────────────────────────────┘
@@ -121,6 +124,82 @@ Comma-separated lesson IDs:
 
 Leave blank if foundational lesson.
 
+### Must-Have Topics (Optional)
+Specific subtopics that must be covered in the lesson. List one per line with dashes:
+
+```
+- What to do for accidents/injury (including electric shock)
+- Emergency procedures (raise alarm, evacuate, call services)
+- Reporting: when to report + who to report to
+- Environmental impact of work + waste handling
+```
+
+**When to use:**
+- Ensuring specific curriculum requirements are met
+- Guaranteeing coverage of critical subtopics
+- Meeting compliance or regulatory needs
+
+**How it works:**
+The AI will ensure each listed topic is thoroughly explained in the explanation blocks and has corresponding practice questions.
+
+### Additional Instructions (Optional)
+Custom instructions for how the AI should generate the lesson. Use this for:
+
+**Style/Tone:**
+```
+- Make this lesson very detailed and text-heavy
+- Use formal, academic language
+- Include lots of references to regulations
+```
+
+**Depth/Focus:**
+```
+- Keep this simple for struggling students
+- Focus heavily on practical examples
+- Avoid complex calculations
+```
+
+**Specific Requirements:**
+```
+- Never forget to mention safety considerations
+- Always include real cable part numbers
+- Reference BS 7671 where applicable
+```
+
+**When to use:**
+- Fine-tuning lesson style or tone
+- Adjusting complexity level
+- Adding specific requirements not covered by other fields
+- Iterating on previous generations
+
+**How it works:**
+These instructions are passed directly to the LLM and applied to both lesson and quiz generation.
+
+### YouTube Video URL (Optional)
+YouTube video URL to embed in the diagram block (for split-vis layouts):
+
+```
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
+
+or
+
+```
+https://youtu.be/dQw4w9WgXcQ
+```
+
+**When to use:**
+- You have a relevant instructional video
+- Video complements the diagram content
+- Using split-vis layout (diagram block required)
+
+**How it works:**
+- The URL is embedded in the diagram block's `videoUrl` field
+- Also saved in lesson metadata for future reference
+- Can be used later even if not immediately displayed
+
+**Note:** Leave blank if you don't have a video. The diagram block will still be created without a video URL.
+
 ---
 
 ## 🎬 Example Generations
@@ -135,15 +214,26 @@ Topic: RC Time Constants
 Section: Science 2365 Level 2
 Layout: split-vis
 Prerequisites: 202-7E
+Must-Have Topics:
+- Time constant calculation (τ = RC)
+- Charging and discharging curves
+- Practical applications in timing circuits
+Additional Instructions:
+- Focus heavily on practical examples
+- Include real-world timing circuit applications
+- Keep calculations clear and step-by-step
+YouTube Video URL: https://www.youtube.com/watch?v=...
 ```
 
 **Output:**
 - Full lesson with diagram, formulas, worked examples
+- Video embedded in diagram block
 - 50 questions (60% calculation, 40% conceptual)
+- All must-have topics covered thoroughly
 - ~4 minutes generation time
 - Branch: feat/lesson-202-9A-[timestamp]
 
-**Use Case**: Teaching new electrical concepts with math
+**Use Case**: Teaching new electrical concepts with math, ensuring specific topics are covered
 
 ---
 
@@ -310,6 +400,18 @@ After 5-10 lessons, you'll see patterns in what needs manual adjustment.
 ### Tip 6: Prompt Refinement
 Update prompt builders based on recurring issues for continuous improvement.
 
+### Tip 7: Use Must-Have Topics
+When generating lessons that must cover specific curriculum points, use Must-Have Topics to guarantee coverage. This is especially useful for compliance or regulatory requirements.
+
+### Tip 8: Leverage Additional Instructions
+If a generated lesson isn't quite right, use Additional Instructions to refine the next generation. For example:
+- "Make explanations shorter and more concise"
+- "Add more worked examples"
+- "Use simpler language"
+
+### Tip 9: YouTube Videos
+If you have instructional videos, add them via YouTube URL. They'll be embedded in the diagram block and saved in metadata for future use.
+
 ---
 
 ## 📈 Quality Improvement Loop
@@ -354,8 +456,8 @@ Planned improvements:
 - Batch mode (10 lessons at once)
 - Template customization UI
 - Quality scoring dashboard
-- Video integration
 - Interactive simulations
+- Video URL validation and preview
 
 ---
 
@@ -392,7 +494,12 @@ Start with a test lesson, review the quality, then scale up to full production u
 
 ---
 
-**Version**: 1.0.0  
+**Version**: 1.1.0  
 **Date**: 2026-01-22  
 **Status**: Production Ready  
 **Your Time Savings**: 70-80% per lesson
+
+**Recent Updates:**
+- Added Must-Have Topics field for guaranteed topic coverage
+- Added Additional Instructions field for custom LLM guidance
+- Added YouTube Video URL field for video embedding

@@ -154,18 +154,35 @@ export class FileGenerator {
           GENERATION_LIMITS.MAX_RETRIES
         );
 
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:130',message:'Raw LLM response before extraction',data:{rawContentLength:content.length,rawContentPreview:content.substring(0,300),rawContentEnd:content.substring(content.length-100)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A,B,E'})}).catch(()=>{});
+        // #endregion
+
         // Parse as JavaScript array
         const cleanedContent = extractTypeScriptArray(content);
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:136',message:'After extractTypeScriptArray',data:{cleanedLength:cleanedContent.length,cleanedPreview:cleanedContent.substring(0,300),cleanedEnd:cleanedContent.substring(cleanedContent.length-100),hasTrailingComma:cleanedContent.trim().includes(',]')||cleanedContent.trim().includes(',}')},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'C,D'})}).catch(()=>{});
+        // #endregion
         
         // Use eval in a safe context (only for known LLM-generated content)
         let questions: QuizQuestion[];
         try {
           // eslint-disable-next-line no-eval
           questions = eval(cleanedContent) as QuizQuestion[];
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:142',message:'Eval succeeded',data:{questionCount:questions.length,isArray:Array.isArray(questions)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A'})}).catch(()=>{});
+          // #endregion
         } catch (evalError) {
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:147',message:'Eval failed, trying JSON.parse',data:{evalErrorMessage:evalError instanceof Error?evalError.message:'unknown',contentFirstChar:cleanedContent[0],contentStructure:cleanedContent.substring(0,50)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A,C'})}).catch(()=>{});
+          // #endregion
           // Try JSON.parse as fallback
           const parsed = safeJsonParse<QuizQuestion[]>(cleanedContent);
           if (!parsed.success || !parsed.data) {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:153',message:'JSON.parse FAILED - returning error',data:{parseError:parsed.error,contentSample:cleanedContent.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A,B,C,D,E'})}).catch(()=>{});
+            // #endregion
             return {
               success: false,
               questions: [],
@@ -220,7 +237,7 @@ export class FileGenerator {
           systemInstruction: systemPrompt,
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: type === 'lesson' ? 8000 : 4000,
+            maxOutputTokens: type === 'lesson' ? 8000 : 8000, // Increased from 4000 to 8000 for quiz batches
           },
         });
 
@@ -230,6 +247,10 @@ export class FileGenerator {
         if (!text || text.trim().length === 0) {
           throw new Error('Empty response from LLM');
         }
+
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:215',message:'Raw LLM text before cleanCodeBlocks',data:{textLength:text.length,textStart:text.substring(0,200),hasMarkdown:text.includes('```')},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'B'})}).catch(()=>{});
+        // #endregion
 
         return cleanCodeBlocks(text);
       } catch (error) {

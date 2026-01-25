@@ -22,6 +22,7 @@ import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
 import { acGenerationQuestions } from './questions/acGenerationQuestions';
 import { acWaveformQuestions } from './questions/acWaveformQuestions';
 import { transformersQuestions } from './questions/transformersQuestions';
+import { testQuestions } from './questions/testQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

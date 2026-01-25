@@ -24,9 +24,11 @@ import lesson202_7B from '@/data/lessons/202-7B-how-ac-is-generated.json';
 import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
 import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
 import lesson203_1A from '@/data/lessons/203-1A-types-of-cables.json';
+import lesson202_TETS from '@/data/lessons/202-TETS-test';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '202-TETS': lesson202_TETS as Lesson,
   '201-1A': lesson201_1A as Lesson,
   '202-1A': lesson202_1A as Lesson,
   '202-2A': lesson202_2A as Lesson,
