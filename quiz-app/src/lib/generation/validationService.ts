@@ -129,7 +129,7 @@ export class ValidationService {
             if (!outcomeObj.text || !outcomeObj.bloomLevel) {
               errors.push('Each outcome must have text and bloomLevel');
             }
-            if (typeof outcomeObj.bloomLevel === 'string' && !BLOOM_LEVELS.includes(outcomeObj.bloomLevel)) {
+            if (typeof outcomeObj.bloomLevel === 'string' && !BLOOM_LEVELS.includes(outcomeObj.bloomLevel as typeof BLOOM_LEVELS[number])) {
               errors.push(`Invalid bloom level: ${outcomeObj.bloomLevel}`);
             }
           }
@@ -211,7 +211,7 @@ export class ValidationService {
       errors.push(`Question ${question.id} missing answerType`);
     }
 
-    if (question.cognitiveLevel && !COGNITIVE_LEVELS.includes(question.cognitiveLevel)) {
+    if (question.cognitiveLevel && !COGNITIVE_LEVELS.includes(question.cognitiveLevel as typeof COGNITIVE_LEVELS[number])) {
       errors.push(`Question ${question.id} has invalid cognitiveLevel: ${question.cognitiveLevel}`);
     }
 
