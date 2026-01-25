@@ -255,7 +255,7 @@ export default function GeneratePage() {
                 </label>
                 <select
                   value={form.layout}
-                  onChange={e => setForm({ ...form, layout: e.target.value as any })}
+                  onChange={e => setForm({ ...form, layout: e.target.value as 'split-vis' | 'linear-flow' | 'auto' })}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white"
                   disabled={status.stage === 'generating'}
                 >

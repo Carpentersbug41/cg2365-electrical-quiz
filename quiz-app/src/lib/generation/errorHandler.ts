@@ -5,6 +5,7 @@
 
 import { FileIntegrator } from './fileIntegrator';
 import { GitService } from './gitService';
+import { GenerationRequest } from './types';
 import fs from 'fs';
 
 export class ErrorHandler {
@@ -131,7 +132,7 @@ export class ErrorHandler {
   /**
    * Log generation attempt for debugging
    */
-  logGenerationAttempt(request: any, success: boolean, error?: string): void {
+  logGenerationAttempt(request: GenerationRequest, success: boolean, error?: string): void {
     const timestamp = new Date().toISOString();
     const logEntry = {
       timestamp,

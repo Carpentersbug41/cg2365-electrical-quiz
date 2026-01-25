@@ -3,7 +3,7 @@
  * Validates generated lessons and quizzes for quality and correctness
  */
 
-import { Lesson, QuizQuestion, ValidationResult } from './types';
+import { Lesson, LessonBlock, QuizQuestion, ValidationResult } from './types';
 import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, BLOOM_LEVELS, COGNITIVE_LEVELS, BLOCK_ORDER } from './constants';
 
 export class ValidationService {
@@ -59,7 +59,7 @@ export class ValidationService {
   /**
    * Validate lesson blocks structure and order
    */
-  private validateBlocks(blocks: any[], lessonId: string, errors: string[], warnings: string[]): void {
+  private validateBlocks(blocks: LessonBlock[], lessonId: string, errors: string[], warnings: string[]): void {
     const blockTypes = new Set<string>();
     const orders = new Set<number>();
     let hasOutcomes = false;
@@ -114,7 +114,7 @@ export class ValidationService {
   /**
    * Validate specific block content
    */
-  private validateBlockContent(block: any, lessonId: string, errors: string[], warnings: string[]): void {
+  private validateBlockContent(block: LessonBlock, lessonId: string, errors: string[], warnings: string[]): void {
     switch (block.type) {
       case 'outcomes':
         if (!block.content.outcomes || !Array.isArray(block.content.outcomes)) {
@@ -192,7 +192,7 @@ export class ValidationService {
   /**
    * Validate practice question
    */
-  private validateQuestion(question: any, lessonId: string, errors: string[], warnings: string[]): void {
+  private validateQuestion(question: Record<string, unknown>, lessonId: string, errors: string[], warnings: string[]): void {
     if (!question.id) {
       errors.push('Question missing ID');
       return;
@@ -259,7 +259,7 @@ export class ValidationService {
         warnings.push(`Question ${question.id} has no tags`);
       } else {
         for (const tag of question.tags) {
-          if (!APPROVED_TAGS.includes(tag as any)) {
+          if (!APPROVED_TAGS.includes(tag as typeof APPROVED_TAGS[number])) {
             warnings.push(`Question ${question.id} uses unapproved tag: ${tag}`);
           }
         }
@@ -268,7 +268,7 @@ export class ValidationService {
       // Validate misconception codes
       if (question.misconceptionCodes) {
         for (const [index, code] of Object.entries(question.misconceptionCodes)) {
-          if (!APPROVED_MISCONCEPTION_CODES.includes(code as any)) {
+          if (!APPROVED_MISCONCEPTION_CODES.includes(code as typeof APPROVED_MISCONCEPTION_CODES[number])) {
             warnings.push(`Question ${question.id} uses unapproved misconception code: ${code}`);
           }
         }
