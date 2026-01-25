@@ -1,0 +1,388 @@
+{
+  "id": "202-3AB",
+  "title": "202.3AB — Series Circuits: Understanding Flow and Opposition",
+  "description": "Discover how components connected in a single path create predictable patterns of current, voltage distribution, and cumulative resistance through clear explanations and practical examples.",
+  "layout": "linear-flow",
+  "unit": "Unit 202",
+  "topic": "Series Circuits",
+  "learningOutcomes": [
+    "State the three fundamental rules governing series circuits",
+    "Explain why current remains constant throughout a series path",
+    "Calculate total resistance and predict circuit behavior in series configurations"
+  ],
+  "prerequisites": [
+    "ohms-law-basics"
+  ],
+  "blocks": [
+    {
+      "id": "202-3AB-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the three fundamental rules governing series circuits.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain why current remains constant throughout a series path.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate total resistance and predict circuit behavior in series configurations.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3AB-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Series Configuration",
+            "definition": "An arrangement where electrical components are connected end-to-end, forming a single continuous path for current flow."
+          },
+          {
+            "term": "Current Continuity",
+            "definition": "The principle that in a single-path circuit, the same amount of current flows through every component."
+          },
+          {
+            "term": "Voltage Distribution",
+            "definition": "How the supply voltage is divided among components, with each component consuming a portion of the total available voltage."
+          },
+          {
+            "term": "Cumulative Resistance",
+            "definition": "The total opposition to current flow created by adding together all individual resistances in the path."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3AB-explain-concept",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "What Makes a Circuit 'Series'?",
+        "content": "Imagine a garden hose lying on the ground. Water enters at one end, travels through the entire length of the hose, and exits at the other end. There are no branches, no splits, no alternative routes — just one continuous path.\n\nThis is exactly what happens in a **series circuit**. Current (the flow of electrical charge) enters the circuit, passes through each component one after another, and returns to the source. The key characteristic is this **single, unbranched path**.\n\nWhy does this matter? Because this simple topology — one path, no alternatives — creates three predictable and unchanging behaviors that electricians rely on every single day. Understanding these three rules allows you to calculate, predict, and troubleshoot any series circuit you encounter.\n\n**The Real-World Importance**\n\nOld-fashioned Christmas lights were wired in series. If one bulb failed and broke the path, all the lights went out — frustrating, but it perfectly demonstrates the single-path principle. Modern electrical installations rarely use pure series circuits for this reason, but understanding series behavior is essential because:\n\n• Many circuits have series **sections** even if the whole system isn't series\n• Troubleshooting requires understanding how current flows through each component\n• Voltage drops across cables and connections follow series rules\n• Safety calculations depend on knowing total circuit resistance"
+      }
+    },
+    {
+      "id": "202-3AB-explain-rules",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Three Series Circuit Rules",
+        "content": "**RULE 1: Current Is Identical Everywhere**\n\nIn a series circuit, the current has no choice but to flow through every single component. Think back to the garden hose analogy — if water flows into the hose at 5 liters per minute, then 5 liters per minute must be flowing through the middle section, and 5 liters per minute must be exiting at the far end. The water cannot accumulate inside the hose, and it cannot vanish.\n\nElectrical current works exactly the same way. If 2 amperes enters the first component, then 2 amperes flows through the second component, and 2 amperes through the third component, and so on. The current is **constant** throughout the entire path.\n\nMathematically: **I_total = I₁ = I₂ = I₃ = ... (all the same value)**\n\nThis is arguably the most important series rule because it immediately tells you something crucial: wherever you measure current in a series circuit, you get the same reading.\n\n**RULE 2: Voltages Add Up to the Supply Total**\n\nNow think about energy. Every component in a circuit uses electrical energy to do something — a resistor converts it to heat, a motor converts it to motion, a lamp converts it to light. This energy comes from the voltage supplied by the battery or power source.\n\nImagine you have £20 to spend at three different shops. After visiting all three shops, your £20 is completely spent. Maybe you spent £8 at the first shop, £7 at the second, and £5 at the third. Notice that £8 + £7 + £5 = £20 — the individual amounts add up to your starting budget.\n\nVoltage works identically. If you have a 12V battery and three components in series, each component \"consumes\" a portion of that 12V. The voltage drop across the first component, plus the voltage drop across the second component, plus the voltage drop across the third component must equal exactly 12V.\n\nMathematically: **V_supply = V₁ + V₂ + V₃ + ...**\n\nThis is called **voltage distribution**. The supply voltage is distributed (shared out) among all the components in the path. Components with higher resistance consume more voltage; components with lower resistance consume less voltage.\n\n**RULE 3: Resistances Add Up to Give Total Resistance**\n\nResistance is opposition to current flow. When you place components in series, you are creating **obstacles in sequence** — the current must overcome the first resistance, then the second resistance, then the third resistance, and so on.\n\nThink of running an obstacle course. If the first obstacle takes 30 seconds to cross, the second takes 45 seconds, and the third takes 25 seconds, your total time is 30 + 45 + 25 = 100 seconds. The obstacles are cumulative — you face them one after another.\n\nResistance in series is cumulative in exactly the same way. Each resistor adds to the total opposition that the current faces. A 6Ω resistor followed by a 4Ω resistor creates exactly the same total opposition as a single 10Ω resistor would.\n\nMathematically: **R_total = R₁ + R₂ + R₃ + ...**\n\nThis is brilliantly simple — just add them up. No complicated formulas, no fractions, no division. Series resistance is pure addition.\n\n**Why These Three Rules Always Work Together**\n\nThese three rules are not separate facts — they are interconnected through Ohm's Law (V = I × R). Because current is the same everywhere (Rule 1), and resistances add up (Rule 3), the voltage drops must add up (Rule 2) to satisfy Ohm's Law at every point in the circuit. The mathematics and the physics lock together perfectly."
+      }
+    },
+    {
+      "id": "202-3AB-diagram",
+      "type": "diagram",
+      "order": 5,
+      "content": {
+        "title": "Example Series Circuit",
+        "description": "A simple series circuit showing two resistors (R1 = 6 Ω and R2 = 4 Ω) connected in a single loop with a 10V power supply, demonstrating the single-path topology.",
+        "videoUrl": "",
+        "diagramType": "series",
+        "elementIds": [
+          "R1",
+          "R2",
+          "supply",
+          "wire"
+        ],
+        "placeholderText": "Circuit diagram: 10V battery connected to R1 (6 Ω) and R2 (4 Ω) in a single continuous path with no branches. Current flows from positive terminal through R1, then through R2, returning to negative terminal."
+      }
+    },
+    {
+      "id": "202-3AB-check-1",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Three Rules",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-3AB-C1-L1-A",
+            "questionText": "In a series circuit, what is special about the current at different points in the circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "The current is the same at every point in a series circuit",
+            "hint": "Think about Rule 1 — what stays constant?"
+          },
+          {
+            "id": "202-3AB-C1-L1-B",
+            "questionText": "How do the individual voltage drops relate to the supply voltage in a series circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "The individual voltage drops add up to equal the supply voltage",
+            "hint": "Think about the £20 budget analogy — where does all the voltage go?"
+          },
+          {
+            "id": "202-3AB-C1-L1-C",
+            "questionText": "How do you calculate the total resistance of resistors connected in series?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Add all the individual resistances together",
+            "hint": "Think about obstacles in sequence — do they add up or multiply?"
+          },
+          {
+            "id": "202-3AB-C1-L2",
+            "questionText": "Why does having a single path with no branches cause all three of these rules to work together?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "With only one path, all current must flow through every component (Rule 1). Each resistor adds opposition in sequence (Rule 3). As current flows through each resistance, it uses voltage according to Ohm&apos;s Law, so voltage drops must add up to the supply (Rule 2). The single path connects all three rules through V = I × R.",
+            "hint": "Think about how current flow, resistance opposition, and energy consumption are all linked by Ohm&apos;s Law in a single-path circuit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3AB-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Complete Series Circuit Analysis",
+        "given": "Three resistors are connected in series: R1 = 8 Ω, R2 = 5 Ω, and R3 = 7 Ω. The supply voltage is 20V. Find (a) total resistance, (b) circuit current, and (c) voltage drop across R2.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Calculate total resistance using Rule 3 (resistances add in series)",
+            "formula": "R_total = R1 + R2 + R3",
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 2,
+            "description": "Substitute the given resistance values",
+            "formula": "R_total = R1 + R2 + R3",
+            "calculation": "R_total = 8 + 5 + 7",
+            "result": null
+          },
+          {
+            "stepNumber": 3,
+            "description": "Add the resistances to find total",
+            "formula": null,
+            "calculation": "R_total = 20 Ω",
+            "result": "20 Ω"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Calculate circuit current using Ohm's Law (I = V / R)",
+            "formula": "I = V_supply / R_total",
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 5,
+            "description": "Substitute the values we know",
+            "formula": "I = V_supply / R_total",
+            "calculation": "I = 20V / 20Ω",
+            "result": null
+          },
+          {
+            "stepNumber": 6,
+            "description": "Calculate the current",
+            "formula": null,
+            "calculation": "I = 1 A",
+            "result": "1 A"
+          },
+          {
+            "stepNumber": 7,
+            "description": "Calculate voltage drop across R2 using Ohm's Law. Remember: current is the same everywhere in series (Rule 1)",
+            "formula": "V2 = I × R2",
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 8,
+            "description": "Substitute the current and R2 resistance",
+            "formula": "V2 = I × R2",
+            "calculation": "V2 = 1A × 5Ω",
+            "result": null
+          },
+          {
+            "stepNumber": 9,
+            "description": "Calculate the voltage drop across R2",
+            "formula": null,
+            "calculation": "V2 = 5V",
+            "result": "5V"
+          }
+        ],
+        "notes": "Notice how the three rules work together: Current is constant (1A everywhere), resistances add (8+5+7=20Ω), and if you calculated all three voltage drops (8V + 5V + 7V), they would sum to exactly 20V, matching the supply. This demonstrates all three series rules in one complete problem."
+      }
+    },
+    {
+      "id": "202-3AB-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "Two resistors are connected in series: R1 = 12 Ω and R2 = 8 Ω. The supply voltage is 15V. Let's find the total resistance and circuit current together.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "First, what is the total resistance in this series circuit?",
+            "expectedAnswer": [
+              "20",
+              "20Ω",
+              "20 Ω",
+              "20 ohms"
+            ],
+            "hint": "In series, resistances add up: R_total = R1 + R2 = 12 + 8"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Now calculate the circuit current using Ohm's Law (I = V / R)",
+            "expectedAnswer": [
+              "0.75",
+              "0.75A",
+              "0.75 A",
+              "0.75 amps"
+            ],
+            "hint": "I = V_supply / R_total = 15V / 20Ω. Divide 15 by 20."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Is this current value the same through both R1 and R2, or different?",
+            "expectedAnswer": [
+              "same",
+              "the same",
+              "identical",
+              "equal"
+            ],
+            "hint": "Remember Rule 1 about current in series circuits — it&apos;s constant throughout."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3AB-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-3AB-P1",
+            "questionText": "Four resistors in series have values of 3Ω, 6Ω, 4Ω, and 7Ω. Calculate the total resistance.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "20",
+              "20Ω",
+              "20 Ω",
+              "20 ohms"
+            ],
+            "hint": "Add all four resistances together: 3 + 6 + 4 + 7"
+          },
+          {
+            "id": "202-3AB-P2",
+            "questionText": "A series circuit has a total resistance of 25Ω and a supply voltage of 10V. Calculate the circuit current.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.4",
+              "0.4A",
+              "0.4 A",
+              "0.4 amps",
+              "400mA"
+            ],
+            "hint": "Use Ohm&apos;s Law: I = V / R. Divide 10V by 25Ω."
+          },
+          {
+            "id": "202-3AB-P3",
+            "questionText": "Using the water-in-a-hose analogy, explain in one sentence why current must be the same everywhere in a series circuit.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "only one path",
+              "single path",
+              "no branches",
+              "nowhere else to go",
+              "same flow throughout",
+              "water cannot accumulate or vanish"
+            ],
+            "hint": "Think about what happens to water flow rate in a single continuous hose with no leaks or branches."
+          },
+          {
+            "id": "202-3AB-P4",
+            "questionText": "Two resistors (R1 = 15Ω and R2 = 10Ω) are in series with a 5V supply. If the current through R1 is 0.2A, what is the current through R2?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.2",
+              "0.2A",
+              "0.2 A",
+              "0.2 amps",
+              "200mA"
+            ],
+            "hint": "Remember Rule 1: current is the same everywhere in a series circuit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3AB-integrative",
+      "type": "practice",
+      "order": 8.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-3AB-INT-1",
+            "questionText": "You&apos;ve learned that in series circuits: current is constant, voltages add up, and resistances add up. An electrician is troubleshooting a circuit with three components in series and measures the current at the first component. Explain why this single measurement tells them the current through all three components, and how they could use the three series rules to verify the circuit is working correctly. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Because of Rule 1 (current is constant), measuring current at one point reveals the current everywhere in the series circuit — it must be identical throughout the single path. The electrician can then use Rule 3 to calculate expected total resistance (by adding component resistances), and use Ohm&apos;s Law (I = V/R) to verify the current matches what the supply voltage should produce. They can also check Rule 2 by measuring voltage drops across each component and confirming they sum to the supply voltage. Any deviation from these rules indicates a fault — like a component failing, a poor connection, or an unexpected resistance.",
+            "hint": "Think about how the single-path topology makes current measurement powerful, and how all three rules together create a complete picture of circuit health."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-3AB-spaced-review",
+      "type": "spaced-review",
+      "order": 9,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          {
+            "id": "202-3AB-SR1",
+            "questionText": "What is the formula for Ohm&apos;s Law, and what does each variable represent?",
+            "expectedAnswer": "V = I × R, where V is voltage (volts), I is current (amperes), and R is resistance (ohms). Voltage equals current multiplied by resistance."
+          },
+          {
+            "id": "202-3AB-SR2",
+            "questionText": "Rearrange Ohm&apos;s Law to make current (I) the subject of the formula.",
+            "expectedAnswer": "I = V / R (or I = V ÷ R). Current equals voltage divided by resistance."
+          },
+          {
+            "id": "202-3AB-SR3",
+            "questionText": "Convert 750 milliamps (mA) into amps (A).",
+            "expectedAnswer": "0.75 A (or 0.75 amps). Divide milliamps by 1000: 750 ÷ 1000 = 0.75"
+          },
+          {
+            "id": "202-3AB-SR4",
+            "questionText": "What happens to current if you double the voltage while keeping resistance constant?",
+            "expectedAnswer": "Current doubles. From I = V/R, if V doubles and R stays the same, I must also double. Current is directly proportional to voltage."
+          }
+        ],
+        "notes": "These questions review Ohm&apos;s Law and unit conversions, which are essential prerequisites for series circuit calculations."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-22",
+    "updated": "2026-01-22",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
+  }
+}

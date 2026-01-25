@@ -437,10 +437,30 @@
       "content": {
         "title": "Spaced Review (Previous Topics)",
         "questions": [
-          "State Ohm's Law (the formula relating voltage, current, and resistance).",
-          "What is the SI unit for electrical power?",
-          "In a series circuit, what happens to the current at every point?",
-          "Calculate: If V = 230V and I = 10A, what is the power P? (Use P = VI)"
+          {
+            "id": "202-7A-SR-1",
+            "questionText": "State Ohm's Law (the formula relating voltage, current, and resistance).",
+            "expectedAnswer": "V = I × R",
+            "hint": "Voltage equals current times resistance."
+          },
+          {
+            "id": "202-7A-SR-2",
+            "questionText": "What is the SI unit for electrical power?",
+            "expectedAnswer": "Watt or W",
+            "hint": "Power is measured in..."
+          },
+          {
+            "id": "202-7A-SR-3",
+            "questionText": "In a series circuit, what happens to the current at every point?",
+            "expectedAnswer": "Current is the same everywhere",
+            "hint": "Think about the series circuit rule for current."
+          },
+          {
+            "id": "202-7A-SR-4",
+            "questionText": "Calculate: If V = 230V and I = 10A, what is the power P? (Use P = VI)",
+            "expectedAnswer": "2300W",
+            "hint": "Multiply voltage by current: 230 × 10."
+          }
         ],
         "notes": "These questions review key concepts from previous lessons to reinforce foundational knowledge."
       }

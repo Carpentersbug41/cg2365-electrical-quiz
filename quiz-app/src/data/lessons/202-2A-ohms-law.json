@@ -300,10 +300,30 @@
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [
-          "What is the symbol and unit for voltage?",
-          "What is the symbol and unit for current?",
-          "What is the symbol and unit for resistance?",
-          "Convert 2500mA to amperes."
+          {
+            "id": "202-2A-SR-1",
+            "questionText": "What is the symbol and unit for voltage?",
+            "expectedAnswer": "V, volts",
+            "hint": "Think about the first letter of the word voltage."
+          },
+          {
+            "id": "202-2A-SR-2",
+            "questionText": "What is the symbol and unit for current?",
+            "expectedAnswer": "I, amperes or amps",
+            "hint": "Current uses a symbol that comes from the word 'intensity'."
+          },
+          {
+            "id": "202-2A-SR-3",
+            "questionText": "What is the symbol and unit for resistance?",
+            "expectedAnswer": "R, ohms",
+            "hint": "Resistance starts with R."
+          },
+          {
+            "id": "202-2A-SR-4",
+            "questionText": "Convert 2500mA to amperes.",
+            "expectedAnswer": "2.5A or 2.5",
+            "hint": "To convert milliamps to amps, divide by 1000."
+          }
         ],
         "notes": "These questions review electrical quantities and units from lesson 202-1A, reinforcing the foundation needed for Ohm's Law calculations."
       }

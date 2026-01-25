@@ -388,10 +388,30 @@
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [
-          "State Ohm's Law in formula form.",
-          "Rearrange V = I × R to find current (I).",
-          "What is the relationship between voltage, current, and resistance?",
-          "Convert 2.5 kW to watts."
+          {
+            "id": "202-5A-SR-1",
+            "questionText": "State Ohm's Law in formula form.",
+            "expectedAnswer": "V = I × R or V = IR",
+            "hint": "Voltage equals current times resistance."
+          },
+          {
+            "id": "202-5A-SR-2",
+            "questionText": "Rearrange V = I × R to find current (I).",
+            "expectedAnswer": "I = V / R or I = V ÷ R",
+            "hint": "Divide both sides by R to isolate I."
+          },
+          {
+            "id": "202-5A-SR-3",
+            "questionText": "What is the relationship between voltage, current, and resistance?",
+            "expectedAnswer": "Voltage is proportional to current and resistance",
+            "hint": "How do V, I, and R relate according to Ohm's Law?"
+          },
+          {
+            "id": "202-5A-SR-4",
+            "questionText": "Convert 2.5 kW to watts.",
+            "expectedAnswer": "2500W",
+            "hint": "To convert kilowatts to watts, multiply by 1000."
+          }
         ],
         "notes": "These questions review Ohm's Law from lesson 202-2A, which is essential for understanding the relationship between P, V, I, and R."
       }

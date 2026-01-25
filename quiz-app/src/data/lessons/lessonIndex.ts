@@ -70,6 +70,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 3,
   },
   {
+    id: '202-3AB',
+    title: 'Series Circuits: Understanding Flow and Opposition (Linear Layout)',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Series Circuits',
+    description: 'Alternative text-heavy approach to series circuits with rich analogies and self-contained explanations.',
+    questionCount: getLessonQuestionCount('202-3AB'),
+    available: true,
+    order: 3.1,
+  },
+  {
     id: '202-4A',
     title: 'Parallel Circuits: Rules and Calculations',
     unit: 'Unit 202',

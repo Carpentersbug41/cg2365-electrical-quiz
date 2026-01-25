@@ -411,10 +411,30 @@
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [
-          "What is an electromagnet and how does it differ from a permanent magnet? (202-6A)",
-          "Why does the strength of an electromagnet increase when you add more turns to the coil? (202-6A)",
-          "What is the frequency of UK mains AC supply? (202-7A)",
-          "Explain what 'alternating current' means - how does the current behave over time? (202-7A)"
+          {
+            "id": "202-7D-SR-1",
+            "questionText": "What is an electromagnet and how does it differ from a permanent magnet? (202-6A)",
+            "expectedAnswer": "Electromagnet uses electric current to create magnetic field, can be turned on/off unlike permanent magnet",
+            "hint": "Think about what powers each type of magnet."
+          },
+          {
+            "id": "202-7D-SR-2",
+            "questionText": "Why does the strength of an electromagnet increase when you add more turns to the coil? (202-6A)",
+            "expectedAnswer": "More turns creates stronger magnetic field",
+            "hint": "More loops means more magnetic field lines."
+          },
+          {
+            "id": "202-7D-SR-3",
+            "questionText": "What is the frequency of UK mains AC supply? (202-7A)",
+            "expectedAnswer": "50Hz",
+            "hint": "The UK uses 50 cycles per second."
+          },
+          {
+            "id": "202-7D-SR-4",
+            "questionText": "Explain what 'alternating current' means - how does the current behave over time? (202-7A)",
+            "expectedAnswer": "Current changes direction periodically or reverses direction",
+            "hint": "Think about what 'alternating' means."
+          }
         ],
         "notes": "These questions review magnetism (202-6A) and AC principles (202-7A), both essential prerequisites for understanding how transformers use changing magnetic fields to transfer AC energy."
       }

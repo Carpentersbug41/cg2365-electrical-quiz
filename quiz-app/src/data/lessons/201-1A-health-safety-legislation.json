@@ -464,10 +464,30 @@
       "content": {
         "title": "Spaced Review (General Knowledge)",
         "questions": [
-          "What is the UK mains voltage?",
-          "What does PPE stand for?",
-          "Name one type of personal protective equipment used by electricians.",
-          "Why is electricity dangerous?"
+          {
+            "id": "201-1A-SR-1",
+            "questionText": "What is the UK mains voltage?",
+            "expectedAnswer": "230V",
+            "hint": "The standard voltage for household electricity in the UK."
+          },
+          {
+            "id": "201-1A-SR-2",
+            "questionText": "What does PPE stand for?",
+            "expectedAnswer": "Personal Protective Equipment",
+            "hint": "It's the equipment worn to protect against hazards."
+          },
+          {
+            "id": "201-1A-SR-3",
+            "questionText": "Name one type of personal protective equipment used by electricians.",
+            "expectedAnswer": "Safety boots or insulated gloves or safety glasses or hard hat",
+            "hint": "Think about what electricians wear for protection."
+          },
+          {
+            "id": "201-1A-SR-4",
+            "questionText": "Why is electricity dangerous?",
+            "expectedAnswer": "Can cause fatal shocks or burns or fires",
+            "hint": "What harm can electricity do to people?"
+          }
         ],
         "notes": "These questions review general electrical knowledge and safety concepts that support understanding of health and safety regulations."
       }

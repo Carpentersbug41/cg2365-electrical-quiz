@@ -14,6 +14,9 @@ export function getGeminiModel(): string {
     throw new Error('GEMINI_MODEL is not set in environment variables. Please set it in .env.local');
   }
   
+  // Log model configuration when first accessed
+  console.log('🤖 [LLM Config] Using Gemini model:', modelName);
+  
   return modelName;
 }
 
@@ -28,6 +31,9 @@ export function getGeminiModelWithDefault(): string {
   if (!modelName) {
     throw new Error('GEMINI_MODEL is not set in environment variables. Please set it in .env.local');
   }
+  
+  // Log model configuration when first accessed
+  console.log('🤖 [LLM Config] Using Gemini model:', modelName);
   
   return modelName;
 }

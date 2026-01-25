@@ -81,6 +81,7 @@ async function callLLM(
   history: { role: string; content: string }[],
   temperature: number
 ): Promise<string> {
+  console.log('🤖 [LLM Tutor] Calling LLM API with model:', modelName);
   const model = client.getGenerativeModel({
     model: modelName,
     systemInstruction,
@@ -254,7 +255,7 @@ ${userProgress.identifiedMisconceptions ? `Identified misconceptions: ${userProg
     }
 
     // Initialize Gemini model
-    console.log(`Using Gemini model: ${modelName}`);
+    console.log('🤖 [LLM Tutor] Using Gemini model:', modelName);
 
     // Generate initial response
     let response = await callLLM(

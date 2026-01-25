@@ -181,7 +181,7 @@ REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writi
     }
 
     // Initialize model
-    console.log(`Using Gemini model: ${modelName}`);
+    console.log('🤖 [LLM Chat] Using Gemini model:', modelName);
     const model = client.getGenerativeModel({ 
       model: modelName,
       systemInstruction: systemPrompt,

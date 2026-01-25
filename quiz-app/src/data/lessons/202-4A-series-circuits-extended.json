@@ -359,11 +359,36 @@
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [
-          "State the three series rules (I, V, R).",
-          "Rearrange V = I × R to find I.",
-          "Convert 0.5 A into mA.",
-          "In parallel, does total resistance increase or decrease when you add a branch?",
-          "In parallel, do branch currents add up or stay the same?"
+          {
+            "id": "202-4A-SR-1",
+            "questionText": "State the three series rules (I, V, R).",
+            "expectedAnswer": "Current same everywhere, voltage adds up, resistance adds up",
+            "hint": "Think about what stays the same and what adds up in series circuits."
+          },
+          {
+            "id": "202-4A-SR-2",
+            "questionText": "Rearrange V = I × R to find I.",
+            "expectedAnswer": "I = V / R or I = V ÷ R",
+            "hint": "To isolate I, divide both sides by R."
+          },
+          {
+            "id": "202-4A-SR-3",
+            "questionText": "Convert 0.5 A into mA.",
+            "expectedAnswer": "500mA",
+            "hint": "To convert amps to milliamps, multiply by 1000."
+          },
+          {
+            "id": "202-4A-SR-4",
+            "questionText": "In parallel, does total resistance increase or decrease when you add a branch?",
+            "expectedAnswer": "decrease",
+            "hint": "More paths means less overall resistance."
+          },
+          {
+            "id": "202-4A-SR-5",
+            "questionText": "In parallel, do branch currents add up or stay the same?",
+            "expectedAnswer": "add up",
+            "hint": "Think about current flowing into and out of the parallel section."
+          }
         ],
         "notes": "Parallel builds on series rules, Ohm’s Law, and unit conversions."
       }

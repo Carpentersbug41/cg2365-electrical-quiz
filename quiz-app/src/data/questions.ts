@@ -11,6 +11,7 @@ export interface Question {
 import { healthAndSafetyQuestions } from './healthAndSafetyQuestions';
 import { communicationQuestions } from './communicationQuestions';
 import { scienceQuestions } from './scienceQuestions';
+import { healthSafetyLegislationQuestions } from './questions/healthSafetyLegislationQuestions';
 import { electricalQuantitiesQuestions } from './questions/electricalQuantitiesQuestions';
 import { ohmsLawQuestions } from './questions/ohmsLawQuestions';
 import { seriesCircuitsQuestions } from './questions/seriesCircuitsQuestions';
@@ -26,6 +27,7 @@ export const questions: Question[] = [
   ...healthAndSafetyQuestions,
   ...communicationQuestions,
   ...scienceQuestions,
+  ...healthSafetyLegislationQuestions,
   ...electricalQuantitiesQuestions,
   ...ohmsLawQuestions,
   ...seriesCircuitsQuestions,

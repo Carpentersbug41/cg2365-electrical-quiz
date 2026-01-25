@@ -363,10 +363,30 @@
       "content": {
         "title": "Spaced Review",
         "questions": [
-          "Name the four main components of cable construction.",
-          "What is the difference between solid and stranded conductors?",
-          "Why is T&E cable flat in shape?",
-          "What does the CPC provide in a cable?"
+          {
+            "id": "203-1A-SR-1",
+            "questionText": "Name the four main components of cable construction.",
+            "expectedAnswer": "Conductor, insulation, sheath, CPC",
+            "hint": "Think about the layers from inside to outside, plus the safety wire."
+          },
+          {
+            "id": "203-1A-SR-2",
+            "questionText": "What is the difference between solid and stranded conductors?",
+            "expectedAnswer": "Solid is single wire, stranded is multiple wires twisted together",
+            "hint": "One versus many wires."
+          },
+          {
+            "id": "203-1A-SR-3",
+            "questionText": "Why is T&E cable flat in shape?",
+            "expectedAnswer": "CPC runs between the two insulated conductors",
+            "hint": "Think about where the earth wire is positioned."
+          },
+          {
+            "id": "203-1A-SR-4",
+            "questionText": "What does the CPC provide in a cable?",
+            "expectedAnswer": "Earth or protective conductor or safety path",
+            "hint": "CPC stands for Circuit Protective Conductor."
+          }
         ],
         "notes": "This is a foundational lesson in a new unit. Review your understanding of the four cable construction components and the main cable types (T&E, singles, flex) before moving to the next lesson."
       }

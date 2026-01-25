@@ -98,8 +98,10 @@ Format your response as JSON:
     }
 
     const client = await llmClientPromise;
+    const modelName = getGeminiModelWithDefault();
+    console.log('🤖 [LLM Diagnostic] Using Gemini model:', modelName);
     const model = client.getGenerativeModel({ 
-      model: getGeminiModelWithDefault(),
+      model: modelName,
       generationConfig: {
         temperature: 0.7,
         maxOutputTokens: 1000,

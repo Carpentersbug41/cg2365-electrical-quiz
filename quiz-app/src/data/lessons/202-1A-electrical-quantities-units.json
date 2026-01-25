@@ -343,10 +343,30 @@
       "content": {
         "title": "Spaced Review (Mathematical Foundations)",
         "questions": [
-          "Calculate: 250 ÷ 1000",
-          "Calculate: 4.5 × 1000",
-          "What is 0.003 written in standard form (scientific notation)?",
-          "Round 4.768 to 1 decimal place."
+          {
+            "id": "202-1A-SR-1",
+            "questionText": "Calculate: 250 ÷ 1000",
+            "expectedAnswer": "0.25",
+            "hint": "To divide by 1000, move the decimal point 3 places to the left."
+          },
+          {
+            "id": "202-1A-SR-2",
+            "questionText": "Calculate: 4.5 × 1000",
+            "expectedAnswer": "4500",
+            "hint": "To multiply by 1000, move the decimal point 3 places to the right."
+          },
+          {
+            "id": "202-1A-SR-3",
+            "questionText": "What is 0.003 written in standard form (scientific notation)?",
+            "expectedAnswer": "3 × 10^-3 or 3 x 10^-3",
+            "hint": "Move the decimal point to get a number between 1 and 10, then use a negative power of 10."
+          },
+          {
+            "id": "202-1A-SR-4",
+            "questionText": "Round 4.768 to 1 decimal place.",
+            "expectedAnswer": "4.8",
+            "hint": "Look at the second decimal place to decide whether to round up or down."
+          }
         ],
         "notes": "These questions review basic mathematical operations needed for unit conversions and electrical calculations."
       }

@@ -405,10 +405,30 @@
       "content": {
         "title": "Spaced Review (Previous Topics)",
         "questions": [
-          "State Ohm's Law and identify what each letter represents.",
-          "Calculate the power dissipated by a 10Ω resistor carrying 2A of current.",
-          "If voltage increases and resistance stays the same, what happens to current?",
-          "Explain the difference between series and parallel circuits in one sentence."
+          {
+            "id": "202-6A-SR-1",
+            "questionText": "State Ohm's Law and identify what each letter represents.",
+            "expectedAnswer": "V = I × R where V is voltage, I is current, R is resistance",
+            "hint": "Think about the formula and what each symbol stands for."
+          },
+          {
+            "id": "202-6A-SR-2",
+            "questionText": "Calculate the power dissipated by a 10Ω resistor carrying 2A of current.",
+            "expectedAnswer": "40W",
+            "hint": "Use P = I² × R or P = 2² × 10."
+          },
+          {
+            "id": "202-6A-SR-3",
+            "questionText": "If voltage increases and resistance stays the same, what happens to current?",
+            "expectedAnswer": "Current increases",
+            "hint": "Think about Ohm's Law: I = V / R."
+          },
+          {
+            "id": "202-6A-SR-4",
+            "questionText": "Explain the difference between series and parallel circuits in one sentence.",
+            "expectedAnswer": "Series has one path, parallel has multiple paths",
+            "hint": "Think about the number of paths for current."
+          }
         ],
         "notes": "These questions review key concepts from Ohm's Law, power calculations, and circuit topology to reinforce prerequisite knowledge."
       }

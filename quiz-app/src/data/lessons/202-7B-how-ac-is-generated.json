@@ -364,10 +364,30 @@
       "content": {
         "title": "Spaced Review (Previous Topics)",
         "questions": [
-          "What are the two rules for magnetic pole behavior? (Hint: like poles ___, unlike poles ___)",
-          "What is the frequency of UK mains supply?",
-          "Does AC or DC flow from a battery?",
-          "Name one advantage of an electromagnet over a permanent magnet."
+          {
+            "id": "202-7B-SR-1",
+            "questionText": "What are the two rules for magnetic pole behavior? (Hint: like poles ___, unlike poles ___)",
+            "expectedAnswer": "Like poles repel, unlike poles attract",
+            "hint": "Think about what happens when north meets north versus north meets south."
+          },
+          {
+            "id": "202-7B-SR-2",
+            "questionText": "What is the frequency of UK mains supply?",
+            "expectedAnswer": "50Hz",
+            "hint": "The UK uses 50 cycles per second."
+          },
+          {
+            "id": "202-7B-SR-3",
+            "questionText": "Does AC or DC flow from a battery?",
+            "expectedAnswer": "DC",
+            "hint": "Batteries provide direct current, not alternating current."
+          },
+          {
+            "id": "202-7B-SR-4",
+            "questionText": "Name one advantage of an electromagnet over a permanent magnet.",
+            "expectedAnswer": "Can be turned on and off or strength can be controlled",
+            "hint": "What can you do with an electromagnet that you can't do with a permanent magnet?"
+          }
         ],
         "notes": "These questions review magnetism (202-6A) and AC principles (202-7A), reinforcing the prerequisites for understanding AC generation."
       }

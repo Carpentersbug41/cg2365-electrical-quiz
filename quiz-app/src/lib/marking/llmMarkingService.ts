@@ -246,6 +246,7 @@ export async function llmMarkWithJSON(
   
   // 2. Call LLM API with JSON response mode
   const modelName = getGeminiModelWithDefault();
+  console.log('🤖 [LLM Marking] Calling LLM API with model:', modelName);
   // #region agent log
   console.log('🔍 [DEBUG] About to call LLM API', {modelName:modelName,promptLength:prompt.length});
   fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'llmMarkingService.ts:217',message:'About to call LLM API',data:{modelName:modelName,promptLength:prompt.length},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'B'})}).catch(()=>{});
@@ -296,11 +297,11 @@ export async function markConceptualQuestion(
 ): Promise<ExtendedMarkingResult> {
   
   // Basic validation
-  if (!userAnswer || userAnswer.trim().length < 5) {
+  if (!userAnswer || userAnswer.trim().length < 1) {
     return {
       isCorrect: false,
       score: 0,
-      feedback: "Please provide a more detailed answer (at least 5 characters).",
+      feedback: "Please provide an answer (at least 1 character).",
       metadata: { markingStrategy: 'validation-failed' }
     };
   }

@@ -323,22 +323,25 @@ export function createLLMClient(): LLMClient {
  * Tries Vertex AI first if configured, falls back to Google AI Studio on error
  */
 export async function createLLMClientWithFallback(): Promise<LLMClient> {
+  const modelName = getGeminiModelWithDefault();
+  
   if (shouldUseVertexAI() && isVertexAIConfigured()) {
     try {
       const client = new VertexAIClient();
       // Test the client by getting a model (this will fail if credentials are invalid or model not set)
-      const modelName = getGeminiModelWithDefault();
       const testModel = client.getGenerativeModel({
         model: modelName,
       });
-      console.log('Vertex AI client initialized successfully');
+      console.log('✅ [LLM Client] Vertex AI client initialized successfully');
+      console.log('🤖 [LLM Client] Model configured:', modelName);
       return client;
     } catch (error) {
-      console.warn('Vertex AI initialization failed, falling back to Google AI Studio:', error);
+      console.warn('⚠️ [LLM Client] Vertex AI initialization failed, falling back to Google AI Studio:', error);
     }
   }
 
   // Fallback to Google AI Studio
-  console.log('Using Google AI Studio client (fallback)');
+  console.log('✅ [LLM Client] Using Google AI Studio client');
+  console.log('🤖 [LLM Client] Model configured:', modelName);
   return new GoogleAIStudioClient();
 }

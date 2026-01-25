@@ -468,10 +468,30 @@
       "content": {
         "title": "Spaced Review (Previous Topics)",
         "questions": [
-          "What is the frequency of UK mains supply?",
-          "What does AC stand for, and how does it differ from DC?",
-          "In a simple generator, what produces the alternating current?",
-          "State one advantage of using AC for mains electricity distribution."
+          {
+            "id": "202-7C-SR-1",
+            "questionText": "What is the frequency of UK mains supply?",
+            "expectedAnswer": "50Hz",
+            "hint": "The UK uses 50 cycles per second."
+          },
+          {
+            "id": "202-7C-SR-2",
+            "questionText": "What does AC stand for, and how does it differ from DC?",
+            "expectedAnswer": "Alternating Current, direction changes periodically unlike DC which flows one way",
+            "hint": "AC changes direction, DC doesn't."
+          },
+          {
+            "id": "202-7C-SR-3",
+            "questionText": "In a simple generator, what produces the alternating current?",
+            "expectedAnswer": "Rotating loop or coil in a magnetic field",
+            "hint": "What part moves through the magnetic field?"
+          },
+          {
+            "id": "202-7C-SR-4",
+            "questionText": "State one advantage of using AC for mains electricity distribution.",
+            "expectedAnswer": "Can be easily transformed to higher or lower voltages or reduces transmission losses",
+            "hint": "Think about transformers and power transmission."
+          }
         ],
         "notes": "These questions review AC principles and generation from lessons 202-7A and 202-7B."
       }
