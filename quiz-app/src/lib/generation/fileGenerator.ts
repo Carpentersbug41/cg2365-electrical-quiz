@@ -147,6 +147,10 @@ export class FileGenerator {
           chunkStartId
         );
 
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:145',message:'BATCH START',data:{batchNum:i+1,totalChunks:chunks,difficulty:difficulty,chunkCount:chunkCount,chunkStartId:chunkStartId,systemPromptLength:systemPrompt.length,userPromptLength:userPrompt.length,systemPromptStart:systemPrompt.substring(0,300),userPromptStart:userPrompt.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'ALL'})}).catch(()=>{});
+        // #endregion
+
         const content = await this.generateWithRetry(
           systemPrompt,
           userPrompt,
@@ -154,18 +158,38 @@ export class FileGenerator {
           GENERATION_LIMITS.MAX_RETRIES
         );
 
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:158',message:'RAW LLM RESPONSE',data:{contentLength:content.length,contentStart:content.substring(0,500),contentEnd:content.substring(Math.max(0,content.length-500)),startsWithBracket:content.trim()[0]==='[',endsWithBracket:content.trim()[content.trim().length-1]===']',hasCodeBlocks:content.includes('```')},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A,B,E'})}).catch(()=>{});
+        // #endregion
+
         // Parse as JavaScript array
         const cleanedContent = extractTypeScriptArray(content);
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:168',message:'AFTER EXTRACTION',data:{cleanedLength:cleanedContent.length,cleanedStart:cleanedContent.substring(0,500),cleanedEnd:cleanedContent.substring(Math.max(0,cleanedContent.length-500)),startsWithBracket:cleanedContent.trim()[0]==='[',endsWithBracket:cleanedContent.trim()[cleanedContent.trim().length-1]===']',differenceFromRaw:content.length-cleanedContent.length},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'B,D'})}).catch(()=>{});
+        // #endregion
         
         // Use eval in a safe context (only for known LLM-generated content)
         let questions: QuizQuestion[];
         try {
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:177',message:'ATTEMPTING EVAL',data:{contentSample:cleanedContent.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A'})}).catch(()=>{});
+          // #endregion
           // eslint-disable-next-line no-eval
           questions = eval(cleanedContent) as QuizQuestion[];
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:183',message:'EVAL SUCCESS',data:{questionCount:questions.length,isArray:Array.isArray(questions),firstQuestionId:questions[0]?.id,lastQuestionId:questions[questions.length-1]?.id},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A'})}).catch(()=>{});
+          // #endregion
         } catch (evalError) {
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:189',message:'EVAL FAILED - TRYING JSON.parse',data:{evalErrorMsg:evalError instanceof Error?evalError.message:'unknown',evalErrorName:evalError instanceof Error?evalError.name:'unknown',contentChar10:cleanedContent.substring(8,12),contentLine3:cleanedContent.split('\n')[2]},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A,C'})}).catch(()=>{});
+          // #endregion
           // Try JSON.parse as fallback
           const parsed = safeJsonParse<QuizQuestion[]>(cleanedContent);
           if (!parsed.success || !parsed.data) {
+            // #region agent log
+            fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:196',message:'JSON.parse FAILED - CRITICAL ERROR',data:{parseError:parsed.error,contentFullStart:cleanedContent.substring(0,1000),contentFullEnd:cleanedContent.substring(Math.max(0,cleanedContent.length-1000)),totalLength:cleanedContent.length},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'ALL'})}).catch(()=>{});
+            // #endregion
             return {
               success: false,
               questions: [],
@@ -173,6 +197,9 @@ export class FileGenerator {
             };
           }
           questions = parsed.data;
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:208',message:'JSON.parse SUCCESS (fallback)',data:{questionCount:questions.length},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'A'})}).catch(()=>{});
+          // #endregion
         }
 
         if (!Array.isArray(questions)) {
@@ -215,17 +242,26 @@ export class FileGenerator {
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
         const client = await createLLMClientWithFallback();
+        // #region agent log
+        const maxTokens = type === 'lesson' ? 8000 : 8000; // FIXED: Increased from 4000 to 8000 for quiz
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:238',message:'LLM GENERATION CONFIG',data:{type:type,maxOutputTokens:maxTokens,temperature:0.7,model:getGeminiModelWithDefault(),attempt:attempt+1},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'E'})}).catch(()=>{});
+        // #endregion
+
         const model = client.getGenerativeModel({
           model: getGeminiModelWithDefault(),
           systemInstruction: systemPrompt,
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: type === 'lesson' ? 8000 : 4000,
+            maxOutputTokens: maxTokens,
           },
         });
 
         const result = await model.generateContent(userPrompt);
         const text = result.response.text();
+
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:256',message:'LLM RESPONSE RECEIVED',data:{textLength:text.length,textStart:text.substring(0,300),textEnd:text.substring(Math.max(0,text.length-300)),isEmpty:!text||text.trim().length===0},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'E'})}).catch(()=>{});
+        // #endregion
 
         if (!text || text.trim().length === 0) {
           throw new Error('Empty response from LLM');

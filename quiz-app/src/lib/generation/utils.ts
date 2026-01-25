@@ -166,13 +166,47 @@ export function extractJson(text: string): string {
  * Extract TypeScript array from mixed content
  */
 export function extractTypeScriptArray(text: string): string {
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:166',message:'EXTRACT ARRAY - INPUT',data:{inputLength:text.length,inputStart:text.substring(0,300),inputEnd:text.substring(Math.max(0,text.length-300))},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D'})}).catch(()=>{});
+  // #endregion
+  
   const cleaned = cleanCodeBlocks(text);
   
-  // Try to find array
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:173',message:'EXTRACT ARRAY - AFTER CLEAN',data:{cleanedLength:cleaned.length,removedChars:text.length-cleaned.length,cleanedStart:cleaned.substring(0,300),cleanedEnd:cleaned.substring(Math.max(0,cleaned.length-300))},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'B,D'})}).catch(()=>{});
+  // #endregion
+  
+  // If text starts with [ and ends with ], it's likely already a complete array
+  const trimmed = cleaned.trim();
+  const startsWithBracket = trimmed.startsWith('[');
+  const endsWithBracket = trimmed.endsWith(']');
+  
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:183',message:'EXTRACT ARRAY - BRACKET CHECK',data:{startsWithBracket:startsWithBracket,endsWithBracket:endsWithBracket,firstChar:trimmed[0],lastChar:trimmed[trimmed.length-1],trimmedLength:trimmed.length,first100:trimmed.substring(0,100),last100:trimmed.substring(Math.max(0,trimmed.length-100))},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D,E'})}).catch(()=>{});
+  // #endregion
+  
+  if (startsWithBracket && endsWithBracket) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:190',message:'EXTRACT ARRAY - ALREADY BRACKETED (RETURNING AS-IS)',data:{length:trimmed.length},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
+    return trimmed;
+  }
+  
+  // Otherwise try to find array with regex (shouldn't happen if LLM follows instructions)
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:197',message:'EXTRACT ARRAY - USING REGEX FALLBACK',data:{reason:'not properly bracketed'},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D,E'})}).catch(()=>{});
+  // #endregion
   const arrayMatch = cleaned.match(/\[[\s\S]*\]/);
   if (arrayMatch) {
+    // #region agent log
+    fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:203',message:'EXTRACT ARRAY - REGEX MATCHED',data:{matchedLength:arrayMatch[0].length,matchStart:arrayMatch[0].substring(0,100),matchEnd:arrayMatch[0].substring(Math.max(0,arrayMatch[0].length-100))},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D'})}).catch(()=>{});
+    // #endregion
     return arrayMatch[0];
   }
+  
+  // #region agent log
+  fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'utils.ts:209',message:'EXTRACT ARRAY - NO MATCH (RETURNING CLEANED)',data:{cleanedSample:cleaned.substring(0,500)},timestamp:Date.now(),sessionId:'debug-session',runId:'initial',hypothesisId:'D,E'})}).catch(()=>{});
+  // #endregion
   
   return cleaned;
 }
