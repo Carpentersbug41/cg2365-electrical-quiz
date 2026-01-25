@@ -121,11 +121,16 @@ export class ValidationService {
           errors.push('Outcomes block must have outcomes array');
         } else {
           for (const outcome of block.content.outcomes) {
-            if (!outcome.text || !outcome.bloomLevel) {
+            if (typeof outcome !== 'object' || outcome === null || !('text' in outcome) || !('bloomLevel' in outcome)) {
+              errors.push('Each outcome must have text and bloomLevel');
+              continue;
+            }
+            const outcomeObj = outcome as { text: unknown; bloomLevel: unknown };
+            if (!outcomeObj.text || !outcomeObj.bloomLevel) {
               errors.push('Each outcome must have text and bloomLevel');
             }
-            if (!BLOOM_LEVELS.includes(outcome.bloomLevel)) {
-              errors.push(`Invalid bloom level: ${outcome.bloomLevel}`);
+            if (typeof outcomeObj.bloomLevel === 'string' && !BLOOM_LEVELS.includes(outcomeObj.bloomLevel)) {
+              errors.push(`Invalid bloom level: ${outcomeObj.bloomLevel}`);
             }
           }
         }
@@ -142,7 +147,7 @@ export class ValidationService {
       case 'explanation':
         if (!block.content.title || !block.content.content) {
           errors.push('Explanation block must have title and content');
-        } else if (block.content.content.length < 200) {
+        } else if (typeof block.content.content === 'string' && block.content.content.length < 200) {
           warnings.push('Explanation content seems short (< 200 chars)');
         }
         break;
@@ -156,12 +161,12 @@ export class ValidationService {
           }
 
           // Check understanding check structure
-          if (block.content.mode === 'conceptual' && block.content.questions.length !== 4) {
+          if (typeof block.content.mode === 'string' && block.content.mode === 'conceptual' && block.content.questions.length !== 4) {
             warnings.push('Understanding check should have exactly 4 questions (3×L1 + 1×L2)');
           }
 
           // Check integrative structure
-          if (block.content.mode === 'integrative' && block.content.questions.length !== 1) {
+          if (typeof block.content.mode === 'string' && block.content.mode === 'integrative' && block.content.questions.length !== 1) {
             warnings.push('Integrative block should have exactly 1 question');
           }
         }
