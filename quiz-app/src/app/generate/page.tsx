@@ -245,6 +245,7 @@ export default function GeneratePage() {
                   <option value="Electrical Installations Technology">
                     Electrical Installations Technology
                   </option>
+                  <option value="Installation Practice">Installation Practice</option>
                 </select>
               </div>
 

@@ -14,7 +14,6 @@ import { scienceQuestions } from './scienceQuestions';
 import { healthSafetyLegislationQuestions } from './questions/healthSafetyLegislationQuestions';
 import { electricalQuantitiesQuestions } from './questions/electricalQuantitiesQuestions';
 import { ohmsLawQuestions } from './questions/ohmsLawQuestions';
-import { seriesCircuitsQuestions } from './questions/seriesCircuitsQuestions';
 import { parallelCircuitsQuestions } from './questions/parallelCircuitsQuestions';
 import { powerEnergyQuestions } from './questions/powerEnergyQuestions';
 import { magnetismElectromagnetismQuestions } from './questions/magnetismElectromagnetismQuestions';
@@ -22,7 +21,7 @@ import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
 import { acGenerationQuestions } from './questions/acGenerationQuestions';
 import { acWaveformQuestions } from './questions/acWaveformQuestions';
 import { transformersQuestions } from './questions/transformersQuestions';
-import { seriesCircuitsQuestions } from './questions/seriesCircuitsQuestions';
+import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTestLanguageWhatEachTestProvesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -31,7 +30,6 @@ export const questions: Question[] = [
   ...healthSafetyLegislationQuestions,
   ...electricalQuantitiesQuestions,
   ...ohmsLawQuestions,
-  ...seriesCircuitsQuestions,
   ...parallelCircuitsQuestions,
   ...powerEnergyQuestions,
   ...magnetismElectromagnetismQuestions,

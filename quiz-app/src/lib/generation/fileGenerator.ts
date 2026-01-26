@@ -175,19 +175,60 @@ export class FileGenerator {
           // #region agent log
           fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:171',message:'Attempting eval',data:{contentToEval:cleanedContent.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
           // #endregion
+          // Wrap in parentheses to ensure it's treated as an expression
           // eslint-disable-next-line no-eval
-          questions = eval(cleanedContent) as QuizQuestion[];
+          questions = eval(`(${cleanedContent})`) as QuizQuestion[];
           // #region agent log
           fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:176',message:'Eval succeeded',data:{questionCount:questions.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
           // #endregion
         } catch (evalError) {
           // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:181',message:'Eval failed, trying JSON.parse',data:{evalErrorMsg:evalError instanceof Error?evalError.message:'unknown',evalErrorName:evalError instanceof Error?evalError.name:'unknown',contentForJsonParse:cleanedContent.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E'})}).catch(()=>{});
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:181',message:'Eval failed, trying JSON conversion',data:{evalErrorMsg:evalError instanceof Error?evalError.message:'unknown',evalErrorName:evalError instanceof Error?evalError.name:'unknown',contentForJsonParse:cleanedContent.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E'})}).catch(()=>{});
           // #endregion
-          // Try JSON.parse as fallback
-          const parsed = safeJsonParse<QuizQuestion[]>(cleanedContent);
+          
+          // Convert JavaScript object notation to valid JSON before parsing
+          // First, find and extract ONLY the array, removing any trailing content
+          const arrayMatch = cleanedContent.match(/^\s*\[[\s\S]*?\]\s*$/m);
+          let arrayOnly = arrayMatch ? arrayMatch[0] : cleanedContent;
+          
+          // If no clean match, try to find the array and cut off trailing content
+          if (!arrayMatch) {
+            const startIdx = cleanedContent.indexOf('[');
+            if (startIdx !== -1) {
+              // Find the matching closing bracket by counting brackets
+              let depth = 0;
+              let endIdx = -1;
+              for (let i = startIdx; i < cleanedContent.length; i++) {
+                if (cleanedContent[i] === '[' || cleanedContent[i] === '{') depth++;
+                if (cleanedContent[i] === ']' || cleanedContent[i] === '}') depth--;
+                if (depth === 0 && cleanedContent[i] === ']') {
+                  endIdx = i + 1;
+                  break;
+                }
+              }
+              if (endIdx !== -1) {
+                arrayOnly = cleanedContent.substring(startIdx, endIdx);
+              }
+            }
+          }
+          
           // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:187',message:'JSON.parse result',data:{parseSuccess:parsed.success,parseError:parsed.error,hasData:!!parsed.data},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E'})}).catch(()=>{});
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:206',message:'Extracted array only',data:{arrayLength:arrayOnly.length,arrayPreview:arrayOnly.substring(0,300),wasExtracted:arrayOnly!==cleanedContent},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'E',runId:'post-fix'})}).catch(()=>{});
+          // #endregion
+          
+          // Replace unquoted keys with quoted keys
+          let jsonString = arrayOnly
+            .replace(/(\w+):/g, '"$1":')  // Quote all keys
+            .replace(/:\s*'([^']*)'/g, ': "$1"');  // Replace single quotes with double quotes
+          
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:216',message:'After JSON conversion',data:{jsonLength:jsonString.length,jsonPreview:jsonString.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'D',runId:'post-fix'})}).catch(()=>{});
+          // #endregion
+          
+          // Try JSON.parse as fallback
+          const parsed = safeJsonParse<QuizQuestion[]>(jsonString);
+          // #region agent log
+          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:222',message:'JSON.parse result',data:{parseSuccess:parsed.success,parseError:parsed.error,hasData:!!parsed.data},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E',runId:'post-fix'})}).catch(()=>{});
           // #endregion
           if (!parsed.success || !parsed.data) {
             return {

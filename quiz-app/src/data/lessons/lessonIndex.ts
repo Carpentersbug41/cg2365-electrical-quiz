@@ -158,29 +158,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 7.3,
   },
 
-  
-  {
-    id: '202-202.3AAA',
-    title: 'Series Circuits',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Series Circuits',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-202.3AAA'),
-    available: true,
-    order: 8.3,
-  },
-  {
-    id: '202-3AAAA',
-    title: 'Series Circuits',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Series Circuits',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-3AAAA'),
-    available: true,
-    order: 9.3,
-  },// Unit 203: Electrical Installations Technology
+  // Unit 203: Electrical Installations Technology
   {
     id: '203-1A',
     title: 'Types of Cables: Construction and Applications',
@@ -194,6 +172,17 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
   // Future lessons can be added here
   // Unit 210: Communication
+  {
+    id: '204-10A',
+    title: 'Dead-test language — what each test proves',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Dead-test language — what each test proves',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-10A'),
+    available: true,
+    order: 1,
+  },
 ];
 
 /**

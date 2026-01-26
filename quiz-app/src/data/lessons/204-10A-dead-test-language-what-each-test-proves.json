@@ -1,0 +1,212 @@
+{
+  "id": "204-10A",
+  "title": "204.10A — Dead-test language: What each test proves",
+  "description": "Master the fundamental logic of dead testing by defining continuity, insulation resistance, and polarity and understanding the meaning of their results.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Installation Practice",
+  "learningOutcomes": [
+    "Define continuity, insulation resistance (IR), and polarity in the context of electrical testing.",
+    "Explain the core logic of 'connected' vs 'not connected' for different test types.",
+    "Identify the correct units (Ω vs MΩ) and classify readings as good or suspicious based on principles."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "204-10A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define continuity, insulation resistance, and polarity.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the logic of 'should be connected' vs 'must not be connected'.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Classify test readings as good or suspicious based on the test type.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Continuity",
+            "definition": "A test to confirm that a conductor is unbroken and provides a continuous path for current."
+          },
+          {
+            "term": "Insulation Resistance (IR)",
+            "definition": "A test to confirm that electrical current cannot leak between conductors or to earth."
+          },
+          {
+            "term": "Polarity",
+            "definition": "A check to ensure all cables are connected to the correct terminals (e.g., Line to switch)."
+          },
+          {
+            "term": "Megohm (MΩ)",
+            "definition": "A unit of resistance equal to one million ohms, used for insulation testing."
+          },
+          {
+            "term": "Dead Testing",
+            "definition": "Safety tests carried out on a circuit that has been physically disconnected from the electrical supply."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Logic of Dead Testing",
+        "description": "Visualizing the difference between checking an unbroken path (Continuity) and checking for leaks (Insulation Resistance).",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "continuity_path",
+          "insulation_barrier"
+        ],
+        "placeholderText": "A diagram showing a single wire being tested for continuity (end-to-end) versus two separate wires being tested for insulation resistance (side-to-side)."
+      }
+    },
+    {
+      "id": "204-10A-explain-dead-test-logic",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Proving the Circuit is Safe",
+        "content": "Before we ever connect an installation to the **UK mains supply** (which delivers **Alternating Current (AC)** at **230V** and **50Hz**), we must prove it is safe. We do this using 'Dead Tests.' While AC current flows back and forth 50 times a second, our test equipment usually uses a small DC battery to check the 'plumbing' of the circuit while it is dead.\n\n### 1. Continuity: The 'Should be Connected' Test\nContinuity answers the question: **Is the wire broken?** We want the copper path to be continuous from one end to the other. Because copper is an excellent conductor, we expect a **low resistance** reading, measured in **Ohms (Ω)**. A 'good' reading is typically very small (e.g., 0.2Ω). If the reading is high or 'Open Circuit,' the wire is likely snapped or a connection is loose.\n\n### 2. Insulation Resistance (IR): The 'Must Not be Connected' Test\nIR answers the question: **Is the current staying inside the wire?** We are testing the plastic (insulation) surrounding the copper. We want the resistance between two different wires (like Line and Earth) to be as high as possible so that no current can 'leak' across. We measure this in **Megohms (MΩ)**. A 'good' reading is **very high** (e.g., >200MΩ). A low reading here is 'suspicious' and suggests the insulation is damaged.\n\n### 3. Polarity: The 'Right Place' Test\nPolarity answers the question: **Is the Line in the right terminal?** It is not about a specific number, but about **identity**. We must ensure that the Line conductor goes to the fuse and the switches, not the Neutral. If we get this wrong, a light switch might turn off the Neutral, leaving the light bulb 'live' even when switched off—a deadly mistake.\n\n### Measurement vs. Conclusion\nAs an electrician, you must distinguish between the **measurement** (the number on the screen) and the **conclusion** (what it means). \n1. **Measurement:** 0.3Ω.\n2. **Conclusion:** The continuity is good; the path is unbroken.\n\nBy following this logic, we ensure that when we finally 'energize' the circuit with AC power, the current goes exactly where it is supposed to go and nowhere else."
+      }
+    },
+    {
+      "id": "204-10A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Test Logic",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-10A-C1-L1-A",
+            "questionText": "Which test proves that a conductor is not broken and has a continuous path?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Continuity",
+            "hint": "Think about the word for 'unbroken'."
+          },
+          {
+            "id": "204-10A-C1-L1-B",
+            "questionText": "What unit of measurement is used for Insulation Resistance (IR) tests?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Megohms",
+            "hint": "It is a very large unit because we want high resistance."
+          },
+          {
+            "id": "204-10A-C1-L1-C",
+            "questionText": "What is the core logic of an Insulation Resistance test: 'Should be connected' or 'Must NOT be connected'?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Must NOT be connected",
+            "hint": "We are testing the plastic insulation between wires."
+          },
+          {
+            "id": "204-10A-C1-L2",
+            "questionText": "If a continuity test gives a very high resistance reading (e.g. 50,000Ω), why is this considered 'suspicious' or a fail?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "It indicates a break or loose connection in the path",
+            "hint": "Recall that continuity tests 'should be connected' via low resistance copper."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Reading Analysis",
+        "questions": [
+          {
+            "id": "204-10A-P1",
+            "questionText": "You are performing a Continuity test. The meter reads 0.15Ω. Is this 'Good' or 'Suspicious'?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Good"
+            ],
+            "hint": "Continuity should be a low resistance path."
+          },
+          {
+            "id": "204-10A-P2",
+            "questionText": "You are performing an Insulation Resistance test. The meter reads 0.01MΩ. Is this 'Good' or 'Suspicious'?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Suspicious"
+            ],
+            "hint": "IR should be very high to prevent leaks."
+          },
+          {
+            "id": "204-10A-P3",
+            "questionText": "Which test is specifically designed to ensure the Line conductor is connected to the switch and not the Neutral?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Polarity"
+            ],
+            "hint": "Think about the identity and placement of wires."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-10A-INT-1",
+            "questionText": "You test a new lighting circuit. Continuity is 0.2Ω (Good), and IR is >200MΩ (Good). However, you discover the switch is installed on the Neutral wire. Explain which test failed and whether the circuit is safe to use.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "The Polarity test failed. The circuit is unsafe because the switch must be on the Line conductor to safely isolate the load.",
+            "hint": "Even if the numbers (Ω) are good, the placement must be correct."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review: Electrical Basics",
+        "questions": [
+          "What is the standard voltage of the UK mains supply?",
+          "What does the abbreviation 'CPC' stand for?",
+          "According to Ohm's Law, if Resistance increases, what happens to Current (if Voltage is constant)?",
+          "What is the frequency of the UK AC supply in Hertz (Hz)?"
+        ],
+        "notes": "Reviewing basic AC characteristics and fundamental circuit components."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-26",
+    "updated": "2026-01-26",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

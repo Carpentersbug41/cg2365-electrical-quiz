@@ -5,7 +5,6 @@
 
 import { TaggedQuestion, QuestionTag } from './types';
 import { healthSafetyLegislationQuestions } from './healthSafetyLegislationQuestions';
-import { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
 import { parallelCircuitsQuestions } from './parallelCircuitsQuestions';
 import { electricalQuantitiesQuestions } from './electricalQuantitiesQuestions';
 import { ohmsLawQuestions } from './ohmsLawQuestions';
@@ -16,14 +15,13 @@ import { acGenerationQuestions } from './acGenerationQuestions';
 import { acWaveformQuestions } from './acWaveformQuestions';
 import { transformersQuestions } from './transformersQuestions';
 import { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
-import { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
+import { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
-  ...seriesCircuitsQuestions,
-  ...seriesCircuitsQuestions,
+  ...deadTestLanguageWhatEachTestProvesQuestions,
   ...healthSafetyLegislationQuestions,
   ...electricalQuantitiesQuestions,
   ...ohmsLawQuestions,
@@ -43,7 +41,6 @@ export const allTaggedQuestions: TaggedQuestion[] = [
 export { healthSafetyLegislationQuestions } from './healthSafetyLegislationQuestions';
 export { electricalQuantitiesQuestions } from './electricalQuantitiesQuestions';
 export { ohmsLawQuestions } from './ohmsLawQuestions';
-export { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
 export { parallelCircuitsQuestions } from './parallelCircuitsQuestions';
 export { powerEnergyQuestions } from './powerEnergyQuestions';
 export { magnetismElectromagnetismQuestions } from './magnetismElectromagnetismQuestions';
@@ -52,7 +49,7 @@ export { acGenerationQuestions } from './acGenerationQuestions';
 export { acWaveformQuestions } from './acWaveformQuestions';
 export { transformersQuestions } from './transformersQuestions';
 export { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
-export { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
+export { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
 
 /**
  * Filter questions by tags

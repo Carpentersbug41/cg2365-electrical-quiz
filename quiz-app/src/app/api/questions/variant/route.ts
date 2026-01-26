@@ -4,7 +4,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { seriesCircuitsQuestions } from '@/data/questions/seriesCircuitsQuestions';
+import { allTaggedQuestions } from '@/data/questions/index';
 import { getQuestionVariant, hasVariants, getVariantMetadata } from '@/lib/questions/variantService';
 
 export async function GET(request: NextRequest) {
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Find the original question
-    const originalQuestion = seriesCircuitsQuestions.find(
+    const originalQuestion = allTaggedQuestions.find(
       q => q.id.toString() === questionId.toString()
     );
 
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
     // Get a variant
     const variant = getQuestionVariant(
       originalQuestion,
-      seriesCircuitsQuestions,
+      allTaggedQuestions,
       attemptNumber
     );
 
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
     }
 
     const variants = questionIds.map(questionId => {
-      const originalQuestion = seriesCircuitsQuestions.find(
+      const originalQuestion = allTaggedQuestions.find(
         q => q.id.toString() === questionId.toString()
       );
 
@@ -129,7 +129,7 @@ export async function POST(request: NextRequest) {
 
       const variant = getQuestionVariant(
         originalQuestion,
-        seriesCircuitsQuestions,
+        allTaggedQuestions,
         attemptNumber
       );
 
