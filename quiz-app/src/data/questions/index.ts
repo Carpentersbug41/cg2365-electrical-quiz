@@ -23,10 +23,10 @@ import { seriesCircuitsQuestions } from './seriesCircuitsQuestions';
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
   ...seriesCircuitsQuestions,
+  ...seriesCircuitsQuestions,
   ...healthSafetyLegislationQuestions,
   ...electricalQuantitiesQuestions,
   ...ohmsLawQuestions,
-  ...seriesCircuitsQuestions,
   ...parallelCircuitsQuestions,
   ...powerEnergyQuestions,
   ...magnetismElectromagnetismQuestions,

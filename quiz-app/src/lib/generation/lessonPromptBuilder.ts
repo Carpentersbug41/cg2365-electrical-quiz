@@ -329,7 +329,7 @@ OUTPUT FORMAT:
       : 'None (foundational lesson)';
 
     const mustHaveSection = request.mustHaveTopics 
-      ? `\n\nMUST-HAVE TOPICS (ensure these are covered in the lesson content):\n${request.mustHaveTopics}\n\nThese specific subtopics MUST be included in the explanation and practice blocks. Ensure each topic is thoroughly explained and has corresponding practice questions.`
+      ? `\n\nREQUIRED LESSON STRUCTURE:\n${request.mustHaveTopics}\n\nThis is the high-level structure and syllabus that MUST be followed. Organize all lesson blocks (explanation, practice questions, examples) to comprehensively cover each section of this structure. Ensure the lesson flows through these topics in a logical sequence.`
       : '';
 
     const additionalInstructionsSection = request.additionalInstructions

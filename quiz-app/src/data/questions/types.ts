@@ -24,6 +24,7 @@ export type MisconceptionCode =
   | 'ARITHMETIC_ERROR'          // Basic arithmetic mistake
   | 'VOLTAGE_EQUAL_SPLIT_ERROR' // Assumed voltage splits equally regardless of resistance
   | 'VOLTAGE_DIVIDER_ERROR'     // Incorrect voltage divider calculation
+  | 'VOLTAGE_RULE'              // Incorrect application of voltage rule
   | 'METER_CONNECTION_ERROR'    // Wrong meter connection (ammeter/voltmeter)
   // AC/DC specific
   | 'CONFUSED_AC_DC_SOURCES'    // Mixed up which sources provide AC vs DC
@@ -180,7 +181,9 @@ export type QuestionTag =
   | 'period'            // Period (time for one cycle)
   | 'average-voltage'   // Average voltage
   | 'amplitude'         // Amplitude/peak value
-  | 'efficiency';       // Efficiency calculations
+  | 'efficiency'       // Efficiency calculations
+  | 'power'            // Power calculations
+  | 'energy';          // Energy calculations
 
 /**
  * Answer Type: Determines marking strategy

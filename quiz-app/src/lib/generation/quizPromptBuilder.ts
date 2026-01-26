@@ -156,7 +156,7 @@ OUTPUT FORMAT:
     };
 
     const mustHaveSection = request.mustHaveTopics
-      ? `\n\nMUST-HAVE TOPICS TO COVER IN QUESTIONS:\n${request.mustHaveTopics}\n\nEnsure questions are distributed across these specific subtopics. Each must-have topic should have at least 2-3 questions testing understanding of that specific area.`
+      ? `\n\nLESSON STRUCTURE TO TEST:\n${request.mustHaveTopics}\n\nDistribute questions across all sections of this lesson structure. Ensure each major section has 2-3 questions testing understanding of that area. Questions should test both specific knowledge within each section and connections between sections.`
       : '';
 
     const additionalInstructionsSection = request.additionalInstructions

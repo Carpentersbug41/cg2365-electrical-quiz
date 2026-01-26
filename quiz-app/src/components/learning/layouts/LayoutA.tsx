@@ -186,7 +186,11 @@ export default function LayoutA({ lesson }: LayoutProps) {
               )}
 
               {/* Content Blocks */}
-              {contentBlocks.map(block => renderBlock(block))}
+              {contentBlocks.map(block => (
+                <div key={block.id}>
+                  {renderBlock(block)}
+                </div>
+              ))}
 
               {/* Mobile Tutor */}
               <div className="lg:hidden mt-4">
