@@ -23,6 +23,23 @@ import { GENERATION_LIMITS, DIFFICULTY_DISTRIBUTION } from './constants';
 import fs from 'fs';
 import path from 'path';
 
+// Debug logger
+function debugLog(stage: string, data: any) {
+  const logEntry = JSON.stringify({
+    timestamp: Date.now(),
+    location: 'fileGenerator.ts',
+    stage,
+    data,
+    sessionId: 'generation'
+  }) + '\n';
+  try {
+    const logPath = path.join(process.cwd(), '.cursor', 'debug.log');
+    fs.appendFileSync(logPath, logEntry, 'utf-8');
+  } catch (e) {
+    // Silent fail
+  }
+}
+
 export class FileGenerator {
   private lessonPromptBuilder: LessonPromptBuilder;
   private quizPromptBuilder: QuizPromptBuilder;
@@ -73,6 +90,8 @@ export class FileGenerator {
       const allQuestions: QuizQuestion[] = [];
       let currentId = this.getStartingQuestionId();
 
+      debugLog('QUIZ_GEN_START', { startId: currentId });
+
       // Generate easy questions (15)
       const easyQuestions = await this.generateQuestionBatch(
         request,
@@ -81,10 +100,12 @@ export class FileGenerator {
         currentId
       );
       if (!easyQuestions.success) {
+        debugLog('EASY_BATCH_FAILED', { error: easyQuestions.error });
         return { success: false, questions: [], error: easyQuestions.error };
       }
       allQuestions.push(...easyQuestions.questions);
       currentId += DIFFICULTY_DISTRIBUTION.easy;
+      debugLog('EASY_BATCH_SUCCESS', { count: easyQuestions.questions.length });
 
       // Generate medium questions (25)
       const mediumQuestions = await this.generateQuestionBatch(
@@ -94,10 +115,12 @@ export class FileGenerator {
         currentId
       );
       if (!mediumQuestions.success) {
+        debugLog('MEDIUM_BATCH_FAILED', { error: mediumQuestions.error });
         return { success: false, questions: [], error: mediumQuestions.error };
       }
       allQuestions.push(...mediumQuestions.questions);
       currentId += DIFFICULTY_DISTRIBUTION.medium;
+      debugLog('MEDIUM_BATCH_SUCCESS', { count: mediumQuestions.questions.length });
 
       // Generate hard questions (10)
       const hardQuestions = await this.generateQuestionBatch(
@@ -107,12 +130,16 @@ export class FileGenerator {
         currentId
       );
       if (!hardQuestions.success) {
+        debugLog('HARD_BATCH_FAILED', { error: hardQuestions.error });
         return { success: false, questions: [], error: hardQuestions.error };
       }
       allQuestions.push(...hardQuestions.questions);
+      debugLog('HARD_BATCH_SUCCESS', { count: hardQuestions.questions.length });
 
+      debugLog('QUIZ_GEN_COMPLETE', { totalQuestions: allQuestions.length });
       return { success: true, questions: allQuestions };
     } catch (error) {
+      debugLog('QUIZ_GEN_EXCEPTION', { error: error instanceof Error ? error.message : 'unknown' });
       return {
         success: false,
         questions: [],

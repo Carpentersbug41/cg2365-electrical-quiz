@@ -22,11 +22,13 @@ import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
 import lesson203_1A from '@/data/lessons/203-1A-types-of-cables.json';
 import lesson202_202_3AAA from '@/data/lessons/202-202.3AAA-series-circuits.json';
 import lesson202_3AAAA from '@/data/lessons/202-3AAAA-series-circuits';
+import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
 const LESSONS = [
+  lesson204_10A,
   lesson202_3AAAA,
   lesson202_202_3AAA,
   lesson201_1A,

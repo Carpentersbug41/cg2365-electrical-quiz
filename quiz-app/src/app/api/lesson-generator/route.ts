@@ -12,6 +12,24 @@ import { ErrorHandler } from '@/lib/generation/errorHandler';
 import { globalRateLimiter } from '@/lib/generation/rateLimiter';
 import { GenerationRequest, GenerationResponse } from '@/lib/generation/types';
 import { generateLessonId, generateLessonFilename, generateQuizFilename } from '@/lib/generation/utils';
+import fs from 'fs';
+import path from 'path';
+
+// Debug logger
+function debugLog(stage: string, data: any) {
+  const logEntry = JSON.stringify({
+    timestamp: Date.now(),
+    stage,
+    data,
+    sessionId: 'generation-' + Date.now()
+  }) + '\n';
+  try {
+    const logPath = path.join(process.cwd(), '.cursor', 'debug.log');
+    fs.appendFileSync(logPath, logEntry, 'utf-8');
+  } catch (e) {
+    console.error('Failed to write debug log:', e);
+  }
+}
 
 export async function POST(request: NextRequest) {
   const errorHandler = new ErrorHandler();
@@ -52,8 +70,11 @@ export async function POST(request: NextRequest) {
   try {
     const body: GenerationRequest = await request.json();
 
+    debugLog('REQUEST_RECEIVED', { unit: body.unit, lessonId: body.lessonId, topic: body.topic, section: body.section });
+
     // Validate request
     if (!body.unit || !body.lessonId || !body.topic || !body.section) {
+      debugLog('REQUEST_INVALID', { body });
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },
         { status: 400 }
@@ -64,6 +85,7 @@ export async function POST(request: NextRequest) {
     const warnings: string[] = [];
     const errors: string[] = [];
 
+    debugLog('GENERATION_START', { fullLessonId });
     console.log(`[Generator] Starting generation for ${fullLessonId}`);
 
     // Initialize services
@@ -79,10 +101,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Step 1: Generate lesson
+    debugLog('STEP_1_START', { step: 'generateLesson' });
     console.log('[Generator] Step 1: Generating lesson...');
     const lessonResult = await fileGenerator.generateLesson(body);
     
+    debugLog('STEP_1_COMPLETE', { success: lessonResult.success, error: lessonResult.error });
+    
     if (!lessonResult.success) {
+      debugLog('STEP_1_FAILED', { error: lessonResult.error });
       return NextResponse.json({
         success: false,
         error: lessonResult.error,
@@ -105,10 +131,14 @@ export async function POST(request: NextRequest) {
     warnings.push(...lessonValidation.warnings);
 
     // Step 3: Generate quiz
+    debugLog('STEP_3_START', { step: 'generateQuiz' });
     console.log('[Generator] Step 3: Generating quiz (50 questions)...');
     const quizResult = await fileGenerator.generateQuiz(body);
     
+    debugLog('STEP_3_COMPLETE', { success: quizResult.success, error: quizResult.error, questionCount: quizResult.questions?.length });
+    
     if (!quizResult.success) {
+      debugLog('STEP_3_FAILED', { error: quizResult.error });
       return NextResponse.json({
         success: false,
         error: quizResult.error,
@@ -131,14 +161,18 @@ export async function POST(request: NextRequest) {
     warnings.push(...quizValidation.warnings);
 
     // Step 5: Write files
+    debugLog('STEP_5_START', { step: 'writeFiles' });
     console.log('[Generator] Step 5: Writing files...');
     lessonFilePath = await fileGenerator.writeLessonFile(body, lessonResult.content);
     quizFilePath = await fileGenerator.writeQuizFile(body, quizResult.questions);
 
     const lessonFilename = lessonFilePath.split(/[/\\]/).pop() || '';
     const quizFilename = quizFilePath.split(/[/\\]/).pop() || '';
+    
+    debugLog('STEP_5_COMPLETE', { lessonFilename, quizFilename });
 
     // Step 6: Integrate files
+    debugLog('STEP_6_START', { step: 'integrateFiles', lessonFilename, quizFilename });
     console.log('[Generator] Step 6: Integrating files...');
     const integrationResult = await integrator.integrateAllFiles(
       body,
@@ -146,7 +180,10 @@ export async function POST(request: NextRequest) {
       quizFilename
     );
 
+    debugLog('STEP_6_COMPLETE', { success: integrationResult.success, filesUpdated: integrationResult.filesUpdated, errors: integrationResult.errors });
+
     if (!integrationResult.success) {
+      debugLog('STEP_6_FAILED', { errors: integrationResult.errors });
       // Rollback files
       await errorHandler.rollbackAll(lessonFilePath, quizFilePath);
       
@@ -198,6 +235,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response, { headers });
 
   } catch (error) {
+    debugLog('GENERATION_EXCEPTION', { 
+      errorMsg: error instanceof Error ? error.message : 'unknown', 
+      errorName: error instanceof Error ? error.name : 'unknown',
+      errorStack: error instanceof Error ? error.stack?.substring(0, 1000) : 'unknown'
+    });
     console.error('[Generator] Unexpected error:', error);
     
     // Attempt rollback
@@ -205,6 +247,7 @@ export async function POST(request: NextRequest) {
       await errorHandler.rollbackAll(lessonFilePath, quizFilePath, filesUpdated, branchName);
     } catch (rollbackError) {
       console.error('[Generator] Rollback failed:', rollbackError);
+      debugLog('ROLLBACK_FAILED', { error: rollbackError instanceof Error ? rollbackError.message : 'unknown' });
     }
 
     // Log failure
