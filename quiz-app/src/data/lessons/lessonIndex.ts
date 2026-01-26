@@ -205,6 +205,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 1,
   },
+  {
+    id: '204-10B',
+    title: 'Circuit map thinking — conductor roles → expected outcomes',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Circuit map thinking — conductor roles → expected outcomes',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-10B'),
+    available: true,
+    order: 2,
+  },
 ];
 
 /**
@@ -284,6 +295,12 @@ export const unitMetadata = {
     fullName: 'Electrical Installations Technology',
     icon: '🔌',
     color: 'violet',
+  },
+  '204': {
+    name: 'Testing & Inspection',
+    fullName: 'Testing & Inspection 2365 Level 2',
+    icon: '🔍',
+    color: 'purple',
   },
   '210': {
     name: 'Communication',

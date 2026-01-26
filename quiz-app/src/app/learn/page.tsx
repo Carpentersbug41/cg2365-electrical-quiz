@@ -21,13 +21,15 @@ import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
 import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
 import lesson203_1A from '@/data/lessons/203-1A-types-of-cables.json';
 import lesson202_202_3AAA from '@/data/lessons/202-202.3AAA-series-circuits.json';
-import lesson202_3AAAA from '@/data/lessons/202-3AAAA-series-circuits';
-import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves';
+import lesson202_3AAAA from '@/data/lessons/202-3AAAA-series-circuits.json';
+import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
+import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
 const LESSONS = [
+  lesson204_10B,
   lesson204_10A,
   lesson202_3AAAA,
   lesson202_202_3AAA,
@@ -74,6 +76,14 @@ const getUnitColors = (lessonId: string) => {
       text: 'text-violet-600 dark:text-violet-400',
       textHover: 'group-hover:text-violet-600 dark:group-hover:text-violet-400',
       button: 'bg-violet-600 dark:bg-violet-500 group-hover:bg-violet-700 dark:group-hover:bg-violet-600',
+    },
+    '204': {
+      border: 'border-purple-200 dark:border-purple-900',
+      borderHover: 'hover:border-purple-400 dark:hover:border-purple-600',
+      badge: 'text-purple-700 dark:text-purple-300 bg-purple-100 dark:bg-purple-900/30 border-purple-300 dark:border-purple-700',
+      text: 'text-purple-600 dark:text-purple-400',
+      textHover: 'group-hover:text-purple-600 dark:group-hover:text-purple-400',
+      button: 'bg-purple-600 dark:bg-purple-500 group-hover:bg-purple-700 dark:group-hover:bg-purple-600',
     },
   };
   
@@ -291,6 +301,86 @@ export default function LearnPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {LESSONS.filter(lesson => lesson.id.startsWith('203')).map((lesson) => {
+              const progress = lessonsProgress[lesson.id];
+              const hasMastery = progress?.masteryAchieved;
+              const isPending = progress?.masteryPending;
+              const colors = getUnitColors(lesson.id);
+              
+              return (
+                <Link
+                  key={lesson.id}
+                  href={`/learn/${lesson.id}`}
+                  className="group"
+                >
+                  <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col`}>
+                    {/* Lesson Header */}
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex flex-wrap gap-2">
+                        <span className={`px-3 py-1 text-xs font-medium ${colors.badge} rounded-full border`}>
+                          {lesson.unit}
+                        </span>
+                        {hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 flex items-center gap-1">
+                            <span>🏆</span> Mastered
+                          </span>
+                        )}
+                        {isPending && !hasMastery && (
+                          <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
+                            <span>⏳</span> Pending
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-2xl group-hover:scale-110 transition-transform">
+                        {hasMastery ? '🏆' : '📚'}
+                      </span>
+                    </div>
+
+                  {/* Lesson Title */}
+                  <h3 className={`text-xl font-bold text-gray-900 dark:text-white mb-2 ${colors.textHover} transition-colors`}>
+                    {lesson.title}
+                  </h3>
+
+                  {/* Lesson Description */}
+                  <p className="text-gray-600 dark:text-slate-300 text-sm mb-4 flex-1">
+                    {lesson.description}
+                  </p>
+
+                  {/* Lesson Meta */}
+                  <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-4 border-t border-gray-200 dark:border-slate-700">
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>✓</span>
+                      {lesson.learningOutcomes.length} Outcomes
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <span className={colors.text}>📝</span>
+                      {lesson.blocks.filter(b => b.type === 'practice').length} Practice
+                    </span>
+                  </div>
+
+                  {/* Start Button */}
+                  <button className={`mt-4 w-full px-4 py-2 ${colors.button} text-white rounded-lg font-semibold transition-colors shadow-md`}>
+                    {hasMastery ? 'Review Lesson' : isPending ? 'Review Lesson' : 'Start Lesson'} →
+                  </button>
+                </div>
+              </Link>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Unit 204: Testing & Inspection */}
+        <div className="mb-12">
+          <div className="mb-6">
+            <h2 className="text-2xl font-bold text-purple-900 dark:text-purple-300 mb-2">
+              Unit 204 - Testing & Inspection
+            </h2>
+            <p className="text-gray-600 dark:text-slate-300">
+              Electrical testing procedures, inspection requirements, and certification
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {LESSONS.filter(lesson => lesson.id.startsWith('204')).map((lesson) => {
               const progress = lessonsProgress[lesson.id];
               const hasMastery = progress?.masteryAchieved;
               const isPending = progress?.masteryPending;

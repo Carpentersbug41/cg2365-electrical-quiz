@@ -77,8 +77,11 @@ export class FileIntegrator {
     const importStatement = `import { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
     const exportStatement = `export { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
 
-    // Check if import already exists
-    if (!content.includes(importStatement)) {
+    // Check if variable name already exists in ANY import (using regex for robust detection)
+    const importRegex = new RegExp(`import\\s*\\{[^}]*\\b${variableName}\\b[^}]*\\}`, 'g');
+    const variableAlreadyImported = importRegex.test(content);
+
+    if (!variableAlreadyImported && !content.includes(importStatement)) {
       // Add import after existing imports (find last import line)
       const importLines = content.split('\n').filter(line => line.startsWith('import '));
       if (importLines.length > 0) {
@@ -88,8 +91,11 @@ export class FileIntegrator {
       }
     }
 
-    // Check if already in array before adding
-    if (!content.includes(`...${variableName}`)) {
+    // Check if variable already in array (using matches to count occurrences)
+    const arraySpreadRegex = new RegExp(`\\.\\.\\.${variableName}\\b`, 'g');
+    const existingMatches = content.match(arraySpreadRegex) || [];
+
+    if (existingMatches.length === 0) {
       // Add to allTaggedQuestions array
       const arrayMarker = 'export const allTaggedQuestions: TaggedQuestion[] = [';
       const arrayIndex = content.indexOf(arrayMarker);
@@ -99,8 +105,11 @@ export class FileIntegrator {
       }
     }
 
-    // Check if export already exists
-    if (!content.includes(exportStatement)) {
+    // Check if variable already exported (using regex for robust detection)
+    const exportRegex = new RegExp(`export\\s*\\{[^}]*\\b${variableName}\\b[^}]*\\}`, 'g');
+    const variableAlreadyExported = exportRegex.test(content);
+
+    if (!variableAlreadyExported && !content.includes(exportStatement)) {
       // Add export after existing exports
       const exportLines = content.split('\n').filter(line => line.startsWith('export {'));
       if (exportLines.length > 0) {
@@ -124,8 +133,11 @@ export class FileIntegrator {
     const variableName = quizFilename.replace('.ts', '');
     const importStatement = `import { ${variableName} } from './questions/${quizFilename.replace('.ts', '')}';`;
 
-    // Check if import already exists before adding
-    if (!content.includes(importStatement)) {
+    // Check if variable name already exists in ANY import (using regex for robust detection)
+    const importRegex = new RegExp(`import\\s*\\{[^}]*\\b${variableName}\\b[^}]*\\}`, 'g');
+    const variableAlreadyImported = importRegex.test(content);
+
+    if (!variableAlreadyImported && !content.includes(importStatement)) {
       // Add import
       const importLines = content.split('\n').filter(line => line.startsWith('import '));
       if (importLines.length > 0) {
@@ -207,20 +219,32 @@ export class FileIntegrator {
     const importStatement = `import ${variableName} from '@/data/lessons/${lessonFilename.replace('.json', '')}';`;
     const registryEntry = `  '${fullLessonId}': ${variableName} as Lesson,`;
 
-    // Add import after existing lesson imports
-    const importLines = content.split('\n').filter(line => line.includes('@/data/lessons/'));
-    if (importLines.length > 0) {
-      const lastImport = importLines[importLines.length - 1];
-      const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
-      content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+    // Check if variable name already exists in ANY import (using regex for robust detection)
+    const importRegex = new RegExp(`import\\s+${variableName}\\b\\s+from`, 'g');
+    const variableAlreadyImported = importRegex.test(content);
+
+    if (!variableAlreadyImported && !content.includes(importStatement)) {
+      // Add import after existing lesson imports
+      const importLines = content.split('\n').filter(line => line.includes('@/data/lessons/'));
+      if (importLines.length > 0) {
+        const lastImport = importLines[importLines.length - 1];
+        const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
+        content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+      }
     }
 
-    // Add to LESSONS registry
-    const registryMarker = 'const LESSONS: Record<string, Lesson> = {';
-    const registryIndex = content.indexOf(registryMarker);
-    if (registryIndex !== -1) {
-      const insertIndex = registryIndex + registryMarker.length;
-      content = content.slice(0, insertIndex) + '\n' + registryEntry + content.slice(insertIndex);
+    // Check if variable already in LESSONS registry
+    const registryRegex = new RegExp(`['"]${fullLessonId}['"]\\s*:\\s*${variableName}\\b`, 'g');
+    const variableAlreadyInRegistry = registryRegex.test(content);
+
+    if (!variableAlreadyInRegistry) {
+      // Add to LESSONS registry
+      const registryMarker = 'const LESSONS: Record<string, Lesson> = {';
+      const registryIndex = content.indexOf(registryMarker);
+      if (registryIndex !== -1) {
+        const insertIndex = registryIndex + registryMarker.length;
+        content = content.slice(0, insertIndex) + '\n' + registryEntry + content.slice(insertIndex);
+      }
     }
 
     fs.writeFileSync(filePath, content, 'utf-8');
@@ -238,20 +262,32 @@ export class FileIntegrator {
     const importStatement = `import ${variableName} from '@/data/lessons/${lessonFilename.replace('.json', '')}';`;
     const arrayEntry = `  ${variableName},`;
 
-    // Add import after existing lesson imports
-    const importLines = content.split('\n').filter(line => line.includes('@/data/lessons/'));
-    if (importLines.length > 0) {
-      const lastImport = importLines[importLines.length - 1];
-      const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
-      content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+    // Check if variable name already exists in ANY import (using regex for robust detection)
+    const importRegex = new RegExp(`import\\s+${variableName}\\b\\s+from`, 'g');
+    const variableAlreadyImported = importRegex.test(content);
+
+    if (!variableAlreadyImported && !content.includes(importStatement)) {
+      // Add import after existing lesson imports
+      const importLines = content.split('\n').filter(line => line.includes('@/data/lessons/'));
+      if (importLines.length > 0) {
+        const lastImport = importLines[importLines.length - 1];
+        const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
+        content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+      }
     }
 
-    // Add to LESSONS array
-    const arrayMarker = 'const LESSONS = [';
-    const arrayIndex = content.indexOf(arrayMarker);
-    if (arrayIndex !== -1) {
-      const insertIndex = arrayIndex + arrayMarker.length;
-      content = content.slice(0, insertIndex) + '\n' + arrayEntry + content.slice(insertIndex);
+    // Check if variable already in LESSONS array
+    const arrayEntryRegex = new RegExp(`^\\s*${variableName},\\s*$`, 'gm');
+    const variableAlreadyInArray = arrayEntryRegex.test(content);
+
+    if (!variableAlreadyInArray) {
+      // Add to LESSONS array
+      const arrayMarker = 'const LESSONS = [';
+      const arrayIndex = content.indexOf(arrayMarker);
+      if (arrayIndex !== -1) {
+        const insertIndex = arrayIndex + arrayMarker.length;
+        content = content.slice(0, insertIndex) + '\n' + arrayEntry + content.slice(insertIndex);
+      }
     }
 
     fs.writeFileSync(filePath, content, 'utf-8');

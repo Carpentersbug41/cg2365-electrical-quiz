@@ -1,0 +1,301 @@
+{
+  "id": "204-10B",
+  "title": "204.10B — Circuit map thinking: Conductor roles and expected outcomes",
+  "description": "Learn to map conductor roles within a circuit and predict test outcomes based on intended paths and isolation requirements.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Electrical Installations Technology",
+  "learningOutcomes": [
+    "Identify the functional roles of Line, Neutral, CPC, Permanent Live, and Switched Live conductors.",
+    "Explain the relationship between circuit mapping and expected dead-test results (Continuity vs. Isolation).",
+    "Sequence the standard dead-testing workflow for a basic electrical installation."
+  ],
+  "prerequisites": [
+    "204-01A"
+  ],
+  "blocks": [
+    {
+      "id": "204-10B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify roles of conductors including Line, Neutral, CPC, and Switched Live",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the difference between intended continuity paths and insulation resistance",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Sequence the standard dead-testing workflow in a repeatable routine",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Line (L)",
+            "definition": "The conductor intended to be energized at a voltage and carry current to the load."
+          },
+          {
+            "term": "Neutral (N)",
+            "definition": "The conductor providing the return path for current to the source, connected to earth at the supply."
+          },
+          {
+            "term": "CPC",
+            "definition": "Circuit Protective Conductor; the safety path that connects all exposed-conductive-parts to the main earthing terminal."
+          },
+          {
+            "term": "Permanent Live",
+            "definition": "The conductor in a lighting circuit that stays energized regardless of whether the light is on or off."
+          },
+          {
+            "term": "Switched Live",
+            "definition": "The conductor that carries power from the switch to the load only when the switch is closed."
+          },
+          {
+            "term": "Continuity",
+            "definition": "An uninterrupted path for electrical current, characterized by very low resistance (Ohms)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Circuit Map Concept",
+        "description": "A visualization showing the relationship between the supply, the switch, and the load.",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "supply",
+          "switch",
+          "load",
+          "cpc"
+        ],
+        "placeholderText": "Diagram showing a Line conductor entering a switch, a Switched Live leaving the switch to the load, a Neutral returning from the load, and a CPC connected to all metal enclosures."
+      }
+    },
+    {
+      "id": "204-10B-explain-mapping",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Thinking in Maps: Conductor Roles",
+        "content": "To be a successful electrician, you must stop seeing wires as just colors and start seeing them as **roles** within a map. This &quot;Circuit Map Thinking&quot; allows you to predict exactly what an instrument should tell you before you even touch the probes to the copper.\n\n**1. The Primary Roles**\nEvery basic circuit consists of three fundamental roles: **Line (L)**, **Neutral (N)**, and the **Circuit Protective Conductor (CPC)**. The Line conductor brings the energy in, the Neutral provides the return path to complete the loop, and the CPC is your safety &quot;insurance policy,&quot; providing a low-resistance path to earth in case of a fault. In lighting circuits, we expand this to include **Permanent Live** (power into the switch) and **Switched Live** (power out of the switch to the lamp).\n\n**2. Continuity vs. Isolation**\nWhen we &quot;map&quot; a circuit, we are looking for two things: where current *should* go and where it *should not* go. \n\n- **Continuity** refers to the intended paths. For example, if you measure from one end of the Line conductor to the other, you expect a very low resistance (close to 0 &Omega;). \n- **Isolation** (or Insulation Resistance) refers to the paths where current must be blocked. We expect a massive resistance (millions of Ohms or M&Omega;) between Line and Neutral, or Line and CPC. If these show low resistance, you have a short circuit or a fault.\n\n**3. Switching Logic**\nA common trap for students is forgetting how switches interact with the map. In a standard UK lighting circuit, the switch **only breaks the Line path**. It does not touch the Neutral or the CPC. Therefore, when the switch is &quot;OFF,&quot; the continuity path between the Permanent Live and the Switched Live is broken, but the Neutral path from the lamp back to the consumer unit remains intact.\n\n**4. The Dead-Testing Workflow**\nBecause we test for safety, we follow a strict sequence. This ensures we don't miss a critical safety connection before performing tests that use higher voltages (like IR testing). The standard routine is:\n1. **Inspect**: Visual check of all connections and roles.\n2. **CPC Continuity**: Ensuring the safety path is unbroken.\n3. **Insulation Resistance (IR)**: Ensuring conductors are isolated from each other.\n4. **Polarity**: Ensuring the switch is in the Line, not the Neutral.\n5. **Record/Interpret**: Writing down the results and comparing them to what the &quot;map&quot; predicted."
+      }
+    },
+    {
+      "id": "204-10B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Mapping",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-10B-C1-L1-A",
+            "questionText": "Which conductor role provides the return path for current to the source?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Neutral",
+            "hint": "It is one of the three main conductors and is usually blue in modern cables."
+          },
+          {
+            "id": "204-10B-C1-L1-B",
+            "questionText": "What is the very first step in the standard dead-testing workflow?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Inspect",
+            "hint": "You use your eyes before your instruments."
+          },
+          {
+            "id": "204-10B-C1-L1-C",
+            "questionText": "In a lighting circuit, does the switch break the Line path or the Neutral path?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Line",
+            "hint": "Breaking the return path would leave the fitting live even when the light is off."
+          },
+          {
+            "id": "204-10B-C1-L2",
+            "questionText": "If a circuit map shows a connection between Line and CPC, would you expect a high M&Omega; reading or a low &Omega; reading during an Insulation Resistance test?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "High M&Omega;",
+            "hint": "Think about whether these two conductors should be touching or isolated."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10B-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Predicting Test Results",
+        "given": "A simple radial circuit supplying a single socket. You are performing dead tests at the consumer unit.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the conductors involved in the 'Line loop'.",
+            "formula": null,
+            "calculation": null,
+            "result": "Line and Neutral"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Determine the expected state between Line and Neutral (with no loads plugged in).",
+            "formula": null,
+            "calculation": null,
+            "result": "Isolated (High M&Omega;)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Determine the expected state of the CPC from the consumer unit to the socket.",
+            "formula": null,
+            "calculation": null,
+            "result": "Continuous (Low &Omega;)"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Predict the effect of closing a switch on the Line path.",
+            "formula": null,
+            "calculation": null,
+            "result": "Creates continuity between Permanent and Switched Live"
+          }
+        ],
+        "notes": "Always ensure the circuit is fully isolated and all loads (like light bulbs or appliances) are removed before predicting IR results."
+      }
+    },
+    {
+      "id": "204-10B-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Ordering the Workflow",
+        "problem": "You have finished installing a new lighting circuit and need to perform dead tests. Put the following actions in the correct sequence.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Before using any meters, what must you do to the terminations and cable runs?",
+            "expectedAnswer": [
+              "Inspect",
+              "Visual inspection"
+            ],
+            "hint": "Look for loose connections or damaged insulation."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Now that you have your meter, which conductor's path must be verified first for safety?",
+            "expectedAnswer": [
+              "CPC",
+              "CPC continuity",
+              "Earth"
+            ],
+            "hint": "This is the 'insurance' conductor."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "After CPC continuity, which test ensures the conductors aren't touching each other?",
+            "expectedAnswer": [
+              "Insulation Resistance",
+              "IR"
+            ],
+            "hint": "This test looks for high resistance in Megohms."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10B-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Circuit Logic",
+        "questions": [
+          {
+            "id": "204-10B-P1",
+            "questionText": "A 'Switched Live' conductor is only found in which type of circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Lighting",
+              "Lighting circuit"
+            ],
+            "hint": "Think about where you use a switch to control a specific load."
+          },
+          {
+            "id": "204-10B-P2",
+            "questionText": "If you measure continuity between Line and Neutral on a dead circuit with a lamp still plugged in, will the resistance be High or Low?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Low",
+              "Low resistance"
+            ],
+            "hint": "The lamp filament provides a path between L and N."
+          },
+          {
+            "id": "204-10B-P3",
+            "questionText": "True or False: The color of a wire's insulation is a 100% guarantee of its functional role.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Think about 'Switched Lives' that might be using a brown core but acting as a switch wire."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-10B-INT-1",
+            "questionText": "Explain why we must perform the CPC Continuity test before the Insulation Resistance (IR) test in our standard workflow. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "We test CPC continuity first to ensure the safety path is intact and connected to all points. If the CPC is broken, an IR test between Line and CPC might give a 'false pass' because the meter isn't actually seeing the whole circuit. Verifying the CPC first ensures that subsequent safety tests are valid.",
+            "hint": "Think about what happens if the earth wire is disconnected halfway through the circuit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          "What is the unit of measurement for electrical resistance?",
+          "According to Ohm's Law, if voltage stays the same and resistance increases, what happens to the current?",
+          "What does the acronym 'L-N-E' stand for in a standard circuit?",
+          "Why must we isolate a circuit before performing continuity tests?"
+        ],
+        "notes": "Reviewing fundamental units and safety principles from Unit 201 and 204.01."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-26",
+    "updated": "2026-01-26",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

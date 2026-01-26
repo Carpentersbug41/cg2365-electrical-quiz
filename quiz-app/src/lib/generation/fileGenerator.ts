@@ -24,7 +24,7 @@ import fs from 'fs';
 import path from 'path';
 
 // Debug logger
-function debugLog(stage: string, data: any) {
+function debugLog(stage: string, data: unknown) {
   const logEntry = JSON.stringify({
     timestamp: Date.now(),
     location: 'fileGenerator.ts',

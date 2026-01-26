@@ -22,7 +22,9 @@ import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
 import { acGenerationQuestions } from './questions/acGenerationQuestions';
 import { acWaveformQuestions } from './questions/acWaveformQuestions';
 import { transformersQuestions } from './questions/transformersQuestions';
+import { cablesApplicationsQuestions } from './questions/cablesApplicationsQuestions';
 import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTestLanguageWhatEachTestProvesQuestions';
+import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './questions/circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -39,4 +41,6 @@ export const questions: Question[] = [
   ...acGenerationQuestions,
   ...acWaveformQuestions,
   ...transformersQuestions,
+  ...cablesApplicationsQuestions,
+  ...deadTestLanguageWhatEachTestProvesQuestions,
 ];

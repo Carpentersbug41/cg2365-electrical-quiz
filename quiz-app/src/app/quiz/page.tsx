@@ -156,6 +156,10 @@ export default function QuizPage() {
                       red: 'from-red-500 to-red-600 hover:from-red-600 hover:to-red-700',
                       blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
                       green: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
+                      indigo: 'from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700',
+                      violet: 'from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700',
+                      purple: 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
+                      cyan: 'from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700',
                     };
 
                     return (

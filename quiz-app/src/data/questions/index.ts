@@ -17,11 +17,13 @@ import { acWaveformQuestions } from './acWaveformQuestions';
 import { transformersQuestions } from './transformersQuestions';
 import { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 import { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
+import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...circuitMapThinkingConductorRolesExpectedOutcomesQuestions,
   ...deadTestLanguageWhatEachTestProvesQuestions,
   ...seriesCircuitsQuestions,
   ...healthSafetyLegislationQuestions,
@@ -53,6 +55,7 @@ export { acWaveformQuestions } from './acWaveformQuestions';
 export { transformersQuestions } from './transformersQuestions';
 export { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 export { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
+export { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 
 /**
  * Filter questions by tags

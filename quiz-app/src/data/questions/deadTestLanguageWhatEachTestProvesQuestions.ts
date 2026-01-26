@@ -708,7 +708,7 @@ export const deadTestLanguageWhatEachTestProvesQuestions: TaggedQuestion[] = [
     "section": "Electrical Installations Technology",
     "category": "Dead-test language",
     "tags": [
-      "continuity",
+      "measurement",
       "resistance-rule",
       "conceptual"
     ],
@@ -1210,7 +1210,7 @@ export const deadTestLanguageWhatEachTestProvesQuestions: TaggedQuestion[] = [
     "tags": [
       "terminology",
       "discrimination",
-      "health-safety"
+      "safety"
     ],
     "learningOutcomeId": "204-10A-LO1",
     "answerType": "mcq",
@@ -1237,7 +1237,7 @@ export const deadTestLanguageWhatEachTestProvesQuestions: TaggedQuestion[] = [
     "category": "Dead-test language",
     "tags": [
       "application",
-      "health-safety",
+      "safety",
       "discrimination"
     ],
     "learningOutcomeId": "204-10A-LO1",
@@ -1348,7 +1348,7 @@ export const deadTestLanguageWhatEachTestProvesQuestions: TaggedQuestion[] = [
     "category": "Dead-test language",
     "tags": [
       "application",
-      "health-safety",
+      "safety",
       "discrimination"
     ],
     "learningOutcomeId": "204-10A-LO1",
