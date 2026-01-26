@@ -4,8 +4,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { seriesCircuitsQuestions } from '@/data/questions/seriesCircuitsQuestions';
 import { getQuestionVariant, hasVariants, getVariantMetadata } from '@/lib/questions/variantService';
+
+// Note: seriesCircuitsQuestions module has been removed
+const seriesCircuitsQuestions: any[] = [];
 
 export async function GET(request: NextRequest) {
   try {

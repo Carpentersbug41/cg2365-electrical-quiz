@@ -1,0 +1,277 @@
+{
+  "id": "202-10A",
+  "title": "202.10A — Dead-test language: What each test proves",
+  "description": "Master the fundamental logic behind continuity, insulation resistance, and polarity tests to ensure an installation is safe before applying power.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Electrical Science and Principles",
+  "learningOutcomes": [
+    "Define continuity, insulation resistance, and polarity in the context of dead testing.",
+    "Describe the core logic of &apos;should be connected&apos; versus &apos;must not be connected&apos; for specific tests.",
+    "Identify the correct units (Ω vs MΩ) and expected values (low vs high) for each test type.",
+    "Distinguish between a measurement reading and a technical conclusion."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "202-10A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define continuity, insulation resistance, and polarity.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Match each test to its core logic (should be connected vs must not).",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Interpret simple readings as &apos;good&apos; or &apos;suspicious&apos; based on units.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-10A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Continuity",
+            "definition": "The proof that an unbroken electrical path exists along a conductor."
+          },
+          {
+            "term": "Insulation Resistance (IR)",
+            "definition": "A test to ensure that current cannot leak between different conductors or to Earth."
+          },
+          {
+            "term": "Polarity",
+            "definition": "A check to confirm that the Line conductor is connected to the correct terminals (e.g., through the switch)."
+          },
+          {
+            "term": "Megaohm (MΩ)",
+            "definition": "One million ohms, the unit used to measure the high resistance of insulation."
+          },
+          {
+            "term": "Dead Testing",
+            "definition": "Tests carried out on a circuit that has been safely isolated from the electrical supply."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-10A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Three Pillars of Dead Testing",
+        "description": "Visual representation of Continuity (path), Insulation (barrier), and Polarity (location).",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "continuity-path",
+          "insulation-barrier",
+          "polarity-switch"
+        ],
+        "placeholderText": "A diagram showing three circuit scenarios: 1. A solid line representing a continuous wire (Continuity: Low Ohms). 2. Two separate wires with an air gap representing insulation (IR: High Megaohms). 3. A switch correctly placed on the Line conductor (Polarity: Correct Placement)."
+      }
+    },
+    {
+      "id": "202-10A-explain-logic",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Language of Dead Testing",
+        "content": "Before we ever turn on the power to a new installation, we must prove it is safe. We do this through **dead testing**. To do this effectively, you must understand the &quot;logic&quot; of each test—what exactly are we trying to prove?\n\n1. **Continuity: The &apos;Should be Connected&apos; Test**\nContinuity proves that a conductor is unbroken from one end to the other. If we are testing a ring final circuit or a protective earth wire, we want to know that the copper path is complete. \n- **The Question:** Is the path unbroken?\n- **The Unit:** Ohms (Ω).\n- **The Goal:** A **low** reading (e.g., 0.2 Ω). A high reading suggests a loose connection or a broken wire.\n\n2. **Insulation Resistance (IR): The &apos;Must Not be Connected&apos; Test**\nWhile continuity checks that the copper is good, IR checks that the plastic (insulation) surrounding the copper is doing its job. We want to ensure that electricity cannot &quot;leak&quot; from the Line conductor into the Neutral or the Earth wire.\n- **The Question:** Is the insulation preventing leaks?\n- **The Unit:** Megaohms (MΩ).\n- **The Goal:** A **very high** reading (e.g., >299 MΩ or at least >1 MΩ). A low reading (like 0.02 MΩ) means the insulation is damaged and current is leaking.\n\n3. **Polarity: The &apos;Right Place&apos; Test**\nPolarity isn&apos;t about a specific number; it&apos;s about identity. We need to ensure that the Line conductor goes to the fuse, the circuit breaker, and the switch—not the Neutral. If a switch is on the Neutral wire, the appliance might look &quot;off,&quot; but the internal parts remain live and dangerous.\n- **The Question:** Is the Line conductor in the correct terminal?\n- **The Goal:** Confirmation that the switch or fuse is in the Line path.\n\n**Measurement vs. Conclusion**\nAs an electrician, you must distinguish between the **measurement** (the number on the screen) and the **conclusion** (what that number means). A reading of 0.05 Ω is just a number. Your conclusion is: &quot;This is a pass for continuity because it is a low resistance path.&quot; Conversely, 0.05 MΩ is a &quot;fail&quot; for insulation resistance because it indicates a dangerous short circuit."
+      }
+    },
+    {
+      "id": "202-10A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Test Logic",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-10A-C1-L1-A",
+            "questionText": "Which test proves that a conductor is unbroken from end to end?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Continuity",
+            "hint": "Think about a continuous path."
+          },
+          {
+            "id": "202-10A-C1-L1-B",
+            "questionText": "What unit is used when measuring Insulation Resistance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Megaohms",
+            "hint": "It is a very large unit because we want high resistance."
+          },
+          {
+            "id": "202-10A-C1-L1-C",
+            "questionText": "Which test ensures that switches are installed in the Line conductor and not the Neutral?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Polarity",
+            "hint": "This is about the correct &apos;poles&apos; or placement."
+          },
+          {
+            "id": "202-10A-C1-L2",
+            "questionText": "If a continuity test requires a low resistance and an IR test requires a high resistance, what does a reading of 0.01 Ω between L and N suggest?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "A short circuit",
+            "hint": "Low resistance between two conductors that should be separate is a problem."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-10A-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Evaluating a Test Result",
+        "given": "You are testing an unearthed lighting circuit. You get a reading of 0.45 Ω for the CPC continuity and 0.02 MΩ for the Insulation Resistance between L and E.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Evaluate the Continuity reading: 0.45 Ω is a low value in Ohms.",
+            "formula": null,
+            "calculation": null,
+            "result": "Pass (Path is unbroken)"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Evaluate the IR reading: 0.02 MΩ is a very low value in Megaohms (only 20,000 Ω).",
+            "formula": null,
+            "calculation": null,
+            "result": "Fail (Insulation is leaking)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Compare the conclusions: The circuit is physically complete but electrically unsafe to energise.",
+            "formula": null,
+            "calculation": null,
+            "result": "Suspicious/Faulty"
+          }
+        ],
+        "notes": "Remember: High numbers are good for IR, but bad for Continuity!"
+      }
+    },
+    {
+      "id": "202-10A-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Interpreting Units",
+        "problem": "Identify the test type and whether the result is 'Good' or 'Suspicious' for the following scenario.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "A tester shows &apos;999 MΩ&apos; between Line and Neutral. What test is being performed?",
+            "expectedAnswer": [
+              "Insulation Resistance",
+              "IR"
+            ],
+            "hint": "Look at the unit: MΩ."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Is a reading of 999 MΩ for an IR test &apos;Good&apos; or &apos;Suspicious&apos;?",
+            "expectedAnswer": [
+              "Good",
+              "Pass"
+            ],
+            "hint": "Does IR need to be high or low?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-10A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Logic and Units",
+        "questions": [
+          {
+            "id": "202-10A-P1",
+            "questionText": "Match the logic: &quot;This conductor must be unbroken from end to end&quot; refers to which test?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Continuity"
+            ],
+            "hint": "It&apos;s about the flow of current along one wire."
+          },
+          {
+            "id": "202-10A-P2",
+            "questionText": "If you see a reading of 50.0 Ω on a continuity test for a short 2-meter cable, is this &apos;Good&apos; or &apos;Suspicious&apos;?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Suspicious",
+              "Bad"
+            ],
+            "hint": "50 Ohms is quite high for a short piece of copper."
+          },
+          {
+            "id": "202-10A-P3",
+            "questionText": "True or False: A polarity test is primarily concerned with measuring the exact resistance of the switch contacts.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Polarity is about location/identity, not just a resistance value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-10A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-10A-INT-1",
+            "questionText": "Explain why a circuit that passes a continuity test (showing 0.2 Ω) could still be dangerous to turn on if it has not yet passed an insulation resistance test. (Answer in 2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Continuity only proves the wire is unbroken; it does not prove the wire is safely insulated. If the insulation is damaged, a continuous wire could leak current to Earth or other conductors, causing a fire or shock despite the path being complete.",
+            "hint": "Think about the difference between the path &apos;along&apos; the wire and the barrier &apos;around&apos; the wire."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-10A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review: Electrical Basics",
+        "questions": [
+          "What is the standard unit of electrical resistance?",
+          "According to Ohm&apos;s Law, if voltage is constant and resistance increases, what happens to the current?",
+          "What does the abbreviation CPC stand for in an electrical installation?",
+          "Is a multimeter usually set to Ohms or Volts when performing dead tests?"
+        ],
+        "notes": "Reviewing basic units and Ohm&apos;s law relationships to support testing principles."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-26",
+    "updated": "2026-01-26",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

@@ -5,8 +5,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { seriesCircuitsQuestions } from '@/data/questions/seriesCircuitsQuestions';
 import { MarkingRequest, MarkingResponse } from '@/lib/marking/types';
+
+// Note: seriesCircuitsQuestions module has been removed
+const seriesCircuitsQuestions: any[] = [];
 import { markMCQ } from '@/lib/marking/markingService';
 import { markConceptualQuestion } from '@/lib/marking/llmMarkingService';
 import { logMarkingRequest, logMarkingResponse, logMarkingError } from '@/lib/observability/loggingService';
