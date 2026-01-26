@@ -148,7 +148,7 @@ export class FileGenerator {
         );
 
         // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:149',message:'Quiz prompts built',data:{hasLessonStructure:userPrompt.includes('LESSON STRUCTURE'),userPromptPreview:userPrompt.substring(0,400),difficulty,chunkCount},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C'})}).catch(()=>{});
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:149',message:'Quiz prompts built',data:{hasLessonStructure:userPrompt.includes('LESSON STRUCTURE'),userPromptPreview:userPrompt.substring(0,400),userPromptLength:userPrompt.length,systemPromptLength:systemPrompt.length,difficulty,chunkCount},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'C,F'})}).catch(()=>{});
         // #endregion
 
         const content = await this.generateWithRetry(
@@ -238,6 +238,10 @@ export class FileGenerator {
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:242',message:'Starting LLM call',data:{attempt:attempt+1,maxRetries,type,promptLength:userPrompt.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F'})}).catch(()=>{});
+        // #endregion
+        
         const client = await createLLMClientWithFallback();
         const model = client.getGenerativeModel({
           model: getGeminiModelWithDefault(),
@@ -248,7 +252,16 @@ export class FileGenerator {
           },
         });
 
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:254',message:'Model created, calling generateContent',data:{modelName:getGeminiModelWithDefault(),maxTokens:8000},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F'})}).catch(()=>{});
+        // #endregion
+
         const result = await model.generateContent(userPrompt);
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:259',message:'LLM response received',data:{hasResult:!!result,hasResponse:!!result?.response},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F'})}).catch(()=>{});
+        // #endregion
+        
         const text = result.response.text();
 
         if (!text || text.trim().length === 0) {
@@ -258,6 +271,11 @@ export class FileGenerator {
         return cleanCodeBlocks(text);
       } catch (error) {
         lastError = error instanceof Error ? error : new Error('Unknown error');
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:272',message:'LLM call failed',data:{attempt:attempt+1,errorMsg:lastError.message,errorName:lastError.name,errorStack:lastError.stack?.substring(0,500)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'F,G'})}).catch(()=>{});
+        // #endregion
+        
         console.error(`Generation attempt ${attempt + 1} failed:`, lastError);
 
         if (attempt < maxRetries - 1) {

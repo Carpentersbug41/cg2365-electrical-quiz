@@ -194,6 +194,17 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
   // Future lessons can be added here
   // Unit 210: Communication
+  {
+    id: '204-10A',
+    title: 'Dead-test language — what each test proves',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Dead-test language — what each test proves',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-10A'),
+    available: true,
+    order: 1,
+  },
 ];
 
 /**

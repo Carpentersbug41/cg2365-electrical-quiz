@@ -1,0 +1,280 @@
+{
+  "id": "204-10A",
+  "title": "204.10A — Dead-test Language: What Each Test Proves",
+  "description": "An introduction to the fundamental logic of electrical dead testing, focusing on the conceptual difference between continuity, insulation resistance, and polarity.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Dead-test language",
+  "learningOutcomes": [
+    "Define continuity, insulation resistance (IR), and polarity in terms of circuit safety.",
+    "Explain the core logic of &quot;should be connected&quot; versus &quot;must not be connected&quot;.",
+    "Identify the correct units (Ω vs MΩ) and interpret the significance of high and low readings.",
+    "Distinguish between a raw measurement and a professional conclusion."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "204-10A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define continuity, insulation resistance, and polarity.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the core logic behind each test (connected vs. disconnected).",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Classify example readings as good or suspicious based on the test type.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Continuity",
+            "definition": "The property of a circuit being an unbroken, low-resistance path that allows current to flow."
+          },
+          {
+            "term": "Insulation Resistance",
+            "definition": "A measure of how well the insulation prevents current from leaking between conductors or to Earth."
+          },
+          {
+            "term": "Polarity",
+            "definition": "The check that switches and protective devices are in the line conductor and terminals are correctly connected."
+          },
+          {
+            "term": "Ohm (Ω)",
+            "definition": "The standard unit of electrical resistance, used for continuity readings."
+          },
+          {
+            "term": "Megohm (MΩ)",
+            "definition": "One million ohms; the unit used for measuring high-resistance insulation."
+          },
+          {
+            "term": "Dead Test",
+            "definition": "A test performed on a circuit that is completely disconnected from the electrical supply."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Logic of Dead Testing",
+        "description": "A visual comparison showing how continuity checks for a path, while IR checks for a gap.",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "continuity_path",
+          "insulation_gap"
+        ],
+        "placeholderText": "Diagram showing a closed loop for continuity (Low Ohms) and an open space between wires for Insulation Resistance (High Megohms)."
+      }
+    },
+    {
+      "id": "204-10A-explain-logic",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Language of Safety: Why We Test",
+        "content": "Before an electrical installation is ever energized with alternating current (AC), we must prove it is safe. We do this through **dead testing**. Dead testing is not just about getting numbers; it is about answering specific questions about the circuit's integrity.\n\n1. **Continuity: The Logic of 'Togetherness'**\nContinuity asks: **&quot;Should these points be connected?&quot;** When we test a conductor from one end to the other (like a Ring Final circuit or a Protective Earth), the answer is a definite yes. Because we want current to flow easily through the copper, we expect a **low resistance**, measured in **Ohms (Ω)**. A reading of 0.2 Ω is typically 'good', while a reading of 500 Ω would be 'suspicious' because it suggests a loose connection or a broken wire.\n\n2. **Insulation Resistance (IR): The Logic of 'Separation'**\nIR asks: **&quot;Must these points be disconnected?&quot;** We test the insulation between the Line and Neutral, and between all Live conductors and Earth. We want to ensure that current cannot leak through the PVC insulation. Therefore, we expect a **very high resistance**, measured in **Megohms (MΩ)**. On a new circuit, we often see readings greater than 999 MΩ. A reading of 0.01 MΩ would be a major failure, indicating the insulation is damaged and a short circuit is likely.\n\n3. **Polarity: The Logic of 'Location'**\nPolarity asks: **&quot;Is the Line conductor in the right place?&quot;** This isn't a search for a specific number, but a check of identity. We must ensure that the switches, fuses, and circuit breakers are all installed in the **Line conductor**, not the Neutral. If a switch is accidentally put in the Neutral conductor, the appliance will turn off, but the internal wiring remains 'Live' at 230V, creating a deadly trap for anyone maintaining it.\n\n4. **Measurement vs. Conclusion**\nAs an electrician, you must distinguish between the **measurement** (the number on the screen) and the **conclusion** (the meaning of that number). A reading of 0.5 Ω might be a 'Pass' for a long circuit, but 'Suspicious' for a very short one. You are not just a meter-reader; you are a safety investigator. You use the units to guide you: Ohms for things that should touch, and Megohms for things that must stay apart."
+      }
+    },
+    {
+      "id": "204-10A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Test Logic",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-10A-C1-L1-A",
+            "questionText": "What unit is used to measure the resistance of a conductor during a continuity test?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Ohms",
+            "hint": "It is the standard unit symbolized by Ω."
+          },
+          {
+            "id": "204-10A-C1-L1-B",
+            "questionText": "What unit is used to measure the effectiveness of wire insulation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Megohms",
+            "hint": "This unit represents one million ohms."
+          },
+          {
+            "id": "204-10A-C1-L1-C",
+            "questionText": "Which test ensures that switches are located in the Line conductor rather than the Neutral?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Polarity",
+            "hint": "It checks the 'identity' and 'location' of conductors."
+          },
+          {
+            "id": "204-10A-C1-L2",
+            "questionText": "Why do we want a low number for continuity but a high number for insulation resistance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Continuity proves a good path for current, while IR proves current cannot leak out.",
+            "hint": "Think about where you want the electricity to stay."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Categorizing Readings",
+        "given": "An electrician is testing a new lighting circuit and records three readings: 0.4 Ω (L-N continuity), 0.02 MΩ (L-E insulation), and a switch that interrupts the Neutral wire.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Analyze the Continuity reading (0.4 Ω). The logic is 'Should be connected'. 0.4 Ω is a low resistance.",
+            "formula": null,
+            "calculation": null,
+            "result": "Good/Pass"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Analyze the Insulation Resistance reading (0.02 MΩ). The logic is 'Must not be connected'. 0.02 MΩ is very low (only 20,000 Ω).",
+            "formula": null,
+            "calculation": null,
+            "result": "Suspicious/Fail"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Analyze the Polarity observation (Switch in Neutral). The logic is 'Is it in the right place?'. Switches must be in the Line.",
+            "formula": null,
+            "calculation": null,
+            "result": "Fail (Incorrect Polarity)"
+          }
+        ],
+        "notes": "Always check the units! 0.02 Ω is great for continuity, but 0.02 MΩ is terrible for insulation."
+      }
+    },
+    {
+      "id": "204-10A-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Logic Application",
+        "problem": "You are testing a 20-meter length of 2.5mm twin and earth cable. Determine if the following readings are 'Good' or 'Suspicious'.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "The continuity of the CPC (Earth wire) measures 150 Ω. Is this 'Good' or 'Suspicious'?",
+            "expectedAnswer": [
+              "Suspicious"
+            ],
+            "hint": "150 Ω is very high for a 20m piece of copper wire."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "The Insulation Resistance between Line and Neutral measures >999 MΩ. Is this 'Good' or 'Suspicious'?",
+            "expectedAnswer": [
+              "Good"
+            ],
+            "hint": "High resistance in IR means the insulation is doing its job perfectly."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Dead-Test Mastery",
+        "questions": [
+          {
+            "id": "204-10A-P1",
+            "questionText": "Which test would you use to find out if a wire has been snapped inside its PVC sheath?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Continuity",
+              "Continuity test"
+            ],
+            "hint": "You are checking if the path is unbroken."
+          },
+          {
+            "id": "204-10A-P2",
+            "questionText": "If a meter displays '0.00 MΩ' during an IR test, what does this suggest about the circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Short circuit",
+              "Insulation failure",
+              "Dead short"
+            ],
+            "hint": "It means there is no resistance separating the conductors."
+          },
+          {
+            "id": "204-10A-P3",
+            "questionText": "True or False: A polarity test is primarily concerned with the numerical resistance of the copper wire.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Polarity is about the location of switches and identification of conductors."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-10A-INT-1",
+            "questionText": "Explain why a circuit that passes a continuity test (e.g., 0.15 Ω) could still be dangerous to energize if it fails an insulation resistance test (e.g., 0.05 MΩ).",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Continuity only proves the wire is unbroken; it does not prove the wire is safely contained. A low IR reading means current can leak to Earth or other conductors, causing a fire or shock hazard.",
+            "hint": "Think about the difference between the copper path and the plastic insulation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-10A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review: Electrical Basics",
+        "questions": [
+          "What is the standard unit of electrical current?",
+          "What is the standard unit of electrical potential difference (Voltage)?",
+          "What is the name of the law that relates Voltage, Current, and Resistance?",
+          "In a simple circuit, if resistance increases, what happens to the current (assuming voltage stays the same)?"
+        ],
+        "notes": "Reviewing fundamental units and Ohm's Law to support the understanding of resistance testing."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-26",
+    "updated": "2026-01-26",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

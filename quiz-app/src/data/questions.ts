@@ -22,7 +22,7 @@ import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
 import { acGenerationQuestions } from './questions/acGenerationQuestions';
 import { acWaveformQuestions } from './questions/acWaveformQuestions';
 import { transformersQuestions } from './questions/transformersQuestions';
-import { seriesCircuitsQuestions } from './questions/seriesCircuitsQuestions';
+import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTestLanguageWhatEachTestProvesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

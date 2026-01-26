@@ -77,8 +77,12 @@ export class FileIntegrator {
     const importStatement = `import { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
     const exportStatement = `export { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
 
-    // Check if import already exists
-    if (!content.includes(importStatement)) {
+    // Use regex to check if variable name is already imported
+    const importRegex = new RegExp(`import\\s*\\{[^}]*\\b${variableName}\\b[^}]*\\}`, 'g');
+    const variableAlreadyImported = importRegex.test(content);
+    
+    // Check if import already exists (use both checks for safety)
+    if (!variableAlreadyImported && !content.includes(importStatement)) {
       // Add import after existing imports (find last import line)
       const importLines = content.split('\n').filter(line => line.startsWith('import '));
       if (importLines.length > 0) {
@@ -99,8 +103,12 @@ export class FileIntegrator {
       }
     }
 
-    // Check if export already exists
-    if (!content.includes(exportStatement)) {
+    // Use regex to check if variable name is already exported
+    const exportRegex = new RegExp(`export\\s*\\{[^}]*\\b${variableName}\\b[^}]*\\}`, 'g');
+    const variableAlreadyExported = exportRegex.test(content);
+    
+    // Check if export already exists (use both checks for safety)
+    if (!variableAlreadyExported && !content.includes(exportStatement)) {
       // Add export after existing exports
       const exportLines = content.split('\n').filter(line => line.startsWith('export {'));
       if (exportLines.length > 0) {
@@ -124,8 +132,12 @@ export class FileIntegrator {
     const variableName = quizFilename.replace('.ts', '');
     const importStatement = `import { ${variableName} } from './questions/${quizFilename.replace('.ts', '')}';`;
 
-    // Check if import already exists before adding
-    if (!content.includes(importStatement)) {
+    // Use regex to check if variable name is already imported (more robust than exact string match)
+    const importRegex = new RegExp(`import\\s*\\{[^}]*\\b${variableName}\\b[^}]*\\}`, 'g');
+    const variableAlreadyImported = importRegex.test(content);
+    
+    // Check if import already exists before adding (use both checks for safety)
+    if (!variableAlreadyImported && !content.includes(importStatement)) {
       // Add import
       const importLines = content.split('\n').filter(line => line.startsWith('import '));
       if (importLines.length > 0) {

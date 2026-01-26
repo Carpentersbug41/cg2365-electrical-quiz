@@ -26,9 +26,11 @@ import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
 import lesson203_1A from '@/data/lessons/203-1A-types-of-cables.json';
 import lesson202_202_3AAA from '@/data/lessons/202-202.3AAA-series-circuits.json';
 import lesson202_3AAAA from '@/data/lessons/202-3AAAA-series-circuits';
+import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '204-10A': lesson204_10A as Lesson,
   '202-3AAAA': lesson202_3AAAA as Lesson,
   '202-202.3AAA': lesson202_202_3AAA as Lesson,
   '201-1A': lesson201_1A as Lesson,
