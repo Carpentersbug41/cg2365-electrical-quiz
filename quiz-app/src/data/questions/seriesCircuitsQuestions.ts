@@ -6,10 +6,6 @@ import { TaggedQuestion } from './types';
  * Includes tagging and misconception codes for targeted feedback
  */
 
-// #region agent log
-fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'seriesCircuitsQuestions.ts:9',message:'Loading seriesCircuitsQuestions',data:{questionCount:0},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});
-// #endregion
-
 export const seriesCircuitsQuestions: TaggedQuestion[] = [
   // Discrimination Questions (Identify series vs parallel)
   {
@@ -1291,7 +1287,3 @@ export const seriesCircuitsQuestions: TaggedQuestion[] = [
     explanation: "R_total = 1 + 2 + 6 = 9 Ω. I = 9V/9Ω = 1A. V_6Ω = I×R = 1×6 = 6V."
   }
 ];
-
-// #region agent log
-(()=>{const invalidCodes=new Set();const invalidTags=new Set();seriesCircuitsQuestions.forEach((q,i)=>{if(q.misconceptionCodes){Object.values(q.misconceptionCodes).forEach(code=>{if(!['USED_PARALLEL_RULE','USED_SERIES_RULE','UNITS_MISSING','WRONG_UNITS','MULTIPLIED_INSTEAD','DIVIDED_INSTEAD','RECIPROCAL_ERROR','SIGN_ERROR','ROUNDING_ERROR','FORMULA_NOT_REARRANGED','CONFUSED_I_V_R','TOPOLOGY_CONFUSION','OTHER'].includes(code)){invalidCodes.add(code);}});}if(q.tags){q.tags.forEach(tag=>{if(!['series','parallel','mixed-circuit','ohms-law','current-rule','voltage-rule','resistance-rule','calculation','discrimination','explanation','conceptual','application'].includes(tag)){invalidTags.add(tag);}});}});fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'seriesCircuitsQuestions.ts:1289',message:'Questions loaded - checking invalid codes/tags',data:{questionCount:seriesCircuitsQuestions.length,invalidCodes:Array.from(invalidCodes),invalidTags:Array.from(invalidTags)},timestamp:Date.now(),sessionId:'debug-session',runId:'run1',hypothesisId:'A'})}).catch(()=>{});})();
-// #endregion

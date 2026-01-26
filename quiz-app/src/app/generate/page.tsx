@@ -284,24 +284,24 @@ export default function GeneratePage() {
                 />
               </div>
 
-              {/* Must-Have Topics */}
+              {/* Lesson Structure */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                  Must-Have Topics (optional)
+                  Lesson Structure (optional)
                   <span className="text-xs text-gray-500 dark:text-slate-400 ml-2">
-                    — Specific subtopics that must be covered
+                    — A high-level view of the lesson and its syllabus or goals
                   </span>
                 </label>
                 <textarea
                   value={form.mustHaveTopics}
                   onChange={e => setForm({ ...form, mustHaveTopics: e.target.value })}
-                  placeholder="Example:&#10;- What to do for accidents/injury (including electric shock)&#10;- Emergency procedures (raise alarm, evacuate, call services)&#10;- Reporting: when to report + who to report to&#10;- Environmental impact of work + waste handling"
+                  placeholder="Example:&#10;- Introduction and foundational concepts&#10;- Core principles and theory&#10;- Practical applications and examples&#10;- Safety considerations and procedures&#10;- Real-world scenarios"
                   rows={6}
                   className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white font-mono text-sm"
                   disabled={status.stage === 'generating'}
                 />
                 <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
-                  List specific subtopics (one per line with dashes). AI will ensure these are covered in the lesson.
+                  Provide a high-level outline of sections and topics that must be included. AI will structure the lesson blocks to comprehensively cover this syllabus.
                 </p>
               </div>
 

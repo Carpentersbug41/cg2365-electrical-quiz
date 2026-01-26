@@ -77,28 +77,37 @@ export class FileIntegrator {
     const importStatement = `import { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
     const exportStatement = `export { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
 
-    // Add import after existing imports (find last import line)
-    const importLines = content.split('\n').filter(line => line.startsWith('import '));
-    if (importLines.length > 0) {
-      const lastImport = importLines[importLines.length - 1];
-      const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
-      content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+    // Check if import already exists
+    if (!content.includes(importStatement)) {
+      // Add import after existing imports (find last import line)
+      const importLines = content.split('\n').filter(line => line.startsWith('import '));
+      if (importLines.length > 0) {
+        const lastImport = importLines[importLines.length - 1];
+        const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
+        content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+      }
     }
 
-    // Add to allTaggedQuestions array
-    const arrayMarker = 'export const allTaggedQuestions: TaggedQuestion[] = [';
-    const arrayIndex = content.indexOf(arrayMarker);
-    if (arrayIndex !== -1) {
-      const insertIndex = arrayIndex + arrayMarker.length;
-      content = content.slice(0, insertIndex) + `\n  ...${variableName},` + content.slice(insertIndex);
+    // Check if already in array before adding
+    if (!content.includes(`...${variableName}`)) {
+      // Add to allTaggedQuestions array
+      const arrayMarker = 'export const allTaggedQuestions: TaggedQuestion[] = [';
+      const arrayIndex = content.indexOf(arrayMarker);
+      if (arrayIndex !== -1) {
+        const insertIndex = arrayIndex + arrayMarker.length;
+        content = content.slice(0, insertIndex) + `\n  ...${variableName},` + content.slice(insertIndex);
+      }
     }
 
-    // Add export after existing exports
-    const exportLines = content.split('\n').filter(line => line.startsWith('export {'));
-    if (exportLines.length > 0) {
-      const lastExport = exportLines[exportLines.length - 1];
-      const lastExportIndex = content.indexOf(lastExport) + lastExport.length;
-      content = content.slice(0, lastExportIndex) + '\n' + exportStatement + content.slice(lastExportIndex);
+    // Check if export already exists
+    if (!content.includes(exportStatement)) {
+      // Add export after existing exports
+      const exportLines = content.split('\n').filter(line => line.startsWith('export {'));
+      if (exportLines.length > 0) {
+        const lastExport = exportLines[exportLines.length - 1];
+        const lastExportIndex = content.indexOf(lastExport) + lastExport.length;
+        content = content.slice(0, lastExportIndex) + '\n' + exportStatement + content.slice(lastExportIndex);
+      }
     }
 
     fs.writeFileSync(filePath, content, 'utf-8');
@@ -115,15 +124,18 @@ export class FileIntegrator {
     const variableName = quizFilename.replace('.ts', '');
     const importStatement = `import { ${variableName} } from './questions/${quizFilename.replace('.ts', '')}';`;
 
-    // Add import
-    const importLines = content.split('\n').filter(line => line.startsWith('import '));
-    if (importLines.length > 0) {
-      const lastImport = importLines[importLines.length - 1];
-      const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
-      content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
-    }
+    // Check if import already exists before adding
+    if (!content.includes(importStatement)) {
+      // Add import
+      const importLines = content.split('\n').filter(line => line.startsWith('import '));
+      if (importLines.length > 0) {
+        const lastImport = importLines[importLines.length - 1];
+        const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
+        content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
+      }
 
-    fs.writeFileSync(filePath, content, 'utf-8');
+      fs.writeFileSync(filePath, content, 'utf-8');
+    }
   }
 
   /**
