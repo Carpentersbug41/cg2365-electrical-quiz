@@ -11,6 +11,34 @@ import { MarkingResponse } from '@/lib/marking/types';
 
 export default function SpacedReviewBlock({ block }: BlockProps) {
   const content = block.content as SpacedReviewBlockContent;
+  
+  // Helper to decode HTML entities (works on both server and client)
+  const decodeHtmlEntities = (text: string) => {
+    return text
+      .replace(/&apos;/g, "'")
+      .replace(/&quot;/g, '"')
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>');
+  };
+
+  // Normalize questions - handle both object format and legacy string format
+  const normalizedQuestions = content.questions.map((q, index) => {
+    if (typeof q === 'string') {
+      // Legacy format: plain string - decode HTML entities and provide placeholder answer
+      return {
+        id: `${block.id}-q${index}`,
+        questionText: decodeHtmlEntities(q),
+        expectedAnswer: 'This is a review question. Provide a thoughtful answer based on your prior knowledge.'
+      };
+    }
+    // Modern format: structured object - decode HTML entities in questionText
+    return {
+      ...q,
+      questionText: decodeHtmlEntities(q.questionText)
+    };
+  });
+  
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
   const [feedback, setFeedback] = useState<Record<string, MarkingResponse | null>>({});
@@ -84,7 +112,7 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
           These questions review prerequisite knowledge. Try to answer them from memory to strengthen your understanding.
         </p>
         
-        {content.questions.map((question, index) => (
+        {normalizedQuestions.map((question, index) => (
           <div key={question.id} className="bg-white rounded-xl p-4 border-2 border-amber-200">
             <div className="flex items-start gap-3 mb-3">
               <span className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">

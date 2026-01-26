@@ -1,0 +1,314 @@
+{
+  "id": "202-202.3AAA",
+  "title": "202.202.3AAA — Series Circuits: Principles and Calculations",
+  "description": "Understand the fundamental behavior of current, voltage, and resistance in a single-path circuit and how to apply Ohm&apos;s Law to solve series circuit problems.",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Series Circuits",
+  "learningOutcomes": [
+    "Define a series circuit and identify its key characteristics.",
+    "Explain the rules governing current, voltage, and resistance in a series loop.",
+    "Calculate total resistance, circuit current, and individual voltage drops using Ohm&apos;s Law."
+  ],
+  "prerequisites": [
+    "202-202.1AAA"
+  ],
+  "blocks": [
+    {
+      "id": "202-202.3AAA-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the definition of a series circuit and the &apos;single path&apos; rule.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe how current and voltage behave across multiple components in series.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate total resistance (RT) and voltage drops (V1, V2...) for a given circuit.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-202.3AAA-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Series Circuit",
+            "definition": "An electrical circuit where components are connected end-to-end to provide only one path for current flow."
+          },
+          {
+            "term": "Total Resistance (RT)",
+            "definition": "The cumulative resistance of all components in a series circuit, found by adding individual resistances together."
+          },
+          {
+            "term": "Voltage Drop",
+            "definition": "The amount of electrical potential used up as current passes through a resistive component."
+          },
+          {
+            "term": "Ammeter",
+            "definition": "A measuring instrument used to measure current, which must always be connected in series with the load."
+          },
+          {
+            "term": "Open Circuit",
+            "definition": "A break in the conducting path that results in zero current flow throughout the entire series circuit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-202.3AAA-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Standard Series Circuit Diagram",
+        "description": "A circuit showing a DC voltage source connected to three resistors (R1, R2, and R3) in a single continuous loop.",
+        "videoUrl": "https://www.youtube.com/watch?v=82cRVrBHUfQ",
+        "diagramType": "circuit",
+        "elementIds": [
+          "source",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "placeholderText": "A diagram of a 12V DC battery connected in a single loop to three resistors labeled R1 (2 ohms), R2 (4 ohms), and R3 (6 ohms)."
+      }
+    },
+    {
+      "id": "202-202.3AAA-explain-series-principles",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Fundamentals of Series Circuits",
+        "content": "A **series circuit** is the simplest form of electrical connection. In this configuration, all components are connected one after another, forming a **single path** for the electrons to follow. If you think of electricity like water flowing through a pipe, a series circuit is like a single pipe with several valves installed in a line; if any valve is closed (or the pipe breaks), the water stops flowing everywhere. \n\nThere are three critical rules that every electrician must master regarding series circuits: \n\n1. **Current (I) is the same everywhere**: Because there is only one path, the number of electrons passing through the first resistor must be the same as the number passing through the last. If you measure 2 Amps at the start of the circuit, you will measure 2 Amps at the end. \n\n2. **Total Resistance (RT) is the sum of all resistors**: Every component added in series adds more &quot;friction&quot; or opposition to the flow. To find the total resistance, simply add the values together: **RT = R1 + R2 + R3...** Adding more resistors always increases the total resistance and, if the voltage stays the same, decreases the total current. \n\n3. **Voltage (V) is shared**: The total voltage provided by the source is &quot;dropped&quot; across each component. The sum of these individual voltage drops must equal the supply voltage (**VT = V1 + V2 + V3...**). A larger resistor will always take a larger share of the voltage. \n\n**Calculations and Ohm&apos;s Law** \nTo solve a series circuit, you usually follow a set sequence. First, calculate the **Total Resistance (RT)**. Second, use the supply voltage and RT to find the **Total Current (IT)** using the formula **I = V / R**. Once you have the current, you can find the specific voltage drop across any individual resistor by multiplying that current by that specific resistance (e.g., **V1 = I x R1**). \n\n**Fault Behavior** \nIn a series circuit, faults have a global impact. An **open circuit** (like a blown bulb or a loose wire) creates an infinite resistance path, meaning the current drops to **0 Amps** throughout the entire loop. Conversely, a **short circuit** across one component removes its resistance from the loop. This causes the total resistance to drop, which forces the current to increase, potentially leading to overheating or blown fuses."
+      }
+    },
+    {
+      "id": "202-202.3AAA-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Series Rules",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-202.3AAA-C1-L1-A",
+            "questionText": "If a series circuit has a current of 5A leaving the battery, what is the current passing through the very last resistor?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "5A",
+            "hint": "Remember the rule about current in a single path."
+          },
+          {
+            "id": "202-202.3AAA-C1-L1-B",
+            "questionText": "What is the mathematical formula used to calculate the Total Resistance (RT) in a series circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "RT = R1 + R2 + R3",
+            "hint": "You simply add them up."
+          },
+          {
+            "id": "202-202.3AAA-C1-L1-C",
+            "questionText": "If an &apos;open circuit&apos; fault occurs in a series loop, what will the ammeter reading be?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "0A",
+            "hint": "An open circuit means the path is broken."
+          },
+          {
+            "id": "202-202.3AAA-C1-L2",
+            "questionText": "If you add a third resistor to a series circuit containing two resistors, what happens to the total current, and why?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Current decreases because total resistance increases",
+            "hint": "Think about how RT affects I when V is constant."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-202.3AAA-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Solving a Series Circuit",
+        "given": "A 24V DC supply is connected to two resistors in series: R1 = 4Ω and R2 = 8Ω.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Calculate the Total Resistance (RT).",
+            "formula": "RT = R1 + R2",
+            "calculation": "4 + 8",
+            "result": "12Ω"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Calculate the Total Current (IT) using Ohm&apos;s Law.",
+            "formula": "I = V / RT",
+            "calculation": "24 / 12",
+            "result": "2A"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Calculate the voltage drop across R1.",
+            "formula": "V1 = I x R1",
+            "calculation": "2 x 4",
+            "result": "8V"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Calculate the voltage drop across R2.",
+            "formula": "V2 = I x R2",
+            "calculation": "2 x 8",
+            "result": "16V"
+          },
+          {
+            "stepNumber": 5,
+            "description": "Verify the results by adding the voltage drops.",
+            "formula": "VT = V1 + V2",
+            "calculation": "8 + 16",
+            "result": "24V (Matches supply)"
+          }
+        ],
+        "notes": "Always check that your individual voltage drops add up to the total supply voltage to ensure your calculations are correct."
+      }
+    },
+    {
+      "id": "202-202.3AAA-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Three Resistor Circuit",
+        "problem": "A 100V supply is connected to three resistors in series: R1 = 10Ω, R2 = 20Ω, and R3 = 20Ω. Find the circuit current and the voltage drop across R1.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "First, add all resistances to find RT. What is the total resistance?",
+            "expectedAnswer": [
+              "50",
+              "50 ohms",
+              "50Ω"
+            ],
+            "hint": "RT = 10 + 20 + 20"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Now use I = V / RT to find the total current. What is the current in Amps?",
+            "expectedAnswer": [
+              "2",
+              "2A",
+              "2 Amps"
+            ],
+            "hint": "100V / 50Ω"
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Finally, calculate the voltage drop across R1 (V1 = I x R1). What is the value in Volts?",
+            "expectedAnswer": [
+              "20",
+              "20V",
+              "20 Volts"
+            ],
+            "hint": "2A x 10Ω"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-202.3AAA-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-202.3AAA-P1",
+            "questionText": "Calculate the total resistance for four resistors in series: 12Ω, 25Ω, 3Ω, and 10Ω.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "50"
+            ],
+            "hint": "Simply sum all four values."
+          },
+          {
+            "id": "202-202.3AAA-P2",
+            "questionText": "A 230V circuit has a total resistance of 46Ω. What is the current flowing through the circuit?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "5"
+            ],
+            "hint": "I = V / R"
+          },
+          {
+            "id": "202-202.3AAA-P3",
+            "questionText": "In a series circuit with a current of 0.5A, what is the voltage drop across a 100Ω resistor?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "50"
+            ],
+            "hint": "V = I x R"
+          },
+          {
+            "id": "202-202.3AAA-P4",
+            "questionText": "If a series circuit has two identical 50Ω resistors and a 200V supply, what is the voltage drop across just one of the resistors?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "100"
+            ],
+            "hint": "Since the resistors are identical, they share the voltage equally."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-202.3AAA-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "202-202.3AAA-INT-1",
+            "questionText": "A technician is testing a series circuit consisting of two heating elements. They measure 230V at the supply but 0A of current. When measuring voltage across Element A, they read 230V. When measuring across Element B, they read 0V. Explain which element is faulty and why the voltage readings appear this way.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Element A is open-circuit. Because no current flows, there is no voltage drop across the functional Element B. The full supply voltage appears across the break in Element A.",
+            "hint": "In an open circuit, the full supply voltage appears across the break because no current means no voltage drops elsewhere."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-202.3AAA-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (Foundations)",
+        "questions": [
+          "State Ohm&apos;s Law in its three common mathematical forms.",
+          "What is the SI unit for electrical potential difference?",
+          "Explain the difference between a conductor and an insulator.",
+          "What instrument is used to measure electrical resistance, and must the circuit be energized?"
+        ],
+        "notes": "Reviewing basic electrical quantities and Ohm&apos;s Law from Unit 202.1."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-25",
+    "updated": "2026-01-25",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "youtubeUrl": "https://www.youtube.com/watch?v=82cRVrBHUfQ"
+  }
+}

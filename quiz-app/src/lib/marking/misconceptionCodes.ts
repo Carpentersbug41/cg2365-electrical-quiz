@@ -157,6 +157,16 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     severity: 'moderate',
   },
 
+  VOLTAGE_RULE: {
+    code: 'VOLTAGE_RULE',
+    name: 'Voltage Rule Application Error',
+    description: 'Incorrectly applied the voltage rule (KVL) in circuit analysis.',
+    commonIn: ['series circuits', 'voltage calculations'],
+    fixPrompt: 'In series circuits, the voltage drops add up to the supply voltage: V_total = V1 + V2 + V3. Check each voltage drop carefully.',
+    relatedBlockIds: ['202-3A-explain-rules'],
+    severity: 'moderate',
+  },
+
   METER_CONNECTION_ERROR: {
     code: 'METER_CONNECTION_ERROR',
     name: 'Incorrect Meter Connection',

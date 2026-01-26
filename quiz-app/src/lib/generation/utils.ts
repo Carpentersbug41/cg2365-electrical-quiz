@@ -116,7 +116,9 @@ export function getGitTimestamp(): string {
  * Generate variable name from lesson ID
  */
 export function generateVariableName(unit: number, lessonId: string): string {
-  return `lesson${unit}_${lessonId.replace('-', '_')}`;
+  // Replace all non-alphanumeric characters with underscores
+  const sanitizedId = lessonId.replace(/[^a-zA-Z0-9]/g, '_');
+  return `lesson${unit}_${sanitizedId}`;
 }
 
 /**
