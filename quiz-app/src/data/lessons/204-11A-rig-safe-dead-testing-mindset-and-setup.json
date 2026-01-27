@@ -1,0 +1,221 @@
+{
+  "id": "204-11A",
+  "title": "204.11A — Rig-safe dead-testing mindset and setup",
+  "description": "Master the essential preparation, safety mindset, and instrument selection required for accurate dead testing on training rigs.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Electrical Installations Technology",
+  "learningOutcomes": [
+    "State the definition of dead testing within a controlled training environment",
+    "Identify the minimum safe conditions required before commencing dead tests",
+    "Select the correct test instrument and function for continuity and insulation resistance tests",
+    "Explain the impact of poor setup routines on test reliability and safety"
+  ],
+  "prerequisites": [
+    "204-10A",
+    "204-10B"
+  ],
+  "blocks": [
+    {
+      "id": "204-11A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define dead testing in a training-rig context",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the repeatable &apos;before you test&apos; routine",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select appropriate instruments for specific dead-test types",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Dead Testing",
+            "definition": "Testing performed on electrical circuits that are completely isolated from all power sources."
+          },
+          {
+            "term": "Safe Isolation",
+            "definition": "The process of making a circuit safe to work on by disconnecting it and preventing re-energisation."
+          },
+          {
+            "term": "Nulling",
+            "definition": "The process of subtracting the internal resistance of test leads from the final reading on a meter."
+          },
+          {
+            "term": "Continuity",
+            "definition": "A test to confirm that a low-resistance path exists along a conductor."
+          },
+          {
+            "term": "Insulation Resistance (IR)",
+            "definition": "A test that uses high voltage to ensure there is no leakage between conductors."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Dead-Testing Workflow",
+        "description": "A step-by-step visual guide for preparing a training rig for dead testing.",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "Isolation Check",
+          "Instrument Selection",
+          "Lead Verification",
+          "Nulling",
+          "Test Execution"
+        ],
+        "placeholderText": "Flowchart showing: 1. Confirm Isolation -> 2. Select Instrument -> 3. Check Leads -> 4. Null Meter -> 5. Perform Test."
+      }
+    },
+    {
+      "id": "204-11A-explain-mindset",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Rig-Safe Mindset",
+        "content": "Dead testing is the foundation of electrical safety and verification. In a training environment, **dead testing** refers to work carried out on a rig that is physically isolated, proven dead, and maintained in a controlled state. This means the supply cable is disconnected or the main isolator is locked in the &apos;OFF&apos; position.\n\n### 1. The Minimum Safe Conditions\nBefore any test leads touch a terminal, you must ensure the rig is in a **safe state**. This is not an assumption; it is a confirmed condition. On a training rig, this involves:\n1. Physically disconnecting the rig from the mains supply.\n2. Ensuring the main switch and all MCBs are in the &apos;OFF&apos; position unless the specific test requires them to be &apos;ON&apos; (e.g., for circuit path continuity).\n3. Verifying the area is clear of other students who might inadvertently re-energise the equipment.\n\n### 2. The &quot;Before You Test&quot; Routine\nConsistency is the enemy of error. A repeatable routine prevents missed steps and unreliable data. Always follow these steps:\n- **Prepare:** Clear the workspace and identify the specific circuit to be tested.\n- **Identify:** Locate the exact terminals (L, N, CPC) for the test.\n- **Select:** Choose the correct instrument (e.g., a Multi-Function Tester or a dedicated Continuity Tester).\n- **Check Leads:** Inspect leads for damage and ensure they are plugged into the correct ports on the meter.\n- **Null/Zero:** Short the lead tips together and use the &apos;Null&apos; function to remove the resistance of the leads from your readings.\n\n### 3. Selecting the Correct Instrument\nUsing the wrong tool leads to &quot;false passes&quot; or damaged equipment. \n- **Continuity (Low Ohms):** Used for checking conductors. It uses a low voltage and small current to measure very low resistance (typically 0.01Ω to 20Ω).\n- **Insulation Resistance (High Ohms/MΩ):** Used for checking the quality of insulation. It applies a high voltage (typically 250V or 500V) to see if current &quot;leaks&quot; across the insulation. \n\n### 4. The Danger of Rushing\nRushing setup causes **unsafe assumptions**. If you skip nulling, your readings will be higher than they actually are, potentially failing a perfectly good circuit. If you use a continuity &apos;buzzer&apos; instead of reading the actual Ohms, you might miss a high-resistance joint that could cause a fire later. Reliable results require a calm, methodical approach."
+      }
+    },
+    {
+      "id": "204-11A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Dead Testing Setup",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-11A-C1-L1-A",
+            "questionText": "What is the very first step to ensure a training rig is ready for dead testing?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Confirm safe isolation",
+            "hint": "Think about the state of the power supply."
+          },
+          {
+            "id": "204-11A-C1-L1-B",
+            "questionText": "Which meter function should be used to check if a CPC is continuous?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Continuity",
+            "hint": "This test measures low resistance in ohms."
+          },
+          {
+            "id": "204-11A-C1-L1-C",
+            "questionText": "What is the process called when you remove lead resistance from the meter display?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Nulling",
+            "hint": "It starts with an N and involves zeroing the meter."
+          },
+          {
+            "id": "204-11A-C1-L2",
+            "questionText": "If a student fails to &apos;null&apos; their leads (which have 0.25Ω resistance) before a continuity test, how will this affect their final reading?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "The reading will be 0.25 ohms higher than the actual value",
+            "hint": "Does the lead resistance get added to or subtracted from the circuit resistance?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "204-11A-P1",
+            "questionText": "What test voltage is typically used for a standard Insulation Resistance (IR) test on a 230V training rig?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "500"
+            ],
+            "hint": "It is usually double the nominal voltage."
+          },
+          {
+            "id": "204-11A-P2",
+            "questionText": "Which instrument would you use to find a &quot;short circuit&quot; between Live and Neutral on a dead circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Insulation Resistance Tester",
+              "IR Tester",
+              "MFT"
+            ],
+            "hint": "You are checking the insulation between conductors."
+          },
+          {
+            "id": "204-11A-P3",
+            "questionText": "True or False: A continuity &apos;buzzer&apos; is an acceptable substitute for recording a numerical Ohm reading.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Does a beep tell you the exact resistance?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-11A-INT-1",
+            "questionText": "A student is performing dead tests on a rig. They select the Insulation Resistance function but forget to check if the rig is isolated. They then proceed to test without nulling the leads. Explain the potential safety risk and the impact on the accuracy of their results.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Failing to isolate risks electric shock or meter damage if the circuit is live. Not nulling leads results in inaccurate, higher resistance readings which may lead to false failures of the continuity test.",
+            "hint": "Address both the isolation error and the nulling error separately."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          "What is the standard unit of measurement for electrical resistance?",
+          "Identify the colour of the Insulation of a Protective Conductor (CPC).",
+          "What does a reading of &apos;0.00&apos; on an Ohmmeter typically indicate?",
+          "Why must we never perform an Insulation Resistance test on a live circuit?"
+        ],
+        "notes": "Reviewing basic units (Ohms), conductor identification, and fundamental safety from 204-10A/B."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-27",
+    "updated": "2026-01-27",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

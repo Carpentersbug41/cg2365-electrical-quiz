@@ -5,7 +5,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { seriesCircuitsQuestions } from '@/data/questions/seriesCircuitsQuestions';
+import { allTaggedQuestions } from '@/data/questions';
 import { MarkingRequest, MarkingResponse } from '@/lib/marking/types';
 import { markMCQ } from '@/lib/marking/markingService';
 import { markConceptualQuestion } from '@/lib/marking/llmMarkingService';
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     // Check if this is an MCQ question from the Quiz component (diagnostic/quiz)
     if (answerType === 'mcq' && typeof userAnswer === 'number') {
-      const question = seriesCircuitsQuestions.find(
+      const question = allTaggedQuestions.find(
         q => q.id.toString() === questionId.toString()
       );
       
