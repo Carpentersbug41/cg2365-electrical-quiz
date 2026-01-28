@@ -1,15 +1,16 @@
 {
   "id": "204-12A",
   "title": "204.12A — The Dead Inspection Checklist: Visual and Mechanical Checks",
-  "description": "Learn the essential visual and mechanical checks required before using test instruments to ensure an installation is safe and ready for testing.",
+  "description": "Learn the rig-safe visual and mechanical checks you must complete before any meter work so the circuit is physically sound, correctly identified, and ready for reliable dead tests.",
   "layout": "split-vis",
   "unit": "Unit 204",
   "topic": "Electrical Installations Technology",
   "learningOutcomes": [
-    "State the purpose of a dead inspection before commencing meter work.",
-    "Identify the requirements for CPC presence, identification, and sleeving.",
-    "Describe the criteria for secure electrical terminations and mechanical integrity.",
-    "Recognize signs of damage, overheating, or incorrect accessory selection."
+    "State the purpose of dead inspection (find visible/mechanical issues before trusting meter results).",
+    "Check CPC presence and termination readiness at every point (present, terminated, sleeved/identified).",
+    "Check conductor identification/marking and correct termination quality (no copper showing, correct terminal, secure clamping).",
+    "Identify visible damage, poor mechanical integrity, or incorrect accessory selection that must be fixed before any meter work.",
+    "Use a consistent inspection order and decide whether it is safe to proceed to meter tests (pass / suspicious / stop-and-fix)."
   ],
   "prerequisites": [
     "204-11A",
@@ -25,19 +26,19 @@
       "content": {
         "outcomes": [
           {
-            "text": "State the purpose of a dead inspection before commencing meter work.",
+            "text": "State the purpose of dead inspection before any meter work",
             "bloomLevel": "remember"
           },
           {
-            "text": "Identify the requirements for CPC presence, identification, and sleeving.",
+            "text": "Identify CPC presence/termination and conductor identification requirements",
             "bloomLevel": "understand"
           },
           {
-            "text": "Describe the criteria for secure electrical terminations and mechanical integrity.",
-            "bloomLevel": "understand"
+            "text": "Recognise termination quality issues and visible damage that must be fixed first",
+            "bloomLevel": "apply"
           },
           {
-            "text": "Recognize signs of damage, overheating, or incorrect accessory selection.",
+            "text": "Decide whether to proceed using pass / suspicious / stop-and-fix thinking (inspection-only)",
             "bloomLevel": "apply"
           }
         ]
@@ -50,24 +51,28 @@
       "content": {
         "terms": [
           {
-            "term": "CPC",
-            "definition": "Circuit Protective Conductor; the wire that connects exposed-conductive-parts to the main earthing terminal."
+            "term": "Dead Inspection",
+            "definition": "Inspection carried out on a rig in its approved dead state to find visible/mechanical issues before any meter work."
           },
           {
-            "term": "Sleeving",
-            "definition": "Coloured plastic tubing placed over a conductor to identify its function (e.g., Green/Yellow for CPC)."
+            "term": "CPC",
+            "definition": "Circuit Protective Conductor; maintains the protective earth path through the circuit."
+          },
+          {
+            "term": "Sleeving / Identification",
+            "definition": "Marking used so a conductor’s function is clear at terminations (especially when core colours don’t match the role)."
           },
           {
             "term": "Termination",
-            "definition": "The point at which an electrical conductor is connected to a piece of equipment or a terminal block."
+            "definition": "Where a conductor is clamped/connected into a terminal; quality depends on correct terminal, correct clamping, and secure tightness."
           },
           {
-            "term": "Mechanical Integrity",
-            "definition": "The physical soundness of an installation, ensuring parts are secure and free from damage."
+            "term": "Plastic-in",
+            "definition": "A termination fault where insulation is clamped instead of copper, leading to loose/high-resistance connections."
           },
           {
-            "term": "Accessory",
-            "definition": "A device associated with the wiring system, such as a switch, socket-outlet, or lampholder."
+            "term": "Stop-and-fix",
+            "definition": "An inspection outcome meaning you must not proceed to meter work until the issue is corrected (safety/validity risk)."
           }
         ]
       }
@@ -77,16 +82,19 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "Visual Inspection Points",
-        "description": "A diagram showing common inspection points: CPC sleeving, termination tightness, and conductor identification.",
+        "title": "Dead Inspection: What You Check Before Any Meter Work",
+        "description": "Visual prompts for key inspection points: CPC termination, identification/sleeving, termination quality, and visible damage.",
         "videoUrl": "",
         "diagramType": "other",
         "elementIds": [
-          "cpc-sleeving",
+          "cpc-present-terminated",
+          "id-sleeving",
           "termination-quality",
-          "conductor-id"
+          "damage-check",
+          "accessory-suitability",
+          "inspection-order"
         ],
-        "placeholderText": "Visual representation of a consumer unit or accessory interior showing correct vs incorrect terminations and sleeving."
+        "placeholderText": "Simple labelled visual: 1) Start at supply point 2) Switch point(s) 3) Light point 4) Re-check terminations and cable condition. Show: CPC properly terminated, correct sleeving/ID, no copper showing, no damaged insulation, correct accessory type fitted."
       }
     },
     {
@@ -95,7 +103,7 @@
       "order": 4,
       "content": {
         "title": "The Purpose and Process of Dead Inspection",
-        "content": "A **dead inspection** is the critical first step in the verification process. Before you ever touch a circuit with a multimeter or insulation resistance tester, you must use your eyes and hands to confirm the installation is physically sound. The primary purpose is to find **visible or mechanical issues** that could make meter results unreliable or, more importantly, create a safety hazard during live testing later.\n\nOne of the most common misconceptions is that the meter will tell you everything. While meters are excellent at finding hidden faults, they cannot always detect a loose screw that will vibrate out in a week, or a missing piece of green/yellow sleeving. **Mechanical tightness** is vital; a loose connection causes high resistance, which leads to heat and potential fires.\n\n**Key Checklist Areas:**\n\n1. **CPC Presence and Continuity Preparedness:** You must verify that a Circuit Protective Conductor (CPC) is present at every point in the circuit. It isn't enough for it to just be there; it must be correctly terminated and protected with **Green and Yellow sleeving**. In lighting circuits, even if the fitting is plastic, the CPC must be present and terminated into a spare connector or terminal.\n\n2. **Conductor Identification:** Every conductor must be identifiable by its colour or marking. This means ensuring Brown is used for Line, Blue for Neutral, and Green/Yellow for Earth. If you are using a cable where the core colours don't match the function (like the switch wire in a twin and earth cable), you must apply the correct sleeving to identify it clearly.\n\n3. **Terminations and Connections:** Check that every screw is tight and that the conductor is actually gripped by the terminal, not the insulation (known as a &quot;plastic-in&quot; fault). Conversely, there should be no **excessive exposed copper** outside the terminal, as this could cause a short circuit or a shock hazard.\n\n4. **Damage and Overheating:** Look for signs of &quot;nicked&quot; insulation where a wire stripper might have gone too deep, or crushed cables where a clip was hammered too hard. In existing installations, look for discolouration of plastic, which indicates overheating.\n\n5. **Accessory Suitability:** Ensure the accessories (switches, lampholders, etc.) are appropriate for the environment and the training rig. For example, ensuring a 1-way switch isn't being used where a 2-way switch is required for the circuit logic."
+        "content": "A **dead inspection** is the first verification step on a training rig. Before you trust any meter result, you use your eyes and hands to confirm the circuit is physically sound, correctly identified, and safe to proceed with **dead tests**.\n\n### Why inspection comes first\nMeters can’t reliably protect you from basic build/termination mistakes such as:\n- a CPC that’s present but **not terminated**\n- insulation clamped instead of copper (**plastic-in**)\n- a loose termination that causes unstable readings later\n- missing identification/sleeving when a core is being used in a different role\n\nInspection prevents two problems:\n1) **Safety risk later** when the rig is energised.\n2) **Invalid test results** (you test a circuit that was built/terminated incorrectly).\n\n### A repeatable inspection order (use the same order every time)\n1) **Start at the supply point / terminals** (identify what circuit you are inspecting).\n2) **Move to switch point(s)** (ID/sleeving, terminations, CPC present and terminated).\n3) **Move to the light point** (correct connections, CPC present and terminated even if fittings are plastic).\n4) **Re-check terminations and cable condition** (no damage, no copper showing, accessories secure).\n\n### Key checklist areas (what each check is proving)\n1) **CPC presence and termination readiness**\n- CPC is present at every point.\n- CPC is **terminated into a proper terminal/block**, not tucked loose.\n- CPC is sleeved/identified at terminations.\n\n2) **Conductor identification / marking**\n- Conductors are identifiable by role at the termination.\n- Where a core colour does not match its role (e.g., switched live in a blue core), correct sleeving/ID is applied.\n- Do not assume colour = function; verify termination role.\n\n3) **Terminations and mechanical integrity**\n- Copper is clamped securely (not insulation).\n- No exposed copper outside the terminal.\n- Correct terminal used and conductors are seated properly.\n- No loose accessories; no strain on terminations.\n\n4) **Damage / overheating risk signs (inspection-only)**\n- Nicked insulation, crushed cable, cracked accessories.\n- Signs of stress at entry points (grommets/edges) where relevant on the rig.\n\n5) **Accessory suitability (rig context)**\n- Correct accessory type for the circuit logic (e.g., 1-way vs 2-way switch type).\n- Correct terminals used on the accessory.\n\n### Decision gate (inspection-only)\n- **Pass:** safe and clear to proceed to meter work.\n- **Suspicious:** needs correction or re-check before proceeding (could distort results).\n- **Stop-and-fix:** do not continue until corrected (safety/validity risk: exposed copper, damaged insulation, missing or un-terminated CPC, incorrect accessory creating unsafe condition)."
       }
     },
     {
@@ -109,35 +117,48 @@
         "questions": [
           {
             "id": "204-12A-C1-L1-A",
-            "questionText": "What is the primary purpose of a dead inspection?",
+            "questionText": "What is the main purpose of a dead inspection before any meter work?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "To find visible or mechanical issues before testing",
-            "hint": "Think about what you do before using a meter."
+            "expectedAnswer": [
+              "To find visible or mechanical issues before trusting meter results",
+              "To find visible/mechanical issues first",
+              "To catch build/termination problems before testing"
+            ],
+            "hint": "It’s the checks you do with eyes/hands before using any instrument."
           },
           {
             "id": "204-12A-C1-L1-B",
-            "questionText": "What colour sleeving must be applied to a bare CPC?",
+            "questionText": "At a switch point, what are you specifically checking about the CPC?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Green and Yellow",
-            "hint": "This is the standard safety colour for earthing."
+            "expectedAnswer": [
+              "That it is present and terminated",
+              "Present, terminated, and identified/sleeved"
+            ],
+            "hint": "Not just ‘is it there?’ — what must be done with it?"
           },
           {
             "id": "204-12A-C1-L1-C",
-            "questionText": "What is the term for a fault where the terminal screw is tightened onto the wire insulation instead of the copper?",
+            "questionText": "What is the name of the fault where a terminal clamps insulation instead of copper?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Plastic-in",
-            "hint": "It relates to the material being gripped by the screw."
+            "expectedAnswer": [
+              "Plastic-in",
+              "Plastic in"
+            ],
+            "hint": "Think: the wrong material is being clamped."
           },
           {
             "id": "204-12A-C1-L2",
-            "questionText": "Why is a mechanical tightness check performed before electrical continuity testing?",
+            "questionText": "Why do you check mechanical tightness before any meter testing?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "Loose connections cause unreliable readings and fire risks",
-            "hint": "How does a loose screw affect the flow of current and the meter reading?"
+            "expectedAnswer": [
+              "Loose connections can create unreliable readings and overheating risk",
+              "Loose terminations can give unstable readings and cause heat later"
+            ],
+            "hint": "Link loose screws to both measurement reliability and safety."
           }
         ]
       }
@@ -151,32 +172,42 @@
         "questions": [
           {
             "id": "204-12A-P1",
-            "questionText": "During an inspection, you find a bare copper wire inside a switch box with no sleeving. Which conductor is this likely to be?",
+            "questionText": "During inspection you see an unsleeved bare conductor in a switch box. What is it most likely to be, and what should you do before proceeding?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "CPC",
-              "Circuit Protective Conductor",
-              "Earth"
+              "Likely the CPC; sleeve/identify it and terminate it properly before proceeding",
+              "Probably CPC/earth; sleeve it and terminate it into a connector"
             ],
-            "hint": "Which conductor is usually bare in Twin and Earth cable?"
+            "hint": "Think: bare in T&E, and inspection is about readiness and identification."
           },
           {
             "id": "204-12A-P2",
-            "questionText": "You notice 5mm of bare copper showing outside a terminal on a socket-outlet. Is this a &quot;pass&quot; or &quot;fail&quot; for a dead inspection?",
+            "questionText": "You see exposed copper outside a terminal. Is this pass, suspicious, or stop-and-fix?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Fail"
+              "Stop-and-fix",
+              "Fail",
+              "Stop and fix"
             ],
-            "hint": "Think about the risks of exposed live parts."
+            "hint": "Treat exposed copper as a do-not-proceed condition."
           },
           {
             "id": "204-12A-P3",
-            "questionText": "True or False: If an accessory is made of plastic, you do not need to terminate the CPC.",
+            "questionText": "True or False: If an accessory is plastic, you can leave the CPC loose and unterminated.",
             "answerType": "short-text",
             "expectedAnswer": [
               "False"
             ],
-            "hint": "Does the earth path need to be maintained for the rest of the circuit?"
+            "hint": "The CPC still has to continue through the circuit."
+          },
+          {
+            "id": "204-12A-P4",
+            "questionText": "Put these inspection steps in a sensible order: Light point, Supply/terminals, Switch point(s), Re-check cable condition/terminations.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Supply/terminals, Switch point(s), Light point, Re-check cable condition/terminations"
+            ],
+            "hint": "Start where the circuit begins, then move through the circuit."
           }
         ]
       }
@@ -191,11 +222,11 @@
         "questions": [
           {
             "id": "204-12A-INT-1",
-            "questionText": "You are inspecting a lighting circuit on a training rig. You find the switch wire is blue but has no brown sleeving, one terminal screw is loose, and the CPC is tucked into the back of the box without a connector. Explain why you cannot proceed to meter testing and what three actions you must take.",
+            "questionText": "You are inspecting a lighting circuit on a training rig. You find: (1) a blue core used as a switched live with no brown sleeving, (2) one terminal screw loose, and (3) the CPC present but not terminated (tucked into the back). Explain why you must not proceed to meter tests and list three actions to fix it.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
-            "expectedAnswer": "The circuit is unsafe and incorrectly identified. Actions: 1. Apply brown sleeving to the switch wire. 2. Tighten all terminations. 3. Terminate the CPC into a proper block or terminal.",
-            "hint": "Address the identification, mechanical, and earthing issues separately."
+            "expectedAnswer": "Do not proceed because identification is unclear, mechanical integrity is poor, and the CPC is not correctly terminated, which can make results unsafe/unreliable. Fix: add correct sleeving/ID to the switched live, tighten/secure the termination, and terminate the CPC into a proper terminal/block (with identification).",
+            "hint": "Address identification, tightness, and CPC termination separately."
           }
         ]
       }
@@ -207,19 +238,19 @@
       "content": {
         "title": "Spaced Review",
         "questions": [
-          "What is the standard colour for a Neutral conductor in a modern UK installation?",
-          "Why is it important to follow a consistent pre-test routine on a training rig?",
-          "Identify the accessory used to hold a light bulb in a standard circuit.",
-          "What is the immediate action if you find damaged insulation that exposes live copper?"
+          "In one sentence, why do we inspect before we meter-test?",
+          "Name two things that can make a reading unreliable even if the circuit is fine (setup/physical issues).",
+          "What does CPC stand for and what is its role in the circuit?",
+          "What does 'plastic-in' mean and why is it dangerous?"
         ],
-        "notes": "Reviewing conductor roles, safety mindsets, and basic accessory identification."
+        "notes": "Reinforcing inspection-first logic and the link between physical build quality and reliable testing."
       }
     }
   ],
   "metadata": {
     "created": "2026-01-28",
     "updated": "2026-01-28",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

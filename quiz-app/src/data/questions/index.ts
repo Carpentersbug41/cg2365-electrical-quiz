@@ -21,11 +21,13 @@ import { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTesting
 import { provingYourTesterWorksQuestions } from './provingYourTesterWorksQuestions';
 import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 import { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklistQuestions';
+import { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...inspectionDecisionsAndRecordingQuestions,
   ...theDeadInspectionChecklistQuestions,
   ...leadsNullingZeroingAndAvoidingFalseReadingsQuestions,
   ...provingYourTesterWorksQuestions,
@@ -65,6 +67,7 @@ export { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTesting
 export { provingYourTesterWorksQuestions } from './provingYourTesterWorksQuestions';
 export { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 export { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklistQuestions';
+export { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
 
 /**
  * Filter questions by tags

@@ -28,6 +28,7 @@ import { rigSafeDeadTestingMindsetAndSetupQuestions } from './questions/rigSafeD
 import { provingYourTesterWorksQuestions } from './questions/provingYourTesterWorksQuestions';
 import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './questions/leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 import { theDeadInspectionChecklistQuestions } from './questions/theDeadInspectionChecklistQuestions';
+import { inspectionDecisionsAndRecordingQuestions } from './questions/inspectionDecisionsAndRecordingQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

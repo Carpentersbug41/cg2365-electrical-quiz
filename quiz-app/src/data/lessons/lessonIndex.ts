@@ -238,6 +238,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 6,
   },
+  {
+    id: '204-204-12B',
+    title: 'Inspection decisions and recording',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Inspection decisions and recording',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-204-12B'),
+    available: true,
+    order: 7,
+  },
 ];
 
 /**
