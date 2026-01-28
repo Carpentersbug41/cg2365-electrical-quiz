@@ -29,6 +29,7 @@ import { provingYourTesterWorksQuestions } from './questions/provingYourTesterWo
 import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './questions/leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 import { theDeadInspectionChecklistQuestions } from './questions/theDeadInspectionChecklistQuestions';
 import { inspectionDecisionsAndRecordingQuestions } from './questions/inspectionDecisionsAndRecordingQuestions';
+import { oneWayLighting3PlateCeilingRoseQuestions } from './questions/oneWayLighting3PlateCeilingRoseQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

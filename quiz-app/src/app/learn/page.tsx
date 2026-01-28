@@ -27,11 +27,13 @@ import lesson204_11B from '@/data/lessons/204-11B-proving-your-tester-works.json
 import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
 import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.json';
 import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-and-recording.json';
+import lesson204_13A from '@/data/lessons/204-13A-one-way-lighting-3-plate-ceiling-rose.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
 const LESSONS = [
+  lesson204_13A,
   lesson204_204_12B,
   lesson204_12A,
   lesson204_11C,

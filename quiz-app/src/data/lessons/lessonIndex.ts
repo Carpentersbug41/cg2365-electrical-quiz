@@ -249,6 +249,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 7,
   },
+  {
+    id: '204-13A',
+    title: 'One-way lighting (3-plate ceiling rose)',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'One-way lighting (3-plate ceiling rose)',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-13A'),
+    available: true,
+    order: 8,
+  },
 ];
 
 /**

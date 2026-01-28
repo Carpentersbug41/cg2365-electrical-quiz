@@ -1,15 +1,15 @@
 {
-  "id": "204-204-12B",
-  "title": "204.204-12B — Inspection Decisions and Recording: Pass, Suspicious, Stop-and-Fix",
-  "description": "Learn how to categorize inspection findings, decide when to halt work for safety, and record defects accurately on a training rig.",
+  "id": "204-12B",
+  "title": "204.12B — Inspection Decisions and Recording: Pass, Suspicious, Stop-and-Fix",
+  "description": "Learn how to categorize dead-inspection findings, decide when to halt work for safety/validity, and record defects clearly on a training rig (inspection only — no meter tests).",
   "layout": "split-vis",
   "unit": "Unit 204",
   "topic": "Electrical Installations Technology",
   "learningOutcomes": [
     "Define the three inspection outcome categories: Pass, Suspicious, and Stop-and-fix",
-    "Describe the criteria for immediate work stoppage during a dead inspection",
-    "Record inspection findings accurately including location, defect type, and required action",
-    "Explain the relationship between visual defects and potential future test results"
+    "Describe clear criteria for immediate work stoppage during a dead inspection (training-rig context)",
+    "Record inspection findings accurately including category, location, defect, and required action",
+    "Explain how common visual/mechanical defects can lead to unreliable or misleading test results later"
   ],
   "prerequisites": [
     "204-11A",
@@ -19,62 +19,62 @@
   ],
   "blocks": [
     {
-      "id": "204-204-12B-outcomes",
+      "id": "204-12B-outcomes",
       "type": "outcomes",
       "order": 1,
       "content": {
         "outcomes": [
           {
-            "text": "Identify and categorize inspection findings as Pass, Suspicious, or Stop-and-fix",
-            "bloomLevel": "remember"
-          },
-          {
-            "text": "Explain the safety implications of common visual defects like missing CPC or exposed copper",
+            "text": "Categorize inspection findings as Pass, Suspicious, or Stop-and-fix using clear criteria",
             "bloomLevel": "understand"
           },
           {
-            "text": "Demonstrate how to record specific defects for later action",
+            "text": "Explain why safety-critical visual defects (e.g., exposed copper, damaged insulation, missing/unterminated CPC) require stopping before meter work",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Record a defect professionally using category + location + defect + required action",
             "bloomLevel": "apply"
           }
         ]
       }
     },
     {
-      "id": "204-204-12B-vocab",
+      "id": "204-12B-vocab",
       "type": "vocab",
       "order": 2,
       "content": {
         "terms": [
           {
             "term": "Stop-and-Fix",
-            "definition": "A critical safety defect that requires immediate repair before any further meter work can take place."
+            "definition": "A safety or validity-critical defect. Do not proceed to meter work until corrected (e.g., exposed copper, damaged insulation with visible conductor, missing/unterminated CPC, loose termination likely to fail, incorrect accessory creating unsafe condition)."
           },
           {
             "term": "Suspicious",
-            "definition": "A finding that does not pose an immediate danger but requires further investigation or monitoring during testing."
+            "definition": "A non-immediate hazard but a quality/validity concern that should be corrected or re-checked before meter work because it can mislead results (e.g., missing sleeving/ID, minor strain on terminations, unclear marking, slight discoloration that needs checking)."
+          },
+          {
+            "term": "Pass",
+            "definition": "No visible/mechanical issues found. CPC is present/terminated/identified, terminations are secure with no exposed copper, accessories are correct, and the circuit is ready for meter work."
           },
           {
             "term": "Exposed Copper",
-            "definition": "A condition where conductor insulation has been stripped back too far, leaving live parts accessible to touch."
-          },
-          {
-            "term": "CPC",
-            "definition": "Circuit Protective Conductor; the wire providing the path to earth for fault currents."
+            "definition": "A condition where conductor copper is visible outside a terminal or where damaged insulation leaves copper accessible. Treat as Stop-and-fix."
           },
           {
             "term": "Termination",
-            "definition": "The physical connection of a conductor into a terminal or accessory."
+            "definition": "The physical connection of a conductor into a terminal/accessory. Quality depends on correct terminal, correct clamping on copper (not insulation), correct conductor seating, and secure tightness."
           }
         ]
       }
     },
     {
-      "id": "204-204-12B-diagram",
+      "id": "204-12B-diagram",
       "type": "diagram",
       "order": 3,
       "content": {
         "title": "The Inspection Decision Matrix",
-        "description": "A workflow showing how to process findings from the supply point to the final accessory.",
+        "description": "A simple workflow for processing findings in a consistent inspection order on a training rig.",
         "videoUrl": "",
         "diagramType": "other",
         "elementIds": [
@@ -83,20 +83,20 @@
           "light_points",
           "terminations"
         ],
-        "placeholderText": "Diagram showing a flow: Start at Supply -> Check Switches -> Check Loads -> Inspect Terminations. Each step branches into 'Pass', 'Suspicious', or 'Stop-and-Fix'."
+        "placeholderText": "Flow: Start at Supply -> Switch point(s) -> Load point(s) -> Re-check terminations/cable condition. At each point: classify as Pass / Suspicious / Stop-and-fix, then record: Category + Location + Defect + Action."
       }
     },
     {
-      "id": "204-204-12B-explain-decisions",
+      "id": "204-12B-explain-decisions",
       "type": "explanation",
       "order": 4,
       "content": {
         "title": "Categorizing Your Findings",
-        "content": "During a dead inspection, you are not just looking; you are making decisions that impact safety and the validity of your future tests. Every observation must fall into one of three categories:\n\n1. **Pass**: The installation meets all safety and workmanship standards. Terminations are tight, insulation is intact, CPCs are present and sleeved, and the correct accessories are used.\n\n2. **Suspicious**: These are 'yellow flag' issues. For example, a slightly discolored conductor or a missing circuit label. These don&apos;t necessarily make the rig unsafe to touch, but they must be noted. A suspicious termination might lead to an unstable resistance reading later.\n\n3. **Stop-and-Fix**: These are 'red flag' issues that halt all work. You must **never** proceed to meter testing if you find:\n- **Exposed copper** outside of a terminal (shock risk).\n- **Missing CPC** at any point (no path to earth).\n- **Damaged insulation** where the conductor is visible.\n- **Loose terminations** that could fall out or cause a fire.\n\n**The Inspection Order**\nTo ensure nothing is missed, always follow a consistent sequence: Start at the **supply point** (consumer unit/isolator), move to the **switch points**, and finally to the **light points** or sockets. At each point, check the cable condition and the quality of the terminations.\n\n**Recording Findings**\nWriting &quot;it looks dodgy&quot; is not acceptable. A professional record must state:\n- **What** is wrong (e.g., &quot;Insulation stripped back too far&quot;).\n- **Where** it is (e.g., &quot;L1 terminal at the 1-gang switch&quot;).\n- **Action** taken (e.g., &quot;Re-terminated conductor to remove exposed copper&quot;).\n\nLinking inspection to testing is vital. If you see a conductor that is barely held in by the screw, you should expect a **high or fluctuating resistance reading** during your continuity tests. Identifying this now saves hours of troubleshooting later."
+        "content": "During a dead inspection, you are not just looking — you are making decisions that affect (1) safety and (2) whether later meter results can be trusted. Every observation should be classified as one of three outcomes:\n\n1) **Pass** (green): The installation looks physically sound and correctly identified. CPC is present and terminated, terminations are tight, no exposed copper, insulation is intact, and accessories/terminals are correct.\n\n2) **Suspicious** (yellow): Not an immediate danger, but a reliability/quality issue that can mislead testing. Examples: missing sleeving/ID where a core role could be misread, unclear marking, mild discoloration that needs checking, minor strain on terminations. Correct or re-check before meter work.\n\n3) **Stop-and-fix** (red): Do not proceed to meter work until corrected. Examples: exposed copper, damaged insulation with copper visible, missing or unterminated CPC at any point, loose termination likely to slip/overheat, incorrect accessory/terminal use that creates an unsafe condition.\n\n**Inspection order (repeatable routine):** Start at the supply point/terminals, move through switch point(s), then the load point(s) (lamp/socket), and finish with a re-check of cable condition and terminations.\n\n**Recording findings (must be specific):** Avoid vague notes. Use this structure:\n- **Category:** Pass / Suspicious / Stop-and-fix\n- **Location:** point + accessory + terminal (e.g., \"Switch 1, L1\" or \"Ceiling point, CPC terminal\")\n- **Defect:** what exactly is wrong\n- **Action required/taken:** what must be done before proceeding\n\n**Link to later test problems (concept only):** Loose/poor terminations often produce unstable or high continuity readings. Missing identification can lead you to test the wrong points and misinterpret results."
       }
     },
     {
-      "id": "204-204-12B-check-1",
+      "id": "204-12B-check-1",
       "type": "practice",
       "order": 4.5,
       "content": {
@@ -105,115 +105,114 @@
         "sequential": true,
         "questions": [
           {
-            "id": "204-204-12B-C1-L1-A",
-            "questionText": "Which category is used for a defect that poses an immediate safety risk?",
+            "id": "204-12B-C1-L1-A",
+            "questionText": "Which category is used for a defect that poses an immediate safety or validity risk (meaning you must not proceed to meter work)?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "Stop-and-Fix",
-            "hint": "It means you must stop work and fix it immediately."
+            "hint": "It means you stop and correct the issue before continuing."
           },
           {
-            "id": "204-204-12B-C1-L1-B",
+            "id": "204-12B-C1-L1-B",
             "questionText": "Where should a standard inspection sequence usually begin?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "Supply point",
-            "hint": "Think about where the power enters the circuit."
+            "hint": "Start where the circuit originates on the rig."
           },
           {
-            "id": "204-204-12B-C1-L1-C",
-            "questionText": "If a CPC is missing from a metal light fitting, what is the required decision?",
+            "id": "204-12B-C1-L1-C",
+            "questionText": "If a CPC is missing or not terminated at a point in the circuit, what is the required decision?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "Stop-and-Fix",
-            "hint": "A missing earth on a metal part is a major safety violation."
+            "hint": "Protective continuity must be maintained through the circuit."
           },
           {
-            "id": "204-204-12B-C1-L2",
+            "id": "204-12B-C1-L2",
             "questionText": "How does identifying a loose termination during inspection help you during the later testing phase?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "It prevents high or unstable resistance readings",
-            "hint": "Think about how a loose wire affects the flow of current during a test."
+            "expectedAnswer": "It prevents unreliable or unstable readings and reduces overheating risk",
+            "hint": "Loose contact can change resistance and create heat."
           }
         ]
       }
     },
     {
-      "id": "204-204-12B-worked-example",
+      "id": "204-12B-worked-example",
       "type": "worked-example",
       "order": 5,
       "content": {
         "title": "Worked Example: Recording a Defect",
-        "given": "You are inspecting a training rig. At the intermediate switch, you notice that the Line conductor has 5mm of bare copper showing outside the terminal housing.",
+        "given": "You are inspecting a training rig. At the intermediate switch, you notice the line conductor has 5mm of copper visible outside the terminal.",
         "steps": [
           {
             "stepNumber": 1,
             "description": "Classify the finding.",
             "formula": null,
             "calculation": null,
-            "result": "Stop-and-Fix (Exposed live part)"
+            "result": "Stop-and-Fix (exposed copper)"
           },
           {
             "stepNumber": 2,
             "description": "Identify the specific location.",
             "formula": null,
             "calculation": null,
-            "result": "Intermediate Switch, L1 terminal"
+            "result": "Intermediate switch, L1 terminal"
           },
           {
             "stepNumber": 3,
-            "description": "Record the finding professionally.",
+            "description": "Record the finding professionally (category + location + defect + action).",
             "formula": null,
             "calculation": null,
-            "result": "Defect: 5mm exposed copper at Intermediate Switch (L1). Action: Re-terminated conductor."
+            "result": "Category: Stop-and-fix. Location: Intermediate switch, L1. Defect: Copper visible outside terminal. Action: Re-terminate conductor so no exposed copper remains."
           }
         ],
-        "notes": "Always fix 'Stop-and-Fix' issues before picking up a multi-function tester."
+        "notes": "Fix Stop-and-fix issues before any meter work."
       }
     },
     {
-      "id": "204-204-12B-practice",
+      "id": "204-12B-practice",
       "type": "practice",
       "order": 7,
       "content": {
         "title": "Inspection Scenarios",
         "questions": [
           {
-            "id": "204-204-12B-P1",
-            "questionText": "You find a CPC conductor in a switch box that is not covered in green/yellow sleeving. What is the category?",
+            "id": "204-12B-P1",
+            "questionText": "You find a CPC conductor terminated in the earth terminal but with no green/yellow sleeving/ID at the termination. What category best fits this finding on a training rig?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Suspicious",
-              "Defect"
+              "Suspicious"
             ],
-            "hint": "It is a requirement, but does it stop the circuit from being safely earthed if it is connected?"
+            "hint": "The earth path may still exist, but identification is not acceptable for reliable work."
           },
           {
-            "id": "204-204-12B-P2",
-            "questionText": "While checking a socket, the insulation on the Neutral wire is nicked, exposing the copper core. What is your decision?",
+            "id": "204-12B-P2",
+            "questionText": "While checking a socket, the insulation on the Neutral is nicked and the copper core is visible. What is your decision?",
             "answerType": "short-text",
             "expectedAnswer": [
               "Stop-and-Fix",
               "Stop and fix"
             ],
-            "hint": "Exposed copper core is always a critical safety issue."
+            "hint": "Visible copper due to insulation damage is a stop issue."
           },
           {
-            "id": "204-204-12B-P3",
-            "questionText": "What are the three specific details required for a professional inspection record?",
+            "id": "204-12B-P3",
+            "questionText": "What four details make an inspection record professional and actionable?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "What, Where, Action",
-              "Defect, Location, Action"
+              "Category, Location, Defect, Action",
+              "Category / Location / Defect / Action"
             ],
-            "hint": "Think about what a supervisor would need to know to verify the fix."
+            "hint": "It’s not just what/where — include the decision category too."
           }
         ]
       }
     },
     {
-      "id": "204-204-12B-integrative",
+      "id": "204-12B-integrative",
       "type": "practice",
       "order": 9.5,
       "content": {
@@ -221,36 +220,36 @@
         "mode": "integrative",
         "questions": [
           {
-            "id": "204-204-12B-INT-1",
-            "questionText": "During an inspection of a lighting circuit, you find a loose CPC at the supply and exposed copper at the switch. Describe your immediate actions, the categories for these findings, and how these would be recorded.",
+            "id": "204-12B-INT-1",
+            "questionText": "During an inspection of a lighting circuit, you find (1) the CPC loose/unterminated at the supply and (2) exposed copper at the switch. Describe your immediate actions, the categories for these findings, and give an example of how each would be recorded.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
-            "expectedAnswer": "Stop work immediately as both are 'Stop-and-Fix' issues. Record the loose CPC at the supply and exposed copper at the switch. Repair both before proceeding to testing.",
-            "hint": "Consider if you can move to meter testing with these faults present."
+            "expectedAnswer": "Stop work. Both are Stop-and-fix. Record each as: Category + location + defect + action. Example: 'Stop-and-fix — Supply point, CPC terminal: CPC loose/unterminated. Action: Terminate CPC securely and confirm identification.' 'Stop-and-fix — Switch, L1: copper visible outside terminal. Action: Re-terminate so no exposed copper remains.'",
+            "hint": "Use the record template and treat both as stop issues before meter work."
           }
         ]
       }
     },
     {
-      "id": "204-204-12B-spaced-review",
+      "id": "204-12B-spaced-review",
       "type": "spaced-review",
       "order": 10,
       "content": {
         "title": "Spaced Review",
         "questions": [
-          "What color sleeving must be used for a CPC conductor?",
+          "What colour sleeving/ID is used for a CPC at terminations?",
           "Name one visual check performed on a cable's outer sheath during inspection.",
-          "What is the main purpose of a 'Dead' inspection before using meters?",
-          "True or False: A loose connection can cause a fire due to localized heating."
+          "What is the main purpose of a dead inspection before using meters?",
+          "True or False: A loose connection can cause localized heating and fire risk."
         ],
-        "notes": "Reviewing conductor identification, visual checks, and safety mindsets from 204-11 and 204-12A."
+        "notes": "Reinforcing inspection-first decisions and recording habits for rig-safe work."
       }
     }
   ],
   "metadata": {
     "created": "2026-01-28",
     "updated": "2026-01-28",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

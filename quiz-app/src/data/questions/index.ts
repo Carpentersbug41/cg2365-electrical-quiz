@@ -22,11 +22,13 @@ import { provingYourTesterWorksQuestions } from './provingYourTesterWorksQuestio
 import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 import { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklistQuestions';
 import { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
+import { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3PlateCeilingRoseQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...oneWayLighting3PlateCeilingRoseQuestions,
   ...inspectionDecisionsAndRecordingQuestions,
   ...theDeadInspectionChecklistQuestions,
   ...leadsNullingZeroingAndAvoidingFalseReadingsQuestions,
@@ -68,6 +70,7 @@ export { provingYourTesterWorksQuestions } from './provingYourTesterWorksQuestio
 export { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 export { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklistQuestions';
 export { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
+export { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3PlateCeilingRoseQuestions';
 
 /**
  * Filter questions by tags
