@@ -18,6 +18,7 @@ interface GenerationForm {
   mustHaveTopics?: string;
   additionalInstructions?: string;
   youtubeUrl?: string;
+  imageUrl?: string;
 }
 
 interface GenerationStatus {
@@ -62,6 +63,7 @@ export default function GeneratePage() {
     mustHaveTopics: '',
     additionalInstructions: '',
     youtubeUrl: '',
+    imageUrl: '',
   });
 
   const [status, setStatus] = useState<GenerationStatus>({
@@ -69,6 +71,46 @@ export default function GeneratePage() {
     message: '',
     progress: 0,
   });
+
+  const [uploadStatus, setUploadStatus] = useState<{
+    uploading: boolean;
+    error: string | null;
+  }>({
+    uploading: false,
+    error: null,
+  });
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadStatus({ uploading: true, error: null });
+
+    try {
+      const formData = new FormData();
+      formData.append('image', file);
+
+      const response = await fetch('/api/upload-image', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Upload failed');
+      }
+
+      // Update the imageUrl field with the uploaded file path
+      setForm({ ...form, imageUrl: data.path });
+      setUploadStatus({ uploading: false, error: null });
+    } catch (error) {
+      setUploadStatus({
+        uploading: false,
+        error: error instanceof Error ? error.message : 'Upload failed',
+      });
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -102,6 +144,9 @@ export default function GeneratePage() {
           : undefined,
         youtubeUrl: form.youtubeUrl && form.youtubeUrl.trim().length > 0
           ? form.youtubeUrl.trim()
+          : undefined,
+        imageUrl: form.imageUrl && form.imageUrl.trim().length > 0
+          ? form.imageUrl.trim()
           : undefined,
       };
 
@@ -160,6 +205,7 @@ export default function GeneratePage() {
       mustHaveTopics: '',
       additionalInstructions: '',
       youtubeUrl: '',
+      imageUrl: '',
     });
     setStatus({
       stage: 'idle',
@@ -364,6 +410,66 @@ export default function GeneratePage() {
                 />
                 <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
                   YouTube video to embed in the diagram block (for split-vis layouts). Also saved in metadata.
+                </p>
+              </div>
+
+              {/* Image URL */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                  Image URL or Path (optional)
+                  <span className="text-xs text-gray-500 dark:text-slate-400 ml-2">
+                    — For diagram block image (external URL or local path)
+                  </span>
+                </label>
+                <div className="flex gap-2">
+                  <input
+                    type="text"
+                    value={form.imageUrl}
+                    onChange={e => setForm({ ...form, imageUrl: e.target.value })}
+                    placeholder="https://example.com/diagram.png or /images/lessons/204-13A.png"
+                    className="flex-1 px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white"
+                    disabled={status.stage === 'generating' || uploadStatus.uploading}
+                  />
+                  <label className="relative cursor-pointer">
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                      onChange={handleImageUpload}
+                      disabled={status.stage === 'generating' || uploadStatus.uploading}
+                      className="hidden"
+                    />
+                    <span className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-700 text-gray-700 dark:text-slate-300 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                      {uploadStatus.uploading ? (
+                        <>
+                          <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          <span>Uploading...</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                          </svg>
+                          <span className="hidden sm:inline">Browse</span>
+                        </>
+                      )}
+                    </span>
+                  </label>
+                </div>
+                {uploadStatus.error && (
+                  <p className="text-xs text-red-600 dark:text-red-400 mt-1">
+                    Error: {uploadStatus.error}
+                  </p>
+                )}
+                {!uploadStatus.error && form.imageUrl && form.imageUrl.startsWith('/images/lessons/') && (
+                  <p className="text-xs text-green-600 dark:text-green-400 mt-1">
+                    ✓ Image uploaded successfully
+                  </p>
+                )}
+                <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+                  Upload an image file (JPG, PNG, GIF, WebP - max 5MB) or paste an external URL
                 </p>
               </div>
 

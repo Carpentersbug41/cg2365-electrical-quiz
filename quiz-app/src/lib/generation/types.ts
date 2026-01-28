@@ -12,6 +12,7 @@ export interface GenerationRequest {
   mustHaveTopics?: string;
   additionalInstructions?: string;
   youtubeUrl?: string;
+  imageUrl?: string;
 }
 
 export interface DebugInfo {

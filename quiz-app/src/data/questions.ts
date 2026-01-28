@@ -30,6 +30,7 @@ import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './question
 import { theDeadInspectionChecklistQuestions } from './questions/theDeadInspectionChecklistQuestions';
 import { inspectionDecisionsAndRecordingQuestions } from './questions/inspectionDecisionsAndRecordingQuestions';
 import { oneWayLighting3PlateCeilingRoseQuestions } from './questions/oneWayLighting3PlateCeilingRoseQuestions';
+import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './questions/oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

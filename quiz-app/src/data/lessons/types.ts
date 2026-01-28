@@ -116,10 +116,11 @@ export interface SpacedReviewBlockContent {
 export interface DiagramBlockContent {
   title: string;
   description: string;
-  diagramType: 'series' | 'parallel' | 'mixed' | 'component' | 'concept';
+  diagramType: 'series' | 'parallel' | 'mixed' | 'component' | 'concept' | 'circuit' | 'other';
   elementIds: string[]; // e.g., ['R1', 'R2', 'loop', 'branchA']
   placeholderText?: string; // For MVP before SVG implementation
   videoUrl?: string; // YouTube video URL or embed ID
+  imageUrl?: string; // Static image URL or local path (e.g., /images/lessons/diagram.png)
   timestamps?: Array<{
     time: string; // Format: "0:45" or "1:23"
     label: string; // Description of what's shown

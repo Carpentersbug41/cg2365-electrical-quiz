@@ -100,7 +100,7 @@
       "order": 4,
       "content": {
         "title": "The Path of the Current",
-        "content": "A **one-way lighting circuit** using a 3-plate ceiling rose is the standard method for wiring lights in the UK. The fundamental rule to remember is that the **switch breaks the Line (live) conductor**, never the Neutral. This ensures that when the switch is off, there is no potential at the lamp holder.\n\n### 1. The Permanent Live Path (The Loop)\nThe journey begins at the **Consumer Unit (CU)**. The Line conductor travels to the ceiling rose and terminates in the **Loop terminals**. This is a permanent live group. From this same group, a conductor (the switch feed) travels down to the **COM (Common)** terminal of the switch. This part of the circuit is always live as long as the breaker is on.\n\n### 2. The Switched Live Path (The Return)\nWhen the switch is toggled to the 'ON' position, it creates a bridge between the **COM** and **L1** terminals. The conductor connected to L1 is the **switched live**. It travels back up to the ceiling rose and terminates in the third, separate terminal (the switched live terminal). This terminal is then connected directly to the lamp live. It only becomes live when the switch is closed.\n\n### 3. The Neutral Path\nThe Neutral conductor from the CU goes directly to the **Neutral group** in the ceiling rose. The lamp&apos;s neutral wire also connects to this group. Unlike the live wire, the neutral is not interrupted by the switch; it provides the continuous return path for the current from the lamp back to the supply.\n\n### 4. The CPC (Earth) Path\nThe **Circuit Protective Conductor (CPC)** must be continuous throughout. It runs from the CU to the ceiling rose and then to the switch box. Even if you are using plastic accessories, the CPC must be terminated into the provided earth terminals or a connector block to maintain the earth path for the entire circuit. \n\n### 5. Termination Map Summary\nIn a 3-plate rose, you have three distinct blocks:\n1. **Loop:** CU Live and Switch Feed (COM).\n2. **Neutral:** CU Neutral and Lamp Neutral.\n3. **Switched Live:** Switch Return (L1) and Lamp Live.\n\n### 6. Pre-flight Inspection\nBefore any testing with meters, you must perform a visual **dead inspection**. Look for 'Stop-and-Fix' issues: **exposed copper** outside of terminals, **loose terminations** (the 'tug test'), and **missing CPC** connections. Ensure the cable sheath enters the accessory box and that all switched lives are correctly identified with **brown sleeving**."
+        "content": "A **one-way lighting circuit** using a 3-plate ceiling rose is the standard method for wiring lights in the UK. The fundamental rule to remember is that the **switch breaks the Line (live) conductor**, never the Neutral. This *reduces the chance* of a live contact at the lamp holder when the switch is OFF — and it is one reason we later confirm **polarity** during dead testing.\n\n### 1. The Permanent Live Path (The Loop)\nThe journey begins at the **Consumer Unit (CU)**. The Line conductor travels to the ceiling rose and terminates in the **Loop terminals**. This is a permanent live group. From this same group, a conductor (the switch feed) travels down to the **COM (Common)** terminal of the switch. This part of the circuit is always live as long as the breaker is on.\n\n### 2. The Switched Live Path (The Return)\nWhen the switch is toggled to the &apos;ON&apos; position, it creates a bridge between the **COM** and **L1** terminals. The conductor connected to L1 is the **switched live**. It travels back up to the ceiling rose and terminates in the third, separate terminal (the switched live terminal). This terminal is then connected directly to the lamp live. It only becomes live when the switch is closed.\n\n### 3. The Neutral Path\nThe Neutral conductor from the CU goes directly to the **Neutral group** in the ceiling rose. The lamp&apos;s neutral wire also connects to this group. Unlike the live wire, the neutral is not interrupted by the switch; it provides the continuous return path for the current from the lamp back to the supply.\n\n### 4. The CPC (Earth) Path\nThe **Circuit Protective Conductor (CPC)** must be continuous throughout. It runs from the CU to the ceiling rose and then to the switch box. Even if you are using plastic accessories, the CPC must be terminated into the provided earth terminals **or an insulated connector block** to maintain the earth path for the entire circuit.\n\n### 5. Termination Map Summary\nIn a 3-plate rose, you have three distinct blocks:\n1. **Loop:** CU Live and Switch Feed (COM).\n2. **Neutral:** CU Neutral and Lamp Neutral.\n3. **Switched Live:** Switch Return (L1) and Lamp Live.\n\n**Non-negotiable rule:** the lamp live connects only to the **Switched Live** terminal — **never** into the Loop/permanent live group.\n\n### 6. Pre-flight Inspection\nBefore any testing with meters, you must perform a visual **dead inspection**.\n- Look for &apos;Stop-and-Fix&apos; issues: **exposed copper** outside of terminals, **loose terminations** (the &apos;tug test&apos;), and **missing/unterminated CPC** connections.\n- Ensure the cable sheath enters the accessory box and that all switched lives are correctly identified with **brown sleeving**.\n\n**Decision gate (inspection-only):**\n- **Pass:** safe and clear to proceed to dead tests.\n- **Suspicious:** correct/verify before metering (could distort results).\n- **Stop-and-Fix:** do not continue until corrected (safety/validity risk)."
       }
     },
     {
@@ -117,7 +117,11 @@
             "questionText": "In a one-way lighting circuit, which conductor must the switch break?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Line",
+            "expectedAnswer": [
+              "Line",
+              "Live",
+              "Line (Live)"
+            ],
             "hint": "Think about which wire carries the potential to the switch."
           },
           {
@@ -125,7 +129,12 @@
             "questionText": "Where do the neutral conductors from the CU and the lamp join together?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Ceiling rose",
+            "expectedAnswer": [
+              "Ceiling rose",
+              "Neutral group at the ceiling rose",
+              "Neutral terminals at the rose",
+              "Rose neutral group"
+            ],
             "hint": "It is the central hub for the 3-plate system."
           },
           {
@@ -141,7 +150,11 @@
             "questionText": "Why is the lamp live connected to the 'Switched Live' terminal instead of the 'Loop' terminal?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "To allow the switch to control the lamp",
+            "expectedAnswer": [
+              "So the switch can control the lamp",
+              "Because the loop is permanent live and the lamp must be fed from switched live",
+              "To ensure the lamp is only live when the switch is on"
+            ],
             "hint": "If it were in the loop, would the switch do anything?"
           }
         ]
@@ -169,7 +182,8 @@
             "questionText": "The return feed from the switch to the rose comes from which terminal?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "L1"
+              "L1",
+              "1"
             ],
             "hint": "It is the output terminal of a 1-way switch."
           },

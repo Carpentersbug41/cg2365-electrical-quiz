@@ -121,6 +121,30 @@ Comma-separated lesson IDs:
 
 Leave blank if foundational lesson.
 
+### Image URL (Optional)
+Path or URL to a diagram image for the diagram block:
+
+**External URL:**
+```
+https://example.com/circuit-diagram.png
+https://i.imgur.com/abc123.png
+```
+
+**Local File Path:**
+```
+/images/lessons/204-13A-diagram.png
+/images/lessons/series-circuit.jpg
+```
+
+**Usage:**
+- For local images: Place files in `/public/images/lessons/` folder
+- Reference as `/images/lessons/filename.png`
+- Or use external URLs from image hosting services
+- Displayed when no video URL is provided
+- Display priority: Video → Image → Placeholder
+
+**Note:** If both YouTube URL and Image URL are provided, the video takes priority and the image will not be displayed.
+
 ---
 
 ## 🎬 Example Generations

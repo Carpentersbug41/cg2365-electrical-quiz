@@ -28,11 +28,13 @@ import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoi
 import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.json';
 import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-and-recording.json';
 import lesson204_13A from '@/data/lessons/204-13A-one-way-lighting-3-plate-ceiling-rose.json';
+import lesson204_13B from '@/data/lessons/204-13B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
 const LESSONS = [
+  lesson204_13B,
   lesson204_13A,
   lesson204_204_12B,
   lesson204_12A,

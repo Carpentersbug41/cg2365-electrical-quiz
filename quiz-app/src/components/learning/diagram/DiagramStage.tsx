@@ -157,8 +157,8 @@ export default function DiagramStage({
         )}
       </div>
 
-      {/* Diagram Canvas / Video */}
-      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-indigo-50 overflow-auto">
+      {/* Diagram Canvas / Video / Image */}
+      <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900 overflow-auto">
         <div className="max-w-2xl w-full space-y-4">
           {content.videoUrl ? (
             <>
@@ -169,9 +169,9 @@ export default function DiagramStage({
 
               {/* Timestamp Markers */}
               {content.timestamps && content.timestamps.length > 0 && (
-                <div className="bg-white rounded-xl p-4 border border-indigo-200 shadow">
-                  <h3 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                    <svg className="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="bg-white dark:bg-slate-800 rounded-xl p-4 border border-indigo-200 dark:border-indigo-700 shadow">
+                  <h3 className="text-sm font-semibold text-gray-700 dark:text-slate-300 mb-3 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     Key Moments
@@ -182,7 +182,7 @@ export default function DiagramStage({
                         key={idx}
                         onClick={() => jumpToTimestamp(timestamp.time)}
                         disabled={!isPlayerReady}
-                        className="px-3 py-2 text-sm bg-indigo-50 hover:bg-indigo-100 disabled:bg-gray-100 disabled:text-gray-400 text-indigo-700 rounded-lg border border-indigo-200 transition-colors flex items-center gap-2"
+                        className="px-3 py-2 text-sm bg-indigo-50 hover:bg-indigo-100 disabled:bg-gray-100 disabled:text-gray-400 text-indigo-700 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50 dark:text-indigo-300 rounded-lg border border-indigo-200 dark:border-indigo-700 transition-colors flex items-center gap-2"
                         title={timestamp.label}
                       >
                         <span className="font-mono font-semibold">{timestamp.time}</span>
@@ -193,16 +193,54 @@ export default function DiagramStage({
                 </div>
               )}
             </>
+          ) : content.imageUrl ? (
+            /* Static Image */
+            <div className="w-full rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800 p-4">
+              <img 
+                src={content.imageUrl} 
+                alt={content.title}
+                className="w-full h-auto rounded-lg"
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  const errorDiv = document.createElement('div');
+                  errorDiv.className = 'text-center p-8 text-red-600 dark:text-red-400';
+                  errorDiv.innerHTML = `
+                    <p class="font-semibold">Image failed to load</p>
+                    <p class="text-sm text-gray-500 dark:text-slate-400 mt-2">${content.imageUrl}</p>
+                  `;
+                  target.parentElement?.appendChild(errorDiv);
+                }}
+              />
+              {/* Element IDs for reference */}
+              {content.elementIds && content.elementIds.length > 0 && (
+                <div className="flex flex-wrap justify-center gap-2 mt-4">
+                  {content.elementIds.map((id) => (
+                    <span 
+                      key={id}
+                      className={`px-3 py-1 text-xs font-medium rounded-full border-2 transition-all ${
+                        highlightedElements.includes(id)
+                          ? 'bg-yellow-100 border-yellow-400 text-yellow-900 shadow-md scale-110 dark:bg-yellow-900/30 dark:border-yellow-600 dark:text-yellow-200'
+                          : 'bg-gray-100 border-gray-300 text-gray-700 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-300'
+                      }`}
+                    >
+                      {id}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           ) : (
             /* Placeholder visualization */
-            <div className="bg-white rounded-xl border-2 border-dashed border-indigo-300 p-8 text-center">
+            <div className="bg-white dark:bg-slate-800 rounded-xl border-2 border-dashed border-indigo-300 dark:border-indigo-700 p-8 text-center">
               <div className="mb-4">
-                <svg className="w-20 h-20 mx-auto text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-20 h-20 mx-auto text-indigo-400 dark:text-indigo-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-bold text-gray-700 mb-2">Circuit Diagram Placeholder</h3>
-              <p className="text-sm text-gray-500 mb-4 max-w-md mx-auto">
+              <h3 className="text-lg font-bold text-gray-700 dark:text-slate-300 mb-2">Circuit Diagram Placeholder</h3>
+              <p className="text-sm text-gray-500 dark:text-slate-400 mb-4 max-w-md mx-auto">
                 {content.placeholderText}
               </p>
               
@@ -214,8 +252,8 @@ export default function DiagramStage({
                       key={id}
                       className={`px-3 py-1 text-xs font-medium rounded-full border-2 transition-all ${
                         highlightedElements.includes(id)
-                          ? 'bg-yellow-100 border-yellow-400 text-yellow-900 shadow-md scale-110'
-                          : 'bg-gray-100 border-gray-300 text-gray-700'
+                          ? 'bg-yellow-100 border-yellow-400 text-yellow-900 shadow-md scale-110 dark:bg-yellow-900/30 dark:border-yellow-600 dark:text-yellow-200'
+                          : 'bg-gray-100 border-gray-300 text-gray-700 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-300'
                       }`}
                     >
                       {id}
@@ -224,7 +262,7 @@ export default function DiagramStage({
                 </div>
               )}
               
-              <p className="text-xs text-gray-400 italic">
+              <p className="text-xs text-gray-400 dark:text-slate-500 italic">
                 Future: Interactive SVG diagram will be implemented here
               </p>
             </div>
