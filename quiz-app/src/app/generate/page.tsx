@@ -426,7 +426,7 @@ export default function GeneratePage() {
                     type="text"
                     value={form.imageUrl}
                     onChange={e => setForm({ ...form, imageUrl: e.target.value })}
-                    placeholder="https://example.com/diagram.png or /images/lessons/204-13A.png"
+                    placeholder="https://example.com/diagram.png or /images/lessons/204-14A.png"
                     className="flex-1 px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white"
                     disabled={status.stage === 'generating' || uploadStatus.uploading}
                   />

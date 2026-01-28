@@ -192,6 +192,31 @@ export default function LayoutA({ lesson }: LayoutProps) {
                 </div>
               ))}
 
+              {/* Continue to Quiz CTA */}
+              <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border-2 border-indigo-200 dark:border-indigo-700 text-center">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Ready to test your knowledge?
+                </h3>
+                <p className="text-gray-600 dark:text-slate-300 mb-6">
+                  Complete the quiz to reinforce what you've learned
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button 
+                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz`}
+                    className="px-8 py-4 text-lg font-semibold text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                  >
+                    Continue to Quiz →
+                  </button>
+                  <button 
+                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz?mode=cumulative`}
+                    className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 hover:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
+                  >
+                    <span>🔄</span>
+                    Cumulative Quiz
+                  </button>
+                </div>
+              </div>
+
               {/* Mobile Tutor */}
               <div className="lg:hidden mt-4">
                 <TutorPanel 
@@ -244,6 +269,31 @@ export default function LayoutA({ lesson }: LayoutProps) {
 
               {/* Content Blocks */}
               {contentBlocks.map(block => renderBlock(block))}
+
+              {/* Continue to Quiz CTA */}
+              <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-8 border-2 border-indigo-200 dark:border-indigo-700 text-center">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  Ready to test your knowledge?
+                </h3>
+                <p className="text-gray-600 dark:text-slate-300 mb-6">
+                  Complete the quiz to reinforce what you've learned
+                </p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <button 
+                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz`}
+                    className="px-8 py-4 text-lg font-semibold text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
+                  >
+                    Continue to Quiz →
+                  </button>
+                  <button 
+                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz?mode=cumulative`}
+                    className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 hover:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
+                  >
+                    <span>🔄</span>
+                    Cumulative Quiz
+                  </button>
+                </div>
+              </div>
             </div>
           </section>
 

@@ -43,9 +43,16 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
   const [feedback, setFeedback] = useState<Record<string, MarkingResponse | null>>({});
   const [loading, setLoading] = useState<Record<string, boolean>>({});
+  const [attemptCount, setAttemptCount] = useState<Record<string, number>>({});
+  const [revealedAnswers, setRevealedAnswers] = useState<Record<string, boolean>>({});
+  const [showHint, setShowHint] = useState<Record<string, boolean>>({});
 
   const handleAnswerChange = (questionId: string, value: string) => {
     setAnswers({ ...answers, [questionId]: value });
+  };
+
+  const handleShowAnswer = (questionId: string) => {
+    setRevealedAnswers({ ...revealedAnswers, [questionId]: true });
   };
 
   const handleSubmit = async (questionId: string, questionText: string, expectedAnswer: string | string[]) => {
@@ -74,6 +81,11 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
       
       setFeedback({ ...feedback, [questionId]: result });
       setSubmitted({ ...submitted, [questionId]: true });
+      
+      // Increment attempt count if answer is incorrect
+      if (!result.isCorrect) {
+        setAttemptCount({ ...attemptCount, [questionId]: (attemptCount[questionId] || 0) + 1 });
+      }
     } catch (error) {
       console.error('Error marking answer:', error);
       const errorMessage = error instanceof Error ? error.message : 'Error marking answer';
@@ -92,6 +104,9 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
         } as MarkingResponse
       });
       setSubmitted({ ...submitted, [questionId]: true });
+      
+      // Increment attempt count on error
+      setAttemptCount({ ...attemptCount, [questionId]: (attemptCount[questionId] || 0) + 1 });
     } finally {
       setLoading({ ...loading, [questionId]: false });
     }
@@ -130,22 +145,68 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-amber-400 dark:focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400 dark:focus:ring-amber-500 mb-3 disabled:bg-gray-100 dark:disabled:bg-slate-700 resize-y"
             />
 
-            {question.hint && !submitted[question.id] && (
-              <details className="mb-3">
-                <summary className="text-sm text-amber-700 cursor-pointer hover:text-amber-800 font-medium">
-                  💡 Need a hint?
-                </summary>
-                <p className="mt-2 text-sm text-gray-600 bg-amber-50 rounded-lg p-3 border border-amber-200">
+            {/* Display Revealed Answer */}
+            {revealedAnswers[question.id] && (
+              <div className="mb-3 bg-amber-50 rounded-lg p-4 border-2 border-amber-300">
+                <p className="text-sm font-semibold text-amber-900 mb-2">Expected Answer:</p>
+                {question.expectedAnswer && 
+                 question.expectedAnswer !== 'This is a review question. Provide a thoughtful answer based on your prior knowledge.' ? (
+                  <p className="text-gray-800 font-medium">
+                    {Array.isArray(question.expectedAnswer) 
+                      ? question.expectedAnswer[0] 
+                      : question.expectedAnswer}
+                  </p>
+                ) : (
+                  <p className="text-gray-800 font-medium italic">
+                    Ask your AI tutor for the answer
+                  </p>
+                )}
+                {question.expectedAnswer && 
+                 question.expectedAnswer !== 'This is a review question. Provide a thoughtful answer based on your prior knowledge.' && (
+                  <p className="text-xs text-amber-700 mt-2">
+                    💡 You can still submit your answer to practice and get feedback.
+                  </p>
+                )}
+              </div>
+            )}
+
+            {!submitted[question.id] && (
+              <div className="flex gap-2 flex-wrap mb-3">
+                {question.hint && (
+                  <button
+                    onClick={() => setShowHint({ ...showHint, [question.id]: !showHint[question.id] })}
+                    className="px-4 py-2 bg-amber-100 text-amber-800 rounded-lg font-semibold hover:bg-amber-200 transition-colors text-sm border border-amber-300"
+                  >
+                    {showHint[question.id] ? 'Hide' : 'Show'} Hint
+                  </button>
+                )}
+                
+                {/* Show Answer Button - appears after 2 failed attempts */}
+                {attemptCount[question.id] >= 2 && !revealedAnswers[question.id] && (
+                  <button
+                    onClick={() => handleShowAnswer(question.id)}
+                    className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 transition-colors text-sm border-2 border-amber-600"
+                  >
+                    👁️ Show Answer
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* Display Hint */}
+            {showHint[question.id] && question.hint && !submitted[question.id] && (
+              <div className="mb-3">
+                <p className="text-sm text-gray-600 bg-amber-50 rounded-lg p-3 border border-amber-200">
                   {question.hint}
                 </p>
-              </details>
+              </div>
             )}
 
             {!submitted[question.id] ? (
               <button
                 onClick={() => handleSubmit(question.id, question.questionText, question.expectedAnswer)}
                 disabled={!answers[question.id]?.trim() || loading[question.id]}
-                className="px-4 py-2 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
+                className="mt-3 px-4 py-2 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
               >
                 {loading[question.id] ? 'Checking...' : 'Check Answer'}
               </button>

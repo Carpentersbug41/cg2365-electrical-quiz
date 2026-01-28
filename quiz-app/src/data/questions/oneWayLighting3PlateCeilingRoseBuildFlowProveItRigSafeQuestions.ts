@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * One-way lighting (3-plate ceiling rose): build flow + prove it (rig-safe) Question Bank
- * Aligned with lesson 204-13B learning outcomes
+ * Aligned with lesson 204-14B learning outcomes
  * Generated: 2026-01-28
  */
 
@@ -28,7 +28,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "difficulty": 1,
     "estimatedTime": 45,
     "explanation": "In a 3-plate system, the Loop terminal is used to group the permanent live from the supply and the live feed going down to the switch."
@@ -54,7 +54,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "difficulty": 1,
     "estimatedTime": 45,
     "explanation": "The blue core is used as a switched live (return), so it must be identified with brown sleeving to show it is a live conductor."
@@ -80,7 +80,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "health-safety",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO2",
+    "learningOutcomeId": "204-14B-LO2",
     "difficulty": 1,
     "estimatedTime": 30,
     "explanation": "Safety first: always confirm the rig is in a safe, dead state before starting any installation work."
@@ -106,7 +106,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "difficulty": 2,
     "estimatedTime": 45,
     "explanation": "The Neutral terminal groups the incoming neutral from the consumer unit and the outgoing neutral to the lamp."
@@ -132,7 +132,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 1,
     "estimatedTime": 30,
     "explanation": "The 'Prove-Test-Re-prove' cycle ensures that the tester was working correctly both before and after the measurement."
@@ -158,7 +158,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "units",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 2,
     "estimatedTime": 45,
     "explanation": "For standard low voltage circuits (up to 500V), the insulation resistance test voltage is 500 V DC."
@@ -184,7 +184,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 1,
     "estimatedTime": 45,
     "explanation": "A low-ohms reading (continuity) confirms that the protective conductor path is unbroken from one end to the other."
@@ -210,7 +210,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "difficulty": 1,
     "estimatedTime": 45,
     "explanation": "The permanent live feed from the rose goes to the Common (COM) terminal of the switch."
@@ -236,7 +236,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "health-safety",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 1,
     "estimatedTime": 30,
     "explanation": "Exposed copper outside a terminal is a workmanship and safety issue that must be corrected before proceeding to testing."
@@ -262,7 +262,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 2,
     "estimatedTime": 45,
     "explanation": "Polarity testing ensures that the fuse/MCB and the switch are connected in the Line (live) conductor, not the Neutral."
@@ -288,7 +288,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -315,7 +315,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -342,7 +342,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-13B-LO2",
+    "learningOutcomeId": "204-14B-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -369,7 +369,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -396,7 +396,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -424,7 +424,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -452,7 +452,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "discrimination",
       "units"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -480,7 +480,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "units"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -508,7 +508,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "units",
       "calculation"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -536,7 +536,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "mixed-circuit"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -563,7 +563,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -590,7 +590,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -617,7 +617,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -644,7 +644,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -672,7 +672,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "mixed-circuit",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -700,7 +700,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -728,7 +728,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "explanation"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -756,7 +756,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -784,7 +784,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "calculation",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -812,7 +812,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "units",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -840,7 +840,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 120,
@@ -868,7 +868,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "health-safety",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -896,7 +896,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -924,7 +924,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -951,7 +951,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -979,7 +979,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "difficulty": 3,
     "estimatedTime": 60,
     "explanation": "The Loop terminal in a 3-plate rose acts as a junction for the permanent live; it connects the incoming supply line to the outgoing feed that goes down to the switch COM terminal."
@@ -1005,7 +1005,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "difficulty": 2,
     "estimatedTime": 45,
     "explanation": "Any conductor used as a live wire that is not color-coded brown (like the blue core in a switch drop) must be sleeved brown to identify its function correctly."
@@ -1032,7 +1032,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 3,
     "estimatedTime": 90,
     "explanation": "When the switch is OFF, the contact between COM (connected to Loop) and L1 (connected to Switched Live) is broken, resulting in an open circuit (high resistance)."
@@ -1058,7 +1058,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO2",
+    "learningOutcomeId": "204-14B-LO2",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "Good workmanship requires the cable sheath to enter the accessory to ensure the basic insulation of the cores is not exposed to damage or contact."
@@ -1084,7 +1084,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "units"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "difficulty": 3,
     "estimatedTime": 75,
     "explanation": "IR tests must be performed at a specific voltage (usually 500V for 230V circuits) to effectively detect leakage paths that might not be apparent at lower voltages."
@@ -1112,7 +1112,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1140,7 +1140,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "voltage-rule",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1167,7 +1167,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
@@ -1194,7 +1194,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1222,7 +1222,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "parallel",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
@@ -1249,7 +1249,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13B-LO2",
+    "learningOutcomeId": "204-14B-LO2",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
@@ -1276,7 +1276,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13B-LO1",
+    "learningOutcomeId": "204-14B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 150,
@@ -1303,7 +1303,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "units"
     ],
-    "learningOutcomeId": "204-13B-LO3",
+    "learningOutcomeId": "204-14B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
@@ -1330,7 +1330,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "discrimination",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13B-LO2",
+    "learningOutcomeId": "204-14B-LO2",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1357,7 +1357,7 @@ export const oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions: Ta
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13B-LO2",
+    "learningOutcomeId": "204-14B-LO2",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,

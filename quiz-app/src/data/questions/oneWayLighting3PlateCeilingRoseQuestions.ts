@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * One-way lighting (3-plate ceiling rose) Question Bank
- * Aligned with lesson 204-13A learning outcomes
+ * Aligned with lesson 204-14A learning outcomes
  * Generated: 2026-01-28
  */
 
@@ -29,7 +29,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13A-LO1",
+    "learningOutcomeId": "204-14A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -56,7 +56,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -83,7 +83,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -110,7 +110,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -137,7 +137,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -164,7 +164,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -191,7 +191,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "health-safety",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO4",
+    "learningOutcomeId": "204-14A-LO4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -218,7 +218,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -245,7 +245,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -272,7 +272,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -300,7 +300,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO1",
+    "learningOutcomeId": "204-14A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -327,7 +327,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -354,7 +354,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -381,7 +381,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -409,7 +409,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "health-safety",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO4",
+    "learningOutcomeId": "204-14A-LO4",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -437,7 +437,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "The Loop terminal in a 3-plate rose holds the permanent live from the CU and the feed going down to the switch. It is not connected directly to the lamp."
@@ -464,7 +464,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO1",
+    "learningOutcomeId": "204-14A-LO1",
     "difficulty": 2,
     "estimatedTime": 45,
     "explanation": "For safety, the switch must always break the Line conductor. Breaking the neutral would leave the lamp live even when the light is 'off'."
@@ -491,7 +491,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "mixed-circuit",
       "calculation"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "difficulty": 3,
     "estimatedTime": 90,
     "explanation": "If the lamp live is placed in the Loop terminal, it receives a permanent live feed, bypassing the switch entirely."
@@ -518,7 +518,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "Sleeving is used to identify that a conductor is performing a different function than its core color suggests (e.g., a blue core acting as a switched live)."
@@ -544,7 +544,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "The neutral group in the rose connects the incoming neutral from the supply directly to the neutral wire of the lamp."
@@ -570,7 +570,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO4",
+    "learningOutcomeId": "204-14A-LO4",
     "difficulty": 3,
     "estimatedTime": 75,
     "explanation": "Exposed copper outside a terminal is a safety hazard and a sign of poor termination; it must be fixed before proceeding."
@@ -596,7 +596,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 3,
     "estimatedTime": 90,
     "explanation": "The live travels from the CU to the rose loop, down to the switch COM, returns from L1 as a switched live to the rose, and then to the lamp."
@@ -622,7 +622,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "The permanent live feed (from the Loop) is connected to the Common (COM) terminal of the switch."
@@ -648,7 +648,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "CPC continuity must be maintained throughout the entire circuit, regardless of whether the current accessories are plastic or metal."
@@ -674,7 +674,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "The return from the switch (L1) is the switched live, which connects to the specific terminal in the rose that feeds the lamp."
@@ -701,7 +701,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "units"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -728,7 +728,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "series"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 60,
@@ -755,7 +755,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "voltage-rule"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -782,7 +782,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -809,7 +809,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -836,7 +836,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO4",
+    "learningOutcomeId": "204-14A-LO4",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -863,7 +863,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -890,7 +890,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -917,7 +917,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "mixed-circuit"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -944,7 +944,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -972,7 +972,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1000,7 +1000,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1028,7 +1028,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "voltage-rule"
     ],
-    "learningOutcomeId": "204-13A-LO1",
+    "learningOutcomeId": "204-14A-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1056,7 +1056,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "calculation"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1084,7 +1084,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1112,7 +1112,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "calculation",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 5,
     "estimatedTime": 120,
     "explanation": "The 'Loop' terminal in a 3-plate rose contains the permanent live. If the lamp is connected directly to this, it bypasses the switch and receives power constantly."
@@ -1139,7 +1139,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO4",
+    "learningOutcomeId": "204-14A-LO4",
     "difficulty": 4,
     "estimatedTime": 90,
     "explanation": "Conductors must be identified by sleeving or color at their terminations to indicate their function. A blue core used as a switched live must have brown sleeving."
@@ -1165,7 +1165,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "difficulty": 5,
     "estimatedTime": 120,
     "explanation": "The Loop terminal is for permanent lives only. In a standard circuit, this includes the supply in, the supply continuing to the next light, and the drop to the switch."
@@ -1191,7 +1191,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 5,
     "estimatedTime": 150,
     "explanation": "Switches must always break the Line (Live) conductor. Breaking the Neutral is dangerous because the lamp terminals remain live even when the light appears to be off."
@@ -1217,7 +1217,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 4,
     "estimatedTime": 90,
     "explanation": "The CPC must be continuous to ensure that if a metal fitting is installed in the future, it is properly earthed, and to maintain the earth path for the rest of the circuit."
@@ -1243,7 +1243,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 4,
     "estimatedTime": 100,
     "explanation": "The switched live is the return leg of the journey; it starts at the switch (L1) and returns to the rose to feed the lamp only when the switch is closed."
@@ -1269,7 +1269,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "204-13A-LO4",
+    "learningOutcomeId": "204-14A-LO4",
     "difficulty": 4,
     "estimatedTime": 90,
     "explanation": "'Plastic-in' occurs when insulation is clamped, preventing or restricting electrical contact between the terminal and the copper conductor."
@@ -1295,7 +1295,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-13A-LO3",
+    "learningOutcomeId": "204-14A-LO3",
     "difficulty": 5,
     "estimatedTime": 110,
     "explanation": "In a switch drop, both the feed down and the return up are live conductors. Since the blue core is being used as a live return, it must be sleeved brown."
@@ -1321,7 +1321,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13A-LO1",
+    "learningOutcomeId": "204-14A-LO1",
     "difficulty": 4,
     "estimatedTime": 100,
     "explanation": "The 3-plate rose (Loop-in) system uses the rose itself as a junction box for the permanent live, simplifying the wiring of the lighting circuit."
@@ -1347,7 +1347,7 @@ export const oneWayLighting3PlateCeilingRoseQuestions: TaggedQuestion[] = [
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "204-13A-LO2",
+    "learningOutcomeId": "204-14A-LO2",
     "difficulty": 5,
     "estimatedTime": 180,
     "explanation": "If there is voltage at the switch L1 but not at the lamp live terminal in the rose, the break must be in the conductor returning from the switch to the rose."

@@ -1,0 +1,286 @@
+{
+  "id": "204-14B",
+  "title": "204.14B — One-way lighting (3-plate ceiling rose): build flow + prove it (rig-safe)",
+  "description": "Build a one-way lighting circuit using the 3-plate ceiling rose method and verify it is safe and ready for results recording on a training rig using a repeatable dead-testing routine.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "One-way lighting",
+  "learningOutcomes": [
+    "Identify the three terminal groups in a 3-plate ceiling rose and what each one does.",
+    "Explain the rig-safe build flow from plan to recording results.",
+    "Carry out dead-testing procedures to confirm the circuit is safe and ready for results recording on a training rig.",
+    "Apply Prove → Test → Re-prove so readings are trustworthy (instrument + leads confirmed)."
+  ],
+  "prerequisites": [
+    "204-11A",
+    "204-11B",
+    "204-11C",
+    "204-12A",
+    "204-12B",
+    "204-14A"
+  ],
+  "blocks": [
+    {
+      "id": "204-14B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the three terminal groups in a ceiling rose and their functions.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the sequence of the rig-safe build flow (Plan → Mount → Route → Terminate → Inspect → Test → Record).",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Carry out dead tests and record results using a repeatable routine.",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Use Prove → Test → Re-prove to avoid false results caused by leads/settings/instrument issues.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "3-Plate Rose",
+            "definition": "A ceiling rose with three terminal blocks: Loop (permanent live group), Neutral group, and Switched Live group to the lamp."
+          },
+          {
+            "term": "Loop Terminal (Permanent Live Group)",
+            "definition": "The terminal group where the supply Line and the switch feed (to COM) are connected together."
+          },
+          {
+            "term": "Switched Live",
+            "definition": "The conductor returning from the switch (from L1) that becomes live only when the switch is ON."
+          },
+          {
+            "term": "CPC",
+            "definition": "Circuit Protective Conductor; maintains the earth path through the circuit for safety."
+          },
+          {
+            "term": "Dead Testing",
+            "definition": "Testing carried out on a circuit in a confirmed dead state (training-rig approved dead condition)."
+          },
+          {
+            "term": "Prove → Test → Re-prove",
+            "definition": "A routine to confirm your tester and leads are working before and after each test so results can be trusted."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "3-Plate Rose: Terminal Groups + Wire Map",
+        "description": "A visual map of Loop, Neutral, and Switched Live groups, plus COM/L1 at the 1-way switch.",
+        "videoUrl": "",
+        "imageUrl": "/images/lessons/1769601960118-One_way_Lighting_WR.png", 
+        "diagramType": "circuit",
+        "elementIds": [
+          "CU",
+          "Rose",
+          "Switch",
+          "Lamp"
+        ],
+        "placeholderText": "Diagram showing: CU Line to Rose LOOP; Rose LOOP to Switch COM; Switch L1 back to Rose SWITCHED LIVE; Rose SWITCHED LIVE to Lamp Live. CU Neutral to Rose NEUTRAL; Lamp Neutral to Rose NEUTRAL. CPC continuous to all points."
+      }
+    },
+    {
+      "id": "204-14B-explain-build-flow",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Systematic Build Flow (and how you prove it safely)",
+        "content": "A one-way lighting circuit (3-plate ceiling rose) is only as good as its build quality and the reliability of its test routine. This lesson is about doing it the same way every time.\n\n## Step 0 — Rig-safe start\nConfirm the training rig is in its approved dead state and your work area is clear. Identify the correct circuit before touching any conductors.\n\n## Step 1 — Plan from the diagram (wire journey check)\nBefore you cut/strip anything, you must be able to explain:\n- Which terminal group is the **Loop (permanent live)**.\n- Which core is the **switch feed** (Loop → switch COM).\n- Which core is the **switch return** (switch L1 → Rose switched live).\n- Where the **Neutral group** joins supply neutral + lamp neutral.\n- Where the **CPC** is terminated at every point.\n\n## Step 2 — Mount accessories\nFix the CU/isolator (rig), switch box, and ceiling rose/batten holder. Covers must fit without crushing conductors.\n\n## Step 3 — Route and prepare cables\n- Bring the **sheath into every accessory** (no single-insulated cores exposed outside).\n- Sleeve/identify immediately:\n  - **Green/Yellow** on CPC at terminations.\n  - **Brown** on any core used as a live (especially the switch return if it is blue).\n\n## Step 4 — Terminate (follow the 3-plate map)\n- **Loop group:** CU Line + switch feed to COM.\n- **Neutral group:** CU Neutral + lamp neutral.\n- **Switched Live group:** switch return from L1 + lamp live.\n- **CPC:** continuous and terminated at each point (including the switch box).\n\n## Step 5 — Dead inspection (decision gate)\nYou only proceed if inspection is a **Pass**. Stop-and-fix examples: exposed copper, damaged insulation, CPC missing/unterminated, loose terminations.\n\n## Step 6 — Dead tests + recording (rig-safe)\nYou now prove the build using a repeatable routine and record results.\n\n### Dead Test Routine (must be used)\nFor each test:\n1) **Prove** the tester/function/leads (known condition)\n2) **Test** the circuit\n3) **Re-prove** the tester/function/leads\n4) **Record** the value + judgement (Pass / Suspicious / Stop-and-check)\n\nTypical dead tests for this exercise (training rig context):\n- **CPC continuity** (low-ohms) to confirm the protective path is present and continuous.\n- **Insulation Resistance (IR)** between conductors to confirm no leakage paths.\n- **Polarity logic (dead method)** to confirm the switch is in the line conductor and the correct terminals are used.\n\nImportant: the student does not energise the rig. Testing is to confirm the circuit is safe and ready for results recording and the next supervised stage."
+      }
+    },
+    {
+      "id": "204-14B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Terminal Groups + Tests",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-14B-C1-L1-A",
+            "questionText": "Which terminal group in the ceiling rose connects the permanent live from the CU to the switch feed?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Loop",
+            "hint": "It is the permanent live group."
+          },
+          {
+            "id": "204-14B-C1-L1-B",
+            "questionText": "What colour sleeving must be applied to a blue core that is used as a switch return (switched live)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Brown",
+            "hint": "It must be identified as a live conductor."
+          },
+          {
+            "id": "204-14B-C1-L1-C",
+            "questionText": "Which test checks there is no unwanted leakage path between Line and Neutral conductors?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Insulation Resistance",
+            "hint": "This test uses a DC test voltage and reads in MΩ."
+          },
+          {
+            "id": "204-14B-C1-L2",
+            "questionText": "How does the Switched Live terminal group differ from the Loop group when the switch is OFF?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "The loop stays permanently live, but the switched live is not live when the switch is off",
+            "hint": "One is permanent; one depends on switch position."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14B-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Recording Dead Test Results (Example Fields)",
+        "given": "A student has completed a 1-way lighting circuit on a training rig and performed CPC continuity and IR tests. (Instrument fields shown as examples.)",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Record the instrument used (and serial number if your results sheet requires it).",
+            "formula": null,
+            "calculation": null,
+            "result": "Instrument: MFT (example), Serial No.: optional / per sheet"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Record CPC continuity reading (low-ohms range, leads nulled if required).",
+            "formula": null,
+            "calculation": null,
+            "result": "CPC continuity: 0.12 Ω (example value)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Record IR reading at the rig-specified test voltage (e.g., 500 V DC if that is the procedure for the exercise).",
+            "formula": null,
+            "calculation": null,
+            "result": "IR (L–N, L–CPC, N–CPC as required): >999 MΩ (example over-range)"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Apply the routine: re-prove and then make a judgement (Pass / Suspicious / Stop-and-check).",
+            "formula": null,
+            "calculation": null,
+            "result": "Re-prove completed → Judgement: PASS (example)"
+          }
+        ],
+        "notes": "Example values are for learning. Your rig/exercise sheet may specify the exact test voltage and what to record at each point."
+      }
+    },
+    {
+      "id": "204-14B-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Build + Test Logic",
+        "questions": [
+          {
+            "id": "204-14B-P1",
+            "questionText": "In a 3-plate rose, which two conductors share the Neutral terminal block?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "CU neutral and lamp neutral",
+              "Supply neutral and lamp neutral"
+            ],
+            "hint": "Neutral is not switched; it joins at the rose."
+          },
+          {
+            "id": "204-14B-P2",
+            "questionText": "What IR test voltage does your rig procedure specify for this exercise (for example 250 V DC or 500 V DC)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "500 V",
+              "500V",
+              "250 V",
+              "250V"
+            ],
+            "hint": "Use the exercise sheet / rig procedure (don’t guess)."
+          },
+          {
+            "id": "204-14B-P3",
+            "questionText": "True or False: CPC sleeving is only required if the backbox is metal.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Identification is required at terminations so function is clear."
+          },
+          {
+            "id": "204-14B-P4",
+            "questionText": "You get an unexpected test result that does not match your circuit map. What is your safest next action before concluding the circuit is wrong?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Re-prove the tester and check setup, then re-test",
+              "Check leads/ports/function and re-prove, then re-test",
+              "Prove test re-prove and repeat"
+            ],
+            "hint": "Remove the tester/leads/settings as the hidden cause first."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-14B-INT-1",
+            "questionText": "Explain why a dead inspection must happen before any meter testing, and how Prove → Test → Re-prove protects you from recording a false result.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Inspection finds stop-and-fix issues (exposed copper, loose terminations, missing CPC) that make testing unsafe or meaningless. Prove → Test → Re-prove confirms the tester and leads are working before and after, so an odd reading is less likely to be caused by failed leads, wrong ports, or incorrect settings.",
+            "hint": "Think: physical safety + instrument reliability."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          "From 204-11B: What does Prove → Test → Re-prove protect you from?",
+          "From 204-12A: List two items on a dead inspection checklist for a lighting circuit.",
+          "From 204-11C: Why might you need to null/zero leads before low-ohms testing?",
+          "From 204-14A: Which conductor must the switch break in a one-way lighting circuit?"
+        ],
+        "notes": "Reinforcing inspection-first logic, instrument trust, and the one-way wire journey."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-28",
+    "updated": "2026-01-28",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team"
+  }
+}

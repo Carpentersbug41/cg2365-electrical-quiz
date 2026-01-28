@@ -31,13 +31,15 @@ import lesson204_11B from '@/data/lessons/204-11B-proving-your-tester-works.json
 import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
 import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.json';
 import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-and-recording.json';
-import lesson204_13A from '@/data/lessons/204-13A-one-way-lighting-3-plate-ceiling-rose.json';
-import lesson204_13B from '@/data/lessons/204-13B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
+import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
+import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
+import lesson204_13A from '@/data/lessons/204-13A-ceiling-rose-anatomy-3-plate.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
-  '204-13B': lesson204_13B as Lesson,
   '204-13A': lesson204_13A as Lesson,
+  '204-14B': lesson204_14B as Lesson,
+  '204-14A': lesson204_14A as Lesson,
   '204-204-12B': lesson204_204_12B as Lesson,
   '204-12A': lesson204_12A as Lesson,
   '204-11C': lesson204_11C as Lesson,

@@ -1,0 +1,213 @@
+{
+  "id": "204-13A",
+  "title": "204.13A — Ceiling Rose Anatomy (3-plate): Identification and Mapping",
+  "description": "Learn to identify the three terminal groups in a standard ceiling rose and map conductors to their correct positions as a central junction hub.",
+  "layout": "linear-flow",
+  "unit": "Unit 204",
+  "topic": "Ceiling Rose Anatomy",
+  "learningOutcomes": [
+    "Name the three terminal groups in a 3-plate ceiling rose.",
+    "Explain what each terminal group is responsible for in the circuit.",
+    "Match common conductors to the correct terminal group (feed, switch drop, lamp flex, CPC).",
+    "Perform a quick rose-read check to confirm correct wiring before meter work."
+  ],
+  "prerequisites": [
+    "204-11A",
+    "204-11B",
+    "204-12A",
+    "204-12B"
+  ],
+  "blocks": [
+    {
+      "id": "204-13A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Name the three terminal groups in a 3-plate ceiling rose.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain what each terminal group is proving/doing in the circuit.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Match common conductors to the correct terminal group.",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Perform a rose-read check to confirm wiring mapping.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Ceiling rose (3-plate)",
+            "definition": "A lighting junction accessory with separate terminal groups for Loop, Neutral, and Switched Live."
+          },
+          {
+            "term": "Loop / Permanent live",
+            "definition": "The terminal group that holds the live supply feed and the switch feed; it remains live regardless of switch position."
+          },
+          {
+            "term": "Neutral group",
+            "definition": "The terminal group that connects neutral conductors from the supply and the lamp flex."
+          },
+          {
+            "term": "Switched live",
+            "definition": "The terminal group that connects the return wire from the switch to the live side of the lamp."
+          },
+          {
+            "term": "Lamp flex",
+            "definition": "The flexible cable connecting the ceiling rose to the lampholder."
+          },
+          {
+            "term": "CPC",
+            "definition": "Circuit Protective Conductor; the earth path that must be terminated and identified at the rose."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-explain-rose",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Rose as a Junction Hub",
+        "content": "A 3-plate ceiling rose is far more than just a connection point for a light bulb. In a standard domestic lighting circuit, it acts as a **junction hub**. It is where the supply comes in, where the path to the switch begins, and where the return from the switch meets the lamp. To wire or test a circuit successfully, you must develop a &quot;Rose Mindset&quot;—the ability to look at the terminal blocks and instantly map which conductors belong where.\n\nMost 3-plate roses consist of **three separate terminal blocks**. While their physical layout might vary by manufacturer, their function is always divided into three specific jobs:\n\n1. **The LOOP Terminal Group (Permanent Live)**\nThis group acts as the continuous &apos;hot&apos; path for the circuit. Its job is to hold the live conductors together so the supply can continue to the next light. In this group, you will typically find the **Line Feed In** (from the consumer unit), the **Line Feed Out** (going to the next light), and the **Switch Feed** (the wire going down to the &apos;Common&apos; terminal of the switch). Crucially, the lamp itself is NOT connected here, or the light would stay on forever!\n\n2. **The NEUTRAL Terminal Group**\nThis group provides the return path for the current. It groups all the neutral conductors together to ensure a complete circuit back to the consumer unit. You will usually see the **Neutral Feed In**, the **Neutral Feed Out**, and the **Lamp Neutral** (from the lamp flex) all sharing this terminal block.\n\n3. **The SWITCHED LIVE Terminal Group**\nThis is the &apos;controlled&apos; live terminal. It only becomes live when the wall switch is closed. This group connects the **Switch Return** (coming back from the switch) to the **Lamp Live** (the brown wire in the lamp flex). By isolating this connection, the switch can control the lamp without interrupting the permanent live supply to the rest of the house.\n\n**The CPC (Earth)**\nFinally, every ceiling rose must have a termination point for the **Circuit Protective Conductor (CPC)**. This is not part of the three main plates but is a separate terminal. All CPCs must be sleeved with green/yellow insulation, terminated securely, and checked for continuity. Even if the light fitting is plastic, the CPC must be present to maintain the earth path for the rest of the circuit.\n\nBefore performing any meter testing, you should perform a **Rose-Read**. This is a visual inspection to ensure no wires are misplaced (e.g., the lamp live is not in the Loop group). This simple check prevents short circuits and ensures the circuit operates as intended."
+      }
+    },
+    {
+      "id": "204-13A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Rose Anatomy",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-13A-C1-L1-A",
+            "questionText": "What are the three main terminal groups in a 3-plate ceiling rose?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Loop, Neutral, and Switched Live",
+            "hint": "Think of the three functions: permanent live, return path, and the switched path."
+          },
+          {
+            "id": "204-13A-C1-L1-B",
+            "questionText": "Which terminal group contains the &apos;Switch Feed&apos; that goes down to the switch COM terminal?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Loop",
+            "hint": "The switch needs a permanent live supply to function."
+          },
+          {
+            "id": "204-13A-C1-L1-C",
+            "questionText": "In which group do you terminate the blue wire (neutral) from the lamp flex?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Neutral",
+            "hint": "The lamp neutral joins the other neutrals to return to the supply."
+          },
+          {
+            "id": "204-13A-C1-L2",
+            "questionText": "Why is it critical that the Lamp Live is placed in the Switched Live group rather than the Loop group?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "If placed in the Loop group, the lamp would be permanently live and the switch would not control it.",
+            "hint": "Consider what the Loop group represents (permanent live)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "204-13A-P1",
+            "questionText": "Match the conductor to its group: &quot;Switch Return (back from L1)&quot; and &quot;Lamp Flex Live&quot;.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Switched Live",
+              "Switched Live group"
+            ],
+            "hint": "These two wires meet to allow the switch to turn the lamp on."
+          },
+          {
+            "id": "204-13A-P2",
+            "questionText": "True or False: A 3-plate ceiling rose is only used to connect a lamp flex and cannot be used as a junction for other lights.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Remember the &apos;Loop&apos; and &apos;Neutral&apos; feeds going out to the next point."
+          },
+          {
+            "id": "204-13A-P3",
+            "questionText": "During an inspection, you find a brown lamp live wire connected to the same terminal as the CU Line Feed. What is your judgment?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Stop-and-fix",
+              "Faulty",
+              "Incorrect"
+            ],
+            "hint": "Will the switch work if the lamp is connected directly to the supply feed?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-13A-INT-1",
+            "questionText": "Explain the structure and function of a 3-plate ceiling rose to a new trainee in one short paragraph. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "A 3-plate ceiling rose acts as a junction hub for lighting circuits, containing three main terminal groups. The Loop group maintains the permanent live supply, while the Neutral group provides the return path for both the supply and the lamp. The Switched Live group connects the switch return to the lamp live, allowing for manual control of the light. All earth conductors must also be securely terminated in the separate CPC terminal.",
+            "hint": "Mention the hub concept and the roles of the three specific groups."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          "What does CPC stand for, and what is its primary role in a circuit?",
+          "Why is checking for mechanical tightness of terminals a priority before any electrical testing?",
+          "Explain the term &quot;plastic-in&quot; and why it is considered a wiring fault.",
+          "Why must a visual inspection always be performed before conducting meter-based tests?"
+        ],
+        "notes": "Reviewing fundamental safety and termination standards from Units 204-11 and 204-12."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-28",
+    "updated": "2026-01-28",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

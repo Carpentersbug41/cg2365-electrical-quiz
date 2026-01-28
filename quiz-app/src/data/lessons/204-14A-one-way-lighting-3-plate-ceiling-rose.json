@@ -1,6 +1,6 @@
 {
-  "id": "204-13A",
-  "title": "204.13A — One-way lighting (3-plate ceiling rose): plan + wire journey (rig-safe)",
+  "id": "204-14A",
+  "title": "204.14A — One-way lighting (3-plate ceiling rose): plan + wire journey (rig-safe)",
   "description": "Master the wire journey and termination map for a 3-plate ceiling rose circuit before beginning practical rig installation.",
   "layout": "split-vis",
   "unit": "Unit 204",
@@ -19,7 +19,7 @@
   ],
   "blocks": [
     {
-      "id": "204-13A-outcomes",
+      "id": "204-14A-outcomes",
       "type": "outcomes",
       "order": 1,
       "content": {
@@ -44,7 +44,7 @@
       }
     },
     {
-      "id": "204-13A-vocab",
+      "id": "204-14A-vocab",
       "type": "vocab",
       "order": 2,
       "content": {
@@ -77,13 +77,14 @@
       }
     },
     {
-      "id": "204-13A-diagram",
+      "id": "204-14A-diagram",
       "type": "diagram",
       "order": 3,
       "content": {
         "title": "One-way Lighting (3-plate rose) Wire Journey",
         "description": "A map showing the flow of Line, Neutral, and CPC between the Consumer Unit, Ceiling Rose, and Switch.",
         "videoUrl": "",
+        "imageUrl": "/images/lessons/1769601960118-One_way_Lighting_WR.png", 
         "diagramType": "circuit",
         "elementIds": [
           "CU",
@@ -95,7 +96,7 @@
       }
     },
     {
-      "id": "204-13A-explain-wire-journey",
+      "id": "204-14A-explain-wire-journey",
       "type": "explanation",
       "order": 4,
       "content": {
@@ -104,7 +105,7 @@
       }
     },
     {
-      "id": "204-13A-check-1",
+      "id": "204-14A-check-1",
       "type": "practice",
       "order": 4.5,
       "content": {
@@ -113,7 +114,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "204-13A-C1-L1-A",
+            "id": "204-14A-C1-L1-A",
             "questionText": "In a one-way lighting circuit, which conductor must the switch break?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -125,7 +126,7 @@
             "hint": "Think about which wire carries the potential to the switch."
           },
           {
-            "id": "204-13A-C1-L1-B",
+            "id": "204-14A-C1-L1-B",
             "questionText": "Where do the neutral conductors from the CU and the lamp join together?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -138,7 +139,7 @@
             "hint": "It is the central hub for the 3-plate system."
           },
           {
-            "id": "204-13A-C1-L1-C",
+            "id": "204-14A-C1-L1-C",
             "questionText": "Which terminal on the switch receives the permanent live feed from the rose loop?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -146,7 +147,7 @@
             "hint": "It stands for 'Common'."
           },
           {
-            "id": "204-13A-C1-L2",
+            "id": "204-14A-C1-L2",
             "questionText": "Why is the lamp live connected to the 'Switched Live' terminal instead of the 'Loop' terminal?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
@@ -161,14 +162,14 @@
       }
     },
     {
-      "id": "204-13A-practice",
+      "id": "204-14A-practice",
       "type": "practice",
       "order": 7,
       "content": {
         "title": "Your Turn: Termination & Inspection",
         "questions": [
           {
-            "id": "204-13A-P1",
+            "id": "204-14A-P1",
             "questionText": "What colour sleeving should be applied to a blue conductor used as a switched live return?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -178,7 +179,7 @@
             "hint": "It must be identified as a live conductor."
           },
           {
-            "id": "204-13A-P2",
+            "id": "204-14A-P2",
             "questionText": "The return feed from the switch to the rose comes from which terminal?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -188,7 +189,7 @@
             "hint": "It is the output terminal of a 1-way switch."
           },
           {
-            "id": "204-13A-P3",
+            "id": "204-14A-P3",
             "questionText": "Identify one 'Stop-and-Fix' issue related to copper visible at a terminal.",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -202,7 +203,7 @@
       }
     },
     {
-      "id": "204-13A-integrative",
+      "id": "204-14A-integrative",
       "type": "practice",
       "order": 9.5,
       "content": {
@@ -210,7 +211,7 @@
         "mode": "integrative",
         "questions": [
           {
-            "id": "204-13A-INT-1",
+            "id": "204-14A-INT-1",
             "questionText": "Trace the path of the Line conductor starting from the Consumer Unit, through the ceiling rose and switch, until it reaches the lamp. Specify the terminal names used at each point.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
@@ -221,7 +222,7 @@
       }
     },
     {
-      "id": "204-13A-spaced-review",
+      "id": "204-14A-spaced-review",
       "type": "spaced-review",
       "order": 10,
       "content": {

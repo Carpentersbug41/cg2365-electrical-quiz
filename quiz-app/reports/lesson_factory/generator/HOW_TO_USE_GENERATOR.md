@@ -132,7 +132,7 @@ https://i.imgur.com/abc123.png
 
 **Local File Path:**
 ```
-/images/lessons/204-13A-diagram.png
+/images/lessons/204-14A-diagram.png
 /images/lessons/series-circuit.jpg
 ```
 
