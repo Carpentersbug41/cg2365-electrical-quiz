@@ -227,6 +227,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 5,
   },
+  {
+    id: '204-12A',
+    title: 'The dead inspection checklist',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'The dead inspection checklist',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-12A'),
+    available: true,
+    order: 6,
+  },
 ];
 
 /**
