@@ -25,6 +25,7 @@ import { cablesApplicationsQuestions } from './questions/cablesApplicationsQuest
 import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTestLanguageWhatEachTestProvesQuestions';
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './questions/circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './questions/rigSafeDeadTestingMindsetAndSetupQuestions';
+import { provingYourTesterWorksQuestions } from './questions/provingYourTesterWorksQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

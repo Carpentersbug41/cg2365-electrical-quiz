@@ -216,7 +216,9 @@ export class FileIntegrator {
     const fullLessonId = generateLessonId(request.unit, request.lessonId);
     const variableName = generateVariableName(request.unit, request.lessonId);
     
-    const importStatement = `import ${variableName} from '@/data/lessons/${lessonFilename.replace('.json', '')}';`;
+    // Ensure .json extension is included in import path
+    const lessonPath = lessonFilename.endsWith('.json') ? lessonFilename : `${lessonFilename}.json`;
+    const importStatement = `import ${variableName} from '@/data/lessons/${lessonPath}';`;
     const registryEntry = `  '${fullLessonId}': ${variableName} as Lesson,`;
 
     // Check if variable name already exists in ANY import (using regex for robust detection)
@@ -259,7 +261,9 @@ export class FileIntegrator {
     const fullLessonId = generateLessonId(request.unit, request.lessonId);
     const variableName = generateVariableName(request.unit, request.lessonId);
     
-    const importStatement = `import ${variableName} from '@/data/lessons/${lessonFilename.replace('.json', '')}';`;
+    // Ensure .json extension is included in import path
+    const lessonPath = lessonFilename.endsWith('.json') ? lessonFilename : `${lessonFilename}.json`;
+    const importStatement = `import ${variableName} from '@/data/lessons/${lessonPath}';`;
     const arrayEntry = `  ${variableName},`;
 
     // Check if variable name already exists in ANY import (using regex for robust detection)

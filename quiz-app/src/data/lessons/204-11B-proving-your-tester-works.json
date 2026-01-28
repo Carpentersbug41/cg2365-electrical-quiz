@@ -1,0 +1,225 @@
+{
+  "id": "204-11B",
+  "title": "204.11B — Proving your tester works: The Dead-Testing Mindset",
+  "description": "Learn how to verify instrument reliability before and after testing to ensure accurate results and safe working practices on training rigs.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Electrical Installations Technology",
+  "learningOutcomes": [
+    "State the purpose of proving a tester before use",
+    "Describe a standard proving routine for dead-testing",
+    "Identify indicators of a healthy tester function for continuity and insulation resistance",
+    "Determine when an instrument requires re-proving during a testing session"
+  ],
+  "prerequisites": [
+    "204-10A",
+    "204-10B",
+    "204-11A"
+  ],
+  "blocks": [
+    {
+      "id": "204-11B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the purpose of proving a tester before use",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe a standard proving routine for dead-testing",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify indicators of a healthy tester function for continuity and insulation resistance",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Determine when an instrument requires re-proving during a testing session",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Proving",
+            "definition": "The process of verifying an instrument is functioning correctly by checking it against a known reference before use."
+          },
+          {
+            "term": "Known Reference",
+            "definition": "A condition with a predictable outcome, such as shorting leads together to expect zero ohms."
+          },
+          {
+            "term": "Instrument Leads",
+            "definition": "The detachable cables used to connect the tester to the circuit; these are the most common source of false readings."
+          },
+          {
+            "term": "Dead-Testing",
+            "definition": "Electrical tests performed on circuits that have been safely isolated from the electrical supply."
+          },
+          {
+            "term": "Nulling",
+            "definition": "The process of subtracting the resistance of the test leads from the final measurement to ensure accuracy."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Proving Continuity vs Insulation Resistance",
+        "description": "Visualizing the two primary proving states for dead-testing instruments.",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "tester",
+          "leads_shorted",
+          "leads_open"
+        ],
+        "placeholderText": "Diagram showing a multi-function tester. Figure A shows leads shorted together for a continuity prove (reading 0.02 ohms). Figure B shows leads held apart for an IR prove (reading >299 Megohms)."
+      }
+    },
+    {
+      "id": "204-11B-explain-proving-logic",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Dead-Testing Mindset: Prove, Test, Re-prove",
+        "content": "Before an electrician can trust a reading on a circuit, they must first trust the instrument in their hands. **Proving the tester** is the fundamental first step in any testing procedure. It ensures that the instrument, its internal battery, and the test leads are all functioning correctly. If you skip this step, a reading of &quot;zero&quot; might not mean a short circuit—it might simply mean your leads have snapped internally.\n\nFor dead-testing on training rigs, we follow a simple but rigorous routine: **Prove → Test → Re-prove**. \n\n1. **Proving Continuity:** To prove the continuity function, you set the tester to the low-resistance ohms range (Ω). You firmly press the tips of the test leads together. A healthy tester should show a very low, stable reading (typically between 0.01Ω and 0.05Ω depending on lead length) and usually emits a continuous beep. If the reading fluctuates or is high (e.g., 2.0Ω), the leads may be dirty or damaged.\n\n2. **Proving Insulation Resistance (IR):** To prove the IR function, you set the tester to the MΩ range (usually at 250V or 500V for training). With the leads held apart and not touching anything, you press the test button. The tester should show the maximum possible value, often displayed as &quot;>299MΩ&quot;, &quot;>999MΩ&quot;, or &quot;O.C&quot; (Open Circuit). This proves the tester correctly identifies a lack of connection between the probes.\n\n**When to Re-prove:** You must not assume the tester stays accurate forever. A re-prove is required if:\n1. You change the test leads or the range settings.\n2. You receive an unexpected or &quot;odd&quot; result that doesn&apos;t match your circuit knowledge.\n3. You drop the instrument or it is bumped significantly.\n4. You have an interruption, such as a lunch break, before finishing the session.\n\nA common misconception is that if the screen turns on, the tester is fine. In reality, the most frequent failures occur in the **leads and probes**. By proving your tester against a known condition (shorted for low ohms, open for high ohms), you eliminate the instrument as a variable in your fault-finding. Remember: Proving is about the tester; testing is about the circuit. Never confuse the two."
+      }
+    },
+    {
+      "id": "204-11B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Proving Routines",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-11B-C1-L1-A",
+            "questionText": "What should you do with your test leads to prove the continuity function of a tester?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Short them together",
+            "hint": "Think about how you create a path of very low resistance."
+          },
+          {
+            "id": "204-11B-C1-L1-B",
+            "questionText": "What is the expected reading when proving the Insulation Resistance function with leads held apart?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": ">299MΩ",
+            "hint": "It should be the maximum value the tester can show."
+          },
+          {
+            "id": "204-11B-C1-L1-C",
+            "questionText": "Apart from the tester itself, what is the most common part of the setup to fail and give false readings?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Test leads",
+            "hint": "These are the cables connecting the meter to the circuit."
+          },
+          {
+            "id": "204-11B-C1-L2",
+            "questionText": "Why is it necessary to re-prove a tester after receiving an 'unexpected' result on a circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "To confirm the fault is in the circuit and not a failure of the tester or leads",
+            "hint": "Consider if the error is coming from the tool or the thing being measured."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11B-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Proving Scenarios",
+        "questions": [
+          {
+            "id": "204-11B-P1",
+            "questionText": "You are about to start dead-testing a lighting circuit. You short your leads and the tester displays 15.5Ω. Is this a healthy proving result?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "No",
+              "Incorrect"
+            ],
+            "hint": "Recall the typical resistance of a short piece of copper lead."
+          },
+          {
+            "id": "204-11B-P2",
+            "questionText": "Which of the following is the correct order for a professional testing sequence?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Prove Test Reprove",
+              "Prove, Test, Reprove"
+            ],
+            "hint": "It starts and ends with the tester."
+          },
+          {
+            "id": "204-11B-P3",
+            "questionText": "If you change your test leads for a longer set during a testing session, what must you do before continuing?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Re-prove",
+              "Prove the tester again"
+            ],
+            "hint": "New leads mean a new 'known reference' check is needed."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-11B-INT-1",
+            "questionText": "You are testing a training rig. You prove continuity and get 0.02Ω. You then test the circuit and get 'Open Circuit' (O.C). While moving to the next point, you accidentally drop your tester. Explain the steps you must take before you can trust and record the 'Open Circuit' reading you just saw.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "You must re-prove the tester immediately. Since the instrument was dropped, its internal components or lead connections may have failed. You cannot record the previous reading until you verify the tester still responds correctly to a known short-circuit.",
+            "hint": "Think about how physical damage affects the 'Prove-Test-Reprove' logic."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          "What is the unit of measurement for Insulation Resistance? (from 204-10A)",
+          "Define 'Continuity' in the context of an electrical circuit. (from 204-10B)",
+          "Why must we isolate a circuit before performing dead tests? (from 204-11A)",
+          "What does a reading of 0.00Ω on an Ohmmeter indicate? (General Principles)"
+        ],
+        "notes": "Reviewing units of resistance, basic definitions, and safety prerequisites."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-28",
+    "updated": "2026-01-28",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

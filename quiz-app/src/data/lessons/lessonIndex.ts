@@ -205,6 +205,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 3,
   },
+  {
+    id: '204-11B',
+    title: 'Proving your tester works',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Proving your tester works',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-11B'),
+    available: true,
+    order: 4,
+  },
 ];
 
 /**
