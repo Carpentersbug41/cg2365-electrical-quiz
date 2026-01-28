@@ -31,7 +31,8 @@ import { theDeadInspectionChecklistQuestions } from './questions/theDeadInspecti
 import { inspectionDecisionsAndRecordingQuestions } from './questions/inspectionDecisionsAndRecordingQuestions';
 import { oneWayLighting3PlateCeilingRoseQuestions } from './questions/oneWayLighting3PlateCeilingRoseQuestions';
 import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './questions/oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
-import { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './questions/ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

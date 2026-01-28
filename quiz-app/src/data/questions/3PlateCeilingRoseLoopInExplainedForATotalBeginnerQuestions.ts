@@ -6,7 +6,7 @@ import { TaggedQuestion } from './types';
  * Generated: 2026-01-28
  */
 
-export const 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions: TaggedQuestion[] = [
+export const threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions: TaggedQuestion[] = [
   {
     "id": 4051,
     "question": "What are the two primary functions of a 3-plate ceiling rose in a loop-in circuit?",

@@ -24,13 +24,15 @@ import { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklis
 import { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
 import { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3PlateCeilingRoseQuestions';
 import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
-import { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
-  ...3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
+  ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
+  ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
   ...oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions,
   ...oneWayLighting3PlateCeilingRoseQuestions,
   ...inspectionDecisionsAndRecordingQuestions,
@@ -76,7 +78,8 @@ export { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklis
 export { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
 export { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3PlateCeilingRoseQuestions';
 export { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
-export { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+export { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+export { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 
 /**
  * Filter questions by tags

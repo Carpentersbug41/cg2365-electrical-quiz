@@ -666,6 +666,187 @@ if (!q.questionText) {
 - **Risk**: Low - multiple layers of protection
 - **Benefit**: Prevents runtime crashes from malformed spaced-review questions
 
+### ✅ Problem 6: Invalid JavaScript Identifiers Starting with Numbers
+- **Status**: DOCUMENTED (Jan 28, 2026) - Manual fix required when it occurs
+- **Files**: Question bank file, `src/data/questions/index.ts` (3 locations)
+- **Solution**: Spell out leading numbers (e.g., `3` → `three`)
+- **Root Cause**: Lesson generator doesn't validate that identifiers follow JavaScript naming rules
+- **Prevention**: Future work - add identifier validation to generator
+- **Verification**: Dev server starts without "Identifier cannot follow number" error
+- **Risk**: Medium - will occur whenever lesson title starts with a number
+- **Benefit**: Clear fix pattern documented for quick resolution
+
+---
+
+## Problem 6: Invalid JavaScript Identifiers Starting with Numbers ✅ **FIXED - Jan 28, 2026**
+
+### Issue Symptoms
+Build error when trying to compile after lesson generation:
+```
+Error: x Identifier cannot follow number
+./src/data/questions.ts
+Error:   x Identifier cannot follow number
+    ,-[C:\Users\carpe\Desktop\hs_quiz\quiz-app\src\data\questions.ts:34:1]
+ 34 | import { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+    :           ^
+```
+
+### Root Cause ✅ **CONFIRMED**
+JavaScript/TypeScript identifiers (variable names, function names, etc.) **cannot start with a number**. When the lesson generator creates a question bank from a lesson title that starts with a number (e.g., "3-plate ceiling rose"), it converts it directly to camelCase without validating that the resulting identifier is valid JavaScript.
+
+**Example of the problem:**
+- Lesson title: "3-plate ceiling rose (loop-in) — explained for a total beginner"
+- Generated identifier: `3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions` ❌ (starts with `3`)
+- Valid identifier: `threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions` ✅ (starts with `three`)
+
+### The Fix ✅ **APPLIED - Jan 28, 2026**
+
+**Manual fix required** - the lesson generator does NOT currently validate identifier names.
+
+#### Files to Modify
+
+**1. Question Bank File** (e.g., `src/data/questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions.ts`):
+
+```typescript
+// BEFORE:
+export const 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions: TaggedQuestion[] = [
+
+// AFTER:
+export const threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions: TaggedQuestion[] = [
+```
+
+**2. Questions Index File** (`src/data/questions/index.ts`) - **3 locations:**
+
+a) Import statement:
+```typescript
+// BEFORE:
+import { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+
+// AFTER:
+import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+```
+
+b) Array usage:
+```typescript
+// BEFORE:
+export const allTaggedQuestions: TaggedQuestion[] = [
+  ...3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
+
+// AFTER:
+export const allTaggedQuestions: TaggedQuestion[] = [
+  ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
+```
+
+c) Re-export:
+```typescript
+// BEFORE:
+export { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+
+// AFTER:
+export { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
+```
+
+### Important Note on File Names
+The **file name itself** can start with a number without issues (e.g., `3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions.ts` is fine). Only the JavaScript/TypeScript identifier (the exported variable name) needs to be fixed.
+
+### Naming Convention
+When a lesson title starts with a number, spell it out in the identifier:
+- `3` → `three`
+- `2` → `two`
+- `1` → `one`
+- `10` → `ten`
+- etc.
+
+This follows existing patterns in the codebase (e.g., `oneWayLighting3PlateCeilingRoseQuestions`).
+
+### Verification Steps
+
+**To verify the fix worked:**
+
+1. **Restart the dev server** (required after any import changes):
+   ```bash
+   # Stop the dev server (Ctrl+C)
+   npm run dev
+   ```
+
+2. **Check for build errors**:
+   - Dev server should start without "Identifier cannot follow number" errors
+   - Look for `✓ Ready in XXXXms` message
+
+3. **Verify the lesson loads**:
+   - Navigate to `/learn` page
+   - The lesson should appear in the list
+   - Click on the lesson to verify it loads without errors
+
+### If This Error Reappears
+
+**Step 1: Identify the invalid identifier**
+The error message will show which identifier is invalid:
+```
+import { 3SomeName } from './questions/3SomeName';
+         ^
+```
+
+**Step 2: Spell out the leading number**
+Replace the leading number with its spelled-out equivalent:
+- `3SomeName` → `threeSomeName`
+- `2WaySwitch` → `twoWaySwitch`
+- `10AmpCircuit` → `tenAmpCircuit`
+
+**Step 3: Update all three locations in `index.ts`**
+- Import statement
+- Array spread in `allTaggedQuestions`
+- Re-export statement
+
+**Step 4: Update the export in the question bank file**
+
+**Step 5: Restart dev server and verify**
+
+### Prevention (Future Work)
+
+The lesson generator should be updated to validate identifier names. Suggested location: `src/lib/generation/fileGenerator.ts` or `src/lib/generation/utils.ts`
+
+**Add identifier validation function:**
+```typescript
+function sanitizeIdentifier(name: string): string {
+  // If starts with a number, spell it out
+  const numberMap: Record<string, string> = {
+    '0': 'zero', '1': 'one', '2': 'two', '3': 'three', '4': 'four',
+    '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine',
+    '10': 'ten', '11': 'eleven', '12': 'twelve', '13': 'thirteen',
+    '14': 'fourteen', '15': 'fifteen', '16': 'sixteen', '17': 'seventeen',
+    '18': 'eighteen', '19': 'nineteen', '20': 'twenty'
+  };
+  
+  // Check if identifier starts with a number
+  const match = name.match(/^(\d+)/);
+  if (match) {
+    const num = match[1];
+    const replacement = numberMap[num] || `number${num}`;
+    return name.replace(/^\d+/, replacement);
+  }
+  
+  return name;
+}
+```
+
+**Apply this function when generating question bank variable names.**
+
+### Files Modified (Jan 28, 2026)
+- `src/data/questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions.ts` - Fixed export name
+- `src/data/questions/index.ts` - Fixed import, array usage, and re-export
+
+### Benefits
+- **Build succeeds**: No more "Identifier cannot follow number" errors
+- **Quick fix**: Clear pattern to follow (spell out leading numbers)
+- **Documentation**: This guide provides step-by-step instructions
+- **Future-proof**: Suggested prevention code for the generator
+
+**Risk Level**: Medium → Low after documentation
+- Lesson generator doesn't validate identifiers (needs future fix)
+- Manual fix is straightforward with clear pattern
+- Well-documented for future occurrences
+
 ---
 
 ## Emergency Troubleshooting Guide
@@ -712,6 +893,29 @@ if (!q.questionText) {
 1. **Check**: `grep "import.*{.*variableName.*}" src/data/questions/index.ts`
 2. **Fix**: Remove duplicate import/export lines
 3. **Prevent**: Should be caught by regex checks (see Problem 1)
+
+### Error: "Identifier cannot follow number" or "x Identifier cannot follow number"
+**NEW (Jan 28, 2026)**: JavaScript identifiers cannot start with numbers!
+
+1. **Identify the problem** (Problem 6):
+   - Error shows which identifier is invalid (e.g., `3PlateCeilingRose...`)
+   - This happens when lesson title starts with a number
+
+2. **Quick Fix Pattern**:
+   - Spell out the leading number: `3` → `three`, `2` → `two`, etc.
+   - Example: `3PlateCeilingRoseQuestions` → `threePlateCeilingRoseQuestions`
+
+3. **Files to update (3 locations in index.ts + 1 in question file)**:
+   - Import: `import { threePlate... } from './3Plate...'`
+   - Array: `...threePlate...`
+   - Export: `export { threePlate... } from './3Plate...'`
+   - Question file: `export const threePlate... = [`
+
+4. **Verify**:
+   - Restart dev server
+   - Should see `✓ Ready` without errors
+
+5. **Full details**: See Problem 6 above for complete step-by-step instructions
 
 ### Error: "Cannot read properties of undefined (reading 'replace')" in SpacedReviewBlock
 **NEW (Jan 28, 2026)**: This error is now prevented by validation and defensive coding!

@@ -282,6 +282,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 10,
   },
+  {
+    id: '204-13B',
+    title: 'Ceiling rose to one-way switch - For absolute beginners',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Ceiling rose to one-way switch - For absolute beginners',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-13B'),
+    available: true,
+    order: 11,
+  },
 ];
 
 /**

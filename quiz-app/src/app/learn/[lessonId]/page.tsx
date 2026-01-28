@@ -35,9 +35,11 @@ import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-a
 import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
 import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
 import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
+import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '204-13B': lesson204_13B as Lesson,
   '204-13A': lesson204_13A as Lesson,
   '204-14B': lesson204_14B as Lesson,
   '204-14A': lesson204_14A as Lesson,
