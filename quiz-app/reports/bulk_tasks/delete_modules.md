@@ -224,3 +224,32 @@ This would be implemented in `src/lib/generation/lessonDeleter.ts` following the
 **Risk level:** Medium - forgetting locations causes build errors
 
 **Always remember:** Restart dev server after deletion!
+
+## Completed Deletions
+
+This section tracks modules that have been successfully deleted from the system.
+
+### Deletion Record: 204-13A (January 28, 2026)
+
+**Module ID:** 204-13A (duplicate ID issue - both variants removed)
+
+**Reason for Deletion:** Duplicate lesson ID `204-13A` with conflicting content. Both modules removed to resolve ID conflict.
+
+**Files Deleted:**
+1. `204-13A-one-way-lighting-3-plate-ceiling-rose.json` (orphaned file, no code references)
+2. `204-13A-ceiling-rose-anatomy-3-plate.json` (fully integrated)
+3. `ceilingRoseAnatomy3PlateQuestions.ts` (50 multiple choice questions, ~1360 lines)
+
+**Integration Points Cleaned:**
+1. `lessonIndex.ts` - Removed lesson entry (1 block)
+2. `learn/[lessonId]/page.tsx` - Removed import statement
+3. `learn/[lessonId]/page.tsx` - Removed LESSONS registry entry
+4. `learn/page.tsx` - Removed import statement
+5. `learn/page.tsx` - Removed LESSONS array entry
+6. `questions/index.ts` - Removed import statement
+7. `questions/index.ts` - Removed array spread
+8. `questions/index.ts` - Removed export statement
+
+**Total Changes:** 3 files deleted, 5 files edited, 8 code integration points removed
+
+**Verification:** All references to `204-13A` successfully removed from codebase.

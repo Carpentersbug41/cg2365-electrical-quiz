@@ -285,12 +285,32 @@ BLOCK TEMPLATES:
   "content": {
     "title": "Spaced Review (from prerequisites)",
     "questions": [
-      "[Question 1]",
-      "[Question 2]",
-      "[Question 3]",
-      "[Question 4]"
+      {
+        "id": "${lessonId}-SR-1",
+        "questionText": "[Review question from prerequisite topic 1]",
+        "expectedAnswer": "[Clear, concise answer]",
+        "hint": "[Helpful hint if student struggles]"
+      },
+      {
+        "id": "${lessonId}-SR-2",
+        "questionText": "[Review question from prerequisite topic 2]",
+        "expectedAnswer": "[Clear, concise answer]",
+        "hint": "[Helpful hint]"
+      },
+      {
+        "id": "${lessonId}-SR-3",
+        "questionText": "[Review question from prerequisite topic 3]",
+        "expectedAnswer": "[Clear, concise answer]",
+        "hint": "[Helpful hint]"
+      },
+      {
+        "id": "${lessonId}-SR-4",
+        "questionText": "[Review question from prerequisite topic 4]",
+        "expectedAnswer": "[Clear, concise answer]",
+        "hint": "[Helpful hint]"
+      }
     ],
-    "notes": "[What concepts being reviewed]"
+    "notes": "[What concepts being reviewed from which prerequisites]"
   }
 }
 
@@ -361,7 +381,14 @@ ${request.section.includes('Science') || request.topic.toLowerCase().includes('c
     : '- Worked example and guided practice optional (include if calculations involved)'}
 - Include 3-5 practice questions
 - Add 1 integrative question at end
-- Include 4 spaced review questions from prerequisites
+- Include 4 spaced review questions from prerequisites (each with id, questionText, expectedAnswer, and hint)
+
+SPACED REVIEW QUALITY STANDARDS:
+- Questions should review key concepts from prerequisite lessons
+- Expected answers should be concise (1-2 sentences or a key term/value)
+- Hints should guide students toward the answer without giving it away
+- Questions should be appropriate for quick review (simple recall, not complex calculations)
+- Each question must have unique ID following pattern: ${fullLessonId}-SR-1, ${fullLessonId}-SR-2, etc.
 
 TOPIC CONTEXT:
 ${this.getTopicContext(request.topic, request.section)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}
