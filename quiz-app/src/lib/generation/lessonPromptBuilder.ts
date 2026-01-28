@@ -134,6 +134,7 @@ BLOCK TEMPLATES:
     "title": "[Short diagram title]",
     "description": "[What the diagram shows]",
     "videoUrl": "[YouTube URL if provided, otherwise empty string]",
+    "imageUrl": "[Image URL if provided, otherwise omit this field]",
     "diagramType": "series|parallel|circuit|other",
     "elementIds": ["element1", "element2"],
     "placeholderText": "[Text description for accessibility]"
@@ -287,25 +288,25 @@ BLOCK TEMPLATES:
     "questions": [
       {
         "id": "${lessonId}-SR-1",
-        "questionText": "[Review question from prerequisite topic 1]",
+        "questionText": "[Review question from prerequisite topic 1]",  // CRITICAL: Must be "questionText" (NOT "attText", "questiontext", or any other variant!)
         "expectedAnswer": "[Clear, concise answer]",
         "hint": "[Helpful hint if student struggles]"
       },
       {
         "id": "${lessonId}-SR-2",
-        "questionText": "[Review question from prerequisite topic 2]",
+        "questionText": "[Review question from prerequisite topic 2]",  // CRITICAL: Field name must be exactly "questionText"
         "expectedAnswer": "[Clear, concise answer]",
         "hint": "[Helpful hint]"
       },
       {
         "id": "${lessonId}-SR-3",
-        "questionText": "[Review question from prerequisite topic 3]",
+        "questionText": "[Review question from prerequisite topic 3]",  // CRITICAL: Field name must be exactly "questionText"
         "expectedAnswer": "[Clear, concise answer]",
         "hint": "[Helpful hint]"
       },
       {
         "id": "${lessonId}-SR-4",
-        "questionText": "[Review question from prerequisite topic 4]",
+        "questionText": "[Review question from prerequisite topic 4]",  // CRITICAL: Field name must be exactly "questionText"
         "expectedAnswer": "[Clear, concise answer]",
         "hint": "[Helpful hint]"
       }
@@ -327,7 +328,9 @@ CRITICAL QUALITY RULES:
 7. **Block Order**: Maintain correct sequence (1, 2, 3, 4, 4.5, 5, 6, 7, 9.5, 8/10)
 8. **Prerequisites**: Use actual lesson IDs that would exist
 9. **Terminology**: Keep consistent throughout lesson
-10. **Clarity**: Write for Level 2 electrician students (practical, not overly academic)
+10. **FIELD NAMES**: All spaced-review questions MUST use "questionText" field (NEVER "attText", "questiontext", "question_text", or any other variant!)
+11. **MEDIA URLS**: If YouTube URL or Image URL is provided, MUST include them in the diagram block's "videoUrl" and "imageUrl" fields respectively
+12. **Clarity**: Write for Level 2 electrician students (practical, not overly academic)
 
 APPROVED TAGS: ${APPROVED_TAGS.slice(0, 20).join(', ')} (and others)
 APPROVED MISCONCEPTION CODES: ${APPROVED_MISCONCEPTION_CODES.slice(0, 15).join(', ')} (and others)
@@ -358,6 +361,10 @@ OUTPUT FORMAT:
 
     const youtubeUrlSection = request.youtubeUrl
       ? `\n\nYOUTUBE VIDEO URL: ${request.youtubeUrl}\n\nInclude this URL in the diagram block's "videoUrl" field AND in metadata as "youtubeUrl": "${request.youtubeUrl}"`
+      : '';
+
+    const imageUrlSection = request.imageUrl
+      ? `\n\nIMAGE URL: ${request.imageUrl}\n\nInclude this URL in the diagram block's "imageUrl" field. This is a static image that visually represents the circuit/concept being taught.`
       : '';
 
     return `Generate a complete lesson JSON for:
@@ -391,7 +398,7 @@ SPACED REVIEW QUALITY STANDARDS:
 - Each question must have unique ID following pattern: ${fullLessonId}-SR-1, ${fullLessonId}-SR-2, etc.
 
 TOPIC CONTEXT:
-${this.getTopicContext(request.topic, request.section)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}
+${this.getTopicContext(request.topic, request.section)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}
 
 Generate the complete lesson JSON now. Remember: ONLY JSON, no markdown, no explanations.`;
   }

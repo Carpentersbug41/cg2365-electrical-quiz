@@ -1,0 +1,239 @@
+{
+  "id": "204-13A",
+  "title": "204.13A — 3-plate ceiling rose (loop-in): Explained for Beginners",
+  "description": "An introductory guide to understanding how a ceiling rose acts as both a junction box and a light connection using the loop-in method.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "3-plate ceiling rose (loop-in)",
+  "learningOutcomes": [
+    "Define the purpose of a 3-plate ceiling rose in a lighting circuit.",
+    "Describe the 'loop-in' wiring method used in domestic installations.",
+    "Identify the three terminal groups (plates) and their specific functions."
+  ],
+  "prerequisites": [
+    "204-12A",
+    "204-12B",
+    "204-11A",
+    "204-11B"
+  ],
+  "blocks": [
+    {
+      "id": "204-13A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State what a ceiling rose is and its dual purpose.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the concept of 'loop-in' wiring in plain English.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Categorize conductors into the three main terminal groups (plates).",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Ceiling Rose",
+            "definition": "A connection point for a pendant light that also serves as a junction box for the circuit cables."
+          },
+          {
+            "term": "Loop-in",
+            "definition": "A wiring system where the main power supply 'loops' from one ceiling rose to the next."
+          },
+          {
+            "term": "Permanent Live",
+            "definition": "The terminal group that is always connected to the power supply, regardless of the switch position."
+          },
+          {
+            "term": "Switched Live",
+            "definition": "The wire that returns from the switch to provide power to the lamp only when the switch is ON."
+          },
+          {
+            "term": "Switch Drop",
+            "definition": "The cable that runs from the ceiling rose down to the light switch and back again."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The 3-Plate Ceiling Rose Layout",
+        "description": "A visual guide showing the three distinct terminal groups: Neutral, Permanent Live (Loop), and Switched Live.",
+        "videoUrl": "",
+        "imageUrl": "/images/lessons/1769620003359-ceiling_rose_end_newcolours.png",
+        "diagramType": "circuit",
+        "elementIds": [
+          "plate-neutral",
+          "plate-loop",
+          "plate-switched"
+        ],
+        "placeholderText": "Diagram showing three sets of terminals: one for neutrals, one for permanent live loop-in/out/switch-feed, and one for the switched live return and lamp live."
+      }
+    },
+    {
+      "id": "204-13A-explain-ceiling-rose",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Understanding the 3-Plate System",
+        "content": "Safety note: This lesson is for conceptual learning on training rigs. Never open or work on real ceiling roses in a live domestic installation.\n\n**1. What is a Ceiling Rose?**\nIf you have never seen one, a ceiling rose is two things in one: a **junction point** where several cables join together, and the **connection point** for the lamp holder (the part the light hangs from). It is not just a connector; it is the place where the circuit loops to the next light, which is why it often looks crowded with wires.\n\n**2. What 'Loop-in' Means**\nA lighting circuit usually moves from the consumer unit to Light 1, then Light 2, and so on. 'Loop-in' means the main supply is looped from one light point to the next. At each rose, you typically have a cable coming in (supply in), a cable going out (supply to the next light), and a cable going to the switch (the switch drop).\n\n**3. The Three Plates (The Terminal Groups)**\nThink of a 3-plate rose as three separate labelled buckets:\n\n1. **Plate A — Neutrals Group:** This is for all neutrals. This includes the Neutral from the supply in, the Neutral to the supply out, and the Neutral wire for the lamp itself. The Neutral is normally **not** switched.\n\n2. **Plate B — Permanent Lives Loop:** This is the 'always live' group. It includes the Live from the supply in, the Live going to the next light, and the Live going down to the switch. This group stays live whether the light is on or off.\n\n3. **Plate C — Switched Live:** This group is specifically for the power returning from the switch. It contains the wire coming back from the switch and the lamp's live connection. This is only live when the switch is **ON**.\n\n**4. The Role of the Switch**\nA 1-way switch acts as a bridge. In loop-in wiring, the switch has a feed going down to it (from the Permanent Live group) and a return coming back (to the Switched Live group). The switch controls whether power can jump from the 'always live' group to the lamp.\n\n**5. The Wiring Map**\nTo keep it simple, remember these roles:\n- **Neutrals:** In, Out, Lamp.\n- **Permanent Lives:** In, Out, Feed to Switch.\n- **Switched Live:** Return from Switch, Lamp Live.\n- **Earth (CPC):** All earth wires must be connected together and to the terminal in the rose base."
+      }
+    },
+    {
+      "id": "204-13A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Rose Logic",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-13A-C1-L1-A",
+            "questionText": "What are the two main functions of a ceiling rose?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Junction point and lamp connection",
+            "hint": "It joins cables and holds the light."
+          },
+          {
+            "id": "204-13A-C1-L1-B",
+            "questionText": "Which terminal group stays live even when the light switch is turned off?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Permanent Live",
+            "hint": "It's the group that 'loops' the supply to the next light."
+          },
+          {
+            "id": "204-13A-C1-L1-C",
+            "questionText": "Is the Neutral wire usually connected to the switch in a standard loop-in circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "No",
+            "hint": "The switch only interrupts the live path."
+          },
+          {
+            "id": "204-13A-C1-L2",
+            "questionText": "Why is the lamp's live wire kept in a separate terminal from the supply 'Live In' wires?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "So the switch can control it",
+            "hint": "If it were in the permanent live group, the light would be on forever."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "204-13A-P1",
+            "questionText": "In a 3-plate ceiling rose, how many wires are typically found in the Neutral terminal group if the circuit continues to another room?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Neutral in, Neutral out, and Neutral to the lamp."
+          },
+          {
+            "id": "204-13A-P2",
+            "questionText": "Which specific conductor returns from the switch to the ceiling rose?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Switched Live"
+            ],
+            "hint": "It's the wire that becomes live only when the switch is flipped."
+          },
+          {
+            "id": "204-13A-P3",
+            "questionText": "What is the name of the wiring method where power goes from rose to rose rather than switch to switch?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Loop-in"
+            ],
+            "hint": "It 'loops' through the ceiling points."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-13A-INT-1",
+            "questionText": "Explain why a ceiling rose at the end of a circuit (the last light) has fewer wires than one in the middle of a circuit. Which specific wires would be missing?",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "The 'Supply Out' wires (Live and Neutral) are missing because there is no next light to feed.",
+            "hint": "Think about the 'Out' part of the loop."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          {
+            "id": "204-13A-SR-1",
+            "questionText": "According to Ohm's Law, if resistance stays the same but voltage increases, what happens to the current?",
+            "expectedAnswer": "Current increases",
+            "hint": "V = I x R. If V goes up and R is constant, I must go up."
+          },
+          {
+            "id": "204-13A-SR-2",
+            "questionText": "What is the primary purpose of a CPC (Circuit Protective Conductor)?",
+            "expectedAnswer": "To provide a path for fault current to earth",
+            "hint": "It's for safety and earthing."
+          },
+          {
+            "id": "204-13A-SR-3",
+            "questionText": "In a series circuit, what can you say about the current at any point in the loop?",
+            "expectedAnswer": "It is the same everywhere",
+            "hint": "There is only one path for the electrons to follow."
+          },
+          {
+            "id": "204-13A-SR-4",
+            "questionText": "Before working on any part of an electrical installation, what safety procedure must be followed?",
+            "expectedAnswer": "Safe Isolation",
+            "hint": "Think about locking off and proving dead."
+          }
+        ],
+        "notes": "Reviewing Ohm's Law, earthing, series circuits, and safety procedures from Unit 204 basics."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-28",
+    "updated": "2026-01-28",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

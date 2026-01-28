@@ -24,13 +24,13 @@ import { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklis
 import { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
 import { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3PlateCeilingRoseQuestions';
 import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
-import { ceilingRoseAnatomy3PlateQuestions } from './ceilingRoseAnatomy3PlateQuestions';
+import { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
-  ...ceilingRoseAnatomy3PlateQuestions,
+  ...3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
   ...oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions,
   ...oneWayLighting3PlateCeilingRoseQuestions,
   ...inspectionDecisionsAndRecordingQuestions,
@@ -76,7 +76,7 @@ export { theDeadInspectionChecklistQuestions } from './theDeadInspectionChecklis
 export { inspectionDecisionsAndRecordingQuestions } from './inspectionDecisionsAndRecordingQuestions';
 export { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3PlateCeilingRoseQuestions';
 export { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
-export { ceilingRoseAnatomy3PlateQuestions } from './ceilingRoseAnatomy3PlateQuestions';
+export { 3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 
 /**
  * Filter questions by tags

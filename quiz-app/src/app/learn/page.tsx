@@ -29,7 +29,7 @@ import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.
 import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-and-recording.json';
 import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
 import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
-import lesson204_13A from '@/data/lessons/204-13A-ceiling-rose-anatomy-3-plate.json';
+import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';

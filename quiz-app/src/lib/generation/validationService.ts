@@ -187,8 +187,15 @@ export class ValidationService {
       case 'spaced-review':
         if (!block.content.questions || !Array.isArray(block.content.questions)) {
           errors.push('Spaced review must have questions array');
-        } else if (block.content.questions.length !== 4) {
-          warnings.push('Spaced review should have exactly 4 questions');
+        } else {
+          if (block.content.questions.length !== 4) {
+            warnings.push('Spaced review should have exactly 4 questions');
+          }
+          
+          // Validate each spaced-review question structure
+          for (const question of block.content.questions) {
+            this.validateSpacedReviewQuestion(question, lessonId, errors, warnings);
+          }
         }
         break;
     }
@@ -218,6 +225,41 @@ export class ValidationService {
     // Check for removed 'hypothesis' level
     if (question.cognitiveLevel === 'hypothesis') {
       errors.push(`Question ${question.id} uses removed cognitiveLevel "hypothesis" - use "synthesis" instead`);
+    }
+  }
+
+  /**
+   * Validate spaced-review question
+   */
+  private validateSpacedReviewQuestion(question: Record<string, unknown>, lessonId: string, errors: string[], warnings: string[]): void {
+    if (!question.id) {
+      errors.push('Spaced review question missing ID');
+      return;
+    }
+
+    // Check ID pattern
+    if (typeof question.id === 'string' && !question.id.startsWith(lessonId)) {
+      errors.push(`Spaced review question ID ${question.id} does not start with lesson ID ${lessonId}`);
+    }
+
+    // CRITICAL: Check for questionText field (common LLM typo: "attText")
+    if (!question.questionText) {
+      // Check for common typos
+      const hasTypo = 'attText' in question || 'questiontext' in question || 'question_text' in question;
+      if (hasTypo) {
+        errors.push(`Spaced review question ${question.id} has typo in field name - found "${Object.keys(question).find(k => k.toLowerCase().includes('text'))}" but expected "questionText"`);
+      } else {
+        errors.push(`Spaced review question ${question.id} missing questionText field`);
+      }
+    }
+
+    if (!question.expectedAnswer) {
+      errors.push(`Spaced review question ${question.id} missing expectedAnswer`);
+    }
+
+    // Hint is optional but recommended
+    if (!question.hint) {
+      warnings.push(`Spaced review question ${question.id} missing hint (recommended for better learning experience)`);
     }
   }
 

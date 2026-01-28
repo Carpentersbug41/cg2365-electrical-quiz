@@ -446,6 +446,228 @@ Trigger a generation that fails with a JSON parse error:
 
 ---
 
+## Problem 5: LLM Field Name Typos in Spaced Review Questions ✅ **FIXED - Jan 28, 2026**
+
+### Issue
+Runtime error when viewing lessons with malformed spaced-review questions:
+```
+TypeError: Cannot read properties of undefined (reading 'replace')
+at decodeHtmlEntities (SpacedReviewBlock.tsx:18:8)
+```
+
+The error occurred because the LLM generated `"attText"` instead of `"questionText"` in a spaced-review question, causing the component to crash when trying to decode HTML entities.
+
+### Root Cause ✅ **CONFIRMED**
+
+**Validation Gap**: The [`validationService.ts`](../../src/lib/generation/validationService.ts) validated spaced-review blocks but only checked:
+- That questions array exists
+- That there are 4 questions
+
+It did **NOT** validate the structure of individual spaced-review question objects. The `validateQuestion()` method (which checks for `questionText`) was only called for practice blocks, not spaced-review blocks.
+
+**LLM Typo**: The LLM made a typo in lesson `204-13A-ceiling-rose-anatomy-3-plate.json` line 233:
+```json
+{
+  "id": "204-13A-SR-4",
+  "attText": "Why must we always...",  // ❌ Should be "questionText"
+  "expectedAnswer": "...",
+  "hint": "..."
+}
+```
+
+**Runtime Crash**: When `SpacedReviewBlock.tsx` tried to access `q.questionText` (which was undefined), then called `.replace()` on it, the application crashed.
+
+### The Permanent Fix ✅ **APPLIED - Jan 28, 2026**
+
+#### 1. Enhanced Validation (Primary Fix)
+
+**File**: `src/lib/generation/validationService.ts`
+
+**Added new method `validateSpacedReviewQuestion()`** that validates:
+- `id` field exists and starts with lessonId
+- `questionText` field exists (with typo detection for "attText", "questiontext", etc.)
+- `expectedAnswer` field exists
+- `hint` field exists (optional but recommended)
+
+**Modified `validateBlockContent()`** spaced-review case to validate each question:
+```typescript
+case 'spaced-review':
+  if (!block.content.questions || !Array.isArray(block.content.questions)) {
+    errors.push('Spaced review must have questions array');
+  } else {
+    if (block.content.questions.length !== 4) {
+      warnings.push('Spaced review should have exactly 4 questions');
+    }
+    
+    // NEW: Validate each spaced-review question structure
+    for (const question of block.content.questions) {
+      this.validateSpacedReviewQuestion(question, lessonId, errors, warnings);
+    }
+  }
+  break;
+```
+
+#### 2. Defensive Coding (Safety Net)
+
+**File**: `src/components/learning/blocks/SpacedReviewBlock.tsx`
+
+**Added null/undefined checks** in question normalization (line 26-56):
+- Checks if `questionText` exists before accessing it
+- Detects suspected typos (like "attText") and provides helpful error message
+- Prevents crashes by providing fallback error text
+- Logs errors to console for debugging
+
+```typescript
+// Modern format: structured object - check if questionText exists
+if (!q.questionText) {
+  // DEFENSIVE: Handle missing questionText field (catches LLM typos like "attText")
+  console.error(`Spaced review question missing questionText field:`, q);
+  const allKeys = Object.keys(q);
+  const suspectedField = allKeys.find(k => k.toLowerCase().includes('text'));
+  
+  return {
+    ...q,
+    questionText: suspectedField 
+      ? `[ERROR: Found "${suspectedField}" instead of "questionText". Question ID: ${q.id || 'unknown'}]`
+      : `[ERROR: Question text missing. Question ID: ${q.id || 'unknown'}. Available fields: ${allKeys.join(', ')}]`
+  };
+}
+```
+
+#### 3. Improved LLM Prompt
+
+**File**: `src/lib/generation/lessonPromptBuilder.ts`
+
+**Added inline comments** emphasizing correct field name in spaced-review example (lines 290-310):
+```typescript
+"questionText": "[Review question]",  // CRITICAL: Must be "questionText" (NOT "attText", "questiontext", or any other variant!)
+```
+
+**Added new rule** to CRITICAL QUALITY RULES section:
+```
+10. **FIELD NAMES**: All spaced-review questions MUST use "questionText" field (NEVER "attText", "questiontext", "question_text", or any other variant!)
+```
+
+#### 4. Fixed the Bad Lesson
+
+**File**: `src/data/lessons/204-13A-ceiling-rose-anatomy-3-plate.json`
+
+**Fixed line 233**: Changed `"attText"` to `"questionText"`
+
+### Verification Steps
+
+**To verify the fix is in place:**
+
+1. **Check validation code** (`src/lib/generation/validationService.ts`):
+   - Search for `validateSpacedReviewQuestion` method - should exist
+   - Check spaced-review case calls this method for each question
+   - Validation should catch missing or misnamed questionText fields
+
+2. **Check defensive coding** (`src/components/learning/blocks/SpacedReviewBlock.tsx`):
+   - Look for null check on `q.questionText` around line 48
+   - Should have error handling and console logging
+
+3. **Check prompt** (`src/lib/generation/lessonPromptBuilder.ts`):
+   - Search for "FIELD NAMES" rule in CRITICAL QUALITY RULES
+   - Check spaced-review example has inline comments about "questionText"
+
+4. **Test validation**:
+   ```bash
+   # Try generating a lesson - validation should catch any field name errors
+   npm run dev
+   # Navigate to generator page and create a test lesson
+   ```
+
+### If This Error Reappears
+
+**DO NOT just fix the symptom** (fixing the JSON file manually). **Investigate why validation didn't catch it:**
+
+1. **Check if validation was bypassed**:
+   - Was the lesson file edited manually after generation?
+   - Was validation disabled or skipped during generation?
+
+2. **Check for new typo variants**:
+   - The validation checks for common typos like "attText"
+   - If a new variant appears, add it to the detection logic
+
+3. **Fix the lesson file**:
+   - Change the incorrect field name to `"questionText"`
+   - Restart dev server to clear cached imports
+
+4. **Report the issue**:
+   - If validation should have caught it but didn't, investigate why
+   - Update validation logic if needed
+
+### Prevention
+
+**Triple-Layer Defense System:**
+
+1. **Validation Layer** (Generation Time):
+   - Validates every spaced-review question before file creation
+   - Detects typos and provides clear error messages
+   - Prevents malformed lessons from being generated
+
+2. **Defensive Coding** (Runtime):
+   - Gracefully handles missing fields if they slip through
+   - Provides helpful error messages instead of crashing
+   - Logs issues to console for debugging
+
+3. **Improved Prompts** (LLM Guidance):
+   - Explicit inline comments about correct field names
+   - Dedicated rule in CRITICAL QUALITY RULES
+   - Makes field naming crystal clear to the LLM
+
+**Risk Level**: Medium → Low after fixes
+- Validation now catches field name errors at generation time
+- Even if validation fails, defensive coding prevents crashes
+- LLM is explicitly instructed on correct field naming
+- Triple redundancy ensures this specific error won't recur
+
+---
+
+## Quick Problem Reference
+
+### ✅ Problem 1: Duplicate Import Declarations
+- **Status**: FIXED
+- **File**: `src/lib/generation/fileIntegrator.ts`
+- **Solution**: Regex-based duplicate detection in all methods
+- **Risk**: Low - unlikely to reoccur
+
+### ✅ Problem 2: Missing JSON Extension in Import Paths
+- **Status**: PERMANENTLY FIXED (Jan 27, 2026)
+- **File**: `src/lib/generation/fileIntegrator.ts` (lines ~219, ~262)
+- **Solution**: `lessonPath` logic ensures `.json` is always present
+- **Verification**: Search for `.replace('.json', '')` should find ZERO results in import generation code
+- **Risk**: Medium - could be accidentally reverted in future edits
+- **If it breaks**: Check the two `importStatement` lines in `updateLessonPage()` and `updateLearnPage()`
+
+### ⚠️ Problem 3: Lesson Not Visible After Generation
+- **Status**: ARCHITECTURAL LIMITATION (not fixable)
+- **Workaround**: Always restart dev server after generation
+- **Risk**: High - happens every single time
+- **Solution**: Make it part of the workflow, no code fix possible
+
+### ✅ Problem 4: Insufficient Debug Information on Generation Failures
+- **Status**: FIXED (Jan 28, 2026)
+- **Files**: `utils.ts`, `fileGenerator.ts`, `types.ts`, `lesson-generator/route.ts`, `generate/page.tsx`
+- **Solution**: Comprehensive debug info captured and displayed on error page
+- **Features**: Raw LLM response, error location, context preview, collapsible UI
+- **Verification**: Error page shows detailed debug sections when generation fails
+- **Risk**: Low - all error paths now capture debug info
+- **Benefit**: Instant debugging without checking logs
+
+### ✅ Problem 5: LLM Field Name Typos in Spaced Review Questions
+- **Status**: FIXED (Jan 28, 2026)
+- **Files**: `validationService.ts`, `SpacedReviewBlock.tsx`, `lessonPromptBuilder.ts`
+- **Solution**: Enhanced validation + defensive coding + improved prompts
+- **Root Cause**: Validation gap allowed malformed questions; LLM typos ("attText" instead of "questionText")
+- **Prevention**: Triple-layer defense (validation, defensive coding, prompt improvements)
+- **Verification**: Generate a lesson and check validation catches field name errors
+- **Risk**: Low - multiple layers of protection
+- **Benefit**: Prevents runtime crashes from malformed spaced-review questions
+
+---
+
 ## Emergency Troubleshooting Guide
 
 ### Error: "Failed to parse quiz questions" or "Expected property name in JSON"
@@ -490,3 +712,26 @@ Trigger a generation that fails with a JSON parse error:
 1. **Check**: `grep "import.*{.*variableName.*}" src/data/questions/index.ts`
 2. **Fix**: Remove duplicate import/export lines
 3. **Prevent**: Should be caught by regex checks (see Problem 1)
+
+### Error: "Cannot read properties of undefined (reading 'replace')" in SpacedReviewBlock
+**NEW (Jan 28, 2026)**: This error is now prevented by validation and defensive coding!
+
+1. **Check the lesson JSON file** (Problem 5 - FIXED):
+   - Look for spaced-review questions with incorrect field names
+   - Search for `"attText"`, `"questiontext"`, or other variants instead of `"questionText"`
+   
+2. **Immediate Fix**:
+   - Open the lesson JSON file mentioned in the error
+   - Find the spaced-review block (type: "spaced-review")
+   - Change any incorrect field names to `"questionText"`
+   - Restart dev server
+
+3. **Why it happened**:
+   - LLM made a typo when generating the lesson
+   - Validation should now catch this (verify validation is running)
+   - If validation didn't catch it, report the issue
+
+4. **Prevention**:
+   - Validation now checks all spaced-review question field names
+   - Defensive coding prevents crashes even if validation fails
+   - Should not occur in newly generated lessons

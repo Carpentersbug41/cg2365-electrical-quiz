@@ -9,6 +9,7 @@ import { Lesson } from '@/data/lessons/types';
 import LayoutA from '@/components/learning/layouts/LayoutA';
 import LayoutB from '@/components/learning/layouts/LayoutB';
 import DiagnosticGate from '@/components/learning/DiagnosticGate';
+import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 
 // Import lesson data
 import lesson201_1A from '@/data/lessons/201-1A-health-safety-legislation.json';
@@ -33,7 +34,7 @@ import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.
 import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-and-recording.json';
 import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
 import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
-import lesson204_13A from '@/data/lessons/204-13A-ceiling-rose-anatomy-3-plate.json';
+import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
@@ -110,8 +111,8 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${lesson.title} | C&G 2365 Learning`,
-    description: lesson.description,
+    title: `${decodeHtmlEntities(lesson.title)} | C&G 2365 Learning`,
+    description: decodeHtmlEntities(lesson.description),
   };
 }
 

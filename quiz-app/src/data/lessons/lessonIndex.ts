@@ -273,10 +273,10 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
   {
     id: '204-13A',
-    title: 'Ceiling Rose Anatomy (3-plate)',
+    title: '3-plate ceiling rose (loop-in) — explained for a total beginner',
     unit: 'Unit 204',
     unitNumber: '204',
-    topic: 'Ceiling Rose Anatomy (3-plate)',
+    topic: '3-plate ceiling rose (loop-in) — explained for a total beginner',
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('204-13A'),
     available: true,

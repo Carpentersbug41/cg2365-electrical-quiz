@@ -8,19 +8,10 @@ import { useState } from 'react';
 import { BlockProps } from './types';
 import { SpacedReviewBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
+import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 
 export default function SpacedReviewBlock({ block }: BlockProps) {
   const content = block.content as SpacedReviewBlockContent;
-  
-  // Helper to decode HTML entities (works on both server and client)
-  const decodeHtmlEntities = (text: string) => {
-    return text
-      .replace(/&apos;/g, "'")
-      .replace(/&quot;/g, '"')
-      .replace(/&amp;/g, '&')
-      .replace(/&lt;/g, '<')
-      .replace(/&gt;/g, '>');
-  };
 
   // Normalize questions - handle both object format and legacy string format
   const normalizedQuestions = content.questions.map((q, index) => {
@@ -32,6 +23,22 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
         expectedAnswer: 'This is a review question. Provide a thoughtful answer based on your prior knowledge.'
       };
     }
+    
+    // Modern format: structured object - check if questionText exists
+    if (!q.questionText) {
+      // DEFENSIVE: Handle missing questionText field (catches LLM typos like "attText")
+      console.error(`Spaced review question missing questionText field:`, q);
+      const allKeys = Object.keys(q);
+      const suspectedField = allKeys.find(k => k.toLowerCase().includes('text'));
+      
+      return {
+        ...q,
+        questionText: suspectedField 
+          ? `[ERROR: Found "${suspectedField}" instead of "questionText". Question ID: ${q.id || 'unknown'}]`
+          : `[ERROR: Question text missing. Question ID: ${q.id || 'unknown'}. Available fields: ${allKeys.join(', ')}]`
+      };
+    }
+    
     // Modern format: structured object - decode HTML entities in questionText
     return {
       ...q,
