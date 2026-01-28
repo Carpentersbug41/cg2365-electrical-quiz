@@ -19,11 +19,13 @@ import { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageW
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTestingMindsetAndSetupQuestions';
 import { provingYourTesterWorksQuestions } from './provingYourTesterWorksQuestions';
+import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...leadsNullingZeroingAndAvoidingFalseReadingsQuestions,
   ...provingYourTesterWorksQuestions,
   ...rigSafeDeadTestingMindsetAndSetupQuestions,
   ...circuitMapThinkingConductorRolesExpectedOutcomesQuestions,
@@ -59,6 +61,7 @@ export { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageW
 export { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 export { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTestingMindsetAndSetupQuestions';
 export { provingYourTesterWorksQuestions } from './provingYourTesterWorksQuestions';
+export { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 
 /**
  * Filter questions by tags

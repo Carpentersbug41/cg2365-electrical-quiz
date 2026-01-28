@@ -1,0 +1,284 @@
+{
+  "id": "204-11C",
+  "title": "204.11C — Leads, nulling/zeroing, and avoiding false readings",
+  "description": "Learn how to manage test lead resistance through nulling and identify common pitfalls that lead to inaccurate electrical test results.",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Electrical Installations Technology",
+  "learningOutcomes": [
+    "Identify common lead-related problems that distort readings such as damaged insulation or poor contact",
+    "Explain the purpose and process of nulling (zeroing) test leads to improve accuracy",
+    "Apply correct probing techniques to minimize false or unstable readings",
+    "Determine the correct course of action when a reading appears incorrect or inconsistent"
+  ],
+  "prerequisites": [
+    "204-10A",
+    "204-10B",
+    "204-11A",
+    "204-11B"
+  ],
+  "blocks": [
+    {
+      "id": "204-11C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common lead-related problems that distort readings",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain why lead resistance matters and how nulling compensates for it",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Apply good probing techniques to reduce false readings",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Lead Resistance",
+            "definition": "The inherent electrical resistance of the test leads themselves, which adds to the measured value of a circuit."
+          },
+          {
+            "term": "Nulling (Zeroing)",
+            "definition": "The process of telling the test instrument to ignore the resistance of the test leads so they do not affect the final reading."
+          },
+          {
+            "term": "Continuity",
+            "definition": "A low-resistance path that allows current to flow freely through a conductor or circuit."
+          },
+          {
+            "term": "False Reading",
+            "definition": "An inaccurate measurement caused by external factors like poor contact, lead damage, or incorrect instrument settings."
+          },
+          {
+            "term": "Probing Technique",
+            "definition": "The physical method of applying test probes to terminals to ensure a stable and accurate electrical connection."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Nulling Process",
+        "description": "This diagram illustrates the difference between measuring total resistance (leads + circuit) versus using the null function to isolate the circuit resistance.",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "tester",
+          "leads",
+          "null-button"
+        ],
+        "placeholderText": "Diagram showing two probes touched together showing 0.25 ohms, then the 'Null' button being pressed to show 0.00 ohms."
+      }
+    },
+    {
+      "id": "204-11C-explain-leads-nulling",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Managing Test Leads and Accuracy",
+        "content": "In electrical testing, particularly when measuring low resistances like continuity, the equipment you use can actually interfere with the result. Every set of test leads has its own internal resistance, usually between **0.1Ω and 0.5Ω**. While this seems small, it is significant when the circuit you are testing is also expected to be very low. If you do not account for this, you may record a &quot;fail&quot; result for a circuit that is actually perfectly healthy.\n\n**Common Lead Problems**\nBefore testing, always inspect your leads. Problems that distort readings include:\n1. **Damaged Insulation**: Can cause intermittent shorts or safety hazards.\n2. **Loose Probes**: If the wire is pulling out of the probe handle, resistance will fluctuate.\n3. **Broken Internal Conductors**: Leads that work only when held at a certain angle.\n4. **Contamination**: Dirt or oxidation on the probe tips increases contact resistance.\n\n**The Purpose of Nulling**\nNulling (or zeroing) is the process of compensating for lead resistance. By touching the probe tips firmly together and pressing the &quot;Null&quot; or &quot;Zero&quot; button, the meter subtracts that lead resistance from all future readings. If your leads measure 0.20Ω and you null them, the meter will display 0.00Ω. If you then test a circuit and it reads 0.50Ω, you know that is the **actual** resistance of the wiring, not the wiring plus the leads.\n\n**Avoiding False Readings**\nFalse readings often come from &quot;jumpy&quot; or unstable displays. To avoid this, use firm probing techniques. Ensure you are touching clean metal, not paint or plastic insulation. Avoid touching the metal tips of the probes with your fingers, as your body resistance can create a parallel path and change the result, especially during high-resistance tests like Insulation Resistance.\n\n**What to do when readings look wrong**\nIf a reading seems impossible (e.g., a massive resistance on a short wire), do not just write it down. Stop and check your setup. Re-null your leads, check your battery level, and ensure you are on the correct setting. Always **re-prove** your tester if you suspect the leads have failed during the process."
+      }
+    },
+    {
+      "id": "204-11C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Lead Accuracy",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-11C-C1-L1-A",
+            "questionText": "What is the typical resistance range of a standard pair of test leads?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "0.1 to 0.5 ohms",
+            "hint": "It is a very low value, usually less than one ohm."
+          },
+          {
+            "id": "204-11C-C1-L1-B",
+            "questionText": "Which process is used to remove lead resistance from a meter reading?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Nulling",
+            "hint": "Also known as zeroing."
+          },
+          {
+            "id": "204-11C-C1-L1-C",
+            "questionText": "What should you do if your meter display is flickering or 'jumpy'?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Check contact and leads",
+            "hint": "Think about the physical connection between the probe and the terminal."
+          },
+          {
+            "id": "204-11C-C1-L2",
+            "questionText": "How does forgetting to null your leads affect a continuity test result?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "It makes the reading appear higher than it actually is",
+            "hint": "Consider if lead resistance is added to or subtracted from the circuit resistance if not nulled."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11C-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Manual Resistance Correction",
+        "given": "Lead resistance is 0.35Ω. The total reading shown on the meter (without nulling) is 1.45Ω.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the total measured resistance (R_total).",
+            "formula": null,
+            "calculation": "1.45Ω",
+            "result": "1.45"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Identify the lead resistance (R_leads) measured by touching probes together.",
+            "formula": null,
+            "calculation": "0.35Ω",
+            "result": "0.35"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Subtract the lead resistance from the total reading to find the actual circuit resistance.",
+            "formula": "R_actual = R_total - R_leads",
+            "calculation": "1.45 - 0.35",
+            "result": "1.10Ω"
+          }
+        ],
+        "notes": "Nulling the meter automatically performs this subtraction for you."
+      }
+    },
+    {
+      "id": "204-11C-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Correcting for Leads",
+        "problem": "You are testing a protective bonding conductor. Your leads measure 0.22Ω. The meter shows 0.48Ω during the test. What is the actual resistance?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What value needs to be subtracted from the meter reading?",
+            "expectedAnswer": [
+              "0.22",
+              "0.22 ohms",
+              "lead resistance"
+            ],
+            "hint": "It is the resistance of the leads alone."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Perform the subtraction: 0.48 - 0.22. What is the result?",
+            "expectedAnswer": [
+              "0.26",
+              "0.26 ohms"
+            ],
+            "hint": "Subtract the smaller number from the larger one."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11C-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Leads and Readings",
+        "questions": [
+          {
+            "id": "204-11C-P1",
+            "questionText": "List two physical problems with test leads that can cause high resistance readings.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "oxidation and loose probes",
+              "dirty tips and broken wires",
+              "corrosion and loose connections"
+            ],
+            "hint": "Think about the tips and the connection to the meter."
+          },
+          {
+            "id": "204-11C-P2",
+            "questionText": "If a circuit resistance is 0.05Ω and your leads are 0.30Ω, what will the meter display if you HAVE NOT nulled them?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.35"
+            ],
+            "hint": "Add the two resistances together."
+          },
+          {
+            "id": "204-11C-P3",
+            "questionText": "True or False: You should touch the metal probe tips with your fingers during an Insulation Resistance test to keep them steady.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False"
+            ],
+            "hint": "Does your body have resistance?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "204-11C-INT-1",
+            "questionText": "You are testing continuity on a ring final circuit. The expected reading is 0.40Ω, but your meter shows 0.75Ω. You notice the reading is flickering slightly. Explain your immediate next steps to ensure this is an accurate circuit reading and not a false reading.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Stop the test and check the probe contact for cleanliness and firmness. Re-null the test leads to account for lead resistance. If the reading remains high and unstable, inspect the leads for damage and re-prove the instrument before concluding there is a wiring fault.",
+            "hint": "Address the flickering first, then the accuracy of the value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-11C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          "What is the purpose of a proving unit? (From 204-10B)",
+          "Which instrument is used to test Insulation Resistance? (From 204-11A)",
+          "What is the first step of the safe isolation procedure? (From 204-10A)",
+          "Why must we re-prove a voltage indicator after checking for dead? (From 204-10B)"
+        ],
+        "notes": "Reviewing instrument safety and selection basics."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-28",
+    "updated": "2026-01-28",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

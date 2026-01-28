@@ -124,14 +124,38 @@ export function generateVariableName(unit: number, lessonId: string): string {
 /**
  * Parse JSON safely with error handling
  */
-export function safeJsonParse<T>(json: string): { success: boolean; data?: T; error?: string } {
+export function safeJsonParse<T>(json: string): { 
+  success: boolean; 
+  data?: T; 
+  error?: string;
+  rawInput?: string;
+  errorDetails?: {
+    message: string;
+    position?: number;
+    line?: number;
+    column?: number;
+  };
+} {
   try {
     const data = JSON.parse(json) as T;
     return { success: true, data };
   } catch (error) {
+    // Extract position info from error message
+    const errorMessage = error instanceof Error ? error.message : 'Unknown parsing error';
+    const positionMatch = errorMessage.match(/position (\d+)/);
+    const lineMatch = errorMessage.match(/line (\d+)/);
+    const columnMatch = errorMessage.match(/column (\d+)/);
+    
     return {
       success: false,
-      error: error instanceof Error ? error.message : 'Unknown parsing error',
+      error: errorMessage,
+      rawInput: json, // CAPTURE THE RAW INPUT
+      errorDetails: {
+        message: errorMessage,
+        position: positionMatch ? parseInt(positionMatch[1]) : undefined,
+        line: lineMatch ? parseInt(lineMatch[1]) : undefined,
+        column: columnMatch ? parseInt(columnMatch[1]) : undefined,
+      },
     };
   }
 }

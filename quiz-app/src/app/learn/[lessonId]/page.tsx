@@ -28,9 +28,11 @@ import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-t
 import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
 import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
 import lesson204_11B from '@/data/lessons/204-11B-proving-your-tester-works.json';
+import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '204-11C': lesson204_11C as Lesson,
   '204-11B': lesson204_11B as Lesson,
   '204-11A': lesson204_11A as Lesson,
   '204-10B': lesson204_10B as Lesson,

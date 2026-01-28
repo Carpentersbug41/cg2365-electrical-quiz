@@ -32,6 +32,23 @@ interface GenerationStatus {
     warnings: string[];
   };
   error?: string;
+  debugInfo?: {
+    rawResponse: string;
+    parseError: string;
+    errorPosition?: {
+      message: string;
+      position?: number;
+      line?: number;
+      column?: number;
+    };
+    contentPreview?: {
+      before: string;
+      errorLocation: string;
+      after: string;
+    };
+    attemptedOperation: string;
+    timestamp: string;
+  };
 }
 
 export default function GeneratePage() {
@@ -104,7 +121,9 @@ export default function GeneratePage() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Generation failed');
+        const error: any = new Error(data.error || 'Generation failed');
+        error.debugInfo = data.debugInfo; // Capture debug info from API
+        throw error;
       }
 
       setStatus({
@@ -125,6 +144,7 @@ export default function GeneratePage() {
         message: 'Generation failed',
         progress: 0,
         error: error instanceof Error ? error.message : 'Unknown error',
+        debugInfo: (error as any).debugInfo, // Capture debug info
       });
     }
   };
@@ -450,7 +470,7 @@ export default function GeneratePage() {
             </div>
           ) : (
             <div className="space-y-6">
-              {/* Error Message */}
+              {/* Error Header */}
               <div className="flex items-center space-x-3 text-red-600 dark:text-red-400">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -463,10 +483,81 @@ export default function GeneratePage() {
                 <h2 className="text-2xl font-bold">Generation Failed</h2>
               </div>
 
+              {/* Error Message */}
               <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg">
-                <p className="text-sm text-gray-700 dark:text-slate-300">{status.error}</p>
+                <p className="text-sm font-semibold text-red-900 dark:text-red-200 mb-2">
+                  Error:
+                </p>
+                <p className="text-sm text-gray-700 dark:text-slate-300">
+                  {status.error}
+                </p>
               </div>
 
+              {/* Debug Information - Only show if available */}
+              {status.debugInfo && (
+                <div className="space-y-4">
+                  {/* Error Position */}
+                  {status.debugInfo.errorPosition && (
+                    <div className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg">
+                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                        Error Location:
+                      </h3>
+                      <div className="text-sm text-gray-700 dark:text-slate-300 font-mono">
+                        {status.debugInfo.errorPosition.line && (
+                          <p>Line: {status.debugInfo.errorPosition.line}</p>
+                        )}
+                        {status.debugInfo.errorPosition.column && (
+                          <p>Column: {status.debugInfo.errorPosition.column}</p>
+                        )}
+                        {status.debugInfo.errorPosition.position && (
+                          <p>Position: {status.debugInfo.errorPosition.position}</p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Context Preview */}
+                  {status.debugInfo.contentPreview && (
+                    <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                      <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                        Context Around Error:
+                      </h3>
+                      <div className="text-xs font-mono bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto">
+                        <span className="text-gray-400">{status.debugInfo.contentPreview.before}</span>
+                        <span className="bg-red-600 text-white px-1">
+                          {status.debugInfo.contentPreview.errorLocation}
+                        </span>
+                        <span className="text-gray-400">{status.debugInfo.contentPreview.after}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Raw Response - Collapsible */}
+                  <details className="p-4 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                    <summary className="font-semibold text-gray-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400">
+                      Raw LLM Response (click to expand)
+                    </summary>
+                    <pre className="text-xs font-mono bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto mt-2 max-h-96 overflow-y-auto">
+                      {status.debugInfo.rawResponse}
+                    </pre>
+                  </details>
+
+                  {/* Operation Details */}
+                  <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      Operation:
+                    </h3>
+                    <p className="text-sm text-gray-700 dark:text-slate-300">
+                      {status.debugInfo.attemptedOperation}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-slate-400 mt-2">
+                      Timestamp: {new Date(status.debugInfo.timestamp).toLocaleString()}
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Try Again Button */}
               <button
                 onClick={resetForm}
                 className="w-full px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"

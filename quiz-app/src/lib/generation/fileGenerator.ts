@@ -40,6 +40,30 @@ function debugLog(stage: string, data: unknown) {
   }
 }
 
+// Context preview helper for error debugging
+function generateContextPreview(content: string, position?: number): {
+  before: string;
+  errorLocation: string;
+  after: string;
+} {
+  if (!position) {
+    return {
+      before: content.substring(0, 200),
+      errorLocation: '(position unknown)',
+      after: content.substring(200, 400),
+    };
+  }
+  
+  const start = Math.max(0, position - 100);
+  const end = Math.min(content.length, position + 100);
+  
+  return {
+    before: content.substring(start, position),
+    errorLocation: content.charAt(position),
+    after: content.substring(position + 1, end),
+  };
+}
+
 export class FileGenerator {
   private lessonPromptBuilder: LessonPromptBuilder;
   private quizPromptBuilder: QuizPromptBuilder;
@@ -221,6 +245,17 @@ export class FileGenerator {
               success: false,
               questions: [],
               error: `Failed to parse quiz questions: ${parsed.error}`,
+              debugInfo: {
+                rawResponse: parsed.rawInput || cleanedContent,
+                parseError: parsed.error || 'Unknown error',
+                errorPosition: parsed.errorDetails,
+                contentPreview: generateContextPreview(
+                  parsed.rawInput || cleanedContent,
+                  parsed.errorDetails?.position
+                ),
+                attemptedOperation: 'Parsing quiz questions array from LLM response',
+                timestamp: new Date().toISOString(),
+              }
             };
           }
           questions = parsed.data;

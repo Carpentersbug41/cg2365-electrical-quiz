@@ -24,11 +24,13 @@ import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-t
 import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
 import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
 import lesson204_11B from '@/data/lessons/204-11B-proving-your-tester-works.json';
+import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
 const LESSONS = [
+  lesson204_11C,
   lesson204_11B,
   lesson204_11A,
   lesson204_10B,

@@ -14,6 +14,24 @@ export interface GenerationRequest {
   youtubeUrl?: string;
 }
 
+export interface DebugInfo {
+  rawResponse: string;
+  parseError: string;
+  errorPosition?: {
+    message: string;
+    position?: number;
+    line?: number;
+    column?: number;
+  };
+  contentPreview?: {
+    before: string;
+    errorLocation: string;
+    after: string;
+  };
+  attemptedOperation: string;
+  timestamp: string;
+}
+
 export interface GenerationResponse {
   success: boolean;
   lessonFile: string;
@@ -22,6 +40,7 @@ export interface GenerationResponse {
   branchUrl: string;
   warnings: string[];
   errors?: string[];
+  debugInfo?: DebugInfo;
 }
 
 export interface LessonBlock {

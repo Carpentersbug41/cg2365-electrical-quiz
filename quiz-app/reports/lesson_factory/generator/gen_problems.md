@@ -254,6 +254,165 @@ After generating a new lesson, **FOLLOW THESE STEPS IN ORDER**:
 
 ---
 
+## Problem 4: Insufficient Debug Information on Generation Failures ✅ **FIXED - Jan 28, 2026**
+
+### Issue
+When quiz generation failed with JSON parsing errors (e.g., "Failed to parse quiz questions: Expected property name or '}' in JSON at position 10..."), debugging was extremely difficult because:
+- Only a generic error message was displayed
+- The raw LLM response that failed to parse was not captured or shown
+- No context about WHERE in the response the error occurred
+- No way to see what the LLM actually returned without checking terminal logs
+- Users had to dig through terminal output or debug logs to understand the failure
+
+### Root Cause
+The error handling pipeline lost critical debugging information as errors propagated from backend to frontend:
+
+1. **`safeJsonParse` in `utils.ts`**: Only returned error message, discarded raw input
+2. **`fileGenerator.ts`**: Didn't capture or pass along the raw LLM response
+3. **API route**: Only forwarded the error message
+4. **Frontend**: Only displayed the error message in a simple div
+
+### The Fix ✅ **IMPLEMENTED - Jan 28, 2026**
+
+**Enhanced error information is now captured and displayed at every level:**
+
+#### Backend Changes
+
+**1. Enhanced `safeJsonParse` in `src/lib/generation/utils.ts`:**
+```typescript
+export function safeJsonParse<T>(json: string): { 
+  success: boolean; 
+  data?: T; 
+  error?: string;
+  rawInput?: string;           // NEW: Captures the raw input
+  errorDetails?: {             // NEW: Extracts position info
+    message: string;
+    position?: number;
+    line?: number;
+    column?: number;
+  };
+}
+```
+
+**2. Added Context Preview Helper in `src/lib/generation/fileGenerator.ts`:**
+```typescript
+function generateContextPreview(content: string, position?: number): {
+  before: string;        // 100 chars before error
+  errorLocation: string; // The problematic character
+  after: string;         // 100 chars after error
+}
+```
+
+**3. Enhanced Error Response in `fileGenerator.ts`:**
+When quiz parsing fails, the error response now includes:
+```typescript
+{
+  success: false,
+  error: "Failed to parse quiz questions: ...",
+  debugInfo: {
+    rawResponse: string,           // Full LLM response
+    parseError: string,            // JSON parse error
+    errorPosition: {...},          // Line, column, position
+    contentPreview: {...},         // Context around error
+    attemptedOperation: string,    // What was being parsed
+    timestamp: string              // When it failed
+  }
+}
+```
+
+**4. API Route Passes Debug Info:**
+`src/app/api/lesson-generator/route.ts` now includes `debugInfo` in error responses
+
+**5. New Types in `src/lib/generation/types.ts`:**
+- Added `DebugInfo` interface
+- Updated `GenerationResponse` to include optional `debugInfo`
+
+#### Frontend Changes
+
+**6. Enhanced UI in `src/app/generate/page.tsx`:**
+
+The error page now displays comprehensive debug information:
+
+```
+┌────────────────────────────────────────────────┐
+│ ❌ Generation Failed                           │
+├────────────────────────────────────────────────┤
+│ Error: Failed to parse quiz questions         │
+│ Expected property name or '}' in JSON          │
+└────────────────────────────────────────────────┘
+
+┌─ Error Location ───────────────────────────────┐
+│ Line: 3                                        │
+│ Column: 5                                      │
+│ Position: 10                                   │
+└────────────────────────────────────────────────┘
+
+┌─ Context Around Error ─────────────────────────┐
+│ ...{"id": 1,↵                                  │
+│  {field: "test"}...                            │
+│  ↑ ERROR HERE (character highlighted in red)   │
+└────────────────────────────────────────────────┘
+
+▼ Raw LLM Response (click to expand)
+  [Full scrollable code block with syntax highlighting]
+
+┌─ Operation Details ────────────────────────────┐
+│ Operation: Parsing quiz questions array        │
+│ Timestamp: 1/28/2026, 8:45:23 AM              │
+└────────────────────────────────────────────────┘
+```
+
+### How to Use the Debug Information
+
+When a generation fails:
+
+1. **Error Message**: Read the main error at the top
+2. **Error Location**: Check line/column/position to understand where in the response the parse failed
+3. **Context Preview**: See the exact characters around the error (error character is highlighted in red)
+4. **Raw Response**: Expand the collapsible section to see the full LLM response
+5. **Copy for Analysis**: You can copy the raw response for manual inspection or to report an issue
+
+### Files Modified
+
+**Backend:**
+- `src/lib/generation/utils.ts` - Enhanced `safeJsonParse()`
+- `src/lib/generation/fileGenerator.ts` - Added context preview helper and debug info to errors
+- `src/lib/generation/types.ts` - Added `DebugInfo` interface
+- `src/app/api/lesson-generator/route.ts` - Pass debug info through API
+
+**Frontend:**
+- `src/app/generate/page.tsx` - Added debug info to interface, error handling, and comprehensive UI display
+
+### Benefits
+
+- **Instant Debugging**: No need to check terminal logs or debug files
+- **Precise Error Location**: Exact line, column, and character position
+- **Full Context**: See exactly what the LLM returned
+- **Visual Highlighting**: Error character is highlighted in red with surrounding context
+- **Copy-Paste Ready**: Raw response can be easily copied for further analysis
+- **Professional UX**: Collapsible sections keep the UI clean while providing deep debugging info
+- **Future-Proof**: Works for any JSON parsing error in the generation pipeline
+
+### Verification
+
+To verify the fix is in place:
+
+1. **Check utils.ts**: `safeJsonParse` should return `rawInput` and `errorDetails`
+2. **Check fileGenerator.ts**: Look for `generateContextPreview` function
+3. **Check types.ts**: Look for `DebugInfo` interface
+4. **Check API route**: Error response should include `debugInfo`
+5. **Check frontend**: Error display should show multiple debug sections
+
+### Testing
+
+Trigger a generation that fails with a JSON parse error:
+- The error page should show detailed debug information
+- You should be able to expand the raw response
+- Error position should be clearly displayed
+- Context should highlight the error location
+
+---
+
 ## Quick Problem Reference
 
 ### ✅ Problem 1: Duplicate Import Declarations
@@ -276,15 +435,44 @@ After generating a new lesson, **FOLLOW THESE STEPS IN ORDER**:
 - **Risk**: High - happens every single time
 - **Solution**: Make it part of the workflow, no code fix possible
 
+### ✅ Problem 4: Insufficient Debug Information on Generation Failures
+- **Status**: FIXED (Jan 28, 2026)
+- **Files**: `utils.ts`, `fileGenerator.ts`, `types.ts`, `lesson-generator/route.ts`, `generate/page.tsx`
+- **Solution**: Comprehensive debug info captured and displayed on error page
+- **Features**: Raw LLM response, error location, context preview, collapsible UI
+- **Verification**: Error page shows detailed debug sections when generation fails
+- **Risk**: Low - all error paths now capture debug info
+- **Benefit**: Instant debugging without checking logs
+
 ---
 
 ## Emergency Troubleshooting Guide
 
 ### Error: "Failed to parse quiz questions" or "Expected property name in JSON"
-1. **Check**: `grep "from '@/data/lessons/[^']*';" src/app/learn/*.tsx`
-2. **Look for**: Any imports missing `.json` extension
-3. **Fix**: Add `.json` to those imports
-4. **Prevent**: Verify `fileIntegrator.ts` has the `lessonPath` fix (see Problem 2)
+
+**NEW (Jan 28, 2026)**: The error page now shows comprehensive debug information!
+
+1. **Check the Error Page First** (Problem 4 - NEW):
+   - **Error Location**: Line, column, position numbers
+   - **Context Preview**: See the exact characters around the error
+   - **Raw Response**: Expand to see full LLM output
+   - **Operation Details**: What was being parsed when it failed
+   
+2. **Common Causes**:
+   - **LLM returned malformed JSON**: Most common - just retry generation
+   - **Missing `.json` extension**: Check imports (see below)
+   - **JSON structure issue**: Use the raw response to identify the problem
+
+3. **If it's an import issue** (Problem 2):
+   - **Check**: `grep "from '@/data/lessons/[^']*';" src/app/learn/*.tsx`
+   - **Look for**: Any imports missing `.json` extension
+   - **Fix**: Add `.json` to those imports
+   - **Prevent**: Verify `fileIntegrator.ts` has the `lessonPath` fix (see Problem 2)
+
+4. **If it's a malformed LLM response**:
+   - **Action**: Just retry the generation (LLMs occasionally produce invalid JSON)
+   - **Debug**: Use the raw response on error page to see what went wrong
+   - **Report**: If it keeps failing, copy the raw response for bug report
 
 ### Error: "Cannot find module '@/data/lessons/xxx'"
 1. **Check**: Does the JSON file exist? `ls src/data/lessons/*.json | grep xxx`

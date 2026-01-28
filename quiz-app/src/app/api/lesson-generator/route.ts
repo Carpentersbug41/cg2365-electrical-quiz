@@ -138,10 +138,11 @@ export async function POST(request: NextRequest) {
     debugLog('STEP_3_COMPLETE', { success: quizResult.success, error: quizResult.error, questionCount: quizResult.questions?.length });
     
     if (!quizResult.success) {
-      debugLog('STEP_3_FAILED', { error: quizResult.error });
+      debugLog('STEP_3_FAILED', { error: quizResult.error, debugInfo: quizResult.debugInfo });
       return NextResponse.json({
         success: false,
         error: quizResult.error,
+        debugInfo: quizResult.debugInfo, // NEW: Include debug info
       }, { status: 500 });
     }
 

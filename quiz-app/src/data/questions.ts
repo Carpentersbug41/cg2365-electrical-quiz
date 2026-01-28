@@ -26,6 +26,7 @@ import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTes
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './questions/circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './questions/rigSafeDeadTestingMindsetAndSetupQuestions';
 import { provingYourTesterWorksQuestions } from './questions/provingYourTesterWorksQuestions';
+import { leadsNullingZeroingAndAvoidingFalseReadingsQuestions } from './questions/leadsNullingZeroingAndAvoidingFalseReadingsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,

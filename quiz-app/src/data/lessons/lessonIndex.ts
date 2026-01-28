@@ -216,6 +216,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 4,
   },
+  {
+    id: '204-11C',
+    title: 'Leads, nulling/zeroing, and avoiding false readings',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Leads, nulling/zeroing, and avoiding false readings',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-11C'),
+    available: true,
+    order: 5,
+  },
 ];
 
 /**
