@@ -31,11 +31,13 @@ import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceili
 import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
 import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
 import lesson203_1A from '@/data/lessons/203-1A-statutory-regulations-law.json';
+import lesson203_10B from '@/data/lessons/203-10B-non-statutory-regulations-guidance.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
 const LESSONS = [
+  lesson203_10B,
   lesson203_1A,
   lesson204_13B,
   lesson204_13A,

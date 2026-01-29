@@ -26,11 +26,13 @@ import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from 
 import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 import { statutoryRegulationsLawQuestions } from './statutoryRegulationsLawQuestions';
+import { nonStatutoryRegulationsGuidanceQuestions } from './nonStatutoryRegulationsGuidanceQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...nonStatutoryRegulationsGuidanceQuestions,
   ...statutoryRegulationsLawQuestions,
   ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
   ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
@@ -80,6 +82,7 @@ export { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from 
 export { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 export { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 export { statutoryRegulationsLawQuestions } from './statutoryRegulationsLawQuestions';
+export { nonStatutoryRegulationsGuidanceQuestions } from './nonStatutoryRegulationsGuidanceQuestions';
 
 /**
  * Filter questions by tags

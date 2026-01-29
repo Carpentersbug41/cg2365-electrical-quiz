@@ -33,6 +33,7 @@ import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from 
 import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './questions/ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 import { statutoryRegulationsLawQuestions } from './questions/statutoryRegulationsLawQuestions';
+import { nonStatutoryRegulationsGuidanceQuestions } from './questions/nonStatutoryRegulationsGuidanceQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -60,6 +61,7 @@ export const questions: Question[] = [
   ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
   ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
   ...statutoryRegulationsLawQuestions,
+  ...nonStatutoryRegulationsGuidanceQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes
