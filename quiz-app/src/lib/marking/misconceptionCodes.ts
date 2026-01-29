@@ -990,6 +990,36 @@ export const MISCONCEPTIONS: Record<MisconceptionCode, MisconceptionDefinition> 
     severity: 'moderate',
   },
 
+  PARTIAL_UNDERSTANDING: {
+    code: 'PARTIAL_UNDERSTANDING',
+    name: 'Partial Understanding',
+    description: 'Partially correct but incomplete understanding of the concept.',
+    commonIn: ['all questions'],
+    fixPrompt: 'You\'re on the right track, but there\'s more to understand. Review the full explanation and try to see the complete picture.',
+    relatedBlockIds: [],
+    severity: 'moderate',
+  },
+
+  HEALTH_SAFETY: {
+    code: 'HEALTH_SAFETY',
+    name: 'Health and Safety Misconception',
+    description: 'Misunderstanding related to health and safety procedures or requirements.',
+    commonIn: ['health and safety', 'safety'],
+    fixPrompt: 'Health and safety is critical. Review the safety procedures and requirements carefully. When in doubt, prioritize safety.',
+    relatedBlockIds: [],
+    severity: 'critical',
+  },
+
+  CALCULATION_ERROR: {
+    code: 'CALCULATION_ERROR',
+    name: 'General Calculation Error',
+    description: 'General calculation error that doesn\'t fit other specific categories.',
+    commonIn: ['all calculation questions'],
+    fixPrompt: 'Check your calculation step by step. Verify each operation and ensure you\'re using the correct formula.',
+    relatedBlockIds: [],
+    severity: 'moderate',
+  },
+
   OTHER: {
     code: 'OTHER',
     name: 'Other Error',

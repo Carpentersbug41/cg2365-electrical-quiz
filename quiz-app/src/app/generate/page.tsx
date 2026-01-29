@@ -166,7 +166,7 @@ export default function GeneratePage() {
       const data = await response.json();
 
       if (!response.ok || !data.success) {
-        const error: any = new Error(data.error || 'Generation failed');
+        const error = new Error(data.error || 'Generation failed') as Error & { debugInfo?: GenerationStatus['debugInfo'] };
         error.debugInfo = data.debugInfo; // Capture debug info from API
         throw error;
       }
@@ -189,7 +189,7 @@ export default function GeneratePage() {
         message: 'Generation failed',
         progress: 0,
         error: error instanceof Error ? error.message : 'Unknown error',
-        debugInfo: (error as any).debugInfo, // Capture debug info
+        debugInfo: error instanceof Error && 'debugInfo' in error ? (error as Error & { debugInfo?: GenerationStatus['debugInfo'] }).debugInfo : undefined, // Capture debug info
       });
     }
   };

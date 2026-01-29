@@ -59,3 +59,6 @@ export const questions: Question[] = [
   ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
   ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
 ];
+
+// Re-export allTaggedQuestions for API routes
+export { allTaggedQuestions } from './questions/index';

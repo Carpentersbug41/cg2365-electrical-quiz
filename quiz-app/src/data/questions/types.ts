@@ -112,6 +112,9 @@ export type MisconceptionCode =
   | 'CONFUSED_WITH_ELECTRICAL_CHARGE' // Mixed up magnetic poles with electrical charge
   | 'CONFUSED_POLE_BEHAVIOR'    // Misunderstood how magnetic poles attract/repel
   | 'REVERSED_FIELD_DIRECTION'  // Got magnetic field direction backwards
+  | 'PARTIAL_UNDERSTANDING'     // Partially correct but incomplete understanding
+  | 'HEALTH_SAFETY'             // Health and safety misconception
+  | 'CALCULATION_ERROR'         // General calculation error
   | 'OTHER';                    // Other error
 
 /**
@@ -186,7 +189,11 @@ export type QuestionTag =
   | 'energy'           // Energy calculations
   // Dead testing specific tags
   | 'continuity'       // Continuity testing
-  | 'health-safety';   // Health and safety considerations
+  | 'continuity-rule'  // Continuity testing rules
+  | 'health-safety'    // Health and safety considerations
+  | 'methodology'      // Testing methodology and procedures
+  | 'topology-confusion' // Topology confusion concepts
+  | 'identification';  // Component/circuit identification
 
 /**
  * Answer Type: Determines marking strategy

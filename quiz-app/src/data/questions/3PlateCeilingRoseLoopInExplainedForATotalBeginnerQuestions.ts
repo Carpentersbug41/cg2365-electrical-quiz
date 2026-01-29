@@ -678,7 +678,7 @@ export const threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions: Tag
     "misconceptionCodes": {
       "1": "USED_SERIES_RULE",
       "2": "CONFUSED_I_V_R",
-      "3": "CONCEPTUAL"
+      "3": "WRONG_INTERPRETATION"
     },
     "section": "Electrical Installations Technology",
     "category": "3-plate ceiling rose",
