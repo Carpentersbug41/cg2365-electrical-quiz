@@ -19,12 +19,13 @@ export class ErrorHandler {
 
   /**
    * Rollback all changes after error
+   * Note: Git changes are NOT automatically rolled back when committing to main
+   * Manual revert required if git commit succeeded but later steps failed
    */
   async rollbackAll(
     lessonFilePath?: string,
     quizFilePath?: string,
-    integrationFiles?: string[],
-    branchName?: string
+    integrationFiles?: string[]
   ): Promise<void> {
     console.log('[ErrorHandler] Starting rollback...');
 
@@ -46,11 +47,8 @@ export class ErrorHandler {
         console.log('[ErrorHandler] Integration files rollback initiated');
       }
 
-      // 3. Rollback git changes
-      if (branchName) {
-        await this.gitService.rollback(branchName);
-        console.log(`[ErrorHandler] Git branch ${branchName} rolled back`);
-      }
+      // Note: Git rollback is NOT performed automatically to avoid reverting main
+      // If git commit succeeded but generation failed, manual revert is required
 
       console.log('[ErrorHandler] Rollback complete');
     } catch (error) {

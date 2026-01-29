@@ -37,8 +37,8 @@ export interface GenerationResponse {
   success: boolean;
   lessonFile: string;
   quizFile: string;
-  branchName: string;
-  branchUrl: string;
+  commitHash: string;
+  commitUrl: string;
   warnings: string[];
   errors?: string[];
   debugInfo?: DebugInfo;
@@ -99,9 +99,8 @@ export interface FileIntegrationResult {
 
 export interface GitResult {
   success: boolean;
-  branchName: string;
-  branchUrl: string;
-  commitHash?: string;
+  commitHash: string;
+  commitUrl: string;
   error?: string;
 }
 

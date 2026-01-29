@@ -24,7 +24,7 @@ function debugLog(stage: string, data: unknown) {
     sessionId: 'generation-' + Date.now()
   }) + '\n';
   try {
-    const logPath = path.join(process.cwd(), '.cursor', 'debug.log');
+    const logPath = path.join(process.cwd(), '..', '.cursor', 'debug.log');
     fs.appendFileSync(logPath, logEntry, 'utf-8');
   } catch (e) {
     console.error('Failed to write debug log:', e);
@@ -65,7 +65,6 @@ export async function POST(request: NextRequest) {
   let lessonFilePath: string | undefined;
   let quizFilePath: string | undefined;
   let filesUpdated: string[] = [];
-  let branchName: string | undefined;
 
   try {
     const body: GenerationRequest = await request.json();
@@ -198,11 +197,11 @@ export async function POST(request: NextRequest) {
     filesUpdated = integrationResult.filesUpdated;
 
     // Step 7: Git commit and push
-    let finalBranchName = 'N/A';
-    let branchUrl = 'N/A';
+    let commitHash = 'N/A';
+    let commitUrl = 'N/A';
 
     if (isGitConfigured) {
-      console.log('[Generator] Step 7: Committing to git...');
+      console.log('[Generator] Step 7: Committing to main...');
       const gitResult = await gitService.commitAndPush(
         fullLessonId,
         body.topic,
@@ -210,10 +209,9 @@ export async function POST(request: NextRequest) {
       );
 
       if (gitResult.success) {
-        finalBranchName = gitResult.branchName;
-        branchName = gitResult.branchName;
-        branchUrl = gitResult.branchUrl;
-        console.log(`[Generator] Success! Branch: ${finalBranchName}`);
+        commitHash = gitResult.commitHash;
+        commitUrl = gitResult.commitUrl;
+        console.log(`[Generator] Success! Committed to main: ${commitHash.substring(0, 7)}`);
       } else {
         warnings.push(`Git commit failed: ${gitResult.error}`);
         // Don't rollback - files are still valid, just not committed
@@ -228,8 +226,8 @@ export async function POST(request: NextRequest) {
       success: true,
       lessonFile: lessonFilename,
       quizFile: quizFilename,
-      branchName: finalBranchName,
-      branchUrl,
+      commitHash,
+      commitUrl,
       warnings,
     };
 
@@ -245,7 +243,7 @@ export async function POST(request: NextRequest) {
     
     // Attempt rollback
     try {
-      await errorHandler.rollbackAll(lessonFilePath, quizFilePath, filesUpdated, branchName);
+      await errorHandler.rollbackAll(lessonFilePath, quizFilePath, filesUpdated);
     } catch (rollbackError) {
       console.error('[Generator] Rollback failed:', rollbackError);
       debugLog('ROLLBACK_FAILED', { error: rollbackError instanceof Error ? rollbackError.message : 'unknown' });

@@ -5,7 +5,6 @@
 
 import { GitResult } from './types';
 import { GIT_CONFIG } from './constants';
-import { getGitTimestamp } from './utils';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 
@@ -13,7 +12,7 @@ const execAsync = promisify(exec);
 
 export class GitService {
   /**
-   * Create branch, commit, and push generated lesson
+   * Commit and push generated lesson directly to main branch
    */
   async commitAndPush(
     lessonId: string,
@@ -21,13 +20,8 @@ export class GitService {
     filesUpdated: string[]
   ): Promise<GitResult> {
     try {
-      const branchName = this.generateBranchName(lessonId);
-
       // Ensure we're on main and up to date
       await this.ensureMainBranch();
-
-      // Create new branch
-      await execAsync(`git checkout -b ${branchName}`);
 
       // Stage all generated and modified files
       await execAsync('git add .');
@@ -36,29 +30,25 @@ export class GitService {
       const commitMessage = this.generateCommitMessage(lessonId, topic);
       await execAsync(`git commit -m "${commitMessage}"`);
 
-      // Push to remote
-      await execAsync(`git push -u ${GIT_CONFIG.REMOTE} ${branchName}`);
+      // Push to remote main
+      await execAsync(`git push ${GIT_CONFIG.REMOTE} main`);
 
       // Get commit hash
       const { stdout: commitHash } = await execAsync('git rev-parse HEAD');
 
-      // Get repository URL for branch link
-      const branchUrl = await this.getBranchUrl(branchName);
-
-      // Return to main branch
-      await execAsync('git checkout main');
+      // Get repository URL for commit link
+      const commitUrl = await this.getCommitUrl(commitHash.trim());
 
       return {
         success: true,
-        branchName,
-        branchUrl,
         commitHash: commitHash.trim(),
+        commitUrl,
       };
     } catch (error) {
       return {
         success: false,
-        branchName: '',
-        branchUrl: '',
+        commitHash: '',
+        commitUrl: '',
         error: error instanceof Error ? error.message : 'Unknown git error',
       };
     }
@@ -86,14 +76,6 @@ export class GitService {
   }
 
   /**
-   * Generate branch name
-   */
-  private generateBranchName(lessonId: string): string {
-    const timestamp = getGitTimestamp();
-    return `${GIT_CONFIG.BRANCH_PREFIX}${lessonId}-${timestamp}`;
-  }
-
-  /**
    * Generate commit message
    */
   private generateCommitMessage(lessonId: string, topic: string): string {
@@ -108,9 +90,9 @@ Generated via lesson-generator automation tool.
   }
 
   /**
-   * Get branch URL for GitHub/GitLab
+   * Get commit URL for GitHub/GitLab
    */
-  private async getBranchUrl(branchName: string): Promise<string> {
+  private async getCommitUrl(commitHash: string): Promise<string> {
     try {
       const { stdout: remoteUrl } = await execAsync('git remote get-url origin');
       const url = remoteUrl.trim();
@@ -130,10 +112,10 @@ Generated via lesson-generator automation tool.
         webUrl = url.replace('.git', '');
       }
 
-      return `${webUrl}/tree/${branchName}`;
+      return `${webUrl}/commit/${commitHash}`;
     } catch (error) {
-      console.warn('Could not generate branch URL:', error);
-      return `Branch: ${branchName}`;
+      console.warn('Could not generate commit URL:', error);
+      return `Commit: ${commitHash.substring(0, 7)}`;
     }
   }
 
@@ -151,22 +133,21 @@ Generated via lesson-generator automation tool.
   }
 
   /**
-   * Rollback git changes (delete branch, return to main)
+   * Rollback git changes (revert last commit on main)
+   * WARNING: This reverts the last commit on main - use with caution!
    */
-  async rollback(branchName: string): Promise<void> {
+  async rollback(): Promise<void> {
     try {
-      // Checkout main
+      // Ensure we're on main
       await execAsync('git checkout main');
 
-      // Delete local branch
-      await execAsync(`git branch -D ${branchName}`);
-
-      // Try to delete remote branch (may not exist)
-      try {
-        await execAsync(`git push ${GIT_CONFIG.REMOTE} --delete ${branchName}`);
-      } catch {
-        // Remote branch might not exist yet
-      }
+      // Revert the last commit (create a new commit that undoes it)
+      await execAsync('git revert HEAD --no-edit');
+      
+      // Push the revert
+      await execAsync(`git push ${GIT_CONFIG.REMOTE} main`);
+      
+      console.log('[Git] Reverted last commit on main');
     } catch (error) {
       console.error('Error during git rollback:', error);
       throw error;

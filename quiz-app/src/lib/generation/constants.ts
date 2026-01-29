@@ -132,7 +132,6 @@ export const BLOCK_ORDER = {
 
 // Git configuration
 export const GIT_CONFIG = {
-  BRANCH_PREFIX: 'feat/lesson-',
   COMMIT_PREFIX: 'feat: Add',
   REMOTE: 'origin',
 } as const;

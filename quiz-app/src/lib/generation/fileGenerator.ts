@@ -33,7 +33,7 @@ function debugLog(stage: string, data: unknown) {
     sessionId: 'generation'
   }) + '\n';
   try {
-    const logPath = path.join(process.cwd(), '.cursor', 'debug.log');
+    const logPath = path.join(process.cwd(), '..', '.cursor', 'debug.log');
     fs.appendFileSync(logPath, logEntry, 'utf-8');
   } catch (e) {
     // Silent fail

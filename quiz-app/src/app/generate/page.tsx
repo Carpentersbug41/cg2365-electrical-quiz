@@ -28,8 +28,8 @@ interface GenerationStatus {
   result?: {
     lessonFile: string;
     quizFile: string;
-    branchName: string;
-    branchUrl: string;
+    commitHash: string;
+    commitUrl: string;
     warnings: string[];
   };
   error?: string;
@@ -178,8 +178,8 @@ export default function GeneratePage() {
         result: {
           lessonFile: data.lessonFile,
           quizFile: data.quizFile,
-          branchName: data.branchName,
-          branchUrl: data.branchUrl,
+          commitHash: data.commitHash,
+          commitUrl: data.commitUrl,
           warnings: data.warnings || [],
         },
       });
@@ -525,21 +525,21 @@ export default function GeneratePage() {
                   </ul>
                 </div>
 
-                {status.result?.branchName !== 'N/A' && (
+                {status.result?.commitHash !== 'N/A' && (
                   <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
                     <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
-                      Git Branch:
+                      Committed to main:
                     </h3>
-                    <p className="text-sm text-gray-700 dark:text-slate-300 mb-2">
-                      {status.result?.branchName}
+                    <p className="text-sm text-gray-700 dark:text-slate-300 mb-2 font-mono">
+                      {status.result?.commitHash.substring(0, 7)}
                     </p>
                     <a
-                      href={status.result?.branchUrl}
+                      href={status.result?.commitUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
                     >
-                      View on GitHub →
+                      View Commit on GitHub →
                     </a>
                   </div>
                 )}
