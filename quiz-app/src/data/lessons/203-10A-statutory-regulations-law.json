@@ -1,0 +1,298 @@
+{
+  "id": "203-10A",
+  "title": "203.10A — Statutory Regulations (LAW): The Rules of the Land",
+  "description": "Learn to define statutory law, identify the 12 core regulations for electricians, and understand the legal consequences of workplace breaches.",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Statutory Regulations",
+  "learningOutcomes": [
+    "Define statutory regulation as a legally enforceable law.",
+    "Identify the range of statutory regulations applicable to electrical installations.",
+    "State the purpose of specific regulations including HASAWA, EAWR, and COSHH.",
+    "Distinguish between statutory laws and non-statutory guidance like BS 7671."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-10A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define the term &quot;statutory&quot; in a legal context.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Identify the 12 core statutory regulations required for Unit 203.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the legal implications of breaching statutory regulations.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "State the one-line purpose for each regulation in the range.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Statutory Regulation",
+            "definition": "A law passed by Parliament that is legally enforceable and must be followed."
+          },
+          {
+            "term": "EAWR",
+            "definition": "Electricity at Work Regulations 1989; the primary law for electrical safety."
+          },
+          {
+            "term": "Prosecution",
+            "definition": "The legal process of charging a person or company with a crime in court."
+          },
+          {
+            "term": "HSE",
+            "definition": "Health and Safety Executive; the body responsible for enforcing workplace law."
+          },
+          {
+            "term": "PPE",
+            "definition": "Personal Protective Equipment; clothing or equipment worn to minimize risk."
+          },
+          {
+            "term": "Non-Statutory",
+            "definition": "Guidance or standards (like BS 7671) that are not law but represent best practice."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-explain-statutory",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Understanding Statutory Regulations and the Law",
+        "content": "In the electrical industry, safety is not just a suggestion; it is the law. **Statutory regulations** are acts of Parliament. This means they are legally enforceable. If you or your employer fail to follow these rules, you are committing a criminal offense. The consequences of a breach can include **improvement notices**, heavy **fines**, or even **imprisonment** for serious negligence.\n\nThe &quot;Umbrella&quot; legislation for all workplace safety is the **Health and Safety at Work Act (HASAWA)**. All other regulations sit underneath this act. As an electrician, you must be able to identify the following 12 regulations and their purposes:\n\n1. **HASAWA**: Sets out the general duties of employers and employees to ensure health, safety, and welfare.\n2. **EAWR**: Controls electrical work so electrical systems and work activities are safe and don&apos;t cause danger.\n3. **ESQCR**: Ensures the public and the electricity supply network are protected from danger.\n4. **PUWER**: Ensures that all equipment provided for use at work is safe and suitable for the task.\n5. **COSHH**: Requires employers to control substances that are hazardous to health, such as chemicals or dust.\n6. **CDM**: Manages health, safety, and welfare on construction projects from start to finish.\n7. **Manual Handling**: Prevents injuries caused by lifting, lowering, pushing, or pulling heavy loads.\n8. **PPE**: Ensures that suitable protective equipment is provided and used where risks cannot be controlled.\n9. **Noise at Work**: Protects workers&apos; hearing from excessive noise levels produced by tools and machinery.\n10. **Environmental Act**: Controls waste management and pollution to protect the natural environment.\n11. **Equality Act (DDA)**: Protects people from discrimination and ensures fair treatment and access.\n12. **Equal Opportunities**: Promotes a workplace culture where everyone has the same chances regardless of background.\n\n**Statutory vs Non-Statutory**: It is vital to understand the difference. Statutory documents are **Laws**. Non-statutory documents, such as **BS 7671 (The IET Wiring Regulations)**, are guidance. While BS 7671 is not a law itself, following it is the best way to prove in court that you have complied with the statutory EAWR. If you ignore BS 7671 and an accident occurs, it is very difficult to defend your actions against a criminal charge."
+      }
+    },
+    {
+      "id": "203-10A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Law and Regulation",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-10A-C1-L1-A",
+            "questionText": "What does the term &quot;statutory&quot; mean in relation to health and safety regulations?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "It is law",
+            "hint": "Think about whether it is optional or legally enforceable."
+          },
+          {
+            "id": "203-10A-C1-L1-B",
+            "questionText": "Which specific statutory regulation focuses solely on electrical systems and safety?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "EAWR",
+            "hint": "Electricity at Work Regulations."
+          },
+          {
+            "id": "203-10A-C1-L1-C",
+            "questionText": "Is BS 7671 (The Wiring Regulations) a statutory or non-statutory document?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Non-statutory",
+            "hint": "Is it an Act of Parliament or a set of professional standards?"
+          },
+          {
+            "id": "203-10A-C1-L2",
+            "questionText": "How does following a non-statutory document like BS 7671 help an electrician comply with statutory laws like EAWR?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "It shows compliance with best practice",
+            "hint": "Think about how you would defend your work in a court of law."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Identifying the Law",
+        "given": "An electrician is asked to install new cables in a factory. They notice a large pile of unmarked chemical drums leaking near their work area.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the hazard: Hazardous chemical leak.",
+            "formula": null,
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 2,
+            "description": "Identify the relevant statutory regulation: COSHH (Control of Substances Hazardous to Health).",
+            "formula": null,
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 3,
+            "description": "Determine the correct action: Stop work, report the leak to the site manager, and ensure the area is cordoned off.",
+            "formula": null,
+            "calculation": null,
+            "result": null
+          },
+          {
+            "stepNumber": 4,
+            "description": "Consider the consequence of ignoring it: Serious illness/injury and potential prosecution under HASAWA for failing to ensure safety.",
+            "formula": null,
+            "calculation": null,
+            "result": null
+          }
+        ],
+        "notes": "Always link the physical hazard to the specific law that governs it."
+      }
+    },
+    {
+      "id": "203-10A-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Regulation Matching",
+        "problem": "Match the workplace scenario to the correct statutory regulation.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "You are using a hammer drill that has a frayed power lead. Which regulation ensures this equipment must be safe?",
+            "expectedAnswer": [
+              "PUWER",
+              "Provision and Use of Work Equipment Regulations"
+            ],
+            "hint": "Think about 'Work Equipment'."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "You are required to lift heavy cable drums into a van. Which regulation applies?",
+            "expectedAnswer": [
+              "Manual Handling",
+              "Manual Handling Operations Regulations"
+            ],
+            "hint": "It involves physical lifting."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Your Turn: Statutory Knowledge",
+        "questions": [
+          {
+            "id": "203-10A-P1",
+            "questionText": "Which regulation is known as the 'Umbrella Act' because all other health and safety laws fall under it?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "HASAWA",
+              "Health and Safety at Work Act"
+            ],
+            "hint": "The 1974 Act."
+          },
+          {
+            "id": "203-10A-P2",
+            "questionText": "What is the primary purpose of the ESQCR?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Public safety",
+              "Protect the supply network",
+              "Supply safety"
+            ],
+            "hint": "It involves the Electricity Supply network."
+          },
+          {
+            "id": "203-10A-P3",
+            "questionText": "Which regulation requires a site manager to coordinate safety on a large building project?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "CDM",
+              "Construction Design and Management"
+            ],
+            "hint": "Think about 'Management' of 'Construction'."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "203-10A-INT-1",
+            "questionText": "An employer refuses to provide safety boots (PPE) and asks you to work on a noisy site with unmaintained power tools. Identify three statutory regulations being breached and explain the possible legal outcome for the employer.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Breaches: PPE Regs, Noise at Work Regs, and PUWER. The employer could face prosecution by the HSE, leading to heavy fines or imprisonment.",
+            "hint": "Look for equipment, hearing, and protective gear regulations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review: Core Definitions",
+        "questions": [
+          {
+            "id": "203-10A-SR-1",
+            "questionText": "What does the acronym HASAWA stand for?",
+            "expectedAnswer": "Health and Safety at Work Act",
+            "hint": "The main 1974 Act."
+          },
+          {
+            "id": "203-10A-SR-2",
+            "questionText": "What is the legal definition of a 'Statutory' regulation?",
+            "expectedAnswer": "It is the law / legally enforceable.",
+            "hint": "Think about the source of the rule (Parliament)."
+          },
+          {
+            "id": "203-10A-SR-3",
+            "questionText": "Expand the acronym COSHH.",
+            "expectedAnswer": "Control of Substances Hazardous to Health",
+            "hint": "Relates to chemicals, dust, and fumes."
+          },
+          {
+            "id": "203-10A-SR-4",
+            "questionText": "Which regulation covers the safe use of work tools like drills and ladders?",
+            "expectedAnswer": "PUWER",
+            "hint": "Provision and Use of Work Equipment Regulations."
+          }
+        ],
+        "notes": "Reviewing foundational acronyms and the definition of statutory law."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-29",
+    "updated": "2026-01-29",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

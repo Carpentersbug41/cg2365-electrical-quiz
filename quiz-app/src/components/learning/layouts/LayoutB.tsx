@@ -146,7 +146,7 @@ export default function LayoutB({ lesson }: LayoutProps) {
               Ready to test your knowledge?
             </h3>
             <p className="text-gray-600 dark:text-slate-300 mb-6">
-              Complete the quiz to reinforce what you've learned
+              Complete the quiz to reinforce what you&apos;ve learned
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <button 

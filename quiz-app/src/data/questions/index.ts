@@ -25,11 +25,13 @@ import { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3Plate
 import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
 import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
+import { statutoryRegulationsLawQuestions } from './statutoryRegulationsLawQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...statutoryRegulationsLawQuestions,
   ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
   ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
   ...oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions,
@@ -77,6 +79,7 @@ export { oneWayLighting3PlateCeilingRoseQuestions } from './oneWayLighting3Plate
 export { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
 export { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 export { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
+export { statutoryRegulationsLawQuestions } from './statutoryRegulationsLawQuestions';
 
 /**
  * Filter questions by tags
