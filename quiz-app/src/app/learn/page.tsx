@@ -41,7 +41,7 @@ import ReviewDashboard from '@/components/learning/ReviewDashboard';
  * Sorts by: unit number (numerical) → lesson number (numerical) → suffix (alphabetical)
  * Handles formats like "204-10A", "202-3AB", "204-204-12B"
  */
-function sortLessonsByIdNaturally(a: any, b: any) {
+function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
   const parseId = (id: string) => {
     const parts = id.split('-');
     const unit = parseInt(parts[0], 10);
