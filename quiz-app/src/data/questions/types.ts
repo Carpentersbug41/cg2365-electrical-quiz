@@ -183,7 +183,10 @@ export type QuestionTag =
   | 'amplitude'         // Amplitude/peak value
   | 'efficiency'       // Efficiency calculations
   | 'power'            // Power calculations
-  | 'energy';          // Energy calculations
+  | 'energy'           // Energy calculations
+  // Dead testing specific tags
+  | 'continuity'       // Continuity testing
+  | 'health-safety';   // Health and safety considerations
 
 /**
  * Answer Type: Determines marking strategy
