@@ -54,23 +54,27 @@
           },
           {
             "term": "COM (Common)",
-            "definition": "The switch terminal that receives the permanent live feed."
+            "definition": "The switch terminal that receives the permanent live feed (the input to the switch)."
           },
           {
             "term": "L1",
-            "definition": "The switch terminal that outputs live to the lamp circuit when the switch is ON."
+            "definition": "The switch terminal that outputs to the lamp path when the switch is ON (the output from the switch)."
           },
           {
             "term": "Loop group (Permanent live)",
-            "definition": "The ceiling rose terminal group that contains permanent live conductors (supply live and any loop/feed conductors)."
+            "definition": "The ceiling rose terminal group that contains permanent live conductors (supply live and any loop/feed conductors). This would be live if the circuit were energised, even if the switch is OFF."
           },
           {
             "term": "Switched live group",
-            "definition": "The ceiling rose terminal group that feeds the lamp live and becomes live only when the switch is ON."
+            "definition": "The ceiling rose terminal group that feeds the lamp live and would only be live if the circuit were energised AND the switch is ON."
           },
           {
             "term": "Identification / sleeving",
             "definition": "Marking applied so a conductor’s function is clear at terminations. Any conductor used as live must be identified as live (brown) at the ends."
+          },
+          {
+            "term": "CPC",
+            "definition": "Circuit Protective Conductor (earth). It provides a fault path and must be continuous and terminated at each point."
           }
         ]
       }
@@ -93,9 +97,19 @@
           "switch-drop",
           "one-way-switch",
           "com-terminal",
-          "l1-terminal"
+          "l1-terminal",
+          "cpc-earth"
         ],
-        "placeholderText": "Diagram showing: Rose Loop group feeding Switch COM; Switch L1 returning to Rose Switched Live group; Neutral staying in Neutral group; CPC terminated at rose and switch box."
+        "placeholderText": "Diagram showing: Rose Loop group feeding Switch COM; Switch L1 returning to Rose Switched Live group; Neutral staying in Neutral group; CPC continuous and terminated at rose and switch point."
+      }
+    },
+    {
+      "id": "204-13B-orient-what-you-see",
+      "type": "explanation",
+      "order": 3.5,
+      "content": {
+        "title": "Before Anything Else: What You’re Looking At (Noob Orientation)",
+        "content": "Rig-safe reminder: this is training-rig learning. Treat conductors as potentially live in real life. On the rig, you only touch/access when it is in the approved dead state.\n\nWhen you open/look at a **3-plate ceiling rose**, you will usually see:\n- **Three terminal groups (three ‘blocks’):**\n  1) **Neutral group** (neutrals join here)\n  2) **Loop group** (permanent lives join here)\n  3) **Switched live group** (return-from-switch + lamp live join here)\n- A place/connector for **CPC (earth)** (often a dedicated earth terminal or an insulated connector depending on the rose/rig).\n\nWhen you look at a **one-way switch**, you will usually focus on:\n- **COM** = the **input** to the switch\n- **L1** = the **output** from the switch (only connected to COM when the switch is ON)\n\nThis lesson is simply: **one core takes permanent live down to COM, and one core brings switched live back up from L1.**"
       }
     },
     {
@@ -104,7 +118,7 @@
       "order": 4,
       "content": {
         "title": "Understanding the Switch Drop (feed down + return up)",
-        "content": "Safety note (rig-safe): This lesson is for conceptual learning on training rigs. Never open or work on real ceiling roses/switches unless the circuit is safely isolated, proven dead, and you are trained/supervised.\n\nIn a standard 3-plate ceiling rose circuit, the switch acts like a simple bridge. Its job is to break or complete the **live** path. The live conductor travels down to the switch and back up again — that down-and-up journey is the **switch drop**.\n\n### The bucket model (rose terminal groups)\nThink of the ceiling rose as three labelled buckets:\n- **Neutral group:** supply neutral + lamp neutral (neutral is not switched).\n- **Loop group (permanent live):** supply live and any permanent live links/feeds (this group stays live when the circuit is energised, even if the switch is OFF).\n- **Switched live group:** the switched live return and the lamp live (this group is only live when the switch is ON).\n\n### The live journey (the story you must be able to say out loud)\n**Loop group → COM → L1 → Switched live group → lamp live**\n\n### Micro “core role map” (ultra-beginner)\nIn many training setups, the switch drop cable has **two insulated cores + CPC**.\n\n**At the switch:**\n- **COM = the feed down (permanent live from the rose Loop group)**\n- **L1 = the return up (switched live back to the rose Switched live group)**\n\n**At the rose:**\n- The **feed-down core** belongs in the **Loop group** (because it is permanent live feeding the switch)\n- The **return-up core** belongs in the **Switched live group** (because it becomes live only when the switch is ON)\n\n### Identification / sleeving rule (non-negotiable)\nIn a switch drop, a core colour can be misleading (for example, a blue core used as the switched live return). **Any core used as live must be identified as live (brown) at BOTH ends (both terminations).**\n\n### CPC rule (also non-negotiable)\nThe CPC must be continuous through the circuit and must be terminated at the ceiling rose and at the switch point (earth terminal/connector), even with plastic accessories.\n\n### Quick dead inspection checklist (before any meter work)\nTick these off visually (and with a gentle tug check) before testing:\n- No exposed copper outside terminals\n- No “plastic-in” (insulation clamped instead of copper)\n- Correct terminals used (Loop group vs Switched live group; COM vs L1)\n- Brown identification present where a core is used as live (at both ends)\n- CPC present and terminated at rose and at switch point\n- Terminations are firm (gentle tug test)"
+        "content": "Safety note (rig-safe): This lesson is for conceptual learning on training rigs. Never open or work on real ceiling roses/switches unless the circuit is safely isolated, proven dead, and you are trained/supervised.\n\nIn a standard 3-plate ceiling rose circuit, the switch acts like a simple bridge. Its job is to break or complete the **live** path. The live conductor travels down to the switch and back up again — that down-and-up journey is the **switch drop**.\n\n### The bucket model (rose terminal groups)\nThink of the ceiling rose as three labelled buckets:\n- **Neutral group:** supply neutral + lamp neutral (neutral is not switched).\n- **Loop group (permanent live):** supply live and any permanent live links/feeds (this **would be live if the circuit were energised**, even if the switch is OFF).\n- **Switched live group:** the switched live return and the lamp live (this **would only be live if the circuit were energised AND the switch is ON**).\n\n### The live journey (the story you must be able to say out loud)\n**Loop group → COM → L1 → Switched live group → lamp live**\n\n### Micro “core role map” (ultra-beginner)\nIn many training setups, the switch drop cable has **two insulated cores + CPC**.\n\n**At the switch:**\n- **COM = the feed down** (permanent live from the rose Loop group)\n- **L1 = the return up** (switched live back to the rose Switched live group)\n\n**At the rose:**\n- The **feed-down core** belongs in the **Loop group** (because it is feeding the switch with permanent live)\n- The **return-up core** belongs in the **Switched live group** (because it becomes live only when the switch is ON)\n\n### Identification / sleeving rule (non-negotiable)\nIn a switch drop, a core colour can be misleading (for example, a blue core used as a switched live return). **Any core used as live must be identified as live (brown) at BOTH ends (both terminations).**\n\n### CPC rule (also non-negotiable)\nThe CPC must be continuous through the circuit and must be terminated at the ceiling rose and at the switch point (earth terminal/connector), even with plastic accessories.\n\n### Common beginner mistakes (so you can spot them fast)\n- Putting the **return-up (switched live)** into the **Loop group** (lamp may become permanently fed and the switch won’t control it correctly).\n- Forgetting **brown identification** on a non-brown core used as live (causes dangerous confusion later).\n- Leaving CPC **loose/unterminated** at the switch point (breaks earth continuity).\n\n### Quick dead inspection checklist (before any meter work)\nTick these off visually (and with a gentle tug check) before testing:\n- No exposed copper outside terminals\n- No “plastic-in” (insulation clamped instead of copper)\n- Correct terminals used (Loop group vs Switched live group; COM vs L1)\n- Brown identification present where a core is used as live (at both ends)\n- CPC present and terminated at rose and at switch point\n- Terminations are firm (gentle tug test)"
       }
     },
     {
@@ -118,11 +132,11 @@
         "questions": [
           {
             "id": "204-13B-C1-L1-A",
-            "questionText": "Which terminal group in the ceiling rose provides the permanent live feed down to the switch?",
+            "questionText": "Which terminal group in the ceiling rose provides the permanent live feed down to the switch (would be live if energised even when the switch is OFF)?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "Loop group (permanent live)",
-            "hint": "It stays live even when the switch is OFF."
+            "hint": "It’s the permanent live join/group."
           },
           {
             "id": "204-13B-C1-L1-B",
@@ -130,7 +144,7 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "COM",
-            "hint": "Common = input."
+            "hint": "COM = the input."
           },
           {
             "id": "204-13B-C1-L1-C",
@@ -138,7 +152,7 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "Brown",
-            "hint": "Any core used as live must be identified as live."
+            "hint": "Any conductor used as live must be identified as live."
           },
           {
             "id": "204-13B-C1-L2",
@@ -228,7 +242,7 @@
               "Loop",
               "Permanent live group"
             ],
-            "hint": "It must be live even when the switch is OFF."
+            "hint": "It must be live (if energised) even when the switch is OFF."
           },
           {
             "stepNumber": 2,
@@ -255,7 +269,7 @@
               "Switched live",
               "Lamp live group"
             ],
-            "hint": "This group is only live when the switch is ON."
+            "hint": "This group is only live when the switch is ON (if energised)."
           },
           {
             "stepNumber": 5,
@@ -325,7 +339,7 @@
           },
           {
             "id": "204-13B-P4",
-            "questionText": "Misconnection check: If the return-up (switched live) conductor is accidentally placed into the rose Loop group instead of the Switched live group, what is the likely effect on lamp control?",
+            "questionText": "Misconnection check: If the return-up (switched live) conductor is accidentally placed into the rose Loop group instead of the Switched live group, what is the likely effect on lamp control (if the circuit were energised)?",
             "answerType": "short-text",
             "expectedAnswer": [
               "The lamp may be permanently live",
@@ -333,7 +347,7 @@
               "The lamp could stay on",
               "The lamp live could be fed permanently"
             ],
-            "hint": "Think: Loop group = permanent live (always-live join)."
+            "hint": "Loop group = permanent live join."
           }
         ]
       }
@@ -380,7 +394,7 @@
             "id": "204-13B-SR-3",
             "questionText": "What is the purpose of the Loop group in a 3-plate ceiling rose?",
             "expectedAnswer": "To join permanent lives and provide the permanent live feed (including the feed to the switch).",
-            "hint": "It stays live even when the switch is OFF."
+            "hint": "It would stay live (if energised) even when the switch is OFF."
           },
           {
             "id": "204-13B-SR-4",
@@ -396,7 +410,14 @@
   "metadata": {
     "created": "2026-01-28",
     "updated": "2026-01-29",
-    "version": "1.2",
+    "version": "1.3",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 19,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }

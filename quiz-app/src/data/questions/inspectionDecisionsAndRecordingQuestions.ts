@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * Inspection decisions and recording Question Bank
- * Aligned with lesson 204-204-12B learning outcomes
+ * Aligned with lesson 204-12B learning outcomes
  * Generated: 2026-01-28
  */
 
@@ -29,7 +29,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -56,7 +56,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -83,7 +83,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -110,7 +110,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -137,7 +137,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -164,7 +164,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -191,7 +191,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -218,7 +218,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -245,7 +245,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -272,7 +272,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "resistance-rule"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -300,7 +300,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -327,7 +327,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -354,7 +354,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -382,7 +382,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -410,7 +410,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -438,7 +438,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -465,7 +465,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -492,7 +492,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "explanation"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -519,7 +519,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "calculation"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -546,7 +546,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -573,7 +573,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -600,7 +600,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -627,7 +627,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -654,7 +654,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -681,7 +681,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -709,7 +709,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -736,7 +736,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -764,7 +764,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -791,7 +791,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "calculation"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -818,7 +818,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -845,7 +845,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -872,7 +872,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -899,7 +899,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -926,7 +926,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -953,7 +953,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -980,7 +980,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1007,7 +1007,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1034,7 +1034,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1061,7 +1061,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "explanation"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1088,7 +1088,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "health-safety"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1116,7 +1116,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1144,7 +1144,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1172,7 +1172,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "calculation"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1200,7 +1200,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "application",
       "methodology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1228,7 +1228,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "resistance-rule",
       "discrimination"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1256,7 +1256,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1283,7 +1283,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "conceptual",
       "methodology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1311,7 +1311,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1339,7 +1339,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "terminology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1367,7 +1367,7 @@ export const inspectionDecisionsAndRecordingQuestions: TaggedQuestion[] = [
       "health-safety",
       "methodology"
     ],
-    "learningOutcomeId": "204-204-12B-LO1",
+    "learningOutcomeId": "204-12B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,

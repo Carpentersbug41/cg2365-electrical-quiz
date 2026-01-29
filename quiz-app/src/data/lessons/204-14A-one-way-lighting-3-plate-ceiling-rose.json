@@ -1,15 +1,16 @@
 {
   "id": "204-14A",
-  "title": "204.14A — One-way lighting (3-plate ceiling rose): plan + wire journey (rig-safe)",
-  "description": "Master the wire journey and termination map for a 3-plate ceiling rose circuit before beginning practical rig installation.",
+  "title": "204.14A — One-way lighting (3-plate ceiling rose): plan + wire journey (rig-safe, absolute beginner)",
+  "description": "Beginner-first lesson: understand what you physically see at the rose and switch, then learn the wire journey and a repeatable terminal map before any practical rig work.",
   "layout": "split-vis",
   "unit": "Unit 204",
   "topic": "One-way lighting",
   "learningOutcomes": [
-    "Define what a one-way lighting circuit is in a training-rig context.",
-    "Explain the wire journey including permanent live, switched live, neutral, and CPC paths.",
-    "Identify where each conductor terminates at the ceiling rose and the switch.",
-    "Apply a pre-flight inspection checklist for dead installations."
+    "Define a one-way lighting circuit in a training-rig context (one switch controls one lamp).",
+    "Explain the wire journey for permanent live, switched live, neutral, and CPC using plain language.",
+    "Identify what you physically see at a 3-plate ceiling rose and a 1-way switch (terminal names/labels).",
+    "Map each conductor role to the correct terminals at the ceiling rose and switch.",
+    "Apply a beginner-safe pre-flight (dead) inspection checklist before any meter tests."
   ],
   "prerequisites": [
     "204-11A",
@@ -25,19 +26,19 @@
       "content": {
         "outcomes": [
           {
-            "text": "Define a one-way lighting circuit and its components.",
+            "text": "Define a one-way lighting circuit and name the main parts (CU, rose, switch, lamp) in a training rig.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the complete wire journey from consumer unit to lamp.",
+            "text": "Describe the wire journey in plain English (permanent live → switch → lamp; neutral return; CPC safety path).",
             "bloomLevel": "understand"
           },
           {
-            "text": "Map conductors to specific terminals in a 3-plate rose and switch.",
+            "text": "Map conductor roles to terminals at the rose and the switch using terminal names (Loop/Neutral/Switched Live, COM/L1).",
             "bloomLevel": "apply"
           },
           {
-            "text": "Perform a pre-flight quality inspection on a dead circuit.",
+            "text": "Use a pre-flight inspection checklist to catch ‘stop-and-fix’ issues on a dead rig.",
             "bloomLevel": "apply"
           }
         ]
@@ -51,27 +52,27 @@
         "terms": [
           {
             "term": "One-way switching",
-            "definition": "A configuration where a single switch controls one lamp from one location."
+            "definition": "One switch controls one lamp from one place."
           },
           {
             "term": "Ceiling rose (3-plate)",
-            "definition": "An accessory containing loop (permanent live), neutral, and switched live terminals."
+            "definition": "A ceiling accessory that acts like a junction point and has three terminal groups: Loop (permanent live), Neutral, and Switched Live."
           },
           {
-            "term": "Permanent live (loop)",
-            "definition": "The live feed from the supply that remains live regardless of switch position."
+            "term": "Permanent live (Loop)",
+            "definition": "A live feed that stays live when the circuit is energised, even if the switch is OFF."
           },
           {
             "term": "Switched live",
-            "definition": "The conductor returning from the switch that only becomes live when the switch is closed."
+            "definition": "The live that only becomes live when the switch is ON, and feeds the lamp live."
           },
           {
-            "term": "CPC",
-            "definition": "Circuit Protective Conductor; the earth path ensuring safety throughout the installation."
+            "term": "CPC (Earth)",
+            "definition": "Circuit Protective Conductor: the protective earth path that helps protective devices operate safely under fault conditions."
           },
           {
-            "term": "Sleeving/ID",
-            "definition": "Coloured markers used to identify the function of a conductor, such as brown on a switched live."
+            "term": "Sleeving / identification",
+            "definition": "A coloured marker at the ends of a conductor to show its function (e.g., brown sleeving on a core used as live)."
           }
         ]
       }
@@ -81,10 +82,10 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "One-way Lighting (3-plate rose) Wire Journey",
-        "description": "A map showing the flow of Line, Neutral, and CPC between the Consumer Unit, Ceiling Rose, and Switch.",
+        "title": "One-way Lighting (3-plate rose): what connects to what",
+        "description": "A beginner map showing Line, Neutral, and CPC between the Consumer Unit, Ceiling Rose, Switch, and Lamp.",
         "videoUrl": "",
-        "imageUrl": "/images/lessons/1769601960118-One_way_Lighting_WR.png", 
+        "imageUrl": "/images/lessons/1769601960118-One_way_Lighting_WR.png",
         "diagramType": "circuit",
         "elementIds": [
           "CU",
@@ -92,16 +93,16 @@
           "Switch",
           "Lamp"
         ],
-        "placeholderText": "Diagram showing: CU Line to Rose Loop; Rose Loop to Switch COM; Switch L1 to Rose Switched Live terminal; Rose Switched Live to Lamp; CU Neutral to Rose Neutral group; Rose Neutral group to Lamp; CPC connecting all points."
+        "placeholderText": "Diagram: CU Line to Rose Loop; Rose Loop to Switch COM; Switch L1 to Rose Switched Live; Rose Switched Live to Lamp Live; CU Neutral to Rose Neutral; Rose Neutral to Lamp Neutral; CPC connected throughout."
       }
     },
     {
-      "id": "204-14A-explain-wire-journey",
+      "id": "204-14A-explain-what-you-see",
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "The Path of the Current",
-        "content": "A **one-way lighting circuit** using a 3-plate ceiling rose is the standard method for wiring lights in the UK. The fundamental rule to remember is that the **switch breaks the Line (live) conductor**, never the Neutral. This *reduces the chance* of a live contact at the lamp holder when the switch is OFF — and it is one reason we later confirm **polarity** during dead testing.\n\n### 1. The Permanent Live Path (The Loop)\nThe journey begins at the **Consumer Unit (CU)**. The Line conductor travels to the ceiling rose and terminates in the **Loop terminals**. This is a permanent live group. From this same group, a conductor (the switch feed) travels down to the **COM (Common)** terminal of the switch. This part of the circuit is always live as long as the breaker is on.\n\n### 2. The Switched Live Path (The Return)\nWhen the switch is toggled to the &apos;ON&apos; position, it creates a bridge between the **COM** and **L1** terminals. The conductor connected to L1 is the **switched live**. It travels back up to the ceiling rose and terminates in the third, separate terminal (the switched live terminal). This terminal is then connected directly to the lamp live. It only becomes live when the switch is closed.\n\n### 3. The Neutral Path\nThe Neutral conductor from the CU goes directly to the **Neutral group** in the ceiling rose. The lamp&apos;s neutral wire also connects to this group. Unlike the live wire, the neutral is not interrupted by the switch; it provides the continuous return path for the current from the lamp back to the supply.\n\n### 4. The CPC (Earth) Path\nThe **Circuit Protective Conductor (CPC)** must be continuous throughout. It runs from the CU to the ceiling rose and then to the switch box. Even if you are using plastic accessories, the CPC must be terminated into the provided earth terminals **or an insulated connector block** to maintain the earth path for the entire circuit.\n\n### 5. Termination Map Summary\nIn a 3-plate rose, you have three distinct blocks:\n1. **Loop:** CU Live and Switch Feed (COM).\n2. **Neutral:** CU Neutral and Lamp Neutral.\n3. **Switched Live:** Switch Return (L1) and Lamp Live.\n\n**Non-negotiable rule:** the lamp live connects only to the **Switched Live** terminal — **never** into the Loop/permanent live group.\n\n### 6. Pre-flight Inspection\nBefore any testing with meters, you must perform a visual **dead inspection**.\n- Look for &apos;Stop-and-Fix&apos; issues: **exposed copper** outside of terminals, **loose terminations** (the &apos;tug test&apos;), and **missing/unterminated CPC** connections.\n- Ensure the cable sheath enters the accessory box and that all switched lives are correctly identified with **brown sleeving**.\n\n**Decision gate (inspection-only):**\n- **Pass:** safe and clear to proceed to dead tests.\n- **Suspicious:** correct/verify before metering (could distort results).\n- **Stop-and-Fix:** do not continue until corrected (safety/validity risk)."
+        "title": "First: What You Actually See (no wiring yet)",
+        "content": "Rig-safety note (read this): This lesson is **conceptual** and for **training rigs only**. Do not open or work on real lighting circuits unless you are trained/supervised and the circuit is safely isolated and proven dead.\n\nIf you’ve never seen these parts before, start with the physical picture.\n\n## A) What you see at a 3-plate ceiling rose\nA typical 3-plate ceiling rose has **three separate terminal groups** (think: three labelled slots/buckets):\n\n1) **Neutral group (N):** where neutrals join together (supply neutral + lamp neutral).\n2) **Loop group (Permanent Live / Loop):** where permanent lives join together (the live feed(s) and the live that feeds the switch).\n3) **Switched live group:** where the switched live return joins the lamp live.\n\nYou may also see an **earth/CPC terminal or connector** where all CPCs are joined.\n\n## B) What you see at a one-way switch\nA one-way switch typically has:\n- **COM (Common):** the input (it receives the permanent live feed)\n- **L1 (or “1”):** the output (it becomes live only when the switch is ON)\n- an **earth terminal/connection point** (CPC must be terminated/connected as required on the rig)\n\n## C) The single most important beginner rule\n**The lamp live must NOT go into the Loop (permanent live) group.**\n- Loop group = “always live when the circuit is on.”\n- Lamp live must be “only live when the switch is on,” so it belongs in the **Switched live group**.\n\n## D) Identification (why sleeving exists)\nSometimes a core colour doesn’t match its job (especially in switch-drop cables). **Any core used as live must be identified as live (brown) at the ends.**"
       }
     },
     {
@@ -109,54 +110,299 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Wire Journeys",
+        "title": "Check Your Understanding: What You See",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "204-14A-C1-L1-A",
-            "questionText": "In a one-way lighting circuit, which conductor must the switch break?",
+            "questionText": "Name the three terminal groups in a 3-plate ceiling rose.",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Line",
-              "Live",
-              "Line (Live)"
+              "Loop, Neutral, Switched live",
+              "Loop (permanent live), Neutral, Switched live",
+              "Permanent live (loop), Neutral, Switched live"
             ],
-            "hint": "Think about which wire carries the potential to the switch."
+            "hint": "Think: always-live join, neutrals join, switch-controlled join."
           },
           {
             "id": "204-14A-C1-L1-B",
-            "questionText": "Where do the neutral conductors from the CU and the lamp join together?",
+            "questionText": "Which two terminals are most common on a one-way switch used for this circuit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Ceiling rose",
-              "Neutral group at the ceiling rose",
-              "Neutral terminals at the rose",
-              "Rose neutral group"
+              "COM and L1",
+              "Common and L1",
+              "COM and 1"
             ],
-            "hint": "It is the central hub for the 3-plate system."
+            "hint": "One is the input, one is the output."
           },
           {
             "id": "204-14A-C1-L1-C",
-            "questionText": "Which terminal on the switch receives the permanent live feed from the rose loop?",
+            "questionText": "What colour identification should be applied to any core used as live at the terminations?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "COM",
-            "hint": "It stands for 'Common'."
+            "expectedAnswer": [
+              "Brown",
+              "Brown sleeving"
+            ],
+            "hint": "Live identification colour in modern UK wiring."
           },
           {
             "id": "204-14A-C1-L2",
-            "questionText": "Why is the lamp live connected to the 'Switched Live' terminal instead of the 'Loop' terminal?",
+            "questionText": "Why is the lamp live kept out of the Loop (permanent live) group?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
               "So the switch can control the lamp",
-              "Because the loop is permanent live and the lamp must be fed from switched live",
-              "To ensure the lamp is only live when the switch is on"
+              "Because the loop is permanent live and the lamp must only be live when the switch is on",
+              "Otherwise the lamp would be live all the time"
             ],
-            "hint": "If it were in the loop, would the switch do anything?"
+            "hint": "Loop = always live; lamp needs switch control."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14A-explain-wire-journey",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Second: The Wire Journey (plain English)",
+        "content": "Now we connect the physical parts to the *story* of the electricity path.\n\n## The golden rule\nIn this classic method, the **switch interrupts the live path**, not the neutral.\n\n## 1) Permanent live journey (to the switch)\n- The **live from the supply** arrives at the ceiling rose and terminates in the **Loop group**.\n- From that same Loop group, a **live feed goes down to the switch** and lands on **COM**.\n\n## 2) Switched live journey (back from the switch to the lamp)\n- When the switch is ON, it connects **COM → L1**.\n- The conductor on **L1** becomes the **switched live return**.\n- That switched live return goes back up to the rose and terminates in the **Switched live group**.\n- From that group it connects to the **lamp live**.\n\n## 3) Neutral journey (lamp return path)\n- Neutral does **not** go through the switch in this method.\n- The supply neutral joins the lamp neutral in the **Neutral group** at the rose.\n\n## 4) CPC journey (safety path)\n- CPC must remain continuous through the circuit.\n- On the rig: CPCs are joined and terminated/connected as required at the rose and switch point.\n\n## Quick termination map (beginner version)\n- **Rose Loop:** supply live + feed down to switch COM\n- **Rose Neutral:** supply neutral + lamp neutral\n- **Rose Switched Live:** return from switch L1 + lamp live\n- **CPC:** joined/terminated at all points (rig rules)"
+      }
+    },
+    {
+      "id": "204-14A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Journey",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-14A-C2-L1-A",
+            "questionText": "Which rose terminal group provides the live feed down to the switch?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Loop",
+              "Loop group",
+              "Permanent live (loop)"
+            ],
+            "hint": "The group that is live even when the switch is OFF."
+          },
+          {
+            "id": "204-14A-C2-L1-B",
+            "questionText": "Which switch terminal receives the permanent live feed?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "COM",
+              "Common"
+            ],
+            "hint": "Input terminal."
+          },
+          {
+            "id": "204-14A-C2-L1-C",
+            "questionText": "Where do the lamp neutral and supply neutral join in this method?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Neutral group at the ceiling rose",
+              "Rose neutral group",
+              "Neutral terminals at the rose"
+            ],
+            "hint": "Neutral stays at the rose in this classic method."
+          },
+          {
+            "id": "204-14A-C2-L2",
+            "questionText": "Trace the live path when the switch is ON (use terminal names/groups).",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Rose Loop group → Switch COM → Switch L1 → Rose Switched live group → lamp live",
+              "Loop → COM → L1 → Switched live → lamp live"
+            ],
+            "hint": "Down to COM, back from L1."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14A-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example (I Do): Make a Termination Plan Before You Touch Anything",
+        "given": "Training rig scenario: One ceiling rose, one one-way switch, one lamp. You have a supply feed to the rose, a switch-drop cable between rose and switch, and a lamp flex to the lamp holder.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Name the four conductor roles you must account for.",
+            "formula": null,
+            "calculation": null,
+            "result": "Permanent live (Loop), Switched live, Neutral, CPC"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Plan the rose terminations (which role goes to which terminal group).",
+            "formula": null,
+            "calculation": null,
+            "result": "Loop group: supply live + feed to switch COM. Neutral group: supply neutral + lamp neutral. Switched live group: return from switch L1 + lamp live. CPCs: joined/terminated as required on rig."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Plan the switch terminations (which role goes to which terminal).",
+            "formula": null,
+            "calculation": null,
+            "result": "COM: permanent live feed from rose Loop. L1: switched live return back to rose Switched live group. CPC: terminated/connected as required."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Apply the identification rule (where brown sleeving is needed).",
+            "formula": null,
+            "calculation": null,
+            "result": "Any core used as live (feed to COM and return from L1) is identified brown at the terminations."
+          },
+          {
+            "stepNumber": 5,
+            "description": "Write a one-line plan note (so you can check your work).",
+            "formula": null,
+            "calculation": null,
+            "result": "Plan: Loop→COM feed, L1 return→Switched Live→Lamp Live; neutrals in Neutral group; CPC continuous."
+          }
+        ],
+        "notes": "Beginners win by planning first. If you can say the plan out loud, wiring becomes a simple matching exercise on the rig."
+      }
+    },
+    {
+      "id": "204-14A-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do): Fill the Map (one step at a time)",
+        "problem": "You are about to wire the training rig. Complete the termination plan by answering each step.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "At the ceiling rose, which terminal group does the supply live go into?",
+            "expectedAnswer": [
+              "Loop",
+              "Loop group",
+              "Permanent live (loop)"
+            ],
+            "hint": "Supply live joins the always-live group."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "At the switch, which terminal receives that feed from the rose?",
+            "expectedAnswer": [
+              "COM",
+              "Common"
+            ],
+            "hint": "Input terminal."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "When the switch is ON, which switch terminal sends the live back up to the rose?",
+            "expectedAnswer": [
+              "L1",
+              "1"
+            ],
+            "hint": "Output terminal."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "At the rose, which terminal group does that return go into (the one that feeds the lamp live)?",
+            "expectedAnswer": [
+              "Switched live",
+              "Switched live group",
+              "Switched live terminal"
+            ],
+            "hint": "This group becomes live only when the switch is ON."
+          },
+          {
+            "stepNumber": 5,
+            "prompt": "Where do the lamp neutral and supply neutral join?",
+            "expectedAnswer": [
+              "Neutral group at the ceiling rose",
+              "Rose neutral group",
+              "Neutral terminals at the rose"
+            ],
+            "hint": "Neutral stays at the rose in this method."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-14A-explain-preflight",
+      "type": "explanation",
+      "order": 8,
+      "content": {
+        "title": "Pre-flight (Dead) Inspection Checklist — beginner-safe",
+        "content": "Before any meter tests, do a simple visual quality gate on the **dead** rig.\n\n## PASS / SUSPICIOUS / STOP-AND-FIX\n- **PASS:** looks neat and correct → OK to proceed to dead tests.\n- **SUSPICIOUS:** something looks odd → fix/verify before metering (bad terminations can distort results).\n- **STOP-AND-FIX:** unsafe/invalid → do not continue.\n\n## Checklist (read top to bottom)\n1) **No exposed copper** outside any terminal.\n2) **No plastic-in:** insulation is not trapped under the terminal clamp.\n3) **Sheath enters the accessory:** outer sheath is inside the point of entry (strain relief).\n4) **Gentle tug test:** conductors are secure (do not yank).\n5) **CPC present and managed:** CPCs are joined/terminated as required (none left floating).\n6) **Brown identification present** on any core used as live at terminations (feed/return)."
+      }
+    },
+    {
+      "id": "204-14A-check-3",
+      "type": "practice",
+      "order": 8.5,
+      "content": {
+        "title": "Check Your Understanding: Pre-flight",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-14A-C3-L1-A",
+            "questionText": "Name one clear STOP-AND-FIX issue you might see at a terminal.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Exposed copper",
+              "Copper outside terminal",
+              "Loose conductor",
+              "Plastic-in (insulation clamped)"
+            ],
+            "hint": "Think: visible copper or the wrong thing clamped."
+          },
+          {
+            "id": "204-14A-C3-L1-B",
+            "questionText": "What does 'plastic-in' mean?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Insulation is clamped instead of copper",
+              "The terminal is gripping the insulation not the conductor",
+              "The copper isn’t properly inside the terminal"
+            ],
+            "hint": "The clamp is holding the wrong part."
+          },
+          {
+            "id": "204-14A-C3-L1-C",
+            "questionText": "Why should the cable sheath enter the accessory rather than stopping outside it?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Strain relief / support",
+              "So the cores are protected and supported",
+              "To reduce strain on inner cores"
+            ],
+            "hint": "It protects and supports the inner cores."
+          },
+          {
+            "id": "204-14A-C3-L2",
+            "questionText": "Why do we do pre-flight checks before any meter tests?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Because unsafe/poor terminations are dangerous and can also make test results unreliable",
+              "To catch faults before testing so results aren’t distorted",
+              "Safety and valid results"
+            ],
+            "hint": "Two reasons: safety + valid test results."
           }
         ]
       }
@@ -164,9 +410,9 @@
     {
       "id": "204-14A-practice",
       "type": "practice",
-      "order": 7,
+      "order": 9,
       "content": {
-        "title": "Your Turn: Termination & Inspection",
+        "title": "Your Turn: Beginner Drills",
         "questions": [
           {
             "id": "204-14A-P1",
@@ -176,28 +422,27 @@
               "Brown",
               "Brown sleeving"
             ],
-            "hint": "It must be identified as a live conductor."
+            "hint": "Any conductor used as live must be identified as live."
           },
           {
             "id": "204-14A-P2",
-            "questionText": "The return feed from the switch to the rose comes from which terminal?",
+            "questionText": "The switched live return comes from which switch terminal?",
             "answerType": "short-text",
             "expectedAnswer": [
               "L1",
               "1"
             ],
-            "hint": "It is the output terminal of a 1-way switch."
+            "hint": "Output terminal on a 1-way switch."
           },
           {
             "id": "204-14A-P3",
-            "questionText": "Identify one 'Stop-and-Fix' issue related to copper visible at a terminal.",
+            "questionText": "Complete this sentence: The lamp neutral joins the supply neutral in the ______ group at the ceiling rose.",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Exposed copper",
-              "Exposed conductor",
-              "Copper outside terminal"
+              "Neutral",
+              "Neutral group"
             ],
-            "hint": "Think about what happens if bare wire is visible outside the plastic."
+            "hint": "The group labelled for neutrals."
           }
         ]
       }
@@ -209,14 +454,29 @@
       "content": {
         "title": "Putting It All Together",
         "mode": "integrative",
+        "sequential": true,
         "questions": [
           {
             "id": "204-14A-INT-1",
-            "questionText": "Trace the path of the Line conductor starting from the Consumer Unit, through the ceiling rose and switch, until it reaches the lamp. Specify the terminal names used at each point.",
+            "questionText": "Connection (easy): In one or two sentences, explain why the lamp live must go to the Switched Live group and not the Loop group.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Because the Loop group is permanent live, but the lamp must only be live when the switch is on, so it must be fed from the switched live group",
+              "So the switch can control the lamp; loop is always live"
+            ],
+            "hint": "Loop = always live. Lamp must be switch-controlled."
+          },
+          {
+            "id": "204-14A-INT-2",
+            "questionText": "Synthesis (harder): Trace the full live path from the CU to the lamp (include rose group names and switch terminal names).",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
-            "expectedAnswer": "CU Line to Rose Loop, Rose Loop to Switch COM, Switch L1 to Rose Switched Live terminal, Rose Switched Live to Lamp Live.",
-            "hint": "Follow the 'Loop' down and the 'Return' back up."
+            "expectedAnswer": [
+              "CU Line → Rose Loop group → Switch COM → Switch L1 → Rose Switched live group → Lamp live",
+              "Line to Loop, Loop to COM, COM to L1, L1 back to Switched Live, Switched Live to lamp live"
+            ],
+            "hint": "Down to COM, back from L1."
           }
         ]
       }
@@ -228,19 +488,39 @@
       "content": {
         "title": "Spaced Review",
         "questions": [
-          "What is the standard colour for a Neutral conductor in a modern UK installation?",
-          "What does the abbreviation CPC stand for?",
-          "True or False: A switch should be placed in the Neutral conductor to ensure safety.",
-          "What is the primary purpose of a Circuit Protective Conductor?"
+          {
+            "id": "204-14A-SR-1",
+            "questionText": "What is the standard colour for a Neutral conductor in a modern UK installation?",
+            "expectedAnswer": "Blue",
+            "hint": "Brown = line, blue = neutral, green/yellow = CPC."
+          },
+          {
+            "id": "204-14A-SR-2",
+            "questionText": "What does CPC stand for?",
+            "expectedAnswer": "Circuit Protective Conductor",
+            "hint": "It’s the protective earth conductor."
+          },
+          {
+            "id": "204-14A-SR-3",
+            "questionText": "True or False: In this method, the neutral is taken down to the switch to be interrupted.",
+            "expectedAnswer": "False",
+            "hint": "The switch interrupts the live path in this classic setup."
+          },
+          {
+            "id": "204-14A-SR-4",
+            "questionText": "Name the two main terminals on a one-way switch used in this lesson.",
+            "expectedAnswer": "COM and L1",
+            "hint": "Input and output."
+          }
         ],
-        "notes": "Reviewing conductor identification and basic circuit safety from 204-11 and 204-12."
+        "notes": "Reinforcing conductor roles, terminal names, and the basic wire journey."
       }
     }
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-28",
-    "version": "1.0",
+    "updated": "2026-01-29",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

@@ -25,7 +25,7 @@ import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-
 import lesson204_11B from '@/data/lessons/204-11B-proving-your-tester-works.json';
 import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
 import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.json';
-import lesson204_204_12B from '@/data/lessons/204-204-12B-inspection-decisions-and-recording.json';
+import lesson204_12B from '@/data/lessons/204-12B-inspection-decisions-and-recording.json';
 import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
 import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
 import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
@@ -40,7 +40,7 @@ import ReviewDashboard from '@/components/learning/ReviewDashboard';
 /**
  * Natural sort function for lesson IDs
  * Sorts by: unit number (numerical) → lesson number (numerical) → suffix (alphabetical)
- * Handles formats like "204-10A", "202-3AB", "204-204-12B"
+ * Handles formats like "204-10A", "202-3AB", "204-12B"
  */
 function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
   const parseId = (id: string) => {
@@ -83,7 +83,7 @@ const LESSONS = [
   lesson204_13A,
   lesson204_14B,
   lesson204_14A,
-  lesson204_204_12B,
+  lesson204_12B,
   lesson204_12A,
   lesson204_11C,
   lesson204_11B,
