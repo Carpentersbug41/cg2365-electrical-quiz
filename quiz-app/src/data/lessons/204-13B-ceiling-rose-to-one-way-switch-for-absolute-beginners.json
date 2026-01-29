@@ -104,7 +104,7 @@
       "order": 4,
       "content": {
         "title": "Understanding the Switch Drop (feed down + return up)",
-        "content": "In a standard 3-plate ceiling rose circuit, the switch acts as a simple bridge. Its job is to break or complete the **live** path. The live conductor travels down to the switch and back up again — that down-and-up journey is the **switch drop**.\n\n### The bucket model (rose terminal groups)\nThink of the ceiling rose as three labelled buckets:\n- **Neutral group:** supply neutral + lamp neutral (neutral is not switched).\n- **Loop group (permanent live):** supply live and any permanent live links/feeds.\n- **Switched live group:** the switched live return and the lamp live.\n\n### 1) Feed down (Loop → COM)\nA conductor from the **Loop group** feeds permanent live down the switch drop and terminates at **COM**.\n\n### 2) Return up (L1 → Switched live group → lamp live)\nWhen the switch is ON, it connects **COM to L1**. The conductor on **L1** becomes the switched live return and travels back up the switch drop to the ceiling rose. It terminates in the **Switched live group**, which feeds the lamp live.\n\n### 3) Neutral stays at the rose (not on the switch)\nNeutral remains in the **Neutral group** at the ceiling rose. In this classic method, neutral does not need to go to the switch.\n\n### 4) CPC goes to the switch point (even if the switch is plastic)\nThe CPC must be continuous through the circuit and must be terminated at the ceiling rose and at the switch point (earth terminal/connector), even with plastic accessories.\n\n### Identification / sleeving rule (non-negotiable)\nIn a switch drop, cores can be misleading (for example, a blue core used in a live role). **Any core used as live must be identified as live (brown) at terminations.** This includes the switched live return and any other core carrying live in that drop.\n\n### Quick dead inspection before any meter work\nBefore testing, visually confirm:\n- No exposed copper outside terminals.\n- No ‘plastic-in’ (insulation clamped instead of copper).\n- Terminations are firm (gentle tug test).\n- CPC present and terminated at rose and switch point.\n- Brown identification present where required."
+        "content": "Safety note (rig-safe): This lesson is for conceptual learning on training rigs. Never open or work on real ceiling roses/switches unless the circuit is safely isolated, proven dead, and you are trained/supervised.\n\nIn a standard 3-plate ceiling rose circuit, the switch acts like a simple bridge. Its job is to break or complete the **live** path. The live conductor travels down to the switch and back up again — that down-and-up journey is the **switch drop**.\n\n### The bucket model (rose terminal groups)\nThink of the ceiling rose as three labelled buckets:\n- **Neutral group:** supply neutral + lamp neutral (neutral is not switched).\n- **Loop group (permanent live):** supply live and any permanent live links/feeds (this group stays live when the circuit is energised, even if the switch is OFF).\n- **Switched live group:** the switched live return and the lamp live (this group is only live when the switch is ON).\n\n### The live journey (the story you must be able to say out loud)\n**Loop group → COM → L1 → Switched live group → lamp live**\n\n### Micro “core role map” (ultra-beginner)\nIn many training setups, the switch drop cable has **two insulated cores + CPC**.\n\n**At the switch:**\n- **COM = the feed down (permanent live from the rose Loop group)**\n- **L1 = the return up (switched live back to the rose Switched live group)**\n\n**At the rose:**\n- The **feed-down core** belongs in the **Loop group** (because it is permanent live feeding the switch)\n- The **return-up core** belongs in the **Switched live group** (because it becomes live only when the switch is ON)\n\n### Identification / sleeving rule (non-negotiable)\nIn a switch drop, a core colour can be misleading (for example, a blue core used as the switched live return). **Any core used as live must be identified as live (brown) at BOTH ends (both terminations).**\n\n### CPC rule (also non-negotiable)\nThe CPC must be continuous through the circuit and must be terminated at the ceiling rose and at the switch point (earth terminal/connector), even with plastic accessories.\n\n### Quick dead inspection checklist (before any meter work)\nTick these off visually (and with a gentle tug check) before testing:\n- No exposed copper outside terminals\n- No “plastic-in” (insulation clamped instead of copper)\n- Correct terminals used (Loop group vs Switched live group; COM vs L1)\n- Brown identification present where a core is used as live (at both ends)\n- CPC present and terminated at rose and at switch point\n- Terminations are firm (gentle tug test)"
       }
     },
     {
@@ -152,6 +152,138 @@
       }
     },
     {
+      "id": "204-13B-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example (I Do): Mapping the Switch Drop Using the Bucket Model",
+        "given": "Training rig: 3-plate ceiling rose + 1-gang one-way switch. The switch drop cable has two insulated cores and a CPC. You need the switch to control the lamp (not permanently feed it).",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Name the job in one sentence.",
+            "formula": null,
+            "calculation": null,
+            "result": "Send permanent live down to the switch, and bring a switched live back up to feed the lamp live."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Choose the correct ‘buckets’ at the rose for the two switch-drop cores.",
+            "formula": null,
+            "calculation": null,
+            "result": "Feed-down core → Loop group. Return-up core → Switched live group."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Choose the correct switch terminals for the same two cores.",
+            "formula": null,
+            "calculation": null,
+            "result": "Feed-down core → COM. Return-up core → L1."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Apply the identification rule (sleeving) before you call it ‘finished’.",
+            "formula": null,
+            "calculation": null,
+            "result": "If any core used as live is not already brown, identify it as brown at both ends (especially the return-up switched live)."
+          },
+          {
+            "stepNumber": 5,
+            "description": "State what happens to Neutral in this method.",
+            "formula": null,
+            "calculation": null,
+            "result": "Neutral stays in the rose Neutral group; it is not taken to the one-way switch in this classic loop-in method."
+          },
+          {
+            "stepNumber": 6,
+            "description": "State what happens to CPC (earth).",
+            "formula": null,
+            "calculation": null,
+            "result": "CPC remains continuous and is terminated at the rose and at the switch point earth terminal/connector."
+          },
+          {
+            "stepNumber": 7,
+            "description": "Run the quick dead-inspection checklist.",
+            "formula": null,
+            "calculation": null,
+            "result": "No exposed copper, no plastic-in, correct terminals used, brown ID present where needed, CPC terminated, gentle tug test passed."
+          }
+        ],
+        "notes": "The whole goal is simple: the lamp live must only be fed from the Switched live group, not from the permanent Loop group."
+      }
+    },
+    {
+      "id": "204-13B-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice (We Do): Same Workflow, You Fill the Blanks",
+        "problem": "Training rig scenario: You are standing at the rose looking at the switch drop cable. You must decide: which bucket each core goes into, which switch terminal each core goes into, and what identification you must add so it’s unambiguous.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Which rose terminal group (‘bucket’) must the feed-down core go into so the switch receives permanent live?",
+            "expectedAnswer": [
+              "Loop group",
+              "Loop",
+              "Permanent live group"
+            ],
+            "hint": "It must be live even when the switch is OFF."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Which switch terminal receives that feed-down core?",
+            "expectedAnswer": [
+              "COM",
+              "Common"
+            ],
+            "hint": "COM = the input side of a one-way switch."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Which switch terminal sends the return-up conductor back toward the lamp path when the switch is ON?",
+            "expectedAnswer": [
+              "L1"
+            ],
+            "hint": "COM connects to this terminal when switched ON."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Which rose terminal group must the return-up conductor go into so it feeds the lamp live only when ON?",
+            "expectedAnswer": [
+              "Switched live group",
+              "Switched live",
+              "Lamp live group"
+            ],
+            "hint": "This group is only live when the switch is ON."
+          },
+          {
+            "stepNumber": 5,
+            "prompt": "If the return-up core is blue, what identification must be added at the terminations?",
+            "expectedAnswer": [
+              "Brown sleeving",
+              "Brown identification",
+              "Sleeve it brown"
+            ],
+            "hint": "Any conductor used as live must be identified as live."
+          },
+          {
+            "stepNumber": 6,
+            "prompt": "Name two items from the quick dead-inspection checklist you would confirm before meter work.",
+            "expectedAnswer": [
+              "No exposed copper",
+              "No plastic-in",
+              "Gentle tug test",
+              "Correct terminals used",
+              "CPC terminated",
+              "Brown ID present"
+            ],
+            "hint": "Pick any two: copper visibility, insulation clamped, tightness, CPC, correct terminals, brown ID."
+          }
+        ]
+      }
+    },
+    {
       "id": "204-13B-practice",
       "type": "practice",
       "order": 7,
@@ -176,9 +308,11 @@
               "No exposed copper and tug test",
               "No exposed copper and check for plastic-in",
               "Check for plastic-in and tug test",
-              "CPC present/terminated and no exposed copper"
+              "CPC present/terminated and no exposed copper",
+              "Brown ID present and no exposed copper",
+              "Correct terminal used and tug test"
             ],
-            "hint": "Think: copper visibility, tightness, insulation in the terminal, CPC."
+            "hint": "Think: copper visibility, tightness, insulation in the terminal, CPC, brown ID."
           },
           {
             "id": "204-13B-P3",
@@ -188,6 +322,18 @@
               "False"
             ],
             "hint": "Earth continuity must be maintained through the circuit."
+          },
+          {
+            "id": "204-13B-P4",
+            "questionText": "Misconnection check: If the return-up (switched live) conductor is accidentally placed into the rose Loop group instead of the Switched live group, what is the likely effect on lamp control?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "The lamp may be permanently live",
+              "The switch may not control the lamp",
+              "The lamp could stay on",
+              "The lamp live could be fed permanently"
+            ],
+            "hint": "Think: Loop group = permanent live (always-live join)."
           }
         ]
       }
@@ -249,8 +395,8 @@
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-28",
-    "version": "1.1",
+    "updated": "2026-01-29",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team"
   }
 }

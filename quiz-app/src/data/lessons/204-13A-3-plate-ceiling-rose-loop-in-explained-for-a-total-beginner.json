@@ -6,9 +6,10 @@
   "unit": "Unit 204",
   "topic": "3-plate ceiling rose (loop-in)",
   "learningOutcomes": [
-    "Define the purpose of a 3-plate ceiling rose in a lighting circuit (training rig context).",
-    "Describe the loop-in concept used in typical domestic-style lighting circuits (training rig context).",
-    "Identify the three terminal groups (plates) and their specific functions."
+    "Define what a 3-plate ceiling rose is and why it is used (training rig context).",
+    "Describe the loop-in concept in plain English (training rig context).",
+    "Sort conductors into the three terminal groups (Neutrals, Permanent Lives/Loop, Switched Live).",
+    "Explain (at a basic level) why the lamp live must be controlled by the switch via the switched live terminal group."
   ],
   "prerequisites": [
     "204-12A",
@@ -67,6 +68,10 @@
           {
             "term": "CPC (Earth)",
             "definition": "Circuit Protective Conductor; the protective conductor that maintains an earth path and helps protective devices operate under fault conditions."
+          },
+          {
+            "term": "Lamp Flex",
+            "definition": "The short cable from the ceiling rose to the lamp holder (typically carries lamp neutral, lamp live, and sometimes earth depending on the fitting)."
           }
         ]
       }
@@ -95,7 +100,7 @@
       "order": 4,
       "content": {
         "title": "Understanding the 3-Plate System",
-        "content": "Safety note: This lesson is for conceptual learning on training rigs. Never open or work on real ceiling roses unless the circuit is safely isolated, proven dead, and you are trained/supervised.\n\n**1. What is a Ceiling Rose?**\nIf you have never seen one, a ceiling rose is two things in one: a **junction point** where several cables join together, and the **connection point** for the lamp holder (the part the light hangs from). It is not just a connector; it is also where the circuit continues onward to the next light point, which is why it often looks crowded with wires.\n\n**2. What 'Loop-in' Means**\nA lighting circuit often goes from the consumer unit to Light 1, then Light 2, and so on. **Loop-in** means the main supply is joined at each ceiling rose and continues to the next one. At a typical rose in the middle of a run, you often see:\n- a cable bringing supply **in**\n- a cable taking supply **out** to the next light\n- a cable going to the switch (the **switch drop**)\n\n**3. The Three Plates (Terminal Groups)**\nThink of a 3-plate rose as three separate labelled buckets:\n\n1. **Plate A — Neutrals Group:** This is for all neutrals. It commonly includes Neutral from supply in, Neutral to supply out, and the lamp neutral. Neutral is normally **not** switched.\n\n2. **Plate B — Permanent Lives (Loop):** This is the live join/group used to continue the supply and feed the switch. It commonly includes Live from supply in, Live to supply out, and the live feed down to the switch. This group would be live when the circuit is energised.\n\n3. **Plate C — Switched Live:** This group is specifically for the power returning from the switch. It contains the switched live return and the lamp live connection. This group is only live when the switch is **ON**.\n\n**4. The Role of the Switch (plain English)**\nA 1-way switch acts like a bridge. In loop-in wiring, the switch has:\n- a **feed down** from the Permanent Live (Loop) group\n- a **return back** (switched live) to the Switched Live group\n\nWhen the switch is ON, it lets power jump from the permanent live feed to the lamp.\n\n**5. The Simple Wiring Map**\nTo keep it simple, remember these roles:\n- **Neutrals:** supply in, supply out (if present), lamp neutral\n- **Permanent lives (loop):** live in, live out (if present), feed to switch\n- **Switched live:** return from switch, lamp live\n- **CPC (earth):** all CPCs joined together and connected to the rose earth terminal/connector"
+        "content": "Safety note (training rig only): This lesson is for conceptual learning. Never open or work on real ceiling roses unless you are trained/supervised and the circuit is safely isolated and proven dead.\n\n## 1) What is a ceiling rose?\nIf you’ve never seen one: a ceiling rose is **two things in one**.\n- A **junction point** where several cables join together.\n- The **connection point** for the lamp holder (the light).\n\nThat’s why a rose can look crowded: it’s not just ‘a light connector’ — it’s also where the circuit continues.\n\n## 2) What “loop-in” means (plain English)\nMany lighting circuits go: Consumer unit → Light 1 → Light 2 → Light 3 …\n\n**Loop-in** means the main supply is joined at each ceiling rose and then continues (‘loops’) onward to the next light point.\n\nAt a typical rose in the middle of a run, you often see:\n- a cable bringing supply **in**\n- a cable taking supply **out** to the next light\n- a cable going to the switch (the **switch drop**)\n- the lamp flex (to the lamp holder)\n\n## 3) The three terminal groups (three “buckets”)\nA 3-plate rose is easiest if you imagine **three labelled buckets**. Each conductor must go in the correct bucket.\n\n### Plate A — Neutrals group\nThis group is for **all neutrals joined together**.\nTypical roles you’ll see joined here:\n- Neutral from supply **in**\n- Neutral to supply **out** (if there is a next light)\n- Lamp neutral (from lamp flex)\n\nNeutral is normally **not switched** in a standard 1-way lighting circuit.\n\n### Plate B — Permanent lives (loop) group\nThis group is for the lives that are **permanently live when the circuit is energised**.\nTypical roles you’ll see joined here:\n- Live from supply **in**\n- Live to supply **out** (if there is a next light)\n- Live feed **to the switch** (down the switch drop)\n\nThis is why it’s called the **loop** group: it keeps the supply ‘looping’ through the lighting circuit and feeds the switch.\n\n### Plate C — Switched live group\nThis group is for the live that comes **back from the switch**.\nTypical roles you’ll see joined here:\n- Switched live return (from the switch drop)\n- Lamp live (from lamp flex)\n\nThis group is only live when the switch is **ON**.\n\n## 4) The switch (simple mental picture)\nA 1-way switch is like a bridge in the live path.\n- One conductor takes a **permanent live feed down** to the switch.\n- One conductor brings a **switched live back** to the lamp.\n\nSo the lamp only gets power when the switch ‘connects’ the feed to the return.\n\n## 5) Tiny colour anchor (don’t rely on colour alone)\nModern colours you often see on training rigs:\n- **Blue = Neutral** (goes to the Neutral group)\n- **Brown = Live** (permanent live or switched live depending on role)\n- **Green/Yellow = CPC (Earth)**\n\nImportant: colours help, but **identification and correct grouping** is what matters. In real work, always follow safe systems and correct identification practices."
       }
     },
     {
@@ -112,7 +117,10 @@
             "questionText": "What are the two main functions of a ceiling rose?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Junction point and lamp connection",
+            "expectedAnswer": [
+              "Junction point and lamp connection point",
+              "It joins circuit cables and connects the lamp"
+            ],
             "hint": "It joins cables and provides the connection point for the light."
           },
           {
@@ -120,24 +128,140 @@
             "questionText": "Which terminal group would be live when the circuit is energised even if the light switch is OFF?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Permanent Live (Loop)",
+            "expectedAnswer": [
+              "Permanent Live (Loop)",
+              "Loop group",
+              "Permanent lives"
+            ],
             "hint": "It's the group that feeds the switch and loops onward."
           },
           {
             "id": "204-13A-C1-L1-C",
-            "questionText": "Is the Neutral wire usually connected to the switch in a standard loop-in circuit?",
+            "questionText": "Is the neutral wire usually connected to the switch in a standard loop-in circuit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "No",
+            "expectedAnswer": [
+              "No",
+              "No, the switch normally interrupts the live"
+            ],
             "hint": "In a basic loop-in circuit, the switch interrupts the live path."
           },
           {
             "id": "204-13A-C1-L2",
-            "questionText": "Why is the lamp's live wire kept in a separate terminal from the permanent live (loop) wires?",
+            "questionText": "Why is the lamp's live kept separate from the permanent live (loop) group?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "So the switch can control it",
+            "expectedAnswer": [
+              "So the switch can control the lamp live",
+              "So the lamp only becomes live when the switched live returns",
+              "If it was in the loop group the lamp would be permanently live / always on"
+            ],
             "hint": "If the lamp live was in the permanent live group, the lamp would be live all the time."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-13A-explain-common-mistakes",
+      "type": "explanation",
+      "order": 6.8,
+      "content": {
+        "title": "Common Mistakes (Beginner Traps)",
+        "content": "These are the mistakes that cause most confusion (and on real systems, can be dangerous). Learn them as **warnings**.\n\n1) **Putting the lamp live into the Permanent Live (Loop) group**\n- Result: the lamp can become live all the time (switch no longer controls it).\n\n2) **Mixing up Permanent Live and Switched Live**\n- Permanent live feeds the switch.\n- Switched live comes back from the switch and feeds the lamp.\n\n3) **Forgetting the lamp neutral goes with the other neutrals**\n- Lamp neutral belongs in the Neutral group with the circuit neutrals.\n\n4) **Treating the switch drop as ‘one live, one neutral’**\n- In loop-in switching, the switch drop typically carries **two live conductors (feed down + switched return)**, not a neutral.\n\n5) **Leaving CPCs (earths) not properly joined/parked**\n- Even on a training rig, you keep CPCs organised: joined together and connected to the correct earth point/terminal if present.\n\nKey habit: Always sort conductors by **role** (what they do) and then place them into the correct terminal group."
+      }
+    },
+    {
+      "id": "204-13A-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example (I Do): Sorting Conductors Into the 3 Groups",
+        "given": "Training rig scenario (paper/diagram-based): You are shown a ceiling rose with four items:\n- Cable A: Supply IN (has L, N, CPC)\n- Cable B: Supply OUT to next light (has L, N, CPC)\n- Cable C: Switch drop (has two cores + CPC)\n- Lamp flex (has lamp L, lamp N, CPC if required by fitting)\n\nTask: Decide what goes into each terminal group (Neutrals / Permanent Live Loop / Switched Live), and where CPCs go.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Sort the neutrals by role (who needs neutral?).",
+            "formula": null,
+            "calculation": null,
+            "result": "Neutrals group: A-N (supply in neutral) + B-N (supply out neutral) + Lamp-N (lamp neutral)."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Sort the permanent lives by role (who must be permanently live?).",
+            "formula": null,
+            "calculation": null,
+            "result": "Permanent Live (Loop) group: A-L (supply in live) + B-L (supply out live) + Switch feed down (one core of the switch drop)."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Identify the switched live return (what comes back only when switch is ON?).",
+            "formula": null,
+            "calculation": null,
+            "result": "Switched Live group: Switch return (the other core of the switch drop) + Lamp-L (lamp live)."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Park/join CPCs (earths) safely and neatly (training rig concept).",
+            "formula": null,
+            "calculation": null,
+            "result": "CPCs: A-CPC + B-CPC + C-CPC (+ lamp CPC if present) joined together and connected to the rose earth terminal/connector if provided."
+          },
+          {
+            "stepNumber": 5,
+            "description": "Mini-check: Would the lamp be OFF when the switch is OFF?",
+            "formula": null,
+            "calculation": null,
+            "result": "Yes — because Lamp-L is only fed via the switched live group, not the permanent live loop group."
+          }
+        ],
+        "notes": "This is a sorting exercise: you are learning the *logic* of the groups (the roles), not memorising colours."
+      }
+    },
+    {
+      "id": "204-13A-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice (We Do): End-of-Circuit Rose",
+        "problem": "Training rig scenario (paper/diagram-based): This ceiling rose is the LAST light point.\nYou see:\n- Cable A: Supply IN (L, N, CPC)\n- Cable C: Switch drop (two cores + CPC)\n- Lamp flex (lamp L, lamp N)\nThere is NO supply out cable.\n\nWork through the same steps: which roles go in each terminal group?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Neutrals group: which three roles belong together here?",
+            "expectedAnswer": [
+              "A-N + Lamp-N (+ no neutral out)",
+              "Supply neutral in and lamp neutral (no neutral out)",
+              "Neutral from supply in and neutral to lamp"
+            ],
+            "hint": "There is no next light, so there is no neutral out."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Permanent Live (Loop) group: what belongs here at the last light?",
+            "expectedAnswer": [
+              "A-L + switch feed down",
+              "Live in and the feed to the switch",
+              "Supply live in plus the switch feed"
+            ],
+            "hint": "No supply out live at the last light."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Switched Live group: what two roles must be joined here?",
+            "expectedAnswer": [
+              "Switch return + Lamp-L",
+              "Switched live from switch + lamp live"
+            ],
+            "hint": "This is the 'switch controls the lamp' group."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What specific roles are missing at the last light compared with a middle light?",
+            "expectedAnswer": [
+              "Supply out live and supply out neutral (and its CPC)",
+              "No outgoing feed to the next light"
+            ],
+            "hint": "Think: what would you need only if there was a next light?"
           }
         ]
       }
@@ -145,13 +269,13 @@
     {
       "id": "204-13A-practice",
       "type": "practice",
-      "order": 7,
+      "order": 9,
       "content": {
-        "title": "Your Turn (You Do)",
+        "title": "Your Turn (You Do): Quick Sort Drills",
         "questions": [
           {
             "id": "204-13A-P1",
-            "questionText": "In the middle of a loop-in circuit, list the three neutral roles you’d expect to be grouped together in the Neutral terminal (don’t worry about colours yet).",
+            "questionText": "In the middle of a loop-in circuit, list the three neutral roles you’d expect to be grouped together in the Neutral terminal (don’t worry about colours).",
             "answerType": "short-text",
             "expectedAnswer": [
               "neutral in, neutral out, lamp neutral",
@@ -165,18 +289,29 @@
             "questionText": "Which specific conductor returns from the switch to the ceiling rose to power the lamp when the switch is ON?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Switched Live",
-              "switched live return"
+              "Switched live",
+              "Switched live return"
             ],
             "hint": "It becomes live only when the switch is ON."
           },
           {
             "id": "204-13A-P3",
+            "questionText": "A student puts the lamp live into the Permanent Live (Loop) group. What is the likely result (in plain English)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "The lamp could be live all the time",
+              "The lamp would not be controlled by the switch",
+              "The light may stay on / become permanently fed"
+            ],
+            "hint": "What happens if the lamp is connected to an always-live group?"
+          },
+          {
+            "id": "204-13A-P4",
             "questionText": "What is the name of the wiring method where the main supply continues from rose to rose (light point to light point)?",
             "answerType": "short-text",
             "expectedAnswer": [
               "Loop-in",
-              "loop in"
+              "Loop in"
             ],
             "hint": "It 'loops' through the ceiling points."
           }
@@ -190,14 +325,26 @@
       "content": {
         "title": "Putting It All Together",
         "mode": "integrative",
+        "sequential": true,
         "questions": [
           {
             "id": "204-13A-INT-1",
-            "questionText": "Explain why a ceiling rose at the end of a circuit (the last light) has fewer wires than one in the middle of a circuit. Which specific roles would be missing?",
+            "questionText": "Connection (easy): Describe the live path in one sentence: from the Permanent Live (Loop) group, through the switch drop, to the lamp.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Permanent live feeds down to the switch and returns as switched live to feed the lamp live",
+              "Loop live goes to the switch, then switched live returns to the lamp"
+            ],
+            "hint": "Use the words: feed down, return back, switched live."
+          },
+          {
+            "id": "204-13A-INT-2",
+            "questionText": "Synthesis (3–4 sentences): Explain why a ceiling rose at the end of a circuit has fewer conductors than one in the middle, and name the exact roles that are missing.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
-            "expectedAnswer": "The 'supply out to next light' live and neutral are missing because there is no next light to feed.",
-            "hint": "Think about what 'out' means when there is no next light."
+            "expectedAnswer": "A middle light has to pass the supply onwards, so it has a supply IN cable and a supply OUT cable. The end light has no next light to feed, so the supply OUT live, supply OUT neutral (and its CPC) are missing. The rose still needs a feed to the switch and a switched return to the lamp, so those roles remain. That is why the end-of-circuit rose looks less crowded.",
+            "hint": "Focus on what disappears when there is no 'next light'."
           }
         ]
       }
@@ -213,7 +360,7 @@
             "id": "204-13A-SR-1",
             "questionText": "In a standard 1-way lighting circuit, which conductor does the switch interrupt: Line (live) or Neutral?",
             "expectedAnswer": "Line (live)",
-            "hint": "The goal is that the lamp holder isn’t live when the switch is OFF."
+            "hint": "The goal is that the lamp isn’t fed when the switch is OFF."
           },
           {
             "id": "204-13A-SR-2",
@@ -229,19 +376,19 @@
           },
           {
             "id": "204-13A-SR-4",
-            "questionText": "Before opening/accessing a training rig accessory, what must be confirmed about the rig state?",
-            "expectedAnswer": "It is isolated and in an approved dead state (proven dead).",
-            "hint": "No work on live equipment—confirm dead first."
+            "questionText": "In loop-in switching, does the switch drop usually carry a neutral?",
+            "expectedAnswer": "No — it typically carries a permanent live feed down and a switched live return back.",
+            "hint": "Think: feed down, return back (both are live conductors by role)."
           }
         ],
-        "notes": "Reinforcing the core ceiling rose mental model and rig-safe habits."
+        "notes": "Reinforcing the core ceiling rose mental model and the common beginner traps."
       }
     }
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-28",
-    "version": "1.1",
+    "updated": "2026-01-29",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team"
   }
 }

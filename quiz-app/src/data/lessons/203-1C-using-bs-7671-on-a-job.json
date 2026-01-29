@@ -7,10 +7,10 @@
   "topic": "Using BS 7671 in Practice",
   "learningOutcomes": [
     "Define what BS 7671 is used for in the workplace as non-statutory evidence.",
-    "Identify the organizational structure of BS 7671 (Parts, Chapters, Sections, and Regulations).",
-    "Choose the correct document (BS 7671, OSG, or Guidance Notes) for specific tasks.",
+    "Identify the organisational structure of BS 7671 (Parts, Chapters, Sections, and Regulations).",
+    "Choose the correct document (BS 7671, On-Site Guide, or Guidance Notes) for specific tasks.",
     "Apply a repeatable lookup workflow to common installation scenarios.",
-    "State the requirements for recording decisions to demonstrate due diligence."
+    "State the minimum requirements for recording decisions to demonstrate due diligence (including deviations)."
   ],
   "prerequisites": [
     "203-1A",
@@ -28,12 +28,20 @@
             "bloomLevel": "understand"
           },
           {
-            "text": "Identify the structure of BS 7671 including Parts and Regulation numbers.",
+            "text": "Identify the structure of BS 7671 (Parts, Chapters/Sections, and Regulation numbers).",
             "bloomLevel": "remember"
           },
           {
-            "text": "Select the appropriate guidance document (OSG vs BS 7671) for a given job.",
+            "text": "Select the appropriate guidance document (OSG vs BS 7671 vs Guidance Notes) for a given job.",
             "bloomLevel": "apply"
+          },
+          {
+            "text": "Use a repeatable lookup workflow to find and apply a relevant requirement.",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "State what must be recorded to demonstrate due diligence (including how to record a deviation).",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -46,23 +54,23 @@
         "terms": [
           {
             "term": "Regulation number",
-            "definition": "A unique numerical reference, such as 411.3.3, used to identify a specific rule within BS 7671."
+            "definition": "A unique numerical reference (e.g., 411.3.3) used to identify a specific requirement in BS 7671."
           },
           {
             "term": "OSG (On-Site Guide)",
-            "definition": "A quick-reference book providing simplified guidance for common electrical installations within specific limits."
+            "definition": "A quick-reference guide with simplified tables and common installation guidance within set limits."
           },
           {
-            "term": "Deemed to comply",
-            "definition": "A status where following the technical rules of BS 7671 is accepted as meeting the legal requirements of the law."
+            "term": "Recognised standard",
+            "definition": "A widely accepted technical standard used as evidence of safe practice and competence."
           },
           {
             "term": "Deviation",
-            "definition": "A deliberate choice to not follow a specific regulation, which must be justified and recorded as safe."
+            "definition": "A deliberate choice not to follow a specific BS 7671 requirement, which must be justified and recorded as safe."
           },
           {
-            "term": "Due Diligence",
-            "definition": "The legal defense showing that you took all reasonable steps and followed best practice to prevent danger."
+            "term": "Due diligence",
+            "definition": "Showing you took all reasonable steps to prevent danger by following recognised safe methods and recording your decisions."
           }
         ]
       }
@@ -73,7 +81,7 @@
       "order": 4,
       "content": {
         "title": "BS 7671: The Bridge Between Law and Practice",
-        "content": "In the UK, the **Electricity at Work Regulations (EAWR)** is the law (statutory). However, the EAWR is written in broad terms, stating that we must &quot;prevent danger.&quot; It does not tell you exactly how many millimetres of insulation you need or what size fuse to use. This is where **BS 7671 (The IET Wiring Regulations)** comes in.\n\nBS 7671 is a **non-statutory** document, but it is the recognized technical standard for electrical installations. In a court of law or during a health and safety inspection, following BS 7671 is considered **&quot;deemed to comply&quot;** with the law. This means that if you follow the regulations correctly, you have strong evidence that you acted safely and used best practice. \n\nFor an electrician on a real job, BS 7671 provides the technical rules for:\n1. **Protection against electric shock** (how quickly a circuit must trip).\n2. **Selection of equipment** (choosing the right breakers and cables).\n3. **Installation methods** (how to fix and support wiring).\n\nEssentially, BS 7671 is your professional shield. It protects the user by ensuring a safe installation, and it protects the electrician by providing a documented path to legal compliance. If you ever have to defend your work, your first line of defense is showing that you followed the relevant Regulation numbers."
+        "content": "In the UK, the Electricity at Work Regulations (EAWR) is the law (statutory). EAWR is written in broad terms: you must prevent danger. It does not tell you the exact technical rules for every installation decision.\n\nBS 7671 (the IET Wiring Regulations) is non-statutory (not a law), but it is the recognised technical standard for electrical installations. In practice, applying BS 7671 correctly is widely accepted as strong evidence that you have taken reasonable precautions and worked safely.\n\nFor a real job, BS 7671 provides the technical rules for things like:\n- Protection against electric shock (e.g., disconnection times and additional protection)\n- Selection of equipment (e.g., choosing suitable protective devices and cables)\n- Installation methods (e.g., support, mechanical protection, and routing)\n\nKey idea:\n- EAWR tells you your legal duty (prevent danger)\n- BS 7671 tells you a recognised technical way to meet that duty\n\nSo, BS 7671 protects the user by improving safety, and it protects the electrician by providing a clear, defendable technical basis for decisions."
       }
     },
     {
@@ -90,32 +98,39 @@
             "questionText": "Is BS 7671 a statutory or non-statutory document?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Non-statutory",
-            "hint": "Think about whether it is a law itself or a guide to the law."
+            "expectedAnswer": [
+              "Non-statutory",
+              "Non statutory"
+            ],
+            "hint": "Is it a law passed by Parliament, or a technical standard used as guidance/evidence?"
           },
           {
             "id": "203-1C-C1-L1-B",
-            "questionText": "Which statutory law does following BS 7671 help you comply with?",
+            "questionText": "Which statutory regulation does BS 7671 help electricians comply with in practice?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Electricity at Work Regulations (EAWR)",
-            "hint": "It is the main law governing electrical safety at work."
+            "expectedAnswer": [
+              "EAWR",
+              "Electricity at Work Regulations",
+              "Electricity at Work Regulations 1989"
+            ],
+            "hint": "It is the main electrical safety law for work activities."
           },
           {
             "id": "203-1C-C1-L1-C",
-            "questionText": "What is the main reason an electrician follows BS 7671 on a real job?",
+            "questionText": "In one sentence, what is the main workplace purpose of using BS 7671?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "To show evidence of safe practice and meet technical standards",
-            "hint": "Think about how you prove your work is safe."
+            "expectedAnswer": "To follow a recognised technical standard for safe installations and provide evidence of safe practice.",
+            "hint": "Think: safety + evidence (how you prove you worked properly)."
           },
           {
             "id": "203-1C-C1-L2",
-            "questionText": "How do EAWR (the law) and BS 7671 (the guidance) work together to protect an electrician legally?",
+            "questionText": "How do EAWR (the law) and BS 7671 (the recognised standard) work together to protect an electrician legally?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "EAWR sets the legal duty to prevent danger, and BS 7671 provides the specific technical rules that prove that duty has been met.",
-            "hint": "One says 'be safe', the other tells you 'how to be safe'."
+            "expectedAnswer": "EAWR sets the legal duty to prevent danger, and BS 7671 provides recognised technical rules that help show you met that duty with reasonable precautions and safe practice.",
+            "hint": "One says what your legal duty is; the other shows a safe, defendable way to meet it."
           }
         ]
       }
@@ -125,8 +140,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Navigating the Book: Parts, Chapters, and Regs",
-        "content": "BS 7671 is a large book, but it is organized logically to help you find information. It is broken down into three main layers:\n\n1. **Parts**: These are the major categories (e.g., Part 4 covers Protection for Safety).\n2. **Chapters and Sections**: These narrow down the topic (e.g., Chapter 41 is specifically about Electric Shock).\n3. **Regulation Numbers**: These are the specific rules (e.g., 411.3.3).\n\nYou do not need to memorize every number. Instead, you must master the **lookup workflow**. Use the **Index** at the back or the **Contents** at the front to find keywords. \n\nWhen you make a decision on site—such as choosing a specific RCD—you should record the **Regulation number** in your notes or on the certificate. This is called &quot;citing&quot; a regulation. It shows **due diligence**, proving that your decision wasn't a guess, but was based on the official technical standard. \n\nA good site note looks like this: &quot;Additional protection provided by 30mA RCD as per Reg 411.3.3.&quot; This simple habit makes your work professional and legally robust."
+        "title": "Navigating the Book: Parts, Chapters, Sections, and Regulations",
+        "content": "BS 7671 is large, but it is organised so you can find what you need quickly. Think of it as going from big topics to small rules:\n\n1) Parts (big categories)\n2) Chapters and Sections (narrow the topic)\n3) Regulation numbers (the exact requirement)\n\nYou do not need to memorise lots of numbers. You need a repeatable lookup workflow:\n- Start with the Contents if you know the topic area\n- Use the Index if you only have keywords (e.g., RCD, socket-outlet, identification, bonding)\n- Find the relevant regulation(s)\n- Read the requirement carefully (including any conditions/exceptions)\n- Apply it to the job\n- Record what you did and what you referenced\n\nCiting a regulation number on a job sheet or certificate is a professional habit. It shows your decision came from a recognised standard, not guesswork.\n\nExample site note format:\n- Decision: 30 mA RCD additional protection provided to socket-outlets.\n- Evidence: BS 7671 Reg 411.3.3 cited in job notes.\n\n(You will not be judged on memorising 411.3.3. You will be judged on using a workflow that finds the right requirement and recording it.)"
       }
     },
     {
@@ -140,35 +155,39 @@
         "questions": [
           {
             "id": "203-1C-C2-L1-A",
-            "questionText": "Name the three structural layers used to navigate BS 7671 from largest to smallest.",
+            "questionText": "Name the main structural layers used to navigate BS 7671 from largest to smallest.",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Parts, Chapters/Sections, Regulation numbers",
-            "hint": "It goes from big categories down to specific rules."
+            "expectedAnswer": [
+              "Parts, Chapters/Sections, Regulation numbers",
+              "Parts, Chapters, Sections, Regulations",
+              "Parts, Chapters, Regulations"
+            ],
+            "hint": "Start big (Parts) and end with the exact rule (Regulation number)."
           },
           {
             "id": "203-1C-C2-L1-B",
-            "questionText": "What is a specific regulation number (like 411.3.3) used for on a job sheet?",
+            "questionText": "What is the Index used for when working with BS 7671?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "To cite the specific rule followed for compliance",
-            "hint": "It acts as a reference point for your decision."
+            "expectedAnswer": "To find topics using keywords and locate relevant regulation areas quickly.",
+            "hint": "It is at the back and is alphabetical."
           },
           {
             "id": "203-1C-C2-L1-C",
-            "questionText": "Which tool at the back of the book helps you find information using keywords?",
+            "questionText": "What does citing a regulation number in your notes actually do?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "The Index",
-            "hint": "It's an alphabetical list of topics."
+            "expectedAnswer": "It links your decision to a specific requirement in the recognised standard.",
+            "hint": "It shows the decision is based on the rules, not a personal opinion."
           },
           {
             "id": "203-1C-C2-L2",
-            "questionText": "Why is citing a regulation number considered part of 'proving due diligence'?",
+            "questionText": "Why is citing a regulation number considered part of proving due diligence?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "It proves that the electrician consulted the official standard and made an informed, compliant decision rather than guessing.",
-            "hint": "Think about how it shows you did your job properly."
+            "expectedAnswer": "Because it shows you consulted a recognised standard and made an informed decision based on a specific requirement, which helps demonstrate reasonable precautions and safe practice.",
+            "hint": "Think: evidence that you checked the rules properly."
           }
         ]
       }
@@ -178,8 +197,8 @@
       "type": "explanation",
       "order": 6,
       "content": {
-        "title": "Choosing the Right Tool: BS 7671 vs OSG vs GN",
-        "content": "Professional electricians use a suite of documents. Knowing which one to pick saves time and prevents errors:\n\n1. **The On-Site Guide (OSG)**: This is your &quot;quick check&quot; tool. It is designed for common, everyday installations (mostly domestic and small commercial). It provides ready-made tables for cable sizes and circuit lengths. **Use this first** for standard jobs to see if your plan fits within common limits.\n\n2. **BS 7671 (The 'Big Blue/Brown Book')**: This is the master document. If a job is complex, unusual, or outside the scope of the OSG, you must use BS 7671. It contains the actual legal-technical requirements that apply to every installation.\n\n3. **Guidance Notes (GN)**: There are several Guidance Notes (e.g., GN3 for Inspection and Testing). These provide a deeper **interpretation** of the regulations. If you understand the rule but aren't sure *how* to apply it or *why* it exists, the Guidance Notes explain it in detail.\n\n**The Workflow:**\n- Need a quick cable size for a house? -> **OSG**\n- Need the exact wording of a regulation? -> **BS 7671**\n- Need to know how to perform a specific test? -> **Guidance Note 3**\n\nAlways remember: The OSG is a shortcut. If the job is non-standard, you must go back to BS 7671."
+        "title": "Choosing the Right Tool: BS 7671 vs OSG vs Guidance Notes",
+        "content": "Professional electricians use a suite of guidance documents. The skill is choosing the right one quickly and correctly:\n\n1) On-Site Guide (OSG)\n- Best for quick checks on common installations (typically domestic/small commercial) within its limits.\n- Fast tables and standard arrangements.\n- If the job is unusual, high-risk, outside the normal limits, or not covered clearly: move to BS 7671.\n\n2) BS 7671\n- The master technical standard.\n- Use this when the job is complex, outside OSG scope, or you need the exact requirement.\n\n3) Guidance Notes\n- Deeper explanation and practical interpretation.\n- Use these when you need help applying the requirement or understanding the correct method (e.g., test methods in GN3, special installations/locations support depending on the topic).\n\nFast workflow (what good electricians actually do):\n- Start with OSG for a standard job.\n- If anything is non-standard: confirm in BS 7671.\n- If the rule is unclear in practice: use Guidance Notes to interpret and apply correctly.\n\nRule of thumb:\n- OSG = quickest check (when the job is standard)\n- BS 7671 = authoritative requirement (when you must be exact)\n- Guidance Notes = practical interpretation (when you need method and meaning)"
       }
     },
     {
@@ -193,35 +212,46 @@
         "questions": [
           {
             "id": "203-1C-C3-L1-A",
-            "questionText": "Which document is designed for quick, everyday reference on-site?",
+            "questionText": "Which document is designed for quick, everyday reference on-site for common installs?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "On-Site Guide (OSG)",
-            "hint": "It's in the name!"
+            "expectedAnswer": [
+              "On-Site Guide",
+              "OSG",
+              "On Site Guide"
+            ],
+            "hint": "It is the quick-reference book."
           },
           {
             "id": "203-1C-C3-L1-B",
             "questionText": "Which document contains the master set of technical requirements?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "BS 7671",
-            "hint": "The 'Big Book'."
+            "expectedAnswer": [
+              "BS 7671",
+              "Wiring Regulations"
+            ],
+            "hint": "This is the main technical standard book."
           },
           {
             "id": "203-1C-C3-L1-C",
-            "questionText": "Which document explains 'how' and 'why' to do things like testing in more depth?",
+            "questionText": "Which document is best when you need deeper explanation of how to apply a requirement in practice?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Guidance Notes",
-            "hint": "These provide interpretation and methods."
+            "expectedAnswer": [
+              "Guidance Notes",
+              "IET Guidance Notes",
+              "GN"
+            ],
+            "hint": "These are the interpretation books."
           },
           {
             "id": "203-1C-C3-L2",
-            "questionText": "You are installing a standard domestic socket circuit. Which book do you check first and why?",
+            "questionText": "You are installing a standard domestic socket circuit. Which book do you check first, and what makes you switch to BS 7671?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "The OSG, because it provides quick tables for common domestic circuit limits.",
-            "hint": "Think about which book is faster for simple, common tasks."
+            "expectedAnswer": "Check the OSG first for the standard tables and limits. Switch to BS 7671 if the situation is unusual, outside OSG scope, high-risk, or not clearly covered by the OSG.",
+            "hint": "Start fast for standard jobs, then go authoritative when the job is non-standard."
           }
         ]
       }
@@ -231,53 +261,53 @@
       "type": "worked-example",
       "order": 7,
       "content": {
-        "title": "Worked Example: The Lookup Workflow",
-        "given": "You need to check if a new socket in a domestic garage requires RCD protection.",
+        "title": "Worked Example: A Repeatable Lookup Workflow (Socket RCD Check)",
+        "given": "You need to check whether a new socket-outlet in a domestic garage requires additional protection by a 30 mA RCD, and you want to record evidence of your decision.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "State the question: Does a garage socket need 30mA RCD protection?",
+            "description": "State the question clearly.",
             "formula": null,
             "calculation": null,
-            "result": null
+            "result": "Do socket-outlets in this situation require 30 mA RCD additional protection?"
           },
           {
             "stepNumber": 2,
-            "description": "Choose document: Start with the OSG as it is a common domestic scenario.",
+            "description": "Choose the starting document.",
             "formula": null,
             "calculation": null,
-            "result": null
+            "result": "Start with the OSG because this is a common domestic scenario."
           },
           {
             "stepNumber": 3,
-            "description": "Find location: Use the Index or Contents under 'RCD' or 'Socket-outlets'.",
+            "description": "Find the topic using keywords.",
             "formula": null,
             "calculation": null,
-            "result": null
+            "result": "Use the Index/Contents under keywords like socket-outlets and RCD."
           },
           {
             "stepNumber": 4,
-            "description": "Extract the rule: The rule generally states all general-purpose sockets up to 32A need RCD protection.",
+            "description": "Confirm the authoritative requirement and any conditions.",
             "formula": null,
             "calculation": null,
-            "result": null
+            "result": "If the job is straightforward and within OSG guidance, proceed. If any doubt, confirm in BS 7671 and read the exact requirement wording and conditions."
           },
           {
             "stepNumber": 5,
-            "description": "Record proof: Note '30mA RCD installed for garage socket as per BS 7671 Reg 411.3.3'.",
+            "description": "Extract the requirement and cite the regulation number (example).",
             "formula": null,
             "calculation": null,
-            "result": null
+            "result": "Example outcome: Provide additional protection by 30 mA RCD for relevant socket-outlets. Cite the appropriate regulation number (commonly referenced as Reg 411.3.3 for additional protection of socket-outlets, depending on circumstances and current edition)."
           },
           {
             "stepNumber": 6,
-            "description": "Safety check: If the garage has unusual damp conditions, consult Guidance Note 7 (Special Locations).",
+            "description": "Record a minimum-quality site note to prove due diligence.",
             "formula": null,
             "calculation": null,
-            "result": null
+            "result": "Site note template: Decision + document + regulation(s) + brief reason. Example: Additional protection by 30 mA RCD provided to garage socket-outlet; checked against BS 7671 Reg 411.3.3; recorded for compliance evidence."
           }
         ],
-        "notes": "Recording the regulation number is the key step to proving you followed the rules."
+        "notes": "The key skill is not memorising numbers. The key skill is using a repeatable workflow to find the right requirement and recording the evidence clearly."
       }
     },
     {
@@ -285,37 +315,53 @@
       "type": "guided-practice",
       "order": 8,
       "content": {
-        "title": "Guided Practice: Scaffolded Workflow",
-        "problem": "A customer wants to know if they can use a specific type of plastic trunking to protect a cable. You need to check the rules for 'Identification of Conductors'.",
+        "title": "Guided Practice: Evidence Notes (Identification / Sleeving)",
+        "problem": "You are wiring a one-way lighting circuit. You need to identify the switched live correctly and make sure conductors are identified properly (e.g., sleeving/marking). You must check the requirements and record what you followed.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the first document you should check for a quick common-sense answer?",
+            "prompt": "For a quick standard check, which document would you look at first?",
             "expectedAnswer": [
               "OSG",
               "On-Site Guide"
             ],
-            "hint": "The quick-reference book."
+            "hint": "Use the quick-reference guide first for common installs."
           },
           {
             "stepNumber": 2,
-            "prompt": "If you need the exact technical wording of the regulation, which book must you use?",
+            "prompt": "If you need the exact requirement wording and the official rule, which document must you use?",
             "expectedAnswer": [
               "BS 7671",
               "Wiring Regulations"
             ],
-            "hint": "The master technical standard."
+            "hint": "Use the master technical standard for exact rules."
           },
           {
             "stepNumber": 3,
-            "prompt": "What information should you write down in your job notes to prove you checked the rules?",
+            "prompt": "What two pieces of evidence must your job notes include to prove you checked the rules?",
             "expectedAnswer": [
-              "Regulation number",
-              "Reg number"
+              "Document used and regulation number",
+              "BS 7671 and regulation number",
+              "OSG/BS 7671 and regulation number"
             ],
-            "hint": "The specific numerical reference."
+            "hint": "Think: which book + which rule (number)."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Write a one-line site note using the template: Decision + document + regulation(s) + reason (short).",
+            "expectedAnswer": "Example: Switched live identified and sleeved as required; checked against BS 7671 (cite relevant reg number); recorded to show due diligence.",
+            "hint": "It does not need perfect wording. It must include decision + document + reg number + short reason."
           }
         ]
+      }
+    },
+    {
+      "id": "203-1C-explain-recording",
+      "type": "explanation",
+      "order": 8.2,
+      "content": {
+        "title": "What MUST Be Recorded (Due Diligence Standard)",
+        "content": "When you make a technical decision on a job, your notes should be good enough that another competent electrician can see what you did and why.\n\nMinimum recording standard (use this every time):\n1) Decision made (what you installed / selected / changed)\n2) Document used (OSG / BS 7671 / Guidance Note)\n3) Regulation number(s) (or the exact section reference if using OSG)\n4) Reason it applies to THIS job (one short line)\n\nIf you deviate from BS 7671, your record must be stronger:\n- What you did differently (the deviation)\n- Why you deviated (reason)\n- How you still achieved equal or better safety (technical justification)\n- Who approved/authorised it (if applicable)\n- Where it is recorded (certificate / design note / job sheet)\n\nThis is what turns guidance into evidence."
       }
     },
     {
@@ -323,36 +369,38 @@
       "type": "practice",
       "order": 9,
       "content": {
-        "title": "Your Turn: Document Choice Drills",
+        "title": "Your Turn: Document Choice + Recording Drills",
         "questions": [
           {
             "id": "203-1C-P1",
-            "questionText": "You need the official wording of a requirement for a complex industrial site. Which book do you use?",
+            "questionText": "You need the official wording of a requirement for a complex industrial site. Which document do you use?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "BS 7671"
+              "BS 7671",
+              "Wiring Regulations"
             ],
-            "hint": "Industrial and complex jobs usually go beyond the OSG."
+            "hint": "Complex/industrial jobs usually go beyond quick-guide limits."
           },
           {
             "id": "203-1C-P2",
-            "questionText": "You are confused about the 'why' behind a specific earthing requirement. Which document provides the best interpretation?",
+            "questionText": "You understand the rule but you are unsure how to apply it in practice (method/interpretation). Which document helps most?",
             "answerType": "short-text",
             "expectedAnswer": [
               "Guidance Notes",
+              "IET Guidance Notes",
               "GN"
             ],
-            "hint": "These books interpret the regulations."
+            "hint": "These explain how and why, not just what."
           },
           {
             "id": "203-1C-P3",
-            "questionText": "Write a short sentence showing what you would record as proof that you checked a socket circuit requirement (include document and reg number).",
+            "questionText": "Write a short site note that proves due diligence for a socket circuit decision (include: decision + document + regulation number + reason).",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Complies with BS 7671 Regulation 411.3.3",
-              "Checked against Reg 411.3.3 in BS 7671"
+              "Additional protection by 30 mA RCD provided to socket-outlets; checked in BS 7671 Reg 411.3.3; recorded to show compliance evidence.",
+              "Installed 30 mA RCD additional protection; referenced BS 7671 Reg 411.3.3; noted for due diligence."
             ],
-            "hint": "Format: [Document] + [Reg Number] + [Decision]"
+            "hint": "Use the template: Decision + document + regulation(s) + reason (short)."
           }
         ]
       }
@@ -368,19 +416,19 @@
         "questions": [
           {
             "id": "203-1C-INT-1",
-            "questionText": "How does using the OSG for a quick check, then citing a specific BS 7671 regulation number, help an electrician meet their statutory duties under the EAWR?",
+            "questionText": "How does using the OSG for a quick check, then confirming in BS 7671 and recording a regulation number, help you meet your statutory duties under EAWR?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "The OSG ensures common standards are met quickly, while citing the regulation number provides the legal evidence (due diligence) that the electrician followed the recognized path to safety required by the EAWR.",
-            "hint": "Connect the quick tool, the technical cite, and the law."
+            "expectedAnswer": "The OSG helps you apply common safe standards quickly, and BS 7671 provides the authoritative technical requirement. Recording the regulation number and decision creates evidence of due diligence that you took reasonable precautions to prevent danger under EAWR.",
+            "hint": "Connect: quick check → authoritative requirement → written evidence for the law."
           },
           {
             "id": "203-1C-INT-2",
-            "questionText": "You are tasked with installing a circuit in a high-risk environment. Explain the full process of using guidance documents: which document you start with, what you look for, what you record, and why this process protects both the user and you legally. (3-4 sentences)",
-            "cognitiveLevel": "synthesis",
+            "questionText": "You are installing a circuit in a higher-risk environment. Explain the full process: which document(s) you start with, how you find the requirement, what you record, and why this protects both the user and you legally. (3–4 sentences)",
             "answerType": "short-text",
-            "expectedAnswer": "First, consult BS 7671 for the official requirements and Guidance Notes for deep interpretation of high-risk rules. Use the index to find the specific regulation numbers relevant to the environment, then record these numbers and your installation choices in the job notes. This process ensures the user is protected by technical best-practice and protects the electrician legally by demonstrating due diligence and compliance with the EAWR.",
-            "hint": "Mention the documents, the lookup, the recording, and the legal protection."
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "Start with BS 7671 for the authoritative requirements and use the Index/Contents to locate the relevant topic and regulation numbers. Use Guidance Notes if you need practical interpretation of how to apply the requirement safely in that environment. Record the decision, the document(s) used, the regulation number(s), and a short reason showing why it applies to the job. This protects the user by ensuring the installation meets recognised safety rules and protects the electrician legally by demonstrating due diligence under EAWR.",
+            "hint": "Mention: documents → lookup → cite regs → record decision + reason → safety + legal evidence."
           }
         ]
       }
@@ -394,37 +442,37 @@
         "questions": [
           {
             "id": "203-1C-SR-1",
-            "questionText": "Define a 'statutory' document in one sentence.",
+            "questionText": "Define a statutory document in one sentence.",
             "expectedAnswer": "A statutory document is a law passed by Parliament that must be followed.",
-            "hint": "Think about legal requirements."
+            "hint": "Think: legal requirement."
           },
           {
             "id": "203-1C-SR-2",
-            "questionText": "Define a 'non-statutory' document in one sentence.",
-            "expectedAnswer": "A non-statutory document is a guide or code of practice that is not law but shows best practice.",
-            "hint": "It is guidance, not legislation."
+            "questionText": "Define a non-statutory document in one sentence.",
+            "expectedAnswer": "A non-statutory document is guidance or a recognised technical standard that is not law but can be used as evidence of safe practice.",
+            "hint": "Think: guidance/evidence, not legislation."
           },
           {
             "id": "203-1C-SR-3",
-            "questionText": "What does the acronym EAWR stand for?",
+            "questionText": "What does EAWR stand for?",
             "expectedAnswer": "Electricity at Work Regulations",
-            "hint": "The main law for electrical work."
+            "hint": "The key statutory law for electrical work activities."
           },
           {
             "id": "203-1C-SR-4",
-            "questionText": "What does the acronym OSG stand for?",
+            "questionText": "What does OSG stand for?",
             "expectedAnswer": "On-Site Guide",
-            "hint": "The electrician's quick-reference book."
+            "hint": "The quick-reference guide."
           }
         ],
-        "notes": "Reviewing basic legal and document definitions from 203-1A and 203-1B."
+        "notes": "Reviewing core definitions and acronyms from 203-1A and 203-1B to support confident document use on real jobs."
       }
     }
   ],
   "metadata": {
     "created": "2026-01-29",
     "updated": "2026-01-29",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

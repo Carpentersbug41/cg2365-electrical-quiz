@@ -58,7 +58,13 @@ I create a complete specification including:
    - Explanation focus and approach
    - **Understanding checks after each explanation** (3×L1 Recall + 1×L2 Connection)
    - Worked example scenario with 3-4 steps
+   - **Workflow identification and step counting** (if lesson teaches a repeatable workplace procedure)
+     - Count explicit workflow steps (3-9 steps triggers workflow standard)
+     - Calculate minimum Guided Practice prompts: ROUNDUP(steps × 0.80)
+     - See [GUIDED_PRACTICE_WORKFLOW_STANDARD.md](./GUIDED_PRACTICE_WORKFLOW_STANDARD.md)
    - Guided practice problem
+     - Standard lessons: 2-3 scaffolded questions
+     - Workflow lessons: Must mirror workflow steps (80%+ coverage)
    - 3-5 Practice questions with variety
    - **Integrative questions at end** (Big Picture - 1×L2 Connection + 1×L3 Synthesis)
    - Spaced review topics from prerequisites
@@ -182,6 +188,7 @@ I check against these criteria before presenting:
 - ✅ Explanations are clear
 - ✅ Difficulty matches cognitive load
 - ✅ Prerequisites make logical sense
+- ✅ **Workflow lessons: Guided Practice has 80%+ step coverage** (see [GUIDED_PRACTICE_WORKFLOW_STANDARD.md](./GUIDED_PRACTICE_WORKFLOW_STANDARD.md))
 
 ### Phase 5: Integration & Presentation
 
@@ -329,6 +336,7 @@ I'll make updates and re-validate before presenting again.
 | **Content** | 3-4 learning outcomes with Bloom levels | ✅ |
 | | 3-6 vocabulary terms | ✅ |
 | | Worked example has 3-4 steps | ✅ |
+| | Guided practice: workflow lessons have 80%+ step coverage | ✅ |
 | | Practice has 3-5 questions | ✅ |
 | | Spaced review has 4 questions | ✅ |
 | **Quality** | Formulas are correct | ✅ |

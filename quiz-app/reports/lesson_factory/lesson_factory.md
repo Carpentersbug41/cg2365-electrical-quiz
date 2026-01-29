@@ -276,6 +276,30 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 
 **Tips:** Include multiple acceptable answer variations (with/without units, different formats)
 
+### Special Rule: Workflow-Based Lessons
+
+**If your lesson teaches a repeatable workplace procedure (3-9 steps), you MUST follow the [Guided Practice Workflow Standard](./GUIDED_PRACTICE_WORKFLOW_STANDARD.md).**
+
+**Decision Tree:**
+
+1. **Does the worked example demonstrate a repeatable workplace procedure?**
+   - Examples: BS 7671 lookup, safe isolation, testing routine, fault-finding sequence, circuit selection workflow
+   - NOT examples: Single calculation, conceptual explanation, one-off scenario
+
+2. **If YES → Apply Workflow Standard:**
+   - Count the workflow steps in your worked example
+   - Calculate minimum required prompts: `ROUNDUP(steps × 0.80)`
+   - Create Guided Practice prompts that mirror the workflow sequence
+   - Include recording/documentation step and escalation/safety check
+   - See [GUIDED_PRACTICE_WORKFLOW_STANDARD.md](./GUIDED_PRACTICE_WORKFLOW_STANDARD.md) for complete requirements
+
+3. **If NO → Use Standard Guided Practice:**
+   - 2-3 scaffolded questions
+   - Focus on applying concepts from the lesson
+   - No special workflow coverage requirement
+
+**Quality Gate:** Workflow-based lessons with insufficient Guided Practice coverage (< 80% of workflow steps) must be revised before production.
+
 ---
 
 ### 7A. Understanding Check Blocks (After Explanations)
@@ -480,7 +504,7 @@ When using an LLM to generate lessons:
    - 3-6 key vocabulary terms with definitions
    - Structured explanation breaking down concepts
    - Worked example with 3-4 clear steps
-   - Guided practice (2-3 scaffolded questions)
+   - Guided practice (2-3 questions for standard lessons, OR workflow-mirror for procedure-based lessons - see GUIDED_PRACTICE_WORKFLOW_STANDARD.md)
    - Independent practice (3-5 varied questions)
    - Spaced review questions from prerequisites
 
