@@ -854,6 +854,16 @@ if (!q.questionText) {
 - **Risk**: Medium - will occur whenever lesson title starts with a number
 - **Benefit**: Clear fix pattern documented for quick resolution
 
+### ✅ Problem 7: Feature Branches Causing Lesson Confusion
+- **Status**: PERMANENTLY FIXED (Jan 29, 2026)
+- **Files**: `gitService.ts`, `types.ts`, `route.ts`, `page.tsx`, `errorHandler.ts`, `constants.ts`
+- **Solution**: Generator now commits directly to main instead of creating feature branches
+- **Root Cause**: Feature branch workflow caused lessons to "disappear" and violated "ALWAYS work on main" principle
+- **Prevention**: Type system now enforces commit hash instead of branch names
+- **Verification**: Generated lessons commit directly to main, no feature branches created
+- **Risk**: None - feature branch workflow was the problem
+- **Benefit**: Lessons appear immediately, no manual merging, matches documented workflow
+
 ---
 
 ## Problem 6: Invalid JavaScript Identifiers Starting with Numbers ✅ **FIXED - Jan 28, 2026**
@@ -1024,6 +1034,164 @@ function sanitizeIdentifier(name: string): string {
 - Lesson generator doesn't validate identifiers (needs future fix)
 - Manual fix is straightforward with clear pattern
 - Well-documented for future occurrences
+
+---
+
+## Problem 7: Feature Branches Causing Lesson Confusion ✅ **PERMANENTLY FIXED - Jan 29, 2026**
+
+### Issue Symptoms
+Multiple manifestations of the same workflow problem:
+- Generated lessons "disappeared" when viewing main branch
+- Lessons existed but weren't visible in the app
+- Required manual merging of feature branches after each generation
+- Confusion about which branch contained the work
+- Violated the documented principle: "ALWAYS work on main branch"
+
+### Root Cause ✅ **CONFIRMED**
+The generator was creating a new feature branch for each lesson (e.g., `feat/lesson-203-1A-1769680463565`):
+
+```typescript
+// OLD CODE (before fix):
+await execAsync(`git checkout -b ${branchName}`);  // Creates NEW branch
+await execAsync('git add .');
+await execAsync(`git commit -m "${commitMessage}"`);
+await execAsync(`git push -u ${GIT_CONFIG.REMOTE} ${branchName}`);
+await execAsync('git checkout main');  // Returns to main
+```
+
+This caused:
+1. Lessons were committed to feature branches, not main
+2. Files appeared to "disappear" when viewing main branch
+3. Each lesson required manual merge from feature branch to main
+4. Conflicted with documented workflow in `pushing_to_git.md`
+5. Created unnecessary branch clutter in the repository
+
+### The Permanent Fix ✅ **APPLIED - Jan 29, 2026**
+
+**File**: `src/lib/generation/gitService.ts`
+
+**Rewritten `commitAndPush()` method** to commit directly to main:
+
+```typescript
+// NEW CODE (after fix):
+await this.ensureMainBranch();  // Ensure on main
+await execAsync('git add .');
+await execAsync(`git commit -m "${commitMessage}"`);
+await execAsync(`git push ${GIT_CONFIG.REMOTE} main`);  // Push to main
+const { stdout: commitHash } = await execAsync('git rev-parse HEAD');
+```
+
+### Files Modified (Jan 29, 2026)
+
+**Core Changes:**
+1. `src/lib/generation/gitService.ts` - Rewritten to commit directly to main
+   - Removed `generateBranchName()` method
+   - Renamed `getBranchUrl()` → `getCommitUrl()`
+   - Updated `rollback()` to handle main commits
+   - Removed branch creation/deletion logic
+
+2. `src/lib/generation/types.ts` - Updated interfaces
+   - `GitResult`: Changed `branchName` → `commitHash`, `branchUrl` → `commitUrl`
+   - `GenerationResponse`: Changed `branchName` → `commitHash`, `branchUrl` → `commitUrl`
+
+3. `src/app/api/lesson-generator/route.ts` - Updated API handler
+   - Changed variable names to `commitHash`/`commitUrl`
+   - Updated success logging
+   - Removed branch parameter from rollback
+
+4. `src/app/generate/page.tsx` - Updated UI
+   - Changed state interface to use `commitHash`/`commitUrl`
+   - Updated display: "Git Branch:" → "Committed to main:"
+   - Shows commit hash (first 7 chars) instead of branch name
+   - Link now goes to commit view instead of branch view
+
+5. `src/lib/generation/errorHandler.ts` - Updated rollback
+   - Removed `branchName` parameter
+   - Removed branch deletion logic
+   - Added warning about manual revert if needed
+
+6. `src/lib/generation/constants.ts` - Cleaned up config
+   - Removed `BRANCH_PREFIX` (no longer used)
+
+7. `src/lib/generation/fileGenerator.ts` - Fixed debug logging
+   - Updated debug log path to correct location
+
+### New Workflow
+
+**Before (Feature Branches):**
+```
+Generate → Create branch → Commit to branch → Push branch → Switch to main
+Result: Files on feature branch, not visible on main, requires manual merge
+```
+
+**After (Direct to Main):**
+```
+Generate → Ensure on main → Commit to main → Push main
+Result: Files immediately available on main, no merge needed
+```
+
+### Benefits
+
+1. **No More Disappearing Lessons**: Everything stays on main
+2. **Simpler Workflow**: No branch management needed
+3. **Immediate Visibility**: Generated lessons appear right away
+4. **Matches Documentation**: Aligns with "ALWAYS work on main" principle
+5. **Cleaner Git History**: No feature branch clutter
+6. **Automatic Deployment**: Changes go straight to production branch
+
+### Verification Steps
+
+**To verify the fix is in place:**
+
+1. **Check gitService.ts**:
+   - No `git checkout -b` commands
+   - Should push to `main` not a branch name
+   - `getCommitUrl()` method exists (not `getBranchUrl()`)
+
+2. **Check types.ts**:
+   - `GitResult` and `GenerationResponse` use `commitHash`/`commitUrl`
+   - No references to `branchName`/`branchUrl`
+
+3. **Test generation**:
+   - Generate a lesson
+   - Verify it commits to main (check `git log`)
+   - Verify files appear immediately
+   - UI should show "Committed to main: abc123f"
+
+### If You Need the Old Behavior
+
+**Don't.** The feature branch workflow caused confusion and violated established practices. If you absolutely need to review before pushing to main:
+
+1. Generate the lesson (it commits to main)
+2. Review the commit with `git show HEAD`
+3. If you need to undo: `git revert HEAD && git push`
+
+Or consider implementing a staging/review system outside the generator.
+
+### Migration Notes
+
+**Existing feature branches** should be merged into main and deleted:
+
+```bash
+# For each existing feature branch:
+git checkout main
+git merge feat/lesson-XXX-timestamp --no-edit
+git push origin main
+git branch -d feat/lesson-XXX-timestamp
+git push origin --delete feat/lesson-XXX-timestamp
+```
+
+### Prevention
+
+- **Never modify gitService.ts** to create branches again
+- **Code review checkpoint**: Any changes to git workflow must commit to main
+- **Documentation**: Both `gen_problems.md` and `pushing_to_git.md` enforce main-only workflow
+- **Type safety**: Interfaces now enforce commit hash instead of branch names
+
+**Risk Level**: None - workflow is now correct and documented
+- Feature branch workflow was the problem, not the solution
+- Direct-to-main is simpler, clearer, and matches project standards
+- All stakeholders prefer this approach
 
 ---
 
