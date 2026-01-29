@@ -191,6 +191,7 @@ export type QuestionTag =
   | 'continuity'       // Continuity testing
   | 'continuity-rule'  // Continuity testing rules
   | 'health-safety'    // Health and safety considerations
+  | 'legislation'      // Statutory regulations and legislation
   | 'methodology'      // Testing methodology and procedures
   | 'topology-confusion' // Topology confusion concepts
   | 'identification';  // Component/circuit identification
