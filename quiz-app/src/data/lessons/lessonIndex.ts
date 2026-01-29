@@ -173,13 +173,13 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 1,
   },
   {
-    id: '203-10B',
+    id: '203-1B',
     title: 'Non-Statutory Regulations & Guidance',
     unit: 'Unit 203',
     unitNumber: '203',
     topic: 'Non-Statutory Regulations & Guidance',
     description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-10B'),
+    questionCount: getLessonQuestionCount('203-1B'),
     available: true,
     order: 2,
   },// Unit 210: Communication

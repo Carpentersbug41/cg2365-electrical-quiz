@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * Non-Statutory Regulations & Guidance Question Bank
- * Aligned with lesson 203-10B learning outcomes
+ * Aligned with lesson 203-1B learning outcomes
  * Generated: 2026-01-29
  */
 
@@ -29,7 +29,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "explanation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -57,7 +57,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -84,7 +84,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -111,7 +111,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -138,7 +138,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "legislation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -165,7 +165,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "explanation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -192,7 +192,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -219,7 +219,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -246,7 +246,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "explanation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -273,7 +273,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -301,7 +301,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -328,7 +328,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -355,7 +355,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -382,7 +382,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -409,7 +409,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -437,7 +437,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "Non-statutory documents like BS 7671 are not laws (statutes), but they are recognised as the standard way to meet the legal requirements set out in statutory documents like the EAWR 1989."
@@ -464,7 +464,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "difficulty": 3,
     "estimatedTime": 90,
     "explanation": "BS 7671 acts as the 'bridge' to statutory compliance; following its technical requirements is the standard method for an electrician to prove they have followed the law (EAWR)."
@@ -490,7 +490,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO2",
+    "learningOutcomeId": "203-1B-LO2",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "The On-Site Guide is a simplified reference book intended for quick lookup of common technical requirements on-site."
@@ -517,7 +517,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO2",
+    "learningOutcomeId": "203-1B-LO2",
     "difficulty": 3,
     "estimatedTime": 75,
     "explanation": "IET Guidance Notes (such as GN3 for testing) provide much more depth and practical interpretation than the standard regulations or the On-Site Guide."
@@ -543,7 +543,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-10B-LO4",
+    "learningOutcomeId": "203-1B-LO4",
     "difficulty": 3,
     "estimatedTime": 90,
     "explanation": "Ignoring guidance means you lack evidence that you took reasonable precautions. In legal terms, this makes it difficult to prove 'due diligence' (that you did everything reasonably practicable to ensure safety)."
@@ -569,7 +569,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO4",
+    "learningOutcomeId": "203-1B-LO4",
     "difficulty": 3,
     "estimatedTime": 100,
     "explanation": "Deviations are permitted but they must be justified by the designer/installer, proving that the resulting safety is not less than that achieved by following the regulations."
@@ -595,7 +595,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO3",
+    "learningOutcomeId": "203-1B-LO3",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "The Unite Union Book (often called the 'Electrician's Guide') focuses on practical trade guidance, safety, and welfare for workers on site."
@@ -621,7 +621,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO3",
+    "learningOutcomeId": "203-1B-LO3",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "Codes of Practice are documents that outline agreed-upon best practices to ensure tasks are performed safely and to a consistent standard."
@@ -647,7 +647,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO4",
+    "learningOutcomeId": "203-1B-LO4",
     "difficulty": 2,
     "estimatedTime": 75,
     "explanation": "While not a law, ignoring guidance increases safety risks and carries professional consequences like rework, loss of reputation, and inability to prove safety in court."
@@ -673,7 +673,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-10B-LO2",
+    "learningOutcomeId": "203-1B-LO2",
     "difficulty": 2,
     "estimatedTime": 60,
     "explanation": "BS 7671 contains specific technical requirements for special installations, such as PV systems, in its 'Special Installations or Locations' sections."
@@ -700,7 +700,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -728,7 +728,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -755,7 +755,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -782,7 +782,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -810,7 +810,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -837,7 +837,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -864,7 +864,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "legislation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -891,7 +891,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "legislation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -918,7 +918,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "legislation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -945,7 +945,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -973,7 +973,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "health-safety"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1000,7 +1000,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1027,7 +1027,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1054,7 +1054,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "legislation"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1081,7 +1081,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1109,7 +1109,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1137,7 +1137,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1164,7 +1164,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1191,7 +1191,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1218,7 +1218,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "units"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1246,7 +1246,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1273,7 +1273,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1300,7 +1300,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1327,7 +1327,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "legislation",
       "discrimination"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1354,7 +1354,7 @@ export const nonStatutoryRegulationsGuidanceQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-10B-LO1",
+    "learningOutcomeId": "203-1B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,

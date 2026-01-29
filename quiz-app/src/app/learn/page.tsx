@@ -31,13 +31,51 @@ import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceili
 import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
 import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
 import lesson203_1A from '@/data/lessons/203-1A-statutory-regulations-law.json';
-import lesson203_10B from '@/data/lessons/203-10B-non-statutory-regulations-guidance.json';
+import lesson203_1B from '@/data/lessons/203-1B-non-statutory-regulations-guidance.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 
+/**
+ * Natural sort function for lesson IDs
+ * Sorts by: unit number (numerical) → lesson number (numerical) → suffix (alphabetical)
+ * Handles formats like "204-10A", "202-3AB", "204-204-12B"
+ */
+function sortLessonsByIdNaturally(a: any, b: any) {
+  const parseId = (id: string) => {
+    const parts = id.split('-');
+    const unit = parseInt(parts[0], 10);
+    
+    // Get the last part which contains lesson number + suffix
+    const lastPart = parts[parts.length - 1];
+    const lessonMatch = lastPart.match(/\d+/);
+    const suffixMatch = lastPart.match(/[A-Z]+/);
+    
+    const lesson = lessonMatch ? parseInt(lessonMatch[0], 10) : 0;
+    const suffix = suffixMatch ? suffixMatch[0] : '';
+    
+    return { unit, lesson, suffix };
+  };
+  
+  const aData = parseId(a.id);
+  const bData = parseId(b.id);
+  
+  // Compare unit numbers first
+  if (aData.unit !== bData.unit) {
+    return aData.unit - bData.unit;
+  }
+  
+  // Then compare lesson numbers
+  if (aData.lesson !== bData.lesson) {
+    return aData.lesson - bData.lesson;
+  }
+  
+  // Finally compare suffixes alphabetically
+  return aData.suffix.localeCompare(bData.suffix);
+}
+
 const LESSONS = [
-  lesson203_10B,
+  lesson203_1B,
   lesson203_1A,
   lesson204_13B,
   lesson204_13A,
@@ -62,7 +100,7 @@ const LESSONS = [
   lesson202_7B,
   lesson202_7C,
   lesson202_7D,
-];
+].sort(sortLessonsByIdNaturally);
 
 // Color schemes for different units (analogous color scheme)
 const getUnitColors = (lessonId: string) => {

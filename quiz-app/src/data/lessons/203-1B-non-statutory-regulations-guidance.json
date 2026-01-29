@@ -1,0 +1,467 @@
+{
+  "id": "203-1B",
+  "title": "203.1B — Non-Statutory Regulations & Guidance: How We Prove Compliance",
+  "description": "Learn to identify and apply non-statutory electrical documents and understand how they provide the technical evidence needed to meet legal safety requirements.",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Non-Statutory Regulations & Guidance",
+  "learningOutcomes": [
+    "Define non-statutory guidance and explain its legal status (not law, but recognised evidence of safe practice).",
+    "Identify the key non-statutory documents in the Unit 203 range (BS 7671, On-Site Guide, Guidance Notes, codes of practice, trade guidance).",
+    "State the purpose of BS 7671, the On-Site Guide, and the IET Guidance Notes in one line each.",
+    "Explain the relationship between statutory law (EAWR 1989) and non-statutory guidance, including what is required if you deviate.",
+    "Identify the professional and legal implications of ignoring recognised standards."
+  ],
+  "prerequisites": ["203-10A"],
+  "blocks": [
+    {
+      "id": "203-1B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define non-statutory guidance and its legal status.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Identify the key guidance documents in the Unit 203 range.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "State the purpose of BS 7671, the On-Site Guide, and the Guidance Notes.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain why following recognised standards matters legally and professionally (including deviations).",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Non-statutory",
+            "definition": "Documents that are not laws in themselves but are recognised as evidence of safe practice and compliance."
+          },
+          {
+            "term": "Recognised standard",
+            "definition": "A widely accepted technical benchmark (e.g., BS 7671) that courts and inspectors often use to judge whether work was done safely."
+          },
+          {
+            "term": "Due diligence",
+            "definition": "Taking all reasonable steps to work safely and prevent harm; evidence that you acted responsibly."
+          },
+          {
+            "term": "Best practice",
+            "definition": "Methods accepted by the industry as safe and effective."
+          },
+          {
+            "term": "Deviation",
+            "definition": "A deliberate choice to depart from a requirement in a recognised standard (e.g., BS 7671) — which must be justified and shown to be at least as safe."
+          },
+          {
+            "term": "Code of Practice",
+            "definition": "Agreed written rules showing how a specific type of work should be carried out safely and consistently."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-explain-1-what-nonstatutory-is",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "What Does “Non-Statutory” Mean?",
+        "content": "In the previous lesson, you learned about **statutory regulations** (laws you must follow), such as the **Electricity at Work Regulations (EAWR) 1989**.\n\nNon-statutory guidance is **not a law passed by Parliament**. That does **not** mean it is optional or irrelevant.\n\n**Why it exists:** laws often say things like “prevent danger” or “work safely”, but they don’t list every technical detail (cable support methods, protection devices, permitted routes, verification steps). Non-statutory guidance fills that gap by giving the **technical rules and accepted methods**.\n\n**Key exam sentence:**\n- **EAWR 1989 = the law (must prevent danger).**\n- **BS 7671 = the recognised technical rules that show how you achieved safety.**\n\nFollowing recognised guidance helps you show **due diligence** — evidence that you took reasonable steps to work safely."
+      }
+    },
+    {
+      "id": "203-1B-check-1",
+      "type": "practice",
+      "order": 3.5,
+      "content": {
+        "title": "Check Your Understanding: What Non-Statutory Means",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-C1-L1-A",
+            "questionText": "In simple terms, what does “non-statutory” mean?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "It is not a law passed by Parliament (not legally binding law).",
+            "hint": "Is it an Act/Regulation, or guidance?"
+          },
+          {
+            "id": "203-1B-C1-L1-B",
+            "questionText": "What is the main problem that non-statutory guidance solves for electricians?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Laws are general; guidance gives the technical detail of how to work safely.",
+            "hint": "Think: the law says “safe” — guidance says “how”."
+          },
+          {
+            "id": "203-1B-C1-L1-C",
+            "questionText": "What does “due diligence” mean in a safety context?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Taking all reasonable steps to work safely and prevent harm.",
+            "hint": "It’s about showing you acted responsibly."
+          },
+          {
+            "id": "203-1B-C1-L2",
+            "questionText": "How do these ideas (not law, provides technical detail, shows due diligence) explain why non-statutory guidance still matters in real electrical work?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Non-statutory guidance isn’t law, but it provides the practical technical rules for working safely. Following it helps prove you met your legal duty to prevent danger and shows due diligence if your work is inspected or questioned after an incident.",
+            "hint": "Connect “not law” + “how to be safe” + “proof you worked responsibly”."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-explain-2-range-of-documents",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Unit 203 Range of Non-Statutory Documents",
+        "content": "You must be familiar with these key documents (and what they’re used for):\n\n1. **BS 7671 (IET Wiring Regulations):** The main technical standard for designing, installing, and verifying safe electrical installations.\n2. **On-Site Guide (OSG):** A practical quick-reference companion to BS 7671 for common on-site tasks and typical installations.\n3. **IET Guidance Notes:** Deeper explanation and interpretation of parts of BS 7671 (e.g., testing, protection, earthing).\n4. **Codes of Practice:** Recognised safe methods for specific tasks (e.g., inspection/testing practices, in-service equipment inspection guidance).\n5. **Trade / site safety guidance (e.g., union or company safety booklets):** Practical rules for safe behaviour and site expectations.\n\n**One big idea:**\n- If BS 7671 is the **technical rulebook**, then the OSG is your **quick field guide**, and Guidance Notes are your **detailed interpretation** when you need deeper clarity."
+      }
+    },
+    {
+      "id": "203-1B-check-2",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The Document Range",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-C2-L1-A",
+            "questionText": "Name three non-statutory documents from the Unit 203 range.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "BS 7671, On-Site Guide (OSG), IET Guidance Notes (or Codes of Practice).",
+            "hint": "Think: main book, quick guide, deeper books."
+          },
+          {
+            "id": "203-1B-C2-L1-B",
+            "questionText": "Which document is designed as a quick, simplified reference for common on-site work?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "On-Site Guide (OSG).",
+            "hint": "It’s the handy companion to BS 7671."
+          },
+          {
+            "id": "203-1B-C2-L1-C",
+            "questionText": "What is the one-line purpose of the IET Guidance Notes?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "They provide deeper explanation and interpretation of BS 7671 topics.",
+            "hint": "They go beyond the quick guide."
+          },
+          {
+            "id": "203-1B-C2-L2",
+            "questionText": "If you’re unsure about a technical rule on-site versus needing a deeper explanation, how would you choose between OSG and Guidance Notes?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Use the OSG for quick typical answers and common arrangements on-site. Use Guidance Notes when the situation is complex or you need detailed interpretation and reasoning behind BS 7671 requirements.",
+            "hint": "Quick job-site check vs deeper understanding."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-explain-3-bridge-between-law-and-practice",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Bridge Between EAWR 1989 and BS 7671",
+        "content": "Think of this as **Law → Evidence**.\n\n- **EAWR 1989 (statutory law)** requires electrical systems and work activities to be safe and to prevent danger.\n- **BS 7671 (non-statutory standard)** provides the technical requirements that are widely accepted as a method of achieving that safety.\n\nSo, when an electrician follows BS 7671, they are usually able to show they worked in line with accepted safe practice.\n\n## What If You Deviate?\nA **deviation** is when you choose not to follow a specific BS 7671 requirement.\n\nIf you deviate, you must be able to **prove** your alternative is **at least as safe** as the standard approach. In real workplaces that means:\n- clear technical justification,\n- documented reasoning (often including risk assessment / design justification),\n- and agreement through the correct process (e.g., design responsibility, supervision, client constraints managed safely).\n\n**Key point:** “It was cheaper” is not a safety justification."
+      }
+    },
+    {
+      "id": "203-1B-check-3",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: EAWR vs BS 7671 (and Deviations)",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-C3-L1-A",
+            "questionText": "Which one is statutory law: EAWR 1989 or BS 7671?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "EAWR 1989 is statutory law.",
+            "hint": "Which one is a legal regulation?"
+          },
+          {
+            "id": "203-1B-C3-L1-B",
+            "questionText": "In one line, what does BS 7671 provide for electricians?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "The technical requirements/rules for safe electrical installation work.",
+            "hint": "It’s the technical rulebook."
+          },
+          {
+            "id": "203-1B-C3-L1-C",
+            "questionText": "What is a “deviation” in the context of BS 7671?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "A deliberate choice to depart from a BS 7671 requirement.",
+            "hint": "It means you don’t follow a specific rule."
+          },
+          {
+            "id": "203-1B-C3-L2",
+            "questionText": "How do these facts (EAWR is law, BS 7671 is technical rules, deviation is departing) explain what you must do if you choose to deviate?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Because EAWR is the legal duty to prevent danger and BS 7671 is the recognised way to meet that duty, deviating removes the ‘standard’ evidence of safety. If you deviate, you must justify and document that your method is at least as safe as the BS 7671 approach.",
+            "hint": "Link legal duty → recognised evidence → what changes when you deviate."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-explain-4-implications",
+      "type": "explanation",
+      "order": 6,
+      "content": {
+        "title": "What Happens If You Ignore Recognised Guidance?",
+        "content": "Ignoring non-statutory guidance has real consequences, even though the guidance itself is not law.\n\n### 1) Safety consequences\n- You increase the chance of **electric shock**, **fire**, or unsafe protective measures.\n\n### 2) Legal consequences\n- If something goes wrong, it becomes harder to show you took **reasonable precautions**.\n- In a legal dispute, not following BS 7671 can weaken your defence because you have less evidence of **due diligence**.\n\n### 3) Professional consequences\n- Inspection bodies and employers often expect work to align with recognised standards.\n- You may face **failed inspection**, **rework**, **loss of reputation**, or removal from a competent person scheme (depending on context and severity).\n\n### 4) Employment / site consequences\n- Many sites treat recognised guidance and safety procedures as minimum expectations.\n- Ignoring them can lead to **disciplinary action** or being removed from site."
+      }
+    },
+    {
+      "id": "203-1B-check-4",
+      "type": "practice",
+      "order": 6.5,
+      "content": {
+        "title": "Check Your Understanding: Consequences",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-C4-L1-A",
+            "questionText": "Name one safety risk of ignoring recognised electrical guidance.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Increased risk of electric shock or fire.",
+            "hint": "Think: harm to people/property."
+          },
+          {
+            "id": "203-1B-C4-L1-B",
+            "questionText": "Name one legal problem that can happen if you ignore BS 7671 and an incident occurs.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Harder to prove due diligence / reasonable precautions / compliance with safety duties.",
+            "hint": "What becomes difficult to prove in court?"
+          },
+          {
+            "id": "203-1B-C4-L1-C",
+            "questionText": "Name one professional consequence of not following recognised standards.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": "Failed inspection, rework, loss of reputation, or scheme/employer consequences.",
+            "hint": "Think about inspectors and employers."
+          },
+          {
+            "id": "203-1B-C4-L2",
+            "questionText": "How do these consequences connect back to the idea of due diligence and recognised standards?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": "Recognised standards are commonly used as evidence of safe practice. If you ignore them, safety risks increase and you lose strong evidence of due diligence, which can lead to legal vulnerability and professional consequences after an incident or inspection.",
+            "hint": "Tie safety + proof + career impact together."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example: Selecting the Right Guidance",
+        "given": "An electrician is installing a new ring final circuit in a domestic kitchen and needs to know the maximum floor area the circuit can cover.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the task: You need a standard on-site rule for a common domestic circuit arrangement.",
+            "formula": null,
+            "calculation": null,
+            "result": "Task identified: Standard domestic ring final guidance"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Choose the best document for speed: Use the On-Site Guide (OSG) for quick reference on typical installations.",
+            "formula": null,
+            "calculation": null,
+            "result": "Best document: On-Site Guide (OSG)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Consult the document: Find the section on standard circuit arrangements and limitations for ring finals.",
+            "formula": null,
+            "calculation": null,
+            "result": "Maximum typical floor area: 100 square metres"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Link back to compliance: Using the OSG supports BS 7671 compliance for typical work and helps evidence safe practice.",
+            "formula": null,
+            "calculation": null,
+            "result": "Outcome: Faster decisions while staying aligned with recognised standards"
+          }
+        ],
+        "notes": "Use OSG for quick typical answers; go back to BS 7671 (and Guidance Notes) if the situation is unusual or complex."
+      }
+    },
+    {
+      "id": "203-1B-guided",
+      "type": "guided-practice",
+      "order": 8,
+      "content": {
+        "title": "Guided Practice: Handling Deviations",
+        "problem": "A client asks you to install a cable in a way that is not listed in the On-Site Guide because they want to save money on materials. The proposed method looks slightly risky.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Which document should you check first to see if the client's request is technically acceptable?",
+            "expectedAnswer": ["BS 7671", "Wiring Regulations"],
+            "hint": "Go to the main technical standard."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "If the method is not compliant with BS 7671 (or would be a deviation), what must you produce before doing it?",
+            "expectedAnswer": [
+              "Documented justification",
+              "Evidence it is at least as safe",
+              "Risk assessment",
+              "Design justification"
+            ],
+            "hint": "You must prove your alternative is just as safe, and record the reasoning."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What is a likely professional consequence if you follow the client's request and the work is later inspected?",
+            "expectedAnswer": ["Failed inspection", "Rework", "Loss of registration", "Disciplinary action"],
+            "hint": "Think what an inspector/employer would do if it doesn’t meet recognised standards."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What is the safest immediate decision if the method looks risky and you cannot justify it properly?",
+            "expectedAnswer": ["Refuse", "Do not proceed", "Escalate to supervisor/designer", "Use a compliant method"],
+            "hint": "If you can’t prove it’s safe, you don’t do it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-practice",
+      "type": "practice",
+      "order": 9,
+      "content": {
+        "title": "Your Turn: Non-Statutory Knowledge",
+        "mode": "standard-practice",
+        "questions": [
+          {
+            "id": "203-1B-P1",
+            "questionText": "In one sentence, what is the purpose of BS 7671?",
+            "answerType": "short-text",
+            "expectedAnswer": "To provide the technical requirements for safe electrical installations.",
+            "hint": "Think: technical rules for safe installation work."
+          },
+          {
+            "id": "203-1B-P2",
+            "questionText": "Which document would you use first for a quick on-site check of a common installation arrangement?",
+            "answerType": "short-text",
+            "expectedAnswer": ["On-Site Guide", "OSG"],
+            "hint": "The quick-reference companion."
+          },
+          {
+            "id": "203-1B-P3",
+            "questionText": "What does it usually become difficult to prove if you ignore BS 7671 and an incident happens?",
+            "answerType": "short-text",
+            "expectedAnswer": ["Due diligence", "Reasonable precautions", "Safe practice"],
+            "hint": "This is your ‘evidence’ you acted responsibly."
+          },
+          {
+            "id": "203-1B-P4",
+            "questionText": "True or False: Non-statutory documents can be used as evidence in a court or investigation.",
+            "answerType": "short-text",
+            "expectedAnswer": ["True"],
+            "hint": "They’re often used to judge whether work was done safely."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Big Picture Question",
+        "mode": "integrative",
+        "questions": [
+          {
+            "id": "203-1B-INT-1",
+            "questionText": "An apprentice argues that because BS 7671 is 'non-statutory', it doesn’t really matter. Explain why they are wrong by linking: (1) EAWR 1989 as the law, (2) BS 7671 as recognised evidence, and (3) what happens if you deviate or ignore the standard. (3–4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": "EAWR 1989 is the statutory law requiring electrical work to prevent danger. BS 7671 is the recognised technical standard that shows how to achieve that safety and is commonly used as evidence of due diligence. If you ignore it, you increase safety risk and lose strong evidence that you worked responsibly. If you deviate, you must document and prove your alternative method is at least as safe as the BS 7671 approach.",
+            "hint": "Law → evidence → consequences (ignore or deviate)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          {
+            "id": "203-1B-SR-1",
+            "questionText": "What does the acronym OSG stand for?",
+            "expectedAnswer": "On-Site Guide",
+            "hint": "The on-site quick reference book."
+          },
+          {
+            "id": "203-1B-SR-2",
+            "questionText": "What does BS 7671 refer to?",
+            "expectedAnswer": "The IET Wiring Regulations",
+            "hint": "The main technical rules for installation work."
+          },
+          {
+            "id": "203-1B-SR-3",
+            "questionText": "Define a statutory regulation (from lesson 203-10A).",
+            "expectedAnswer": "A law passed by Parliament that must be followed.",
+            "hint": "Think: legal requirement."
+          },
+          {
+            "id": "203-1B-SR-4",
+            "questionText": "In one phrase, what is “due diligence”?",
+            "expectedAnswer": "Taking all reasonable steps to work safely and prevent harm.",
+            "hint": "It’s the proof you acted responsibly."
+          }
+        ],
+        "notes": "This review ensures learners can distinguish between statutory law and the recognised guidance used to demonstrate safe practice."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-01-29",
+    "updated": "2026-01-29",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team"
+  }
+}
