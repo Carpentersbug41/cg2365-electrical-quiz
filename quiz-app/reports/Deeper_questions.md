@@ -9,9 +9,9 @@
 
 ## 📋 Executive Summary
 
-We are adding **4 progressive questions** (3 recall + 1 connection) after each major explanation section in lessons, plus **1 integrative question** (L2/3) at the end of each lesson. This approach builds confidence through recall practice before introducing deeper cognitive engagement.
+We are adding **4 progressive questions** (3 recall + 1 connection) after each major explanation section in lessons, plus **2 integrative questions** (1 connection + 1 synthesis) at the end of each lesson. This approach builds confidence through recall practice before introducing deeper cognitive engagement.
 
-**Key principle:** Build foundation with **recall questions** (L1 x3) → connect concepts **(L2)** → conclude lesson with **integrative synthesis** (L2/3) to scaffold from confidence to sophistication.
+**Key principle:** Build foundation with **recall questions** (L1 x3) → connect concepts **(L2)** → conclude lesson with **progressive integrative questions** (L2 connection → L3 synthesis) to scaffold from confidence to sophisticated synthesis.
 
 ---
 
@@ -239,11 +239,11 @@ Understanding check blocks will be styled differently:
 | After major explanation | ✅ YES (3xL1 + 1xL2) | Forces recall and connection before moving on |
 | After worked example | ⚠️ OPTIONAL | Could add 1-2 recall questions about method steps |
 | After guided practice | ❌ NO | Already has scaffolded questions |
-| End of lesson (after practice) | ✅ YES (1x L2/3 integrative) | Synthesizes whole lesson, ties it all together |
+| End of lesson (after practice) | ✅ YES (2x integrative: L2+L3) | Progressive scaffolding to full synthesis |
 
 **Recommended frequency:** 
 - 2-3 understanding check blocks per lesson (after key explanations)
-- 1 integrative question at lesson end
+- 2 integrative questions at lesson end (1 connection + 1 synthesis)
 
 ---
 
@@ -655,12 +655,13 @@ Before marking a question set as "complete," verify:
 
 ### What
 - 4 questions (3xL1 recall + 1xL2 connection) after each major explanation
-- 1 integrative question (L2/L3 synthesis) at end of lesson
+- 2 integrative questions (1xL2 connection + 1xL3 synthesis) at end of lesson
 
 ### Why
 - Evidence-based: retrieval practice builds confidence before deeper thinking
 - Students reported discouragement with premature complex questions
 - Multiple recall questions establish solid foundation
+- Progressive scaffolding at lesson end: connection question before synthesis
 - End-of-lesson synthesis comes when students are ready
 
 ### How

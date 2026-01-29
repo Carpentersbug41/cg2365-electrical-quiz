@@ -60,7 +60,7 @@ I create a complete specification including:
    - Worked example scenario with 3-4 steps
    - Guided practice problem
    - 3-5 Practice questions with variety
-   - **Integrative question at end** (Big Picture - L2/L3 Synthesis)
+   - **Integrative questions at end** (Big Picture - 1×L2 Connection + 1×L3 Synthesis)
    - Spaced review topics from prerequisites
 
 4. **Quiz Planning**
@@ -92,7 +92,7 @@ I create the complete lesson file following this structure:
     // 5. Worked example block
     // 6. Guided practice block
     // 7. Practice block (3-5 questions)
-    // 9.5. Integrative Question (Big Picture - L2/L3 Synthesis)
+    // 9.5. Integrative Questions (Big Picture - 1×L2 Connection + 1×L3 Synthesis)
     // 8. Spaced review block
   ],
   "metadata": {

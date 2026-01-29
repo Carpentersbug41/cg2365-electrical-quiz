@@ -72,7 +72,7 @@ flowchart LR
 - **Lesson**: 8-10 blocks following exact template structure
 - **Quiz**: 50 questions with misconception mapping
 - **Quality**: Follows all rules from BUILD_ERROR_PREVENTION.md
-- **Structure**: 3×L1 Recall + 1×L2 Connection + Integrative question
+- **Structure**: 3×L1 Recall + 1×L2 Connection + 2 Integrative questions (1×L2 + 1×L3)
 
 ### 🔄 Automatic Integration
 Updates these 7 files automatically:

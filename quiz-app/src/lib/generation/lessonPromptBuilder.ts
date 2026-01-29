@@ -22,12 +22,19 @@ export class LessonPromptBuilder {
    */
   private loadTemplates(): void {
     const reportsPath = path.join(process.cwd(), 'reports', 'lesson_factory');
+    const reportsRootPath = path.join(process.cwd(), 'reports');
     
     try {
       // Load BUILD_ERROR_PREVENTION.md for quality standards
       const errorPreventionPath = path.join(reportsPath, 'BUILD_ERROR_PREVENTION.md');
       if (fs.existsSync(errorPreventionPath)) {
         this.templateDocs['errorPrevention'] = fs.readFileSync(errorPreventionPath, 'utf-8');
+      }
+      
+      // Load Deeper_questions.md for cognitive level guidance
+      const deeperQuestionsPath = path.join(reportsRootPath, 'Deeper_questions.md');
+      if (fs.existsSync(deeperQuestionsPath)) {
+        this.templateDocs['deeperQuestions'] = fs.readFileSync(deeperQuestionsPath, 'utf-8');
       }
     } catch (error) {
       console.warn('Could not load template docs:', error);
@@ -265,14 +272,23 @@ BLOCK TEMPLATES:
   "content": {
     "title": "Putting It All Together",
     "mode": "integrative",
+    "sequential": true,
     "questions": [
       {
         "id": "${lessonId}-INT-1",
-        "questionText": "[2-3 sentence question tying all concepts] (3-4 sentences)",
+        "questionText": "[Connection question tying 2-3 major concepts] (2-3 sentences)",
+        "answerType": "short-text",
+        "cognitiveLevel": "connection",
+        "expectedAnswer": "[Answer showing relationships between major concepts]",
+        "hint": "[Hint about connections]"
+      },
+      {
+        "id": "${lessonId}-INT-2",
+        "questionText": "[Synthesis question integrating ALL lesson concepts] (3-4 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "synthesis",
-        "expectedAnswer": "[Comprehensive answer]",
-        "hint": "[Strategic hint]"
+        "expectedAnswer": "[Comprehensive answer showing full integration]",
+        "hint": "[Strategic hint about what to include]"
       }
     ]
   }
@@ -319,10 +335,64 @@ CRITICAL QUALITY RULES:
 
 1. **IDs**: All IDs must be unique and follow pattern: ${lessonId}-[blockType]
 2. **Cognitive Levels**: Use ONLY: "recall", "connection", "synthesis" (NO "hypothesis")
+
+COGNITIVE LEVELS EXPLAINED (CRITICAL FOR QUESTION QUALITY):
+
+**Level 1: Recall (cognitiveLevel: "recall")**
+- Purpose: Remember factual information from the explanation
+- Cognitive Process: Remember (Bloom's Taxonomy)
+- Where Used: Questions 1-3 in understanding checks (after explanations)
+- Question Style: Simple factual questions that build on each other
+- Examples:
+  * "What does AC stand for?" → Expected: "Alternating Current"
+  * "What is the unit of frequency?" → Expected: "Hertz (Hz)"
+  * "What is the voltage of UK mains supply?" → Expected: "230V"
+- Key: These should be answerable directly from the explanation text. Build confidence with simple facts before deeper thinking.
+
+**Level 2: Connection (cognitiveLevel: "connection")**
+- Purpose: Link concepts together, show relationships
+- Cognitive Process: Understand/Apply (Bloom's Taxonomy)
+- Where Used: Question 4 in understanding checks (after explanations), Question 1 in integrative block (end of lesson)
+- Question Style: Asks "how" and "why" concepts relate, practical applications
+- Examples:
+  * "How do these characteristics (AC alternating vs DC one direction) affect which type is better for different applications?" → Expected: "AC is better for mains supply because it can be easily transformed. DC is better for electronics because it provides steady voltage."
+  * "How does the frequency value (50 Hz) relate to how many times AC current changes direction in one second?" → Expected: "50 Hz means 50 complete cycles per second, so current reverses direction 100 times per second (twice per cycle)"
+- Key: Must connect multiple facts or concepts. Shows relationships and practical implications.
+
+**Level 3: Synthesis (cognitiveLevel: "synthesis")**
+- Purpose: Combine multiple lesson ideas into comprehensive understanding
+- Cognitive Process: Analyze (Bloom's Taxonomy)
+- Where Used: Question 2 in integrative block at end of lesson (order 9.5)
+- Question Style: "Big picture" questions tying together ALL major concepts from the lesson
+- Examples:
+  * "You've learned about AC vs DC, frequency (50 Hz), and UK mains supply (230V AC). Now explain: Why does the UK use 230V AC at 50Hz for the national grid, rather than DC? What are the practical advantages? (3-4 sentences)" → Expected: Comprehensive answer integrating transmission, transformation, standardization, and efficiency considerations.
+- Key: Must explicitly ask for 3-4 sentences. Should synthesize concepts from multiple explanation sections, not just one.
+
+WRITING QUALITY QUESTIONS:
+
+**For Level 1 (Recall) Questions:**
+- Make them simple and factual
+- Build on each other logically (Q1 → Q2 → Q3)
+- Each should test a different fact from the explanation
+- Expected answers should be concise (1-2 sentences or a key term)
+
+**For Level 2 (Connection) Questions:**
+- In understanding checks: Must reference the facts from Q1, Q2, Q3
+- In integrative block: Must tie together 2-3 major concepts from the lesson
+- Ask "how" or "why" these facts/concepts relate
+- Focus on practical applications or relationships
+- Expected answer should show understanding of connections (2-3 sentences)
+
+**For Level 3 (Synthesis) Questions:**
+- Must tie together concepts from MULTIPLE explanation sections
+- Explicitly request 3-4 sentences
+- Ask "why" and "how" considering multiple factors
+- Expected answer should be comprehensive, showing integration of all lesson concepts
+
 3. **Bloom Levels**: Use: ${BLOOM_LEVELS.join(', ')}
 4. **Question Structure**: 
    - Understanding checks: 3×L1 Recall + 1×L2 Connection
-   - Integrative: 1×L2/L3 Synthesis at end
+   - Integrative: 2 questions (1×L2 Connection + 1×L3 Synthesis)
 5. **JSX Escaping**: Use &quot; for " and &apos; for ' in content
 6. **Formulas**: Verify accuracy (e.g., V=IR, P=VI, R_total = R1+R2+R3 for series)
 7. **Block Order**: Maintain correct sequence (1, 2, 3, 4, 4.5, 5, 6, 7, 9.5, 8/10)
@@ -387,7 +457,7 @@ ${request.section.includes('Science') || request.topic.toLowerCase().includes('c
     ? '- Include worked example with 3-5 steps\n- Include guided practice with 2-3 steps'
     : '- Worked example and guided practice optional (include if calculations involved)'}
 - Include 3-5 practice questions
-- Add 1 integrative question at end
+- Add integrative block with 2 questions at end (1 connection + 1 synthesis)
 - Include 4 spaced review questions from prerequisites (each with id, questionText, expectedAnswer, and hint)
 
 SPACED REVIEW QUALITY STANDARDS:

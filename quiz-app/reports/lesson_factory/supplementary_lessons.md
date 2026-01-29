@@ -197,7 +197,7 @@ Supplementary lessons use **exactly the same structure** as core lessons:
 5. **Worked Example** (3-4 steps)
 6. **Guided Practice** (2-3 scaffolded prompts)
 7. **Practice** (3-5 independent questions)
-   - **7.5/9.5. Integrative Question** (Big Picture - L2/L3 Synthesis)
+   - **7.5/9.5. Integrative Questions** (Big Picture - 1×L2 Connection + 1×L3 Synthesis)
 8. **Spaced Review** (4 questions from prerequisites)
 
 ### Quiz Structure

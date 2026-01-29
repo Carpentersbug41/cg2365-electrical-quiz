@@ -32,6 +32,7 @@ import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-e
 import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
 import lesson203_1A from '@/data/lessons/203-1A-statutory-regulations-law.json';
 import lesson203_1B from '@/data/lessons/203-1B-non-statutory-regulations-guidance.json';
+import lesson203_1C from '@/data/lessons/203-1C-using-bs-7671-on-a-job.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -75,6 +76,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_1C,
   lesson203_1B,
   lesson203_1A,
   lesson204_13B,

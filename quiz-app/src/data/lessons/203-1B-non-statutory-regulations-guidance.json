@@ -12,7 +12,7 @@
     "Explain the relationship between statutory law (EAWR 1989) and non-statutory guidance, including what is required if you deviate.",
     "Identify the professional and legal implications of ignoring recognised standards."
   ],
-  "prerequisites": ["203-10A"],
+  "prerequisites": ["203-1A"],
   "blocks": [
     {
       "id": "203-1B-outcomes",

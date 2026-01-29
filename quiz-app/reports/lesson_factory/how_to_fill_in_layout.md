@@ -136,7 +136,7 @@ Every lesson contains **8-10 blocks** in this order:
 5. Worked Example           → "Watch me do one..."
 6. Guided Practice          → "Let's do one together..."
 7. Practice Block           → "Now you try..."
-   7.5/9.5. Integrative Q   → "Big picture question" (L2/L3 Synthesis)
+   7.5/9.5. Integrative Qs  → "Big picture questions" (1×L2 Connection + 1×L3 Synthesis)
 8. Spaced Review            → "Let's revisit earlier topics..."
 
 * Diagram block is required for Split-Vis, optional for Linear-Flow

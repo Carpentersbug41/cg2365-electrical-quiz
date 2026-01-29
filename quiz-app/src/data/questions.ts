@@ -34,6 +34,7 @@ import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from '
 import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './questions/ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
 import { statutoryRegulationsLawQuestions } from './questions/statutoryRegulationsLawQuestions';
 import { nonStatutoryRegulationsGuidanceQuestions } from './questions/nonStatutoryRegulationsGuidanceQuestions';
+import { usingBs7671OnAJobQuestions } from './questions/usingBs7671OnAJobQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -62,6 +63,7 @@ export const questions: Question[] = [
   ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
   ...statutoryRegulationsLawQuestions,
   ...nonStatutoryRegulationsGuidanceQuestions,
+  ...usingBs7671OnAJobQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

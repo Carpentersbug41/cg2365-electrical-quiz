@@ -166,14 +166,20 @@ PRACTICE_QUESTIONS: (3-5 questions)
     answer: ["[variations]"]
     hint: "[Helpful guidance]"
 
-INTEGRATIVE_QUESTION: (1 question at end)
+INTEGRATIVE_QUESTIONS: (2 questions at end)
   title: "Putting It All Together"
   mode: "integrative"
-  question:
+  sequential: true
+  questions:
     - id: "[LESSON-ID]-INT-1"
-      text: "[2-3 sentence question tying up all lesson concepts] (3-4 sentences)"
+      text: "[Connection question tying 2-3 major concepts] (2-3 sentences)"
+      cognitiveLevel: "connection"
+      expected: "[Answer showing relationships between major concepts]"
+      hint: "[Hint about connections]"
+    - id: "[LESSON-ID]-INT-2"
+      text: "[Synthesis question integrating ALL lesson concepts] (3-4 sentences)"
       cognitiveLevel: "synthesis"
-      expected: "[Comprehensive answer integrating multiple concepts]"
+      expected: "[Comprehensive answer showing full integration]"
       hint: "[What to include in answer]"
     
 SPACED_REVIEW: (4 questions)

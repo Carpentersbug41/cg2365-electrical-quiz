@@ -377,7 +377,7 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 ---
 
 ### 7C. Integrative Question Block (End of Lesson)
-**Purpose:** Deep synthesis question tying together all lesson concepts  
+**Purpose:** Progressive depth questions tying together all lesson concepts  
 **When:** After practice block, before spaced review (order: 7.5 or 9.5)
 
 ```json
@@ -388,13 +388,22 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
   "content": {
     "title": "Putting It All Together",
     "mode": "integrative",
+    "sequential": true,
     "questions": [
       {
         "id": "[LESSON-ID]-INT-1",
-        "questionText": "[2-3 sentence deeper question tying up concepts] (3-4 sentences)",
+        "questionText": "[Connection question tying 2-3 major concepts] (2-3 sentences)",
+        "answerType": "short-text",
+        "cognitiveLevel": "connection",
+        "expectedAnswer": "[Answer showing relationships between major concepts]",
+        "hint": "[Hint about connections]"
+      },
+      {
+        "id": "[LESSON-ID]-INT-2",
+        "questionText": "[Synthesis question integrating ALL lesson concepts] (3-4 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "synthesis",
-        "expectedAnswer": "[Comprehensive answer showing integration]",
+        "expectedAnswer": "[Comprehensive answer showing full integration]",
         "hint": "[Strategic hint about what to include]"
       }
     ]
@@ -402,7 +411,7 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 }
 ```
 
-**Purpose:** This "Big Picture Question" reinforces understanding once foundational knowledge is established
+**Purpose:** These "Big Picture Questions" provide scaffolding (connection first) before deep synthesis, reinforcing understanding once foundational knowledge is established
 
 ---
 
@@ -441,12 +450,12 @@ Blocks are ordered using the `order` field (1, 2, 3...). Each block has an `id`,
 5. Worked Example (demonstrate)
 6. Guided Practice (scaffold)
 7. Practice (apply independently)
-   - **7.5 or 9.5. Integrative Question** (Big Picture - L2/L3 Synthesis)
+   - **7.5 or 9.5. Integrative Questions** (Big Picture - 1×L2 Connection + 1×L3 Synthesis)
 8. Spaced Review (reinforce prerequisites)
 
 **New Question Structure:**
 - **After each explanation:** 4 questions (3×L1 + 1×L2) for immediate reinforcement
-- **End of lesson:** 1 integrative question (L2/L3) to tie everything together
+- **End of lesson:** 2 integrative questions (1×L2 Connection + 1×L3 Synthesis) to tie everything together
 
 ---
 

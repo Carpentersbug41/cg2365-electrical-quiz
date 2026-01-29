@@ -187,7 +187,7 @@ Complete lesson with 8-10 blocks:
 5. **Worked Example** - Step-by-step demonstration
 6. **Guided Practice** - Scaffolded student work
 7. **Practice Block** - 3-5 independent questions
-   - **7.5/9.5. Integrative Question** - Big picture synthesis
+   - **7.5/9.5. Integrative Questions** - Progressive synthesis (1×L2 + 1×L3)
 8. **Spaced Review** - 4 questions from prerequisites
 
 #### 2. Quiz TypeScript File
@@ -781,7 +781,7 @@ The lesson structure follows proven teaching methodology:
 
 3. **You Do (Student independent):**
    - Practice block - Independent work
-   - Integrative question - Synthesis
+   - Integrative questions - Progressive synthesis (connection → synthesis)
 
 #### Progressive Depth of Processing
 

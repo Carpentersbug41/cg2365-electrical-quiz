@@ -78,7 +78,7 @@ src/data/lessons/202-7E-topic.json
 ├── Worked Example (if calculations)
 ├── Guided Practice (if worked example)
 ├── Practice block (3-5 questions)
-├── Integrative Question (synthesis)
+├── Integrative Questions (1×L2 connection + 1×L3 synthesis)
 └── Spaced Review (4 questions)
 ```
 

@@ -40,7 +40,7 @@ Click **"Generate Lesson"** and wait 3-5 minutes.
    - Explanations
    - Examples and practice
    - Understanding checks (3×L1 + 1×L2)
-   - Integrative question
+   - Integrative questions (1×L2 + 1×L3)
    - Spaced review
 
 2. **Quiz TypeScript** (1200+ lines)
