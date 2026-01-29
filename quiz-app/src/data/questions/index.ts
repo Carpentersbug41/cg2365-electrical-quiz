@@ -14,7 +14,6 @@ import { acPrinciplesQuestions } from './acPrinciplesQuestions';
 import { acGenerationQuestions } from './acGenerationQuestions';
 import { acWaveformQuestions } from './acWaveformQuestions';
 import { transformersQuestions } from './transformersQuestions';
-import { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 import { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTestingMindsetAndSetupQuestions';
@@ -51,8 +50,7 @@ export const allTaggedQuestions: TaggedQuestion[] = [
   ...acPrinciplesQuestions,
   ...acGenerationQuestions,
   ...acWaveformQuestions,
-  ...transformersQuestions,
-  ...cablesApplicationsQuestions
+  ...transformersQuestions
 ];
 
 /**
@@ -68,7 +66,6 @@ export { acPrinciplesQuestions } from './acPrinciplesQuestions';
 export { acGenerationQuestions } from './acGenerationQuestions';
 export { acWaveformQuestions } from './acWaveformQuestions';
 export { transformersQuestions } from './transformersQuestions';
-export { cablesApplicationsQuestions } from './cablesApplicationsQuestions';
 export { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
 export { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 export { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTestingMindsetAndSetupQuestions';

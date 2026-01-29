@@ -21,7 +21,6 @@ import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
 import { acGenerationQuestions } from './questions/acGenerationQuestions';
 import { acWaveformQuestions } from './questions/acWaveformQuestions';
 import { transformersQuestions } from './questions/transformersQuestions';
-import { cablesApplicationsQuestions } from './questions/cablesApplicationsQuestions';
 import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTestLanguageWhatEachTestProvesQuestions';
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './questions/circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './questions/rigSafeDeadTestingMindsetAndSetupQuestions';
@@ -48,6 +47,15 @@ export const questions: Question[] = [
   ...acGenerationQuestions,
   ...acWaveformQuestions,
   ...transformersQuestions,
-  ...cablesApplicationsQuestions,
   ...deadTestLanguageWhatEachTestProvesQuestions,
+  ...circuitMapThinkingConductorRolesExpectedOutcomesQuestions,
+  ...rigSafeDeadTestingMindsetAndSetupQuestions,
+  ...provingYourTesterWorksQuestions,
+  ...leadsNullingZeroingAndAvoidingFalseReadingsQuestions,
+  ...theDeadInspectionChecklistQuestions,
+  ...inspectionDecisionsAndRecordingQuestions,
+  ...oneWayLighting3PlateCeilingRoseQuestions,
+  ...oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions,
+  ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
+  ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
 ];

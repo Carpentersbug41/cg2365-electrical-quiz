@@ -159,17 +159,6 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
 
 // Unit 203: Electrical Installations Technology
-  {
-    id: '203-1A',
-    title: 'Types of Cables: Construction and Applications',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Types of Cables',
-    description: 'Learn about cable construction (conductor, insulation, sheath, CPC), identify common cable types (T&E, singles, flex), select appropriate cables for different environments, and understand cable identification standards.',
-    questionCount: getLessonQuestionCount('203-1A'),
-    available: true,
-    order: 1,
-  },
   // Future lessons can be added here
   // Unit 210: Communication
   {

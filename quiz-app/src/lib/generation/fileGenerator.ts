@@ -7,7 +7,7 @@ import { createLLMClientWithFallback } from '@/lib/llm/client';
 import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { LessonPromptBuilder } from './lessonPromptBuilder';
 import { QuizPromptBuilder } from './quizPromptBuilder';
-import { GenerationRequest, Lesson, QuizQuestion } from './types';
+import { GenerationRequest, Lesson, QuizQuestion, DebugInfo } from './types';
 import {
   generateLessonFilename,
   generateQuizFilename,
@@ -74,6 +74,19 @@ export class FileGenerator {
   }
 
   /**
+   * Helper to safely propagate error results with debug info
+   * Ensures debugInfo is never accidentally omitted during error propagation
+   */
+  private propagateError(result: { success: false; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo }): { success: false; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo } {
+    return {
+      success: false,
+      questions: [],
+      error: result.error,
+      debugInfo: result.debugInfo,
+    };
+  }
+
+  /**
    * Generate complete lesson JSON file
    */
   async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string }> {
@@ -109,7 +122,7 @@ export class FileGenerator {
   /**
    * Generate complete quiz (50 questions in batches)
    */
-  async generateQuiz(request: GenerationRequest): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string }> {
+  async generateQuiz(request: GenerationRequest): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo }> {
     try {
       const allQuestions: QuizQuestion[] = [];
       let currentId = this.getStartingQuestionId();
@@ -125,7 +138,7 @@ export class FileGenerator {
       );
       if (!easyQuestions.success) {
         debugLog('EASY_BATCH_FAILED', { error: easyQuestions.error });
-        return { success: false, questions: [], error: easyQuestions.error };
+        return { success: false, questions: [], error: easyQuestions.error, debugInfo: easyQuestions.debugInfo };
       }
       allQuestions.push(...easyQuestions.questions);
       currentId += DIFFICULTY_DISTRIBUTION.easy;
@@ -140,7 +153,7 @@ export class FileGenerator {
       );
       if (!mediumQuestions.success) {
         debugLog('MEDIUM_BATCH_FAILED', { error: mediumQuestions.error });
-        return { success: false, questions: [], error: mediumQuestions.error };
+        return { success: false, questions: [], error: mediumQuestions.error, debugInfo: mediumQuestions.debugInfo };
       }
       allQuestions.push(...mediumQuestions.questions);
       currentId += DIFFICULTY_DISTRIBUTION.medium;
@@ -155,7 +168,7 @@ export class FileGenerator {
       );
       if (!hardQuestions.success) {
         debugLog('HARD_BATCH_FAILED', { error: hardQuestions.error });
-        return { success: false, questions: [], error: hardQuestions.error };
+        return { success: false, questions: [], error: hardQuestions.error, debugInfo: hardQuestions.debugInfo };
       }
       allQuestions.push(...hardQuestions.questions);
       debugLog('HARD_BATCH_SUCCESS', { count: hardQuestions.questions.length });
@@ -180,7 +193,7 @@ export class FileGenerator {
     difficulty: 'easy' | 'medium' | 'hard',
     count: number,
     startId: number
-  ): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string }> {
+  ): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo }> {
     try {
       // Split large batches into smaller chunks
       const chunkSize = Math.min(count, GENERATION_LIMITS.BATCH_SIZE);
@@ -266,6 +279,12 @@ export class FileGenerator {
             success: false,
             questions: [],
             error: 'Generated content is not an array',
+            debugInfo: {
+              rawResponse: cleanedContent,
+              parseError: 'Array validation failed - result is not an array',
+              attemptedOperation: 'Validating quiz questions array structure',
+              timestamp: new Date().toISOString(),
+            }
           };
         }
 

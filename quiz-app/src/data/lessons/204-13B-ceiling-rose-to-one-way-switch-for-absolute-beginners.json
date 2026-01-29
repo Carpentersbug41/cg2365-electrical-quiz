@@ -1,15 +1,15 @@
 {
   "id": "204-13B",
-  "title": "204.13B — Ceiling rose to one-way switch: The Switch Drop",
-  "description": "Learn how to connect a 3-plate ceiling rose to a one-way switch, tracing the live path through the switch drop for beginners.",
+  "title": "204.13B — Ceiling rose to one-way switch: The Switch Drop (rig-safe, beginner)",
+  "description": "Connect a 3-plate ceiling rose to a one-way switch by tracing the switch drop (feed down + return up), keeping the wire journey and identification rules crystal clear before any meter work.",
   "layout": "split-vis",
   "unit": "Unit 204",
   "topic": "Electrical Installations Technology",
   "learningOutcomes": [
-    "Explain what the switch drop is and its role in a lighting circuit",
-    "Trace the live path from the Loop group through the switch to the lamp",
-    "Identify the correct identification and sleeving requirements for live conductors",
-    "Perform a basic dead inspection on a switch and ceiling rose termination"
+    "Define the switch drop and describe its purpose in a one-way lighting circuit.",
+    "Trace the live path using the ceiling rose 'bucket model' (Loop → COM → L1 → Switched Live → lamp live).",
+    "Apply correct identification/sleeving rules for any core used as a live conductor.",
+    "Carry out a short dead-inspection routine on rose and switch terminations before any meter tests."
   ],
   "prerequisites": [
     "204-12A",
@@ -24,15 +24,19 @@
       "content": {
         "outcomes": [
           {
-            "text": "Define the switch drop as the cable journey between rose and switch",
+            "text": "Define the switch drop as the cable journey between the ceiling rose and the one-way switch (feed down + return up).",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the journey of the live conductor using the bucket model",
+            "text": "Describe the live journey using the bucket model (Loop → COM → L1 → Switched Live → lamp live).",
             "bloomLevel": "understand"
           },
           {
-            "text": "Apply brown sleeving to conductors used as switch returns",
+            "text": "Apply brown identification to any core used as live at terminations (especially switch-drop cores).",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Complete a basic dead-inspection check on rose and switch terminations before meter work.",
             "bloomLevel": "apply"
           }
         ]
@@ -46,23 +50,27 @@
         "terms": [
           {
             "term": "Switch drop",
-            "definition": "The cable that runs from the ceiling rose down to the switch and back again."
+            "definition": "The cable that runs from the ceiling rose down to the switch and back again: one core feeds permanent live down, and one core returns switched live up."
           },
           {
             "term": "COM (Common)",
-            "definition": "The terminal on a switch that receives the permanent live feed from the supply."
+            "definition": "The switch terminal that receives the permanent live feed."
           },
           {
             "term": "L1",
-            "definition": "The terminal on a one-way switch that sends live power to the lamp when the switch is closed."
+            "definition": "The switch terminal that outputs live to the lamp circuit when the switch is ON."
           },
           {
-            "term": "Loop Group",
-            "definition": "The terminal block in a ceiling rose where permanent live conductors are connected."
+            "term": "Loop group (Permanent live)",
+            "definition": "The ceiling rose terminal group that contains permanent live conductors (supply live and any loop/feed conductors)."
           },
           {
-            "term": "Switched Live",
-            "definition": "The conductor that becomes live only when the switch is in the 'ON' position."
+            "term": "Switched live group",
+            "definition": "The ceiling rose terminal group that feeds the lamp live and becomes live only when the switch is ON."
+          },
+          {
+            "term": "Identification / sleeving",
+            "definition": "Marking applied so a conductor’s function is clear at terminations. Any conductor used as live must be identified as live (brown) at the ends."
           }
         ]
       }
@@ -72,17 +80,22 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "The One-Way Lighting Circuit",
-        "description": "A visual representation of the 3-plate ceiling rose wiring connected to a 1-way switch via a switch drop.",
+        "title": "Switch Drop: Loop → COM → L1 → Switched Live",
+        "description": "A beginner map of how the ceiling rose connects to a one-way switch using the switch drop (feed down from Loop to COM, return up from L1 to Switched Live).",
         "videoUrl": "",
         "imageUrl": "/images/lessons/1769622786823-switch_one_way_lighting.jpg",
         "diagramType": "circuit",
         "elementIds": [
           "ceiling-rose",
+          "loop-group",
+          "neutral-group",
+          "switched-live-group",
           "switch-drop",
-          "one-way-switch"
+          "one-way-switch",
+          "com-terminal",
+          "l1-terminal"
         ],
-        "placeholderText": "Diagram showing Supply, Rose terminals (Loop, Neutral, Switched Live), and the Switch connections (COM, L1)."
+        "placeholderText": "Diagram showing: Rose Loop group feeding Switch COM; Switch L1 returning to Rose Switched Live group; Neutral staying in Neutral group; CPC terminated at rose and switch box."
       }
     },
     {
@@ -90,8 +103,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Understanding the Switch Drop",
-        "content": "In a standard 3-plate lighting circuit, the switch acts as a simple **bridge**. It does not need a Neutral wire to function; its only job is to break or complete the path of the **Live** conductor. This journey of the live wire from the ceiling rose down to the switch and back up is called the **switch drop**.\n\nTo understand this, we use the **Bucket Model**. Imagine the ceiling rose has three separate buckets for wires. The **Neutral bucket** holds the supply neutral and the lamp neutral. The **Loop bucket** holds the permanent live from the supply. The **Switched Live bucket** holds the wire that goes directly to the lamp live terminal. \n\n1. **The Feed Down:** We take a wire from the **Loop bucket** (permanent live) and send it down the switch drop cable to the switch. This wire must land in the **COM (Common)** terminal. This terminal is now 'waiting' with live power.\n\n2. **The Return Back:** We connect a second wire to the **L1** terminal of the switch. This wire travels back up the switch drop cable to the ceiling rose and lands in the **Switched Live bucket**. \n\n3. **Completing the Circuit:** Inside the rose, the lamp's live wire is already sitting in the Switched Live bucket. When you flick the switch, COM and L1 connect, allowing the live power to flow from the Loop, through the switch, into the Switched Live bucket, and finally into the lamp.\n\n**Safety and Identification:** Because we often use a standard twin-and-earth cable for the switch drop, one of the cores might be blue. However, in a switch drop, **both cores are carrying live voltage**. You must place **brown sleeving** over the blue core at both ends (the rose and the switch) to warn future electricians that this wire is a 'Switched Live' and not a Neutral.\n\n**Dead Inspection:** Before turning the power on, always perform a visual check. Ensure there is **no exposed copper** outside the terminals, check that no insulation is trapped inside the terminal (plastic-in), and perform a gentle **tug test** to ensure every wire is tight. Most importantly, ensure the **CPC (Earth)** is connected to the earth terminal in both the rose and the switch box, even if the switch itself is plastic."
+        "title": "Understanding the Switch Drop (feed down + return up)",
+        "content": "In a standard 3-plate ceiling rose circuit, the switch acts as a simple bridge. Its job is to break or complete the **live** path. The live conductor travels down to the switch and back up again — that down-and-up journey is the **switch drop**.\n\n### The bucket model (rose terminal groups)\nThink of the ceiling rose as three labelled buckets:\n- **Neutral group:** supply neutral + lamp neutral (neutral is not switched).\n- **Loop group (permanent live):** supply live and any permanent live links/feeds.\n- **Switched live group:** the switched live return and the lamp live.\n\n### 1) Feed down (Loop → COM)\nA conductor from the **Loop group** feeds permanent live down the switch drop and terminates at **COM**.\n\n### 2) Return up (L1 → Switched live group → lamp live)\nWhen the switch is ON, it connects **COM to L1**. The conductor on **L1** becomes the switched live return and travels back up the switch drop to the ceiling rose. It terminates in the **Switched live group**, which feeds the lamp live.\n\n### 3) Neutral stays at the rose (not on the switch)\nNeutral remains in the **Neutral group** at the ceiling rose. In this classic method, neutral does not need to go to the switch.\n\n### 4) CPC goes to the switch point (even if the switch is plastic)\nThe CPC must be continuous through the circuit and must be terminated at the ceiling rose and at the switch point (earth terminal/connector), even with plastic accessories.\n\n### Identification / sleeving rule (non-negotiable)\nIn a switch drop, cores can be misleading (for example, a blue core used in a live role). **Any core used as live must be identified as live (brown) at terminations.** This includes the switched live return and any other core carrying live in that drop.\n\n### Quick dead inspection before any meter work\nBefore testing, visually confirm:\n- No exposed copper outside terminals.\n- No ‘plastic-in’ (insulation clamped instead of copper).\n- Terminations are firm (gentle tug test).\n- CPC present and terminated at rose and switch point.\n- Brown identification present where required."
       }
     },
     {
@@ -108,32 +121,32 @@
             "questionText": "Which terminal group in the ceiling rose provides the permanent live feed down to the switch?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Loop",
-            "hint": "It is the group that stays live even when the light is off."
+            "expectedAnswer": "Loop group (permanent live)",
+            "hint": "It stays live even when the switch is OFF."
           },
           {
             "id": "204-13B-C1-L1-B",
-            "questionText": "Which terminal on a 1-way switch is considered the 'input' for the permanent live?",
+            "questionText": "Which terminal on a 1-way switch receives the permanent live feed from the rose?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "COM",
-            "hint": "Common."
+            "hint": "Common = input."
           },
           {
             "id": "204-13B-C1-L1-C",
-            "questionText": "What color sleeving must be applied to a blue core used as a switched live?",
+            "questionText": "What colour identification/sleeving must be applied to a core used as switched live (even if the core is blue)?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": "Brown",
-            "hint": "It is the color for live conductors in the UK."
+            "hint": "Any core used as live must be identified as live."
           },
           {
             "id": "204-13B-C1-L2",
-            "questionText": "If the switch is 'ON', trace the path of electricity starting from the Loop terminal to the Lamp Live.",
+            "questionText": "If the switch is ON, trace the live path from the rose to the lamp live using terminal names/groups.",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "Loop to COM to L1 to Switched Live",
-            "hint": "Think of the switch as a bridge between COM and L1."
+            "expectedAnswer": "Rose Loop group → Switch COM → Switch L1 → Rose Switched live group → lamp live",
+            "hint": "COM feeds the switch; L1 returns to the lamp path."
           }
         ]
       }
@@ -143,36 +156,38 @@
       "type": "practice",
       "order": 7,
       "content": {
-        "title": "Your Turn: Practical Scenarios",
+        "title": "Your Turn: Quick Scenarios (rig-safe)",
         "questions": [
           {
             "id": "204-13B-P1",
-            "questionText": "You find a lamp that is always ON regardless of the switch position. Which rose terminal group was the lamp live likely connected to by mistake?",
+            "questionText": "Where does neutral terminate in a standard 3-plate ceiling rose method: at the switch, or in the rose neutral group?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Loop",
-              "Loop group"
+              "In the rose neutral group",
+              "Neutral group at the rose"
             ],
-            "hint": "Which group has permanent power?"
+            "hint": "Neutral is not switched in this method."
           },
           {
             "id": "204-13B-P2",
-            "questionText": "True or False: In a standard 3-plate ceiling rose circuit, the Neutral wire must connect to the switch L1 terminal.",
+            "questionText": "Name two quick dead-inspection checks you do on the switch terminations before any meter work.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "No exposed copper and tug test",
+              "No exposed copper and check for plastic-in",
+              "Check for plastic-in and tug test",
+              "CPC present/terminated and no exposed copper"
+            ],
+            "hint": "Think: copper visibility, tightness, insulation in the terminal, CPC."
+          },
+          {
+            "id": "204-13B-P3",
+            "questionText": "True or False: If the switch plate and back box are plastic, the CPC can be left loose and unterminated.",
             "answerType": "short-text",
             "expectedAnswer": [
               "False"
             ],
-            "hint": "The switch only breaks the live path."
-          },
-          {
-            "id": "204-13B-P3",
-            "questionText": "During a dead inspection, you pull a wire and it slides out of the COM terminal. What is this error commonly called?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "Loose connection",
-              "Plastic in"
-            ],
-            "hint": "It failed the tug test."
+            "hint": "Earth continuity must be maintained through the circuit."
           }
         ]
       }
@@ -187,11 +202,11 @@
         "questions": [
           {
             "id": "204-13B-INT-1",
-            "questionText": "Explain the full journey of the Neutral and Live conductors in a 1-way lighting circuit. Start from the supply and end at the lamp, including the switch's role and identification requirements.",
+            "questionText": "Explain the journey of Live, Neutral, and CPC from the ceiling rose to the one-way switch and back again, including where brown identification is required.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
-            "expectedAnswer": "Neutral goes from supply to the Rose Neutral group then to the lamp. Live goes from supply to Rose Loop group, down to switch COM, through L1 (when ON), back to Rose Switched Live group with brown sleeving, and then to the lamp live terminal.",
-            "hint": "Follow the 'buckets' and remember the switch bridge."
+            "expectedAnswer": "Live feeds from the rose Loop group down to switch COM, then returns from switch L1 back to the rose Switched live group and feeds lamp live. Neutral stays in the rose Neutral group (not on the switch). CPC is continuous and terminated at rose and switch point. Any core used as live in the switch drop is identified brown at terminations (especially the return).",
+            "hint": "Use the bucket model and name COM/L1."
           }
         ]
       }
@@ -205,37 +220,37 @@
         "questions": [
           {
             "id": "204-13B-SR-1",
-            "questionText": "What does the acronym CPC stand for in electrical installations?",
+            "questionText": "What does CPC stand for?",
             "expectedAnswer": "Circuit Protective Conductor",
-            "hint": "It is the technical name for the earth wire."
+            "hint": "It’s the protective earth conductor."
           },
           {
             "id": "204-13B-SR-2",
+            "questionText": "What is the standard colour for Neutral in a modern UK installation?",
             "expectedAnswer": "Blue",
-            "questionText": "What is the standard color for a Neutral conductor in a modern UK single-phase installation?",
-            "hint": "Think of the colors in a standard flexible cord."
+            "hint": "Brown = line, blue = neutral, green/yellow = CPC."
           },
           {
             "id": "204-13B-SR-3",
-            "questionText": "In a 3-plate ceiling rose, what is the purpose of the 'Loop' terminal?",
-            "expectedAnswer": "To provide a permanent live connection and loop power to the next point.",
-            "hint": "It is where the supply live enters."
+            "questionText": "What is the purpose of the Loop group in a 3-plate ceiling rose?",
+            "expectedAnswer": "To join permanent lives and provide the permanent live feed (including the feed to the switch).",
+            "hint": "It stays live even when the switch is OFF."
           },
           {
             "id": "204-13B-SR-4",
-            "questionText": "How many distinct terminal groups are usually found in a standard 3-plate ceiling rose?",
-            "expectedAnswer": "Three (plus Earth)",
-            "hint": "Neutral, Loop, and Switched Live."
+            "questionText": "Name the three terminal groups in a typical 3-plate ceiling rose.",
+            "expectedAnswer": "Loop (permanent live), Neutral, Switched live",
+            "hint": "Think: permanent live, return-to-lamp, and neutrals."
           }
         ],
-        "notes": "Reviewing basics of earthing (204-12A), conductor colors (204-12B), and rose anatomy (204-13A)."
+        "notes": "Reinforcing the bucket model, conductor roles, and rig-safe inspection habits."
       }
     }
   ],
   "metadata": {
     "created": "2026-01-28",
     "updated": "2026-01-28",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

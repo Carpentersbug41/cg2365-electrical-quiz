@@ -19,7 +19,6 @@ import lesson202_7A from '@/data/lessons/202-7A-ac-principles.json';
 import lesson202_7B from '@/data/lessons/202-7B-how-ac-is-generated.json';
 import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
 import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
-import lesson203_1A from '@/data/lessons/203-1A-types-of-cables.json';
 import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
 import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
 import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
@@ -59,7 +58,6 @@ const LESSONS = [
   lesson202_7B,
   lesson202_7C,
   lesson202_7D,
-  lesson203_1A,
 ];
 
 // Color schemes for different units (analogous color scheme)

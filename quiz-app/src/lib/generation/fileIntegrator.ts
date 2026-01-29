@@ -145,9 +145,28 @@ export class FileIntegrator {
         const lastImportIndex = content.indexOf(lastImport) + lastImport.length;
         content = content.slice(0, lastImportIndex) + '\n' + importStatement + content.slice(lastImportIndex);
       }
-
-      fs.writeFileSync(filePath, content, 'utf-8');
     }
+
+    // Check if variable already in questions array
+    const arraySpreadRegex = new RegExp(`\\.\\.\\.${variableName}\\b`, 'g');
+    const existingMatches = content.match(arraySpreadRegex) || [];
+
+    if (existingMatches.length === 0) {
+      // Add to questions array (before closing bracket)
+      const arrayMarker = 'export const questions: Question[] = [';
+      const arrayIndex = content.indexOf(arrayMarker);
+      if (arrayIndex !== -1) {
+        // Find the closing bracket of the array
+        const closingBracketIndex = content.indexOf('];', arrayIndex);
+        if (closingBracketIndex !== -1) {
+          // Insert before the closing bracket
+          content = content.slice(0, closingBracketIndex) + `  ...${variableName},\n` + content.slice(closingBracketIndex);
+        }
+      }
+    }
+
+    // Write file once at the end
+    fs.writeFileSync(filePath, content, 'utf-8');
   }
 
   /**
