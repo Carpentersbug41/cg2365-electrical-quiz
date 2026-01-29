@@ -160,7 +160,18 @@ export const lessonIndex: LessonIndexEntry[] = [
 
 // Unit 203: Electrical Installations Technology
   // Future lessons can be added here
-  // Unit 210: Communication
+  
+  {
+    id: '203-1A',
+    title: 'Statutory Regulations (LAW)',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Statutory Regulations (LAW)',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-1A'),
+    available: true,
+    order: 1,
+  },// Unit 210: Communication
   {
     id: '204-10A',
     title: 'Dead-test language — what each test proves',

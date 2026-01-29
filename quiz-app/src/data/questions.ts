@@ -32,6 +32,7 @@ import { oneWayLighting3PlateCeilingRoseQuestions } from './questions/oneWayLigh
 import { oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions } from './questions/oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions';
 import { threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions } from './questions/3PlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions';
 import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './questions/ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions';
+import { statutoryRegulationsLawQuestions } from './questions/statutoryRegulationsLawQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -58,6 +59,7 @@ export const questions: Question[] = [
   ...oneWayLighting3PlateCeilingRoseBuildFlowProveItRigSafeQuestions,
   ...threePlateCeilingRoseLoopInExplainedForATotalBeginnerQuestions,
   ...ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions,
+  ...statutoryRegulationsLawQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes
