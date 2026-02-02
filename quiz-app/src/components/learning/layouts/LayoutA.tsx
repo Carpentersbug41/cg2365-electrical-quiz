@@ -172,7 +172,7 @@ export default function LayoutA({ lesson }: LayoutProps) {
                     // Defensive: Handle both string and object formats
                     const outcomeText = typeof outcome === 'string' 
                       ? outcome 
-                      : (outcome as any)?.text || '[Malformed outcome]';
+                      : (typeof outcome === 'object' && outcome !== null && 'text' in outcome ? (outcome as { text: string }).text : String(outcome));
                     
                     // Extract first part before colon (if present)
                     const displayText = outcomeText.split(':')[0];
@@ -264,7 +264,7 @@ export default function LayoutA({ lesson }: LayoutProps) {
                     // Defensive: Handle both string and object formats
                     const outcomeText = typeof outcome === 'string' 
                       ? outcome 
-                      : (outcome as any)?.text || '[Malformed outcome]';
+                      : (typeof outcome === 'object' && outcome !== null && 'text' in outcome ? (outcome as { text: string }).text : String(outcome));
                     
                     // Extract first part before colon (if present)
                     const displayText = outcomeText.split(':')[0];

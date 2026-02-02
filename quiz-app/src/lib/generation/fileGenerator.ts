@@ -149,6 +149,7 @@ Return the corrected lesson JSON now:`;
             rawResponse: cleanedContent,
             parseError: parsed.error || 'Unknown parse error',
             errorPosition: {
+              message: parsed.error || 'Unknown parse error',
               line: parsed.errorDetails?.line,
               column: parsed.errorDetails?.column,
               position: parsed.errorDetails?.position,
@@ -208,11 +209,12 @@ Return the corrected lesson JSON now:`;
           debugInfo: {
             rawResponse: cleanedRepairedContent,
             parseError: repairedParsed.error || 'Unknown parse error',
-            errorPosition: {
-              line: repairedParsed.errorDetails?.line,
-              column: repairedParsed.errorDetails?.column,
-              position: repairedParsed.errorDetails?.position,
-            },
+              errorPosition: {
+                message: repairedParsed.error || 'Unknown parse error',
+                line: repairedParsed.errorDetails?.line,
+                column: repairedParsed.errorDetails?.column,
+                position: repairedParsed.errorDetails?.position,
+              },
             contentPreview: generateContextPreview(
               repairedParsed.rawInput || cleanedRepairedContent,
               repairedParsed.errorDetails?.position

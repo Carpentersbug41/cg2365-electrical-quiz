@@ -72,6 +72,38 @@
       }
     },
     {
+      "id": "203-2D-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Scale",
+            "right": "Ratio between drawing and real measurement"
+          },
+          {
+            "left": "Set-out",
+            "right": "Marking exact positions on site"
+          },
+          {
+            "left": "Drawing measurement",
+            "right": "Length measured with a ruler"
+          },
+          {
+            "left": "Tolerance",
+            "right": "The allowed variation in a measurement"
+          },
+          {
+            "left": "Scale factor",
+            "right": "Number used to multiply or divide"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "203-2D-diagram",
       "type": "diagram",
       "order": 3,
@@ -158,6 +190,46 @@
       }
     },
     {
+      "id": "203-2D-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "On the Drawing",
+          "On the Site"
+        ],
+        "items": [
+          {
+            "text": "Ruler measurements in millimetres",
+            "correctBucket": 0
+          },
+          {
+            "text": "Marking socket locations on walls",
+            "correctBucket": 1
+          },
+          {
+            "text": "Scale ratio like 1:50",
+            "correctBucket": 0
+          },
+          {
+            "text": "Actual size of the building",
+            "correctBucket": 1
+          },
+          {
+            "text": "Scale factor calculation",
+            "correctBucket": 0
+          },
+          {
+            "text": "Performing a set-out",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 4.5
+    },
+    {
       "id": "203-2D-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -189,6 +261,38 @@
         ],
         "notes": "Always perform the multiplication in mm first to keep the math simple before converting to metres."
       }
+    },
+    {
+      "id": "203-2D-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What is a 1:100 ratio called?",
+            "answer": "Scale"
+          },
+          {
+            "question": "Measurement taken directly from a plan?",
+            "answer": "Drawing measurement"
+          },
+          {
+            "question": "The process of marking positions on site?",
+            "answer": "Set-out"
+          },
+          {
+            "question": "Allowed variation in a measurement?",
+            "answer": "Tolerance"
+          },
+          {
+            "question": "The actual size on a construction site?",
+            "answer": "Real measurement"
+          }
+        ]
+      },
+      "order": 6.5
     },
     {
       "id": "203-2D-guided",
@@ -272,6 +376,36 @@
           }
         ]
       }
+    },
+    {
+      "id": "203-2D-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "An electrician is using a 1:50 scaled drawing for a set-out.",
+        "options": [
+          {
+            "text": "They measure the plan in millimetres.",
+            "isError": false
+          },
+          {
+            "text": "The real building is smaller than the drawing.",
+            "isError": true
+          },
+          {
+            "text": "They use a scale factor to find real sizes.",
+            "isError": false
+          },
+          {
+            "text": "They mark exact positions on the construction site.",
+            "isError": false
+          }
+        ],
+        "explanation": "Real buildings are always larger than their scaled drawings."
+      },
+      "order": 8.5
     },
     {
       "id": "203-2D-integrative",
@@ -358,7 +492,7 @@
   "metadata": {
     "created": "2026-02-02",
     "updated": "2026-02-02",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

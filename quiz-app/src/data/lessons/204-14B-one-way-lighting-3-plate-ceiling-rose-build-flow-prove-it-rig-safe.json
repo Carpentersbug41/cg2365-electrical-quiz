@@ -83,6 +83,38 @@
       }
     },
     {
+      "id": "204-14B-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Loop Terminal",
+            "right": "Supply Line and switch feed"
+          },
+          {
+            "left": "Switched Live",
+            "right": "Returns from switch L1"
+          },
+          {
+            "left": "CPC",
+            "right": "Maintains the earth path"
+          },
+          {
+            "left": "Dead Testing",
+            "right": "Rig-approved dead condition"
+          },
+          {
+            "left": "Dead Inspection",
+            "right": "Visual and physical check"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "204-14B-diagram",
       "type": "diagram",
       "order": 3,
@@ -153,6 +185,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-14B-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Dead Inspection",
+          "Prove → Test → Re-prove"
+        ],
+        "items": [
+          {
+            "text": "Check for exposed copper",
+            "correctBucket": 0
+          },
+          {
+            "text": "Confirm tester works first",
+            "correctBucket": 1
+          },
+          {
+            "text": "Ensure sheath is inside accessory",
+            "correctBucket": 0
+          },
+          {
+            "text": "Verify CPC is present",
+            "correctBucket": 0
+          },
+          {
+            "text": "Check tester after the test",
+            "correctBucket": 1
+          },
+          {
+            "text": "Verify good terminations",
+            "correctBucket": 0
+          }
+        ]
+      },
+      "order": 4.5
     },
     {
       "id": "204-14B-worked-example",
@@ -267,6 +339,36 @@
       }
     },
     {
+      "id": "204-14B-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "Wiring the 3-Plate Ceiling Rose terminals:",
+        "options": [
+          {
+            "text": "Connect Supply Line to Loop terminal",
+            "isError": false
+          },
+          {
+            "text": "Connect Switch Feed to Loop terminal",
+            "isError": false
+          },
+          {
+            "text": "Connect Switched Live to Loop terminal",
+            "isError": true
+          },
+          {
+            "text": "Connect Neutral to Neutral group",
+            "isError": false
+          }
+        ],
+        "explanation": "The Switched Live has its own terminal group; Loop is for permanent live."
+      },
+      "order": 6.5
+    },
+    {
       "id": "204-14B-practice",
       "type": "practice",
       "order": 7,
@@ -318,6 +420,42 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-14B-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What does CPC stand for?",
+            "answer": "Circuit Protective Conductor"
+          },
+          {
+            "question": "Which terminal connects Supply Line and switch feed?",
+            "answer": "Loop Terminal"
+          },
+          {
+            "question": "What state must the rig be in before touch?",
+            "answer": "Approved dead state"
+          },
+          {
+            "question": "What is the three-step routine for using testers?",
+            "answer": "Prove → Test → Re-prove"
+          },
+          {
+            "question": "How many terminal blocks are in the rose?",
+            "answer": "Three"
+          },
+          {
+            "question": "Is visual checking called inspection or testing?",
+            "answer": "Dead Inspection"
+          }
+        ]
+      },
+      "order": 8.5
     },
     {
       "id": "204-14B-integrative",
@@ -385,8 +523,8 @@
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-29",
-    "version": "1.2",
+    "updated": "2026-02-02",
+    "version": "1.3",
     "author": "C&G 2365 Learning Team"
   },
   "diagnostic": {

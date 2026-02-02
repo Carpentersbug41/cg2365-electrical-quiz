@@ -64,6 +64,38 @@
       }
     },
     {
+      "id": "204-10A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Continuity",
+            "right": "Unbroken low-resistance path"
+          },
+          {
+            "left": "Insulation Resistance",
+            "right": "Prevent unwanted current flow"
+          },
+          {
+            "left": "Polarity",
+            "right": "Correct terminal connection"
+          },
+          {
+            "left": "Megohm (MΩ)",
+            "right": "One million ohms"
+          },
+          {
+            "left": "Dead Testing",
+            "right": "Safely isolated from supply"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "204-10A-diagram",
       "type": "diagram",
       "order": 3,
@@ -132,6 +164,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-10A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Continuity (Low Resistance Goal)",
+          "Insulation Resistance (High Resistance Goal)"
+        ],
+        "items": [
+          {
+            "text": "Unbroken conductor path",
+            "correctBucket": 0
+          },
+          {
+            "text": "Preventing current leakage",
+            "correctBucket": 1
+          },
+          {
+            "text": "Earth wire (CPC) testing",
+            "correctBucket": 0
+          },
+          {
+            "text": "Megohm (MΩ) readings",
+            "correctBucket": 1
+          },
+          {
+            "text": "Ring final circuit check",
+            "correctBucket": 0
+          },
+          {
+            "text": "Insulation quality check",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 4.5
     },
     {
       "id": "204-10A-worked-example",
@@ -206,6 +278,36 @@
       }
     },
     {
+      "id": "204-10A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "A technician is explaining the rules of dead testing to an apprentice.",
+        "options": [
+          {
+            "text": "Continuity proves the conductor is unbroken.",
+            "isError": false
+          },
+          {
+            "text": "Dead testing is done while connected to mains.",
+            "isError": true
+          },
+          {
+            "text": "Polarity checks the Line conductor connection.",
+            "isError": false
+          },
+          {
+            "text": "Insulation Resistance prevents unwanted current flow.",
+            "isError": false
+          }
+        ],
+        "explanation": "Dead testing must be carried out on an installation safely isolated from the electrical supply."
+      },
+      "order": 6.5
+    },
+    {
       "id": "204-10A-practice",
       "type": "practice",
       "order": 7,
@@ -244,6 +346,38 @@
       }
     },
     {
+      "id": "204-10A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What does MΩ stand for?",
+            "answer": "Megohm"
+          },
+          {
+            "question": "Dead testing requires the supply to be...?",
+            "answer": "Safely isolated"
+          },
+          {
+            "question": "Continuity tests for what type of path?",
+            "answer": "Unbroken low-resistance"
+          },
+          {
+            "question": "Polarity checks connections for which conductor?",
+            "answer": "Line"
+          },
+          {
+            "question": "One million ohms is equal to one...?",
+            "answer": "Megohm"
+          }
+        ]
+      },
+      "order": 8.5
+    },
+    {
       "id": "204-10A-integrative",
       "type": "practice",
       "order": 9.5,
@@ -280,8 +414,8 @@
   ],
   "metadata": {
     "created": "2026-01-26",
-    "updated": "2026-01-26",
-    "version": "1.0",
+    "updated": "2026-02-02",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

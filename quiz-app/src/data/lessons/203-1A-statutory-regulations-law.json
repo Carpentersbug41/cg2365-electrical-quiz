@@ -39,6 +39,38 @@
       }
     },
     {
+      "id": "203-1A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Statutory Regulation",
+            "right": "A law made by Parliament"
+          },
+          {
+            "left": "Non-Statutory",
+            "right": "Guidance like BS 7671"
+          },
+          {
+            "left": "PPE",
+            "right": "Clothing worn for safety"
+          },
+          {
+            "left": "Competent Person",
+            "right": "Trained and experienced worker"
+          },
+          {
+            "left": "Enforcement",
+            "right": "Action taken by a regulator"
+          }
+        ]
+      },
+      "order": 1.5
+    },
+    {
       "id": "203-1A-vocab",
       "type": "vocab",
       "order": 2,
@@ -78,6 +110,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "203-1A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Statutory (Law)",
+          "Non-Statutory (Guidance)"
+        ],
+        "items": [
+          {
+            "text": "Legally enforceable",
+            "correctBucket": 0
+          },
+          {
+            "text": "BS 7671 standards",
+            "correctBucket": 1
+          },
+          {
+            "text": "Parliament-made law",
+            "correctBucket": 0
+          },
+          {
+            "text": "Recognised ways to comply",
+            "correctBucket": 1
+          },
+          {
+            "text": "Leads to prosecution",
+            "correctBucket": 0
+          },
+          {
+            "text": "Not law themselves",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 2.5
     },
     {
       "id": "203-1A-explain-statutory-regs",
@@ -133,6 +205,36 @@
       }
     },
     {
+      "id": "203-1A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "Reviewing definitions of legal notices and regulations.",
+        "options": [
+          {
+            "text": "Improvement Notice: Fix issue within set time.",
+            "isError": false
+          },
+          {
+            "text": "Prohibition Notice: Stop work immediately.",
+            "isError": false
+          },
+          {
+            "text": "Non-Statutory: Enforceable law from Parliament.",
+            "isError": true
+          },
+          {
+            "text": "Prosecution: Legal proceedings in court.",
+            "isError": false
+          }
+        ],
+        "explanation": "Non-statutory documents are guidance, not laws made by Parliament."
+      },
+      "order": 3.5
+    },
+    {
       "id": "203-1A-worked-example",
       "type": "worked-example",
       "order": 4,
@@ -171,6 +273,38 @@
         ],
         "notes": "The job is never more important than legal compliance and preventing danger."
       }
+    },
+    {
+      "id": "203-1A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "Is a statutory regulation the law?",
+            "answer": "Yes"
+          },
+          {
+            "question": "What stops work immediately for safety?",
+            "answer": "Prohibition Notice"
+          },
+          {
+            "question": "What does PPE stand for?",
+            "answer": "Personal Protective Equipment"
+          },
+          {
+            "question": "Who takes enforcement action?",
+            "answer": "A regulator (like HSE)"
+          },
+          {
+            "question": "Is BS 7671 a statutory law?",
+            "answer": "No"
+          }
+        ]
+      },
+      "order": 4.5
     },
     {
       "id": "203-1A-guided",
@@ -342,8 +476,8 @@
   ],
   "metadata": {
     "created": "2026-01-29",
-    "updated": "2026-01-29",
-    "version": "1.1",
+    "updated": "2026-02-02",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team"
   }
 }

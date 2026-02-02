@@ -509,9 +509,9 @@ export const convertingDrawingScaleToRealMeasurementsQuestions: TaggedQuestion[]
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "legislation",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      1: "WRONG_REASON",
+      2: "CONFUSED_TERMINOLOGY",
+      3: "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Converting Drawing Scale",
@@ -590,9 +590,9 @@ export const convertingDrawingScaleToRealMeasurementsQuestions: TaggedQuestion[]
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "legislation",
-      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+      1: "CONFUSED_I_V_R",
+      2: "WRONG_REASON",
+      3: "CONFUSED_FREQUENCY_WITH_VOLTAGE"
     },
     "section": "Electrical Installations Technology",
     "category": "Converting Drawing Scale",
@@ -899,7 +899,7 @@ export const convertingDrawingScaleToRealMeasurementsQuestions: TaggedQuestion[]
     "tags": [
       "calculation",
       "application",
-      "multi-step"
+      "methodology"
     ],
     "learningOutcomeId": "203-2D-LO2",
     "answerType": "mcq",

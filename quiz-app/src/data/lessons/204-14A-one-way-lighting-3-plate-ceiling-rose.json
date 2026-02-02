@@ -78,6 +78,38 @@
       }
     },
     {
+      "id": "204-14A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Loop group",
+            "right": "Permanent live feed"
+          },
+          {
+            "left": "CPC",
+            "right": "Circuit Protective Conductor"
+          },
+          {
+            "left": "Switched live",
+            "right": "Feeds the lamp when ON"
+          },
+          {
+            "left": "Sleeving",
+            "right": "Identifies conductor function"
+          },
+          {
+            "left": "One-way switching",
+            "right": "One switch controls one lamp"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "204-14A-diagram",
       "type": "diagram",
       "order": 3,
@@ -163,6 +195,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-14A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "3-Plate Rose Terminal",
+          "Visual Quality Error"
+        ],
+        "items": [
+          {
+            "text": "Loop (Permanent Live)",
+            "correctBucket": 0
+          },
+          {
+            "text": "Exposed copper outside terminal",
+            "correctBucket": 1
+          },
+          {
+            "text": "Neutral group",
+            "correctBucket": 0
+          },
+          {
+            "text": "Plastic-in (trapped insulation)",
+            "correctBucket": 1
+          },
+          {
+            "text": "Switched Live terminal",
+            "correctBucket": 0
+          },
+          {
+            "text": "Loose core with no identification",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 4.5
     },
     {
       "id": "204-14A-explain-wire-journey",
@@ -277,6 +349,36 @@
         ],
         "notes": "Beginners win by planning first. If you can say the plan out loud, wiring becomes a simple matching exercise on the rig."
       }
+    },
+    {
+      "id": "204-14A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "You are inspecting a wired 3-plate ceiling rose. Which statement is a STOP-AND-FIX error?",
+        "options": [
+          {
+            "text": "The switch interrupts the live path.",
+            "isError": false
+          },
+          {
+            "text": "Brown sleeving identifies the switched live core.",
+            "isError": false
+          },
+          {
+            "text": "The switch interrupts the neutral path.",
+            "isError": true
+          },
+          {
+            "text": "No plastic insulation is trapped under clamps.",
+            "isError": false
+          }
+        ],
+        "explanation": "The golden rule: the switch interrupts live, not neutral."
+      },
+      "order": 6.5
     },
     {
       "id": "204-14A-guided",
@@ -408,6 +510,38 @@
       }
     },
     {
+      "id": "204-14A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "How many terminal groups are in a 3-plate rose?",
+            "answer": "3"
+          },
+          {
+            "question": "Does the Loop terminal stay live if the switch is OFF?",
+            "answer": "Yes"
+          },
+          {
+            "question": "What is the short name for Earth?",
+            "answer": "CPC"
+          },
+          {
+            "question": "What identifies a conductor's function at the ends?",
+            "answer": "Sleeving"
+          },
+          {
+            "question": "Where does the live feed from supply first land?",
+            "answer": "Loop group"
+          }
+        ]
+      },
+      "order": 8.5
+    },
+    {
       "id": "204-14A-practice",
       "type": "practice",
       "order": 9,
@@ -519,8 +653,8 @@
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-29",
-    "version": "1.1",
+    "updated": "2026-02-02",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team"
   },
   "diagnostic": {

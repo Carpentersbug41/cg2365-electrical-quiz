@@ -80,6 +80,38 @@
       }
     },
     {
+      "id": "204-13B-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "COM",
+            "right": "Switch input terminal"
+          },
+          {
+            "left": "L1",
+            "right": "Switch output terminal"
+          },
+          {
+            "left": "CPC",
+            "right": "Circuit Protective Conductor"
+          },
+          {
+            "left": "Loop group",
+            "right": "Permanent live conductors"
+          },
+          {
+            "left": "Switched live group",
+            "right": "Feeds the lamp live"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "204-13B-diagram",
       "type": "diagram",
       "order": 3,
@@ -164,6 +196,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-13B-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Ceiling Rose Groups",
+          "Switch Terminals"
+        ],
+        "items": [
+          {
+            "text": "Neutral group",
+            "correctBucket": 0
+          },
+          {
+            "text": "COM",
+            "correctBucket": 1
+          },
+          {
+            "text": "Loop group",
+            "correctBucket": 0
+          },
+          {
+            "text": "L1",
+            "correctBucket": 1
+          },
+          {
+            "text": "Switched live group",
+            "correctBucket": 0
+          },
+          {
+            "text": "CPC connector",
+            "correctBucket": 0
+          }
+        ]
+      },
+      "order": 4.5
     },
     {
       "id": "204-13B-worked-example",
@@ -298,6 +370,36 @@
       }
     },
     {
+      "id": "204-13B-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "A student is wiring a 3-plate ceiling rose on a rig.",
+        "options": [
+          {
+            "text": "Connecting neutrals to the Neutral group",
+            "isError": false
+          },
+          {
+            "text": "Connecting permanent lives to the Loop group",
+            "isError": false
+          },
+          {
+            "text": "Connecting the CPC to the Switched live group",
+            "isError": true
+          },
+          {
+            "text": "Applying brown sleeving to live conductors",
+            "isError": false
+          }
+        ],
+        "explanation": "The CPC (earth) must be terminated at its own connector, not the Switched live group."
+      },
+      "order": 6.5
+    },
+    {
       "id": "204-13B-practice",
       "type": "practice",
       "order": 7,
@@ -351,6 +453,38 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-13B-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What color is used for live identification?",
+            "answer": "Brown"
+          },
+          {
+            "question": "Which terminal receives the permanent live feed?",
+            "answer": "COM"
+          },
+          {
+            "question": "What is the 'down-and-up' cable called?",
+            "answer": "Switch drop"
+          },
+          {
+            "question": "What does CPC stand for?",
+            "answer": "Circuit Protective Conductor"
+          },
+          {
+            "question": "Which group contains the supply live?",
+            "answer": "Loop group"
+          }
+        ]
+      },
+      "order": 8.5
     },
     {
       "id": "204-13B-integrative",
@@ -409,8 +543,8 @@
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-29",
-    "version": "1.3",
+    "updated": "2026-02-02",
+    "version": "1.4",
     "author": "C&G 2365 Learning Team"
   },
   "diagnostic": {
