@@ -41,9 +41,11 @@ import lesson203_1C from '@/data/lessons/203-1C-using-bs-7671-on-a-job.json';
 import lesson203_2A from '@/data/lessons/203-2A-sources-drawings-symbols-scale.json';
 import lesson203_2B from '@/data/lessons/203-2B-reading-installation-drawings-legend-symbols-notes-abbreviations.json';
 import lesson203_2C from '@/data/lessons/203-2C-recognising-electrical-symbols-on-drawings.json';
+import lesson203_2D from '@/data/lessons/203-2D-converting-drawing-scale-to-real-measurements.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-2D': lesson203_2D as Lesson,
   '203-2C': lesson203_2C as Lesson,
   '203-2B': lesson203_2B as Lesson,
   '203-2A': lesson203_2A as Lesson,

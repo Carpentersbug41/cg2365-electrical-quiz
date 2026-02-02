@@ -261,13 +261,17 @@ Strategic breaks inserted every 15-20 minutes to maintain engagement:
 
 #### Diagnostic Gates
 
-Prerequisites enforced through diagnostic checks:
+Prerequisites enforced through diagnostic checks based on **lesson order within the same unit**:
 
-1. Student accesses lesson with prerequisites
-2. System generates 8 questions from cumulative prior content
-3. Student must achieve 75% pass rate
-4. Pass unlocks lesson; fail shows feedback and blocks access
-5. Option to skip diagnostic (learning path flexibility)
+1. Student accesses lesson with `diagnostic.enabled: true` configuration
+2. System automatically determines which lessons to test: all lessons in the SAME UNIT with lower `order` value in `lessonIndex.ts`
+   - Example: Lesson 203-2C (order: 6) tests lessons 203-1A through 203-2B (orders 1-5)
+3. System generates 10 questions from the cumulative prior lessons
+4. Student must achieve 80% pass rate (8/10 correct)
+5. Pass unlocks lesson; fail shows feedback with option to proceed anyway
+6. Pass status stored in localStorage
+
+**IMPORTANT**: Diagnostic gates use lesson ORDER from `lessonIndex.ts`, NOT the `prerequisites` array in lesson JSON files.
 
 ### 2. Quiz Module (`/quiz`)
 

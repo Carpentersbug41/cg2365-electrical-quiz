@@ -568,5 +568,12 @@
     "updated": "2026-02-02",
     "version": "1.2",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }

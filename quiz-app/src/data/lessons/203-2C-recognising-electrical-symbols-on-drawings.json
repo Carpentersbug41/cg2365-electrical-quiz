@@ -72,6 +72,38 @@
       }
     },
     {
+      "id": "203-2C-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Symbol",
+            "right": "Standard icon on a drawing"
+          },
+          {
+            "left": "Legend",
+            "right": "Explanatory key for icons"
+          },
+          {
+            "left": "FCU",
+            "right": "Fused Connection Unit"
+          },
+          {
+            "left": "Plan Drawing",
+            "right": "Top-down building layout"
+          },
+          {
+            "left": "Protective Device",
+            "right": "Interrupts current during faults"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "203-2C-diagram",
       "type": "diagram",
       "order": 3,
@@ -160,6 +192,46 @@
       }
     },
     {
+      "id": "203-2C-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Physical Components",
+          "Drawing Elements"
+        ],
+        "items": [
+          {
+            "text": "Consumer Unit",
+            "correctBucket": 0
+          },
+          {
+            "text": "Legend",
+            "correctBucket": 1
+          },
+          {
+            "text": "FCU",
+            "correctBucket": 0
+          },
+          {
+            "text": "Symbol",
+            "correctBucket": 1
+          },
+          {
+            "text": "Protective Device",
+            "correctBucket": 0
+          },
+          {
+            "text": "Plan Drawing",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 4.5
+    },
+    {
       "id": "203-2C-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -198,6 +270,36 @@
         ],
         "notes": "Always use the legend even if you think you recognize the symbol, as some designers use custom variations."
       }
+    },
+    {
+      "id": "203-2C-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "An installer is reading a new building layout.",
+        "options": [
+          {
+            "text": "Checking the legend for symbol definitions.",
+            "isError": false
+          },
+          {
+            "text": "Assuming symbols are the same on every drawing.",
+            "isError": true
+          },
+          {
+            "text": "Locating the consumer unit on the plan.",
+            "isError": false
+          },
+          {
+            "text": "Identifying fixed appliances connected via FCUs.",
+            "isError": false
+          }
+        ],
+        "explanation": "Symbols vary; always check the legend for specific definitions."
+      },
+      "order": 6.5
     },
     {
       "id": "203-2C-guided",
@@ -296,6 +398,42 @@
       }
     },
     {
+      "id": "203-2C-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What defines every icon on a specific plan?",
+            "answer": "Legend"
+          },
+          {
+            "question": "What is the top-down layout of a building?",
+            "answer": "Plan Drawing"
+          },
+          {
+            "question": "What board holds protective devices?",
+            "answer": "Consumer Unit"
+          },
+          {
+            "question": "What is the standard icon for a device?",
+            "answer": "Symbol"
+          },
+          {
+            "question": "What does FCU stand for?",
+            "answer": "Fused Connection Unit"
+          },
+          {
+            "question": "What interrupts current during a fault?",
+            "answer": "Protective Device"
+          }
+        ]
+      },
+      "order": 8.5
+    },
+    {
       "id": "203-2C-integrative",
       "type": "practice",
       "order": 9.5,
@@ -379,7 +517,14 @@
   "metadata": {
     "created": "2026-02-02",
     "updated": "2026-02-02",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
+  },
+  "diagnostic": {
+    "enabled": true,
+    "questionCount": 10,
+    "passThreshold": 0.8,
+    "sourceType": "cumulative",
+    "allowSkip": true
   }
 }

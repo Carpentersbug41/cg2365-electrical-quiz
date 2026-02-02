@@ -227,6 +227,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-2C'),
     available: true,
     order: 6,
+  },
+  {
+    id: '203-2D',
+    title: 'Converting Drawing Scale to Real Measurements',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Converting Drawing Scale to Real Measurements',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-2D'),
+    available: true,
+    order: 7,
   },// Unit 210: Communication
   {
     id: '204-10A',

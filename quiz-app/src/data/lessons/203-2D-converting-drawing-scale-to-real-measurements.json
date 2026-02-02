@@ -1,0 +1,364 @@
+{
+  "id": "203-2D",
+  "title": "203.2D — Converting Drawing Scale to Real Measurements",
+  "description": "Learn how to convert measurements from a scaled drawing to real-world dimensions using common construction scales such as 1:50 and 1:100.",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Electrical Installations Technology",
+  "learningOutcomes": [
+    "State what a drawing scale means (e.g., 1:50)",
+    "Convert a measurement on a drawing into the real measurement using a scale factor",
+    "Convert a real measurement into the drawing measurement (reverse conversion)",
+    "Explain why scale conversion matters on site for accuracy and cost"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-2D-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State what a drawing scale means",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Convert a measurement on a drawing into the real measurement",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Convert a real measurement into the drawing measurement",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Explain why scale conversion matters on site",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2D-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Scale",
+            "definition": "The ratio between a drawing measurement and the real-world measurement (e.g., 1:50)."
+          },
+          {
+            "term": "Scale factor",
+            "definition": "The number you multiply or divide by to convert between drawing and real sizes."
+          },
+          {
+            "term": "Drawing measurement",
+            "definition": "The length measured directly on the plan using a ruler, typically in millimetres."
+          },
+          {
+            "term": "Real measurement",
+            "definition": "The actual size of the object or distance on the construction site."
+          },
+          {
+            "term": "Set-out",
+            "definition": "The process of marking exact positions on site based on the dimensions from a drawing."
+          },
+          {
+            "term": "Tolerance",
+            "definition": "The allowed variation in a measurement; small scaling errors can lead to being out of tolerance."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2D-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Electrical Floor Plan Scale",
+        "description": "A technical floor plan showing a title block with 'Scale 1:50' and a 20mm measurement being converted to 1000mm.",
+        "videoUrl": "",
+        "diagramType": "plan",
+        "elementIds": [
+          "titleBlock",
+          "scaleBar",
+          "dimensionLine"
+        ],
+        "placeholderText": "Diagram showing a 1:50 scale where 1mm on paper represents 50mm in reality."
+      }
+    },
+    {
+      "id": "203-2D-explain-scale",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Understanding and Applying Scale",
+        "content": "**What this is**\nScale is the mathematical ratio between a measurement on a technical drawing and the actual size of that object in the real world. In electrical installation, plans are rarely drawn full size because a building is too large for a sheet of paper. Instead, we shrink dimensions proportionally. A scale of 1:50 means that the real building is 50 times larger than the drawing in your hand.\n\n**Why it matters**\nElectricians use scales to set out an installation accurately. This involves taking measurements from a plan and marking the exact positions of socket outlets, light switches, and containment runs on site. If you misread the scale, your accessories will be in the wrong place, cable runs will be too short, and materials will be wasted. Accurate scaling ensures you order the correct amount of conduit, tray, and cable, preventing costly delays.\n\n**Key rules / facts**\n- **1:50 Scale:** 1 unit on paper = 50 units in reality. Multiply the drawing measurement by 50 to find the real size.\n- **1:100 Scale:** 1 unit on paper = 100 units in reality. Multiply the drawing measurement by 100 to find the real size.\n- **Drawing to Real:** Always **multiply** by the scale factor.\n- **Real to Drawing:** Always **divide** by the scale factor.\n- **Unit Consistency:** Always work in the same units (usually millimetres) during the calculation to avoid errors.\n\n**How to use it**\n1. Measure the distance on the drawing using a ruler and record it in millimetres (mm).\n2. Identify the scale factor from the drawing title block (e.g., 50 or 100).\n3. Multiply your measurement by that scale factor to get the real-world size in millimetres.\n4. Divide by 1000 to convert that real-world measurement into metres (m) for marking on site.\n\n**Common mistakes**\n- Using the wrong scale factor, such as multiplying by 100 for a 1:50 drawing.\n- Mixing units, like multiplying millimetres by the scale and assuming the result is already in metres.\n- Forgetting that 1:100 makes objects appear smaller on paper than 1:50.\n\n**Quick recap**\n- Scale is a ratio of Drawing : Real.\n- To go from drawing to site: **Multiply** by the scale factor.\n- To go from site to drawing: **Divide** by the scale factor."
+      }
+    },
+    {
+      "id": "203-2D-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Scale Basics",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2D-C1-L1-A",
+            "questionText": "What does a scale of 1:50 mean in terms of units?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "1 unit on the drawing equals 50 units in real life",
+              "1mm on drawing equals 50mm in real life",
+              "Real life is 50 times bigger"
+            ],
+            "hint": "Think about the ratio of 1 part on paper to 50 parts on site."
+          },
+          {
+            "id": "203-2D-C1-L1-B",
+            "questionText": "If a line on a 1:50 drawing measures 20mm, what is the real length in mm?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "1000",
+              "1000mm",
+              "1,000"
+            ],
+            "hint": "Multiply the drawing measurement by the scale factor (50)."
+          },
+          {
+            "id": "203-2D-C1-L1-C",
+            "questionText": "Convert 1000mm into metres (m).",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "1",
+              "1m",
+              "1.0"
+            ],
+            "hint": "There are 1000mm in 1 metre."
+          },
+          {
+            "id": "203-2D-C1-L2",
+            "questionText": "How does identifying the correct scale (Q1) and calculating the real length (Q2/Q3) help an electrician during the 'set-out' phase?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "It ensures accessories are marked in the correct position on site",
+              "It prevents accessories being installed in the wrong place",
+              "It allows for accurate marking of socket and switch positions"
+            ],
+            "hint": "Think about what happens if you mark 1m on a wall when it should have been 2m."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2D-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Drawing to Real (1:50)",
+        "given": "A drawing has a scale of 1:50. You measure 32mm from a door frame to a switch position on the plan.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the drawing measurement and scale factor.",
+            "formula": null,
+            "calculation": "Drawing = 32mm; Scale = 50",
+            "result": "32mm"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Multiply the drawing measurement by the scale factor to find the real size in mm.",
+            "formula": "Real = Drawing × Scale",
+            "calculation": "32 × 50",
+            "result": "1600mm"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Convert the real measurement from millimetres to metres for site use.",
+            "formula": "Metres = mm ÷ 1000",
+            "calculation": "1600 ÷ 1000",
+            "result": "1.6m"
+          }
+        ],
+        "notes": "Always perform the multiplication in mm first to keep the math simple before converting to metres."
+      }
+    },
+    {
+      "id": "203-2D-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice: Real to Drawing (1:100)",
+        "problem": "A drawing is 1:100. A real wall on site is 7m long. How long should this wall be drawn on the plan in mm?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "First, convert the real wall length (7m) into millimetres (mm). What is the value?",
+            "expectedAnswer": [
+              "7000",
+              "7000mm",
+              "7,000"
+            ],
+            "hint": "Multiply the metres by 1000."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Now, use the reverse rule (Real ÷ Scale) to find the drawing length. What is 7000 ÷ 100?",
+            "expectedAnswer": [
+              "70",
+              "70mm"
+            ],
+            "hint": "Divide the real mm by the scale factor of 100."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2D-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Practice: Scale Conversions",
+        "questions": [
+          {
+            "id": "203-2D-P1",
+            "questionText": "Scale 1:50 — A cable run on the plan measures 45mm. What is the real length in metres (m)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "2.25",
+              "2.25m",
+              "2.25 m"
+            ],
+            "hint": "Multiply 45 by 50, then divide by 1000."
+          },
+          {
+            "id": "203-2D-P2",
+            "questionText": "Scale 1:100 — A room width on the plan measures 60mm. What is the real width in metres (m)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "6",
+              "6m",
+              "6.0",
+              "6.0m"
+            ],
+            "hint": "Multiply 60 by 100, then divide by 1000."
+          },
+          {
+            "id": "203-2D-P3",
+            "questionText": "Scale 1:50 — The real distance between two sockets is 2.5m. What is that distance on the drawing in mm?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "50",
+              "50mm"
+            ],
+            "hint": "Convert 2.5m to 2500mm, then divide by 50."
+          },
+          {
+            "id": "203-2D-P4",
+            "questionText": "Scale 1:100 — A containment run is 12m in real life. What is its length on the drawing in mm?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "120",
+              "120mm"
+            ],
+            "hint": "Convert 12m to 12000mm, then divide by 100."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2D-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2D-INT-1",
+            "questionText": "You measure 25mm from a corner to a socket location on a 1:50 plan. Explain how you would calculate and mark this position on site.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Multiply 25mm by 50 to get 1250mm, then measure 1.25m from the corner on site",
+              "Calculate 25 x 50 = 1250mm and mark 1.25m on the wall",
+              "Convert to 1.25m and mark it"
+            ],
+            "hint": "Show the calculation steps and the final site action."
+          },
+          {
+            "id": "203-2D-INT-2",
+            "questionText": "A learner keeps getting scale questions wrong because they mix units (mm and metres) halfway through. Explain a simple 'no-fail method' they should follow every time.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "Always measure in mm on the drawing, multiply by the scale to get real mm, and only convert to metres as the very last step. This keeps the units consistent throughout the calculation.",
+              "Stick to millimetres for the whole calculation and convert to metres at the end. This prevents decimal errors and mixing units accidentally."
+            ],
+            "hint": "Think about the advice given in the 'How to use it' section of the explanation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2D-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          {
+            "id": "203-2D-SR-1",
+            "questionText": "What does a scale of 1:100 mean in one sentence?",
+            "expectedAnswer": [
+              "1 unit on the drawing represents 100 units in real life",
+              "The real object is 100 times larger than the drawing"
+            ],
+            "hint": "Refer to the ratio of drawing size to real size."
+          },
+          {
+            "id": "203-2D-SR-2",
+            "questionText": "When converting from Drawing to Real, do you multiply or divide by the scale factor?",
+            "expectedAnswer": [
+              "Multiply"
+            ],
+            "hint": "The real object is always larger than the drawing."
+          },
+          {
+            "id": "203-2D-SR-3",
+            "questionText": "When converting from Real to Drawing, do you multiply or divide by the scale factor?",
+            "expectedAnswer": [
+              "Divide"
+            ],
+            "hint": "The drawing is always smaller than the real object."
+          },
+          {
+            "id": "203-2D-SR-4",
+            "questionText": "Convert 3000mm into metres (m).",
+            "expectedAnswer": [
+              "3",
+              "3m",
+              "3.0"
+            ],
+            "hint": "Divide the millimetres by 1000."
+          }
+        ],
+        "notes": "Review of basic scaling rules and unit conversions."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-02",
+    "updated": "2026-02-02",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

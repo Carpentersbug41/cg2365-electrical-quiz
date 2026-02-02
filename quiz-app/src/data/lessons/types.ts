@@ -244,6 +244,11 @@ export interface BlockIdAliasMap {
 
 /**
  * Diagnostic Configuration: For prerequisite readiness checks
+ * 
+ * IMPORTANT: Diagnostic gates determine which lessons to test based on 
+ * lesson ORDER in lessonIndex.ts, NOT the prerequisites array in lesson files.
+ * The diagnostic pulls questions from all lessons in the SAME UNIT with 
+ * lower order values (e.g., 203-2C tests 203-1A through 203-2B).
  */
 export interface DiagnosticConfig {
   enabled: boolean;
@@ -264,7 +269,7 @@ export interface Lesson {
   unit: string; // e.g., "Unit 202"
   topic: string; // e.g., "Series Circuits"
   learningOutcomes: string[]; // High-level outcomes
-  prerequisites?: string[]; // Prerequisite lesson IDs
+  prerequisites?: string[]; // Lesson IDs for reference (NOT used for diagnostic gates - see DiagnosticConfig)
   blocks: Block[];
   metadata: {
     created: string;
