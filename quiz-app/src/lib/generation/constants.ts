@@ -91,6 +91,21 @@ export const COGNITIVE_LEVELS = [
   'synthesis',
 ] as const;
 
+// Diagram types (expanded to support all units)
+export const DIAGRAM_TYPES = [
+  'series',
+  'parallel',
+  'circuit',
+  'plan',
+  'wiring',
+  'schematic',
+  'block',
+  'procedure',
+  'table',
+  'graph',
+  'other',
+] as const;
+
 // Answer types
 export const ANSWER_TYPES = [
   'mcq',

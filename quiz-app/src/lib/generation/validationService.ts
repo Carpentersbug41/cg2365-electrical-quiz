@@ -42,6 +42,8 @@ export class ValidationService {
     // Validate blocks
     if (lesson.blocks) {
       this.validateBlocks(lesson.blocks, lessonId, errors, warnings);
+      this.validateBlockOrders(lesson.blocks, errors, warnings);
+      this.validateWorkedExampleAlignment(lesson.blocks, errors, warnings);
     }
 
     // Validate metadata
@@ -54,6 +56,48 @@ export class ValidationService {
       errors,
       warnings,
     };
+  }
+  
+  /**
+   * Enhanced validation: Check block orders are monotonic and correct
+   */
+  private validateBlockOrders(blocks: LessonBlock[], errors: string[], warnings: string[]): void {
+    const orders = blocks.map(b => b.order).sort((a, b) => a - b);
+    
+    // Check for duplicates
+    const uniqueOrders = new Set(orders);
+    if (uniqueOrders.size !== orders.length) {
+      errors.push('Duplicate block order values detected');
+    }
+    
+    // Check monotonic (should increase)
+    for (let i = 1; i < orders.length; i++) {
+      if (orders[i] <= orders[i - 1]) {
+        errors.push(`Block orders are not monotonic: ${orders[i - 1]} followed by ${orders[i]}`);
+        break;
+      }
+    }
+  }
+  
+  /**
+   * Enhanced validation: Check worked example and guided practice alignment
+   */
+  private validateWorkedExampleAlignment(blocks: LessonBlock[], errors: string[], warnings: string[]): void {
+    const workedExample = blocks.find(b => b.type === 'worked-example');
+    const guidedPractice = blocks.find(b => b.type === 'guided-practice');
+    
+    if (workedExample && !guidedPractice) {
+      warnings.push('Worked example exists but no guided practice - they should be paired');
+    }
+    
+    if (workedExample && guidedPractice) {
+      const workedSteps = workedExample.content.steps?.length || 0;
+      const guidedSteps = guidedPractice.content.steps?.length || 0;
+      
+      if (workedSteps > 0 && guidedSteps > 0 && Math.abs(workedSteps - guidedSteps) > 1) {
+        warnings.push(`Worked example (${workedSteps} steps) and guided practice (${guidedSteps} steps) should have similar number of steps`);
+      }
+    }
   }
 
   /**
@@ -147,8 +191,14 @@ export class ValidationService {
       case 'explanation':
         if (!block.content.title || !block.content.content) {
           errors.push('Explanation block must have title and content');
-        } else if (typeof block.content.content === 'string' && block.content.content.length < 200) {
-          warnings.push('Explanation content seems short (< 200 chars)');
+        } else if (typeof block.content.content === 'string') {
+          // Count approximate words (400-600 target)
+          const wordCount = block.content.content.split(/\s+/).length;
+          if (wordCount < 200) {
+            warnings.push(`Explanation seems too short (~${wordCount} words, target 400-600)`);
+          } else if (wordCount > 800) {
+            warnings.push(`Explanation seems too long (~${wordCount} words, target 400-600)`);
+          }
         }
         break;
 
@@ -160,14 +210,38 @@ export class ValidationService {
             this.validateQuestion(question, lessonId, errors, warnings);
           }
 
-          // Check understanding check structure
-          if (typeof block.content.mode === 'string' && block.content.mode === 'conceptual' && block.content.questions.length !== 4) {
-            warnings.push('Understanding check should have exactly 4 questions (3×L1 + 1×L2)');
+          // Enhanced: Check understanding check structure with cognitive levels
+          if (typeof block.content.mode === 'string' && block.content.mode === 'conceptual') {
+            if (block.content.questions.length !== 4) {
+              errors.push('Understanding check MUST have exactly 4 questions (3×L1 recall + 1×L2 connection)');
+            } else {
+              // Validate cognitive level pattern: recall, recall, recall, connection
+              const levels = block.content.questions.map(q => q.cognitiveLevel);
+              const recallCount = levels.filter(l => l === 'recall').length;
+              const connectionCount = levels.filter(l => l === 'connection').length;
+              
+              if (recallCount !== 3 || connectionCount !== 1) {
+                errors.push(`Understanding check must have 3 recall + 1 connection questions (found ${recallCount} recall, ${connectionCount} connection)`);
+              }
+            }
           }
 
-          // Check integrative structure
-          if (typeof block.content.mode === 'string' && block.content.mode === 'integrative' && block.content.questions.length !== 1) {
-            warnings.push('Integrative block should have exactly 1 question');
+          // Enhanced: Check integrative structure with cognitive levels
+          if (typeof block.content.mode === 'string' && block.content.mode === 'integrative') {
+            if (block.content.questions.length !== 2) {
+              errors.push('Integrative block MUST have exactly 2 questions (1×L2 connection + 1×L3 synthesis)');
+            } else {
+              // Validate cognitive level pattern: connection, synthesis
+              const levels = block.content.questions.map(q => q.cognitiveLevel);
+              if (levels[0] !== 'connection' || levels[1] !== 'synthesis') {
+                errors.push(`Integrative questions must be: Q1=connection, Q2=synthesis (found ${levels[0]}, ${levels[1]})`);
+              }
+            }
+          }
+          
+          // Check practice block has 3-5 questions
+          if (!block.content.mode && (block.content.questions.length < 3 || block.content.questions.length > 5)) {
+            warnings.push(`Practice block should have 3-5 questions (found ${block.content.questions.length})`);
           }
         }
         break;
@@ -225,6 +299,23 @@ export class ValidationService {
     // Check for removed 'hypothesis' level
     if (question.cognitiveLevel === 'hypothesis') {
       errors.push(`Question ${question.id} uses removed cognitiveLevel "hypothesis" - use "synthesis" instead`);
+    }
+    
+    // Enhanced: Check expectedAnswer is array for short-text questions
+    if (question.answerType === 'short-text' && question.expectedAnswer) {
+      if (!Array.isArray(question.expectedAnswer)) {
+        warnings.push(`Question ${question.id}: expectedAnswer should be an array for short-text questions to allow variations`);
+      }
+    }
+    
+    // Enhanced: Check numeric answers don't include units
+    if (question.answerType === 'numeric' && question.expectedAnswer) {
+      const answers = Array.isArray(question.expectedAnswer) ? question.expectedAnswer : [question.expectedAnswer];
+      for (const answer of answers) {
+        if (typeof answer === 'string' && /[a-zA-Z]/.test(answer)) {
+          warnings.push(`Question ${question.id}: numeric expectedAnswer should not include units ("${answer}") - put units in hint only`);
+        }
+      }
     }
   }
 

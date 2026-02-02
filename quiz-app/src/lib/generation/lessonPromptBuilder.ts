@@ -6,6 +6,7 @@
 import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, BLOOM_LEVELS, COGNITIVE_LEVELS } from './constants';
 import { GenerationRequest } from './types';
 import { inferLayout } from './utils';
+import { classifyLessonTask, requiresWorkedExample, getTaskContext } from './taskClassifier';
 import fs from 'fs';
 import path from 'path';
 
@@ -67,6 +68,17 @@ CRITICAL OUTPUT REQUIREMENT:
 - No markdown code blocks (\`\`\`json)
 - No explanations or comments outside the JSON
 - The response must be parseable by JSON.parse()
+
+DEFINITION OF DONE (must pass self-audit before output):
+- Every learning outcome is explicitly addressed in the explanation
+- Explanation includes a clearly labeled "Key facts / rules" section
+- Check-1 is exactly 3× recall + 1× connection, and the L2 ties back to L1 facts
+- Integrative is exactly 2 questions: 1× connection + 1× synthesis (3-4 sentences)
+- If worked example exists, guided practice mirrors it step-for-step
+- Practice includes 3-5 questions and at least one applied item if there is an "apply" LO
+- expectedAnswer uses arrays for short-text unless exactly one canonical wording
+- Block orders are monotonic and match required sequence (1,2,3,4,4.5,5,6,7,9.5,10)
+- No invented legal claims or unsafe instructions
 
 LESSON STRUCTURE:
 
@@ -142,11 +154,22 @@ BLOCK TEMPLATES:
     "description": "[What the diagram shows]",
     "videoUrl": "[YouTube URL if provided, otherwise empty string]",
     "imageUrl": "[Image URL if provided, otherwise omit this field]",
-    "diagramType": "series|parallel|circuit|other",
+    "diagramType": "series|parallel|circuit|plan|wiring|schematic|block|procedure|table|graph|other",
     "elementIds": ["element1", "element2"],
     "placeholderText": "[Text description for accessibility]"
   }
 }
+
+DIAGRAM TYPE SELECTION:
+- series/parallel/circuit: for electrical circuits and topology
+- plan: for installation layouts and floor plans
+- wiring: for wiring diagrams and cable routing
+- schematic: for technical drawings and schematics
+- block: for block diagrams and system overviews
+- procedure: for process flows and step sequences
+- table: for data tables and comparison charts
+- graph: for waveforms, graphs, and data visualization
+- other: for any other visual content
 
 4. EXPLANATION BLOCK (order: 4):
 {
@@ -155,7 +178,16 @@ BLOCK TEMPLATES:
   "order": 4,
   "content": {
     "title": "[Clear section title]",
-    "content": "[400-600 words with **bold** for emphasis and \\n\\n for paragraph breaks. Use numbered lists for rules/steps.]"
+    "content": "[400-600 words following this REQUIRED 6-part outline:
+    
+    1. **What this is** (in plain terms)
+    2. **Why it matters** (real job context)
+    3. **Key rules / facts** (bullet list - REQUIRED section)
+    4. **How to use it** (mini workflow or checklist)
+    5. **Common mistakes** (2-4 bullets)
+    6. **Quick recap** (3 bullets)
+    
+    Use **bold** for section headers and emphasis. Use \\n\\n for paragraph breaks. Use numbered or bulleted lists for rules/steps.]"
   }
 }
 
@@ -174,7 +206,7 @@ BLOCK TEMPLATES:
         "questionText": "[Simple factual recall question]",
         "answerType": "short-text",
         "cognitiveLevel": "recall",
-        "expectedAnswer": "[Simple answer]",
+        "expectedAnswer": ["[Simple answer]", "[Acceptable variation]"],
         "hint": "[Gentle hint]"
       },
       {
@@ -182,7 +214,7 @@ BLOCK TEMPLATES:
         "questionText": "[Another simple recall, building on first]",
         "answerType": "short-text",
         "cognitiveLevel": "recall",
-        "expectedAnswer": "[Another fact]",
+        "expectedAnswer": ["[Another fact]", "[Acceptable variation]"],
         "hint": "[Hint]"
       },
       {
@@ -190,7 +222,7 @@ BLOCK TEMPLATES:
         "questionText": "[Third simple recall]",
         "answerType": "short-text",
         "cognitiveLevel": "recall",
-        "expectedAnswer": "[Third fact]",
+        "expectedAnswer": ["[Third fact]", "[Acceptable variation]"],
         "hint": "[Hint]"
       },
       {
@@ -198,7 +230,7 @@ BLOCK TEMPLATES:
         "questionText": "[Connection question: How do Q1, Q2, Q3 relate?]",
         "answerType": "short-text",
         "cognitiveLevel": "connection",
-        "expectedAnswer": "[Answer showing relationships]",
+        "expectedAnswer": ["[Answer showing relationships]", "[Acceptable variation]"],
         "hint": "[Hint about connections]"
       }
     ]
@@ -257,7 +289,7 @@ BLOCK TEMPLATES:
         "id": "${lessonId}-P1",
         "questionText": "[Question]",
         "answerType": "numeric|short-text",
-        "expectedAnswer": ["[answer]", "[variations]"],
+        "expectedAnswer": ["[answer]", "[variation 1]", "[variation 2]"],
         "hint": "[Hint]"
       }
     ]
@@ -279,7 +311,7 @@ BLOCK TEMPLATES:
         "questionText": "[Connection question tying 2-3 major concepts] (2-3 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "connection",
-        "expectedAnswer": "[Answer showing relationships between major concepts]",
+        "expectedAnswer": ["[Answer showing relationships between major concepts]", "[Acceptable variation]"],
         "hint": "[Hint about connections]"
       },
       {
@@ -287,7 +319,7 @@ BLOCK TEMPLATES:
         "questionText": "[Synthesis question integrating ALL lesson concepts] (3-4 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "synthesis",
-        "expectedAnswer": "[Comprehensive answer showing full integration]",
+        "expectedAnswer": ["[Comprehensive answer showing full integration]", "[Acceptable variation]"],
         "hint": "[Strategic hint about what to include]"
       }
     ]
@@ -354,6 +386,10 @@ COGNITIVE LEVELS EXPLAINED (CRITICAL FOR QUESTION QUALITY):
 - Cognitive Process: Understand/Apply (Bloom's Taxonomy)
 - Where Used: Question 4 in understanding checks (after explanations), Question 1 in integrative block (end of lesson)
 - Question Style: Asks "how" and "why" concepts relate, practical applications
+- CRITICAL FOR CHECK-1 Q4: MUST explicitly reference the facts from Q1, Q2, Q3
+  Example: "How do [Q1 fact] and [Q2 fact] work together to affect [Q3 concept]?"
+- CRITICAL FOR INTEGRATIVE Q1: MUST link 2-3 main concepts from different parts of the lesson
+  Example: "How does [concept from explanation] relate to [concept from worked example] in practical applications?"
 - Examples:
   * "How do these characteristics (AC alternating vs DC one direction) affect which type is better for different applications?" → Expected: "AC is better for mains supply because it can be easily transformed. DC is better for electronics because it provides steady voltage."
   * "How does the frequency value (50 Hz) relate to how many times AC current changes direction in one second?" → Expected: "50 Hz means 50 complete cycles per second, so current reverses direction 100 times per second (twice per cycle)"
@@ -402,8 +438,28 @@ WRITING QUALITY QUESTIONS:
 11. **MEDIA URLS**: If YouTube URL or Image URL is provided, MUST include them in the diagram block's "videoUrl" and "imageUrl" fields respectively
 12. **Clarity**: Write for Level 2 electrician students (practical, not overly academic)
 
+ANSWER MARKING POLICY:
+- For short-text answers: ALWAYS use arrays with variations to allow acceptable alternatives
+  Example: expectedAnswer: ["Residual Current Device", "RCD", "residual current device"]
+- For numeric answers: use answerType "numeric" and string array WITHOUT units
+  Example: expectedAnswer: ["5.5", "5.50"], units in hint only
+- Single string ONLY when exactly one canonical wording exists (rare)
+- Include common synonyms, acronym expansions, and alternative phrasings
+
 APPROVED TAGS: ${APPROVED_TAGS.slice(0, 20).join(', ')} (and others)
 APPROVED MISCONCEPTION CODES: ${APPROVED_MISCONCEPTION_CODES.slice(0, 15).join(', ')} (and others)
+
+QUALITY GATE (verify before output):
+✓ All learning outcomes explicitly taught in explanation
+✓ Explanation follows 6-part outline structure (What/Why/Key rules/How to use/Common mistakes/Recap)
+✓ Understanding check: exactly 3 recall + 1 connection questions
+✓ Integrative block: exactly 2 questions (1 connection + 1 synthesis)
+✓ Worked example → guided practice alignment (if applicable)
+✓ expectedAnswer arrays for short-text questions (not single strings)
+✓ Block orders are correct and monotonic (1,2,3,4,4.5,5,6,7,9.5,10)
+✓ No safety violations or legal inventions
+
+If any item fails: FIX IT before responding.
 
 OUTPUT FORMAT:
 - Pure JSON only
@@ -453,9 +509,9 @@ REQUIREMENTS:
 ${layout === 'split-vis' ? '- Include diagram block with appropriate diagram type' : '- Diagram block is optional'}
 - Write 400-600 word explanation teaching the core concepts
 - Add understanding check with 3 recall + 1 connection question
-${request.section.includes('Science') || request.topic.toLowerCase().includes('circuit') || request.topic.toLowerCase().includes('calculation') || request.topic.toLowerCase().includes("ohm's law")
-    ? '- Include worked example with 3-5 steps\n- Include guided practice with 2-3 steps'
-    : '- Worked example and guided practice optional (include if calculations involved)'}
+${this.shouldIncludeWorkedExample(request) 
+    ? '- Include worked example with 3-5 steps\n- Include guided practice with 2-3 steps (mirror the worked example steps)'
+    : '- Worked example and guided practice optional (include if calculations, procedures, or selection decisions involved)'}
 - Include 3-5 practice questions
 - Add integrative block with 2 questions at end (1 connection + 1 synthesis)
 - Include 4 spaced review questions from prerequisites (each with id, questionText, expectedAnswer, and hint)
@@ -468,41 +524,25 @@ SPACED REVIEW QUALITY STANDARDS:
 - Each question must have unique ID following pattern: ${fullLessonId}-SR-1, ${fullLessonId}-SR-2, etc.
 
 TOPIC CONTEXT:
-${this.getTopicContext(request.topic, request.section)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}
+${this.getTopicContext(request.topic, request.section, request.mustHaveTopics)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}
 
 Generate the complete lesson JSON now. Remember: ONLY JSON, no markdown, no explanations.`;
   }
+  
+  /**
+   * Determine if worked example should be included using task classifier
+   */
+  private shouldIncludeWorkedExample(request: GenerationRequest): boolean {
+    const tasks = classifyLessonTask(request.topic, request.section, request.mustHaveTopics);
+    return requiresWorkedExample(tasks);
+  }
 
   /**
-   * Get topic-specific context to guide generation
+   * Get topic-specific context to guide generation using task classifier
    */
-  private getTopicContext(topic: string, section: string): string {
-    const topicLower = topic.toLowerCase();
-
-    if (topicLower.includes('circuit')) {
-      return 'This is a circuit theory lesson. Include clear explanations of current, voltage, and resistance behavior. Use water analogies where helpful. Include circuit rules and calculations.';
-    }
-
-    if (topicLower.includes('safety') || topicLower.includes('ppe') || topicLower.includes('regulation')) {
-      return 'This is a health and safety lesson. Focus on practical workplace applications. Include specific regulations and real-world examples. Emphasize responsibilities and procedures.';
-    }
-
-    if (topicLower.includes('cable') || topicLower.includes('wiring') || topicLower.includes('installation')) {
-      return 'This is an installation technology lesson. Focus on practical selection criteria, identification, and applications. Include real cable types and specifications.';
-    }
-
-    if (topicLower.includes('ohm') || topicLower.includes('calculation') || topicLower.includes('formula')) {
-      return 'This lesson involves calculations. Include worked examples with clear step-by-step solutions. Show formula rearrangements. Emphasize practical problem-solving.';
-    }
-
-    if (topicLower.includes('ac') || topicLower.includes('alternating')) {
-      return 'This is about alternating current. Explain how AC differs from DC. Cover frequency, waveforms, and UK mains supply characteristics. Use practical examples.';
-    }
-
-    if (topicLower.includes('magnet') || topicLower.includes('transformer') || topicLower.includes('relay')) {
-      return 'This is about electromagnetism. Explain magnetic fields and induction. Connect to practical devices like transformers, relays, and motors. Use clear diagrams.';
-    }
-
-    return `This lesson covers ${topic} in the context of ${section}. Provide clear explanations suitable for Level 2 electrical installation students with practical applications.`;
+  private getTopicContext(topic: string, section: string, mustHaveTopics?: string): string {
+    // Use task classifier for more robust context generation
+    const tasks = classifyLessonTask(topic, section, mustHaveTopics);
+    return getTaskContext(tasks, topic, section);
   }
 }

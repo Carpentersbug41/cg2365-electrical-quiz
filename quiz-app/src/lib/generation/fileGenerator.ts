@@ -7,6 +7,7 @@ import { createLLMClientWithFallback } from '@/lib/llm/client';
 import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { LessonPromptBuilder } from './lessonPromptBuilder';
 import { QuizPromptBuilder } from './quizPromptBuilder';
+import { ValidationService } from './validationService';
 import { GenerationRequest, Lesson, QuizQuestion, DebugInfo } from './types';
 import {
   generateLessonFilename,
@@ -68,10 +69,40 @@ function generateContextPreview(content: string, position?: number): {
 export class FileGenerator {
   private lessonPromptBuilder: LessonPromptBuilder;
   private quizPromptBuilder: QuizPromptBuilder;
+  private validationService: ValidationService;
 
   constructor() {
     this.lessonPromptBuilder = new LessonPromptBuilder();
     this.quizPromptBuilder = new QuizPromptBuilder();
+    this.validationService = new ValidationService();
+  }
+  
+  /**
+   * Build repair prompt for fixing validation issues
+   */
+  private buildRepairPrompt(originalJson: string, validationErrors: string[], validationWarnings: string[]): string {
+    const issuesList = [
+      ...validationErrors.map(e => `ERROR: ${e}`),
+      ...validationWarnings.map(w => `WARNING: ${w}`)
+    ].join('\n');
+    
+    return `The following lesson JSON has validation issues that need to be fixed:
+
+VALIDATION ISSUES:
+${issuesList}
+
+ORIGINAL JSON:
+${originalJson}
+
+INSTRUCTIONS:
+- Fix ALL the errors listed above
+- Address the warnings if possible
+- Return ONLY the corrected JSON
+- No markdown code blocks
+- No explanations
+- Must be valid, parseable JSON
+
+Return the corrected lesson JSON now:`;
   }
 
   /**
@@ -88,12 +119,15 @@ export class FileGenerator {
   }
 
   /**
-   * Generate complete lesson JSON file
+   * Generate complete lesson JSON file with two-pass validation and repair
    */
-  async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string }> {
+  async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[] }> {
     try {
+      const lessonId = generateLessonId(request.unit, request.lessonId);
       const { systemPrompt, userPrompt } = this.lessonPromptBuilder.buildPrompt(request);
 
+      // PASS 1: Generate lesson
+      debugLog('LESSON_GEN_PASS1_START', { lessonId });
       const content = await this.generateWithRetry(
         systemPrompt,
         userPrompt,
@@ -103,6 +137,7 @@ export class FileGenerator {
 
       const parsed = safeJsonParse<Lesson>(content);
       if (!parsed.success || !parsed.data) {
+        debugLog('LESSON_GEN_PASS1_PARSE_FAILED', { error: parsed.error });
         return {
           success: false,
           content: {} as Lesson,
@@ -110,8 +145,67 @@ export class FileGenerator {
         };
       }
 
-      return { success: true, content: parsed.data };
+      // Validate the generated lesson
+      const validation = this.validationService.validateLesson(parsed.data, lessonId);
+      debugLog('LESSON_GEN_PASS1_VALIDATION', { 
+        valid: validation.valid, 
+        errorCount: validation.errors.length,
+        warningCount: validation.warnings.length 
+      });
+
+      // If validation passed or only has warnings, return success
+      if (validation.valid) {
+        return { 
+          success: true, 
+          content: parsed.data,
+          warnings: validation.warnings.length > 0 ? validation.warnings : undefined
+        };
+      }
+
+      // PASS 2: If there are errors, attempt repair
+      debugLog('LESSON_GEN_PASS2_REPAIR_START', { errorCount: validation.errors.length });
+      console.log('Lesson validation failed, attempting repair...');
+      console.log('Errors:', validation.errors);
+      
+      const repairPrompt = this.buildRepairPrompt(content, validation.errors, validation.warnings);
+      
+      const repairedContent = await this.generateWithRetry(
+        'You are a JSON repair specialist. Fix validation issues in lesson JSON.',
+        repairPrompt,
+        'lesson-repair',
+        1 // Only one retry for repair
+      );
+
+      const repairedParsed = safeJsonParse<Lesson>(repairedContent);
+      if (!repairedParsed.success || !repairedParsed.data) {
+        debugLog('LESSON_GEN_PASS2_PARSE_FAILED', { error: repairedParsed.error });
+        // Return original if repair failed to parse
+        return {
+          success: true,
+          content: parsed.data,
+          warnings: ['Repair attempt failed, using original with validation issues: ' + validation.errors.join('; ')]
+        };
+      }
+
+      // Validate repaired lesson
+      const repairedValidation = this.validationService.validateLesson(repairedParsed.data, lessonId);
+      debugLog('LESSON_GEN_PASS2_VALIDATION', { 
+        valid: repairedValidation.valid,
+        errorCount: repairedValidation.errors.length,
+        warningCount: repairedValidation.warnings.length
+      });
+
+      // Return repaired version (even if still has some issues, it should be better)
+      return {
+        success: true,
+        content: repairedParsed.data,
+        warnings: repairedValidation.errors.length > 0 
+          ? ['Repaired but still has issues: ' + repairedValidation.errors.join('; ')] 
+          : repairedValidation.warnings
+      };
+
     } catch (error) {
+      debugLog('LESSON_GEN_EXCEPTION', { error: error instanceof Error ? error.message : 'unknown' });
       return {
         success: false,
         content: {} as Lesson,

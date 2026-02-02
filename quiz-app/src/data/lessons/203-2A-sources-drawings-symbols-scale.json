@@ -1,15 +1,15 @@
 {
   "id": "203-2A",
   "title": "203.2A — Technical Information: Sources, Drawings, Symbols & Scale",
-  "description": "Learn how to identify and use key sources of technical information, recognize electrical drawing types and symbols, and perform scale conversions for installation planning.",
+  "description": "Learn how to identify and use key sources of technical information, recognise drawing types and electrical plan symbols, and convert scaled drawing measurements into real-world distances for installation planning.",
   "layout": "split-vis",
   "unit": "Unit 203",
   "topic": "Obtaining Technical Information",
   "learningOutcomes": [
-    "State the purpose of key sources of technical information including specifications, BS 7671, and manufacturer data.",
-    "Recognise common drawing types such as as-fitted, circuit, block, and schematic diagrams.",
-    "Identify standard electrical symbols and the role of a drawing legend.",
-    "Convert a scaled drawing measurement into a real-world measurement using ratios."
+    "State the purpose of key sources of technical information including specifications, drawings, BS 7671, the On-Site Guide, manufacturer's data, guidance notes, and the client's needs.",
+    "Recognise drawing types including as-fitted drawings, circuit diagrams, block diagrams, schematics, wiring diagrams, and bar charts (programmes).",
+    "Identify common electrical symbols used on installation drawings and explain the role of a drawing legend.",
+    "Convert a scaled drawing measurement into a real-world measurement using ratios and unit conversion."
   ],
   "prerequisites": [
     "201-1A"
@@ -22,15 +22,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "State the purpose of key sources of technical information like specifications and BS 7671.",
+            "text": "State the purpose of key sources of technical information (specifications, drawings, BS 7671, On-Site Guide, manufacturer's data, guidance notes, client's needs).",
             "bloomLevel": "remember"
           },
           {
-            "text": "Recognise common electrical symbols and drawing types used in the industry.",
+            "text": "Recognise drawing types and common electrical symbols used on installation drawings.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain how different sources of information combine to guide a safe installation.",
+            "text": "Explain how different sources of information combine to guide a safe, compliant installation.",
             "bloomLevel": "understand"
           },
           {
@@ -47,57 +47,118 @@
       "content": {
         "terms": [
           {
+            "term": "Technical Information",
+            "definition": "Any reliable source you use to plan and install correctly (documents, drawings, standards, and instructions)."
+          },
+          {
             "term": "Specification",
-            "definition": "A document describing the specific materials, equipment, and quality standards required for a project."
+            "definition": "A project document describing the required materials/equipment and performance/quality standard for the job."
           },
           {
-            "term": "Manufacturer’s Data",
-            "definition": "Technical instructions and ratings provided by the equipment maker regarding installation and use."
+            "term": "Client's Needs",
+            "definition": "The customer's requirements (what they want installed, where, and any preferences or constraints)."
           },
           {
-            "term": "As-Fitted Drawing",
-            "definition": "A final drawing that records exactly how the electrical installation was completed on-site."
+            "term": "BS 7671",
+            "definition": "The wiring standard used in the UK for installation requirements; not a law itself, but commonly used to show compliance with statutory duties."
           },
           {
-            "term": "Schematic",
-            "definition": "A simplified diagram showing the logical flow or connection of a circuit rather than physical layout."
+            "term": "On-Site Guide (OSG)",
+            "definition": "A simplified, practical guide based on BS 7671 with quick-reference tables for common installations."
           },
           {
-            "term": "Legend",
-            "definition": "A key on a drawing that explains the meaning of symbols and abbreviations used."
+            "term": "Manufacturer's Data",
+            "definition": "Instructions/ratings provided by the equipment maker (e.g., wiring terminals, torque, IP rating, limits)."
+          },
+          {
+            "term": "Guidance Notes",
+            "definition": "Industry guidance that explains best practice and how to apply requirements safely in real jobs."
+          },
+          {
+            "term": "Drawing Type",
+            "definition": "The style/purpose of a drawing (e.g., wiring diagram vs layout plan vs bar chart programme)."
+          },
+          {
+            "term": "Legend (Key)",
+            "definition": "The part of a drawing that explains the meaning of the symbols and abbreviations used."
           },
           {
             "term": "Scale",
-            "definition": "The ratio between a distance on a drawing and the actual distance in real life (e.g., 1:50)."
+            "definition": "The ratio between a distance on a drawing and the real distance (e.g., 1:50)."
+          },
+          {
+            "term": "Bar Chart (Programme)",
+            "definition": "A timeline plan showing what tasks happen when (used to plan and sequence work on a project)."
           }
         ]
       }
     },
     {
-      "id": "203-2A-diagram",
+      "id": "203-2A-diagram-1",
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "Electrical Layout Plan and Scale Bar",
-        "description": "A typical floor plan showing electrical symbols, a legend, and a 1:50 scale indicator.",
+        "title": "Two Common Drawing Contexts (Plans vs Schematics)",
+        "description": "Installation drawings often use plan/layout symbols, while circuit diagrams/schematics use circuit symbols. The correct habit is: check the legend for that drawing.",
         "videoUrl": "",
-        "diagramType": "circuit",
+        "diagramType": "concept",
         "elementIds": [
-          "scale-ratio",
-          "legend-box",
-          "socket-symbol",
-          "switch-symbol"
+          "layout-plan",
+          "schematic",
+          "legend",
+          "scale-bar"
         ],
-        "placeholderText": "A floor plan showing a room with symbols for a twin socket (semi-circle with two lines), a one-way switch (circle with one line), and a scale bar marked 1:50."
+        "placeholderText": "Left: a simple floor plan (layout) with electrical points marked and a legend + scale bar. Right: a simple schematic/circuit diagram showing logical connections. Both are drawings, but they use different symbol styles."
       }
+    },
+    {
+      "id": "203-2A-orient",
+      "type": "explanation",
+      "order": 3.5,
+      "content": {
+        "title": "What Are These Symbols For?",
+        "content": "Electricians use **different drawings for different jobs**.\n\n- **Layout / plan drawings** show *where* things go in a building (sockets, switches, lights, consumer unit). These use **installation plan symbols**.\n- **Circuit diagrams / schematics** show *how* things connect logically. These use **circuit symbols**.\n\nSo if you feel like “the symbols don’t look like circuit diagram symbols” — that’s normal. You’re usually looking at **plan/layout symbols**.\n\n✅ **Rule:** Don’t guess the meaning of a symbol from its shape. **Use the drawing legend (key)** for that drawing."
+      }
+    },
+    {
+      "id": "203-2A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Scale",
+            "right": "Drawing distance vs real distance"
+          },
+          {
+            "left": "Legend",
+            "right": "Explains symbols and abbreviations"
+          },
+          {
+            "left": "Bar Chart",
+            "right": "Timeline for sequencing work"
+          },
+          {
+            "left": "Specification",
+            "right": "Required materials and quality standards"
+          },
+          {
+            "left": "BS 7671",
+            "right": "UK wiring standard for compliance"
+          }
+        ]
+      },
+      "order": 3.5
     },
     {
       "id": "203-2A-explain-sources",
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Navigating Technical Information",
-        "content": "In the electrical industry, you never guess. Every decision is backed by **technical information**. This information comes from several key sources that you must be able to navigate: \n\n1. **Specifications**: These tell you exactly what materials and equipment to buy. If the spec says '600x600 LED panels', you cannot install cheaper alternatives without permission. \n\n2. **Drawings**: These show the layout and positioning. They tell you where the sockets, lights, and consumer units go. \n\n3. **BS 7671 (The Regs)**: The 'big blue book' contains the mandatory safety rules for all UK electrical installations. \n\n4. **On-Site Guide (OSG)**: A simplified version of BS 7671 for common installations, providing quick tables for cable sizing and fuse selection. \n\n5. **Manufacturer’s Data**: This is critical for specific items like extractor fans or smart dimmers. It tells you the maximum torque for terminals and the IP rating. \n\n**Drawing Types and Symbols** \n\nYou will encounter different drawings depending on the task. **Block diagrams** show the 'big picture' using boxes to represent sections (like Mains -> Sub-main -> Distribution Board). **Schematics** focus on the logic of connections, while **Wiring Diagrams** show actual terminal-to-terminal connections. Once a job is finished, an **As-Fitted Drawing** is produced to show the final, real-world arrangement. \n\nTo read these drawings, you must use the **Legend**. Symbols are standard: \n- **Switches**: A circle with one line (1-way), two lines (2-way), or a cross (intermediate). \n- **Socket Outlets**: A semi-circle. A single line through it usually means unswitched; two lines mean a twin socket. \n- **Consumer Unit**: A rectangle with a diagonal line through it. \n\n**Understanding Scale** \n\nScale is a ratio that allows large buildings to fit on small pieces of paper. A common scale is **1:50**. This means that 1mm on the paper represents 50mm in the real world. To find a real distance: \n1. Measure the distance on the drawing with a ruler (in mm). \n2. Multiply that measurement by the scale factor (e.g., 50). \n3. Convert the final answer to metres (divide by 1000) for practical use on-site."
+        "title": "Sources of Technical Information (What Each One Is For)",
+        "content": "In electrical work, you don’t rely on memory or guessing — you use **technical information**. Unit 203 expects you to know the *purpose* of each common source.\n\n**Source → Purpose**\n\n- **Specifications** → choose the correct materials/equipment and standard for the job.\n- **Drawings** → show the layout/positioning of wiring systems and equipment.\n- **BS 7671** → installation requirements (the wiring standard used to show compliance).\n- **On-Site Guide (OSG)** → simplified, quick-reference wiring rules/tables for common work.\n- **Manufacturer’s data** → correct installation/connection/ratings for a specific product.\n- **Guidance Notes** → best practice and how to apply requirements safely.\n- **Client’s needs** → what the customer wants (locations, finishes, preferences, constraints).\n\n**Habit that wins marks (and jobs):** If two sources conflict (e.g., drawing vs spec), you **stop and query** it — you don’t “pick one and hope.”"
       }
     },
     {
@@ -105,110 +166,345 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Technical Info",
+        "title": "Check Your Understanding: Sources",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-2A-C1-L1-A",
-            "questionText": "Which technical source provides the specific terminal connection requirements for a new digital thermostat?",
+            "questionText": "Which technical source tells you the exact terminal connections and installation limits for a specific product (e.g., a smart dimmer or digital thermostat)?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "Manufacturer’s Data",
-            "hint": "Think about who made the product."
+            "expectedAnswer": [
+              "manufacturer's data",
+              "manufacturers data",
+              "manufacturer data",
+              "instructions",
+              "data sheet",
+              "datasheet"
+            ],
+            "hint": "It comes from whoever made the product."
           },
           {
             "id": "203-2A-C1-L1-B",
-            "questionText": "What type of drawing is created at the end of a project to show the final, actual installation layout?",
+            "questionText": "Which source is used to choose the correct materials/equipment specified for the project?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "As-fitted drawing",
-            "hint": "It shows how it was 'fitted'."
+            "expectedAnswer": [
+              "specification",
+              "the specification",
+              "specifications"
+            ],
+            "hint": "It tells you exactly what must be installed."
           },
           {
             "id": "203-2A-C1-L1-C",
-            "questionText": "Where on a drawing would you look to find the meaning of an unfamiliar symbol?",
+            "questionText": "Which source provides simplified, quick-reference rules and tables based on BS 7671 for common installations?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
-            "expectedAnswer": "The legend",
-            "hint": "It is the 'key' to the drawing."
+            "expectedAnswer": [
+              "on-site guide",
+              "onsite guide",
+              "osg",
+              "the on-site guide"
+            ],
+            "hint": "It’s the smaller book used on the job."
           },
           {
             "id": "203-2A-C1-L2",
             "questionText": "If you are installing a socket, how do the 'Specification' and the 'Layout Drawing' work together?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "The drawing shows where the socket is located, while the specification describes the type and quality of the socket to be used.",
-            "hint": "One is about location, the other is about the item's details."
+            "expectedAnswer": [
+              "The drawing shows where the socket goes and the specification says what socket to use.",
+              "The drawing gives the location and the specification gives the type/standard of socket.",
+              "Drawing = location, specification = materials/standard."
+            ],
+            "hint": "One is about location; the other is about what exactly must be fitted."
           }
         ]
       }
     },
     {
-      "id": "203-2A-worked-example",
-      "type": "worked-example",
+      "id": "203-2A-explain-drawing-types",
+      "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Worked Example: Calculating Real-World Distance",
-        "given": "A drawing has a scale of 1:50. You measure 40mm between two light points on the drawing.",
+        "title": "Recognising Drawing Types (You Don’t Draw Them — You Identify Them)",
+        "content": "Unit 203 expects you to recognise common drawing types and what they are used for:\n\n- **As-fitted drawings**: created after work is complete to show what was actually installed.\n- **Wiring diagrams**: show terminal-to-terminal connections (often more practical detail).\n- **Circuit diagrams**: show how a circuit is connected/works logically (not the building layout).\n- **Schematics**: simplified logical representation of how parts connect or function.\n- **Block diagrams**: big-picture overview using boxes (e.g., supply → distribution → final circuits).\n- **Bar charts (programmes)**: a timeline plan showing task sequence and durations.\n\n✅ Quick test: If it’s a *timeline*, it’s a **bar chart programme**. If it uses *boxes*, it’s often a **block diagram**. If it shows *terminal-to-terminal detail*, it’s a **wiring diagram**."
+      }
+    },
+    {
+      "id": "203-2A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Drawing Types",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2A-C2-L1-A",
+            "questionText": "A drawing shows a timeline with tasks like '1st fix', '2nd fix', and 'Testing' as horizontal bars. What drawing type is this?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "bar chart",
+              "programme",
+              "program",
+              "bar chart programme",
+              "gantt chart"
+            ],
+            "hint": "It plans when work happens."
+          },
+          {
+            "id": "203-2A-C2-L1-B",
+            "questionText": "A drawing shows boxes labelled 'Main Switch', 'RCD', and 'MCBs' with lines between them to show overall structure. What drawing type is this?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "block diagram",
+              "block"
+            ],
+            "hint": "It uses blocks/boxes to show the big picture."
+          },
+          {
+            "id": "203-2A-C2-L1-C",
+            "questionText": "A drawing shows terminals and connections (e.g., L, N, E) from device to device and may include terminal numbers. What drawing type is this most likely?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "wiring diagram",
+              "wiring"
+            ],
+            "hint": "Think: terminal-to-terminal detail."
+          },
+          {
+            "id": "203-2A-C2-L2",
+            "questionText": "What type of drawing is produced at the end of a project to show the final, actual installation layout?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "as-fitted drawing",
+              "as fitted drawing",
+              "as-fitted",
+              "as fitted"
+            ],
+            "hint": "It records what was actually installed."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-diagram-2",
+      "type": "diagram",
+      "order": 6,
+      "content": {
+        "title": "Installation Plan Symbols (Use the Legend)",
+        "description": "A legend of common symbols used on electrical layout drawings. Symbol appearance can vary by drawing set — the legend is the authority.",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "legend-box",
+          "one-way-switch",
+          "two-way-switch",
+          "intermediate-switch",
+          "pull-cord-switch",
+          "switched-socket",
+          "unswitched-socket",
+          "fcu",
+          "switched-fcu",
+          "lighting-point-led",
+          "lighting-point-fluorescent",
+          "lighting-point-wall",
+          "cooker-control-unit",
+          "consumer-unit",
+          "integrated-meter",
+          "fuse",
+          "circuit-breaker"
+        ],
+        "placeholderText": "A legend/key that labels common plan symbols: 1-way switch, 2-way switch, intermediate switch, pull-cord switch, switched/unswitched socket outlets, FCU and switched FCU, lighting points (LED/fluorescent/wall), cooker control unit, consumer unit, integrated meter, fuse, circuit breaker."
+      }
+    },
+    {
+      "id": "203-2A-check-3",
+      "type": "practice",
+      "order": 6.5,
+      "content": {
+        "title": "Check Your Understanding: Symbols & Legend",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2A-C3-L1-A",
+            "questionText": "If you see a symbol on a plan that you don’t recognise, where should you look first to confirm what it means?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "legend",
+              "key",
+              "drawing legend",
+              "the legend",
+              "the key"
+            ],
+            "hint": "It explains symbols and abbreviations."
+          },
+          {
+            "id": "203-2A-C3-L1-B",
+            "questionText": "On an installation layout plan, which device symbol would you expect to see for a kitchen cooker connection point/control?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "cooker control unit",
+              "ccu",
+              "cooker switch"
+            ],
+            "hint": "It’s the dedicated cooker control point."
+          },
+          {
+            "id": "203-2A-C3-L1-C",
+            "questionText": "What symbol group covers socket outlets, and what important detail might the legend distinguish between two socket symbols?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "socket outlets; the legend may show switched vs unswitched or single vs twin",
+              "socket outlets; switched or unswitched",
+              "socket outlets; switched vs unswitched"
+            ],
+            "hint": "Think about whether the socket has a switch."
+          },
+          {
+            "id": "203-2A-C3-L2",
+            "questionText": "Why is it risky to memorise symbol shapes from one drawing set and apply them to every job?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Because symbols can vary by designer/CAD library, so you must use the legend for that drawing.",
+              "Symbols vary, so the legend is the authority.",
+              "Different drawing sets use different symbol styles; always check the legend."
+            ],
+            "hint": "Different drawings can use different symbol libraries."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Drawing Types",
+          "Reference Documents"
+        ],
+        "items": [
+          {
+            "text": "Wiring diagram",
+            "correctBucket": 0
+          },
+          {
+            "text": "Manufacturer's data",
+            "correctBucket": 1
+          },
+          {
+            "text": "Layout plan",
+            "correctBucket": 0
+          },
+          {
+            "text": "On-Site Guide",
+            "correctBucket": 1
+          },
+          {
+            "text": "As-fitted drawing",
+            "correctBucket": 0
+          },
+          {
+            "text": "Specification",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 6.5
+    },
+    {
+      "id": "203-2A-traps",
+      "type": "explanation",
+      "order": 6.8,
+      "content": {
+        "title": "Common Traps (Avoid These)",
+        "content": "- **Guessing symbols by shape**: plan symbols can vary. **Legend first.**\n- **Using the wrong source**: product wiring/limits = **manufacturer’s data**, not guesswork.\n- **Ignoring the spec**: the drawing might show *where*, but the **spec** says *what standard/type* must be fitted.\n- **Forgetting the client’s needs**: you can be technically correct but still install the wrong thing in the wrong place.\n- **Scale mistakes**: mixing mm and metres. Always write units and convert carefully."
+      }
+    },
+    {
+      "id": "203-2A-worked-example",
+      "type": "worked-example",
+      "order": 7,
+      "content": {
+        "title": "Worked Example: Converting Scale to Real Distance",
+        "given": "A drawing has a scale of 1:50. You measure 40 mm between two light points on the drawing.",
         "steps": [
           {
             "stepNumber": 1,
             "description": "Identify the scale factor.",
-            "formula": "1:50 means factor is 50",
+            "formula": "1:50 means multiply by 50",
             "calculation": null,
-            "result": "50"
+            "result": "Scale factor = 50"
           },
           {
             "stepNumber": 2,
-            "description": "Multiply the drawing measurement by the scale factor.",
-            "formula": "Measurement × Scale Factor",
-            "calculation": "40mm × 50",
-            "result": "2000mm"
+            "description": "Multiply the drawing measurement by the scale factor to get the real distance in millimetres.",
+            "formula": "Real distance (mm) = Drawing (mm) × Scale factor",
+            "calculation": "40 × 50",
+            "result": "2000 mm"
           },
           {
             "stepNumber": 3,
-            "description": "Convert the result from millimetres to metres.",
-            "formula": "mm / 1000",
-            "calculation": "2000 / 1000",
-            "result": "2.0 metres"
+            "description": "Convert millimetres to metres for practical use.",
+            "formula": "metres = mm ÷ 1000",
+            "calculation": "2000 ÷ 1000",
+            "result": "2.0 m"
           }
         ],
-        "notes": "Always double-check your unit conversion. 1000mm = 1m."
+        "notes": "Write units at every step. Most errors come from mixing mm and metres."
       }
     },
     {
       "id": "203-2A-guided",
       "type": "guided-practice",
-      "order": 6,
+      "order": 8,
       "content": {
-        "title": "Guided Practice: Extractor Fan Placement",
-        "problem": "A bathroom drawing is scaled at 1:50. The distance from the door to the extractor fan measures 26mm on the plan. What is the real distance?",
+        "title": "Guided Practice: Converting Scale to Real Distance",
+        "problem": "A bathroom drawing is scaled at 1:50. The distance from the door to the extractor fan measures 26 mm on the plan. What is the real distance?",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the scale factor you need to multiply the 26mm by?",
+            "prompt": "What is the scale factor you multiply the drawing measurement by?",
             "expectedAnswer": [
               "50"
             ],
-            "hint": "Look at the 1:50 ratio."
+            "hint": "Use the second number in 1:50."
           },
           {
             "stepNumber": 2,
-            "prompt": "What is 26mm multiplied by 50 in millimetres?",
+            "prompt": "Calculate the real distance in millimetres: 26 mm × 50 = ?",
             "expectedAnswer": [
               "1300",
-              "1300mm"
+              "1300mm",
+              "1300 mm"
             ],
-            "hint": "26 x 5 = 130, then add the zero."
+            "hint": "26 × 5 = 130, then add the zero."
           },
           {
             "stepNumber": 3,
-            "prompt": "Convert 1300mm into metres.",
+            "prompt": "Convert 1300 mm into metres (m).",
             "expectedAnswer": [
               "1.3",
               "1.3m",
-              "1.3 metres"
+              "1.3 m",
+              "1.3 metres",
+              "1.3 meters"
             ],
             "hint": "Divide by 1000."
           }
@@ -218,38 +514,55 @@
     {
       "id": "203-2A-practice",
       "type": "practice",
-      "order": 7,
+      "order": 9,
       "content": {
-        "title": "Your Turn: Technical Info & Scale",
+        "title": "Your Turn: Sources, Drawings, Symbols & Scale",
         "questions": [
           {
             "id": "203-2A-P1",
-            "questionText": "Which source is primarily used to choose the correct materials for a job?",
+            "questionText": "A client asks for a specific brand of extractor fan. Which source tells you the wiring method, rating, and IP requirements for that exact model?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Specification",
-              "The specification"
+              "manufacturer's data",
+              "manufacturer data",
+              "manufacturers data",
+              "instructions",
+              "datasheet"
             ],
-            "hint": "It specifies what to use."
+            "hint": "Go to the source that comes with the product."
           },
           {
             "id": "203-2A-P2",
-            "questionText": "You see a drawing that shows boxes for 'Main Switch', 'RCD', and 'MCBs' with lines connecting them logically. What type of drawing is this?",
+            "questionText": "Which drawing type is a timeline used for planning and sequencing work on site?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Block diagram",
-              "Block"
+              "bar chart",
+              "programme",
+              "bar chart programme",
+              "gantt chart"
             ],
-            "hint": "It uses boxes or blocks."
+            "hint": "Think: tasks laid out over time."
           },
           {
             "id": "203-2A-P3",
-            "questionText": "A drawing is scaled at 1:100. You measure 55mm on the drawing. What is the real distance in metres?",
+            "questionText": "Where would you look to confirm whether a socket symbol on a plan is switched or unswitched?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "legend",
+              "key",
+              "drawing legend",
+              "the legend"
+            ],
+            "hint": "The part of the drawing that explains symbols."
+          },
+          {
+            "id": "203-2A-P4",
+            "questionText": "A drawing is scaled at 1:100. You measure 55 mm on the drawing. What is the real distance in metres?",
             "answerType": "numeric",
             "expectedAnswer": [
               "5.5"
             ],
-            "hint": "55 x 100 = 5500mm. Now convert to metres."
+            "hint": "55 × 100 = 5500 mm → convert to metres."
           }
         ]
       }
@@ -265,22 +578,55 @@
         "questions": [
           {
             "id": "203-2A-INT-1",
-            "questionText": "A client wants a specific brand of cooker switch, but you are unsure if the terminals can accept the 10mm² cable required. Which two sources are most useful here, and why?",
+            "questionText": "A client wants a specific brand of cooker control unit, but you are unsure whether its terminals can accept the cable size required. Which two sources are most useful here, and why?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
-            "expectedAnswer": "The Specification (to see what the client wants) and Manufacturer’s Data (to check the terminal capacity of that specific switch).",
-            "hint": "One source defines the product, the other gives its technical limits."
+            "expectedAnswer": [
+              "Specification (what is required) and Manufacturer's data (terminal limits/instructions).",
+              "The specification and the manufacturer's data because the spec says what to fit and the manufacturer's data confirms cable/terminal limits.",
+              "Client's needs/specification plus manufacturer's data to confirm it can be installed correctly."
+            ],
+            "hint": "One source defines what must be fitted; the other confirms limits for that exact product."
           },
           {
             "id": "203-2A-INT-2",
-            "questionText": "Explain why an electrician must use drawings, specifications, BS 7671, and manufacturer data together on a single project. Give a brief example of how they overlap. (3-4 sentences)",
+            "questionText": "Explain why an electrician must use drawings, specifications, BS 7671/On-Site Guide, and manufacturer data together on a single project. Give one brief example of how they overlap. (3–4 sentences)",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
-            "expectedAnswer": "An electrician uses all these sources to ensure the job is safe, legal, and meets the client's needs. For example, BS 7671 provides safety rules, the specification defines the quality of materials, the drawing shows where to put them, and manufacturer data ensures they are connected correctly. Failing to use one could lead to an installation that is either unsafe or does not function as intended.",
-            "hint": "Think about safety, location, material choice, and correct connection."
+            "expectedAnswer": [
+              "Drawings show where things go, specifications say what standard/type to fit, BS 7671/OSG sets installation requirements, and manufacturer data gives product-specific instructions. For example, a drawing shows the extractor fan location, the spec defines the fan type/standard, BS 7671/OSG guides the circuit and protection, and the manufacturer data tells you how to wire it and its rating/IP limits.",
+              "You need all sources to make the job safe, compliant, and correct. Drawings = location, spec = what to fit, BS 7671/OSG = installation requirements, manufacturer data = product wiring/limits. Example: a cooker point location comes from the plan, the switch type from the spec, cable/protection from BS 7671/OSG, and terminal limits from the manufacturer's data."
+            ],
+            "hint": "Cover: location, what to fit, wiring requirements, and product-specific limits."
           }
         ]
       }
+    },
+    {
+      "id": "203-2A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "You need to find the specific torque for a terminal.",
+        "options": [
+          {
+            "text": "Check the manufacturer's data",
+            "isError": false
+          },
+          {
+            "text": "Guess the tightness based on experience",
+            "isError": true
+          },
+          {
+            "text": "Look at the equipment instructions",
+            "isError": false
+          }
+        ],
+        "explanation": "Never guess ratings or torque; always use manufacturer's data."
+      },
+      "order": 9.5
     },
     {
       "id": "203-2A-spaced-review",
@@ -291,37 +637,85 @@
         "questions": [
           {
             "id": "203-2A-SR-1",
-            "questionText": "Convert 1500 mm to metres.",
-            "expectedAnswer": "1.5 m",
-            "hint": "Divide the value by 1000."
+            "questionText": "Convert 1500 mm to metres (m).",
+            "expectedAnswer": [
+              "1.5",
+              "1.5m",
+              "1.5 m"
+            ],
+            "hint": "Divide by 1000."
           },
           {
             "id": "203-2A-SR-2",
             "questionText": "At a scale of 1:50, what is 10 mm on the drawing in real-world millimetres?",
-            "expectedAnswer": "500 mm",
-            "hint": "Multiply the drawing measurement by the scale factor."
+            "expectedAnswer": [
+              "500",
+              "500mm",
+              "500 mm"
+            ],
+            "hint": "Multiply by 50."
           },
           {
             "id": "203-2A-SR-3",
-            "questionText": "What is the primary purpose of a project specification?",
-            "expectedAnswer": "To describe the materials, equipment, and standards required for the work.",
-            "hint": "It tells you 'what' to use."
+            "questionText": "What is the purpose of a drawing legend (key)?",
+            "expectedAnswer": [
+              "It explains what symbols and abbreviations mean.",
+              "To explain symbols on the drawing.",
+              "To show what the symbols mean."
+            ],
+            "hint": "It tells you what the symbols mean."
           },
           {
             "id": "203-2A-SR-4",
-            "questionText": "What is the primary purpose of manufacturer’s data?",
-            "expectedAnswer": "To provide specific instructions on how to install and connect a particular piece of equipment safely.",
-            "hint": "It tells you 'how' to install a specific product."
+            "questionText": "Which source is best for product-specific wiring and limits: BS 7671 or manufacturer's data?",
+            "expectedAnswer": [
+              "manufacturer's data",
+              "manufacturer data",
+              "manufacturers data"
+            ],
+            "hint": "Think: the source that comes from the maker of the product."
           }
         ],
-        "notes": "Review of basic unit conversion and technical document purposes."
+        "notes": "Review of scale conversion, units, and core habits: legend-first and correct source selection."
       }
+    },
+    {
+      "id": "203-2A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What defines the client's preferences?",
+            "answer": "Client's Needs"
+          },
+          {
+            "question": "Simplified guide for common installations?",
+            "answer": "On-Site Guide"
+          },
+          {
+            "question": "Shows terminal-to-terminal connections?",
+            "answer": "Wiring diagram"
+          },
+          {
+            "question": "Ratio used to calculate real distances?",
+            "answer": "Scale"
+          },
+          {
+            "question": "Source for equipment torque ratings?",
+            "answer": "Manufacturer's Data"
+          }
+        ]
+      },
+      "order": 12.5
     }
   ],
   "metadata": {
     "created": "2026-02-02",
     "updated": "2026-02-02",
-    "version": "1.0",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team"
   }
 }

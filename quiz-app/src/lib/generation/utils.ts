@@ -5,25 +5,25 @@
 import { SECTIONS } from './constants';
 
 /**
- * Infer layout based on section and topic
+ * Infer layout based on section and topic (expanded for all diagram types)
  */
 export function inferLayout(section: string, topic: string): 'split-vis' | 'linear-flow' {
-  // Linear-flow indicators
+  // Linear-flow indicators (text-heavy content)
   const linearIndicators = [
-    'Health & Safety',
     'Theory',
     'Regulations',
-    'Procedures',
-    'Calculations',
-    'Formulas',
+    'Legislation',
     'Definitions',
     'Units',
     'Measurements',
     'PPE',
     'Risk Assessment',
+    'Documentation',
+    'Compliance',
+    'Responsibilities',
   ];
 
-  // Split-vis indicators
+  // Split-vis indicators (visual/diagram-worthy content)
   const splitVisIndicators = [
     'Circuit',
     'Series',
@@ -32,20 +32,30 @@ export function inferLayout(section: string, topic: string): 'split-vis' | 'line
     'Layout',
     'Topology',
     'Wiring',
+    'Drawing',
+    'Symbol',
+    'Plan',
+    'Schematic',
+    'Testing Setup',
+    'Installation',
+    'Component',
+    'Waveform',
+    'Graph',
   ];
 
   const sectionLower = section.toLowerCase();
   const topicLower = topic.toLowerCase();
 
-  // Check for split-vis indicators
+  // Check for split-vis indicators (diagrams help understanding)
   if (
     sectionLower.includes('science') ||
+    sectionLower.includes('installation') ||
     splitVisIndicators.some(indicator => topicLower.includes(indicator.toLowerCase()))
   ) {
     return 'split-vis';
   }
 
-  // Check for linear-flow indicators
+  // Check for linear-flow indicators (text-based content)
   if (
     linearIndicators.some(
       indicator =>
@@ -56,8 +66,13 @@ export function inferLayout(section: string, topic: string): 'split-vis' | 'line
     return 'linear-flow';
   }
 
-  // Default to linear-flow for safety/theory content
-  return 'linear-flow';
+  // Default to split-vis for practical/technical content
+  // linear-flow for safety/theory
+  if (sectionLower.includes('health') || sectionLower.includes('safety')) {
+    return 'linear-flow';
+  }
+  
+  return 'split-vis';
 }
 
 /**
