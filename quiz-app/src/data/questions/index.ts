@@ -30,11 +30,13 @@ import { nonStatutoryRegulationsGuidanceQuestions } from './nonStatutoryRegulati
 import { usingBs7671OnAJobQuestions } from './usingBs7671OnAJobQuestions';
 import { sourcesDrawingsSymbolsScaleQuestions } from './sourcesDrawingsSymbolsScaleQuestions';
 import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
+import { recognisingElectricalSymbolsOnDrawingsQuestions } from './recognisingElectricalSymbolsOnDrawingsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...recognisingElectricalSymbolsOnDrawingsQuestions,
   ...readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions,
   ...sourcesDrawingsSymbolsScaleQuestions,
   ...usingBs7671OnAJobQuestions,
@@ -92,6 +94,7 @@ export { nonStatutoryRegulationsGuidanceQuestions } from './nonStatutoryRegulati
 export { usingBs7671OnAJobQuestions } from './usingBs7671OnAJobQuestions';
 export { sourcesDrawingsSymbolsScaleQuestions } from './sourcesDrawingsSymbolsScaleQuestions';
 export { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
+export { recognisingElectricalSymbolsOnDrawingsQuestions } from './recognisingElectricalSymbolsOnDrawingsQuestions';
 
 /**
  * Filter questions by tags

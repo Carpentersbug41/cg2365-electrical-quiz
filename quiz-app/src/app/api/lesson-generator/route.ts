@@ -107,10 +107,11 @@ export async function POST(request: NextRequest) {
     debugLog('STEP_1_COMPLETE', { success: lessonResult.success, error: lessonResult.error });
     
     if (!lessonResult.success) {
-      debugLog('STEP_1_FAILED', { error: lessonResult.error });
+      debugLog('STEP_1_FAILED', { error: lessonResult.error, debugInfo: lessonResult.debugInfo });
       return NextResponse.json({
         success: false,
         error: lessonResult.error,
+        debugInfo: lessonResult.debugInfo, // Include debug info for lesson parse errors
       }, { status: 500 });
     }
 

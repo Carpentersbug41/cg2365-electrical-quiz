@@ -121,7 +121,7 @@ Return the corrected lesson JSON now:`;
   /**
    * Generate complete lesson JSON file with two-pass validation and repair
    */
-  async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[] }> {
+  async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[]; debugInfo?: DebugInfo }> {
     try {
       const lessonId = generateLessonId(request.unit, request.lessonId);
       const { systemPrompt, userPrompt } = this.lessonPromptBuilder.buildPrompt(request);
@@ -135,13 +135,31 @@ Return the corrected lesson JSON now:`;
         GENERATION_LIMITS.MAX_RETRIES
       );
 
-      const parsed = safeJsonParse<Lesson>(content);
+      // Preprocess to valid JSON (handles trailing commas, comments, etc.)
+      const cleanedContent = preprocessToValidJson(content);
+
+      const parsed = safeJsonParse<Lesson>(cleanedContent);
       if (!parsed.success || !parsed.data) {
         debugLog('LESSON_GEN_PASS1_PARSE_FAILED', { error: parsed.error });
         return {
           success: false,
           content: {} as Lesson,
           error: `Failed to parse lesson JSON: ${parsed.error}`,
+          debugInfo: {
+            rawResponse: cleanedContent,
+            parseError: parsed.error || 'Unknown parse error',
+            errorPosition: {
+              line: parsed.errorDetails?.line,
+              column: parsed.errorDetails?.column,
+              position: parsed.errorDetails?.position,
+            },
+            contentPreview: generateContextPreview(
+              parsed.rawInput || cleanedContent,
+              parsed.errorDetails?.position
+            ),
+            attemptedOperation: 'Parsing lesson JSON (PASS 1 - initial generation)',
+            timestamp: new Date().toISOString(),
+          }
         };
       }
 
@@ -176,14 +194,32 @@ Return the corrected lesson JSON now:`;
         1 // Only one retry for repair
       );
 
-      const repairedParsed = safeJsonParse<Lesson>(repairedContent);
+      // Preprocess repaired content
+      const cleanedRepairedContent = preprocessToValidJson(repairedContent);
+      
+      const repairedParsed = safeJsonParse<Lesson>(cleanedRepairedContent);
       if (!repairedParsed.success || !repairedParsed.data) {
         debugLog('LESSON_GEN_PASS2_PARSE_FAILED', { error: repairedParsed.error });
         // Return original if repair failed to parse
         return {
           success: true,
           content: parsed.data,
-          warnings: ['Repair attempt failed, using original with validation issues: ' + validation.errors.join('; ')]
+          warnings: ['Repair attempt failed, using original with validation issues: ' + validation.errors.join('; ')],
+          debugInfo: {
+            rawResponse: cleanedRepairedContent,
+            parseError: repairedParsed.error || 'Unknown parse error',
+            errorPosition: {
+              line: repairedParsed.errorDetails?.line,
+              column: repairedParsed.errorDetails?.column,
+              position: repairedParsed.errorDetails?.position,
+            },
+            contentPreview: generateContextPreview(
+              repairedParsed.rawInput || cleanedRepairedContent,
+              repairedParsed.errorDetails?.position
+            ),
+            attemptedOperation: 'Parsing repaired lesson JSON (PASS 2 - after validation repair)',
+            timestamp: new Date().toISOString(),
+          }
         };
       }
 

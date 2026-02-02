@@ -238,6 +238,16 @@ export function preprocessToValidJson(content: string): string {
   // Ensure no trailing comma at end of objects
   processed = processed.replace(/,(\s*})/g, '$1');
   
+  // Fix bracket/parenthesis mismatches in arrays
+  // Pattern: closing parenthesis followed by closing bracket
+  // Example: "text" ) ] -> "text" ]
+  processed = processed.replace(/\)\s*(\])/g, '$1');
+  
+  // Fix bracket/parenthesis mismatches in objects
+  // Pattern: closing parenthesis followed by closing brace
+  // Example: "text" ) } -> "text" }
+  processed = processed.replace(/\)\s*(\})/g, '$1');
+  
   return processed;
 }
 

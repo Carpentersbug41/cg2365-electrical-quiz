@@ -64,10 +64,14 @@ export class LessonPromptBuilder {
 OBJECTIVE: Generate a complete, production-ready lesson JSON file following the exact structure and quality standards below.
 
 CRITICAL OUTPUT REQUIREMENT:
-- Return ONLY valid JSON
+- Return ONLY valid JSON (RFC 8259 compliant)
 - No markdown code blocks (\`\`\`json)
 - No explanations or comments outside the JSON
 - The response must be parseable by JSON.parse()
+- ALL property names MUST be in double quotes (e.g., "id": not id:)
+- NO trailing commas before closing braces } or brackets ]
+- NO JavaScript comments (// or /* */) anywhere in the JSON
+- Use proper JSON syntax throughout (not JavaScript/TypeScript object notation)
 
 DEFINITION OF DONE (must pass self-audit before output):
 - Every learning outcome is explicitly addressed in the explanation
@@ -87,6 +91,20 @@ STAGING RULE (MANDATORY - CRITICAL FOR LEARNING):
 - Questions cannot introduce concepts - explanations introduce concepts, questions assess them.
 - NEVER ask about a symbol, term, or procedure that hasn't been explicitly explained earlier in this lesson.
 
+BLOCK SEQUENCING RULE (MANDATORY):
+1. Vocab can appear early (order: 2)
+2. Diagram can appear early (order: 3) - but is supplementary only, NOT teaching
+3. Explanations MUST come before any question-like blocks:
+   - practice blocks (any mode: conceptual, integrative, or regular)
+   - understanding checks
+   - worked example prompts that ask the user anything
+   - guided practice
+   - microbreaks that test knowledge (matching/sorting/spot-error/quick-win)
+4. Allowed "pre-teach" blocks (can appear before explanations):
+   - outcomes (order: 1)
+   - vocab (order: 2) - definitions only
+   - diagram (order: 3) - visual placeholder only
+
 COVERAGE CHECK (INTERNAL VERIFICATION - REQUIRED BEFORE OUTPUT):
 Before finalizing the lesson JSON, you MUST verify for every question:
 1. Its expectedAnswer can be found (verbatim or paraphrased) in an earlier explanation block in THIS lesson
@@ -97,6 +115,19 @@ If verification fails for any question:
 - OPTION A: Add or extend an explanation block that explicitly teaches the missing concept (with lower order number)
 - OPTION B: Remove or rewrite the question to assess only what has been taught
 - NEVER output questions that assess untaught concepts
+
+ANSWER COVERAGE RULE (MANDATORY):
+For every question in the lesson:
+- The expectedAnswer MUST be supported by a sentence in the explanation text that came before it
+- If the explanation does not contain the information, you MUST:
+  - OPTION A: Insert or expand the explanation block to teach the concept explicitly
+  - OPTION B: Remove or rewrite the question
+- NEVER ask about abbreviations/symbols/terms unless they have been:
+  - Defined in the vocab block, AND
+  - Explained in context in an explanation block
+- Example:
+  ✗ BAD: Vocab defines "AFFL", question asks about AFFL, but NO explanation teaches what AFFL means
+  ✓ GOOD: Vocab defines "AFFL", explanation teaches "AFFL (Above Finished Floor Level) specifies mounting height", question asks about AFFL
 
 GROUNDING REQUIREMENT:
 - Understanding check questions MUST reference facts from the immediately preceding explanation section
@@ -112,24 +143,43 @@ LESSON STRUCTURE:
   "layout": "${layout}",
   "unit": "Unit [${lessonId.split('-')[0]}]",
   "topic": "[Main Topic]",
+  // CRITICAL: learningOutcomes at TOP-LEVEL is a SIMPLE STRING ARRAY
+  // (NOT objects with text/bloomLevel - that format is ONLY for the outcomes BLOCK below!)
   "learningOutcomes": [
-    "[Remember level: Define, List, State, Identify...]",
-    "[Understand level: Explain, Describe, Summarize...]",
-    "[Apply level: Calculate, Solve, Demonstrate...]"
+    "[Remember level: Define, List, State, Identify...]",  // Plain strings!
+    "[Understand level: Explain, Describe, Summarize...]",  // Plain strings!
+    "[Apply level: Calculate, Solve, Demonstrate...]"  // Plain strings!
   ],
   "prerequisites": ["[lesson-id]"],
   "blocks": [
     // BLOCK ORDER CONTRACT (NON-NEGOTIABLE):
-    // 1. outcomes (order: 1) - ALWAYS FIRST
-    // 2. vocab (order: 2) - Define terms before use
-    // 3. diagram (order: 3) - IF split-vis layout
-    // 4. explanation(s) (order: 4, 5, 6... as needed) - TEACH FIRST
-    // 4.5. understanding check (order: 4.5, 5.5, 6.5... after EACH explanation) - ONLY assess what was just taught
-    // 7. worked example (order: 7) - ONLY if calculation/procedure task type
-    // 8. guided practice (order: 8) - ONLY if worked example exists
-    // 9. practice (order: 9) - Independent application
-    // 9.5. integrative (order: 9.5) - Synthesis across entire lesson
-    // 10. spaced review (order: 10) - ALWAYS LAST, uses prerequisite knowledge only
+    // Every block MUST have a UNIQUE numeric order value. Use this spacing:
+    // - outcomes: 1
+    // - vocab: 2
+    // - diagram: 3 (if split-vis layout)
+    // - explanation-1: 4
+    //   - optional microbreak after: 4.2
+    //   - understanding check-1: 4.5
+    //   - optional microbreak after: 4.7
+    // - explanation-2: 5 (if multi-section topic)
+    //   - optional microbreak after: 5.2
+    //   - understanding check-2: 5.5
+    //   - optional microbreak after: 5.7
+    // - worked example: 6 (only if calculation/procedure task)
+    //   - optional microbreak after: 6.2
+    // - guided practice: 7 (only if worked example exists)
+    //   - optional microbreak after: 7.2
+    // - practice: 8
+    //   - optional microbreak after: 8.2
+    // - integrative: 9
+    // - spaced review: 10 (ALWAYS LAST)
+    //
+    // CRITICAL ORDER RULES:
+    // 1. Never reuse the same order value for two blocks
+    // 2. Microbreaks use .2 or .7 decimal positions between major blocks
+    // 3. Understanding checks use .5 decimal positions
+    // 4. Orders must be strictly increasing (monotonic)
+    // 5. If unsure, use integers and skip numbers (4, 6, 8, 10, 12, 14)
     //
     // CRITICAL: NO questions (checks/practice) before ALL relevant explanation blocks are complete
     // CRITICAL: Understanding checks must appear IMMEDIATELY AFTER the explanation they assess
@@ -181,22 +231,28 @@ BLOCK TEMPLATES:
     "description": "[What the diagram shows]",
     "videoUrl": "[YouTube URL if provided, otherwise empty string]",
     "imageUrl": "[Image URL if provided, otherwise omit this field]",
-    "diagramType": "series|parallel|circuit|plan|wiring|schematic|block|procedure|table|graph|other",
+    "diagramType": "series|parallel|circuit|plan|wiring|schematic|block|procedure|table|graph|concept|other",
     "elementIds": ["element1", "element2"],
     "placeholderText": "[Text description for accessibility]"
   }
 }
 
-DIAGRAM TYPE SELECTION:
-- series/parallel/circuit: for electrical circuits and topology
-- plan: for installation layouts and floor plans
-- wiring: for wiring diagrams and cable routing
-- schematic: for technical drawings and schematics
-- block: for block diagrams and system overviews
-- procedure: for process flows and step sequences
-- table: for data tables and comparison charts
-- graph: for waveforms, graphs, and data visualization
-- other: for any other visual content
+DIAGRAM TYPE SELECTION GUIDE:
+- series/parallel/circuit: electrical circuits and topology
+- plan: installation layouts and floor plans (use for building layouts)
+- wiring: wiring diagrams and cable routing
+- schematic: technical drawings and circuit schematics (use for logical circuit diagrams)
+- block: block diagrams and system overviews
+- procedure: process flows and step sequences
+- table: data tables and comparison charts
+- graph: waveforms, graphs, and data visualization
+- concept: conceptual diagrams showing relationships/hierarchies
+- other: any other visual content not fitting above categories
+
+CLARIFICATION:
+- "plan" = physical layout (where things are located in space)
+- "schematic" = logical diagram (how things connect electrically)
+- "concept" = abstract relationships (hierarchies, taxonomies, decision trees)
 
 DIAGRAM RULE (SHOW vs TEACH):
 - Diagram blocks may "show" concepts visually, but explanation blocks must "teach" them textually
@@ -247,6 +303,19 @@ EXAMPLE VALID SEQUENCES:
 EXAMPLE INVALID SEQUENCES:
 ✗ check(4.5) → explanation(5) [assessing before teaching]
 ✗ explanation(4) → practice(7) → check(7.5) [checking too late]
+
+QUESTION ID PATTERN RULE (MANDATORY):
+All question IDs must follow these exact patterns:
+- Understanding check questions: ${lessonId}-C{check-number}-L{level}-{letter}
+  Examples: ${lessonId}-C1-L1-A, ${lessonId}-C1-L1-B, ${lessonId}-C1-L1-C, ${lessonId}-C1-L2
+  Pattern: C1 = Check 1, C2 = Check 2, etc.
+           L1 = Recall questions (letters A, B, C)
+           L2 = Connection question (no letter, just L2)
+- Integrative questions: ${lessonId}-INT-1, ${lessonId}-INT-2
+- Practice questions: ${lessonId}-P1, ${lessonId}-P2, ${lessonId}-P3, etc.
+- Spaced review questions: ${lessonId}-SR-1, ${lessonId}-SR-2, ${lessonId}-SR-3, ${lessonId}-SR-4
+- Validation: If question is in Check-2, its ID MUST begin with "${lessonId}-C2-"
+- NEVER use patterns like: ${lessonId}-C1-L1-C2 (invalid - mixing formats)
 
 {
   "id": "${lessonId}-check-1",
@@ -419,6 +488,21 @@ EXAMPLE INVALID SEQUENCES:
   }
 }
 
+MICROBREAK PLACEMENT RULE (CRITICAL):
+- Microbreaks are engagement activities that may test knowledge
+- Microbreaks can ONLY appear:
+  - AFTER an explanation block that teaches the concepts being tested, OR
+  - AFTER a practice/check block (as a palate cleanser)
+- Microbreaks must NOT introduce new facts or test concepts not yet taught
+- Microbreak placement examples:
+  ✓ GOOD: explanation(4) → microbreak(4.2) → check(4.5)
+  ✓ GOOD: check(4.5) → microbreak(4.7) → explanation(5)
+  ✗ BAD: vocab(2) → microbreak(2.5) → explanation(4) [tests before teaching]
+- If microbreak uses matching/sorting/questions, those terms MUST exist in:
+  - vocab definitions (for simple term recall), AND
+  - explanation content (for concept understanding)
+- Order placement: microbreaks should use decimal orders between major blocks (use .2 or .7)
+
 CRITICAL QUALITY RULES:
 
 1. **IDs**: All IDs must be unique and follow pattern: ${lessonId}-[blockType]
@@ -502,16 +586,30 @@ If explanation says: "BS 7671 is the UK wiring regulations standard"
 8. **Prerequisites**: Use actual lesson IDs that would exist
 9. **Terminology**: Keep consistent throughout lesson
 10. **FIELD NAMES**: All spaced-review questions MUST use "questionText" field (NEVER "attText", "questiontext", "question_text", or any other variant!)
-11. **MEDIA URLS**: If YouTube URL or Image URL is provided, MUST include them in the diagram block's "videoUrl" and "imageUrl" fields respectively
-12. **Clarity**: Write for Level 2 electrician students (practical, not overly academic)
+11. **LEARNING OUTCOMES FORMAT**: The top-level "learningOutcomes" field MUST be an array of plain strings (NOT objects). Only the outcomes BLOCK content uses objects with "text" and "bloomLevel" fields. These are two different structures - do not confuse them!
+12. **MEDIA URLS**: If YouTube URL or Image URL is provided, MUST include them in the diagram block's "videoUrl" and "imageUrl" fields respectively
+13. **Clarity**: Write for Level 2 electrician students (practical, not overly academic)
 
-ANSWER MARKING POLICY:
-- For short-text answers: ALWAYS use arrays with variations to allow acceptable alternatives
+ANSWER MARKING POLICY (MANDATORY):
+- expectedAnswer MUST ALWAYS be an array of strings for ALL question types:
+  ✓ CORRECT: expectedAnswer: ["5.5"]
+  ✓ CORRECT: expectedAnswer: ["Residual Current Device", "RCD"]
+  ✗ INCORRECT: expectedAnswer: "5.5" (single string - NOT allowed)
+  ✗ INCORRECT: expectedAnswer: 5.5 (number - NOT allowed)
+  
+- For short-text answers: Use arrays with 2-6 variations
   Example: expectedAnswer: ["Residual Current Device", "RCD", "residual current device"]
-- For numeric answers: use answerType "numeric" and string array WITHOUT units
+  
+- For numeric answers: Use answerType "numeric" and string array WITHOUT units
   Example: expectedAnswer: ["5.5", "5.50"], units in hint only
-- Single string ONLY when exactly one canonical wording exists (rare)
+  
+- Single-item arrays when only one canonical wording exists:
+  Example: expectedAnswer: ["BS 7671"]
+  
 - Include common synonyms, acronym expansions, and alternative phrasings
+  
+- CRITICAL: NEVER use single string values anywhere in the lesson
+- CRITICAL: Spaced review questions MUST also use array format
 
 LESSON GENERATION ALGORITHM (FOLLOW THIS SEQUENCE):
 To ensure proper staging and coverage, generate the lesson in this order:
@@ -556,17 +654,46 @@ This sequence prevents questions appearing before content is taught.
 APPROVED TAGS: ${APPROVED_TAGS.slice(0, 20).join(', ')} (and others)
 APPROVED MISCONCEPTION CODES: ${APPROVED_MISCONCEPTION_CODES.slice(0, 15).join(', ')} (and others)
 
-QUALITY GATE (verify before output):
-✓ All learning outcomes explicitly taught in explanation
-✓ Explanation follows 6-part outline structure (What/Why/Key rules/How to use/Common mistakes/Recap)
-✓ Understanding check: exactly 3 recall + 1 connection questions
-✓ Integrative block: exactly 2 questions (1 connection + 1 synthesis)
-✓ Worked example → guided practice alignment (if applicable)
-✓ expectedAnswer arrays for short-text questions (not single strings)
-✓ Block orders are correct and monotonic (1,2,3,4,4.5,5,6,7,9.5,10)
-✓ No safety violations or legal inventions
+SELF-AUDIT CHECKLIST (VERIFY BEFORE OUTPUT):
+Before outputting the lesson JSON, you MUST verify:
 
-If any item fails: FIX IT before responding.
+STAGING & ORDERING:
+✓ No question-like blocks appear before the first relevant explanation
+✓ Every block has a unique order value (no duplicates)
+✓ Orders are strictly increasing (monotonic: 1, 2, 3, 4, 4.5, 5...)
+✓ Microbreaks appear AFTER explanations (never before first teaching)
+✓ Understanding checks appear immediately after explanations (use .5 orders)
+
+CONTENT COVERAGE:
+✓ Every expectedAnswer can be found (verbatim or paraphrased) in explanation text
+✓ All learning outcomes explicitly taught in explanation blocks
+✓ Explanation follows 6-part structure (What/Why/Key rules/How/Mistakes/Recap)
+
+QUESTION QUALITY:
+✓ Understanding checks: exactly 3 recall + 1 connection questions
+✓ Integrative block: exactly 2 questions (1 connection + 1 synthesis)
+✓ All question IDs follow required patterns (C1-L1-A, INT-1, P1, SR-1)
+✓ Connection questions explicitly reference facts from Q1, Q2, Q3
+
+ANSWER FORMAT:
+✓ All expectedAnswer fields use arrays (NEVER single strings)
+✓ Numeric answers are string arrays without units
+✓ Short-text answers include 2-6 acceptable variations
+
+SCHEMA COMPLIANCE:
+✓ diagramType uses approved enum values
+✓ Worked example → guided practice alignment (if applicable)
+✓ All spaced review questions use "questionText" field (not "attText")
+✓ Top-level learningOutcomes are plain strings (not objects)
+✓ Block orders match required sequence
+
+SAFETY & ACCURACY:
+✓ No invented legal claims or unsafe instructions
+✓ Formulas are accurate (V=IR, P=VI, series adds, parallel inverts)
+✓ Terminology consistent throughout lesson
+
+If ANY check fails: FIX IT before responding.
+CRITICAL: Do not output JSON until ALL checks pass.
 
 OUTPUT FORMAT:
 - Pure JSON only

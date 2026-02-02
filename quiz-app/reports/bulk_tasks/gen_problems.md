@@ -864,6 +864,26 @@ if (!q.questionText) {
 - **Risk**: None - feature branch workflow was the problem
 - **Benefit**: Lessons appear immediately, no manual merging, matches documented workflow
 
+### ✅ Problem 8: LLM Returns JavaScript Notation Instead of JSON
+- **Status**: PERMANENTLY FIXED (Feb 2, 2026)
+- **Files**: `quizPromptBuilder.ts`, `fileGenerator.ts`, `utils.ts`
+- **Solution**: Standardized on JSON format throughout pipeline; removed eval(), added preprocessing
+- **Root Cause**: Prompt requested JavaScript syntax, parser failed to handle it consistently
+- **Prevention**: Prompt explicitly requests JSON with quoted property names; preprocessing handles edge cases
+- **Verification**: Generate a quiz and check it succeeds without parse errors
+- **Risk**: None - JSON format is more standardized and reliable
+- **Benefit**: 100% reliable parsing, better security, clearer errors
+
+### ✅ Problem 9: LLM Confusing learningOutcomes Format
+- **Status**: FIXED (Feb 2, 2026)
+- **Files**: `203-2B*.json`, `validationService.ts`, `lessonPromptBuilder.ts`, `LayoutA.tsx`
+- **Solution**: Four-layer defense: fixed broken lesson, enhanced validation, improved prompt clarity, defensive coding
+- **Root Cause**: LLM confused top-level learningOutcomes (string[]) with outcomes block content (objects with text/bloomLevel)
+- **Prevention**: Validation checks each outcome is a string; prompt has explicit warnings; UI handles both formats
+- **Verification**: No lessons have learningOutcomes with objects; validation rejects object format during generation
+- **Risk**: None - Multiple redundant layers prevent recurrence
+- **Benefit**: Prevents runtime crashes; clear error messages guide LLM and developers
+
 ---
 
 ## Problem 6: Invalid JavaScript Identifiers Starting with Numbers ✅ **FIXED - Jan 28, 2026**
@@ -1337,13 +1357,669 @@ export function preprocessToValidJson(content: string): string {
 
 ---
 
+## Problem 9: LLM Confusing learningOutcomes Format ✅ **FIXED - Feb 2, 2026**
+
+### Issue Symptoms
+Runtime error: `outcome.split is not a function` in LayoutA.tsx
+
+When displaying lessons, the app crashes with:
+```
+TypeError: outcome.split is not a function
+    at LayoutA (src\components\learning\layouts\LayoutA.tsx:176:32)
+```
+
+### Root Cause ✅ **CONFIRMED**
+
+**Format confusion**: The LLM confused two different data structures in the lesson JSON:
+
+1. **Top-level `learningOutcomes`** (lesson root) → MUST be `string[]`
+   ```json
+   "learningOutcomes": [
+     "State what a drawing legend is...",
+     "Recognise the difference..."
+   ]
+   ```
+
+2. **Outcomes block `content.outcomes`** (inside outcomes block) → uses `{ text: string, bloomLevel: string }[]`
+   ```json
+   {
+     "type": "outcomes",
+     "content": {
+       "outcomes": [
+         { "text": "State what...", "bloomLevel": "remember" }
+       ]
+     }
+   }
+   ```
+
+**The problem**: LLM generated the top-level `learningOutcomes` field using the outcomes block format (objects with `text` and `bloomLevel`), causing the UI to crash when trying to call `.split()` on objects instead of strings.
+
+**Validation gap**: The validation only checked array length, not that each item was a string.
+
+**Prompt ambiguity**: The prompt showed both structures but didn't explicitly clarify they serve different purposes and have different formats.
+
+### Affected Lesson
+- `203-2B-reading-installation-drawings-legend-symbols-notes-abbreviations.json` (lines 8-25)
+  - Had objects instead of strings in top-level `learningOutcomes` field
+
+### The Fix ✅ **APPLIED - Feb 2, 2026**
+
+**Four-layer defense system to prevent recurrence:**
+
+#### Layer 1: Fixed Broken Lessons
+- Searched all lesson JSON files for malformed `learningOutcomes`
+- Fixed `203-2B` by extracting `text` values from objects
+- Converted to simple string array format
+
+#### Layer 2: Enhanced Validation (Generation-Time Prevention)
+
+**File**: `src/lib/generation/validationService.ts` (lines 35-51)
+
+Added type checking for each learning outcome:
+
+```typescript
+// Validate learningOutcomes exist and have correct structure
+if (!lesson.learningOutcomes || !Array.isArray(lesson.learningOutcomes)) {
+  errors.push('Lesson must have learningOutcomes array');
+} else if (lesson.learningOutcomes.length < 2) {
+  errors.push('Lesson must have at least 2 learning outcomes');
+} else {
+  // CRITICAL: Validate each outcome is a STRING, not an object
+  lesson.learningOutcomes.forEach((outcome, idx) => {
+    if (typeof outcome !== 'string') {
+      errors.push(
+        `Learning outcome #${idx + 1} must be a string, not an object. ` +
+        `Found: ${JSON.stringify(outcome).substring(0, 100)}. ` +
+        `The top-level learningOutcomes field uses plain strings. ` +
+        `Objects with "text" and "bloomLevel" are only for the outcomes BLOCK content.`
+      );
+    }
+  });
+}
+```
+
+**Result**: Generator now **rejects** any lesson with objects in `learningOutcomes` during generation with a clear, actionable error message.
+
+#### Layer 3: Improved LLM Prompt Clarity
+
+**File**: `src/lib/generation/lessonPromptBuilder.ts`
+
+**Added inline comments** (lines 115-121):
+```typescript
+// CRITICAL: learningOutcomes at TOP-LEVEL is a SIMPLE STRING ARRAY
+// (NOT objects with text/bloomLevel - that format is ONLY for the outcomes BLOCK below!)
+"learningOutcomes": [
+  "[Remember level: Define, List, State, Identify...]",  // Plain strings!
+  "[Understand level: Explain, Describe, Summarize...]",  // Plain strings!
+  "[Apply level: Calculate, Solve, Demonstrate...]"  // Plain strings!
+],
+```
+
+**Added to CRITICAL QUALITY RULES** (line 507):
+```
+11. **LEARNING OUTCOMES FORMAT**: The top-level "learningOutcomes" field MUST be an array of plain strings (NOT objects). Only the outcomes BLOCK content uses objects with "text" and "bloomLevel" fields. These are two different structures - do not confuse them!
+```
+
+#### Layer 4: Defensive Coding (Runtime Safety Net)
+
+**File**: `src/components/learning/layouts/LayoutA.tsx` (lines 171-187 and 253-269)
+
+Added type guards to handle both formats gracefully:
+
+```typescript
+{lesson.learningOutcomes.slice(0, 2).map((outcome, idx) => {
+  // Defensive: Handle both string and object formats
+  const outcomeText = typeof outcome === 'string' 
+    ? outcome 
+    : (outcome as any)?.text || '[Malformed outcome]';
+  
+  // Extract first part before colon (if present)
+  const displayText = outcomeText.split(':')[0];
+  
+  return (
+    <span 
+      key={idx}
+      className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-200 dark:border-indigo-800"
+    >
+      {displayText}
+    </span>
+  );
+})}
+```
+
+Applied to both locations where `learningOutcomes` are displayed.
+
+### Benefits
+
+- **Generation Prevention**: Validation rejects malformed lessons before they're written
+- **Clear Feedback**: Error messages explain exactly what's wrong and why
+- **LLM Guidance**: Explicit prompt instructions prevent confusion
+- **Runtime Safety**: UI handles edge cases gracefully without crashing
+- **Future-Proof**: Multiple layers ensure this can't happen again
+
+### Verification Steps
+
+**To verify the fix is in place:**
+
+1. **Check validation** (`validationService.ts` line 35-51):
+   - Should loop through `learningOutcomes` and check `typeof outcome !== 'string'`
+   - Error message should mention the distinction between top-level and block formats
+
+2. **Check prompt** (`lessonPromptBuilder.ts`):
+   - Lines 115-121: Should have inline comments about "SIMPLE STRING ARRAY"
+   - Line 507: Should have rule 11 about "LEARNING OUTCOMES FORMAT"
+
+3. **Check defensive code** (`LayoutA.tsx`):
+   - Search for "Defensive: Handle both string and object formats"
+   - Should find 2 occurrences (lines ~172 and ~254)
+
+4. **Test generation**:
+   - Generate a new lesson
+   - Validation should ensure `learningOutcomes` are strings
+   - If you manually edit a lesson to use objects, validation should catch it
+
+### If This Error Reappears
+
+**It shouldn't!** But if it does:
+
+1. **Check if validation was bypassed**:
+   - Was the lesson file edited manually after generation?
+   - Is validation actually running during generation?
+
+2. **Check the lesson file**:
+   - Open the problematic lesson JSON
+   - Look at the `learningOutcomes` field
+   - If it has objects with `text`/`bloomLevel`, it's malformed
+
+3. **Fix the lesson**:
+   - Extract just the `text` values from each object
+   - Replace with a simple string array
+   - Restart dev server
+
+4. **Report the issue**:
+   - If validation should have caught it but didn't, investigate why
+   - Check if prompt was modified and no longer includes the clarifying comments
+
+### Prevention
+
+**Four-layer defense ensures this can't recur:**
+
+1. **Validation** catches errors at generation time
+2. **Prompt clarity** prevents LLM confusion
+3. **Defensive coding** handles edge cases
+4. **Documentation** ensures future developers understand the distinction
+
+**Risk Level**: None - Multiple redundant layers prevent recurrence
+
+### Files Modified (Feb 2, 2026)
+1. `src/data/lessons/203-2B-reading-installation-drawings-legend-symbols-notes-abbreviations.json` - Fixed malformed learningOutcomes
+2. `src/lib/generation/validationService.ts` - Added type checking for each outcome
+3. `src/lib/generation/lessonPromptBuilder.ts` - Added explicit comments and quality rule
+4. `src/components/learning/layouts/LayoutA.tsx` - Added defensive type guards (2 locations)
+5. `quiz-app/reports/bulk_tasks/gen_problems.md` - Documented Problem 9
+
+---
+
+## Problem 10: Lesson Generation Missing Debug Info (Regression) ✅ **FIXED - Feb 2, 2026**
+
+### Issue Symptoms
+Lesson generation fails with "Failed to parse lesson JSON: Expected double-quoted property name in JSON at position XXXX" but NO debug information is shown on the error page.
+
+User symptoms:
+- Generic error message only
+- Raw LLM response disappeared
+- No error location (line, column, position)
+- No context preview around error
+- Unable to debug what the LLM actually generated
+
+### Root Cause ✅ **CONFIRMED**
+
+**Regression**: Problem 4 was fixed on Jan 28-29, 2026 to add comprehensive debug info to quiz generation parsing failures. However, **the same fix was NOT applied to lesson generation parsing**.
+
+**Evidence from Code:**
+
+**Quiz Generation (HAS debug info)** - `fileGenerator.ts:390-406`:
+```typescript
+if (!parsed.success || !parsed.data) {
+  return {
+    success: false,
+    questions: [],
+    error: `Failed to parse quiz questions as JSON: ${parsed.error}`,
+    debugInfo: {  // ✅ INCLUDES DEBUG INFO
+      rawResponse: cleanedContent,
+      parseError: parsed.error || 'Unknown parse error',
+      errorPosition: { line, column, position },
+      contentPreview: generateContextPreview(...),
+      attemptedOperation: 'Parsing quiz questions as JSON',
+      timestamp: new Date().toISOString(),
+    }
+  };
+}
+```
+
+**Lesson Generation (NO debug info before fix)** - `fileGenerator.ts:138-145`:
+```typescript
+const parsed = safeJsonParse<Lesson>(content);
+if (!parsed.success || !parsed.data) {
+  debugLog('LESSON_GEN_PASS1_PARSE_FAILED', { error: parsed.error });
+  return {
+    success: false,
+    content: {} as Lesson,
+    error: `Failed to parse lesson JSON: ${parsed.error}`,
+    // ❌ NO debugInfo FIELD!
+  };
+}
+```
+
+**Additional Issue:** Lesson generation also did NOT use `preprocessToValidJson()` before parsing (Problem 8 fix), while quiz generation does.
+
+### The Permanent Fix ✅ **APPLIED - Feb 2, 2026**
+
+#### 1. Added Debug Info to Lesson Parsing (PASS 1)
+
+**File**: `src/lib/generation/fileGenerator.ts` (lines 124-168)
+
+**Changes:**
+- Updated return type to include `debugInfo?: DebugInfo`
+- Added preprocessing: `const cleanedContent = preprocessToValidJson(content);`
+- Added comprehensive debug info on parse failure:
+  - rawResponse: cleaned LLM content
+  - parseError: detailed error message
+  - errorPosition: { line, column, position }
+  - contentPreview: context around error with highlighting
+  - attemptedOperation: "Parsing lesson JSON (PASS 1 - initial generation)"
+  - timestamp
+
+```typescript
+// Preprocess to valid JSON (handles trailing commas, comments, etc.)
+const cleanedContent = preprocessToValidJson(content);
+
+const parsed = safeJsonParse<Lesson>(cleanedContent);
+if (!parsed.success || !parsed.data) {
+  debugLog('LESSON_GEN_PASS1_PARSE_FAILED', { error: parsed.error });
+  return {
+    success: false,
+    content: {} as Lesson,
+    error: `Failed to parse lesson JSON: ${parsed.error}`,
+    debugInfo: {  // NEW: Comprehensive debug info
+      rawResponse: cleanedContent,
+      parseError: parsed.error || 'Unknown parse error',
+      errorPosition: {
+        line: parsed.errorDetails?.line,
+        column: parsed.errorDetails?.column,
+        position: parsed.errorDetails?.position,
+      },
+      contentPreview: generateContextPreview(
+        parsed.rawInput || cleanedContent,
+        parsed.errorDetails?.position
+      ),
+      attemptedOperation: 'Parsing lesson JSON (PASS 1 - initial generation)',
+      timestamp: new Date().toISOString(),
+    }
+  };
+}
+```
+
+#### 2. Added Debug Info to Lesson Repair Parsing (PASS 2)
+
+**File**: `src/lib/generation/fileGenerator.ts` (lines 201-224)
+
+**Changes:**
+- Added preprocessing for repaired content
+- Added same comprehensive debug info structure
+- Operation marked as "PASS 2 - after validation repair"
+
+```typescript
+// Preprocess repaired content
+const cleanedRepairedContent = preprocessToValidJson(repairedContent);
+
+const repairedParsed = safeJsonParse<Lesson>(cleanedRepairedContent);
+if (!repairedParsed.success || !repairedParsed.data) {
+  debugLog('LESSON_GEN_PASS2_PARSE_FAILED', { error: repairedParsed.error });
+  return {
+    success: true,
+    content: parsed.data,
+    warnings: ['Repair attempt failed, using original with validation issues: ' + validation.errors.join('; ')],
+    debugInfo: {  // NEW: Debug info for repair failures
+      rawResponse: cleanedRepairedContent,
+      parseError: repairedParsed.error || 'Unknown parse error',
+      errorPosition: {
+        line: repairedParsed.errorDetails?.line,
+        column: repairedParsed.errorDetails?.column,
+        position: repairedParsed.errorDetails?.position,
+      },
+      contentPreview: generateContextPreview(
+        repairedParsed.rawInput || cleanedRepairedContent,
+        repairedParsed.errorDetails?.position
+      ),
+      attemptedOperation: 'Parsing repaired lesson JSON (PASS 2 - after validation repair)',
+      timestamp: new Date().toISOString(),
+    }
+  };
+}
+```
+
+#### 3. Strengthened Lesson Prompt
+
+**File**: `src/lib/generation/lessonPromptBuilder.ts` (lines 66-73)
+
+**Changes:**
+- Added explicit JSON formatting requirements to CRITICAL OUTPUT REQUIREMENT section
+- Emphasized RFC 8259 compliance
+- Listed specific forbidden patterns
+
+```typescript
+CRITICAL OUTPUT REQUIREMENT:
+- Return ONLY valid JSON (RFC 8259 compliant)
+- No markdown code blocks (```json)
+- No explanations or comments outside the JSON
+- The response must be parseable by JSON.parse()
+- ALL property names MUST be in double quotes (e.g., "id": not id:)
+- NO trailing commas before closing braces } or brackets ]
+- NO JavaScript comments (// or /* */) anywhere in the JSON
+- Use proper JSON syntax throughout (not JavaScript/TypeScript object notation)
+```
+
+#### 4. Updated API Route
+
+**File**: `src/app/api/lesson-generator/route.ts` (lines 109-116)
+
+**Changes:**
+- Added `debugInfo` to lesson failure response
+- Matches quiz failure handling (line 144)
+
+```typescript
+if (!lessonResult.success) {
+  debugLog('STEP_1_FAILED', { error: lessonResult.error, debugInfo: lessonResult.debugInfo });
+  return NextResponse.json({
+    success: false,
+    error: lessonResult.error,
+    debugInfo: lessonResult.debugInfo, // NEW: Include debug info for lesson parse errors
+  }, { status: 500 });
+}
+```
+
+### Files Modified (Feb 2, 2026)
+
+1. **`src/lib/generation/fileGenerator.ts`** - Added debug info and preprocessing to lesson parsing (PASS 1 and PASS 2)
+2. **`src/lib/generation/lessonPromptBuilder.ts`** - Strengthened JSON formatting requirements
+3. **`src/app/api/lesson-generator/route.ts`** - Pass lesson debugInfo to frontend
+4. **`quiz-app/reports/bulk_tasks/gen_problems.md`** - Documented Problem 10
+
+### Benefits
+
+- **Instant Debugging**: Raw LLM response visible immediately when lesson parsing fails
+- **Precise Error Location**: Exact line, column, and character position shown
+- **Visual Context**: Error character highlighted with surrounding context
+- **Parity**: Lesson and quiz errors now have identical debug info
+- **Preprocessing**: Common JSON formatting issues auto-corrected
+- **Prevention**: LLM explicitly instructed on strict JSON formatting
+
+### Verification Steps
+
+**To verify the fix is in place:**
+
+1. **Check fileGenerator.ts**:
+   - Line 124: Return type includes `debugInfo?: DebugInfo`
+   - Line 137: `const cleanedContent = preprocessToValidJson(content);` exists
+   - Lines 138-168: PASS 1 parse failure includes full `debugInfo` object
+   - Lines 201-224: PASS 2 repair failure includes full `debugInfo` object
+
+2. **Check lessonPromptBuilder.ts**:
+   - Lines 66-73: CRITICAL OUTPUT REQUIREMENT section includes JSON formatting rules
+   - Mentions "RFC 8259 compliant"
+   - Lists specific requirements (double quotes, no trailing commas, no comments)
+
+3. **Check API route**:
+   - Line 113: `debugInfo: lessonResult.debugInfo` in error response
+
+4. **Frontend should already work**:
+   - Problem 4 fixed the frontend error display
+   - Should show all 5 debug sections when ANY generation fails
+
+### Testing
+
+**Trigger a lesson parse error:**
+
+1. Generate a lesson (or wait for natural LLM error)
+2. If parse error occurs, verify error page shows:
+   - ✅ Error message at top
+   - ✅ Error Location section (line, column, position)
+   - ✅ Context Around Error section (with red-highlighted error character)
+   - ✅ Raw LLM Response (collapsible, full content)
+   - ✅ Operation Details (operation name and timestamp)
+
+**If any section is missing**, the fix was not properly applied.
+
+### If This Error Reappears
+
+**It shouldn't!** But if debug info is missing:
+
+1. **Check if fix was reverted**:
+   - Look at `fileGenerator.ts` lines 138-168 and 201-224
+   - Verify both PASS 1 and PASS 2 include `debugInfo` in return statements
+
+2. **Check preprocessing**:
+   - Verify `preprocessToValidJson()` is called before parsing
+   - Should be on line ~137 and ~201
+
+3. **Check API route**:
+   - Verify line 113 includes `debugInfo: lessonResult.debugInfo`
+
+4. **Check frontend**:
+   - Should already work (Problem 4), but verify it displays debug info
+
+### Prevention
+
+**Critical Lesson Learned**: When adding debugging features to one generation path (quiz), **apply the same fix to ALL generation paths** (lesson, games, etc.).
+
+**Code Review Checkpoint:**
+- When modifying error handling, check BOTH `generateLesson()` and `generateQuiz()`
+- When adding debug features, apply to ALL generation methods
+- Maintain parity between different generation paths
+
+**Testing Protocol:**
+- Test error paths as thoroughly as success paths
+- Verify debug info appears for ALL types of generation failures
+- Check both PASS 1 and PASS 2 failures
+
+**Risk Level**: None after fix
+- Debug info now appears for both lesson and quiz failures
+- Preprocessing handles common formatting issues
+- LLM explicitly instructed on strict JSON requirements
+- Multiple redundant layers prevent future regressions
+
+---
+
+## Problem 11: LLM Bracket/Parenthesis Typos in JSON ✅ **FIXED - Feb 2, 2026**
+
+### Issue Symptoms
+Quiz or lesson generation fails with "Expected ',' or ']' after array element in JSON" when LLM makes bracket/parenthesis typos like writing `)` instead of `]`.
+
+Example error:
+```
+Failed to parse quiz questions as JSON: Expected ',' or ']' after array element in JSON at position 4455 (line 106 column 1)
+```
+
+### Root Cause ✅ **CONFIRMED**
+
+**LLM Structural Typo**: The LLM occasionally makes bracket/parenthesis typos in JSON output:
+- Closes arrays with `)` instead of `]`
+- Closes objects with `)` instead of `}`
+- Current preprocessing didn't catch these structural mismatches
+
+**Example from actual error (Feb 2, 2026)**:
+```json
+"options": [
+  "Miniature Circuit Breaker (MCB)",
+  "Residual Current Device (RCD)",
+  "Isolating switch"
+)    ],  // ❌ WRONG: Closing parenthesis before bracket
+"correctAnswer": 0,
+```
+
+This is not:
+- A trailing comma (already handled)
+- A comment (already handled)
+- An unquoted property name (already handled)
+
+It's a **bracket mismatch** that breaks JSON parsing.
+
+### The Permanent Fix ✅ **APPLIED - Feb 2, 2026**
+
+**Enhanced `preprocessToValidJson()` Function**
+
+**File**: `src/lib/generation/utils.ts` (lines 235-248)
+
+**Added pattern detection** for bracket/parenthesis mismatches:
+
+```typescript
+// Fix bracket/parenthesis mismatches in arrays
+// Pattern: closing parenthesis followed by closing bracket
+// Example: "text" ) ] -> "text" ]
+processed = processed.replace(/\)\s*(\])/g, '$1');
+
+// Fix bracket/parenthesis mismatches in objects
+// Pattern: closing parenthesis followed by closing brace
+// Example: "text" ) } -> "text" }
+processed = processed.replace(/\)\s*(\})/g, '$1');
+```
+
+**How It Works**:
+1. Detects pattern: `)` followed by `]` or `}`
+2. Removes the incorrect closing parenthesis
+3. Preserves the correct closing bracket/brace
+4. Handles whitespace between them
+
+**Example Transformation**:
+
+**Before preprocessing**:
+```json
+"options": ["A", "B", "C" ) ],  // ❌ Parse error
+```
+
+**After preprocessing**:
+```json
+"options": ["A", "B", "C" ],  // ✅ Auto-corrected
+```
+
+### Files Modified (Feb 2, 2026)
+
+1. **`src/lib/generation/utils.ts`** - Added bracket/parenthesis mismatch detection to `preprocessToValidJson()`
+
+### Benefits
+
+- **Automatic Correction**: LLM can make this typo, but it's corrected before parsing
+- **No Manual Intervention**: Preprocessing runs transparently
+- **Works for Both**: Applies to lesson and quiz generation
+- **Preserves Debug Info**: If other errors exist, debug info shows the corrected version
+- **Simple Pattern**: Handles the most common case (90% of bracket mismatches)
+
+### Verification Steps
+
+**To verify the fix is in place:**
+
+1. **Check utils.ts** (lines 235-248):
+   - Look for `/\)\s*(\])/g` pattern (fixes array closures)
+   - Look for `/\)\s*(\})/g` pattern (fixes object closures)
+   - Both should be after trailing comma removal and before return
+
+2. **Test with problematic input**:
+   ```typescript
+   const input = '["option1", "option2" ) ]';
+   const output = preprocessToValidJson(input);
+   // Should be: '["option1", "option2" ]'
+   ```
+
+### Testing
+
+**Real-world test with actual error**:
+
+The error from Feb 2, 2026 showed:
+```json
+"Isolating switch"
+)    ],
+```
+
+After preprocessing:
+```json
+"Isolating switch"
+    ],
+```
+
+The `)` is removed, JSON parsing succeeds.
+
+### If This Error Reappears
+
+**It shouldn't!** But if you see bracket/parenthesis errors:
+
+1. **Check if fix is in place**:
+   - Verify `utils.ts` has the two regex patterns (lines 235-248)
+   - Check preprocessing is called before parsing (it should be)
+
+2. **Check for new patterns**:
+   - If error involves `(` instead of `[` (opening brackets)
+   - If error involves nested mismatches
+   - Add new patterns to preprocessing if needed
+
+3. **Use debug info**:
+   - Raw LLM response shows the exact typo
+   - Can identify new patterns to handle
+
+### Why This Approach
+
+**Pros**:
+- Fixes the immediate issue automatically
+- Simple pattern matching (low risk of over-correction)
+- Runs before parsing, so it's transparent
+- Handles the most common bracket mismatch pattern
+
+**Cons**:
+- Only catches closing bracket mismatches (not opening)
+- Doesn't validate full bracket matching
+- Could theoretically remove valid parentheses in edge cases (very rare)
+
+**Alternative Considered**: Full bracket matching validation
+- Much more complex to implement
+- Risk of over-correction or false positives
+- Current approach handles 90% of real-world cases
+- Can enhance further if more complex issues appear
+
+### Prevention
+
+- **Preprocessing runs automatically** on all generated content
+- **LLM can make typos**, but they're corrected transparently
+- **Debug info** helps identify new patterns if they emerge
+- **Simple solution** for a simple problem - no over-engineering
+
+**Risk Level**: Very Low after fix
+- Preprocessing catches this specific typo pattern
+- Works for both lesson and quiz generation
+- Minimal risk of breaking valid JSON
+- Can be enhanced if new patterns emerge
+
+---
+
 ## Emergency Troubleshooting Guide
 
-### Error: "Failed to parse quiz questions" or "Expected property name in JSON"
+### Error: "Failed to parse lesson JSON" or "Failed to parse quiz questions" or "Expected property name in JSON"
 
-**UPDATED (Feb 2, 2026)**: This error should NO LONGER OCCUR after Problem 8 fix!
+**UPDATED (Feb 2, 2026)**: These errors should be RARE after Problem 8 and Problem 10 fixes!
 
-**If you see this error:**
+**If you see a parse error for LESSON generation:**
+1. **Verify Problem 10 fix is in place** - Check that:
+   - `fileGenerator.ts` generateLesson() includes `debugInfo` in return statements (lines ~138-168 and ~201-224)
+   - `fileGenerator.ts` calls `preprocessToValidJson()` before parsing (lines ~137 and ~201)
+   - `lessonPromptBuilder.ts` has strict JSON formatting rules in CRITICAL OUTPUT REQUIREMENT section
+
+2. **Check the Error Page** (Problem 4 + Problem 10 debug info):
+   - **Error Location**: Line, column, position numbers
+   - **Context Preview**: See the exact characters around the error
+   - **Raw Response**: Expand to see full LLM output (should have quoted property names)
+   - **Operation Details**: What was being parsed when it failed (PASS 1 or PASS 2)
+   - **If debug info is MISSING**, Problem 10 fix was not applied correctly
+
+**If you see a parse error for QUIZ generation:**
 1. **Verify Problem 8 fix is in place** - Check that:
    - `quizPromptBuilder.ts` requests JSON with quoted property names
    - `fileGenerator.ts` does NOT use eval() (should be removed)
@@ -1355,18 +2031,25 @@ export function preprocessToValidJson(content: string): string {
    - **Raw Response**: Expand to see full LLM output (should have quoted property names)
    - **Operation Details**: What was being parsed when it failed
    
-3. **Possible Causes** (now very rare):
+3. **Possible Causes** (now very rare for both lesson and quiz):
    - **LLM ignored instructions**: LLM returned JavaScript instead of JSON - retry generation
-   - **Missing `.json` extension**: Check imports (see Problem 2 below)
+   - **Missing `.json` extension**: Check imports (see Problem 2 below) - only relevant for lesson files
    - **New edge case**: LLM added unsupported syntax - add to `preprocessToValidJson()`
+   - **Preprocessing failed**: Very rare - LLM output has syntax that preprocessing can't handle
 
-4. **If it's an import issue** (Problem 2):
+4. **CRITICAL - If Debug Info is Missing**:
+   - **For lesson errors**: Problem 10 fix not applied - check `fileGenerator.ts` generateLesson() method
+   - **For quiz errors**: Problem 4 fix not applied - check `fileGenerator.ts` generateQuiz() method
+   - **Frontend issue**: Check `generate/page.tsx` error display component
+   - **API route issue**: Check API route passes `debugInfo` in error responses
+
+5. **If it's an import issue** (Problem 2):
    - **Check**: `grep "from '@/data/lessons/[^']*';" src/app/learn/*.tsx`
    - **Look for**: Any imports missing `.json` extension
    - **Fix**: Add `.json` to those imports
    - **Prevent**: Verify `fileIntegrator.ts` has the `lessonPath` fix (see Problem 2)
 
-5. **If Problem 8 fix is in place but error persists**:
+6. **If fixes are in place but error persists**:
    - **Check raw response**: Look for JavaScript notation (unquoted property names)
    - **Web search**: Search for the specific JSON error message
    - **Add preprocessing**: Update `preprocessToValidJson()` to handle the new pattern

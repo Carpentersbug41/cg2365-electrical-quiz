@@ -32,8 +32,23 @@ export class ValidationService {
       errors.push('Lesson layout must be either "split-vis" or "linear-flow"');
     }
 
-    if (!lesson.learningOutcomes || lesson.learningOutcomes.length < 2) {
+    // Validate learningOutcomes exist and have correct structure
+    if (!lesson.learningOutcomes || !Array.isArray(lesson.learningOutcomes)) {
+      errors.push('Lesson must have learningOutcomes array');
+    } else if (lesson.learningOutcomes.length < 2) {
       errors.push('Lesson must have at least 2 learning outcomes');
+    } else {
+      // CRITICAL: Validate each outcome is a STRING, not an object
+      lesson.learningOutcomes.forEach((outcome, idx) => {
+        if (typeof outcome !== 'string') {
+          errors.push(
+            `Learning outcome #${idx + 1} must be a string, not an object. ` +
+            `Found: ${JSON.stringify(outcome).substring(0, 100)}. ` +
+            `The top-level learningOutcomes field uses plain strings. ` +
+            `Objects with "text" and "bloomLevel" are only for the outcomes BLOCK content.`
+          );
+        }
+      });
     }
 
     if (!lesson.blocks || lesson.blocks.length < 6) {
@@ -46,6 +61,7 @@ export class ValidationService {
       this.validateBlockOrders(lesson.blocks, errors, warnings);
       this.validateWorkedExampleAlignment(lesson.blocks, errors, warnings);
       this.validateQuestionStaging(lesson.blocks, errors, warnings);
+      this.validateMicrobreakPlacement(lesson.blocks, errors, warnings);
     }
 
     // Validate metadata
@@ -64,15 +80,27 @@ export class ValidationService {
    * Enhanced validation: Check block orders are monotonic and correct
    */
   private validateBlockOrders(blocks: LessonBlock[], errors: string[], warnings: string[]): void {
-    const orders = blocks.map(b => b.order).sort((a, b) => a - b);
+    const orderMap = new Map<number, string[]>();
     
-    // Check for duplicates
-    const uniqueOrders = new Set(orders);
-    if (uniqueOrders.size !== orders.length) {
-      errors.push('Duplicate block order values detected');
+    // Group blocks by order to detect collisions
+    for (const block of blocks) {
+      const blockIds = orderMap.get(block.order) || [];
+      blockIds.push(`${block.id} (${block.type})`);
+      orderMap.set(block.order, blockIds);
     }
     
-    // Check monotonic (should increase)
+    // Check for duplicate orders
+    for (const [order, blockIds] of orderMap.entries()) {
+      if (blockIds.length > 1) {
+        errors.push(
+          `Order collision at ${order}: ${blockIds.join(', ')} - ` +
+          `Each block must have a unique order value. Use decimal spacing (4, 4.2, 4.5, 4.7, 5).`
+        );
+      }
+    }
+    
+    // Check monotonic ordering
+    const orders = Array.from(orderMap.keys()).sort((a, b) => a - b);
     for (let i = 1; i < orders.length; i++) {
       if (orders[i] <= orders[i - 1]) {
         errors.push(`Block orders are not monotonic: ${orders[i - 1]} followed by ${orders[i]}`);
@@ -131,6 +159,28 @@ export class ValidationService {
     for (const practice of practiceBlocks) {
       if (explanationOrders.length > 0 && practice.order <= Math.max(...explanationOrders)) {
         warnings.push(`Practice block at order ${practice.order} may appear too early. Ensure all relevant explanations come first.`);
+      }
+    }
+  }
+
+  /**
+   * Enhanced validation: Check microbreak placement (must come after explanations)
+   */
+  private validateMicrobreakPlacement(blocks: LessonBlock[], errors: string[], warnings: string[]): void {
+    const microbreaks = blocks.filter(b => b.type === 'microbreak');
+    const explanations = blocks.filter(b => b.type === 'explanation').map(b => b.order);
+    
+    if (microbreaks.length === 0) return;
+    
+    const minExplanationOrder = explanations.length > 0 ? Math.min(...explanations) : Infinity;
+    
+    for (const microbreak of microbreaks) {
+      if (microbreak.order < minExplanationOrder) {
+        errors.push(
+          `Microbreak "${microbreak.id}" at order ${microbreak.order} appears before ` +
+          `first explanation (order ${minExplanationOrder}). Microbreaks must test only ` +
+          `concepts that have been taught in explanations.`
+        );
       }
     }
   }
@@ -241,8 +291,20 @@ export class ValidationService {
         if (!block.content.questions || !Array.isArray(block.content.questions)) {
           errors.push(`Practice block ${block.id} must have questions array`);
         } else {
+          // Determine block type for ID validation
+          let blockType = 'practice';
+          if (typeof block.content.mode === 'string' && block.content.mode === 'conceptual') {
+            blockType = 'understanding-check';
+          } else if (typeof block.content.mode === 'string' && block.content.mode === 'integrative') {
+            blockType = 'integrative';
+          }
+          
           for (const question of block.content.questions) {
             this.validateQuestion(question, lessonId, errors, warnings);
+            // Validate question ID pattern
+            if (question.id) {
+              this.validateQuestionIdPattern(question, lessonId, blockType, errors);
+            }
           }
 
           // Enhanced: Check understanding check structure with cognitive levels
@@ -304,6 +366,10 @@ export class ValidationService {
           // Validate each spaced-review question structure
           for (const question of block.content.questions) {
             this.validateSpacedReviewQuestion(question, lessonId, errors, warnings);
+            // Validate question ID pattern
+            if (question.id) {
+              this.validateQuestionIdPattern(question, lessonId, 'spaced-review', errors);
+            }
           }
         }
         break;
@@ -336,20 +402,68 @@ export class ValidationService {
       errors.push(`Question ${question.id} uses removed cognitiveLevel "hypothesis" - use "synthesis" instead`);
     }
     
-    // Enhanced: Check expectedAnswer is array for short-text questions
-    if (question.answerType === 'short-text' && question.expectedAnswer) {
-      if (!Array.isArray(question.expectedAnswer)) {
-        warnings.push(`Question ${question.id}: expectedAnswer should be an array for short-text questions to allow variations`);
-      }
+    // Enhanced: Enforce array format for ALL questions
+    if (!question.expectedAnswer) {
+      errors.push(`Question ${question.id} missing expectedAnswer`);
+    } else if (!Array.isArray(question.expectedAnswer)) {
+      errors.push(
+        `Question ${question.id}: expectedAnswer MUST be an array. ` +
+        `Found: ${typeof question.expectedAnswer}. ` +
+        `Use ["answer"] even for single values.`
+      );
     }
     
     // Enhanced: Check numeric answers don't include units
-    if (question.answerType === 'numeric' && question.expectedAnswer) {
-      const answers = Array.isArray(question.expectedAnswer) ? question.expectedAnswer : [question.expectedAnswer];
-      for (const answer of answers) {
+    if (question.answerType === 'numeric' && question.expectedAnswer && Array.isArray(question.expectedAnswer)) {
+      for (const answer of question.expectedAnswer) {
         if (typeof answer === 'string' && /[a-zA-Z]/.test(answer)) {
           warnings.push(`Question ${question.id}: numeric expectedAnswer should not include units ("${answer}") - put units in hint only`);
         }
+      }
+    }
+  }
+
+  /**
+   * Validate question ID patterns
+   */
+  private validateQuestionIdPattern(question: Record<string, unknown>, lessonId: string, blockType: string, errors: string[]): void {
+    const id = question.id as string;
+    
+    if (blockType === 'understanding-check') {
+      // Pattern: lessonId-C{n}-L{level}-{letter}
+      const pattern = new RegExp(`^${lessonId}-C\\d+-L[12](-[A-Z])?$`);
+      if (!pattern.test(id)) {
+        errors.push(
+          `Question ${id} in understanding check doesn't follow pattern: ` +
+          `${lessonId}-C{n}-L{level}-{letter}. Example: ${lessonId}-C1-L1-A`
+        );
+      }
+    } else if (blockType === 'integrative') {
+      // Pattern: lessonId-INT-{n}
+      const pattern = new RegExp(`^${lessonId}-INT-\\d+$`);
+      if (!pattern.test(id)) {
+        errors.push(
+          `Question ${id} in integrative block doesn't follow pattern: ` +
+          `${lessonId}-INT-{n}. Example: ${lessonId}-INT-1`
+        );
+      }
+    } else if (blockType === 'practice') {
+      // Pattern: lessonId-P{n}
+      const pattern = new RegExp(`^${lessonId}-P\\d+$`);
+      if (!pattern.test(id)) {
+        errors.push(
+          `Question ${id} in practice block doesn't follow pattern: ` +
+          `${lessonId}-P{n}. Example: ${lessonId}-P1`
+        );
+      }
+    } else if (blockType === 'spaced-review') {
+      // Pattern: lessonId-SR-{n}
+      const pattern = new RegExp(`^${lessonId}-SR-\\d+$`);
+      if (!pattern.test(id)) {
+        errors.push(
+          `Question ${id} in spaced review doesn't follow pattern: ` +
+          `${lessonId}-SR-{n}. Example: ${lessonId}-SR-1`
+        );
       }
     }
   }

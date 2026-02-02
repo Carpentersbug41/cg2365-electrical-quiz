@@ -168,14 +168,24 @@ export default function LayoutA({ lesson }: LayoutProps) {
                   {lesson.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {lesson.learningOutcomes.slice(0, 2).map((outcome, idx) => (
-                    <span 
-                      key={idx}
-                      className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-200 dark:border-indigo-800"
-                    >
-                      {outcome.split(':')[0]}
-                    </span>
-                  ))}
+                  {lesson.learningOutcomes.slice(0, 2).map((outcome, idx) => {
+                    // Defensive: Handle both string and object formats
+                    const outcomeText = typeof outcome === 'string' 
+                      ? outcome 
+                      : (outcome as any)?.text || '[Malformed outcome]';
+                    
+                    // Extract first part before colon (if present)
+                    const displayText = outcomeText.split(':')[0];
+                    
+                    return (
+                      <span 
+                        key={idx}
+                        className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-200 dark:border-indigo-800"
+                      >
+                        {displayText}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -250,14 +260,24 @@ export default function LayoutA({ lesson }: LayoutProps) {
                   {lesson.description}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {lesson.learningOutcomes.slice(0, 2).map((outcome, idx) => (
-                    <span 
-                      key={idx}
-                      className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-200 dark:border-indigo-800"
-                    >
-                      {outcome.split(':')[0]}
-                    </span>
-                  ))}
+                  {lesson.learningOutcomes.slice(0, 2).map((outcome, idx) => {
+                    // Defensive: Handle both string and object formats
+                    const outcomeText = typeof outcome === 'string' 
+                      ? outcome 
+                      : (outcome as any)?.text || '[Malformed outcome]';
+                    
+                    // Extract first part before colon (if present)
+                    const displayText = outcomeText.split(':')[0];
+                    
+                    return (
+                      <span 
+                        key={idx}
+                        className="px-3 py-1 text-xs font-medium text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/30 rounded-full border border-indigo-200 dark:border-indigo-800"
+                      >
+                        {displayText}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
 

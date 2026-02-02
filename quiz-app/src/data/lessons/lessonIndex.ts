@@ -216,6 +216,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-2B'),
     available: true,
     order: 5,
+  },
+  {
+    id: '203-2C',
+    title: 'Recognising Electrical Symbols on Drawings',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Recognising Electrical Symbols on Drawings',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-2C'),
+    available: true,
+    order: 6,
   },// Unit 210: Communication
   {
     id: '204-10A',

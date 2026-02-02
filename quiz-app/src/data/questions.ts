@@ -37,6 +37,7 @@ import { nonStatutoryRegulationsGuidanceQuestions } from './questions/nonStatuto
 import { usingBs7671OnAJobQuestions } from './questions/usingBs7671OnAJobQuestions';
 import { sourcesDrawingsSymbolsScaleQuestions } from './questions/sourcesDrawingsSymbolsScaleQuestions';
 import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './questions/readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
+import { recognisingElectricalSymbolsOnDrawingsQuestions } from './questions/recognisingElectricalSymbolsOnDrawingsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -68,6 +69,7 @@ export const questions: Question[] = [
   ...usingBs7671OnAJobQuestions,
   ...sourcesDrawingsSymbolsScaleQuestions,
   ...readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions,
+  ...recognisingElectricalSymbolsOnDrawingsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

@@ -1,27 +1,15 @@
 {
   "id": "203-2B",
   "title": "203.2B — Reading Installation Drawings: Legend, Symbols, Notes & Abbreviations",
-  "description": "Learn to interpret electrical installation plans by mastering the hierarchy of information: Legend first, Notes second, and symbol families.",
+  "description": "Learn to interpret electrical installation plans using a clear hierarchy: Legend first, Notes second, then symbol families and abbreviations.",
   "layout": "split-vis",
   "unit": "Unit 203",
   "topic": "Electrical Installations Technology",
   "learningOutcomes": [
-    {
-      "text": "State what a drawing legend (key) is and why it is the authority for symbol meaning.",
-      "bloomLevel": "remember"
-    },
-    {
-      "text": "Recognise the difference between a layout plan (where) and a schematic diagram (how).",
-      "bloomLevel": "understand"
-    },
-    {
-      "text": "Identify common symbol families used on installation plans including switches, sockets, and FCUs.",
-      "bloomLevel": "remember"
-    },
-    {
-      "text": "Use notes and abbreviations like IP rating, AFFL, and NTS to interpret installation requirements.",
-      "bloomLevel": "apply"
-    }
+    "State what a drawing legend (key) is and why it is the authority for symbol meaning.",
+    "Recognise the difference between a layout plan (where) and a schematic/circuit diagram (how).",
+    "Identify common symbol families used on installation plans including switches, sockets, lighting points and FCUs.",
+    "Use notes and abbreviations like IP rating, AFFL and NTS to interpret installation requirements."
   ],
   "prerequisites": [
     "201-1A"
@@ -34,19 +22,19 @@
       "content": {
         "outcomes": [
           {
-            "text": "State what a drawing legend is and why it is the authority for symbol meaning",
+            "text": "State what a drawing legend (key) is and why it is the authority for symbol meaning.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Distinguish between layout plans (where) and schematic diagrams (how)",
+            "text": "Distinguish between layout plans (where) and schematic/circuit diagrams (how).",
             "bloomLevel": "understand"
           },
           {
-            "text": "Identify common symbol families like switches, sockets, and consumer units",
+            "text": "Identify common symbol families like switches, sockets, lighting and FCUs.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Interpret notes and abbreviations such as IP rating, AFFL, and NTS",
+            "text": "Interpret notes and abbreviations such as IP rating, AFFL and NTS.",
             "bloomLevel": "apply"
           }
         ]
@@ -60,27 +48,31 @@
         "terms": [
           {
             "term": "Layout plan",
-            "definition": "A drawing showing the physical location of equipment within a building."
+            "definition": "A drawing showing the physical location of equipment within a building (where things go)."
           },
           {
             "term": "Schematic / circuit diagram",
-            "definition": "A drawing showing the logical connection of a circuit, not its physical location."
+            "definition": "A drawing showing the logical connection of a circuit, not its physical location (how it connects)."
           },
           {
             "term": "Legend (key)",
-            "definition": "A table on a drawing that defines the meaning of every symbol and abbreviation used."
+            "definition": "A table on a drawing that defines the meaning of each symbol and abbreviation used on that drawing set."
           },
           {
             "term": "General notes",
-            "definition": "Instructions applying to the entire drawing, such as mounting heights or material standards."
+            "definition": "Instructions applying to the entire drawing set, such as mounting heights, ratings, standards or methods."
           },
           {
             "term": "NTS (Not to scale)",
-            "definition": "A label indicating that distances cannot be accurately measured directly from the drawing."
+            "definition": "A label indicating that distances cannot be measured accurately from the drawing."
           },
           {
             "term": "AFFL",
-            "definition": "Above Finished Floor Level; used to specify the height of an accessory."
+            "definition": "Above Finished Floor Level; used to specify the mounting height of an accessory."
+          },
+          {
+            "term": "IP rating",
+            "definition": "Ingress Protection rating; a code that shows how protected equipment is against dust and water (e.g., IP44)."
           }
         ]
       }
@@ -93,12 +85,14 @@
         "title": "Same job, different drawings: Plan vs Schematic",
         "description": "A comparison showing how a floor plan indicates location while a schematic indicates electrical logic.",
         "videoUrl": "",
-        "diagramType": "plan",
+        "diagramType": "other",
         "elementIds": [
           "floor-plan",
-          "schematic-logic"
+          "schematic-logic",
+          "legend-box",
+          "title-block"
         ],
-        "placeholderText": "Left: floor plan with symbol legend and general notes. Right: schematic/circuit diagram with standard circuit symbols. Caption: &quot;Plan shows where, schematic shows how.&quot;"
+        "placeholderText": "Left: floor plan with symbol legend and general notes. Right: schematic/circuit diagram with standard circuit symbols. Caption: \"Plan shows where, schematic shows how.\""
       }
     },
     {
@@ -107,7 +101,7 @@
       "order": 4,
       "content": {
         "title": "What am I looking at? Drawing Types and the Legend",
-        "content": "Before you pick up a tool, you must understand the type of drawing in front of you. Electrical drawings aren't just pictures; they are legal instructions. \n\n**What this is**\nIn the electrical industry, we primarily use two types of drawings: the **Layout Plan** and the **Schematic (Circuit) Diagram**. A Layout Plan is a bird's-eye view of a room showing exactly **where** a socket or light goes. A Schematic shows **how** the electricity flows logically between components, ignoring their physical room position.\n\n**Why it matters**\nIf you confuse a schematic for a layout, you might install a consumer unit in the middle of a living room wall just because it looked like that on the diagram. Real-world installation requires the layout plan to find the position and the schematic to understand the wiring logic.\n\n**Key rules / facts**\n*   **The Legend-First Rule:** Symbols are not universal. Different CAD (Computer-Aided Design) programs and different designers use different shapes. You must **always** check the Legend (or Key) on that specific drawing before interpreting symbols. The Legend is the final authority.\n*   **Plan = Where:** Floor plans show physical locations.\n*   **Schematic = How:** Diagrams show logical connections.\n\n**How to use it**\n1. Identify the drawing type (Plan or Schematic).\n2. Locate the Legend/Key (usually in the bottom corner).\n3. Match the symbol on the drawing to the definition in the Legend.\n4. Read the Title Block to check the scale or if it is marked **NTS (Not to Scale)**.\n\n**Common mistakes**\n*   **Guessing from shape:** Assuming a circle is a light when the legend says it is a smoke detector.\n*   **Measuring an NTS drawing:** Trying to use a ruler on a drawing marked &quot;Not to Scale&quot;.\n\n**Quick recap**\n*   Layout plans show physical location (where).\n*   Schematics show logical connection (how).\n*   The Legend is the only authority for symbol meanings on a specific job."
+        "content": "Before you pick up a tool, you must understand the type of drawing in front of you. Electrical drawings are **controlled project documents** used to communicate requirements.\n\n## The hierarchy (use this every time)\n1) **Legend (Key)** = what the symbol means (authority for that drawing)\n2) **Notes / Abbreviations** = constraints (heights, IP ratings, special instructions)\n3) **Title block** = drawing info (scale, revision, whether it is **NTS**)\n4) If anything is unclear or conflicts: **stop and query** (don’t guess)\n\n## Two common drawing types\n- **Layout plan (Plan) = WHERE**\n  A bird’s-eye view showing where equipment goes in the building (sockets, switches, lights, consumer unit positions).\n\n- **Schematic / circuit diagram = HOW**\n  A logical diagram showing how components connect electrically (it ignores real room positions).\n\n## Legend-first rule\nSymbols are not universal. Different designers and CAD libraries can use different shapes. **Always check the legend on that specific drawing set** to confirm symbol meaning.\n\n## How to use the drawing (simple method)\n1. Identify the drawing type (layout plan or schematic).\n2. Find the **legend/key** and confirm what the symbol means.\n3. Read **general notes** and any abbreviations next to the symbol (e.g., AFFL, IP rating, TBC).\n4. Check the **title block** for scale or **NTS**.\n\n## Common mistakes to avoid\n- **Guessing from shape:** assuming a circle is a light when the legend says it is a detector.\n- **Measuring an NTS drawing:** using a ruler on a drawing marked \"Not to Scale\".\n\n## Quick recap\n- **Plan = where**.\n- **Schematic = how**.\n- **Legend is the authority** for symbol meanings on that job."
       }
     },
     {
@@ -125,9 +119,9 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Layout plan",
+              "layout plan",
               "floor plan",
-              "Plan"
+              "plan"
             ],
             "hint": "Think about the drawing that shows 'where' things go."
           },
@@ -137,11 +131,11 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Schematic",
+              "schematic",
               "circuit diagram",
-              "Schematic diagram"
+              "schematic diagram"
             ],
-            "hint": "This shows 'how' the circuit is wired."
+            "hint": "This shows 'how' the circuit connects."
           },
           {
             "id": "203-2B-C1-L1-C",
@@ -149,25 +143,97 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Legend",
-              "Key",
-              "The legend",
-              "The key"
+              "legend",
+              "key",
+              "drawing legend",
+              "drawing key"
             ],
             "hint": "It is the box or table that defines the symbols."
           },
           {
             "id": "203-2B-C1-L2",
-            "questionText": "Based on the 'Legend-First' rule, why is it risky to memorize symbol shapes from previous jobs?",
+            "questionText": "Based on the 'Legend-first' rule, why is it risky to memorise symbol shapes from previous jobs?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "Symbols vary by designer",
-              "Symbols vary by CAD library",
-              "Different designers use different shapes",
-              "The legend is the authority for that specific drawing"
+              "symbols vary by designer",
+              "symbols vary by cad library",
+              "different drawing sets use different symbol styles",
+              "the legend is the authority for that drawing"
             ],
-            "hint": "Consider if every designer uses exactly the same symbol for a light or a socket."
+            "hint": "Think about how different drawing sets can use different symbol libraries."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2B-microbreak-1",
+      "type": "microbreak",
+      "order": 4.8,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Layout plan",
+            "right": "Physical location of equipment"
+          },
+          {
+            "left": "Schematic",
+            "right": "Logical connection of circuits"
+          },
+          {
+            "left": "Legend",
+            "right": "Defines symbols and abbreviations"
+          },
+          {
+            "left": "AFFL",
+            "right": "Height of an accessory"
+          },
+          {
+            "left": "NTS",
+            "right": "Cannot measure distances directly"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2B-microbreak-2",
+      "type": "microbreak",
+      "order": 4.9,
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Drawing Types",
+          "Symbol Families"
+        ],
+        "items": [
+          {
+            "text": "Layout plan",
+            "correctBucket": 0
+          },
+          {
+            "text": "Schematic diagram",
+            "correctBucket": 0
+          },
+          {
+            "text": "Switches",
+            "correctBucket": 1
+          },
+          {
+            "text": "Sockets",
+            "correctBucket": 1
+          },
+          {
+            "text": "Lighting",
+            "correctBucket": 1
+          },
+          {
+            "text": "Fixed equipment",
+            "correctBucket": 1
           }
         ]
       }
@@ -175,16 +241,16 @@
     {
       "id": "203-2B-explain-symbols",
       "type": "explanation",
-      "order": 5,
+      "order": 5.5,
       "content": {
         "title": "Symbol Families, Notes & Abbreviations",
-        "content": "Once you have checked the Legend, you will notice symbols fall into 'families'. Understanding these families helps you navigate plans faster.\n\n**What this is**\nSymbols represent the physical accessories you install. They are often grouped by function: **Switches**, **Sockets**, **Lighting**, and **Fixed Equipment** (like Cooker Units).\n\n**Why it matters**\nAbbreviations and notes change the physical item you buy. A 'socket' symbol with the note **IP66** means you must install a weatherproof socket, not a standard white plastic one. Ignoring these details leads to safety failures and failed inspections.\n\n**Key rules / facts**\n*   **Switch Family:** Includes 1-way, 2-way, intermediate, and pull-cords. Look for 'tails' or 'dots' on symbols to distinguish them.\n*   **Socket Family:** Single or twin, switched or unswitched. The Legend will specify if a line through the symbol means 'switched'.\n*   **FCU (Fused Connection Unit):** Often used for fixed appliances like hand dryers or boilers.\n*   **CCU (Cooker Control Unit):** A heavy-duty switch for cookers.\n*   **CU / DB:** Labels for the Consumer Unit or Distribution Board.\n*   **AFFL (Above Finished Floor Level):** This note tells you the mounting height (e.g., 450mm AFFL).\n*   **IP Rating (e.g., IP44/IP65):** Defines the degree of protection against dust and water.\n\n**How to use it**\n1. Locate a symbol on the floor plan.\n2. Cross-reference the symbol in the **Legend** to identify the family (e.g., Twin Switched Socket).\n3. Check the **General Notes** for mounting heights (AFFL).\n4. Look for specific **Abbreviations** next to the symbol (e.g., IP65) to determine the equipment's environmental rating.\n\n**Common mistakes**\n*   **Ignoring AFFL:** Installing all sockets at 450mm when the notes specified 1200mm for a kitchen worktop.\n*   **Mixing up FCU and CCU:** These serve very different power loads.\n\n**Quick recap**\n*   Identify symbols by family (Switches, Sockets, etc.).\n*   AFFL specifies the mounting height.\n*   IP ratings specify environmental protection requirements."
+        "content": "Once you have checked the legend, you’ll notice symbols fall into **families**. Families help you scan a plan quickly, but you still confirm details using the legend and notes.\n\n## What this is\nSymbols represent the physical accessories you install. Common families include:\n- **Switches** (1-way, 2-way, intermediate, pull-cord)\n- **Sockets** (single/twin, switched/unswitched)\n- **Lighting** (ceiling points, wall lights, emergency lights)\n- **Fixed equipment** (FCUs, CCUs, isolators)\n\n## Why it matters\nNotes and abbreviations can change **what you install** and **how you install it**. Example: a socket point with an IP rating requirement means you must select a suitable product for that environment.\n\n## Key abbreviations you must know\n- **AFFL** (Above Finished Floor Level): tells you mounting height (e.g., 1200 mm AFFL).\n- **NTS** (Not to scale): you cannot measure distances from the drawing.\n- **IP rating** (e.g., IP44/IP65): tells you the required protection against dust and water.\n- **FCU** (Fused Connection Unit): typically for fixed appliances.\n- **CCU** (Cooker Control Unit): heavy-duty cooker switch/control point.\n\n## How to use symbols + notes together (the safe method)\n1. Find the symbol on the plan.\n2. Use the **legend** to identify what the symbol represents.\n3. Read **general notes** for rules that apply to the whole drawing (common heights, standard equipment, special instructions).\n4. Read **abbreviations next to the point** (AFFL/IP/TBC etc.) to apply point-specific requirements.\n\n## Common mistakes\n- **Ignoring AFFL:** fitting the right item at the wrong height.\n- **Ignoring IP:** fitting a standard accessory where a higher protection rating is required.\n- **Guessing symbol variations:** some drawings use small marks to distinguish types, but **the legend is still the authority**.\n\n## Quick recap\n- Families help you scan.\n- Legend tells you **what it is**.\n- Notes + abbreviations tell you **constraints** (height, rating, special instructions)."
       }
     },
     {
       "id": "203-2B-check-2",
       "type": "practice",
-      "order": 5.5,
+      "order": 6,
       "content": {
         "title": "Check Your Understanding: Symbols and Notes",
         "mode": "conceptual",
@@ -196,9 +262,9 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Fused Connection Unit"
+              "fused connection unit"
             ],
-            "hint": "It is a point used for fixed appliances like boilers."
+            "hint": "It is a point used for fixed appliances."
           },
           {
             "id": "203-2B-C2-L1-B",
@@ -206,33 +272,59 @@
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Above Finished Floor Level"
+              "above finished floor level"
             ],
-            "hint": "It relates to how high up the wall an item is mounted."
+            "hint": "It relates to mounting height."
           },
           {
-            "id": "203-2B-C1-L1-C2",
+            "id": "203-2B-C2-L1-C",
             "questionText": "What does NTS stand for on a drawing?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Not To Scale"
+              "not to scale"
             ],
-            "hint": "It means you shouldn't use a ruler to measure distances on the paper."
+            "hint": "It means you should not measure distances from the drawing."
           },
           {
             "id": "203-2B-C2-L2",
-            "questionText": "How do the Legend and Notes work together to prevent the 'right item in the wrong place' mistake?",
+            "questionText": "How do the legend and notes work together to prevent the 'right item in the wrong place' mistake?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "The legend defines the symbol and the notes define the height or rating",
-              "Legend identifies the accessory while notes specify installation constraints like AFFL or IP",
-              "Legend tells you what it is and notes tell you exactly how to fit it"
+              "the legend defines what the symbol is and the notes/abbreviations specify constraints like height and ip rating",
+              "legend tells you what it is and notes tell you how/where to install it (height/rating)",
+              "legend identifies the accessory while notes specify installation constraints like affl or ip"
             ],
-            "hint": "Think about what the legend tells you versus what the notes (like AFFL or IP) tell you."
+            "hint": "Legend = what it is. Notes/abbreviations = constraints like height and rating."
           }
         ]
+      }
+    },
+    {
+      "id": "203-2B-microbreak-3",
+      "type": "microbreak",
+      "order": 6.6,
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "You are reading a plan labelled NTS.",
+        "options": [
+          {
+            "text": "Use the legend to find symbol meanings.",
+            "isError": false
+          },
+          {
+            "text": "Measure the drawing with a ruler for accuracy.",
+            "isError": true
+          },
+          {
+            "text": "Check general notes for mounting standards.",
+            "isError": false
+          }
+        ],
+        "explanation": "NTS (Not to Scale) means distances cannot be measured accurately from the drawing."
       }
     },
     {
@@ -241,38 +333,38 @@
       "order": 7,
       "content": {
         "title": "Worked Example: Identifying an Accessory Position",
-        "given": "A floor plan showing a symbol (a square with a fused link sign) in a bathroom, marked with 'IP65' and '2250mm AFFL'.",
+        "given": "A floor plan shows a point marked with an FCU symbol. Next to it are the notes 'IP65' and '2250 mm AFFL'.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Check the Legend to identify the symbol shape.",
+            "description": "Use the legend to identify the symbol.",
             "formula": null,
             "calculation": null,
-            "result": "The legend identifies the symbol as an FCU (Fused Connection Unit)."
+            "result": "The legend confirms the symbol is an FCU (Fused Connection Unit)."
           },
           {
             "stepNumber": 2,
-            "description": "Identify the environmental requirement from the abbreviation.",
+            "description": "Use abbreviations to identify the environmental requirement.",
             "formula": null,
             "calculation": null,
-            "result": "IP65 means the unit must be dust-tight and protected against water jets (suitable for a bathroom)."
+            "result": "IP65 indicates a higher level of protection against dust and water, suitable for certain demanding locations."
           },
           {
             "stepNumber": 3,
-            "description": "Determine the physical mounting height from the notes.",
+            "description": "Use notes to determine the mounting height.",
             "formula": null,
             "calculation": null,
-            "result": "2250mm AFFL means the unit is mounted 2.25 metres above the finished floor."
+            "result": "2250 mm AFFL means mount the accessory 2.25 m above finished floor level."
           },
           {
             "stepNumber": 4,
-            "description": "Combine findings for the final installation task.",
+            "description": "Combine the information into an installation instruction.",
             "formula": null,
             "calculation": null,
-            "result": "Install an IP65 rated Fused Connection Unit at a height of 2250mm."
+            "result": "Install an FCU that meets the specified IP requirement at 2250 mm AFFL."
           }
         ],
-        "notes": "Always verify the 'finished' floor level, as screed or tiling can change the measurement."
+        "notes": "If floor finishes vary (screed/tiling), confirm the finished floor level reference before setting heights."
       }
     },
     {
@@ -281,28 +373,62 @@
       "order": 8,
       "content": {
         "title": "Guided Practice: Reading the Plan",
-        "problem": "You see a symbol for a socket in a kitchen area. It has the abbreviation 'TBC' next to it and a general note saying 'All kitchen sockets 1200mm AFFL'.",
+        "problem": "You see a socket point in a kitchen area. It is labelled 'TBC'. A general note says: 'All kitchen sockets 1200 mm AFFL'.",
         "steps": [
           {
             "stepNumber": 1,
             "prompt": "According to the general note, at what height should you install this socket?",
             "expectedAnswer": [
-              "1200mm",
               "1200",
-              "1200mm AFFL"
+              "1200mm",
+              "1200 mm",
+              "1200mm affl",
+              "1200 mm affl"
             ],
-            "hint": "Look at the height mentioned in the general note."
+            "hint": "Use the height stated in the general note."
           },
           {
             "stepNumber": 2,
-            "prompt": "What does the abbreviation 'TBC' mean you should do before installing?",
+            "prompt": "What does 'TBC' mean you should do before installing?",
             "expectedAnswer": [
-              "To be confirmed",
+              "to be confirmed",
               "confirm",
-              "Check with supervisor",
-              "Stop and query"
+              "stop and query",
+              "check with supervisor"
             ],
-            "hint": "TBC stands for 'To Be Confirmed'."
+            "hint": "TBC means you must confirm before proceeding."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2B-microbreak-4",
+      "type": "microbreak",
+      "order": 8.6,
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "Which table defines every symbol used?",
+            "answer": "Legend"
+          },
+          {
+            "question": "What shows the physical location of equipment?",
+            "answer": "Layout plan"
+          },
+          {
+            "question": "What does AFFL stand for?",
+            "answer": "Above Finished Floor Level"
+          },
+          {
+            "question": "What shows logical connections, not physical locations?",
+            "answer": "Schematic"
+          },
+          {
+            "question": "Where are instructions for the entire drawing found?",
+            "answer": "General notes"
           }
         ]
       }
@@ -316,38 +442,37 @@
         "questions": [
           {
             "id": "203-2B-P1",
-            "questionText": "If a drawing is marked 'NTS', why is it a mistake to use a scale ruler to find the position of a socket?",
+            "questionText": "If a drawing is marked 'NTS', why is it a mistake to use a scale ruler to set out a socket position?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Not to scale",
-              "The drawing is not to scale",
-              "Distances are not accurate",
-              "Measurements are unreliable"
+              "because it is not to scale so distances are not accurate",
+              "nts means not to scale so you cannot measure distances",
+              "measurements on the drawing are unreliable"
             ],
-            "hint": "What does NTS stand for?"
+            "hint": "NTS means you can’t measure distances accurately."
           },
           {
             "id": "203-2B-P2",
-            "questionText": "Which drawing type would you use to understand the sequence of how a circuit is wired from the Consumer Unit to the lights?",
+            "questionText": "Which drawing type would you use to understand how components connect electrically (how), rather than where they are in the building (where)?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Schematic",
-              "Circuit diagram",
-              "Schematic diagram"
+              "schematic",
+              "circuit diagram",
+              "schematic diagram"
             ],
-            "hint": "Think about 'how' vs 'where'."
+            "hint": "This is the 'how it connects' drawing."
           },
           {
             "id": "203-2B-P3",
-            "questionText": "A symbol for a light is marked 'IP44'. Where would this light likely be installed compared to a standard 'IP20' light?",
+            "questionText": "IP44 gives more protection against splashes than IP20. Name one likely location where IP44 might be specified compared to IP20.",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Bathroom",
-              "Outside",
-              "Damp location",
-              "Wet area"
+              "bathroom",
+              "utility room",
+              "damp area",
+              "near a sink"
             ],
-            "hint": "IP44 provides more protection against water than IP20."
+            "hint": "Think splashes and damp areas."
           }
         ]
       }
@@ -367,21 +492,21 @@
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "The layout shows where, the legend defines what, and the notes specify how",
-              "They provide the location, definition, and technical constraints together",
-              "The layout gives position, legend gives symbol meaning, and notes give heights and ratings"
+              "layout shows where, legend defines what the symbol is, and notes/abbreviations specify constraints like height and ip rating",
+              "layout gives location, legend gives symbol meaning, notes give installation rules (heights/ratings)",
+              "they combine where it goes, what it is, and constraints for how to fit it safely"
             ],
-            "hint": "Combine the 'where', the 'what', and the 'specific rules' (like height/IP)."
+            "hint": "Combine the 'where', the 'what', and the constraints (height/IP/etc.)."
           },
           {
             "id": "203-2B-INT-2",
-            "questionText": "You are on-site and find a symbol on a floor plan that you don't recognize. Explain the four steps you would take to identify it and install it correctly without guessing. (3-4 sentences)",
+            "questionText": "You find an unknown symbol on a floor plan. Explain the four steps you would take to identify it and install it correctly without guessing. (3–4 sentences)",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "First, I would check the legend on the drawing to define the symbol. Second, I would check the general notes and abbreviations for mounting heights or IP ratings. Third, I would consult the project specification or manufacturer data if the legend is unclear. Finally, if still unsure, I would stop and query the site supervisor to avoid guessing."
+              "first i would check the legend on the drawing to define the symbol. second i would read the general notes and any abbreviations near the point for heights or ip ratings. third i would check the title block (scale/nts) and the specification/manufacturer data if needed. finally if still unsure or if anything conflicts i would stop and query the supervisor before installing."
             ],
-            "hint": "Think about the hierarchy: Legend -> Notes -> Spec -> Supervisor."
+            "hint": "Use the hierarchy: Legend -> Notes -> Title block/spec/manufacturer -> Stop and query."
           }
         ]
       }
@@ -395,37 +520,53 @@
         "questions": [
           {
             "id": "203-2B-SR-1",
-            "questionText": "What should you do if information on a drawing conflicts with the site conditions?",
-            "expectedAnswer": "Stop and query with a supervisor",
+            "questionText": "What should you do if information on a drawing conflicts with site conditions?",
+            "expectedAnswer": [
+              "stop and query with a supervisor",
+              "stop and query",
+              "check with supervisor"
+            ],
             "hint": "Never guess when safety is involved."
           },
           {
             "id": "203-2B-SR-2",
             "questionText": "Why do we avoid guessing symbol meanings in electrical work?",
-            "expectedAnswer": "To ensure safety and compliance with regulations",
-            "hint": "Think about the consequences of a wrong installation."
+            "expectedAnswer": [
+              "to ensure safety and compliance",
+              "because guessing can lead to unsafe or non-compliant installation",
+              "to prevent dangerous mistakes"
+            ],
+            "hint": "Think about safety and compliance."
           },
           {
             "id": "203-2B-SR-3",
-            "questionText": "Name one source of information used to confirm the specific limits of a piece of electrical equipment.",
-            "expectedAnswer": "Manufacturer data or instructions",
+            "questionText": "Name one source used to confirm the specific limits of a piece of electrical equipment.",
+            "expectedAnswer": [
+              "manufacturer's data",
+              "manufacturer data",
+              "instructions",
+              "datasheet"
+            ],
             "hint": "Who made the product?"
           },
           {
             "id": "203-2B-SR-4",
             "questionText": "What is the main priority when working on a construction site?",
-            "expectedAnswer": "Health and Safety",
-            "hint": "Think about the most important rule from Unit 201."
+            "expectedAnswer": [
+              "health and safety",
+              "safety"
+            ],
+            "hint": "Think Unit 201: safety first."
           }
         ],
-        "notes": "Reviewing basic site practices and information sources from Unit 201."
+        "notes": "Reviewing basic safe working habits and information sources linked to Unit 201."
       }
     }
   ],
   "metadata": {
     "created": "2026-02-02",
     "updated": "2026-02-02",
-    "version": "1.0",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team"
   }
 }
