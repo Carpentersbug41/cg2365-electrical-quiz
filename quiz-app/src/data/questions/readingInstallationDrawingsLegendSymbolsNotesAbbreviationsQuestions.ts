@@ -11,43 +11,43 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "id": 4016,
     "question": "What is the primary purpose of a layout plan in an electrical installation?",
     "options": [
-      "To show where equipment is physically located within the building",
-      "To show the logical connection of the internal components",
-      "To show the terminal-to-terminal wiring detail",
-      "To list the cost of the materials required"
+      "To show where equipment and accessories are physically located",
+      "To show the logical electrical connection between components",
+      "To provide a detailed terminal-to-terminal wiring guide",
+      "To list the cost of all materials required for the job"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
     "tags": [
       "terminology",
-      "conceptual"
+      "explanation"
     ],
     "learningOutcomeId": "203-2B-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A layout plan is a 'where' drawing; it shows the physical location of accessories and equipment within the building structure."
+    "explanation": "A layout plan is used to identify the physical location of equipment within a building (the 'where')."
   },
   {
     "id": 4017,
-    "question": "Which document is the final authority for defining the meaning of symbols used on a specific set of drawings?",
+    "question": "Why is the drawing legend (key) considered the 'authority' for symbol meanings on a specific project?",
     "options": [
-      "The drawing legend (key)",
-      "An electrical textbook",
-      "The On-Site Guide",
-      "The manufacturer's catalogue"
+      "Because symbols can vary between different designers and CAD libraries",
+      "Because the legend is the only place that lists the circuit voltages",
+      "Because the legend contains the legal contract for the installation",
+      "Because all electrical drawings are required by law to use the exact same symbols"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
@@ -59,21 +59,210 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Because CAD libraries and designers vary, the legend (or key) provided with that specific drawing set is the only authority for what those symbols mean."
+    "explanation": "Different designers may use different symbols; the legend for that specific drawing set defines what each symbol means for that job."
   },
   {
     "id": 4018,
-    "question": "If a drawing shows how a circuit connects logically but does not represent physical distances or locations, it is a:",
+    "question": "Which type of drawing focuses on 'how' a circuit connects logically, rather than where the items are physically placed?",
     "options": [
       "Schematic or circuit diagram",
       "Layout plan",
       "Site plan",
-      "Building elevation"
+      "Elevation drawing"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A schematic or circuit diagram shows the logical flow and connection of a circuit rather than physical locations."
+  },
+  {
+    "id": 4019,
+    "question": "An electrician sees the abbreviation 'NTS' in the title block of a drawing. What does this mean regarding measurements?",
+    "options": [
+      "Distances cannot be reliably measured directly from the drawing",
+      "No Technical Specifications are provided for this circuit",
+      "The drawing is a New Technical Standard",
+      "Neutral Terminal Strips must be used throughout"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "units"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "NTS stands for 'Not To Scale', meaning you should rely on written dimensions rather than measuring the paper drawing."
+  },
+  {
+    "id": 4020,
+    "question": "Where would you find information that applies to the entire drawing set, such as required mounting heights or specific BS standards?",
+    "options": [
+      "General notes",
+      "The manufacturer's data sheet",
+      "The consumer unit label",
+      "The wiring diagram"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "General notes provide instructions that apply to the whole plan, such as mounting heights (AFFL) or material requirements."
+  },
+  {
+    "id": 4021,
+    "question": "On an installation plan, what does the abbreviation 'CU' or 'DB' typically represent?",
+    "options": [
+      "The Consumer Unit or Distribution Board",
+      "The Copper Uninsulated conductor",
+      "A Ceiling Unit for lighting",
+      "The Current Usage monitor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-2B-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "CU stands for Consumer Unit and DB stands for Distribution Board, identifying the source of the circuits."
+  },
+  {
+    "id": 4022,
+    "question": "An electrician is looking for the mounting height of a socket and sees the note '450mm AFFL'. What does AFFL stand for?",
+    "options": [
+      "Above Finished Floor Level",
+      "At Final Floor Line",
+      "All Fittings Fully Located",
+      "Area For Fuse Link"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "AFFL (Above Finished Floor Level) is the standard reference for mounting heights in electrical installations."
+  },
+  {
+    "id": 4023,
+    "question": "If a lighting point symbol on a plan is accompanied by the note 'IP65', what characteristic must the light fitting have?",
+    "options": [
+      "A specific level of protection against dust and water ingress",
+      "An internal protection fuse rated at 65 Amps",
+      "A maximum power rating of 65 Watts",
+      "A requirement to be installed at 6.5 metres height"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_I_V_R",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "IP (Ingress Protection) ratings define how well an enclosure protects against solids (like dust) and liquids (water)."
+  },
+  {
+    "id": 4024,
+    "question": "What should an electrician do if they encounter a symbol on a layout plan that they do not recognize?",
+    "options": [
+      "Check the drawing's legend (key) for the definition",
+      "Guess the meaning based on the symbol's shape",
+      "Install a standard single socket as a default",
+      "Ignore the symbol and continue with the rest of the circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
       "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The legend is the specific authority for that drawing set and should always be the first point of reference for unfamiliar symbols."
+  },
+  {
+    "id": 4025,
+    "question": "What does the abbreviation 'FCU' stand for on an electrical installation drawing?",
+    "options": [
+      "Fused Connection Unit",
+      "Final Circuit Unit",
+      "Floor Cable Underlay",
+      "Fixed Current Utensil"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
@@ -82,213 +271,24 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Schematics and circuit diagrams show 'how' a circuit works logically, whereas layout plans show 'where' items are placed."
-  },
-  {
-    "id": 4019,
-    "question": "Which symbol family on an installation plan would typically include 1-way, 2-way, and intermediate types?",
-    "options": [
-      "Switches",
-      "Socket outlets",
-      "Lighting points",
-      "Fused connection units"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
     "learningOutcomeId": "203-2B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "1-way, 2-way, and intermediate are all types of functional control devices within the switch family."
-  },
-  {
-    "id": 4020,
-    "question": "An electrician sees the abbreviation 'NTS' on a drawing. What does this indicate?",
-    "options": [
-      "The drawing is not to scale and measurements should not be taken from it",
-      "The installation must be Neutral-To-Surface",
-      "New Technical Standard must be applied",
-      "Notes To Site are provided on a separate sheet"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "'NTS' stands for 'Not To Scale', meaning you cannot use a ruler or scale rule to determine physical distances from the paper drawing."
-  },
-  {
-    "id": 4021,
-    "question": "What does the abbreviation 'AFFL' usually refer to on a drawing note?",
-    "options": [
-      "Above Finished Floor Level",
-      "All Floors Fully Lit",
-      "Amps For Full Load",
-      "Auxiliary Fuse For Lighting"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "AFFL stands for 'Above Finished Floor Level', which is used as a reference point for mounting heights of accessories like sockets and switches."
-  },
-  {
-    "id": 4022,
-    "question": "Which abbreviation is commonly used on a drawing to identify a Fused Connection Unit?",
-    "options": [
-      "FCU",
-      "CU",
-      "DB",
-      "CCU"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "FCU is the standard abbreviation for a Fused Connection Unit. CU is Consumer Unit, DB is Distribution Board, and CCU is Cooker Control Unit."
-  },
-  {
-    "id": 4023,
-    "question": "If a lighting point symbol is accompanied by the note 'IP65', what is the electrician being told?",
-    "options": [
-      "The fitting must have a specific level of ingress protection against dust and water",
-      "The fitting must be installed exactly 65mm from the ceiling",
-      "The lighting circuit is number 65 on the distribution board",
-      "The fitting must be a 65-watt incandescent bulb"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "IP ratings (Ingress Protection) indicate how well an enclosure protects against the entry of solid objects and liquids."
-  },
-  {
-    "id": 4024,
-    "question": "Why is it considered a 'best practice' habit to check the legend first before interpreting symbols on a new drawing?",
-    "options": [
-      "Because symbols are not universal and can vary between different designers",
-      "Because the legend lists the prices of the components",
-      "Because the legend contains the contact details of the client",
-      "Because the legend is required by law to be read before work starts"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Different CAD libraries use different symbols. To avoid installing the wrong equipment, you must confirm what each symbol means using that specific drawing's legend."
-  },
-  {
-    "id": 4025,
-    "question": "A drawing shows a symbol for a distribution board labeled 'DB1'. In a domestic installation, what is this more commonly called?",
-    "options": [
-      "Consumer Unit",
-      "Control Unit",
-      "Connection Unit",
-      "Circuit Unit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "In domestic (household) settings, a distribution board is usually referred to as a Consumer Unit (CU)."
+    "explanation": "FCU stands for Fused Connection Unit, which is a common accessory used to protect fixed appliances."
   },
   {
     "id": 4026,
-    "question": "What is the primary purpose of a 'Legend' or 'Key' on an electrical installation drawing?",
+    "question": "What is the primary purpose of a drawing legend or key on an electrical installation plan?",
     "options": [
-      "To define the meaning of symbols and abbreviations used on that specific drawing",
-      "To provide a list of all tools required for the installation",
-      "To show the logical connection between components in a circuit",
-      "To list the contact details of the site health and safety officer"
+      "To define the specific meaning of symbols and abbreviations used on that drawing",
+      "To provide a list of the total cost of materials for the installation",
+      "To show the exact terminal-to-terminal internal wiring of accessories",
+      "To list the contact details of the local electricity distributor"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "TOPOLOGY_CONFUSION",
       "3": "OTHER"
     },
@@ -296,18 +296,17 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "category": "Reading Installation Drawings",
     "tags": [
       "terminology",
-      "conceptual",
-      "discrimination"
+      "conceptual"
     ],
     "learningOutcomeId": "203-2B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Legend (or Key) is the authority for that specific drawing set, defining what each symbol and abbreviation represents to ensure the installer does not have to guess."
+    "explanation": "The legend is the authority for that specific drawing set; it defines what each symbol and abbreviation represents, as CAD libraries can vary between designers."
   },
   {
     "id": 4027,
-    "question": "Which type of drawing specifically shows the physical location of equipment and accessories within a building?",
+    "question": "Which type of drawing is specifically used to show the physical location of sockets and lights within a room?",
     "options": [
       "Layout plan",
       "Schematic diagram",
@@ -323,23 +322,23 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
     "tags": [
-      "terminology",
-      "discrimination"
+      "discrimination",
+      "terminology"
     ],
     "learningOutcomeId": "203-2B-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A layout plan shows 'where' equipment is located physically, whereas schematics and circuit diagrams show 'how' they are logically connected."
+    "explanation": "A layout plan (or floor plan) shows 'where' equipment is located physically, while schematics and circuit diagrams show 'how' they are logically connected."
   },
   {
     "id": 4028,
-    "question": "On an installation drawing, what does the abbreviation 'FCU' typically represent?",
+    "question": "If an electrical drawing is marked 'NTS', what does this mean for the person carrying out the installation?",
     "options": [
-      "Fused Connection Unit",
-      "Final Circuit Unit",
-      "Fixed Control Unit",
-      "Fast Current Utility"
+      "The drawing is 'Not To Scale' and distances should not be measured from it",
+      "The installation is 'Not To Specification' and requires a redesign",
+      "All cables must be 'Neutral To Switch' for this specific circuit",
+      "The drawing is 'New Technical Standard' and replaces all previous versions"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -351,434 +350,28 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "category": "Reading Installation Drawings",
     "tags": [
       "terminology",
-      "units"
+      "conceptual"
     ],
-    "learningOutcomeId": "203-2B-LO3",
+    "learningOutcomeId": "203-2B-LO4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "FCU stands for Fused Connection Unit, a common accessory used for connecting fixed appliances to a circuit."
+    "explanation": "NTS stands for 'Not To Scale'. It warns the electrician that they cannot use a scale ruler to determine cable lengths or equipment positions accurately from the paper."
   },
   {
     "id": 4029,
-    "question": "If a drawing is marked with the abbreviation 'NTS', what instruction is being given to the electrician?",
+    "question": "Which of the following abbreviations is commonly used on a drawing to identify a Fused Connection Unit?",
     "options": [
-      "Do not measure distances directly from the drawing",
-      "No Technical Specifications are required for this part",
-      "Neutral Terminal Screws must be used throughout",
-      "New Terminal Standards apply to this installation"
+      "FCU",
+      "CU",
+      "DB",
+      "CCU"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "NTS stands for 'Not To Scale'. It warns the user that they cannot rely on measuring the drawing with a ruler to find physical distances."
-  },
-  {
-    "id": 4030,
-    "question": "An electrician sees a socket symbol on a plan with the note 'AFFL 450mm'. What does this note indicate?",
-    "options": [
-      "The mounting height of the socket above the finished floor level",
-      "The distance the socket must be from the nearest corner",
-      "The minimum cross-sectional area of the circuit cable",
-      "The total current rating of the socket in milliamps"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "WRONG_UNITS",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "terminology",
-      "units"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "AFFL stands for 'Above Finished Floor Level'. It is a standard abbreviation used to specify the installation height of accessories."
-  },
-  {
-    "id": 4031,
-    "question": "An electrician is looking at a drawing that shows the exact physical location of sockets and switches within a room. What type of drawing is this?",
-    "options": [
-      "Layout plan",
-      "Schematic diagram",
-      "Wiring diagram",
-      "Line diagram"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A layout plan shows where equipment is physically located in a building, whereas a schematic shows how the circuit works logically."
-  },
-  {
-    "id": 4032,
-    "question": "Why must an electrician always check the legend (key) of a specific drawing set before interpreting symbols, even if they recognize the shapes?",
-    "options": [
-      "Symbols can vary between different CAD libraries and designers",
-      "The legend specifies the cost of the components",
-      "The legend is a legal requirement for Part P compliance only",
-      "Symbols are updated every year in the On-Site Guide"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "There is no single universal standard for every symbol; the legend for that specific drawing set is the final authority on what a symbol represents."
-  },
-  {
-    "id": 4033,
-    "question": "On an installation plan, a symbol consists of a circle with two parallel lines protruding from the side. Which 'family' of components does this symbol most likely belong to?",
-    "options": [
-      "Socket outlets",
-      "Lighting points",
-      "Switching devices",
-      "Distribution boards"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-2B-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In standard UK installation symbols, a circle with lines (representing pins/contacts) typically denotes a socket outlet family."
-  },
-  {
-    "id": 4034,
-    "question": "A drawing is marked with the abbreviation 'NTS'. What is the correct action for an electrician needing to determine the exact length of a cable run?",
-    "options": [
-      "Physically measure the run on-site or use a provided dimension",
-      "Use a scale ruler to measure the distance on the drawing",
-      "Multiply the drawing measurement by a factor of 10",
-      "Estimate the length based on the size of the paper"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "NTS stands for 'Not To Scale'. This means you cannot rely on measuring the drawing itself to find real-world distances; you must use site measurements or written dimensions."
-  },
-  {
-    "id": 4035,
-    "question": "Which drawing type is most useful for understanding the internal terminal-to-terminal connections within a complex control panel?",
-    "options": [
-      "Wiring diagram",
-      "Layout plan",
-      "Site plan",
-      "Block diagram"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A wiring diagram provides the highest level of detail, showing exactly how wires connect from one terminal to another."
-  },
-  {
-    "id": 4036,
-    "question": "A lighting point on a layout plan is located inside a bathroom zone and is accompanied by the note 'IP44'. What does this note specify about the equipment to be installed?",
-    "options": [
-      "The degree of protection against moisture and solid objects",
-      "The mounting height above the finished floor level",
-      "The power rating of the lamp in Watts",
-      "The circuit number in the distribution board"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "IP (Ingress Protection) ratings define how well an enclosure protects against solids (first digit) and liquids (second digit)."
-  },
-  {
-    "id": 4037,
-    "question": "The general notes on a plan state: 'All twin sockets to be mounted at 450mm AFFL'. If the sub-floor is 50mm below the final floor finish, at what height from the sub-floor should the electrician mark the socket center?",
-    "options": [
-      "500mm",
-      "450mm",
-      "400mm",
-      "550mm"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "SIGN_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 120,
-    "explanation": "AFFL means 'Above Finished Floor Level'. If the finished floor is 50mm above the current sub-floor, you must add that 50mm to the 450mm requirement (450 + 50 = 500mm)."
-  },
-  {
-    "id": 4038,
-    "question": "What should an electrician do if they encounter a symbol on a layout plan that is not listed in the drawing's legend?",
-    "options": [
-      "Stop and query the supervisor or designer",
-      "Assume it is a standard symbol from the 18th Edition",
-      "Guess based on the shape of the symbol",
-      "Install a standard single socket as a default"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Never guess symbol meanings; if the legend (the authority) does not define it, you must seek clarification to avoid errors."
-  },
-  {
-    "id": 4039,
-    "question": "Which of these symbols would you expect to find in the 'Switching' family on an installation layout plan?",
-    "options": [
-      "Pull-cord switch",
-      "Fused Connection Unit (FCU)",
-      "Consumer Unit (CU)",
-      "Distribution Board (DB)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-2B-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Pull-cord switches are part of the switch family. FCUs are protection/connection points, and CU/DBs are distribution equipment."
-  },
-  {
-    "id": 4040,
-    "question": "An electrician sees 'TBC' next to a mounting height for a Cooker Control Unit. What does this indicate?",
-    "options": [
-      "The height is To Be Confirmed and must not be guessed",
-      "The height is To Be Calculated using Ohm's Law",
-      "The unit must be installed Top-Below-Ceiling",
-      "The unit is a Thermal Barrier Component"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "TBC is a common abbreviation for 'To Be Confirmed', signaling that the information is not yet finalized."
-  },
-  {
-    "id": 4041,
-    "question": "Which type of drawing is primarily used by an electrician to determine the physical location of sockets and switches within a room?",
-    "options": [
-      "Layout plan",
-      "Schematic diagram",
-      "Wiring diagram",
-      "Block diagram"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A layout plan shows where equipment is physically located in the building, whereas schematics show logical connections."
-  },
-  {
-    "id": 4042,
-    "question": "Why is the drawing legend (key) considered the 'authority' for symbol meanings on a specific project?",
-    "options": [
-      "Symbols can vary between different CAD libraries and designers",
-      "The legend is a legal requirement under the Building Regulations",
-      "It lists the cost of every individual component shown",
-      "It proves that the drawing has been checked by the local authority"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "explanation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Because symbols are not 100% universal across all software and firms, the legend for that specific drawing defines what each shape means."
-  },
-  {
-    "id": 4043,
-    "question": "An electrician notes the abbreviation 'NTS' in the title block of a floor plan. What action should they avoid?",
-    "options": [
-      "Measuring distances directly from the drawing to determine cable lengths",
-      "Checking the legend for symbol definitions",
-      "Following the mounting heights listed in the general notes",
-      "Using the drawing to identify the location of the consumer unit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "NTS stands for 'Not To Scale'. This means you cannot rely on measuring the paper drawing with a ruler to find real-world distances."
-  },
-  {
-    "id": 4044,
-    "question": "Which of these symbols would typically be found in the 'switches' family on an installation layout plan?",
-    "options": [
-      "Intermediate pull-cord",
-      "Twin switched socket",
-      "Fused connection unit",
-      "Consumer unit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
@@ -788,77 +381,23 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     ],
     "learningOutcomeId": "203-2B-LO3",
     "answerType": "mcq",
-    "difficulty": 2,
+    "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Switches include 1-way, 2-way, intermediate, and pull-cord varieties. Sockets and FCUs belong to different symbol families."
+    "explanation": "FCU stands for Fused Connection Unit. CU is Consumer Unit, DB is Distribution Board, and CCU is Cooker Control Unit."
   },
   {
-    "id": 4045,
-    "question": "A drawing shows a symbol for a lighting point with a note 'IP65'. What does this tell the electrician about the installation requirements?",
+    "id": 4030,
+    "question": "An electrician notes the abbreviation 'AFFL 450mm' next to a symbol for a twin socket. This instruction relates to the:",
     "options": [
-      "The fitting must have a specific level of protection against dust and water",
-      "The fitting must be installed exactly 65mm from the ceiling",
-      "The fitting requires a 65 Amp circuit breaker",
-      "The fitting must be connected using 6.5mm twin and earth cable"
+      "Mounting height of the socket above the finished floor level",
+      "Maximum current rating of the circuit in milliamps",
+      "Minimum distance the socket must be from a corner",
+      "Type of cable protection required for the circuit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "UNITS_MISSING",
-      "2": "WRONG_UNITS",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "IP ratings (Ingress Protection) indicate the suitability of equipment for specific environmental conditions, such as moisture or dust."
-  },
-  {
-    "id": 4046,
-    "question": "What is the primary difference between a schematic diagram and a wiring diagram?",
-    "options": [
-      "A schematic shows logical flow, while a wiring diagram shows terminal-to-terminal detail",
-      "A schematic shows physical locations, while a wiring diagram shows circuit logic",
-      "A schematic is only for AC circuits, while a wiring diagram is only for DC",
-      "A schematic is drawn by the architect, while a wiring diagram is drawn by the client"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Schematics show how a circuit works logically; wiring diagrams provide the specific detail needed for physical terminations."
-  },
-  {
-    "id": 4047,
-    "question": "If a symbol on a plan is labeled 'AFFL 1200mm', where should the accessory be positioned?",
-    "options": [
-      "1200mm above the finished floor level",
-      "1200mm away from the front left wall",
-      "1200mm above the first floor landing",
-      "1200mm at the final floor length"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "WRONG_UNITS",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
@@ -871,97 +410,16 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "AFFL stands for 'Above Finished Floor Level', which is a standard reference for mounting heights."
+    "explanation": "AFFL stands for 'Above Finished Floor Level'. It is a standard way to specify the mounting height of accessories on a drawing."
   },
   {
-    "id": 4048,
-    "question": "Which of these items would you expect to find in the 'General Notes' section of a drawing rather than the legend?",
-    "options": [
-      "Standard mounting heights for all accessories",
-      "The symbol for a two-way switch",
-      "The abbreviation for a consumer unit",
-      "The meaning of a dashed line"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "General notes provide instructions that apply to the whole plan (like heights or standards), whereas the legend defines specific symbols and lines."
-  },
-  {
-    "id": 4049,
-    "question": "An electrician encounters a symbol labeled 'TBC' next to a proposed distribution board location. What is the correct procedure?",
-    "options": [
-      "Stop and query the details with the supervisor or designer",
-      "Install the board at the 'Top Boundary Corner'",
-      "Terminate Both Cables immediately into the wall",
-      "Assume the location is correct and proceed with the install"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "TBC stands for 'To Be Confirmed'. You should never guess or proceed until the information is finalised."
-  },
-  {
-    "id": 4050,
-    "question": "Why is it important to distinguish between a 'switched' and 'unswitched' socket symbol in the legend?",
-    "options": [
-      "To ensure the correct accessory type is purchased and installed",
-      "Because unswitched sockets are illegal in domestic premises",
-      "Because switched sockets require a separate neutral wire",
-      "To determine if the circuit requires a RCD or not"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-2B-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Installing the wrong type of accessory (e.g., unswitched where switched was specified) would be a failure to follow the design specification."
-  },
-  {
-    "id": 4051,
-    "question": "An electrician is reviewing a drawing to determine the physical location of several twin socket outlets in a commercial office. Which type of drawing are they most likely using?",
+    "id": 4031,
+    "question": "An electrician is looking at a drawing to determine exactly where a consumer unit should be mounted in a hallway. Which type of drawing provides the physical location of equipment within a building?",
     "options": [
       "Layout plan",
       "Schematic diagram",
       "Wiring diagram",
-      "Block diagram"
+      "Circuit diagram"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -973,51 +431,212 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "category": "Reading Installation Drawings",
     "tags": [
       "terminology",
-      "explanation",
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A layout plan (or floor plan) shows the physical location of accessories and equipment within the building structure (the 'where')."
+  },
+  {
+    "id": 4032,
+    "question": "Why is it considered a 'critical habit' to check the drawing legend before interpreting symbols on a new installation plan?",
+    "options": [
+      "Symbols can vary between different CAD libraries and designers",
+      "The legend specifies the cost of the materials to be used",
+      "British Standards require every drawing to use identical symbols",
+      "The legend provides the circuit impedance values for testing"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Symbols are not always universal; different designers use different CAD libraries. The legend is the final authority for that specific drawing set."
+  },
+  {
+    "id": 4033,
+    "question": "A drawing contains the abbreviation 'NTS' in the title block. What does this mean for the electrician on site?",
+    "options": [
+      "Distances must not be measured directly from the paper drawing",
+      "The installation must not be tested until completion",
+      "No technical specifications are provided for this circuit",
+      "New thermal switches must be installed on all motors"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "NTS stands for 'Not To Scale'. This means the drawing is a representation and measuring distances directly from the paper with a ruler will lead to errors."
+  },
+  {
+    "id": 4034,
+    "question": "Which of the following drawings focuses on the logical connection and sequence of a circuit rather than the physical location of the components?",
+    "options": [
+      "Schematic diagram",
+      "Site plan",
+      "Layout plan",
+      "Elevation drawing"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "discrimination",
       "conceptual"
     ],
     "learningOutcomeId": "203-2B-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "A layout plan (or floor plan) shows the physical location of equipment within a building ('where'), whereas a schematic shows the logical connection ('how')."
+    "explanation": "A schematic or circuit diagram shows the logical flow and how components are connected (the 'how'), ignoring their physical positions."
   },
   {
-    "id": 4052,
-    "question": "Why is it considered essential practice to check the 'Legend' or 'Key' on every new set of installation drawings, even if the symbols look familiar?",
+    "id": 4035,
+    "question": "A layout plan shows a socket symbol with the note '450mm AFFL'. What does this instruction indicate to the installer?",
     "options": [
-      "Symbols can vary between different CAD libraries and designers",
-      "The legend specifies the cost of the accessories shown",
-      "The legend is the only place where circuit cable sizes are listed",
-      "It is a legal requirement under the Electricity at Work Regulations"
+      "The socket must be mounted 450mm Above Finished Floor Level",
+      "The socket requires a 450mm air-flow clearance around it",
+      "The circuit requires a 450mA RCD for protection",
+      "The socket must be at least 450mm away from any light switch"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "legislation"
+      "2": "UNITS_MISSING",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
     "tags": [
-      "explanation",
-      "conceptual",
-      "terminology"
+      "application",
+      "units"
     ],
-    "learningOutcomeId": "203-2B-LO1",
+    "learningOutcomeId": "203-2B-LO4",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "There is no single universal standard for all symbols; different designers use different CAD libraries. The legend is the final authority for that specific drawing set."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "AFFL stands for 'Above Finished Floor Level'. It is a standard reference for mounting heights of accessories."
   },
   {
-    "id": 4053,
-    "question": "On an installation plan, an accessory is marked with the abbreviation 'FCU' and located near a fixed heater. What does this abbreviation stand for and what is its primary function?",
+    "id": 4036,
+    "question": "When reviewing a drawing legend, you see a circle with a cross inside it. In the context of an installation layout, which 'family' of symbols does this usually belong to?",
     "options": [
-      "Fused Connection Unit; used for local isolation and protection",
-      "Final Circuit Unit; used to divide power to different rooms",
-      "Fixed Current Unit; used to limit the maximum demand of the heater",
-      "Frequency Control Unit; used to change the speed of a motor"
+      "Lighting points",
+      "Socket outlets",
+      "Switchgear",
+      "Earthing points"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-2B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A circle with a cross is the standard base symbol for a lighting point (such as a ceiling rose) on a layout plan."
+  },
+  {
+    "id": 4037,
+    "question": "An electrician identifies a note 'IP65' next to a symbol for an outdoor light. What does this note dictate about the selection of the luminaire?",
+    "options": [
+      "The light must have a specific level of protection against dust and water",
+      "The light must be connected to a 65 Amp circuit breaker",
+      "The light must be mounted exactly 6.5 metres above the ground",
+      "The light must use a 65 Watt LED lamp only"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "UNITS_MISSING",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "IP (Ingress Protection) ratings define the equipment's resistance to solid objects/dust and liquids. IP65 is common for outdoor equipment."
+  },
+  {
+    "id": 4038,
+    "question": "If an electrician encounters the abbreviation 'TBC' on a drawing regarding the final location of a Distribution Board, what is the correct professional action?",
+    "options": [
+      "Stop and query the location with the supervisor or designer",
+      "Install the board in the most convenient location available",
+      "Assume the abbreviation stands for 'Transformer Box Connection'",
+      "Measure the distance from the nearest wall and install it there"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "TBC stands for 'To Be Confirmed'. If a location is not yet decided, you must query it rather than guessing or choosing your own location."
+  },
+  {
+    "id": 4039,
+    "question": "On a large commercial drawing, several symbols look like small rectangles with the letters 'FCU' inside. What accessory does this represent?",
+    "options": [
+      "Fused Connection Unit",
+      "Fire Control Unit",
+      "Fluorescent Control Unit",
+      "Final Circuit Unit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1029,29 +648,381 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "category": "Reading Installation Drawings",
     "tags": [
       "terminology",
-      "application",
-      "units"
+      "discrimination"
     ],
     "learningOutcomeId": "203-2B-LO3",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 60,
-    "explanation": "FCU stands for Fused Connection Unit. It provides a means of local isolation and overcurrent protection for fixed appliances."
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "FCU is the standard abbreviation for a Fused Connection Unit, often used for fixed appliances like heaters or fans."
   },
   {
-    "id": 4054,
-    "question": "A lighting layout includes a note stating 'All luminaires to be IP44 and mounted 2300mm AFFL'. What specific installation requirements does this convey?",
+    "id": 4040,
+    "question": "A drawing legend shows a symbol for a 'switched socket outlet' as a semi-circle with two lines and a small 's' next to it. How would this help an electrician who usually uses a different symbol library?",
     "options": [
-      "The lights must be splash-proof and installed 2.3m above the finished floor level",
-      "The lights must be dust-proof and installed 2300mm away from the consumer unit",
-      "The lights must be fire-rated and installed 2.3m below the ceiling joists",
-      "The lights must be impact-resistant and installed 2300mm from any windows"
+      "It acts as the authority for symbol meaning on that specific project",
+      "It proves that the designer has used the wrong British Standard",
+      "It allows the electrician to ignore the symbols and follow the notes instead",
+      "It indicates that the socket is suitable for industrial use only"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The legend (key) is the definitive guide for a specific set of drawings. Even if symbols differ from what an electrician is used to, the legend must be followed for that job."
+  },
+  {
+    "id": 4041,
+    "question": "An electrician is tasked with installing the first-fix containment in a new office block. Which type of drawing should they consult to find the physical routes and positions of the trunking?",
+    "options": [
+      "Layout plan",
+      "Schematic diagram",
+      "Wiring diagram",
+      "Block diagram"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A layout plan shows the physical location and 'where' equipment and containment are located within a building."
+  },
+  {
+    "id": 4042,
+    "question": "Why is it critical to check the drawing legend (key) before interpreting symbols on a new set of installation plans?",
+    "options": [
+      "Symbols can vary between different CAD libraries and designers",
+      "The legend specifies the total current demand for the circuit",
+      "The legend is a legal requirement under BS 7671 for all drawings",
+      "Symbols are always identical, but the legend lists the material costs"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "There is no single universal symbol library used by every designer; the legend is the authority for that specific drawing set."
+  },
+  {
+    "id": 4043,
+    "question": "A drawing for a warehouse lighting installation is marked 'NTS'. The electrician needs to know the exact distance between two light fittings. What is the correct course of action?",
+    "options": [
+      "Refer to the written dimensions or site notes rather than measuring the drawing",
+      "Use a scale ruler to measure the distance on the paper copy",
+      "Estimate the distance based on the standard length of a conduit 3m length",
+      "Multiply the measured distance by the scale factor found in the title block"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "NTS stands for 'Not To Scale'. Measuring from such a drawing is inaccurate; written dimensions or site confirmation must be used."
+  },
+  {
+    "id": 4044,
+    "question": "Which drawing type is primarily concerned with showing the logical sequence of connection and the functional relationship between components, rather than their physical location?",
+    "options": [
+      "Schematic diagram",
+      "Layout plan",
+      "Site plan",
+      "As-installed drawing"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Schematics show 'how' a circuit works logically, whereas layout plans show 'where' items are physically placed."
+  },
+  {
+    "id": 4045,
+    "question": "An electrician sees a symbol on a plan consisting of a circle with two parallel lines protruding from the side. According to standard symbol families, what does this usually represent?",
+    "options": [
+      "A twin socket outlet",
+      "A two-gang switch",
+      "A two-way light fitting",
+      "A double-pole isolator"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-2B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In the socket family, lines (tails) protruding from the circle usually indicate the number of outlets (e.g., two lines for a twin socket)."
+  },
+  {
+    "id": 4046,
+    "question": "A specification note on an installation drawing reads 'All accessories to be mounted 1200mm AFFL'. What does this instruct the electrician to do?",
+    "options": [
+      "Mount the accessories 1200mm above the finished floor level",
+      "Mount the accessories 1200mm away from the front left corner",
+      "Ensure all cables are 1200mm above the fire foam line",
+      "Install accessories 1200mm apart from the final light"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "AFFL stands for 'Above Finished Floor Level', a standard reference for mounting heights."
+  },
+  {
+    "id": 4047,
+    "question": "If a symbol on a layout plan is marked with 'IP65', what information does this provide about the equipment to be installed?",
+    "options": [
+      "The environmental protection rating against dust and water",
+      "The internal power rating in kilowatts",
+      "The inspection priority level for the local authority",
+      "The input phase requirement for the motor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "IP (Ingress Protection) ratings define how well an enclosure protects against solids (dust) and liquids (water)."
+  },
+  {
+    "id": 4048,
+    "question": "While reviewing a drawing, an electrician finds the abbreviation 'TBC' next to the Consumer Unit location. What is the most professional response?",
+    "options": [
+      "Stop and query the final location with the site supervisor or designer",
+      "Assume it means 'To Be Connected' and install it in the hallway",
+      "Install the unit in the same place as the previous job",
+      "Wait until the end of the project and install it wherever there is space"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "TBC means 'To Be Confirmed'. Installing equipment based on a TBC note without confirmation leads to costly errors and non-compliance."
+  },
+  {
+    "id": 4049,
+    "question": "Which of the following would typically be found in the 'General Notes' section of a drawing rather than the legend?",
+    "options": [
+      "The requirement for all cables to be LSF (Low Smoke and Fume)",
+      "The meaning of a circle symbol with a cross in it",
+      "The abbreviation for a Fused Connection Unit (FCU)",
+      "The visual representation of a 1-way switch"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "General notes apply to the whole project (like cable types), while the legend defines specific symbols and abbreviations used on the plan."
+  },
+  {
+    "id": 4050,
+    "question": "An electrician is looking at a drawing for a kitchen. The symbol for a cooker control unit is shown, but there is a small 'CC' abbreviation next to it. Where should they look to confirm if 'CC' stands for 'Cooker Circuit' or 'Cleaners Circuit'?",
+    "options": [
+      "The drawing legend",
+      "The BS 7671 Wiring Regulations",
+      "The manufacturer's catalog",
+      "The On-Site Guide"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The legend is the specific authority for any abbreviations or symbols used on that particular drawing set."
+  },
+  {
+    "id": 4051,
+    "question": "An electrician is tasked with installing socket outlets in a new office block. Which type of drawing should they consult to find the specific physical locations and mounting positions of these accessories?",
+    "options": [
+      "Layout plan",
+      "Schematic diagram",
+      "Wiring diagram",
+      "Block diagram"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A layout plan (or floor plan) shows the physical 'where' of an installation. Schematic diagrams show the logical 'how' (circuitry), while wiring diagrams show terminal-to-terminal detail."
+  },
+  {
+    "id": 4052,
+    "question": "A drawing for a commercial kitchen uses a specific symbol for 'Emergency Stop' that the electrician has not seen before. Why is it essential to check the drawing legend rather than guessing based on the symbol's shape?",
+    "options": [
+      "Symbols vary by CAD library and designer, making the legend the only authority for that drawing",
+      "The legend specifies the exact manufacturer and part number for every symbol shown",
+      "The legend is a legal requirement under Part P of the Building Regulations for all drawings",
+      "Checking the legend is the only way to determine if the circuit is AC or DC"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "explanation",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Because there is no single universal standard for every symbol, designers often use different CAD libraries. The legend (or key) is the primary reference that defines what symbols mean for that specific set of drawings."
+  },
+  {
+    "id": 4053,
+    "question": "An electrician needs to determine the distance between two twin socket outlets on a drawing where the title block is marked 'NTS'. What is the correct procedure to ensure the sockets are installed correctly?",
+    "options": [
+      "Refer to the written dimensions or general notes provided on the drawing",
+      "Use a scale ruler to measure the distance directly from the floor plan",
+      "Assume a standard spacing of 1200mm between all socket outlets",
+      "Measure the drawing in millimeters and multiply by the scale factor in the legend"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
@@ -1064,102 +1035,22 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "IP44 indicates protection against solid objects >1mm and splashing water. AFFL stands for 'Above Finished Floor Level', which is the standard reference for mounting heights."
+    "explanation": "NTS stands for 'Not To Scale'. This means the drawing proportions may be distorted, and measuring directly from the paper will result in errors. Installers must use written dimensions or notes."
   },
   {
-    "id": 4055,
-    "question": "An electrician notices the abbreviation 'NTS' in the title block of a floor plan. How should they determine the exact length of cable required for the circuit runs shown?",
+    "id": 4054,
+    "question": "A lighting layout for a leisure centre shower room includes a symbol for a light fitting with the note 'IP44' and '2400mm AFFL'. How should this be interpreted by the installer?",
     "options": [
-      "By calculating from known room dimensions or measuring on-site",
-      "By using a scale ruler directly on the drawing paper",
-      "By assuming the drawing is a standard 1:100 scale",
-      "By multiplying the measured drawing distance by a factor of 10"
+      "The fitting must be splash-proof and mounted 2400mm Above Finished Floor Level",
+      "The fitting must be dust-tight and mounted 2400mm Above Finished Floor Level",
+      "The fitting must be submersible and mounted 2400mm Above Fixed Furniture Level",
+      "The fitting must be flame-proof and mounted 2400mm away From Following Lights"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "ROUNDING_ERROR",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
-      "terminology",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "NTS stands for 'Not To Scale'. This means you cannot rely on measuring the physical drawing to find distances; you must use provided dimensions or measure the actual site."
-  },
-  {
-    "id": 4056,
-    "question": "An electrician is reviewing a drawing that shows the exact physical placement of accessories relative to the building's walls, doors, and windows. What specific type of drawing are they interpreting?",
-    "options": [
-      "Layout plan",
-      "Schematic diagram",
-      "Wiring diagram",
-      "Block diagram"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
+      "1": "WRONG_UNITS",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "terminology",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-2B-LO2",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "A layout plan shows the physical location of equipment within the building structure ('where'), whereas schematics show logical connections ('how')."
-  },
-  {
-    "id": 4057,
-    "question": "Why is it considered a critical error to rely solely on 'standard' symbol recognition without first checking the drawing's legend?",
-    "options": [
-      "CAD libraries and designers often use different symbols for the same component",
-      "The legend specifies the cost of each component listed",
-      "National standards forbid the use of universal symbols on site plans",
-      "Symbols on drawings are always updated every six months by the IET"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO1",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Symbols vary between different CAD software and design firms. The legend for that specific project is the only definitive authority for symbol meaning."
-  },
-  {
-    "id": 4058,
-    "question": "A drawing indicates a lighting point with the note 'IP65' and an 'AFFL' value of 2500mm. How should this be interpreted during installation?",
-    "options": [
-      "A dust-tight and water-jet protected light mounted 2500mm above the finished floor level",
-      "An indoor-only light mounted 2500mm away from the nearest consumer unit",
-      "A light with a 65mm diameter mounted 2500mm above the foundation level",
-      "A light suitable for Zone 0 mounted 2500mm below the ceiling height"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "UNITS_MISSING",
-      "3": "WRONG_UNITS"
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
@@ -1169,128 +1060,81 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
       "units"
     ],
     "learningOutcomeId": "203-2B-LO4",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "IP65 indicates protection against dust and water jets. AFFL stands for 'Above Finished Floor Level', which is the standard reference for mounting heights."
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "IP44 indicates protection against solid objects >1mm and splashes of water. AFFL is the standard abbreviation for 'Above Finished Floor Level', which is the critical height reference for installations."
   },
   {
-    "id": 4059,
-    "question": "An electrician notices the abbreviation 'NTS' on a 1:50 scale drawing. They need to find the exact distance between two socket outlets to drill through a stud wall. What is the correct procedure?",
+    "id": 4055,
+    "question": "When reviewing a drawing, an electrician notices a symbol labeled 'FCU' located next to a fixed hand dryer. What does this abbreviation signify regarding the installation requirement?",
     "options": [
-      "Do not measure the drawing; refer to written dimensions or request a dimensioned drawing",
-      "Use a scale ruler and multiply the measured distance by 50",
-      "Measure the drawing with a standard tape measure and round up to the nearest 100mm",
-      "Estimate the distance based on the standard width of a door frame shown on the plan"
+      "The equipment must be connected via a Fused Connection Unit",
+      "The circuit is a Final Circuit Unit and must be wired in 4.0mm² cable",
+      "The equipment requires a Frequency Control Unit for motor speed",
+      "The installation is a Fire Control Utility and requires red cable"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "ROUNDING_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "NTS stands for 'Not To Scale'. This means the drawing geometry may have been distorted during printing or editing, and measuring it directly will lead to errors."
-  },
-  {
-    "id": 4060,
-    "question": "Which drawing would be most appropriate for an electrician to use when trying to identify which specific circuit breaker controls a particular set of kitchen sockets?",
-    "options": [
-      "Schematic or circuit diagram",
-      "Site layout plan",
-      "Building elevation drawing",
-      "Architectural floor plan"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
     "tags": [
       "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-2B-LO2",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Schematics and circuit diagrams show the logical flow and electrical relationships (which breaker feeds which load), whereas floor plans focus on physical location."
-  },
-  {
-    "id": 4061,
-    "question": "A floor plan shows a symbol for a Fused Connection Unit (FCU) but does not specify if it should be switched or unswitched. Where is the authoritative source for this information?",
-    "options": [
-      "The drawing legend or the project specification notes",
-      "The manufacturer's installation leaflet for the appliance",
-      "The general symbols listed in the BS 7671 On-Site Guide",
-      "The electrician's personal preference based on previous jobs"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "conceptual",
+      "terminology",
       "application"
     ],
-    "learningOutcomeId": "203-2B-LO1",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The drawing legend is the primary authority for symbol meanings on a specific project. If the symbol is ambiguous, the project notes or specification must be consulted."
+    "learningOutcomeId": "203-2B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "FCU stands for Fused Connection Unit. It is a common accessory used to connect fixed appliances to a ring or radial circuit while providing local fuse protection."
   },
   {
-    "id": 4062,
-    "question": "In a large commercial project, the 'General Notes' section of a drawing states: 'All accessories to be mounted at 1200mm AFFL unless otherwise stated'. A specific socket symbol has a note '450mm'. What height should this socket be installed at?",
+    "id": 4056,
+    "question": "An electrician is working from a layout plan that features a symbol looking like a standard socket but with an additional 'X' through the center. There is no specific instruction in the general notes regarding this. What is the mandatory first step to identify the component?",
     "options": [
-      "450mm above finished floor level",
-      "1200mm above finished floor level",
-      "1650mm above finished floor level",
-      "750mm above finished floor level"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Reading Installation Drawings",
-    "tags": [
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-2B-LO4",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Specific notes next to a symbol override 'General Notes'. Since 'unless otherwise stated' was in the general notes, the 450mm specific note takes priority."
-  },
-  {
-    "id": 4063,
-    "question": "Which of these abbreviations on an electrical drawing indicates that the final position of a piece of equipment is yet to be decided and requires further instruction?",
-    "options": [
-      "TBC",
-      "NTS",
-      "CU",
-      "DB"
+      "Consult the drawing legend (key) for the specific definition used by the designer",
+      "Assume it represents a switched socket as the 'X' usually indicates a switch",
+      "Look for a similar symbol in the On-Site Guide to find the British Standard definition",
+      "Install a standard unswitched socket and wait for the site supervisor to inspect it"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-2B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "The Legend (or Key) is the final authority for any symbol on a specific drawing set, as designers often use different CAD libraries or custom symbols."
+  },
+  {
+    "id": 4057,
+    "question": "When reviewing a set of drawings for a commercial office fit-out, which specific document would an electrician use to determine the exact physical coordinates and mounting positions of luminaires within a room?",
+    "options": [
+      "The layout plan",
+      "The schematic diagram",
+      "The wiring diagram",
+      "The block diagram"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
@@ -1298,25 +1142,82 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-2B-LO4",
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 60,
-    "explanation": "TBC stands for 'To Be Confirmed'. It signals that the information is provisional and the electrician must query it before installation."
+    "explanation": "A layout plan shows 'where' equipment is located physically in the building, whereas schematics show 'how' they connect logically."
   },
   {
-    "id": 4064,
-    "question": "When transitioning from a 'Layout Plan' to a 'Wiring Diagram', what additional information is the electrician primarily looking for?",
+    "id": 4058,
+    "question": "A site drawing for a new residential build is clearly marked with the abbreviation 'NTS'. If an electrician needs to calculate the total length of 2.5mm² cable required for the ring final circuits, how should they proceed?",
     "options": [
-      "Terminal-to-terminal connection details and internal component wiring",
-      "The physical distance between the consumer unit and the first light",
-      "The architectural style of the building's exterior",
-      "The location of structural beams and joists"
+      "Physically measure the site dimensions once the walls are in place",
+      "Use a scale ruler on the drawing and multiply by the scale factor in the title block",
+      "Calculate the area of the rooms and multiply by a standard factor of 1.5",
+      "Measure the drawing in millimeters and convert directly to meters"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "ROUNDING_ERROR",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "units",
+      "application",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "'NTS' stands for 'Not To Scale'. This means the drawing proportions may be distorted and cannot be used for accurate physical measurements; site measurements are required."
+  },
+  {
+    "id": 4059,
+    "question": "A layout plan shows a symbol for a standard pendant lighting point in a commercial kitchen, but the 'General Notes' section states: 'All fittings in food preparation areas must be minimum IP65'. What should be installed?",
+    "options": [
+      "An IP65 rated luminaire, as notes modify the requirements of the symbols",
+      "A standard pendant, as the symbol takes precedence over the general notes",
+      "A standard pendant with a bead of silicone sealant to provide moisture protection",
+      "Nothing; the drawing is contradictory and must be returned to the architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "HEALTH_SAFETY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "health-safety",
+      "application",
+      "explanation"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "General notes provide global requirements that apply to all relevant symbols on the plan. An IP65 requirement in a note overrides the 'standard' appearance of a symbol."
+  },
+  {
+    "id": 4060,
+    "question": "An electrician is tracing a fault in a complex motor control panel. They need to see the terminal-to-terminal connections to identify which wire goes to which contactor pin. Which drawing is most appropriate?",
+    "options": [
+      "Wiring diagram",
+      "Schematic diagram",
+      "Layout plan",
+      "Site plan"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "OTHER"
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
@@ -1325,34 +1226,145 @@ export const readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions
       "terminology"
     ],
     "learningOutcomeId": "203-2B-LO2",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Wiring diagrams provide the most granular detail, showing exactly how wires connect to specific terminals, which is not shown on layout plans or schematics."
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Wiring diagrams show detailed, terminal-to-terminal connections, whereas schematics show the logical flow of the circuit."
   },
   {
-    "id": 4065,
-    "question": "An electrician is looking for the symbol for a 'Two-way Switch' on a layout plan. They find a symbol that looks like a circle with two tails. How can they confirm this is not an 'Intermediate Switch'?",
+    "id": 4061,
+    "question": "A drawing contains the abbreviation 'AFFL' next to a series of socket symbols. Why is it critical to verify the 'finished' floor details before commencing first-fix installation?",
     "options": [
-      "Locate the symbol in the legend and check the corresponding description",
-      "Count the number of wires entering the backbox on the plan",
-      "Assume it is a two-way switch because intermediate switches are rare",
-      "Measure the diameter of the circle on the drawing"
+      "The measurement is taken from the top of the final floor surface, not the structural slab",
+      "The abbreviation indicates the sockets must be installed 'After Final Floor Leveling'",
+      "It indicates that the sockets must be fire-rated for floor-level installation",
+      "The measurement refers only to the depth of the back-box within the wall"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "AFFL (Above Finished Floor Level) includes the thickness of screed, tiles, or carpets. Failure to account for this results in accessories being mounted too low."
+  },
+  {
+    "id": 4062,
+    "question": "While reading a circuit diagram for a lighting system, an electrician notices that the symbols used for the switches are different from those used on the floor plan. What is the most likely reason for this?",
+    "options": [
+      "The circuit diagram (schematic) uses logical symbols, while the floor plan uses location symbols",
+      "The floor plan is likely outdated and should be discarded in favor of the schematic",
+      "The designer has made an error by mixing two different CAD symbol libraries",
+      "The switches on the schematic represent different physical components than the ones on the plan"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
       "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Reading Installation Drawings",
     "tags": [
-      "discrimination",
-      "conceptual"
+      "conceptual",
+      "discrimination"
     ],
-    "learningOutcomeId": "203-2B-LO3",
+    "learningOutcomeId": "203-2B-LO2",
+    "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
-    "explanation": "The legend is the only authoritative way to distinguish between similar-looking symbols for different switch types (1-way, 2-way, intermediate)."
+    "explanation": "Floor plans use 'layout symbols' to show location, whereas schematics use 'circuit symbols' to show electrical operation and logic."
+  },
+  {
+    "id": 4063,
+    "question": "A layout plan shows a Consumer Unit labeled 'DB-1' with the note 'TBC' written next to it. What action should the electrician take during the first-fix stage of the installation?",
+    "options": [
+      "Request clarification from the designer as the location is 'To Be Confirmed'",
+      "Install the DB in the most sensible location based on the nearest cable entry",
+      "Check the Technical Building Code (TBC) for the mandatory mounting height",
+      "Assume 'TBC' stands for 'Top Board Connection' and mount it near the ceiling"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 60,
+    "explanation": "TBC stands for 'To Be Confirmed'. Work should not proceed on that specific element until the final location or specification is provided."
+  },
+  {
+    "id": 4064,
+    "question": "Which of the following symbol families would typically include a circle with a cross (X) inside it on a standard domestic layout plan, and why must the legend still be checked?",
+    "options": [
+      "Lighting points; because the cross might specifically indicate a fluorescent or LED type",
+      "Socket outlets; because the cross might indicate they are unswitched",
+      "Switches; because the cross might indicate they are intermediate switches",
+      "Consumer units; because the cross indicates the main switch capacity"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-2B-LO3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "While a circle with a cross is a common lighting symbol, the legend must be checked to see if the designer is using variations to distinguish between different lamp types."
+  },
+  {
+    "id": 4065,
+    "question": "Synthesis: An electrician is tasked with installing a 'Switched FCU' for a hand dryer. The plan shows a symbol, the legend defines it as an FCU, but the general notes state 'All washroom accessories must be IPX4'. The manufacturer's standard FCU is IP20. What is the correct synthesis of this information?",
+    "options": [
+      "An IPX4 (or higher) rated switched FCU must be sourced and installed",
+      "The standard IP20 FCU can be used if it is installed outside of the zones",
+      "The legend takes precedence, so the standard FCU defined there must be used",
+      "The hand dryer must be changed to a plug-in model to avoid using an FCU"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "HEALTH_SAFETY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Reading Installation Drawings",
+    "tags": [
+      "application",
+      "health-safety",
+      "explanation"
+    ],
+    "learningOutcomeId": "203-2B-LO4",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Successful interpretation requires combining the component type (from the Legend) with the environmental requirement (from the Notes) to select the correct product."
   }
 ];

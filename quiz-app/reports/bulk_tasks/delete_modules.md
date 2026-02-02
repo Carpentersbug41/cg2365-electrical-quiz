@@ -16,6 +16,21 @@ Based on the generator's `fileIntegrator.ts`, each lesson touches:
 6. **Lesson page**: `src/app/learn/[lessonId]/page.tsx` (import, registry)
 7. **Learn page**: `src/app/learn/page.tsx` (import, array)
 
+### Note: Microbreak Games
+
+**IMPORTANT**: Microbreak games are stored as `microbreak` blocks **inside** the lesson JSON file itself, not as separate files. When you delete the lesson JSON file (step 7), all associated games are automatically deleted with it.
+
+**What to check**:
+- Games are stored in the `blocks` array with `"type": "microbreak"`
+- Game IDs follow pattern: `{lesson-id}-microbreak-{index}` (e.g., `203-2B-microbreak-1`)
+- No separate file deletion needed
+- No additional integration points to clean up
+
+**Verification**: After deleting the lesson JSON, search for the lesson ID to confirm no orphaned game references remain:
+```bash
+rg "203-2B-microbreak" quiz-app/src
+```
+
 ## Step-by-Step Deletion Process
 
 ### Phase 1: Identify All References
@@ -172,16 +187,16 @@ Hard refresh the browser to verify the lesson is gone.
 
 Use this checklist for each lesson deletion:
 
-- [ ] Phase 1: Search and document all references
+- [ ] Phase 1: Search and document all references (including microbreak games)
 - [ ] Phase 2: Remove from lessonIndex.ts
 - [ ] Phase 3: Remove from learn/[lessonId]/page.tsx (import + registry)
 - [ ] Phase 4: Remove from learn/page.tsx (import + array)
 - [ ] Phase 5: Remove from questions/index.ts (import + array + export) if applicable
 - [ ] Phase 6: Remove from questions.ts (import + array) if applicable
-- [ ] Phase 7: Delete lesson JSON file
+- [ ] Phase 7: Delete lesson JSON file (this also deletes all microbreak games)
 - [ ] Phase 8: Delete questions TS file (verify not used elsewhere first)
 - [ ] Phase 9: Run build to verify no errors
-- [ ] Phase 10: Search for remaining references
+- [ ] Phase 10: Search for remaining references (lesson ID and microbreak games)
 - [ ] Phase 11: Restart dev server
 - [ ] Phase 12: Verify lesson is gone in browser
 
@@ -228,6 +243,42 @@ This would be implemented in `src/lib/generation/lessonDeleter.ts` following the
 ## Completed Deletions
 
 This section tracks modules that have been successfully deleted from the system.
+
+### Deletion Record: 203-2B (February 2, 2026)
+
+**Module ID:** 203-2B
+
+**Reason for Deletion:** Lesson replacement/regeneration required.
+
+**Files Deleted:**
+1. `203-2B-reading-installation-drawings-legend-symbols-notes-abbreviations.json` (25,071 bytes)
+2. `readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions.ts` (49,354 bytes)
+
+**Microbreak Games Deleted:**
+- All microbreak games were automatically deleted with the lesson JSON file
+- Games were stored as blocks within the lesson file (not separate files)
+- 4 microbreak game blocks were included in the deleted lesson
+
+**Integration Points Cleaned:**
+1. `lessonIndex.ts` - Removed lesson entry (1 block)
+2. `learn/[lessonId]/page.tsx` - Removed import statement
+3. `learn/[lessonId]/page.tsx` - Removed LESSONS registry entry
+4. `learn/page.tsx` - Removed import statement
+5. `learn/page.tsx` - Removed LESSONS array entry
+6. `questions/index.ts` - Removed import statement
+7. `questions/index.ts` - Removed array spread
+8. `questions/index.ts` - Removed export statement
+9. `questions.ts` - Removed import statement
+10. `questions.ts` - Removed array spread
+
+**Total Changes:** 2 files deleted, 5 files edited, 10 code integration points removed
+
+**Verification:** 
+- Build succeeded with no errors
+- No remaining references to `203-2B` found in codebase
+- No orphaned game references found
+
+---
 
 ### Deletion Record: 204-13A (January 28, 2026)
 

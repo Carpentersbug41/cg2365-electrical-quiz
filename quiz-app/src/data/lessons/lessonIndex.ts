@@ -205,6 +205,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 4,
   },
+  
   {
     id: '203-2B',
     title: 'Reading Installation Drawings: Legend, Symbols, Notes & Abbreviations',
