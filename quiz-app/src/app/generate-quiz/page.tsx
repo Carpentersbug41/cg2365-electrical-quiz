@@ -490,7 +490,7 @@ export default function GenerateQuizPage() {
             </h3>
             <p className="text-gray-700 dark:text-slate-300 mb-6">
               This lesson already has {lessons.find(l => l.lessonId === selectedLesson)?.questionCount} questions.
-              Regenerating will create 50 new questions. The old questions will remain in the system but won't be used.
+              Regenerating will create 50 new questions. The old questions will remain in the system but won&apos;t be used.
             </p>
             <p className="text-sm text-yellow-600 dark:text-yellow-400 mb-6">
               ⚠️ Warning: This action cannot be undone without reverting the git commit.

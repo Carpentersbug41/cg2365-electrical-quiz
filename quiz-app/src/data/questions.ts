@@ -36,6 +36,7 @@ import { statutoryRegulationsLawQuestions } from './questions/statutoryRegulatio
 import { nonStatutoryRegulationsGuidanceQuestions } from './questions/nonStatutoryRegulationsGuidanceQuestions';
 import { usingBs7671OnAJobQuestions } from './questions/usingBs7671OnAJobQuestions';
 import { sourcesDrawingsSymbolsScaleQuestions } from './questions/sourcesDrawingsSymbolsScaleQuestions';
+import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './questions/readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -66,6 +67,7 @@ export const questions: Question[] = [
   ...nonStatutoryRegulationsGuidanceQuestions,
   ...usingBs7671OnAJobQuestions,
   ...sourcesDrawingsSymbolsScaleQuestions,
+  ...readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

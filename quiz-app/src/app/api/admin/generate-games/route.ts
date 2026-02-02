@@ -26,7 +26,7 @@ export async function GET() {
         // Count vocab terms
         const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
         const vocabTermCount = vocabBlocks.reduce((sum, block) => {
-          const content = block.content as any;
+          const content = block.content as { terms?: { term: string; definition: string }[] };
           return sum + (content.terms?.length || 0);
         }, 0);
         
@@ -137,7 +137,7 @@ export async function POST(request: Request) {
       const totalGames = (count || 1) * gameTypes.length;
       
       const games = await generateMicrobreaksForLesson(lesson, {
-        gameTypes: gameTypes as any,
+        gameTypes: gameTypes as Array<'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win'>,
         count: totalGames
       });
       

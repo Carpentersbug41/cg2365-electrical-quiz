@@ -8,7 +8,7 @@ interface GameWrapperProps {
   duration: number;
   onComplete: (score?: number, accuracy?: number) => void;
   onSkip: () => void;
-  children: React.ReactNode;
+  children: React.ReactNode | ((handleComplete: (score?: number, accuracy?: number) => void) => React.ReactNode);
   disableTimer?: boolean;
   disableCelebration?: boolean;
 }

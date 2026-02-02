@@ -31,7 +31,7 @@ export default function RestMicrobreak({ content, onComplete, onSkip }: RestMicr
         </div>
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Take a Quick Break</h3>
         <p className="text-sm text-gray-600 dark:text-slate-400">
-          Your brain needs a moment to consolidate what you've learned
+          Your brain needs a moment to consolidate what you&apos;ve learned
         </p>
       </div>
 

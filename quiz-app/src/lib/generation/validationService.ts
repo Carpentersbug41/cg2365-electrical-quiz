@@ -4,6 +4,7 @@
  */
 
 import { Lesson, LessonBlock, QuizQuestion, ValidationResult } from './types';
+import { WorkedExampleBlockContent, GuidedPracticeBlockContent } from '@/data/lessons/types';
 import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, BLOOM_LEVELS, COGNITIVE_LEVELS, BLOCK_ORDER } from './constants';
 
 export class ValidationService {
@@ -44,6 +45,7 @@ export class ValidationService {
       this.validateBlocks(lesson.blocks, lessonId, errors, warnings);
       this.validateBlockOrders(lesson.blocks, errors, warnings);
       this.validateWorkedExampleAlignment(lesson.blocks, errors, warnings);
+      this.validateQuestionStaging(lesson.blocks, errors, warnings);
     }
 
     // Validate metadata
@@ -91,11 +93,44 @@ export class ValidationService {
     }
     
     if (workedExample && guidedPractice) {
-      const workedSteps = workedExample.content.steps?.length || 0;
-      const guidedSteps = guidedPractice.content.steps?.length || 0;
+      const workedContent = workedExample.content as unknown as WorkedExampleBlockContent;
+      const guidedContent = guidedPractice.content as unknown as GuidedPracticeBlockContent;
+      const workedSteps = workedContent.steps?.length || 0;
+      const guidedSteps = guidedContent.steps?.length || 0;
       
       if (workedSteps > 0 && guidedSteps > 0 && Math.abs(workedSteps - guidedSteps) > 1) {
         warnings.push(`Worked example (${workedSteps} steps) and guided practice (${guidedSteps} steps) should have similar number of steps`);
+      }
+    }
+  }
+  
+  /**
+   * Enhanced validation: Check questions appear after explanations (teach before test)
+   */
+  private validateQuestionStaging(blocks: LessonBlock[], errors: string[], warnings: string[]): void {
+    const explanationOrders = blocks
+      .filter(b => b.type === 'explanation')
+      .map(b => b.order);
+    
+    const minExplanationOrder = explanationOrders.length > 0 ? Math.min(...explanationOrders) : Infinity;
+    
+    // Check that understanding checks come after at least one explanation
+    const checks = blocks.filter(b => b.type === 'practice' && b.content.mode === 'conceptual');
+    for (const check of checks) {
+      if (check.order <= minExplanationOrder) {
+        errors.push(`Understanding check at order ${check.order} appears before or at same level as first explanation (${minExplanationOrder}). Checks must come AFTER teaching.`);
+      }
+    }
+    
+    // Check that practice/integrative come after explanations
+    const practiceBlocks = blocks.filter(b => 
+      (b.type === 'practice' && !b.content.mode) || 
+      (b.type === 'practice' && b.content.mode === 'integrative')
+    );
+    
+    for (const practice of practiceBlocks) {
+      if (explanationOrders.length > 0 && practice.order <= Math.max(...explanationOrders)) {
+        warnings.push(`Practice block at order ${practice.order} may appear too early. Ensure all relevant explanations come first.`);
       }
     }
   }

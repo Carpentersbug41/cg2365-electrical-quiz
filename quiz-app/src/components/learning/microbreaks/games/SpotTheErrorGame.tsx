@@ -7,7 +7,7 @@ import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects'
 
 interface SpotTheErrorGameProps {
   content: SpotErrorGameContent;
-  onComplete: (score: number, accuracy: number) => void;
+  onComplete: (score?: number, accuracy?: number) => void;
   onSkip: () => void;
 }
 

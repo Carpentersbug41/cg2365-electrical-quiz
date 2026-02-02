@@ -7,7 +7,7 @@ import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects'
 
 interface TapToLabelGameProps {
   content: TapLabelGameContent;
-  onComplete: (score: number, accuracy: number) => void;
+  onComplete: (score?: number, accuracy?: number) => void;
   onSkip: () => void;
 }
 

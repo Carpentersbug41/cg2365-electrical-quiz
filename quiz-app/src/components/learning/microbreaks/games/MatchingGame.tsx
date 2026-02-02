@@ -7,7 +7,7 @@ import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects'
 
 interface MatchingGameProps {
   content: MatchingGameContent;
-  onComplete: (score: number, accuracy: number) => void;
+  onComplete: (score?: number, accuracy?: number) => void;
   onSkip: () => void;
 }
 
@@ -76,7 +76,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
         onComplete={onComplete}
         onSkip={onSkip}
       >
-        {() => (
+        {(_handleComplete: (score?: number, accuracy?: number) => void) => (
           <div className="flex justify-center items-center py-8">
             <div className="text-gray-600 dark:text-slate-400">Loading...</div>
           </div>

@@ -193,7 +193,7 @@ export async function POST(request: NextRequest) {
 
     // Validate quiz
     console.log(`[QuizGenerator] Validating quiz...`);
-    const validation = validator.validateQuiz(quizResult.questions);
+    const validation = validator.validateQuiz(quizResult.questions, body.lessonId);
     if (!validation.valid) {
       debugLog('VALIDATION_FAILED', { errors: validation.errors });
       errors.push(...validation.errors);
@@ -248,14 +248,13 @@ export async function POST(request: NextRequest) {
 
     if (isGitConfigured) {
       console.log(`[QuizGenerator] Creating git commit...`);
-      const branchName = `feat/quiz-${body.lessonId}-${Date.now()}`;
-      const commitMessage = previousQuestionCount > 0
-        ? `Generate quiz for ${body.lessonId} (regenerate: ${previousQuestionCount} → 50 questions)`
-        : `Generate quiz for ${body.lessonId} (50 questions)`;
+      const topic = previousQuestionCount > 0
+        ? `quiz (regenerate: ${previousQuestionCount} → 50 questions)`
+        : `quiz (50 questions)`;
 
-      const gitResult = await gitService.commitGeneration(
-        branchName,
-        commitMessage,
+      const gitResult = await gitService.commitAndPush(
+        body.lessonId,
+        topic,
         [quizFilePath, ...filesUpdated]
       );
 

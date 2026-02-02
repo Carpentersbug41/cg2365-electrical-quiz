@@ -172,7 +172,7 @@ Return the corrected lesson JSON now:`;
       const repairedContent = await this.generateWithRetry(
         'You are a JSON repair specialist. Fix validation issues in lesson JSON.',
         repairPrompt,
-        'lesson-repair',
+        'lesson',
         1 // Only one retry for repair
       );
 

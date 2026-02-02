@@ -641,11 +641,11 @@ export default function Quiz({
                         </div>
                       </div>
 
-                      {question.explanation && (
+                      {(question as TaggedQuestion).explanation && (
                         <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
                           <div className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-1">Explanation:</div>
                           <div className="text-gray-800 dark:text-slate-300">
-                            {question.explanation}
+                            {(question as TaggedQuestion).explanation}
                           </div>
                         </div>
                       )}
@@ -956,11 +956,11 @@ export default function Quiz({
                           </div>
                         </div>
                       </div>
-                      {currentQ.explanation && (
+                      {(currentQ as TaggedQuestion).explanation && (
                         <div className="mb-3">
                           <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Explanation:</div>
                           <div className="text-gray-800 dark:text-slate-300">
-                            {currentQ.explanation}
+                            {(currentQ as TaggedQuestion).explanation}
                           </div>
                         </div>
                       )}
@@ -991,9 +991,9 @@ export default function Quiz({
                       })()}
                     </>
                   )}
-                  {isCorrect && currentQ.explanation && (
+                  {isCorrect && (currentQ as TaggedQuestion).explanation && (
                     <div className="text-gray-800 dark:text-slate-300">
-                      {currentQ.explanation}
+                      {(currentQ as TaggedQuestion).explanation}
                     </div>
                   )}
                 </div>

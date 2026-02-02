@@ -60,7 +60,7 @@ export default function GenerateGamesPage() {
               </h2>
               <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">
                 Microbreaks are short, engaging activities (60-120 seconds) that reduce cognitive fatigue 
-                while reinforcing key concepts. They're strategically placed throughout lessons to help learners 
+                while reinforcing key concepts. They&apos;re strategically placed throughout lessons to help learners 
                 maintain focus and improve retention.
               </p>
               <div className="flex flex-wrap gap-2">
@@ -87,7 +87,7 @@ export default function GenerateGamesPage() {
         {/* Footer Help */}
         <div className="mt-8 text-center text-sm text-gray-600 dark:text-slate-400">
           <p>
-            Games are generated using AI based on the lesson's vocabulary and content.
+            Games are generated using AI based on the lesson&apos;s vocabulary and content.
             {' '}
             <span className="font-medium">Preview before saving</span> to ensure quality.
           </p>

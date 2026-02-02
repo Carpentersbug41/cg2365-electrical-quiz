@@ -204,6 +204,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-2A'),
     available: true,
     order: 4,
+  },
+  {
+    id: '203-2B',
+    title: 'Reading Installation Drawings: Legend, Symbols, Notes & Abbreviations',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Reading Installation Drawings: Legend, Symbols, Notes & Abbreviations',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-2B'),
+    available: true,
+    order: 5,
   },// Unit 210: Communication
   {
     id: '204-10A',

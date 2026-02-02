@@ -34,6 +34,7 @@ import lesson203_1A from '@/data/lessons/203-1A-statutory-regulations-law.json';
 import lesson203_1B from '@/data/lessons/203-1B-non-statutory-regulations-guidance.json';
 import lesson203_1C from '@/data/lessons/203-1C-using-bs-7671-on-a-job.json';
 import lesson203_2A from '@/data/lessons/203-2A-sources-drawings-symbols-scale.json';
+import lesson203_2B from '@/data/lessons/203-2B-reading-installation-drawings-legend-symbols-notes-abbreviations.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -77,6 +78,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_2B,
   lesson203_2A,
   lesson203_1C,
   lesson203_1B,

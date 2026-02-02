@@ -80,6 +80,29 @@ DEFINITION OF DONE (must pass self-audit before output):
 - Block orders are monotonic and match required sequence (1,2,3,4,4.5,5,6,7,9.5,10)
 - No invented legal claims or unsafe instructions
 
+STAGING RULE (MANDATORY - CRITICAL FOR LEARNING):
+- A concept MUST be introduced in an explanation block BEFORE it is assessed in any question.
+- Each "Check Your Understanding" block must ONLY ask questions whose answers appear verbatim or paraphrased in the immediately preceding explanation content.
+- If a question references a new term (e.g., "legend", "two-way switch", "Gantt chart", "specification"), the explanation MUST define and teach it FIRST.
+- Questions cannot introduce concepts - explanations introduce concepts, questions assess them.
+- NEVER ask about a symbol, term, or procedure that hasn't been explicitly explained earlier in this lesson.
+
+COVERAGE CHECK (INTERNAL VERIFICATION - REQUIRED BEFORE OUTPUT):
+Before finalizing the lesson JSON, you MUST verify for every question:
+1. Its expectedAnswer can be found (verbatim or paraphrased) in an earlier explanation block in THIS lesson
+2. The explanation block that teaches it has a LOWER order number than the question block
+3. For spaced review questions only: answers may come from declared prerequisite lessons
+
+If verification fails for any question:
+- OPTION A: Add or extend an explanation block that explicitly teaches the missing concept (with lower order number)
+- OPTION B: Remove or rewrite the question to assess only what has been taught
+- NEVER output questions that assess untaught concepts
+
+GROUNDING REQUIREMENT:
+- Understanding check questions MUST reference facts from the immediately preceding explanation section
+- Practice questions MUST reference concepts from earlier explanation/worked example sections
+- Integrative questions MUST synthesize concepts taught across multiple earlier explanation sections
+
 LESSON STRUCTURE:
 
 {
@@ -96,16 +119,20 @@ LESSON STRUCTURE:
   ],
   "prerequisites": ["[lesson-id]"],
   "blocks": [
-    // Block 1: Outcomes (order: 1)
-    // Block 2: Vocab - 3-6 terms (order: 2)
-    // Block 3: Diagram - IF split-vis layout (order: 3)
-    // Block 4: Explanation (order: 4)
-    // Block 4.5: Understanding Check - 3×L1 Recall + 1×L2 Connection (order: 4.5)
-    // Block 5: Worked Example (order: 5) - Only if calculations involved
-    // Block 6: Guided Practice (order: 6) - Only if worked example exists
-    // Block 7: Practice - 3-5 questions (order: 7)
-    // Block 9.5: Integrative Question (order: 9.5)
-    // Block 8: Spaced Review (order: 8 or 10)
+    // BLOCK ORDER CONTRACT (NON-NEGOTIABLE):
+    // 1. outcomes (order: 1) - ALWAYS FIRST
+    // 2. vocab (order: 2) - Define terms before use
+    // 3. diagram (order: 3) - IF split-vis layout
+    // 4. explanation(s) (order: 4, 5, 6... as needed) - TEACH FIRST
+    // 4.5. understanding check (order: 4.5, 5.5, 6.5... after EACH explanation) - ONLY assess what was just taught
+    // 7. worked example (order: 7) - ONLY if calculation/procedure task type
+    // 8. guided practice (order: 8) - ONLY if worked example exists
+    // 9. practice (order: 9) - Independent application
+    // 9.5. integrative (order: 9.5) - Synthesis across entire lesson
+    // 10. spaced review (order: 10) - ALWAYS LAST, uses prerequisite knowledge only
+    //
+    // CRITICAL: NO questions (checks/practice) before ALL relevant explanation blocks are complete
+    // CRITICAL: Understanding checks must appear IMMEDIATELY AFTER the explanation they assess
   ],
   "metadata": {
     "created": "${new Date().toISOString().split('T')[0]}",
@@ -171,6 +198,17 @@ DIAGRAM TYPE SELECTION:
 - graph: for waveforms, graphs, and data visualization
 - other: for any other visual content
 
+DIAGRAM RULE (SHOW vs TEACH):
+- Diagram blocks may "show" concepts visually, but explanation blocks must "teach" them textually
+- If a diagram shows symbols/legends/components, you MUST have an explanation block that explicitly defines and teaches those elements BEFORE any questions assess them
+- Diagrams are supplementary visual aids, NOT teaching blocks
+- NEVER assume students can answer questions based solely on diagram descriptions
+- Pattern: diagram(3) → explanation(4 teaching what diagram shows) → check(4.5 assessing what explanation taught)
+
+EXAMPLE:
+✗ BAD: diagram showing symbols → check asking about symbols (untaught)
+✓ GOOD: diagram showing symbols → explanation defining each symbol → check asking about symbols (taught)
+
 4. EXPLANATION BLOCK (order: 4):
 {
   "id": "${lessonId}-explain-[topic]",
@@ -191,7 +229,25 @@ DIAGRAM TYPE SELECTION:
   }
 }
 
-5. UNDERSTANDING CHECK BLOCK (order: 4.5) - CRITICAL NEW STRUCTURE:
+5. UNDERSTANDING CHECK BLOCK (order: 4.5, 5.5, 6.5... immediately after corresponding explanation) - CRITICAL PLACEMENT:
+
+UNDERSTANDING CHECK PLACEMENT RULE (NON-NEGOTIABLE):
+- Each understanding check MUST appear IMMEDIATELY AFTER the explanation block(s) that contain ALL the answers
+- Use order 4.5 for check after explanation at order 4
+- Use order 5.5 for check after explanation at order 5
+- Use order 6.5 for check after explanation at order 6
+- NO checks are allowed BEFORE the first complete explanation
+- If topic requires multiple explanation sections, create multiple check blocks (check-1, check-2, etc.)
+- Each check assesses ONLY the explanation section(s) that came immediately before it
+
+EXAMPLE VALID SEQUENCES:
+✓ explanation(4) → check(4.5) → explanation(5) → check(5.5) → practice(7)
+✓ explanation(4) → check(4.5) → worked-example(5) → guided(6) → practice(7)
+
+EXAMPLE INVALID SEQUENCES:
+✗ check(4.5) → explanation(5) [assessing before teaching]
+✗ explanation(4) → practice(7) → check(7.5) [checking too late]
+
 {
   "id": "${lessonId}-check-1",
   "type": "practice",
@@ -425,6 +481,17 @@ WRITING QUALITY QUESTIONS:
 - Ask "why" and "how" considering multiple factors
 - Expected answer should be comprehensive, showing integration of all lesson concepts
 
+EXPECTED ANSWER ALIGNMENT RULE (CRITICAL FOR MARKING):
+- Every expectedAnswer MUST be derived from the lesson's explanation wording (use same terminology)
+- Provide 2-6 acceptable variants in the array, but AT LEAST ONE variant must closely match the phrasing taught in the explanation
+- Do NOT invent answer phrasings that never appeared in the lesson
+- Students should be able to quote/paraphrase directly from the explanation to answer correctly
+
+EXAMPLE:
+If explanation says: "BS 7671 is the UK wiring regulations standard"
+✓ GOOD expectedAnswer: ["BS 7671", "UK wiring regulations", "wiring regulations standard"]
+✗ BAD expectedAnswer: ["British Standard 7671:2018", "IET Wiring Regulations"] (not taught in lesson)
+
 3. **Bloom Levels**: Use: ${BLOOM_LEVELS.join(', ')}
 4. **Question Structure**: 
    - Understanding checks: 3×L1 Recall + 1×L2 Connection
@@ -445,6 +512,46 @@ ANSWER MARKING POLICY:
   Example: expectedAnswer: ["5.5", "5.50"], units in hint only
 - Single string ONLY when exactly one canonical wording exists (rare)
 - Include common synonyms, acronym expansions, and alternative phrasings
+
+LESSON GENERATION ALGORITHM (FOLLOW THIS SEQUENCE):
+To ensure proper staging and coverage, generate the lesson in this order:
+
+STEP 1: PLAN
+- Draft lesson outline from topic + mustHaveTopics
+- Identify which concepts need explanation blocks
+- Identify which concepts are calculation/procedure tasks (need worked examples)
+
+STEP 2: TEACH (explanation blocks)
+- Write explanation section(s) that FULLY teach the outline
+- Ensure explanations cover ALL concepts that will be assessed
+- Include ALL terms, symbols, procedures, facts that questions will reference
+- Use the required 6-part structure: What/Why/Key rules/How to use/Common mistakes/Recap
+
+STEP 3: CHECK (understanding checks)
+- ONLY NOW write understanding check blocks
+- Place each check IMMEDIATELY AFTER the explanation it assesses
+- Verify every question's expectedAnswer exists in the preceding explanation
+- Use recall questions (L1) that quote facts from the explanation
+- Use connection question (L2) that ties together facts from Q1, Q2, Q3
+
+STEP 4: APPLY (worked example + guided practice if needed)
+- IF task type is calculation/procedure/selection: add worked example
+- Add guided practice that mirrors worked example steps
+
+STEP 5: PRACTICE (independent practice)
+- Add 3-5 practice questions that apply taught concepts
+- Ensure all practice questions reference concepts from earlier explanations
+
+STEP 6: INTEGRATE (integrative block)
+- Add 2 questions synthesizing concepts from MULTIPLE earlier explanations
+- Q1 (connection): link 2-3 major concepts
+- Q2 (synthesis): integrate ALL lesson concepts (3-4 sentences)
+
+STEP 7: REVIEW (spaced review)
+- Add 4 questions reviewing PREREQUISITE lessons only
+- Do NOT assess current lesson content in spaced review
+
+This sequence prevents questions appearing before content is taught.
 
 APPROVED TAGS: ${APPROVED_TAGS.slice(0, 20).join(', ')} (and others)
 APPROVED MISCONCEPTION CODES: ${APPROVED_MISCONCEPTION_CODES.slice(0, 15).join(', ')} (and others)

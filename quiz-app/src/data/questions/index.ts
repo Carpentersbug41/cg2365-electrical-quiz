@@ -29,11 +29,13 @@ import { statutoryRegulationsLawQuestions } from './statutoryRegulationsLawQuest
 import { nonStatutoryRegulationsGuidanceQuestions } from './nonStatutoryRegulationsGuidanceQuestions';
 import { usingBs7671OnAJobQuestions } from './usingBs7671OnAJobQuestions';
 import { sourcesDrawingsSymbolsScaleQuestions } from './sourcesDrawingsSymbolsScaleQuestions';
+import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions,
   ...sourcesDrawingsSymbolsScaleQuestions,
   ...usingBs7671OnAJobQuestions,
   ...nonStatutoryRegulationsGuidanceQuestions,
@@ -89,6 +91,7 @@ export { statutoryRegulationsLawQuestions } from './statutoryRegulationsLawQuest
 export { nonStatutoryRegulationsGuidanceQuestions } from './nonStatutoryRegulationsGuidanceQuestions';
 export { usingBs7671OnAJobQuestions } from './usingBs7671OnAJobQuestions';
 export { sourcesDrawingsSymbolsScaleQuestions } from './sourcesDrawingsSymbolsScaleQuestions';
+export { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
 
 /**
  * Filter questions by tags

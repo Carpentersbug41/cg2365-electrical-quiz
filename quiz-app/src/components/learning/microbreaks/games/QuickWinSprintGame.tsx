@@ -7,7 +7,7 @@ import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects'
 
 interface QuickWinSprintGameProps {
   content: QuickWinGameContent;
-  onComplete: (score: number, accuracy: number) => void;
+  onComplete: (score?: number, accuracy?: number) => void;
   onSkip: () => void;
 }
 
@@ -223,7 +223,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
             // Time expired failure state
             <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-6 text-center">
               <div className="text-4xl mb-3">⏰</div>
-              <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-2">Time's Up!</h3>
+              <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-2">Time&apos;s Up!</h3>
               <p className="text-red-600 dark:text-red-400">
                 You completed {correctCount} out of {content.questions.length} questions
               </p>

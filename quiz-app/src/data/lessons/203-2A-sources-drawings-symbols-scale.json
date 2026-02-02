@@ -47,20 +47,12 @@
       "content": {
         "terms": [
           {
-            "term": "Technical Information",
-            "definition": "Any reliable source you use to plan and install correctly (documents, drawings, standards, and instructions)."
-          },
-          {
             "term": "Specification",
-            "definition": "A project document describing the required materials/equipment and performance/quality standard for the job."
-          },
-          {
-            "term": "Client's Needs",
-            "definition": "The customer's requirements (what they want installed, where, and any preferences or constraints)."
+            "definition": "A project document describing the required materials/equipment and the performance/quality standard for the job."
           },
           {
             "term": "BS 7671",
-            "definition": "The wiring standard used in the UK for installation requirements; not a law itself, but commonly used to show compliance with statutory duties."
+            "definition": "The UK wiring standard for installation requirements; commonly used to show compliance with statutory duties."
           },
           {
             "term": "On-Site Guide (OSG)",
@@ -68,27 +60,15 @@
           },
           {
             "term": "Manufacturer's Data",
-            "definition": "Instructions/ratings provided by the equipment maker (e.g., wiring terminals, torque, IP rating, limits)."
-          },
-          {
-            "term": "Guidance Notes",
-            "definition": "Industry guidance that explains best practice and how to apply requirements safely in real jobs."
-          },
-          {
-            "term": "Drawing Type",
-            "definition": "The style/purpose of a drawing (e.g., wiring diagram vs layout plan vs bar chart programme)."
+            "definition": "Product-specific instructions and ratings (e.g., wiring terminals, torque, IP rating, limits)."
           },
           {
             "term": "Legend (Key)",
-            "definition": "The part of a drawing that explains the meaning of the symbols and abbreviations used."
+            "definition": "The part of a drawing that explains the meaning of symbols and abbreviations used."
           },
           {
             "term": "Scale",
             "definition": "The ratio between a distance on a drawing and the real distance (e.g., 1:50)."
-          },
-          {
-            "term": "Bar Chart (Programme)",
-            "definition": "A timeline plan showing what tasks happen when (used to plan and sequence work on a project)."
           }
         ]
       }
@@ -101,7 +81,7 @@
         "title": "Two Common Drawing Contexts (Plans vs Schematics)",
         "description": "Installation drawings often use plan/layout symbols, while circuit diagrams/schematics use circuit symbols. The correct habit is: check the legend for that drawing.",
         "videoUrl": "",
-        "diagramType": "concept",
+        "diagramType": "other",
         "elementIds": [
           "layout-plan",
           "schematic",
@@ -123,6 +103,7 @@
     {
       "id": "203-2A-microbreak-1",
       "type": "microbreak",
+      "order": 3.6,
       "content": {
         "breakType": "game",
         "gameType": "matching",
@@ -137,20 +118,19 @@
             "right": "Explains symbols and abbreviations"
           },
           {
-            "left": "Bar Chart",
-            "right": "Timeline for sequencing work"
-          },
-          {
             "left": "Specification",
             "right": "Required materials and quality standards"
           },
           {
             "left": "BS 7671",
-            "right": "UK wiring standard for compliance"
+            "right": "UK wiring standard for installation requirements"
+          },
+          {
+            "left": "Manufacturer's Data",
+            "right": "Product-specific wiring and limits"
           }
         ]
-      },
-      "order": 3.5
+      }
     },
     {
       "id": "203-2A-explain-sources",
@@ -281,16 +261,14 @@
           },
           {
             "id": "203-2A-C2-L2",
-            "questionText": "What type of drawing is produced at the end of a project to show the final, actual installation layout?",
+            "questionText": "How do the clues in Q1–Q3 help you choose the right drawing type quickly on site? (Mention all three clues.)",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "as-fitted drawing",
-              "as fitted drawing",
-              "as-fitted",
-              "as fitted"
+              "Timeline bars = bar chart programme; boxes = block diagram; terminal-to-terminal detail = wiring diagram.",
+              "If it is a timeline it is a bar chart, if it uses boxes it is a block diagram, if it shows terminals it is a wiring diagram."
             ],
-            "hint": "It records what was actually installed."
+            "hint": "Connect the visual clue to the drawing type: timeline / boxes / terminals."
           }
         ]
       }
@@ -303,7 +281,7 @@
         "title": "Installation Plan Symbols (Use the Legend)",
         "description": "A legend of common symbols used on electrical layout drawings. Symbol appearance can vary by drawing set — the legend is the authority.",
         "videoUrl": "",
-        "diagramType": "concept",
+        "diagramType": "other",
         "elementIds": [
           "legend-box",
           "one-way-switch",
@@ -324,6 +302,15 @@
           "circuit-breaker"
         ],
         "placeholderText": "A legend/key that labels common plan symbols: 1-way switch, 2-way switch, intermediate switch, pull-cord switch, switched/unswitched socket outlets, FCU and switched FCU, lighting points (LED/fluorescent/wall), cooker control unit, consumer unit, integrated meter, fuse, circuit breaker."
+      }
+    },
+    {
+      "id": "203-2A-explain-symbols",
+      "type": "explanation",
+      "order": 6.2,
+      "content": {
+        "title": "How Symbols and Legends Work (Plan Symbols vs Circuit Symbols)",
+        "content": "On real jobs you will see **two different symbol styles**, and they serve different purposes:\n\n1) **Installation layout / plan symbols** (most common on site)\n- Used on **floor plans** to show **where** equipment goes.\n- Examples: switches, socket outlets, light points, FCUs, cooker control units, consumer units.\n\n2) **Circuit diagram / schematic symbols**\n- Used to show **how** parts connect logically.\n- These look different and are not trying to show physical location.\n\n✅ **The legend (key) is the authority**\n- Symbol shapes can vary between CAD libraries and designers.\n- The legend tells you what the symbol means **on that drawing set**.\n\n**What Unit 203 expects you to recognise**\nYou are not memorising art — you are learning to recognise **common categories** on a plan:\n- **Switches**: 1-way, 2-way, intermediate (legend confirms which)\n- **Socket outlets**: switched vs unswitched, single vs twin (legend confirms)\n- **FCU**: fused connection unit (often used for fixed appliances)\n- **Lighting points**: ceiling light / LED / fluorescent / wall light (legend distinguishes)\n- **Cooker control unit**: dedicated cooker isolation/control point\n- **Consumer unit**: distribution/protection location\n\n**Habit to copy:** When you see a symbol, ask:\n1) Is this a **plan** or a **schematic**?\n2) Where is the **legend**?\n3) What does the legend say this symbol is *on this drawing*?"
       }
     },
     {
@@ -391,6 +378,7 @@
     {
       "id": "203-2A-microbreak-2",
       "type": "microbreak",
+      "order": 6.6,
       "content": {
         "breakType": "game",
         "gameType": "sorting",
@@ -425,8 +413,7 @@
             "correctBucket": 1
           }
         ]
-      },
-      "order": 6.5
+      }
     },
     {
       "id": "203-2A-traps",
@@ -563,6 +550,18 @@
               "5.5"
             ],
             "hint": "55 × 100 = 5500 mm → convert to metres."
+          },
+          {
+            "id": "203-2A-P5",
+            "questionText": "What type of drawing is produced at the end of a project to show the final, actual installation layout?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "as-fitted drawing",
+              "as fitted drawing",
+              "as-fitted",
+              "as fitted"
+            ],
+            "hint": "It records what was actually installed."
           }
         ]
       }
@@ -582,9 +581,8 @@
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "Specification (what is required) and Manufacturer's data (terminal limits/instructions).",
-              "The specification and the manufacturer's data because the spec says what to fit and the manufacturer's data confirms cable/terminal limits.",
-              "Client's needs/specification plus manufacturer's data to confirm it can be installed correctly."
+              "The specification (what must be fitted) and the manufacturer's data (terminal limits and instructions).",
+              "Specification tells you what to fit; manufacturer's data confirms cable/terminal limits for that exact product."
             ],
             "hint": "One source defines what must be fitted; the other confirms limits for that exact product."
           },
@@ -594,8 +592,7 @@
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "Drawings show where things go, specifications say what standard/type to fit, BS 7671/OSG sets installation requirements, and manufacturer data gives product-specific instructions. For example, a drawing shows the extractor fan location, the spec defines the fan type/standard, BS 7671/OSG guides the circuit and protection, and the manufacturer data tells you how to wire it and its rating/IP limits.",
-              "You need all sources to make the job safe, compliant, and correct. Drawings = location, spec = what to fit, BS 7671/OSG = installation requirements, manufacturer data = product wiring/limits. Example: a cooker point location comes from the plan, the switch type from the spec, cable/protection from BS 7671/OSG, and terminal limits from the manufacturer's data."
+              "Drawings show where things go, specifications say what standard/type to fit, BS 7671/OSG sets installation requirements, and manufacturer data gives product-specific instructions. For example, a drawing shows the extractor fan location, the spec defines the fan type/standard, BS 7671/OSG guides the circuit and protection, and the manufacturer data tells you how to wire it and its rating/IP limits."
             ],
             "hint": "Cover: location, what to fit, wiring requirements, and product-specific limits."
           }
@@ -605,6 +602,7 @@
     {
       "id": "203-2A-microbreak-3",
       "type": "microbreak",
+      "order": 9.6,
       "content": {
         "breakType": "game",
         "gameType": "spot-error",
@@ -625,8 +623,7 @@
           }
         ],
         "explanation": "Never guess ratings or torque; always use manufacturer's data."
-      },
-      "order": 9.5
+      }
     },
     {
       "id": "203-2A-spaced-review",
@@ -682,17 +679,18 @@
     {
       "id": "203-2A-microbreak-4",
       "type": "microbreak",
+      "order": 10.5,
       "content": {
         "breakType": "game",
         "gameType": "quick-win",
         "duration": 90,
         "questions": [
           {
-            "question": "What defines the client's preferences?",
-            "answer": "Client's Needs"
+            "question": "Source that tells you what materials/equipment must be used?",
+            "answer": "Specification"
           },
           {
-            "question": "Simplified guide for common installations?",
+            "question": "Simplified guide for common installations based on BS 7671?",
             "answer": "On-Site Guide"
           },
           {
@@ -700,22 +698,21 @@
             "answer": "Wiring diagram"
           },
           {
-            "question": "Ratio used to calculate real distances?",
+            "question": "Ratio used to calculate real distances from a drawing?",
             "answer": "Scale"
           },
           {
-            "question": "Source for equipment torque ratings?",
+            "question": "Best source for equipment torque ratings?",
             "answer": "Manufacturer's Data"
           }
         ]
-      },
-      "order": 12.5
+      }
     }
   ],
   "metadata": {
     "created": "2026-02-02",
     "updated": "2026-02-02",
-    "version": "1.2",
+    "version": "1.3",
     "author": "C&G 2365 Learning Team"
   }
 }

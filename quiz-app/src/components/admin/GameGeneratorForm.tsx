@@ -245,7 +245,7 @@ export default function GameGeneratorForm() {
   ];
 
   const isGenerating = status === 'generating' || status === 'saving';
-  const hasPreview = status === 'preview' || status === 'success';
+  const hasPreview = status === 'preview' || status === 'success' || status === 'saving';
 
   return (
     <div className="space-y-6">
