@@ -226,12 +226,20 @@ export default function GeneratePage() {
                 Automatically generate complete lessons with AI
               </p>
             </div>
-            <Link
-              href="/learn"
-              className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              ← Back to Lessons
-            </Link>
+            <div className="flex gap-3">
+              <Link
+                href="/generate-quiz"
+                className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              >
+                Quiz Generator →
+              </Link>
+              <Link
+                href="/learn"
+                className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              >
+                ← Back to Lessons
+              </Link>
+            </div>
           </div>
         </div>
       </header>

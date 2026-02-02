@@ -13,3 +13,4 @@ export { ErrorHandler } from './errorHandler';
 export { globalRateLimiter, RateLimiter } from './rateLimiter';
 export { LessonPromptBuilder } from './lessonPromptBuilder';
 export { QuizPromptBuilder } from './quizPromptBuilder';
+export * from './lessonDetector';

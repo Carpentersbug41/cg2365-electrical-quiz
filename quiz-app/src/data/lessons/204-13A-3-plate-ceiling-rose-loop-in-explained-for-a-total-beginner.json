@@ -78,6 +78,38 @@
       }
     },
     {
+      "id": "204-13A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Ceiling Rose",
+            "right": "Junction and connection point"
+          },
+          {
+            "left": "Loop-in",
+            "right": "Continues to next light point"
+          },
+          {
+            "left": "CPC",
+            "right": "Circuit Protective Conductor"
+          },
+          {
+            "left": "Lamp Flex",
+            "right": "Cable to lamp holder"
+          },
+          {
+            "left": "Switch Drop",
+            "right": "Cable to light switch"
+          }
+        ]
+      },
+      "order": 2.5
+    },
+    {
       "id": "204-13A-diagram",
       "type": "diagram",
       "order": 3,
@@ -110,7 +142,7 @@
       "order": 4,
       "content": {
         "title": "Understanding the 3-Plate System",
-        "content": "Safety note (training rig only): This lesson is for conceptual learning. Never open or work on real ceiling roses unless you are trained/supervised and the circuit is safely isolated and proven dead.\n\n## 1) What is a ceiling rose?\nIf you’ve never seen one: a ceiling rose is **two things in one**.\n- A **junction point** where several cables join together.\n- The **connection point** for the lamp holder (the light).\n\nThat’s why a rose can look crowded: it’s not just ‘a light connector’ — it’s also where the circuit continues.\n\n## 2) What “loop-in” means (plain English)\nMany lighting circuits go: Consumer unit → Light 1 → Light 2 → Light 3 …\n\n**Loop-in** means the main supply is joined at each ceiling rose and then continues (‘loops’) onward to the next light point.\n\nAt a typical rose in the middle of a run, you often see:\n- a cable bringing supply **in**\n- a cable taking supply **out** to the next light\n- a cable going to the switch (the **switch drop**)\n- the lamp flex (to the lamp holder)\n\n## 3) The three terminal groups (three “buckets”)\nA 3-plate rose is easiest if you imagine **three labelled buckets**. Each conductor must go in the correct bucket.\n\n### Plate A — Neutrals group\nThis group is for **all neutrals joined together**.\nTypical roles you’ll see joined here:\n- Neutral from supply **in**\n- Neutral to supply **out** (if there is a next light)\n- Lamp neutral (from lamp flex)\n\nNeutral is normally **not switched** in a standard 1-way lighting circuit.\n\n### Plate B — Permanent lives (loop) group\nThis group is for the lives that are **permanently live when the circuit is energised**.\nTypical roles you’ll see joined here:\n- Live from supply **in**\n- Live to supply **out** (if there is a next light)\n- Live feed **to the switch** (down the switch drop)\n\nThis is why it’s called the **loop** group: it keeps the supply ‘looping’ through the lighting circuit and feeds the switch.\n\n### Plate C — Switched live group\nThis group is for the live that comes **back from the switch**.\nTypical roles you’ll see joined here:\n- Switched live return (from the switch drop)\n- Lamp live (from lamp flex)\n\nThis group is only live when the switch is **ON**.\n\n## 4) The switch (simple mental picture)\nA 1-way switch is like a bridge in the live path.\n- One conductor takes a **permanent live feed down** to the switch.\n- One conductor brings a **switched live back** to the lamp.\n\nSo the lamp only gets power when the switch ‘connects’ the feed to the return.\n\n## 5) Tiny colour anchor (don’t rely on colour alone)\nModern colours you often see on training rigs:\n- **Blue = Neutral** (goes to the Neutral group)\n- **Brown = Live** (permanent live or switched live depending on role)\n- **Green/Yellow = CPC (Earth)**\n\nImportant: colours help, but **role + correct grouping** is what matters."
+        "content": "Safety note (training rig only): This lesson is for conceptual learning. Never open or work on real ceiling roses unless you are trained/supervised and the circuit is safely isolated and proven dead.\n\n## 1) What is a ceiling rose?\nIf you’ve never seen one: a ceiling rose is **two things in one**.\n- A **junction point** where several cables join together.\n- The **connection point** for the lamp holder (the light).\n\nThat’s why a rose can look crowded: it’s not just ‘a light connector’ — it’s also where the circuit continues.\n\n## 2) What “loop-in” means (plain English)\nMany lighting circuits go: Consumer unit → Light 1 → Light 2 → Light 3 …\n\n**Loop-in** means the main supply is joined at each ceiling rose and then continues (‘loops’) onward to the next light point.\n\nAt a typical rose in the middle of a run, you often see:\n- a cable bringing supply **in**\n- a cable taking supply **out** to the next light\n- a cable going to the switch (the **switch drop**)\n- the lamp flex (to the lamp holder)\n\n## 3) The three terminal groups (three “buckets”)\nA 3-plate rose is easiest if you imagine **three labelled buckets**. Each conductor must go in the correct bucket.\n\n### Plate A — Neutrals group\nThis group is for **all neutrals joined together**.\nTypical roles you’ll see joined here:\n- Neutral from supply **in**\n- Neutral to supply **out** (if there is a next light)\n- Lamp neutral (from lamp flex)\n\nNeutral is normally **not switched** in a standard 1-way lighting circuit.\n\n### Plate B — Permanent lives (loop) group\nThis group is for the lives that are **permanently live when the circuit is energised**.\nTypical roles you’ll see joined here:\n- Live from supply **in**\n- Live to supply **out** (if there is a next light)\n- Live feed **to the switch** (down the switch drop)\n\n### Plate C — Switched live group\nThis group is for the live that comes **back from the switch**.\nTypical roles you’ll see joined here:\n- Switched live return (from the switch drop)\n- Lamp live (from lamp flex)\n\n## 4) The switch (simple mental picture)\nA 1-way switch is like a bridge in the live path.\n- One conductor takes a **permanent live feed down** to the switch.\n- One conductor brings a **switched live back** to the lamp.\n\nSo the lamp only gets power when the switch ‘connects’ the feed to the return.\n\n## 5) Tiny colour anchor (don’t rely on colour alone)\nModern colours you often see on training rigs:\n- **Blue = Neutral**\n- **Brown = Live**\n- **Green/Yellow = CPC (Earth)**\n\nImportant: colours help, but **role + correct grouping** is what matters."
       }
     },
     {
@@ -172,6 +204,76 @@
       }
     },
     {
+      "id": "204-13A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Feeds the Lamp",
+          "Feeds the Switch"
+        ],
+        "items": [
+          {
+            "text": "Switched Live",
+            "correctBucket": 0
+          },
+          {
+            "text": "Permanent Live",
+            "correctBucket": 1
+          },
+          {
+            "text": "Lamp Neutral",
+            "correctBucket": 0
+          },
+          {
+            "text": "Switch Drop",
+            "correctBucket": 1
+          },
+          {
+            "text": "Lamp Flex",
+            "correctBucket": 0
+          },
+          {
+            "text": "Return from switch",
+            "correctBucket": 0
+          }
+        ]
+      },
+      "order": 4.5
+    },
+    {
+      "id": "204-13A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "Identify the wiring mistake for a ceiling rose:",
+        "options": [
+          {
+            "text": "Lamp neutral goes with other neutrals",
+            "isError": false
+          },
+          {
+            "text": "Permanent live feeds the switch",
+            "isError": false
+          },
+          {
+            "text": "Lamp live goes into Permanent Live",
+            "isError": true
+          },
+          {
+            "text": "CPC maintains an earth path",
+            "isError": false
+          }
+        ],
+        "explanation": "Putting the lamp live into Permanent Live makes the light stay on constantly."
+      },
+      "order": 6.5
+    },
+    {
       "id": "204-13A-explain-common-mistakes",
       "type": "explanation",
       "order": 6.8,
@@ -185,46 +287,46 @@
       "type": "worked-example",
       "order": 7,
       "content": {
-        "title": "Worked Example (I Do): Sorting Conductors Into the 3 Groups",
-        "given": "Training rig scenario (paper/diagram-based): You are shown a ceiling rose with four items:\n- Cable A: Supply IN (has L, N, CPC)\n- Cable B: Supply OUT to next light (has L, N, CPC)\n- Cable C: Switch drop (has two cores + CPC)\n- Lamp flex (has lamp L, lamp N, CPC if required by fitting)\n\nTask: Decide what goes into each terminal group (Neutrals / Permanent Live Loop / Switched Live), and where CPCs go.",
+        "title": "Worked Example (I Do): The 3 Buckets in One Minute",
+        "given": "Training rig (concept): You have a ceiling rose, a cable bringing power IN, a cable going to the SWITCH, and a short cable going to the LAMP. (Sometimes there is also a cable taking power OUT to the next light.)\n\nGoal: Put each wire into the correct bucket so the switch controls the lamp.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Sort the neutrals by role (who needs neutral?).",
+            "description": "Bucket 1: Neutrals — find the wires that are neutral.",
             "formula": null,
             "calculation": null,
-            "result": "Neutrals group: A-N (supply in neutral) + B-N (supply out neutral) + Lamp-N (lamp neutral)."
+            "result": "Put ALL neutrals together in the Neutral bucket: supply neutral(s) + lamp neutral."
           },
           {
             "stepNumber": 2,
-            "description": "Sort the permanent lives by role (who must be permanently live?).",
+            "description": "Bucket 2: Loop (Permanent Live) — find the wires that must stay ‘always live’ to feed the switch and continue the circuit.",
             "formula": null,
             "calculation": null,
-            "result": "Permanent Live (Loop) group: A-L (supply in live) + B-L (supply out live) + Switch feed down (one core of the switch drop)."
+            "result": "Put permanent lives together in the Loop bucket: supply live(s) + the wire that goes down to the switch (the switch feed)."
           },
           {
             "stepNumber": 3,
-            "description": "Identify the switched live return (what comes back only when switch is ON?).",
+            "description": "Bucket 3: Switched Live — find the wire that comes BACK from the switch and only becomes live when the switch is ON.",
             "formula": null,
             "calculation": null,
-            "result": "Switched Live group: Switch return (the other core of the switch drop) + Lamp-L (lamp live)."
+            "result": "Put the switch return together with the lamp live in the Switched Live bucket: switch return + lamp live."
           },
           {
             "stepNumber": 4,
-            "description": "Park/join CPCs (earths) safely and neatly (training rig concept).",
+            "description": "Earths (CPCs) — keep them together and safe.",
             "formula": null,
             "calculation": null,
-            "result": "CPCs: A-CPC + B-CPC + C-CPC (+ lamp CPC if present) joined together and connected to the rose earth terminal/connector if provided."
+            "result": "Join/park all CPCs together and connect to the rose earth terminal/connector if provided."
           },
           {
             "stepNumber": 5,
-            "description": "Mini-check: Would the lamp be OFF when the switch is OFF?",
+            "description": "One quick sanity check (the ‘switch actually controls it’ check).",
             "formula": null,
             "calculation": null,
-            "result": "Yes — because Lamp-L is only fed via the switched live group, not the permanent live loop group."
+            "result": "Lamp live must NOT be in the Loop bucket. Lamp live must be in the Switched Live bucket so the switch can turn it on/off."
           }
         ],
-        "notes": "This is a sorting exercise: you are learning the *logic* of the groups (the roles), not memorising colours."
+        "notes": "Beginner rule: Don’t panic about cable names. Just do the same 3 questions every time: (1) Which are the neutrals? (2) Which are the always-live lives feeding the switch? (3) Which one comes back from the switch to feed the lamp?"
       }
     },
     {
@@ -232,47 +334,109 @@
       "type": "guided-practice",
       "order": 8,
       "content": {
-        "title": "Guided Practice (We Do): End-of-Circuit Rose",
-        "problem": "Training rig scenario (paper/diagram-based): This ceiling rose is the LAST light point.\nYou see:\n- Cable A: Supply IN (L, N, CPC)\n- Cable C: Switch drop (two cores + CPC)\n- Lamp flex (lamp L, lamp N)\nThere is NO supply out cable.\n\nWork through the same steps: which roles go in each terminal group?",
+        "title": "Guided Practice (We Do): Same 3 Buckets, You Point Them Out",
+        "problem": "Training rig scenario (concept): You are looking at a ceiling rose.\nYou can see:\n- a cable bringing power IN\n- a cable going to the SWITCH (switch drop)\n- a cable going to the LAMP (lamp flex)\nSometimes you may also have a cable taking power OUT to the next light.\n\nAnswer using bucket names only (Neutral / Loop / Switched Live).",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "Neutrals group: which roles belong together here?",
+            "prompt": "Where do ALL neutrals go?",
             "expectedAnswer": [
-              "Supply neutral in and lamp neutral",
-              "Neutral from supply in and neutral to lamp"
+              "Neutral bucket",
+              "Neutrals group",
+              "Neutral group"
             ],
-            "hint": "There is no next light, so there is no neutral out."
+            "hint": "Supply neutral(s) and lamp neutral all join together."
           },
           {
             "stepNumber": 2,
-            "prompt": "Permanent Live (Loop) group: what belongs here at the last light?",
+            "prompt": "Which bucket gets the wire that FEEDS the switch (goes down to the switch)?",
             "expectedAnswer": [
-              "Supply live in and the feed to the switch",
-              "A-L + switch feed down"
+              "Loop bucket",
+              "Permanent live bucket",
+              "Loop group"
             ],
-            "hint": "No supply out live at the last light."
+            "hint": "It must be permanent live to feed the switch."
           },
           {
             "stepNumber": 3,
-            "prompt": "Switched Live group: what two roles must be joined here?",
+            "prompt": "Which bucket gets the wire that RETURNS from the switch (only live when the switch is ON)?",
             "expectedAnswer": [
-              "Switch return + lamp live",
-              "Switched live from switch + lamp live"
+              "Switched live bucket",
+              "Switched live group",
+              "Switched live",
+              "Live bucket",
+              "Live / Line"
             ],
-            "hint": "This is the 'switch controls the lamp' group."
+            "hint": "This is the one that comes back to feed the lamp live."
           },
           {
             "stepNumber": 4,
-            "prompt": "What specific roles are missing at the last light compared with a middle light?",
+            "prompt": "Which bucket does the lamp LIVE join into so the switch controls the lamp?",
             "expectedAnswer": [
-              "Supply out live and supply out neutral (and its CPC)",
-              "No outgoing feed to the next light"
+              "Switched live bucket",
+              "Switched live group",
+              "Switched live"
             ],
-            "hint": "Think: what would you need only if there was a next light?"
+            "hint": "Lamp live must NOT sit in the permanent live loop."
+          },
+          {
+            "stepNumber": 5,
+            "prompt": "Which bucket would be the most dangerous place to accidentally put the lamp live (because it can make it permanently fed)?",
+            "expectedAnswer": [
+              "Loop bucket",
+              "Permanent live bucket",
+              "Loop group"
+            ],
+            "hint": "That bucket is ‘always live’ when energised."
+          },
+          {
+            "stepNumber": 6,
+            "prompt": "What do you do with CPCs (earths) on a training rig conceptually?",
+            "expectedAnswer": [
+              "Join them together and terminate/park safely",
+              "Connect all CPCs together",
+              "Keep CPC continuous and terminated"
+            ],
+            "hint": "Earths stay continuous and are grouped/terminated neatly."
           }
         ]
       }
+    },
+    {
+      "id": "204-13A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "Another name for terminal groups?",
+            "answer": "Buckets"
+          },
+          {
+            "question": "What does CPC stand for?",
+            "answer": "Circuit Protective Conductor"
+          },
+          {
+            "question": "Cable from rose to lamp holder?",
+            "answer": "Lamp Flex"
+          },
+          {
+            "question": "Cable running to the switch?",
+            "answer": "Switch Drop"
+          },
+          {
+            "question": "What feeds the light switch?",
+            "answer": "Permanent Live"
+          },
+          {
+            "question": "How many terminal groups are in the rose?",
+            "answer": "Three"
+          }
+        ]
+      },
+      "order": 8.5
     },
     {
       "id": "204-13A-practice",
@@ -395,8 +559,8 @@
   ],
   "metadata": {
     "created": "2026-01-28",
-    "updated": "2026-01-29",
-    "version": "1.3",
+    "updated": "2026-02-01",
+    "version": "1.5",
     "author": "C&G 2365 Learning Team"
   },
   "diagnostic": {

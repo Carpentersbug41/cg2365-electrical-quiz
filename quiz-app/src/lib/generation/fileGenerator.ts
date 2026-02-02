@@ -16,6 +16,7 @@ import {
   cleanCodeBlocks,
   extractJson,
   extractTypeScriptArray,
+  preprocessToValidJson,
   safeJsonParse,
   sleep,
 } from './utils';
@@ -186,6 +187,51 @@ export class FileGenerator {
   }
 
   /**
+   * Generate quiz from existing lesson data
+   * Used for standalone quiz generation without creating a new lesson
+   */
+  async generateQuizFromLesson(
+    lessonId: string,
+    lesson: Lesson,
+    section: string
+  ): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo }> {
+    try {
+      // Extract lesson info
+      const [unitStr, lessonIdPart] = lessonId.split('-');
+      const unit = parseInt(unitStr, 10);
+      
+      // Create a minimal generation request from lesson data
+      const request: GenerationRequest = {
+        unit,
+        lessonId: lessonIdPart,
+        topic: lesson.topic || lesson.title,
+        section,
+        prerequisites: lesson.prerequisites || [],
+      };
+
+      debugLog('QUIZ_FROM_LESSON_START', { lessonId, topic: lesson.topic });
+
+      // Generate quiz using existing method
+      const result = await this.generateQuiz(request);
+
+      if (result.success) {
+        debugLog('QUIZ_FROM_LESSON_SUCCESS', { questionCount: result.questions.length });
+      } else {
+        debugLog('QUIZ_FROM_LESSON_FAILED', { error: result.error });
+      }
+
+      return result;
+    } catch (error) {
+      debugLog('QUIZ_FROM_LESSON_EXCEPTION', { error: error instanceof Error ? error.message : 'unknown' });
+      return {
+        success: false,
+        questions: [],
+        error: error instanceof Error ? error.message : 'Unknown error generating quiz from lesson',
+      };
+    }
+  }
+
+  /**
    * Generate a batch of questions
    */
   private async generateQuestionBatch(
@@ -226,53 +272,47 @@ export class FileGenerator {
         fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:157',message:'Raw LLM response received',data:{contentLength:content.length,contentPreview:content.substring(0,500),difficulty,chunkStartId},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,B,C,E'})}).catch(()=>{});
         // #endregion
 
-        // Parse as JavaScript array
-        const cleanedContent = extractTypeScriptArray(content);
+        // Clean and preprocess response for JSON parsing
+        let cleanedContent = extractTypeScriptArray(content);
         
         // #region agent log
         fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:164',message:'After extractTypeScriptArray cleaning',data:{cleanedLength:cleanedContent.length,cleanedPreview:cleanedContent.substring(0,500),wasModified:content!==cleanedContent},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'A,D'})}).catch(()=>{});
         // #endregion
         
-        // Use eval in a safe context (only for known LLM-generated content)
-        let questions: QuizQuestion[];
-        try {
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:171',message:'Attempting eval',data:{contentToEval:cleanedContent.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
-          // #endregion
-          // eslint-disable-next-line no-eval
-          questions = eval(cleanedContent) as QuizQuestion[];
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:176',message:'Eval succeeded',data:{questionCount:questions.length},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B'})}).catch(()=>{});
-          // #endregion
-        } catch (evalError) {
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:181',message:'Eval failed, trying JSON.parse',data:{evalErrorMsg:evalError instanceof Error?evalError.message:'unknown',evalErrorName:evalError instanceof Error?evalError.name:'unknown',contentForJsonParse:cleanedContent.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E'})}).catch(()=>{});
-          // #endregion
-          // Try JSON.parse as fallback
-          const parsed = safeJsonParse<QuizQuestion[]>(cleanedContent);
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:187',message:'JSON.parse result',data:{parseSuccess:parsed.success,parseError:parsed.error,hasData:!!parsed.data},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'B,E'})}).catch(()=>{});
-          // #endregion
-          if (!parsed.success || !parsed.data) {
-            return {
-              success: false,
-              questions: [],
-              error: `Failed to parse quiz questions: ${parsed.error}`,
-              debugInfo: {
-                rawResponse: parsed.rawInput || cleanedContent,
-                parseError: parsed.error || 'Unknown error',
-                errorPosition: parsed.errorDetails,
-                contentPreview: generateContextPreview(
-                  parsed.rawInput || cleanedContent,
-                  parsed.errorDetails?.position
-                ),
-                attemptedOperation: 'Parsing quiz questions array from LLM response',
-                timestamp: new Date().toISOString(),
-              }
-            };
-          }
-          questions = parsed.data;
+        // Preprocess to ensure valid JSON (remove trailing commas, comments, etc.)
+        cleanedContent = preprocessToValidJson(cleanedContent);
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:171',message:'After JSON preprocessing',data:{cleanedLength:cleanedContent.length,cleanedPreview:cleanedContent.substring(0,500)},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'JSON_PREPROCESSING'})}).catch(()=>{});
+        // #endregion
+        
+        // Parse as strict JSON
+        const parsed = safeJsonParse<QuizQuestion[]>(cleanedContent);
+        
+        // #region agent log
+        fetch('http://127.0.0.1:7242/ingest/95d04586-4afa-43d8-871a-85454b44a405',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'fileGenerator.ts:181',message:'JSON.parse result',data:{parseSuccess:parsed.success,parseError:parsed.error,hasData:!!parsed.data},timestamp:Date.now(),sessionId:'debug-session',hypothesisId:'JSON_PARSE'})}).catch(()=>{});
+        // #endregion
+        
+        if (!parsed.success || !parsed.data) {
+          return {
+            success: false,
+            questions: [],
+            error: `Failed to parse quiz questions as JSON: ${parsed.error}`,
+            debugInfo: {
+              rawResponse: parsed.rawInput || cleanedContent,
+              parseError: parsed.error || 'Unknown error',
+              errorPosition: parsed.errorDetails,
+              contentPreview: generateContextPreview(
+                parsed.rawInput || cleanedContent,
+                parsed.errorDetails?.position
+              ),
+              attemptedOperation: 'Parsing quiz questions as JSON (RFC 8259 compliant)',
+              timestamp: new Date().toISOString(),
+            }
+          };
         }
+        
+        const questions = parsed.data;
 
         if (!Array.isArray(questions)) {
           return {

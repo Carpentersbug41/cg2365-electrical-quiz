@@ -173,6 +173,22 @@
       }
     },
     {
+      "id": "201-1A-microbreak-1",
+      "type": "microbreak",
+      "order": 4.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          { "left": "HASAWA", "right": "Health and Safety at Work Act" },
+          { "left": "EAWR", "right": "Electricity at Work Regulations" },
+          { "left": "Competent Person", "right": "Sufficient training and experience" },
+          { "left": "Reasonably Practicable", "right": "Unless cost grossly disproportionate" }
+        ]
+      }
+    },
+    {
       "id": "201-1A-explain-eawr",
       "type": "explanation",
       "order": 5,
@@ -275,6 +291,25 @@
             "expectedAnswer": "Employers must provide safe systems, equipment, training, and supervision. Employees must follow procedures, use equipment correctly, cooperate with safety arrangements, and report problems. This shared responsibility means safety depends on both: employers create safe conditions and employees work safely within them. Neither can achieve safety alone - both have legal duties that complement each other.",
             "hint": "Think about what each party provides and how they depend on each other."
           }
+        ]
+      }
+    },
+    {
+      "id": "201-1A-microbreak-2",
+      "type": "microbreak",
+      "order": 6.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": ["Employer Duty", "Employee Duty"],
+        "items": [
+          { "text": "Provide safe equipment", "correctBucket": 0 },
+          { "text": "Report hazards", "correctBucket": 1 },
+          { "text": "Conduct risk assessments", "correctBucket": 0 },
+          { "text": "Take reasonable care", "correctBucket": 1 },
+          { "text": "Provide training", "correctBucket": 0 },
+          { "text": "Cooperate with employer", "correctBucket": 1 }
         ]
       }
     },

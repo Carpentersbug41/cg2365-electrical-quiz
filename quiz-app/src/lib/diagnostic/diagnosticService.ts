@@ -4,7 +4,7 @@
  */
 
 import { getCumulativeQuestions, getCumulativeQuizMetadata } from '@/lib/questions/cumulativeQuestions';
-import { getLessonById } from '@/data/lessons/lessonIndex';
+import { getLessonById, unitMetadata } from '@/data/lessons/lessonIndex';
 import { TaggedQuestion } from '@/data/questions/types';
 
 /**
@@ -25,20 +25,32 @@ export function getDiagnosticQuestions(lessonId: string): TaggedQuestion[] {
 export function getDiagnosticCoverage(lessonId: string): {
   coveredLessonIds: string[];
   isFirstLesson: boolean;
+  unitNumber: string;
+  unitName: string;
 } {
   const metadata = getCumulativeQuizMetadata(lessonId);
+  const lesson = getLessonById(lessonId);
+  
+  const unitNumber = lesson?.unitNumber || '';
+  const unitName = unitNumber && unitMetadata[unitNumber as keyof typeof unitMetadata]
+    ? unitMetadata[unitNumber as keyof typeof unitMetadata].name
+    : '';
   
   if (!metadata || metadata.isFirstInUnit) {
     return {
       coveredLessonIds: [],
-      isFirstLesson: true
+      isFirstLesson: true,
+      unitNumber,
+      unitName
     };
   }
   
   // Return all previous lessons (exclude current)
   return {
     coveredLessonIds: metadata.previousLessons.map(l => l.id),
-    isFirstLesson: false
+    isFirstLesson: false,
+    unitNumber,
+    unitName
   };
 }
 

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Microbreak Sound Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    h1 { color: #333; }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px 5px;
+    }
+    button:hover { background: #45a049; }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    #status {
+      margin-top: 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 5px;
+      min-height: 50px;
+    }
+    .success { color: #4CAF50; }
+    .info { color: #2196F3; }
+    .warning { color: #ff9800; }
+    pre {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 Microbreak Sound Generator</h1>
+  <p>Generate Duolingo-style ding sounds for the microbreak games.</p>
+  
+  <button onclick="playTestSound()">▶️ Test Sound</button>
+  <button onclick="generateAllSounds()" id="generateBtn">🎹 Generate All Sounds</button>
+  
+  <div id="status">
+    <p>Click "Generate All Sounds" to create 13 sound files.</p>
+    <p class="info">⚠️ You'll need to manually save each sound as MP3 using the browser's audio recording or a tool like Audacity.</p>
+  </div>
+
+  <h2>Manual Generation Instructions</h2>
+  <pre>
+Success Sounds (10 variations):
+- success1.mp3:  523 Hz (C5) - 0.3s
+- success2.mp3:  659 Hz (E5) - 0.3s
+- success3.mp3:  784 Hz (G5) - 0.3s
+- success4.mp3:  880 Hz (A5) - 0.3s
+- success5.mp3: 1047 Hz (C6) - 0.3s
+- success6.mp3:  587 Hz (D5) - 0.3s
+- success7.mp3:  698 Hz (F5) - 0.3s
+- success8.mp3:  988 Hz (B5) - 0.3s
+- success9.mp3: 1319 Hz (E6) - 0.3s
+- success10.mp3: 1568 Hz (G6) - 0.3s
+
+Failure Sounds (3 variations):
+- failure1.mp3: 200 Hz - 0.5s
+- failure2.mp3: 150 Hz - 0.5s
+- failure3.mp3: 180 Hz - 0.5s
+
+Use: onlinetonegenerator.com or Audacity to generate these tones.
+  </pre>
+
+  <h2>Quick Solution: Use Free Sound Libraries</h2>
+  <p>Download from these sources:</p>
+  <ul>
+    <li><a href="https://freesound.org" target="_blank">freesound.org</a> - Search "success ding" and "error buzz"</li>
+    <li><a href="https://mixkit.co/free-sound-effects/" target="_blank">mixkit.co</a> - Free sound effects</li>
+    <li><a href="https://zapsplat.com" target="_blank">zapsplat.com</a> - Free tier available</li>
+  </ul>
+
+  <script>
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playTestSound() {
+      generateTone(659, 0.3, 'sine'); // E5 test tone
+    }
+    
+    function generateTone(frequency, duration, type = 'sine') {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = frequency;
+      oscillator.type = type;
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + duration);
+      
+      return new Promise(resolve => {
+        setTimeout(() => resolve(), duration * 1000 + 100);
+      });
+    }
+    
+    async function generateAllSounds() {
+      const status = document.getElementById('status');
+      const btn = document.getElementById('generateBtn');
+      btn.disabled = true;
+      
+      status.innerHTML = '<p class="info">🎵 Generating sounds... Listen to the tones!</p>';
+      
+      // Success sounds - Duolingo-style bright dings
+      const successFreqs = [523, 659, 784, 880, 1047, 587, 698, 988, 1319, 1568];
+      const failureFreqs = [200, 150, 180];
+      
+      let html = '<p class="success">✅ Generated all sounds!</p>';
+      html += '<h3>Success Sounds:</h3><ul>';
+      
+      for (let i = 0; i < 10; i++) {
+        await generateTone(successFreqs[i], 0.3);
+        html += `<li>success${i+1}.mp3 - ${successFreqs[i]}Hz (played)</li>`;
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+      
+      html += '</ul><h3>Failure Sounds:</h3><ul>';
+      
+      for (let i = 0; i < 3; i++) {
+        await generateTone(failureFreqs[i], 0.5);
+        html += `<li>failure${i+1}.mp3 - ${failureFreqs[i]}Hz (played)</li>`;
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+      
+      html += '</ul>';
+      html += '<p class="warning">⚠️ To save these as MP3 files:</p>';
+      html += '<ol>';
+      html += '<li>Use a screen/audio recorder while playing these sounds</li>';
+      html += '<li>OR use <a href="https://www.onlinetonegenerator.com/" target="_blank">onlinetonegenerator.com</a> with the frequencies above</li>';
+      html += '<li>OR download from <a href="https://freesound.org" target="_blank">freesound.org</a></li>';
+      html += '<li>Place the 13 MP3 files in <code>quiz-app/public/sounds/</code></li>';
+      html += '</ol>';
+      
+      status.innerHTML = html;
+      btn.disabled = false;
+    }
+  </script>
+</body>
+</html>

@@ -11,7 +11,9 @@
     "test": "vitest",
     "test:golden-set": "vitest run src/tests/golden-set",
     "test:ui": "vitest --ui",
-    "test:watch": "vitest watch"
+    "test:watch": "vitest watch",
+    "generate:games": "tsx scripts/generateGamesForLesson.ts",
+    "generate:sounds": "node scripts/generateSoundFiles.js"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

@@ -242,7 +242,11 @@ export default function QuizPage() {
   return (
     <Quiz 
       section={selectedSection} 
-      onBack={() => setSelectedSection(null)} 
+      onBack={() => setSelectedSection(null)}
+      enableConfidence={false}
+      enableImmediateFeedback={true}
+      enableTypedRetries={false}
+      context="practice"
     />
   );
 }

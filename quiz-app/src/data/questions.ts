@@ -35,6 +35,7 @@ import { ceilingRoseToOneWaySwitchForAbsoluteBeginnersQuestions } from './questi
 import { statutoryRegulationsLawQuestions } from './questions/statutoryRegulationsLawQuestions';
 import { nonStatutoryRegulationsGuidanceQuestions } from './questions/nonStatutoryRegulationsGuidanceQuestions';
 import { usingBs7671OnAJobQuestions } from './questions/usingBs7671OnAJobQuestions';
+import { sourcesDrawingsSymbolsScaleQuestions } from './questions/sourcesDrawingsSymbolsScaleQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -64,6 +65,7 @@ export const questions: Question[] = [
   ...statutoryRegulationsLawQuestions,
   ...nonStatutoryRegulationsGuidanceQuestions,
   ...usingBs7671OnAJobQuestions,
+  ...sourcesDrawingsSymbolsScaleQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

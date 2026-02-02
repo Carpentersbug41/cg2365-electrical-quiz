@@ -21,6 +21,7 @@ import PracticeBlock from '../blocks/PracticeBlock';
 import SpacedReviewBlock from '../blocks/SpacedReviewBlock';
 import TutorPanel from '../tutor/TutorPanel';
 import MasteryGate from '../MasteryGate';
+import MicrobreakBlock from '../microbreaks/MicrobreakBlock';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 
@@ -58,6 +59,8 @@ export default function LayoutB({ lesson }: LayoutProps) {
         return <PracticeBlock key={key} block={block} />;
       case 'spaced-review':
         return <SpacedReviewBlock key={key} block={block} />;
+      case 'microbreak':
+        return <MicrobreakBlock key={key} block={block} />;
       default:
         return null;
     }

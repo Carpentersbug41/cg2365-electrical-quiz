@@ -204,6 +204,29 @@ export function extractTypeScriptArray(text: string): string {
 }
 
 /**
+ * Preprocess content to ensure valid JSON
+ * Handles common LLM output issues that break JSON parsing
+ */
+export function preprocessToValidJson(content: string): string {
+  let processed = content.trim();
+  
+  // Remove trailing commas before closing brackets/braces
+  processed = processed.replace(/,(\s*[}\]])/g, '$1');
+  
+  // Remove comments (// and /* */)
+  processed = processed.replace(/\/\/.*$/gm, '');
+  processed = processed.replace(/\/\*[\s\S]*?\*\//g, '');
+  
+  // Ensure no trailing comma at end of arrays
+  processed = processed.replace(/,(\s*\])/g, '$1');
+  
+  // Ensure no trailing comma at end of objects
+  processed = processed.replace(/,(\s*})/g, '$1');
+  
+  return processed;
+}
+
+/**
  * Validate section name
  */
 export function isValidSection(section: string): boolean {

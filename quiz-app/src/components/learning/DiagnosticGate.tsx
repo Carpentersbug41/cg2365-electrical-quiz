@@ -137,10 +137,10 @@ export default function DiagnosticGate({ lessonId, diagnostic, children }: Diagn
             {coverage.coveredLessonIds.length > 0 && (
               <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-6">
                 <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-3">
-                  This diagnostic covers concepts from:
+                  This diagnostic covers:
                 </h3>
                 <p className="text-blue-800 dark:text-blue-400 font-medium">
-                  {coverage.coveredLessonIds.join(', ')}
+                  Previous lessons in Unit {coverage.unitNumber}{coverage.unitName ? ` (${coverage.unitName})` : ''}
                 </p>
               </div>
             )}
@@ -203,14 +203,19 @@ export default function DiagnosticGate({ lessonId, diagnostic, children }: Diagn
             Diagnostic Assessment
           </h2>
           <p className="text-gray-600 dark:text-slate-400">
-            Testing: {coverage.coveredLessonIds.join(', ')}
+            Unit {coverage.unitNumber}{coverage.unitName ? ` ${coverage.unitName}` : ''} Quiz
           </p>
         </div>
         
         <Quiz 
           questions={questions as Question[]}
-          section={`Diagnostic: ${coverage.coveredLessonIds.join(', ')}`}
+          section={`Diagnostic: Unit ${coverage.unitNumber}${coverage.unitName ? ` ${coverage.unitName}` : ''}`}
           onComplete={handleQuizComplete}
+          enableConfidence={true}
+          enableImmediateFeedback={true}
+          enableTypedRetries={true}
+          context="diagnostic"
+          lessonId={lessonId}
         />
       </div>
     );

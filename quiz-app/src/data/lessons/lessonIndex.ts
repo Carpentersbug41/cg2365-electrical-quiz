@@ -193,6 +193,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-1C'),
     available: true,
     order: 3,
+  },
+  {
+    id: '203-2A',
+    title: 'Sources, Drawings, Symbols & Scale',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Sources, Drawings, Symbols & Scale',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-2A'),
+    available: true,
+    order: 4,
   },// Unit 210: Communication
   {
     id: '204-10A',

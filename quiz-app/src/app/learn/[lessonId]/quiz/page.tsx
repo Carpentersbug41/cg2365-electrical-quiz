@@ -151,6 +151,10 @@ export default function LessonQuizPage({ params }: PageProps) {
         onBack={() => router.push(`/learn/${lessonId}`)}
         lessonId={lessonId}
         isRetest={isRetest}
+        enableConfidence={true}
+        enableImmediateFeedback={true}
+        enableTypedRetries={true}
+        context="lesson"
       />
     </div>
   );

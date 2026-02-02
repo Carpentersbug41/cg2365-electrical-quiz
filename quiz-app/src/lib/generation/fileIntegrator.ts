@@ -68,6 +68,57 @@ export class FileIntegrator {
   }
 
   /**
+   * Integrate quiz files only (for standalone quiz generation)
+   */
+  async integrateQuizOnly(
+    quizFilePath: string,
+    questions: unknown[]
+  ): Promise<FileIntegrationResult> {
+    const filesUpdated: string[] = [];
+    const errors: string[] = [];
+
+    try {
+      const quizFilename = path.basename(quizFilePath);
+      
+      // Extract topic from filename for creating a minimal request
+      const variableName = quizFilename.replace('.ts', '');
+      
+      // Create a minimal request object
+      const dummyRequest: GenerationRequest = {
+        unit: 0, // Not used for quiz-only integration
+        lessonId: '',
+        topic: variableName.replace(/Questions$/, ''),
+        section: '',
+      };
+
+      // 1. Update questions/index.ts
+      const questionsIndexPath = path.join(this.basePath, 'src', 'data', 'questions', 'index.ts');
+      this.updateQuestionsIndex(questionsIndexPath, dummyRequest, quizFilename);
+      filesUpdated.push(questionsIndexPath);
+
+      // 2. Update questions.ts (main array) if it exists
+      const questionsPath = path.join(this.basePath, 'src', 'data', 'questions.ts');
+      if (fs.existsSync(questionsPath)) {
+        this.updateQuestionsMain(questionsPath, dummyRequest, quizFilename);
+        filesUpdated.push(questionsPath);
+      }
+
+      return {
+        success: true,
+        filesUpdated,
+        errors: [],
+      };
+    } catch (error) {
+      errors.push(error instanceof Error ? error.message : 'Unknown integration error');
+      return {
+        success: false,
+        filesUpdated,
+        errors,
+      };
+    }
+  }
+
+  /**
    * Update questions/index.ts with new import and export
    */
   private updateQuestionsIndex(filePath: string, request: GenerationRequest, quizFilename: string): void {

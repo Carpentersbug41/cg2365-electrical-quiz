@@ -13,6 +13,10 @@ import {
 } from '@/lib/progress/progressService';
 import { QuizAttempt } from '@/lib/progress/types';
 import { scheduleReview } from '@/lib/progress/reviewScheduler';
+import { getMisconception } from '@/lib/marking/misconceptionCodes';
+import { TaggedQuestion } from '@/data/questions/types';
+import TypedRetrySection from './quiz/TypedRetrySection';
+import { saveAttempt, updateNeedsReview } from '@/lib/storage/indexedDBService';
 
 interface QuizProps {
   section?: string;
@@ -20,6 +24,10 @@ interface QuizProps {
   questions?: Question[]; // Optional: pass custom filtered questions
   lessonId?: string; // For mastery tracking
   isRetest?: boolean; // True if this is a delayed mastery retest
+  enableConfidence?: boolean; // Enable confidence rating collection
+  enableImmediateFeedback?: boolean; // Show immediate feedback after each answer
+  enableTypedRetries?: boolean; // Enable typed retry questions at end
+  context?: 'diagnostic' | 'lesson' | 'practice'; // Quiz context for storage
   onComplete?: (results: {
     score: number;
     totalQuestions: number;
@@ -31,6 +39,7 @@ interface QuizProps {
       userAnswer: number;
       correctAnswer: number;
       options: string[];
+      confidence?: 'not-sure' | 'somewhat-sure' | 'very-sure';
     }>;
   }) => void;
 }
@@ -127,14 +136,29 @@ const playCompletionSound = (score: number, total: number) => {
   }
 };
 
-export default function Quiz({ section, onBack, questions: customQuestions, lessonId, isRetest = false, onComplete }: QuizProps = {}) {
+export default function Quiz({ 
+  section, 
+  onBack, 
+  questions: customQuestions, 
+  lessonId, 
+  isRetest = false, 
+  enableConfidence = false,
+  enableImmediateFeedback = false,
+  enableTypedRetries = false,
+  context = 'practice',
+  onComplete 
+}: QuizProps = {}) {
   const [quizStarted, setQuizStarted] = useState(false);
   const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>([]);
+  const [selectedConfidences, setSelectedConfidences] = useState<('not-sure' | 'somewhat-sure' | 'very-sure' | null)[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
   const [wrongAnswerFlash, setWrongAnswerFlash] = useState<number | null>(null);
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [pendingAnswer, setPendingAnswer] = useState<number | null>(null);
+  const [pendingConfidence, setPendingConfidence] = useState<'not-sure' | 'somewhat-sure' | 'very-sure' | null>(null);
   
   // Gamification State
   const [streak, setStreak] = useState(0);
@@ -147,6 +171,28 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
   const questions = selectedQuestions;
 
   const handleAnswerSelect = (answerIndex: number) => {
+    // With confidence enabled, just set pending answer
+    if (enableConfidence) {
+      setPendingAnswer(answerIndex);
+      return;
+    }
+
+    // Without confidence, immediately submit (old behavior)
+    submitAnswer(answerIndex, null);
+  };
+
+  const handleConfidenceSelect = (confidence: 'not-sure' | 'somewhat-sure' | 'very-sure') => {
+    setPendingConfidence(confidence);
+  };
+
+  const handleSubmitAnswer = () => {
+    if (pendingAnswer === null) return;
+    if (enableConfidence && pendingConfidence === null) return;
+
+    submitAnswer(pendingAnswer, pendingConfidence);
+  };
+
+  const submitAnswer = (answerIndex: number, confidence: 'not-sure' | 'somewhat-sure' | 'very-sure' | null) => {
     // Prevent changing answer once selected
     if (selectedAnswers[currentQuestion] !== null) {
       return;
@@ -155,6 +201,12 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
     const newAnswers = [...selectedAnswers];
     newAnswers[currentQuestion] = answerIndex;
     setSelectedAnswers(newAnswers);
+
+    if (confidence) {
+      const newConfidences = [...selectedConfidences];
+      newConfidences[currentQuestion] = confidence;
+      setSelectedConfidences(newConfidences);
+    }
 
     const isCorrect = answerIndex === questions[currentQuestion].correctAnswer;
 
@@ -194,9 +246,51 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
         setWrongAnswerFlash(null);
       }, 1000);
     }
-    
-    // Auto-advance after a short delay (optional, but good for flow)
-    // Keeping manual navigation for now as per original design, but could add auto-advance option later.
+
+    // Show immediate feedback if enabled
+    if (enableImmediateFeedback) {
+      setShowFeedback(true);
+    }
+
+    // Store attempt in IndexedDB if context provided
+    if (context && lessonId) {
+      const taggedQ = questions[currentQuestion] as TaggedQuestion;
+      const misconceptionCode = !isCorrect && taggedQ.misconceptionCodes && answerIndex !== null
+        ? taggedQ.misconceptionCodes[answerIndex]
+        : undefined;
+
+      saveAttempt({
+        questionId: questions[currentQuestion].id.toString(),
+        lessonId,
+        context,
+        userAnswer: answerIndex,
+        correctAnswer: questions[currentQuestion].correctAnswer,
+        confidence: confidence || 'not-sure',
+        isCorrect,
+        timestamp: new Date(),
+        misconceptionCode,
+      }).catch(err => console.error('Failed to save attempt:', err));
+
+      // Update needs review queue
+      if (confidence) {
+        updateNeedsReview(questions[currentQuestion].id.toString(), {
+          confidence,
+          isCorrect,
+          lessonId,
+          context,
+        }).catch(err => console.error('Failed to update needs review:', err));
+      }
+    }
+  };
+
+  const handleContinueAfterFeedback = () => {
+    setShowFeedback(false);
+    setPendingAnswer(null);
+    setPendingConfidence(null);
+    // Auto-advance to next question
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+    }
   };
 
   // Clear flash when changing questions
@@ -244,6 +338,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
           userAnswer: selectedAnswers[idx] ?? -1,
           correctAnswer: q.correctAnswer,
           options: q.options,
+          confidence: selectedConfidences[idx] || undefined,
         }))
         .filter((_, idx) => selectedAnswers[idx] !== questions[idx].correctAnswer);
       
@@ -322,19 +417,27 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
     setSelectedQuestions([]);
     setCurrentQuestion(0);
     setSelectedAnswers([]);
+    setSelectedConfidences([]);
     setShowResults(false);
     setIsReviewing(false);
     setStreak(0);
     setPoints(0);
+    setPendingAnswer(null);
+    setPendingConfidence(null);
+    setShowFeedback(false);
   };
 
   const startQuiz = (questionCount: number) => {
     const randomQuestions = getRandomQuestions(questionCount, section, customQuestions);
     setSelectedQuestions(randomQuestions);
     setSelectedAnswers(new Array(questionCount).fill(null));
+    setSelectedConfidences(new Array(questionCount).fill(null));
     setQuizStarted(true);
     setStreak(0);
     setPoints(0);
+    setPendingAnswer(null);
+    setPendingConfidence(null);
+    setShowFeedback(false);
   };
   
   // Get questions for the selected section or custom questions
@@ -357,7 +460,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
   // Start Screen
   if (!quizStarted) {
     const maxQuestions = sectionQuestions.length;
-    const questionOptions = [10, 20, 30, 50].filter(n => n <= maxQuestions);
+    const questionOptions = [5, 10, 15, 20, 25, 30, 40, 50].filter(n => n <= maxQuestions);
     
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4 flex items-center justify-center">
@@ -537,6 +640,40 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
                           </div>
                         </div>
                       </div>
+
+                      {question.explanation && (
+                        <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-700">
+                          <div className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-1">Explanation:</div>
+                          <div className="text-gray-800 dark:text-slate-300">
+                            {question.explanation}
+                          </div>
+                        </div>
+                      )}
+
+                      {(() => {
+                        const taggedQ = question as TaggedQuestion;
+                        if (taggedQ.misconceptionCodes && userAnswer !== null && userAnswer !== taggedQ.correctAnswer) {
+                          const misconceptionCode = taggedQ.misconceptionCodes[userAnswer];
+                          if (misconceptionCode) {
+                            try {
+                              const misconception = getMisconception(misconceptionCode);
+                              return (
+                                <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-700">
+                                  <div className="text-sm font-semibold text-amber-800 dark:text-amber-300 mb-1">
+                                    Common Mistake: {misconception.name}
+                                  </div>
+                                  <div className="text-gray-800 dark:text-slate-300 text-sm">
+                                    {misconception.fixPrompt}
+                                  </div>
+                                </div>
+                              );
+                            } catch (e) {
+                              return null;
+                            }
+                          }
+                        }
+                        return null;
+                      })()}
                     </div>
                   </div>
                 ))}
@@ -550,6 +687,22 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
               <h3 className="text-2xl font-bold text-green-600 dark:text-green-400">Perfect Score!</h3>
               <p className="text-gray-600 dark:text-slate-400 mt-2">You answered all questions correctly!</p>
             </div>
+          )}
+
+          {/* Typed Retry Section */}
+          {enableTypedRetries && incorrectQuestions.length > 0 && (
+            <TypedRetrySection
+              wrongAnswers={incorrectQuestions.map(({ question, userAnswer }) => ({
+                questionId: question.id.toString(),
+                questionText: question.question,
+                userAnswer: userAnswer ?? -1,
+                correctAnswer: question.correctAnswer,
+                options: question.options,
+                confidence: selectedConfidences[questions.findIndex(q => q.id === question.id)] || undefined,
+              }))}
+              context={context}
+              lessonId={lessonId}
+            />
           )}
         </div>
       </div>
@@ -692,6 +845,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
           <div className="space-y-3 relative z-10">
             {currentQ.options.map((option, index) => {
               const isSelected = selectedAnswers[currentQuestion] === index;
+              const isPending = pendingAnswer === index;
               const showCorrectAnswer = isReviewing && index === currentQ.correctAnswer;
               const showWrongAnswer = isReviewing && isSelected && index !== currentQ.correctAnswer;
               const isFlashing = wrongAnswerFlash === index;
@@ -706,7 +860,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
                       ? 'border-green-500 bg-green-50 dark:bg-green-900/20 dark:border-green-400 scale-[1.02] shadow-md'
                       : showWrongAnswer
                       ? 'border-red-500 bg-red-50 dark:bg-red-900/20 dark:border-red-400'
-                      : isSelected
+                      : isSelected || isPending
                       ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-900/20 dark:border-indigo-400 scale-[1.02] shadow-md'
                       : 'border-gray-200 dark:border-slate-600 hover:border-indigo-300 dark:hover:border-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:scale-[1.01] hover:shadow-sm'
                   } ${isReviewing || isAnswered ? 'cursor-default' : 'cursor-pointer'} ${isFlashing ? 'flash-wrong' : ''}`}
@@ -717,13 +871,13 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
                         ? 'border-green-500 bg-green-500 dark:border-green-400 dark:bg-green-600'
                         : showWrongAnswer
                         ? 'border-red-500 bg-red-500 dark:border-red-400 dark:bg-red-600'
-                        : isSelected
+                        : isSelected || isPending
                         ? 'border-indigo-500 bg-indigo-500 dark:border-indigo-400 dark:bg-indigo-600'
                         : 'border-gray-300 dark:border-slate-600 group-hover:border-indigo-400 dark:group-hover:border-indigo-500'
                     }`}>
-                      {(showCorrectAnswer || (isSelected && !showWrongAnswer)) && (
+                      {(showCorrectAnswer || (isSelected && !showWrongAnswer) || isPending) && (
                         <span className="text-white font-bold">
-                          {showCorrectAnswer ? '✓' : (isSelected ? '✓' : '')}
+                          {showCorrectAnswer ? '✓' : (isSelected || isPending ? '✓' : '')}
                         </span>
                       )}
                       {showWrongAnswer && (
@@ -733,7 +887,7 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
                     <span className={`text-lg transition-colors duration-200 ${
                       showCorrectAnswer ? 'text-green-800 dark:text-green-300 font-semibold' :
                       showWrongAnswer ? 'text-red-800 dark:text-red-300' :
-                      isSelected ? 'text-indigo-800 dark:text-indigo-300 font-semibold' : 'text-gray-700 dark:text-slate-300'
+                      isSelected || isPending ? 'text-indigo-800 dark:text-indigo-300 font-semibold' : 'text-gray-700 dark:text-slate-300'
                     }`}>
                       {option}
                     </span>
@@ -742,6 +896,120 @@ export default function Quiz({ section, onBack, questions: customQuestions, less
               );
             })}
           </div>
+
+          {/* Confidence Rating (if enabled and answer selected but not submitted) */}
+          {enableConfidence && pendingAnswer !== null && !isAnswered && !showFeedback && (
+            <div className="mt-6 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl relative z-10">
+              <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-4">
+                How confident are you in this answer?
+              </h3>
+              <div className="flex flex-col sm:flex-row gap-3">
+                {[
+                  { value: 'not-sure', label: 'Not Sure', emoji: '🤔' },
+                  { value: 'somewhat-sure', label: 'Somewhat Sure', emoji: '🤷' },
+                  { value: 'very-sure', label: 'Very Sure', emoji: '💪' }
+                ].map((conf) => (
+                  <button
+                    key={conf.value}
+                    onClick={() => handleConfidenceSelect(conf.value as 'not-sure' | 'somewhat-sure' | 'very-sure')}
+                    className={`flex-1 p-4 rounded-lg border-2 transition-all ${
+                      pendingConfidence === conf.value
+                        ? 'border-blue-600 bg-blue-100 dark:bg-blue-900/40 dark:border-blue-500 shadow-md transform scale-[1.02]'
+                        : 'border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10'
+                    }`}
+                  >
+                    <div className="text-2xl mb-1">{conf.emoji}</div>
+                    <div className="font-medium text-gray-800 dark:text-slate-200">{conf.label}</div>
+                  </button>
+                ))}
+              </div>
+              <button
+                onClick={handleSubmitAnswer}
+                disabled={pendingConfidence === null}
+                className="w-full mt-4 px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed transition-colors shadow-md"
+              >
+                Submit Answer
+              </button>
+            </div>
+          )}
+
+          {/* Immediate Feedback Display */}
+          {enableImmediateFeedback && showFeedback && !isReviewing && (
+            <div className={`mt-6 p-6 rounded-xl border-2 relative z-10 ${
+              isCorrect 
+                ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-600' 
+                : 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-600'
+            }`}>
+              <div className="flex items-start mb-4">
+                <span className="text-3xl mr-3">{isCorrect ? '✓' : '✗'}</span>
+                <div className="flex-1">
+                  <div className={`font-bold text-xl mb-2 ${isCorrect ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
+                    {isCorrect ? 'Correct!' : 'Incorrect'}
+                  </div>
+                  {!isCorrect && (
+                    <>
+                      <div className="mb-3">
+                        <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Correct Answer:</div>
+                        <div className="p-3 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
+                          <div className="font-semibold text-green-900 dark:text-green-200">
+                            {currentQ.options[currentQ.correctAnswer]}
+                          </div>
+                        </div>
+                      </div>
+                      {currentQ.explanation && (
+                        <div className="mb-3">
+                          <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Explanation:</div>
+                          <div className="text-gray-800 dark:text-slate-300">
+                            {currentQ.explanation}
+                          </div>
+                        </div>
+                      )}
+                      {(() => {
+                        const taggedQ = currentQ as TaggedQuestion;
+                        const userAnswer = selectedAnswers[currentQuestion];
+                        if (taggedQ.misconceptionCodes && userAnswer !== null && userAnswer !== taggedQ.correctAnswer) {
+                          const misconceptionCode = taggedQ.misconceptionCodes[userAnswer];
+                          if (misconceptionCode) {
+                            try {
+                              const misconception = getMisconception(misconceptionCode);
+                              return (
+                                <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg">
+                                  <div className="text-sm font-semibold text-amber-900 dark:text-amber-300 mb-1">
+                                    Common Mistake:
+                                  </div>
+                                  <div className="text-sm text-amber-800 dark:text-amber-400">
+                                    {misconception.fixPrompt}
+                                  </div>
+                                </div>
+                              );
+                            } catch (e) {
+                              return null;
+                            }
+                          }
+                        }
+                        return null;
+                      })()}
+                    </>
+                  )}
+                  {isCorrect && currentQ.explanation && (
+                    <div className="text-gray-800 dark:text-slate-300">
+                      {currentQ.explanation}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <button
+                onClick={handleContinueAfterFeedback}
+                className={`w-full px-6 py-3 text-white rounded-lg font-semibold transition-colors shadow-md ${
+                  isCorrect
+                    ? 'bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600'
+                    : 'bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600'
+                }`}
+              >
+                Continue →
+              </button>
+            </div>
+          )}
 
           {isReviewing && (
             <div className={`mt-6 p-4 rounded-lg ${

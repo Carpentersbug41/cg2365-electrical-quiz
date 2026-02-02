@@ -45,6 +45,7 @@ export interface QuizAttempt {
     userAnswer: string;
     isCorrect: boolean;
     misconceptionCode?: string;
+    confidence?: 'not-sure' | 'somewhat-sure' | 'very-sure';
   }[];
   timeSpent: number; // seconds
   passed: boolean;

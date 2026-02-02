@@ -11,7 +11,8 @@ export type BlockType =
   | 'guided-practice'
   | 'practice'
   | 'spaced-review'
-  | 'diagram';
+  | 'diagram'
+  | 'microbreak';
 
 export type LayoutType = 'split-vis' | 'linear-flow' | 'focus-mode';
 
@@ -136,6 +137,81 @@ export interface DiagramBlockContent {
 }
 
 /**
+ * Microbreak Block: Short engagement reset activities
+ */
+export type MicrobreakType = 'rest' | 'game';
+export type GameType = 'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win';
+
+export interface RestMicrobreakContent {
+  breakType: 'rest';
+  duration: number; // seconds (20-40)
+  message?: string;
+}
+
+export interface MatchingGameContent {
+  breakType: 'game';
+  gameType: 'matching';
+  duration: number; // seconds (60-120)
+  pairs: Array<{
+    left: string;
+    right: string;
+  }>;
+}
+
+export interface SortingGameContent {
+  breakType: 'game';
+  gameType: 'sorting';
+  duration: number;
+  buckets: [string, string]; // Exactly 2 categories
+  items: Array<{
+    text: string;
+    correctBucket: 0 | 1; // Index of correct bucket
+  }>;
+}
+
+export interface SpotErrorGameContent {
+  breakType: 'game';
+  gameType: 'spot-error';
+  duration: number;
+  scenario: string;
+  options: Array<{
+    text: string;
+    isError: boolean;
+  }>;
+  explanation?: string;
+}
+
+export interface TapLabelGameContent {
+  breakType: 'game';
+  gameType: 'tap-label';
+  duration: number;
+  imageUrl?: string; // Optional diagram reference
+  items: Array<{
+    id: string;
+    label: string;
+    correctPosition: { x: number; y: number }; // Percentage-based
+  }>;
+}
+
+export interface QuickWinGameContent {
+  breakType: 'game';
+  gameType: 'quick-win';
+  duration: number;
+  questions: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+export type MicrobreakContent = 
+  | RestMicrobreakContent
+  | MatchingGameContent
+  | SortingGameContent
+  | SpotErrorGameContent
+  | TapLabelGameContent
+  | QuickWinGameContent;
+
+/**
  * Block Content Union Type
  */
 export type BlockContent =
@@ -146,7 +222,8 @@ export type BlockContent =
   | GuidedPracticeBlockContent
   | PracticeBlockContent
   | SpacedReviewBlockContent
-  | DiagramBlockContent;
+  | DiagramBlockContent
+  | MicrobreakContent;
 
 /**
  * Block: Single content unit with stable ID

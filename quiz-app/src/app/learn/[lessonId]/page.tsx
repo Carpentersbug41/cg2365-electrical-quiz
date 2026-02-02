@@ -38,9 +38,11 @@ import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch
 import lesson203_1A from '@/data/lessons/203-1A-statutory-regulations-law.json';
 import lesson203_1B from '@/data/lessons/203-1B-non-statutory-regulations-guidance.json';
 import lesson203_1C from '@/data/lessons/203-1C-using-bs-7671-on-a-job.json';
+import lesson203_2A from '@/data/lessons/203-2A-sources-drawings-symbols-scale.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-2A': lesson203_2A as Lesson,
   '203-1C': lesson203_1C as Lesson,
   '203-1B': lesson203_1B as Lesson,
   '203-1A': lesson203_1A as Lesson,
