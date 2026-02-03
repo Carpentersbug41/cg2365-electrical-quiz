@@ -1127,7 +1127,7 @@ export const wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions
     "section": "Electrical Installations Technology",
     "category": "Wiring Systems (Environment Selection)",
     "tags": [
-      "industrial",
+      "application",
       "application",
       "units"
     ],
@@ -1155,7 +1155,7 @@ export const wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions
     "section": "Electrical Installations Technology",
     "category": "Wiring Systems (Environment Selection)",
     "tags": [
-      "commercial",
+      "application",
       "conceptual",
       "terminology"
     ],
@@ -1211,7 +1211,7 @@ export const wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions
     "section": "Electrical Installations Technology",
     "category": "Wiring Systems (Environment Selection)",
     "tags": [
-      "agricultural",
+      "application",
       "application",
       "units"
     ],
@@ -1239,7 +1239,7 @@ export const wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions
     "section": "Electrical Installations Technology",
     "category": "Wiring Systems (Environment Selection)",
     "tags": [
-      "hazardous",
+      "application",
       "conceptual",
       "discrimination"
     ],
@@ -1295,7 +1295,7 @@ export const wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions
     "section": "Electrical Installations Technology",
     "category": "Wiring Systems (Environment Selection)",
     "tags": [
-      "commercial",
+      "application",
       "discrimination",
       "terminology"
     ],
@@ -1381,7 +1381,7 @@ export const wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions
     "tags": [
       "conceptual",
       "discrimination",
-      "hazardous"
+      "application"
     ],
     "learningOutcomeId": "203-3B-LO4",
     "answerType": "mcq",

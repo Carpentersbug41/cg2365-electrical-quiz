@@ -505,9 +505,9 @@ export const cableSizingBasicsIbInIzFactorsQuestions: TaggedQuestion[] = [
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONCEPTUAL_CONFUSION",
-      "3": "CONCEPTUAL_CONFUSION"
+      1: "TOPOLOGY_CONFUSION",
+      2: "CONFUSED_RELATIONSHIP",
+      3: "CONFUSED_RELATIONSHIP"
     },
     "section": "Electrical Installations Technology",
     "category": "Cable Sizing Basics",
@@ -532,9 +532,9 @@ export const cableSizingBasicsIbInIzFactorsQuestions: TaggedQuestion[] = [
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONCEPTUAL_CONFUSION"
+      1: "TOPOLOGY_CONFUSION",
+      2: "TOPOLOGY_CONFUSION",
+      3: "CONFUSED_RELATIONSHIP"
     },
     "section": "Electrical Installations Technology",
     "category": "Cable Sizing Basics",
@@ -613,9 +613,9 @@ export const cableSizingBasicsIbInIzFactorsQuestions: TaggedQuestion[] = [
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONCEPTUAL_CONFUSION",
-      "2": "CONCEPTUAL_CONFUSION",
-      "3": "CONFUSED_TERMINOLOGY"
+      1: "CONFUSED_RELATIONSHIP",
+      2: "CONFUSED_RELATIONSHIP",
+      3: "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Cable Sizing Basics",

@@ -25,7 +25,7 @@ export const circuitTypesWhatTheyDoPrinciplesOfOperationQuestions: TaggedQuestio
     "section": "Electrical Installations Technology",
     "category": "Circuit Types",
     "tags": [
-      "ring-final",
+      "topology",
       "terminology",
       "conceptual"
     ],
@@ -53,7 +53,7 @@ export const circuitTypesWhatTheyDoPrinciplesOfOperationQuestions: TaggedQuestio
     "section": "Electrical Installations Technology",
     "category": "Circuit Types",
     "tags": [
-      "lighting",
+      "topology",
       "terminology",
       "discrimination"
     ],
@@ -109,7 +109,7 @@ export const circuitTypesWhatTheyDoPrinciplesOfOperationQuestions: TaggedQuestio
     "section": "Electrical Installations Technology",
     "category": "Circuit Types",
     "tags": [
-      "heating",
+      "topology",
       "application",
       "discrimination"
     ],
@@ -137,7 +137,7 @@ export const circuitTypesWhatTheyDoPrinciplesOfOperationQuestions: TaggedQuestio
     "section": "Electrical Installations Technology",
     "category": "Circuit Types",
     "tags": [
-      "control",
+      "topology",
       "conceptual",
       "terminology"
     ],
@@ -193,7 +193,7 @@ export const circuitTypesWhatTheyDoPrinciplesOfOperationQuestions: TaggedQuestio
     "section": "Electrical Installations Technology",
     "category": "Circuit Types",
     "tags": [
-      "radial",
+      "topology",
       "conceptual",
       "terminology"
     ],
