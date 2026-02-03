@@ -695,6 +695,13 @@ SAFETY & ACCURACY:
 If ANY check fails: FIX IT before responding.
 CRITICAL: Do not output JSON until ALL checks pass.
 
+#Completion Check
+- Make sure to include Noob Orientation block
+
+- Always ensure guided practice is aligned to worked example
+
+- Always ensure the questions are marking-robust
+
 OUTPUT FORMAT:
 - Pure JSON only
 - No markdown

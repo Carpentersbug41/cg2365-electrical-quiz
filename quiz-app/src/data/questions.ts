@@ -40,6 +40,7 @@ import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } f
 import { recognisingElectricalSymbolsOnDrawingsQuestions } from './questions/recognisingElectricalSymbolsOnDrawingsQuestions';
 import { convertingDrawingScaleToRealMeasurementsQuestions } from './questions/convertingDrawingScaleToRealMeasurementsQuestions';
 import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './questions/circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
+import { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './questions/wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -74,6 +75,7 @@ export const questions: Question[] = [
   ...recognisingElectricalSymbolsOnDrawingsQuestions,
   ...convertingDrawingScaleToRealMeasurementsQuestions,
   ...circuitTypesWhatTheyDoPrinciplesOfOperationQuestions,
+  ...wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

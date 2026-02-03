@@ -250,6 +250,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3A'),
     available: true,
     order: 8,
+  },
+  {
+    id: '203-3B',
+    title: 'Wiring Systems by Environment: Choosing the Right Cable + Containment',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Wiring Systems by Environment: Choosing the Right Cable + Containment',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3B'),
+    available: true,
+    order: 9,
   },// Unit 210: Communication
   {
     id: '204-10A',

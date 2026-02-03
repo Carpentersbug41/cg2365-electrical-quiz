@@ -197,6 +197,12 @@ export async function POST(request: NextRequest) {
 
     filesUpdated = integrationResult.filesUpdated;
 
+    // Wait for file system to fully sync before Git operations
+    // This prevents race conditions where Next.js hot-reload tries to parse
+    // newly generated files before they're fully written to disk
+    console.log('[Generator] Waiting for file system sync...');
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
     // Step 7: Git commit and push
     let commitHash = 'N/A';
     let commitUrl = 'N/A';

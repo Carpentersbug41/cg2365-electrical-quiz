@@ -61,7 +61,7 @@
           },
           {
             "term": "Legend",
-            "definition": "A key on a drawing that explains symbols and abbreviations used for circuit types."
+            "definition": "A key on a drawing that explains symbols and abbreviations used for circuit labels and types."
           }
         ]
       }
@@ -72,7 +72,7 @@
       "order": 3,
       "content": {
         "title": "Circuit Types Overview",
-        "description": "A conceptual map showing the relationship between circuit types and the loads they supply.",
+        "description": "A conceptual map showing circuit type categories branching from a central distribution point.",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
@@ -83,7 +83,16 @@
           "data",
           "control"
         ],
-        "placeholderText": "Diagram showing Lighting (L), Power (RF/R), Heating (H), Alarm/Emergency (EM), Data (D), and Control (C) circuit categories branching from a central distribution point."
+        "placeholderText": "Diagram showing Lighting (L), Power (RF/R/RC), Heating (H), Alarm/Emergency (EM), Data (D), and Control (C) circuit categories branching from a central distribution point (consumer unit / distribution board)."
+      }
+    },
+    {
+      "id": "203-3A-orient",
+      "type": "explanation",
+      "order": 3.5,
+      "content": {
+        "title": "Noob Orientation: What You’re Looking At",
+        "content": "**What you’re looking at**\nYou’ll usually see circuit types as labels on a **consumer unit / distribution board** (e.g., L1, RF1) or on drawings (e.g., “Lighting”, “Power”, “Data”).\n\n**What the goal is**\nYou should be able to:\n- Name the **circuit type** (what it’s for)\n- Say the **basic principle** (how it behaves / why it’s used)\n- Tell **ring vs radial** (loop vs line)\n\n**3 rules you’ll use (repeat these every time)**\n1) **Identify the load** (what is it powering?)\n2) **Check the arrangement** (does it return to the device = ring, or end at the last point = radial?)\n3) **Confirm using the legend / schedule of circuitry** (don’t guess)\n\n**What you’ll practise (I Do → We Do → You Do)**\n- I Do: classify circuits in a simple house list\n- We Do: classify circuits in a small shop list using the same steps\n- You Do: quick questions + one scenario that uses drawing labels + legend"
       }
     },
     {
@@ -92,13 +101,22 @@
       "order": 4,
       "content": {
         "title": "The Main Circuit Types and Principles",
-        "content": "**What this is**\nIn any electrical installation, circuits are categorized by their function and arrangement. These categories, known as 'circuit types,' define what the circuit is designed to do and how the cables are physically routed from the consumer unit to the equipment.\n\n**Why it matters**\nElectricians must recognize circuit types to ensure they are applying the correct safety regulations, choosing the right cable sizes, and performing the correct tests. For example, testing a ring circuit requires different steps than testing a radial circuit. Recognizing labels on a distribution board helps you quickly identify which circuit controls which part of a building.\n\n**Key rules / facts**\n*   **Lighting Circuits:** These supply fixed lighting points. The principle is to provide power to multiple low-power loads, often controlled by individual or grouped switches.\n*   **Power Circuits:** Used for socket outlets. These supply portable appliances with variable power demands. They are typically arranged as either **Ring Final** or **Radial**.\n*   **Heating Circuits:** Supply fixed, high-power loads like electric showers or immersion heaters. Because they draw high current for long periods, they usually require a dedicated circuit (one circuit for one appliance).\n*   **Alarm & Emergency Systems:** These circuits supply safety equipment like smoke detectors and exit signs. They are kept separate from general circuits to ensure they remain functional even if a general power fault occurs.\n*   **Data Communications:** These carry low-voltage signals (like internet or telephone data) rather than mains power. They must be kept away from power cables to avoid interference.\n*   **Control Circuits:** These send 'commands' (like a thermostat telling a boiler to turn on). The control circuit might operate at a lower voltage than the power circuit it is controlling.\n*   **Ring vs Radial:** A Ring Final circuit forms a complete loop back to the fuse/breaker. A Radial circuit runs in a straight line and ends at the final point.\n\n**How to use it**\nTo classify an existing circuit:\n1.  **Identify the Load:** Look at what is being powered (e.g., a ceiling light or a heavy-duty heater).\n2.  **Check the Arrangement:** Determine if the cable returns to the source (Ring) or stops at the end (Radial).\n3.  **Consult Documentation:** Look for the **Legend** or **Schedule of Circuitry** on the drawing or distribution board to confirm the label (e.g., L1 for Lighting, RF1 for Ring Final).\n\n**Common mistakes**\n*   Confusing 'Circuit Type' (function) with 'Wiring System' (the physical protection like conduit).\n*   Assuming all socket circuits are rings; many are actually radial.\n*   Thinking data circuits carry 230V mains power; they carry low-voltage signals.\n\n**Quick recap**\n*   Circuit types are grouped by purpose (lighting, power, heating, etc.).\n*   Ring circuits form a loop; radial circuits form a line.\n*   Safety and data systems are kept separate for reliability and signal quality."
+        "content": "**What this is**\nIn any electrical installation, circuits are categorized by their **function** and sometimes by their **arrangement**. These categories (“circuit types”) help you quickly understand what a circuit is intended to supply and how it is routed from the protective device to the load(s).\n\n**Why it matters**\nElectricians must recognize circuit types so they can:\n- Apply the correct safety approach and safe isolation planning\n- Choose suitable materials and protective devices (later in the unit)\n- Use the correct inspection/testing approach (rings vs radials are different)\n\n**Key rules / facts (simple)**\n- **Lighting circuits:** supply fixed lighting points. Usually multiple light points, controlled by one or more switches.\n- **Power circuits (socket circuits):** supply socket outlets for portable equipment. Often arranged as either **Ring Final** or **Radial**.\n- **Heating circuits:** supply fixed, higher-power loads (e.g., shower, immersion, fixed heaters). Often **dedicated** (one appliance on its own circuit) because current can be high for long periods.\n- **Alarm & emergency systems:** supply safety-related equipment (e.g., fire alarm, emergency lighting). These are often kept separate from general power/lighting to **reduce the chance** that a fault on general circuits affects safety equipment (exact design varies).\n- **Data communications:** carry low-voltage signals (internet/phone/control data), not mains power. Kept away from power cables where practical to reduce interference.\n- **Control circuits:** send “commands” (e.g., thermostat signal, contactor coil control). Often lower voltage than the power circuit it controls.\n\n**Ring vs Radial (the physical difference)**\n- **Ring final:** leaves the protective device and **returns to the same device** (a loop).\n- **Radial:** leaves the protective device and **ends at the last outlet** (a line).\n\n**How to classify a circuit (repeatable method)**\n1) **Identify the load**: what is it supplying?\n2) **Check the arrangement**: ring (out-and-back) or radial (out-and-stop) when it’s a socket/power circuit.\n3) **Confirm using documentation**: check the **legend** and/or **schedule of circuitry** on the drawing, or the circuit schedule/labels on the distribution board.\n\n**Common mistakes**\n- Confusing **circuit type** (what it does) with **wiring system** (how it’s installed, e.g., conduit/trunking).\n- Assuming all socket circuits are rings (many are radials).\n- Thinking data circuits carry 230V (they carry signals).\n\n**Quick recap**\n- Circuit types = grouped by purpose (lighting, power, heating, etc.).\n- Rings loop back; radials end at the last point.\n- Confirm labels using the legend/schedule—don’t guess."
+      }
+    },
+    {
+      "id": "203-3A-mistakes",
+      "type": "explanation",
+      "order": 5.2,
+      "content": {
+        "title": "Common Traps (Read This Before Practice)",
+        "content": "- **Trap 1: “Power circuit” automatically means ring.** Nope. Power circuits can be ring final or radial.\n- **Trap 2: Mixing up purpose vs containment.** “Lighting circuit” is purpose; “conduit” is containment (wiring system).\n- **Trap 3: Guessing labels.** Labels vary. Always confirm using the **legend** or **schedule of circuitry**.\n- **Trap 4: Data = mains power.** Data circuits are signals. They’re not there to run kettles.\n\nIf you follow the 3-rule method (load → arrangement → confirm), you avoid nearly all beginner mistakes."
       }
     },
     {
       "id": "203-3A-check-1",
       "type": "practice",
-      "order": 4.5,
+      "order": 5.5,
       "content": {
         "title": "Check Your Understanding: Circuit Principles",
         "mode": "conceptual",
@@ -112,21 +130,34 @@
             "expectedAnswer": [
               "A category based on what a circuit is for and how it is arranged",
               "A category based on purpose and arrangement",
-              "How a circuit is used and routed"
+              "How a circuit is used and routed",
+              "A way to group circuits by what they supply"
             ],
-            "hint": "Think about the function of the circuit and its physical layout."
+            "hint": "Think: what it supplies (purpose) and sometimes how it’s routed (arrangement)."
           },
           {
             "id": "203-3A-C1-L1-B",
-            "questionText": "List four common circuit types found in a standard installation.",
+            "questionText": "Name ONE common circuit type found in buildings.",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Lighting, power, heating, alarm",
-              "Lighting, socket, heating, data",
-              "Radial, ring final, control, emergency"
+              "Lighting",
+              "Lighting circuit",
+              "Power",
+              "Power circuit",
+              "Heating",
+              "Heating circuit",
+              "Alarm",
+              "Alarm circuit",
+              "Emergency",
+              "Emergency circuit",
+              "Data",
+              "Data communications",
+              "Data communications circuit",
+              "Control",
+              "Control circuit"
             ],
-            "hint": "Refer to the 'Key rules' section of the explanation."
+            "hint": "Pick one from: lighting, power, heating, alarm/emergency, data, control."
           },
           {
             "id": "203-3A-C1-L1-C",
@@ -135,20 +166,21 @@
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Supplies multiple lighting points controlled by switches",
-              "Supplies low power light points",
-              "Provides power to ceiling and wall lights"
+              "Supplies fixed lighting points controlled by switches",
+              "Provides power to light fittings controlled by switches"
             ],
-            "hint": "What does it supply and how is it usually controlled?"
+            "hint": "What does it supply, and what usually controls it?"
           },
           {
             "id": "203-3A-C1-L2",
-            "questionText": "Based on the definitions of circuit types (Q1) and the list of categories (Q2), what is the specific physical difference between the arrangement of a ring final circuit and a radial circuit?",
+            "questionText": "What is the specific physical difference between a ring final circuit and a radial circuit?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
               "A ring returns to the protective device while a radial ends at the last point",
               "Ring is a loop and radial is a line",
-              "Ring returns to the start and radial does not"
+              "Ring returns to the start and radial does not",
+              "Ring is out and back; radial is out and stop"
             ],
             "hint": "Think about 'out and back' versus 'out and stop'."
           }
@@ -158,9 +190,9 @@
     {
       "id": "203-3A-worked-example",
       "type": "worked-example",
-      "order": 6,
+      "order": 7,
       "content": {
-        "title": "Worked Example: Identifying Circuits in a House",
+        "title": "Worked Example (I Do): Identifying Circuits in a House",
         "given": "A standard house contains: Upstairs lights, Kitchen sockets (loop), Electric shower, and Smoke alarms.",
         "steps": [
           {
@@ -168,52 +200,81 @@
             "description": "Identify the load category for each item.",
             "formula": null,
             "calculation": null,
-            "result": "Lights = Lighting; Sockets = Power; Shower = Heating; Smoke alarms = Alarm/Safety."
+            "result": "Upstairs lights = Lighting; Kitchen sockets = Power; Electric shower = Heating; Smoke alarms = Alarm/Safety."
           },
           {
             "stepNumber": 2,
-            "description": "Match the load to the correct circuit type based on its arrangement.",
+            "description": "Match each load to the correct circuit type (based on purpose).",
             "formula": null,
             "calculation": null,
-            "result": "Lights -> Lighting circuit; Sockets (loop) -> Ring Final circuit; Shower -> Heating circuit; Smoke alarms -> Alarm system circuit."
+            "result": "Upstairs lights → Lighting circuit; Kitchen sockets → Power (socket) circuit; Shower → Heating (dedicated) circuit; Smoke alarms → Alarm/Safety circuit."
           },
           {
             "stepNumber": 3,
-            "description": "Verify the principle of operation for the power circuit.",
+            "description": "Check the arrangement for the socket/power circuit: ring or radial?",
             "formula": null,
             "calculation": null,
-            "result": "Since the kitchen sockets are in a loop, it is a Ring Final circuit (out and back to source)."
+            "result": "Kitchen sockets are described as a loop, so it’s a Ring Final circuit (out and back to the same protective device)."
+          },
+          {
+            "stepNumber": 4,
+            "description": "State what reference you would use to confirm labels on a drawing or board schedule.",
+            "formula": null,
+            "calculation": null,
+            "result": "Confirm using the drawing legend and/or schedule of circuitry (or the circuit schedule on the distribution board)."
           }
         ],
-        "notes": "Always check if a socket circuit is a loop (ring) or a line (radial) to name it correctly."
+        "notes": "Use the same method every time: load → arrangement (if sockets) → confirm with legend/schedule."
       }
     },
     {
       "id": "203-3A-guided",
       "type": "guided-practice",
-      "order": 7,
+      "order": 8,
       "content": {
-        "title": "Guided Practice: Shop Installation",
+        "title": "Guided Practice (We Do): Shop Installation (Same Steps as I Do)",
         "problem": "A small shop has: Shop floor lights, Tills/Charger sockets (line), and a Water heater.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "Identify the load category for the shop floor lights and the water heater.",
+            "prompt": "Identify the load category for each item (lights, sockets, water heater).",
             "expectedAnswer": [
-              "Lighting and Heating",
-              "Lighting and heating"
+              "Lights = Lighting; sockets = Power; water heater = Heating",
+              "Lighting, Power, Heating",
+              "Lighting for lights, Power for sockets, Heating for water heater"
             ],
-            "hint": "What do these devices do?"
+            "hint": "Use purpose: lights, sockets, heater."
           },
           {
             "stepNumber": 2,
-            "prompt": "The sockets for tills are arranged in a line and end at the last socket. What specific circuit type is this?",
+            "prompt": "Match each item to the circuit type (by purpose).",
+            "expectedAnswer": [
+              "Shop floor lights = lighting circuit; sockets = power circuit; water heater = heating circuit",
+              "Lighting circuit, power (socket) circuit, heating circuit"
+            ],
+            "hint": "Just name the circuit types for each item."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "The till/charger sockets are arranged in a line and end at the last socket. Is this ring final or radial?",
             "expectedAnswer": [
               "Radial",
               "Radial circuit",
               "Radial power circuit"
             ],
-            "hint": "If it doesn't loop back, it's a..."
+            "hint": "If it doesn’t return to the device, it’s not a ring."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What reference would you check to confirm the circuit labels on a drawing set?",
+            "expectedAnswer": [
+              "Legend",
+              "The legend",
+              "Schedule of circuitry",
+              "Circuit schedule",
+              "Legend and schedule of circuitry"
+            ],
+            "hint": "Don’t guess labels—check the key/schedule."
           }
         ]
       }
@@ -221,9 +282,9 @@
     {
       "id": "203-3A-practice",
       "type": "practice",
-      "order": 8,
+      "order": 9,
       "content": {
-        "title": "Independent Practice",
+        "title": "Independent Practice (You Do)",
         "questions": [
           {
             "id": "203-3A-P1",
@@ -242,9 +303,11 @@
             "expectedAnswer": [
               "Alarm and emergency systems",
               "Alarm and emergency",
-              "Alarm systems"
+              "Alarm systems",
+              "Emergency lighting",
+              "Safety systems"
             ],
-            "hint": "Think about smoke detectors and exit lights."
+            "hint": "Think smoke alarms, fire alarm systems, emergency lighting."
           },
           {
             "id": "203-3A-P3",
@@ -275,9 +338,11 @@
               "Thermostat wiring",
               "Contactor control",
               "Motor control",
-              "Access control"
+              "Access control",
+              "BMS control",
+              "Heating controls"
             ],
-            "hint": "Think of a circuit that sends a signal to turn another device on."
+            "hint": "Think: a signal/command that tells something else to switch on/off."
           }
         ]
       }
@@ -293,15 +358,17 @@
         "questions": [
           {
             "id": "203-3A-INT-1",
-            "questionText": "Why are alarm and emergency systems typically installed on dedicated circuits separate from general power and lighting circuits?",
+            "questionText": "Why are alarm and emergency systems often installed on dedicated circuits separate from general power and lighting circuits?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "To ensure reliability and safety",
-              "To prevent them being affected by general faults",
-              "Easier maintenance and testing for safety equipment"
+              "To reduce the chance that faults on general circuits affect safety systems",
+              "So they are less likely to be taken out by a fault on sockets or lighting",
+              "For reliability of safety equipment",
+              "To keep safety systems reliable and easier to test/maintain",
+              "To improve reliability and safety"
             ],
-            "hint": "Think about what happens to a smoke alarm if a toaster trips the general power circuit."
+            "hint": "Think: what happens if a general circuit trips—should safety equipment be affected?"
           },
           {
             "id": "203-3A-INT-2",
@@ -309,9 +376,11 @@
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "I would classify L1 as a lighting circuit, RF1 as a ring final circuit, and DATA1 as a data communications circuit based on standard naming conventions. To confirm this analysis, I would check the legend or the schedule of circuitry on the drawing. This ensures that the labels match the designer's intended purpose and arrangement."
+              "L1 is a lighting circuit, RF1 is a ring final circuit, and DATA1 is a data communications circuit. I would confirm by checking the drawing legend and the schedule of circuitry to make sure the labels match the designer’s intent.",
+              "I would classify L1 as lighting, RF1 as ring final (power sockets), and DATA1 as data communications. I would confirm using the legend and/or the circuit schedule on the drawing set.",
+              "L1 = lighting, RF1 = ring final power circuit, DATA1 = data circuit. To confirm, I would check the legend and the schedule of circuitry rather than guessing."
             ],
-            "hint": "Mention the circuit types and the document used for confirmation."
+            "hint": "Name each circuit type, then say you’d check the legend/schedule to confirm."
           }
         ]
       }
@@ -327,7 +396,9 @@
             "id": "203-3A-SR-1",
             "questionText": "What does EAWR stand for?",
             "expectedAnswer": [
-              "Electricity at Work Regulations"
+              "Electricity at Work Regulations",
+              "Electricity at Work Regulations 1989",
+              "Electricity at Work Regs"
             ],
             "hint": "This is a major piece of UK safety legislation."
           },
@@ -336,7 +407,8 @@
             "questionText": "In one phrase: what does 'load' mean?",
             "expectedAnswer": [
               "A device that uses electrical energy",
-              "Equipment that consumes power"
+              "Equipment that consumes power",
+              "Something that uses electrical energy"
             ],
             "hint": "Think about what a lamp or heater does in a circuit."
           },
@@ -346,9 +418,10 @@
             "expectedAnswer": [
               "Circuit type is what it does; wiring system is how it is installed",
               "Function vs physical protection",
-              "Purpose vs containment"
+              "Purpose vs containment",
+              "What it supplies vs how it is contained/protected"
             ],
-            "hint": "One is about the job (lighting), the other is about the pipe (conduit)."
+            "hint": "One is about the job (lighting), the other is about the physical install method (conduit/trunking)."
           },
           {
             "id": "203-3A-SR-4",
@@ -368,7 +441,7 @@
   "metadata": {
     "created": "2026-02-03",
     "updated": "2026-02-03",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

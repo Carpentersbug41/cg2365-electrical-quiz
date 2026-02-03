@@ -33,11 +33,13 @@ import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } f
 import { recognisingElectricalSymbolsOnDrawingsQuestions } from './recognisingElectricalSymbolsOnDrawingsQuestions';
 import { convertingDrawingScaleToRealMeasurementsQuestions } from './convertingDrawingScaleToRealMeasurementsQuestions';
 import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
+import { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions,
   ...circuitTypesWhatTheyDoPrinciplesOfOperationQuestions,
   ...convertingDrawingScaleToRealMeasurementsQuestions,
   ...recognisingElectricalSymbolsOnDrawingsQuestions,
@@ -101,6 +103,7 @@ export { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } f
 export { recognisingElectricalSymbolsOnDrawingsQuestions } from './recognisingElectricalSymbolsOnDrawingsQuestions';
 export { convertingDrawingScaleToRealMeasurementsQuestions } from './convertingDrawingScaleToRealMeasurementsQuestions';
 export { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
+export { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
 
 /**
  * Filter questions by tags

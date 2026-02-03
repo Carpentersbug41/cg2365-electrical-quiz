@@ -523,19 +523,29 @@ Return the corrected lesson JSON now:`;
   }
 
   /**
-   * Write lesson to file
+   * Write lesson to file with fsync to ensure physical write to disk
+   * This prevents race conditions during Next.js hot-reload
    */
   async writeLessonFile(request: GenerationRequest, lesson: Lesson): Promise<string> {
     const filename = generateLessonFilename(request.unit, request.lessonId, request.topic);
     const filePath = path.join(process.cwd(), 'src', 'data', 'lessons', filename);
 
-    fs.writeFileSync(filePath, JSON.stringify(lesson, null, 2), 'utf-8');
+    // Use fd-based write with fsync to force kernel buffer flush
+    const content = JSON.stringify(lesson, null, 2);
+    const fd = fs.openSync(filePath, 'w');
+    try {
+      fs.writeSync(fd, content, 0, 'utf-8');
+      fs.fsyncSync(fd); // Force physical write to disk
+    } finally {
+      fs.closeSync(fd);
+    }
 
     return filePath;
   }
 
   /**
-   * Write quiz to file
+   * Write quiz to file with fsync to ensure physical write to disk
+   * This prevents race conditions during Next.js hot-reload
    */
   async writeQuizFile(request: GenerationRequest, questions: QuizQuestion[]): Promise<string> {
     const filename = generateQuizFilename(request.topic);
@@ -544,7 +554,14 @@ Return the corrected lesson JSON now:`;
     // Generate TypeScript content
     const content = this.generateQuizFileContent(request, questions);
 
-    fs.writeFileSync(filePath, content, 'utf-8');
+    // Use fd-based write with fsync to force kernel buffer flush
+    const fd = fs.openSync(filePath, 'w');
+    try {
+      fs.writeSync(fd, content, 0, 'utf-8');
+      fs.fsyncSync(fd); // Force physical write to disk
+    } finally {
+      fs.closeSync(fd);
+    }
 
     return filePath;
   }

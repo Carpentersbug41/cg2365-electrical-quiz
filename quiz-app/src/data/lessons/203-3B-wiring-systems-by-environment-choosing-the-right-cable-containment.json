@@ -1,0 +1,383 @@
+{
+  "id": "203-3B",
+  "title": "203.3B — Wiring Systems by Environment: Choosing the Right Cable + Containment",
+  "description": "Learn how electricians choose appropriate wiring systems for different environments based on mechanical protection, flexibility, and safety requirements.",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Wiring Systems (Environment Selection)",
+  "learningOutcomes": [
+    "Identify common wiring systems and containment methods used in electrical installations.",
+    "Match typical environments to suitable wiring systems.",
+    "Explain why a wiring system suits a specific environment based on protection and constraints.",
+    "Recognize common selection mistakes and the importance of checking specifications."
+  ],
+  "prerequisites": [
+    "201-1A"
+  ],
+  "blocks": [
+    {
+      "id": "203-3B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common wiring systems and containment methods (tray, trunking, conduit, SWA, MICC, singles, twin & earth).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Match typical environments to suitable wiring systems (domestic, commercial, industrial, hazardous, agricultural).",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Choose a reasonable wiring system for a simple scenario and provide a justification based on environmental constraints.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Wiring system",
+            "definition": "The complete method used to install cables, including the cable type and the containment or support method."
+          },
+          {
+            "term": "Containment",
+            "definition": "The protective housing for cables, such as conduit, trunking, or cable tray."
+          },
+          {
+            "term": "SWA",
+            "definition": "Steel Wire Armoured cable; a cable type with built-in mechanical protection used for heavy-duty or outdoor applications."
+          },
+          {
+            "term": "MICC",
+            "definition": "Mineral Insulated Copper Cable; a fire-proof cable used for emergency systems and high-temperature environments."
+          },
+          {
+            "term": "Trunking",
+            "definition": "An enclosure, usually rectangular in cross-section, used to protect and house multiple cables with easy access."
+          },
+          {
+            "term": "Conduit",
+            "definition": "A tube used to protect and route electrical wiring, available in steel or plastic (PVC)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Environment and Wiring System Selection Matrix",
+        "description": "A visual guide mapping installation environments to their typical cable and containment requirements.",
+        "videoUrl": "",
+        "diagramType": "table",
+        "elementIds": [
+          "domestic",
+          "commercial",
+          "industrial",
+          "hazardous"
+        ],
+        "placeholderText": "Table showing: Domestic (Twin & Earth in walls), Commercial (Trunking + Singles), Industrial (Conduit/SWA/Tray), Hazardous (MICC/Specialized)."
+      }
+    },
+    {
+      "id": "203-3B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Selecting the Right System for the Job",
+        "content": "A wiring system is the combination of the **cable type** and the **containment or support** used to install it. In the electrical industry, we don't just pick cables because they are cheap; we pick them based on the **environment** and the specific **external influences** they will face. \n\n**What this is**\nChoosing a wiring system involves matching the physical properties of the cable and its housing (like conduit or trunking) to the location where it will live. For example, a cable buried in a living room wall faces very different risks than a cable in a chemical factory or a cattle shed.\n\n**Why it matters**\nSelecting the wrong system leads to safety hazards. If you use standard PVC cable in a place where forklifts operate without protection, the cable will be crushed, causing a fire or electric shock. If you use a system that can't handle moisture in a dairy farm, corrosion will destroy the installation within months.\n\n**Key rules / facts**\n- **Domestic Environments:** Use flat **Twin & Earth (T&E)** cables hidden in walls or ceilings. This is neat and protected by the building structure.\n- **Commercial Environments:** Use **Trunking and Singles**. Shops and offices change layout often; trunking allows you to open the lid and add or remove circuits easily.\n- **Industrial Environments:** Use **Steel Conduit** or **Steel Wire Armoured (SWA)** cable. These provide high mechanical protection against impacts from tools and machinery.\n- **High Fire Risk / Life Safety:** Use **MICC** or fire-resistant cables. These must keep working during a fire to power emergency lights or fire alarms.\n- **Agricultural:** Use robust, corrosion-resistant systems like PVC conduit or SWA to handle moisture and animal waste (ammonia).\n\n**How to use it**\nWhen faced with a selection task, follow this workflow:\n1. Identify the environment (e.g., Workshop).\n2. Identify the main threat (e.g., Mechanical impact).\n3. Match the threat to a protection level (High impact = Steel containment).\n4. Select the system (e.g., Steel conduit + singles).\n\n**Common mistakes**\n- **Guessing:** Choosing a system based on what you have in the van rather than what the environment requires.\n- **Ignoring the Spec:** Every major job has a specification; failing to read it means you might install a system that doesn't meet the client's insurance requirements.\n- **Confusing Cable with System:** Remember, the 'system' includes the tray, trunking, or conduit, not just the wire.\n\n**Quick recap**\n- Domestic = Hidden/Neat (Twin & Earth).\n- Commercial = Flexible/Accessible (Trunking).\n- Industrial = Protected/Strong (Conduit/SWA)."
+      }
+    },
+    {
+      "id": "203-3B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Selection Basics",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3B-C1-L1-A",
+            "questionText": "What two components make up a complete 'wiring system'?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cable and containment",
+              "Cable type and support",
+              "Cable and support method",
+              "Cable and containment/support"
+            ],
+            "hint": "It is the wire itself plus the housing or support method."
+          },
+          {
+            "id": "203-3B-C1-L1-B",
+            "questionText": "Which environment typically uses trunking and singles to allow for easy future changes?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Commercial",
+              "Commercial environment",
+              "Offices and shops"
+            ],
+            "hint": "Think of buildings that get refitted or rearranged often."
+          },
+          {
+            "id": "203-3B-C1-L1-C",
+            "questionText": "What is the primary reason for using SWA or steel conduit in an industrial workshop?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Mechanical protection",
+              "Protection from impact",
+              "Prevent damage from knocks",
+              "Physical protection"
+            ],
+            "hint": "Think about the risk from heavy tools and machinery."
+          },
+          {
+            "id": "203-3B-C1-L2",
+            "questionText": "How does the need for 'flexibility' in a commercial office lead to a different choice than the 'neatness' required in a domestic house?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Commercial uses trunking for easy access to change circuits, while domestic uses hidden cables like twin and earth for aesthetics",
+              "Flexibility requires accessible containment like trunking, whereas domestic priorities neatness using buried cables"
+            ],
+            "hint": "Compare the ease of opening a trunking lid versus digging a cable out of a plastered wall."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-worked-example",
+      "type": "worked-example",
+      "order": 5,
+      "content": {
+        "title": "Worked Example: Selecting for a High-Impact Area",
+        "given": "A warehouse requires new power sockets along a wall where pallet trucks operate. The cables will be surface-mounted.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Analyze the environment and risks.",
+            "formula": null,
+            "calculation": null,
+            "result": "Industrial environment with a high risk of mechanical impact from pallet trucks."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Determine the required level of protection.",
+            "formula": null,
+            "calculation": null,
+            "result": "Heavy-duty mechanical protection is needed because the cables are surface-mounted and at low level."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Select the appropriate containment and cable.",
+            "formula": null,
+            "calculation": null,
+            "result": "Steel conduit with single-core PVC cables (singles)."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Justify the selection.",
+            "formula": null,
+            "calculation": null,
+            "result": "Steel conduit provides the necessary impact resistance to protect the conductors from being crushed by machinery."
+          }
+        ],
+        "notes": "Always prioritize safety and protection over ease of installation in high-risk areas."
+      }
+    },
+    {
+      "id": "203-3B-guided",
+      "type": "guided-practice",
+      "order": 6,
+      "content": {
+        "title": "Guided Practice: Choosing for an Office Refit",
+        "problem": "An office building is being renovated. The client wants the ability to add new data and power points easily as they hire more staff. The cables will be run along the perimeter walls.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Identify the environment and the primary constraint (e.g., neatness, impact, or flexibility).",
+            "expectedAnswer": [
+              "Commercial environment and flexibility",
+              "Commercial and future changes"
+            ],
+            "hint": "It's an office where they want to add points later."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Based on the need for additions, which containment system is most suitable?",
+            "expectedAnswer": [
+              "Trunking",
+              "Cable trunking",
+              "Dado trunking"
+            ],
+            "hint": "This system has a removable lid for easy access."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Provide a one-line justification for this choice.",
+            "expectedAnswer": [
+              "Trunking allows easy access for future additions and alterations",
+              "It provides flexibility for the client to add new circuits easily"
+            ],
+            "hint": "Why is a removable lid better than a sealed tube in this case?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-practice",
+      "type": "practice",
+      "order": 7,
+      "content": {
+        "title": "Applied Selection Practice",
+        "questions": [
+          {
+            "id": "203-3B-P1",
+            "questionText": "Which specific cable type is designed to maintain circuit integrity during a fire for life-safety systems?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "MICC",
+              "Mineral Insulated Copper Cable",
+              "Fire resistant cable"
+            ],
+            "hint": "It often has a copper sheath and mineral insulation."
+          },
+          {
+            "id": "203-3B-P2",
+            "questionText": "A farmer needs power in a damp, dusty barn. Why is PVC conduit often preferred over steel conduit here?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Corrosion resistance",
+              "It does not rust",
+              "Resistance to moisture and chemicals"
+            ],
+            "hint": "Think about what happens to metal in wet, salty, or chemical-heavy environments."
+          },
+          {
+            "id": "203-3B-P3",
+            "questionText": "What is the standard cable used for domestic fixed wiring inside walls?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Twin and earth",
+              "T&E",
+              "6242Y"
+            ],
+            "hint": "It contains a line, neutral, and bare CPC."
+          },
+          {
+            "id": "203-3B-P4",
+            "questionText": "True or False: In a hazardous area with explosive gases, you can choose any wiring system as long as it is neat.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "False",
+              "No"
+            ],
+            "hint": "Hazardous areas require specific, high-integrity systems defined by risk assessments."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Integrating Environment and Selection",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3B-INT-1",
+            "questionText": "Explain the relationship between 'external influences' (like impact or moisture) and the choice of containment material (steel vs. plastic).",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Steel is chosen for high mechanical impact risks, while plastic/PVC is chosen for corrosive or moist environments where metal would rust",
+              "The choice depends on the specific threat; steel protects against physical damage whereas plastic protects against chemical corrosion"
+            ],
+            "hint": "Think about the strengths of metal versus the chemical resistance of plastic."
+          },
+          {
+            "id": "203-3B-INT-2",
+            "questionText": "You are tasked with installing power to a remote outdoor pump house. The cable must run across a gravel yard where vehicles drive. Synthesize what you have learned to describe the best wiring system and why. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "The best choice is Steel Wire Armoured (SWA) cable buried at a suitable depth or protected by heavy-duty ducting. SWA provides the necessary mechanical protection against the weight and movement of vehicles in the gravel yard. This ensures the cable is not crushed or severed, maintaining a safe and reliable power supply to the pump house.",
+              "I would use SWA cable because it has built-in mechanical protection. Since vehicles are driving over the route, the armouring prevents damage to the internal conductors. This is the most robust choice for an outdoor, high-traffic environment."
+            ],
+            "hint": "Consider the mechanical risk from vehicles and the outdoor location."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review: Core Electrical Concepts",
+        "questions": [
+          {
+            "id": "203-3B-SR-1",
+            "questionText": "What is the basic formula for Ohm's Law to find Voltage?",
+            "expectedAnswer": [
+              "V = I x R",
+              "V=IR"
+            ],
+            "hint": "Voltage equals Current multiplied by Resistance."
+          },
+          {
+            "id": "203-3B-SR-2",
+            "questionText": "What is the unit of measurement for electrical current?",
+            "expectedAnswer": [
+              "Amperes",
+              "Amps",
+              "A"
+            ],
+            "hint": "It is named after André-Marie Ampère."
+          },
+          {
+            "id": "203-3B-SR-3",
+            "questionText": "What is the main purpose of a circuit breaker in an installation?",
+            "expectedAnswer": [
+              "Overcurrent protection",
+              "To protect the cable from overload and short circuits",
+              "Circuit protection"
+            ],
+            "hint": "It trips when there is too much current."
+          },
+          {
+            "id": "203-3B-SR-4",
+            "questionText": "What is the first step in the safe isolation procedure?",
+            "expectedAnswer": [
+              "Permission to isolate",
+              "Identify the circuit to be worked on",
+              "Get permission"
+            ],
+            "hint": "You must always check with the user/client before turning off power."
+          }
+        ],
+        "notes": "Reviewing these fundamentals ensures you can apply wiring system knowledge within a safe and compliant framework."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-03",
+    "updated": "2026-02-03",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
