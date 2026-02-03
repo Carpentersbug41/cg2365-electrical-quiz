@@ -39,6 +39,7 @@ import { sourcesDrawingsSymbolsScaleQuestions } from './questions/sourcesDrawing
 import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './questions/readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
 import { recognisingElectricalSymbolsOnDrawingsQuestions } from './questions/recognisingElectricalSymbolsOnDrawingsQuestions';
 import { convertingDrawingScaleToRealMeasurementsQuestions } from './questions/convertingDrawingScaleToRealMeasurementsQuestions';
+import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './questions/circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -72,6 +73,7 @@ export const questions: Question[] = [
   ...readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions,
   ...recognisingElectricalSymbolsOnDrawingsQuestions,
   ...convertingDrawingScaleToRealMeasurementsQuestions,
+  ...circuitTypesWhatTheyDoPrinciplesOfOperationQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

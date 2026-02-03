@@ -42,9 +42,11 @@ import lesson203_2A from '@/data/lessons/203-2A-sources-drawings-symbols-scale.j
 import lesson203_2B from '@/data/lessons/203-2B-reading-installation-drawings-legend-symbols-notes-abbreviations.json';
 import lesson203_2C from '@/data/lessons/203-2C-recognising-electrical-symbols-on-drawings.json';
 import lesson203_2D from '@/data/lessons/203-2D-converting-drawing-scale-to-real-measurements.json';
+import lesson203_3A from '@/data/lessons/203-3A-circuit-types-what-they-do-principles-of-operation.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3A': lesson203_3A as Lesson,
   '203-2D': lesson203_2D as Lesson,
   '203-2C': lesson203_2C as Lesson,
   '203-2B': lesson203_2B as Lesson,

@@ -32,11 +32,13 @@ import { sourcesDrawingsSymbolsScaleQuestions } from './sourcesDrawingsSymbolsSc
 import { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
 import { recognisingElectricalSymbolsOnDrawingsQuestions } from './recognisingElectricalSymbolsOnDrawingsQuestions';
 import { convertingDrawingScaleToRealMeasurementsQuestions } from './convertingDrawingScaleToRealMeasurementsQuestions';
+import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...circuitTypesWhatTheyDoPrinciplesOfOperationQuestions,
   ...convertingDrawingScaleToRealMeasurementsQuestions,
   ...recognisingElectricalSymbolsOnDrawingsQuestions,
   ...readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions,
@@ -98,6 +100,7 @@ export { sourcesDrawingsSymbolsScaleQuestions } from './sourcesDrawingsSymbolsSc
 export { readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions } from './readingInstallationDrawingsLegendSymbolsNotesAbbreviationsQuestions';
 export { recognisingElectricalSymbolsOnDrawingsQuestions } from './recognisingElectricalSymbolsOnDrawingsQuestions';
 export { convertingDrawingScaleToRealMeasurementsQuestions } from './convertingDrawingScaleToRealMeasurementsQuestions';
+export { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
 
 /**
  * Filter questions by tags
