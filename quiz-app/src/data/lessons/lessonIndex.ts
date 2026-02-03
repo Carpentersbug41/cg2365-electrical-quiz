@@ -239,6 +239,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 7,
   },
+  
   {
     id: '203-3A',
     title: 'Circuit Types: What They Do (Principles of Operation)',
