@@ -1,0 +1,355 @@
+{
+  "id": "203-3E",
+  "title": "203.3E — Specialised Installing Equipment",
+  "description": "Learn to identify and select the correct specialist tools for installing electrical containment systems like conduit and cable tray.",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Electrical Installations Technology",
+  "learningOutcomes": [
+    "Identify specialised installing equipment used for conduit and cable tray",
+    "Explain the purpose of specific tools like conduit benders and stocks and dies",
+    "Select the correct tool for specific containment installation tasks"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3E-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify specialised installing equipment used for conduit and cable tray",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the purpose of specific tools like conduit benders and stocks and dies",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select the correct tool for specific containment installation tasks",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conduit Bender",
+            "definition": "A mechanical tool used to create precise offsets and 90-degree bends in metal conduit."
+          },
+          {
+            "term": "Stocks and Dies",
+            "definition": "A tool set used to cut external threads onto the ends of steel conduit."
+          },
+          {
+            "term": "Tray Bender",
+            "definition": "A specialised lever-action tool designed to bend the side rails of cable tray."
+          },
+          {
+            "term": "Formers",
+            "definition": "Removable guides that determine the radius of a bend and prevent the material from collapsing."
+          },
+          {
+            "term": "Deburring Tool",
+            "definition": "A device used to remove sharp internal and external edges after cutting conduit or tray."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Specialist Tool Selection Matrix",
+        "description": "Visual relationship between containment tasks and the required specialised equipment.",
+        "videoUrl": "",
+        "diagramType": "table",
+        "elementIds": [
+          "conduit-bender",
+          "stocks-dies",
+          "tray-bender"
+        ],
+        "placeholderText": "Table showing: Task (Bending Pipe) -> Tool (Conduit Bender); Task (Threading Pipe) -> Tool (Stocks & Dies); Task (Bending Tray) -> Tool (Tray Bender)."
+      }
+    },
+    {
+      "id": "203-3E-explain-tools",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Specialised Equipment for Containment",
+        "content": "**What this is**\nSpecialised installing equipment refers to the professional-grade tools required to manipulate, shape, and join electrical containment systems. Unlike general-purpose hand tools, these items are specifically engineered to work with steel conduit and cable tray without damaging the material.\n\n**Why it matters**\nIn commercial and industrial environments, cables are housed in metallic containment for mechanical protection. If these systems are installed poorly—with kinked pipes or sharp edges—the cables inside can be damaged during the installation phase. Using the correct specialist equipment ensures the installation is &quot;fit for purpose&quot; and meets the high standards of workmanship required by the IET Wiring Regulations (BS 7671).\n\n**Key rules / facts**\n*   **Conduit benders** must use a **former** that matches the diameter of the conduit (e.g., 20mm or 25mm) to prevent kinking.\n*   **Stocks and dies** require the use of **cutting compound** (oil) to prevent damage to the die teeth and ensure a clean thread.\n*   All cut ends of conduit must be **deburred** using a reamer or file to remove sharp edges that could strip cable insulation.\n*   **Tray benders** are used specifically for the side flanges of the tray to allow for height or direction changes.\n*   Standard conduit sizes in the UK are typically 20mm and 25mm.\n\n**How to use it**\n1. **Identify the material**: Determine if you are working with galvanized steel conduit, PVC conduit, or cable tray.\n2. **Select the tool**: Choose a conduit bender for pipe or a tray bender for sheet metal.\n3. **Check the former**: Ensure the former radius matches the conduit size (20mm or 25mm) to prevent kinking.\n4. **Apply lubrication**: Use cutting oil when using stocks and dies to thread steel.\n5. **Clean the joint**: Deburr all edges and wipe away excess oil before assembly to ensure a secure mechanical connection.\n\n**Common mistakes**\n*   Using the wrong size former, which leads to &quot;kinking&quot; or flattening of the conduit.\n*   Forgetting to deburr the inside of a cut conduit, which creates a sharp edge that damages cables.\n*   Applying too much force to a tray bender, which can crack the protective galvanized coating and lead to corrosion.\n\n**Quick recap**\n*   Conduit benders and formers create smooth, non-restrictive bends.\n*   Stocks and dies provide the threaded connections needed for secure mechanical joints.\n*   Proper tool selection prevents cable damage and ensures a professional, compliant finish."
+      }
+    },
+    {
+      "id": "203-3E-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Containment Tools",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E-C1-L1-A",
+            "questionText": "Which tool is used to cut external threads on the ends of steel conduit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Stocks and dies",
+              "Stocks & dies",
+              "Stock and die"
+            ],
+            "hint": "This tool set consists of a holder and a cutting head."
+          },
+          {
+            "id": "203-3E-C1-L1-B",
+            "questionText": "What specific component is swapped out on a conduit bender to match different pipe diameters?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Former",
+              "Formers",
+              "The former"
+            ],
+            "hint": "It is a semi-circular guide that determines the bend radius."
+          },
+          {
+            "id": "203-3E-C1-L1-C",
+            "questionText": "What must be removed from the end of a cut conduit to prevent damage to cable insulation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Burrs",
+              "Sharp edges",
+              "Burr"
+            ],
+            "hint": "These are the sharp metal shards left behind after sawing."
+          },
+          {
+            "id": "203-3E-C1-L2",
+            "questionText": "How does using the correct former on a conduit bender relate to the physical integrity of the conduit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "It prevents kinking",
+              "It stops the conduit from collapsing",
+              "It maintains the internal diameter",
+              "Prevents kinking and flattening"
+            ],
+            "hint": "Think about what happens if the pipe is not supported correctly during a bend."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Selecting Tools for a Commercial Installation",
+        "given": "You are tasked with installing a 20mm galvanized steel conduit run that includes a 90-degree bend and a connection to a steel adaptable box.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the containment type: 20mm Galvanized Steel Conduit.",
+            "formula": null,
+            "calculation": null,
+            "result": "Requires tools for steel pipe manipulation."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select the bending equipment: Choose a Conduit Bender with a 20mm Former.",
+            "formula": null,
+            "calculation": null,
+            "result": "Ensures the bend is smooth without kinking."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Select the joining equipment: Choose Stocks and Dies with a 20mm die and cutting oil.",
+            "formula": null,
+            "calculation": null,
+            "result": "Creates the threads needed to screw into the box entries."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Identify finishing requirements: Select a deburring tool or file.",
+            "formula": null,
+            "calculation": null,
+            "result": "Removes sharp edges before cable pulling."
+          }
+        ],
+        "notes": "Always check that the die size matches the former size to ensure consistency across the installation."
+      }
+    },
+    {
+      "id": "203-3E-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice: Tool Selection for Cable Tray",
+        "problem": "You need to install a section of 50mm cable tray that must turn a corner to follow the building structure.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Which specialised tool is used to bend the side rails (flanges) of the cable tray to create a corner?",
+            "expectedAnswer": [
+              "Tray bender",
+              "Cable tray bender"
+            ],
+            "hint": "It is a lever-action tool specifically for sheet metal flanges."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "After cutting the tray to length, what process must be performed on the cut edges to protect cables?",
+            "expectedAnswer": [
+              "Deburring",
+              "Removing sharp edges",
+              "Filing"
+            ],
+            "hint": "This is the same finishing process used for conduit ends."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Practice: Equipment Selection",
+        "questions": [
+          {
+            "id": "203-3E-P1",
+            "questionText": "What substance must be applied to the conduit when using stocks and dies to ensure a clean thread and protect the tool?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Cutting compound",
+              "Cutting oil",
+              "Tallow",
+              "Oil"
+            ],
+            "hint": "It provides lubrication and cooling during the threading process."
+          },
+          {
+            "id": "203-3E-P2",
+            "questionText": "A student uses a 25mm former to bend 20mm conduit. What is the likely result of this mistake?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Kinking",
+              "Flattening",
+              "The conduit will collapse",
+              "Kinked conduit"
+            ],
+            "hint": "The conduit will not be properly supported by the oversized groove."
+          },
+          {
+            "id": "203-3E-P3",
+            "questionText": "Which tool is specifically designed to create offsets in steel pipe?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Conduit bender",
+              "Bending machine"
+            ],
+            "hint": "This tool uses a lever and a former to shape the pipe."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E-INT-1",
+            "questionText": "How does the use of stocks and dies, combined with correct deburring, ensure that a conduit installation meets the IP (Ingress Protection) and safety requirements of BS 7671?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "It ensures tight mechanical joints and prevents cable damage",
+              "Provides secure connections and smooth paths for cables",
+              "Ensures earth continuity and cable protection"
+            ],
+            "hint": "Consider both the mechanical strength of the joint and the condition of the cables inside."
+          },
+          {
+            "id": "203-3E-INT-2",
+            "questionText": "You are preparing a tool kit for a site where you will install both 25mm steel conduit and 100mm cable tray. Explain which specialised tools you must include and why each is critical for a professional finish. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "The kit must include a conduit bender with a 25mm former to create smooth bends and stocks and dies to thread the conduit ends for secure connections. A tray bender is required to manipulate the tray flanges for direction changes. Finally, a deburring tool or file is essential to remove all sharp edges from both systems to prevent cable insulation damage."
+            ],
+            "hint": "Include tools for bending, threading, and finishing for both types of containment."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          {
+            "id": "203-3E-SR-1",
+            "questionText": "What is the mathematical formula for Ohm's Law?",
+            "expectedAnswer": [
+              "V = I x R",
+              "V=IR"
+            ],
+            "hint": "Voltage equals Current multiplied by Resistance."
+          },
+          {
+            "id": "203-3E-SR-2",
+            "questionText": "What is the SI unit of electrical resistance?",
+            "expectedAnswer": [
+              "Ohm",
+              "Ohms",
+              "Ω"
+            ],
+            "hint": "Named after Georg Simon Ohm."
+          },
+          {
+            "id": "203-3E-SR-3",
+            "questionText": "In a standard UK 3-core flexible cable, what color is the Live conductor?",
+            "expectedAnswer": [
+              "Brown"
+            ],
+            "hint": "Think of the 'B' in Brown for 'Bottom Right' in a plug."
+          },
+          {
+            "id": "203-3E-SR-4",
+            "questionText": "Which hand tool is primarily used to remove the outer sheath and insulation from a cable?",
+            "expectedAnswer": [
+              "Wire strippers",
+              "Cable strippers",
+              "Side cutters"
+            ],
+            "hint": "This tool has notches for different wire gauges."
+          }
+        ],
+        "notes": "Reviewing basic electrical principles and standard hand tools."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-03",
+    "updated": "2026-02-03",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

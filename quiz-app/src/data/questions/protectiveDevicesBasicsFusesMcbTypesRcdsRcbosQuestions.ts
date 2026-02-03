@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs Question Bank
- * Aligned with lesson 203-203-3D learning outcomes
+ * Aligned with lesson 203-3D learning outcomes
  * Generated: 2026-02-03
  */
 
@@ -29,7 +29,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -56,7 +56,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -83,7 +83,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "current-rule"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -110,7 +110,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -137,7 +137,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -164,7 +164,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -191,7 +191,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -218,7 +218,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -245,7 +245,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -272,7 +272,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -299,7 +299,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -326,7 +326,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -353,7 +353,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -380,7 +380,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -407,7 +407,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -435,7 +435,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -462,7 +462,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -489,7 +489,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -516,7 +516,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -543,7 +543,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -570,7 +570,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -597,7 +597,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -624,7 +624,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -651,7 +651,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -678,7 +678,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -706,7 +706,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 60,
@@ -733,7 +733,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO2",
+    "learningOutcomeId": "203-3D-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -760,7 +760,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO3",
+    "learningOutcomeId": "203-3D-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -787,7 +787,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "explanation"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -814,7 +814,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO2",
+    "learningOutcomeId": "203-3D-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -841,7 +841,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO3",
+    "learningOutcomeId": "203-3D-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -868,7 +868,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "explanation"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -895,7 +895,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -922,7 +922,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO3",
+    "learningOutcomeId": "203-3D-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -949,7 +949,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -977,7 +977,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1005,7 +1005,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "health-safety"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1033,7 +1033,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1061,7 +1061,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "explanation",
       "application"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1089,7 +1089,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "calculation"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1117,7 +1117,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1144,7 +1144,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1171,7 +1171,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1197,7 +1197,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
     "tags": [
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1224,7 +1224,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "application",
       "calculation"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1250,7 +1250,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
     "tags": [
       "conceptual"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1277,7 +1277,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1304,7 +1304,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1331,7 +1331,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1358,7 +1358,7 @@ export const protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions: TaggedQuest
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-203-3D-LO1",
+    "learningOutcomeId": "203-3D-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,

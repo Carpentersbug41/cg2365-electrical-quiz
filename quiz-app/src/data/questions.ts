@@ -43,6 +43,7 @@ import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './question
 import { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './questions/wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
 import { cableSizingBasicsIbInIzFactorsQuestions } from './questions/cableSizingBasicsIbInIzFactorsQuestions';
 import { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './questions/protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
+import { specialisedInstallingEquipmentQuestions } from './questions/specialisedInstallingEquipmentQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -80,6 +81,7 @@ export const questions: Question[] = [
   ...wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions,
   ...cableSizingBasicsIbInIzFactorsQuestions,
   ...protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions,
+  ...specialisedInstallingEquipmentQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

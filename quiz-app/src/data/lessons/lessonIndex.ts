@@ -274,15 +274,26 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 10,
   },
   {
-    id: '203-203-3D',
+    id: '203-3D',
     title: 'Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs',
     unit: 'Unit 203',
     unitNumber: '203',
     topic: 'Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs',
     description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-203-3D'),
+    questionCount: getLessonQuestionCount('203-3D'),
     available: true,
     order: 11,
+  },
+  {
+    id: '203-3E',
+    title: 'Specialised Installing Equipment',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Specialised Installing Equipment',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3E'),
+    available: true,
+    order: 12,
   },// Unit 210: Communication
   {
     id: '204-10A',

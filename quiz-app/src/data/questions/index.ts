@@ -36,11 +36,13 @@ import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './circuitT
 import { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
 import { cableSizingBasicsIbInIzFactorsQuestions } from './cableSizingBasicsIbInIzFactorsQuestions';
 import { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
+import { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...specialisedInstallingEquipmentQuestions,
   ...protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions,
   ...cableSizingBasicsIbInIzFactorsQuestions,
   ...wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions,
@@ -110,6 +112,7 @@ export { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './circuitT
 export { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
 export { cableSizingBasicsIbInIzFactorsQuestions } from './cableSizingBasicsIbInIzFactorsQuestions';
 export { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
+export { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
 
 /**
  * Filter questions by tags

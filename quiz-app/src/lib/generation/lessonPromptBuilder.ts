@@ -58,7 +58,7 @@ export class LessonPromptBuilder {
   /**
    * Build system prompt with templates and rules
    */
-  private buildSystemPrompt(lessonId: string, layout: 'split-vis' | 'linear-flow'): string {
+  private buildSystemPrompt(lessonId: string, layout: 'split-vis' | 'linear-flow' | 'focus-mode'): string {
     return `You are an expert lesson designer for C&G 2365 Electrical Training courses.
 
 OBJECTIVE: Generate a complete, production-ready lesson JSON file following the exact structure and quality standards below.
@@ -81,7 +81,7 @@ DEFINITION OF DONE (must pass self-audit before output):
 - If worked example exists, guided practice mirrors it step-for-step
 - Practice includes 3-5 questions and at least one applied item if there is an "apply" LO
 - expectedAnswer uses arrays for short-text unless exactly one canonical wording
-- Block orders are monotonic and match required sequence (1,2,3,4,4.5,5,6,7,9.5,10)
+- Block orders are monotonic and match required sequence (1,2,3,4,4.5,5,6,7,8,9.5,10)
 - No invented legal claims or unsafe instructions
 
 STAGING RULE (MANDATORY - CRITICAL FOR LEARNING):
@@ -171,7 +171,7 @@ LESSON STRUCTURE:
     //   - optional microbreak after: 7.2
     // - practice: 8
     //   - optional microbreak after: 8.2
-    // - integrative: 9
+    // - integrative: 9.5
     // - spaced review: 10 (ALWAYS LAST)
     //
     // CRITICAL ORDER RULES:
@@ -402,11 +402,11 @@ All question IDs must follow these exact patterns:
   }
 }
 
-8. PRACTICE BLOCK (order: 7):
+8. PRACTICE BLOCK (order: 8):
 {
   "id": "${lessonId}-practice",
   "type": "practice",
-  "order": 7,
+  "order": 8,
   "content": {
     "title": "Your Turn (You Do)",
     "questions": [
@@ -451,36 +451,36 @@ All question IDs must follow these exact patterns:
   }
 }
 
-10. SPACED REVIEW BLOCK (order: 8 or 10):
+10. SPACED REVIEW BLOCK (order: 10 - ALWAYS LAST):
 {
   "id": "${lessonId}-spaced-review",
   "type": "spaced-review",
-  "order": 8,
+  "order": 10,
   "content": {
     "title": "Spaced Review (from prerequisites)",
     "questions": [
       {
         "id": "${lessonId}-SR-1",
         "questionText": "[Review question from prerequisite topic 1]",  // CRITICAL: Must be "questionText" (NOT "attText", "questiontext", or any other variant!)
-        "expectedAnswer": "[Clear, concise answer]",
+        "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint if student struggles]"
       },
       {
         "id": "${lessonId}-SR-2",
         "questionText": "[Review question from prerequisite topic 2]",  // CRITICAL: Field name must be exactly "questionText"
-        "expectedAnswer": "[Clear, concise answer]",
+        "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint]"
       },
       {
         "id": "${lessonId}-SR-3",
         "questionText": "[Review question from prerequisite topic 3]",  // CRITICAL: Field name must be exactly "questionText"
-        "expectedAnswer": "[Clear, concise answer]",
+        "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint]"
       },
       {
         "id": "${lessonId}-SR-4",
         "questionText": "[Review question from prerequisite topic 4]",  // CRITICAL: Field name must be exactly "questionText"
-        "expectedAnswer": "[Clear, concise answer]",
+        "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint]"
       }
     ],
@@ -582,7 +582,7 @@ If explanation says: "BS 7671 is the UK wiring regulations standard"
    - Integrative: 2 questions (1×L2 Connection + 1×L3 Synthesis)
 5. **JSX Escaping**: Use &quot; for " and &apos; for ' in content
 6. **Formulas**: Verify accuracy (e.g., V=IR, P=VI, R_total = R1+R2+R3 for series)
-7. **Block Order**: Maintain correct sequence (1, 2, 3, 4, 4.5, 5, 6, 7, 9.5, 8/10)
+7. **Block Order**: Maintain correct sequence (1, 2, 3, 4, 4.5, 5, 6, 7, 8, 9.5, 10)
 8. **Prerequisites**: Use actual lesson IDs that would exist
 9. **Terminology**: Keep consistent throughout lesson
 10. **FIELD NAMES**: All spaced-review questions MUST use "questionText" field (NEVER "attText", "questiontext", "question_text", or any other variant!)
@@ -695,12 +695,7 @@ SAFETY & ACCURACY:
 If ANY check fails: FIX IT before responding.
 CRITICAL: Do not output JSON until ALL checks pass.
 
-#Completion Check
-- Make sure to include Noob Orientation block
 
-- Always ensure guided practice is aligned to worked example
-
-- Always ensure the questions are marking-robust
 
 OUTPUT FORMAT:
 - Pure JSON only
