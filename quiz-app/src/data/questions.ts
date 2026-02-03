@@ -41,6 +41,7 @@ import { recognisingElectricalSymbolsOnDrawingsQuestions } from './questions/rec
 import { convertingDrawingScaleToRealMeasurementsQuestions } from './questions/convertingDrawingScaleToRealMeasurementsQuestions';
 import { circuitTypesWhatTheyDoPrinciplesOfOperationQuestions } from './questions/circuitTypesWhatTheyDoPrinciplesOfOperationQuestions';
 import { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } from './questions/wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions';
+import { cableSizingBasicsIbInIzFactorsQuestions } from './questions/cableSizingBasicsIbInIzFactorsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -76,6 +77,7 @@ export const questions: Question[] = [
   ...convertingDrawingScaleToRealMeasurementsQuestions,
   ...circuitTypesWhatTheyDoPrinciplesOfOperationQuestions,
   ...wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions,
+  ...cableSizingBasicsIbInIzFactorsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

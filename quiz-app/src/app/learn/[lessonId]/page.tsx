@@ -44,9 +44,11 @@ import lesson203_2C from '@/data/lessons/203-2C-recognising-electrical-symbols-o
 import lesson203_2D from '@/data/lessons/203-2D-converting-drawing-scale-to-real-measurements.json';
 import lesson203_3A from '@/data/lessons/203-3A-circuit-types-what-they-do-principles-of-operation.json';
 import lesson203_3B from '@/data/lessons/203-3B-wiring-systems-by-environment-choosing-the-right-cable-containment.json';
+import lesson203_3C from '@/data/lessons/203-3C-cable-sizing-basics-ib-in-iz-factors.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3C': lesson203_3C as Lesson,
   '203-3B': lesson203_3B as Lesson,
   '203-3A': lesson203_3A as Lesson,
   '203-2D': lesson203_2D as Lesson,

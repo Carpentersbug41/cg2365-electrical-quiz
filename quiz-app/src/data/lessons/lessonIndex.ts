@@ -261,6 +261,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3B'),
     available: true,
     order: 9,
+  },
+  {
+    id: '203-3C',
+    title: 'Cable Sizing Basics: Ib / In / Iz + Factors',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Cable Sizing Basics: Ib / In / Iz + Factors',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3C'),
+    available: true,
+    order: 10,
   },// Unit 210: Communication
   {
     id: '204-10A',

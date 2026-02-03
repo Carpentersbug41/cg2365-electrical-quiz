@@ -39,6 +39,7 @@ import lesson203_2C from '@/data/lessons/203-2C-recognising-electrical-symbols-o
 import lesson203_2D from '@/data/lessons/203-2D-converting-drawing-scale-to-real-measurements.json';
 import lesson203_3A from '@/data/lessons/203-3A-circuit-types-what-they-do-principles-of-operation.json';
 import lesson203_3B from '@/data/lessons/203-3B-wiring-systems-by-environment-choosing-the-right-cable-containment.json';
+import lesson203_3C from '@/data/lessons/203-3C-cable-sizing-basics-ib-in-iz-factors.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -82,6 +83,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_3C,
   lesson203_3B,
   lesson203_3A,
   lesson203_2D,
