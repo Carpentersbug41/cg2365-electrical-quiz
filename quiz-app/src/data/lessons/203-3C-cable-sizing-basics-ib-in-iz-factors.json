@@ -62,7 +62,11 @@
           },
           {
             "term": "Correction Factor",
-            "definition": "A multiplier used to adjust cable capacity based on environmental factors like heat or grouping."
+            "definition": "A multiplier used to adjust cable capacity based on environmental factors like heat, grouping, or insulation."
+          },
+          {
+            "term": "Ctotal (Total Correction Factor)",
+            "definition": "The combined correction factor found by multiplying all relevant factors together (e.g., Ca × Cg × Ci)."
           }
         ]
       }
@@ -73,16 +77,26 @@
       "order": 3,
       "content": {
         "title": "The Cable Sizing Chain",
-        "description": "A flow diagram showing the relationship between circuit load, protection, and cable capacity.",
+        "description": "A flow diagram showing the relationship between circuit load, protection, and cable capacity (tabulated vs real-world).",
         "videoUrl": "",
         "diagramType": "procedure",
         "elementIds": [
           "Ib",
           "In",
           "It",
-          "Iz"
+          "Iz",
+          "Ctotal"
         ],
-        "placeholderText": "Diagram shows: Ib (Load) -> leads to selection of In (Device) -> which must be <= Iz (Cable Capacity). Iz is derived from It divided by correction factors."
+        "placeholderText": "Diagram shows the sizing chain: (1) Start with Ib (load). (2) Choose In (protective device) so In >= Ib. (3) Find all correction factors and multiply them to get Ctotal. (4) Calculate required tabulated current: Required It >= In / Ctotal. (5) Pick a cable from tables with It meeting that minimum. (6) Real-world capacity is Iz = It x Ctotal, so In must be <= Iz."
+      }
+    },
+    {
+      "id": "203-3C-orient",
+      "type": "explanation",
+      "order": 3.5,
+      "content": {
+        "title": "Noob Orientation: What You’re Actually Doing",
+        "content": "You are not designing a whole installation here. You are learning the basic **safety chain** electricians use so cables don’t overheat.\n\n**Think of it like this:**\n- **Ib** = what the load wants to pull\n- **In** = what the breaker/fuse will allow before it trips\n- **It** = what a cable can carry *in the book tables* (reference conditions)\n- **Iz** = what the same cable can carry *in the real world* after heat penalties\n\nYour job is to make sure the protective device **cannot allow more current than the cable can safely handle**.\n\n**The one rule you are trying to satisfy:**\n**Ib ≤ In ≤ Iz**\n\nIf that’s true, the protection should operate before the cable reaches an unsafe temperature."
       }
     },
     {
@@ -91,13 +105,22 @@
       "order": 4,
       "content": {
         "title": "Understanding the Sizing Chain",
-        "content": "**What this is**\nCable sizing is the logic used to pick a conductor that won't melt or start a fire. It is not about guessing; it is a mathematical process of ensuring the cable can handle more heat than the protective device allows to pass through it.\n\n**Why it matters**\nElectricity generates heat. If a cable is buried in insulation or bunched with other cables, it cannot shed heat effectively. If the circuit breaker (In) allows 32A to flow, but the cable can only safely handle 20A in those hot conditions, the cable will burn before the breaker ever trips.\n\n**Key rules / facts**\n*   **Ib (Design Current):** What the load pulls. This is your starting point.\n*   **In (Protective Device):** The rating of your fuse/MCB. It must be at least as big as Ib.\n*   **Iz (Effective Capacity):** The real-world limit of the cable. It MUST be bigger than In.\n*   **The Golden Rule:** Ib ≤ In ≤ Iz. This must always be true for a safe circuit.\n*   **Correction Factors:** Multipliers like Ca (Ambient Temp), Cg (Grouping), and Ci (Insulation) that reduce the cable's capacity.\n\n**How to use it**\n1.  Identify **Ib** from the equipment load.\n2.  Select a protective device **In** that is greater than or equal to Ib.\n3.  Identify all **Correction Factors** (e.g., Ca, Cg, Ci).\n4.  Multiply factors together to get **Ctotal**.\n5.  Calculate the **Minimum Required It** using the formula: Required It ≥ In ÷ Ctotal.\n6.  Select a cable from the tables where its tabulated value (**It**) meets this requirement.\n\n**Common mistakes**\n*   **Adding factors:** You must multiply factors (e.g., 0.8 × 0.7), never add them.\n*   **Mixing up It and Iz:** Remember that **It** is the value in the book; **Iz** is the value on the wall after it gets hot.\n*   **Wrong inequality:** Thinking the cable only needs to be bigger than the load (Ib). It must be bigger than the protection (In).\n\n**Quick recap**\n*   Ib is the load, In is the breaker, Iz is the actual cable limit.\n*   The safety chain is **Ib ≤ In ≤ Iz**.\n*   Correction factors are 'heat penalties' that usually make the required cable size larger."
+        "content": "**What this is**\nCable sizing is the logic used to choose a conductor that can safely carry current without overheating. It is a coordination check between:\n- what the circuit needs (**Ib**)\n- what the protective device allows (**In**)\n- what the cable can safely carry (**Iz**) in the real installation conditions.\n\n**Why it matters**\nCables heat up when current flows. Real installations often make it harder for cables to lose heat:\n- surrounded by insulation\n- grouped with other cables\n- installed in hotter ambient temperatures\n\nIf the protective device allows more current than the cable can safely carry, the cable can overheat before the device trips.\n\n**Key rules / facts**\n- **Ib (Design Current):** expected normal current for the load.\n- **In (Protective Device Rating):** rating printed on the fuse/MCB.\n- **It (Tabulated Current):** the cable’s current rating in tables at reference conditions.\n- **Iz (Actual Current Capacity):** the cable’s safe rating once real-world factors are applied.\n- **Correction factors** (often < 1) reduce usable capacity.\n\n**Two linked equations (memorise the idea, not the vibe):**\n- **Iz = It × Ctotal** (real capacity after heat penalties)\n- **Required It ≥ In ÷ Ctotal** (find the minimum table value you must choose)\n\n**The Golden Rule:**\n**Ib ≤ In ≤ Iz**\n\n**How to use it (repeatable steps)**\n1) Identify **Ib** from the load.\n2) Choose **In** so **In ≥ Ib**.\n3) Identify correction factors (e.g., Ca, Cg, Ci).\n4) Multiply them to get **Ctotal**.\n5) Calculate: **Required It ≥ In ÷ Ctotal**.\n6) Choose a cable from the tables with **It** at least that value.\n7) (Sanity check) Because **Ctotal < 1**, required **It** will normally be **bigger than In**.\n\n**Quick recap**\n- Ib = load, In = breaker, It = table value, Iz = real value.\n- **Iz = It × Ctotal**\n- Safe chain: **Ib ≤ In ≤ Iz**"
+      }
+    },
+    {
+      "id": "203-3C-mistakes",
+      "type": "explanation",
+      "order": 4.8,
+      "content": {
+        "title": "Common Mistakes (Traps That Fail Real Jobs)",
+        "content": "These are the mistakes that cause wrong answers and unsafe coordination:\n\n1) **Adding correction factors instead of multiplying**\n- Correct: 0.87 × 0.80 = 0.696\n- Wrong: 0.87 + 0.80 = 1.67 (nonsense for this topic)\n\n2) **Mixing up It and Iz**\n- **It** = table value (book)\n- **Iz** = real value after penalties (site)\n\n3) **Only checking Ib and ignoring In**\n- It’s not enough that the cable can handle the load.\n- It must handle what the breaker allows (**In**).\n\n4) **Forgetting to round up**\n- If required It = 28.74 A, you look for **29 A or above**.\n\n5) **No sanity check**\n- If your correction factors are < 1, your required It should usually be **greater than In**.\n- If your required It comes out smaller than In, re-check your maths."
       }
     },
     {
       "id": "203-3C-check-1",
       "type": "practice",
-      "order": 4.5,
+      "order": 5.1,
       "content": {
         "title": "Check Your Understanding: Sizing Logic",
         "mode": "conceptual",
@@ -131,6 +154,19 @@
           },
           {
             "id": "203-3C-C1-L1-C",
+            "questionText": "What does 'It' represent?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Tabulated current",
+              "table rating",
+              "current-carrying capacity from tables",
+              "book value from tables"
+            ],
+            "hint": "This is the value you look up in cable tables under reference conditions."
+          },
+          {
+            "id": "203-3C-C1-L1-D",
             "questionText": "What does 'Iz' represent?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -152,7 +188,7 @@
               "Ib is less than or equal to In, and In is less than or equal to Iz",
               "Ib <= In and In <= Iz"
             ],
-            "hint": "Think about the order of load, protection, and cable capacity."
+            "hint": "Think about the order: load, then protection, then real cable capacity."
           }
         ]
       }
@@ -160,10 +196,10 @@
     {
       "id": "203-3C-worked-example",
       "type": "worked-example",
-      "order": 5,
+      "order": 6,
       "content": {
         "title": "Worked Example: Finding Minimum Required It",
-        "given": "A circuit has a design current (Ib) of 18A. We have selected a 20A MCB (In). The cable will be installed in an area with an ambient temperature factor (Ca) of 0.87 and grouped with other cables (Cg) of 0.80.",
+        "given": "A circuit has a design current (Ib) of 18A. We have selected a 20A MCB (In). The correction factors are Ca = 0.87 and Cg = 0.80.",
         "steps": [
           {
             "stepNumber": 1,
@@ -174,62 +210,72 @@
           },
           {
             "stepNumber": 2,
-            "description": "Calculate the total correction factor (Ctotal) by multiplying the given factors.",
+            "description": "Calculate the total correction factor (Ctotal) by multiplying the factors.",
             "formula": "Ctotal = Ca × Cg",
             "calculation": "0.87 × 0.80",
             "result": "0.696"
           },
           {
             "stepNumber": 3,
-            "description": "Calculate the minimum tabulated current (It) required for the cable.",
+            "description": "Calculate the minimum tabulated current (It) required so that Iz will still be at least In.",
             "formula": "Required It ≥ In ÷ Ctotal",
             "calculation": "20 ÷ 0.696",
             "result": "28.74A"
           },
           {
             "stepNumber": 4,
-            "description": "Determine the final requirement for cable selection.",
+            "description": "Round up and state the cable table requirement.",
             "formula": null,
             "calculation": null,
-            "result": "Choose a cable with a tabulated It of at least 29A."
+            "result": "Choose a cable with tabulated It of at least 29A."
+          },
+          {
+            "stepNumber": 5,
+            "description": "Optional sanity check: calculate what Iz would be if you chose exactly It = 29A.",
+            "formula": "Iz = It × Ctotal",
+            "calculation": "29 × 0.696",
+            "result": "20.18A (so In = 20A is OK)"
           }
         ],
-        "notes": "Always round up the required It to ensure the cable is large enough. Because the factors are less than 1, the required It is significantly higher than the breaker rating."
+        "notes": "This shows why required It is often bigger than In: the real-world factors reduce capacity (Iz)."
       }
     },
     {
       "id": "203-3C-guided",
       "type": "guided-practice",
-      "order": 6,
+      "order": 7,
       "content": {
         "title": "Guided Practice: Calculating Required It",
         "problem": "A circuit has Ib = 22A and In = 25A. The correction factors are Ca = 0.94 and Cg = 0.75. Find the minimum required tabulated current (It).",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the total combined correction factor (Ctotal)? Multiply 0.94 by 0.75.",
+            "prompt": "Calculate the total combined correction factor (Ctotal). Multiply 0.94 by 0.75.",
             "expectedAnswer": [
-              "0.705"
+              "0.705",
+              "0.7050"
             ],
-            "hint": "Ctotal = Ca * Cg"
+            "hint": "Ctotal = Ca × Cg"
           },
           {
             "stepNumber": 2,
-            "prompt": "Now divide the protective device rating (In = 25A) by your Ctotal (0.705). What is the result?",
+            "prompt": "Now calculate required It. Divide In (25) by your Ctotal (0.705).",
             "expectedAnswer": [
               "35.46",
-              "35.5"
+              "35.5",
+              "35.46A",
+              "35.5A"
             ],
-            "hint": "Calculation: 25 / 0.705"
+            "hint": "Required It = In ÷ Ctotal"
           },
           {
             "stepNumber": 3,
-            "prompt": "Rounding up to the nearest whole number, what is the minimum 'It' value you must look for in a cable table?",
+            "prompt": "Round up to the nearest whole amp. What minimum It value must you look for in the tables?",
             "expectedAnswer": [
               "36",
               "36A"
             ],
-            "hint": "Round 35.46 up to be safe."
+            "hint": "Always round up for safety."
           }
         ]
       }
@@ -237,7 +283,7 @@
     {
       "id": "203-3C-practice",
       "type": "practice",
-      "order": 7,
+      "order": 8,
       "content": {
         "title": "Independent Practice",
         "questions": [
@@ -248,11 +294,11 @@
             "expectedAnswer": [
               "53"
             ],
-            "hint": "Step 1: 0.87 * 0.70. Step 2: 32 / result."
+            "hint": "Step 1: Ctotal = 0.87 × 0.70. Step 2: Required It = 32 ÷ Ctotal. Step 3: round up."
           },
           {
             "id": "203-3C-P2",
-            "questionText": "A calculation shows you need a cable with a tabulated It of at least 41A. You have four cables to choose from with the following It ratings: 32A, 39A, 42A, and 47A. Which is the smallest acceptable cable rating?",
+            "questionText": "A calculation shows you need a cable with a tabulated It of at least 41A. You have four cables to choose from: 32A, 39A, 42A, and 47A. Which is the smallest acceptable It rating?",
             "answerType": "numeric",
             "expectedAnswer": [
               "42"
@@ -266,9 +312,20 @@
             "expectedAnswer": [
               "No",
               "False",
-              "Incorrect"
+              "Incorrect",
+              "Not satisfied"
             ],
             "hint": "Is 24 less than or equal to 20?"
+          },
+          {
+            "id": "203-3C-P4",
+            "questionText": "True or false: If Ctotal is 0.6, the required It will usually be greater than In.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "True",
+              "Yes"
+            ],
+            "hint": "Dividing by a number less than 1 makes the answer bigger."
           }
         ]
       }
@@ -288,21 +345,23 @@
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "Correction factors reduce It to create a smaller Iz. In must be less than or equal to this reduced Iz.",
-              "Factors reduce usable capacity. We must ensure In <= Iz after the reduction.",
-              "They shrink the cable's capacity, meaning we need a higher It value to ensure In <= Iz."
+              "Correction factors reduce the cable's usable capacity. Iz equals It multiplied by the total factor, so Iz is smaller than It when factors are less than 1. This means In must still be less than or equal to Iz, so you may need a higher It cable (or a smaller In) to stay safe.",
+              "Factors (Ctotal) reduce capacity: Iz = It × Ctotal. Because Iz gets smaller, the protective device must satisfy In <= Iz, which can force you to choose a cable with a higher It or reduce In.",
+              "Because correction factors are usually below 1, Iz becomes smaller than the tabulated It. So you must ensure In is not greater than Iz, often requiring a larger tabulated It cable."
             ],
-            "hint": "Think about how factors act as 'penalties' on the cable's ability to stay cool."
+            "hint": "Use the idea: factors reduce capacity (Iz = It × Ctotal), so protection must still satisfy In ≤ Iz."
           },
           {
             "id": "203-3C-INT-2",
-            "questionText": "A student suggests that as long as the cable is 'big enough' for the load (Ib), the installation is safe. Based on what you have learned about In and Iz, why is this reasoning dangerous? (3-4 sentences)",
+            "questionText": "A student says: “As long as the cable is big enough for the load (Ib), it’s safe.” Why is this dangerous reasoning? (3–4 sentences)",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "This is dangerous because the cable must be protected by the device (In), not just the load. If In is greater than Iz, the cable can overheat and catch fire before the breaker trips. The correct rule is Ib <= In <= Iz to ensure the protection operates before the cable reaches its thermal limit."
+              "It is dangerous because the cable must be protected by the device (In), not just sized for the load (Ib). If In is greater than the cable’s real capacity (Iz), the cable can overheat before the breaker trips. The safe coordination rule is Ib ≤ In ≤ Iz, which ensures the protective device operates before the cable reaches its thermal limit.",
+              "Sizing only to Ib ignores the protective device. The breaker rating (In) can allow more current than the cable can safely carry in real conditions (Iz). If In > Iz, the cable may overheat and fail before protection disconnects. That’s why you must satisfy Ib ≤ In ≤ Iz.",
+              "Ib tells you expected load current, but the cable must survive what the protective device allows. Real conditions reduce cable capacity (Iz). If In exceeds Iz, the cable can overheat and be damaged before the device trips. The correct safety chain is Ib ≤ In ≤ Iz."
             ],
-            "hint": "Include the relationship between the breaker (In) and the cable's real limit (Iz) in your answer."
+            "hint": "Mention that In can be higher than the load, and Iz can be reduced by real conditions."
           }
         ]
       }
@@ -332,12 +391,13 @@
           },
           {
             "id": "203-3C-SR-3",
-            "questionText": "If correction factors are less than 1.0, will the required tabulated current (It) be larger or smaller than the device rating (In)?",
+            "questionText": "If correction factors are less than 1.0, will the required tabulated current (It) usually be larger or smaller than the device rating (In)?",
             "expectedAnswer": [
               "Larger",
-              "Bigger"
+              "Bigger",
+              "Greater"
             ],
-            "hint": "Dividing In by a decimal like 0.8 increases the value."
+            "hint": "Required It = In ÷ Ctotal, and Ctotal is usually less than 1."
           },
           {
             "id": "203-3C-SR-4",
@@ -349,14 +409,14 @@
             "hint": "Load, then Protection, then Cable Capacity."
           }
         ],
-        "notes": "Review of basic arithmetic and sizing logic."
+        "notes": "Review of basic arithmetic and the core sizing chain."
       }
     }
   ],
   "metadata": {
     "created": "2026-02-03",
     "updated": "2026-02-03",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

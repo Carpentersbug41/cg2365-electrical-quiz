@@ -1,0 +1,365 @@
+{
+  "id": "203-203-3D",
+  "title": "203.203-3D — Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs",
+  "description": "An introduction to identifying and selecting common protective devices based on overcurrent and earth-leakage protection requirements.",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Protective Devices",
+  "learningOutcomes": [
+    "State the difference between overcurrent and earth leakage protection",
+    "Identify the trip characteristics of Type B, C, and D MCBs",
+    "Explain the combined function of an RCBO",
+    "Select a suitable protective device based on circuit load and safety requirements"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-203-3D-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the difference between overcurrent and earth leakage protection",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Identify the trip characteristics of Type B, C, and D MCBs",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the combined function of an RCBO",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select a suitable protective device based on circuit load and safety requirements",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-3D-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "OCPD",
+            "definition": "Overcurrent Protective Device; a device designed to protect cables from damage."
+          },
+          {
+            "term": "Overload",
+            "definition": "An overcurrent occurring in a circuit which is electrically sound, caused by too many appliances."
+          },
+          {
+            "term": "Short-circuit",
+            "definition": "A high-magnitude fault current caused by a low-resistance path between conductors."
+          },
+          {
+            "term": "Inrush Current",
+            "definition": "A temporary surge of current that occurs when certain equipment, like motors, is first switched on."
+          },
+          {
+            "term": "Residual Current",
+            "definition": "An imbalance between line and neutral currents, usually indicating a leak to earth."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-3D-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Protective Device Comparison Table",
+        "description": "A table mapping devices to their primary protection functions.",
+        "videoUrl": "",
+        "diagramType": "table",
+        "elementIds": [
+          "Fuse",
+          "MCB",
+          "RCD",
+          "RCBO"
+        ],
+        "placeholderText": "Device | Protection Type | Primary Use\nFuse | Overcurrent | Cables (Older boards)\nMCB | Overcurrent | Cables (Modern boards)\nRCD | Earth Leakage | People (Shock protection)\nRCBO | Both | Cables + People"
+      }
+    },
+    {
+      "id": "203-203-3D-explain-basics",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Understanding Protective Devices",
+        "content": "**What this is**\nProtective devices are the safety valves of an electrical installation. They automatically disconnect the supply when a fault occurs. This lesson focuses on recognising these devices and matching them to their purpose. **Note: You are not learning how to design or fit these yet; you are learning what each device protects against and when it is used.**\n\n**Why it matters**\nUsing the wrong device can lead to two dangerous outcomes: it might trip when there is no fault (nuisance tripping), or it might fail to trip during a real hazard, leading to fire or fatal electric shock.\n\n**Key rules / facts**\n*   **Overcurrent protection:** Fuses and MCBs protect the **cable** from melting due to overload or short-circuits.\n*   **Additional protection:** RCDs protect **people** from electric shock by detecting earth leakage (residual current).\n*   **MCB Types:** Different 'trip curves' handle inrush currents:\n    *   **Type B:** Standard domestic circuits (low inrush).\n    *   **Type C:** Commercial/Industrial (medium inrush, e.g., motors, fluorescent lights).\n    *   **Type D:** Specialist industrial (high inrush, e.g., large transformers, X-ray machines).\n*   **RCBO:** A single device that combines the functions of an MCB and an RCD.\n\n**How to use it (Selection Logic)**\n1.  **Identify the hazard:** Is the main risk cable damage (overcurrent) or human shock (leakage)?\n2.  **Check the load type:** Does the equipment have a high startup surge (inrush)?\n3.  **Select the family:** Use an OCPD (MCB/Fuse) for cables; use an RCD for shock protection.\n4.  **Refine the OCPD:** Choose Type B for houses, Type C for motors, Type D for heavy machinery.\n\n**Common mistakes**\n*   **Thinking an RCD replaces an MCB:** An RCD alone will NOT protect a cable from an overload; it only looks for leakage.\n*   **Using Type D everywhere:** This is dangerous as it may not trip fast enough on a standard circuit.\n*   **Mixing up overload and leakage:** Overload is too many kettles; leakage is a wire touching the metal casing.\n\n**Quick recap**\n*   MCBs/Fuses protect cables against overcurrent.\n*   RCDs protect people against earth leakage/shock.\n*   RCBOs provide both overcurrent and earth leakage protection in one unit."
+      }
+    },
+    {
+      "id": "203-203-3D-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Device Roles",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-203-3D-C1-L1-A",
+            "questionText": "What does an Overcurrent Protective Device (OCPD) primarily protect?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cables",
+              "The cable",
+              "Wiring"
+            ],
+            "hint": "Think about what would melt if too much current flowed for too long."
+          },
+          {
+            "id": "203-203-3D-C1-L1-B",
+            "questionText": "What specific hazard does an RCD detect to provide shock protection?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Earth leakage",
+              "Residual current",
+              "Imbalance"
+            ],
+            "hint": "It looks for current 'leaking' out of the circuit."
+          },
+          {
+            "id": "203-203-3D-C1-L1-C",
+            "questionText": "Which MCB type is most suitable for a standard domestic house circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Type B",
+              "B"
+            ],
+            "hint": "Domestic loads usually have low inrush current."
+          },
+          {
+            "id": "203-203-3D-C1-L2",
+            "questionText": "If a circuit is protected only by an RCD, why is the cable still at risk of fire during an overload?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "RCDs do not detect overcurrent",
+              "RCDs only detect earth leakage",
+              "It lacks an OCPD"
+            ],
+            "hint": "Look at the primary roles of RCDs vs OCPDs mentioned in the recap."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-3D-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Selecting a Device for a Workshop Motor",
+        "given": "A circuit for a small workshop extractor fan (motor) that requires both cable protection and shock protection.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the hazard types required.",
+            "formula": null,
+            "calculation": null,
+            "result": "Requires overcurrent and earth leakage protection."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Choose the device family.",
+            "formula": null,
+            "calculation": null,
+            "result": "An RCBO is the most efficient choice as it combines both functions."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Select the trip curve based on the load type (motor).",
+            "formula": null,
+            "calculation": null,
+            "result": "Motors have medium inrush, so Type C is required."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Final selection and justification.",
+            "formula": null,
+            "calculation": null,
+            "result": "Type C RCBO because it handles motor inrush while protecting both the cable and the user."
+          }
+        ],
+        "notes": "Always check if the load has a motor or transformer before picking the MCB type."
+      }
+    },
+    {
+      "id": "203-203-3D-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice: Domestic Lighting",
+        "problem": "Select a device for a standard domestic lighting circuit (low inrush) where shock protection is required by regulations.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Based on the domestic setting and low inrush, which MCB 'Type' (B, C, or D) should be used for the overcurrent element?",
+            "expectedAnswer": [
+              "Type B",
+              "B"
+            ],
+            "hint": "Review the 'Key rules' section for domestic trip curves."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "If you want to provide both overcurrent and shock protection in a single module, what is the name of the device?",
+            "expectedAnswer": [
+              "RCBO",
+              "Residual Current Breaker with Overcurrent"
+            ],
+            "hint": "This device is a combination of an MCB and an RCD."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-3D-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Practice: Device Identification",
+        "questions": [
+          {
+            "id": "203-203-3D-P1",
+            "questionText": "Which MCB type is designed specifically for very high inrush currents, such as large industrial transformers?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Type D",
+              "D"
+            ],
+            "hint": "This is the 'heaviest' trip curve mentioned."
+          },
+          {
+            "id": "203-203-3D-P2",
+            "questionText": "Does an RCD protect a cable against a short-circuit fault? (Yes/No)",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "No"
+            ],
+            "hint": "Short-circuits are a form of overcurrent, not earth leakage."
+          },
+          {
+            "id": "203-203-3D-P3",
+            "questionText": "What is the main advantage of an MCB over a traditional fuse?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Resettable",
+              "It can be reset",
+              "Does not need replacement"
+            ],
+            "hint": "Think about what you do after the device trips."
+          },
+          {
+            "id": "203-203-3D-P4",
+            "questionText": "Which device should be selected for a commercial circuit with fluorescent lighting (medium inrush) that also needs shock protection?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Type C RCBO",
+              "RCBO Type C"
+            ],
+            "hint": "Combine the trip curve for medium inrush with the device that does both jobs."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-3D-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-203-3D-INT-1",
+            "questionText": "Explain why an electrician would install a Type C MCB for a commercial kitchen's extractor fan rather than a Type B MCB.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "To prevent nuisance tripping from motor inrush current",
+              "Because motors have higher startup surges",
+              "Type B would trip on startup"
+            ],
+            "hint": "Think about what happens the moment a motor is turned on."
+          },
+          {
+            "id": "203-203-3D-INT-2",
+            "questionText": "A homeowner wants to add a socket in a garden shed. Explain which single device would provide the best protection against both cable overloads and the high risk of electric shock in a damp environment, and justify your choice of trip curve. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "A Type B RCBO should be used. The RCBO provides both overcurrent protection for the cable and RCD protection for the user against electric shock in the damp shed. Type B is selected because domestic socket loads typically have low inrush current, ensuring the circuit is safe and avoids nuisance tripping."
+            ],
+            "hint": "Mention the device name, the two types of protection it provides, and why Type B is suitable for home use."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-3D-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review",
+        "questions": [
+          {
+            "id": "203-203-3D-SR-1",
+            "questionText": "What is the standard unit of electrical current?",
+            "expectedAnswer": [
+              "Amperes",
+              "Amps",
+              "A"
+            ],
+            "hint": "Named after André-Marie Ampère."
+          },
+          {
+            "id": "203-203-3D-SR-2",
+            "questionText": "According to Ohm's Law, if voltage stays the same and resistance increases, what happens to the current?",
+            "expectedAnswer": [
+              "It decreases",
+              "Decreases",
+              "Current goes down"
+            ],
+            "hint": "Think about the formula I = V / R."
+          },
+          {
+            "id": "203-203-3D-SR-3",
+            "questionText": "What does the term 'Potential Difference' describe in a circuit?",
+            "expectedAnswer": [
+              "Voltage",
+              "Volts"
+            ],
+            "hint": "It is the 'pressure' that pushes charge through a conductor."
+          },
+          {
+            "id": "203-203-3D-SR-4",
+            "questionText": "What is the unit used to measure electrical resistance?",
+            "expectedAnswer": [
+              "Ohms",
+              "Ω"
+            ],
+            "hint": "Named after Georg Simon Ohm."
+          }
+        ],
+        "notes": "Quick review of foundational electrical units and Ohm's Law."
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-03",
+    "updated": "2026-02-03",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

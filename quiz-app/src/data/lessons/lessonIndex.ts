@@ -272,6 +272,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3C'),
     available: true,
     order: 10,
+  },
+  {
+    id: '203-203-3D',
+    title: 'Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-203-3D'),
+    available: true,
+    order: 11,
   },// Unit 210: Communication
   {
     id: '204-10A',
