@@ -18,12 +18,20 @@ import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integrati
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
 import { Phase9_Assembler } from './phases/Phase9_Assembler';
 
+export interface PhaseProgress {
+  phase: string;
+  status: 'pending' | 'running' | 'completed' | 'failed';
+  duration?: number;
+  output?: string;
+}
+
 export interface SequentialGeneratorResult {
   success: boolean;
   content: Lesson;
   error?: string;
   warnings?: string[];
   debugInfo?: DebugInfo;
+  phases?: PhaseProgress[];
 }
 
 /**
@@ -70,60 +78,118 @@ export class SequentialLessonGenerator {
    */
   async generate(request: GenerationRequest): Promise<SequentialGeneratorResult> {
     const lessonId = `${request.unit}-${request.lessonId}`;
+    const phases: PhaseProgress[] = [];
     
     try {
       debugLog('SEQUENTIAL_GEN_START', { lessonId });
       console.log(`\n🔄 [Sequential] Starting sequential generation for ${lessonId}`);
 
       // Phase 1: Planning
+      let phaseStart = Date.now();
       const planResult = await this.runPhase1(request);
+      phases.push({
+        phase: 'Planning',
+        status: planResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: planResult ? `Layout: ${planResult.layout}, ${planResult.explanationSections.length} sections` : 'Failed',
+      });
       if (!planResult) {
-        return this.errorResult('Phase 1 (Planning) failed');
+        return { ...this.errorResult('Phase 1 (Planning) failed'), phases };
       }
 
       // Phase 2: Vocabulary
+      phaseStart = Date.now();
       const vocabResult = await this.runPhase2(request, planResult);
+      phases.push({
+        phase: 'Vocabulary',
+        status: vocabResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: vocabResult ? `Generated ${vocabResult.terms.length} terms` : 'Failed',
+      });
       if (!vocabResult) {
-        return this.errorResult('Phase 2 (Vocabulary) failed');
+        return { ...this.errorResult('Phase 2 (Vocabulary) failed'), phases };
       }
 
       // Phase 3: Explanation
+      phaseStart = Date.now();
       const explanationResult = await this.runPhase3(request, planResult, vocabResult);
+      phases.push({
+        phase: 'Explanation',
+        status: explanationResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: explanationResult ? `Generated ${explanationResult.explanations.length} explanation(s)` : 'Failed',
+      });
       if (!explanationResult) {
-        return this.errorResult('Phase 3 (Explanation) failed');
+        return { ...this.errorResult('Phase 3 (Explanation) failed'), phases };
       }
 
       // Phase 4: Understanding Checks
+      phaseStart = Date.now();
       const checksResult = await this.runPhase4(lessonId, explanationResult);
+      phases.push({
+        phase: 'Understanding Checks',
+        status: checksResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: checksResult ? `Generated ${checksResult.checks.length} check block(s)` : 'Failed',
+      });
       if (!checksResult) {
-        return this.errorResult('Phase 4 (Understanding Checks) failed');
+        return { ...this.errorResult('Phase 4 (Understanding Checks) failed'), phases };
       }
 
       // Phase 5: Worked Example (conditional)
+      phaseStart = Date.now();
       const workedExampleResult = await this.runPhase5(request, planResult, explanationResult);
+      phases.push({
+        phase: 'Worked Example',
+        status: workedExampleResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: workedExampleResult ? (workedExampleResult.workedExample ? 'Generated worked example' : 'Skipped (not needed)') : 'Failed',
+      });
       if (!workedExampleResult) {
-        return this.errorResult('Phase 5 (Worked Example) failed');
+        return { ...this.errorResult('Phase 5 (Worked Example) failed'), phases };
       }
 
       // Phase 6: Practice
+      phaseStart = Date.now();
       const practiceResult = await this.runPhase6(lessonId, explanationResult, vocabResult, workedExampleResult);
+      phases.push({
+        phase: 'Practice',
+        status: practiceResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: practiceResult ? `Generated ${practiceResult.practice.questions.length} questions` : 'Failed',
+      });
       if (!practiceResult) {
-        return this.errorResult('Phase 6 (Practice) failed');
+        return { ...this.errorResult('Phase 6 (Practice) failed'), phases };
       }
 
       // Phase 7: Integration
+      phaseStart = Date.now();
       const integrationResult = await this.runPhase7(lessonId, planResult, explanationResult);
+      phases.push({
+        phase: 'Integration',
+        status: integrationResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: integrationResult ? `Generated ${integrationResult.integrative.questions.length} integrative questions` : 'Failed',
+      });
       if (!integrationResult) {
-        return this.errorResult('Phase 7 (Integration) failed');
+        return { ...this.errorResult('Phase 7 (Integration) failed'), phases };
       }
 
       // Phase 8: Spaced Review
+      phaseStart = Date.now();
       const spacedReviewResult = await this.runPhase8(request);
+      phases.push({
+        phase: 'Spaced Review',
+        status: spacedReviewResult ? 'completed' : 'failed',
+        duration: Date.now() - phaseStart,
+        output: spacedReviewResult ? `Generated ${spacedReviewResult.spacedReview.questions.length} review questions` : 'Failed',
+      });
       if (!spacedReviewResult) {
-        return this.errorResult('Phase 8 (Spaced Review) failed');
+        return { ...this.errorResult('Phase 8 (Spaced Review) failed'), phases };
       }
 
       // Phase 9: Assembly
+      phaseStart = Date.now();
       const lesson = this.phase9.assemble({
         lessonId,
         title: `${lessonId.replace('-', '.')} — ${request.topic}`,
@@ -142,6 +208,12 @@ export class SequentialLessonGenerator {
         integration: integrationResult,
         spacedReview: spacedReviewResult,
       });
+      phases.push({
+        phase: 'Assembly',
+        status: 'completed',
+        duration: Date.now() - phaseStart,
+        output: `Assembled ${lesson.blocks.length} blocks`,
+      });
 
       debugLog('SEQUENTIAL_GEN_COMPLETE', { lessonId });
       console.log(`✅ [Sequential] Generation complete for ${lessonId}`);
@@ -149,11 +221,12 @@ export class SequentialLessonGenerator {
       return {
         success: true,
         content: lesson,
+        phases,
       };
 
     } catch (error) {
       debugLog('SEQUENTIAL_GEN_ERROR', { lessonId, error: error instanceof Error ? error.message : 'unknown' });
-      return this.errorResult(error instanceof Error ? error.message : 'Unknown error in sequential generation');
+      return { ...this.errorResult(error instanceof Error ? error.message : 'Unknown error in sequential generation'), phases };
     }
   }
 

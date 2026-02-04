@@ -59,6 +59,13 @@ export interface DebugInfo {
   timestamp: string;
 }
 
+export interface PhaseProgress {
+  phase: string;
+  status: 'pending' | 'running' | 'completed' | 'failed';
+  duration?: number;
+  output?: string;
+}
+
 export interface GenerationResponse {
   success: boolean;
   lessonFile: string;
@@ -68,6 +75,7 @@ export interface GenerationResponse {
   warnings: string[];
   errors?: string[];
   debugInfo?: DebugInfo;
+  phases?: PhaseProgress[];
 }
 
 export interface LessonBlock {

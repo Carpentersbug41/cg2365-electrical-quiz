@@ -236,6 +236,7 @@ export async function POST(request: NextRequest) {
       commitHash,
       commitUrl,
       warnings,
+      phases: lessonResult.phases,
     };
 
     return NextResponse.json(response, { headers });

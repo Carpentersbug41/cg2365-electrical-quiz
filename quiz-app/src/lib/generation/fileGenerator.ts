@@ -578,6 +578,7 @@ OUTPUT FORMAT: Pure JSON only`;
           success: true,
           content: result.content,
           warnings,
+          phases: result.phases,
         };
       }
       
@@ -593,6 +594,7 @@ OUTPUT FORMAT: Pure JSON only`;
         success: true,
         content: result.content,
         warnings: softValidation.warnings.length > 0 ? softValidation.warnings : undefined,
+        phases: result.phases,
       };
       
     } catch (error) {
