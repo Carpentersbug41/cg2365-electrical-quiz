@@ -78,7 +78,13 @@ If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOS
   * "Describe the process..."
   * "What technique..."
   * "How to [action]..."
-- BANNED VERBS in questions: place, clamp, rotate, pull, turn, push, tighten, loosen, thread, break the chip, lubricate, half-turn, secure, insert, technique, method, step, process, operate
+- BANNED VERBS AND CONCEPTS in questions:
+  * Physical actions: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, break the chip, lubricate, half-turn
+  * Process words: technique, method, step, process, operate
+  * Measurement workflow: gain, take-off, shrink, set, deduction, offset calculation, set-point, mark-up
+  * Cleaning/maintenance: clear, clean, remove, wipe, maintain, brush, flush
+  * Assembly/disassembly: assemble, install, mount, attach, detach, dismantle
+  * Adjustment/calibration: adjust, calibrate, tune, align, level
 - REQUIRED QUESTION PATTERNS:
   * "What is [X] used for?"
   * "Which tool should be selected when..."
@@ -95,26 +101,30 @@ ANSWER FORMAT:
 - Include synonyms, alternative phrasings, and common variations
 - At least ONE variant must match explanation wording closely
 
-ANSWER VARIANT REQUIREMENTS (CRITICAL for robust marking):
+EXPECTED ANSWER REQUIREMENTS (CRITICAL - marking robustness):
 
-For percentage/number-based answers (e.g., "45% rule"), include ALL these forms:
-- Full phrase: "45% Rule", "45 percent rule"
-- With article: "The 45% Rule", "the 45% rule"
-- Numeric only: "45%", "45", "45 percent"
-- Written form: "forty-five percent", "forty five percent"
-Minimum 4-6 variants for any percentage/rule answer.
+For ALL questions:
+- 1 canonical answer (exact wording from explanation)
+- Maximum 2-3 variants (case/singular/plural/acronym only)
+- NO broad paraphrases that accept incorrect understanding
+- NO generic catch-all phrases
 
-For terminology (e.g., "Cable Factor"):
-- Singular and plural: "Cable Factor", "Cable Factors"
-- With/without articles: "the Cable Factor", "Cable Factor", "a Cable Factor"
-- Common variations: "factor for the cable", "cable's factor"
-Minimum 3-4 variants for terminology.
+For percentage/number answers:
+- Full: "45% Rule"
+- Numeric: "45%", "45 percent"
+- Max 3 variants
 
-For definitions/concepts:
-- Include paraphrased versions
-- Include shortened versions
-- Include alternative wordings from the explanation
-Minimum 2-4 variants.
+For terminology:
+- Exact term: "Cable Factor"
+- With article: "the Cable Factor"
+- Max 2 variants
+
+For definitions:
+- Canonical phrase from explanation
+- One close paraphrase if essential
+- Max 2 variants
+
+This prevents marking leniency and score inconsistency.
 
 ${this.getJsonOutputInstructions()}`;
   }

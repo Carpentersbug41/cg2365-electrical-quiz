@@ -58,7 +58,18 @@ TASK MODE OVERRIDES (CRITICAL - section 4 changes based on task mode):
 
 If TASK_MODE includes "IDENTIFICATION" or "PURPOSE_ONLY":
   Section 4 = "When to choose it": Selection cues, scenarios where each item is appropriate, decision criteria
-  BANNED VERBS: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, break the chip, lubricate, half-turn, technique, method, step, process, operate
+  BANNED VERBS AND CONCEPTS: 
+    - Physical actions: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, break the chip, lubricate, half-turn
+    - Process words: technique, method, step, process, operate
+    - Measurement workflow: gain, take-off, shrink, set, deduction, offset calculation, set-point, mark-up
+    - Cleaning/maintenance: clear, clean, remove, wipe, maintain, brush, flush
+    - Assembly/disassembly: assemble, install, mount, attach, detach, dismantle
+    - Adjustment/calibration: adjust, calibrate, tune, align, level
+  SCOPE BOUNDARIES for PURPOSE_ONLY lessons:
+    - BANNED TOPICS: Advanced testing (EFLI, earth fault loop impedance, Zs, Ze, R1+R2), inspection procedures, certification requirements, regulation numbers
+    - Stay within learning outcomes - if LO is "identify kit + purpose", do NOT teach testing or verification
+    - Focus ONLY on: What it is, What it's for, When to select it, What problem it solves
+    - Avoid "consequence chains" that drift into testing/inspection (e.g., "poor threads affect EFLI")
   Focus on: What it enables, Where it's used, What problem it solves, Selection criteria
   Example: "A conduit bender is selected when steel conduit runs must change direction..."
     NOT: "Place the conduit in the bender, position the guide, pull the lever..."
@@ -75,6 +86,24 @@ If TASK_MODE includes "CALCULATION":
 Default (no specific mode or GENERAL):
   Section 4 = "How to use it": Practical application and procedures
 
+ABSOLUTE LANGUAGE CONTROL (CRITICAL):
+
+Unless the input provides a specific named standard or regulation:
+- NEVER use: "mandatory", "always", "never", "required by law", "must by regulation"
+- BANNED PHRASES: "legal requirement", "required by standards", "mandatory every time", "never optional"
+- REQUIRED HEDGING: "typically", "commonly", "in most cases", "industry guidance recommends", "IET On-Site Guide provides"
+
+If claiming compliance/standards:
+- State the source: "BS 7671 requires...", "IET On-Site Guide Table X shows..."
+- Add provenance note: "(refer to current edition)"
+- Avoid absolutes without citation
+
+Examples:
+- WRONG: "Cutting Compound is mandatory every time"
+- RIGHT: "Cutting Compound is typically used every time to preserve tool life"
+- WRONG: "This is a legal requirement"
+- RIGHT: "Industry guidance recommends this practice"
+
 WRITING GUIDELINES:
 - Write 400-600 words per explanation section
 - Use **bold** for emphasis on key terms
@@ -83,6 +112,12 @@ WRITING GUIDELINES:
 - Write for Level 2 electrician students (practical, not overly academic)
 - Use vocabulary terms consistently
 - Include specific examples and scenarios
+
+HEDGING AND PRECISION:
+- For size/measurement claims without sources: "common UK sizes include 16mm, 20mm, 25mm, 32mm" (NOT "typically 20mm or 25mm")
+- For earth continuity: "threaded joints contribute to electrical continuity of the metallic containment system" (NOT "conduit acts as CPC")
+- For standards: "industry guidance recommends" or "IET On-Site Guide provides" (NOT vague "meets industry standards")
+- Use "typically", "commonly", "in most cases" for general practices
 
 LEARNING OUTCOMES COVERAGE (CRITICAL):
 - For each learning outcome, identify WHERE in your explanation you address it

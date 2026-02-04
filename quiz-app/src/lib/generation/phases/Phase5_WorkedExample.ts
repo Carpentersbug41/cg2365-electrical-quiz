@@ -137,13 +137,20 @@ Structure the worked example as a SELECTION SCENARIO (not procedural steps):
   "notes": "Selection is based on material properties and task requirements, not personal preference."
 }
 
-NO physical operation steps (no "place", "rotate", "pull", "clamp").
+NO physical operation steps or procedural content.
 
 TEACHING CONSTRAINTS (if provided):
 If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
 - Worked examples should focus on SELECTION and IDENTIFICATION
 - Example: "Given these requirements, which tool should be selected and why?"
 - NOT: "Step-by-step procedure to operate the tool"
+- BANNED CONTENT in examples:
+  * Physical actions: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, break the chip, lubricate, half-turn
+  * Process words: technique, method, step, process, operate
+  * Measurement workflow: gain, take-off, shrink, set, deduction, offset calculation, set-point, mark-up
+  * Cleaning/maintenance: clear, clean, remove, wipe, maintain, brush, flush
+  * Assembly/disassembly: assemble, install, mount, attach, detach, dismantle
+  * Adjustment/calibration: adjust, calibrate, tune, align, level
 
 If teachingConstraints.noCalculations:
 - Skip worked examples OR create selection-based scenarios
