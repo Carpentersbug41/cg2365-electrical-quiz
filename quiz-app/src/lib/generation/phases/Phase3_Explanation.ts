@@ -90,8 +90,13 @@ ABSOLUTE LANGUAGE CONTROL (CRITICAL):
 
 Unless the input provides a specific named standard or regulation:
 - NEVER use: "mandatory", "always", "never", "required by law", "must by regulation"
-- BANNED PHRASES: "legal requirement", "required by standards", "mandatory every time", "never optional"
-- REQUIRED HEDGING: "typically", "commonly", "in most cases", "industry guidance recommends", "IET On-Site Guide provides"
+- BANNED PHRASES: 
+  * "legal requirement", "required by standards", "mandatory every time", "never optional"
+  * "industry guidance recommends" (unless naming the guidance, e.g., "IET On-Site Guide recommends")
+  * "meets safety standards", "meets industry standards", "complies with standards" (without naming the standard)
+- REQUIRED HEDGING: "typically", "commonly", "in most cases"
+- If citing standards/guidance: MUST name the source: "IET On-Site Guide recommends...", "BS 7671 requires..."
+- If no source available: omit the normative claim entirely
 
 If claiming compliance/standards:
 - State the source: "BS 7671 requires...", "IET On-Site Guide Table X shows..."
@@ -102,7 +107,9 @@ Examples:
 - WRONG: "Cutting Compound is mandatory every time"
 - RIGHT: "Cutting Compound is typically used every time to preserve tool life"
 - WRONG: "This is a legal requirement"
-- RIGHT: "Industry guidance recommends this practice"
+- RIGHT: "IET On-Site Guide recommends this practice" (named source)
+- WRONG: "This meets industry standards"
+- RIGHT: "This is typical practice" OR "BS 7671 requires this" (if you know the source)
 
 WRITING GUIDELINES:
 - Write 400-600 words per explanation section
@@ -114,10 +121,16 @@ WRITING GUIDELINES:
 - Include specific examples and scenarios
 
 HEDGING AND PRECISION:
-- For size/measurement claims without sources: "common UK sizes include 16mm, 20mm, 25mm, 32mm" (NOT "typically 20mm or 25mm")
+- For conduit sizes (Level 2 training context): "Common UK conduit sizes covered at this level are 20mm, 25mm, and 32mm"
+- Avoid listing 16mm unless the learning outcomes explicitly mention it
 - For earth continuity: "threaded joints contribute to electrical continuity of the metallic containment system" (NOT "conduit acts as CPC")
 - For standards: "industry guidance recommends" or "IET On-Site Guide provides" (NOT vague "meets industry standards")
 - Use "typically", "commonly", "in most cases" for general practices
+- For threading/conduit systems:
+  * Conduit sizes refer to outside diameter (OD): 20mm, 25mm, 32mm
+  * Do NOT say "thread sizes are 20mm/25mm" - those are conduit sizes, not thread specifications
+  * If teaching threads: say "threads to match the conduit diameter" or "threads compatible with [size] conduit"
+  * Avoid conflating conduit OD with thread pitch/class specifications
 
 LEARNING OUTCOMES COVERAGE (CRITICAL):
 - For each learning outcome, identify WHERE in your explanation you address it

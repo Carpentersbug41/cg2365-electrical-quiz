@@ -126,6 +126,15 @@ For definitions:
 
 This prevents marking leniency and score inconsistency.
 
+VARIANT QUALITY CHECK:
+- Each variant must test the SAME specific fact/concept
+- Reject variants that would accept adjacent but wrong understanding
+- Examples:
+  * GOOD: "creates smooth bends" / "forms bends without kinking" (same concept)
+  * BAD: "shapes the conduit" (too generic - doesn't specify the quality requirement)
+  * GOOD: "to cut external screw threads" / "create external threads on conduit"
+  * BAD: "to prepare the conduit" (too vague - doesn't specify what preparation)
+
 ${this.getJsonOutputInstructions()}`;
   }
 
