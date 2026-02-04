@@ -318,17 +318,6 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-TEST'),
     available: true,
     order: 13,
-  },
-  {
-    id: '203-TEST',
-    title: 'Sequential Generator Test',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Sequential Generator Test',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-TEST'),
-    available: true,
-    order: 14,
   },// Unit 210: Communication
   {
     id: '204-10A',

@@ -6,9 +6,9 @@
   "unit": "Unit 203",
   "topic": "Sequential Generator Test",
   "learningOutcomes": [
-    "Identify the primary objectives and safety requirements of sequential generator testing.",
-    "Explain the operational relationship between sequential logic and generator output stability.",
-    "Carry out a standard sequential test procedure on a simulated generator system."
+    "Identify the fundamental components and objectives of a sequential generator test",
+    "Explain the core principles and logic behind sequential testing procedures",
+    "Describe the step-by-step application of a sequential test in a practical electrical environment"
   ],
   "prerequisites": [
     "202-1A",
@@ -22,16 +22,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the primary objectives and safety requirements of sequential generator testing.",
+            "text": "Identify the fundamental components and objectives of a sequential generator test",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain the operational relationship between sequential logic and generator output stability.",
+            "text": "Explain the core principles and logic behind sequential testing procedures",
             "bloomLevel": "understand"
           },
           {
-            "text": "Carry out a standard sequential test procedure on a simulated generator system.",
-            "bloomLevel": "apply"
+            "text": "Describe the step-by-step application of a sequential test in a practical electrical environment",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -43,24 +43,24 @@
       "content": {
         "terms": [
           {
-            "term": "Sequential Logic",
-            "definition": "A control system where the output depends on the chronological order of input signals to ensure operations occur in a specific, predetermined sequence."
+            "term": "Electromagnetic Induction",
+            "definition": "The production of an electromotive force across a conductor when it is exposed to a varying magnetic field."
           },
           {
-            "term": "Interlocking",
-            "definition": "A safety mechanism that prevents two or more components from operating simultaneously to avoid conflicting states or hazardous conditions during generator testing."
+            "term": "Phase Sequence",
+            "definition": "The numerical order in which the voltages of a polyphase system reach their maximum values, typically denoted as L1, L2, and L3."
           },
           {
-            "term": "Synchronisation",
-            "definition": "The process of matching the voltage, frequency, and phase angle of a generator to an existing system before connection is established."
+            "term": "Excitation",
+            "definition": "The provision of a DC current to the field coils of a generator to establish the magnetic field necessary for electricity production."
           },
           {
-            "term": "Output Stability",
-            "definition": "The ability of a generator to maintain a consistent voltage and frequency level while transitions occur within the sequential control logic."
+            "term": "Sequential Testing",
+            "definition": "A systematic methodology where electrical tests are performed in a specific order to ensure safety and identify faults logically."
           },
           {
-            "term": "Load Shedding",
-            "definition": "The intentional disconnection of non-essential electrical loads to prevent the generator from overloading during the sequential startup or testing phase."
+            "term": "Prime Mover",
+            "definition": "The mechanical device, such as a turbine or engine, that provides the rotational energy required to drive the generator."
           }
         ]
       }
@@ -83,8 +83,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Fundamental Principles of Sequential Testing",
-        "content": "1. **What this is**\n\nSequential generator testing is a systematic diagnostic process used to verify that a generator's control system follows a precise, ordered set of operations. At the heart of this process is **Sequential Logic**, which is a control system where the output depends on the chronological order of input signals to ensure operations occur in a specific, predetermined sequence. Unlike simple combinational logic, where outputs react immediately to current inputs, sequential testing confirms that the generator system 'remembers' its current state and only moves to the next phase—such as engine cranking, excitation, or load connection—once the previous conditions have been safely met.\n\n2. **Why it matters**\n\nIn the real world, generators are often the last line of defense for critical infrastructure like hospitals or data centers. If a generator connects to a building's electrical system before it has reached the correct speed or voltage, it can cause catastrophic damage to both the generator and the connected equipment. Proper testing ensures that **Interlocking** mechanisms are functional, preventing hazardous conditions like back-feeding the grid or connecting two unsynchronised power sources. It also ensures that the system maintains **Output Stability** during transitions, preventing sensitive electronic equipment from being damaged by voltage spikes or frequency fluctuations.\n\n3. **Key facts / rules**\n\n*   **Sequential Logic** ensures that Step B cannot happen until Step A is successfully completed and verified.\n*   **Interlocking** is a mandatory safety mechanism that prevents two sources (like the mains and the generator) from being connected to the same busbar simultaneously.\n*   **Synchronisation** must be achieved—matching voltage, frequency, and phase angle—before the generator is permitted to join an energized system.\n*   **Output Stability** must be monitored during the entire sequence to ensure the generator can handle the transition from 'no-load' to 'full-load' without failing.\n*   Testing must always include a verification of the 'fail-safe' modes in the sequence logic.\n\n4. **How to use it**\n\nWhen identifying the objectives of a test, start by reviewing the manufacturer's logic chart. For a standard Level 2 simulation, you would first check the 'Ready to Start' parameters. You would then initiate the start command and observe the **Sequential Logic** as it steps through the pre-heat (if applicable), the crank cycle, and the run-up phase. You must use a multimeter or an onboard control panel to verify that the generator reaches its rated frequency (e.g., 50Hz) and voltage (e.g., 230V/400V) before the logic attempts to close the breaker. If the system is designed to run in parallel with the grid, you must observe the **Synchronisation** process where the generator's waveform is matched to the mains waveform before the **Interlocking** allows the contactors to close.\n\n5. **Common mistakes**\n\nStudents often mistake a generator simply 'running' for a successful test. A generator might start, but if the **Sequential Logic** is flawed, it might try to take on full load before the engine is warm enough to provide **Output Stability**. Another common error is ignoring **Interlocking** checks; students sometimes assume that because one breaker is open, the other is safe to close without verifying the physical or electrical locks that prevent both from being closed at once.\n\n6. **Quick recap**\n\nSequential testing is about order and safety. By using **Sequential Logic**, we ensure the generator follows a safe path from standstill to full operation. We rely on **Interlocking** to prevent dangerous connections and monitor **Synchronisation** and **Output Stability** to protect the equipment and the electrical installation. Understanding these principles is the first step in ensuring a reliable backup power system."
+        "title": "Principles of Sequential Testing",
+        "content": "1. **What this is**\n\nIn the world of electrical engineering, a generator is a complex machine that converts mechanical energy into electrical energy. **Sequential Testing** is a systematic methodology where electrical tests are performed in a specific order to ensure safety and identify faults logically. Rather than jumping straight to turning the machine on, we follow a strict hierarchy of checks. This process relies on the fundamental principle of **Electromagnetic Induction**, which is the production of an electromotive force across a conductor when it is exposed to a varying magnetic field. By testing sequentially, we ensure that every component required for induction—the magnets, the coils, and the movement—is functioning correctly before the system is fully energized.\n\n2. **Why it matters**\n\nFollowing a sequence is critical because generators are expensive and potentially dangerous pieces of equipment. If you were to apply **Excitation** (the DC current used to create the magnetic field) to a generator with a short circuit in its windings, you could cause a fire or an explosion. By using **Sequential Testing**, an electrician can catch minor issues, such as a loose connection or insulation breakdown, before they become catastrophic failures. It also ensures that the **Prime Mover**, such as a diesel engine or motor, isn't put under unnecessary stress by trying to drive a faulty alternator.\n\n3. **Key facts / rules**\n\n*   **Sequential Testing** must always begin with dead tests (power off) before moving to live tests.\n*   **Electromagnetic Induction** requires three things: a magnetic field, a conductor, and relative motion between them.\n*   **Excitation** is the provision of a DC current to the field coils to establish the initial magnetic field.\n*   The **Prime Mover** provides the rotational energy; without it, no induction can occur.\n*   Testing must follow a logical path: Visual Inspection > Continuity > Insulation Resistance > Operational Checks.\n\n4. **How to use it**\n\nTo apply these principles, you must first understand the \"anatomy\" of the generator. You start by verifying the physical integrity of the stator and rotor. You use a multi-meter to check for continuity in the windings, ensuring the path for **Electromagnetic Induction** is complete. Next, you verify the **Excitation** circuit. Without this DC current, the generator is just a spinning piece of metal with no magnetic field. Finally, you check the **Prime Mover** to ensure it can reach the required RPM (revolutions per minute) to produce the standard 50Hz frequency required in the UK.\n\n5. **Common mistakes**\n\nOne of the most common errors for Level 2 students is attempting to measure output voltage before verifying the **Excitation** current. If there is no magnetic field, there will be no voltage, leading the student to wrongly assume the generator is completely broken. Another mistake is failing to follow the sequence and starting the **Prime Mover** before checking if the generator frame is properly earthed. Always remember: safety and static checks come before rotation.\n\n6. **Quick recap**\n\n**Sequential Testing** is the safest and most efficient way to verify a generator's operation. It builds from basic static checks of the windings and **Excitation** system up to dynamic tests involving the **Prime Mover**. By understanding **Electromagnetic Induction**, we recognize that we are testing the relationship between magnetism and motion. This logical progression prevents equipment damage and ensures that the power produced is safe for use."
       }
     },
     {
@@ -92,8 +92,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Practical Test Methodologies",
-        "content": "1. **What this is**\n\nPractical test methodologies involve the step-by-step execution of a generator's startup and loading sequence to ensure it performs correctly under stress. This involves simulating a power failure and watching how the **Sequential Logic** manages the transition. A critical part of this methodology is managing the electrical demand through **Load Shedding**, which is the intentional disconnection of non-essential electrical loads. This prevents the generator from being overwhelmed by a massive 'inrush' of current the moment it connects to the system.\n\n2. **Why it matters**\n\nTesting the sequence in a controlled environment allows electricians to identify potential points of failure before an actual emergency occurs. If a generator's **Output Stability** is poor during the initial loading phase, the frequency might drop so low that the generator's own protection relays trip it back offline. By following a standard test procedure, we can verify that the **Load Shedding** timing is correct and that the **Synchronisation** equipment is accurately reading the phase angles, ensuring a smooth transition of power that doesn't disrupt the site's operations.\n\n3. **Key facts / rules**\n\n*   Pre-test inspections must verify all fluid levels and battery voltages before the **Sequential Logic** is engaged.\n*   **Load Shedding** should be programmed to prioritize 'essential' loads (like emergency lighting) over 'non-essential' loads (like air conditioning).\n*   **Synchronisation** checks require the generator to match the grid within specific tolerances (usually +/- 0.1Hz and +/- 5% voltage).\n*   The test is only successful if the generator maintains **Output Stability** for the duration of the required run-time, typically 30 to 60 minutes.\n*   Manual overrides should be tested to ensure the **Interlocking** remains active even if the automatic controller fails.\n\n4. **How to use it**\n\nTo carry out a standard sequential test on a simulated system, follow these steps: First, simulate a 'Loss of Mains' signal to the control panel. Observe the **Sequential Logic** as it initiates the start timer. Once the engine is running, monitor the display for **Output Stability**; the voltage and frequency should settle quickly. Next, observe the **Load Shedding** contactors. They should open to clear the busbar of heavy loads. As the generator breaker closes, verify that the 'Essential' loads are powered first. Gradually re-introduce non-essential loads while watching for any dips in frequency. Finally, simulate the 'Mains Return'. The system must perform **Synchronisation** with the returning mains supply before the **Interlocking** allows the transfer switch to move back to the utility position, followed by a 'cool-down' period for the generator.\n\n5. **Common mistakes**\n\nA frequent mistake during practical testing is failing to account for the 'step-loading' impact. Students often try to apply 100% of the load at once, which can lead to a total loss of **Output Stability** and an engine stall. Another error is not checking the **Synchronisation** window; if the generator and mains are connected when they are 'out of phase,' the resulting magnetic forces can physically twist the generator's crankshaft or blow high-capacity fuses instantly.\n\n6. **Quick recap**\n\nPractical testing is the application of theory to ensure system reliability. By carefully following the **Sequential Logic**, utilizing **Load Shedding** to protect the engine, and verifying both **Interlocking** and **Synchronisation**, you ensure the generator can safely take over the load. This methodical approach guarantees that the system remains stable and the transition between power sources is seamless and safe for the entire installation."
+        "title": "Practical Test Methodology",
+        "content": "1. **What this is**\n\nPractical **Sequential Testing** involves the actual hands-on steps an electrician takes to commission or repair a generator. Once the static physical checks are complete, the focus shifts to the quality of the electricity produced. A major part of this is verifying the **Phase Sequence**, which is the numerical order in which the voltages of a polyphase system reach their maximum values (L1, L2, and L3). In a three-phase generator, getting this order right is vital for the correct rotation of motors connected to the system. This section covers the transition from preparing the machine to verifying its output under the power of the **Prime Mover**.\n\n2. **Why it matters**\n\nIn a real-world scenario, such as a hospital backup generator, the **Phase Sequence** must be perfect. If L1, L2, and L3 are swapped, three-phase motors (like those in lift systems or water pumps) will spin backwards, which can cause mechanical destruction. Furthermore, ensuring the **Excitation** levels are stable means the output voltage won't fluctuate and damage sensitive electronic equipment. Practical testing ensures the generator doesn't just \"work,\" but works correctly and safely for the specific environment it serves.\n\n3. **Key facts / rules**\n\n*   The standard **Phase Sequence** in the UK is L1, then L2, then L3.\n*   A phase rotation meter is the primary tool used to verify the sequence.\n*   **Excitation** must be regulated to maintain a constant output voltage as the load changes.\n*   The **Prime Mover** must maintain a constant speed; a drop in speed results in a drop in frequency.\n*   Live testing should only be performed once all dead tests have passed successfully.\n\n4. **How to use it**\n\nBegin by performing a final visual check of the **Prime Mover** (checking fuel, oil, and cooling). Start the engine and allow it to reach its governed speed. Once running, check the **Excitation** voltage at the rotor—this is the DC supply that kickstarts **Electromagnetic Induction**. Using a calibrated voltmeter, measure the output across L1-L2, L2-L3, and L3-L1. They should be balanced (typically 400V in a three-phase system). Finally, use a phase rotation tester to confirm the **Phase Sequence**. If the meter shows a clockwise rotation, the sequence is L1-L2-L3; if anti-clockwise, two phases are swapped.\n\n5. **Common mistakes**\n\nStudents often forget that the **Prime Mover** speed directly affects the frequency (Hz) of the output. If the engine is running too slow, the **Phase Sequence** might look correct, but the power will be unusable. Another mistake is failing to secure the test leads properly before starting the generator; the vibration from the engine can shake loose connections, leading to dangerous arcing or false readings. Always ensure your test equipment is rated for the expected voltage levels.\n\n6. **Quick recap**\n\nPractical generator testing is a move from static component checks to dynamic system verification. By carefully monitoring the **Excitation** and the mechanical performance of the **Prime Mover**, we can ensure a stable output. The final and most crucial step is confirming the **Phase Sequence**, ensuring that L1, L2, and L3 are in the correct order to power the building's infrastructure safely. This **Sequential Testing** approach ensures that when the main power fails, the generator is ready to take over without causing further issues."
       }
     },
     {
@@ -101,57 +101,57 @@
       "type": "practice",
       "order": 6,
       "content": {
-        "title": "Check Your Understanding: Fundamental Principles of Sequential Testing",
+        "title": "Check Your Understanding: Principles of Sequential Testing",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-TEST-C1-L1-A",
-            "questionText": "What is the definition of Sequential Logic in a generator control system?",
+            "questionText": "What three elements are required for Electromagnetic Induction to occur?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "a control system where the output depends on the chronological order of input signals",
-              "output depends on the chronological order of input signals",
-              "system where output depends on the chronological order of inputs"
+              "a magnetic field, a conductor, and relative motion",
+              "magnetic field, conductor, and motion",
+              "a magnetic field, a conductor, and relative movement"
             ],
-            "hint": "Think about how the timing and order of signals determine the output."
+            "hint": "Think about what is needed to produce an electromotive force across a conductor."
           },
           {
             "id": "203-TEST-C1-L1-B",
-            "questionText": "What is the primary function of an Interlocking mechanism?",
+            "questionText": "Define the term 'Excitation' as used in generator principles.",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "prevents two sources from being connected to the same busbar simultaneously",
-              "prevents two sources like the mains and the generator from being connected to the same busbar",
-              "prevents hazardous conditions like back-feeding the grid"
+              "provision of a DC current to the field coils",
+              "DC current used to create the magnetic field",
+              "supplying DC current to establish the initial magnetic field"
             ],
-            "hint": "It is a safety mechanism that prevents two power sources from meeting at the same point."
+            "hint": "This involves the use of DC current to create a specific field."
           },
           {
             "id": "203-TEST-C1-L1-C",
-            "questionText": "What three electrical characteristics must be matched during the Synchronisation process?",
+            "questionText": "What is the primary function of the Prime Mover in a generator system?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "voltage, frequency, and phase angle",
-              "matching voltage, frequency, and phase angle",
-              "voltage, frequency, phase angle"
+              "provides the rotational energy",
+              "provides mechanical energy",
+              "provides the rotation required for induction"
             ],
-            "hint": "These three factors must be identical before the generator joins an energized system."
+            "hint": "Without this component, no induction can occur because there would be no motion."
           },
           {
             "id": "203-TEST-C1-L2",
-            "questionText": "How do Sequential Logic, Interlocking, and Synchronisation combine to ensure a safe transition of power?",
+            "questionText": "How does Sequential Testing use the relationship between Excitation and the Prime Mover to ensure safety?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "Sequential logic ensures steps happen in order, synchronisation matches the power sources, and interlocking prevents them connecting unsafely",
-              "Sequential logic manages the order of operations while interlocking and synchronisation prevent damage from mismatched or simultaneous connections",
-              "They ensure the generator follows a safe path where steps are verified, sources are matched, and dangerous connections are physically prevented"
+              "It ensures the magnetic field and motion are functioning correctly before the system is fully energized",
+              "It verifies the components required for induction are safe before turning the machine on",
+              "It checks the excitation and prime mover logically to prevent catastrophic failures like fires or explosions"
             ],
-            "hint": "Consider how the order of operations, the matching of electricity, and the prevention of simultaneous connections work as a single safety process."
+            "hint": "Consider why we check these components in a specific order before induction begins."
           }
         ]
       }
@@ -161,57 +161,57 @@
       "type": "practice",
       "order": 7,
       "content": {
-        "title": "Check Your Understanding: Practical Test Methodologies",
+        "title": "Check Your Understanding: Practical Test Methodology",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-TEST-C2-L1-A",
-            "questionText": "What is the definition of Load Shedding in the context of generator testing?",
+            "questionText": "What is the standard numerical Phase Sequence for a three-phase system in the UK?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "intentional disconnection of non-essential electrical loads",
-              "the intentional disconnection of non-essential electrical loads",
-              "disconnecting non-essential loads to prevent overwhelming the generator"
+              "L1, L2, and L3",
+              "L1, then L2, then L3",
+              "L1-L2-L3"
             ],
-            "hint": "It involves removing certain demands to protect the generator from an inrush of current."
+            "hint": "This is the order in which the voltages reach their maximum values."
           },
           {
             "id": "203-TEST-C2-L1-B",
-            "questionText": "Which signal must be simulated to initiate the start timer in the Sequential Logic?",
+            "questionText": "Why must Excitation be regulated during the practical operation of a generator?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Loss of Mains",
-              "Loss of Mains signal",
-              "a Loss of Mains signal"
+              "to maintain a constant output voltage as the load changes",
+              "to ensure the output voltage won't fluctuate",
+              "to keep the voltage stable for sensitive equipment"
             ],
-            "hint": "The control panel needs to think the utility power has failed to begin the sequence."
+            "hint": "Think about what happens to the voltage when the load on the generator changes."
           },
           {
             "id": "203-TEST-C2-L1-C",
-            "questionText": "During the loading phase, what indicates that the generator has achieved Output Stability?",
+            "questionText": "What is the direct relationship between the speed of the Prime Mover and the electrical output?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "voltage and frequency should settle quickly",
-              "the voltage and frequency settle quickly",
-              "maintaining frequency and voltage for the duration of the run-time"
+              "speed directly affects the frequency",
+              "a drop in speed results in a drop in frequency",
+              "the prime mover must maintain constant speed to maintain 50Hz frequency"
             ],
-            "hint": "Look for how the primary electrical values behave once the load is applied."
+            "hint": "If the engine slows down, what happens to the Hertz (Hz)?"
           },
           {
             "id": "203-TEST-C2-L2",
-            "questionText": "Why is Load Shedding necessary to maintain Output Stability during the Sequential Logic process?",
+            "questionText": "Why is it vital to verify the Phase Sequence, Excitation levels, and Prime Mover speed before connecting a building load?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "It prevents the generator from being overwhelmed by an inrush of current which would cause the frequency to drop and ruin stability",
-              "Load shedding ensures the engine isn't stalled by heavy loads during the sequential startup, keeping the voltage and frequency stable",
-              "By disconnecting non-essential loads, it allows the sequential logic to safely transition power without causing a total loss of stability"
+              "To ensure motors rotate correctly, voltage is stable, and frequency is correct for the infrastructure",
+              "To prevent mechanical destruction of motors and damage to sensitive electronic equipment",
+              "To ensure the generator works correctly and safely for the environment it serves"
             ],
-            "hint": "Think about what happens to the engine's speed and frequency if too much load is applied too quickly."
+            "hint": "Think about the consequences of incorrect rotation, fluctuating voltage, or wrong frequency."
           }
         ]
       }
@@ -221,39 +221,39 @@
       "type": "worked-example",
       "order": 8,
       "content": {
-        "title": "Worked Example: Sequential Generator Startup and Synchronisation Verification",
-        "given": "A standby generator rated at 150kVA, 400V, 50Hz. The system uses a 12V DC start circuit. You are performing a sequential test following a simulated mains failure.",
+        "title": "Worked Example: Sequential Generator Commissioning",
+        "given": "A 4-pole three-phase generator requires commissioning to provide a standard UK supply of 400V at 50Hz.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Perform pre-start verification of the battery charging system to ensure the 'Ready to Start' logic state is met.",
-            "formula": "Minimum Float Voltage = Nominal Voltage * 1.1",
-            "calculation": "12V * 1.1",
-            "result": "13.2V"
+            "description": "Perform static 'Dead' tests to ensure the machine is safe to rotate and energize.",
+            "formula": "Sequence: Visual > Continuity > Insulation Resistance (IR)",
+            "calculation": "Verify stator winding continuity and ensure IR readings are > 2.0 Megohms.",
+            "result": "Safe to proceed to live testing"
           },
           {
             "stepNumber": 2,
-            "description": "Initiate the start sequence and monitor the frequency once the generator reaches the 'run' state to ensure Output Stability.",
-            "formula": "Target Frequency = 50Hz",
-            "calculation": "Observed frequency on control panel",
-            "result": "50.0Hz"
+            "description": "Calculate the required synchronous speed (RPM) for the Prime Mover to achieve 50Hz.",
+            "formula": "N = (120 x f) / P",
+            "calculation": "N = (120 x 50) / 4",
+            "result": "1500 RPM"
           },
           {
             "stepNumber": 3,
-            "description": "Calculate the maximum initial 'Step-Load' permitted to prevent the generator from stalling or losing stability (Industry standard is 60% of total kVA).",
-            "formula": "Max Step Load = Total kVA * 0.60",
-            "calculation": "150kVA * 0.60",
-            "result": "90kVA"
+            "description": "Start the Prime Mover, apply Excitation, and measure the line-to-line output voltages for balance.",
+            "formula": "Voltage Balance Check",
+            "calculation": "L1-L2: 400V, L2-L3: 401V, L3-L1: 399V",
+            "result": "Balanced (within +/- 1%)"
           },
           {
             "stepNumber": 4,
-            "description": "Verify the Synchronisation window before the Interlocking allows the mains return transfer. The tolerance is ±0.1Hz.",
-            "formula": "Tolerance Range = 50Hz ± 0.1Hz",
-            "calculation": "Upper: 50.1Hz, Lower: 49.9Hz",
-            "result": "49.9Hz to 50.1Hz"
+            "description": "Verify the Phase Sequence using a rotation meter to ensure correct motor direction.",
+            "formula": "Standard Sequence: L1-L2-L3",
+            "calculation": "Connect meter to L1, L2, L3 and observe indicator.",
+            "result": "Clockwise Rotation Confirmed"
           }
         ],
-        "notes": "Always check fluid levels before starting. Remember that applying 100% load instantly (ignoring Load Shedding) will cause frequency collapse and trip the breaker."
+        "notes": "Always ensure the generator frame is earthed before starting the Prime Mover. If the Phase Sequence is anti-clockwise, you must swap any two output leads."
       }
     },
     {
@@ -261,44 +261,46 @@
       "type": "guided-practice",
       "order": 9,
       "content": {
-        "title": "Guided Practice: Sequential Generator Startup and Synchronisation Verification",
-        "problem": "A larger standby generator is rated at 400kVA, 400V, 50Hz. The system uses a 24V DC start circuit. You must verify the sequence for a hospital backup system.",
+        "title": "Guided Practice: Commissioning a 2-Pole Generator",
+        "problem": "You are commissioning a 2-pole three-phase standby generator. It must produce a stable 400V output at 50Hz. Follow the sequential testing procedure to verify the system.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "The generator uses a 24V battery system. Calculate the minimum expected float voltage required to ensure the sequential logic permits a start command.",
+            "prompt": "Before starting the engine, which three 'dead' tests must be performed in order?",
             "expectedAnswer": [
-              "26.4V",
-              "26.4 Volts"
+              "Visual Inspection, Continuity, and Insulation Resistance",
+              "Visual, Continuity, IR"
             ],
-            "hint": "Multiply the nominal battery voltage (24V) by 1.1 to find the healthy float charge level."
+            "hint": "Think of the standard testing hierarchy: look for damage first, then check the copper path, then check the insulation."
           },
           {
             "stepNumber": 2,
-            "prompt": "The engine has started and reached the 'Run' phase. What is the target frequency you must observe on the control panel to confirm Output Stability before loading?",
+            "prompt": "Calculate the required RPM for this 2-pole generator to produce 50Hz.",
             "expectedAnswer": [
-              "50Hz",
-              "50 Hertz"
+              "3000 RPM",
+              "3000"
             ],
-            "hint": "Check the rated frequency provided in the problem description."
+            "hint": "Use the formula N = (120 x f) / P, where f = 50 and P = 2."
           },
           {
             "stepNumber": 3,
-            "prompt": "To prevent the engine from stalling, the Load Shedding system must limit the first block of power. Calculate a 60% initial step-load for this 400kVA generator.",
+            "prompt": "After starting the Prime Mover, you measure L1-L2 and get 0V despite the engine running at the correct speed. What system should you check next?",
             "expectedAnswer": [
-              "240kVA",
-              "240 kVA"
+              "The Excitation system",
+              "Excitation current",
+              "DC Excitation"
             ],
-            "hint": "Multiply the total generator rating (400) by 0.60."
+            "hint": "Remember that electromagnetic induction requires a magnetic field. What provides the DC current to create that field?"
           },
           {
             "stepNumber": 4,
-            "prompt": "During the 'Mains Return' sequence, the generator frequency is measured at 50.05Hz. Is this within the ±0.1Hz Synchronisation tolerance for the Interlocking to close?",
+            "prompt": "The phase rotation meter shows an anti-clockwise (reverse) sequence. How do you rectify this to achieve a standard L1-L2-L3 sequence?",
             "expectedAnswer": [
-              "Yes",
-              "Yes, it is within range"
+              "Swap any two phases",
+              "Swap L1 and L2",
+              "Reverse two output leads"
             ],
-            "hint": "The acceptable range is 49.9Hz to 50.1Hz. Compare 50.05Hz to these limits."
+            "hint": "In a three-phase system, changing the order of any two conductors will reverse the phase rotation."
           }
         ]
       }
@@ -312,55 +314,53 @@
         "questions": [
           {
             "id": "203-TEST-P1",
-            "questionText": "A generator is being synchronised to a 50.0Hz mains supply. Based on the standard tolerance of +/- 0.1Hz mentioned in the text, what is the maximum frequency the generator can reach to still be permitted to connect?",
+            "questionText": "In the UK, what is the standard frequency that a generator's prime mover must be governed to produce?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "50.1"
+              "50"
             ],
             "hint": "Answer in Hertz (Hz)"
           },
           {
             "id": "203-TEST-P2",
-            "questionText": "During a synchronisation check, the mains voltage is measured at 400V. What is the minimum voltage the generator must produce to stay within the +/- 5% tolerance required for connection?",
+            "questionText": "When performing dynamic testing on a standard three-phase generator system, what is the typical balanced voltage expected when measuring between L1 and L2?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "380"
+              "400"
             ],
-            "hint": "Answer in Volts (V)"
+            "hint": "Typical UK three-phase line voltage (V)"
           },
           {
             "id": "203-TEST-P3",
-            "questionText": "Which safety mechanism must be verified to ensure that the generator and the mains supply cannot be connected to the busbar at the same time?",
+            "questionText": "According to the logical path of sequential testing, which specific dead test must be completed after the Visual Inspection but before the Insulation Resistance test?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Interlocking",
-              "Electrical interlocking",
-              "Mechanical interlocking",
-              "Interlock"
+              "Continuity",
+              "Continuity test",
+              "Windings continuity"
             ],
-            "hint": "This prevents hazardous conditions like back-feeding the grid."
+            "hint": "This test ensures the path for induction is complete using a multi-meter."
           },
           {
             "id": "203-TEST-P4",
-            "questionText": "To prevent an engine stall or loss of stability during the initial loading phase, what process is used to intentionally disconnect non-essential loads?",
+            "questionText": "What is the name of the mechanical component, such as a diesel engine, that provides the necessary rotational energy to the generator?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Load shedding",
-              "Load-shedding",
-              "Shedding loads"
+              "Prime Mover",
+              "The prime mover"
             ],
-            "hint": "This manages the 'inrush' of current during the transition."
+            "hint": "Without this, no relative motion occurs for electromagnetic induction."
           },
           {
             "id": "203-TEST-P5",
-            "questionText": "What term describes the control system where the output depends on the chronological order of input signals, ensuring Step B only occurs after Step A is verified?",
+            "questionText": "To establish the initial magnetic field in the field coils, what specific type of electrical current is used during the excitation process?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Sequential Logic",
-              "Sequential control logic",
-              "Sequence logic"
+              "DC",
+              "Direct Current",
+              "DC current"
             ],
-            "hint": "This is the heart of the diagnostic process for generator startup."
+            "hint": "It is the opposite of the Alternating Current (AC) usually produced by the stator."
           }
         ]
       }
@@ -376,25 +376,25 @@
         "questions": [
           {
             "id": "203-TEST-INT-1",
-            "questionText": "How does the application of sequential logic within practical test methodologies ensure the stability of a generator's output during a simulated power failure? (2-3 sentences)",
+            "questionText": "How do the principles of sequential testing dictate the practical methodology used when verifying the phase sequence of a three-phase generator? Explain the relationship between the logical order of checks and the safety of the commissioning process in 2-3 sentences.",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "Sequential logic ensures that loads are introduced in a specific chronological order, preventing sudden surges that could destabilize the generator. By following this ordered sequence during testing, the system can verify that the generator output remains steady as it transitions to handle the electrical demand.",
-              "By using sequential logic, the test methodology ensures that the generator is not overwhelmed by immediate total load, which maintains voltage and frequency stability. This chronological control allows the generator to settle into its output parameters safely during the startup phase."
+              "Sequential testing principles establish a hierarchy where static safety checks must precede dynamic tests like phase sequence verification to prevent equipment damage. This relationship ensures that the practical methodology identifies fundamental faults before the generator's electromagnetic induction reaches levels that could be hazardous.",
+              "The logical order ensures that basic electrical integrity is confirmed before the electrician performs hands-on phase sequence checks. By following this sequence, the practical methodology minimizes risk by identifying faults in a controlled, step-by-step manner."
             ],
-            "hint": "Think about how the chronological order of inputs prevents the system from being overwhelmed during the transition."
+            "hint": "Think about why we perform static physical checks before measuring the numerical order of voltage peaks."
           },
           {
             "id": "203-TEST-INT-2",
-            "questionText": "Explain how a standard sequential test procedure integrates sequential logic and load shedding to achieve the primary safety and operational objectives of generator testing. Please provide a comprehensive explanation in 3-4 sentences.",
+            "questionText": "Explain how the systematic application of sequential testing principles and practical methodology ensures a generator is safely commissioned and fit for purpose. In 3-4 sentences, describe how the logical hierarchy of tests, the verification of electromagnetic induction, and the checking of phase sequence work together to identify faults.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "A standard sequential test procedure simulates a power failure to verify that the control system's sequential logic correctly manages the chronological startup and loading of the generator. By integrating load shedding into this process, the system intentionally disconnects non-essential loads to prevent the generator from being overwhelmed and to maintain output stability. This comprehensive methodology ensures that the generator can safely and reliably support critical infrastructure without risking mechanical failure or electrical instability during a real-world emergency.",
-              "The execution of a sequential test procedure validates that the sequential logic triggers operations in the correct order, which is vital for maintaining the stability of the generator's output. Incorporating load shedding within this methodology serves the safety objective of protecting the equipment from overload while ensuring the most critical loads are prioritized. Ultimately, this synthesis of logic and load management confirms that the entire system operates as a cohesive, stable unit under stress."
+              "A successful commissioning process relies on a logical hierarchy of sequential tests that transition from basic physical safety checks to the verification of active electromagnetic induction. By applying this methodology, an electrician can safely confirm that the generator is producing electricity and that the phase sequence (L1, L2, and L3) is in the correct numerical order. This comprehensive approach ensures that any faults are identified systematically, preventing damage to the polyphase system and ensuring the generator operates as intended.",
+              "The integration of sequential principles and practical methodology ensures that the generator's ability to convert mechanical energy via electromagnetic induction is tested in a safe, controlled order. Electricians first verify the machine's static condition before moving to dynamic tests that confirm the correct phase sequence for the connected load. This total process provides a 'big picture' verification of the system's electrical integrity and operational safety, ensuring it is fully fit for purpose."
             ],
-            "hint": "Reflect on how the step-by-step procedure uses logic and load management to meet the ultimate goal of system reliability and equipment protection."
+            "hint": "Consider the transition from static safety checks to dynamic electrical production and how each step builds on the previous one to protect the system."
           }
         ]
       }
@@ -408,46 +408,46 @@
         "questions": [
           {
             "id": "203-TEST-SR-1",
-            "questionText": "What is the base SI unit for electrical current?",
+            "questionText": "What is the primary piece of legislation that sets out the general duties of employers and employees regarding health and safety in the UK?",
             "expectedAnswer": [
-              "Amperes",
-              "Amps",
-              "A"
+              "Health and Safety at Work Act 1974",
+              "HASWA",
+              "HASAWA"
             ],
-            "hint": "It is one of the seven base units in the SI system."
+            "hint": "It is an Act of Parliament passed in 1974."
           },
           {
             "id": "203-TEST-SR-2",
-            "questionText": "Using Ohm's Law, what is the formula to calculate Resistance (R) if Voltage (V) and Current (I) are known?",
+            "questionText": "Under the PPE at Work Regulations, who is responsible for providing and paying for any PPE required for a task?",
             "expectedAnswer": [
-              "R = V / I",
-              "R = V ÷ I",
-              "Voltage divided by current"
+              "The employer",
+              "Employer",
+              "The company"
             ],
-            "hint": "Resistance is the ratio of voltage to current."
+            "hint": "The person or entity that provides the work and pays the wages."
           },
           {
             "id": "203-TEST-SR-3",
-            "questionText": "What numerical value does the metric prefix 'milli' (m) represent?",
+            "questionText": "Which specific statutory regulation governs electrical safety and the prevention of danger from electricity in the workplace?",
             "expectedAnswer": [
-              "0.001",
-              "One thousandth",
-              "10^-3"
+              "Electricity at Work Regulations 1989",
+              "EAWR",
+              "EAWR 1989"
             ],
-            "hint": "Think of a millimeter in relation to a meter."
+            "hint": "Often abbreviated as EAWR."
           },
           {
             "id": "203-TEST-SR-4",
-            "questionText": "How does the total resistance change in a series circuit when more resistors are added?",
+            "questionText": "What is the legal duty of an employee if they find their Personal Protective Equipment (PPE) is damaged or lost?",
             "expectedAnswer": [
-              "It increases",
-              "Increases",
-              "Total resistance goes up"
+              "Report it to their employer",
+              "Report it",
+              "Tell their supervisor"
             ],
-            "hint": "In a single loop, every resistor adds to the total opposition."
+            "hint": "They must inform a specific person so it can be replaced."
           }
         ],
-        "notes": "SR-1 -> 202-1A (SI Units); SR-2 -> 202-2B (Ohm's Law); SR-3 -> 202-1A (Metric Prefixes); SR-4 -> 202-2B (Circuit Theory)"
+        "notes": "SR-1 -> 202-1A (Health and Safety at Work Act 1974); SR-2 -> 202-2B (Employer duty to provide PPE); SR-3 -> 202-1A (Electricity at Work Regulations 1989); SR-4 -> 202-2B (Employee duty to report damaged PPE)"
       }
     }
   ],

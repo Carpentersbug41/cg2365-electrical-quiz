@@ -43,6 +43,9 @@ interface GenerationStatus {
   error?: string;
   errors?: string[];
   warnings?: string[];
+  rawResponse?: string;
+  responseStatus?: number;
+  responseType?: string;
   debugInfo?: {
     rawResponse: string;
     parseError: string;
@@ -173,20 +176,84 @@ export default function GeneratePage() {
         body: JSON.stringify(request),
       });
 
-      const data = await response.json();
+      let data: any = null;
+      let rawResponse: string = '';
+      const responseStatus = response.status;
+      const responseType = response.headers.get('content-type') || 'unknown';
 
-      if (!response.ok || !data.success) {
-        const error = new Error(data.error || 'Generation failed') as Error & { 
+      // STEP 1: Get raw response text first (works for both JSON and HTML)
+      try {
+        rawResponse = await response.text();
+      } catch (textError) {
+        throw new Error(`Failed to read response: ${textError instanceof Error ? textError.message : 'Unknown error'}`);
+      }
+
+      // STEP 2: Try to parse as JSON
+      if (!response.ok) {
+        // Response is an error (404, 500, etc.)
+        let errorMessage = `API request failed with status ${response.status}`;
+        let errors: string[] | undefined;
+        let warnings: string[] | undefined;
+        let debugInfo: any = undefined;
+        
+        // Try to parse error response as JSON
+        try {
+          data = JSON.parse(rawResponse);
+          errorMessage = data.error || errorMessage;
+          errors = data.errors;
+          warnings = data.warnings;
+          debugInfo = data.debugInfo;
+        } catch {
+          // Not JSON, probably HTML error page
+          errorMessage = `Server returned ${response.status} error (non-JSON response)`;
+        }
+        
+        const error = new Error(errorMessage) as Error & {
+          errors?: string[];
+          warnings?: string[];
+          debugInfo?: any;
+          rawResponse?: string;
+          responseStatus?: number;
+          responseType?: string;
+        };
+        error.errors = errors;
+        error.warnings = warnings;
+        error.debugInfo = debugInfo;
+        error.rawResponse = rawResponse;
+        error.responseStatus = responseStatus;
+        error.responseType = responseType;
+        throw error;
+      }
+
+      // STEP 3: Parse successful response
+      try {
+        data = JSON.parse(rawResponse);
+      } catch (parseError) {
+        const error = new Error('Failed to parse API response as JSON') as Error & {
+          rawResponse?: string;
+          responseStatus?: number;
+          responseType?: string;
+        };
+        error.rawResponse = rawResponse;
+        error.responseStatus = responseStatus;
+        error.responseType = responseType;
+        throw error;
+      }
+
+      // STEP 4: Check data.success
+      if (!data.success) {
+        const error = new Error(data.error || 'Generation failed') as Error & {
           debugInfo?: GenerationStatus['debugInfo'];
           errors?: string[];
           warnings?: string[];
         };
-        error.debugInfo = data.debugInfo; // Capture debug info from API
-        error.errors = data.errors; // Capture validation errors
-        error.warnings = data.warnings; // Capture validation warnings
+        error.debugInfo = data.debugInfo;
+        error.errors = data.errors;
+        error.warnings = data.warnings;
         throw error;
       }
 
+      // Success - proceed as normal
       setStatus({
         stage: 'success',
         message: 'Generation complete!',
@@ -201,10 +268,13 @@ export default function GeneratePage() {
         },
       });
     } catch (error) {
-      const errorObj = error as Error & { 
+      const errorObj = error as Error & {
         debugInfo?: GenerationStatus['debugInfo'];
         errors?: string[];
         warnings?: string[];
+        rawResponse?: string;
+        responseStatus?: number;
+        responseType?: string;
       };
       
       setStatus({
@@ -215,6 +285,9 @@ export default function GeneratePage() {
         errors: errorObj.errors,
         warnings: errorObj.warnings,
         debugInfo: errorObj.debugInfo,
+        rawResponse: errorObj.rawResponse,
+        responseStatus: errorObj.responseStatus,
+        responseType: errorObj.responseType,
       });
     }
   };
@@ -817,6 +890,33 @@ export default function GeneratePage() {
                 </div>
               )}
 
+              {/* Raw Response Display */}
+              {status.rawResponse && (
+                <div className="p-4 bg-gray-50 dark:bg-gray-900/20 border-2 border-gray-400 dark:border-gray-600 rounded-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg className="w-6 h-6 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                    </svg>
+                    <h3 className="font-bold text-gray-900 dark:text-gray-200 text-lg">
+                      Raw API Response
+                      {status.responseStatus && (
+                        <span className="ml-2 text-sm font-normal">
+                          (HTTP {status.responseStatus} - {status.responseType})
+                        </span>
+                      )}
+                    </h3>
+                  </div>
+                  <div className="bg-gray-900 text-gray-100 p-4 rounded font-mono text-xs overflow-x-auto max-h-96 overflow-y-auto">
+                    <pre className="whitespace-pre-wrap break-words">{status.rawResponse}</pre>
+                  </div>
+                  <div className="mt-3 pt-3 border-t border-gray-300 dark:border-gray-700">
+                    <p className="text-xs text-gray-700 dark:text-gray-400">
+                      This shows the exact response from the server. If it's HTML, the API route crashed or returned a 404/500 error page.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               {/* Debug Information - Only show if available */}
               {status.debugInfo && (
                 <div className="space-y-4">
@@ -857,9 +957,9 @@ export default function GeneratePage() {
                   )}
 
                   {/* Raw Response - Collapsible */}
-                  <details className="p-4 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
+                  <details open className="p-4 bg-gray-50 dark:bg-gray-900/20 rounded-lg">
                     <summary className="font-semibold text-gray-900 dark:text-white mb-2 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400">
-                      Raw LLM Response (click to expand)
+                      Raw LLM Response (auto-expanded on error)
                     </summary>
                     <pre className="text-xs font-mono bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto mt-2 max-h-96 overflow-y-auto">
                       {status.debugInfo.rawResponse}

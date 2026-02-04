@@ -9,710 +9,445 @@ import { TaggedQuestion } from './types';
 export const sequentialGeneratorTestQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What is the primary reason for following a specific sequence when testing an electrical installation?",
+    "question": "What is the primary purpose of performing a sequential test on a generator system?",
     "options": [
-      "To ensure the safety of the person testing and prevent damage to the installation",
-      "To ensure the testing is completed in the shortest possible time",
-      "To allow the use of a single testing instrument for all tests",
-      "To ensure the battery life of the test equipment is preserved"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "health-safety",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Safety is the paramount concern in electrical testing. Following a sequence ensures that fundamental safety paths (like earthing) are verified before the system is energized or subjected to higher voltage tests."
-  },
-  {
-    "id": 4017,
-    "question": "Which of these tests is typically carried out first in the standard sequence of dead tests?",
-    "options": [
-      "Continuity of protective conductors",
-      "Insulation resistance",
-      "Polarity (dead test)",
-      "Earth fault loop impedance"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Continuity of protective conductors is the first test to ensure that a continuous path to earth exists for safety before any other tests are performed."
-  },
-  {
-    "id": 4018,
-    "question": "An electrician is testing a new radial circuit. After successfully completing the continuity of protective conductors, what is the next logical dead test in the sequence?",
-    "options": [
-      "Insulation resistance",
-      "Functional testing",
-      "Earth fault loop impedance",
-      "RCD operation test"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "After protective conductor continuity, insulation resistance is performed to ensure there are no short circuits or leakage paths between conductors before the circuit is ever made live."
-  },
-  {
-    "id": 4019,
-    "question": "Why must 'dead tests' be completed and verified before 'live tests' are started?",
-    "options": [
-      "To ensure the installation is safe to be energized for the live tests",
-      "Because dead tests require higher current than live tests",
-      "Because the testing instruments for live tests only work if dead tests are done",
-      "To prevent the utility meter from recording the test energy"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "health-safety",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Dead tests identify faults that could cause a danger to life or damage to the installation if power were applied."
-  },
-  {
-    "id": 4020,
-    "question": "Which instrument is the correct choice for performing the initial continuity test in a sequence?",
-    "options": [
-      "Low resistance ohm meter",
-      "Insulation resistance tester set to 500V",
-      "Earth electrode tester",
-      "Voltmeter"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "units",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Continuity tests require a low resistance ohm meter (typically using a low voltage DC source) to accurately measure the small resistance of copper conductors."
-  },
-  {
-    "id": 4021,
-    "question": "A student has just confirmed the polarity of a circuit while it is dead. According to the standard sequence, which of these would be the first 'live' test performed after the board is energized?",
-    "options": [
-      "Earth fault loop impedance (Zs)",
-      "Insulation resistance",
-      "Continuity of protective conductors",
-      "Resistance of the phase conductor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Once the installation is live, Earth Fault Loop Impedance (Zs) is usually the first live test to verify that the protective device will trip under fault conditions."
-  },
-  {
-    "id": 4022,
-    "question": "In a sequential test procedure, what is the 'polarity' test specifically checking?",
-    "options": [
-      "That the phase conductor is connected to the correct terminals of switches and fuses",
-      "That the earth wire is colored green and yellow correctly",
-      "That the supply is alternating current (AC) and not direct current (DC)",
-      "That the circuit breakers are of the correct 'Type' (e.g., Type B)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_AC_WITH_DC",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Polarity ensures that switches and protective devices are placed in the line (phase) conductor, not the neutral, so that the circuit is safely isolated when the switch is off."
-  },
-  {
-    "id": 4023,
-    "question": "Which of the following is categorized as a 'Live Test' in a sequential testing procedure?",
-    "options": [
-      "RCD operation test",
-      "Continuity of protective conductors",
-      "Insulation resistance",
-      "Continuity of ring final conductors"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "RCD testing requires the circuit to be energized at normal supply voltage to measure the disconnection time, making it a live test."
-  },
-  {
-    "id": 4024,
-    "question": "While following a test sequence, an electrician finds a reading of 0.02 MΩ during an Insulation Resistance test. What is the correct action to take?",
-    "options": [
-      "Investigate and rectify the fault before proceeding to any further tests",
-      "Proceed to live testing as the value is above zero",
-      "Increase the test voltage to 1000V to clear the fault",
-      "Record the value and move to the polarity test"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "0.02 MΩ is well below the minimum acceptable limit (usually 1.0 MΩ for new installations). The fault must be fixed before the installation is energized to prevent danger."
-  },
-  {
-    "id": 4025,
-    "question": "What is the purpose of the 'Prospective Fault Current' (PFC) test in the live test sequence?",
-    "options": [
-      "To ensure protective devices can safely interrupt the maximum possible current at that point",
-      "To calculate the total energy consumption of the building",
-      "To measure the resistance of the earth electrode in the garden",
-      "To check if the voltage drop is within the 3% limit for lighting"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "UNITS_MISSING"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "conceptual",
-      "units"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "PFC testing ensures that the breaking capacity of the circuit breakers or fuses is higher than the highest current that could flow during a fault."
-  },
-  {
-    "id": 4026,
-    "question": "In the correct sequence of electrical testing, why are 'dead' tests carried out before 'live' tests?",
-    "options": [
-      "To ensure the safety of the person testing and the installation",
-      "Because dead tests require more battery power",
-      "To allow the circuit to warm up before applying voltage",
-      "Because live tests can only be done during the day"
+      "To verify that components operate in the correct order",
+      "To measure the total resistance of the earthing system",
+      "To convert the AC output into a DC supply",
+      "To increase the frequency of the generated voltage"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "health-safety",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Safety is the primary concern in electrical testing. Performing dead tests first ensures there are no major faults before the installation is energized."
-  },
-  {
-    "id": 4027,
-    "question": "When testing a circuit, which electrical property is measured to determine the flow of electrons through a conductor?",
-    "options": [
-      "Current",
-      "Voltage",
-      "Resistance",
-      "Frequency"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_I_V_R",
-      "3": "CONFUSED_FREQUENCY_WITH_CURRENT"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "terminology",
-      "units",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Current is the measure of the rate of flow of electrons in a circuit, measured in Amperes (A)."
-  },
-  {
-    "id": 4028,
-    "question": "Using Ohm's Law, if a test shows a circuit has a constant resistance, what will happen to the current if the supply voltage is doubled?",
-    "options": [
-      "The current will double",
-      "The current will be halved",
-      "The current will stay the same",
-      "The current will drop to zero"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "CONFUSED_I_V_R",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "ohms-law",
-      "conceptual",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Ohm's Law (I = V/R) states that current is directly proportional to voltage. If voltage doubles and resistance is constant, the current also doubles."
-  },
-  {
-    "id": 4029,
-    "question": "Which of these instruments would an electrician use to measure the resistance of a conductor during a dead test?",
-    "options": [
-      "Ohmmeter",
-      "Voltmeter",
-      "Ammeter",
-      "Wattmeter"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_I_V_R",
-      "3": "WRONG_UNITS"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "units",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Resistance is measured in Ohms using an Ohmmeter (often part of a multi-function tester)."
-  },
-  {
-    "id": 4030,
-    "question": "An electrician is testing two heating elements connected in series. If each element has a resistance of 25Ω, what should the total resistance reading be?",
-    "options": [
-      "50Ω",
-      "12.5Ω",
-      "25Ω",
-      "625Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_PARALLEL_RULE",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "series",
-      "resistance-rule",
-      "application"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In a series circuit, total resistance is the sum of all individual resistances (Rt = R1 + R2). Therefore, 25Ω + 25Ω = 50Ω."
-  },
-  {
-    "id": 4031,
-    "question": "Why is it essential to follow a specific sequence when testing an electrical generator and its associated circuits?",
-    "options": [
-      "To ensure that safety-critical 'dead' tests are completed before the system is energised",
-      "To ensure the generator reaches its maximum operating temperature before testing",
-      "To allow the magnetic fields in the windings to dissipate completely",
-      "To prevent the digital multimeter from blowing its internal fuse"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
       "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
     },
-    "section": "Introduction to test concepts",
-    "category": "Science 2365 Level 2",
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
     "tags": [
-      "health-safety",
       "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Safety is the primary driver for sequential testing. By performing 'dead' tests (continuity and insulation resistance) first, we ensure the installation is safe to receive power before 'live' tests are attempted."
-  },
-  {
-    "id": 4032,
-    "question": "Which instrument is specifically required to perform the initial continuity test of the protective conductors in a generator installation?",
-    "options": [
-      "A low-resistance ohmmeter",
-      "A high-voltage insulation resistance tester",
-      "A standard voltmeter set to the 600V AC range",
-      "A clamp meter measuring current in the neutral"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "CONFUSED_I_V_R",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Core testing principles",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "units",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Continuity testing requires a low-resistance ohmmeter (usually delivering at least 200mA) to accurately measure very small resistance values in protective conductors."
-  },
-  {
-    "id": 4033,
-    "question": "An electrician has confirmed the continuity of the earth path (0.04 Ω) for a new generator. What is the next logical step in the sequential test procedure?",
-    "options": [
-      "Insulation resistance testing",
-      "Functional testing of the generator governor",
-      "Phase rotation testing",
-      "Measuring the output voltage under full load"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Practical test applications",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "application",
-      "resistance-rule"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Following continuity, insulation resistance is the next 'dead' test in the sequence to ensure there are no short circuits or leakage paths to earth before energisation."
-  },
-  {
-    "id": 4034,
-    "question": "In the context of generator science, why is a 'dead' polarity test performed before the generator is started?",
-    "options": [
-      "To verify that single-pole control devices are connected in the line conductor",
-      "To ensure the generator is rotating in a clockwise direction",
-      "To calibrate the frequency meter against the engine RPM",
-      "To check if the fuel solenoid is receiving the correct DC voltage"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Core testing principles",
-    "category": "Science 2365 Level 2",
-    "tags": [
       "conceptual",
-      "terminology"
+      "generator-components"
     ],
     "learningOutcomeId": "203-TEST-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Polarity testing ensures that switches and circuit breakers are placed in the 'live' (line) conductor, which is a critical safety requirement for disconnecting power."
-  },
-  {
-    "id": 4035,
-    "question": "A student is asked to identify the correct sequence of tests for a generator installation. Which order is correct?",
-    "options": [
-      "Continuity, Insulation Resistance, Polarity, Live Testing",
-      "Live Testing, Polarity, Continuity, Insulation Resistance",
-      "Insulation Resistance, Live Testing, Continuity, Polarity",
-      "Polarity, Live Testing, Insulation Resistance, Continuity"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Introduction to test concepts",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The standard sequence always begins with dead tests (Continuity and IR) followed by polarity and finally live functional/voltage tests."
-  },
-  {
-    "id": 4036,
-    "question": "During an insulation resistance test on a 230V generator's windings, a reading of 0.45 MΩ is obtained. What does this result indicate to the tester?",
-    "options": [
-      "The insulation is failing and the system should not be energised",
-      "The insulation is in excellent condition for a Level 2 installation",
-      "The test was performed at the wrong frequency",
-      "The resistance is too low because the generator is currently running"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Practical test applications",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "application",
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "For a standard 230V system, the minimum acceptable insulation resistance is 1.0 MΩ. A reading of 0.45 MΩ is a fail and indicates a fault."
-  },
-  {
-    "id": 4037,
-    "question": "What scientific principle explains why an insulation resistance tester uses a high DC voltage (e.g., 500V) rather than a low-voltage battery?",
-    "options": [
-      "To stress the insulation enough to identify potential leakage paths",
-      "To match the AC frequency of the generator output",
-      "To overcome the high inductance of the generator windings",
-      "To ensure the magnetism in the rotor is correctly aligned"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Core testing principles",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "conceptual",
-      "ac-dc"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "High DC voltage is used in IR testing to 'stress' the insulation, allowing the meter to detect small leakage currents that wouldn't be apparent at low voltages."
-  },
-  {
-    "id": 4038,
-    "question": "Which of these units would be expected when recording the result of a generator's winding continuity test?",
-    "options": [
-      "Ohms (Ω)",
-      "Megohms (MΩ)",
-      "Hertz (Hz)",
-      "Microfarads (μF)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "WRONG_UNITS"
-    },
-    "section": "Introduction to test concepts",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "units",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
+    "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Continuity measures the resistance of a conductor, which is a low value recorded in Ohms (Ω). MΩ is used for insulation resistance."
+    "explanation": "A sequential test ensures that all parts of a system or process trigger in the intended order for safety and functional correctness."
   },
   {
-    "id": 4039,
-    "question": "A generator is started for the 'live' phase of the sequential test. The output voltage is 230V, but the frequency is measured at 55Hz. What does this indicate about the generator's state?",
+    "id": 4017,
+    "question": "Which type of electrical supply is typically produced by a standard commercial generator before any rectification?",
     "options": [
-      "The engine speed (RPM) is too high",
-      "The magnetic field strength is too low",
-      "The output windings have a short circuit",
-      "The insulation resistance is decreasing"
+      "Alternating Current (AC)",
+      "Direct Current (DC)",
+      "Constant Static Charge",
+      "High Voltage Pulse Only"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Practical test applications",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "application",
-      "frequency",
-      "sine-wave"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "In an AC generator, the frequency is directly proportional to the rotational speed of the engine/rotor. 55Hz (above 50Hz) indicates the engine is running too fast."
-  },
-  {
-    "id": 4040,
-    "question": "During the final stage of a sequential generator test, why is a load test performed?",
-    "options": [
-      "To verify that the generator can maintain voltage and frequency under demand",
-      "To ensure the insulation resistance increases as the windings get hot",
-      "To check that the earth electrode resistance decreases when current flows",
-      "To discharge the capacitors used in the starting circuit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Practical test applications",
-    "category": "Science 2365 Level 2",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A load test is the functional culmination of the sequence, ensuring the generator's governor and AVR (Automatic Voltage Regulator) respond correctly to electrical demand."
-  },
-  {
-    "id": 4041,
-    "question": "Which specific component is used in a DC generator to ensure the output current flows in only one direction through the external circuit?",
-    "options": [
-      "A split-ring commutator",
-      "A pair of slip rings",
-      "A set of permanent magnets",
-      "A laminated iron core"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "1": "CONFUSED_AC_DC_SOURCES",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
+      "3": "CONFUSED_AC_DC_SOURCES"
     },
     "section": "Science 2365 Level 2",
     "category": "Sequential Generator Test",
     "tags": [
       "ac-dc",
+      "conceptual",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Standard generators work on the principle of electromagnetic induction, which naturally produces an alternating current (AC) sine wave."
+  },
+  {
+    "id": 4018,
+    "question": "In the context of generator principles, what is the name of the stationary part of the machine that houses the coils?",
+    "options": [
+      "Stator",
+      "Armature",
+      "Commutator",
+      "Rotor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "2": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "3": "CONFUSED_AC_DC_GENERATOR_PARTS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
       "generator-components",
+      "discrimination",
       "terminology"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The stator is the stationary part of a generator, while the rotor is the part that rotates."
+  },
+  {
+    "id": 4019,
+    "question": "An electrician is checking a generator output. If the peak voltage (Vmax) is 325V, what is the approximate RMS voltage value used for standard calculations?",
+    "options": [
+      "230V",
+      "460V",
+      "162V",
+      "325V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "rms-peak",
+      "calculation",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The RMS value is calculated as Peak Voltage x 0.707 (or Peak / √2). 325V x 0.707 is approximately 230V."
+  },
+  {
+    "id": 4020,
+    "question": "Which rule should be applied to determine the direction of the induced current in a generator conductor?",
+    "options": [
+      "Fleming's Right-Hand Rule",
+      "Fleming's Left-Hand Rule",
+      "Ohm's Law",
+      "Lenz's Law"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "electromagnetic-induction",
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Fleming's Right-Hand Rule is used for generators (Generation = Right), whereas the Left-Hand Rule is used for motors."
+  },
+  {
+    "id": 4021,
+    "question": "Why is it vital to follow a step-by-step sequence when commissioning a new generator?",
+    "options": [
+      "To ensure the safety of personnel and prevent equipment damage",
+      "To decrease the total power consumption of the building",
+      "To ensure the voltage stays at exactly 0V during operation",
+      "To convert the magnetic field into electrical resistance"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "health-safety",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Following a sequence ensures that safety interlocks are tested and that no damage occurs from unexpected electrical surges."
+  },
+  {
+    "id": 4022,
+    "question": "If a generator test requires three identical 10Ω resistors to be connected in series, what is the total resistance of the test load?",
+    "options": [
+      "30Ω",
+      "3.33Ω",
+      "10Ω",
+      "0Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CALCULATION_ERROR"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "series",
+      "calculation",
+      "resistance-rule"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, total resistance is the sum of all individual resistances (10 + 10 + 10 = 30)."
+  },
+  {
+    "id": 4023,
+    "question": "What unit is used to express the number of cycles per second produced by an AC generator?",
+    "options": [
+      "Hertz (Hz)",
+      "Volts (V)",
+      "Amps (A)",
+      "Watts (W)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "WRONG_UNITS",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "frequency",
+      "units",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "Frequency is measured in Hertz (Hz), representing the number of complete cycles of the sine wave per second."
+  },
+  {
+    "id": 4024,
+    "question": "During a test, if the speed of the generator's rotor is increased, what is the most likely effect on the output voltage?",
+    "options": [
+      "The induced voltage will increase",
+      "The induced voltage will decrease",
+      "The voltage will change from AC to DC",
+      "The resistance of the coils will decrease"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "electromagnetic-induction",
+      "conceptual",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "According to Faraday's Law, the magnitude of induced EMF is proportional to the rate of change of magnetic flux; higher speed equals a higher rate of change."
+  },
+  {
+    "id": 4025,
+    "question": "When using a multimeter to verify the output sequence of a small generator intended for UK mains equipment, which setting should be used?",
+    "options": [
+      "AC Volts",
+      "DC Volts",
+      "Ohms (Resistance)",
+      "DC Amps"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "application",
+      "ac-dc",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "UK mains and standard generators provide Alternating Current (AC), so the AC Volts setting must be used for testing output voltage."
+  },
+  {
+    "id": 4026,
+    "question": "Which component is responsible for converting the AC generated in the armature of a DC generator into a DC output at the terminals?",
+    "options": [
+      "Commutator",
+      "Slip rings",
+      "Field coils",
+      "Stator"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_AC_DC_GENERATOR_PARTS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Generator Components",
+    "tags": [
+      "generator-components",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A commutator acts as a mechanical rectifier, reversing the connections to the external circuit as the armature rotates to ensure the output current flows in only one direction (DC)."
+  },
+  {
+    "id": 4027,
+    "question": "According to the principles of electromagnetic induction, what is required for an electromotive force (EMF) to be induced in a conductor?",
+    "options": [
+      "Relative motion between the conductor and a magnetic field",
+      "A constant, unchanging magnetic field around a stationary wire",
+      "The conductor must be connected to a DC battery source",
+      "The conductor must be made of an insulating material"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Electromagnetic Induction",
+    "tags": [
+      "electromagnetic-induction",
+      "conceptual",
+      "magnetism"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Faraday's Law states that an EMF is induced when there is a change in magnetic flux linkage, which requires relative motion between the magnetic field and the conductor."
+  },
+  {
+    "id": 4028,
+    "question": "What type of electrical output is produced by a simple generator that utilizes slip rings?",
+    "options": [
+      "Alternating Current (AC)",
+      "Direct Current (DC)",
+      "Pulsating Direct Current",
+      "Static Electricity"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "AC and DC",
+    "tags": [
+      "ac-dc",
+      "sine-wave",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "Slip rings maintain a continuous connection to the same ends of the rotating coil, allowing the naturally generated alternating current to be passed directly to the load."
+  },
+  {
+    "id": 4029,
+    "question": "If the speed of rotation of a generator is increased, what effect does this have on the induced EMF?",
+    "options": [
+      "The EMF increases",
+      "The EMF decreases",
+      "The EMF remains the same",
+      "The EMF drops to zero"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Electromagnetic Induction",
+    "tags": [
+      "electromagnetic-induction",
+      "conceptual",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The magnitude of induced EMF is proportional to the rate at which the magnetic flux is cut; increasing the speed increases this rate, thus increasing the EMF."
+  },
+  {
+    "id": 4030,
+    "question": "An electrician notes that a portable generator is producing a frequency of 45Hz instead of the required 50Hz. Which practical action would most likely correct this?",
+    "options": [
+      "Increase the speed of the engine (RPM)",
+      "Increase the number of lamps connected to the circuit",
+      "Replace the copper windings with aluminium",
+      "Clean the commutator with an abrasive cloth"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_CURRENT",
+      "2": "OTHER",
+      "3": "CONFUSED_AC_DC_GENERATOR_PARTS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Frequency",
+    "tags": [
+      "frequency",
+      "application",
+      "generator-components"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The frequency of an AC generator is directly determined by the speed of rotation (RPM) and the number of magnetic poles. Increasing the engine speed will increase the frequency."
+  },
+  {
+    "id": 4031,
+    "question": "Which component is specifically used in a DC generator to ensure the output current flows in only one direction?",
+    "options": [
+      "A split-ring commutator",
+      "Slip rings",
+      "Field magnets",
+      "An iron core armature"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Core testing principles",
+    "category": "generator-components",
+    "tags": [
+      "ac-dc",
+      "generator-components",
+      "discrimination"
     ],
     "learningOutcomeId": "203-TEST-LO1",
     "answerType": "mcq",
@@ -721,601 +456,601 @@ export const sequentialGeneratorTestQuestions: TaggedQuestion[] = [
     "explanation": "A split-ring commutator acts as a mechanical rectifier, reversing the connections to the external circuit every half-turn to maintain a DC output."
   },
   {
-    "id": 4042,
-    "question": "In the sequence of electromagnetic induction, what happens to the induced EMF if the speed of the conductor through the magnetic field is doubled while the magnetic flux density remains constant?",
+    "id": 4032,
+    "question": "According to Faraday's Law of electromagnetic induction, what effect will doubling the speed of a generator's rotor have on the induced EMF?",
     "options": [
-      "The induced EMF doubles",
-      "The induced EMF remains the same",
-      "The induced EMF is halved",
-      "The induced EMF increases fourfold"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "DIVIDED_INSTEAD",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "electromagnetic-induction",
-      "calculation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Induced EMF is directly proportional to the rate of cutting flux; therefore, doubling the speed doubles the rate of cutting and the resulting EMF."
-  },
-  {
-    "id": 4043,
-    "question": "A 4-pole AC generator is rotating at a speed of 1500 revolutions per minute (RPM). Calculate the frequency of the generated output.",
-    "options": [
-      "50 Hz",
-      "100 Hz",
-      "25 Hz",
-      "60 Hz"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "DIVIDED_INSTEAD",
-      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "frequency",
-      "calculation",
-      "sine-wave"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Frequency (f) = (Number of poles × RPM) / 120. So, (4 × 1500) / 120 = 6000 / 120 = 50 Hz."
-  },
-  {
-    "id": 4044,
-    "question": "When applying Fleming's Right Hand Rule to a generator, what does the 'Second Finger' represent in the sequence of induction?",
-    "options": [
-      "The direction of the induced current",
-      "The direction of the magnetic field",
-      "The direction of the motion of the conductor",
-      "The direction of the magnetic poles"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_I_V_R",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "electromagnetic-induction",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "In Fleming's Right Hand Rule: Thumb = Motion, First Finger = Field, Second Finger = Induced Current (I)."
-  },
-  {
-    "id": 4045,
-    "question": "In the context of a sequential test on a generator, what is the primary role of the 'Prime Mover'?",
-    "options": [
-      "To provide the mechanical energy to rotate the armature",
-      "To provide the initial DC excitation for the magnets",
-      "To regulate the output voltage to a constant 230V",
-      "To collect the current from the rotating slip rings"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "CONFUSED_AC_DC_GENERATOR_PARTS"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "generator-components",
-      "conceptual",
-      "energy"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The prime mover is the external source of mechanical energy (like a diesel engine or turbine) that rotates the generator's shaft."
-  },
-  {
-    "id": 4046,
-    "question": "A generator produces a sine wave with an RMS voltage of 230V. What is the approximate peak voltage (Vp) produced during the cycle?",
-    "options": [
-      "325 V",
-      "162 V",
-      "460 V",
-      "230 V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_RMS_WITH_PEAK",
-      "2": "DIVIDED_INSTEAD",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "rms-peak",
-      "calculation",
-      "sine-wave"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Peak voltage = RMS × 1.414. Therefore, 230V × 1.414 ≈ 325V."
-  },
-  {
-    "id": 4047,
-    "question": "At which point in a single rotation of a simple AC generator is the induced EMF at its maximum positive value?",
-    "options": [
-      "When the conductor is cutting the flux lines at 90 degrees",
-      "When the conductor is moving parallel to the flux lines",
-      "When the conductor is at the 180-degree position",
-      "When the conductor is at the 0-degree starting position"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "SIGN_ERROR"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "sine-wave",
-      "conceptual",
-      "electromagnetic-induction"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Maximum EMF is induced when the conductor cuts the magnetic flux at the maximum rate, which occurs at 90 degrees."
-  },
-  {
-    "id": 4048,
-    "question": "An electrician is testing a generator and notices the output frequency is 60Hz instead of 50Hz. To correct this, the sequence of operations should involve:",
-    "options": [
-      "Reducing the speed of the prime mover",
-      "Increasing the strength of the magnetic field",
-      "Adding more turns to the armature winding",
-      "Replacing the slip rings with a commutator"
+      "The induced EMF will double",
+      "The induced EMF will remain the same",
+      "The induced EMF will be halved",
+      "The induced EMF will quadruple"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "CONFUSED_AC_DC_GENERATOR_PARTS",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "frequency",
-      "application",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Frequency is directly proportional to the speed of rotation. If the frequency is too high, the rotational speed (RPM) must be reduced."
-  },
-  {
-    "id": 4049,
-    "question": "Which principle describes why a transformer cannot function if connected to a steady DC supply in a sequential test?",
-    "options": [
-      "A steady DC supply does not create a changing magnetic field",
-      "DC supply has too much resistance for the primary coil",
-      "The commutator in the transformer prevents DC flow",
-      "The secondary coil only reacts to peak voltage values"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TRANSFORMER_WITH_AC_DC",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "transformers",
-      "ac-dc",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Transformers rely on mutual induction, which requires a continually changing magnetic field produced by alternating current (AC)."
-  },
-  {
-    "id": 4050,
-    "question": "To produce a 60 Hz frequency from a 2-pole generator, at what speed (RPM) must the prime mover rotate the shaft?",
-    "options": [
-      "3600 RPM",
-      "3000 RPM",
-      "1800 RPM",
-      "1500 RPM"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "frequency",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Using RPM = (120 × f) / p: (120 × 60) / 2 = 7200 / 2 = 3600 RPM."
-  },
-  {
-    "id": 4051,
-    "question": "In a simple AC generator, what happens to the induced electromotive force (EMF) if the speed of rotation of the conductor within the magnetic field is doubled?",
-    "options": [
-      "The induced EMF doubles in magnitude",
-      "The induced EMF remains the same but frequency increases",
-      "The induced EMF is halved",
-      "The induced EMF increases by four times"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "DIVIDED_INSTEAD",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "electromagnetic-induction",
-      "conceptual",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "According to Faraday's Law, the induced EMF is proportional to the rate of change of magnetic flux linkage. Doubling the speed doubles the rate at which the conductor cuts the flux, thereby doubling the EMF."
-  },
-  {
-    "id": 4052,
-    "question": "Which specific component is found in a DC generator to provide a unidirectional current output, which is not present in a standard AC alternator?",
-    "options": [
-      "A split-ring commutator",
-      "A pair of continuous slip rings",
-      "A set of permanent magnets",
-      "A laminated steel armature core"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "generator-components",
-      "discrimination",
-      "ac-dc"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A DC generator uses a split-ring commutator to reverse the connections to the external circuit every half-turn, ensuring the current always flows in one direction. AC generators use continuous slip rings."
-  },
-  {
-    "id": 4053,
-    "question": "An electrician is testing a portable generator and measures a peak voltage (Vmax) of 325V on an oscilloscope. What is the equivalent Root Mean Square (RMS) voltage that would be displayed on a standard digital multimeter?",
-    "options": [
-      "230 V",
-      "325 V",
-      "460 V",
-      "162.5 V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_RMS_WITH_PEAK",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "rms-peak",
-      "sine-wave",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "To find the RMS voltage from the peak voltage, the formula is Vrms = Vmax × 0.707 (or Vmax / √2). 325V × 0.707 is approximately 230V."
-  },
-  {
-    "id": 4054,
-    "question": "A 4-pole AC generator is required to produce a standard UK frequency of 50 Hz. At what speed must the generator shaft be rotated?",
-    "options": [
-      "1500 rpm",
-      "3000 rpm",
-      "750 rpm",
-      "100 rpm"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "DIVIDED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "frequency",
-      "calculation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 120,
-    "explanation": "Using the formula f = (N × P) / 120, where f is frequency, N is speed in rpm, and P is number of poles. Rearranging for N: N = (f × 120) / P. So, (50 × 120) / 4 = 1500 rpm."
-  },
-  {
-    "id": 4055,
-    "question": "During a site inspection, a generator output frequency is measured at 48 Hz instead of the required 50 Hz. Based on the principles of generator operation, which mechanical action would most likely correct this?",
-    "options": [
-      "Increase the speed of the prime mover",
-      "Increase the number of poles in the alternator",
-      "Increase the strength of the magnetic field",
-      "Decrease the resistance of the connected load"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Sequential Generator Test",
-    "tags": [
-      "frequency",
-      "application",
-      "generator-components"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The frequency of a generator is directly proportional to its rotational speed. If the frequency is low, the engine (prime mover) must be sped up to increase the cycles per second."
-  },
-  {
-    "id": 4056,
-    "question": "A technician is testing a double-wound transformer by connecting the primary winding to a 12V DC battery. After the initial connection, the voltmeter on the secondary winding reads 0V. What is the primary scientific reason for this result?",
-    "options": [
-      "A constant magnetic field cannot induce a current in the secondary winding because there is no change in flux linkage",
-      "The 12V DC supply is of insufficient magnitude to overcome the reactance of the primary winding",
-      "The secondary winding requires a commutator to convert the DC input into an AC output for induction",
-      "DC current cannot flow through copper windings due to the high resistance of the primary coil"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_AC_DC_SOURCES",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Core testing principles",
-    "category": "electromagnetic-induction",
-    "tags": [
-      "transformers",
-      "ac-dc",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Faraday's Law of Induction states that an electromotive force is only induced when there is a change in magnetic flux linkage. Since DC provides a constant magnetic field, induction only occurs at the moment of switching on or off."
-  },
-  {
-    "id": 4057,
-    "question": "An oscilloscope displays a pure sine wave for a UK mains supply with a peak-to-peak voltage (Vp-p) of approximately 650V. What is the RMS voltage that would be used for standard circuit design calculations?",
-    "options": [
-      "230V",
-      "325V",
-      "460V",
-      "400V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_RMS_WITH_PEAK",
       "2": "DIVIDED_INSTEAD",
       "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Introduction to test concepts",
-    "category": "sine-wave",
+    "category": "electromagnetic-induction",
     "tags": [
-      "rms-peak",
+      "electromagnetic-induction",
       "calculation",
-      "ac-dc"
+      "conceptual"
     ],
     "learningOutcomeId": "203-TEST-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Peak voltage is half of peak-to-peak (650V / 2 = 325V). RMS voltage is Peak x 0.707 (325V x 0.707 ≈ 230V)."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "EMF is proportional to the rate of change of flux linkage. Doubling the speed doubles the rate at which the magnetic field lines are cut, thus doubling the voltage."
   },
   {
-    "id": 4058,
-    "question": "In a complex testing scenario, a circuit consists of two 40 Ω resistors connected in parallel, which are then connected in series with a single 10 Ω resistor. If the total supply voltage is 240V, what is the total current flowing from the source?",
+    "id": 4033,
+    "question": "An AC generator produces a peak voltage (Vmax) of 325V. What is the approximate RMS voltage that would be measured by a standard multimeter?",
     "options": [
-      "8A",
-      "12A",
-      "2.66A",
-      "4.8A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "RECIPROCAL_ERROR",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Practical test applications",
-    "category": "mixed-circuit",
-    "tags": [
-      "parallel",
-      "series",
-      "ohms-law"
-    ],
-    "learningOutcomeId": "203-TEST-LO2",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "Parallel resistance (Rt1) = 40/2 = 20 Ω. Total resistance (Rt) = 20 Ω + 10 Ω = 30 Ω. Current (I) = V / Rt = 240V / 30 Ω = 8A."
-  },
-  {
-    "id": 4059,
-    "question": "A simple AC generator is being tested. If the speed of rotation of the armature is doubled, but the magnetic field strength of the permanent magnets is halved, what is the effect on the maximum induced EMF?",
-    "options": [
-      "The induced EMF remains the same",
-      "The induced EMF is doubled",
-      "The induced EMF is quadrupled",
-      "The induced EMF is halved"
+      "230V",
+      "460V",
+      "162V",
+      "325V"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "MULTIPLIED_INSTEAD",
       "2": "DIVIDED_INSTEAD",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Practical test applications",
+    "category": "rms-peak",
+    "tags": [
+      "rms-peak",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "RMS voltage is calculated as Peak / √2 (or Peak x 0.707). 325V / 1.414 is approximately 230V."
+  },
+  {
+    "id": 4034,
+    "question": "Lenz's Law is a critical concept in generator theory. Which statement best describes its application?",
+    "options": [
+      "The direction of induced current always opposes the change that created it",
+      "The induced current always flows in the same direction as the magnetic flux",
+      "The magnitude of the current is independent of the resistance of the circuit",
+      "The voltage produced is always proportional to the number of poles"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "FORMULA_NOT_REARRANGED"
     },
     "section": "Core testing principles",
     "category": "electromagnetic-induction",
     "tags": [
-      "generator-components",
+      "electromagnetic-induction",
       "conceptual",
-      "magnetism"
+      "terminology"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Lenz's Law states that the direction of the induced EMF (and resulting current) is such that it creates a magnetic field that opposes the motion or change in flux that induced it."
+  },
+  {
+    "id": 4035,
+    "question": "A two-pole AC alternator is rotating at 3,000 revolutions per minute (RPM). What is the frequency of the generated output?",
+    "options": [
+      "50 Hz",
+      "100 Hz",
+      "60 Hz",
+      "25 Hz"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Practical test applications",
+    "category": "frequency",
+    "tags": [
+      "frequency",
+      "calculation",
+      "ac-dc"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Frequency (f) = (P x N) / 120, where P is poles and N is RPM. (2 x 3000) / 120 = 50 Hz."
+  },
+  {
+    "id": 4036,
+    "question": "Which of the following describes the waveform produced by a single-loop generator BEFORE it reaches the commutator or slip rings?",
+    "options": [
+      "Alternating current (AC) sine wave",
+      "Steady direct current (DC)",
+      "Pulsating direct current (DC)",
+      "Square wave"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Introduction to test concepts",
+    "category": "sine-wave",
+    "tags": [
+      "sine-wave",
+      "conceptual",
+      "ac-dc"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The basic action of a loop rotating in a magnetic field naturally induces an alternating EMF. It only becomes DC through the action of a commutator."
+  },
+  {
+    "id": 4037,
+    "question": "In a practical generator test, an electrician finds that the output voltage is lower than expected. Which of the following would most likely cause this?",
+    "options": [
+      "A decrease in the strength of the magnetic field",
+      "An increase in the speed of the prime mover",
+      "Using more turns of wire on the armature",
+      "A decrease in the resistance of the external load"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "DIVIDED_INSTEAD",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Practical test applications",
+    "category": "electromagnetic-induction",
+    "tags": [
+      "application",
+      "discrimination",
+      "voltage-rule"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Induced EMF depends on flux density (magnetic field strength), the length of the conductor, and velocity. A weaker magnetic field reduces the induced voltage."
+  },
+  {
+    "id": 4038,
+    "question": "What is the primary function of the 'prime mover' in a generator system?",
+    "options": [
+      "To provide the mechanical energy required to rotate the armature",
+      "To regulate the output voltage of the generator",
+      "To provide the initial excitation current for the magnets",
+      "To convert the generated AC into usable DC"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TRANSFORMER_WITH_AC_DC",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Introduction to test concepts",
+    "category": "generator-components",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The prime mover (such as a diesel engine, wind turbine, or steam turbine) provides the mechanical force needed to turn the rotor against the magnetic field."
+  },
+  {
+    "id": 4039,
+    "question": "During a sequential test of an AC alternator, at which point in the rotation cycle is the induced EMF at its absolute zero value?",
+    "options": [
+      "When the loop is moving parallel to the magnetic flux lines",
+      "When the loop is moving at 90 degrees to the magnetic flux lines",
+      "When the speed of rotation is at its maximum",
+      "When the magnetic field strength is at its maximum"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_RMS_WITH_PEAK",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Core testing principles",
+    "category": "sine-wave",
+    "tags": [
+      "sine-wave",
+      "conceptual",
+      "discrimination"
     ],
     "learningOutcomeId": "203-TEST-LO2",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Induced EMF (e) is proportional to flux density (B), length of conductor (l), and velocity (v). If v is x2 and B is x0.5, the result (e = B*l*v) remains unchanged."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "When the conductor moves parallel to the flux lines, it is not 'cutting' any flux, so the rate of change of flux is zero, resulting in zero induced EMF."
   },
   {
-    "id": 4060,
-    "question": "During a component identification test, an electrician must distinguish between an AC alternator and a DC generator. Which specific component is found in the DC generator to ensure a unidirectional current output?",
+    "id": 4040,
+    "question": "A technician needs to measure the frequency of a standby generator. Which instrument and setting should be used?",
+    "options": [
+      "A digital multimeter set to Hz",
+      "An insulation resistance tester set to 500V",
+      "A low-resistance ohm meter",
+      "A clamp meter set to DC Amps"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_AC_WITH_DC"
+    },
+    "section": "Practical test applications",
+    "category": "units",
+    "tags": [
+      "application",
+      "units",
+      "frequency"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Frequency is measured in Hertz (Hz) using a multimeter or frequency meter while the generator is running at its operational speed."
+  },
+  {
+    "id": 4041,
+    "question": "A technician measures the output of a small AC generator with a calibrated multimeter. If the meter displays a reading of 230V, what specific value does this represent in terms of the AC waveform?",
+    "options": [
+      "The Root Mean Square (RMS) value",
+      "The Peak voltage value",
+      "The Average voltage value",
+      "The Peak-to-Peak voltage value"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "ac-dc",
+      "rms-peak",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Standard multimeters are designed to display the Root Mean Square (RMS) value of an AC waveform, which is the equivalent DC value that would provide the same heating effect."
+  },
+  {
+    "id": 4042,
+    "question": "In a double-wound transformer used during a circuit isolation test, what is the primary method of energy transfer between the primary and secondary windings?",
+    "options": [
+      "Magnetic flux linkage",
+      "Direct electrical connection",
+      "Electrostatic discharge",
+      "Thermal conduction"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TRANSFORMER_WITH_AC_DC"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "transformers",
+      "electromagnetic-induction",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Double-wound transformers rely on mutual induction, where energy is transferred via a changing magnetic flux linking the two coils without a direct electrical connection."
+  },
+  {
+    "id": 4043,
+    "question": "A 3kW immersion heater is connected to a 230V supply for a functional load test. What is the approximate current flowing through the circuit?",
+    "options": [
+      "13.04 A",
+      "0.07 A",
+      "690 A",
+      "7.67 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "ohms-law",
+      "calculation",
+      "power"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Using the power formula P = V x I, rearranged to I = P / V: 3000W / 230V = 13.04A."
+  },
+  {
+    "id": 4044,
+    "question": "If the rotational speed of a simple AC generator is doubled while the magnetic field strength remains constant, how will this affect the output frequency?",
+    "options": [
+      "The frequency will double",
+      "The frequency will halve",
+      "The frequency remains unchanged",
+      "The frequency will quadruple"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "frequency",
+      "generator-components",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Frequency is directly proportional to the speed of rotation (f = np/60). Doubling the speed doubles the number of cycles produced per second."
+  },
+  {
+    "id": 4045,
+    "question": "An electrician is conducting a continuity test on two identical 100Ω resistors connected in parallel. What should the total resistance reading be on the ohmmeter?",
+    "options": [
+      "50 Ω",
+      "200 Ω",
+      "100 Ω",
+      "10 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_SERIES_RULE",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "parallel",
+      "resistance-rule",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "For two identical resistors in parallel, the total resistance is half the value of one resistor (Rt = R / n), so 100 / 2 = 50Ω."
+  },
+  {
+    "id": 4046,
+    "question": "A step-down transformer has 400 turns on the primary coil and 20 turns on the secondary coil. If 230V AC is applied to the primary, calculate the secondary voltage.",
+    "options": [
+      "11.5 V",
+      "4600 V",
+      "46 V",
+      "20 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "transformers",
+      "calculation",
+      "application"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Using the transformer ratio (Vs/Vp = Ns/Np): Vs = 230 x (20 / 400) = 230 x 0.05 = 11.5V."
+  },
+  {
+    "id": 4047,
+    "question": "During a generator output analysis, which term describes the maximum displacement of the sine wave from the zero-volt reference line?",
+    "options": [
+      "Peak value",
+      "RMS value",
+      "Periodic time",
+      "Frequency"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "sine-wave",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Peak value (or amplitude) is the maximum voltage reached by the waveform in either the positive or negative direction from the zero line."
+  },
+  {
+    "id": 4048,
+    "question": "When testing the magnetic properties of a relay component, what physical reaction occurs if two North poles are brought into close proximity?",
+    "options": [
+      "They will repel each other",
+      "They will attract each other",
+      "They will demagnetise each other",
+      "No force will be generated"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "magnetism",
+      "magnetic-poles",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "A fundamental law of magnetism states that like poles (North-North or South-South) repel, while unlike poles attract."
+  },
+  {
+    "id": 4049,
+    "question": "A DC generator provides a constant 12V output to a test circuit with a total resistance of 4Ω. Calculate the power dissipated by this circuit.",
+    "options": [
+      "36 W",
+      "3 W",
+      "48 W",
+      "16 W"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "power",
+      "calculation",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Power can be calculated using P = V² / R. Therefore, (12 x 12) / 4 = 144 / 4 = 36W."
+  },
+  {
+    "id": 4050,
+    "question": "Lenz's Law is a critical concept in generator testing. It states that the direction of an induced electromotive force (EMF) will always:",
+    "options": [
+      "Oppose the change in magnetic flux that produced it",
+      "Assist the change in magnetic flux that produced it",
+      "Be perpendicular to the direction of the magnetic field",
+      "Be parallel to the direction of the conductor's motion"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "electromagnetic-induction",
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Lenz's Law states that the induced EMF creates a current whose magnetic field opposes the change in the original magnetic flux."
+  },
+  {
+    "id": 4051,
+    "question": "When performing a sequential test on a simple AC generator, what is the primary reason for verifying the magnetic field strength before checking the output voltage?",
+    "options": [
+      "The induced EMF is directly proportional to the magnetic flux density",
+      "The magnetic field determines the frequency of the AC output",
+      "A stronger magnetic field reduces the mechanical resistance of the rotor",
+      "The magnetic field must be disconnected to measure the peak-to-peak voltage"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "electromagnetic-induction",
+    "tags": [
+      "electromagnetic-induction",
+      "conceptual",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "According to Faraday's Law, the induced EMF is determined by the rate of change of flux linkage. Without a magnetic field (flux), no voltage can be induced, making it the logical first step in a sequential test."
+  },
+  {
+    "id": 4052,
+    "question": "During a diagnostic test of a generator, an electrician notices the output is pulsating DC rather than a smooth AC sine wave. Which component is likely being used in this machine?",
     "options": [
       "A commutator",
       "Slip rings",
-      "A transformer core",
-      "A capacitor bank"
+      "An inverter",
+      "A transformer"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
       "2": "CONFUSED_TRANSFORMER_WITH_AC_DC",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Introduction to test concepts",
+    "section": "Science 2365 Level 2",
     "category": "generator-components",
     "tags": [
-      "discrimination",
       "ac-dc",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-TEST-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "A commutator is a rotary electrical switch that reverses the current direction between the rotor and the external circuit, rectifying AC to DC."
-  },
-  {
-    "id": 4061,
-    "question": "A 2.4 kW electric heater is used for a duration of 30 minutes during a thermal stability test. Calculate the total energy transferred in Megajoules (MJ).",
-    "options": [
-      "4.32 MJ",
-      "72.0 MJ",
-      "1.20 MJ",
-      "4320 MJ"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Practical test applications",
-    "category": "energy",
-    "tags": [
-      "power",
-      "conversion",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-TEST-LO3",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "Energy (J) = Power (W) x Time (s). Energy = 2400W x (30 x 60s) = 4,320,000 J. Converting to MJ: 4,320,000 / 1,000,000 = 4.32 MJ."
-  },
-  {
-    "id": 4062,
-    "question": "When designing a magnetic relay for a control circuit, what is the primary purpose of using a 'soft' iron core rather than a 'hard' steel core?",
-    "options": [
-      "To ensure the core loses its magnetism quickly when the current is switched off",
-      "To increase the permanent magnetic strength of the relay over time",
-      "To reduce the electrical resistance of the coil windings",
-      "To prevent the core from becoming hot due to eddy currents"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Core testing principles",
-    "category": "magnetism",
-    "tags": [
-      "relays",
-      "conceptual",
-      "magnetic-poles"
+      "generator-components",
+      "discrimination"
     ],
     "learningOutcomeId": "203-TEST-LO2",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Soft iron has high permeability but low retentivity, meaning it magnetizes and demagnetizes easily, which is essential for the rapid operation of a relay."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A commutator is used in DC generators to rectify the AC produced in the armature into a pulsating DC output. Slip rings are used for AC output."
   },
   {
-    "id": 4063,
-    "question": "A 4-pole synchronous generator is being tested for use on a 50 Hz grid. At what speed in revolutions per minute (RPM) must the generator be driven to maintain this frequency?",
+    "id": 4053,
+    "question": "A 2-pole AC generator is being tested for its frequency output. If the rotor is spinning at 3,000 revolutions per minute (RPM), what should the measured frequency be?",
     "options": [
-      "1500 RPM",
-      "3000 RPM",
-      "750 RPM",
-      "1200 RPM"
+      "50 Hz",
+      "60 Hz",
+      "100 Hz",
+      "3,000 Hz"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1323,73 +1058,353 @@ export const sequentialGeneratorTestQuestions: TaggedQuestion[] = [
       "2": "MULTIPLIED_INSTEAD",
       "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
     },
-    "section": "Introduction to test concepts",
-    "category": "generator-components",
+    "section": "Science 2365 Level 2",
+    "category": "frequency",
     "tags": [
       "frequency",
       "calculation",
-      "ac-dc"
+      "sine-wave"
     ],
-    "learningOutcomeId": "203-TEST-LO1",
+    "learningOutcomeId": "203-TEST-LO2",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "The formula is f = (P x N) / 120. Rearranging for N: N = (f x 120) / P. N = (50 x 120) / 4 = 1500 RPM."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Frequency (f) = (P x N) / 120, where P is poles and N is RPM. (2 * 3000) / 120 = 50 Hz. Alternatively, 3000 RPM / 60 seconds = 50 revolutions per second."
   },
   {
-    "id": 4064,
-    "question": "An electrician is calculating the voltage drop for a 40-meter run of cable that has a resistance of 4 mΩ per meter. If the load current is 25A, what is the total voltage drop?",
+    "id": 4054,
+    "question": "In a sequential test procedure, why is it critical to distinguish between the 'Peak' voltage and the 'RMS' voltage of a generator's output?",
     "options": [
-      "4.0V",
-      "0.1V",
-      "0.4V",
-      "1.6V"
+      "RMS represents the effective heating value used for circuit design",
+      "Peak voltage is the only value that can be measured with a multimeter",
+      "RMS voltage is always higher than the peak voltage in a sine wave",
+      "Peak voltage determines the frequency of the circuit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "UNITS_MISSING",
-      "2": "WRONG_UNITS",
-      "3": "DECIMAL_ERROR"
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
     },
-    "section": "Practical test applications",
-    "category": "ohms-law",
+    "section": "Science 2365 Level 2",
+    "category": "rms-peak",
     "tags": [
+      "rms-peak",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Root Mean Square (RMS) value is the equivalent DC value that would provide the same power (heating effect). Most electrical equipment is rated by its RMS value."
+  },
+  {
+    "id": 4055,
+    "question": "An electrician is testing a generator that produces a peak voltage of 339.4V. If the test requires the Root Mean Square (RMS) value for the documentation, what value should be recorded?",
+    "options": [
+      "240 V",
+      "480 V",
+      "230 V",
+      "170 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "ROUNDING_ERROR",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "rms-peak",
+    "tags": [
+      "rms-peak",
       "calculation",
-      "voltage-rule",
       "application"
     ],
     "learningOutcomeId": "203-TEST-LO3",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Total resistance = 40m x 0.004 Ω/m = 0.16 Ω. Voltage drop = I x R = 25A x 0.16 Ω = 4.0V."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "To find RMS from Peak: RMS = Peak / √2 (or Peak * 0.707). 339.4 / 1.414 = 240V."
   },
   {
-    "id": 4065,
-    "question": "In a parallel circuit used for a load-sharing test, three resistors of 10 Ω, 20 Ω, and 50 Ω are connected to a constant voltage source. Which of the following statements is true regarding the current distribution?",
+    "id": 4056,
+    "question": "In a simple AC generator being tested, if the magnetic flux density (B) is doubled while the speed of rotation and conductor length remain constant, what is the specific effect on the induced EMF?",
     "options": [
-      "The 10 Ω resistor will carry the highest proportion of the total current",
-      "The current is divided equally between all three resistors regardless of value",
-      "The 50 Ω resistor will carry the highest proportion of the total current",
-      "The total current is equal to the average of the currents in each branch"
+      "The induced EMF will double",
+      "The induced EMF will remain unchanged as it only depends on speed",
+      "The induced EMF will quadruple due to the inverse square law",
+      "The induced EMF will be halved to maintain energy balance"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_I_V_R",
-      "3": "OTHER"
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "DIVIDED_INSTEAD"
     },
-    "section": "Core testing principles",
-    "category": "parallel",
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
     "tags": [
-      "current-rule",
-      "conceptual",
-      "discrimination"
+      "electromagnetic-induction",
+      "calculation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "According to the formula e = Blv, induced EMF is directly proportional to the magnetic flux density (B). Therefore, doubling B will double the induced EMF."
+  },
+  {
+    "id": 4057,
+    "question": "When performing a discrimination check on generator components, which component is uniquely required in a DC generator to provide a unidirectional output from an AC-generating armature?",
+    "options": [
+      "A split-ring commutator",
+      "A pair of continuous slip rings",
+      "Laminated permanent magnets",
+      "Carbon brushes on a solid shaft"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_GENERATOR_PARTS",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "generator-components",
+      "discrimination",
+      "ac-dc"
     ],
     "learningOutcomeId": "203-TEST-LO2",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
-    "explanation": "In a parallel circuit, the voltage is the same across all branches. According to Ohm's Law (I=V/R), the branch with the lowest resistance will draw the highest current."
+    "explanation": "A split-ring commutator acts as a mechanical rectifier, reversing the connections to the external circuit every half-turn to ensure the current flows in one direction (DC)."
+  },
+  {
+    "id": 4058,
+    "question": "During a sequence test, an AC generator's output is measured at 230V RMS. To determine the maximum voltage stress on the insulation, what is the peak voltage (Vp) of this sine wave?",
+    "options": [
+      "325.3V",
+      "162.6V",
+      "460.0V",
+      "230.0V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "rms-peak",
+      "sine-wave",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The peak voltage is calculated by multiplying the RMS voltage by the square root of 2 (approx 1.414). 230V * 1.414 = 325.22V."
+  },
+  {
+    "id": 4059,
+    "question": "If the rotational speed of an AC alternator is tripled during a controlled test, what are the simultaneous effects on the output frequency and the magnitude of the induced EMF?",
+    "options": [
+      "Both the frequency and the EMF magnitude will triple",
+      "The frequency will triple, but the EMF magnitude will remain constant",
+      "The EMF magnitude will triple, but the frequency will remain constant",
+      "The frequency will triple, but the EMF magnitude will increase nine-fold"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "frequency",
+      "sine-wave",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Frequency is directly proportional to speed (f = np/60), and EMF is directly proportional to velocity (e=Blv). Tripling the speed triples both variables."
+  },
+  {
+    "id": 4060,
+    "question": "A technician is testing a 4-pole AC generator. What rotational speed (RPM) is required to ensure the output frequency meets the UK standard of 50Hz?",
+    "options": [
+      "1500 RPM",
+      "3000 RPM",
+      "750 RPM",
+      "6000 RPM"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "DIVIDED_INSTEAD",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "frequency",
+      "calculation",
+      "application"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "Using the formula f = (P * N) / 120 (where P is poles and N is RPM): 50 = (4 * N) / 120. Rearranging gives N = (50 * 120) / 4 = 1500 RPM."
+  },
+  {
+    "id": 4061,
+    "question": "In a sequential test of generator theory, which law explains why it becomes harder to turn the prime mover as the electrical load on the generator increases?",
+    "options": [
+      "Lenz's Law",
+      "Faraday's Law",
+      "Ohm's Law",
+      "Coulomb's Law"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "electromagnetic-induction",
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Lenz's Law states that the induced current creates a magnetic field that opposes the change that created it, resulting in mechanical resistance (back-torque) when current flows."
+  },
+  {
+    "id": 4062,
+    "question": "When inspecting a generator armature during a maintenance sequence, why is the iron core constructed from thin, insulated laminations rather than a solid block?",
+    "options": [
+      "To minimize energy losses caused by eddy currents",
+      "To increase the total magnetic flux density of the core",
+      "To allow for better cooling of the copper windings",
+      "To reduce the weight of the rotor for higher speeds"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "generator-components",
+      "energy",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-TEST-LO2",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Laminations break up the circular paths that eddy currents take in a conductor, reducing heat loss and improving efficiency."
+  },
+  {
+    "id": 4063,
+    "question": "Calculate the induced EMF produced by a single conductor 0.4m long moving at a constant velocity of 25 m/s through a uniform magnetic field with a flux density of 0.8 Tesla.",
+    "options": [
+      "8.0V",
+      "12.5V",
+      "4.0V",
+      "0.32V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "DIVIDED_INSTEAD",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "calculation",
+      "electromagnetic-induction",
+      "application"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Using e = Blv: e = 0.8 T * 0.4 m * 25 m/s = 8.0V."
+  },
+  {
+    "id": 4064,
+    "question": "Which specific type of induction is being tested when a varying current in one coil induces a voltage in a nearby, electrically isolated second coil within a generator system?",
+    "options": [
+      "Mutual induction",
+      "Self-induction",
+      "Capacitive induction",
+      "Static induction"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "electromagnetic-induction",
+      "discrimination",
+      "transformers"
+    ],
+    "learningOutcomeId": "203-TEST-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Mutual induction is the principle where a change in current in one coil induces an EMF in another adjacent coil via a shared magnetic field."
+  },
+  {
+    "id": 4065,
+    "question": "An electrician notes that a generator's output voltage drops significantly when a large resistive load is connected. Which adjustment would most effectively restore the voltage to 230V without changing the frequency?",
+    "options": [
+      "Increase the DC excitation current to the field windings",
+      "Increase the rotational speed of the prime mover",
+      "Decrease the number of poles in the generator",
+      "Replace the armature with one having higher resistance"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Sequential Generator Test",
+    "tags": [
+      "application",
+      "voltage-rule",
+      "generator-components"
+    ],
+    "learningOutcomeId": "203-TEST-LO3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "Increasing the excitation current increases the magnetic flux density (B). Since e = Blv, this increases the EMF without requiring a change in speed (v), thus keeping frequency constant."
   }
 ];
