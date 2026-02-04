@@ -607,16 +607,16 @@ export default function GeneratePage() {
                 <button
                   type="button"
                   onClick={() => {
-                    // Pre-fill form with test data
+                    // Pre-fill form with test data for 203-3F
                     const testForm: GenerationForm = {
                       unit: 203,
-                      lessonId: 'TEST',
-                      topic: 'Sequential Generator Test',
-                      section: 'Science 2365 Level 2',
+                      lessonId: '3F',
+                      topic: 'Spacing Factor / Enclosure Fill',
+                      section: 'Electrical Installations Technology',
                       layout: 'split-vis',
-                      prerequisites: ['202-1A', '202-2B'],
-                      mustHaveTopics: '- Introduction to test concepts\n- Core testing principles\n- Practical test applications',
-                      additionalInstructions: 'This is a test lesson to verify sequential generation is working correctly.',
+                      prerequisites: [],
+                      mustHaveTopics: '203-3F — Spacing Factor / Enclosure Fill (3.6)\n\nKey topics:\n- What is conduit and trunking space factor\n- Why space factor matters (cable protection, heat dissipation, compliance)\n- Basic mathematics to calculate percentage fill\n- Practical applications and regulations',
+                      additionalInstructions: '',
                       youtubeUrl: '',
                       imageUrl: '',
                     };
