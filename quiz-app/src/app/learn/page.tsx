@@ -47,6 +47,7 @@ import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.js
 import lesson203_3E1 from '@/data/lessons/203-3E1-specialised-installing-equipment.json';
 import lesson203_3E11 from '@/data/lessons/203-3E11-specialised-installing-equipment.json';
 import lesson203_3E111 from '@/data/lessons/203-3E111-specialised-installing-equipment.json';
+import lesson203_3E1111 from '@/data/lessons/203-3E1111-specialised-installing-equipment.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -90,6 +91,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_3E1111,
   lesson203_3E111,
   lesson203_3E11,
   lesson203_3E1,
