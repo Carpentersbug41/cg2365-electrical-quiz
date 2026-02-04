@@ -30,6 +30,7 @@ import { LessonPromptBuilder } from './lessonPromptBuilder';
 import { QuizPromptBuilder } from './quizPromptBuilder';
 import { ValidationService } from './validationService';
 import { StrictLintService, type LintFailure } from './strictLintService';
+import { SequentialLessonGenerator } from './SequentialLessonGenerator';
 import { GenerationRequest, Lesson, QuizQuestion, DebugInfo } from './types';
 import {
   generateLessonFilename,
@@ -226,12 +227,17 @@ export class FileGenerator {
   private quizPromptBuilder: QuizPromptBuilder;
   private validationService: ValidationService;
   private strictLintService: StrictLintService;
+  private sequentialGenerator: SequentialLessonGenerator;
 
   constructor() {
     this.lessonPromptBuilder = new LessonPromptBuilder();
     this.quizPromptBuilder = new QuizPromptBuilder();
     this.validationService = new ValidationService();
     this.strictLintService = new StrictLintService();
+    // Pass bound generateWithRetry method to sequential generator
+    this.sequentialGenerator = new SequentialLessonGenerator(
+      this.generateWithRetry.bind(this)
+    );
   }
   
   /**
@@ -333,6 +339,14 @@ OUTPUT FORMAT: Pure JSON only`;
    * Generate complete lesson JSON file with two-pass validation and repair
    */
   async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[]; debugInfo?: DebugInfo }> {
+    // Feature flag: Use sequential generation if enabled
+    const USE_SEQUENTIAL = process.env.USE_SEQUENTIAL_GENERATION === 'true';
+    
+    if (USE_SEQUENTIAL) {
+      console.log('🔄 Using SEQUENTIAL generation pipeline (feature flag enabled)');
+      return this.generateLessonSequential(request);
+    }
+    
     try {
       const lessonId = generateLessonId(request.unit, request.lessonId);
       
@@ -532,6 +546,80 @@ OUTPUT FORMAT: Pure JSON only`;
         success: false,
         content: {} as Lesson,
         error: errorMessage,
+      };
+    }
+  }
+
+  /**
+   * Generate lesson using sequential pipeline (9 focused phases)
+   * This is the NEW generation approach that breaks the monolithic prompt into phases
+   */
+  async generateLessonSequential(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[]; debugInfo?: DebugInfo }> {
+    try {
+      const lessonId = generateLessonId(request.unit, request.lessonId);
+      
+      debugLog('SEQUENTIAL_GENERATION_START', { lessonId });
+      console.log(`\n🔄 [Sequential] Starting sequential generation for ${lessonId}`);
+      
+      // Run sequential pipeline
+      const result = await this.sequentialGenerator.generate(request);
+      
+      if (!result.success) {
+        debugLog('SEQUENTIAL_GENERATION_FAILED', { lessonId, error: result.error });
+        return result;
+      }
+      
+      // Run strict lint on the assembled lesson
+      const strictLint = this.strictLintService.strictLint(result.content, lessonId);
+      debugLog('SEQUENTIAL_STRICT_LINT', {
+        passed: strictLint.passed,
+        failureCount: strictLint.failures.length,
+        criticalCount: strictLint.stats.criticalCount,
+      });
+      
+      if (!strictLint.passed) {
+        console.log(`⚠️  Sequential generation: Strict lint found ${strictLint.failures.length} issues (${strictLint.stats.criticalCount} critical)`);
+        
+        const warnings: string[] = [];
+        warnings.push(
+          `Strict lint found ${strictLint.failures.length} issues`,
+          ...strictLint.failures.slice(0, 5).map(f => `[${f.severity}] ${f.message}`)
+        );
+        if (strictLint.failures.length > 5) {
+          warnings.push(`... and ${strictLint.failures.length - 5} more issues`);
+        }
+        
+        // Still return success but with warnings
+        return {
+          success: true,
+          content: result.content,
+          warnings,
+        };
+      }
+      
+      // Run soft validation for telemetry
+      const softValidation = this.validationService.validateLesson(result.content, lessonId);
+      debugLog('SEQUENTIAL_SOFT_VALIDATION', { 
+        warningCount: softValidation.warnings.length 
+      });
+      
+      console.log('✅ Sequential generation complete - all strict lint checks passed');
+      
+      return {
+        success: true,
+        content: result.content,
+        warnings: softValidation.warnings.length > 0 ? softValidation.warnings : undefined,
+      };
+      
+    } catch (error) {
+      debugLog('SEQUENTIAL_GENERATION_EXCEPTION', { 
+        error: error instanceof Error ? error.message : 'unknown' 
+      });
+      
+      return {
+        success: false,
+        content: {} as Lesson,
+        error: error instanceof Error ? error.message : 'Unknown error in sequential generation',
       };
     }
   }

@@ -42,7 +42,7 @@ import lesson203_3B from '@/data/lessons/203-3B-wiring-systems-by-environment-ch
 import lesson203_3C from '@/data/lessons/203-3C-cable-sizing-basics-ib-in-iz-factors.json';
 import lesson203_3D from '@/data/lessons/203-3D-protective-devices-basics-fuses-mcb-types-rcds-rcbos.json';
 import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment.json';
-import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
+import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -86,7 +86,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
-  lesson203_3F,
+  lesson202_3F,
   lesson203_3E,
   lesson203_3D,
   lesson203_3C,

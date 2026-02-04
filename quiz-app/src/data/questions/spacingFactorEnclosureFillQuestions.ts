@@ -2,25 +2,25 @@ import { TaggedQuestion } from './types';
 
 /**
  * Spacing Factor / Enclosure Fill Question Bank
- * Aligned with lesson 203-3F learning outcomes
+ * Aligned with lesson 202-3F learning outcomes
  * Generated: 2026-02-04
  */
 
 export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "In electrical installations, what is the definition of the term 'space factor'?",
+    "question": "What is the definition of 'space factor' (enclosure fill) in an electrical installation?",
     "options": [
-      "The percentage of an enclosure's internal area occupied by cables",
+      "The percentage of an enclosure's internal space occupied by cables",
       "The total weight of the cables inside a conduit",
-      "The length of the conduit run between two inspection bends",
-      "The thickness of the insulation on a single-core cable"
+      "The length of the trunking divided by the number of cables",
+      "The outside diameter of the containment system"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
@@ -28,53 +28,26 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Space factor (or enclosure fill) specifically refers to the ratio of the total cross-sectional area of cables to the internal cross-sectional area of the conduit or trunking, expressed as a percentage."
+    "explanation": "Space factor is the ratio of the total cross-sectional area of the cables to the internal cross-sectional area of the enclosure, expressed as a percentage."
   },
   {
     "id": 4017,
-    "question": "What is a primary safety risk associated with overfilling a conduit with too many cables?",
+    "question": "When calculating the space factor for a conduit, which dimension must be used for the calculation?",
     "options": [
-      "Heat buildup due to restricted airflow",
-      "An increase in the supply frequency",
-      "The conduit becoming magnetic",
-      "The cables becoming too cold"
+      "The internal diameter",
+      "The external diameter",
+      "The wall thickness",
+      "The total length of the run"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "health-safety",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Cables generate heat when carrying current. If a conduit is overfilled, there is less air to circulate and dissipate that heat, which can lead to insulation breakdown and fire risks."
-  },
-  {
-    "id": 4018,
-    "question": "Which dimension must be used when calculating the available cross-sectional area of a conduit?",
-    "options": [
-      "Internal diameter",
-      "External diameter",
-      "Wall thickness",
-      "Outside circumference"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
@@ -82,80 +55,80 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
       "discrimination",
       "units"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Cables are installed inside the conduit, so only the internal diameter (ID) determines the space available for the cables."
+    "explanation": "Only the internal space is available for cables; using the external diameter would result in an incorrect and unsafe calculation."
   },
   {
-    "id": "4019",
-    "question": "An overfilled trunking system makes it difficult to pull cables through. This most likely leads to which type of problem?",
+    "id": 4018,
+    "question": "What is a primary thermal risk of overfilling a cable trunking?",
     "options": [
-      "Mechanical damage to the cable insulation",
-      "A decrease in the circuit voltage",
-      "The trunking changing from AC to DC",
-      "An increase in the resistance of the copper conductor"
+      "Heat cannot dissipate, leading to insulation breakdown",
+      "The trunking will melt instantly due to the current",
+      "The circuit voltage will increase to dangerous levels",
+      "The cables will become magnetic and stick together"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_AC_WITH_DC",
+      "1": "OTHER",
+      "2": "CONFUSED_I_V_R",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
-      "application",
-      "health-safety"
+      "conceptual",
+      "explanation"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO2",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "High friction and snagging in overfilled enclosures often result in the insulation being scraped or torn, which can cause short circuits or earth faults."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Cables generate heat; if they are packed too tightly, air cannot circulate to cool them, which damages the insulation over time."
+  },
+  {
+    "id": 4019,
+    "question": "Why is it difficult and risky to pull cables through a conduit that has a high space factor?",
+    "options": [
+      "Increased friction can cause mechanical damage to cable insulation",
+      "The conduit will expand and become loose from its fixings",
+      "The cables will shrink in length if they are too tight",
+      "The air inside the conduit will become pressurized"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "High friction during installation in an overfilled conduit can tear or scrape the cable insulation, leading to potential short circuits."
   },
   {
     "id": 4020,
-    "question": "What is the correct formula to find the internal cross-sectional area of a rectangular trunking?",
+    "question": "A piece of trunking has internal dimensions of 50 mm by 50 mm. What is its internal cross-sectional area?",
     "options": [
-      "Width × Height",
-      "Width + Height",
-      "π × radius²",
-      "Length × Diameter"
+      "2500 mm²",
+      "100 mm²",
+      "200 mm²",
+      "250 mm²"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Trunking is rectangular, so its area is calculated by multiplying the internal width by the internal height."
-  },
-  {
-    "id": 4021,
-    "question": "Calculate the internal area of a section of trunking that measures 50 mm by 25 mm.",
-    "options": [
-      "1250 mm²",
-      "75 mm²",
-      "150 mm²",
-      "314 mm²"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "1": "USED_SERIES_RULE",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "ROUNDING_ERROR"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
@@ -163,25 +136,52 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
       "calculation",
       "units"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Area = Width × Height. Therefore, 50 mm × 25 mm = 1250 mm²."
+    "explanation": "Area of a rectangle = width × height. 50 mm × 50 mm = 2500 mm²."
   },
   {
-    "id": 4022,
-    "question": "If the total cross-sectional area of all cables in a conduit is 150 mm² and the internal area of the conduit is 600 mm², what is the percentage fill?",
+    "id": 4021,
+    "question": "Which formula correctly identifies the percentage fill of an enclosure?",
     "options": [
-      "25%",
-      "4%",
-      "400%",
-      "15%"
+      "(Total cable area ÷ Enclosure internal area) × 100",
+      "(Enclosure internal area ÷ Total cable area) × 100",
+      "(Total cable area + Enclosure internal area) × 100",
+      "(Total cable area × Enclosure internal area) ÷ 100"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "DIVIDED_INSTEAD",
+      "1": "RECIPROCAL_ERROR",
+      "2": "OTHER",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "To find the percentage, you divide the part (cables) by the whole (enclosure) and multiply by 100."
+  },
+  {
+    "id": 4022,
+    "question": "If the total area of all cables is 400 mm² and the internal area of the trunking is 1000 mm², what is the space factor?",
+    "options": [
+      "40%",
+      "4%",
+      "2.5%",
+      "60%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "UNITS_MISSING",
+      "2": "RECIPROCAL_ERROR",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
@@ -190,74 +190,47 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
       "calculation",
       "application"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "% Fill = (Total Cable Area / Enclosure Area) × 100. (150 / 600) × 100 = 0.25 × 100 = 25%."
+    "explanation": "(400 ÷ 1000) × 100 = 0.4 × 100 = 40%."
   },
   {
     "id": 4023,
-    "question": "When calculating the area of a circular cable (πr²), if the overall diameter is 10 mm, what value should be used for the radius (r)?",
+    "question": "What is a practical benefit of leaving spare capacity in a trunking installation?",
     "options": [
-      "5 mm",
-      "20 mm",
-      "10 mm",
-      "100 mm"
+      "It allows for future additions or circuit modifications",
+      "It makes the trunking lighter and easier to fix to the wall",
+      "It reduces the cost of the cables being installed",
+      "It increases the supply frequency of the circuits"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
+      "1": "OTHER",
       "2": "OTHER",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "discrimination",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The radius (r) is exactly half of the diameter (d). If the diameter is 10 mm, the radius is 5 mm."
-  },
-  {
-    "id": 4024,
-    "question": "Why is it professional practice to leave spare capacity (headroom) when calculating space factor?",
-    "options": [
-      "To allow for future additions or maintenance",
-      "To increase the resistance of the circuit",
-      "To ensure the trunking remains air-tight",
-      "To reduce the weight of the building"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
       "conceptual",
-      "terminology"
+      "application"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Leaving spare capacity ensures that if the installation needs to be expanded later, new cables can be added without replacing the existing containment."
+    "explanation": "Good workmanship includes planning for the future; leaving space allows new circuits to be added without replacing the containment."
   },
   {
-    "id": 4025,
-    "question": "Which of the following would be the most suitable unit for expressing the total cross-sectional area of a cable?",
+    "id": 4024,
+    "question": "Which unit is standard for calculating the internal cross-sectional area of conduit and trunking?",
     "options": [
       "mm²",
       "mm",
-      "m³",
-      "kg"
+      "cm",
+      "m²"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -268,875 +241,50 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
-      "units",
-      "discrimination"
+      "discrimination",
+      "units"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 30,
-    "explanation": "Area is a two-dimensional measurement and in electrical installations is almost always measured in square millimetres (mm²)."
+    "explanation": "Cross-sectional area is measured in square millimeters (mm²) in the UK electrical industry."
   },
   {
-    "id": 4026,
-    "question": "Which of the following best defines the term 'space factor' in an electrical installation?",
+    "id": 4025,
+    "question": "When using the formula Area = πr² to find the area of a circular conduit, what does 'r' represent?",
     "options": [
-      "The percentage of the internal area of an enclosure occupied by cables",
-      "The total length of cable that can be pulled through a single conduit",
-      "The distance between the support clips on a run of trunking",
-      "The thickness of the insulation surrounding a copper conductor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Space factor is the ratio of the total cross-sectional area of the cables to the internal cross-sectional area of the conduit or trunking, usually expressed as a percentage."
-  },
-  {
-    "id": 4027,
-    "question": "What is a primary safety risk associated with overfilling a conduit with too many cables?",
-    "options": [
-      "Excessive heat buildup leading to insulation breakdown",
-      "An increase in the supply frequency of the circuit",
-      "The cables becoming too heavy for the wall fixings",
-      "A reduction in the resistance of the conductors"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "explanation",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Cables generate heat when carrying current; if they are packed too tightly, air cannot circulate to cool them, leading to overheating and potential fire hazards."
-  },
-  {
-    "id": 4028,
-    "question": "An electrician is calculating the space factor for a length of trunking. If the internal area of the trunking is 2,000 mm² and the total area of the cables is 500 mm², what is the percentage fill?",
-    "options": [
-      "25%",
-      "4%",
-      "40%",
-      "75%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "ROUNDING_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "To find the percentage fill, divide the cable area by the enclosure area and multiply by 100: (500 / 2000) x 100 = 25%."
-  },
-  {
-    "id": 4029,
-    "question": "When determining the space factor for a conduit installation, which measurement of the conduit must be used in the calculation?",
-    "options": [
-      "Internal diameter",
-      "External diameter",
-      "Wall thickness",
-      "Total length"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The space available for cables is determined by the internal diameter of the conduit. Using the external diameter would result in an incorrect calculation of the available area."
-  },
-  {
-    "id": 4030,
-    "question": "A high space factor in a conduit run with several bends is likely to cause which mechanical problem during installation?",
-    "options": [
-      "Scraping or tearing of the cable insulation",
-      "An increase in the magnetic pull of the cables",
-      "The conduit expanding due to air pressure",
-      "The cables becoming impossible to strip"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "High friction in overfilled conduits, especially around bends, makes pulling difficult and frequently leads to mechanical damage of the cable's outer sheath or insulation."
-  },
-  {
-    "id": 4031,
-    "question": "What is the primary reason for limiting the 'space factor' within a conduit or trunking system?",
-    "options": [
-      "To prevent heat build-up and avoid mechanical damage to insulation during pulling",
-      "To ensure that the resistance of the cables remains as high as possible",
-      "To allow the cables to vibrate freely when carrying alternating current",
-      "To reduce the overall weight of the installation for structural safety"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_AC_WITH_DC",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "conceptual",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Space factor limits ensure there is enough air for heat dissipation and enough physical room to pull cables through without tearing the insulation."
-  },
-  {
-    "id": 4032,
-    "question": "When calculating the available internal area of a 25mm steel conduit, which measurement is critical for an accurate space factor result?",
-    "options": [
-      "The internal diameter of the conduit",
-      "The external diameter of the conduit",
+      "The internal radius (half the internal diameter)",
+      "The full external diameter",
       "The thickness of the conduit wall",
-      "The total length of the conduit run"
+      "The total length of the conduit pipe"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Space factor is based on the usable space inside the enclosure; therefore, the internal diameter must be used to calculate the area."
-  },
-  {
-    "id": 4033,
-    "question": "An electrician is installing four cables, each with an overall diameter of 4mm, into a conduit with an internal diameter of 20mm. What is the approximate percentage fill (space factor)?",
-    "options": [
-      "16%",
-      "80%",
-      "64%",
-      "4%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 120,
-    "explanation": "Cable area = π × 2² = 12.57mm². Total cable area (4 cables) = 50.28mm². Conduit area = π × 10² = 314.16mm². Fill = (50.28 / 314.16) × 100 ≈ 16%."
-  },
-  {
-    "id": 4034,
-    "question": "What is the likely consequence of installing AC circuits in a trunking system that exceeds the recommended space factor?",
-    "options": [
-      "The cables may overheat due to restricted airflow around the conductors",
-      "The frequency of the AC supply will decrease due to magnetic interference",
-      "The RMS voltage will increase as cables are squeezed closer together",
-      "The circuit will automatically convert from AC to DC due to pressure"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "CONFUSED_RMS_WITH_PEAK",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "ac-dc",
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "High space factor prevents air from circulating, which is necessary to dissipate the heat generated by the current flowing through the cables."
-  },
-  {
-    "id": 4035,
-    "question": "If a trunking has internal dimensions of 100mm x 50mm and contains cables with a total cross-sectional area of 1500mm², what is the space factor?",
-    "options": [
-      "30%",
-      "3.3%",
-      "50%",
-      "15%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "Trunking area = 100 × 50 = 5000mm². % Fill = (1500 / 5000) × 100 = 30%."
-  },
-  {
-    "id": 4036,
-    "question": "Which of the following describes the term 'Cross-Sectional Area' (CSA) in the context of cable fill calculations?",
-    "options": [
-      "The area of the circle formed by the total outside diameter of the cable",
-      "The length of the cable multiplied by its diameter",
-      "The area of the copper conductor only, excluding insulation",
-      "The thickness of the insulation wrapped around the conductor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "For space factor, we use the total area occupied by the cable, which includes the conductor and its insulation/sheath."
-  },
-  {
-    "id": 4037,
-    "question": "An installation requires a maximum space factor of 45%. If the trunking area is 2500mm², what is the maximum permissible total cable area?",
-    "options": [
-      "1125 mm²",
-      "2500 mm²",
-      "5555 mm²",
-      "1250 mm²"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "DIVIDED_INSTEAD",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "application"
-    ],
-    "learningOutcomeId": "203-3F-LO4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Maximum area = (45 / 100) × 2500 = 1125mm²."
-  },
-  {
-    "id": 4038,
-    "question": "When using the formula A = πr² to find the area of a conduit, what common error results in a 'Space Factor' that is four times larger than it should be?",
-    "options": [
-      "Using the diameter instead of the radius in the formula",
-      "Using the radius instead of the diameter in the formula",
-      "Forgetting to multiply the final result by 100",
-      "Dividing the area of the cables by the area of the conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "If the diameter is used instead of the radius, the squared value becomes (2r)², which is 4r², making the calculated area four times larger."
-  },
-  {
-    "id": 4039,
-    "question": "A technician is unable to pull the final cable into a conduit run despite the calculations suggesting it should fit. What is the most likely practical cause?",
-    "options": [
-      "The run contains several sharp bends which increase friction",
-      "The AC frequency is causing the cables to expand physically",
-      "The conduit has been earthed, reducing the internal space",
-      "The cables are being repelled by the magnetic field of the conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Even if the space factor is technically within limits, physical obstructions like bends increase friction and mechanical resistance during installation."
-  },
-  {
-    "id": 4040,
-    "question": "Which factor is most likely to be improved by maintaining a low space factor in a new trunking installation?",
-    "options": [
-      "Ease of future additions and maintenance",
-      "The voltage rating of the cable insulation",
-      "The frequency of the alternating current",
-      "The resistivity of the copper conductors"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Leaving spare capacity (low space factor) allows for easier maintenance and the addition of more circuits in the future without replacing the enclosure."
-  },
-  {
-    "id": 4041,
-    "question": "Which of the following best defines the term 'space factor' in an electrical installation?",
-    "options": [
-      "The percentage of the internal cross-sectional area of an enclosure occupied by cables",
-      "The total weight of the cables divided by the length of the conduit run",
-      "The external diameter of the conduit compared to the wall thickness",
-      "The ratio of the cable length to the number of bends in the containment"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "terminology",
-      "explanation",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Space factor is the ratio of the total cross-sectional area of the cables to the internal cross-sectional area of the conduit or trunking, expressed as a percentage."
-  },
-  {
-    "id": 4042,
-    "question": "Why is it critical to use the internal diameter (ID) rather than the external diameter (OD) when calculating the space factor of a conduit?",
-    "options": [
-      "The internal area is the only space available for cable capacity",
-      "The external diameter changes depending on the AC frequency",
-      "The internal diameter is used to calculate the RMS voltage drop",
-      "The external diameter is only relevant for DC grounding systems"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "CONFUSED_RMS_WITH_PEAK",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "conceptual",
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The external diameter includes the thickness of the conduit wall; only the internal space (ID) can actually house the cables."
-  },
-  {
-    "id": 4043,
-    "question": "A conduit has an internal area of 400 mm². It contains cables with a combined cross-sectional area of 120 mm². What is the calculated space factor?",
-    "options": [
-      "30%",
-      "333%",
-      "48%",
-      "12%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "RECIPROCAL_ERROR",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "(Total Cable Area / Enclosure Area) x 100 = (120 / 400) x 100 = 30%."
-  },
-  {
-    "id": 4044,
-    "question": "What is the primary risk associated with overfilling a trunking that carries AC power cables?",
-    "options": [
-      "Excessive heat build-up leading to insulation degradation",
-      "A significant increase in the supply frequency (Hz)",
-      "The conversion of AC current into DC current within the enclosure",
-      "The reduction of the peak voltage to the RMS value"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_CURRENT",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "CONFUSED_RMS_WITH_PEAK"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "conceptual",
-      "health-safety",
-      "ac-dc"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Overfilling restricts airflow and prevents heat dissipation. In AC circuits, current flow generates heat, and if trapped, it can melt insulation and cause fires."
-  },
-  {
-    "id": 4045,
-    "question": "An electrician is calculating the fill for a 50mm x 37.5mm trunking. What is the internal cross-sectional area of this enclosure?",
-    "options": [
-      "1875 mm²",
-      "175 mm²",
-      "87.5 mm²",
-      "3125 mm²"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "SIGN_ERROR",
-      "2": "DIVIDED_INSTEAD",
-      "3": "USED_PARALLEL_RULE"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "application"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "For rectangular trunking, Area = Width x Height. 50mm x 37.5mm = 1875 mm²."
-  },
-  {
-    "id": 4046,
-    "question": "A single cable has an overall diameter of 10mm. If an electrician needs to install three of these cables, what is the total cable area to be used in the space factor calculation? (Use π = 3.14)",
-    "options": [
-      "235.5 mm²",
-      "942.0 mm²",
-      "30.0 mm²",
-      "78.5 mm²"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_PARALLEL_RULE",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Radius = 5mm. Area of one cable = πr² = 3.14 x 25 = 78.5 mm². Total for three cables = 78.5 x 3 = 235.5 mm²."
-  },
-  {
-    "id": 4047,
-    "question": "Which statement correctly describes the relationship between cable heat and enclosure fill in UK mains installations?",
-    "options": [
-      "Cables packed tightly together have higher thermal resistance to the surrounding air",
-      "Increasing the space factor reduces the RMS current in the circuit",
-      "The 50Hz frequency prevents heat build-up in overfilled trunking",
-      "Space factor only applies to DC circuits because AC cables do not generate heat"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_FREQUENCY_WITH_CURRENT",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "conceptual",
-      "ac-dc",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Tightly packed cables reduce the surface area exposed to air, making it harder for heat to escape, which increases the risk of overheating."
-  },
-  {
-    "id": 4048,
-    "question": "An installation requires a space factor of no more than 45%. If the enclosure area is 1000 mm² and the cables occupy 480 mm², is this installation acceptable?",
-    "options": [
-      "No, because the fill is 48%, which exceeds the limit",
-      "Yes, because the fill is 4.8%, which is well below the limit",
-      "No, because the area must be calculated using the peak voltage",
-      "Yes, because space factor limits only apply to conduit, not trunking"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "ROUNDING_ERROR",
-      "2": "CONFUSED_RMS_WITH_PEAK",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "application",
       "discrimination",
       "calculation"
     ],
-    "learningOutcomeId": "203-3F-LO4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Fill = (480 / 1000) x 100 = 48%. Since 48% is greater than the 45% limit, it is not acceptable."
-  },
-  {
-    "id": 4049,
-    "question": "When comparing conduit and trunking, which is generally true regarding space factor and future-proofing?",
-    "options": [
-      "Trunking typically allows for easier addition of future cables due to its shape and accessibility",
-      "Conduit must always be filled to 100% to maintain the AC sine wave",
-      "Space factor is ignored in trunking because it is rectangular",
-      "Only DC circuits require a space factor calculation in conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_AC_WITH_DC",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Good workmanship involves leaving spare capacity in trunking for future maintenance and additions, whereas conduit is harder to pull new cables through if near its limit."
-  },
-  {
-    "id": 4050,
-    "question": "A transformer output is wired using conduit. If the output current increases, why might the electrician need to re-evaluate the conduit's space factor?",
-    "options": [
-      "Increased current leads to more heat, which requires better dissipation space",
-      "Increased current changes the internal diameter of the conduit",
-      "The frequency of the transformer output will increase with the load",
-      "The space factor must be reduced to allow for higher peak voltages"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "CONFUSED_FREQUENCY_WITH_CURRENT",
-      "3": "CONFUSED_RMS_WITH_PEAK"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "application",
-      "transformers",
-      "ac-dc"
-    ],
-    "learningOutcomeId": "203-3F-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Higher current flow results in more thermal energy (I²R losses). If a conduit is already near its space factor limit, the extra heat might not dissipate, risking damage."
-  },
-  {
-    "id": 4051,
-    "question": "What is the primary reason for limiting the space factor (enclosure fill) in an electrical conduit installation?",
-    "options": [
-      "To prevent heat build-up and avoid damage to cable insulation during installation",
-      "To ensure the conduit is heavy enough to be supported by standard clips",
-      "To reduce the total resistance of the conductors within the enclosure",
-      "To allow the air inside the conduit to act as a primary insulator"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_I_V_R",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Limiting the space factor ensures there is enough air to dissipate heat and prevents high friction, which could tear cable insulation when pulling cables through."
-  },
-  {
-    "id": 4052,
-    "question": "How is the 'space factor' of a cable enclosure correctly defined in electrical installation work?",
-    "options": [
-      "The percentage of the internal cross-sectional area of the enclosure occupied by cables",
-      "The ratio of the external diameter of the conduit to the total number of cables",
-      "The total length of the cable run divided by the internal volume of the trunking",
-      "The distance between the support saddles used to secure the conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "terminology",
-      "units",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "Space factor is the ratio of the total cross-sectional area of the cables to the internal cross-sectional area of the enclosure, expressed as a percentage."
+    "explanation": "In the area formula for a circle, 'r' is the radius, which is exactly half of the internal diameter."
   },
   {
-    "id": 4053,
-    "question": "A section of trunking has internal dimensions of 50 mm x 50 mm. If it contains several cables with a total combined cross-sectional area of 1,125 mm², what is the space factor?",
+    "id": 4026,
+    "question": "What is the definition of 'space factor' (enclosure fill) in an electrical installation?",
     "options": [
-      "45%",
-      "22.5%",
-      "50%",
-      "11.25%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "ROUNDING_ERROR",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "application"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "First, calculate the trunking area: 50mm x 50mm = 2500mm². Then calculate the percentage: (1125 / 2500) x 100 = 45%."
-  },
-  {
-    "id": 4054,
-    "question": "When calculating the available area for cables inside a conduit, which measurement must be used to ensure the space factor is accurate?",
-    "options": [
-      "The internal diameter of the conduit",
-      "The external diameter of the conduit",
-      "The wall thickness of the conduit material",
-      "The total circumference of the conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Cables occupy the space inside the conduit, so the internal diameter (ID) must be used to calculate the available cross-sectional area."
-  },
-  {
-    "id": 4055,
-    "question": "An electrician is struggling to pull three 6mm² cables through a 20mm conduit with several 90-degree bends. What is the most likely risk if they force the cables through?",
-    "options": [
-      "The insulation may be scraped or torn, leading to potential short circuits",
-      "The frequency of the AC supply will fluctuate due to cable compression",
-      "The magnetic field of the cables will be trapped inside the conduit",
-      "The voltage will increase because the cables are packed tighter together"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "application",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Forcing cables into an overfilled enclosure or through tight bends causes mechanical stress and friction, which can damage the insulation and lead to electrical faults."
-  },
-  {
-    "id": 4056,
-    "question": "An electrician is installing several circuits into a 100mm x 50mm steel trunking. If the total cross-sectional area of all cables is 2,250 mm², what is the calculated space factor?",
-    "options": [
-      "45%",
-      "22.5%",
-      "50%",
-      "2.22%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "units",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The space factor is (Total Cable Area / Enclosure Area) x 100. Enclosure Area = 100mm x 50mm = 5,000 mm². Space Factor = (2,250 / 5,000) x 100 = 45%."
-  },
-  {
-    "id": 4057,
-    "question": "Which of the following describes the primary thermal risk associated with exceeding the recommended space factor in a conduit?",
-    "options": [
-      "Trapped air gaps between cables act as insulation, preventing heat dissipation to the enclosure walls",
-      "The increased friction during installation causes the copper conductors to work-harden and increase resistance",
-      "The magnetic fields of the cables overlap more intensely, causing induced heating in the conduit material",
-      "The cables will physically expand and crack the conduit due to lack of expansion room"
+      "The percentage of the enclosure's internal area occupied by cables",
+      "The total length of the conduit used in a circuit",
+      "The external diameter of the conduit or trunking",
+      "The weight of the cables relative to the enclosure"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1147,137 +295,634 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3F-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Overfilling reduces the volume of air around cables. Since air is needed to carry heat away to the enclosure surface, tightly packed cables retain heat, leading to insulation degradation."
-  },
-  {
-    "id": 4058,
-    "question": "A 25mm internal diameter conduit contains four cables, each with an overall diameter of 8mm. What is the approximate percentage fill of this conduit?",
-    "options": [
-      "41%",
-      "32%",
-      "51%",
-      "10%"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "ROUNDING_ERROR",
-      "3": "RECIPROCAL_ERROR"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "calculation",
-      "mixed-circuit"
-    ],
-    "learningOutcomeId": "203-3F-LO3",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "Conduit Area = π x (12.5)² ≈ 490.87 mm². Single Cable Area = π x (4)² ≈ 50.27 mm². Total Cable Area = 4 x 50.27 = 201.08 mm². Fill = (201.08 / 490.87) x 100 ≈ 40.96%."
-  },
-  {
-    "id": 4059,
-    "question": "When calculating space factor for a complex installation, why must the 'overall diameter' of the cable be used rather than the conductor's cross-sectional area (e.g., 2.5mm²)?",
-    "options": [
-      "The space occupied in the enclosure includes the insulation and any protective sheathing",
-      "The conductor area is only relevant for DC circuits, whereas overall diameter is for AC",
-      "The insulation thickness changes the frequency of the current flowing through the cable",
-      "BS 7671 requires calculations to be based on the external surface area of the copper only"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_AC_WITH_DC",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Spacing Factor / Enclosure Fill",
-    "tags": [
-      "discrimination",
+      "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Space factor is a physical measurement of volume/area. The insulation and sheathing take up physical space within the conduit, so the 'overall diameter' is the only relevant dimension for fill calculations."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Space factor is the ratio of the total cross-sectional area of the cables to the internal cross-sectional area of the conduit or trunking, expressed as a percentage."
   },
   {
-    "id": 4060,
-    "question": "An installation requires a 45% maximum space factor. A 50mm x 50mm trunking is being used. What is the maximum total cross-sectional area of cables allowed?",
+    "id": 4027,
+    "question": "What is a primary risk of overfilling a conduit with electrical cables?",
     "options": [
-      "1,125 mm²",
-      "2,500 mm²",
-      "1,250 mm²",
-      "5,555 mm²"
+      "Excessive heat buildup due to restricted airflow",
+      "An increase in the supply frequency",
+      "The conduit becoming magnetic",
+      "A reduction in the supply voltage from the transformer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Overfilled enclosures prevent air from circulating around cables, which leads to heat buildup and can damage cable insulation over time."
+  },
+  {
+    "id": 4028,
+    "question": "When calculating the available space inside a conduit, which measurement is used?",
+    "options": [
+      "Internal diameter",
+      "External diameter",
+      "Wall thickness",
+      "Overall length"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Cables are installed inside the conduit, so the internal diameter is the dimension that determines the available cross-sectional area."
+  },
+  {
+    "id": 4029,
+    "question": "A section of trunking has an internal area of 2000 mm². If the total area of the installed cables is 500 mm², what is the percentage fill?",
+    "options": [
+      "25%",
+      "4%",
+      "40%",
+      "1500%"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "DIVIDED_INSTEAD",
-      "2": "UNITS_MISSING",
+      "2": "ROUNDING_ERROR",
       "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
       "calculation",
-      "application"
+      "units"
     ],
-    "learningOutcomeId": "203-3F-LO4",
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Trunking Area = 50 x 50 = 2,500 mm². 45% of 2,500 = 0.45 x 2,500 = 1,125 mm²."
+    "difficulty": 1,
+    "estimatedTime": 60,
+    "explanation": "Percentage fill is (Total Cable Area / Enclosure Area) x 100. Therefore, (500 / 2000) x 100 = 25%."
   },
   {
-    "id": 4061,
-    "question": "Which of the following is a mechanical consequence of pulling cables into a conduit that has exceeded its space factor limit?",
+    "id": 4030,
+    "question": "An electrician struggles to pull cables through a conduit run with several bends. Which factor is most likely to cause damage to the cable insulation in this scenario?",
     "options": [
-      "Excessive friction causing the outer insulation to stretch or tear",
-      "The cables will vibrate at 50Hz and cause the conduit fixings to loosen",
-      "The voltage drop across the cable will increase due to the compression of the atoms",
-      "A vacuum is created within the conduit which prevents the flow of electrons"
+      "The conduit is overfilled, increasing friction",
+      "The supply is AC instead of DC",
+      "The cable conductor is made of copper",
+      "The conduit is installed vertically"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_CURRENT",
-      "2": "CONFUSED_I_V_R",
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
-      "conceptual",
-      "application"
+      "application",
+      "conceptual"
     ],
-    "learningOutcomeId": "203-3F-LO2",
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Overfilled conduits result in high friction during the 'pulling-in' phase, which can snag and tear the insulation, leading to potential short circuits or earth faults."
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "High space factor (overfilling) increases friction during the pulling-in process, which can lead to mechanical damage of the insulation, especially at bends."
   },
   {
-    "id": 4062,
-    "question": "A technician needs to choose between two conduits. Conduit A has an internal diameter of 20mm. Conduit B has an internal diameter of 25mm. How much more cable area can Conduit B hold compared to Conduit A?",
+    "id": 4031,
+    "question": "Which of the following best defines the term 'space factor' in relation to electrical enclosures?",
     "options": [
-      "Approximately 56% more area",
-      "Exactly 25% more area",
-      "Approximately 20% more area",
-      "Exactly 5mm more area"
+      "The percentage of the internal cross-sectional area of an enclosure occupied by cables",
+      "The total length of cable that can be pulled through a conduit without using lubricant",
+      "The external diameter of a conduit divided by the number of cables inside",
+      "The thickness of the insulation on a cable compared to the conduit wall thickness"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "WRONG_UNITS",
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "DIVIDED_INSTEAD",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Space factor is the ratio (expressed as a percentage) of the total cross-sectional area of the cables to the internal cross-sectional area of the conduit or trunking."
+  },
+  {
+    "id": 4032,
+    "question": "An electrician is calculating the space factor for a 25 mm conduit. Why must they use the internal diameter rather than the external diameter for this calculation?",
+    "options": [
+      "The external diameter includes the wall thickness which provides no space for cables",
+      "The external diameter is used only for calculating the number of saddles required",
+      "Using the external diameter would result in an underestimate of the percentage fill",
+      "The internal diameter is always exactly 50% of the external diameter"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "RECIPROCAL_ERROR",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Cables occupy the space inside the conduit; the conduit wall thickness reduces the available area, so only the internal diameter is relevant for fill calculations."
+  },
+  {
+    "id": 4033,
+    "question": "What is a primary thermal risk associated with overfilling a trunking system with power cables?",
+    "options": [
+      "Reduced air circulation prevents heat dissipation, leading to insulation breakdown",
+      "The increased weight of the cables generates friction heat against the trunking base",
+      "The magnetic field of the cables interacts with the metal trunking to create heat",
+      "Overfilling increases the voltage drop, which directly causes the trunking to melt"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Cables generate heat during operation. If an enclosure is too full, there is insufficient air to carry that heat away, which can cause the insulation to degrade and eventually fail."
+  },
+  {
+    "id": 4034,
+    "question": "A piece of trunking has internal dimensions of 50 mm x 50 mm. If the total cross-sectional area of the cables to be installed is 1,000 mm², what is the space factor?",
+    "options": [
+      "40%",
+      "20%",
+      "50%",
+      "25%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Trunking area = 50 x 50 = 2,500 mm². Space factor = (Cable Area / Trunking Area) x 100 = (1,000 / 2,500) x 100 = 40%."
+  },
+  {
+    "id": 4035,
+    "question": "When pulling cables into a conduit system with several 90-degree bends, why is it critical to maintain a lower space factor?",
+    "options": [
+      "To reduce the mechanical friction and prevent damage to the cable insulation",
+      "To ensure the cables can vibrate freely at a frequency of 50 Hz",
+      "To allow the conduit to be bent further after the cables have been installed",
+      "To prevent the cables from becoming tangled and reversing the polarity"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Bends increase the friction during the 'pulling-in' phase. A lower space factor ensures there is enough room for the cables to move around the bends without tearing the insulation."
+  },
+  {
+    "id": 4036,
+    "question": "A conduit has an internal diameter of 20 mm (Area ≈ 314 mm²). If you install three cables, each with a total cross-sectional area of 30 mm², what is the approximate percentage fill?",
+    "options": [
+      "28.7%",
+      "9.5%",
+      "90.0%",
+      "31.4%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_SERIES_RULE",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Total cable area = 3 x 30 = 90 mm². Percentage fill = (90 / 314) x 100 = 28.66% (rounded to 28.7%)."
+  },
+  {
+    "id": 4037,
+    "question": "An electrician is choosing between two sizes of trunking for a job. If the calculated space factor for the first size is 55% and the industry guidance suggests a limit of 45%, what should the electrician do?",
+    "options": [
+      "Select a larger size of trunking to reduce the space factor",
+      "Use a lubricant to force the cables into the smaller trunking",
+      "Remove the earth conductors to create more space in the enclosure",
+      "Increase the voltage of the circuit to compensate for the heat"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "HEALTH_SAFETY",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "application",
+      "discrimination",
+      "health-safety"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "If the calculated fill exceeds the limit, a larger enclosure must be used to ensure safety, ease of installation, and future-proofing."
+  },
+  {
+    "id": 4038,
+    "question": "Which mathematical step is correct when determining the total area occupied by five identical circular cables?",
+    "options": [
+      "Calculate the area of one cable using πr² and multiply the result by five",
+      "Multiply the diameter of one cable by five and then square the result",
+      "Add the diameters of all five cables together and multiply by π",
+      "Square the radius of one cable and multiply by the total length of the run"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "UNITS_MISSING",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "To find the total area, you must find the cross-sectional area of a single cable first (πr²) and then multiply that area by the number of cables."
+  },
+  {
+    "id": 4039,
+    "question": "Leaving 'headroom' or spare capacity in a trunking installation is considered good workmanship primarily because it:",
+    "options": [
+      "Allows for future additions to the electrical system without replacing the enclosure",
+      "Reduces the cost of the initial installation by using less cable",
+      "Prevents the cables from touching the sides of the metal trunking",
+      "Ensures the magnetic fields of the cables do not overlap"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "application",
+      "legislation"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Spare capacity is essential for future-proofing an installation, allowing additional circuits to be added later without significant structural changes."
+  },
+  {
+    "id": 4040,
+    "question": "A student calculates the space factor of a conduit and gets a result of 115%. What does this result indicate?",
+    "options": [
+      "The cables have a larger combined area than the available space inside the conduit",
+      "The conduit is perfectly filled and meets all safety standards",
+      "The calculation is correct, as the space factor usually exceeds 100%",
+      "The conduit is only 15% full and has plenty of spare capacity"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "ROUNDING_ERROR",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "conceptual",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 60,
+    "explanation": "A percentage over 100% means the items being placed inside are physically larger than the container, which is impossible in practice and indicates a calculation error or a serious design flaw."
+  },
+  {
+    "id": 4041,
+    "question": "Which of the following best defines the term 'space factor' in relation to electrical enclosures?",
+    "options": [
+      "The percentage of the internal area of an enclosure occupied by cables",
+      "The ratio of the cable's copper cross-section to the conduit's external diameter",
+      "The maximum length of cable that can be pulled through a conduit before a bend",
+      "The amount of air required to keep a conductor at room temperature"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Space factor (or enclosure fill) is the ratio of the total cross-sectional area of all cables to the internal cross-sectional area of the conduit or trunking, expressed as a percentage."
+  },
+  {
+    "id": 4042,
+    "question": "What is the primary thermal reason for limiting the number of cables installed within a single conduit?",
+    "options": [
+      "To prevent heat buildup by ensuring there is sufficient air for dissipation",
+      "To increase the resistance of the cables to prevent over-current",
+      "To ensure the magnetic fields of the AC supply do not cause vibration",
+      "To allow the conduit material to expand and contract with the frequency"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Cables generate heat when carrying current. If an enclosure is overfilled, there is less air to circulate and remove that heat, leading to insulation degradation and potential fire risks."
+  },
+  {
+    "id": 4043,
+    "question": "An electrician is calculating the space factor for a 25 mm internal diameter (ID) conduit. What is the approximate internal cross-sectional area available for cables?",
+    "options": [
+      "491 mm²",
+      "1,963 mm²",
+      "78 mm²",
+      "625 mm²"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Using the area of a circle formula (πr²): The radius is half the diameter (25 / 2 = 12.5 mm). Area = 3.14159 × 12.5² ≈ 490.87 mm²."
+  },
+  {
+    "id": 4044,
+    "question": "When pulling cables into a trunking system, an overfilled enclosure is most likely to cause which mechanical problem?",
+    "options": [
+      "Damage to cable insulation due to high friction and snagging",
+      "A decrease in the supply frequency from 50 Hz to 40 Hz",
+      "The trunking becoming magnetised and attracting hand tools",
+      "An increase in the RMS voltage at the furthest point of the circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_CURRENT",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Overfilling an enclosure increases friction during the 'pulling in' phase, which can tear or scrape the insulation, leading to short circuits or earth faults later."
+  },
+  {
+    "id": 4045,
+    "question": "A section of trunking has internal dimensions of 100 mm x 50 mm. If the total cross-sectional area of the cables to be installed is 1,250 mm², what is the space factor?",
+    "options": [
+      "25%",
+      "12.5%",
+      "50%",
+      "8%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "UNITS_MISSING",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Trunking area = 100 mm × 50 mm = 5,000 mm². Space factor = (Cable Area / Trunking Area) × 100 = (1,250 / 5,000) × 100 = 25%."
+  },
+  {
+    "id": 4046,
+    "question": "Which dimension must be used to correctly calculate the space factor of a conduit installation?",
+    "options": [
+      "The internal diameter of the conduit",
+      "The external diameter of the conduit",
+      "The thickness of the conduit wall",
+      "The total length of the conduit run"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Only the internal area is available for cables. Using the external diameter would incorrectly suggest more space is available than actually exists."
+  },
+  {
+    "id": 4047,
+    "question": "A 50 mm x 50 mm trunking has a maximum recommended fill limit of 45%. If the planned cables have a total area of 1,200 mm², is this installation acceptable?",
+    "options": [
+      "No, because the fill is 48%",
+      "Yes, because the fill is 24%",
+      "Yes, because the fill is 45%",
+      "No, because the fill is 52%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "ROUNDING_ERROR",
       "2": "FORMULA_NOT_REARRANGED",
-      "3": "SIGN_ERROR"
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "application",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-3F-LO4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 120,
+    "explanation": "Trunking area = 50 × 50 = 2,500 mm². Fill = (1,200 / 2,500) × 100 = 48%. Since 48% is greater than the 45% limit, it is not acceptable."
+  },
+  {
+    "id": 4048,
+    "question": "Why is it important to include the cable's insulation when calculating the total cable area for space factor?",
+    "options": [
+      "The insulation takes up physical volume within the enclosure",
+      "The insulation increases the voltage capacity of the conduit",
+      "The insulation protects the conduit from electromagnetic induction",
+      "The insulation allows the current to flow at a higher frequency"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "CONFUSED_TRANSFORMER_WITH_AC_DC",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Space factor is a measure of physical occupancy. The entire cable, including its sheath and insulation, occupies space inside the conduit or trunking."
+  },
+  {
+    "id": 4049,
+    "question": "If two cables, each with an overall diameter of 10 mm, are installed in a conduit, what is their total combined area for a space factor calculation?",
+    "options": [
+      "157 mm²",
+      "314 mm²",
+      "20 mm²",
+      "100 mm²"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
@@ -1285,26 +930,26 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
       "calculation",
       "discrimination"
     ],
-    "learningOutcomeId": "203-3F-LO3",
+    "learningOutcomeId": "202-3F-LO3",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 180,
-    "explanation": "Area A = π x 10² = 314.16. Area B = π x 12.5² = 490.87. (490.87 / 314.16) = 1.56, which is a 56% increase. This highlights that small changes in diameter result in large changes in area."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Area of one cable = π × r² = 3.14 × 5² = 78.5 mm². Total area for two cables = 78.5 × 2 = 157 mm²."
   },
   {
-    "id": 4063,
-    "question": "In the context of UK electrical installations, why is 'future-proofing' considered a reason for maintaining a lower space factor?",
+    "id": 4050,
+    "question": "Which of the following describes a benefit of leaving spare capacity (low space factor) in a trunking installation?",
     "options": [
-      "To allow for the addition of further circuits without replacing the entire containment system",
-      "To ensure that the 50Hz frequency has enough space to oscillate within the trunking",
-      "Because the cables will naturally grow in diameter as they age due to copper oxidation",
-      "To prevent the magnetic field from reaching the outside of the trunking"
+      "It allows for easier maintenance and future wiring additions",
+      "It increases the RMS voltage of the circuit automatically",
+      "It converts the DC components of the circuit into AC",
+      "It reduces the resistance of the protective earthing conductor"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_AC_WITH_DC",
+      "3": "CONFUSED_I_V_R"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
@@ -1312,64 +957,429 @@ export const spacingFactorEnclosureFillQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-3F-LO2",
+    "learningOutcomeId": "202-3F-LO2",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Professional workmanship involves leaving spare capacity (headroom) so that future modifications or additional circuits can be installed easily without violating safety limits."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Good workmanship involves planning for the future. Leaving spare space ensures that additional circuits can be added later without needing to replace the entire containment system."
   },
   {
-    "id": 4064,
-    "question": "An electrician is calculating the fill for a 50mm x 50mm trunking containing 12 cables. If each cable has an overall diameter of 10mm, what is the status of the installation based on a 45% limit?",
+    "id": 4051,
+    "question": "Which of the following best defines the term 'space factor' (enclosure fill) in an electrical installation?",
     "options": [
-      "It is overfilled at approximately 37.7%",
-      "It is acceptable at approximately 37.7%",
-      "It is acceptable at approximately 12%",
-      "It is overfilled at approximately 48%"
+      "The percentage of the internal cross-sectional area of an enclosure occupied by cables",
+      "The total external volume of the conduit divided by the number of cables inside",
+      "The ratio of the cable's copper conductor area to the total external diameter of the conduit",
+      "The maximum length of cable that can be pulled through a single run of trunking"
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "ROUNDING_ERROR",
-      "2": "USED_SERIES_RULE",
-      "3": "MULTIPLIED_INSTEAD"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "terminology",
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Space factor is a ratio expressed as a percentage, comparing the total cross-sectional area of the cables to the available internal area of the conduit or trunking."
+  },
+  {
+    "id": 4052,
+    "question": "An electrician is installing cables into a 20mm conduit. Why is it critical not to exceed the recommended space factor?",
+    "options": [
+      "To prevent heat buildup and mechanical damage to insulation during installation",
+      "To ensure the AC frequency remains stable at 50 Hz throughout the circuit",
+      "To increase the resistance of the cables to prevent overcurrent",
+      "To ensure that the magnetic fields of the live and neutral conductors do not overlap"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_I_V_R",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Overfilling an enclosure restricts airflow, leading to overheating, and increases friction, which can tear cable insulation during the pulling-in process."
+  },
+  {
+    "id": 4053,
+    "question": "A section of 50mm x 50mm trunking contains 15 cables. Each cable has a total cross-sectional area (including insulation) of 20 mm². Calculate the percentage fill of the trunking.",
+    "options": [
+      "12%",
+      "30%",
+      "6%",
+      "25%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
+      "3": "ROUNDING_ERROR"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
       "calculation",
+      "units",
       "application"
     ],
-    "learningOutcomeId": "203-3F-LO4",
+    "learningOutcomeId": "202-3F-LO3",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 180,
-    "explanation": "Trunking Area = 2500 mm². Cable Area (1) = π x 5² = 78.54. Total Cable Area = 12 x 78.54 = 942.48. Fill = (942.48 / 2500) x 100 = 37.7%. This is below the 45% limit, so it is acceptable."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Trunking area = 50 x 50 = 2500 mm². Total cable area = 15 x 20 = 300 mm². % fill = (300 / 2500) x 100 = 12%."
   },
   {
-    "id": 4065,
-    "question": "Which dimension is used to calculate the 'Available Internal Area' of a circular conduit for space factor purposes?",
+    "id": 4054,
+    "question": "When calculating the area available for cables inside a conduit, which dimension must be used for the calculation to be accurate?",
     "options": [
-      "The internal diameter (ID)",
-      "The external diameter (OD)",
-      "The wall thickness multiplied by pi",
-      "The circumference of the outer wall"
+      "Internal diameter",
+      "External diameter",
+      "Wall thickness",
+      "Outside circumference"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "WRONG_UNITS",
-      "3": "FORMULA_NOT_REARRANGED"
+      "2": "OTHER",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Spacing Factor / Enclosure Fill",
     "tags": [
       "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Cables occupy the space inside the conduit; therefore, the internal diameter (ID) must be used to calculate the available cross-sectional area."
+  },
+  {
+    "id": 4055,
+    "question": "A conduit has an internal area of 314 mm². It currently contains two cables, each with a cross-sectional area of 40 mm². An electrician wants to add a third cable with an area of 50 mm². What will be the final space factor?",
+    "options": [
+      "41.4%",
+      "28.7%",
+      "12.7%",
+      "130.0%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "RECIPROCAL_ERROR",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "application",
+      "mixed-circuit"
+    ],
+    "learningOutcomeId": "202-3F-LO4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 100,
+    "explanation": "Total cable area = 40 + 40 + 50 = 130 mm². Space factor = (130 / 314) x 100 = 41.4%."
+  },
+  {
+    "id": 4056,
+    "question": "An electrician is installing 6.0 mm² cables into a section of trunking. If the calculated space factor is significantly exceeded, what is the primary thermal risk to the installation?",
+    "options": [
+      "The reduction of air circulation prevents heat dissipation, leading to insulation degradation.",
+      "The increased resistance of the cables due to proximity causes a voltage spike.",
+      "The magnetic fields of the cables will overlap, causing the trunking to become live.",
+      "The cables will expand physically and crack the trunking joints."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "power",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Overfilling an enclosure reduces the volume of air available to circulate around the conductors. Air acts as a cooling medium; without it, heat builds up, which can cause the PVC insulation to soften or become brittle over time."
+  },
+  {
+    "id": 4057,
+    "question": "A 25 mm conduit has an internal diameter (ID) of 21 mm. It contains four cables, each with an overall diameter of 7 mm. Calculate the approximate percentage space factor.",
+    "options": [
+      "44%",
+      "33%",
+      "66%",
+      "28%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "ROUNDING_ERROR",
+      "2": "RECIPROCAL_ERROR",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "units",
+      "resistance-rule"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "Conduit Area = π * (21/2)² ≈ 346.36 mm². Total Cable Area = 4 * (π * (7/2)²) ≈ 4 * 38.48 ≈ 153.92 mm². % Fill = (153.92 / 346.36) * 100 ≈ 44.4%."
+  },
+  {
+    "id": 4058,
+    "question": "When calculating the space factor for a conduit run, why must the electrician use the internal diameter rather than the nominal outside diameter?",
+    "options": [
+      "The outside diameter includes the wall thickness, which provides no usable space for cables.",
+      "The outside diameter is used only for calculating the number of saddles required.",
+      "The internal diameter changes depending on the frequency of the AC supply.",
+      "The internal diameter is required to calculate the magnetic flux density of the enclosure."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "terminology",
       "units"
     ],
-    "learningOutcomeId": "203-3F-LO1",
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "The space factor is a measure of the available volume inside the tube. Using the outside diameter would overestimate the available space because it includes the thickness of the conduit material itself."
+  },
+  {
+    "id": 4059,
+    "question": "A length of trunking measures 50 mm x 50 mm internally. If the maximum permissible space factor is 45%, what is the maximum total cross-sectional area (including insulation) that the cables can occupy?",
+    "options": [
+      "1125 mm²",
+      "2500 mm²",
+      "1250 mm²",
+      "500 mm²"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "application",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO4",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Total internal area = 50 * 50 = 2500 mm². 45% of 2500 = 2500 * 0.45 = 1125 mm²."
+  },
+  {
+    "id": 4060,
+    "question": "During a complex pull through a conduit system with several 90-degree bends, a high space factor is most likely to cause which mechanical issue?",
+    "options": [
+      "Strain and abrasion on the cable insulation due to high friction.",
+      "A decrease in the conductor's resistance due to compression.",
+      "The conduit joints to expand and disconnect due to internal pressure.",
+      "The cables to twist and create a transformer effect with the conduit."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "OTHER",
+      "3": "CONFUSED_TRANSFORMER_WITH_AC_DC"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "conceptual",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "High space factors leave little room for cables to move. In bends, cables are pressed against the inner walls; if there is too much fill, the friction increases significantly, leading to torn or damaged insulation."
+  },
+  {
+    "id": 4061,
+    "question": "An installation requires two 10 mm diameter cables and four 5 mm diameter cables in a single trunking. What is the total cross-sectional area of these cables?",
+    "options": [
+      "235.6 mm²",
+      "157.1 mm²",
+      "40.0 mm²",
+      "314.2 mm²"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_SERIES_RULE",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "units",
+      "mixed-circuit"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "Area of one 10mm cable = π*(5)² = 78.54. Two 10mm cables = 157.08. Area of one 5mm cable = π*(2.5)² = 19.63. Four 5mm cables = 78.52. Total = 157.08 + 78.52 = 235.6 mm²."
+  },
+  {
+    "id": 4062,
+    "question": "Which of the following best describes the 'Space Factor' in the context of trunking and conduit?",
+    "options": [
+      "The ratio of the total cable area to the internal area of the enclosure.",
+      "The distance between the outer surface of the cable and the inner wall of the conduit.",
+      "The maximum length of a cable run before a draw-in box is required.",
+      "The thickness of the galvanized coating on the steel enclosure."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 60,
-    "explanation": "The cables are placed inside the conduit; therefore, the external diameter is irrelevant to the available space. Only the internal diameter determines the usable cross-sectional area."
+    "explanation": "Space factor (or enclosure fill) is specifically the percentage or ratio of the internal cross-sectional area of an enclosure that is occupied by cables."
+  },
+  {
+    "id": 4063,
+    "question": "An electrician decides to use 50 mm x 50 mm trunking for a circuit that only requires 25 mm x 25 mm trunking. How does this affect the installation's future-proofing?",
+    "options": [
+      "It allows for easier addition of future circuits and better heat dissipation.",
+      "It decreases the circuit's efficiency by increasing the inductive reactance.",
+      "It is a violation of BS 7671 as enclosures must be sized exactly to the load.",
+      "It requires the use of higher-rated insulation because of the extra air volume."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "application",
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "202-3F-LO2",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Using larger enclosures than strictly necessary is good practice (workmanship) because it facilitates easier maintenance, easier cooling, and permits future upgrades without replacing the containment."
+  },
+  {
+    "id": 4064,
+    "question": "You have a total cable area of 400 mm². Which of the following conduit internal diameters would result in a space factor closest to 40%?",
+    "options": [
+      "36 mm",
+      "20 mm",
+      "25 mm",
+      "50 mm"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "calculation",
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "202-3F-LO3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 210,
+    "explanation": "If 400 mm² is 40%, then 100% (Total Area) = 1000 mm². Area = πr², so r² = 1000/π ≈ 318.3. r ≈ 17.84 mm. Diameter = 2 * r ≈ 35.68 mm. 36 mm is the closest."
+  },
+  {
+    "id": 4065,
+    "question": "Why is 'Cable Factor' often used in on-site guides instead of calculating areas using πr²?",
+    "options": [
+      "It simplifies complex geometry into easy-to-add whole numbers for quick field use.",
+      "It accounts for the skin effect in AC conductors which πr² ignores.",
+      "It is a legal requirement under the Electricity at Work Regulations.",
+      "It converts the circular area of a cable into a square area for easier trunking fill."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Spacing Factor / Enclosure Fill",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "202-3F-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Cable factors and terms like 'conduit factor' are pre-calculated values that allow electricians to sum up values for various cables and compare them to a conduit's capacity without needing to perform πr² calculations on site."
   }
 ];

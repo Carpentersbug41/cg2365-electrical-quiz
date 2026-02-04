@@ -158,7 +158,18 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 7.3,
   },
 
-// Unit 203: Electrical Installations Technology
+
+  {
+    id: '202-3F',
+    title: 'Spacing Factor / Enclosure Fill',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Spacing Factor / Enclosure Fill',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-3F'),
+    available: true,
+    order: 8.3,
+  },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {
@@ -296,18 +307,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 12,
   },
   
-  
-  {
-    id: '203-3F',
-    title: 'Spacing Factor / Enclosure Fill',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Spacing Factor / Enclosure Fill',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3F'),
-    available: true,
-    order: 13,
-  },// Unit 210: Communication
+  // Unit 210: Communication
   {
     id: '204-10A',
     title: 'Dead-test language — what each test proves',
