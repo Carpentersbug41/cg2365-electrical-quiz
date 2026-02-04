@@ -1,6 +1,25 @@
 /**
  * Validation Service
  * Validates generated lessons and quizzes for quality and correctness
+ * 
+ * ⚠️ CRITICAL FILE - READ BEFORE MODIFYING
+ * See: reports/bulk_tasks/don't_touch.md
+ * 
+ * Every validation check exists because we debugged that exact failure case.
+ * Don't remove checks to "simplify" or "speed up" generation.
+ * 
+ * Common mistakes:
+ * - Commenting out checks to make tests pass → Production bugs
+ * - Removing "annoying" warnings → Issues reach users
+ * - Weakening validation thresholds → Quality drops
+ * 
+ * These checks prevent:
+ * - Runtime crashes (wrong field names, missing data)
+ * - Broken UI (invalid structures, order collisions)
+ * - Bad UX (poor content quality, incorrect formats)
+ * 
+ * If validation fails, fix the GENERATOR, not the validation.
+ * Test thoroughly before committing!
  */
 
 import { Lesson, LessonBlock, QuizQuestion, ValidationResult } from './types';

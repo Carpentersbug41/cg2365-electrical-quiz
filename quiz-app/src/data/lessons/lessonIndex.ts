@@ -296,6 +296,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 12,
   },
   
+  
   {
     id: '203-3F',
     title: 'Spacing Factor / Enclosure Fill',

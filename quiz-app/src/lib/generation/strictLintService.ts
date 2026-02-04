@@ -2,6 +2,24 @@
  * Strict Lint Service
  * High-priority validation rules that MUST pass for 95+ lesson scores
  * These are hard failures that trigger automatic repair
+ * 
+ * ⚠️ CRITICAL FILE - READ BEFORE MODIFYING
+ * See: reports/bulk_tasks/don't_touch.md
+ * 
+ * This is the last line of defense before bad data reaches production.
+ * 
+ * Common mistakes:
+ * - Disabling checks to "speed up generation" → Broken lessons ship
+ * - Lowering severity levels → Critical issues become warnings
+ * - Commenting out "annoying" checks → UI crashes at runtime
+ * 
+ * These checks catch:
+ * - Field name typos (attText vs questionText) → crashes SpacedReviewBlock
+ * - Wrong data types (string vs array) → marking fails
+ * - Invalid structures (order collisions) → rendering breaks
+ * 
+ * Never disable strict lint. Fix the generator instead.
+ * Test thoroughly before committing!
  */
 
 import { Lesson, LessonBlock } from './types';

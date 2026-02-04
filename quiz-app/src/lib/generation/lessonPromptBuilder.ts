@@ -88,8 +88,11 @@ export class LessonPromptBuilder {
           if (expBlock?.content?.content) {
             const content = expBlock.content.content;
             
-            // Look for "Key rules" or "Key facts" section
-            const keyRulesMatch = content.match(/\*\*Key (?:rules|facts)[^*]*\*\*([^]*?)(?=\n\n|\*\*|$)/i);
+            // Look for "Key rules" or "Key facts" section with flexible formatting
+            // Supports both bold (**Key rules**) and markdown headings (### Key Rules)
+            const keyRulesMatch = content.match(
+              /(?:\*\*|#{2,3}\s*)Key\s*(?:rules?|facts?)(?:\s*[\/\-]\s*facts?)?(?:\s*[\/\-]\s*rules?)?[:\s]*(?:\*\*)?([^]*?)(?=\n\n|#{2,3}\s|\*\*[A-Z]|$)/i
+            );
             if (keyRulesMatch) {
               const rulesText = keyRulesMatch[1];
               // Extract bullet points
@@ -150,7 +153,7 @@ OUTPUT REQUIREMENTS:
 - Valid RFC 8259 JSON only (parseable by JSON.parse())
 - No markdown blocks, comments, or explanations
 - Double-quoted property names, no trailing commas
-- Block orders monotonic: 1,2,3,4,4.5,5,6,7,8,9.5,10
+- Block orders monotonic: 1,2,3,4,4.5,5,5.5,6,7,8,9.5,10 (optional blocks: diagram=3, explanation-2=5, check-2=5.5, worked=6, guided=7)
 
 CRITICAL RULES:
 1. TEACHING BEFORE TESTING: Explanations teach concepts → questions assess them. Never reverse this order.
@@ -163,10 +166,12 @@ QUALITY CHECKLIST:
 ✓ Every learning outcome addressed in explanation
 ✓ Explanation has "Key facts / rules" section
 ✓ Practice has 3-5 questions including one applied if "apply" LO exists
-✓ Worked example → guided practice mirrors it step-for-step
+✓ Worked example (order 6) → guided practice (order 7) mirrors it step-for-step
 ✓ expectedAnswer uses arrays for short-text (multiple acceptable phrasings)
 
 LESSON STRUCTURE:
+
+CRITICAL: Top-level "learningOutcomes" field MUST be a simple string array. Do NOT use objects with text/bloomLevel properties here - that format is ONLY for the outcomes BLOCK below.
 
 {
   "id": "${lessonId}",
@@ -175,36 +180,34 @@ LESSON STRUCTURE:
   "layout": "${layout}",
   "unit": "Unit [${lessonId.split('-')[0]}]",
   "topic": "[Main Topic]",
-  // CRITICAL: learningOutcomes at TOP-LEVEL is a SIMPLE STRING ARRAY
-  // (NOT objects with text/bloomLevel - that format is ONLY for the outcomes BLOCK below!)
   "learningOutcomes": [
-    "[Remember level: Define, List, State, Identify...]",  // Plain strings!
-    "[Understand level: Explain, Describe, Summarize...]",  // Plain strings!
-    "[Apply level: Calculate, Solve, Demonstrate...]"  // Plain strings!
+    "[Remember level: Define, List, State, Identify...]",
+    "[Understand level: Explain, Describe, Summarize...]",
+    "[Apply level: Calculate, Solve, Demonstrate...]"
   ],
   "prerequisites": ["[lesson-id]"],
   "blocks": [
     // BLOCK ORDER CONTRACT (NON-NEGOTIABLE):
     // Every block MUST have a UNIQUE numeric order value. Use this spacing:
-    // - outcomes: 1
-    // - vocab: 2
-    // - diagram: 3 (if split-vis layout)
-    // - explanation-1: 4
+    // - outcomes: 1 (required)
+    // - vocab: 2 (required)
+    // - diagram: 3 (optional - required for split-vis layout)
+    // - explanation-1: 4 (required)
     //   - optional microbreak after: 4.2
-    //   - understanding check-1: 4.5
+    //   - understanding check-1: 4.5 (required)
     //   - optional microbreak after: 4.7
-    // - explanation-2: 5 (if multi-section topic)
+    // - explanation-2: 5 (optional - only if multi-section topic)
     //   - optional microbreak after: 5.2
-    //   - understanding check-2: 5.5
+    //   - understanding check-2: 5.5 (required if explanation-2 exists)
     //   - optional microbreak after: 5.7
-    // - worked example: 6 (only if calculation/procedure task)
+    // - worked example: 6 (optional - only if calculation/procedure task)
     //   - optional microbreak after: 6.2
-    // - guided practice: 7 (only if worked example exists)
+    // - guided practice: 7 (optional - only if worked example exists)
     //   - optional microbreak after: 7.2
-    // - practice: 8
+    // - practice: 8 (required)
     //   - optional microbreak after: 8.2
-    // - integrative: 9.5
-    // - spaced review: 10 (ALWAYS LAST)
+    // - integrative: 9.5 (required)
+    // - spaced review: 10 (required - ALWAYS LAST)
     //
     // CRITICAL ORDER RULES:
     // 1. Never reuse the same order value for two blocks
@@ -334,11 +337,11 @@ QUESTION IDS: ${lessonId}-C1-L1-A/B/C (recall), ${lessonId}-C1-L2 (connection), 
   }
 }
 
-6. WORKED EXAMPLE BLOCK (order: 5) - Include if calculations/problem-solving:
+6. WORKED EXAMPLE BLOCK (order: 6) - Include if calculations/problem-solving:
 {
   "id": "${lessonId}-worked-example",
   "type": "worked-example",
-  "order": 5,
+  "order": 6,
   "content": {
     "title": "Worked Example: [Problem Type]",
     "given": "[What information is provided]",
@@ -355,11 +358,11 @@ QUESTION IDS: ${lessonId}-C1-L1-A/B/C (recall), ${lessonId}-C1-L2 (connection), 
   }
 }
 
-7. GUIDED PRACTICE (order: 6) - Include if worked example exists:
+7. GUIDED PRACTICE (order: 7) - Include if worked example exists:
 {
   "id": "${lessonId}-guided",
   "type": "guided-practice",
-  "order": 6,
+  "order": 7,
   "content": {
     "title": "Guided Practice (We Do)",
     "problem": "[Problem statement]",
@@ -424,6 +427,9 @@ QUESTION IDS: ${lessonId}-C1-L1-A/B/C (recall), ${lessonId}-C1-L2 (connection), 
 }
 
 10. SPACED REVIEW BLOCK (order: 10 - ALWAYS LAST):
+
+CRITICAL: All spaced review questions MUST use field name "questionText" (NOT "attText", "questiontext", "question_text", or any other variant).
+
 {
   "id": "${lessonId}-spaced-review",
   "type": "spaced-review",
@@ -433,25 +439,25 @@ QUESTION IDS: ${lessonId}-C1-L1-A/B/C (recall), ${lessonId}-C1-L2 (connection), 
     "questions": [
       {
         "id": "${lessonId}-SR-1",
-        "questionText": "[Review question from prerequisite topic 1]",  // CRITICAL: Must be "questionText" (NOT "attText", "questiontext", or any other variant!)
+        "questionText": "[Review question from prerequisite topic 1]",
         "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint if student struggles]"
       },
       {
         "id": "${lessonId}-SR-2",
-        "questionText": "[Review question from prerequisite topic 2]",  // CRITICAL: Field name must be exactly "questionText"
+        "questionText": "[Review question from prerequisite topic 2]",
         "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint]"
       },
       {
         "id": "${lessonId}-SR-3",
-        "questionText": "[Review question from prerequisite topic 3]",  // CRITICAL: Field name must be exactly "questionText"
+        "questionText": "[Review question from prerequisite topic 3]",
         "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint]"
       },
       {
         "id": "${lessonId}-SR-4",
-        "questionText": "[Review question from prerequisite topic 4]",  // CRITICAL: Field name must be exactly "questionText"
+        "questionText": "[Review question from prerequisite topic 4]",
         "expectedAnswer": ["[Clear, concise answer]"],
         "hint": "[Helpful hint]"
       }
@@ -734,7 +740,10 @@ CRITICAL SPACED REVIEW RULES:
 - Do NOT use random fundamentals (Ohm's law, basic safety, fuses, etc.) unless they appear in anchors
 - Each question's notes field must include provenance mapping: "SR-1 -> [prereqId] ([concept reviewed])"
 - Questions should test specific facts from prerequisite lessons, not generic electrical knowledge
-- If no prerequisite anchors provided, use general electrical safety/fundamentals`
+- If prerequisite anchors are missing/empty, generate SR questions ONLY from the stated prerequisites list
+- Questions should prompt return to prerequisite lessons (e.g., "Define [term from prereq]", "What is [concept from prereq]?")
+- Do NOT invent generic fundamentals (Ohm's law, safety rules) unless they exist in the prerequisites
+- Each question must be traceable to a specific prerequisite lesson ID`
       : '';
 
     return `Generate a complete lesson JSON for:

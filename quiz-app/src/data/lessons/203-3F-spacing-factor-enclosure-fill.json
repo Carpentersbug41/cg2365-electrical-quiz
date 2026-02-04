@@ -1,19 +1,18 @@
 {
   "id": "203-3F",
-  "title": "203.3F — Spacing Factor / Enclosure Fill",
-  "description": "Learn how to calculate and manage the space occupied by cables within conduit and trunking to ensure safety and compliance.",
+  "title": "203.3F — Spacing Factor: Enclosure Fill",
+  "description": "Learn to calculate and interpret the space factor (enclosure fill) for cables in conduit and trunking to ensure safety and compliance.",
   "layout": "split-vis",
   "unit": "Unit 203",
-  "topic": "Electrical Installations Technology",
+  "topic": "Spacing Factor / Enclosure Fill",
   "learningOutcomes": [
-    "Define space factor and enclosure fill in the context of electrical installations",
-    "Explain the safety and practical risks associated with overfilling conduit and trunking",
-    "Calculate the percentage fill of an enclosure using cross-sectional area formulas",
-    "Determine if an installation meets acceptable fill limits based on calculated results"
+    "Define space factor and enclosure fill in plain language",
+    "State why overfilling conduit/trunking is unsafe and unprofessional",
+    "Calculate percentage fill using cross-sectional area formulas",
+    "Decide if an installation is acceptable based on a given limit"
   ],
   "prerequisites": [
-    "201-1A",
-    "201-2B"
+    "203-3E"
   ],
   "blocks": [
     {
@@ -23,20 +22,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Define space factor and enclosure fill",
+            "text": "Define space factor and identify its purpose in electrical installations",
             "bloomLevel": "remember"
           },
           {
-            "text": "State the risks of overfilling enclosures",
+            "text": "Explain the thermal and mechanical risks associated with overfilling enclosures",
             "bloomLevel": "understand"
           },
           {
-            "text": "Calculate percentage fill using area mathematics",
+            "text": "Calculate the percentage fill for both conduit and trunking systems",
             "bloomLevel": "apply"
-          },
-          {
-            "text": "Evaluate installation compliance based on fill limits",
-            "bloomLevel": "analyze"
           }
         ]
       }
@@ -49,23 +44,23 @@
         "terms": [
           {
             "term": "Enclosure",
-            "definition": "A structure like conduit or trunking designed to contain and protect electrical cables."
+            "definition": "A containment system for cables, such as conduit or trunking."
           },
           {
             "term": "Space Factor",
-            "definition": "The percentage of an enclosure's internal cross-sectional area occupied by cables."
+            "definition": "The percentage of an enclosure's internal space occupied by cables."
           },
           {
             "term": "Cross-sectional Area (CSA)",
-            "definition": "The surface area of the shape revealed by cutting an object at right angles to its length."
+            "definition": "The area of the surface exposed by a cross-cut of a cable or enclosure."
           },
           {
             "term": "Internal Diameter (ID)",
             "definition": "The measurement across the inside of a conduit, excluding the wall thickness."
           },
           {
-            "term": "Cable Overall Diameter",
-            "definition": "The total width of a cable, including the conductor, insulation, and outer sheath."
+            "term": "Overall Diameter",
+            "definition": "The total thickness of a cable including its insulation and outer sheath."
           }
         ]
       }
@@ -75,25 +70,25 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "Conduit and Trunking Fill Visualized",
-        "description": "Cross-sectional views showing cables inside circular conduit and rectangular trunking.",
+        "title": "Conduit Space Factor Visualization",
+        "description": "A cross-section of a conduit showing three cables inside with surrounding air space.",
         "videoUrl": "",
-        "diagramType": "schematic",
+        "diagramType": "concept",
         "elementIds": [
-          "conduit-id",
-          "trunking-area",
-          "cable-csa"
+          "Internal Diameter",
+          "Cable Diameter",
+          "Air Space"
         ],
-        "placeholderText": "Diagram showing a circle (conduit) partially filled with smaller circles (cables), and a rectangle (trunking) partially filled with circles."
+        "placeholderText": "A circle representing a 20mm conduit. Inside are three smaller circles representing 6mm cables. The remaining white space is labeled 'Air Space' for cooling."
       }
     },
     {
-      "id": "203-3F-explain-space-factor",
+      "id": "203-3F-explain-basics",
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Understanding Enclosure Fill",
-        "content": "When installing cables in **conduit** (tubular enclosures) or **trunking** (rectangular enclosures), we cannot simply pack them until they are full. **Space factor** (also known as enclosure fill) is the ratio of the total area of the cables to the available internal area of the enclosure, expressed as a percentage.\n\n### Why Space Factor Matters\nOverfilling an enclosure creates three primary risks:\n1. **Mechanical Damage:** If a conduit is too full, there is high friction during the 'pulling in' phase. This can snag or tear the cable insulation, leading to short circuits or earth faults later.\n2. **Heat Removal (Thermal Risk):** Cables generate heat when carrying current. If they are packed too tightly, there is no air gap for cooling. This causes heat to build up, potentially melting insulation or causing a fire.\n3. **Future-Proofing:** Good workmanship involves leaving space for future additions or maintenance. A 100% full trunking is impossible to work on later.\n\n### Key Rules / Facts\n- Always use the **internal diameter (ID)** of conduit, not the external size.\n- Calculate the **Cross-sectional Area (CSA)** of every cable individually.\n- Space factor is always calculated using **areas**, never by adding diameters together.\n- Formula for circle area: **Area = π × r²** (where r is half the diameter).\n- Formula for rectangle area: **Area = Width × Height**.\n- Formula for % Fill: **(Total Cable Area ÷ Enclosure Area) × 100**.\n\n### How to Calculate Fill\nTo determine the space factor, you first find the internal area of the enclosure. For a 20mm conduit, the radius is 10mm, so the area is π × 10² ≈ 314mm². Next, find the area of each cable using its overall diameter. Finally, divide the sum of all cable areas by the enclosure area and multiply by 100.\n\n### Common Mistakes\nElectricians often make the mistake of using the **outside diameter** of a conduit, which includes the thickness of the plastic or steel, leading to an incorrect (overestimated) available space. Another common error is adding cable diameters together (e.g., three 6mm cables = 18mm) and comparing that to the conduit diameter; this is mathematically incorrect because it ignores the gaps between the circular cables.\n\n### Quick Recap\nSpace factor ensures cables can be pulled in without damage and have enough air to stay cool. We calculate it by comparing the total cable area to the internal enclosure area."
+        "title": "Understanding Space Factor",
+        "content": "When installing cables in **conduit** (tubular enclosures) or **trunking** (rectangular enclosures), you cannot simply pack them until they are tight. The **space factor** (also known as enclosure fill) is the ratio of the total area of the cables to the internal area of the enclosure, expressed as a percentage.\n\nWhy does this matter? There are three critical reasons:\n\n1. **Mechanical Damage:** If an enclosure is too full, there is high friction during the 'pulling in' phase. This can snag cables at bends and tear the insulation, leading to immediate or future faults.\n\n2. **Heat Removal (Thermal Risk):** Cables generate heat when carrying current. If they are packed too tightly, there is no air circulation to carry that heat away. Overheating causes insulation to become brittle and fail prematurely.\n\n3. **Workmanship and Future Proofing:** A professional installation allows 'headroom' for future additions and ensures maintenance can be carried out without damaging existing circuits.\n\n**Key rules / facts:**\n* Space factor is always expressed as a **percentage (%)**.\n* It is based on the **internal area** of the enclosure, not the outside dimensions.\n* Overfilling causes **mechanical stress** and **thermal buildup**.\n* You must add the **areas** of cables, not just their diameters.\n\nIn summary, space factor ensures cables can be installed safely and operate without overheating."
       }
     },
     {
@@ -101,58 +96,129 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Space Factor",
+        "title": "Check Your Understanding: The Basics",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-3F-C1-L1-A",
-            "questionText": "What is the definition of 'space factor' in an electrical enclosure?",
+            "questionText": "What is the definition of 'space factor'?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "percentage of internal space occupied by cables",
               "ratio of cable area to enclosure area",
-              "how full the conduit is"
+              "enclosure fill percentage"
             ],
-            "hint": "It is a percentage calculation comparing two areas."
+            "hint": "Think about the relationship between the cable area and the enclosure's inside space."
           },
           {
             "id": "203-3F-C1-L1-B",
-            "questionText": "Which dimension of a conduit must be used to calculate the available space?",
+            "questionText": "Which physical risk is associated with cables having no air circulation inside a full conduit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "internal diameter",
-              "ID",
-              "inside diameter"
+              "overheating",
+              "heat buildup",
+              "thermal risk",
+              "insulation breakdown"
             ],
-            "hint": "Do we use the inside or the outside measurement?"
+            "hint": "Less air means less cooling."
           },
           {
             "id": "203-3F-C1-L1-C",
-            "questionText": "What is the main thermal risk of overfilling a trunking with cables?",
+            "questionText": "What can happen to cable insulation if cables are forced into an overfilled enclosure?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "heat buildup",
-              "overheating",
-              "insulation breakdown",
-              "reduced cooling"
+              "mechanical damage",
+              "tearing",
+              "snagging",
+              "scraping",
+              "insulation damage"
             ],
-            "hint": "Think about what happens when there is no air for cooling."
+            "hint": "This happens during the 'pulling in' stage due to high friction."
           },
           {
             "id": "203-3F-C1-L2",
-            "questionText": "How does using the internal diameter (Q2) and limiting the space factor (Q1) help prevent the thermal and mechanical risks (Q3) mentioned earlier?",
+            "questionText": "How do the risks of heat (Q2) and mechanical damage (Q3) justify the need for a space factor limit (Q1)?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "ensures enough air for cooling and reduces friction during installation",
-              "prevents insulation damage and allows heat to escape",
-              "provides space for air and easy pulling"
+              "limits prevent damage during installation and prevent overheating during operation",
+              "they ensure the cable remains safe both mechanically and thermally",
+              "space factor provides air for cooling and room for pulling"
             ],
-            "hint": "Connect the physical space to the two main risks: heat and pulling damage."
+            "hint": "Consider the life cycle of the cable from installation to daily use."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3F-explain-maths",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Calculating Enclosure Fill",
+        "content": "To calculate the percentage fill, you must follow a three-step process using basic geometry.\n\n**Step 1: Find the Enclosure Internal Area**\n* For **Conduit** (Circular): Use $Area = \\pi \\times r^2$. Remember that radius ($r$) is half of the internal diameter ($ID$).\n* For **Trunking** (Rectangular): Use $Area = Width \\times Height$.\n\n**Step 2: Find the Total Cable Area**\n* Calculate the area of one cable using its overall diameter: $Area = \\pi \\times (diameter/2)^2$.\n* Multiply this by the number of identical cables. If cables are different sizes, calculate each separately and add them together.\n\n**Step 3: Calculate Percentage Fill**\n* Use the formula: $\\% \\text{ fill} = (\\text{Total Cable Area} \\div \\text{Enclosure Area}) \\times 100$.\n\n**Key rules / facts:**\n* Always use the **internal** diameter of conduit.\n* Calculate in **millimetres (mm)** to get areas in $mm^2$.\n* Never add diameters together; you must add the **calculated areas**.\n* If your result is above the limit provided in regulations (e.g., 45% for some trunking), the installation is non-compliant.\n\n**Common Mistakes:**\n* Using the outside diameter of a conduit (which includes the pipe wall).\n* Forgetting to square the radius in the circle formula.\n* Forgetting to multiply by 100 at the end."
+      }
+    },
+    {
+      "id": "203-3F-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Maths",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3F-C2-L1-A",
+            "questionText": "What is the formula for calculating the internal area of a circular conduit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "pi r squared",
+              "pi * r^2",
+              "3.14 * r * r"
+            ],
+            "hint": "It is the standard formula for the area of a circle."
+          },
+          {
+            "id": "203-3F-C2-L1-B",
+            "questionText": "What is the formula for calculating the internal area of rectangular trunking?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "width times height",
+              "width x height",
+              "w * h"
+            ],
+            "hint": "It is the standard formula for the area of a rectangle."
+          },
+          {
+            "id": "203-3F-C2-L1-C",
+            "questionText": "When calculating the total space taken by 5 cables, should you add their diameters or their areas?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "areas",
+              "total area",
+              "calculated areas"
+            ],
+            "hint": "Space factor is based on cross-sectional area."
+          },
+          {
+            "id": "203-3F-C2-L2",
+            "questionText": "Why must an electrician use the internal diameter (ID) rather than the external diameter when calculating conduit fill?",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "the cables only occupy the space inside the pipe",
+              "external diameter includes the wall thickness which cables cannot use",
+              "available space is only the internal cross-section"
+            ],
+            "hint": "Where exactly do the cables sit?"
           }
         ]
       }
@@ -163,38 +229,38 @@
       "order": 6,
       "content": {
         "title": "Worked Example: Conduit Fill Calculation",
-        "given": "A 20mm internal diameter conduit containing three cables, each with an overall diameter of 6mm.",
+        "given": "A 20mm internal diameter conduit contains 3 cables, each with an overall diameter of 6mm.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Calculate the internal area of the conduit (Enclosure Area).",
-            "formula": "Area = π × r²",
-            "calculation": "Radius = 20 / 2 = 10mm. Area = 3.142 × 10²",
-            "result": "314.2 mm²"
+            "description": "Calculate the internal area of the conduit (Radius = 20 / 2 = 10mm).",
+            "formula": "Area = pi * r^2",
+            "calculation": "3.14 * 10 * 10",
+            "result": "314.16"
           },
           {
             "stepNumber": 2,
-            "description": "Calculate the area of one cable.",
-            "formula": "Area = π × r²",
-            "calculation": "Radius = 6 / 2 = 3mm. Area = 3.142 × 3²",
-            "result": "28.28 mm²"
+            "description": "Calculate the area of one cable (Radius = 6 / 2 = 3mm).",
+            "formula": "Area = pi * r^2",
+            "calculation": "3.14 * 3 * 3",
+            "result": "28.27"
           },
           {
             "stepNumber": 3,
-            "description": "Calculate the total area of all cables.",
-            "formula": "Total Area = Single Area × Quantity",
-            "calculation": "28.28 × 3",
-            "result": "84.84 mm²"
+            "description": "Calculate total cable area for 3 cables.",
+            "formula": "Total = Area * Quantity",
+            "calculation": "28.27 * 3",
+            "result": "84.81"
           },
           {
             "stepNumber": 4,
-            "description": "Calculate the percentage space factor.",
-            "formula": "% Fill = (Total Cable Area / Enclosure Area) × 100",
-            "calculation": "(84.84 / 314.2) × 100",
-            "result": "27%"
+            "description": "Calculate percentage fill.",
+            "formula": "% Fill = (Total Cable Area / Enclosure Area) * 100",
+            "calculation": "(84.81 / 314.16) * 100",
+            "result": "27"
           }
         ],
-        "notes": "This installation is well within typical safety limits, as only about a quarter of the pipe is full."
+        "notes": "The result is 27%. This means 73% of the conduit is still empty (air space)."
       }
     },
     {
@@ -203,31 +269,32 @@
       "order": 7,
       "content": {
         "title": "Guided Practice: Trunking Fill",
-        "problem": "Calculate the space factor for a 50mm x 25mm trunking containing 5 cables, each with a total cross-sectional area of 20mm².",
+        "problem": "Calculate the % fill for trunking measuring 50mm x 25mm containing 10 cables, each with a cross-sectional area of 20mm².",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the total internal area of the 50mm x 25mm trunking?",
+            "prompt": "What is the total internal area of the trunking in mm²?",
             "expectedAnswer": [
               "1250"
             ],
-            "hint": "Multiply Width × Height."
+            "hint": "Multiply width (50) by height (25)."
           },
           {
             "stepNumber": 2,
-            "prompt": "What is the total area of all 5 cables combined?",
+            "prompt": "What is the total area of all 10 cables combined?",
             "expectedAnswer": [
-              "100"
+              "200"
             ],
-            "hint": "Multiply 5 cables by 20mm² each."
+            "hint": "Multiply 10 cables by 20mm² each."
           },
           {
             "stepNumber": 3,
-            "prompt": "What is the final percentage space factor?",
+            "prompt": "What is the final percentage fill? (Round to one decimal place)",
             "expectedAnswer": [
-              "8"
+              "16",
+              "16.0"
             ],
-            "hint": "Divide total cable area (100) by trunking area (1250) then multiply by 100."
+            "hint": "(200 / 1250) * 100"
           }
         ]
       }
@@ -237,36 +304,36 @@
       "type": "practice",
       "order": 8,
       "content": {
-        "title": "Your Turn: Space Factor Practice",
+        "title": "Your Turn: Practice Problems",
         "questions": [
           {
             "id": "203-3F-P1",
-            "questionText": "Calculate the internal area of a conduit with a 25mm internal diameter. (Round to nearest whole number)",
+            "questionText": "Calculate the internal area of a conduit with a 25mm internal diameter. (Round to the nearest whole number)",
             "answerType": "numeric",
             "expectedAnswer": [
               "491"
             ],
-            "hint": "Use π × 12.5²"
+            "hint": "Radius is 12.5mm. Use pi * 12.5 * 12.5. Answer in mm²."
           },
           {
             "id": "203-3F-P2",
-            "questionText": "Why is it incorrect to simply add the diameters of cables together to check if they fit in a conduit?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "ignores air gaps",
-              "does not account for area",
-              "mathematically incorrect for circles"
-            ],
-            "hint": "Think about the empty space between circular cables when they are grouped together."
-          },
-          {
-            "id": "203-3F-P3",
-            "questionText": "A trunking has an area of 2000mm². If the total cable area is 800mm², what is the percentage fill?",
+            "questionText": "If a trunking has an internal area of 2000mm² and the cables inside take up 800mm², what is the percentage fill?",
             "answerType": "numeric",
             "expectedAnswer": [
               "40"
             ],
-            "hint": "Divide 800 by 2000 and multiply by 100."
+            "hint": "Divide 800 by 2000 and multiply by 100. Answer as a %."
+          },
+          {
+            "id": "203-3F-P3",
+            "questionText": "A conduit has a maximum permitted fill of 40%. If your calculated fill is 42%, is the installation compliant?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "no",
+              "not compliant",
+              "incorrect"
+            ],
+            "hint": "Compare the actual fill to the limit."
           }
         ]
       }
@@ -282,25 +349,25 @@
         "questions": [
           {
             "id": "203-3F-INT-1",
-            "questionText": "How does the choice of using internal diameter over external diameter directly impact the safety of the space factor calculation?",
+            "questionText": "How does the mathematical calculation of percentage fill relate to the physical risk of mechanical damage during cable pulling?",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "external diameter overestimates available space which could lead to overfilling",
-              "using external diameter makes the conduit seem larger than it is",
-              "prevents accidental overfilling by accounting for wall thickness"
+              "a higher percentage fill means less room for movement and higher friction",
+              "the calculation ensures there is enough physical space to pull cables without snagging",
+              "it quantifies the available space to prevent insulation damage from overcrowding"
             ],
-            "hint": "If you think the pipe is bigger than it really is, what mistake might you make with the number of cables?"
+            "hint": "Think about how 'fullness' affects friction."
           },
           {
             "id": "203-3F-INT-2",
-            "questionText": "Explain why an electrician must balance the need for a high space factor (to save money on materials) with the requirements for thermal safety and mechanical protection. (3-4 sentences)",
+            "questionText": "Explain why an electrician must consider both the number of cables and the internal size of the enclosure before starting an installation. (3-4 sentences)",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "Electricians must ensure the enclosure is large enough to prevent heat buildup and mechanical damage during pulling. While smaller enclosures are cheaper, overfilling them leads to insulation failure and fire risks. Providing adequate space factor ensures compliance with safety standards and allows for future maintenance or additions."
+              "An electrician must ensure the enclosure is large enough to accommodate the cables while staying below the space factor limit. This is necessary to prevent overheating during operation and mechanical damage to insulation during the pulling-in phase. By checking the internal area against the total cable area beforehand, they ensure the installation is compliant with regulations. It also allows for professional workmanship and potential future additions to the system."
             ],
-            "hint": "Discuss the trade-off between material costs, ease of installation, and long-term fire safety."
+            "hint": "Include points about compliance, heat, and damage."
           }
         ]
       }
@@ -314,42 +381,43 @@
         "questions": [
           {
             "id": "203-3F-SR-1",
-            "questionText": "According to Ohm's Law, what is the formula to find Voltage (V) if you know Current (I) and Resistance (R)?",
+            "questionText": "What is the standard unit of measurement for electrical potential (voltage)?",
             "expectedAnswer": [
-              "V = I x R",
-              "V=IR"
+              "Volts",
+              "V"
             ],
-            "hint": "Voltage equals Current multiplied by Resistance."
+            "hint": "Think of the 'V' in V=IR."
           },
           {
             "id": "203-3F-SR-2",
-            "questionText": "In a series circuit, how do you find the total resistance of three resistors?",
+            "questionText": "Using Ohm's Law, if Voltage is 230V and Resistance is 10 Ohms, what is the Current?",
             "expectedAnswer": [
-              "add them together",
-              "R1 + R2 + R3"
+              "23",
+              "23A"
             ],
-            "hint": "Resistance in series is cumulative."
+            "hint": "I = V / R"
           },
           {
             "id": "203-3F-SR-3",
-            "questionText": "What is the basic SI unit of measurement for electrical current?",
+            "questionText": "Which type of cable is commonly used for domestic lighting circuits and contains a circuit protective conductor (CPC)?",
             "expectedAnswer": [
-              "Ampere",
-              "Amps",
-              "A"
+              "Twin and Earth",
+              "6242Y"
             ],
-            "hint": "Named after André-Marie Ampère."
+            "hint": "It has two insulated cores and one bare core."
           },
           {
             "id": "203-3F-SR-4",
-            "questionText": "True or False: In a parallel circuit, the voltage across each branch is the same as the source voltage.",
+            "questionText": "What is the main purpose of a Circuit Protective Conductor (CPC)?",
             "expectedAnswer": [
-              "True"
+              "to provide a path to earth for fault current",
+              "safety and earthing",
+              "earthing"
             ],
-            "hint": "Voltage does not split across branches in parallel."
+            "hint": "It is the 'green and yellow' part of the system."
           }
         ],
-        "notes": "SR-1 -> 201-1A (Ohm's Law); SR-2 -> 201-2B (Series Resistance); SR-3 -> 201-1C (Current Units); SR-4 -> 201-2D (Parallel Voltage)"
+        "notes": "SR-1 -> 203-1 (SI Units); SR-2 -> 203-2 (Ohm's Law); SR-3 -> 203-3 (Cable Types); SR-4 -> 203-3 (Earthing Basics)"
       }
     }
   ],

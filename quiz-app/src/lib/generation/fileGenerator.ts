@@ -1,6 +1,27 @@
 /**
  * File Generator Service
  * Coordinates LLM calls to generate lesson and quiz files
+ * 
+ * ⚠️ CRITICAL FILE - READ BEFORE MODIFYING
+ * See: reports/bulk_tasks/don't_touch.md
+ * 
+ * This file handles core generation logic. Changes here affect the entire system.
+ * Most "simplifications" break things.
+ * 
+ * Common mistakes that break everything:
+ * - Removing response validation → API errors show as JSON parse errors
+ * - Changing parsing order → Preprocessing fails, invalid JSON
+ * - Removing debug info → Debugging becomes impossible
+ * - Skipping strict lint → Bad lessons reach production
+ * - Using eval() instead of JSON.parse → Security risk + inconsistent results
+ * 
+ * Before changing this file:
+ * 1. Read don't_touch.md (reports/bulk_tasks/)
+ * 2. Check gen_problems.md for similar past issues
+ * 3. Test with actual lesson generation
+ * 4. Verify debug.log shows no errors
+ * 
+ * Test thoroughly before committing!
  */
 
 import { createLLMClientWithFallback } from '@/lib/llm/client';

@@ -1,6 +1,32 @@
 /**
  * File Integrator Service
  * Automatically updates 7 critical integration files
+ * 
+ * ⚠️ CRITICAL FILE - READ BEFORE MODIFYING
+ * See: reports/bulk_tasks/don't_touch.md
+ * 
+ * This file generates import/export statements and updates 7-9 integration files.
+ * Small mistakes here break the entire app.
+ * 
+ * CRITICAL PATTERNS (don't break):
+ * - ALWAYS include .json extension in lesson imports
+ * - Use regex to check for duplicate imports (exact string matching fails)
+ * - Preserve existing imports when adding new ones
+ * - Update ALL required files (index, page files, etc.)
+ * 
+ * Common mistakes:
+ * - Removing .json extension → "Cannot find module" errors
+ * - Using string.includes() for duplicates → Fails on format variations
+ * - Forgetting to update a file → Lesson exists but doesn't show in UI
+ * - Incorrect variable naming → JavaScript syntax errors
+ * 
+ * If imports break, check:
+ * 1. .json extension present?
+ * 2. Variable name valid JavaScript identifier?
+ * 3. All integration files updated?
+ * 4. Regex patterns still match?
+ * 
+ * Test by generating a lesson and checking dev server for errors.
  */
 
 import { GenerationRequest, FileIntegrationResult } from './types';

@@ -1,5 +1,27 @@
 /**
  * Helper utilities for lesson generation
+ * 
+ * ⚠️ CRITICAL FILE - READ BEFORE MODIFYING
+ * See: reports/bulk_tasks/don't_touch.md
+ * 
+ * This file contains core parsing and preprocessing logic.
+ * Changes here affect every generation operation.
+ * 
+ * ESPECIALLY CRITICAL FUNCTIONS (don't touch):
+ * - validateLLMResponse() → Catches API errors before JSON parsing
+ * - preprocessToValidJson() → Fixes LLM quirks (trailing commas, comments)
+ * - safeJsonParse() → Provides error context when parsing fails
+ * - cleanCodeBlocks() → Removes markdown that LLM adds
+ * 
+ * Common mistakes:
+ * - Removing preprocessing steps → JSON.parse fails on valid-looking JSON
+ * - "Simplifying" validation → API errors show as parse errors
+ * - Skipping steps "because I haven't seen that error" → Non-deterministic LLM will produce it again
+ * 
+ * Each preprocessing step handles a REAL issue we've debugged.
+ * Don't remove them because they "look unnecessary".
+ * 
+ * Test thoroughly before committing!
  */
 
 import { SECTIONS } from './constants';

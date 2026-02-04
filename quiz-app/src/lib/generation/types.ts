@@ -1,5 +1,30 @@
 /**
  * Type definitions for lesson generation system
+ * 
+ * ⚠️ CRITICAL FILE - READ BEFORE MODIFYING
+ * See: reports/bulk_tasks/don't_touch.md
+ * 
+ * Changes to these types affect the ENTIRE generation system.
+ * Every service, API route, and component relies on these definitions.
+ * 
+ * Common mistakes:
+ * - Making fields optional that should be required → Runtime nulls
+ * - Changing field names → Breaks every file that uses them
+ * - Removing fields → Breaks API contracts, causes type errors everywhere
+ * - Adding required fields without defaults → Breaks existing code
+ * 
+ * Before changing types:
+ * 1. Search codebase for all usages
+ * 2. Update ALL files that use the type
+ * 3. Test frontend AND backend
+ * 4. Check that old generated files still work
+ * 
+ * Breaking changes require:
+ * - Migration for existing data
+ * - Update to ALL services
+ * - Thorough testing
+ * 
+ * If unsure, ASK FIRST. Type changes are high-risk.
  */
 
 export interface GenerationRequest {
