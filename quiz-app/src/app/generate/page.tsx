@@ -720,15 +720,15 @@ export default function GeneratePage() {
                 <button
                   type="button"
                   onClick={() => {
-                    // Pre-fill form with test data for 203-3F
+                    // Pre-fill form with test data for 203-3E1
                     const testForm: GenerationForm = {
                       unit: 203,
-                      lessonId: '3F',
-                      topic: 'Spacing Factor / Enclosure Fill',
+                      lessonId: '3E1',
+                      topic: 'Specialised Installing Equipment',
                       section: 'Electrical Installations Technology',
                       layout: 'split-vis',
                       prerequisites: [],
-                      mustHaveTopics: '203-3F — Spacing Factor / Enclosure Fill (3.6)\n\nKey topics:\n- What is conduit and trunking space factor\n- Why space factor matters (cable protection, heat dissipation, compliance)\n- Basic mathematics to calculate percentage fill\n- Practical applications and regulations',
+                      mustHaveTopics: '203-3E1 — Specialised Installing Equipment (3.5)\n\nIdentify kit + purpose: conduit/tray benders, stocks & dies, formers (what each is for, not how to use).',
                       additionalInstructions: '',
                       youtubeUrl: '',
                       imageUrl: '',

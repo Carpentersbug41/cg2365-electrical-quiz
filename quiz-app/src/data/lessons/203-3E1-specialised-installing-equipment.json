@@ -1,0 +1,345 @@
+{
+  "id": "203-3E1",
+  "title": "203.3E1 — Specialised Installing Equipment",
+  "description": "Learn about Specialised Installing Equipment in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Specialised Installing Equipment",
+  "learningOutcomes": [
+    "Identify specialized tools used for the installation of electrical containment systems",
+    "Describe the specific purpose of conduit benders, tray benders, and stocks and dies",
+    "Distinguish between different types of formers used for varying conduit diameters",
+    "Select the correct installation equipment for a given containment material"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3E1-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify specialized tools used for the installation of electrical containment systems",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the specific purpose of conduit benders, tray benders, and stocks and dies",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between different types of formers used for varying conduit diameters",
+            "bloomLevel": "apply"
+          },
+          {
+            "text": "Select the correct installation equipment for a given containment material",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conduit Bender",
+            "definition": "A mechanical tool used to create precise bends and offsets in metallic conduit without collapsing or distorting the tube."
+          },
+          {
+            "term": "Former",
+            "definition": "A curved component of a conduit bender, sized for specific diameters, that determines the radius and shape of the bend."
+          },
+          {
+            "term": "Stocks and Dies",
+            "definition": "A two-part tool set used to cut external screw threads onto the ends of steel conduit for secure connection to boxes and fittings."
+          },
+          {
+            "term": "Tray Bender",
+            "definition": "A specialized tool designed to create professional, uniform angles and bends in metallic cable tray sections."
+          },
+          {
+            "term": "Guide",
+            "definition": "A component used within a conduit bender to support the conduit and prevent it from flattening or slipping during the bending process."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Specialised Installing Equipment Diagram",
+        "description": "Visual representation of Specialised Installing Equipment",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "Conduit Bender",
+          "Former",
+          "Guide",
+          "Stocks and Dies",
+          "Tray Bender"
+        ],
+        "placeholderText": "A composite diagram showing two main scenes. Scene A: A floor-standing Conduit Bender with a 20mm steel conduit inserted. Labels point to the semi-circular 'Former' that the pipe wraps around, and the 'Guide' (pressure slide) that sits behind the pipe to prevent flattening. Scene B: A set of 'Stocks and Dies' showing the circular die held within the long-handled stock. A separate small inset shows a 'Tray Bender' being used on the edge of a piece of metallic cable tray to create a 90-degree internal bend."
+      }
+    },
+    {
+      "id": "203-3E1-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Bending Equipment",
+        "content": "**What this is**\n\nIn the world of electrical installation, specialized tools are required to manipulate containment systems like steel conduit and cable tray. To address **Learning Outcome 1 (Identify specialized tools)**, we focus on two primary pieces of equipment: the **Conduit Bender** and the **Tray Bender**. These are mechanical devices designed to apply controlled force to metallic materials, allowing an electrician to change the direction of a run while maintaining the structural integrity of the containment.\n\n**Why it matters**\n\nAddressing **Learning Outcome 2 (Describe the specific purpose)**, these tools are essential because they prevent the containment from collapsing. If you were to try bending a steel conduit over your knee, it would kink, reducing the internal cross-sectional area and making it impossible to pull cables through. A **Conduit Bender** ensures that the conduit maintains its circular profile. Similarly, a **Tray Bender** allows for professional, uniform angles in cable tray sections, ensuring the installation looks neat and follows the building's contours without damaging the galvanized coating or the metal itself.\n\n**Key facts / rules**\n\n*   A **Conduit Bender** uses mechanical leverage to create offsets, 90-degree bends, and kicks.\n*   The **Tray Bender** is specifically designed for metallic cable tray to ensure uniform angles.\n*   Standard conduit sizes in the UK are typically 20mm, 25mm, and 32mm; the bender must be compatible with these.\n*   Benders consist of a frame, a handle for leverage, and interchangeable parts to suit the material size.\n*   **Learning Outcome 4 (Select correct equipment)**: Always match the tool to the material; a conduit bender is for tube, while a tray bender is for flat-profile tray.\n\n**How to use it**\n\nTo meet **Learning Outcome 4**, you must select the correct installation equipment for the material. For example, if you are installing heavy-gauge steel conduit, you must use a floor-standing **Conduit Bender**. The conduit is placed into the machine, resting against the **Former**. A **Guide** (sometimes called a pressure slide) is then positioned to support the back of the conduit. By pulling the lever, the conduit is forced around the **Former**, creating a smooth curve. For cable tray, the **Tray Bender** is clamped onto the side flange of the tray to create a precise fold without distorting the flat base where the cables will lie.\n\n**Common mistakes**\n\nStudents often fail to use the **Guide** correctly, leading to \"rippling\" or flattening of the conduit. Another common error is attempting to bend conduit that is too large for the specific bender, which can damage the tool's pivot points. In tray work, many beginners forget to account for the \"take-up\" or the amount of material used in the bend, resulting in a run that is too short.\n\n**Quick recap**\n\nSpecialized bending equipment like the **Conduit Bender** and **Tray Bender** are vital for creating professional containment routes. They serve the purpose of shaping steel conduit and tray without causing internal collapses. By selecting the correct tool for the specific containment material and using the appropriate supports like the **Guide**, an electrician ensures the system is fit for purpose and aesthetically pleasing."
+      }
+    },
+    {
+      "id": "203-3E1-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Bending Equipment",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1-C1-L1-A",
+            "questionText": "State the two primary pieces of specialized equipment used to manipulate steel conduit and cable tray.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Conduit Bender and Tray Bender",
+              "The Conduit Bender and the Tray Bender",
+              "Conduit bender and tray bender"
+            ],
+            "hint": "Look for the names of the two mechanical devices mentioned in the first section."
+          },
+          {
+            "id": "203-3E1-C1-L1-B",
+            "questionText": "What is the specific purpose of using these specialized tools rather than bending material by hand?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "To prevent the containment from collapsing",
+              "Prevent the containment from collapsing or kinking",
+              "To maintain structural integrity and prevent kinking",
+              "Prevent collapsing"
+            ],
+            "hint": "Think about what happens to the internal cross-sectional area if you bend conduit over your knee."
+          },
+          {
+            "id": "203-3E1-C1-L1-C",
+            "questionText": "Which component of a bender is positioned to support the back of the conduit to ensure a smooth curve without rippling?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "The Guide",
+              "Pressure slide",
+              "A Guide",
+              "The Guide or pressure slide"
+            ],
+            "hint": "This part is often misused, leading to 'rippling' or flattening."
+          },
+          {
+            "id": "203-3E1-C1-L2",
+            "questionText": "Using your answers to Q1 (Conduit and Tray Benders), Q2 (preventing collapse), and Q3 (the Guide), explain how these tools and components work together to create a professional installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "An electrician uses a Conduit Bender or Tray Bender along with a Guide to shape the material while preventing the containment from collapsing or kinking.",
+              "By using the Conduit and Tray Benders and correctly positioning the Guide, the electrician ensures the run is shaped correctly and prevents the containment from collapsing.",
+              "The Conduit Bender and Tray Bender use a Guide to support the metal, which prevents the containment from collapsing and ensures a professional finish."
+            ],
+            "hint": "Explain how the tools and the support part achieve the main goal of the task."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Threading and Forming Tools",
+        "content": "**What this is**\n\nWhen working with metallic conduit, simply bending the pipe is only half the job. To join lengths of conduit together or connect them to steel boxes, you need a way to create secure joints. This is where **Stocks and Dies** and the **Former** come into play. To address **Learning Outcome 1**, **Stocks and Dies** are a two-part tool set used for cutting threads, while the **Former** is a specific component within a bending machine that dictates the shape of the conduit.\n\n**Why it matters**\n\nAddressing **Learning Outcome 2**, the purpose of **Stocks and Dies** is to cut external screw threads onto the ends of steel conduit. This allows the conduit to be screwed directly into a threaded entry of a conduit box or joined to another length using a coupler. Without these threads, the system would not be mechanically sound or provide the necessary earth continuity. The **Former** is equally important as it determines the radius of a bend; using the wrong one will result in a bend that is too tight or too loose for the application.\n\n**Key facts / rules**\n\n*   **Stocks and Dies** are used exclusively for metallic conduit (steel), not PVC.\n*   The \"Die\" is the cutting tool, while the \"Stock\" is the handle that holds and turns the die.\n*   **Learning Outcome 3 (Distinguish between formers)**: Formers are sized specifically—a 20mm **Former** cannot be used to bend 25mm conduit.\n*   The **Former** determines the \"bend radius,\" which must be large enough to not damage cables during installation.\n*   Threading requires the use of cutting compound (oil) to keep the die cool and ensure sharp threads.\n\n**How to use it**\n\nTo address **Learning Outcome 3**, you must distinguish between different types of formers. Before bending, you identify the conduit diameter (e.g., 20mm) and select the matching **Former** for the bender. For threading, as per **Learning Outcome 4**, you select **Stocks and Dies** for steel conduit. You secure the conduit in a pipe vice, place the stocks over the end, and rotate. You must turn the stocks forward to cut and then perform a half-turn backward to \"break the chip\" (clear the waste metal). This process is repeated until the desired length of thread is achieved, usually enough to fit halfway into a coupler.\n\n**Common mistakes**\n\nA very common mistake is using a **Former** that is the wrong size for the conduit, which causes the pipe to flatten instantly. Regarding **Stocks and Dies**, students often forget to use lubrication, which leads to ragged, torn threads that won't screw into fittings. Another mistake is cutting the thread too long, leaving exposed bare metal that is prone to corrosion and looks unprofessional.\n\n**Quick recap**\n\nCreating a high-quality steel conduit system requires the correct use of **Stocks and Dies** for threading and the correct **Former** for bending. **Stocks and Dies** provide the mechanical and electrical connections needed at joints, while the **Former** ensures the conduit is shaped to the correct radius for the specific pipe diameter. Selecting the right tool for the material and size is the hallmark of a skilled Level 2 electrician."
+      }
+    },
+    {
+      "id": "203-3E1-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Threading and Forming Tools",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1-C2-L1-A",
+            "questionText": "Identify the two-part tool set used specifically for cutting external screw threads onto the ends of steel conduit.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Stocks and Dies",
+              "Stocks and dies",
+              "Stock and die"
+            ],
+            "hint": "One part is the cutting tool and the other is the handle."
+          },
+          {
+            "id": "203-3E1-C2-L1-B",
+            "questionText": "Which specific part of the bending machine dictates the shape and radius of the conduit bend?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "The Former",
+              "Former",
+              "A Former"
+            ],
+            "hint": "This component must be matched specifically to the conduit diameter, such as 20mm or 25mm."
+          },
+          {
+            "id": "203-3E1-C2-L1-C",
+            "questionText": "What must be used during the threading process to keep the die cool and ensure the threads remain sharp?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cutting compound",
+              "Oil",
+              "Cutting compound or oil",
+              "Lubrication"
+            ],
+            "hint": "Failure to use this leads to ragged, torn threads."
+          },
+          {
+            "id": "203-3E1-C2-L2",
+            "questionText": "Using your answers to Q1 (Stocks and Dies), Q2 (the Former), and Q3 (cutting compound), explain how these elements are combined to produce a mechanically sound conduit system.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The Former ensures the conduit is shaped to the correct radius, while Stocks and Dies used with cutting compound create the sharp threads needed for secure mechanical joints.",
+              "A sound system is made by using a Former for correct bend radius and Stocks and Dies with cutting compound to cut threads for couplers and boxes.",
+              "By using a Former to dictate the bend shape and Stocks and Dies with cutting compound to create threads, the electrician ensures the conduit system is mechanically sound and has earth continuity."
+            ],
+            "hint": "Connect the shaping of the pipe to the creation of the joints using the tools and lubrication mentioned."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3E1-P1",
+            "questionText": "What is the smallest standard diameter of steel conduit used in the UK that a conduit bender must be compatible with?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "20"
+            ],
+            "hint": "Size in millimetres (mm)"
+          },
+          {
+            "id": "203-3E1-P2",
+            "questionText": "An electrician is threading a piece of steel conduit. After turning the stocks forward to cut, what specific action must they take to clear the waste metal?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "break the chip",
+              "half turn back",
+              "half-turn backward",
+              "reverse turn",
+              "back off"
+            ],
+            "hint": "This prevents the die from clogging with metal shavings."
+          },
+          {
+            "id": "203-3E1-P3",
+            "questionText": "According to the lesson, how many standard conduit sizes are typically used in the UK for which a bender must be compatible?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count the specific sizes mentioned in the 'Key facts' section."
+          },
+          {
+            "id": "203-3E1-P4",
+            "questionText": "If a conduit starts to ripple or flatten during the bending process, which specific component of the bending machine has likely been omitted or used incorrectly?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "guide",
+              "the guide",
+              "pressure slide",
+              "conduit guide"
+            ],
+            "hint": "This part supports the back of the conduit to maintain its circular profile."
+          },
+          {
+            "id": "203-3E1-P5",
+            "questionText": "Which specialized tool must be selected to create uniform angles in metallic containment used for supporting multiple heavy cables without distorting the flat base?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "tray bender",
+              "cable tray bender",
+              "the tray bender"
+            ],
+            "hint": "This tool is clamped to the side flange of the containment."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1-INT-1",
+            "questionText": "How does the selection of a specific former on a conduit bender relate to the subsequent use of stocks and dies when installing a steel conduit run? (2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The former must be matched to the conduit diameter to ensure a smooth bend without deformation, while stocks and dies are used to thread the ends of that same diameter pipe for secure connections. Together, they ensure the conduit maintains its structural integrity and can be mechanically joined to boxes or other lengths of pipe.",
+              "Selecting the correct former ensures the conduit is shaped correctly for the installation path, while the stocks and dies provide the necessary threads for coupling the shaped sections together. These tools work in tandem to create a continuous, professionally installed containment system that fits the specific dimensions of the job."
+            ],
+            "hint": "Think about how the diameter of the pipe dictates which components are used for both shaping and joining."
+          },
+          {
+            "id": "203-3E1-INT-2",
+            "questionText": "Explain the comprehensive process of selecting and using specialized tools—including tray benders, conduit benders, formers, and stocks and dies—based on the specific containment materials and sizes being installed. Please provide your answer in 3-4 sentences.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "An electrician must first identify the containment material to choose between a tray bender for cable management or a conduit bender for pipe systems. For conduit, they must select a former that specifically matches the pipe's diameter to prevent kinking during the bending process. Finally, stocks and dies are employed to cut precise threads on the conduit ends, allowing the shaped components to be securely integrated into a complete, electrically continuous containment network.",
+              "The installation process begins by selecting the correct bending equipment, such as a tray bender for steel tray or a conduit bender for metallic pipe. When using a conduit bender, the electrician must distinguish between different formers to ensure the bend radius matches the pipe size, followed by using stocks and dies to create the threads required for mechanical joints. This integrated approach ensures that the chosen tools provide the necessary precision for the specific material and diameter of the containment system."
+            ],
+            "hint": "Consider the step-by-step workflow from material identification to shaping and finally to joining the system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [],
+        "notes": "No prerequisites for this foundational lesson"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-04",
+    "updated": "2026-02-04",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
