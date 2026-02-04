@@ -24,8 +24,14 @@ export interface ExplanationBlock {
   content: string;
 }
 
+export interface DiagramElements {
+  elementIds: string[];
+  placeholderDescription: string;
+}
+
 export interface ExplanationOutput {
   explanations: ExplanationBlock[];
+  diagramElements?: DiagramElements;
 }
 
 export class Phase3_Explanation extends PhasePromptBuilder {
@@ -54,6 +60,20 @@ WRITING GUIDELINES:
 - Write for Level 2 electrician students (practical, not overly academic)
 - Use vocabulary terms consistently
 - Include specific examples and scenarios
+
+LEARNING OUTCOMES COVERAGE (CRITICAL):
+- For each learning outcome, identify WHERE in your explanation you address it
+- Make coverage explicit, not implied
+- Use clear headings or sections that map to outcomes
+- Teach using EXACT phrases that will appear in expectedAnswers
+- If an outcome says "calculate using factor tables", explicitly teach where tables come from and how to use them
+
+DIAGRAM ELEMENTS (if diagram needed):
+If this lesson needs a diagram (plan.needsDiagram = true), identify:
+1. Key visual elements (3-5 items) that should be labeled
+2. How they relate to the explanation content
+3. Labels that match vocabulary terms
+4. Create a detailed placeholder description for rendering
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -100,16 +120,24 @@ Return JSON in this exact format:
       "title": "[Section 2 title]",
       "content": "[400-600 word explanation following 6-part structure]"
     }` : ''}
-  ]
+  ]${plan.needsDiagram ? `,
+  "diagramElements": {
+    "elementIds": ["Element 1", "Element 2", "Element 3", ...],
+    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements"
+  }` : ''}
 }
 
 CRITICAL REQUIREMENTS:
 - MUST include "**Key facts / rules**" section in each explanation (use exactly this heading)
-- Address ALL learning outcomes across all explanations
+- Address ALL learning outcomes across all explanations EXPLICITLY
+  * For each LO, ensure there's a dedicated section or clear paragraph
+  * Use key phrases from the LO in your explanation
+  * Teach concepts using EXACT terms that will appear in questions
 - Use vocabulary terms exactly as defined
 - Include practical examples and scenarios
 - Write at appropriate level for Level 2 electrician students
 - Each explanation must be 400-600 words
-- Use \\n\\n for paragraph breaks, **bold** for emphasis`;
+- Use \\n\\n for paragraph breaks, **bold** for emphasis${plan.needsDiagram ? `
+- If diagram needed: provide 3-5 elementIds matching vocabulary terms with detailed placeholder description` : ''}`;
   }
 }

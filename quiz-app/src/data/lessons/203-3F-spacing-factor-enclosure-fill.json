@@ -6,9 +6,10 @@
   "unit": "Unit 203",
   "topic": "Spacing Factor / Enclosure Fill",
   "learningOutcomes": [
-    "Define the term 'space factor' as applied to electrical conduit and trunking systems.",
-    "Explain the relationship between enclosure fill, heat dissipation, and ease of installation.",
-    "Calculate the required size of containment using cable and enclosure factor tables to ensure regulatory compliance."
+    "Define the term space factor in relation to electrical conduit and trunking",
+    "Explain why limiting cable density is critical for heat dissipation and mechanical protection",
+    "Calculate the percentage fill of cables within a given enclosure using standard formulas",
+    "Identify the maximum space factor limits as specified in electrical regulations"
   ],
   "prerequisites": [],
   "blocks": [
@@ -19,16 +20,20 @@
       "content": {
         "outcomes": [
           {
-            "text": "Define the term 'space factor' as applied to electrical conduit and trunking systems.",
+            "text": "Define the term space factor in relation to electrical conduit and trunking",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain the relationship between enclosure fill, heat dissipation, and ease of installation.",
+            "text": "Explain why limiting cable density is critical for heat dissipation and mechanical protection",
             "bloomLevel": "understand"
           },
           {
-            "text": "Calculate the required size of containment using cable and enclosure factor tables to ensure regulatory compliance.",
+            "text": "Calculate the percentage fill of cables within a given enclosure using standard formulas",
             "bloomLevel": "apply"
+          },
+          {
+            "text": "Identify the maximum space factor limits as specified in electrical regulations",
+            "bloomLevel": "remember"
           }
         ]
       }
@@ -41,23 +46,27 @@
         "terms": [
           {
             "term": "Space Factor",
-            "definition": "The percentage of the internal cross-sectional area of a conduit or trunking that is occupied by cables."
+            "definition": "The ratio of the total cross-sectional area of all cables to the internal cross-sectional area of the conduit or trunking in which they are installed."
           },
           {
             "term": "Heat Dissipation",
-            "definition": "The process of thermal energy escaping from current-carrying conductors to the surrounding air to prevent insulation damage or fire risk."
-          },
-          {
-            "term": "Unit Factor",
-            "definition": "A numerical value assigned to specific cable sizes and enclosure types used to simplify the calculation of containment capacity."
+            "definition": "The process of thermal energy escaping from conductors into the surrounding air to prevent overheating and insulation damage."
           },
           {
             "term": "Cable Factor",
-            "definition": "A standard value representing the amount of space an individual cable occupies within a containment system."
+            "definition": "A numerical value assigned to a specific cable size and type used to calculate the total space required within a containment system."
           },
           {
             "term": "Enclosure Factor",
-            "definition": "A standard value representing the total usable capacity of a conduit or trunking run based on its dimensions and length."
+            "definition": "A numerical value representing the internal capacity of a specific size of conduit or trunking as defined in the IET On-Site Guide."
+          },
+          {
+            "term": "Percentage Fill",
+            "definition": "The proportion of an enclosure's internal space occupied by cables, which must remain within regulatory limits to ensure safe installation and maintenance."
+          },
+          {
+            "term": "45% Rule",
+            "definition": "The regulatory limit stating that the total cross-sectional area of cables must not exceed 45% of the internal area of a trunking system."
           }
         ]
       }
@@ -71,8 +80,14 @@
         "description": "Visual representation of Spacing Factor / Enclosure Fill",
         "videoUrl": "",
         "diagramType": "concept",
-        "elementIds": [],
-        "placeholderText": "Diagram showing Spacing Factor / Enclosure Fill"
+        "elementIds": [
+          "Trunking Enclosure",
+          "Percentage Fill (45%)",
+          "Air Gap for Heat Dissipation",
+          "Cable Factor",
+          "Internal Cross-sectional Area"
+        ],
+        "placeholderText": "A cross-sectional diagram of a piece of square trunking. Inside the trunking, several circular cables are grouped at the bottom. A dashed line indicates the 45% height mark of the trunking, showing the cables stay below this line to illustrate the 45% Rule. Arrows point to the empty space above the cables labeled 'Air Gap for Heat Dissipation'. Labels indicate the 'Internal Cross-sectional Area' of the trunking and the 'Cable Factor' of the individual conductors."
       }
     },
     {
@@ -80,8 +95,68 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Fundamentals of Space Factor",
-        "content": "1. **What this is**\n\n**Space Factor** is a fundamental concept in electrical installation that refers to the percentage of the internal cross-sectional area of a containment system—such as conduit or trunking—that is occupied by cables. When we install cables inside a pipe or a metal box, we cannot simply pack them in until the lid barely closes. Instead, we must leave a significant amount of empty space. This ensures that the cables are not damaged during the installation process and that they can operate safely throughout their lifespan without overheating.\n\n2. **Why it matters**\n\nThis concept is vital for two primary reasons: **Heat Dissipation** and mechanical protection. When electricity flows through a conductor, it naturally generates heat. If cables are packed too tightly, this thermal energy cannot escape, leading to a buildup of heat that can melt cable insulation and potentially cause a fire. Furthermore, leaving adequate space ensures that cables can be drawn into the conduit or trunking without excessive force. If the **Space Factor** is too high, the friction during installation can strip the insulation off the wires, leading to short circuits or earth faults before the system is even energized.\n\n3. **Key facts / rules**\n\n*   The **Space Factor** for trunking is generally limited to 45%, meaning 55% of the internal area must remain empty.\n*   For conduit, the rule of thumb is often cited as 52%, though specific calculations using factor tables are the standard method for compliance.\n*   Overfilling an enclosure restricts airflow, which directly hinders **Heat Dissipation**.\n*   Regulations regarding enclosure fill are found in BS 7671 to ensure the long-term safety of the installation.\n*   The space must account for the total diameter of the cable, including the insulation and sheathing, not just the copper core.\n\n4. **How to use it**\n\nIn a real-world scenario, such as wiring a commercial workshop, an electrician must decide whether to use 20mm or 25mm conduit. By understanding **Space Factor**, the electrician will calculate the total area of the planned cables and compare it to the internal capacity of the conduit. If you are installing several 2.5mm² twin and earth cables into a trunking run, you must ensure that the total volume of those cables does not exceed 45% of the trunking's internal space. This planning happens during the design phase to ensure that the containment is large enough to house the circuit safely while allowing for future additions.\n\n5. **Common mistakes**\n\nOne of the most frequent errors made by junior electricians is \"overstuffing\" trunking because it looks like there is still physical room available. Just because you can force the lid onto a piece of trunking does not mean the installation is safe or compliant. Another mistake is failing to account for the space taken up by bends and sets in conduit. Bends increase the friction and difficulty of pulling cables, which effectively reduces the usable **Space Factor** for that specific run.\n\n6. **Quick recap**\n\nIn summary, **Space Factor** is the ratio of cable volume to the internal volume of the containment. It is essential for facilitating **Heat Dissipation** and protecting cables from mechanical damage during the \"pulling-in\" phase. By adhering to the 45% and 52% guidelines, electricians ensure that the installation remains cool, safe, and compliant with national wiring regulations, preventing long-term insulation failure and fire risks."
+        "title": "Principles of Space Factor",
+        "content": "1. **What this is**\n\nIn electrical installation, the term **Space Factor** refers to the ratio of the total cross-sectional area of all cables to the internal cross-sectional area of the conduit or trunking in which they are installed. Essentially, it is a measure of how much of the enclosure is filled with copper and insulation versus how much is left as empty air. This concept is fundamental to ensuring that wiring systems are safe, manageable, and compliant with the IET Wiring Regulations (BS 7671). When we talk about **Percentage Fill**, we are expressing this space factor as a percentage to determine if an installation meets regulatory requirements.\n\n2. **Why it matters**\n\nLimiting cable density is critical for two primary reasons: **Heat Dissipation** and mechanical protection. As current flows through a conductor, it generates thermal energy. This heat must be able to escape into the surrounding air to prevent the cable insulation from melting or degrading over time. If a conduit is packed too tightly, the air cannot circulate, leading to overheating. Furthermore, keeping a specific **Percentage Fill** ensures mechanical protection during the installation process. If an enclosure is overfilled, the friction and force required to pull cables through can stretch the conductors or tear the insulation, potentially leading to short circuits or fires. This addresses Learning Outcome 2 regarding why limiting density is critical.\n\n3. **Key facts / rules**\n\n*   **Space Factor** is defined as the ratio of cable area to enclosure area (Learning Outcome 1).\n*   **Heat Dissipation** is the process of thermal energy escaping from conductors to prevent overheating.\n*   Adequate space allows for easier installation and future-proofing (adding more cables later).\n*   Overfilling an enclosure can lead to mechanical damage of the cable sheath during the 'pulling-in' phase.\n*   The IET On-Site Guide provides specific tables to help electricians determine the correct number of cables for various sizes of conduit and trunking.\n\n4. **How to use it**\n\nTo apply these principles, an electrician must first identify the size and type of cables being used. By referencing the IET On-Site Guide, you assign a **Cable Factor** to each conductor. These factors are numerical values that account for the physical size of the cable. You then compare the sum of these factors against the **Enclosure Factor** of the conduit or trunking. If the total of the cable factors is less than or equal to the enclosure factor, the installation is safe. This ensures the **Percentage Fill** remains within the limits that allow for proper **Heat Dissipation** and physical movement of the cables.\n\n5. **Common mistakes**\n\nStudents often assume that if a cable physically fits inside a conduit, it is safe to install. This ignores the requirement for air gaps. Another common error is forgetting that different types of cable (e.g., stranded vs. solid) may have different diameters even if their cross-sectional area is the same, which is why we use specific factor tables rather than just raw measurements. Failing to account for bends in the conduit run is another mistake; bends increase friction, making a high **Percentage Fill** even more dangerous for the cable insulation.\n\n6. **Quick recap**\n\nIn summary, **Space Factor** is a vital calculation that ensures cables have enough room for **Heat Dissipation** and are protected from mechanical damage during installation. By maintaining the correct **Percentage Fill**, electricians ensure that systems operate coolly and that cables can be installed or replaced without excessive force. This practice is a core requirement of the IET Wiring Regulations to ensure long-term safety and reliability."
+      }
+    },
+    {
+      "id": "203-3F-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Principles of Space Factor",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3F-C1-L1-A",
+            "questionText": "What is the definition of Space Factor in electrical installation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "The ratio of the total cross-sectional area of all cables to the internal cross-sectional area of the conduit or trunking",
+              "Ratio of cable area to enclosure area",
+              "The measure of how much of the enclosure is filled with copper and insulation versus empty air"
+            ],
+            "hint": "It compares the area of the cables to the area of the container."
+          },
+          {
+            "id": "203-3F-C1-L1-B",
+            "questionText": "What is the term for the process of thermal energy escaping from conductors to prevent insulation from melting?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Heat Dissipation",
+              "Thermal energy escaping",
+              "Heat escaping"
+            ],
+            "hint": "Look for the term used in the 'Why it matters' section."
+          },
+          {
+            "id": "203-3F-C1-L1-C",
+            "questionText": "What term is used when the space factor is expressed as a percentage to determine regulatory compliance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Percentage Fill",
+              "Percent fill",
+              "Percentage of fill"
+            ],
+            "hint": "This is how we express the fill level to check against BS 7671."
+          },
+          {
+            "id": "203-3F-C1-L2",
+            "questionText": "Using your answers to Q1 (Space Factor), Q2 (Heat Dissipation), and Q3 (Percentage Fill), explain why limiting the amount of cable in an enclosure is necessary for safety.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Maintaining the correct Percentage Fill based on the Space Factor ensures there is enough room for Heat Dissipation, which prevents cables from overheating or being damaged.",
+              "By controlling the Space Factor and Percentage Fill, we ensure adequate Heat Dissipation so that thermal energy can escape the enclosure.",
+              "Limiting the Percentage Fill ensures the Space Factor is low enough for Heat Dissipation, preventing insulation degradation and mechanical damage."
+            ],
+            "hint": "Think about how air gaps and the amount of cable relate to temperature and protection."
+          }
+        ]
       }
     },
     {
@@ -89,124 +164,66 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Regulations and Calculations",
-        "content": "1. **What this is**\n\nTo simplify the process of complying with BS 7671 regulations, the industry uses a system of standardized numerical values known as **Unit Factors**. Rather than performing complex geometry to calculate cross-sectional areas every time you install a cable, you use pre-calculated values found in guidance tables. These are split into two categories: the **Cable Factor**, which represents the space an individual wire takes up, and the **Enclosure Factor**, which represents the total usable capacity of a specific size of conduit or trunking.\n\n2. **Why it matters**\n\nUsing these factors is the only way to guarantee that an installation meets the legal requirements for safety. If an inspector checks your work and finds that you have exceeded the permitted capacity, the installation may be deemed unsafe. By using the **Unit Factor** method, you can quickly and accurately determine the correct size of containment needed for any combination of cable sizes, ensuring that the installation is efficient, cost-effective, and safe for the user.\n\n3. **Key facts / rules**\n\n*   A **Cable Factor** is assigned based on the conductor's cross-sectional area and the type of cable (e.g., solid, stranded, or flexible).\n*   An **Enclosure Factor** varies based on the diameter of the conduit and the length of the run, as well as the number of bends.\n*   The golden rule: The sum of all **Cable Factors** must be less than or equal to the **Enclosure Factor**.\n*   Conduit calculations use different tables than trunking calculations because their internal shapes and installation methods differ.\n*   For trunking, the factors are designed to maintain a 45% **Space Factor** automatically.\n\n4. **How to use it**\n\nTo perform a calculation, follow these steps: First, identify the **Cable Factor** for each wire you intend to install (e.g., a 2.5mm² stranded cable might have a factor of 30). Multiply that factor by the number of cables. Second, look up the **Enclosure Factor** for the conduit size and length you are using (e.g., a 3-meter run of 20mm conduit). If the total of your cables is 150 and the conduit factor is 175, the installation is compliant. If the cable total was 200, you would need to move up to a 25mm conduit to ensure proper **Heat Dissipation** and ease of installation.\n\n5. **Common mistakes**\n\nStudents often make the mistake of using the \"straight run\" table for a conduit run that contains bends. Bends significantly reduce the **Enclosure Factor** because they make it much harder to pull cables through. Another common error is mixing up the factors for different types of insulation; for example, a heat-resistant cable might have a larger external diameter than a standard PVC cable, even if the copper core is the same size, resulting in a different **Cable Factor**.\n\n6. **Quick recap**\n\nCalculating enclosure fill is a straightforward process of adding up **Cable Factors** and comparing them to the **Enclosure Factor** provided in regulatory tables. This system ensures that the **Space Factor** remains within safe limits, allowing for adequate **Heat Dissipation** and preventing cable damage. By mastering these **Unit Factor** calculations, an electrician can confidently select the correct containment size for any job, ensuring a professional and compliant installation every time."
-      }
-    },
-    {
-      "id": "203-3F-check-1",
-      "type": "practice",
-      "order": 6,
-      "content": {
-        "title": "Check Your Understanding: Fundamentals of Space Factor",
-        "mode": "conceptual",
-        "sequential": true,
-        "questions": [
-          {
-            "id": "203-3F-C1-L1-A",
-            "questionText": "What is the term for the percentage of the internal cross-sectional area of a containment system that is occupied by cables?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Space Factor",
-              "The Space Factor"
-            ],
-            "hint": "It is the ratio of cable volume to the internal volume of the containment."
-          },
-          {
-            "id": "203-3F-C1-L1-B",
-            "questionText": "What is the standard percentage limit for the Space Factor when installing cables in trunking?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "45%",
-              "45 percent",
-              "Forty-five percent"
-            ],
-            "hint": "This rule ensures 55% of the internal area remains empty."
-          },
-          {
-            "id": "203-3F-C1-L1-C",
-            "questionText": "What is the primary term for the process of allowing thermal energy to escape from cables to prevent overheating?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Heat Dissipation",
-              "Dissipating heat"
-            ],
-            "hint": "Overfilling an enclosure restricts airflow, which hinders this process."
-          },
-          {
-            "id": "203-3F-C1-L2",
-            "questionText": "How does adhering to the 45% Space Factor limit for trunking directly support Heat Dissipation?",
-            "answerType": "short-text",
-            "cognitiveLevel": "connection",
-            "expectedAnswer": [
-              "It ensures airflow is not restricted",
-              "It prevents thermal energy buildup",
-              "It provides enough empty space for heat to escape",
-              "It stops cables from being packed too tightly to cool"
-            ],
-            "hint": "Think about what happens to airflow when an enclosure is overfilled."
-          }
-        ]
+        "title": "Regulatory Limits and Capacity",
+        "content": "1. **What this is**\n\nRegulatory limits define the maximum allowable amount of cable that can be installed in a containment system. The most famous of these is the **45% Rule**, which applies specifically to trunking systems. This rule states that the total cross-sectional area of all cables (including insulation) must not exceed 45% of the internal cross-sectional area of the trunking. For conduit, the rules are slightly different and are usually managed through the use of factor tables in the IET On-Site Guide. These limits ensure that the **Percentage Fill** of an enclosure never reaches a point where safety is compromised. This addresses Learning Outcome 4 regarding maximum space factor limits.\n\n2. **Why it matters**\n\nFollowing these limits is a legal and safety requirement. If an electrician ignores the **45% Rule**, they risk creating a fire hazard due to restricted **Heat Dissipation**. Furthermore, if a trunking system is filled to 100% capacity, it becomes impossible to perform maintenance or add new circuits in the future without completely replacing the containment. Adhering to the **Enclosure Factor** and **Cable Factor** limits ensures that the installation is compliant with BS 7671 and is professionally executed.\n\n3. **Key facts / rules**\n\n*   The **45% Rule** is the regulatory limit for trunking: cables must occupy no more than 45% of the internal space.\n*   A **Cable Factor** is a numerical value assigned to a specific cable size and type (Learning Outcome 3).\n*   An **Enclosure Factor** represents the internal capacity of a conduit or trunking size.\n*   Calculations must account for the length of the run and the number of bends.\n*   The IET On-Site Guide is the primary source for these factor tables.\n\n4. **How to use it**\n\nTo calculate the **Percentage Fill** or capacity, follow these steps (Learning Outcome 3):\n1. Identify the **Cable Factor** for your specific cable from the IET tables (e.g., 2.5mm² stranded cable has a specific factor).\n2. Multiply the factor by the number of cables to get a total cable factor.\n3. Identify the **Enclosure Factor** for the conduit or trunking size being used.\n4. Compare the two: Total Cable Factors must be LESS than the Enclosure Factor.\nFor trunking, you can also calculate it manually: (Total Area of Cables / Internal Area of Trunking) x 100. If the result is over 45%, the trunking is too small.\n\n5. **Common mistakes**\n\nA frequent mistake is using the wrong table in the On-Site Guide; there are different tables for straight runs and runs containing bends. Students also often forget to include the earth (CPC) cable in their calculations, which still takes up space and contributes to the **Percentage Fill**. Another error is applying the **45% Rule** to conduit; conduit has its own specific factor system that often results in a different effective fill percentage compared to trunking.\n\n6. **Quick recap**\n\nTo ensure safety and compliance, electricians must calculate the capacity of enclosures using the **45% Rule** for trunking and factor tables for conduit. By comparing the sum of the **Cable Factor** values against the **Enclosure Factor**, we ensure that the **Percentage Fill** remains low enough to allow for effective **Heat Dissipation** and mechanical safety. This structured approach, defined in the IET On-Site Guide, prevents the overheating and installation damage that occurs when enclosures are overfilled."
       }
     },
     {
       "id": "203-3F-check-2",
       "type": "practice",
-      "order": 7,
+      "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Regulations and Calculations",
+        "title": "Check Your Understanding: Regulatory Limits and Capacity",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-3F-C2-L1-A",
-            "questionText": "What is the standardized numerical value called that represents the space an individual wire takes up?",
+            "questionText": "What is the regulatory limit for the maximum amount of cable area allowed specifically in trunking systems?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "45% Rule",
+              "45 percent rule",
+              "The 45% Rule"
+            ],
+            "hint": "It is a specific percentage mentioned in the text."
+          },
+          {
+            "id": "203-3F-C2-L1-B",
+            "questionText": "What is the name of the numerical value assigned to a specific cable size and type in the IET On-Site Guide?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Cable Factor",
-              "The Cable Factor"
+              "Cable factors",
+              "Factor for the cable"
             ],
-            "hint": "These are found in guidance tables and are based on cross-sectional area."
-          },
-          {
-            "id": "203-3F-C2-L1-B",
-            "questionText": "What is the term for the numerical value representing the total usable capacity of a specific size of conduit or trunking?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Enclosure Factor",
-              "The Enclosure Factor"
-            ],
-            "hint": "This value varies based on the diameter, length, and number of bends."
+            "hint": "These are found in tables in the On-Site Guide."
           },
           {
             "id": "203-3F-C2-L1-C",
-            "questionText": "According to the 'golden rule' of calculations, the sum of all Cable Factors must be less than or equal to what?",
+            "questionText": "What term represents the total internal capacity of a specific conduit or trunking size?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Enclosure Factor",
-              "The Enclosure Factor",
-              "The total enclosure capacity"
+              "Enclosure factors",
+              "Factor for the enclosure"
             ],
-            "hint": "You compare the total of the wires to this capacity value."
+            "hint": "This is the value you compare the cable factors against."
           },
           {
             "id": "203-3F-C2-L2",
-            "questionText": "How does the use of Cable Factors and Enclosure Factors ensure that the Space Factor remains within safe limits?",
+            "questionText": "Using your answers to Q1 (45% Rule), Q2 (Cable Factor), and Q3 (Enclosure Factor), explain how an electrician ensures a containment system is not overfilled.",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "They are designed to maintain a 45% space factor automatically",
-              "They ensure the total cable volume does not exceed permitted capacity",
-              "By keeping the sum of cable factors below the enclosure factor",
-              "They simplify BS 7671 compliance for heat dissipation"
+              "An electrician compares the sum of the Cable Factor values against the Enclosure Factor to ensure the installation stays within limits like the 45% Rule for trunking.",
+              "By ensuring the total Cable Factor is less than or equal to the Enclosure Factor, the electrician complies with the 45% Rule and maintains safety.",
+              "The Cable Factor and Enclosure Factor are used to calculate capacity so that the system does not exceed the 45% Rule or other regulatory limits."
             ],
-            "hint": "Consider how these 'Unit Factors' relate to the 45% rule mentioned in the first explanation."
+            "hint": "Explain the process of comparing the cable values to the enclosure capacity values."
           }
         ]
       }
@@ -214,87 +231,87 @@
     {
       "id": "203-3F-worked-example",
       "type": "worked-example",
-      "order": 8,
+      "order": 6,
       "content": {
         "title": "Worked Example: Calculating Trunking Capacity",
-        "given": "You need to install 6 x 4.0mm² stranded cables and 10 x 2.5mm² stranded cables in a 50mm x 50mm steel trunking. Using standard factor tables: 4.0mm² cable factor = 16.6; 2.5mm² cable factor = 12.6; 50mm x 50mm trunking factor = 1037.",
+        "given": "An installation requires 12 x 2.5mm² stranded cables and 8 x 4.0mm² stranded cables to be installed in a 50mm x 50mm steel trunking run. Using the IET On-Site Guide factors: 2.5mm² cable factor = 12.6, 4.0mm² cable factor = 16.6, and 50mm x 50mm trunking enclosure factor = 1037.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Calculate the total factor for the 4.0mm² cables.",
+            "description": "Calculate the total factor for the 2.5mm² cables.",
             "formula": "Quantity x Cable Factor",
-            "calculation": "6 x 16.6",
-            "result": "99.6"
+            "calculation": "12 x 12.6",
+            "result": "151.2"
           },
           {
             "stepNumber": 2,
-            "description": "Calculate the total factor for the 2.5mm² cables.",
+            "description": "Calculate the total factor for the 4.0mm² cables.",
             "formula": "Quantity x Cable Factor",
-            "calculation": "10 x 12.6",
-            "result": "126.0"
+            "calculation": "8 x 16.6",
+            "result": "132.8"
           },
           {
             "stepNumber": 3,
-            "description": "Calculate the total combined cable factor.",
-            "formula": "Total Factor 1 + Total Factor 2",
-            "calculation": "99.6 + 126.0",
-            "result": "225.6"
+            "description": "Determine the Total Cable Factor for all conductors in the run.",
+            "formula": "Sum of all individual cable factors",
+            "calculation": "151.2 + 132.8",
+            "result": "284"
           },
           {
             "stepNumber": 4,
-            "description": "Compare the total cable factor to the trunking enclosure factor to determine compliance.",
+            "description": "Compare the Total Cable Factor against the Enclosure Factor to check for compliance.",
             "formula": "Total Cable Factor <= Enclosure Factor",
-            "calculation": "225.6 <= 1037",
-            "result": "Compliant (Pass)"
+            "calculation": "284 <= 1037",
+            "result": "Installation is compliant (Adequate space)"
           }
         ],
-        "notes": "Always ensure the total cable factor is less than or equal to the enclosure factor. If it exceeds the factor, you must select a larger trunking size to maintain the 45% space factor for heat dissipation."
+        "notes": "Always ensure you use the correct table for the specific cable type (e.g., stranded vs solid). If the Total Cable Factor exceeded 1037, a larger trunking size would be required to maintain the 45% rule."
       }
     },
     {
       "id": "203-3F-guided",
       "type": "guided-practice",
-      "order": 9,
+      "order": 7,
       "content": {
         "title": "Guided Practice (We Do)",
-        "problem": "Determine if 8 x 6.0mm² stranded cables and 12 x 1.5mm² stranded cables will fit into a 75mm x 50mm trunking. (Factors: 6.0mm² = 21.2; 1.5mm² = 8.0; 75mm x 50mm trunking = 1555).",
+        "problem": "A new circuit requires 20 x 1.5mm² stranded cables and 10 x 6.0mm² stranded cables to be installed in a 75mm x 50mm trunking. Using the IET On-Site Guide factors: 1.5mm² cable factor = 8.0, 6.0mm² cable factor = 21.2, and 75mm x 50mm trunking enclosure factor = 1555.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the total cable factor for the eight 6.0mm² cables?",
+            "prompt": "First, calculate the total factor for the twenty 1.5mm² cables. What is the result?",
             "expectedAnswer": [
-              "169.6",
-              "8 x 21.2 = 169.6"
+              "160",
+              "160.0"
             ],
-            "hint": "Multiply the quantity (8) by the unit factor for 6.0mm² (21.2)."
+            "hint": "Multiply the quantity (20) by the factor for 1.5mm² (8.0)."
           },
           {
             "stepNumber": 2,
-            "prompt": "What is the total cable factor for the twelve 1.5mm² cables?",
+            "prompt": "Next, calculate the total factor for the ten 6.0mm² cables. What is the result?",
             "expectedAnswer": [
-              "96",
-              "12 x 8.0 = 96"
+              "212",
+              "212.0"
             ],
-            "hint": "Multiply the quantity (12) by the unit factor for 1.5mm² (8.0)."
+            "hint": "Multiply the quantity (10) by the factor for 6.0mm² (21.2)."
           },
           {
             "stepNumber": 3,
-            "prompt": "What is the total combined factor for all cables in this run?",
+            "prompt": "Now, add these two results together to find the Total Cable Factor. What is the sum?",
             "expectedAnswer": [
-              "265.6",
-              "169.6 + 96 = 265.6"
+              "372",
+              "372.0"
             ],
-            "hint": "Add the results from step 1 and step 2 together."
+            "hint": "Add the result from step 1 (160) to the result from step 2 (212)."
           },
           {
             "stepNumber": 4,
-            "prompt": "Is this installation compliant with the 1555 enclosure factor of the 75mm x 50mm trunking?",
+            "prompt": "Finally, compare your Total Cable Factor (372) to the Enclosure Factor (1555). Is this trunking size compliant?",
             "expectedAnswer": [
               "Yes",
               "Compliant",
-              "Yes, because 265.6 is less than 1555"
+              "It is compliant"
             ],
-            "hint": "Compare your total cable factor from step 3 to the trunking factor of 1555. If it is lower, it passes."
+            "hint": "If the total cable factor is less than or equal to 1555, the installation meets the space factor requirements."
           }
         ]
       }
@@ -302,65 +319,62 @@
     {
       "id": "203-3F-practice",
       "type": "practice",
-      "order": 10,
+      "order": 8,
       "content": {
         "title": "Your Turn (You Do)",
         "questions": [
           {
             "id": "203-3F-P1",
-            "questionText": "What is the primary thermal reason for leaving empty space inside a conduit or trunking system to prevent insulation damage?",
-            "answerType": "short-text",
+            "questionText": "A section of trunking has an internal cross-sectional area of 1500mm². If the total cross-sectional area of the installed cables is 600mm², calculate the Percentage Fill.",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Heat dissipation",
-              "Cooling",
-              "Prevent overheating",
-              "Airflow",
-              "Thermal dissipation"
+              "40"
             ],
-            "hint": "Think about what happens when electricity flows through a conductor and generates thermal energy."
+            "hint": "Divide cable area by trunking area and multiply by 100. Answer in percent (%)"
           },
           {
             "id": "203-3F-P2",
-            "questionText": "According to the general rule for trunking, what is the maximum percentage of the internal cross-sectional area that cables are allowed to occupy?",
+            "questionText": "According to the 45% Rule for trunking, what is the maximum total cable area allowed in a trunking with an internal area of 2500mm²?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "45"
+              "1125"
             ],
-            "hint": "Percentage (%) as specified in the rules for trunking space factor."
+            "hint": "Calculate 45% of the internal area. Answer in square millimetres (mm²)"
           },
           {
             "id": "203-3F-P3",
-            "questionText": "Calculate the total Cable Factor for an installation containing eight cables, where each individual cable has a Cable Factor of 30.",
-            "answerType": "numeric",
+            "questionText": "What is the term for the process of thermal energy escaping from conductors into the surrounding air to prevent insulation degradation?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "240"
+              "heat dissipation",
+              "thermal dissipation",
+              "dissipation of heat"
             ],
-            "hint": "Multiply the number of cables by the individual Cable Factor value."
+            "hint": "This process is restricted if cables are packed too tightly."
           },
           {
             "id": "203-3F-P4",
-            "questionText": "Why does a conduit run with multiple bends have a lower Enclosure Factor than a straight run of the same length and diameter?",
+            "questionText": "When using the IET On-Site Guide tables for conduit, the sum of all Cable Factors must be less than or equal to which specific value?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Increased friction",
-              "Harder to pull",
-              "Difficulty of pulling",
-              "Mechanical resistance",
-              "Friction"
+              "enclosure factor",
+              "the enclosure factor",
+              "enclosure factors"
             ],
-            "hint": "Consider the mechanical difficulty of drawing cables through the containment."
+            "hint": "This numerical value represents the internal capacity of the conduit."
           },
           {
             "id": "203-3F-P5",
-            "questionText": "To ensure a compliant installation, the total sum of all Cable Factors must be less than or equal to which specific value found in the regulatory tables?",
+            "questionText": "Besides overheating, what is a major risk of overfilling a containment system during the 'pulling-in' phase of installation?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Enclosure Factor",
-              "The Enclosure Factor",
-              "Enclosure Unit Factor",
-              "Unit Factor of enclosure"
+              "mechanical damage",
+              "insulation damage",
+              "tearing the insulation",
+              "stretching conductors",
+              "damage to the sheath"
             ],
-            "hint": "This value represents the total usable capacity of the specific conduit or trunking run."
+            "hint": "Consider the physical force and friction applied to the cables."
           }
         ]
       }
@@ -368,7 +382,7 @@
     {
       "id": "203-3F-integrative",
       "type": "practice",
-      "order": 11,
+      "order": 9.5,
       "content": {
         "title": "Putting It All Together",
         "mode": "integrative",
@@ -376,25 +390,25 @@
         "questions": [
           {
             "id": "203-3F-INT-1",
-            "questionText": "How does the concept of space factor fundamentally relate to the use of standardized cable and enclosure factor tables during the design of an installation? (2-3 sentences)",
+            "questionText": "How does the application of the 45% space factor rule in trunking systems directly address the physical requirements for both heat dissipation and mechanical protection? (2-3 sentences)",
             "answerType": "short-text",
             "cognitiveLevel": "connection",
             "expectedAnswer": [
-              "Space factor ensures there is sufficient air for heat dissipation and enough physical room to prevent cable damage during installation. Standardized factor tables translate these physical needs into numerical values, allowing installers to select an enclosure size that maintains the required percentage of empty space as per BS 7671.",
-              "The space factor is the physical requirement for empty space to allow for cooling and ease of pull-in, while the factor tables are the regulatory tool used to calculate this. By matching cable factors to enclosure factors, the installer ensures the space factor remains within safe limits."
+              "The 45% rule ensures that more than half of the enclosure remains as air space, which allows heat to dissipate from the conductors to prevent insulation failure. This empty space also provides the necessary clearance to pull cables through the system without causing mechanical strain or abrasion to the cable sheathing.",
+              "By limiting the cable fill to 45%, the regulations ensure there is enough surrounding air for thermal cooling and enough physical room to install or remove cables without damaging them."
             ],
-            "hint": "Think about how the physical need for cooling and cable protection is simplified into a mathematical calculation using industry tables."
+            "hint": "Think about why we need empty air around cables and what happens to the insulation if cables are packed too tightly during installation."
           },
           {
             "id": "203-3F-INT-2",
-            "questionText": "Explain how the application of space factor principles and the use of unit factor calculations work together to ensure both the long-term safety and the immediate practical feasibility of an electrical installation. Please provide your response in 3-4 sentences.",
+            "questionText": "Explain how the process of calculating percentage fill acts as a critical regulatory bridge between the theoretical definition of space factor and the practical safety requirements of an electrical installation. Please provide your explanation in 3-4 sentences.",
             "answerType": "short-text",
             "cognitiveLevel": "synthesis",
             "expectedAnswer": [
-              "Space factor limits the amount of cable in a conduit or trunking to facilitate heat dissipation and prevent mechanical damage during the drawing-in process. By using cable and enclosure factors, installers can mathematically ensure that the total cross-sectional area of cables remains within regulatory limits without performing complex geometry. This integrated approach ensures that the final installation is both compliant with safety regulations and physically possible to assemble without compromising the integrity of the wiring.",
-              "Maintaining a proper space factor is essential for preventing overheating and ensuring cables can be installed easily without strain. The system of unit factors allows this to be calculated accurately by comparing the sum of cable values against the capacity of the containment system. Together, these concepts ensure the installation meets BS 7671 standards for safety while remaining practical for the electrician to install and maintain."
+              "Calculating the percentage fill allows an installer to mathematically verify that the space factor remains within the limits set by BS 7671, such as the 45% limit for trunking. This calculation ensures that the volume of copper and insulation does not displace the air required for effective heat dissipation, which maintains the cable's current-carrying capacity. Furthermore, adhering to these calculated limits provides the mechanical protection needed to prevent conductor damage during the 'draw-in' process, ensuring a safe and compliant long-term installation.",
+              "The calculation of percentage fill translates the concept of space factor into a measurable value that ensures compliance with regulatory limits like the 45% rule. By performing these calculations, an electrician guarantees that there is sufficient internal volume for heat to escape and for cables to be installed without mechanical stress. This synthesis of math and regulation ensures the wiring system operates safely under load while remaining physically manageable during installation."
             ],
-            "hint": "Consider the relationship between heat dissipation, physical damage during installation, and how the factor tables provide a regulatory shortcut to achieve these goals."
+            "hint": "Consider how the math (formulas) proves that the physical environment (heat/protection) meets the legal standards (BS 7671)."
           }
         ]
       }
@@ -402,7 +416,7 @@
     {
       "id": "203-3F-spaced-review",
       "type": "spaced-review",
-      "order": 12,
+      "order": 10,
       "content": {
         "title": "Spaced Review (from prerequisites)",
         "questions": [],

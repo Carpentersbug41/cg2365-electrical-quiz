@@ -170,17 +170,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 8.3,
   },
-  {
-    id: '202-3F1',
-    title: 'Spacing Factor / Enclosure Fill',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Spacing Factor / Enclosure Fill',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-3F1'),
-    available: true,
-    order: 9.3,
-  },// Unit 203: Electrical Installations Technology
+  // Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {
@@ -320,6 +310,7 @@ export const lessonIndex: LessonIndexEntry[] = [
   
   
       
+  
   {
     id: '203-3F',
     title: 'Spacing Factor / Enclosure Fill',

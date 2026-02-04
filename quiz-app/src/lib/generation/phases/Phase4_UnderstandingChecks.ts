@@ -49,11 +49,17 @@ QUESTION STRUCTURE (for each check):
 - Question 1 (L1-A): Simple recall - test one specific fact from explanation
 - Question 2 (L1-B): Simple recall - test another fact, building on Q1
 - Question 3 (L1-C): Simple recall - test a third fact, building on Q1 and Q2
-- Question 4 (L2): Connection - ask how Q1, Q2, Q3 facts relate to each other
+- Question 4 (L2): Connection - MUST explicitly reference Q1, Q2, and Q3 facts by name/content
 
 COGNITIVE LEVELS:
 - Recall (L1): "What is...", "Define...", "State..." - simple factual questions
 - Connection (L2): "How do X and Y relate?", "Why does X affect Y?" - relationship questions
+
+L2 CONNECTION QUESTION REQUIREMENTS (CRITICAL):
+- MUST begin with: "Using your answers to Q1 ([brief topic]), Q2 ([brief topic]), and Q3 ([brief topic])..."
+- MUST explicitly reference all three L1 facts by their content
+- MUST ask how they connect or relate to each other
+- Example: "Using your answers to Q1 (definition), Q2 (purpose), and Q3 (key components), explain how these three aspects work together..."
 
 ANSWER FORMAT:
 - expectedAnswer: ALWAYS an array of strings (2-6 acceptable variations)
@@ -114,10 +120,10 @@ Return JSON in this exact format:
         },
         {
           "id": "${lessonId}-C1-L2",
-          "questionText": "[Connection question: How do the facts from Q1, Q2, Q3 relate?]",
+          "questionText": "Using your answers to Q1 ([brief Q1 topic]), Q2 ([brief Q2 topic]), and Q3 ([brief Q3 topic]), explain [how they relate/work together/connect].",
           "answerType": "short-text",
           "cognitiveLevel": "connection",
-          "expectedAnswer": ["[Answer showing relationships]", "[Alternative phrasing]"],
+          "expectedAnswer": ["[Answer showing relationships between all 3 facts]", "[Alternative phrasing]"],
           "hint": "[Hint about connections]"
         }
       ]
@@ -155,10 +161,10 @@ Return JSON in this exact format:
         },
         {
           "id": "${lessonId}-C2-L2",
-          "questionText": "[Connection for explanation 2]",
+          "questionText": "Using your answers to Q1 ([brief Q1 topic]), Q2 ([brief Q2 topic]), and Q3 ([brief Q3 topic]), explain [how they relate/work together/connect].",
           "answerType": "short-text",
           "cognitiveLevel": "connection",
-          "expectedAnswer": ["[Answer]", "[Alternative]"],
+          "expectedAnswer": ["[Answer showing relationships between all 3 facts]", "[Alternative]"],
           "hint": "[Hint]"
         }
       ]
@@ -168,8 +174,9 @@ Return JSON in this exact format:
 
 CRITICAL REQUIREMENTS:
 - Every expectedAnswer must come from the explanation text (quote or paraphrase)
-- Connection questions (L2) must explicitly reference facts from Q1, Q2, Q3
+- Connection questions (L2) MUST begin with "Using your answers to Q1, Q2, and Q3..." and explicitly reference all three facts by their content
 - Include 2-6 acceptable answer variations in expectedAnswer arrays
-- Questions must build logically (Q1 → Q2 → Q3 → Q4 connects them all)`;
+- Questions must build logically (Q1 → Q2 → Q3 → Q4 connects them all)
+- L2 questions must tie all three L1 facts together into a cohesive explanation`;
   }
 }
