@@ -9,6 +9,7 @@ export interface GenerationRequest {
   section: string;
   layout?: 'split-vis' | 'linear-flow';
   prerequisites?: string[];
+  prerequisiteAnchors?: string; // Extracted key facts from prerequisite lessons for spaced review
   mustHaveTopics?: string;
   additionalInstructions?: string;
   youtubeUrl?: string;
@@ -115,3 +116,6 @@ export interface GenerationProgress {
   message: string;
   progress: number; // 0-100
 }
+
+// Re-export strict lint types from strictLintService
+export type { LintErrorCode, LintFailure, StrictLintResult } from './strictLintService';

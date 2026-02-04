@@ -602,9 +602,28 @@ export default function GeneratePage() {
                 <p className="text-sm font-semibold text-red-900 dark:text-red-200 mb-2">
                   Error:
                 </p>
-                <p className="text-sm text-gray-700 dark:text-slate-300">
-                  {status.error}
-                </p>
+                <div className="text-sm text-gray-700 dark:text-slate-300">
+                  <p className="font-mono">{status.error}</p>
+                  {status.error?.toLowerCase().includes('api') && (
+                    <div className="mt-3 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-300 dark:border-yellow-700 rounded">
+                      <p className="text-xs font-semibold text-yellow-900 dark:text-yellow-200 mb-1">
+                        💡 API Error Detected
+                      </p>
+                      <p className="text-xs text-yellow-800 dark:text-yellow-300">
+                        This appears to be an API error. Common causes:
+                      </p>
+                      <ul className="text-xs text-yellow-800 dark:text-yellow-300 list-disc list-inside mt-1 space-y-1">
+                        <li>Invalid or expired API key</li>
+                        <li>Rate limit or quota exceeded</li>
+                        <li>Temporary service outage</li>
+                        <li>Network connectivity issue</li>
+                      </ul>
+                      <p className="text-xs text-yellow-800 dark:text-yellow-300 mt-2">
+                        Check the Raw LLM Response below for more details.
+                      </p>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Debug Information - Only show if available */}

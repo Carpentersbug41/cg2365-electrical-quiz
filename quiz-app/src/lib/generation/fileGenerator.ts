@@ -8,6 +8,7 @@ import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { LessonPromptBuilder } from './lessonPromptBuilder';
 import { QuizPromptBuilder } from './quizPromptBuilder';
 import { ValidationService } from './validationService';
+import { StrictLintService, type LintFailure } from './strictLintService';
 import { GenerationRequest, Lesson, QuizQuestion, DebugInfo } from './types';
 import {
   generateLessonFilename,
@@ -20,6 +21,7 @@ import {
   preprocessToValidJson,
   safeJsonParse,
   sleep,
+  validateLLMResponse,
 } from './utils';
 import { GENERATION_LIMITS, DIFFICULTY_DISTRIBUTION, COMPLEXITY_THRESHOLDS } from './constants';
 import {
@@ -202,11 +204,13 @@ export class FileGenerator {
   private lessonPromptBuilder: LessonPromptBuilder;
   private quizPromptBuilder: QuizPromptBuilder;
   private validationService: ValidationService;
+  private strictLintService: StrictLintService;
 
   constructor() {
     this.lessonPromptBuilder = new LessonPromptBuilder();
     this.quizPromptBuilder = new QuizPromptBuilder();
     this.validationService = new ValidationService();
+    this.strictLintService = new StrictLintService();
   }
   
   /**
@@ -235,6 +239,60 @@ INSTRUCTIONS:
 - Must be valid, parseable JSON
 
 Return the corrected lesson JSON now:`;
+  }
+
+  /**
+   * Build strict repair prompt for fixing critical lint failures
+   * More structured and specific than the generic repair prompt
+   */
+  private buildStrictRepairPrompt(originalJson: string, failures: LintFailure[]): string {
+    // Group failures by severity
+    const critical = failures.filter(f => f.severity === 'critical');
+    const high = failures.filter(f => f.severity === 'high');
+    const medium = failures.filter(f => f.severity === 'medium');
+    
+    const formatFailure = (f: LintFailure) => {
+      let msg = `[${f.code}] ${f.message}`;
+      if (f.path) msg += `\n  Location: ${f.path}`;
+      if (f.suggestedFix) msg += `\n  Fix: ${f.suggestedFix}`;
+      if (f.example) msg += `\n  Example: ${f.example}`;
+      return msg;
+    };
+    
+    let failuresSection = '';
+    
+    if (critical.length > 0) {
+      failuresSection += `\nCRITICAL FAILURES (${critical.length}) - MUST FIX:\n`;
+      failuresSection += critical.map(formatFailure).join('\n\n');
+    }
+    
+    if (high.length > 0) {
+      failuresSection += `\n\nHIGH PRIORITY (${high.length}) - SHOULD FIX:\n`;
+      failuresSection += high.map(formatFailure).join('\n\n');
+    }
+    
+    if (medium.length > 0) {
+      failuresSection += `\n\nMEDIUM PRIORITY (${medium.length}) - FIX IF POSSIBLE:\n`;
+      failuresSection += medium.map(formatFailure).join('\n\n');
+    }
+    
+    return `The following lesson JSON has CRITICAL validation failures that MUST be fixed for 95+ quality scores.
+${failuresSection}
+
+ORIGINAL JSON:
+${originalJson}
+
+REPAIR INSTRUCTIONS:
+1. Fix ALL critical failures first (these break marking/rendering)
+2. Fix high priority issues (these reduce quality scores)
+3. Fix medium priority issues if possible
+4. Make MINIMAL changes - only fix what's broken
+5. Do NOT alter working parts of the JSON
+6. Preserve all content, just fix structure/format issues
+7. Return ONLY the corrected JSON (no markdown, no explanations)
+8. Ensure result is valid, parseable RFC 8259 JSON
+
+OUTPUT FORMAT: Pure JSON only`;
   }
 
   /**
@@ -315,82 +373,119 @@ Return the corrected lesson JSON now:`;
         };
       }
 
-      // Validate the generated lesson
-      const validation = this.validationService.validateLesson(parsed.data, lessonId);
-      debugLog('LESSON_GEN_PASS1_VALIDATION', { 
-        valid: validation.valid, 
-        errorCount: validation.errors.length,
-        warningCount: validation.warnings.length 
+      // STRICT LINT: Run hard failure checks (before soft validation)
+      const strictLint = this.strictLintService.strictLint(parsed.data, lessonId);
+      debugLog('LESSON_GEN_PASS1_STRICT_LINT', {
+        passed: strictLint.passed,
+        failureCount: strictLint.failures.length,
+        criticalCount: strictLint.stats.criticalCount,
+        highCount: strictLint.stats.highCount,
+        mediumCount: strictLint.stats.mediumCount
       });
 
-      // If validation passed or only has warnings, return success
-      if (validation.valid) {
-        return { 
-          success: true, 
-          content: parsed.data,
-          warnings: validation.warnings.length > 0 ? validation.warnings : undefined
-        };
-      }
+      // If strict lint failed, trigger repair with structured failures
+      if (!strictLint.passed) {
+        debugLog('LESSON_GEN_PASS2_REPAIR_START', { 
+          failureCount: strictLint.failures.length,
+          criticalCount: strictLint.stats.criticalCount
+        });
+        console.log(`⚠️  Strict lint failed with ${strictLint.failures.length} issues (${strictLint.stats.criticalCount} critical). Attempting repair...`);
+        
+        const repairPrompt = this.buildStrictRepairPrompt(content, strictLint.failures);
+        
+        const repairedContent = await this.generateWithRetry(
+          'You are a JSON repair specialist. Fix critical validation issues in lesson JSON.',
+          repairPrompt,
+          'lesson',
+          1 // Only one retry for repair
+        );
 
-      // PASS 2: If there are errors, attempt repair
-      debugLog('LESSON_GEN_PASS2_REPAIR_START', { errorCount: validation.errors.length });
-      console.log('Lesson validation failed, attempting repair...');
-      console.log('Errors:', validation.errors);
-      
-      const repairPrompt = this.buildRepairPrompt(content, validation.errors, validation.warnings);
-      
-      const repairedContent = await this.generateWithRetry(
-        'You are a JSON repair specialist. Fix validation issues in lesson JSON.',
-        repairPrompt,
-        'lesson',
-        1 // Only one retry for repair
-      );
-
-      // Preprocess repaired content
-      const cleanedRepairedContent = preprocessToValidJson(repairedContent);
-      
-      const repairedParsed = safeJsonParse<Lesson>(cleanedRepairedContent);
-      if (!repairedParsed.success || !repairedParsed.data) {
-        debugLog('LESSON_GEN_PASS2_PARSE_FAILED', { error: repairedParsed.error });
-        // Return original if repair failed to parse
-        return {
-          success: true,
-          content: parsed.data,
-          warnings: ['Repair attempt failed, using original with validation issues: ' + validation.errors.join('; ')],
-          debugInfo: {
-            rawResponse: cleanedRepairedContent,
-            parseError: repairedParsed.error || 'Unknown parse error',
+        // Preprocess repaired content
+        const cleanedRepairedContent = preprocessToValidJson(repairedContent);
+        
+        const repairedParsed = safeJsonParse<Lesson>(cleanedRepairedContent);
+        if (!repairedParsed.success || !repairedParsed.data) {
+          debugLog('LESSON_GEN_PASS2_PARSE_FAILED', { error: repairedParsed.error });
+          // Return original if repair failed to parse
+          const softValidation = this.validationService.validateLesson(parsed.data, lessonId);
+          return {
+            success: true,
+            content: parsed.data,
+            warnings: [
+              'Repair attempt failed to parse, using original with issues',
+              ...strictLint.failures.map(f => `[${f.severity}] ${f.message}`),
+              ...softValidation.warnings
+            ],
+            debugInfo: {
+              rawResponse: cleanedRepairedContent,
+              parseError: repairedParsed.error || 'Unknown parse error',
               errorPosition: {
                 message: repairedParsed.error || 'Unknown parse error',
                 line: repairedParsed.errorDetails?.line,
                 column: repairedParsed.errorDetails?.column,
                 position: repairedParsed.errorDetails?.position,
               },
-            contentPreview: generateContextPreview(
-              repairedParsed.rawInput || cleanedRepairedContent,
-              repairedParsed.errorDetails?.position
-            ),
-            attemptedOperation: 'Parsing repaired lesson JSON (PASS 2 - after validation repair)',
-            timestamp: new Date().toISOString(),
+              contentPreview: generateContextPreview(
+                repairedParsed.rawInput || cleanedRepairedContent,
+                repairedParsed.errorDetails?.position
+              ),
+              attemptedOperation: 'Parsing repaired lesson JSON (PASS 2 - after strict lint repair)',
+              timestamp: new Date().toISOString(),
+            }
+          };
+        }
+
+        // Re-run strict lint on repaired version
+        const repairedStrictLint = this.strictLintService.strictLint(repairedParsed.data, lessonId);
+        debugLog('LESSON_GEN_PASS2_STRICT_LINT', { 
+          passed: repairedStrictLint.passed,
+          failureCount: repairedStrictLint.failures.length,
+          criticalCount: repairedStrictLint.stats.criticalCount
+        });
+
+        // Run soft validation for telemetry
+        const softValidation = this.validationService.validateLesson(repairedParsed.data, lessonId);
+
+        // If repair didn't fix everything, include remaining issues in warnings
+        const warnings: string[] = [];
+        if (!repairedStrictLint.passed) {
+          console.log(`⚠️  Repair incomplete: ${repairedStrictLint.failures.length} issues remain`);
+          warnings.push(
+            `Repair incomplete: ${repairedStrictLint.failures.length} strict lint issues remain`,
+            ...repairedStrictLint.failures.slice(0, 5).map(f => `[${f.severity}] ${f.message}`)
+          );
+          if (repairedStrictLint.failures.length > 5) {
+            warnings.push(`... and ${repairedStrictLint.failures.length - 5} more issues`);
           }
+        } else {
+          console.log('✅ Repair successful - all strict lint checks passed');
+        }
+
+        // Add soft validation warnings
+        if (softValidation.warnings.length > 0) {
+          warnings.push(...softValidation.warnings);
+        }
+
+        // Return repaired version (even if still has some issues, should be better than original)
+        return {
+          success: true,
+          content: repairedParsed.data,
+          warnings: warnings.length > 0 ? warnings : undefined
         };
       }
 
-      // Validate repaired lesson
-      const repairedValidation = this.validationService.validateLesson(repairedParsed.data, lessonId);
-      debugLog('LESSON_GEN_PASS2_VALIDATION', { 
-        valid: repairedValidation.valid,
-        errorCount: repairedValidation.errors.length,
-        warningCount: repairedValidation.warnings.length
+      // Strict lint passed - run soft validation for telemetry only
+      const softValidation = this.validationService.validateLesson(parsed.data, lessonId);
+      debugLog('LESSON_GEN_PASS1_SOFT_VALIDATION', { 
+        warningCount: softValidation.warnings.length 
       });
-
-      // Return repaired version (even if still has some issues, it should be better)
-      return {
-        success: true,
-        content: repairedParsed.data,
-        warnings: repairedValidation.errors.length > 0 
-          ? ['Repaired but still has issues: ' + repairedValidation.errors.join('; ')] 
-          : repairedValidation.warnings
+      
+      console.log('✅ Strict lint passed - lesson meets 95+ quality standards');
+      
+      return { 
+        success: true, 
+        content: parsed.data,
+        warnings: softValidation.warnings.length > 0 ? softValidation.warnings : undefined
       };
 
     } catch (error) {
@@ -694,10 +789,37 @@ Return the corrected lesson JSON now:`;
         // Extract response data
         const candidate = result.response.candidates?.[0];
         const finishReason = candidate?.finishReason;
+
+        // Check for problematic finish reasons before extracting text
+        if (finishReason && finishReason !== 'STOP' && finishReason !== 'MAX_TOKENS') {
+          debugLog('GENERATION_STOPPED', {
+            type,
+            attempt: attempt + 1,
+            finishReason,
+            message: 'Generation stopped due to safety/policy/other reason'
+          });
+          
+          throw new Error(
+            `Generation stopped by API: ${finishReason}. ` +
+            `This may indicate content policy violation or API issue.`
+          );
+        }
+
         const text = result.response.text();
 
-        if (!text || text.trim().length === 0) {
-          throw new Error('Empty response from LLM');
+        // CRITICAL: Validate response before parsing
+        const validation = validateLLMResponse(text);
+        if (!validation.valid) {
+          // Log the validation failure for debugging
+          debugLog('RESPONSE_VALIDATION_FAILED', {
+            type,
+            attempt: attempt + 1,
+            error: validation.error,
+            detectedType: validation.detectedType,
+            responsePreview: text.substring(0, 500)
+          });
+          
+          throw new Error(validation.error || 'Invalid response from LLM');
         }
 
         const cleanedText = cleanCodeBlocks(text);

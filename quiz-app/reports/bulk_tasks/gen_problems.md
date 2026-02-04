@@ -2553,3 +2553,107 @@ Integrated into catch blocks in `generateLesson()` and `generateQuiz()` (lines 2
    - Validation now checks all spaced-review question field names
    - Defensive coding prevents crashes even if validation fails
    - Should not occur in newly generated lessons
+
+---
+
+## Problem 11: "Unexpected token 'I', 'Internal S'... is not valid JSON" Error
+
+**NEW (Feb 4, 2026)**: Fixed API error message detection and reporting.
+
+### Issue
+Generation fails with error: `Unexpected token 'I', "Internal S"... is not valid JSON`
+
+This occurs when the Gemini API returns an error message (plain text) instead of JSON, and the code attempts to parse it.
+
+### Root Cause
+At `fileGenerator.ts:791`, after calling `result.response.text()`, the code immediately proceeded to JSON parsing without validating if the response was actually an error message.
+
+**Sequence:**
+1. Gemini API encounters an error (rate limit, internal error, etc.)
+2. API returns error message as plain text: "Internal Server Error" or similar
+3. Code calls `cleanCodeBlocks(text)` which doesn't detect the error
+4. Code calls `JSON.parse()` which fails on the error text
+5. User sees confusing JSON parse error instead of the actual API error
+
+### Fix Applied
+
+1. **Added `validateLLMResponse()` helper** (`utils.ts`)
+   - Checks for error message patterns before JSON parsing
+   - Detects: "internal server error", "rate limit", "quota exceeded", etc.
+   - Returns descriptive error with the actual API message
+
+2. **Added validation in `generateWithRetry()`** (`fileGenerator.ts`)
+   - Validates response immediately after `result.response.text()`
+   - Throws clear error with API message if validation fails
+   - Logs validation failures to debug.log for investigation
+
+3. **Added `finishReason` checking** (`fileGenerator.ts`)
+   - Checks if generation stopped due to safety/policy violations
+   - Detects: `SAFETY`, `RECITATION`, `OTHER` finish reasons
+   - Throws descriptive error before attempting text extraction
+
+### How to Diagnose This Error
+
+**If you see this error again:**
+
+1. **Check the Error Page Debug Info**:
+   - Raw Response section should show the actual error message
+   - Look for "Internal Server Error", "Rate Limit", "Quota Exceeded"
+   - If debug info is missing, Problem 10 fix was not applied
+
+2. **Check debug.log**:
+   - Look for `RESPONSE_VALIDATION_FAILED` entries
+   - Check `responsePreview` field for the actual error text
+   - Check `finishReason` if generation stopped early
+
+3. **Common Causes**:
+   - **API Key issues**: Invalid or expired GOOGLE_AI_API_KEY
+   - **Rate limiting**: Too many requests in short time
+   - **Quota exceeded**: Daily API quota reached
+   - **Service outage**: Gemini API temporarily unavailable
+   - **Content policy**: Request violated safety policies
+
+### Prevention
+
+- The `validateLLMResponse()` function now catches these errors before JSON parsing
+- Error messages are preserved and shown to the user
+- Debug logging captures the full error context
+
+### Manual Fix (If Error Persists)
+
+1. **Verify the fix is applied**:
+   ```bash
+   grep -n "validateLLMResponse" quiz-app/src/lib/generation/fileGenerator.ts
+   ```
+   Should show the function being called after `result.response.text()`
+
+2. **Check API key**:
+   ```bash
+   # Verify GOOGLE_AI_API_KEY is set
+   echo $GOOGLE_AI_API_KEY  # Should not be empty
+   ```
+
+3. **Test API directly**:
+   ```bash
+   # Try a simple API call to verify it's working
+   curl -X POST "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GOOGLE_AI_API_KEY" \
+     -H 'Content-Type: application/json' \
+     -d '{"contents":[{"parts":[{"text":"Hello"}]}]}'
+   ```
+
+4. **Restart dev server**:
+   ```bash
+   # Kill existing server
+   pkill -f "next dev"
+   
+   # Start fresh
+   cd quiz-app
+   npm run dev
+   ```
+
+### Related Issues
+- See Problem 8 for JavaScript vs JSON parsing issues
+- See Problem 10 for debug info propagation
+- See truncationDetector.ts for response length validation
+
+---

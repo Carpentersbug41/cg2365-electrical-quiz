@@ -266,6 +266,79 @@ export function getUnitFromLessonId(lessonId: string): string {
 }
 
 /**
+ * Validate LLM response before attempting JSON parsing
+ * Detects error messages and invalid responses early
+ */
+export function validateLLMResponse(text: string): { 
+  valid: boolean; 
+  error?: string;
+  detectedType: 'json' | 'array' | 'error' | 'unknown';
+} {
+  if (!text || text.trim().length === 0) {
+    return { 
+      valid: false, 
+      error: 'Empty response from LLM',
+      detectedType: 'unknown'
+    };
+  }
+
+  const trimmed = text.trim();
+  const lowerText = trimmed.toLowerCase();
+  
+  // Check for common error message patterns
+  const errorPatterns = [
+    'internal server error',
+    'internal error',
+    'api error',
+    'rate limit',
+    'quota exceeded',
+    'authentication failed',
+    'invalid request',
+    'service unavailable',
+    '503 service',
+    '500 internal',
+    '429 too many',
+    'error:',
+    'exception:',
+  ];
+  
+  for (const pattern of errorPatterns) {
+    if (lowerText.includes(pattern)) {
+      // Extract the error message (first 500 chars)
+      const errorMsg = trimmed.substring(0, 500);
+      return {
+        valid: false,
+        error: `API returned error response: ${errorMsg}`,
+        detectedType: 'error'
+      };
+    }
+  }
+  
+  // Check if response looks like JSON/array
+  const startsWithJSON = trimmed.startsWith('{') || trimmed.startsWith('[');
+  const endsWithJSON = trimmed.endsWith('}') || trimmed.endsWith(']');
+  
+  if (!startsWithJSON) {
+    // Response doesn't start with JSON - might be error text or markdown
+    if (trimmed.startsWith('```') || trimmed.includes('```json')) {
+      // Has code blocks - will be cleaned by cleanCodeBlocks
+      return { valid: true, detectedType: 'json' };
+    }
+    
+    return {
+      valid: false,
+      error: `Response doesn't look like JSON. First 200 chars: ${trimmed.substring(0, 200)}`,
+      detectedType: 'unknown'
+    };
+  }
+  
+  return { 
+    valid: true, 
+    detectedType: trimmed.startsWith('[') ? 'array' : 'json'
+  };
+}
+
+/**
  * Sleep utility for retry delays
  */
 export function sleep(ms: number): Promise<void> {

@@ -43,11 +43,94 @@ export class LessonPromptBuilder {
   }
 
   /**
+   * Build prerequisite anchors from prerequisite lesson files
+   * Extracts 4-10 key facts from each prerequisite lesson for spaced review
+   */
+  private buildPrerequisiteAnchors(prerequisites: string[]): string {
+    if (!prerequisites || prerequisites.length === 0) {
+      return '';
+    }
+
+    const anchors: string[] = [];
+    const lessonsPath = path.join(process.cwd(), 'src', 'data', 'lessons');
+
+    for (const prereqId of prerequisites) {
+      try {
+        // Find the lesson file by ID
+        const files = fs.readdirSync(lessonsPath);
+        const lessonFile = files.find(f => f.startsWith(prereqId) && f.endsWith('.json'));
+        
+        if (!lessonFile) {
+          console.warn(`Prerequisite lesson file not found for ${prereqId}`);
+          continue;
+        }
+
+        const lessonPath = path.join(lessonsPath, lessonFile);
+        const lessonData = JSON.parse(fs.readFileSync(lessonPath, 'utf-8'));
+        const facts: string[] = [];
+
+        // Extract vocab terms (limit to 4-6 most important)
+        const vocabBlock = lessonData.blocks?.find((b: { type: string }) => b.type === 'vocab');
+        if (vocabBlock?.content?.terms) {
+          const terms = vocabBlock.content.terms.slice(0, 6);
+          for (const term of terms) {
+            if (term.term && term.definition) {
+              // Create compact fact: "term = definition"
+              const compactDef = term.definition.split('.')[0]; // Take first sentence only
+              facts.push(`${term.term} = ${compactDef}`);
+            }
+          }
+        }
+
+        // Extract key facts from explanation blocks
+        const explanationBlocks = lessonData.blocks?.filter((b: { type: string }) => b.type === 'explanation') || [];
+        for (const expBlock of explanationBlocks.slice(0, 2)) { // Max 2 explanation blocks
+          if (expBlock?.content?.content) {
+            const content = expBlock.content.content;
+            
+            // Look for "Key rules" or "Key facts" section
+            const keyRulesMatch = content.match(/\*\*Key (?:rules|facts)[^*]*\*\*([^]*?)(?=\n\n|\*\*|$)/i);
+            if (keyRulesMatch) {
+              const rulesText = keyRulesMatch[1];
+              // Extract bullet points
+              const bullets = rulesText.match(/[-•]\s*([^\n]+)/g);
+              if (bullets) {
+                bullets.slice(0, 3).forEach((bullet: string) => {
+                  const cleaned = bullet.replace(/^[-•]\s*/, '').trim().split('.')[0];
+                  if (cleaned.length > 10 && cleaned.length < 150) {
+                    facts.push(cleaned);
+                  }
+                });
+              }
+            }
+          }
+        }
+
+        // Create anchor string for this prerequisite (limit to 10 facts max)
+        if (facts.length > 0) {
+          const anchorFacts = facts.slice(0, 10).join('; ');
+          anchors.push(`${prereqId}: ${anchorFacts}`);
+        }
+
+      } catch (error) {
+        console.warn(`Could not load prerequisite lesson ${prereqId}:`, error);
+      }
+    }
+
+    return anchors.join('\n\n');
+  }
+
+  /**
    * Build complete lesson generation prompt
    */
   buildPrompt(request: GenerationRequest): { systemPrompt: string; userPrompt: string } {
     const layout = request.layout || inferLayout(request.section, request.topic);
     const fullLessonId = `${request.unit}-${request.lessonId}`;
+
+    // Auto-generate prerequisite anchors if not provided
+    if (!request.prerequisiteAnchors && request.prerequisites && request.prerequisites.length > 0) {
+      request.prerequisiteAnchors = this.buildPrerequisiteAnchors(request.prerequisites);
+    }
 
     const systemPrompt = this.buildSystemPrompt(fullLessonId, layout);
     const userPrompt = this.buildUserPrompt(request, layout);
@@ -373,7 +456,7 @@ QUESTION IDS: ${lessonId}-C1-L1-A/B/C (recall), ${lessonId}-C1-L2 (connection), 
         "hint": "[Helpful hint]"
       }
     ],
-    "notes": "[What concepts being reviewed from which prerequisites]"
+    "notes": "SR-1 -> [prereqId] ([concept reviewed]); SR-2 -> [prereqId] ([concept reviewed]); SR-3 -> [prereqId] ([concept reviewed]); SR-4 -> [prereqId] ([concept reviewed])"
   }
 }
 
@@ -500,6 +583,29 @@ ANSWER MARKING POLICY (MANDATORY):
 - CRITICAL: NEVER use single string values anywhere in the lesson
 - CRITICAL: Spaced review questions MUST also use array format
 
+NUMERIC ANSWER FORMAT (CRITICAL - MARKING WILL FAIL OTHERWISE):
+This is a common LLM mistake that breaks marking functionality. Pay close attention:
+
+- When answerType is "numeric", expectedAnswer MUST be a string array WITHOUT any units or symbols
+- Units and symbols go in the "hint" field ONLY, not in expectedAnswer
+- This rule is NON-NEGOTIABLE - marking will fail if violated
+
+Examples of CORRECT numeric answers:
+  ✓ expectedAnswer: ["15"], hint: "Answer as a percentage (unit: %)"
+  ✓ expectedAnswer: ["5.5"], hint: "Answer in millimetres (mm)"
+  ✓ expectedAnswer: ["230"], hint: "UK mains voltage (V)"
+  ✓ expectedAnswer: ["0.72"], hint: "Multiply Ca × Cg"
+
+Examples of INCORRECT numeric answers (WILL CAUSE MARKING FAILURES):
+  ✗ expectedAnswer: ["15%"] - NO! Remove % symbol
+  ✗ expectedAnswer: ["5.5mm"] - NO! Remove mm unit
+  ✗ expectedAnswer: ["230V"] - NO! Remove V unit
+  ✗ expectedAnswer: ["15 %"] - NO! No units even with space
+  ✗ expectedAnswer: ["5.5 millimetres"] - NO! No spelled-out units
+
+The numeric answer should contain ONLY the number (digits, decimal point, minus sign if negative).
+All context about units goes in the hint field where students can see it but it won't break marking.
+
 LESSON GENERATION ALGORITHM (FOLLOW THIS SEQUENCE):
 To ensure proper staging and coverage, generate the lesson in this order:
 
@@ -596,7 +702,7 @@ OUTPUT FORMAT:
   /**
    * Build user prompt with specific lesson requirements
    */
-  private buildUserPrompt(request: GenerationRequest, layout: 'split-vis' | 'linear-flow'): string {
+  private buildUserPrompt(request: GenerationRequest, layout: 'split-vis' | 'linear-flow' | 'focus-mode'): string {
     const fullLessonId = `${request.unit}-${request.lessonId}`;
     const prereqsList = request.prerequisites && request.prerequisites.length > 0
       ? request.prerequisites.join(', ')
@@ -616,6 +722,19 @@ OUTPUT FORMAT:
 
     const imageUrlSection = request.imageUrl
       ? `\n\nIMAGE URL: ${request.imageUrl}\n\nInclude this URL in the diagram block's "imageUrl" field. This is a static image that visually represents the circuit/concept being taught.`
+      : '';
+
+    // Build prerequisite anchors section for spaced review
+    const prerequisiteAnchorsSection = request.prerequisiteAnchors
+      ? `\n\nPREREQUISITE ANCHORS (SPACED REVIEW MUST ONLY USE THESE):
+${request.prerequisiteAnchors}
+
+CRITICAL SPACED REVIEW RULES:
+- Spaced review questions MUST derive from the anchors above ONLY
+- Do NOT use random fundamentals (Ohm's law, basic safety, fuses, etc.) unless they appear in anchors
+- Each question's notes field must include provenance mapping: "SR-1 -> [prereqId] ([concept reviewed])"
+- Questions should test specific facts from prerequisite lessons, not generic electrical knowledge
+- If no prerequisite anchors provided, use general electrical safety/fundamentals`
       : '';
 
     return `Generate a complete lesson JSON for:
@@ -642,14 +761,15 @@ ${this.shouldIncludeWorkedExample(request)
 - Include 4 spaced review questions from prerequisites (each with id, questionText, expectedAnswer, and hint)
 
 SPACED REVIEW QUALITY STANDARDS:
-- Questions should review key concepts from prerequisite lessons
+- Questions should review key concepts from prerequisite lessons (see PREREQUISITE ANCHORS section below)
 - Expected answers should be concise (1-2 sentences or a key term/value)
 - Hints should guide students toward the answer without giving it away
 - Questions should be appropriate for quick review (simple recall, not complex calculations)
 - Each question must have unique ID following pattern: ${fullLessonId}-SR-1, ${fullLessonId}-SR-2, etc.
+- Notes field MUST include provenance mapping: "SR-1 -> [prereqId] ([concept]); SR-2 -> [prereqId] ([concept]); SR-3 -> [prereqId] ([concept]); SR-4 -> [prereqId] ([concept])"
 
 TOPIC CONTEXT:
-${this.getTopicContext(request.topic, request.section, request.mustHaveTopics)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}
+${this.getTopicContext(request.topic, request.section, request.mustHaveTopics)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}${prerequisiteAnchorsSection}
 
 Generate the complete lesson JSON now. Remember: ONLY JSON, no markdown, no explanations.`;
   }

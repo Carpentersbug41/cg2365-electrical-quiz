@@ -62,6 +62,7 @@ export class ValidationService {
       this.validateWorkedExampleAlignment(lesson.blocks, errors, warnings);
       this.validateQuestionStaging(lesson.blocks, errors, warnings);
       this.validateMicrobreakPlacement(lesson.blocks, errors, warnings);
+      this.validateAnswerCoverage(lesson.blocks, errors, warnings);
     }
 
     // Validate metadata
@@ -181,6 +182,74 @@ export class ValidationService {
           `first explanation (order ${minExplanationOrder}). Microbreaks must test only ` +
           `concepts that have been taught in explanations.`
         );
+      }
+    }
+  }
+
+  /**
+   * Enhanced validation: Check that question answers are covered in explanation content
+   * This helps identify questions testing concepts not explicitly taught
+   */
+  private validateAnswerCoverage(blocks: LessonBlock[], errors: string[], warnings: string[]): void {
+    // Build combined explanation content
+    const explanationContent = blocks
+      .filter(b => b.type === 'explanation')
+      .map(b => {
+        const content = b.content.content;
+        return typeof content === 'string' ? content.toLowerCase() : '';
+      })
+      .join(' ');
+    
+    if (explanationContent.length === 0) {
+      // No explanations to check against - skip this validation
+      return;
+    }
+    
+    // Get all questions from practice and spaced-review blocks
+    const questionBlocks = blocks.filter(b => 
+      b.type === 'practice' || b.type === 'spaced-review'
+    );
+    
+    for (const block of questionBlocks) {
+      const questions = block.content.questions;
+      if (!Array.isArray(questions)) continue;
+      
+      for (const question of questions) {
+        if (!question.expectedAnswer || !Array.isArray(question.expectedAnswer)) continue;
+        
+        // Skip spaced review (it reviews prerequisites, not current content)
+        if (block.type === 'spaced-review') continue;
+        
+        // Skip synthesis questions (they combine concepts in new ways)
+        if (question.cognitiveLevel === 'synthesis') continue;
+        
+        // Check if at least one expected answer variant appears in explanations
+        const anyAnswerFound = question.expectedAnswer.some((answer: unknown) => {
+          if (typeof answer !== 'string') return false;
+          
+          const answerLower = answer.toLowerCase();
+          const answerWords = answerLower.split(/\s+/).filter((word: string) => word.length > 3);
+          
+          // For very short answers (single words), do direct match
+          if (answerWords.length <= 1) {
+            return explanationContent.includes(answerLower);
+          }
+          
+          // For multi-word answers, check if at least 50% of significant words appear
+          const matchCount = answerWords.filter((word: string) => 
+            explanationContent.includes(word)
+          ).length;
+          
+          return matchCount >= answerWords.length * 0.5;
+        });
+        
+        if (!anyAnswerFound) {
+          warnings.push(
+            `Question ${question.id}: Expected answers may not be adequately covered in explanation content. ` +
+            `Review if the answer can be clearly derived from what was taught. ` +
+            `Answers: ${JSON.stringify(question.expectedAnswer).substring(0, 100)}`
+          );
+        }
       }
     }
   }
@@ -416,8 +485,20 @@ export class ValidationService {
     // Enhanced: Check numeric answers don't include units
     if (question.answerType === 'numeric' && question.expectedAnswer && Array.isArray(question.expectedAnswer)) {
       for (const answer of question.expectedAnswer) {
-        if (typeof answer === 'string' && /[a-zA-Z]/.test(answer)) {
-          warnings.push(`Question ${question.id}: numeric expectedAnswer should not include units ("${answer}") - put units in hint only`);
+        if (typeof answer === 'string') {
+          // Check for any letters (units), percentage symbols, or whitespace followed by units
+          const hasUnitsOrLetters = /[a-zA-Z%]/.test(answer) || /\d+\s*[a-zA-Z%]/.test(answer);
+          
+          if (hasUnitsOrLetters) {
+            // Extract just the numeric part for the suggested fix
+            const numericOnly = answer.replace(/[^0-9.-]/g, '');
+            
+            warnings.push(
+              `Question ${question.id}: CRITICAL - numeric expectedAnswer "${answer}" contains units/letters/symbols. ` +
+              `This WILL cause marking failures. Remove all units and symbols, put them in hint only. ` +
+              `Expected format: ["${numericOnly}"] with units in hint field.`
+            );
+          }
         }
       }
     }
