@@ -319,38 +319,17 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
   
   
+      
   {
-    id: '203-TEST',
-    title: 'Sequential Generator Test',
+    id: '203-3F',
+    title: 'Spacing Factor / Enclosure Fill',
     unit: 'Unit 203',
     unitNumber: '203',
-    topic: 'Sequential Generator Test',
+    topic: 'Spacing Factor / Enclosure Fill',
     description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-TEST'),
+    questionCount: getLessonQuestionCount('203-3F'),
     available: true,
     order: 13,
-  },
-  {
-    id: '203-3F',
-    title: 'Spacing Factor / Enclosure Fill',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Spacing Factor / Enclosure Fill',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3F'),
-    available: true,
-    order: 14,
-  },
-  {
-    id: '203-3F',
-    title: 'Spacing Factor / Enclosure Fill',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Spacing Factor / Enclosure Fill',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3F'),
-    available: true,
-    order: 15,
   },// Unit 210: Communication
   {
     id: '204-10A',

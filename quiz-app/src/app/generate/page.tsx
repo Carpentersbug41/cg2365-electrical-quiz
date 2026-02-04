@@ -5,7 +5,7 @@
  * Web interface for automated lesson generation
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 interface GenerationForm {
@@ -19,6 +19,27 @@ interface GenerationForm {
   additionalInstructions?: string;
   youtubeUrl?: string;
   imageUrl?: string;
+}
+
+interface LessonIndexEntry {
+  id: string;
+  title: string;
+  unit: string;
+  unitNumber: string;
+  topic: string;
+  description: string;
+  questionCount: number;
+  available: boolean;
+  order: number;
+}
+
+interface DeleteStatus {
+  deleting: boolean;
+  success: boolean;
+  error: string | null;
+  filesModified?: string[];
+  filesDeleted?: string[];
+  warnings?: string[];
 }
 
 interface PhaseProgress {
@@ -92,6 +113,32 @@ export default function GeneratePage() {
     uploading: false,
     error: null,
   });
+
+  const [lessons, setLessons] = useState<LessonIndexEntry[]>([]);
+  const [lessonsByUnit, setLessonsByUnit] = useState<Record<string, LessonIndexEntry[]>>({});
+  const [selectedLesson, setSelectedLesson] = useState<string>('');
+  const [deleteStatus, setDeleteStatus] = useState<DeleteStatus>({
+    deleting: false,
+    success: false,
+    error: null,
+  });
+
+  // Fetch lessons on mount
+  useEffect(() => {
+    async function fetchLessons() {
+      try {
+        const response = await fetch('/api/lessons');
+        const data = await response.json();
+        if (data.success) {
+          setLessons(data.lessons);
+          setLessonsByUnit(data.byUnit);
+        }
+      } catch (error) {
+        console.error('Failed to fetch lessons:', error);
+      }
+    }
+    fetchLessons();
+  }, []);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -310,6 +357,72 @@ export default function GeneratePage() {
       message: '',
       progress: 0,
     });
+  };
+
+  const handleDeleteLesson = async () => {
+    if (!selectedLesson) {
+      alert('Please select a lesson to delete');
+      return;
+    }
+
+    const lesson = lessons.find(l => l.id === selectedLesson);
+    const confirmMessage = `Are you sure you want to delete lesson ${selectedLesson}${lesson ? ` - ${lesson.title}` : ''}?\n\nThis will remove the lesson from all 7 integration points and cannot be undone.`;
+    
+    if (!confirm(confirmMessage)) {
+      return;
+    }
+
+    setDeleteStatus({
+      deleting: true,
+      success: false,
+      error: null,
+    });
+
+    try {
+      const response = await fetch('/api/delete-lesson', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lessonId: selectedLesson }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Deletion failed');
+      }
+
+      setDeleteStatus({
+        deleting: false,
+        success: true,
+        error: null,
+        filesModified: data.filesModified,
+        filesDeleted: data.filesDeleted,
+        warnings: data.warnings,
+      });
+
+      // Refresh lessons list
+      const lessonsResponse = await fetch('/api/lessons');
+      const lessonsData = await lessonsResponse.json();
+      if (lessonsData.success) {
+        setLessons(lessonsData.lessons);
+        setLessonsByUnit(lessonsData.byUnit);
+      }
+
+      // Clear selection
+      setSelectedLesson('');
+
+      // Auto-clear success message after 10 seconds
+      setTimeout(() => {
+        setDeleteStatus(prev => ({ ...prev, success: false }));
+      }, 10000);
+
+    } catch (error) {
+      setDeleteStatus({
+        deleting: false,
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error during deletion',
+      });
+    }
   };
 
   return (
@@ -1006,6 +1119,137 @@ export default function GeneratePage() {
             <li>Git branch is created and pushed (auto-commit)</li>
             <li>Review the branch before merging to main</li>
           </ol>
+        </div>
+
+        {/* Delete Lesson Card */}
+        <div className="mt-6 bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-red-600 dark:text-red-400">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+            </svg>
+            Delete Existing Lesson
+          </h3>
+          
+          <div className="space-y-4">
+            {/* Lesson Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                Select Lesson to Delete
+              </label>
+              <select
+                value={selectedLesson}
+                onChange={(e) => setSelectedLesson(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-slate-700 dark:text-white"
+                disabled={deleteStatus.deleting}
+              >
+                <option value="">-- Select a lesson --</option>
+                {Object.entries(lessonsByUnit).map(([unitNumber, unitLessons]) => (
+                  <optgroup key={unitNumber} label={`Unit ${unitNumber}`}>
+                    {unitLessons.map((lesson) => (
+                      <option key={lesson.id} value={lesson.id}>
+                        {lesson.id} - {lesson.title}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+                Total lessons: {lessons.length}
+              </p>
+            </div>
+
+            {/* Delete Button */}
+            <button
+              onClick={handleDeleteLesson}
+              disabled={!selectedLesson || deleteStatus.deleting}
+              className="w-full px-6 py-3 bg-red-600 dark:bg-red-500 text-white rounded-lg font-medium hover:bg-red-700 dark:hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {deleteStatus.deleting ? (
+                <>
+                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>Deleting...</span>
+                </>
+              ) : (
+                <>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                  </svg>
+                  <span>Delete Lesson</span>
+                </>
+              )}
+            </button>
+
+            {/* Success Message */}
+            {deleteStatus.success && (
+              <div className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg border border-green-200 dark:border-green-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <h4 className="font-semibold text-green-900 dark:text-green-200">
+                    Lesson Deleted Successfully!
+                  </h4>
+                </div>
+                {deleteStatus.filesDeleted && deleteStatus.filesDeleted.length > 0 && (
+                  <div className="text-sm text-green-800 dark:text-green-300 mb-2">
+                    <p className="font-medium">Files Deleted:</p>
+                    <ul className="list-disc list-inside ml-2 mt-1">
+                      {deleteStatus.filesDeleted.map((file, i) => (
+                        <li key={i} className="font-mono text-xs">{file.split('hs_quiz\\')[1] || file}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {deleteStatus.filesModified && deleteStatus.filesModified.length > 0 && (
+                  <div className="text-sm text-green-800 dark:text-green-300">
+                    <p className="font-medium">Files Modified:</p>
+                    <ul className="list-disc list-inside ml-2 mt-1">
+                      {deleteStatus.filesModified.map((file, i) => (
+                        <li key={i} className="font-mono text-xs">{file.split('hs_quiz\\')[1] || file}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {deleteStatus.warnings && deleteStatus.warnings.length > 0 && (
+                  <div className="text-sm text-yellow-800 dark:text-yellow-300 mt-2 p-2 bg-yellow-50 dark:bg-yellow-900/20 rounded">
+                    <p className="font-medium">Warnings:</p>
+                    <ul className="list-disc list-inside ml-2 mt-1">
+                      {deleteStatus.warnings.map((warning, i) => (
+                        <li key={i} className="text-xs">{warning}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Error Message */}
+            {deleteStatus.error && (
+              <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <h4 className="font-semibold text-red-900 dark:text-red-200">
+                    Deletion Failed
+                  </h4>
+                </div>
+                <p className="text-sm text-red-800 dark:text-red-300">
+                  {deleteStatus.error}
+                </p>
+              </div>
+            )}
+
+            {/* Warning Note */}
+            <div className="p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded border border-yellow-200 dark:border-yellow-800">
+              <p className="text-xs text-yellow-800 dark:text-yellow-300">
+                <strong>Warning:</strong> Deletion is permanent and removes the lesson from all 7 integration points (lessonIndex, page imports, question files, etc.). Make sure you have a backup if needed.
+              </p>
+            </div>
+          </div>
         </div>
       </main>
     </div>

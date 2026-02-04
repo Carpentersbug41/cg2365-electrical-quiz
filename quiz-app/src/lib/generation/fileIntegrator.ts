@@ -254,6 +254,15 @@ export class FileIntegrator {
 
     const fullLessonId = generateLessonId(request.unit, request.lessonId);
     
+    // Check if lesson ID already exists (prevent duplicates)
+    const lessonIdRegex = new RegExp(`id:\\s*['"]${fullLessonId}['"]`, 'g');
+    const existingMatches = content.match(lessonIdRegex) || [];
+    
+    if (existingMatches.length > 0) {
+      console.warn(`[FileIntegrator] Lesson ${fullLessonId} already exists in lessonIndex. Skipping duplicate entry.`);
+      return; // Skip adding duplicate
+    }
+    
     // Determine order (find last lesson in this unit + 0.1)
     const unitLessons = content.match(new RegExp(`unitNumber: '${request.unit}',[\\s\\S]*?order: ([\\d.]+)`, 'g'));
     let order = 1;
