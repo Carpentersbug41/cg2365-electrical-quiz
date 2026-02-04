@@ -155,6 +155,27 @@ export const GIT_CONFIG = {
 export const GENERATION_LIMITS = {
   MAX_RETRIES: 3,
   RETRY_DELAY_MS: 2000,
-  MAX_TOKENS: 8000,
+  MAX_TOKENS: 32000, // Increased from 8000 - base limit for most lessons
+  MAX_TOKENS_RETRY: 65000, // Maximum allowed by Gemini API
   BATCH_SIZE: 10,
+} as const;
+
+// Lesson complexity thresholds for dynamic token allocation
+export const COMPLEXITY_THRESHOLDS = {
+  SIMPLE: {
+    MAX_TOPICS: 3,
+    MAX_PREREQUISITES: 2,
+    MAX_OUTCOMES: 4,
+    TOKENS: 32000,
+  },
+  MEDIUM: {
+    MAX_TOPICS: 6,
+    MAX_PREREQUISITES: 4,
+    MAX_OUTCOMES: 6,
+    TOKENS: 48000,
+  },
+  COMPLEX: {
+    // 7+ topics, or worked examples required
+    TOKENS: 65000,
+  },
 } as const;

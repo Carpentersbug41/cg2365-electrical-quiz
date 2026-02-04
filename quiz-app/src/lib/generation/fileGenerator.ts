@@ -21,7 +21,13 @@ import {
   safeJsonParse,
   sleep,
 } from './utils';
-import { GENERATION_LIMITS, DIFFICULTY_DISTRIBUTION } from './constants';
+import { GENERATION_LIMITS, DIFFICULTY_DISTRIBUTION, COMPLEXITY_THRESHOLDS } from './constants';
+import {
+  detectTruncation,
+  isResponseSafeToParse,
+  formatTruncationReport,
+  type UsageMetadata,
+} from './truncationDetector';
 import fs from 'fs';
 import path from 'path';
 
@@ -64,6 +70,132 @@ function generateContextPreview(content: string, position?: number): {
     errorLocation: content.charAt(position),
     after: content.substring(position + 1, end),
   };
+}
+
+/**
+ * Format truncation error with actionable guidance
+ */
+function formatTruncationError(type: 'lesson' | 'quiz', attemptedTokens: number[], complexity?: string): string {
+  const itemType = type === 'lesson' ? 'lesson' : 'quiz';
+  const tokenList = attemptedTokens.join(' → ');
+  const maxToken = Math.max(...attemptedTokens);
+  
+  return `🚨 ${itemType.charAt(0).toUpperCase() + itemType.slice(1)} Generation Exceeded Maximum Length
+
+The LLM response was truncated even at maximum capacity.
+Token Limits Attempted: ${tokenList} tokens (max: ${maxToken.toLocaleString()})
+${complexity ? `Estimated Complexity: ${complexity}` : ''}
+
+This typically means the lesson scope is too broad for a single generation.
+
+IMMEDIATE SOLUTIONS:
+${type === 'lesson' 
+  ? `
+✓ SPLIT THE LESSON: Divide into 2-3 focused lessons (recommended)
+  - Current lesson appears to cover too many distinct concepts
+  - Each lesson should focus on 1-3 closely related topics
+  - Example: Instead of "Cable Selection & Installation & Testing",
+    create separate lessons for each topic
+
+✓ REDUCE SCOPE in "Must Have Topics":
+  - Remove secondary/nice-to-have topics
+  - Focus on core essentials only
+  - Move advanced concepts to separate lesson
+
+✓ SIMPLIFY "Additional Instructions":
+  - Remove verbose requirements
+  - Stick to core learning outcomes
+  - Reduce worked example complexity
+
+✓ REMOVE NON-ESSENTIAL BLOCKS:
+  - Skip worked examples for simple conceptual topics
+  - Reduce number of practice questions to minimum (3-4)
+  - Simplify explanation depth` 
+  : `
+✓ Reduce question count (currently generating 50 questions)
+✓ Simplify question complexity and scenario length
+✓ Generate quiz in multiple smaller batches
+✓ Remove complex multi-part questions`}
+
+TECHNICAL NOTE:
+The system uses dynamic token allocation (32k-65k) based on lesson complexity.
+This error means your content exceeds even the 65k maximum allowed by the API.
+This is rare and indicates the scope truly is too large for a single lesson.
+
+If you've already minimized scope and still see this error, please report it with:
+- Lesson ID, topic, and full request details
+- This will help us identify if further optimization is needed`;
+}
+
+/**
+ * Estimate lesson complexity and determine appropriate token limit
+ */
+function estimateLessonComplexity(request: GenerationRequest): {
+  complexity: 'simple' | 'medium' | 'complex';
+  recommendedTokens: number;
+  reasons: string[];
+} {
+  const reasons: string[] = [];
+  let score = 0;
+
+  // Count must-have topics (if provided in description or mustHave)
+  const topicText = `${request.topic} ${request.description || ''} ${request.mustHave || ''}`;
+  const topicCount = (topicText.match(/[,;]\s*/g) || []).length + 1;
+  
+  if (topicCount >= 7) {
+    score += 3;
+    reasons.push(`High topic count (${topicCount})`);
+  } else if (topicCount >= 4) {
+    score += 2;
+    reasons.push(`Medium topic count (${topicCount})`);
+  } else {
+    score += 1;
+    reasons.push(`Simple topic count (${topicCount})`);
+  }
+
+  // Count prerequisites
+  const prereqCount = request.prerequisites?.length || 0;
+  if (prereqCount >= 4) {
+    score += 2;
+    reasons.push(`Many prerequisites (${prereqCount})`);
+  } else if (prereqCount >= 2) {
+    score += 1;
+    reasons.push(`Some prerequisites (${prereqCount})`);
+  }
+
+  // Check if worked examples are likely needed (calculation topics)
+  const needsWorkedExample = /calculat|formula|equat|ohm|power|resistanc|circuit/i.test(topicText);
+  if (needsWorkedExample) {
+    score += 2;
+    reasons.push('Requires worked examples (calculation topic)');
+  }
+
+  // Check for complex topic indicators
+  const complexIndicators = ['installation', 'regulation', 'testing', 'inspection', 'design'];
+  const hasComplexIndicator = complexIndicators.some(indicator =>
+    topicText.toLowerCase().includes(indicator)
+  );
+  if (hasComplexIndicator) {
+    score += 1;
+    reasons.push('Complex technical topic');
+  }
+
+  // Determine complexity level
+  let complexity: 'simple' | 'medium' | 'complex';
+  let recommendedTokens: number;
+
+  if (score >= 6) {
+    complexity = 'complex';
+    recommendedTokens = COMPLEXITY_THRESHOLDS.COMPLEX.TOKENS;
+  } else if (score >= 3) {
+    complexity = 'medium';
+    recommendedTokens = COMPLEXITY_THRESHOLDS.MEDIUM.TOKENS;
+  } else {
+    complexity = 'simple';
+    recommendedTokens = COMPLEXITY_THRESHOLDS.SIMPLE.TOKENS;
+  }
+
+  return { complexity, recommendedTokens, reasons };
 }
 
 export class FileGenerator {
@@ -124,15 +256,34 @@ Return the corrected lesson JSON now:`;
   async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[]; debugInfo?: DebugInfo }> {
     try {
       const lessonId = generateLessonId(request.unit, request.lessonId);
+      
+      // Estimate complexity and determine appropriate token limit
+      const complexityEstimate = estimateLessonComplexity(request);
+      console.log(`📊 Lesson complexity: ${complexityEstimate.complexity.toUpperCase()}`);
+      console.log(`   Token allocation: ${complexityEstimate.recommendedTokens.toLocaleString()}`);
+      console.log(`   Reasons: ${complexityEstimate.reasons.join(', ')}`);
+      
+      debugLog('LESSON_COMPLEXITY_ESTIMATE', {
+        lessonId,
+        complexity: complexityEstimate.complexity,
+        recommendedTokens: complexityEstimate.recommendedTokens,
+        reasons: complexityEstimate.reasons,
+      });
+      
       const { systemPrompt, userPrompt } = this.lessonPromptBuilder.buildPrompt(request);
 
-      // PASS 1: Generate lesson
-      debugLog('LESSON_GEN_PASS1_START', { lessonId });
+      // PASS 1: Generate lesson with appropriate token limit
+      debugLog('LESSON_GEN_PASS1_START', { 
+        lessonId,
+        tokenLimit: complexityEstimate.recommendedTokens 
+      });
       const content = await this.generateWithRetry(
         systemPrompt,
         userPrompt,
         'lesson',
-        GENERATION_LIMITS.MAX_RETRIES
+        GENERATION_LIMITS.MAX_RETRIES,
+        false,
+        complexityEstimate.recommendedTokens
       );
 
       // Preprocess to valid JSON (handles trailing commas, comments, etc.)
@@ -244,10 +395,27 @@ Return the corrected lesson JSON now:`;
 
     } catch (error) {
       debugLog('LESSON_GEN_EXCEPTION', { error: error instanceof Error ? error.message : 'unknown' });
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      
+      // Check for truncation error and format nicely
+      if (errorMessage.includes('TRUNCATED_RESPONSE')) {
+        // Estimate complexity for error reporting
+        const complexityEstimate = estimateLessonComplexity(request);
+        const attemptedTokens = errorMessage.includes(String(GENERATION_LIMITS.MAX_TOKENS_RETRY))
+          ? [complexityEstimate.recommendedTokens, GENERATION_LIMITS.MAX_TOKENS_RETRY]
+          : [complexityEstimate.recommendedTokens];
+        
+        return {
+          success: false,
+          content: {} as Lesson,
+          error: formatTruncationError('lesson', attemptedTokens, complexityEstimate.complexity),
+        };
+      }
+      
       return {
         success: false,
         content: {} as Lesson,
-        error: error instanceof Error ? error.message : 'Unknown error generating lesson',
+        error: errorMessage,
       };
     }
   }
@@ -310,10 +478,25 @@ Return the corrected lesson JSON now:`;
       return { success: true, questions: allQuestions };
     } catch (error) {
       debugLog('QUIZ_GEN_EXCEPTION', { error: error instanceof Error ? error.message : 'unknown' });
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      
+      // Check for truncation error and format nicely
+      if (errorMessage.includes('TRUNCATED_RESPONSE')) {
+        const attemptedTokens = errorMessage.includes(String(GENERATION_LIMITS.MAX_TOKENS_RETRY))
+          ? [GENERATION_LIMITS.MAX_TOKENS, GENERATION_LIMITS.MAX_TOKENS_RETRY]
+          : [GENERATION_LIMITS.MAX_TOKENS];
+        
+        return {
+          success: false,
+          questions: [],
+          error: formatTruncationError('quiz', attemptedTokens),
+        };
+      }
+      
       return {
         success: false,
         questions: [],
-        error: error instanceof Error ? error.message : 'Unknown error generating quiz',
+        error: errorMessage,
       };
     }
   }
@@ -479,15 +662,20 @@ Return the corrected lesson JSON now:`;
   }
 
   /**
-   * Generate content with retry logic
+   * Generate content with retry logic and truncation detection
    */
   private async generateWithRetry(
     systemPrompt: string,
     userPrompt: string,
     type: 'lesson' | 'quiz',
-    maxRetries: number
+    maxRetries: number,
+    attemptHigherLimit = false,
+    currentTokenLimit?: number
   ): Promise<string> {
     let lastError: Error | undefined;
+    const tokenLimit = currentTokenLimit || (attemptHigherLimit 
+      ? GENERATION_LIMITS.MAX_TOKENS_RETRY 
+      : GENERATION_LIMITS.MAX_TOKENS);
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
@@ -497,21 +685,96 @@ Return the corrected lesson JSON now:`;
           systemInstruction: systemPrompt,
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: type === 'lesson' ? 8000 : 8000, // Increased from 4000 to prevent truncation
+            maxOutputTokens: tokenLimit,
           },
         });
 
         const result = await model.generateContent(userPrompt);
+        
+        // Extract response data
+        const candidate = result.response.candidates?.[0];
+        const finishReason = candidate?.finishReason;
         const text = result.response.text();
 
         if (!text || text.trim().length === 0) {
           throw new Error('Empty response from LLM');
         }
 
-        return cleanCodeBlocks(text);
+        const cleanedText = cleanCodeBlocks(text);
+
+        // Get usage metadata from response
+        const usageMetadata: UsageMetadata = {
+          candidatesTokenCount: result.response.usageMetadata?.candidatesTokenCount,
+          promptTokenCount: result.response.usageMetadata?.promptTokenCount,
+          totalTokenCount: result.response.usageMetadata?.totalTokenCount,
+        };
+
+        // Log successful generation with token usage
+        const tokenUtilization = usageMetadata.candidatesTokenCount 
+          ? (usageMetadata.candidatesTokenCount / tokenLimit * 100).toFixed(1)
+          : 'unknown';
+        
+        console.log(`✅ Generation successful (attempt ${attempt + 1}/${maxRetries})`);
+        console.log(`   Type: ${type}`);
+        console.log(`   Tokens used: ${usageMetadata.candidatesTokenCount?.toLocaleString() || 'unknown'} / ${tokenLimit.toLocaleString()} (${tokenUtilization}%)`);
+        console.log(`   Response length: ${cleanedText.length.toLocaleString()} characters`);
+        console.log(`   Finish reason: ${finishReason || 'unknown'}`);
+        
+        debugLog('GENERATION_SUCCESS', {
+          type,
+          attempt: attempt + 1,
+          maxRetries,
+          tokenLimit,
+          tokensUsed: usageMetadata.candidatesTokenCount,
+          tokenUtilization: usageMetadata.candidatesTokenCount 
+            ? (usageMetadata.candidatesTokenCount / tokenLimit)
+            : undefined,
+          promptTokens: usageMetadata.promptTokenCount,
+          totalTokens: usageMetadata.totalTokenCount,
+          responseLength: cleanedText.length,
+          finishReason,
+        });
+
+        // Run multi-layer truncation detection
+        const truncationCheck = detectTruncation(
+          cleanedText,
+          finishReason,
+          usageMetadata,
+          tokenLimit
+        );
+
+        // Log truncation detection results
+        if (truncationCheck.isTruncated) {
+          const report = formatTruncationReport(truncationCheck);
+          console.log(report);
+          debugLog('TRUNCATION_DETECTED', {
+            type,
+            attempt: attempt + 1,
+            tokenLimit,
+            confidence: truncationCheck.confidence,
+            reasons: truncationCheck.reasons,
+            metadata: truncationCheck.metadata,
+          });
+        }
+
+        // If high-confidence truncation detected, throw error to trigger retry
+        if (truncationCheck.isTruncated && !isResponseSafeToParse(truncationCheck)) {
+          throw new Error(
+            `TRUNCATED_RESPONSE: ${truncationCheck.reasons.join('; ')} (confidence: ${truncationCheck.confidence})`
+          );
+        }
+
+        // Response looks good, return it
+        return cleanedText;
       } catch (error) {
         lastError = error instanceof Error ? error : new Error('Unknown error');
         console.error(`Generation attempt ${attempt + 1} failed:`, lastError);
+        
+        // If truncated and haven't tried higher limit yet, retry with more tokens
+        if (lastError.message.includes('TRUNCATED_RESPONSE') && !attemptHigherLimit) {
+          console.log(`Response truncated at ${tokenLimit} tokens, retrying with ${GENERATION_LIMITS.MAX_TOKENS_RETRY} tokens...`);
+          return this.generateWithRetry(systemPrompt, userPrompt, type, 1, true);
+        }
 
         if (attempt < maxRetries - 1) {
           await sleep(GENERATION_LIMITS.RETRY_DELAY_MS * (attempt + 1));

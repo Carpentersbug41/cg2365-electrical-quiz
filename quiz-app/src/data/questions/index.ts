@@ -37,11 +37,13 @@ import { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } f
 import { cableSizingBasicsIbInIzFactorsQuestions } from './cableSizingBasicsIbInIzFactorsQuestions';
 import { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
 import { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
+import { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...spacingFactorEnclosureFillQuestions,
   ...specialisedInstallingEquipmentQuestions,
   ...protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions,
   ...cableSizingBasicsIbInIzFactorsQuestions,
@@ -113,6 +115,7 @@ export { wiringSystemsByEnvironmentChoosingTheRightCableContainmentQuestions } f
 export { cableSizingBasicsIbInIzFactorsQuestions } from './cableSizingBasicsIbInIzFactorsQuestions';
 export { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
 export { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
+export { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
 
 /**
  * Filter questions by tags
