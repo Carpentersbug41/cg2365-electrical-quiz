@@ -49,9 +49,11 @@ import lesson203_3D from '@/data/lessons/203-3D-protective-devices-basics-fuses-
 import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment.json';
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_TEST from '@/data/lessons/203-TEST-sequential-generator-test.json';
+import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3F': lesson203_3F as Lesson,
   '203-TEST': lesson203_TEST as Lesson,
   '202-3F': lesson202_3F as Lesson,
   '203-3E': lesson203_3E as Lesson,

@@ -44,6 +44,7 @@ import lesson203_3D from '@/data/lessons/203-3D-protective-devices-basics-fuses-
 import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment.json';
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_TEST from '@/data/lessons/203-TEST-sequential-generator-test.json';
+import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -87,6 +88,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_3F,
   lesson203_TEST,
   lesson202_3F,
   lesson203_3E,
