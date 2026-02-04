@@ -56,9 +56,11 @@ import lesson203_3E1111 from '@/data/lessons/203-3E1111-specialised-installing-e
 import lesson203_3E1A from '@/data/lessons/203-3E1A-specialised-installing-equipment.json';
 import lesson203_3E1B from '@/data/lessons/203-3E1B-specialised-installing-equipment.json';
 import lesson203_3E1C from '@/data/lessons/203-3E1C-specialised-installing-equipment.json';
+import lesson203_3E1D from '@/data/lessons/203-3E1D-specialised-installing-equipment.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3E1D': lesson203_3E1D as Lesson,
   '203-3E1C': lesson203_3E1C as Lesson,
   '203-3E1B': lesson203_3E1B as Lesson,
   '203-3E1A': lesson203_3E1A as Lesson,

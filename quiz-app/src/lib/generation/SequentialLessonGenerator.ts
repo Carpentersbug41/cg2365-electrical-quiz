@@ -17,6 +17,8 @@ import { Phase6_Practice, PracticeOutput } from './phases/Phase6_Practice';
 import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integration';
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
 import { Phase9_Assembler } from './phases/Phase9_Assembler';
+import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/Phase10_Refinement';
+import { RubricScoringService, RubricScore } from './rubricScoringService';
 
 export interface PhaseProgress {
   phase: string;
@@ -28,10 +30,18 @@ export interface PhaseProgress {
 export interface SequentialGeneratorResult {
   success: boolean;
   content: Lesson;
+  originalLesson?: Lesson;  // For refinement comparison
   error?: string;
   warnings?: string[];
   debugInfo?: DebugInfo;
   phases?: PhaseProgress[];
+  refinementMetadata?: {
+    wasRefined: boolean;
+    originalScore: number;
+    finalScore: number;
+    patchesApplied: number;
+    details: RefinementPatch[];
+  };
 }
 
 /**
@@ -48,6 +58,8 @@ export class SequentialLessonGenerator {
   private phase7: Phase7_Integration;
   private phase8: Phase8_SpacedReview;
   private phase9: Phase9_Assembler;
+  private phase10: Phase10_Refinement;
+  private rubricScorer: RubricScoringService;
 
   // LLM caller function (injected from FileGenerator)
   private generateWithRetry: (
@@ -69,6 +81,8 @@ export class SequentialLessonGenerator {
     this.phase7 = new Phase7_Integration();
     this.phase8 = new Phase8_SpacedReview();
     this.phase9 = new Phase9_Assembler();
+    this.phase10 = new Phase10_Refinement();
+    this.rubricScorer = new RubricScoringService();
     
     this.generateWithRetry = generateWithRetryFn;
   }
@@ -223,13 +237,86 @@ export class SequentialLessonGenerator {
         output: `Assembled ${lesson.blocks.length} blocks`,
       });
 
-      debugLog('SEQUENTIAL_GEN_COMPLETE', { lessonId });
+      // Score the lesson
+      phaseStart = Date.now();
+      const initialScore = this.rubricScorer.scoreLesson(lesson);
+      console.log(`📊 [Scoring] Initial score: ${initialScore.total}/100 (${initialScore.grade})`);
+
+      let finalLesson = lesson;
+      let originalLesson: Lesson | undefined = undefined;
+      let refinementResult: RefinementOutput | null = null;
+
+      // Phase 10: Auto-Refinement (if score < 93)
+      if (initialScore.total < 93) {
+        console.log(`🔧 [Refinement] Score below threshold (93), activating Phase 10...`);
+        
+        try {
+          refinementResult = await this.runPhase10(lesson, initialScore);
+          
+          // Re-score refined version if patches were applied
+          if (refinementResult && refinementResult.improvementSuccess) {
+            const refinedScore = this.rubricScorer.scoreLesson(refinementResult.refined);
+            refinementResult.refinedScore = refinedScore.total;
+            
+            // Only use refined version if score improved
+            if (refinedScore.total > initialScore.total) {
+              console.log(`✅ [Refinement] Score improved: ${initialScore.total} → ${refinedScore.total}`);
+              originalLesson = lesson;
+              finalLesson = refinementResult.refined;
+              
+              phases.push({
+                phase: 'Auto-Refinement',
+                status: 'completed',
+                duration: Date.now() - phaseStart,
+                output: `Applied ${refinementResult.patchesApplied.length} fixes, score: ${initialScore.total} → ${refinedScore.total}`
+              });
+            } else {
+              console.log(`⚠️  [Refinement] Score did not improve (${initialScore.total} → ${refinedScore.total}), keeping original`);
+              refinementResult = null; // Don't report refinement if it didn't help
+              
+              phases.push({
+                phase: 'Auto-Refinement',
+                status: 'skipped',
+                duration: Date.now() - phaseStart,
+                output: `No improvement (${initialScore.total} → ${refinedScore.total})`
+              });
+            }
+          } else {
+            phases.push({
+              phase: 'Auto-Refinement',
+              status: 'skipped',
+              duration: Date.now() - phaseStart,
+              output: 'No patches generated'
+            });
+          }
+        } catch (error) {
+          console.error('❌ [Refinement] Error during refinement:', error);
+          phases.push({
+            phase: 'Auto-Refinement',
+            status: 'failed',
+            duration: Date.now() - phaseStart,
+            output: `Error: ${error instanceof Error ? error.message : 'Unknown'}`
+          });
+        }
+      } else {
+        console.log(`✅ [Scoring] Score meets threshold (${initialScore.total} >= 93), no refinement needed`);
+      }
+
+      debugLog('SEQUENTIAL_GEN_COMPLETE', { lessonId, finalScore: refinementResult?.refinedScore || initialScore.total });
       console.log(`✅ [Sequential] Generation complete for ${lessonId}`);
 
       return {
         success: true,
-        content: lesson,
+        content: finalLesson,
+        originalLesson,
         phases,
+        refinementMetadata: refinementResult && refinementResult.improvementSuccess ? {
+          wasRefined: true,
+          originalScore: initialScore.total,
+          finalScore: refinementResult.refinedScore,
+          patchesApplied: refinementResult.patchesApplied.length,
+          details: refinementResult.patchesApplied
+        } : undefined
       };
 
     } catch (error) {
@@ -571,6 +658,72 @@ export class SequentialLessonGenerator {
     console.log(`    ✓ Generated ${parsed.data.spacedReview.questions.length} review questions`);
     
     return parsed.data;
+  }
+
+  /**
+   * Phase 10: Auto-Refinement
+   */
+  private async runPhase10(lesson: Lesson, rubricScore: RubricScore): Promise<RefinementOutput | null> {
+    console.log('  🔧 Phase 10: Auto-refinement...');
+    debugLog('PHASE10_START', { lessonId: lesson.id, initialScore: rubricScore.total });
+
+    // Prepare refinement input (extract top issues)
+    const { issues, lesson: lessonForPrompt } = this.phase10.prepareRefinementInput(lesson, rubricScore, 10);
+    
+    if (issues.length === 0) {
+      console.log('    ✓ No fixable issues found');
+      return null;
+    }
+    
+    console.log(`    📝 Targeting ${issues.length} issues for fix`);
+    
+    // Get prompts from Phase10
+    const prompts = this.phase10.getPrompts({ lesson: lessonForPrompt, issues });
+
+    // Call LLM for patches
+    const response = await this.generateWithRetry(
+      prompts.systemPrompt,
+      prompts.userPrompt,
+      'lesson',
+      2,
+      false,
+      8000
+    );
+
+    const parsed = this.parseResponse<{ patches: Array<{ path: string; newValue: any; reason: string }> }>(
+      response, 
+      'Phase10_Refinement'
+    );
+    
+    if (!parsed.success || !parsed.data || !parsed.data.patches || parsed.data.patches.length === 0) {
+      debugLog('PHASE10_FAILED', { error: parsed.error });
+      console.log('    ⚠️  No patches generated');
+      return null;
+    }
+
+    // Convert LLM patches to RefinementPatches
+    const refinementPatches = this.phase10.convertLLMPatches(parsed.data, issues, lesson);
+    
+    // Apply patches
+    const refinedLesson = this.phase10.applyPatches(lesson, refinementPatches);
+    
+    // Validate
+    if (!this.phase10.validatePatches(lesson, refinedLesson)) {
+      console.log('    ❌ Validation failed, keeping original');
+      return null;
+    }
+
+    debugLog('PHASE10_COMPLETE', { patchCount: refinementPatches.length });
+    console.log(`    ✓ Applied ${refinementPatches.length} patches`);
+    
+    return {
+      originalLesson: lesson,
+      refined: refinedLesson,
+      patchesApplied: refinementPatches,
+      originalScore: rubricScore.total,
+      refinedScore: rubricScore.total, // Will be re-scored by caller
+      improvementSuccess: true
+    };
   }
 
   /**

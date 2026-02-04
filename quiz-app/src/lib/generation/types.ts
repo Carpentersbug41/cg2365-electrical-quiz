@@ -66,6 +66,9 @@ export interface PhaseProgress {
   output?: string;
 }
 
+// Note: RefinementPatch is defined in phases/Phase10_Refinement.ts
+// Import it when needed: import { RefinementPatch } from './phases/Phase10_Refinement';
+
 export interface GenerationResponse {
   success: boolean;
   lessonFile: string;
@@ -76,6 +79,13 @@ export interface GenerationResponse {
   errors?: string[];
   debugInfo?: DebugInfo;
   phases?: PhaseProgress[];
+  refinementMetadata?: {
+    wasRefined: boolean;
+    originalScore: number;
+    finalScore: number;
+    patchesApplied: number;
+    details: any[]; // RefinementPatch[] - using any[] to avoid circular dependency
+  };
 }
 
 export interface LessonBlock {

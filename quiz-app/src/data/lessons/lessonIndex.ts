@@ -399,6 +399,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3E1C'),
     available: true,
     order: 20,
+  },
+  {
+    id: '203-3E1D',
+    title: 'Specialised Installing Equipment',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Specialised Installing Equipment',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3E1D'),
+    available: true,
+    order: 21,
   },// Unit 210: Communication
   {
     id: '204-10A',

@@ -168,10 +168,25 @@ export async function POST(request: NextRequest) {
     lessonFilePath = await fileGenerator.writeLessonFile(body, lessonResult.content);
     quizFilePath = await fileGenerator.writeQuizFile(body, quizResult.questions);
 
+    // If refinement was applied, save the original version too
+    if (lessonResult.refinementMetadata?.wasRefined && lessonResult.originalLesson) {
+      const originalLessonPath = path.join(
+        path.dirname(lessonFilePath),
+        `${fullLessonId}-original.json`
+      );
+      fs.writeFileSync(originalLessonPath, JSON.stringify(lessonResult.originalLesson, null, 2), 'utf-8');
+      filesUpdated.push(originalLessonPath);
+      console.log(`💾 [Refinement] Saved original version: ${fullLessonId}-original.json`);
+    }
+
     const lessonFilename = lessonFilePath.split(/[/\\]/).pop() || '';
     const quizFilename = quizFilePath.split(/[/\\]/).pop() || '';
     
-    debugLog('STEP_5_COMPLETE', { lessonFilename, quizFilename });
+    debugLog('STEP_5_COMPLETE', { 
+      lessonFilename, 
+      quizFilename,
+      wasRefined: lessonResult.refinementMetadata?.wasRefined || false
+    });
 
     // Step 6: Integrate files
     debugLog('STEP_6_START', { step: 'integrateFiles', lessonFilename, quizFilename });
@@ -261,6 +276,7 @@ export async function POST(request: NextRequest) {
       warnings,
       phases: lessonResult.phases,
       rubricScore,
+      refinementMetadata: lessonResult.refinementMetadata,
     };
 
     return NextResponse.json(response, { headers });

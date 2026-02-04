@@ -1,0 +1,343 @@
+{
+  "id": "203-3E1D",
+  "title": "203.3E1D — Specialised Installing Equipment",
+  "description": "Learn about Specialised Installing Equipment in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Specialised Installing Equipment",
+  "learningOutcomes": [
+    "Identify specialised tools used for the installation of conduit and cable tray systems.",
+    "Describe the specific purpose of conduit benders, formers, and stocks and dies in electrical installation.",
+    "Recognise the correct equipment required for preparing different containment materials."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3E1D-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify specialised tools used for the installation of conduit and cable tray systems.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the specific purpose of conduit benders, formers, and stocks and dies in electrical installation.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Recognise the correct equipment required for preparing different containment materials.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1D-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conduit Bender",
+            "definition": "A mechanical tool used to create precise, uniform bends in metallic conduit without kinking or collapsing the material."
+          },
+          {
+            "term": "Former",
+            "definition": "A curved, interchangeable component of a bending machine designed to match the diameter of the conduit and ensure a consistent bending radius."
+          },
+          {
+            "term": "Stocks and Dies",
+            "definition": "A set of tools used together to cut external screw threads onto the ends of metallic conduit to allow for secure mechanical connections."
+          },
+          {
+            "term": "Conduit Vice",
+            "definition": "A specialized clamping device used to hold metallic conduit firmly in place while it is being cut or threaded."
+          },
+          {
+            "term": "Reamer",
+            "definition": "A tool used to remove the sharp internal burrs created after cutting conduit to prevent damage to cables during installation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1D-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Specialised Installing Equipment Diagram",
+        "description": "Visual representation of Specialised Installing Equipment",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "Conduit Bender",
+          "Former",
+          "Stocks and Dies",
+          "Conduit Vice",
+          "Reamer"
+        ],
+        "placeholderText": "A layout showing the key tools for conduit installation. On the left, a floor-standing Conduit Bender with an interchangeable Former clearly labeled and shown detached to emphasize it matches the conduit size. In the center, a Conduit Vice is shown holding a length of 20mm conduit. On the right, a set of Stocks and Dies is displayed next to a handheld Reamer. The diagram should use end-on cross-section views where relevant to show how the Former supports the conduit walls and how the Reamer clears the internal diameter of the pipe."
+      }
+    },
+    {
+      "id": "203-3E1D-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Bending Equipment and Formers",
+        "content": "1. **What this is**\n\nIn electrical installation, metallic containment systems like steel conduit require specific tools to change direction. A **Conduit Bender** is a heavy-duty mechanical tool designed to create precise, uniform bends in metallic conduit without kinking or collapsing the material. The most critical part of this machine is the **Former**, which is a curved, interchangeable component. Each **Former** is designed to match a specific diameter of conduit, providing the necessary support to the walls of the pipe as it is shaped. Common UK conduit sizes covered at this level that require these tools are 20mm, 25mm, and 32mm.\n\n2. **Why it matters**\n\nMaintaining the structural integrity of the conduit is vital for both the protection of cables and the ease of the installation. If a conduit is bent without the correct equipment, the internal diameter can decrease, which reduces the space available for cables and may lead to overheating or insulation damage. Using a dedicated **Conduit Bender** ensures that the internal cross-sectional area remains consistent throughout the bend. This precision is essential for meeting the requirements for cable capacity and ensuring that the containment system provides a smooth path for the draw-in of conductors.\n\n3. **Key facts / rules**\n\n*   **Conduit Benders** are typically floor-standing units to provide stability during the bending of heavy-gauge steel.\n*   A **Former** is specific to the outside diameter (OD) of the conduit; a 20mm **Former** is used for 20mm conduit.\n*   The radius of the **Former** determines the minimum bending radius, ensuring the conduit does not buckle.\n*   Tray benders are specialized tools used for cable tray systems to create uniform folds in the metallic mesh or sheet.\n*   Common UK conduit sizes include 16mm, 20mm, 25mm, and 32mm.\n\n4. **When to choose it**\n\nSelection of a **Conduit Bender** is necessary whenever an installation design requires a steel conduit run to navigate corners, beams, or offsets. You choose this equipment when working with galvanized or black enamel steel conduit, as these materials cannot be shaped by hand. The choice of **Former** is dictated entirely by the conduit diameter being installed; for example, if the specification calls for a 25mm heavy-gauge steel system, the 25mm **Former** is the only appropriate selection to ensure a successful bend. In scenarios where cable tray is being used instead of conduit, a tray bender is selected to manage changes in elevation or direction while maintaining the strength of the tray.\n\n5. **Common mistakes**\n\nStudents often attempt to use a **Former** that is the wrong size for the conduit, such as trying to bend 20mm conduit in a 25mm **Former**. This results in a flattened or kinked profile because the conduit is not properly supported. Another common error is failing to distinguish between the equipment needed for different materials; while steel requires a mechanical bender, plastic conduit typically utilizes a bending spring, which is a completely different tool selection.\n\n6. **Quick recap**\n\nA **Conduit Bender** is the primary tool for shaping metallic containment, utilizing an interchangeable **Former** to ensure the conduit diameter is maintained during the bend. Selecting the correct **Former** size (such as 20mm or 25mm) is essential for preventing material failure. These tools are selected whenever steel conduit or cable tray must change direction, ensuring the system remains professional and safe for cable occupancy."
+      }
+    },
+    {
+      "id": "203-3E1D-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Bending Equipment and Formers",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1D-C1-L1-A",
+            "questionText": "What is the primary purpose of a Conduit Bender in electrical installation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "create precise, uniform bends",
+              "create precise uniform bends",
+              "create bends without kinking",
+              "shaping metallic containment"
+            ],
+            "hint": "Look for the mechanical tool's function regarding the shape of metallic conduit."
+          },
+          {
+            "id": "203-3E1D-C1-L1-B",
+            "questionText": "Which interchangeable component of the bender must be selected to match the specific outside diameter (OD) of the conduit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Former",
+              "the Former",
+              "a Former"
+            ],
+            "hint": "This is the curved part that provides support to the walls of the pipe."
+          },
+          {
+            "id": "203-3E1D-C1-L1-C",
+            "questionText": "What is the main reason for ensuring the internal cross-sectional area of the conduit remains consistent after bending?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "protection of cables",
+              "to protect cables",
+              "cable protection",
+              "ease of the installation"
+            ],
+            "hint": "Consider the safety and integrity of the conductors that will be pulled through later."
+          },
+          {
+            "id": "203-3E1D-C1-L2",
+            "questionText": "Using your answers to Q1 (creating precise bends), Q2 (selecting a Former), and Q3 (protection of cables), explain how these aspects ensure the integrity of a metallic containment system.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Using a Conduit Bender and the correct size Former creates precise bends that maintain the internal area for the protection of cables.",
+              "A Conduit Bender with a size-specific Former ensures precise uniform bends so the internal area is maintained for cable protection.",
+              "The bender and Former work together to create precise bends that prevent kinking, which ensures the protection of cables."
+            ],
+            "hint": "Connect the tool, the specific component selection, and the final safety benefit for the wiring."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1D-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Threading Equipment",
+        "content": "1. **What this is**\n\nTo create a continuous and secure metallic containment system, steel conduit lengths must be joined together or connected to accessory boxes. **Stocks and Dies** are the specialized tools used for this purpose. The 'die' is the cutting component that creates external screw threads on the ends of the conduit, while the 'stock' is the handle assembly that holds the die. To facilitate this work, a **Conduit Vice** is used as a specialized clamping device to hold the metallic conduit firmly. Additionally, a **Reamer** is a vital tool used to remove the sharp internal burrs that remain inside the conduit after it has been cut to length.\n\n2. **Why it matters**\n\nThreading is not just about mechanical strength; it is also essential for safety. In most cases, threaded joints contribute to electrical continuity of the metallic containment system. If the threads are not cut correctly using **Stocks and Dies**, the connection may be loose, which compromises the path to earth. Furthermore, the use of a **Reamer** is critical because the cutting process leaves sharp edges. If these burrs are not removed, they can easily slice through cable insulation as wires are pulled through, leading to short circuits or earth faults once the system is energized.\n\n3. **Key facts / rules**\n\n*   **Stocks and Dies** are selected based on the conduit size (e.g., 20mm or 25mm) to ensure compatible threads.\n*   The **Conduit Vice** features a specific 'V' shaped jaw or chain to grip circular conduit without crushing it.\n*   A **Reamer** is necessary for every cut end of the conduit before assembly.\n*   Threaded joints are typical practice for ensuring the mechanical and electrical integrity of steel systems.\n*   IET On-Site Guide guidance suggests that all containment must be free from sharp edges to protect cables.\n\n4. **When to choose it**\n\nYou choose **Stocks and Dies** when an installation requires custom lengths of steel conduit that must be coupled together or terminated into a steel box. This equipment is essential for any heavy-gauge metallic installation. A **Conduit Vice** is selected whenever cutting or threading is required, as a standard bench vice may damage the circular profile of the conduit. The **Reamer** is a mandatory selection for the preparation stage of every conduit installation; it is used immediately after the conduit has been cut to size and before the threads are created or the conduit is joined.\n\n5. **Common mistakes**\n\nA frequent error is neglecting the use of the **Reamer**, which leaves dangerous sharp edges inside the conduit. Students also sometimes confuse the purpose of the tools, forgetting that the **Conduit Vice** is specifically designed for round containment and attempting to use less stable methods to hold the pipe. Another mistake is using damaged or blunt dies, which can result in 'torn' threads that do not provide a secure mechanical or electrical connection.\n\n6. **Quick recap**\n\nPreparing metallic conduit requires a suite of specialized tools: **Stocks and Dies** for creating external threads, a **Conduit Vice** for stable clamping, and a **Reamer** for removing internal sharp edges. These tools ensure that the containment system is mechanically strong and safe for cables. Selecting the correct die size to match the conduit diameter (typically 20mm or 25mm) is essential for achieving the threaded joints that contribute to the electrical continuity of the finished installation."
+      }
+    },
+    {
+      "id": "203-3E1D-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Threading Equipment",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1D-C2-L1-A",
+            "questionText": "What is the purpose of using Stocks and Dies on the ends of steel conduit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "create external screw threads",
+              "create external threads",
+              "to create external screw threads",
+              "creating external screw threads"
+            ],
+            "hint": "These tools allow lengths of conduit to be joined or connected to boxes."
+          },
+          {
+            "id": "203-3E1D-C2-L1-B",
+            "questionText": "Identify the specialized clamping device used to hold metallic conduit firmly without crushing its circular profile.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Conduit Vice",
+              "a Conduit Vice",
+              "the Conduit Vice"
+            ],
+            "hint": "This tool often features a 'V' shaped jaw or a chain."
+          },
+          {
+            "id": "203-3E1D-C2-L1-C",
+            "questionText": "State the purpose of using a Reamer after the conduit has been cut to length.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "remove sharp internal burrs",
+              "remove internal burrs",
+              "remove sharp edges",
+              "removing sharp internal burrs"
+            ],
+            "hint": "This tool prevents damage to cable insulation during the draw-in process."
+          },
+          {
+            "id": "203-3E1D-C2-L2",
+            "questionText": "Using your answers to Q1 (creating external threads), Q2 (using a Conduit Vice), and Q3 (removing sharp internal burrs), explain how these tools work together to prepare a safe conduit installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "A Conduit Vice holds the pipe for stable preparation, while Stocks and Dies create external threads for joints and a Reamer removes sharp internal burrs to protect cables.",
+              "Using a Conduit Vice allows for stable threading with Stocks and Dies and the removal of sharp internal burrs with a Reamer to ensure electrical continuity and cable safety.",
+              "The Conduit Vice provides stability while Stocks and Dies create threads and the Reamer removes sharp burrs to ensure a safe, continuous system."
+            ],
+            "hint": "Relate the stability of the vice to the creation of secure joints and the safety provided by removing sharp edges."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1D-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3E1D-P1",
+            "questionText": "An installer is working with heavy-gauge steel conduit. What is the diameter of the Former required if the conduit being installed is 25mm? (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "25",
+              "25.0"
+            ],
+            "hint": "Answer in millimetres (mm). The Former must match the outside diameter of the conduit."
+          },
+          {
+            "id": "203-3E1D-P2",
+            "questionText": "Which tool is appropriate for removing the sharp internal burrs from the inside of a cut conduit to protect cable insulation?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Reamer",
+              "a Reamer",
+              "the Reamer",
+              "Conduit Reamer"
+            ],
+            "hint": "This tool is used immediately after cutting to ensure the conduit is safe for cables."
+          },
+          {
+            "id": "203-3E1D-P3",
+            "questionText": "Identify the interchangeable component of a bending machine that ensures the conduit maintains its internal cross-sectional area and does not kink during the bending process.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Former",
+              "a Former",
+              "the Former"
+            ],
+            "hint": "This part is curved and specific to the diameter of the conduit being shaped."
+          },
+          {
+            "id": "203-3E1D-P4",
+            "questionText": "State the purpose of using Stocks and Dies on the end of a length of steel conduit.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "to cut external screw threads",
+              "create external screw threads",
+              "cut external threads",
+              "to create external threads"
+            ],
+            "hint": "This allows the conduit to be joined to couplings or accessory boxes."
+          },
+          {
+            "id": "203-3E1D-P5",
+            "questionText": "Which specialized clamping device is selected to hold circular metallic conduit firmly without crushing it while it is being prepared?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Conduit Vice",
+              "a Conduit Vice",
+              "the Conduit Vice"
+            ],
+            "hint": "It often features a V-shaped jaw or a chain to grip the round profile safely."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1D-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1D-INT-1",
+            "questionText": "How do the conduit bender and the conduit vice work together to ensure a professional installation of a metallic conduit system? (2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The conduit bender and former allow the installer to change the direction of the run without damaging the material, while the conduit vice provides a secure platform to use stocks and dies for threading. Together, these tools ensure that conduit lengths are shaped correctly and can be mechanically joined or connected to accessory boxes securely.",
+              "While the bender uses formers to create precise changes in direction, the conduit vice holds the material steady so that threading equipment can prepare the ends for connection. This relationship ensures the containment system is both correctly routed and securely fastened at every joint."
+            ],
+            "hint": "Think about how one tool shapes the path of the conduit while the other facilitates the mechanical connection of the lengths."
+          },
+          {
+            "id": "203-3E1D-INT-2",
+            "questionText": "Explain how an electrician must coordinate the use of formers, stocks and dies, and specialized clamping equipment to construct a complete, continuous metallic containment run. Please provide your answer in 3-4 sentences.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "An electrician first uses a conduit bender with the correct size former to create precise bends for changing direction while maintaining the conduit's structural integrity. To join these sections or connect them to boxes, the conduit is secured in a vice so that stocks and dies can be used to cut external threads on the ends. By integrating these specialized tools, the installer creates a mechanically sound and electrically continuous system that fits the specific layout of the building.",
+              "To build a full system, the installer selects a former matching the conduit diameter to perform accurate bends, then uses a conduit vice to stabilize the pipe for the threading process. Using stocks and dies, the installer cuts the necessary threads to allow for secure coupling or termination into accessory boxes. This synthesis of bending and threading equipment ensures the final containment installation is professional, durable, and meets safety standards."
+            ],
+            "hint": "Consider the step-by-step process of shaping the conduit, securing it for work, and creating the threads needed for a continuous system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1D-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [],
+        "notes": "No prerequisites for this foundational lesson"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-04",
+    "updated": "2026-02-04",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
