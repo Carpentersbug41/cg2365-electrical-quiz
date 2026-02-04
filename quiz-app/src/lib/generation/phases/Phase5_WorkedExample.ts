@@ -18,6 +18,7 @@ export interface WorkedExampleInput {
     noCalculations?: boolean;
     specificScope?: string;
   };
+  taskMode?: string; // Explicit task mode string
 }
 
 export interface WorkedExampleStep {
@@ -94,8 +95,52 @@ This ensures students understand the UNDERLYING MATH before using shortcuts.
 
 Example topics requiring this: "spacing factor", "percentage fill", "enclosure fill"
 
+SELECTION EXAMPLE FORMAT (when TASK_MODE includes IDENTIFICATION or PURPOSE_ONLY):
+
+When the lesson is about choosing/identifying kit, tools, or equipment:
+
+Structure the worked example as a SELECTION SCENARIO (not procedural steps):
+
+{
+  "title": "Worked Example: Equipment Selection",
+  "given": "[Job scenario: material type, task requirements, constraints]",
+  "steps": [
+    {
+      "stepNumber": 1,
+      "description": "Identify the containment material and task requirement",
+      "formula": null,
+      "calculation": null,
+      "result": "[e.g., 'Heavy-gauge steel conduit requiring bends']"
+    },
+    {
+      "stepNumber": 2,
+      "description": "Select appropriate tool",
+      "formula": null,
+      "calculation": null,
+      "result": "[e.g., 'Conduit bender with 25mm former']"
+    },
+    {
+      "stepNumber": 3,
+      "description": "State the purpose (one line)",
+      "formula": null,
+      "calculation": null,
+      "result": "[e.g., 'Creates smooth bends without collapsing the tube']"
+    },
+    {
+      "stepNumber": 4,
+      "description": "Common wrong choice and why",
+      "formula": null,
+      "calculation": null,
+      "result": "[e.g., 'Using hand bending would kink and collapse the conduit']"
+    }
+  ],
+  "notes": "Selection is based on material properties and task requirements, not personal preference."
+}
+
+NO physical operation steps (no "place", "rotate", "pull", "clamp").
+
 TEACHING CONSTRAINTS (if provided):
-If teachingConstraints.excludeHowTo or purposeOnly:
+If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
 - Worked examples should focus on SELECTION and IDENTIFICATION
 - Example: "Given these requirements, which tool should be selected and why?"
 - NOT: "Step-by-step procedure to operate the tool"
@@ -128,9 +173,12 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: WorkedExampleInput): string {
-    const { lessonId, topic, explanations, needsWorkedExample, teachingConstraints } = input;
+    const { lessonId, topic, explanations, needsWorkedExample, teachingConstraints, taskMode } = input;
 
-    if (!needsWorkedExample) {
+    // For identification/purpose-only tasks, ALWAYS create selection examples
+    const isPurposeOnlyTask = taskMode?.includes('PURPOSE_ONLY') || taskMode?.includes('IDENTIFICATION');
+    
+    if (!needsWorkedExample && !isPurposeOnlyTask) {
       return `This lesson does not require worked examples.
 
 Return:
@@ -142,19 +190,40 @@ Return:
 
     const explanationTexts = explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n');
 
+    // For identification/purpose tasks, guide toward selection format
+    if (isPurposeOnlyTask) {
+      return `Create a SELECTION worked example for this identification/purpose lesson.
+
+LESSON TOPIC: ${topic}
+
+EXPLANATION CONTENT (use as reference):
+${explanationTexts}
+
+TASK MODE: ${taskMode || 'IDENTIFICATION'}
+
+CRITICAL: Use the SELECTION EXAMPLE FORMAT (not procedural steps):
+- Step 1: Identify material/task requirement
+- Step 2: Select appropriate tool/equipment
+- Step 3: State the purpose (one line)
+- Step 4: Common wrong choice and why
+
+NO physical operation steps (no "place", "rotate", "pull", "clamp", "thread", "lubricate").
+
+Create ONE selection worked example and ONE guided selection practice.`;
+    }
+
     return `Create a worked example and guided practice for this calculation/procedure topic.
 
 LESSON TOPIC: ${topic}
 
 EXPLANATION CONTENT (use as reference):
 ${explanationTexts}
-${teachingConstraints ? `
-TEACHING CONSTRAINTS (CRITICAL - MUST FOLLOW):
-${teachingConstraints.excludeHowTo ? '- EXCLUDE procedural steps - focus on SELECTION and IDENTIFICATION examples' : ''}
-${teachingConstraints.purposeOnly ? '- PURPOSE ONLY: Example should show "which tool for which purpose" not "how to operate"' : ''}
-${teachingConstraints.identificationOnly ? '- IDENTIFICATION ONLY: Create matching/selection scenarios, not step-by-step procedures' : ''}
-${teachingConstraints.noCalculations ? '- NO CALCULATIONS: Skip worked examples OR create selection-based scenarios' : ''}
-${teachingConstraints.specificScope ? `- SPECIFIC SCOPE: ${teachingConstraints.specificScope}` : ''}
+${taskMode ? `
+TASK MODE: ${taskMode}
+
+CRITICAL REMINDERS based on task mode:
+${taskMode.includes('CALCULATION') ? '- Show GEOMETRY calculation FIRST, factor tables SECOND' : ''}
+${taskMode.includes('PROCEDURE') ? '- Step-by-step procedures are appropriate for this task mode' : ''}
 ` : ''}
 
 Create ONE worked example demonstrating the key calculation/procedure, and ONE guided practice problem that mirrors it.

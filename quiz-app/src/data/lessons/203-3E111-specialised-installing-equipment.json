@@ -1,0 +1,366 @@
+{
+  "id": "203-3E111",
+  "title": "203.3E111 — Specialised Installing Equipment",
+  "description": "Learn about Specialised Installing Equipment in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Specialised Installing Equipment",
+  "learningOutcomes": [
+    "Identify specialized tools used for installing electrical containment systems",
+    "Describe the specific purpose of conduit benders, tray benders, and formers",
+    "State the function of stocks and dies in the preparation of metallic conduit"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3E111-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify specialized tools used for installing electrical containment systems",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the specific purpose of conduit benders, tray benders, and formers",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "State the function of stocks and dies in the preparation of metallic conduit",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E111-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conduit Bender",
+            "definition": "A mechanical tool used to create precise, repeatable bends and offsets in metallic or plastic conduit systems."
+          },
+          {
+            "term": "Former",
+            "definition": "A curved component within a bending machine that determines the radius of the bend while supporting the conduit walls to prevent kinking."
+          },
+          {
+            "term": "Stop Block",
+            "definition": "A component that secures the conduit firmly against the former to prevent it from slipping during the bending process."
+          },
+          {
+            "term": "Stocks and Dies",
+            "definition": "A toolset used to cut external screw threads onto the ends of metallic conduit so they can be joined to fittings and boxes."
+          },
+          {
+            "term": "Tray Bender",
+            "definition": "A specialized tool designed to create accurate and uniform angles in cable tray sections without damaging the protective finish."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E111-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Specialised Installing Equipment Diagram",
+        "description": "Visual representation of Specialised Installing Equipment",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "Conduit Bender",
+          "Former",
+          "Stop Block",
+          "Tray Bender",
+          "Stocks and Dies"
+        ],
+        "placeholderText": "A comprehensive layout of specialized containment tools. Centrally, a floor-standing Conduit Bender is shown with a 20mm conduit positioned against a semi-circular Former. An arrow points to the Stop Block which is holding the conduit's end. To the right, a Tray Bender is shown next to a section of perforated cable tray that has a 45-degree offset. At the bottom of the diagram, a set of Stocks and Dies is displayed, featuring a circular die inside a two-handled stock, with a piece of steel conduit showing freshly cut external screw threads. All labels use the exact vocabulary terms and are clearly linked to the respective tools."
+      }
+    },
+    {
+      "id": "203-3E111-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Bending and Forming Equipment",
+        "content": "1. **What this is**\n\nIn the installation of electrical containment systems, specialized tools are necessary to alter the shape of the materials without compromising their structural integrity. A **Conduit Bender** is a heavy-duty mechanical tool, often floor-standing, designed to create precise, repeatable bends and offsets in metallic or plastic conduit systems. Within this machine, the **Former** acts as a curved template that dictates the radius of the bend while supporting the conduit walls to prevent kinking or collapsing. To ensure the conduit remains in the correct position during the application of force, a **Stop Block** is utilized to prevent the tube from slipping. For wider containment systems, a **Tray Bender** is a specialized tool designed to create accurate and uniform angles in cable tray sections without damaging the protective finish (such as galvanization or powder coating).\n\n2. **Why it matters**\n\nLearning to **Identify specialized tools used for installing electrical containment systems** (Learning Outcome 1) is vital for any professional electrician. Using the correct tool ensures that the containment system is aesthetically pleasing, functionally sound, and compliant with industry standards. For example, a **Conduit Bender** and its associated **Former** ensure that the internal diameter of the conduit remains consistent, allowing for the easy passage of cables later. Without these specialized tools, installers might attempt to bend materials by hand or with inappropriate equipment, leading to flattened profiles, restricted cable capacity, or damaged protective coatings that lead to corrosion. To **describe the specific purpose of conduit benders, tray benders, and formers** (Learning Outcome 2) is to understand how to maintain the quality and longevity of a containment installation.\n\n3. **Key facts / rules**\n\n*   **Conduit Bender**: Purpose is to create precise angles (like 90-degree bends) and offsets in metallic or PVC conduit.\n*   **Former**: The component that determines the bend radius and prevents the conduit from kinking.\n*   **Stop Block**: The component that holds the conduit in a fixed position against the former.\n*   **Tray Bender**: Purpose is the creation of uniform angles in cable tray without damaging the finish.\n*   Selection of the correct **Former** size is mandatory to match the conduit diameter (e.g., 20mm or 25mm).\n*   Containment systems must maintain a smooth internal bore to protect cable insulation during drawing-in.\n\n4. **When to choose it**\n\nSelection of a **Conduit Bender** is appropriate when the installation requires steel conduit to navigate around corners or structural obstacles. It is the primary choice for heavy-gauge galvanized steel conduit (common UK sizes include 20mm and 25mm) where manual bending is impossible. A specific **Former** is chosen based on the diameter of the conduit being installed; for instance, a 25mm conduit requires a 25mm former to ensure the curve is supported correctly. The **Stop Block** is a necessary selection whenever the conduit shows signs of movement during the initial application of force. A **Tray Bender** is the correct choice when a cable tray run must change elevation or direction and a standard manufactured fitting (like a factory-made bend) is not available or suitable for the specific angle required on-site. Choosing these tools is essential when the goal is a bespoke, high-quality containment path.\n\n5. **Common mistakes**\n\nStudents often fail to correctly **describe the specific purpose of conduit benders, tray benders, and formers**, leading to the selection of the wrong size **Former** for the conduit diameter. A common error is attempting to use a 25mm former for a 20mm conduit, which results in a flattened or kinked bend because the conduit walls are not properly supported. Another mistake is neglecting the use of the **Tray Bender** and instead trying to force angles into cable tray using pliers or hammers, which destroys the protective zinc coating and leads to premature rusting of the containment system. Identifying the wrong tool for the material—such as using a lightweight plastic bender for heavy steel—can also lead to tool failure or injury.\n\n6. **Quick recap**\n\nSpecialized bending equipment is fundamental for creating professional containment systems. The **Conduit Bender** utilizes a **Former** and a **Stop Block** to create smooth, non-restrictive curves in conduit, while the **Tray Bender** provides the same precision for cable tray sections. Mastery of these tools ensures that the installer can **identify specialized tools used for installing electrical containment systems** and **describe the specific purpose of conduit benders, tray benders, and formers** to achieve a high standard of workmanship."
+      }
+    },
+    {
+      "id": "203-3E111-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Bending and Forming Equipment",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E111-C1-L1-A",
+            "questionText": "State the purpose of a Conduit Bender.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "To create precise angles and offsets in conduit",
+              "create precise angles and offsets",
+              "creating precise angles and offsets in metallic or plastic conduit",
+              "to create precise angles and offsets",
+              "making precise angles and offsets"
+            ],
+            "hint": "Look at the description of the heavy-duty mechanical tool in section 1 or 3."
+          },
+          {
+            "id": "203-3E111-C1-L1-B",
+            "questionText": "What is the purpose of the Former component within a bending machine?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "To dictate the radius of the bend and prevent kinking",
+              "dictates the radius of the bend and prevents kinking or collapsing",
+              "determines the bend radius and prevents the conduit from kinking",
+              "to determine the bend radius and prevent kinking",
+              "prevents kinking or collapsing"
+            ],
+            "hint": "This component acts as a curved template."
+          },
+          {
+            "id": "203-3E111-C1-L1-C",
+            "questionText": "Identify the purpose of a Stop Block.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "To prevent the tube from slipping",
+              "prevents the tube from slipping",
+              "prevents the conduit from slipping",
+              "holds the conduit in a fixed position",
+              "to hold the conduit in a fixed position against the former"
+            ],
+            "hint": "This part ensures the conduit remains in the correct position during the application of force."
+          },
+          {
+            "id": "203-3E111-C1-L2",
+            "questionText": "Using your answers to Q1 (conduit bender purpose), Q2 (former purpose), and Q3 (stop block purpose), explain how these components work together to ensure a high-quality containment installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The Conduit Bender creates the angles while the Former dictates the radius to prevent kinking and the Stop Block prevents slipping.",
+              "The conduit bender creates precise angles using a former to prevent kinking and a stop block to stop the tube from slipping.",
+              "The bender creates the precise angles, the former prevents kinking by setting the radius, and the stop block prevents the conduit from slipping.",
+              "These tools work together so the bender makes the angle, the former supports the walls to prevent kinking, and the stop block holds it in place."
+            ],
+            "hint": "Think about how each part contributes to making a bend that is both accurate and undamaged."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E111-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Threading Equipment",
+        "content": "1. **What this is**\n\nWhen working with metallic conduit systems, individual lengths of pipe must be joined together or connected to accessory boxes. This requires the application of external screw threads to the ends of the conduit. **Stocks and Dies** are a specialized toolset used for this specific purpose. The 'die' is the cutting component that carves the thread into the metal, while the 'stock' is the handle or frame that holds the die and provides the necessary leverage. This equipment is essential for ensuring that metallic conduit runs are mechanically sound and electrically continuous.\n\n2. **Why it matters**\n\nIt is a core requirement to **state the function of stocks and dies in the preparation of metallic conduit** (Learning Outcome 3). In a metallic containment system, the threaded joints contribute significantly to the electrical continuity of the system. If the threads are not cut accurately using the correct **Stocks and Dies**, the joints may be loose, leading to a high-resistance path that could compromise the safety of the installation. Furthermore, properly cut threads allow for a watertight and secure fit into couplings and conduit boxes, protecting the cables inside from environmental factors. Identifying these as part of the **specialized tools used for installing electrical containment systems** (Learning Outcome 1) is a basic requirement for any L2 electrical student.\n\n3. **Key facts / rules**\n\n*   **Stocks and Dies**: Toolset for cutting external screw threads onto metallic conduit.\n*   Function: To enable the joining of conduit lengths and connection to fittings.\n*   Thread Type: Standard electrical conduit threads are typically ISO metric (e.g., M20 or M25).\n*   Electrical Continuity: Threaded joints are essential for maintaining a low-resistance earth path in metallic systems.\n*   Mechanical Strength: Threads provide a robust physical connection that supports the weight of the containment and cables.\n*   Compatibility: **Stocks and Dies** are for metallic conduit only; PVC conduit uses different joining approaches.\n\n4. **When to choose it**\n\nSelection of **Stocks and Dies** is mandatory whenever the installation involves galvanized or black enamel steel conduit. This tool is chosen when a standard length of conduit has been cut down and requires a new threaded end to facilitate connection to a coupling, a bend, or a circular box. The choice of die size must match the conduit diameter, with 20mm and 25mm being the most common UK sizes for general power and lighting circuits. This equipment is the primary choice for any scenario where a permanent, high-strength, and electrically conductive joint is required between two metallic components. It is not chosen for PVC systems, as those rely on solvent welding or push-fit connections.\n\n5. **Common mistakes**\n\nOne frequent error is failing to **state the function of stocks and dies in the preparation of metallic conduit** correctly, sometimes confusing them with 'taps' which are used for internal threads. Students also often forget to check that the die is clear of metal shavings, which can result in 'torn' or stripped threads that do not provide a secure connection. Another mistake is selecting the wrong size die for the conduit, which can damage both the tool and the material. Finally, students may overlook the importance of the threaded joint for electrical continuity, assuming the threads are only for mechanical strength, which is a critical misunderstanding of metallic containment systems.\n\n6. **Quick recap**\n\n**Stocks and Dies** are indispensable specialized tools for the preparation of metallic conduit. Their primary function is the creation of external screw threads, which allow for secure mechanical joints and ensure the electrical continuity of the containment system. By learning to **identify specialized tools used for installing electrical containment systems** and understanding the specific function of this toolset, electricians can ensure their installations are safe, durable, and meet the requirements of the IET On-Site Guide for metallic enclosures."
+      }
+    },
+    {
+      "id": "203-3E111-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Threading Equipment",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E111-C2-L1-A",
+            "questionText": "Identify the specialized toolset used for cutting external screw threads onto metallic conduit.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Stocks and Dies",
+              "Stocks and dies",
+              "The Stocks and Dies",
+              "the stocks and dies",
+              "a set of Stocks and Dies",
+              "stock and die"
+            ],
+            "hint": "One part is the handle and the other is the cutting component."
+          },
+          {
+            "id": "203-3E111-C2-L1-B",
+            "questionText": "State the function of the threaded joints created by stocks and dies in a metallic containment system.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "To enable joining and ensure electrical continuity",
+              "enable the joining of conduit lengths and connection to fittings",
+              "to maintain electrical continuity and mechanical strength",
+              "joining conduit lengths and connecting to fittings",
+              "ensuring mechanical strength and electrical continuity"
+            ],
+            "hint": "Consider both the physical connection and the safety path for electricity."
+          },
+          {
+            "id": "203-3E111-C2-L1-C",
+            "questionText": "For which specific type of conduit material should Stocks and Dies be selected?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Metallic conduit",
+              "metallic conduit",
+              "metal conduit",
+              "Metal conduit",
+              "Steel conduit",
+              "steel conduit",
+              "galvanized or black enamel steel conduit"
+            ],
+            "hint": "This tool is not used for PVC systems."
+          },
+          {
+            "id": "203-3E111-C2-L2",
+            "questionText": "Using your answers to Q1 (toolset identification), Q2 (joint function), and Q3 (conduit material), explain why this equipment is necessary for compliant containment systems.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Stocks and Dies are used on metallic conduit to create threaded joints that provide the necessary electrical continuity and mechanical strength.",
+              "Stocks and dies create external threads on metallic conduit to allow for secure joining and a low-resistance earth path.",
+              "The stocks and dies create threads on metallic conduit to ensure the joints are mechanically sound and electrically continuous.",
+              "This toolset is used on metal conduit because the resulting threaded joints are essential for mechanical strength and electrical continuity."
+            ],
+            "hint": "Connect the tool to the material it is used on and the safety requirements it helps achieve."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E111-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3E111-P1",
+            "questionText": "Which specialized toolset is used to create external screw threads on metallic conduit to enable the joining of lengths and fittings?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Stocks and Dies",
+              "The Stocks and Dies",
+              "Stocks and Die",
+              "A set of Stocks and Dies",
+              "Stock and Die",
+              "The Stock and Die"
+            ],
+            "hint": "This toolset consists of a cutting component and a handle for leverage."
+          },
+          {
+            "id": "203-3E111-P2",
+            "questionText": "Identify the component within a conduit bender that acts as a curved template to determine the bend radius and prevent the conduit from kinking.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Former",
+              "The Former",
+              "A Former",
+              "Conduit Former",
+              "The Conduit Former",
+              "Formers"
+            ],
+            "hint": "This part must match the diameter of the conduit being used."
+          },
+          {
+            "id": "203-3E111-P3",
+            "questionText": "A 25mm steel conduit is being installed. What is the required size of the Former to ensure the conduit walls are supported correctly? (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "25",
+              "25.0"
+            ],
+            "hint": "The size in millimetres (mm) must match the conduit diameter."
+          },
+          {
+            "id": "203-3E111-P4",
+            "questionText": "What is the primary purpose of using a Tray Bender instead of manual force when creating angles in a cable tray?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Protect the finish",
+              "Prevent damage to finish",
+              "Maintain protective coating",
+              "Create uniform angles",
+              "Prevent rusting",
+              "Protect the galvanization"
+            ],
+            "hint": "Think about what happens to the zinc or powder coating if the tray is hit with a hammer."
+          },
+          {
+            "id": "203-3E111-P5",
+            "questionText": "State the critical electrical reason for using accurately cut threaded joints in a metallic containment system.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Electrical continuity",
+              "Maintain continuity",
+              "Low-resistance earth path",
+              "Earth continuity",
+              "Maintain electrical continuity",
+              "Electrical earth continuity"
+            ],
+            "hint": "This ensures the containment can safely act as a protective conductor."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E111-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E111-INT-1",
+            "questionText": "Explain how the use of a conduit bender and a set of stocks and dies relate to each other when preparing a metallic conduit run. (2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The conduit bender is used to physically shape the pipe to navigate the building's structure, while the stocks and dies are used to create the threads necessary to join those shaped sections together. This relationship ensures that the containment is both correctly routed and mechanically secure at every joint.",
+              "While the bender alters the direction of the conduit to fit the installation path, the stocks and dies prepare the ends of the conduit for connection to boxes or couplings. Together, they allow for a continuous, bespoke containment system that maintains its structural integrity."
+            ],
+            "hint": "Think about the difference between changing the direction of a pipe and preparing its ends for a mechanical connection."
+          },
+          {
+            "id": "203-3E111-INT-2",
+            "questionText": "Synthesize the roles of specialized bending equipment, internal formers, and threading tools in the creation of a complete metallic containment system. Please provide a comprehensive explanation of how these elements work together in 3-4 sentences.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "Specialized bending equipment uses internal formers to ensure that conduit or tray is shaped without collapsing or weakening the material's structure. Once the containment is correctly formed to the required angles, stocks and dies are employed to cut external threads into the metallic ends, allowing for secure attachment to accessory boxes. By combining these tools, an installer ensures the system is precisely routed, structurally sound, and provides a continuous, protected path for electrical cables.",
+              "The installation process relies on benders and formers to manipulate the containment's shape while maintaining its cross-sectional integrity and bend radius. Following the shaping process, threading tools like stocks and dies provide the means to mechanically link these components into a unified system. This integration of forming and threading is essential for creating a professional containment run that meets both spatial requirements and safety standards."
+            ],
+            "hint": "Consider how the former protects the material during the bending process and how threading then allows those custom-shaped pieces to become a single, unified system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E111-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [],
+        "notes": "No prerequisites for this foundational lesson"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-04",
+    "updated": "2026-02-04",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

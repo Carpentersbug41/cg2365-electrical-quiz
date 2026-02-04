@@ -43,8 +43,8 @@ export function classifyLessonTask(
     tasks.push('diagnosis');
   }
   
-  // Identification indicators
-  if (text.match(/symbol|identify|recognize|component|marking|drawing|source|diagram|schematic|plan/)) {
+  // Identification indicators (including kit/equipment identification)
+  if (text.match(/symbol|identify|recognize|component|marking|drawing|source|diagram|schematic|plan|identify.*(?:kit|tool|equipment|device|ppe)|purpose.*(?:kit|tool|equipment)|what.*for/)) {
     tasks.push('identification');
   }
   
@@ -54,6 +54,16 @@ export function classifyLessonTask(
   }
   
   return tasks;
+}
+
+/**
+ * Detect if lesson is purpose-only (no procedures)
+ * Based on explicit constraints in mustHaveTopics
+ */
+export function isPurposeOnly(mustHaveTopics?: string): boolean {
+  if (!mustHaveTopics) return false;
+  const text = mustHaveTopics.toLowerCase();
+  return text.match(/purpose|what.*for|not how|identify only|recognition/) !== null;
 }
 
 /**
@@ -99,6 +109,25 @@ export function getTaskContext(tasks: TaskType[], topic: string, section: string
   }
   
   return contexts.join(' ');
+}
+
+/**
+ * Generate explicit TASK_MODE string for LLM prompt
+ * Provides clear, explicit task mode that LLM can use for conditional logic
+ */
+export function getTaskModeString(tasks: TaskType[], isPurposeOnly: boolean): string {
+  const modes: string[] = [];
+  
+  if (tasks.includes('calculation')) modes.push('CALCULATION');
+  if (tasks.includes('procedure')) modes.push('PROCEDURE');
+  if (tasks.includes('selection')) modes.push('SELECTION');
+  if (tasks.includes('diagnosis')) modes.push('DIAGNOSIS');
+  if (tasks.includes('identification')) modes.push('IDENTIFICATION');
+  if (tasks.includes('compliance')) modes.push('COMPLIANCE');
+  
+  if (isPurposeOnly) modes.push('PURPOSE_ONLY');
+  
+  return modes.length > 0 ? modes.join(', ') : 'GENERAL';
 }
 
 /**

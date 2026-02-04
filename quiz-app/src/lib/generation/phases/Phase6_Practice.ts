@@ -19,6 +19,7 @@ export interface PracticeInput {
     noCalculations?: boolean;
     specificScope?: string;
   };
+  taskMode?: string; // Explicit task mode string
 }
 
 export interface PracticeQuestion {
@@ -57,14 +58,22 @@ QUESTION TYPES:
 - Mix of direct application and scenario-based questions
 
 TEACHING CONSTRAINTS (if provided):
-If teachingConstraints.excludeHowTo or purposeOnly:
+If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
 - Practice questions MUST test purpose/selection, NOT procedures
-- WRONG: "Describe the steps to thread conduit"
-- RIGHT: "Which tool is used to create threads on steel conduit ends?"
-- Focus on: identification, selection, purpose, reasoning
-- Avoid: step-by-step procedures, sequential operations
+- BANNED VERBS in questions: place, clamp, rotate, pull, turn, push, tighten, loosen, thread, break the chip, lubricate, half-turn, secure, insert, technique, method, step, process, operate
+- BANNED QUESTION PATTERNS:
+  * "Describe the steps to..."
+  * "How do you [verb]..."
+  * "What is the process for..."
+  * "Explain the technique..."
+- ALLOWED PATTERNS:
+  * "Which tool is appropriate for [scenario]?"
+  * "State the purpose of [X]"
+  * "Identify the equipment needed for [task]"
+  * "Select the correct [item] for [material/situation]"
+  * Matching exercises: scenario → equipment + purpose
 
-If teachingConstraints.identificationOnly:
+If teachingConstraints.identificationOnly OR TASK_MODE includes "IDENTIFICATION":
 - Questions should be matching, selection, or "what is used for..." format
 
 ANSWER FORMAT RULES (CRITICAL):
@@ -111,7 +120,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: PracticeInput): string {
-    const { lessonId, explanations, vocabulary, hasWorkedExample, teachingConstraints } = input;
+    const { lessonId, explanations, vocabulary, hasWorkedExample, teachingConstraints, taskMode } = input;
 
     const explanationTexts = explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n');
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\n');
@@ -126,13 +135,14 @@ ${vocabTerms}
 
 LESSON CONTEXT:
 - Has worked example: ${hasWorkedExample ? 'YES (include calculation questions)' : 'NO (focus on conceptual)'}
-${teachingConstraints ? `
-TEACHING CONSTRAINTS (CRITICAL - MUST FOLLOW):
-${teachingConstraints.excludeHowTo ? '- EXCLUDE procedural questions - test PURPOSE and SELECTION only' : ''}
-${teachingConstraints.purposeOnly ? '- PURPOSE ONLY: Test "what for?" not "how to do?"' : ''}
-${teachingConstraints.identificationOnly ? '- IDENTIFICATION ONLY: Matching, selection, or "what is used for?" questions' : ''}
-${teachingConstraints.noCalculations ? '- NO CALCULATION questions' : ''}
-${teachingConstraints.specificScope ? `- SPECIFIC SCOPE: ${teachingConstraints.specificScope}` : ''}
+${taskMode ? `
+TASK MODE: ${taskMode}
+
+CRITICAL REMINDERS based on task mode:
+${taskMode.includes('PURPOSE_ONLY') ? '- BANNED VERBS: place, clamp, rotate, pull, turn, tighten, thread, lubricate, insert, secure, technique, method, step, process, operate' : ''}
+${taskMode.includes('PURPOSE_ONLY') ? '- Test "what for?" not "how to do?" - Use patterns like "Which tool for [scenario]?", "State the purpose of [X]"' : ''}
+${taskMode.includes('IDENTIFICATION') ? '- Matching, selection, or "what is used for?" questions only' : ''}
+${taskMode.includes('CALCULATION') ? '- Include numeric calculation questions with rounding instructions' : ''}
 ` : ''}
 
 Create 3-5 practice questions at order 8.

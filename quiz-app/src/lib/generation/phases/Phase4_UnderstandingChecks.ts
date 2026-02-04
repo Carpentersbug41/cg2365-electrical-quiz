@@ -16,6 +16,7 @@ export interface UnderstandingChecksInput {
     noCalculations?: boolean;
     specificScope?: string;
   };
+  taskMode?: string; // Explicit task mode string
 }
 
 export interface UnderstandingQuestion {
@@ -69,14 +70,23 @@ L2 CONNECTION QUESTION REQUIREMENTS (CRITICAL):
 - Example: "Using your answers to Q1 (definition), Q2 (purpose), and Q3 (key components), explain how these three aspects work together..."
 
 TEACHING CONSTRAINTS (if provided):
-If teachingConstraints.excludeHowTo or purposeOnly:
+If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
 - L1 questions MUST test PURPOSE and IDENTIFICATION, NOT procedures
-- WRONG: "What is the first step when using a conduit bender?"
-- RIGHT: "What is the purpose of a conduit bender?"
-- WRONG: "How do you break the chip when threading?"
-- RIGHT: "Why is it necessary to thread conduit ends?"
+- BANNED QUESTION PATTERNS:
+  * "How do you [verb]..."
+  * "What is the first step..."
+  * "Describe the process..."
+  * "What technique..."
+  * "How to [action]..."
+- BANNED VERBS in questions: place, clamp, rotate, pull, turn, push, tighten, loosen, thread, break the chip, lubricate, half-turn, secure, insert, technique, method, step, process, operate
+- REQUIRED QUESTION PATTERNS:
+  * "What is [X] used for?"
+  * "Which tool should be selected when..."
+  * "State the purpose of [X]"
+  * "Identify the equipment for [scenario]"
+  * "What does [X] enable/achieve/solve?"
 
-If teachingConstraints.identificationOnly:
+If teachingConstraints.identificationOnly OR TASK_MODE includes "IDENTIFICATION":
 - Focus L1 questions on: "Name the tool that...", "Identify the component...", "State what [X] is used for..."
 - Avoid procedural questions entirely
 
@@ -110,7 +120,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: UnderstandingChecksInput): string {
-    const { lessonId, explanations, teachingConstraints } = input;
+    const { lessonId, explanations, teachingConstraints, taskMode } = input;
 
     return `Create understanding check questions for this lesson's explanations.
 
@@ -121,13 +131,13 @@ Content:
 ${exp.content}
 
 ---`).join('\n')}
-${teachingConstraints ? `
-TEACHING CONSTRAINTS (CRITICAL - MUST FOLLOW):
-${teachingConstraints.excludeHowTo ? '- EXCLUDE procedural questions - test PURPOSE and IDENTIFICATION only' : ''}
-${teachingConstraints.purposeOnly ? '- PURPOSE ONLY: Test "what for?" not "how to do?"' : ''}
-${teachingConstraints.identificationOnly ? '- IDENTIFICATION ONLY: Test naming, recognition, and "what is used for?" questions' : ''}
-${teachingConstraints.noCalculations ? '- NO CALCULATION questions' : ''}
-${teachingConstraints.specificScope ? `- SPECIFIC SCOPE: ${teachingConstraints.specificScope}` : ''}
+${taskMode ? `
+TASK MODE: ${taskMode}
+
+CRITICAL REMINDERS based on task mode:
+${taskMode.includes('PURPOSE_ONLY') ? '- BANNED VERBS in questions: place, clamp, rotate, pull, turn, tighten, thread, lubricate, insert, secure, technique, method, step, process, operate' : ''}
+${taskMode.includes('PURPOSE_ONLY') ? '- REQUIRED: Test "what for?" not "how to do?" - Use patterns like "What is [X] used for?", "State the purpose of [X]"' : ''}
+${taskMode.includes('IDENTIFICATION') ? '- Focus on: "Name the tool that...", "Identify the component...", "Which equipment for [scenario]?"' : ''}
 ` : ''}
 
 Create ${explanations.length} understanding check block(s), one immediately after each explanation.
