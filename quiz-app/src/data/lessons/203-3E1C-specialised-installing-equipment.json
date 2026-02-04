@@ -1,0 +1,340 @@
+{
+  "id": "203-3E1C",
+  "title": "203.3E1C — Specialised Installing Equipment",
+  "description": "Learn about Specialised Installing Equipment in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Specialised Installing Equipment",
+  "learningOutcomes": [
+    "Identify specialized installation tools including conduit benders, tray benders, and stocks and dies",
+    "Describe the specific purpose of formers in the bending process",
+    "Explain the intended use of stocks and dies within containment installation"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3E1C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify specialized installation tools including conduit benders, tray benders, and stocks and dies",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the specific purpose of formers in the bending process",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the intended use of stocks and dies within containment installation",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conduit Bender",
+            "definition": "A mechanical tool used to create precise bends in conduit while maintaining the internal diameter of the tube."
+          },
+          {
+            "term": "Former",
+            "definition": "A shaped, interchangeable component used in a bending machine to support the conduit and determine the radius of the bend."
+          },
+          {
+            "term": "Tray Bender",
+            "definition": "A specialized tool used to produce uniform and accurate bends in different widths of cable tray."
+          },
+          {
+            "term": "Stocks and Dies",
+            "definition": "A set of tools used to cut external screw threads onto the ends of metallic conduit to allow for mechanical coupling."
+          },
+          {
+            "term": "Pipe Vice",
+            "definition": "A heavy-duty clamping tool used to hold metallic conduit firmly in position during the cutting and threading process."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Specialised Installing Equipment Diagram",
+        "description": "Visual representation of Specialised Installing Equipment",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "Conduit Bender",
+          "Former",
+          "Tray Bender",
+          "Stocks and Dies",
+          "Pipe Vice"
+        ],
+        "placeholderText": "The diagram should feature a central split-view showing two main categories of equipment. On the left, a floor-standing Conduit Bender is shown with an interchangeable Former highlighted to show its semi-circular groove matching a 20mm conduit diameter. Next to it, a Tray Bender is shown with a piece of cable tray to illustrate its specific application. On the right, a set of Stocks and Dies is shown, with the circular die separated from the stock handle to show the cutting teeth. Below this, a Pipe Vice is depicted, showing the V-shaped serrated jaws designed to hold circular conduit. All labels must use the exact vocabulary terms and show the relationship between the tool and the containment material (e.g., the Former supporting the conduit curve)."
+      }
+    },
+    {
+      "id": "203-3E1C-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Conduit and Tray Bending Equipment",
+        "content": "1. **What this is**\n\nSpecialized installation equipment for containment systems includes the **Conduit Bender**, the **Former**, and the **Tray Bender**. A **Conduit Bender** is a robust mechanical tool designed for the creation of precise angles and curves in metallic tubing. Central to this tool is the **Former**, which is a shaped, interchangeable component that provides the necessary support to the conduit during the bending task. For different containment types, the **Tray Bender** is a specialized tool specifically for the modification of cable tray, allowing for uniform changes in direction or elevation across various tray widths.\n\n2. **Why it matters**\n\nThe use of these tools is essential for maintaining the structural and protective integrity of a containment system. Without a **Conduit Bender** and the correct **Former**, metallic conduit is susceptible to collapsing or kinking, which reduces the internal cross-sectional area and can damage cable insulation during drawing-in. Professional bending equipment ensures that the internal diameter remains consistent, providing a smooth path for conductors. Similarly, a **Tray Bender** ensures that cable tray modifications are professional, aesthetically consistent, and free from sharp edges that could compromise cable safety.\n\n3. **Key facts / rules**\n\n*   **Conduit Bender**: Typically a floor-standing or bench-mounted frame for metallic conduit.\n*   **Former**: Must match the outside diameter (OD) of the conduit (common sizes: 20mm, 25mm, and 32mm).\n*   **Former**: Determines the radius of the bend to prevent internal restrictions.\n*   **Tray Bender**: Specifically for cable tray, not for conduit or trunking.\n*   Metallic containment: Threaded joints and precise bends contribute to the electrical continuity of the system.\n\n4. **When to choose it**\n\nSelection of a **Conduit Bender** is appropriate when the installation plan requires steel conduit (such as galvanized or black enamel) to navigate around structural obstacles or change direction at 90-degree angles. The choice of a specific **Former** is dictated by the conduit size being used; for instance, a 20mm **Former** is the only correct choice for 20mm conduit to ensure the tube wall is supported correctly. A **Tray Bender** is selected when the installation involves cable tray and requires consistent offsets or risers, especially when multiple runs must look identical for professional standards. These tools are the primary choice for metallic systems where manual manipulation is impossible due to material rigidity.\n\n5. **Common mistakes**\n\nStudents commonly select a **Former** that does not match the conduit size, such as attempting to use a 25mm component for 20mm conduit, which leads to tube deformation. Another frequent error is the assumption that a **Conduit Bender** is suitable for all types of containment; however, it is specifically for circular conduit and is not used for trunking or tray. Additionally, failing to account for the specific radius provided by the **Former** can result in bends that do not fit within the allocated space of the building structure.\n\n6. **Quick recap**\n\nIn summary, the **Conduit Bender** and **Former** are used together to create accurate bends in metallic conduit while preserving the internal diameter of the tube. The **Tray Bender** serves a similar purpose for cable tray installations, ensuring uniform and safe transitions. Proper selection of these tools, based on the material and dimensions of the containment, is vital for the mechanical protection of cables and the overall quality of the electrical installation."
+      }
+    },
+    {
+      "id": "203-3E1C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Conduit and Tray Bending Equipment",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1C-C1-L1-A",
+            "questionText": "Identify the specialized mechanical tool used for the creation of precise angles and curves in metallic tubing.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Conduit Bender",
+              "a Conduit Bender",
+              "the Conduit Bender"
+            ],
+            "hint": "This is a robust floor-standing or bench-mounted frame."
+          },
+          {
+            "id": "203-3E1C-C1-L1-B",
+            "questionText": "Identify the interchangeable component that provides necessary support to the conduit during the bending task.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Former",
+              "the Former",
+              "a Former"
+            ],
+            "hint": "This component must match the outside diameter of the conduit."
+          },
+          {
+            "id": "203-3E1C-C1-L1-C",
+            "questionText": "What is the specific purpose of a Tray Bender?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "modification of cable tray",
+              "uniform changes in direction or elevation",
+              "modifying cable tray",
+              "to modify cable tray"
+            ],
+            "hint": "It is used for a different containment type than circular conduit."
+          },
+          {
+            "id": "203-3E1C-C1-L2",
+            "questionText": "Using your answers to Q1 (Conduit Bender), Q2 (Former), and Q3 (Tray Bender), explain how these tools ensure the structural and protective integrity of a containment system.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The Conduit Bender and matching Former prevent kinking to preserve internal diameter, while the Tray Bender ensures uniform and safe transitions in tray.",
+              "A Conduit Bender uses a Former to create bends without collapsing the tube, and a Tray Bender allows for professional tray modifications free from sharp edges.",
+              "The Conduit Bender and Former maintain the conduit's cross-sectional area, while the Tray Bender provides consistent offsets and risers for tray systems."
+            ],
+            "hint": "Think about how avoiding kinking and ensuring uniform changes protects the cables inside."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1C-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Threading Equipment",
+        "content": "1. **What this is**\n\nFor metallic conduit systems, the primary screw-cutting equipment consists of **Stocks and Dies** and the **Pipe Vice**. **Stocks and Dies** are a set of specialized tools used for the creation of external screw threads on the ends of conduit. The 'die' is the cutting component that matches the conduit size, while the 'stock' is the handle assembly that holds the die. The **Pipe Vice** is a heavy-duty stabilization tool with serrated jaws designed to hold metallic conduit firmly in a stationary position while the threading or cutting tasks are performed.\n\n2. **Why it matters**\n\nMetallic conduit systems rely on threaded connections for both mechanical strength and electrical continuity. The use of **Stocks and Dies** allows the installer to create compatible ends that screw into couplings, boxes, and switchgear. A high-quality thread ensures a tight fit, which is critical because industry guidance, such as the IET On-Site Guide, highlights that threaded joints contribute to the electrical continuity of the metallic containment system. The **Pipe Vice** is equally important as it prevents the conduit from slipping or spinning, which is essential for safety and for ensuring the threads are cut straight and true.\n\n3. **Key facts / rules**\n\n*   **Stocks and Dies**: Used for creating external threads on 20mm, 25mm, or 32mm steel conduit.\n*   **Die**: The interchangeable cutting head specific to the conduit diameter.\n*   **Pipe Vice**: A dedicated holding tool for circular conduit, often mounted on a tripod or bench.\n*   Electrical Continuity: Threaded connections are a primary factor in the earth path of a metallic system.\n*   Compatibility: Threads must be compatible with the standard entries of conduit boxes and fittings.\n\n4. **When to choose it**\n\n**Stocks and Dies** are selected whenever an installation utilizes heavy-gauge steel conduit (galvanized or black enamel) that must be joined together or terminated into an enclosure. This is the standard choice for industrial or commercial environments where high mechanical protection is needed. The selection of the specific die is based on the outside diameter of the conduit. A **Pipe Vice** is chosen as the necessary support equipment whenever conduit needs to be cut with a hacksaw or threaded with **Stocks and Dies**, as standard woodworking vices do not provide the necessary grip for circular metallic tubes.\n\n5. **Common mistakes**\n\nA frequent error is the attempt to use **Stocks and Dies** on non-metallic conduit, which is unnecessary as plastic systems use different joining methods. Students also often forget the importance of the **Pipe Vice**, attempting to hold the conduit by hand or with pliers, which is unsafe and results in crooked threads. Another mistake is misidentifying the thread size; while the conduit may be 20mm, the die must be specifically designed for that diameter to ensure the resulting thread is compatible with standard fittings.\n\n6. **Quick recap**\n\nTo conclude, **Stocks and Dies** are the essential tools for creating the external threads required for mechanical and electrical connections in steel conduit systems. The **Pipe Vice** provides the necessary stability for these tasks, ensuring that the conduit remains stationary. Together, these tools enable the installer to create a robust, continuous containment system that meets the requirements for both cable protection and electrical safety as outlined in common industry practices."
+      }
+    },
+    {
+      "id": "203-3E1C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Threading Equipment",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1C-C2-L1-A",
+            "questionText": "What is the purpose of Stocks and Dies in metallic conduit installations?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "creation of external screw threads",
+              "creating external screw threads",
+              "to create external screw threads",
+              "creation of external threads"
+            ],
+            "hint": "They are used on the ends of conduit to allow connection to fittings."
+          },
+          {
+            "id": "203-3E1C-C2-L1-B",
+            "questionText": "Identify the heavy-duty tool used to hold metallic conduit firmly in a stationary position during threading.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Pipe Vice",
+              "the Pipe Vice",
+              "a Pipe Vice"
+            ],
+            "hint": "This tool uses serrated jaws to prevent the conduit from spinning."
+          },
+          {
+            "id": "203-3E1C-C2-L1-C",
+            "questionText": "State one critical reason, other than mechanical strength, why threaded joints are used in metallic containment systems.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "electrical continuity",
+              "for electrical continuity",
+              "earth path",
+              "the earth path"
+            ],
+            "hint": "Threaded joints contribute to the safety path for fault currents."
+          },
+          {
+            "id": "203-3E1C-C2-L2",
+            "questionText": "Using your answers to Q1 (Stocks and Dies), Q2 (Pipe Vice), and Q3 (electrical continuity), explain how these tools and concepts work together to create a compliant installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The Pipe Vice stabilizes the conduit so Stocks and Dies can create straight external threads, which are essential for maintaining the electrical continuity of the system.",
+              "By using a Pipe Vice to keep conduit stationary, Stocks and Dies can cut the accurate threads required for mechanical strength and electrical continuity.",
+              "Stocks and Dies create the threads that ensure electrical continuity, while the Pipe Vice provides the necessary stability to perform this task safely and accurately."
+            ],
+            "hint": "Consider how the stabilization provided by the vice allows for the creation of the threads that provide the earth path."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1C-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3E1C-P1",
+            "questionText": "An installer is using 25mm galvanized steel conduit. Identify the specific size of Former required for the Conduit Bender to prevent tube deformation. (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "25",
+              "25.0"
+            ],
+            "hint": "Answer in millimetres (mm)"
+          },
+          {
+            "id": "203-3E1C-P2",
+            "questionText": "State the purpose of using a Pipe Vice when preparing metallic conduit for installation.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "to hold metallic conduit firmly in position",
+              "hold the conduit firmly",
+              "stabilize the conduit",
+              "hold the conduit stationary"
+            ],
+            "hint": "Focus on the stability required during cutting or threading tasks."
+          },
+          {
+            "id": "203-3E1C-P3",
+            "questionText": "Which equipment is appropriate for creating external screw threads on the ends of steel conduit to ensure electrical continuity?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Stocks and Dies",
+              "Stock and Die",
+              "Stocks and Die set"
+            ],
+            "hint": "This tool set consists of a cutting head and a handle assembly."
+          },
+          {
+            "id": "203-3E1C-P4",
+            "questionText": "Based on the lesson content, how many common outside diameter (OD) sizes are listed for Formers used in metallic conduit benders? (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3",
+              "3.0"
+            ],
+            "hint": "Count the specific millimetre sizes mentioned in the key facts."
+          },
+          {
+            "id": "203-3E1C-P5",
+            "questionText": "Select the correct tool used specifically to produce uniform and accurate changes in direction for cable tray systems.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Tray Bender",
+              "the Tray Bender",
+              "a Tray Bender"
+            ],
+            "hint": "Identify the tool designed for tray, not conduit or trunking."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3E1C-INT-1",
+            "questionText": "How do the roles of the conduit bender's former and the pipe vice complement each other during the preparation of a metallic conduit run? Please explain your answer in 2-3 sentences.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The former provides the necessary internal support and shape to create accurate bends without kinking the conduit, while the pipe vice provides the essential mechanical stability required to safely cut threads on the conduit ends. Together, these tools ensure that the conduit is both correctly shaped for the route and ready for secure mechanical connection.",
+              "While the former allows for the precise manipulation of the conduit's path by providing a template for bending, the pipe vice secures the material so that stocks and dies can be used to create the threads needed for joining components. This combination allows an installer to navigate obstacles and maintain structural integrity throughout the run."
+            ],
+            "hint": "Think about how one tool shapes the conduit's path while the other secures it for the threading process."
+          },
+          {
+            "id": "203-3E1C-INT-2",
+            "questionText": "Explain how the integrated use of conduit and tray benders, formers, and stocks and dies allows an electrician to complete a professional containment installation. Please provide a comprehensive explanation in 3-4 sentences.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "A professional installation relies on tray and conduit benders, utilizing specific formers, to accurately navigate the building's architecture by creating precise angles in the containment material. Once shaped, stocks and dies are used to cut external threads on conduit ends, which are held firmly in a pipe vice to ensure accuracy and safety during the cutting process. By synthesizing these bending and threading techniques, the electrician can create a continuous, mechanically sound containment system that is both aesthetically pleasing and compliant with installation standards.",
+              "The bending equipment, including formers and tray benders, allows the installer to customize the physical route of the containment to fit the environment, while threading tools like stocks and dies provide the means to join these customized sections together. Using a pipe vice to stabilize the conduit during threading ensures that the connections are deep and secure, preventing system failure. Ultimately, the coordinated use of all these specialized tools ensures that the containment system is robust, properly aligned, and capable of protecting the internal wiring."
+            ],
+            "hint": "Consider how bending tools manage the 'pathway' of the installation while threading tools manage the 'connections' between sections."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3E1C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [],
+        "notes": "No prerequisites for this foundational lesson"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-04",
+    "updated": "2026-02-04",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

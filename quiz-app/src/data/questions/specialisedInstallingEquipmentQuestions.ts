@@ -2,25 +2,25 @@ import { TaggedQuestion } from './types';
 
 /**
  * Specialised Installing Equipment Question Bank
- * Aligned with lesson 203-3E1B learning outcomes
+ * Aligned with lesson 203-3E1C learning outcomes
  * Generated: 2026-02-04
  */
 
 export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "Which specific tool is used to cut external threads onto the ends of heavy gauge steel conduit?",
+    "question": "Which specialized tool is required to cut an external thread on the end of a piece of galvanised steel conduit?",
     "options": [
       "Stocks and dies",
       "Conduit bender",
-      "Pipe wrench",
-      "Internal bending spring"
+      "Pipe vice",
+      "Draw tape"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
+      "2": "OTHER",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -28,26 +28,26 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Stocks and dies are the specific tools used to cut the necessary threads onto the ends of steel conduit so they can be joined or terminated into boxes."
+    "explanation": "Stocks and dies are the specific tools used to cut external threads onto the ends of steel conduit so they can be joined to fittings."
   },
   {
     "id": 4017,
-    "question": "What is the primary purpose of a 'former' when used with a manual conduit bender?",
+    "question": "What is the primary purpose of a 'former' when used with a conduit bending machine?",
     "options": [
-      "To maintain the circular profile of the conduit during a bend",
-      "To measure the exact length of the conduit needed",
-      "To cut the conduit to the correct size",
-      "To create a thread on the end of the conduit"
+      "To maintain the shape of the conduit and prevent it from collapsing",
+      "To cut the conduit to the correct length",
+      "To create a thread on the outside of the conduit",
+      "To pull cables through the conduit after installation"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
+      "1": "OTHER",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -55,134 +55,80 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A former provides a shaped track that supports the walls of the conduit, preventing it from kinking or flattening while being bent."
+    "explanation": "The former is a curved block that supports the conduit during the bending process, ensuring the pipe maintains its circular profile without kinking or collapsing."
   },
   {
     "id": 4018,
-    "question": "An electrician needs to create a 90-degree bend in a length of 20mm galvanised steel conduit. Which piece of equipment is most suitable?",
+    "question": "An electrician needs to pull several single-core cables through a 10-metre run of PVC conduit. Which tool is most suitable for this task?",
     "options": [
-      "A conduit bender with a 20mm former",
-      "A tray bender",
-      "An internal bending spring",
-      "A blow torch and wet cloth"
+      "Draw tape",
+      "Bending spring",
+      "Stocks and dies",
+      "Former"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
       "application",
-      "units"
+      "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Steel conduit requires a mechanical conduit bender with a former sized specifically for the diameter of the pipe (e.g., 20mm)."
+    "explanation": "A draw tape (or fish tape) is a flexible tool pushed through a conduit run to attach to cables and pull them back through."
   },
   {
     "id": 4019,
-    "question": "Which of the following tools is specifically designed to facilitate the bending of heavy-duty cable tray?",
+    "question": "Which of the following items is essential when using a conduit bender to create a 90-degree bend in 20mm steel conduit?",
     "options": [
-      "Tray bender",
-      "Stocks and dies",
-      "Pipe vice",
-      "Bending spring"
+      "The correct sized former",
+      "A bending spring",
+      "A set of dies",
+      "A tray bender"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
+      "2": "OTHER",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
-      "terminology",
-      "discrimination"
+      "discrimination",
+      "application"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A tray bender is a specialized tool used to create uniform bends in cable tray without damaging the tray's structure or finish."
+    "explanation": "Conduit benders require a former that matches the diameter of the conduit being bent (e.g., 20mm) to ensure a smooth, accurate bend."
   },
   {
     "id": 4020,
-    "question": "When using stocks and dies, what is the function of the 'guide bush'?",
+    "question": "What is the main reason for inserting a bending spring into a piece of PVC conduit before bending it by hand?",
     "options": [
-      "To ensure the die is held square to the conduit for a straight thread",
-      "To lubricate the cutting teeth of the die",
-      "To measure the depth of the thread being cut",
-      "To remove metal burrs from the inside of the conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The guide bush slides over the conduit first, ensuring the stock and die assembly is perfectly aligned (square) with the pipe so the thread isn't cut at an angle."
-  },
-  {
-    "id": 4021,
-    "question": "Which tool would be used to hold a length of steel conduit securely while threads are being cut with stocks and dies?",
-    "options": [
-      "A pipe vice (or tripod)",
-      "A conduit bender",
-      "A pair of pliers",
-      "An internal spring"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A pipe vice, often mounted on a tripod, is used to grip the conduit firmly to prevent it from rotating while the high torque of threading is applied."
-  },
-  {
-    "id": 4022,
-    "question": "Why is cutting oil applied to the dies when threading steel conduit?",
-    "options": [
-      "To reduce heat and friction on the cutting teeth",
-      "To prevent the conduit from rusting in the future",
-      "To make the conduit easier to bend later",
-      "To clean the internal bore of the conduit"
+      "To prevent the conduit walls from kinking or flattening",
+      "To make the conduit easier to cut with a hacksaw",
+      "To lubricate the inside of the conduit for cable pulling",
+      "To ensure the conduit stays warm during the bend"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "2": "OTHER",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -190,25 +136,243 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 1,
+    "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "Cutting oil acts as a lubricant and coolant, protecting the sharp edges of the dies and ensuring a smoother thread finish."
+    "explanation": "The bending spring provides internal support to the PVC conduit walls, preventing them from buckling or collapsing while the material is being bent."
   },
   {
-    "id": 4023,
-    "question": "An electrician is installing PVC conduit. Which item is used to prevent the conduit from collapsing while bending it by hand?",
+    "id": 4021,
+    "question": "Which piece of equipment is specifically designed to create neat, professional folds or offsets in cable tray?",
     "options": [
-      "An internal bending spring",
-      "A set of stocks and dies",
-      "A 20mm steel former",
-      "A tray bender"
+      "Tray bender",
+      "Conduit bender",
+      "Stocks and dies",
+      "Pipe vice"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A tray bender is a specialized tool used to bend metal cable tray to specific angles without damaging the integrity of the tray."
+  },
+  {
+    "id": 4022,
+    "question": "In the context of installing steel conduit, what is the specific function of the 'die' within a stock and die set?",
+    "options": [
+      "It is the cutting tool that forms the thread",
+      "It is the handle used to turn the tool",
+      "It is the lubricant used to cool the metal",
+      "It is the guide that holds the conduit straight"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The 'die' is the hardened steel cutting component that actually carves the thread into the conduit; the 'stock' is the frame or handle that holds it."
+  },
+  {
+    "id": 4023,
+    "question": "Which tool would be used to hold a length of galvanised steel conduit securely while an electrician cuts a thread on the end?",
+    "options": [
+      "Pipe vice",
+      "Conduit bender",
+      "Draw tape",
+      "Bending spring"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A pipe vice is mounted to a workbench or tripod and is designed to grip circular conduit firmly so it does not rotate while being threaded or cut."
+  },
+  {
+    "id": 4024,
+    "question": "When using a conduit bender, the 'stop' or 'guide' is used to:",
+    "options": [
+      "Secure the conduit in place at the start of the bend",
+      "Mark the measurement for the next bend",
+      "Cut the conduit to length automatically",
+      "Remove burrs from the inside of the pipe"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The stop or guide on a bender holds the conduit against the former so that it doesn't slip when pressure is applied to the handle."
+  },
+  {
+    "id": 4025,
+    "question": "Which specialized equipment is most likely to be found on a tripod stand on a construction site for use with steel conduit?",
+    "options": [
+      "Pipe vice and stocks and dies",
+      "PVC bending springs",
+      "Draw tapes and lubricants",
+      "Cable tray benders"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A tripod stand is a common site accessory used to mount a pipe vice and provide a stable platform for threading conduit with stocks and dies."
+  },
+  {
+    "id": 4026,
+    "question": "What is the primary purpose of using 'stocks and dies' in electrical installation work?",
+    "options": [
+      "Cutting external threads on heavy-gauge steel conduit",
+      "Bending 20mm PVC conduit to a 90-degree angle",
+      "Removing the internal burrs from the end of a cut pipe",
+      "Securing cable tray to a wall bracket"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "terminology",
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Stocks and dies are specialised tools used specifically to cut external threads onto the ends of heavy-gauge steel conduit so they can be screwed into boxes or couplers."
+  },
+  {
+    "id": 4027,
+    "question": "When using a conduit bender, what is the specific function of the 'former'?",
+    "options": [
+      "To provide a fixed radius for the conduit to be bent around",
+      "To cut the conduit to the correct length",
+      "To clean the inside of the conduit after cutting",
+      "To thread the end of the conduit for a coupler"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The former is a curved block that ensures the conduit maintains its shape and follows a specific radius during the bending process, preventing kinking."
+  },
+  {
+    "id": 4028,
+    "question": "Which tool should be used to create an accurate and uniform bend in a length of cable tray?",
+    "options": [
+      "Tray bender",
+      "Stocks and dies",
+      "Internal bending spring",
+      "Side cutters"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A tray bender is the specific tool designed to create neat, professional bends in cable tray without damaging the material."
+  },
+  {
+    "id": 4029,
+    "question": "An electrician is installing a heavy-gauge steel conduit system and needs to join a length of pipe to a threaded conduit box. Which tool is required to prepare the conduit end?",
+    "options": [
+      "Stocks and dies",
+      "Internal bending spring",
+      "Pipe grips",
+      "Blow lamp"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
@@ -217,26 +381,26 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 1,
+    "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "For PVC conduit, an internal spring is inserted to support the walls from the inside during a cold bend."
+    "explanation": "To join steel conduit to a threaded box, external threads must be cut onto the conduit using stocks and dies."
   },
   {
-    "id": 4024,
-    "question": "Which component of a manual conduit bender is responsible for applying the pressure to the conduit against the former?",
+    "id": 4030,
+    "question": "What is the primary reason for selecting a former that matches the exact diameter of the conduit being bent?",
     "options": [
-      "The stop (or hook) and the roller",
-      "The stocks",
-      "The die nuts",
-      "The internal spring"
+      "To prevent the conduit from flattening or kinking",
+      "To make the conduit easier to paint after installation",
+      "To increase the electrical conductivity of the steel",
+      "To allow the conduit to be used with PVC solvent cement"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -244,25 +408,268 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "discrimination"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "The stop (hook) holds the pipe in place while the roller/lever applies the force to wrap the conduit around the former."
+    "explanation": "Using a former that is the wrong size will not support the walls of the conduit correctly, leading to the pipe kinking or collapsing during the bend."
   },
   {
-    "id": 4025,
-    "question": "What is the result of using a 25mm former to bend a 20mm steel conduit?",
+    "id": 4031,
+    "question": "When using a mechanical conduit bender to create a 90-degree bend in 20mm heavy-gauge steel conduit, what is the primary purpose of the 'former'?",
     "options": [
-      "The conduit will likely kink or flatten",
-      "The bend will be more accurate",
-      "The thread will be easier to cut",
-      "The conduit will become stronger"
+      "To provide a fixed radius template that prevents the conduit from collapsing during the bend",
+      "To act as a clamping mechanism to hold the conduit stationary while it is being cut",
+      "To create the screw threads required for connecting the conduit to a circular box",
+      "To remove internal burrs from the conduit after it has been cut to length"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The former is the curved block in a bender that ensures the conduit maintains its shape and follows a specific radius without flattening or kinking."
+  },
+  {
+    "id": 4032,
+    "question": "An electrician needs to join two lengths of galvanized steel conduit using a standard coupling. Which piece of specialised equipment is required to prepare the ends of the conduit?",
+    "options": [
+      "Stocks and dies",
+      "A hydraulic tray bender",
+      "A pipe former and guide",
+      "A draw wire and lubricant"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
       "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Stocks and dies are used to cut external threads onto the ends of steel conduit so they can be screwed into couplings or boxes."
+  },
+  {
+    "id": 4033,
+    "question": "When using stocks and dies to thread a piece of 25mm steel conduit, what is the specific function of the 'die'?",
+    "options": [
+      "It is the replaceable cutting tool that forms the actual thread profile",
+      "It is the frame or handle used to provide leverage while turning",
+      "It is the lubricant applied to the metal to prevent overheating",
+      "It is the guide bush that ensures the conduit is centered in the stock"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "In a stock and die set, the 'die' is the hardened steel component that does the cutting, while the 'stock' is the holder/handle."
+  },
+  {
+    "id": 4034,
+    "question": "Why is it essential to use a 'guide' or 'pressure block' in conjunction with a former when bending steel conduit?",
+    "options": [
+      "To distribute the force evenly along the conduit and prevent rippling",
+      "To measure the exact angle of the bend as it is being formed",
+      "To increase the physical strength of the electrician performing the bend",
+      "To clean the outer surface of the galvanized coating during the process"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The guide (or pressure block) moves with the conduit to ensure pressure is applied correctly against the former, preventing the tube from kinking or rippling."
+  },
+  {
+    "id": 4035,
+    "question": "Which tool would be most appropriate for making precise, repeatable offsets in a large quantity of heavy-duty cable tray?",
+    "options": [
+      "A specialised tray bender",
+      "A standard conduit former",
+      "A set of stocks and dies",
+      "A PVC bending spring"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Cable tray benders are designed specifically to handle the width and profile of tray, which cannot be processed using conduit tools."
+  },
+  {
+    "id": 4036,
+    "question": "After cutting a length of steel conduit with a hacksaw, what procedure must be carried out before using the stocks and dies?",
+    "options": [
+      "Reaming the internal and external edges to remove sharp burrs",
+      "Heating the end of the conduit to make the metal softer for cutting",
+      "Applying a thick layer of gloss paint to protect the bare metal",
+      "Measuring the internal diameter with a micrometer to check for ovality"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Reaming is critical to remove sharp edges that could damage cable insulation and to ensure the die starts correctly on the conduit."
+  },
+  {
+    "id": 4037,
+    "question": "Which component of a conduit bender is adjusted or swapped when changing from 20mm conduit to 25mm conduit?",
+    "options": [
+      "The former and the guide",
+      "The length of the lever handle",
+      "The stop-block only",
+      "The tension of the return spring"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Formers and guides are sized specifically to the outside diameter of the conduit to ensure a proper fit and prevent deformation."
+  },
+  {
+    "id": 4038,
+    "question": "What is the primary reason for using cutting compound (oil) when using stocks and dies on steel conduit?",
+    "options": [
+      "To dissipate heat and preserve the sharp cutting edges of the die",
+      "To ensure the conduit remains electrically conductive at the joint",
+      "To prevent the stock from slipping out of the electrician's hands",
+      "To expand the metal slightly to make the threads deeper"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Cutting metal creates significant friction and heat; lubrication is essential to prevent the die teeth from dulling or snapping."
+  },
+  {
+    "id": 4039,
+    "question": "A 'pipe vice' is often used alongside specialized conduit equipment. What is its main purpose in this context?",
+    "options": [
+      "To securely hold the conduit while threading or cutting is performed",
+      "To bend the conduit into a 'kick' or 'offset' using manual force",
+      "To measure the length of the conduit against a built-in scale",
+      "To store the dies and guides when they are not being used"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "A pipe vice (often mounted on a tripod) is used to grip the conduit firmly so the electrician can apply the high torque required for threading."
+  },
+  {
+    "id": 4040,
+    "question": "When threading conduit, an electrician notices the die is difficult to turn and is 'tearing' the metal rather than cutting a clean thread. What is the most likely cause?",
+    "options": [
+      "The die is blunt or the electrician has failed to use cutting compound",
+      "The conduit has been reamed too much on the inside",
+      "The former used in the previous step was the wrong size",
+      "The stock handle is too long for the diameter of the pipe"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
@@ -271,20 +678,20 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Formers must match the conduit size exactly. Using an oversized former leaves a gap that allows the conduit walls to collapse (kink) during the bend."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Tearing of the metal is a classic sign of a dull cutting tool or a lack of lubrication, which causes the metal to weld to the tool."
   },
   {
-    "id": 4026,
-    "question": "Which tool is specifically used to create an external thread on the end of a heavy-gauge steel conduit?",
+    "id": 4041,
+    "question": "What is the primary purpose of a 'die' within a stock and die set used by an electrician?",
     "options": [
-      "Stocks and dies",
-      "A conduit reamer",
-      "A pipe cutter",
-      "A bending machine"
+      "Cutting external threads on heavy gauge steel conduit",
+      "Cutting internal threads in a conduit box entry",
+      "Removing sharp burrs from the inside of a cut conduit",
+      "Re-shaping a crushed end of a conduit before installation"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -298,101 +705,20 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Stocks and dies are the standard tools used for cutting external threads onto the ends of steel conduit to allow for mechanical connection to boxes and fittings."
-  },
-  {
-    "id": 4027,
-    "question": "In the context of a conduit bending machine, what is the primary purpose of the 'former'?",
-    "options": [
-      "To ensure the conduit maintains a consistent radius during a bend",
-      "To cut the conduit to the required length",
-      "To create a thread on the end of the conduit",
-      "To remove sharp burrs from the inside of the conduit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The former is a shaped block that determines the radius of the bend and prevents the conduit from collapsing or kinking during the bending process."
-  },
-  {
-    "id": 4028,
-    "question": "Which of the following pieces of equipment is designed specifically for shaping cable tray to navigate corners?",
-    "options": [
-      "Tray bender",
-      "Stocks and dies",
-      "Internal bending spring",
-      "Conduit former"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A tray bender is a specialised tool used to create precise offsets and bends in cable tray systems."
-  },
-  {
-    "id": 4029,
-    "question": "An electrician needs to install a length of 25mm PVC conduit with a 90-degree bend. Which tool should be used to prevent the conduit from kinking?",
-    "options": [
-      "Internal bending spring",
-      "Stocks and dies",
-      "Pipe vice",
-      "Tray bender"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "For PVC conduit, an internal bending spring is inserted into the tube to support the walls of the conduit while it is being bent by hand."
+    "estimatedTime": 60,
+    "explanation": "A die is the cutting tool used to create external threads on the outside of steel conduit so it can be screwed into fittings or boxes. Internal threads are cut using a tap."
   },
   {
-    "id": 4030,
-    "question": "When using a stock and die set, what is the purpose of the 'stock'?",
+    "id": 4042,
+    "question": "When using a manual conduit bender, what is the specific function of the 'former'?",
     "options": [
-      "To hold and turn the dies during the threading process",
-      "To remove the internal burr after cutting",
-      "To measure the length of the thread",
-      "To lubricate the conduit during cutting"
+      "To ensure the conduit maintains its circular shape and radius during the bend",
+      "To provide the mechanical leverage needed to bend the heavy gauge steel",
+      "To measure the exact angle of the bend being produced by the operator",
+      "To lock the conduit in place so it does not slip forward during the pull"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -406,183 +732,20 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The 'stock' is the handle or frame that holds the cutting 'dies' in place and provides the leverage needed to rotate them around the conduit."
-  },
-  {
-    "id": 4031,
-    "question": "An electrician is preparing to install a run of heavy-gauge galvanized steel conduit. Which specific tool must be used to create a thread on the end of the conduit for connection to a terminal box?",
-    "options": [
-      "Stocks and dies",
-      "Pipe wrench and reamer",
-      "Conduit bender with a former",
-      "Internal bending spring"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "terminology",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Stocks and dies are the specialised tools used to cut external threads onto the ends of steel conduit."
+    "explanation": "The former is a curved block that matches the diameter of the conduit; its purpose is to support the walls of the conduit to prevent kinking or flattening during the bending process."
   },
   {
-    "id": 4032,
-    "question": "When using a stand-mounted conduit bending machine, what is the primary purpose of the 'former'?",
+    "id": 4043,
+    "question": "An electrician is installing 25mm heavy gauge steel conduit. Which combination of tools is required to create a threaded end for connection to a terminal box?",
     "options": [
-      "To provide the specific radius for the bend while supporting the conduit walls",
-      "To ensure the conduit is threaded correctly before bending",
-      "To measure the exact length of the conduit required for the run",
-      "To remove sharp burrs from the inside of the conduit after cutting"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The former is a shaped block that determines the radius of the bend and prevents the conduit from collapsing or kinking during the process."
-  },
-  {
-    "id": 4033,
-    "question": "After cutting a length of steel conduit with a hacksaw, which tool should be used before the threading process to ensure cables are not damaged during installation?",
-    "options": [
-      "Reamer",
-      "Die nut",
-      "Former",
-      "Pipe vice"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A reamer is used to remove the sharp internal burrs (edges) created by cutting, which could otherwise strip the insulation from cables."
-  },
-  {
-    "id": 4034,
-    "question": "What is the specific function of a 'tray bender' compared to a standard conduit bender?",
-    "options": [
-      "It is used to create precise offsets and bends in sheet metal cable tray",
-      "It is used to pull heavy cables through long sections of tray",
-      "It is used to thread the edges of the tray for coupling",
-      "It is used to punch 20mm holes in the side of the tray"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "While conduit benders are for circular pipes, tray benders are designed to manipulate the flat and flanged profile of cable tray."
-  },
-  {
-    "id": 4035,
-    "question": "When threading steel conduit, why is it standard practice to turn the stocks backward by a quarter turn for every full forward turn?",
-    "options": [
-      "To break off the metal swarf and prevent the die from jamming",
-      "To ensure the thread is deep enough for the locknut",
-      "To prevent the conduit from overheating and losing its galvanised coating",
-      "To allow the lubricant to reach the bottom of the thread"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Backing off the stocks breaks the 'chips' or swarf, which prevents the cutting teeth of the die from becoming clogged or damaged."
-  },
-  {
-    "id": 4036,
-    "question": "Which item of equipment is essential when pulling large-diameter multi-core cables onto a high-level cable tray system to minimize physical strain and prevent cable damage?",
-    "options": [
-      "Cable rollers",
-      "Internal bending springs",
-      "Die sets",
-      "Hole punches"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Cable rollers allow the cable to glide over the tray or around corners without dragging against sharp edges or requiring excessive pulling force."
-  },
-  {
-    "id": 4037,
-    "question": "A technician needs to make a clean 25mm entry hole in a finished stainless steel enclosure. Which tool provides the most accurate and cleanest finish?",
-    "options": [
-      "Hydraulic hole punch",
-      "Hacksaw and file",
-      "Stocks and dies",
-      "Conduit former"
+      "Pipe vice, hacksaw, reamer, and stock and die",
+      "Bench vice, pipe cutters, former, and tap set",
+      "Conduit bender, file, and internal threading tool",
+      "Side cutters, reamer, and a 20mm stock and die"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -593,219 +756,29 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
-      "discrimination",
-      "application"
+      "application",
+      "calculation"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "A hydraulic or manual hole punch (often called a 'Cutter') creates a perfectly round hole without the jagged edges or distortion associated with drilling or sawing."
-  },
-  {
-    "id": 4038,
-    "question": "What is the purpose of the 'stop' or 'guide' on a hand-held conduit bender?",
-    "options": [
-      "To hold the conduit securely so it does not slip during the bending motion",
-      "To indicate when a 90-degree angle has been reached",
-      "To cut the conduit to the correct length automatically",
-      "To provide a surface for the reamer to grip"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "UNITS_MISSING"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The stop (or hook) ensures the conduit stays in the correct position relative to the former during the bend, ensuring accuracy."
-  },
-  {
-    "id": 4039,
-    "question": "When using a bending spring to form an angle in 20mm PVC conduit, why is it important to leave the spring inside the conduit until the bend is complete?",
-    "options": [
-      "To prevent the walls of the PVC from collapsing or buckling",
-      "To help heat the PVC through friction",
-      "To measure the internal diameter of the bend",
-      "To make it easier to pull the cables through later"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The internal spring supports the PVC walls from the inside, maintaining the circular profile while the material is being stressed during the bend."
-  },
-  {
-    "id": 4040,
-    "question": "Identify the correct sequence of tools used when preparing a piece of steel conduit to be joined to a threaded coupling.",
-    "options": [
-      "Hacksaw, Reamer, Stocks and Dies",
-      "Stocks and Dies, Hacksaw, Reamer",
-      "Reamer, Stocks and Dies, Hacksaw",
-      "Hacksaw, Stocks and Dies, Bending Spring"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "The conduit must first be cut to length (Hacksaw), then the internal edges smoothed (Reamer), and finally the external threads cut (Stocks and Dies)."
-  },
-  {
-    "id": 4041,
-    "question": "What is the primary purpose of a 'stock and die' set when working with heavy gauge steel conduit?",
-    "options": [
-      "To cut external threads on the ends of the conduit for couplings and boxes",
-      "To remove sharp burrs from the internal edge of the conduit after cutting",
-      "To create precise 90-degree bends without kinking the pipe",
-      "To secure the conduit into a pipe vice for manual cutting"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "terminology",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-3E1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A stock and die set is specifically used to cut the external threads onto steel conduit, allowing it to be screwed into fittings or secured with locknuts."
-  },
-  {
-    "id": 4042,
-    "question": "When using a manual conduit bender, what is the specific function of the 'former'?",
-    "options": [
-      "To provide the correct radius and support the conduit walls during a bend",
-      "To act as a lever handle to increase the force applied by the electrician",
-      "To measure the exact length of the conduit before the bend is made",
-      "To hold the conduit steady while external threads are being cut"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3E1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The former is the curved block that determines the radius of the bend and supports the conduit to prevent it from collapsing or kinking under pressure."
-  },
-  {
-    "id": 4043,
-    "question": "An electrician needs to create a series of uniform 90-degree bends in 20mm galvanized steel conduit. Which piece of equipment is most suitable for this task?",
-    "options": [
-      "A stand-mounted conduit bender with a 20mm former",
-      "An internal bending spring and a heat gun",
-      "A manual tray bender with adjustable guides",
-      "A pipe vice and a hickey bender without a guide"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203-3E1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "For steel conduit, a stand-mounted bender with the correct sized former (20mm) ensures accuracy and prevents damage to the galvanized coating."
+    "explanation": "The process requires securing the pipe (pipe vice), cutting it to length (hacksaw), removing internal burrs (reamer), and then cutting the external threads (stock and die)."
   },
   {
     "id": 4044,
-    "question": "Why is an internal bending spring used when forming bends in PVC conduit?",
+    "question": "Which piece of equipment is specifically designed to create a 90-degree bend in cable tray without the use of pre-fabricated fittings?",
     "options": [
-      "To prevent the conduit walls from collapsing or kinking during the bend",
-      "To provide a path for the draw tape to be inserted later",
-      "To increase the temperature of the plastic through friction",
-      "To ensure the conduit remains electrically continuous"
+      "Tray bender (bolster)",
+      "Conduit former",
+      "Hydraulic pipe bender",
+      "Stocks and dies"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "TOPOLOGY_CONFUSION",
       "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3E1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "PVC conduit is prone to kinking or flattening when bent; the internal spring maintains the circular profile of the conduit while it is being manipulated."
-  },
-  {
-    "id": 4045,
-    "question": "Which tool is specifically designed to create precise, repeatable folds in heavy-duty cable tray to navigate corners?",
-    "options": [
-      "A tray bender",
-      "A conduit bender",
-      "A pipe vice",
-      "A set of stocks and dies"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -813,52 +786,79 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "A tray bender is a specialized tool used to fold the side flanges of cable tray, allowing for neat and professional changes in direction."
+    "explanation": "A tray bender or bolster is used to create site-manufactured bends in cable tray, whereas conduit formers and pipe benders are intended for tubular systems."
+  },
+  {
+    "id": 4045,
+    "question": "Why is it essential to use a 'guide' when using a stock and die set on steel conduit?",
+    "options": [
+      "To ensure the die is square to the conduit for a straight thread",
+      "To prevent the die from becoming blunt too quickly during the cut",
+      "To measure the length of the thread being cut automatically",
+      "To increase the torque applied to the conduit during the first turn"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The guide slides over the conduit and keeps the stock and die perfectly aligned (square) with the pipe, ensuring the threads are not cut at an angle (cross-threaded)."
   },
   {
     "id": 4046,
-    "question": "When preparing a length of 25mm steel conduit for installation into a circular box, which sequence of tools should be used for a professional finish?",
+    "question": "While bending 20mm galvanised conduit, the electrician notices the pipe is flattening at the point of the bend. What is the most likely cause of this issue?",
     "options": [
-      "Pipe cutter, reamer, then stocks and dies",
-      "Stocks and dies, pipe cutter, then former",
-      "Pipe cutter, former, then bending spring",
-      "Reamer, stocks and dies, then tray bender"
+      "Using a former size that is too large for the conduit",
+      "Applying too much lubrication to the conduit surface",
+      "Using a 25mm stock and die instead of 20mm",
+      "The conduit has not been reamed before bending"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "2": "WRONG_UNITS",
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
       "application",
-      "units"
+      "conceptual"
     ],
-    "learningOutcomeId": "203-3E1-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The conduit must first be cut to length, then reamed to remove internal sharp edges that could damage cables, and finally threaded using stocks and dies."
+    "estimatedTime": 75,
+    "explanation": "If the former is too large (e.g., using a 25mm former for a 20mm pipe), it will not provide the necessary side-wall support, causing the conduit to flatten or collapse under the pressure of the bend."
   },
   {
     "id": 4047,
-    "question": "In a stock and die set, what is the specific role of the 'die'?",
+    "question": "What is the function of a 'pipe reamer' in the context of steel conduit installation?",
     "options": [
-      "It is the cutting tool that forms the thread on the outside of the conduit",
-      "It is the handle mechanism used to rotate the cutting head",
-      "It is the guide bush that ensures the tool is square to the pipe",
-      "It is the lubricant applied to the pipe to reduce heat during cutting"
+      "To remove sharp internal burrs after cutting to protect cables",
+      "To expand the end of the conduit for a slip-type joint",
+      "To clean the external threads of the conduit after threading",
+      "To create a lead-in taper for the threading die"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
+      "1": "OTHER",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
@@ -867,24 +867,24 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The 'die' is the hardened steel component with cutting teeth that actually carves the thread into the metal conduit."
+    "explanation": "After cutting conduit with a hacksaw, sharp edges (burrs) are left on the inside which can damage cable insulation during drawing-in. The reamer removes these edges."
   },
   {
     "id": 4048,
-    "question": "What is the purpose of the 'stop' or 'hook' located on the head of a manual conduit bender?",
+    "question": "In a stock and die set, the 'stock' is the component that:",
     "options": [
-      "To hold the conduit firmly in place at the start of the bend",
-      "To lock the former in place so it cannot rotate",
-      "To indicate when a 90-degree angle has been reached",
-      "To deburr the end of the conduit while bending"
+      "Holds the die and provides handles for leverage",
+      "Is the replaceable cutting tool that forms the threads",
+      "Holds the conduit firmly in place during the work",
+      "Protects the threads from corrosion after cutting"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
@@ -894,26 +894,26 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The stop or hook secures the conduit against the former, preventing it from slipping forward while the electrician applies downward pressure on the handle."
+    "explanation": "The 'stock' is the frame or holder with handles. The 'die' is the actual cutting element placed inside the stock."
   },
   {
     "id": 4049,
-    "question": "An electrician is pulling large SWA cables through a long run of cable tray with several changes in direction. What equipment should be used to protect the cable sheath from abrasion?",
+    "question": "An electrician needs to install a run of 20mm steel conduit with several offsets. Which tool is most appropriate for ensuring the offsets are uniform and the conduit is not damaged?",
     "options": [
-      "Cable rollers and guides",
-      "Draw tape and yellow lubricant only",
-      "Internal bending springs",
-      "Stocks and dies with cutting oil"
+      "A conduit bender with the correct size former and stop",
+      "A pipe vice and a large adjustable spanner",
+      "A set of stocks and dies with a high-quality guide",
+      "A tray bender and a rubber mallet"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -921,20 +921,20 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-3E1-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Cable rollers and guides are used on tray or ladder systems to ensure the cable moves smoothly around corners without rubbing against sharp metal edges."
+    "explanation": "A conduit bender is specifically designed for this task, using a former to create smooth, consistent bends without collapsing the pipe."
   },
   {
     "id": 4050,
-    "question": "If an electrician attempts to bend 20mm steel conduit using a 25mm former, what is the most likely result?",
+    "question": "Why is 'cutting compound' or oil typically applied when using stocks and dies on steel conduit?",
     "options": [
-      "The conduit will flatten or kink due to insufficient side-wall support",
-      "The bend will be successful but will have a larger radius than intended",
-      "The external threads will be stripped by the former",
-      "The conduit will snap immediately due to the incorrect size"
+      "To reduce heat and friction while maintaining the life of the die",
+      "To prevent the conduit from slipping in the pipe vice",
+      "To make it easier to slide the conduit into the former later",
+      "To provide a permanent anti-corrosive coating to the threads"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -948,237 +948,75 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-3E1-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Formers are sized precisely to the conduit. Using one that is too large means the conduit is not supported on its sides, causing it to flatten or kink under the bending force."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Threading generates significant heat and friction. Cutting compound lubricates the cutting edge and dissipates heat, resulting in cleaner threads and a longer-lasting die."
   },
   {
     "id": 4051,
-    "question": "When preparing a run of heavy-gauge steel conduit for connection into a threaded entry of a metal box, which tool is specifically required to create the external thread?",
+    "question": "When preparing heavy-gauge steel conduit for installation, which tool is specifically required to create the external thread on the end of the conduit?",
     "options": [
       "Stocks and dies",
-      "A conduit reamer",
-      "A pipe vice",
-      "A former"
+      "Conduit reamer",
+      "Pipe vice",
+      "Tube bender"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
       "terminology",
-      "application"
+      "application",
+      "units"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Stocks and dies are the specific tools used to cut external threads onto the ends of steel conduit."
+    "explanation": "Stocks and dies are the specific tools used to cut external threads onto the ends of steel conduit to allow them to be screwed into fittings or couplings."
   },
   {
     "id": 4052,
-    "question": "In the context of using a stand-mounted conduit bender, what is the primary purpose of selecting the correct size 'former'?",
+    "question": "In a portable conduit bender, what is the primary purpose of the 'former' during the bending process?",
     "options": [
-      "To ensure the conduit maintains its shape without collapsing or kinking",
-      "To allow the conduit to be threaded while it is being bent",
-      "To increase the mechanical advantage for the operator",
-      "To measure the exact length of the conduit needed"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The former is shaped to match the diameter of the conduit; using the correct size prevents the walls of the conduit from collapsing inward during the bending process."
-  },
-  {
-    "id": 4053,
-    "question": "Which piece of equipment is designed specifically for creating precise, repeatable bends in cable tray sections during a commercial installation?",
-    "options": [
-      "A tray bender",
-      "A conduit former",
-      "A set of stocks and dies",
-      "A draw tape"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A tray bender is a specialized tool used to bend the side flanges of cable trays to create offsets or changes in direction."
-  },
-  {
-    "id": 4054,
-    "question": "Why must a conduit reamer be used after cutting steel conduit with a hacksaw but before installing cables?",
-    "options": [
-      "To remove sharp internal burrs that could damage cable insulation",
-      "To prepare the end of the conduit for the threading process",
-      "To ensure the conduit fits into the former of the bender",
-      "To increase the diameter of the conduit for easier pulling"
+      "To maintain the circular profile of the conduit and prevent it from collapsing",
+      "To measure the exact angle of the bend being produced",
+      "To provide the mechanical leverage required to bend the steel",
+      "To remove sharp burrs from the inside of the conduit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Cutting conduit leaves sharp edges (burrs) on the inside; a reamer removes these to prevent them from cutting into cable insulation during the draw-in process."
-  },
-  {
-    "id": 4055,
-    "question": "An electrician is tasked with installing a 25mm galvanized steel conduit system. After measuring and cutting the conduit to length, which sequence of tools is required to complete a 90-degree bend and join it to a threaded coupling?",
-    "options": [
-      "Conduit bender, then stocks and dies",
-      "Stocks and dies, then a spring bender",
-      "Tray bender, then a reamer",
-      "Pipe vice, then a hammer and bolster"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "For steel conduit, a conduit bender is used for the physical bend, and stocks and dies are used to create the threads for the coupling. A spring bender is for PVC, not steel."
-  },
-  {
-    "id": 4056,
-    "question": "An electrician is tasked with installing 25mm heavy-gauge galvanized steel conduit. During the bending process using a stand-mounted machine, the conduit consistently flattens or 'kinks' rather than forming a smooth curve. Which component is most likely incorrectly matched to the conduit?",
-    "options": [
-      "The former (bending shoe)",
-      "The stop-link (hook)",
-      "The guide (pressure roller)",
-      "The ratchet handle"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
-      "application",
-      "terminology",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The former (or bending shoe) must be specifically sized to the outside diameter of the conduit (e.g., 25mm). If a former for a larger size is used, it will not support the walls of the conduit during the bend, leading to flattening or kinking."
-  },
-  {
-    "id": 4057,
-    "question": "When using a stock and die set to thread a piece of 20mm steel conduit, the electrician finds the threads are 'tearing' and the die is becoming excessively hot. What is the most likely procedural error?",
-    "options": [
-      "Failure to use cutting compound and reverse the stock every half-turn",
-      "Using a die with a 1.5mm pitch instead of a 2.0mm pitch",
-      "Applying too much pressure to the guide bush during the cut",
-      "Failing to ream the conduit before starting the thread"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3E1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Cutting compound (tallow or oil) reduces friction and heat. Reversing the stock (breaking the chip) clears the swarf from the die's cutting teeth, preventing the 'tearing' of the threads."
-  },
-  {
-    "id": 4058,
-    "question": "In a specialized installation requiring a 'running coupler' to join two fixed lengths of conduit, which specific feature of a standard stock and die set allows for the creation of the necessary long thread?",
-    "options": [
-      "The ability to pass the conduit entirely through the center of the stock",
-      "The adjustable guide bush that centers the conduit",
-      "The tapered leading edge of the die teeth",
-      "The split-die adjustment screw for thread depth"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Specialised Installing Equipment",
-    "tags": [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "To create a 'running thread' (a thread longer than the coupler), the stock must allow the conduit to pass through it so that the die can continue cutting further down the length of the tube."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The former is a shaped block that the conduit is pressed against; its curved groove ensures the conduit keeps its shape and does not kink or flatten during the bend."
   },
   {
-    "id": 4059,
-    "question": "Which tool is specifically designed to create a 90-degree bend in the side-flange of a heavy-duty cable tray without causing the base of the tray to buckle or distort?",
+    "id": 4053,
+    "question": "Which specialised tool is designed to produce precise, repeatable offsets and 90-degree bends in cable tray without the need for cutting and bolting sections together?",
     "options": [
-      "A tray bender",
-      "A hydraulic conduit bender",
-      "A short-radius former",
-      "A bench vice and bolster"
+      "Tray bender",
+      "Hydraulic conduit bender",
+      "Stocks and dies",
+      "Hacksaw and file"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1192,26 +1030,26 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "A tray bender is a specialized tool that grips the flange and applies localized pressure to create a clean bend in the tray side-wall, which is essential for changing direction in tray installations."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A tray bender is specifically designed to manipulate the flat profile of cable tray into precise angles, maintaining structural integrity without the need for additional couplers."
   },
   {
-    "id": 4060,
-    "question": "After cutting a piece of galvanized steel conduit with a hacksaw, a 'reamer' or 'pipe deburrer' is used. What is the primary safety and technical reason for this in a specialized installation?",
+    "id": 4054,
+    "question": "After using a threading tool on steel conduit, why is it essential to use a conduit reamer before installing the conduit into a coupling?",
     "options": [
-      "To prevent internal sharp edges from damaging cable insulation during draw-in",
-      "To ensure the conduit can be inserted into the former for bending",
-      "To allow the die to start cutting the thread without slipping",
-      "To increase the internal cross-sectional area for heat dissipation"
+      "To remove sharp internal burrs that could damage cable insulation",
+      "To ensure the threads are cut to the correct depth",
+      "To allow the conduit to bend more easily in the former",
+      "To clean the galvanised coating from the outside of the pipe"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
+      "1": "OTHER",
       "2": "OTHER",
-      "3": "UNITS_MISSING"
+      "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
@@ -1219,145 +1057,308 @@ export const specialisedInstallingEquipmentQuestions: TaggedQuestion[] = [
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Cutting conduit leaves sharp internal burrs. If not removed with a reamer, these burrs will strip the insulation off cables as they are pulled through, leading to potential short circuits or earth faults."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Cutting threads or sawing conduit leaves sharp metal 'burrs' on the inside edge. A reamer removes these to prevent them from cutting into cable insulation during the 'pulling-in' phase."
   },
   {
-    "id": 4061,
-    "question": "An electrician needs to install 32mm steel conduit. A standard hand-operated bending machine is unsuitable due to the physical force required. Which specialized equipment is the most appropriate for this installation?",
+    "id": 4055,
+    "question": "An electrician is setting up a portable bending machine for 20mm steel conduit. To ensure a clean bend without deformation, which two components must be specifically sized for 20mm diameter tube?",
     "options": [
-      "A hydraulic bending machine",
-      "A high-speed stock and die set",
-      "A larger diameter former on a standard machine",
-      "A power-driven tray bender"
+      "The former and the pressure block (stop)",
+      "The stocks and the cutting dies",
+      "The reamer and the file",
+      "The tripod legs and the pipe vice"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
-      "discrimination",
-      "application"
+      "application",
+      "calculation"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Hydraulic bending machines use fluid pressure to multiply force, allowing larger diameters of conduit (like 32mm and above) to be bent accurately with minimal manual effort."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Both the former (which sets the radius) and the pressure block or stop (which holds the tube against the former) must match the conduit diameter to provide even support and prevent rippling."
   },
   {
-    "id": 4062,
-    "question": "Why is it essential to use a 'guide' (or pressure plate) in conjunction with a former when using a conduit bending machine?",
+    "id": 4056,
+    "question": "An electrician is tasked with installing 25mm heavy-gauge galvanized steel conduit. Which combination of specialized equipment is essential to create a precise 90-degree bend without collapsing the walls of the conduit?",
     "options": [
-      "To provide continuous support to the outer wall of the conduit during the bend",
-      "To ensure the conduit remains earthed to the machine frame",
-      "To measure the angle of the bend as it progresses",
-      "To hold the conduit in place while the stock and die are applied"
+      "A conduit bender fitted with a 25mm former and a matching pressure plate",
+      "A 25mm internal bending spring and a heat gun",
+      "A set of stocks and dies with a 25mm guide",
+      "A hydraulic tray bender with adjustable side-rail clamps"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONCEPTUAL_CONFUSION",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
-      "conceptual",
+      "application",
+      "units",
       "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "The guide moves with the conduit and applies pressure against the former. This 'sandwiches' the conduit, preventing the outer wall from collapsing or rippling while the inner wall is compressed."
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Steel conduit requires a mechanical bender with a former (to set the radius) and a pressure plate (to prevent wall collapse). Bending springs and heat guns are used for PVC, while stocks and dies are for threading."
   },
   {
-    "id": 4063,
-    "question": "A specialized ratchet-type stock is required for threading conduit in which of the following scenarios?",
+    "id": 4057,
+    "question": "When using a manual conduit bending machine, what is the specific mechanical purpose of the 'former' component?",
     "options": [
-      "When threading conduit in a confined space where a full rotation is impossible",
-      "When threading PVC conduit to prevent the material from melting",
-      "When using a 32mm die on a 20mm conduit to create a taper",
-      "When the conduit is being held in a portable pipe vice"
+      "To provide a fixed radius profile that supports the conduit's shape during the bend",
+      "To increase the leverage applied by the operator's arms",
+      "To act as a stop-block to prevent the conduit from sliding forward",
+      "To remove internal burrs from the conduit as it is being formed"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The former is the curved block that determines the radius of the bend; its profile matches the conduit diameter to ensure the tube doesn't flatten or kink."
+  },
+  {
+    "id": 4058,
+    "question": "During the installation of a steel conduit system, which tool is required to create a male thread on the end of a conduit length to facilitate a connection to a terminal box?",
+    "options": [
+      "Stocks and dies",
+      "Taper taps and wrenches",
+      "A conduit reamer",
+      "A side-entry pipe vice"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Stocks and dies are used to cut external (male) threads on steel conduit. Taps are used for internal (female) threads."
+  },
+  {
+    "id": 4059,
+    "question": "Why is it critical to use a 'guide' within the stock when cutting a thread on a piece of 20mm steel conduit?",
+    "options": [
+      "To ensure the die remains perfectly square to the conduit for a straight thread",
+      "To provide a reservoir for the cutting compound (tallow)",
+      "To expand the diameter of the conduit slightly before the die cuts",
+      "To prevent the die from cutting too deep into the conduit wall"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
-      "application",
-      "discrimination"
+      "conceptual",
+      "application"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
+    "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "A ratchet stock allows the user to cut threads by moving the handle back and forth in a limited arc, which is essential when the conduit is located near a wall or in a corner."
+    "explanation": "Without a guide, the stock can easily tilt, resulting in 'drunken' or slanted threads that will not screw into fittings correctly."
   },
   {
-    "id": 4064,
-    "question": "What is the primary function of the 'split' in a split-die found within a specialized stock and die set?",
+    "id": 4060,
+    "question": "A large-scale industrial project requires the installation of heavy-duty cable tray with several 45-degree offsets. Which tool is specifically designed to ensure these bends are uniform across the entire installation?",
     "options": [
-      "To allow for minor adjustments in the depth and fit of the thread",
-      "To allow the die to be easily removed from the stock without tools",
-      "To provide a path for the cutting compound to reach the conduit",
-      "To ensure the die can expand if the conduit is slightly oversized"
+      "A specialized tray bender",
+      "A conduit former with a 50mm radius",
+      "A bolt cropper with offset jaws",
+      "A tin snip set with a guide template"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONCEPTUAL_CONFUSION",
+      "1": "TOPOLOGY_CONFUSION",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "FORMULA_NOT_REARRANGED"
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Tray benders are specialized tools that allow for clean, consistent bends in cable tray side-rails without requiring manual cutting and gusseting for every angle."
+  },
+  {
+    "id": 4061,
+    "question": "When preparing a length of steel conduit, why must a conduit reamer be used immediately after cutting the tube with a hacksaw?",
+    "options": [
+      "To remove sharp internal burrs that could damage cable insulation during drawing-in",
+      "To widen the internal diameter to accept a larger die guide",
+      "To create a slight taper for easier insertion into a coupling",
+      "To clean off the galvanized coating for better electrical continuity"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
       "conceptual",
-      "terminology"
+      "health-safety"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "A split-die has a small screw in the stock that can open or close the die slightly. This allows the electrician to adjust the thread depth so that couplers fit perfectly (not too tight, not too loose)."
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Cutting conduit leaves a sharp 'burr' on the inside. If not removed with a reamer, this burr will strip the insulation off cables as they are pulled through."
   },
   {
-    "id": 4065,
-    "question": "When selecting a former for a specialized bending machine, what does the 'radius' of the former specifically determine?",
+    "id": 4062,
+    "question": "Which of the following describes the correct application of a 'split die' in a stock?",
     "options": [
-      "The sharpness of the bend and the space the bend will occupy",
-      "The maximum thickness of the conduit wall that can be bent",
-      "The length of the thread that must be cut on the conduit ends",
-      "The amount of 'spring-back' the conduit will exhibit after pressure is released"
+      "It allows for minor adjustments to the thread depth by tightening or loosening the stock screws",
+      "It is used specifically for cutting threads on PVC conduit only",
+      "It is designed to be broken in half once the thread is finished for easy removal",
+      "It allows the die to be used on multiple conduit sizes without changing parts"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
     "category": "Specialised Installing Equipment",
     "tags": [
       "discrimination",
-      "conceptual"
+      "terminology"
     ],
-    "learningOutcomeId": "203-3E1B-LO1",
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Split dies have a small gap that allows the stock's adjustment screws to slightly close or open the die, controlling how 'tight' or 'loose' the resulting thread is."
+  },
+  {
+    "id": 4063,
+    "question": "An electrician is attempting to bend 20mm steel conduit, but the conduit is slipping through the machine rather than bending. Which part of the bending machine needs adjustment or inspection?",
+    "options": [
+      "The stop or 'pipe stay'",
+      "The former size",
+      "The pressure plate hinge",
+      "The center bolt of the tripod"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "The radius of the former determines the curve of the bend. A short-radius former creates a tighter bend (useful in tight spaces), while a standard radius is used for general installations to ensure easy cable drawing."
+    "explanation": "The 'stop' or 'pipe stay' holds the conduit in a fixed position relative to the former. If it is loose or incorrectly positioned, the conduit will slide instead of bending."
+  },
+  {
+    "id": 4064,
+    "question": "In the context of specialized installation tools, what is the primary difference between a 'taper tap' and a 'plug tap'?",
+    "options": [
+      "The taper tap is used to start a thread, while the plug tap is for finishing threads at the bottom of a hole",
+      "The taper tap is for steel conduit, while the plug tap is for PVC conduit",
+      "The taper tap creates external threads, while the plug tap creates internal threads",
+      "The taper tap is used with a bender, while the plug tap is used with a vice"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Taper taps have a significant lead-in to start threads easily in a pilot hole. Plug (or bottoming) taps have threads almost to the end to finish threading a 'blind' hole."
+  },
+  {
+    "id": 4065,
+    "question": "When using a stock and die to thread 32mm conduit, the electrician finds it extremely difficult to turn the tool. What is the standard practical procedure to resolve this while maintaining thread quality?",
+    "options": [
+      "Apply cutting compound and reverse the stock every half-turn to break the swarf",
+      "Use a longer piece of conduit to increase the leverage on the stock handle",
+      "Remove the guide to reduce the friction between the stock and the pipe",
+      "Heat the end of the conduit with a blowtorch to soften the metal before cutting"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Specialised Installing Equipment",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-3E1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Reversing the stock breaks the metal chips (swarf). If swarf builds up, it jams the cutting teeth, making it hard to turn and potentially ruining the thread."
   }
 ];
