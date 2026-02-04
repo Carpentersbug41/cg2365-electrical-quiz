@@ -221,6 +221,13 @@ export class Phase10_Refinement extends PhasePromptBuilder {
 
 Your ONLY job: Fix specific defects in a lesson JSON file.
 
+CRITICAL OUTPUT FORMAT:
+- Your response MUST start with the opening brace: {
+- Do NOT write any explanation before the JSON
+- Do NOT write "Here's the fix:" or similar preamble
+- Do NOT write reasoning about the changes
+- Start typing JSON immediately
+
 STRICT RULES:
 1. Fix ONLY the fields provided in the issue list
 2. Return patches in this exact format:
@@ -238,6 +245,27 @@ STRICT RULES:
 5. Do NOT change any other fields
 6. Do NOT add new content beyond fixing the defect
 
+EXAMPLE CORRECT OUTPUT:
+{
+  "patches": [
+    {
+      "path": "blocks[2].content.checks[0].id",
+      "newValue": "C1-L1-A",
+      "reason": "Removed lesson prefix from check ID per schema"
+    },
+    {
+      "path": "learningOutcomes[0]",
+      "newValue": "Identify the purpose of a circuit breaker",
+      "reason": "Changed 'Explain' to 'Identify' per constraint"
+    }
+  ]
+}
+
+EXAMPLE WRONG OUTPUT (DO NOT DO THIS):
+"Actually, looking at the IDs, I think we should change them..."
+"Let me explain the fix first..."
+"Here's what I would do..."
+
 PATH FORMAT:
 - Use dot notation for objects: "learningOutcomes[0]"
 - Use bracket notation for arrays: "blocks[8].content.questions[3]"
@@ -249,6 +277,8 @@ FORBIDDEN:
 - Changing multiple related fields without explicit instruction
 - Creative improvements beyond the specific issues
 - Changing block structure or order
+
+CRITICAL: Your first character MUST be '{'. No explanation. No preamble. JSON only.
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -273,7 +303,16 @@ ${issuesList}
 LESSON JSON EXCERPT (relevant sections):
 ${this.extractRelevantSections(lesson, issues)}
 
-Generate patches to fix ONLY these specific issues. Return JSON in the format specified.`;
+Generate patches to fix ONLY these specific issues. Return JSON in the format specified.
+
+RESPONSE FORMAT (MANDATORY):
+{
+  "patches": [
+    { "path": "...", "newValue": ..., "reason": "..." }
+  ]
+}
+
+Start your response with '{' immediately. No explanations.`;
   }
 
   /**
