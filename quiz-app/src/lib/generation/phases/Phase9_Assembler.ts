@@ -56,14 +56,15 @@ export class Phase9_Assembler {
       spacedReview,
     } = input;
 
-    // Build blocks array
+    // Build blocks array (orders will be reassigned sequentially)
     const blocks: any[] = [];
+    let currentOrder = 1;
 
-    // 1. Outcomes block (order: 1)
+    // 1. Outcomes block
     blocks.push({
       id: `${lessonId}-outcomes`,
       type: 'outcomes',
-      order: 1,
+      order: currentOrder++,
       content: {
         outcomes: plan.learningOutcomes.map((outcome, idx) => ({
           text: outcome,
@@ -72,22 +73,22 @@ export class Phase9_Assembler {
       },
     });
 
-    // 2. Vocab block (order: 2)
+    // 2. Vocab block
     blocks.push({
       id: `${lessonId}-vocab`,
       type: 'vocab',
-      order: 2,
+      order: currentOrder++,
       content: {
         terms: vocabulary.terms,
       },
     });
 
-    // 3. Diagram block (order: 3) - if needed
+    // 3. Diagram block - if needed
     if (plan.needsDiagram) {
       blocks.push({
         id: `${lessonId}-diagram`,
         type: 'diagram',
-        order: 3,
+        order: currentOrder++,
         content: {
           title: `${topic} Diagram`,
           description: `Visual representation of ${topic}`,
@@ -100,12 +101,12 @@ export class Phase9_Assembler {
       });
     }
 
-    // 4. Explanation blocks
+    // 4. Explanation blocks (reassign orders sequentially)
     explanations.explanations.forEach((exp) => {
       blocks.push({
         id: exp.id,
         type: 'explanation',
-        order: exp.order,
+        order: currentOrder++,
         content: {
           title: exp.title,
           content: exp.content,
@@ -113,12 +114,12 @@ export class Phase9_Assembler {
       });
     });
 
-    // 5. Understanding check blocks
+    // 5. Understanding check blocks (reassign orders sequentially)
     checks.checks.forEach((check) => {
       blocks.push({
         id: check.id,
         type: 'practice',
-        order: check.order,
+        order: currentOrder++,
         content: {
           title: check.title,
           mode: check.mode,
@@ -133,7 +134,7 @@ export class Phase9_Assembler {
       blocks.push({
         id: workedExample.workedExample.id,
         type: 'worked-example',
-        order: workedExample.workedExample.order,
+        order: currentOrder++,
         content: {
           title: workedExample.workedExample.title,
           given: workedExample.workedExample.given,
@@ -148,7 +149,7 @@ export class Phase9_Assembler {
       blocks.push({
         id: workedExample.guidedPractice.id,
         type: 'guided-practice',
-        order: workedExample.guidedPractice.order,
+        order: currentOrder++,
         content: {
           title: workedExample.guidedPractice.title,
           problem: workedExample.guidedPractice.problem,
@@ -161,7 +162,7 @@ export class Phase9_Assembler {
     blocks.push({
       id: practice.practice.id,
       type: 'practice',
-      order: practice.practice.order,
+      order: currentOrder++,
       content: {
         title: practice.practice.title,
         questions: practice.practice.questions,
@@ -172,7 +173,7 @@ export class Phase9_Assembler {
     blocks.push({
       id: integration.integrative.id,
       type: 'practice',
-      order: integration.integrative.order,
+      order: currentOrder++,
       content: {
         title: integration.integrative.title,
         mode: integration.integrative.mode,
@@ -185,7 +186,7 @@ export class Phase9_Assembler {
     blocks.push({
       id: spacedReview.spacedReview.id,
       type: 'spaced-review',
-      order: spacedReview.spacedReview.order,
+      order: currentOrder++,
       content: {
         title: spacedReview.spacedReview.title,
         questions: spacedReview.spacedReview.questions,
@@ -193,10 +194,8 @@ export class Phase9_Assembler {
       },
     });
 
-    // Sort blocks by order to ensure correct sequence
-    blocks.sort((a, b) => a.order - b.order);
-
-    // Validate block order uniqueness
+    // Blocks are already in correct order, no need to sort
+    // Validate block order uniqueness (should always pass now)
     this.validateBlockOrders(blocks);
 
     // Build complete lesson

@@ -38,11 +38,13 @@ import { cableSizingBasicsIbInIzFactorsQuestions } from './cableSizingBasicsIbIn
 import { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
 import { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
 import { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
+import { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...sequentialGeneratorTestQuestions,
   ...spacingFactorEnclosureFillQuestions,
   ...specialisedInstallingEquipmentQuestions,
   ...protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions,
@@ -116,6 +118,7 @@ export { cableSizingBasicsIbInIzFactorsQuestions } from './cableSizingBasicsIbIn
 export { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
 export { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
 export { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
+export { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
 
 /**
  * Filter questions by tags

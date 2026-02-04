@@ -4,8 +4,7 @@
  */
 
 import { GenerationRequest, Lesson, DebugInfo } from './types';
-import { preprocessToValidJson, safeJsonParse, validateLLMResponse, cleanCodeBlocks } from './utils';
-import { debugLog } from './errorHandler';
+import { preprocessToValidJson, safeJsonParse, validateLLMResponse, cleanCodeBlocks, debugLog } from './utils';
 import { requiresWorkedExample } from './taskClassifier';
 
 // Phase imports

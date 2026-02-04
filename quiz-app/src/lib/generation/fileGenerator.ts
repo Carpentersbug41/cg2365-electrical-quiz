@@ -44,6 +44,7 @@ import {
   safeJsonParse,
   sleep,
   validateLLMResponse,
+  debugLog,
 } from './utils';
 import { GENERATION_LIMITS, DIFFICULTY_DISTRIBUTION, COMPLEXITY_THRESHOLDS } from './constants';
 import {
@@ -54,23 +55,6 @@ import {
 } from './truncationDetector';
 import fs from 'fs';
 import path from 'path';
-
-// Debug logger
-function debugLog(stage: string, data: unknown) {
-  const logEntry = JSON.stringify({
-    timestamp: Date.now(),
-    location: 'fileGenerator.ts',
-    stage,
-    data,
-    sessionId: 'generation'
-  }) + '\n';
-  try {
-    const logPath = path.join(process.cwd(), '..', '.cursor', 'debug.log');
-    fs.appendFileSync(logPath, logEntry, 'utf-8');
-  } catch (e) {
-    // Silent fail
-  }
-}
 
 // Context preview helper for error debugging
 function generateContextPreview(content: string, position?: number): {

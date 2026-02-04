@@ -45,6 +45,7 @@ import { cableSizingBasicsIbInIzFactorsQuestions } from './questions/cableSizing
 import { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './questions/protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions';
 import { specialisedInstallingEquipmentQuestions } from './questions/specialisedInstallingEquipmentQuestions';
 import { spacingFactorEnclosureFillQuestions } from './questions/spacingFactorEnclosureFillQuestions';
+import { sequentialGeneratorTestQuestions } from './questions/sequentialGeneratorTestQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -84,6 +85,7 @@ export const questions: Question[] = [
   ...protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions,
   ...specialisedInstallingEquipmentQuestions,
   ...spacingFactorEnclosureFillQuestions,
+  ...sequentialGeneratorTestQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

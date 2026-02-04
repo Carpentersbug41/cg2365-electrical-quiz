@@ -25,6 +25,8 @@
  */
 
 import { SECTIONS } from './constants';
+import fs from 'fs';
+import path from 'path';
 
 /**
  * Infer layout based on section and topic (expanded for all diagram types)
@@ -382,4 +384,29 @@ export function formatFileSize(bytes: number): string {
 export function getNextQuestionId(existingIds: number[]): number {
   if (existingIds.length === 0) return 3000;
   return Math.max(...existingIds) + 1;
+}
+
+/**
+ * Debug logger for generation pipeline
+ * Writes structured logs to .cursor/debug.log
+ */
+export function debugLog(stage: string, data: unknown, location: string = 'generation'): void {
+  const logEntry = JSON.stringify({
+    timestamp: Date.now(),
+    location,
+    stage,
+    data,
+    sessionId: 'generation'
+  }) + '\n';
+  
+  try {
+    // Write to project root .cursor folder
+    const projectRoot = process.cwd().includes('quiz-app') 
+      ? path.join(process.cwd(), '..')  // If in quiz-app, go up one level
+      : process.cwd();                   // Otherwise use current dir
+    const logPath = path.join(projectRoot, '.cursor', 'debug.log');
+    fs.appendFileSync(logPath, logEntry, 'utf-8');
+  } catch (e) {
+    // Silent fail - don't break generation if logging fails
+  }
 }
