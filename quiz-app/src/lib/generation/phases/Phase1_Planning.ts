@@ -23,6 +23,13 @@ export interface PlanningOutput {
   needsWorkedExample: boolean;
   learningOutcomes: string[];
   estimatedComplexity: 'simple' | 'medium' | 'complex';
+  teachingConstraints?: {
+    excludeHowTo?: boolean;        // "not how to use"
+    purposeOnly?: boolean;          // "what for, not procedures"
+    identificationOnly?: boolean;   // "identify only"
+    noCalculations?: boolean;       // "concepts only, no math"
+    specificScope?: string;         // Any other scoping constraint
+  };
 }
 
 export class Phase1_Planning extends PhasePromptBuilder {
@@ -34,6 +41,15 @@ export class Phase1_Planning extends PhasePromptBuilder {
     return `You are a lesson structure planner for C&G 2365 Electrical Training courses.
 
 Your task is to analyze the lesson requirements and create a structural plan.
+
+CONSTRAINT PARSING (CRITICAL):
+Analyze mustHaveTopics for teaching scope constraints:
+- "what [X] is for, not how to use" → excludeHowTo: true, purposeOnly: true
+- "identify [X], not procedures" → identificationOnly: true, excludeHowTo: true
+- "concepts only" or "definitions only" → noCalculations: true
+- Any other scope limitation → specificScope: "[the constraint]"
+
+These constraints MUST be passed to downstream phases to prevent scope violations.
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -76,7 +92,14 @@ Return JSON in this exact format:
     "[Understand level outcome]",
     "[Apply level outcome]"
   ],
-  "estimatedComplexity": "simple|medium|complex"
+  "estimatedComplexity": "simple|medium|complex",
+  "teachingConstraints": {
+    "excludeHowTo": true|false,
+    "purposeOnly": true|false,
+    "identificationOnly": true|false,
+    "noCalculations": true|false,
+    "specificScope": "any other constraint from mustHaveTopics"
+  }
 }
 
 RULES:

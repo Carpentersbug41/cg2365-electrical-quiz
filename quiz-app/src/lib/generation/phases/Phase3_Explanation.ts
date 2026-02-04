@@ -15,6 +15,7 @@ export interface ExplanationInput {
   additionalInstructions?: string;
   plan: PlanningOutput;
   vocabulary: VocabularyOutput;
+  teachingConstraints?: PlanningOutput['teachingConstraints'];
 }
 
 export interface ExplanationBlock {
@@ -52,6 +53,27 @@ EXPLANATION STRUCTURE (REQUIRED 6 PARTS):
 5. **Common mistakes**: What students often get wrong
 6. **Quick recap**: Summary paragraph tying it together
 
+TEACHING CONSTRAINTS (if provided):
+If teachingConstraints are present, STRICTLY follow them:
+
+- excludeHowTo = true: SKIP or MINIMIZE "How to use it" section
+  * Replace with "Where it's used" or "What it enables"
+  * Focus on PURPOSE and CONTEXT, not procedural steps
+  * Example: "A conduit bender is used when runs must change direction without collapsing the tube"
+    NOT: "Place the conduit in the bender, position the guide, pull the lever..."
+
+- purposeOnly = true: Every statement must answer "what for?" not "how?"
+  * Describe WHAT the tool produces/achieves
+  * Describe WHERE it's applied
+  * Describe WHY it's necessary
+  * DO NOT describe step-by-step procedures
+
+- identificationOnly = true: Focus on recognition and naming
+  * Teach: What it looks like, what it's called, what distinguishes it from similar items
+  * DO NOT teach usage procedures
+
+If NO constraints: Use full 6-part structure including "How to use it"
+
 WRITING GUIDELINES:
 - Write 400-600 words per explanation section
 - Use **bold** for emphasis on key terms
@@ -75,11 +97,39 @@ If this lesson needs a diagram (plan.needsDiagram = true), identify:
 3. Labels that match vocabulary terms
 4. Create a detailed placeholder description for rendering
 
+DIAGRAM DESCRIPTION REQUIREMENTS (if diagram needed):
+CRITICAL - Avoid common errors:
+- For area-based concepts (e.g., "45% fill"), describe AREA shading, NOT linear dimensions
+- WRONG: "dashed line at 45% height" - this confuses area with linear measurement
+- RIGHT: "cables and insulation shaded to show 45% of total cross-sectional area"
+- For cross-sections, specify "viewed end-on" to clarify perspective
+- Use shading to show occupied vs unoccupied areas
+- Include labels for key measurements and relationships
+- Show arrows for flows (heat, current, force) where relevant
+
+CONDUIT vs TRUNKING DISTINCTION (when relevant):
+If the lesson covers both conduit and trunking (e.g., spacing factor, enclosure fill):
+
+CRITICAL - These are DIFFERENT systems:
+- TRUNKING: Uses the 45% rule (45% of cross-sectional AREA maximum)
+- CONDUIT: Uses factor tables from IET On-Site Guide (depends on run length, bends, cable type)
+
+In your explanation:
+- Use a dedicated bullet point or paragraph for each
+- State explicitly: "This rule applies to trunking ONLY" or "Conduit uses a different method"
+- Never say "conduit uses the 45% rule" - this is incorrect
+- Explain WHY they differ (trunking is rectangular/predictable, conduit capacity varies by length/bends)
+
+In Key facts / rules section:
+- Separate bullet: "Trunking: 45% cross-sectional area limit"
+- Separate bullet: "Conduit: capacity via IET factor tables (not a fixed percentage)"
+- Separate bullet: "IMPORTANT: Do not apply 45% rule to conduit"
+
 ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: ExplanationInput): string {
-    const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary } = input;
+    const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, teachingConstraints } = input;
 
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\n');
 
@@ -102,6 +152,14 @@ ${plan.explanationSections.map((s, i) => `Section ${i + 1} (order ${s.order}):
   Topic: ${s.topic}`).join('\n\n')}
 ${mustHaveTopics ? `\n\nMUST COVER THESE TOPICS:\n${mustHaveTopics}` : ''}
 ${additionalInstructions ? `\n\nADDITIONAL INSTRUCTIONS:\n${additionalInstructions}` : ''}
+${teachingConstraints ? `
+TEACHING CONSTRAINTS (CRITICAL - MUST FOLLOW):
+${teachingConstraints.excludeHowTo ? '- EXCLUDE or MINIMIZE procedural steps ("how to use it")' : ''}
+${teachingConstraints.purposeOnly ? '- PURPOSE ONLY: Focus on what tools/concepts achieve, not step-by-step usage' : ''}
+${teachingConstraints.identificationOnly ? '- IDENTIFICATION ONLY: Teach recognition and naming, not procedures' : ''}
+${teachingConstraints.noCalculations ? '- NO CALCULATIONS: Conceptual understanding only' : ''}
+${teachingConstraints.specificScope ? `- SPECIFIC SCOPE: ${teachingConstraints.specificScope}` : ''}
+` : ''}
 
 Write ${plan.explanationSections.length} explanation block(s) following the 6-part structure.
 

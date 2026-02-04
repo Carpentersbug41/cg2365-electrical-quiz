@@ -11,6 +11,13 @@ export interface WorkedExampleInput {
   topic: string;
   explanations: ExplanationBlock[];
   needsWorkedExample: boolean;
+  teachingConstraints?: {
+    excludeHowTo?: boolean;
+    purposeOnly?: boolean;
+    identificationOnly?: boolean;
+    noCalculations?: boolean;
+    specificScope?: string;
+  };
 }
 
 export interface WorkedExampleStep {
@@ -66,6 +73,51 @@ WORKED EXAMPLE RULES:
 - Show calculations clearly
 - Explain each step in plain language
 
+GEOMETRY CALCULATION REQUIREMENTS (CRITICAL):
+When learning outcomes mention "calculate using formulas" or "calculate percentage fill":
+
+RULE: ALWAYS show geometric calculation FIRST, factor tables SECOND (if applicable)
+
+For percentage/space factor calculations:
+1. FIRST worked example: Use pure geometry
+   - Calculate enclosure area (π×r² for conduit, width×height for trunking)
+   - Calculate cable area (π×r² for each cable)
+   - Show: Total Cable Area = Single Cable CSA × Quantity
+   - Show: Percentage Fill = (Total Cable Area ÷ Enclosure Area) × 100
+   - Show: Comparison to limit (e.g., ≤ 45%)
+
+2. SECOND worked example (if applicable): Use factor tables
+   - Show the simplified method using IET On-Site Guide factors
+   - Explain that this achieves the same result as the geometry method
+
+This ensures students understand the UNDERLYING MATH before using shortcuts.
+
+Example topics requiring this: "spacing factor", "percentage fill", "enclosure fill"
+
+TEACHING CONSTRAINTS (if provided):
+If teachingConstraints.excludeHowTo or purposeOnly:
+- Worked examples should focus on SELECTION and IDENTIFICATION
+- Example: "Given these requirements, which tool should be selected and why?"
+- NOT: "Step-by-step procedure to operate the tool"
+
+If teachingConstraints.noCalculations:
+- Skip worked examples OR create selection-based scenarios
+- Example: "Match the cable size to the appropriate former"
+
+PROVENANCE AND CAVEATS (when using standard values):
+
+When worked examples include values from standards (cable factors, enclosure factors, percentages):
+
+In the "notes" field, ALWAYS add:
+- "The factors used here are representative examples from IET On-Site Guide."
+- "Always verify factors from your current edition of the On-Site Guide, as values may vary by cable type, insulation specification, and OSG edition."
+- "Factor values shown are for illustration - consult the appropriate table for your specific installation."
+
+This prevents students assuming fixed universal values and teaches them to verify sources.
+
+Example notes:
+"The cable factor of 12.6 for 2.5mm² stranded is from IET On-Site Guide Edition 8. Always verify factors from your current edition, as values may vary by cable type and insulation. If the total exceeded the enclosure factor, select larger containment."
+
 GUIDED PRACTICE RULES:
 - Mirror the worked example structure exactly
 - Use similar problem with different values
@@ -76,7 +128,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: WorkedExampleInput): string {
-    const { lessonId, topic, explanations, needsWorkedExample } = input;
+    const { lessonId, topic, explanations, needsWorkedExample, teachingConstraints } = input;
 
     if (!needsWorkedExample) {
       return `This lesson does not require worked examples.
@@ -96,6 +148,14 @@ LESSON TOPIC: ${topic}
 
 EXPLANATION CONTENT (use as reference):
 ${explanationTexts}
+${teachingConstraints ? `
+TEACHING CONSTRAINTS (CRITICAL - MUST FOLLOW):
+${teachingConstraints.excludeHowTo ? '- EXCLUDE procedural steps - focus on SELECTION and IDENTIFICATION examples' : ''}
+${teachingConstraints.purposeOnly ? '- PURPOSE ONLY: Example should show "which tool for which purpose" not "how to operate"' : ''}
+${teachingConstraints.identificationOnly ? '- IDENTIFICATION ONLY: Create matching/selection scenarios, not step-by-step procedures' : ''}
+${teachingConstraints.noCalculations ? '- NO CALCULATIONS: Skip worked examples OR create selection-based scenarios' : ''}
+${teachingConstraints.specificScope ? `- SPECIFIC SCOPE: ${teachingConstraints.specificScope}` : ''}
+` : ''}
 
 Create ONE worked example demonstrating the key calculation/procedure, and ONE guided practice problem that mirrors it.
 
@@ -151,6 +211,9 @@ REQUIREMENTS:
 - Guided practice should mirror worked example exactly (same number of steps)
 - Include realistic values and scenarios
 - Show all calculations clearly
-- Provide helpful hints for guided practice`;
+- Provide helpful hints for guided practice
+- For percentage/factor calculations: GEOMETRY method BEFORE factor tables
+- Always add provenance notes for standard values (e.g., "Values from IET On-Site Guide - verify current edition")
+- If constraints present: Focus on selection/identification, not step-by-step procedures`;
   }
 }

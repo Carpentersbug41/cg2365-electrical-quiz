@@ -125,7 +125,7 @@ export class SequentialLessonGenerator {
 
       // Phase 4: Understanding Checks
       phaseStart = Date.now();
-      const checksResult = await this.runPhase4(lessonId, explanationResult);
+      const checksResult = await this.runPhase4(lessonId, planResult, explanationResult);
       phases.push({
         phase: 'Understanding Checks',
         status: checksResult ? 'completed' : 'failed',
@@ -151,7 +151,7 @@ export class SequentialLessonGenerator {
 
       // Phase 6: Practice
       phaseStart = Date.now();
-      const practiceResult = await this.runPhase6(lessonId, explanationResult, vocabResult, workedExampleResult);
+      const practiceResult = await this.runPhase6(lessonId, planResult, explanationResult, vocabResult, workedExampleResult);
       phases.push({
         phase: 'Practice',
         status: practiceResult ? 'completed' : 'failed',
@@ -323,6 +323,7 @@ export class SequentialLessonGenerator {
       additionalInstructions: request.additionalInstructions,
       plan,
       vocabulary,
+      teachingConstraints: plan.teachingConstraints,
     };
     const prompts = this.phase3.getPrompts(input);
 
@@ -352,6 +353,7 @@ export class SequentialLessonGenerator {
    */
   private async runPhase4(
     lessonId: string,
+    plan: PlanningOutput,
     explanations: ExplanationOutput
   ): Promise<UnderstandingChecksOutput | null> {
     console.log('  ✅ Phase 4: Creating understanding checks...');
@@ -360,6 +362,7 @@ export class SequentialLessonGenerator {
     const input = {
       lessonId,
       explanations: explanations.explanations,
+      teachingConstraints: plan.teachingConstraints,
     };
     const prompts = this.phase4.getPrompts(input);
 
@@ -400,6 +403,7 @@ export class SequentialLessonGenerator {
       topic: request.topic,
       explanations: explanations.explanations,
       needsWorkedExample: plan.needsWorkedExample,
+      teachingConstraints: plan.teachingConstraints,
     };
 
     if (!plan.needsWorkedExample) {
@@ -441,6 +445,7 @@ export class SequentialLessonGenerator {
    */
   private async runPhase6(
     lessonId: string,
+    plan: PlanningOutput,
     explanations: ExplanationOutput,
     vocabulary: VocabularyOutput,
     workedExample: WorkedExampleOutput
@@ -453,6 +458,7 @@ export class SequentialLessonGenerator {
       explanations: explanations.explanations,
       vocabulary,
       hasWorkedExample: !!workedExample.workedExample,
+      teachingConstraints: plan.teachingConstraints,
     };
     const prompts = this.phase6.getPrompts(input);
 
