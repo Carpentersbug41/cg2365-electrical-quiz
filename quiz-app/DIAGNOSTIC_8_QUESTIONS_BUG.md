@@ -288,7 +288,7 @@ This would explain:
 
 ```env
 GEMINI_MODEL=gemini-3-flash-preview          ✅ CORRECT - New 2026 model
-GEMINI_FALLBACK_MODEL=gemini-2.5-flash       ✅ CORRECT - New 2026 model
+GEMINI_FALLBACK_MODEL=gemini-3-flash-preview       ✅ CORRECT - New 2026 model
 ```
 
 **DO NOT:**

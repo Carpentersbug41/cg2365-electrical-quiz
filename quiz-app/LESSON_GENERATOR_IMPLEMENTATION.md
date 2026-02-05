@@ -431,7 +431,7 @@ quiz-app/
 ### LLM Integration
 - Uses existing `lib/llm/client.ts`
 - Supports both Google AI Studio and Vertex AI
-- Reads model from .env (gemini-2.5-flash)
+- Reads model from .env (gemini-3-flash-preview)
 - Automatic fallback handling
 
 ### Prompt Engineering
@@ -478,7 +478,7 @@ LESSON_GENERATOR_AUTO_PUSH=true
 
 # Gemini API (required)
 GEMINI_API_KEY=your_key_here
-GEMINI_MODEL=gemini-2.5-flash
+GEMINI_MODEL=gemini-3-flash-preview
 ```
 
 ### Rate Limits

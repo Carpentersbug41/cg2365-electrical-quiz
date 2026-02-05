@@ -227,7 +227,11 @@ export class Phase10_Refinement extends PhasePromptBuilder {
   applyPatches(lesson: Lesson, patches: RefinementPatch[]): Lesson {
     const cloned = JSON.parse(JSON.stringify(lesson));
     
-    console.log('\n🔧 [Phase 10] Applying patches to cloned lesson...');
+    console.log(`\n🔧 [Phase 10] Applying ${patches.length} patches to cloned lesson...`);
+    console.log(`🔧 [Phase 10] Original lesson blocks: ${lesson.blocks.length}`);
+    
+    let successCount = 0;
+    let failCount = 0;
     
     for (const patch of patches) {
       try {
@@ -235,11 +239,22 @@ export class Phase10_Refinement extends PhasePromptBuilder {
         this.setValueAtPath(cloned, patch.path, patch.newValue);
         const newValue = this.getValueAtPath(cloned, patch.path);
         
-        console.log(`   ✓ ${patch.path}: "${oldValue}" → "${newValue}"`);
+        console.log(`   ✓ ${patch.path}`);
+        console.log(`      Old: "${oldValue}"`);
+        console.log(`      New: "${newValue}"`);
+        console.log(`      Reason: ${patch.issue}`);
+        console.log(`      Expected improvement: +${patch.pointsRecovered} points`);
+        successCount++;
       } catch (e) {
-        console.warn(`   ✗ Failed to apply patch at ${patch.path}:`, e);
+        console.warn(`   ✗ FAILED at ${patch.path}:`, e);
+        failCount++;
       }
     }
+    
+    console.log(`\n🔧 [Phase 10] Patch Application Summary:`);
+    console.log(`   Successful: ${successCount}/${patches.length}`);
+    console.log(`   Failed: ${failCount}/${patches.length}`);
+    console.log(`   Cloned lesson blocks: ${cloned.blocks.length}`);
     console.log('');
     
     return cloned;
@@ -287,11 +302,24 @@ export class Phase10_Refinement extends PhasePromptBuilder {
       return false;
     }
     
-    // 3. Block types should match
+    // 3. Block types validation - allow changes if new type is valid
+    const validBlockTypes = [
+      'outcomes', 'vocab', 'diagram', 'explanation', 
+      'worked-example', 'guided-practice', 'practice', 
+      'spaced-review', 'microbreak'
+    ];
+    
     for (let i = 0; i < original.blocks.length; i++) {
-      if (original.blocks[i].type !== patched.blocks[i].type) {
-        console.warn(`[Refinement] Block type mismatch at index ${i}`);
-        return false;
+      const originalType = original.blocks[i].type;
+      const patchedType = patched.blocks[i].type;
+      
+      if (originalType !== patchedType) {
+        // Type changed - validate the NEW type is valid
+        if (!validBlockTypes.includes(patchedType)) {
+          console.warn(`[Refinement] Block ${i} type changed to INVALID type: "${patchedType}"`);
+          return false;
+        }
+        console.log(`[Refinement] Block ${i} type corrected: "${originalType}" → "${patchedType}"`);
       }
     }
     

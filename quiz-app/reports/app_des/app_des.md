@@ -1215,7 +1215,7 @@ Response: {
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const apiKey = process.env.GEMINI_API_KEY;
-const model = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const model = process.env.GEMINI_MODEL || 'gemini-3-flash-preview';
 
 export const genAI = new GoogleGenerativeAI(apiKey);
 export const getModel = () => genAI.getGenerativeModel({ model });
@@ -1502,7 +1502,7 @@ npm run dev
 GEMINI_API_KEY=your_api_key_here
 
 # Optional (with defaults)
-GEMINI_MODEL=gemini-2.5-flash
+GEMINI_MODEL=gemini-3-flash-preview
 LESSON_GENERATOR_ENABLED=true
 LESSON_GENERATOR_AUTO_COMMIT=true
 LESSON_GENERATOR_AUTO_PUSH=true
@@ -1692,7 +1692,7 @@ npm run build
 
 **Environment Variables (Production)**:
 - `GEMINI_API_KEY` - Required
-- `GEMINI_MODEL` - Optional (defaults to gemini-2.5-flash)
+- `GEMINI_MODEL` - Optional (defaults to gemini-3-flash-preview)
 - `LESSON_GENERATOR_ENABLED` - Recommended false in production
 - `NODE_ENV` - Set to 'production'
 
@@ -1934,8 +1934,8 @@ Get your API key from [Google AI Studio](https://makersuite.google.com/app/apike
 
 ```bash
 # LLM Model Selection
-GEMINI_MODEL=gemini-2.5-flash
-# Options: gemini-2.5-flash, gemini-2.0-flash, gemini-1.5-pro
+GEMINI_MODEL=gemini-3-flash-preview
+# Options: gemini-3-flash-preview, gemini-2.0-flash, gemini-1.5-pro
 
 # Lesson Generator Settings
 LESSON_GENERATOR_ENABLED=true
@@ -1953,7 +1953,7 @@ NODE_ENV=development
 
 ```typescript
 export const GEMINI_CONFIG = {
-  model: process.env.GEMINI_MODEL || 'gemini-2.5-flash',
+  model: process.env.GEMINI_MODEL || 'gemini-3-flash-preview',
   temperature: {
     teach: 0.7,    // Creative but controlled
     check: 0.3,    // Deterministic

@@ -66,7 +66,7 @@ export class SequentialLessonGenerator {
   private generateWithRetry: (
     systemPrompt: string,
     userPrompt: string,
-    type: 'lesson' | 'quiz',
+    type: 'lesson' | 'quiz' | 'phase',
     maxRetries: number,
     attemptHigherLimit?: boolean,
     currentTokenLimit?: number
@@ -242,6 +242,21 @@ export class SequentialLessonGenerator {
       phaseStart = Date.now();
       const initialScore = await this.scorer.scoreLesson(lesson);
       console.log(`📊 [Scoring] Initial score: ${initialScore.total}/100 (${initialScore.grade})`);
+      
+      // Verbose logging: Detailed score breakdown
+      console.log(`\n📊 [Scoring] Detailed Initial Score Breakdown:`);
+      initialScore.details.forEach(detail => {
+        console.log(`   ${detail.section}: ${detail.score}/${detail.maxScore}`);
+        if (detail.issues.length > 0) {
+          detail.issues.forEach((issue, idx) => {
+            console.log(`      Issue ${idx + 1}: ${issue}`);
+            if (detail.suggestions[idx]) {
+              console.log(`      Suggestion: ${detail.suggestions[idx]}`);
+            }
+          });
+        }
+      });
+      console.log('');
 
       let finalLesson = lesson;
       let originalLesson: Lesson | undefined = undefined;
@@ -250,6 +265,7 @@ export class SequentialLessonGenerator {
       // Phase 10: Auto-Refinement (if score < 93)
       if (initialScore.total < 93) {
         console.log(`🔧 [Refinement] Score below threshold (93), activating Phase 10...`);
+        console.log(`🔧 [Refinement] Threshold: 93, Actual: ${initialScore.total}, Gap: ${93 - initialScore.total} points`);
         
         try {
           refinementResult = await this.runPhase10(lesson, initialScore);
@@ -259,15 +275,43 @@ export class SequentialLessonGenerator {
             // Audit refined lesson before scoring
             this.phase10.auditAllIDs(refinementResult.refined);
             
+            // Verbose logging: Before re-scoring
+            console.log(`\n📊 [Re-scoring] Running scorer on refined lesson...`);
+            console.log(`📊 [Re-scoring] Refined lesson has ${refinementResult.refined.blocks.length} blocks`);
+            console.log(`📊 [Re-scoring] Applied ${refinementResult.patchesApplied.length} patches:`);
+            refinementResult.patchesApplied.forEach((patch, idx) => {
+              console.log(`   ${idx + 1}. ${patch.path}`);
+              console.log(`      Issue: ${patch.issue}`);
+              console.log(`      Fix: ${patch.oldValue} → ${patch.newValue}`);
+              console.log(`      Points to recover: ${patch.pointsRecovered}`);
+            });
+            console.log('');
+            
             const refinedScore = await this.scorer.scoreLesson(refinementResult.refined);
             refinementResult.refinedScore = refinedScore.total;
             
-            // Log detailed score comparison
+            // Verbose logging: Detailed score comparison
+            console.log(`\n📊 [Re-scoring] Detailed Score Comparison:`);
+            console.log(`   Overall: ${initialScore.total} → ${refinedScore.total} (${refinedScore.total > initialScore.total ? '+' : ''}${refinedScore.total - initialScore.total})`);
+            console.log(`\n   By Section:`);
+            initialScore.details.forEach((initDetail, idx) => {
+              const refDetail = refinedScore.details[idx];
+              if (refDetail) {
+                const diff = refDetail.score - initDetail.score;
+                console.log(`   ${initDetail.section}: ${initDetail.score} → ${refDetail.score} (${diff > 0 ? '+' : ''}${diff})`);
+              }
+            });
+            console.log('');
+            
+            // Log detailed score comparison (keep existing method too)
             this.phase10.logScoreComparison(initialScore, refinedScore);
             
             // Only use refined version if score improved
             if (refinedScore.total > initialScore.total) {
-              console.log(`✅ [Refinement] Score improved: ${initialScore.total} → ${refinedScore.total}`);
+              const improvement = refinedScore.total - initialScore.total;
+              console.log(`✅ [Refinement] Score IMPROVED by ${improvement} points: ${initialScore.total} → ${refinedScore.total}`);
+              console.log(`✅ [Refinement] Keeping refined version`);
+              console.log(`✅ [Refinement] Original lesson saved for comparison`);
               originalLesson = lesson;
               finalLesson = refinementResult.refined;
               
@@ -278,7 +322,10 @@ export class SequentialLessonGenerator {
                 output: `Applied ${refinementResult.patchesApplied.length} fixes, score: ${initialScore.total} → ${refinedScore.total}`
               });
             } else {
-              console.log(`⚠️  [Refinement] Score did not improve (${initialScore.total} → ${refinedScore.total}), keeping original`);
+              const decline = initialScore.total - refinedScore.total;
+              console.log(`⚠️  [Refinement] Score DECLINED by ${decline} points: ${initialScore.total} → ${refinedScore.total}`);
+              console.log(`⚠️  [Refinement] Patches did not help - keeping original lesson`);
+              console.log(`⚠️  [Refinement] This suggests patches were incorrect or harmful`);
               refinementResult = null; // Don't report refinement if it didn't help
               
               phases.push({
@@ -349,7 +396,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       4000 // Low token limit for planning
@@ -388,7 +435,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       3000 // Low token limit for vocabulary
@@ -475,7 +522,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       6000
@@ -527,7 +574,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       6000
@@ -575,7 +622,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       5000
@@ -614,7 +661,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       5000
@@ -649,7 +696,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       4000
@@ -694,7 +741,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       8000

@@ -16,7 +16,7 @@ Error code: QUOTA_EXCEEDED-...
 
 [429 Too Many Requests] You exceeded your current quota
 * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests
-  limit: 20, model: gemini-2.5-flash
+  limit: 20, model: gemini-3-flash-preview
 ```
 
 **Despite having $300 USD of Google Cloud credits available.**
@@ -49,7 +49,7 @@ We ran a diagnostic script that confirmed:
 🔴 PROBLEM IDENTIFIED: Free tier quota limit hit
 
 Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests
-limit: 20, model: gemini-2.5-flash
+limit: 20, model: gemini-3-flash-preview
 ```
 
 The error message explicitly mentions `free_tier_requests`, which means billing is **not** being used.

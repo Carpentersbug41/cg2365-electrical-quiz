@@ -53,7 +53,7 @@ export class LLMScoringService {
   private generateWithRetry: (
     systemPrompt: string,
     userPrompt: string,
-    type: 'lesson' | 'quiz',
+    type: 'lesson' | 'quiz' | 'phase',
     maxRetries: number,
     attemptHigherLimit?: boolean,
     tokenLimit?: number
@@ -125,7 +125,17 @@ export class LLMScoringService {
     }
 
     // Check blocks have required fields and valid types
-    const validBlockTypes = ['explanation', 'practice', 'worked-example', 'vocabulary'];
+    const validBlockTypes = [
+      'outcomes',          // Learning objectives block
+      'vocab',             // Vocabulary/glossary block
+      'diagram',           // Image/video/diagram block
+      'explanation',       // Teaching content block
+      'worked-example',    // Step-by-step example block
+      'guided-practice',   // Scaffolded practice block
+      'practice',          // Quiz questions block
+      'spaced-review',     // Review questions block
+      'microbreak'         // Break/rest block
+    ];
     for (let i = 0; i < lesson.blocks.length; i++) {
       const block = lesson.blocks[i];
       

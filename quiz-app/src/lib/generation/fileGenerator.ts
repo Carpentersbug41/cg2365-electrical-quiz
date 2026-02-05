@@ -857,7 +857,7 @@ OUTPUT FORMAT: Pure JSON only`;
   private async generateWithRetry(
     systemPrompt: string,
     userPrompt: string,
-    type: 'lesson' | 'quiz',
+    type: 'lesson' | 'quiz' | 'phase',
     maxRetries: number,
     attemptHigherLimit = false,
     currentTokenLimit?: number
@@ -957,7 +957,8 @@ OUTPUT FORMAT: Pure JSON only`;
           cleanedText,
           finishReason,
           usageMetadata,
-          tokenLimit
+          tokenLimit,
+          type
         );
 
         // Log truncation detection results

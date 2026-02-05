@@ -333,7 +333,7 @@ Each quiz question follows a standardized `TaggedQuestion` interface defined in 
    - Batch 4: Questions 31-40 (Medium to Hard)
    - Batch 5: Questions 41-50 (Hard)
 
-6. **AI Generation**: Gemini AI (gemini-2.5-flash) generates questions following:
+6. **AI Generation**: Gemini AI (gemini-3-flash-preview) generates questions following:
    - Template structures
    - Misconception mapping guidelines
    - Tag requirements

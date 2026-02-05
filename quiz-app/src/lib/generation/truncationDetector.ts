@@ -28,7 +28,8 @@ export function detectTruncation(
   response: string,
   finishReason?: string,
   usageMetadata?: UsageMetadata,
-  maxOutputTokens?: number
+  maxOutputTokens?: number,
+  type?: 'lesson' | 'quiz' | 'phase'
 ): TruncationCheckResult {
   const reasons: string[] = [];
   let confidence: 'high' | 'medium' | 'low' = 'low';
@@ -59,7 +60,7 @@ export function detectTruncation(
   }
 
   // Layer 4: Response pattern analysis
-  const patternIssues = checkResponsePatterns(response);
+  const patternIssues = checkResponsePatterns(response, type);
   if (patternIssues.length > 0) {
     reasons.push(...patternIssues);
     confidence = confidence === 'low' ? 'medium' : confidence;
@@ -236,15 +237,16 @@ function hasUnterminatedString(text: string): boolean {
 /**
  * Check response patterns specific to lesson generation
  */
-function checkResponsePatterns(response: string): string[] {
+function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'phase'): string[] {
   const issues: string[] = [];
   const trimmed = response.trim();
   const last200 = trimmed.slice(-200);
 
   // For lesson JSON, should contain closing structures
   if (trimmed.startsWith('{')) {
-    // Lesson should have blocks array
-    if (!trimmed.includes('"blocks"')) {
+    // Only check for blocks array if this is a complete lesson (not a phase)
+    // Phase responses are partial structures that won't have blocks
+    if (type !== 'phase' && !trimmed.includes('"blocks"')) {
       issues.push('Lesson JSON missing "blocks" property');
     }
 

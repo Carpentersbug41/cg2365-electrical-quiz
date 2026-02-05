@@ -242,7 +242,7 @@ Based on prompt engineering and validation:
 ### Environment Setup
 - Requires GEMINI_API_KEY in .env
 - Works with existing LLM client
-- Uses model from .env (gemini-2.5-flash)
+- Uses model from .env (gemini-3-flash-preview)
 - Fallback to Google AI Studio
 
 ---

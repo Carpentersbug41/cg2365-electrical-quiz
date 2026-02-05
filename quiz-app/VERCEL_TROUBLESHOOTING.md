@@ -128,7 +128,7 @@ Your application requires Google Gemini API keys to function. Here's how to add 
    - Click **Save**
 
    - **Name:** `GEMINI_FALLBACK_MODEL`
-   - **Value:** `gemini-2.5-flash` (fallback if primary model fails)
+   - **Value:** `gemini-3-flash-preview` (fallback if primary model fails)
    - **Environment:** Select all
    - Click **Save**
 
@@ -185,7 +185,7 @@ After deployment, check the build logs:
 |----------|----------|---------|-------------|
 | `GEMINI_API_KEY` | ✅ Yes | - | Google Gemini API key |
 | `GEMINI_MODEL` | ❌ No | `gemini-1.5-flash` | Primary model to use |
-| `GEMINI_FALLBACK_MODEL` | ❌ No | `gemini-2.5-flash` | Fallback model if primary fails |
+| `GEMINI_FALLBACK_MODEL` | ❌ No | `gemini-3-flash-preview` | Fallback model if primary fails |
 
 ### Security Best Practices
 

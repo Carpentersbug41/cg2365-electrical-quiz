@@ -62,7 +62,7 @@ After updating `.env.local`:
 
 **DO NOT USE:**
 - `gemini-3-flash-preview` - Does not exist
-- `gemini-2.5-flash` - May not exist yet
+- `gemini-3-flash-preview` - May not exist yet
 
 ---
 

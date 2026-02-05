@@ -51,7 +51,7 @@ Both implementations are available simultaneously, and you can switch between th
    ```env
    GEMINI_API_KEY=AIzaSy...
    GEMINI_MODEL=gemini-2.0-flash-exp
-   GEMINI_FALLBACK_MODEL=gemini-2.5-flash
+   GEMINI_FALLBACK_MODEL=gemini-3-flash-preview
    ```
 
 3. **Link to Billed Project (Optional)**
