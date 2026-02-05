@@ -736,15 +736,15 @@ export default function GeneratePage() {
                 <button
                   type="button"
                   onClick={() => {
-                    // Pre-fill form with test data for 203-3E1
+                    // Pre-fill form with test data for 203-3A
                     const testForm: GenerationForm = {
                       unit: 203,
-                      lessonId: '3E1',
-                      topic: 'Specialised Installing Equipment',
+                      lessonId: '3A',
+                      topic: 'Circuit Types: What They Do',
                       section: 'Electrical Installations Technology',
                       layout: 'split-vis',
                       prerequisites: [],
-                      mustHaveTopics: '203-3E1 — Specialised Installing Equipment (3.5)\n\nIdentify kit + purpose: conduit/tray benders, stocks & dies, formers (what each is for, not how to use).',
+                      mustHaveTopics: '203-3A — Circuit Types: What They Do (3.1)\n\nLighting vs power/heating vs alarm/emergency vs data/comms vs control + ring final vs radial (principles + typical use).',
                       additionalInstructions: '',
                       youtubeUrl: '',
                       imageUrl: '',

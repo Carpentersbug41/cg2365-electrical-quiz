@@ -39,11 +39,13 @@ import { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protec
 import { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
 import { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
 import { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
+import { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...circuitTypesWhatTheyDoQuestions,
   ...sequentialGeneratorTestQuestions,
   ...spacingFactorEnclosureFillQuestions,
   ...specialisedInstallingEquipmentQuestions,
@@ -119,6 +121,7 @@ export { protectiveDevicesBasicsFusesMcbTypesRcdsRcbosQuestions } from './protec
 export { specialisedInstallingEquipmentQuestions } from './specialisedInstallingEquipmentQuestions';
 export { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
 export { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
+export { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
 
 /**
  * Filter questions by tags
