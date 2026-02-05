@@ -5,7 +5,7 @@
 
 import { PhasePromptBuilder } from './PhasePromptBuilder';
 import { Lesson } from '../types';
-import { RubricScore, RubricDetail } from '../rubricScoringService';
+import { RubricScore, RubricDetail } from '../llmScoringService';
 
 export interface RefinementInput {
   lesson: Lesson;
@@ -301,7 +301,7 @@ export class Phase10_Refinement extends PhasePromptBuilder {
   protected buildSystemPrompt(): string {
     return `You are a surgical JSON editor for educational content.
 
-Your ONLY job: Fix specific defects in a lesson JSON file.
+Your ONLY job: Implement the exact fixes specified in the suggestions.
 
 CRITICAL OUTPUT FORMAT:
 - Your response MUST start with the opening brace: {
@@ -311,34 +311,49 @@ CRITICAL OUTPUT FORMAT:
 - Start typing JSON immediately
 
 STRICT RULES:
-1. Fix ONLY the fields provided in the issue list
-2. Return patches in this exact format:
+1. Each suggestion contains the EXACT change to make (e.g., "Change X from 'old' to 'new'")
+2. Implement the suggestion EXACTLY as written - no creative interpretation
+3. Return patches in this exact format:
    {
      "patches": [
        {
          "path": "blocks[8].content.questions[3].questionText",
-         "newValue": "[corrected value]",
-         "reason": "[why this fixes the issue]"
+         "newValue": "[exact value from suggestion]",
+         "reason": "[brief reason]"
        }
      ]
    }
-3. Maximum 10 patches total
-4. Each patch must directly address ONE rubric issue
-5. Do NOT change any other fields
-6. Do NOT add new content beyond fixing the defect
+4. Maximum 10 patches total
+5. Each patch must directly address ONE rubric issue
+6. Do NOT change any other fields
+7. Do NOT make improvements beyond what the suggestion specifies
+
+EXAMPLE INPUT:
+Issue: "Question ID 'blocks[4].content.questions[0].id' includes lesson prefix"
+Suggestion: "Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'"
 
 EXAMPLE CORRECT OUTPUT:
 {
   "patches": [
     {
-      "path": "blocks[2].content.checks[0].id",
+      "path": "blocks[4].content.questions[0].id",
       "newValue": "C1-L1-A",
-      "reason": "Removed lesson prefix from check ID per schema"
-    },
+      "reason": "Removed lesson prefix per suggestion"
+    }
+  ]
+}
+
+ANOTHER EXAMPLE:
+Issue: "expectedAnswer 'approximately 20A' is too vague"
+Suggestion: "Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A'"
+
+CORRECT OUTPUT:
+{
+  "patches": [
     {
-      "path": "learningOutcomes[0]",
-      "newValue": "Identify the purpose of a circuit breaker",
-      "reason": "Changed 'Explain' to 'Identify' per constraint"
+      "path": "blocks[6].content.questions[2].expectedAnswer",
+      "newValue": "20A ± 2A",
+      "reason": "Added specific tolerance per suggestion"
     }
   ]
 }
@@ -360,6 +375,8 @@ FORBIDDEN:
 - Creative improvements beyond the specific issues
 - Changing block structure or order
 
+FOCUS: You have a maximum of 10 patches. Use them wisely on the most impactful fixes.
+
 CRITICAL: Your first character MUST be '{'. No explanation. No preamble. JSON only.
 
 ${this.getJsonOutputInstructions()}`;
@@ -370,11 +387,11 @@ ${this.getJsonOutputInstructions()}`;
     
     const issuesList = issues.map((issue, idx) => 
       `${idx + 1}. [${issue.section}] ${issue.issue}
-   Suggestion: ${issue.suggestion}
-   Points lost: ${issue.pointsLost}`
+   EXACT FIX: ${issue.suggestion}
+   Impact: ${issue.pointsLost} points`
     ).join('\n\n');
     
-    return `Fix the following issues in this lesson JSON.
+    return `Implement the EXACT fixes specified below for this lesson.
 
 LESSON ID: ${lesson.id}
 CURRENT SCORE: Needs improvement

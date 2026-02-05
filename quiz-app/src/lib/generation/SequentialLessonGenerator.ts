@@ -18,7 +18,8 @@ import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integrati
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
 import { Phase9_Assembler } from './phases/Phase9_Assembler';
 import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/Phase10_Refinement';
-import { RubricScoringService, RubricScore } from './rubricScoringService';
+import { LLMScoringService, RubricScore } from './llmScoringService';
+import { getRefinementConfig, getScoringConfig } from './config';
 
 export interface PhaseProgress {
   phase: string;
@@ -59,7 +60,7 @@ export class SequentialLessonGenerator {
   private phase8: Phase8_SpacedReview;
   private phase9: Phase9_Assembler;
   private phase10: Phase10_Refinement;
-  private rubricScorer: RubricScoringService;
+  private scorer: LLMScoringService;
 
   // LLM caller function (injected from FileGenerator)
   private generateWithRetry: (
@@ -82,7 +83,7 @@ export class SequentialLessonGenerator {
     this.phase8 = new Phase8_SpacedReview();
     this.phase9 = new Phase9_Assembler();
     this.phase10 = new Phase10_Refinement();
-    this.rubricScorer = new RubricScoringService();
+    this.scorer = new LLMScoringService(generateWithRetryFn);
     
     this.generateWithRetry = generateWithRetryFn;
   }
@@ -239,7 +240,7 @@ export class SequentialLessonGenerator {
 
       // Score the lesson
       phaseStart = Date.now();
-      const initialScore = this.rubricScorer.scoreLesson(lesson);
+      const initialScore = await this.scorer.scoreLesson(lesson);
       console.log(`📊 [Scoring] Initial score: ${initialScore.total}/100 (${initialScore.grade})`);
 
       let finalLesson = lesson;
@@ -258,7 +259,7 @@ export class SequentialLessonGenerator {
             // Audit refined lesson before scoring
             this.phase10.auditAllIDs(refinementResult.refined);
             
-            const refinedScore = this.rubricScorer.scoreLesson(refinementResult.refined);
+            const refinedScore = await this.scorer.scoreLesson(refinementResult.refined);
             refinementResult.refinedScore = refinedScore.total;
             
             // Log detailed score comparison
@@ -674,7 +675,7 @@ export class SequentialLessonGenerator {
     debugLog('PHASE10_START', { lessonId: lesson.id, initialScore: rubricScore.total });
 
     // Prepare refinement input (extract top issues)
-    const { issues, lesson: lessonForPrompt } = this.phase10.prepareRefinementInput(lesson, rubricScore, 10);
+    const { issues, lesson: lessonForPrompt } = this.phase10.prepareRefinementInput(lesson, rubricScore, getRefinementConfig().maxFixes);
     
     if (issues.length === 0) {
       console.log('    ✓ No fixable issues found');

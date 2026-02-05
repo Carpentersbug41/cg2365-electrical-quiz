@@ -10,7 +10,6 @@ import { FileIntegrator } from '@/lib/generation/fileIntegrator';
 import { GitService } from '@/lib/generation/gitService';
 import { ErrorHandler } from '@/lib/generation/errorHandler';
 import { globalRateLimiter } from '@/lib/generation/rateLimiter';
-import { RubricScoringService } from '@/lib/generation/rubricScoringService';
 import { GenerationRequest, GenerationResponse } from '@/lib/generation/types';
 import { generateLessonId, generateLessonFilename, generateQuizFilename } from '@/lib/generation/utils';
 import fs from 'fs';
@@ -244,30 +243,22 @@ export async function POST(request: NextRequest) {
     // Log success
     errorHandler.logGenerationAttempt(body, true);
 
-    // Step 8: Auto-score the generated lesson
-    let rubricScore;
-    try {
-      console.log('[Generator] Step 8: Scoring lesson with rubric...');
-      const scoringService = new RubricScoringService();
-      rubricScore = scoringService.scoreLesson(lessonResult.lesson);
-      console.log(`[Generator] Lesson score: ${rubricScore.total}/100 (${rubricScore.grade})`);
+    // Step 8: Extract final score from refinement metadata
+    // (Scoring is done internally by SequentialLessonGenerator)
+    const finalScore = lessonResult.refinementMetadata?.finalScore || 
+                      lessonResult.refinementMetadata?.originalScore;
+    
+    if (finalScore) {
+      console.log(`[Generator] Final lesson score: ${finalScore}/100`);
       
       // Add score warnings if below 90
-      if (rubricScore.total < 90) {
-        warnings.push(`Lesson score: ${rubricScore.total}/100 (${rubricScore.grade}) - may need manual review`);
+      if (finalScore < 90) {
+        warnings.push(`Lesson score: ${finalScore}/100 - may need manual review`);
       }
-      
-      // Add auto-cap warning if triggered
-      if (rubricScore.autoCap?.triggered) {
-        warnings.push(`Auto-capped: ${rubricScore.autoCap.reason}`);
-      }
-    } catch (scoreError) {
-      console.error('[Generator] Scoring failed:', scoreError);
-      warnings.push('Failed to score lesson - validation recommended');
     }
 
     // Success response
-    const response: GenerationResponse & { rubricScore?: any } = {
+    const response: GenerationResponse = {
       success: true,
       lessonFile: lessonFilename,
       quizFile: quizFilename,
@@ -275,7 +266,6 @@ export async function POST(request: NextRequest) {
       commitUrl,
       warnings,
       phases: lessonResult.phases,
-      rubricScore,
       refinementMetadata: lessonResult.refinementMetadata,
     };
 

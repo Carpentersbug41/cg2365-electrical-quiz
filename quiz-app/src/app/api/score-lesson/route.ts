@@ -1,12 +1,14 @@
 /**
- * API Route: Score Lesson with Rubric
+ * API Route: Score Lesson with LLM
  * 
  * POST /api/score-lesson
- * Scores a lesson using the universal rubric (98/100 target)
+ * Scores a lesson using LLM-based intelligent scoring (98/100 target)
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { RubricScoringService } from '@/lib/generation/rubricScoringService';
+import { LLMScoringService } from '@/lib/generation/llmScoringService';
+import { createLLMClientWithFallback } from '@/lib/llm/client';
+import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import fs from 'fs';
 import path from 'path';
 
@@ -39,9 +41,35 @@ export async function POST(request: NextRequest) {
 
     const lessonData = JSON.parse(fs.readFileSync(lessonPath, 'utf-8'));
 
-    // Score the lesson
-    const scoringService = new RubricScoringService();
-    const score = scoringService.scoreLesson(lessonData);
+    // Create LLM client and generateWithRetry function for scoring
+    const model = await createLLMClientWithFallback(getGeminiModelWithDefault());
+    
+    const generateWithRetry = async (
+      systemPrompt: string,
+      userPrompt: string,
+      type: 'lesson' | 'quiz',
+      maxRetries: number,
+      attemptHigherLimit?: boolean,
+      tokenLimit?: number
+    ): Promise<string> => {
+      const result = await model.generateContent({
+        contents: [
+          { role: 'user', parts: [{ text: systemPrompt }] },
+          { role: 'model', parts: [{ text: 'Understood. I will follow these instructions.' }] },
+          { role: 'user', parts: [{ text: userPrompt }] }
+        ],
+        generationConfig: {
+          temperature: 0.3,
+          maxOutputTokens: tokenLimit || 4000,
+        },
+      });
+      
+      return result.response.text();
+    };
+
+    // Score the lesson with LLM
+    const scoringService = new LLMScoringService(generateWithRetry);
+    const score = await scoringService.scoreLesson(lessonData);
 
     return NextResponse.json({
       success: true,

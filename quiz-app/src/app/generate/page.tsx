@@ -132,7 +132,7 @@ export default function GeneratePage() {
 
   const [lessons, setLessons] = useState<LessonIndexEntry[]>([]);
   const [lessonsByUnit, setLessonsByUnit] = useState<Record<string, LessonIndexEntry[]>>({});
-  const [selectedLesson, setSelectedLesson] = useState<string>('');
+  const [selectedLessons, setSelectedLessons] = useState<string[]>([]);
   const [deleteStatus, setDeleteStatus] = useState<DeleteStatus>({
     deleting: false,
     success: false,
@@ -375,14 +375,34 @@ export default function GeneratePage() {
     });
   };
 
-  const handleDeleteLesson = async () => {
-    if (!selectedLesson) {
-      alert('Please select a lesson to delete');
+  const handleToggleLesson = (lessonId: string) => {
+    setSelectedLessons(prev => 
+      prev.includes(lessonId) 
+        ? prev.filter(id => id !== lessonId)
+        : [...prev, lessonId]
+    );
+  };
+
+  const handleSelectAll = () => {
+    setSelectedLessons(lessons.map(l => l.id));
+  };
+
+  const handleDeselectAll = () => {
+    setSelectedLessons([]);
+  };
+
+  const handleDeleteLessons = async () => {
+    if (selectedLessons.length === 0) {
+      alert('Please select at least one lesson to delete');
       return;
     }
 
-    const lesson = lessons.find(l => l.id === selectedLesson);
-    const confirmMessage = `Are you sure you want to delete lesson ${selectedLesson}${lesson ? ` - ${lesson.title}` : ''}?\n\nThis will remove the lesson from all 7 integration points and cannot be undone.`;
+    const selectedLessonDetails = selectedLessons.map(id => {
+      const lesson = lessons.find(l => l.id === id);
+      return lesson ? `  • ${id} - ${lesson.title}` : `  • ${id}`;
+    }).join('\n');
+
+    const confirmMessage = `Are you sure you want to delete ${selectedLessons.length} lesson(s)?\n\n${selectedLessonDetails}\n\nThis will remove the lessons from all 7 integration points and cannot be undone.`;
     
     if (!confirm(confirmMessage)) {
       return;
@@ -395,25 +415,45 @@ export default function GeneratePage() {
     });
 
     try {
-      const response = await fetch('/api/delete-lesson', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lessonId: selectedLesson }),
-      });
+      const allFilesModified: string[] = [];
+      const allFilesDeleted: string[] = [];
+      const allWarnings: string[] = [];
+      const errors: string[] = [];
 
-      const data = await response.json();
+      // Delete lessons one by one
+      for (const lessonId of selectedLessons) {
+        try {
+          const response = await fetch('/api/delete-lesson', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ lessonId }),
+          });
 
-      if (!response.ok || !data.success) {
-        throw new Error(data.error || 'Deletion failed');
+          const data = await response.json();
+
+          if (!response.ok || !data.success) {
+            errors.push(`${lessonId}: ${data.error || 'Deletion failed'}`);
+          } else {
+            if (data.filesModified) allFilesModified.push(...data.filesModified);
+            if (data.filesDeleted) allFilesDeleted.push(...data.filesDeleted);
+            if (data.warnings) allWarnings.push(...data.warnings);
+          }
+        } catch (error) {
+          errors.push(`${lessonId}: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        }
+      }
+
+      if (errors.length > 0) {
+        throw new Error(`Failed to delete some lessons:\n${errors.join('\n')}`);
       }
 
       setDeleteStatus({
         deleting: false,
         success: true,
         error: null,
-        filesModified: data.filesModified,
-        filesDeleted: data.filesDeleted,
-        warnings: data.warnings,
+        filesModified: Array.from(new Set(allFilesModified)),
+        filesDeleted: Array.from(new Set(allFilesDeleted)),
+        warnings: allWarnings.length > 0 ? allWarnings : undefined,
       });
 
       // Refresh lessons list
@@ -425,7 +465,7 @@ export default function GeneratePage() {
       }
 
       // Clear selection
-      setSelectedLesson('');
+      setSelectedLessons([]);
 
       // Auto-clear success message after 10 seconds
       setTimeout(() => {
@@ -1210,37 +1250,64 @@ export default function GeneratePage() {
           </h3>
           
           <div className="space-y-4">
-            {/* Lesson Dropdown */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                Select Lesson to Delete
-              </label>
-              <select
-                value={selectedLesson}
-                onChange={(e) => setSelectedLesson(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-red-500 dark:bg-slate-700 dark:text-white"
-                disabled={deleteStatus.deleting}
-              >
-                <option value="">-- Select a lesson --</option>
-                {Object.entries(lessonsByUnit).map(([unitNumber, unitLessons]) => (
-                  <optgroup key={unitNumber} label={`Unit ${unitNumber}`}>
+            {/* Select/Deselect Controls */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex gap-2">
+                <button
+                  onClick={handleSelectAll}
+                  className="px-3 py-1.5 text-sm bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors"
+                  disabled={deleteStatus.deleting}
+                >
+                  Select All
+                </button>
+                <button
+                  onClick={handleDeselectAll}
+                  className="px-3 py-1.5 text-sm bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-slate-300 rounded hover:bg-gray-200 dark:hover:bg-slate-600 transition-colors"
+                  disabled={deleteStatus.deleting}
+                >
+                  Deselect All
+                </button>
+              </div>
+              <span className="text-sm text-gray-600 dark:text-slate-400">
+                {selectedLessons.length} of {lessons.length} selected
+              </span>
+            </div>
+
+            {/* Checkbox List */}
+            <div className="border border-gray-300 dark:border-slate-600 rounded-lg max-h-96 overflow-y-auto">
+              {Object.entries(lessonsByUnit).map(([unitNumber, unitLessons]) => (
+                <div key={unitNumber} className="border-b border-gray-200 dark:border-slate-700 last:border-b-0">
+                  <div className="bg-gray-50 dark:bg-slate-700/50 px-4 py-2 font-medium text-sm text-gray-700 dark:text-slate-300">
+                    Unit {unitNumber}
+                  </div>
+                  <div className="divide-y divide-gray-200 dark:divide-slate-700">
                     {unitLessons.map((lesson) => (
-                      <option key={lesson.id} value={lesson.id}>
-                        {lesson.id} - {lesson.title}
-                      </option>
+                      <label
+                        key={lesson.id}
+                        className="flex items-center px-4 py-2.5 hover:bg-gray-50 dark:hover:bg-slate-700/30 cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          checked={selectedLessons.includes(lesson.id)}
+                          onChange={() => handleToggleLesson(lesson.id)}
+                          disabled={deleteStatus.deleting}
+                          className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500 dark:border-slate-600 dark:bg-slate-700"
+                        />
+                        <span className="ml-3 text-sm text-gray-900 dark:text-slate-200">
+                          <span className="font-mono font-medium">{lesson.id}</span>
+                          <span className="text-gray-600 dark:text-slate-400"> - {lesson.title}</span>
+                        </span>
+                      </label>
                     ))}
-                  </optgroup>
-                ))}
-              </select>
-              <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
-                Total lessons: {lessons.length}
-              </p>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Delete Button */}
             <button
-              onClick={handleDeleteLesson}
-              disabled={!selectedLesson || deleteStatus.deleting}
+              onClick={handleDeleteLessons}
+              disabled={selectedLessons.length === 0 || deleteStatus.deleting}
               className="w-full px-6 py-3 bg-red-600 dark:bg-red-500 text-white rounded-lg font-medium hover:bg-red-700 dark:hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {deleteStatus.deleting ? (
@@ -1256,7 +1323,7 @@ export default function GeneratePage() {
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
                   </svg>
-                  <span>Delete Lesson</span>
+                  <span>Delete {selectedLessons.length} Lesson{selectedLessons.length !== 1 ? 's' : ''}</span>
                 </>
               )}
             </button>

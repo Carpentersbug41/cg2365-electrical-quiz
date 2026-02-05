@@ -24,9 +24,9 @@ export const GENERATION_CONFIG = {
     /**
      * Maximum number of patches to apply per refinement
      * Limits LLM to fixing top N issues
-     * Increased to 25 to handle lessons with many small issues (e.g., 15+ invalid IDs)
+     * Set to 10 to maintain laser focus on most impactful issues
      */
-    maxFixes: 25,
+    maxFixes: 10,
     
     /**
      * Save original lesson when refinement is applied
@@ -41,6 +41,29 @@ export const GENERATION_CONFIG = {
      * Default: true
      */
     autoApply: true,
+  },
+  
+  /**
+   * Scoring Configuration
+   */
+  scoring: {
+    /**
+     * Scoring method: 'llm' or 'rubric'
+     * 'llm': Use LLM-based intelligent scoring (recommended)
+     * 'rubric': Use hardcoded rubric (deprecated, for comparison only)
+     */
+    method: 'llm' as 'llm' | 'rubric',
+    
+    /**
+     * Temperature for LLM scoring (lower = more consistent)
+     * Default: 0.3 for deterministic scoring
+     */
+    temperature: 0.3,
+    
+    /**
+     * Max tokens for scoring response
+     */
+    maxTokens: 4000,
   },
   
   /**
@@ -64,6 +87,13 @@ export const GENERATION_CONFIG = {
  */
 export function getRefinementConfig() {
   return GENERATION_CONFIG.refinement;
+}
+
+/**
+ * Get scoring config (for easy access)
+ */
+export function getScoringConfig() {
+  return GENERATION_CONFIG.scoring;
 }
 
 /**
