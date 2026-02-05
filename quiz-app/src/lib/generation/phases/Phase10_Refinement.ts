@@ -73,10 +73,18 @@ export class Phase10_Refinement extends PhasePromptBuilder {
       const pointsLost = detail.maxScore - detail.score;
       
       detail.issues.forEach((issue, idx) => {
+        const suggestion = detail.suggestions[idx] || 'Fix this issue';
+        
+        // Skip structural suggestions that Phase 10 cannot handle
+        if (this.isStructuralSuggestion(suggestion)) {
+          console.log(`   ⊘ Skipping structural suggestion: ${suggestion.substring(0, 80)}...`);
+          return; // Skip this issue
+        }
+        
         allIssues.push({
           section: detail.section,
           issue,
-          suggestion: detail.suggestions[idx] || 'Fix this issue',
+          suggestion,
           pointsLost,
           severity: this.calculateSeverity(detail, pointsLost)
         });
@@ -107,6 +115,25 @@ export class Phase10_Refinement extends PhasePromptBuilder {
     }
     
     return severity;
+  }
+
+  /**
+   * Check if suggestion requires structural changes (adding/removing blocks)
+   */
+  private isStructuralSuggestion(suggestion: string): boolean {
+    const structuralKeywords = [
+      'insert a new block',
+      'add a new block',
+      'create a new block',
+      'remove block',
+      'delete block',
+      'insert new block',
+      'add new block',
+      'create new block'
+    ];
+    
+    const lowerSuggestion = suggestion.toLowerCase();
+    return structuralKeywords.some(keyword => lowerSuggestion.includes(keyword));
   }
 
   /**
@@ -166,18 +193,31 @@ export class Phase10_Refinement extends PhasePromptBuilder {
     issues: IssueToFix[],
     originalLesson: Lesson
   ): RefinementPatch[] {
-    return llmPatches.patches.map((llmPatch, idx) => {
-      const relatedIssue = issues[idx] || issues[0];
+    const validPatches: RefinementPatch[] = [];
+    
+    llmPatches.patches.forEach((llmPatch, idx) => {
+      // Check if patch references a non-existent block
+      const blockMatch = llmPatch.path.match(/blocks\[(\d+)\]/);
+      if (blockMatch) {
+        const blockIndex = parseInt(blockMatch[1], 10);
+        if (blockIndex >= originalLesson.blocks.length) {
+          console.warn(`   ⊘ Rejecting patch: ${llmPatch.path} references non-existent block[${blockIndex}]`);
+          return; // Skip this patch
+        }
+      }
       
-      return {
+      const relatedIssue = issues[idx] || issues[0];
+      validPatches.push({
         path: llmPatch.path,
         issue: relatedIssue.issue,
         suggestion: relatedIssue.suggestion,
         oldValue: this.getValueAtPath(originalLesson, llmPatch.path),
         newValue: llmPatch.newValue,
         pointsRecovered: relatedIssue.pointsLost
-      };
+      });
     });
+    
+    return validPatches;
   }
 
   /**
@@ -402,6 +442,12 @@ FORBIDDEN:
 - Changing multiple related fields without explicit instruction
 - Creative improvements beyond the specific issues
 - Changing block structure or order
+- Adding new blocks (use "blocks[N]" path only for existing blocks)
+- Removing blocks
+- Changing block count in any way
+
+CRITICAL: If a suggestion asks to "insert" or "add" a block, SKIP that patch.
+Only patch existing blocks and their fields.
 
 FOCUS: You have a maximum of 10 patches. Use them wisely on the most impactful fixes.
 

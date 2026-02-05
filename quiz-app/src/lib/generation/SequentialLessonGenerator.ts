@@ -791,10 +791,18 @@ export class SequentialLessonGenerator {
    */
   private parseResponse<T>(response: string, phaseName: string): { success: boolean; data?: T; error?: string } {
     try {
+      // Log raw response preview for debugging
+      console.log(`\n🔍 [${phaseName}] Parsing response (${response.length} chars)`);
+      console.log(`   First 200 chars: ${response.substring(0, 200)}`);
+      console.log(`   Last 200 chars: ${response.slice(-200)}`);
+      
       // CRITICAL: Follow the validation pipeline order from don't_touch.md
       // 1. Validate (checks for error messages)
       const validation = validateLLMResponse(response);
       if (!validation.valid) {
+        console.error(`❌ [${phaseName}] Validation failed:`, validation.error);
+        console.error(`❌ [${phaseName}] Response preview:`, response.substring(0, 500));
+        
         return {
           success: false,
           error: `${phaseName}: ${validation.error || 'Invalid response from LLM'}`,
@@ -806,21 +814,30 @@ export class SequentialLessonGenerator {
 
       // 3. Preprocess (removes trailing commas, comments, etc)
       const preprocessed = preprocessToValidJson(cleaned);
+      console.log(`   After preprocessing: ${preprocessed.length} chars`);
 
       // 4. Parse (RFC 8259 JSON only)
       const parsed = safeJsonParse<T>(preprocessed);
       if (!parsed.success || !parsed.data) {
+        console.error(`❌ [${phaseName}] JSON parse failed:`, parsed.error);
+        console.error(`❌ [${phaseName}] Preprocessed content (first 500):`, preprocessed.substring(0, 500));
+        console.error(`❌ [${phaseName}] Preprocessed content (last 500):`, preprocessed.slice(-500));
+        
         return {
           success: false,
           error: `${phaseName}: Failed to parse JSON - ${parsed.error}`,
         };
       }
 
+      console.log(`✅ [${phaseName}] Successfully parsed response`);
       return {
         success: true,
         data: parsed.data,
       };
     } catch (error) {
+      console.error(`❌ [${phaseName}] Exception during parsing:`, error);
+      console.error(`❌ [${phaseName}] Stack trace:`, error instanceof Error ? error.stack : 'no stack');
+      
       return {
         success: false,
         error: `${phaseName}: ${error instanceof Error ? error.message : 'Unknown parsing error'}`,

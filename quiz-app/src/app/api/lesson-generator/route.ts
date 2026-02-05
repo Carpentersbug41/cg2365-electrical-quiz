@@ -272,12 +272,35 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response, { headers });
 
   } catch (error) {
+    // Enhanced error logging
+    console.error('\n❌❌❌ GENERATION PIPELINE EXCEPTION ❌❌❌');
+    console.error(`   Error name: ${error instanceof Error ? error.name : 'Unknown'}`);
+    console.error(`   Error message: ${error instanceof Error ? error.message : 'unknown'}`);
+    
+    if (error instanceof Error && error.stack) {
+      console.error(`   Stack trace:`);
+      console.error(error.stack);
+    }
+    
     debugLog('GENERATION_EXCEPTION', { 
       errorMsg: error instanceof Error ? error.message : 'unknown', 
       errorName: error instanceof Error ? error.name : 'unknown',
-      errorStack: error instanceof Error ? error.stack?.substring(0, 1000) : 'unknown'
+      errorStack: error instanceof Error ? error.stack : 'unknown',
+      fullError: error
     });
-    console.error('[Generator] Unexpected error:', error);
+
+    // Try to get lesson ID from request body
+    let lessonIdContext = 'unknown';
+    try {
+      const body = await request.clone().json();
+      lessonIdContext = `${body.unit}-${body.lessonId}`;
+    } catch {
+      // Could not parse body for logging
+    }
+    
+    console.error(`   Lesson ID: ${lessonIdContext}`);
+    console.error(`   Files updated so far: ${filesUpdated.join(', ') || 'none'}`);
+    console.error('=====================================\n');
     
     // Attempt rollback
     try {
@@ -300,6 +323,13 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: false,
       error: errorResponse.message,
+      detailedError: error instanceof Error ? {
+        name: error.name,
+        message: error.message,
+        stack: error.stack?.substring(0, 1000), // First 1000 chars of stack
+      } : undefined,
+      lessonId: lessonIdContext,
+      filesUpdated: filesUpdated.length > 0 ? filesUpdated : undefined,
     }, { status: errorResponse.status });
   }
 }

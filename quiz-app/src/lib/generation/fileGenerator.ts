@@ -986,15 +986,42 @@ OUTPUT FORMAT: Pure JSON only`;
         return cleanedText;
       } catch (error) {
         lastError = error instanceof Error ? error : new Error('Unknown error');
-        console.error(`Generation attempt ${attempt + 1} failed:`, lastError);
+        
+        // Enhanced error logging
+        console.error(`\n❌ Generation attempt ${attempt + 1}/${maxRetries} failed`);
+        console.error(`   Error type: ${lastError.name}`);
+        console.error(`   Error message: ${lastError.message}`);
+        console.error(`   Token limit: ${tokenLimit}`);
+        console.error(`   Type: ${type}`);
+        console.error(`   Attempt higher limit: ${attemptHigherLimit}`);
+        
+        if (lastError.stack) {
+          console.error(`   Stack trace (first 500 chars):`, lastError.stack.substring(0, 500));
+        }
+        
+        debugLog('GENERATION_ATTEMPT_FAILED', {
+          attempt: attempt + 1,
+          maxRetries,
+          errorName: lastError.name,
+          errorMessage: lastError.message,
+          tokenLimit,
+          type,
+          attemptHigherLimit,
+          stackPreview: lastError.stack?.substring(0, 200)
+        });
         
         // If truncated and haven't tried higher limit yet, retry with more tokens
         if (lastError.message.includes('TRUNCATED_RESPONSE') && !attemptHigherLimit) {
-          console.log(`Response truncated at ${tokenLimit} tokens, retrying with ${GENERATION_LIMITS.MAX_TOKENS_RETRY} tokens...`);
+          console.log(`\n🔄 TRUNCATION RECOVERY: Retrying with ${GENERATION_LIMITS.MAX_TOKENS_RETRY} tokens...`);
+          console.log(`   Previous limit: ${tokenLimit}`);
+          console.log(`   New limit: ${GENERATION_LIMITS.MAX_TOKENS_RETRY}`);
+          console.log(`   Reason: ${lastError.message}`);
           return this.generateWithRetry(systemPrompt, userPrompt, type, 1, true);
         }
 
+        // Log that we're retrying
         if (attempt < maxRetries - 1) {
+          console.log(`\n⏭️  Retrying (attempt ${attempt + 2}/${maxRetries})...`);
           await sleep(GENERATION_LIMITS.RETRY_DELAY_MS * (attempt + 1));
         }
       }

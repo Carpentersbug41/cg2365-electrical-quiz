@@ -246,8 +246,14 @@ function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'pha
   if (trimmed.startsWith('{')) {
     // Only check for blocks array if this is a complete lesson (not a phase)
     // Phase responses are partial structures that won't have blocks
-    if (type !== 'phase' && !trimmed.includes('"blocks"')) {
-      issues.push('Lesson JSON missing "blocks" property');
+    if (type === 'lesson' && !trimmed.includes('"blocks"')) {
+      issues.push('Complete lesson JSON missing "blocks" property');
+    } else if (type === 'phase' && !trimmed.includes('"blocks"')) {
+      // Phase responses won't have blocks - this is NORMAL, don't report as issue
+      // Log for transparency but don't add to issues
+      console.log(`   ℹ️  Phase response doesn't have "blocks" (this is expected for phase responses)`);
+    } else if (!type && !trimmed.includes('"blocks"')) {
+      issues.push('Lesson JSON missing "blocks" property (type not specified)');
     }
 
     // Check if response ends abruptly without proper closure
@@ -255,10 +261,12 @@ function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'pha
       issues.push('Response lacks proper closing structures in final section');
     }
 
-    // Lesson blocks should end with closing array
-    const blocksMatch = trimmed.match(/"blocks"\s*:\s*\[/);
-    if (blocksMatch && !trimmed.includes(']', blocksMatch.index!)) {
-      issues.push('Blocks array appears to be unclosed');
+    // Lesson blocks should end with closing array (only check for complete lessons, not phases)
+    if (type === 'lesson') {
+      const blocksMatch = trimmed.match(/"blocks"\s*:\s*\[/);
+      if (blocksMatch && !trimmed.includes(']', blocksMatch.index!)) {
+        issues.push('Blocks array appears to be unclosed');
+      }
     }
   }
 
