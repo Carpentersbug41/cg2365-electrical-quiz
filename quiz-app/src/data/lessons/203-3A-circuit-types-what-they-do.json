@@ -1,0 +1,345 @@
+{
+  "id": "203-3A",
+  "title": "203.3A — Circuit Types: What They Do",
+  "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Circuit Types: What They Do",
+  "learningOutcomes": [
+    "Identify the primary categories of electrical circuits used in installations.",
+    "Explain the fundamental differences between ring final and radial circuit topologies.",
+    "Determine the appropriate circuit type and arrangement for specific domestic or commercial applications based on their intended purpose."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the primary categories of electrical circuits used in installations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the fundamental differences between ring final and radial circuit topologies.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Determine the appropriate circuit type and arrangement for specific domestic or commercial applications based on their intended purpose.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Final Circuit",
+            "definition": "A circuit connected directly from a distribution board to current-using equipment or socket-outlets."
+          },
+          {
+            "term": "Topology",
+            "definition": "The physical layout or geometric arrangement of the wiring and components within an electrical circuit."
+          },
+          {
+            "term": "Radial Circuit",
+            "definition": "A circuit arrangement where the cable runs from the consumer unit to each point in sequence and terminates at the final outlet."
+          },
+          {
+            "term": "Ring Final Circuit",
+            "definition": "A circuit arrangement where the conductors form a continuous loop by starting and ending at the same terminals in the distribution board."
+          },
+          {
+            "term": "Control Circuit",
+            "definition": "A circuit used to govern the operation of another circuit or a specific piece of equipment, such as a motor or heating system."
+          },
+          {
+            "term": "Emergency Lighting",
+            "definition": "A dedicated lighting system designed to provide illumination automatically when the normal power supply fails to ensure safe evacuation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Circuit Types: What They Do Diagram",
+        "description": "Visual representation of Circuit Types: What They Do",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "Distribution Board",
+          "Radial Circuit",
+          "Ring Final Circuit",
+          "Final Circuit",
+          "Current-using equipment"
+        ],
+        "placeholderText": "A comparison diagram showing two distinct circuit layouts side-by-side. On the left, a 'Radial Circuit' layout shows a Distribution Board with a single cable running in a line to three socket-outlets, ending at the last one. On the right, a 'Ring Final Circuit' layout shows a Distribution Board with two cables emerging from the same fuse/MCB; one cable travels through three socket-outlets in a loop and the other end returns to the same starting point in the Distribution Board. Both are labeled as types of 'Final Circuit'. Small icons of 'Current-using equipment' like a lamp or toaster are shown plugged into the sockets to illustrate the purpose."
+      }
+    },
+    {
+      "id": "203-3A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Circuit Categories and Functions",
+        "content": "### In this lesson\n\nYou will learn to identify the primary categories of electrical circuits, understand the differences between ring and radial topologies, and determine the appropriate circuit arrangement for specific installations.\n\n1. **What this is**\n\nIn any electrical installation, a **Final Circuit** is the part of the wiring system that delivers electricity from the distribution board directly to the point of use. These circuits are categorized by their specific purpose, such as providing power for lights, appliances, or safety systems. Understanding these categories is the first step in identifying the primary categories of electrical circuits used in installations, ensuring that each system is designed to handle the specific electrical demands of the equipment it serves.\n\n2. **Why it matters**\n\nSeparating circuits into categories is essential for safety and functional reliability. If a fault occurs on a power circuit, it should not cause the lights to go out, which could create a hazard. Furthermore, different types of equipment have different electrical characteristics; for instance, a motor requires a different control method than a standard light bulb. By categorizing circuits, electricians can ensure that the protective devices and cable sizes are appropriate for the intended use, preventing overloads and ensuring the system operates efficiently.\n\n3. **Key facts / rules**\n\n*   Lighting Circuits: Typically provide power to fixed luminaires and are often rated at 6A or 10A.\n*   Power Circuits: Used for socket-outlets to supply portable equipment; these are commonly arranged as rings or radials.\n*   Heating Circuits: High-load appliances like electric showers or cookers usually require their own dedicated **Final Circuit**.\n*   Alarm and Security: Dedicated circuits for smoke detectors or burglar alarms to ensure constant power.\n*   **Emergency Lighting**: A specialized system designed to provide illumination automatically if the main power fails, facilitating safe evacuation.\n*   Data and Communications: Low-voltage circuits used for internet, telephone, and networking cables.\n*   **Control Circuit**: A circuit used to govern or command the operation of a separate, often higher-power, circuit or piece of equipment.\n\n4. **How to apply it**\n\nTo determine the appropriate circuit type for a specific application, a systematic selection process is followed. First, identify the total load and nature of the equipment. For a domestic kitchen, you would typically select a high-capacity power circuit for sockets and separate dedicated circuits for the oven and hob. In a commercial setting, you must identify if **Emergency Lighting** is required by assessing the escape routes; if so, a dedicated charging circuit is established. When dealing with complex HVAC systems, you would apply a **Control Circuit** to manage the switching of fans and heaters based on thermostat inputs. This selection process ensures that the installation is tailored to the specific needs of the building and its occupants.\n\n5. **Common mistakes**\n\nStudents often mistakenly believe that all equipment in a single room can be on one circuit. In reality, mixing high-power appliances (like a power shower) with a general lighting circuit is a significant error that leads to frequent tripping of protective devices. Another common mistake is failing to provide a dedicated circuit for safety systems, such as fire alarms, which should typically be separate from general-use power circuits to prevent accidental isolation.\n\n6. **Quick recap**\n\nElectrical installations are divided into various circuit categories including lighting, power, heating, and safety systems like **Emergency Lighting**. Each category serves a specific function, from powering heavy machinery via a **Control Circuit** to providing data connectivity. Selecting the right circuit involves matching the circuit's capacity and protective measures to the specific requirements of the equipment and the safety needs of the environment."
+      }
+    },
+    {
+      "id": "203-3A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Categories and Functions",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A-C1-L1-A",
+            "questionText": "What is the name of the part of the wiring system that delivers electricity directly from the distribution board to the point of use?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Final Circuit",
+              "a Final Circuit",
+              "Final Circuits"
+            ],
+            "hint": "This part of the circuit serves the equipment directly from the distribution board."
+          },
+          {
+            "id": "203-3A-C1-L1-B",
+            "questionText": "Which type of circuit is used specifically to govern or command the operation of a separate, often higher-power, piece of equipment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Control Circuit",
+              "a Control Circuit",
+              "Control Circuits"
+            ],
+            "hint": "This circuit is used for switching or managing other circuits, like HVAC fans."
+          },
+          {
+            "id": "203-3A-C1-L1-C",
+            "questionText": "What specialized system is designed to provide illumination automatically if the main power supply fails?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Emergency Lighting",
+              "Emergency Lighting system",
+              "Emergency Lighting circuits"
+            ],
+            "hint": "This system facilitates safe evacuation during a power outage."
+          },
+          {
+            "id": "203-3A-C1-L2",
+            "questionText": "Using your answers to Q1 (Final Circuit), Q2 (Control Circuit), and Q3 (Emergency Lighting), explain how these distinct circuit types work together to ensure a functional and safe installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Final circuits provide power, control circuits manage operation, and emergency lighting provides safety illumination."
+            ],
+            "hint": "Think about how power delivery, equipment management, and safety systems interact."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Circuit Topologies: Ring vs Radial",
+        "content": "1. **What this is**\n\nThe term **Topology** refers to the physical layout and geometric arrangement of the wiring within a circuit. In UK installations, the two most common arrangements for power circuits are the **Radial Circuit** and the **Ring Final Circuit**. A **Radial Circuit** follows a linear path, starting at the distribution board and ending at the last point of use. In contrast, a **Ring Final Circuit** forms a continuous loop, where the conductors start at the distribution board, visit every socket-outlet, and return to the same terminals in the board.\n\n2. **Why it matters**\n\nThe choice of **Topology** affects the amount of cable used, the ease of installation, and the current-carrying capacity of the circuit. A ring circuit allows for a higher total load (typically 32A) using smaller cables (commonly 2.5mm²) because the current can flow in two directions around the loop to reach any given socket. This makes it very efficient for serving large areas with many sockets. A radial circuit is simpler to test and install but may require larger cables or lower-rated breakers if serving high-load equipment over long distances.\n\n3. **Key facts / rules**\n\n*   **Ring Final Circuit**: Forms a complete loop; if the loop is broken, it becomes two radials, which can lead to cable overheating.\n*   **Radial Circuit**: Terminates at the final outlet; easier to fault-find and commonly used for lighting or dedicated appliance circuits.\n*   Floor Area Limits: IET On-Site Guide typically limits a standard 32A ring final circuit to a floor area of 100m².\n*   Cable Sizes: **Radial Circuits** for sockets are often rated at 20A using 2.5mm² cable, whereas a ring uses the same cable but is rated at 32A.\n*   Continuity: Maintaining electrical continuity throughout the ring is critical for the safety and performance of the circuit.\n\n4. **How to apply it**\n\nWhen determining the appropriate circuit arrangement, you must calculate the expected load and floor area. For a standard domestic living room or bedroom, a **Ring Final Circuit** is commonly selected because it provides high flexibility for multiple small appliances across a large area (up to 100m²). However, for a dedicated high-power appliance like a 7kW electric shower, a **Radial Circuit** is the correct choice. In commercial offices where data integrity is vital, multiple radial circuits are often preferred over rings to limit the number of outlets affected by a single fault. To apply this, check the IET On-Site Guide tables for maximum floor areas and voltage drop to ensure the chosen **Topology** meets the specific needs of the installation.\n\n5. **Common mistakes**\n\nA frequent error in **Ring Final Circuit** installation is the 'inter-connected ring' or 'bridge,' where a cable is accidentally connected between two parts of the ring, creating a figure-eight. This makes testing difficult and bypasses the intended current path. Another mistake is exceeding the 100m² floor area limit for a ring, which can lead to excessive voltage drop. Students also often forget that a **Radial Circuit** must be appropriately fused; for example, using a 32A breaker on a 2.5mm² radial (which is not a ring) would typically be an error as the cable would not be sufficiently protected.\n\n6. **Quick recap**\n\nThe **Topology** of a circuit—whether it is a **Radial Circuit** or a **Ring Final Circuit**—dictates how power is distributed through a building. Radials are linear and simple, ideal for dedicated loads or lighting, while rings form a loop that allows for higher current capacity over larger areas. Choosing between them requires an understanding of floor area limits, expected load, and the specific requirements of the environment, such as domestic versus commercial use.\n\n### Key Points\n1. Final circuits deliver power from the distribution board directly to the point of use.\n2. Radial circuits follow a linear path; Ring Final circuits form a continuous loop.\n3. Standard 32A ring final circuits are typically limited to a floor area of 100m².\n\n### Coming Up Next\n\nIn the next lesson, we will explore the specific methods for calculating cable sizes and selecting protective devices for these circuit types."
+      }
+    },
+    {
+      "id": "203-3A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Topologies: Ring vs Radial",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A-C2-L1-A",
+            "questionText": "What term refers to the physical layout and geometric arrangement of the wiring within a circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Topology",
+              "Circuit Topology",
+              "Topologies"
+            ],
+            "hint": "This term describes how the cables are physically laid out in an installation."
+          },
+          {
+            "id": "203-3A-C2-L1-B",
+            "questionText": "Which circuit arrangement follows a linear path from the distribution board and terminates at the last point of use?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Radial Circuit",
+              "a Radial Circuit",
+              "Radial Circuits"
+            ],
+            "hint": "This is a simple, non-looping arrangement often used for dedicated appliances."
+          },
+          {
+            "id": "203-3A-C2-L1-C",
+            "questionText": "Which circuit arrangement forms a continuous loop where the conductors return to the same terminals in the distribution board?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Ring Final Circuit",
+              "a Ring Final Circuit",
+              "Ring Final Circuits"
+            ],
+            "hint": "This arrangement allows current to flow in two directions around a loop."
+          },
+          {
+            "id": "203-3A-C2-L2",
+            "questionText": "Using your answers to Q1 (Topology), Q2 (Radial Circuit), and Q3 (Ring Final Circuit), explain how the choice of circuit layout affects the performance and capacity of an electrical installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "The topology determines the geometric layout, with radials used for linear runs and rings used for high-capacity loops."
+            ],
+            "hint": "Consider how linear vs. loop layouts change current capacity and cable usage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3A-P1",
+            "questionText": "According to the IET On-Site Guide, what is the maximum floor area in square metres that a standard 32A ring final circuit is permitted to serve? (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "100",
+              "100.0"
+            ],
+            "hint": "Square metres (m²)"
+          },
+          {
+            "id": "203-3A-P2",
+            "questionText": "A 7kW electric shower is being installed. Based on the rules for high-load appliances, which specific circuit topology should be used to provide its dedicated supply?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Radial Circuit",
+              "Radial",
+              "a Radial Circuit",
+              "a Radial"
+            ],
+            "hint": "A linear circuit that terminates at the final outlet."
+          },
+          {
+            "id": "203-3A-P3",
+            "questionText": "What is the name of the specialized circuit used to govern or command the operation of a separate, higher-power piece of equipment, such as a motor or heating system?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Control Circuit",
+              "a Control Circuit",
+              "Control",
+              "Control Circuits"
+            ],
+            "hint": "This circuit manages the switching of other equipment."
+          },
+          {
+            "id": "203-3A-P4",
+            "questionText": "A standard radial circuit for socket-outlets using 2.5mm² cable is typically rated at 20A. What is the standard current rating in Amps for a ring final circuit using the same cable size? (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "32",
+              "32.0"
+            ],
+            "hint": "Amperes (A)"
+          },
+          {
+            "id": "203-3A-P5",
+            "questionText": "Which specialized circuit category must be installed to provide automatic illumination for safe evacuation if the normal power supply to a building fails?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Emergency Lighting",
+              "Emergency Lighting Circuit"
+            ],
+            "hint": "Used for safety and evacuation during power loss."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A-INT-1",
+            "questionText": "How does the intended function of a final circuit influence the choice between a radial or ring final topology in a domestic installation? (2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "High-load appliances use radial circuits for simplicity, while general-purpose sockets use ring final circuits for higher capacity."
+            ],
+            "hint": "Consider how the physical layout (loop vs. linear) supports the specific power needs of different circuit categories."
+          },
+          {
+            "id": "203-3A-INT-2",
+            "questionText": "Explain how the selection of a specific final circuit category and its corresponding topology (radial or ring) ensures that an electrical installation meets the functional and safety requirements of its intended application. Please provide your answer in 3-4 sentences.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "Designers match circuit categories to topologies, using radials for dedicated loads and rings for distributed socket outlets to ensure safety and capacity."
+            ],
+            "hint": "Start by identifying the purpose of the circuit, then explain how the geometric arrangement (topology) supports that specific purpose in a real-world setting."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Spaced Review (from prerequisites)",
+        "questions": [
+          {
+            "id": "203-3A-SR-1",
+            "questionText": "What is the harmonized wire color for a protective conductor (earth)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Green and Yellow",
+              "Green/Yellow"
+            ]
+          }
+        ],
+        "notes": "No prerequisites for this foundational lesson"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-05",
+    "updated": "2026-02-05",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

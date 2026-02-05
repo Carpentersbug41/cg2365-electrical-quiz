@@ -173,10 +173,18 @@ export class Phase10_Refinement extends PhasePromptBuilder {
     console.log(`   Overall: ${originalScore.total}/100 → ${refinedScore.total}/100`);
     console.log('\n   Section breakdown:');
     
-    originalScore.details.forEach((origDetail, idx) => {
-      const refDetail = refinedScore.details[idx];
-      const changed = origDetail.score !== refDetail.score ? '✓ CHANGED' : '';
+    // Create a map of refined sections for safe lookup
+    const refinedMap = new Map(refinedScore.details.map(d => [d.section, d]));
+    
+    originalScore.details.forEach((origDetail) => {
+      const refDetail = refinedMap.get(origDetail.section);
       
+      if (!refDetail) {
+        console.log(`   ${origDetail.section}: ${origDetail.score}/${origDetail.maxScore} → [section removed]`);
+        return;
+      }
+      
+      const changed = origDetail.score !== refDetail.score ? '✓ CHANGED' : '';
       console.log(`   ${origDetail.section}: ${origDetail.score}/${origDetail.maxScore} → ${refDetail.score}/${refDetail.maxScore} ${changed}`);
       
       if (origDetail.score !== refDetail.score) {
@@ -184,6 +192,15 @@ export class Phase10_Refinement extends PhasePromptBuilder {
         console.log(`      Issues after: ${refDetail.issues.length}`);
       }
     });
+    
+    // Log any new sections in refined score
+    const originalSections = new Set(originalScore.details.map(d => d.section));
+    refinedScore.details.forEach((refDetail) => {
+      if (!originalSections.has(refDetail.section)) {
+        console.log(`   ${refDetail.section}: [new section] → ${refDetail.score}/${refDetail.maxScore}`);
+      }
+    });
+    
     console.log('');
   }
 

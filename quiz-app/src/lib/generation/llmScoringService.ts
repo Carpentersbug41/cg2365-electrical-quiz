@@ -223,7 +223,7 @@ A) Schema & Contract Compliance (20 points)
    A2: Block order contract (8 points)
       - explanation → understanding checks → worked example → practice → integrative → spaced review
    A3: IDs + naming patterns (6 points)
-      - Question IDs follow patterns: C1-L1-A (checks), INT-1 (integrative), P1 (practice), SR-1 (review)
+      - Question IDs MUST include lesson prefix: {lessonId}-C1-L1-A (checks), {lessonId}-INT-1 (integrative), {lessonId}-P1 (practice), {lessonId}-SR-1 (review)
       - No duplicate IDs
       - Block IDs match lesson ID
 
@@ -279,6 +279,7 @@ CRITICAL RULES FOR ISSUES & SUGGESTIONS:
 2. Total score MUST equal sum of breakdown scores
 3. Focus on the TOP 10 most impactful issues (ignore minor problems)
 4. For EACH issue, provide a SPECIFIC suggestion with the exact rewrite/change
+5. NEVER group multiple array items into one issue - create SEPARATE issue/suggestion pairs for EACH item that needs fixing
 
 SUGGESTION FORMAT - BE LASER FOCUSED:
 ❌ BAD: "Make expectedAnswer more specific"
@@ -288,7 +289,7 @@ SUGGESTION FORMAT - BE LASER FOCUSED:
 ✅ GOOD: "Change blocks[7].content.questions[1].questionText from 'What happens?' to 'Calculate the total resistance when three 10Ω resistors are connected in series.'"
 
 ❌ BAD: "Fix ID pattern"
-✅ GOOD: "Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'"
+✅ GOOD: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A4-C1-L1-A'"
 
 CRITICAL OPERATION VERBS - USE PRECISELY:
 
@@ -298,17 +299,33 @@ For CONTENT ADDITIONS (adding text to beginning/end of existing content):
 ❌ WRONG: "Add 'In this lesson...' to the start of blocks[3].content.content" (ambiguous - add or replace?)
 
 For VALUE REPLACEMENTS (changing specific fields):
-✅ CORRECT: "Change blocks[4].content.questions[0].id from '203-3A9-C1-L1-A' to 'C1-L1-A'"
+✅ CORRECT: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A9-C1-L1-A'"
 ✅ CORRECT: "Change blocks[7].content.questions[2].expectedAnswer from 'yes' to '10A,10.0'"
 ❌ WRONG: "Fix the ID" (not specific enough)
 
-For MULTIPLE ITEMS IN ARRAY - Create SEPARATE suggestion for EACH item:
-✅ CORRECT (multiple suggestions for multiple items):
-  - "Change blocks[4].content.questions[0].id from '203-3A9-C1-L1-A' to 'C1-L1-A'"
-  - "Change blocks[4].content.questions[1].id from '203-3A9-C1-L1-B' to 'C1-L1-B'"
-  - "Change blocks[4].content.questions[2].id from '203-3A9-C1-L1-C' to 'C1-L1-C'"
-  - "Change blocks[4].content.questions[3].id from '203-3A9-C1-L2' to 'C1-L2'"
-❌ WRONG: "Change ALL question IDs in blocks[4] to remove prefix" (requires iteration, only first item will be fixed)
+For MULTIPLE ITEMS IN ARRAY - Create SEPARATE issue AND suggestion for EACH item:
+CRITICAL: If a block has 4 invalid question IDs, you MUST create 4 separate issue/suggestion pairs (one for EACH invalid ID).
+
+✅ CORRECT (separate issue/suggestion for EACH invalid ID):
+  Issue 1: "Question ID 'blocks[4].content.questions[0].id' is 'C1-L1-A' but missing required lesson prefix"
+  Suggestion 1: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A9-C1-L1-A'"
+  
+  Issue 2: "Question ID 'blocks[4].content.questions[1].id' is 'C1-L1-B' but missing required lesson prefix"
+  Suggestion 2: "Change blocks[4].content.questions[1].id from 'C1-L1-B' to '203-3A9-C1-L1-B'"
+  
+  Issue 3: "Question ID 'blocks[4].content.questions[2].id' is 'C1-L1-C' but missing required lesson prefix"
+  Suggestion 3: "Change blocks[4].content.questions[2].id from 'C1-L1-C' to '203-3A9-C1-L1-C'"
+  
+  Issue 4: "Question ID 'blocks[4].content.questions[3].id' is 'C1-L2' but missing required lesson prefix"
+  Suggestion 4: "Change blocks[4].content.questions[3].id from 'C1-L2' to '203-3A9-C1-L2'"
+
+❌ WRONG - Generic issue grouping multiple IDs:
+  Issue: "Question IDs in block 4 are missing the lesson prefix '203-3A9-'"
+  Suggestion: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A9-C1-L1-A'"
+  (This only fixes the FIRST ID, leaving questions[1], [2], [3] broken!)
+
+❌ WRONG - Generic suggestion without specific path:
+  "Change ALL question IDs in blocks[4] to add prefix" (requires iteration, only first item will be fixed)
 
 OPERATION VERB RULES:
 - "Prepend to X:" = add to BEGINNING of existing string (keeps original content)
@@ -344,15 +361,19 @@ Return JSON in this EXACT format:
   "details": [
     {
       "section": "A3: IDs + naming patterns",
-      "score": 4,
+      "score": 2,
       "maxScore": 6,
       "issues": [
-        "Question ID 'blocks[4].content.questions[0].id' is '203-3A4-C1-L1-A' but should not include lesson prefix",
-        "Question ID 'blocks[4].content.questions[3].id' is 'C1-L2-X' but should end with A/B/C or be just 'C1-L2'"
+        "Question ID 'blocks[4].content.questions[0].id' is 'C1-L1-A' but missing required lesson prefix",
+        "Question ID 'blocks[4].content.questions[1].id' is 'C1-L1-B' but missing required lesson prefix",
+        "Question ID 'blocks[4].content.questions[2].id' is 'C1-L1-C' but missing required lesson prefix",
+        "Question ID 'blocks[4].content.questions[3].id' is 'C1-L2' but missing required lesson prefix"
       ],
       "suggestions": [
-        "Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'",
-        "Change blocks[4].content.questions[3].id from 'C1-L2-X' to 'C1-L2'"
+        "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A4-C1-L1-A'",
+        "Change blocks[4].content.questions[1].id from 'C1-L1-B' to '203-3A4-C1-L1-B'",
+        "Change blocks[4].content.questions[2].id from 'C1-L1-C' to '203-3A4-C1-L1-C'",
+        "Change blocks[4].content.questions[3].id from 'C1-L2' to '203-3A4-C1-L2'"
       ]
     },
     {
