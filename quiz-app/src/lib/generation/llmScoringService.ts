@@ -11,6 +11,7 @@
 
 import { Lesson, LessonBlock } from './types';
 import { safeJsonParse, preprocessToValidJson } from './utils';
+import { getScoringConfig } from './config';
 
 // Re-export interfaces for compatibility with existing code
 export interface RubricScore {
@@ -194,13 +195,14 @@ export class LLMScoringService {
     const userPrompt = this.buildScoringUserPrompt(lesson);
 
     // Call LLM with scoring prompts
+    const scoringConfig = getScoringConfig();
     const response = await this.generateWithRetry(
       systemPrompt,
       userPrompt,
       'lesson',
       2,
       false,
-      4000 // Token limit for scoring
+      scoringConfig.maxTokens
     );
 
     // Parse LLM response

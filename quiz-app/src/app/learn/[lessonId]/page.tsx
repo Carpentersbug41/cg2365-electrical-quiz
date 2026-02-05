@@ -51,9 +51,11 @@ import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.js
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3A2 from '@/data/lessons/203-3A2-circuit-types-what-they-do.json';
 import lesson203_3A20 from '@/data/lessons/203-3A20-circuit-types-what-they-do.json';
+import lesson203_3A30 from '@/data/lessons/203-3A30-circuit-types-what-they-do.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3A30': lesson203_3A30 as Lesson,
   '203-3A20': lesson203_3A20 as Lesson,
   '203-3A2': lesson203_3A2 as Lesson,  '203-3F': lesson203_3F as Lesson,  '202-3F': lesson202_3F as Lesson,
   '203-3E': lesson203_3E as Lesson,
