@@ -18,8 +18,9 @@ export const GENERATION_CONFIG = {
      * Score threshold for triggering refinement
      * Refinement activates if lesson score < this value
      * Default: 93 (aims for 95-97 after refinement)
+     * TEMPORARILY SET TO 97 FOR TESTING DIAGNOSTIC OUTPUT
      */
-    scoreThreshold: 93,
+    scoreThreshold: 97,
     
     /**
      * Maximum number of patches to apply per refinement
