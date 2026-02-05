@@ -3,6 +3,22 @@
 **Date:** February 5, 2026  
 **Status:** Implemented & Ready for Testing (Upstream Issue Discovered)
 
+---
+
+> **📌 UPDATE:** This handover has been superseded by [handover2.md](./handover2.md)
+> 
+> **What happened:** The upstream issues discovered in this document (invalid block types, false truncation warnings) have been **FIXED** in Session 2.
+> 
+> **Current status:** Re-scoring is now fully functional with verbose logging. New issues discovered regarding patch quality and token limits.
+> 
+> **Read [handover2.md](./handover2.md) for:**
+> - Complete fix details
+> - New problems discovered
+> - Updated troubleshooting guides
+> - Next steps for investigation
+
+---
+
 ## What We Did
 
 Replaced the 976-line hardcoded `RubricScoringService` with an intelligent **LLM-based scoring system** that evaluates lessons like a human instructor would.

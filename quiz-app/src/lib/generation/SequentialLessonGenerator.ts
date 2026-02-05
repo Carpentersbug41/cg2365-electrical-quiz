@@ -264,10 +264,11 @@ export class SequentialLessonGenerator {
       let rejectedRefinedLesson: Lesson | undefined = undefined;
       let refinementResult: RefinementOutput | null = null;
 
-      // Phase 10: Auto-Refinement (if score < 93)
-      if (initialScore.total < 93) {
-        console.log(`🔧 [Refinement] Score below threshold (93), activating Phase 10...`);
-        console.log(`🔧 [Refinement] Threshold: 93, Actual: ${initialScore.total}, Gap: ${93 - initialScore.total} points`);
+      // Phase 10: Auto-Refinement (if score < threshold)
+      const threshold = getRefinementConfig().scoreThreshold;
+      if (initialScore.total < threshold) {
+        console.log(`🔧 [Refinement] Score below threshold (${threshold}), activating Phase 10...`);
+        console.log(`🔧 [Refinement] Threshold: ${threshold}, Actual: ${initialScore.total}, Gap: ${threshold - initialScore.total} points`);
         
         // Always save original before refinement attempt
         originalLesson = lesson;

@@ -673,6 +673,251 @@ Adding new phases is straightforward:
 
 ---
 
+## Known Issues & Troubleshooting
+
+### Issue 1: Inconsistent Patch Quality (Session 2 Discovery)
+
+**Status:** Active Issue (February 5, 2026)
+
+**Problem:**
+Phase 10 patches sometimes **harm** lessons instead of improving them. Success rate observed in testing: ~50% (vs. 90% target).
+
+**Evidence:**
+```
+📊 [Scoring] Initial score: 87/100
+🔧 [Phase 10] Applied 9 patches
+📊 [Re-scoring] Overall: 87 → 82 (-5)
+⚠️ [Refinement] Score DECLINED by 5 points
+⚠️ [Refinement] Keeping original lesson
+```
+
+**Analysis:**
+When patches are harmful, they typically:
+- Fix one issue but create another (e.g., fix block order but break content quality)
+- Misinterpret the LLM scorer's suggestion
+- Make changes that conflict with other blocks
+- Are too aggressive (replace content instead of tweaking it)
+
+**Good News:**
+The **comparison system works correctly** - harmful patches are detected and rejected. The system keeps the better version.
+
+**Bad News:**
+We're generating patches that shouldn't be generated in the first place. This wastes LLM tokens and time.
+
+**Root Causes:**
+1. **Vague patch instructions** - LLM has too much room to interpret
+2. **Incomplete context** - Patch prompt doesn't show surrounding blocks
+3. **Rubric inconsistency** - Scoring differently on retry (non-deterministic)
+4. **Conflicting fixes** - Fixing issue A breaks requirement B
+
+**Potential Solutions:**
+- [ ] Make patch instructions more explicit and constrained
+- [ ] Provide more context in patch prompt (show adjacent blocks)
+- [ ] Add pre-validation: Score patch suggestions before applying
+- [ ] Limit to low-risk changes only (IDs, simple text replacements)
+- [ ] Investigate LLM scoring determinism (same lesson = same score?)
+- [ ] Reduce LLM temperature for more consistent scoring
+
+---
+
+### Issue 2: LLM Scoring Token Limit Too Low
+
+**Status:** Active Issue (February 5, 2026)
+
+**Problem:**
+Scoring calls truncate at 4000 tokens, forcing expensive retries at 65000 tokens.
+
+**Evidence:**
+```
+Type: lesson
+Token limit: 4000
+🚨 TRUNCATION DETECTED
+Reasons:
+  - Unbalanced braces: 3 opening, 1 closing
+🔄 TRUNCATION RECOVERY: Retrying with 65000 tokens...
+```
+
+**Root Cause:**
+`config.ts` sets scoring `maxTokens: 4000`, which isn't enough for:
+- Complete lesson JSON (~2000-3000 tokens)
+- Scoring rubric prompt (~1000-1500 tokens)
+- Response with detailed breakdown (~1000-2000 tokens)
+
+**Solution:**
+Update `config.ts`:
+```typescript
+scoring: {
+  maxTokens: 8000,  // or 12000 for safety
+}
+```
+
+**Impact:**
+- Eliminates retry overhead
+- Reduces API costs (fewer calls)
+- Faster scoring completion
+
+---
+
+### Issue 3: Confusing "blocks" Warning During Scoring
+
+**Status:** Under Investigation (February 5, 2026)
+
+**Problem:**
+Even after successful retry, scoring logs show:
+```
+🚨 TRUNCATION DETECTED (confidence: MEDIUM)
+Reasons:
+  - Complete lesson JSON missing "blocks" property
+```
+
+**Analysis:**
+This warning appears during **scoring calls**, but the scorer should return a **score object**, not lesson JSON. The warning is checking for wrong structure.
+
+**Possible Explanations:**
+1. Truncation detector is checking wrong thing for scoring responses
+2. This is a false positive we can safely ignore
+3. Scorer prompt is asking for wrong format (unlikely)
+
+**Investigation Needed:**
+- Check actual LLM response during scoring
+- Verify scoring prompt asks for score object
+- Consider adding `type: 'score'` to disable this check for scoring calls
+
+---
+
+## Troubleshooting Guide
+
+### Symptom: Score Declines After Refinement
+
+**Diagnosis:**
+Look for this pattern in logs:
+```
+📊 [Re-scoring] Overall: XX → YY (-Z)
+⚠️ [Refinement] Score DECLINED by Z points
+⚠️ [Refinement] Keeping original lesson
+```
+
+**Action:**
+1. **Check patch details** in logs to see what changed
+2. **Compare section scores** - which sections got worse?
+3. **Review patch reasoning** - did LLM misinterpret the fix?
+4. **This is EXPECTED behavior** - system correctly rejects bad patches
+
+**When to Worry:**
+- If >70% of refinement attempts decline, Phase 10 prompts need work
+- If same issues keep appearing, upstream phases need improvement
+
+**When NOT to Worry:**
+- Occasional declines are normal (LLM scoring has variance)
+- System is working as designed by keeping better version
+
+---
+
+### Symptom: Phase 10 Never Activates
+
+**Diagnosis:**
+All lessons score ≥ 93, so no refinement needed.
+
+**Action:**
+1. **Lower threshold temporarily** for testing: `scoreThreshold: 85`
+2. **Generate intentionally flawed lessons** to test pipeline
+3. **Check initial scoring logs** - are scores accurate?
+
+---
+
+### Symptom: Patches Applied But No Change Visible
+
+**Diagnosis:**
+Patches may be targeting wrong paths or values already match.
+
+**Action:**
+1. **Check patch application logs** for "✓ Applied" confirmations
+2. **Diff original vs refined JSON** to verify changes
+3. **Check path validity** - does `blocks[X].content.Y` exist?
+
+---
+
+### Symptom: Validation Fails, Original Kept
+
+**Diagnosis:**
+```
+❌ Validation failed, keeping original
+```
+
+**Common Causes:**
+1. **Block count changed** - patches added/removed blocks (forbidden)
+2. **Block type changed to invalid type** - patches changed `type` field incorrectly
+3. **Required fields missing** - patches deleted `id`, `title`, or `blocks`
+
+**Action:**
+1. **Review validation logs** for specific failure reason
+2. **Check Phase 10 prompt** - is it clear about constraints?
+3. **File bug if legitimate patches rejected** - validation may be too strict
+
+---
+
+### Symptom: Truncation During Scoring
+
+**Diagnosis:**
+```
+Type: lesson
+Token limit: 4000
+🚨 TRUNCATION DETECTED
+```
+
+**Action:**
+1. **Increase `scoring.maxTokens` in `config.ts`** to 8000-12000
+2. **Monitor if issue persists** - may need even higher limit
+3. **Check lesson size** - unusually large lessons (>500 lines) may need special handling
+
+---
+
+## Updated Architecture: Re-Scoring Flow
+
+```
+Phase 1-8: Generate Lesson Components
+   ↓
+Phase 9: Assemble into Complete Lesson
+   ↓
+   ↓
+📊 LLM Scorer: Evaluate Lesson (Initial Scoring)
+   ↓ Returns: Score + Issues + Exact Fixes
+   ↓
+   ├─ Score ≥ 93? ──YES──> Skip Phase 10, Save Lesson ✅
+   │
+   └─ Score < 93? ──YES──> Activate Phase 10 🔧
+                            ↓
+                     Phase 10: Generate Patches
+                       ↓ Converts exact fixes → JSON patches
+                       ↓
+                     Apply Patches to Cloned Lesson
+                       ↓ 9/9 patches applied
+                       ↓
+                     Validation: Check Structure Integrity
+                       ├─ PASS ──> Continue ✓
+                       └─ FAIL ──> Keep original, abort ❌
+                            ↓
+                     📊 Re-score Refined Lesson
+                       ↓ Returns: New score
+                       ↓
+                     Compare Scores (Original vs Refined)
+                       ↓
+                       ├─ Refined > Original?
+                       │    ├─ YES ──> Keep Refined ✅
+                       │    │          Save Original as -original.json
+                       │    │
+                       │    └─ NO ───> Keep Original ⚠️
+                       │               Log decline, discard refined
+                       │
+                       ↓
+                  Save Final Lesson (Best Version)
+```
+
+**Key Decision Point:**
+The re-scoring comparison ensures only **improvements** are kept. This prevents harmful patches from making it into production.
+
+---
+
 ## Conclusion
 
 Phase 10 Auto-Refinement adds a quality safety net to the lesson generation pipeline. By automatically detecting and fixing issues in low-scoring lessons, it:
@@ -681,9 +926,20 @@ Phase 10 Auto-Refinement adds a quality safety net to the lesson generation pipe
 - **Improves consistency** (fewer "rogue" lessons)
 - **Provides learning data** (which issues are most common)
 - **Maintains audit trail** (original versions preserved)
+- **Protects against harmful patches** (via re-scoring comparison)
 
-The implementation follows the established phase pattern, ensuring consistency with the rest of the codebase. The build error encountered during initial implementation highlighted the importance of adhering to architectural patterns.
+The implementation follows the established phase pattern, ensuring consistency with the rest of the codebase.
 
-**Status:** Build error fixed, implementation complete, ready for testing.
+**Current Status (Session 2 - Feb 5, 2026):**
+- ✅ Re-scoring pipeline fully functional
+- ✅ Verbose logging provides complete visibility
+- ✅ System correctly rejects harmful patches
+- ⚠️ Patch quality inconsistent (~50% success rate)
+- ⚠️ Token limit too low for scoring calls
+- 🔄 Next: Improve Phase 10 prompts and increase token limits
 
-**Next:** Run functional tests and monitor refinement effectiveness on real lesson generation workloads.
+**See Also:**
+- [handover2.md](./handover2.md) - Detailed fixes and discoveries from Session 2
+- [LLM_SCORING_IMPLEMENTATION.md](../../../LLM_SCORING_IMPLEMENTATION.md) - Scoring system details
+
+**Next:** Address known issues (patch quality, token limits) and continue monitoring refinement effectiveness on real lesson generation workloads.

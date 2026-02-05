@@ -56,14 +56,15 @@ export const GENERATION_CONFIG = {
     
     /**
      * Temperature for LLM scoring (lower = more consistent)
-     * Default: 0.3 for deterministic scoring
+     * 0.0 for fully deterministic scoring (no variance)
      */
-    temperature: 0.3,
+    temperature: 0.0,
     
     /**
      * Max tokens for scoring response
+     * Increased to 8000 to prevent truncation (lesson JSON ~2-3k + prompts ~2k + response ~2k)
      */
-    maxTokens: 4000,
+    maxTokens: 8000,
   },
   
   /**

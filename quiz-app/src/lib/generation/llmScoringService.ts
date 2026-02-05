@@ -274,6 +274,25 @@ F) Safety, Accuracy, Professionalism (5 points)
    - Appropriate safety emphasis for electrical work
    - Professional tone throughout
 
+CRITICAL STRUCTURAL CONSTRAINT:
+Phase 10 can ONLY modify existing fields in existing blocks.
+It CANNOT add blocks, remove blocks, reorder blocks, or change block count.
+
+DO NOT suggest:
+- "Insert a new block..."
+- "Remove blocks[X]..."
+- "Reorder blocks to..."
+- "Add a worked-example block..."
+- "Move blocks[X] before blocks[Y]..."
+
+ONLY suggest field-level changes to existing blocks:
+- "Change blocks[X].field from 'old' to 'new'"
+- "Prepend to blocks[X].content.content: '...'"
+- "Append to blocks[X].content.content: '...'"
+
+If a structural issue exists (e.g., wrong block order, missing block type), 
+note it in the issues array but mark the suggestion as: "Cannot be fixed by Phase 10 - requires regeneration"
+
 CRITICAL RULES FOR ISSUES & SUGGESTIONS:
 1. Return ONLY valid JSON, no markdown code blocks
 2. Total score MUST equal sum of breakdown scores
