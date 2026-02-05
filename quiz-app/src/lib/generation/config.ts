@@ -18,16 +18,15 @@ export const GENERATION_CONFIG = {
      * Score threshold for triggering refinement
      * Refinement activates if lesson score < this value
      * Default: 93 (aims for 95-97 after refinement)
-     * TEMPORARILY SET TO 97 FOR TESTING DIAGNOSTIC OUTPUT
      */
-    scoreThreshold: 97,
+    scoreThreshold: 93,
     
     /**
      * Maximum number of patches to apply per refinement
      * Limits LLM to fixing top N issues
-     * Default: 10
+     * Increased to 25 to handle lessons with many small issues (e.g., 15+ invalid IDs)
      */
-    maxFixes: 10,
+    maxFixes: 25,
     
     /**
      * Save original lesson when refinement is applied

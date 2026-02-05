@@ -227,15 +227,48 @@ export class Phase10_Refinement extends PhasePromptBuilder {
   applyPatches(lesson: Lesson, patches: RefinementPatch[]): Lesson {
     const cloned = JSON.parse(JSON.stringify(lesson));
     
+    console.log('\n🔧 [Phase 10] Applying patches to cloned lesson...');
+    
     for (const patch of patches) {
       try {
+        const oldValue = this.getValueAtPath(cloned, patch.path);
         this.setValueAtPath(cloned, patch.path, patch.newValue);
+        const newValue = this.getValueAtPath(cloned, patch.path);
+        
+        console.log(`   ✓ ${patch.path}: "${oldValue}" → "${newValue}"`);
       } catch (e) {
-        console.warn(`[Refinement] Failed to apply patch at ${patch.path}:`, e);
+        console.warn(`   ✗ Failed to apply patch at ${patch.path}:`, e);
       }
     }
+    console.log('');
     
     return cloned;
+  }
+
+  /**
+   * Audit all IDs in lesson for debugging
+   */
+  auditAllIDs(lesson: Lesson): void {
+    console.log('\n🔍 [Phase 10] ID Audit after patching:');
+    
+    // Block IDs
+    console.log('   Block IDs:');
+    lesson.blocks.forEach(b => {
+      console.log(`      ${b.id} (${b.type}, order ${b.order})`);
+    });
+    
+    // Question IDs in all practice blocks
+    const practiceBlocks = lesson.blocks.filter(b => b.type === 'practice');
+    console.log(`\n   Question IDs in ${practiceBlocks.length} practice blocks:`);
+    practiceBlocks.forEach(block => {
+      const questions = (block.content as any).questions || [];
+      console.log(`      Block ${block.id}:`);
+      questions.forEach((q: any) => {
+        const valid = /^(C\d-L[12](-[ABC])?|INT-\d+|P\d+|SR-\d+)$/.test(q.id);
+        console.log(`         ${q.id} ${valid ? '✓' : '✗ INVALID'}`);
+      });
+    });
+    console.log('');
   }
 
   /**

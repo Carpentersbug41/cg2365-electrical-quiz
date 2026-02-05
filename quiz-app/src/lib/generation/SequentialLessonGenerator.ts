@@ -255,6 +255,9 @@ export class SequentialLessonGenerator {
           
           // Re-score refined version if patches were applied
           if (refinementResult && refinementResult.improvementSuccess) {
+            // Audit refined lesson before scoring
+            this.phase10.auditAllIDs(refinementResult.refined);
+            
             const refinedScore = this.rubricScorer.scoreLesson(refinementResult.refined);
             refinementResult.refinedScore = refinedScore.total;
             
