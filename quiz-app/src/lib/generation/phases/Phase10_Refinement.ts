@@ -110,6 +110,55 @@ export class Phase10_Refinement extends PhasePromptBuilder {
   }
 
   /**
+   * Log issues being targeted for debugging
+   */
+  logIssues(issues: IssueToFix[]): void {
+    console.log('\n🎯 [Phase 10] Issues being targeted:');
+    issues.forEach((issue, idx) => {
+      console.log(`   ${idx + 1}. [${issue.section}] ${issue.issue}`);
+      console.log(`      Suggestion: ${issue.suggestion}`);
+      console.log(`      Points lost: ${issue.pointsLost}, Severity: ${issue.severity.toFixed(1)}`);
+    });
+    console.log('');
+  }
+
+  /**
+   * Log patches being applied for debugging
+   */
+  logPatches(patches: RefinementPatch[]): void {
+    console.log('\n📋 [Phase 10] Patches generated:');
+    patches.forEach((patch, idx) => {
+      console.log(`   ${idx + 1}. Path: ${patch.path}`);
+      console.log(`      Old: ${JSON.stringify(patch.oldValue)}`);
+      console.log(`      New: ${JSON.stringify(patch.newValue)}`);
+      console.log(`      Reason: ${patch.issue}`);
+    });
+    console.log('');
+  }
+
+  /**
+   * Log detailed score comparison for debugging
+   */
+  logScoreComparison(originalScore: RubricScore, refinedScore: RubricScore): void {
+    console.log('\n📊 [Phase 10] Score comparison:');
+    console.log(`   Overall: ${originalScore.total}/100 → ${refinedScore.total}/100`);
+    console.log('\n   Section breakdown:');
+    
+    originalScore.details.forEach((origDetail, idx) => {
+      const refDetail = refinedScore.details[idx];
+      const changed = origDetail.score !== refDetail.score ? '✓ CHANGED' : '';
+      
+      console.log(`   ${origDetail.section}: ${origDetail.score}/${origDetail.maxScore} → ${refDetail.score}/${refDetail.maxScore} ${changed}`);
+      
+      if (origDetail.score !== refDetail.score) {
+        console.log(`      Issues before: ${origDetail.issues.length}`);
+        console.log(`      Issues after: ${refDetail.issues.length}`);
+      }
+    });
+    console.log('');
+  }
+
+  /**
    * Convert LLM patches response to RefinementPatches
    */
   convertLLMPatches(

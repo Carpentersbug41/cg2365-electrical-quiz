@@ -258,6 +258,9 @@ export class SequentialLessonGenerator {
             const refinedScore = this.rubricScorer.scoreLesson(refinementResult.refined);
             refinementResult.refinedScore = refinedScore.total;
             
+            // Log detailed score comparison
+            this.phase10.logScoreComparison(initialScore, refinedScore);
+            
             // Only use refined version if score improved
             if (refinedScore.total > initialScore.total) {
               console.log(`✅ [Refinement] Score improved: ${initialScore.total} → ${refinedScore.total}`);
@@ -677,6 +680,9 @@ export class SequentialLessonGenerator {
     
     console.log(`    📝 Targeting ${issues.length} issues for fix`);
     
+    // Log what issues we're targeting
+    this.phase10.logIssues(issues);
+    
     // Get prompts from Phase10
     const prompts = this.phase10.getPrompts({ lesson: lessonForPrompt, issues });
 
@@ -715,6 +721,9 @@ export class SequentialLessonGenerator {
 
     debugLog('PHASE10_COMPLETE', { patchCount: refinementPatches.length });
     console.log(`    ✓ Applied ${refinementPatches.length} patches`);
+    
+    // Log detailed patch information
+    this.phase10.logPatches(refinementPatches);
     
     return {
       originalLesson: lesson,

@@ -324,28 +324,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 13,
   },
                 
-  {
-    id: '203-3E1F',
-    title: 'Specialised Installing Equipment',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Specialised Installing Equipment',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3E1F'),
-    available: true,
-    order: 14,
-  },
-  {
-    id: '203-3E1A',
-    title: 'Specialised Installing Equipment',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Specialised Installing Equipment',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3E1A'),
-    available: true,
-    order: 15,
-  },
+      
   {
     id: '203-3A1',
     title: 'Circuit Types: What They Do',
@@ -355,7 +334,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-3A1'),
     available: true,
-    order: 16,
+    order: 14,
   },// Unit 210: Communication
   {
     id: '204-10A',
