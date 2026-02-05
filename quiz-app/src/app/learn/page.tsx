@@ -47,6 +47,7 @@ import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.js
 import lesson203_3A1 from '@/data/lessons/203-3A1-circuit-types-what-they-do.json';
 import lesson203_3A3 from '@/data/lessons/203-3A3-circuit-types-what-they-do.json';
 import lesson203_3A9 from '@/data/lessons/203-3A9-circuit-types-what-they-do.json';
+import lesson203_3A12 from '@/data/lessons/203-3A12-circuit-types-what-they-do.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -90,6 +91,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_3A12,
   lesson203_3A9,
   lesson203_3A3,
   lesson203_3A1,  lesson203_3F,  lesson202_3F,

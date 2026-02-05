@@ -15,6 +15,7 @@ export interface RefinementInput {
 
 export interface RefinementPatch {
   path: string;           // JSON path (e.g., "blocks[8].content.questions[3]")
+  operation: 'replace' | 'prepend' | 'append';  // Type of operation to perform
   issue: string;          // Description of what's wrong
   suggestion: string;     // What to fix
   oldValue: any;          // Original value
@@ -42,6 +43,7 @@ interface IssueToFix {
 interface LLMPatchResponse {
   patches: Array<{
     path: string;
+    operation: 'replace' | 'prepend' | 'append';  // Type of operation to perform
     newValue: any;
     reason: string;
   }>;
@@ -209,6 +211,7 @@ export class Phase10_Refinement extends PhasePromptBuilder {
       const relatedIssue = issues[idx] || issues[0];
       validPatches.push({
         path: llmPatch.path,
+        operation: llmPatch.operation || 'replace',  // Default to replace if not specified
         issue: relatedIssue.issue,
         suggestion: relatedIssue.suggestion,
         oldValue: this.getValueAtPath(originalLesson, llmPatch.path),
@@ -276,10 +279,20 @@ export class Phase10_Refinement extends PhasePromptBuilder {
     for (const patch of patches) {
       try {
         const oldValue = this.getValueAtPath(cloned, patch.path);
-        this.setValueAtPath(cloned, patch.path, patch.newValue);
+        let finalValue = patch.newValue;
+        
+        // Handle prepend/append operations for string values
+        if (patch.operation === 'prepend' && typeof oldValue === 'string') {
+          finalValue = patch.newValue + oldValue;
+        } else if (patch.operation === 'append' && typeof oldValue === 'string') {
+          finalValue = oldValue + patch.newValue;
+        }
+        // For 'replace' operation or non-string values, just use newValue as-is
+        
+        this.setValueAtPath(cloned, patch.path, finalValue);
         const newValue = this.getValueAtPath(cloned, patch.path);
         
-        console.log(`   ✓ ${patch.path}`);
+        console.log(`   ✓ ${patch.path} [${patch.operation}]`);
         console.log(`      Old: "${oldValue}"`);
         console.log(`      New: "${newValue}"`);
         console.log(`      Reason: ${patch.issue}`);
@@ -379,22 +392,27 @@ CRITICAL OUTPUT FORMAT:
 - Start typing JSON immediately
 
 STRICT RULES:
-1. Each suggestion contains the EXACT change to make (e.g., "Change X from 'old' to 'new'")
+1. Each suggestion contains the EXACT change to make (e.g., "Change X from 'old' to 'new'", "Prepend to X:", "Append to X:")
 2. Implement the suggestion EXACTLY as written - no creative interpretation
 3. Return patches in this exact format:
    {
      "patches": [
        {
          "path": "blocks[8].content.questions[3].questionText",
+         "operation": "replace",  // Use "replace", "prepend", or "append"
          "newValue": "[exact value from suggestion]",
          "reason": "[brief reason]"
        }
      ]
    }
-4. Maximum 10 patches total
-5. Each patch must directly address ONE rubric issue
-6. Do NOT change any other fields
-7. Do NOT make improvements beyond what the suggestion specifies
+4. OPERATION FIELD RULES:
+   - Use "replace" for suggestions like "Change X from Y to Z" or "Set X to Y"
+   - Use "prepend" for suggestions like "Prepend to X: [value]" (adds to beginning)
+   - Use "append" for suggestions like "Append to X: [value]" (adds to end)
+5. Maximum 10 patches total
+6. Each patch must directly address ONE rubric issue
+7. Do NOT change any other fields
+8. Do NOT make improvements beyond what the suggestion specifies
 
 EXAMPLE INPUT:
 Issue: "Question ID 'blocks[4].content.questions[0].id' includes lesson prefix"
@@ -405,6 +423,7 @@ EXAMPLE CORRECT OUTPUT:
   "patches": [
     {
       "path": "blocks[4].content.questions[0].id",
+      "operation": "replace",
       "newValue": "C1-L1-A",
       "reason": "Removed lesson prefix per suggestion"
     }
@@ -420,8 +439,41 @@ CORRECT OUTPUT:
   "patches": [
     {
       "path": "blocks[6].content.questions[2].expectedAnswer",
+      "operation": "replace",
       "newValue": "20A ± 2A",
       "reason": "Added specific tolerance per suggestion"
+    }
+  ]
+}
+
+PREPEND EXAMPLE:
+Issue: "blocks[3].content.content missing lesson intro"
+Suggestion: "Prepend to blocks[3].content.content: '### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n'"
+
+CORRECT OUTPUT:
+{
+  "patches": [
+    {
+      "path": "blocks[3].content.content",
+      "operation": "prepend",
+      "newValue": "### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n",
+      "reason": "Added lesson intro per suggestion"
+    }
+  ]
+}
+
+APPEND EXAMPLE:
+Issue: "blocks[5].content.content missing key points summary"
+Suggestion: "Append to blocks[5].content.content: '\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes'"
+
+CORRECT OUTPUT:
+{
+  "patches": [
+    {
+      "path": "blocks[5].content.content",
+      "operation": "append",
+      "newValue": "\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes",
+      "reason": "Added key points summary per suggestion"
     }
   ]
 }

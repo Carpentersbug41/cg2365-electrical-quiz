@@ -282,13 +282,40 @@ CRITICAL RULES FOR ISSUES & SUGGESTIONS:
 
 SUGGESTION FORMAT - BE LASER FOCUSED:
 ❌ BAD: "Make expectedAnswer more specific"
-✅ GOOD: "Change expectedAnswer from 'approximately 20A' to '20A ± 2A'"
+✅ GOOD: "Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A'"
 
 ❌ BAD: "Improve question wording"  
-✅ GOOD: "Rewrite question to: 'Calculate the total resistance when three 10Ω resistors are connected in series.'"
+✅ GOOD: "Change blocks[7].content.questions[1].questionText from 'What happens?' to 'Calculate the total resistance when three 10Ω resistors are connected in series.'"
 
 ❌ BAD: "Fix ID pattern"
-✅ GOOD: "Change question ID from '203-3A4-C1-L1-A' to 'C1-L1-A'"
+✅ GOOD: "Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'"
+
+CRITICAL OPERATION VERBS - USE PRECISELY:
+
+For CONTENT ADDITIONS (adding text to beginning/end of existing content):
+✅ CORRECT: "Prepend to blocks[3].content.content: '### In this lesson\\n\\nYou will learn...\\n\\n'"
+✅ CORRECT: "Append to blocks[5].content.content: '\\n\\n### Key Points\\n1. Point one\\n2. Point two'"
+❌ WRONG: "Add 'In this lesson...' to the start of blocks[3].content.content" (ambiguous - add or replace?)
+
+For VALUE REPLACEMENTS (changing specific fields):
+✅ CORRECT: "Change blocks[4].content.questions[0].id from '203-3A9-C1-L1-A' to 'C1-L1-A'"
+✅ CORRECT: "Change blocks[7].content.questions[2].expectedAnswer from 'yes' to '10A,10.0'"
+❌ WRONG: "Fix the ID" (not specific enough)
+
+For MULTIPLE ITEMS IN ARRAY - Create SEPARATE suggestion for EACH item:
+✅ CORRECT (multiple suggestions for multiple items):
+  - "Change blocks[4].content.questions[0].id from '203-3A9-C1-L1-A' to 'C1-L1-A'"
+  - "Change blocks[4].content.questions[1].id from '203-3A9-C1-L1-B' to 'C1-L1-B'"
+  - "Change blocks[4].content.questions[2].id from '203-3A9-C1-L1-C' to 'C1-L1-C'"
+  - "Change blocks[4].content.questions[3].id from '203-3A9-C1-L2' to 'C1-L2'"
+❌ WRONG: "Change ALL question IDs in blocks[4] to remove prefix" (requires iteration, only first item will be fixed)
+
+OPERATION VERB RULES:
+- "Prepend to X:" = add to BEGINNING of existing string (keeps original content)
+- "Append to X:" = add to END of existing string (keeps original content)
+- "Change X from Y to Z:" = REPLACE value Y with value Z (overwrites completely)
+- "Set X to Y:" = REPLACE/assign value (overwrites completely)
+- NEVER use "Add" (ambiguous - could mean append or replace)
 
 Each suggestion should be so specific that someone could implement it WITHOUT needing to make creative decisions.
 

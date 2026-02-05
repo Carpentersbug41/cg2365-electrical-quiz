@@ -167,8 +167,8 @@ export async function POST(request: NextRequest) {
     lessonFilePath = await fileGenerator.writeLessonFile(body, lessonResult.content);
     quizFilePath = await fileGenerator.writeQuizFile(body, quizResult.questions);
 
-    // If refinement was applied, save the original version too
-    if (lessonResult.refinementMetadata?.wasRefined && lessonResult.originalLesson) {
+    // If Phase 10 ran (original lesson exists), always save original for debugging
+    if (lessonResult.originalLesson) {
       const originalLessonPath = path.join(
         path.dirname(lessonFilePath),
         `${fullLessonId}-original.json`
@@ -176,6 +176,17 @@ export async function POST(request: NextRequest) {
       fs.writeFileSync(originalLessonPath, JSON.stringify(lessonResult.originalLesson, null, 2), 'utf-8');
       filesUpdated.push(originalLessonPath);
       console.log(`💾 [Refinement] Saved original version: ${fullLessonId}-original.json`);
+    }
+    
+    // If patches were rejected (score declined), save rejected refined version for debugging
+    if (lessonResult.rejectedRefinedLesson) {
+      const rejectedLessonPath = path.join(
+        path.dirname(lessonFilePath),
+        `${fullLessonId}-rejected-patches.json`
+      );
+      fs.writeFileSync(rejectedLessonPath, JSON.stringify(lessonResult.rejectedRefinedLesson, null, 2), 'utf-8');
+      filesUpdated.push(rejectedLessonPath);
+      console.log(`💾 [Refinement] Saved rejected patches version: ${fullLessonId}-rejected-patches.json`);
     }
 
     const lessonFilename = lessonFilePath.split(/[/\\]/).pop() || '';

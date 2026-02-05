@@ -32,6 +32,7 @@ export interface SequentialGeneratorResult {
   success: boolean;
   content: Lesson;
   originalLesson?: Lesson;  // For refinement comparison
+  rejectedRefinedLesson?: Lesson;  // For debugging when patches are rejected
   error?: string;
   warnings?: string[];
   debugInfo?: DebugInfo;
@@ -260,12 +261,16 @@ export class SequentialLessonGenerator {
 
       let finalLesson = lesson;
       let originalLesson: Lesson | undefined = undefined;
+      let rejectedRefinedLesson: Lesson | undefined = undefined;
       let refinementResult: RefinementOutput | null = null;
 
       // Phase 10: Auto-Refinement (if score < 93)
       if (initialScore.total < 93) {
         console.log(`🔧 [Refinement] Score below threshold (93), activating Phase 10...`);
         console.log(`🔧 [Refinement] Threshold: 93, Actual: ${initialScore.total}, Gap: ${93 - initialScore.total} points`);
+        
+        // Always save original before refinement attempt
+        originalLesson = lesson;
         
         try {
           refinementResult = await this.runPhase10(lesson, initialScore);
@@ -312,7 +317,6 @@ export class SequentialLessonGenerator {
               console.log(`✅ [Refinement] Score IMPROVED by ${improvement} points: ${initialScore.total} → ${refinedScore.total}`);
               console.log(`✅ [Refinement] Keeping refined version`);
               console.log(`✅ [Refinement] Original lesson saved for comparison`);
-              originalLesson = lesson;
               finalLesson = refinementResult.refined;
               
               phases.push({
@@ -326,7 +330,10 @@ export class SequentialLessonGenerator {
               console.log(`⚠️  [Refinement] Score DECLINED by ${decline} points: ${initialScore.total} → ${refinedScore.total}`);
               console.log(`⚠️  [Refinement] Patches did not help - keeping original lesson`);
               console.log(`⚠️  [Refinement] This suggests patches were incorrect or harmful`);
-              refinementResult = null; // Don't report refinement if it didn't help
+              console.log(`💾 [Refinement] Both versions will be saved for debugging`);
+              
+              // Store rejected refined lesson for debugging
+              rejectedRefinedLesson = refinementResult.refined;
               
               phases.push({
                 phase: 'Auto-Refinement',
@@ -363,6 +370,7 @@ export class SequentialLessonGenerator {
         success: true,
         content: finalLesson,
         originalLesson,
+        rejectedRefinedLesson,
         phases,
         refinementMetadata: refinementResult && refinementResult.improvementSuccess ? {
           wasRefined: true,
