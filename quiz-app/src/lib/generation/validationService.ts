@@ -26,6 +26,17 @@ import { Lesson, LessonBlock, QuizQuestion, ValidationResult } from './types';
 import { WorkedExampleBlockContent, GuidedPracticeBlockContent } from '@/data/lessons/types';
 import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, BLOOM_LEVELS, COGNITIVE_LEVELS, BLOCK_ORDER } from './constants';
 
+export interface QuestionDebugInfo {
+  questionId: number;
+  issue: string;
+  questionText?: string;
+  optionsCount?: number;
+  options?: string[];
+  fullQuestion?: Partial<QuizQuestion>;
+  expectedFormat?: string;
+  actualFormat?: string;
+}
+
 export class ValidationService {
   /**
    * Validate lesson structure and content
@@ -33,6 +44,19 @@ export class ValidationService {
   validateLesson(lesson: Lesson, lessonId: string): ValidationResult {
     const errors: string[] = [];
     const warnings: string[] = [];
+    const debugData: QuestionDebugInfo[] = [];
+
+    // NORMALIZE: Convert comma-separated strings to arrays before validation
+    if (lesson.blocks) {
+      for (const block of lesson.blocks) {
+        if (block.type === 'practice' && block.content.questions) {
+          this.normalizeExpectedAnswers(block.content.questions);
+        }
+        if (block.type === 'spaced-review' && block.content.questions) {
+          this.normalizeExpectedAnswers(block.content.questions);
+        }
+      }
+    }
 
     // Validate required fields
     if (!lesson.id || lesson.id !== lessonId) {
@@ -76,7 +100,7 @@ export class ValidationService {
 
     // Validate blocks
     if (lesson.blocks) {
-      this.validateBlocks(lesson.blocks, lessonId, errors, warnings);
+      this.validateBlocks(lesson.blocks, lessonId, errors, warnings, debugData);
       this.validateBlockOrders(lesson.blocks, errors, warnings);
       this.validateWorkedExampleAlignment(lesson.blocks, errors, warnings);
       this.validateQuestionStaging(lesson.blocks, errors, warnings);
@@ -93,6 +117,7 @@ export class ValidationService {
       valid: errors.length === 0,
       errors,
       warnings,
+      debugData: debugData.length > 0 ? debugData : undefined,
     };
   }
   
@@ -276,7 +301,7 @@ export class ValidationService {
   /**
    * Validate lesson blocks structure and order
    */
-  private validateBlocks(blocks: LessonBlock[], lessonId: string, errors: string[], warnings: string[]): void {
+  private validateBlocks(blocks: LessonBlock[], lessonId: string, errors: string[], warnings: string[], debugData: QuestionDebugInfo[]): void {
     const blockTypes = new Set<string>();
     const orders = new Set<number>();
     let hasOutcomes = false;
@@ -315,7 +340,7 @@ export class ValidationService {
       if (block.type === 'spaced-review') hasSpacedReview = true;
 
       // Validate specific block types
-      this.validateBlockContent(block, lessonId, errors, warnings);
+      this.validateBlockContent(block, lessonId, errors, warnings, debugData);
     }
 
     // Check for required block types
@@ -331,7 +356,7 @@ export class ValidationService {
   /**
    * Validate specific block content
    */
-  private validateBlockContent(block: LessonBlock, lessonId: string, errors: string[], warnings: string[]): void {
+  private validateBlockContent(block: LessonBlock, lessonId: string, errors: string[], warnings: string[], debugData: QuestionDebugInfo[]): void {
     switch (block.type) {
       case 'outcomes':
         if (!block.content.outcomes || !Array.isArray(block.content.outcomes)) {
@@ -388,7 +413,7 @@ export class ValidationService {
           }
           
           for (const question of block.content.questions) {
-            this.validateQuestion(question, lessonId, errors, warnings);
+            this.validateQuestion(question, lessonId, errors, warnings, debugData);
             // Validate question ID pattern
             if (question.id) {
               this.validateQuestionIdPattern(question, lessonId, blockType, errors);
@@ -453,7 +478,7 @@ export class ValidationService {
           
           // Validate each spaced-review question structure
           for (const question of block.content.questions) {
-            this.validateSpacedReviewQuestion(question, lessonId, errors, warnings);
+            this.validateSpacedReviewQuestion(question, lessonId, errors, warnings, debugData);
             // Validate question ID pattern
             if (question.id) {
               this.validateQuestionIdPattern(question, lessonId, 'spaced-review', errors);
@@ -467,7 +492,7 @@ export class ValidationService {
   /**
    * Validate practice question
    */
-  private validateQuestion(question: Record<string, unknown>, lessonId: string, errors: string[], warnings: string[]): void {
+  private validateQuestion(question: Record<string, unknown>, lessonId: string, errors: string[], warnings: string[], debugData: QuestionDebugInfo[]): void {
     if (!question.id) {
       errors.push('Question missing ID');
       return;
@@ -475,30 +500,78 @@ export class ValidationService {
 
     if (!question.questionText) {
       errors.push(`Question ${question.id} missing questionText`);
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'Missing questionText',
+        questionText: 'N/A',
+        fullQuestion: question,
+        expectedFormat: 'Non-empty string',
+        actualFormat: question.questionText ? 'Empty string' : 'undefined or null',
+      });
     }
 
     if (!question.answerType) {
       errors.push(`Question ${question.id} missing answerType`);
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'Missing answerType',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: '"short-text" or "numeric"',
+        actualFormat: question.answerType ? `${typeof question.answerType}: ${question.answerType}` : 'undefined or null',
+      });
     }
 
     if (question.cognitiveLevel && !COGNITIVE_LEVELS.includes(question.cognitiveLevel as typeof COGNITIVE_LEVELS[number])) {
       errors.push(`Question ${question.id} has invalid cognitiveLevel: ${question.cognitiveLevel}`);
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'Invalid cognitiveLevel',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: `One of: ${COGNITIVE_LEVELS.join(', ')}`,
+        actualFormat: `${question.cognitiveLevel}`,
+      });
     }
 
     // Check for removed 'hypothesis' level
     if (question.cognitiveLevel === 'hypothesis') {
       errors.push(`Question ${question.id} uses removed cognitiveLevel "hypothesis" - use "synthesis" instead`);
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'Removed cognitiveLevel "hypothesis"',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: 'Use "synthesis" instead',
+        actualFormat: 'hypothesis (removed)',
+      });
     }
     
     // Enhanced: Enforce array format for ALL questions
     if (!question.expectedAnswer) {
       errors.push(`Question ${question.id} missing expectedAnswer`);
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'Missing expectedAnswer',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: 'Array of strings: ["answer1", "answer2"]',
+        actualFormat: 'undefined or null',
+      });
     } else if (!Array.isArray(question.expectedAnswer)) {
       errors.push(
         `Question ${question.id}: expectedAnswer MUST be an array. ` +
         `Found: ${typeof question.expectedAnswer}. ` +
         `Use ["answer"] even for single values.`
       );
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'expectedAnswer is not an array',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: 'Array of strings: ["answer1", "answer2"]',
+        actualFormat: `${typeof question.expectedAnswer}: ${JSON.stringify(question.expectedAnswer).substring(0, 150)}`,
+      });
     }
     
     // Enhanced: Check numeric answers don't include units
@@ -569,9 +642,31 @@ export class ValidationService {
   }
 
   /**
+   * Normalize expectedAnswer fields: convert comma-separated strings to arrays
+   * This handles LLM output inconsistencies despite explicit prompting
+   */
+  private normalizeExpectedAnswers(questions: Record<string, unknown>[]): void {
+    for (const question of questions) {
+      if (question.expectedAnswer && typeof question.expectedAnswer === 'string') {
+        // Convert comma-separated string to array
+        const stringValue = question.expectedAnswer as string;
+        const arrayValue = stringValue.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        
+        console.warn(
+          `[Normalization] Converted expectedAnswer from string to array for question ${question.id}:`,
+          `String: "${stringValue.substring(0, 100)}..."`,
+          `Array length: ${arrayValue.length}`
+        );
+        
+        question.expectedAnswer = arrayValue;
+      }
+    }
+  }
+
+  /**
    * Validate spaced-review question
    */
-  private validateSpacedReviewQuestion(question: Record<string, unknown>, lessonId: string, errors: string[], warnings: string[]): void {
+  private validateSpacedReviewQuestion(question: Record<string, unknown>, lessonId: string, errors: string[], warnings: string[], debugData: QuestionDebugInfo[]): void {
     if (!question.id) {
       errors.push('Spaced review question missing ID');
       return;
@@ -588,13 +683,51 @@ export class ValidationService {
       const hasTypo = 'attText' in question || 'questiontext' in question || 'question_text' in question;
       if (hasTypo) {
         errors.push(`Spaced review question ${question.id} has typo in field name - found "${Object.keys(question).find(k => k.toLowerCase().includes('text'))}" but expected "questionText"`);
+        debugData.push({
+          questionId: question.id as string,
+          issue: 'Field name typo (questionText)',
+          questionText: 'N/A',
+          fullQuestion: question,
+          expectedFormat: 'questionText',
+          actualFormat: Object.keys(question).find(k => k.toLowerCase().includes('text')) || 'N/A',
+        });
       } else {
         errors.push(`Spaced review question ${question.id} missing questionText field`);
+        debugData.push({
+          questionId: question.id as string,
+          issue: 'Missing questionText',
+          questionText: 'N/A',
+          fullQuestion: question,
+          expectedFormat: 'Non-empty string',
+          actualFormat: 'undefined or null',
+        });
       }
     }
 
     if (!question.expectedAnswer) {
       errors.push(`Spaced review question ${question.id} missing expectedAnswer`);
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'Missing expectedAnswer',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: 'Array of strings: ["answer1", "answer2"]',
+        actualFormat: 'undefined or null',
+      });
+    } else if (!Array.isArray(question.expectedAnswer)) {
+      errors.push(
+        `Spaced review question ${question.id}: expectedAnswer MUST be an array. ` +
+        `Found: ${typeof question.expectedAnswer}. ` +
+        `Use ["answer"] even for single values.`
+      );
+      debugData.push({
+        questionId: question.id as string,
+        issue: 'expectedAnswer is not an array',
+        questionText: (question.questionText as string)?.substring(0, 150) || 'N/A',
+        fullQuestion: question,
+        expectedFormat: 'Array of strings: ["answer1", "answer2"]',
+        actualFormat: `${typeof question.expectedAnswer}: ${JSON.stringify(question.expectedAnswer).substring(0, 150)}`,
+      });
     }
 
     // Hint is optional but recommended
@@ -609,10 +742,14 @@ export class ValidationService {
   validateQuiz(questions: QuizQuestion[], lessonId: string): ValidationResult {
     const errors: string[] = [];
     const warnings: string[] = [];
+    const debugData: QuestionDebugInfo[] = [];
+
+    // NORMALIZE: Convert comma-separated strings to arrays before validation
+    this.normalizeExpectedAnswers(questions as unknown as Record<string, unknown>[]);
 
     if (!questions || questions.length === 0) {
       errors.push('Quiz must have at least one question');
-      return { valid: false, errors, warnings };
+      return { valid: false, errors, warnings, debugData: undefined };
     }
 
     if (questions.length !== 50) {
@@ -625,20 +762,59 @@ export class ValidationService {
       // Check ID uniqueness
       if (usedIds.has(question.id)) {
         errors.push(`Duplicate question ID: ${question.id}`);
+        debugData.push({
+          questionId: question.id,
+          issue: 'Duplicate question ID',
+          questionText: question.question?.substring(0, 100) || 'N/A',
+          fullQuestion: question,
+          expectedFormat: 'Unique ID',
+          actualFormat: 'ID already used',
+        });
       }
       usedIds.add(question.id);
 
       // Validate required fields
       if (!question.question || question.question.length === 0) {
         errors.push(`Question ${question.id} missing question text`);
+        debugData.push({
+          questionId: question.id,
+          issue: 'Missing question text',
+          questionText: 'N/A',
+          fullQuestion: question,
+          expectedFormat: 'Non-empty string',
+          actualFormat: question.question ? 'Empty string' : 'undefined or null',
+        });
       }
 
       if (!question.options || question.options.length !== 4) {
-        errors.push(`Question ${question.id} must have exactly 4 options`);
+        const optionsCount = question.options?.length || 0;
+        errors.push(`Question ${question.id} must have exactly 4 options (found ${optionsCount})`);
+        debugData.push({
+          questionId: question.id,
+          issue: 'Invalid options count',
+          questionText: question.question?.substring(0, 100) || 'N/A',
+          optionsCount: optionsCount,
+          options: question.options || [],
+          fullQuestion: question,
+          expectedFormat: 'Array with exactly 4 strings',
+          actualFormat: question.options 
+            ? `Array with ${question.options.length} items` 
+            : 'undefined or null',
+        });
       }
 
       if (question.correctAnswer === undefined || question.correctAnswer < 0 || question.correctAnswer > 3) {
         errors.push(`Question ${question.id} has invalid correctAnswer index`);
+        debugData.push({
+          questionId: question.id,
+          issue: 'Invalid correctAnswer index',
+          questionText: question.question?.substring(0, 100) || 'N/A',
+          optionsCount: question.options?.length || 0,
+          options: question.options || [],
+          fullQuestion: question,
+          expectedFormat: 'Number between 0-3',
+          actualFormat: `${question.correctAnswer} (${typeof question.correctAnswer})`,
+        });
       }
 
       // Validate tags
@@ -664,6 +840,14 @@ export class ValidationService {
       // Validate difficulty
       if (!question.difficulty || question.difficulty < 1 || question.difficulty > 5) {
         errors.push(`Question ${question.id} has invalid difficulty`);
+        debugData.push({
+          questionId: question.id,
+          issue: 'Invalid difficulty',
+          questionText: question.question?.substring(0, 100) || 'N/A',
+          fullQuestion: question,
+          expectedFormat: 'Number between 1-5',
+          actualFormat: `${question.difficulty} (${typeof question.difficulty})`,
+        });
       }
 
       // Validate learning outcome ID
@@ -679,6 +863,7 @@ export class ValidationService {
       valid: errors.length === 0,
       errors,
       warnings,
+      debugData: debugData.length > 0 ? debugData : undefined,
     };
   }
 

@@ -82,8 +82,18 @@ If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOS
 If teachingConstraints.identificationOnly OR TASK_MODE includes "IDENTIFICATION":
 - Questions should be matching, selection, or "what is used for..." format
 
-ANSWER FORMAT RULES (CRITICAL):
-- expectedAnswer: ALWAYS an array of strings
+ANSWER FORMAT RULES (CRITICAL - marking robustness):
+
+⚠️ CRITICAL FORMAT REQUIREMENT:
+expectedAnswer MUST ALWAYS be an array, NEVER a string.
+
+WRONG:  "expectedAnswer": "Data Circuit"           ❌
+WRONG:  "expectedAnswer": "ring circuit,radial"    ❌  
+RIGHT:  "expectedAnswer": ["Data Circuit"]         ✅
+RIGHT:  "expectedAnswer": ["ring circuit", "radial"] ✅
+
+Even for single-word answers, ALWAYS use array format: ["answer"]
+
 - For numeric answers: Include ONLY the number in expectedAnswer array (no units!)
 - Units go in the "hint" field, not in expectedAnswer
 - Examples:
@@ -165,6 +175,16 @@ ${taskMode.includes('CALCULATION') ? '- Include numeric calculation questions wi
 ` : ''}
 
 Create 3-5 practice questions at order 8.
+
+⚠️⚠️⚠️ CRITICAL JSON FORMAT REQUIREMENT ⚠️⚠️⚠️
+
+expectedAnswer MUST ALWAYS BE AN ARRAY, even for single answers:
+- WRONG: "expectedAnswer": "Data Circuit"
+- RIGHT: "expectedAnswer": ["Data Circuit"]
+- WRONG: "expectedAnswer": "ring circuit,radial circuit"  
+- RIGHT: "expectedAnswer": ["ring circuit", "radial circuit"]
+
+Use ["answer"] format even for single values. This is NON-NEGOTIABLE.
 
 Return JSON in this exact format:
 {

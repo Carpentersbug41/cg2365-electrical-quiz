@@ -58,6 +58,17 @@ interface RefinementPatch {
   pointsRecovered: number;
 }
 
+interface QuestionDebugInfo {
+  questionId: number;
+  issue: string;
+  questionText?: string;
+  optionsCount?: number;
+  options?: string[];
+  fullQuestion?: any;
+  expectedFormat?: string;
+  actualFormat?: string;
+}
+
 interface GenerationStatus {
   stage: 'idle' | 'generating' | 'success' | 'error';
   message: string;
@@ -100,6 +111,7 @@ interface GenerationStatus {
     attemptedOperation: string;
     timestamp: string;
   };
+  debugData?: QuestionDebugInfo[];
 }
 
 export default function GeneratePage() {
@@ -260,12 +272,14 @@ export default function GeneratePage() {
         let debugInfo: any = undefined;
         
         // Try to parse error response as JSON
+        let debugData: QuestionDebugInfo[] | undefined;
         try {
           data = JSON.parse(rawResponse);
           errorMessage = data.error || errorMessage;
           errors = data.errors;
           warnings = data.warnings;
           debugInfo = data.debugInfo;
+          debugData = data.debugData;
         } catch {
           // Not JSON, probably HTML error page
           errorMessage = `Server returned ${response.status} error (non-JSON response)`;
@@ -275,6 +289,7 @@ export default function GeneratePage() {
           errors?: string[];
           warnings?: string[];
           debugInfo?: any;
+          debugData?: QuestionDebugInfo[];
           rawResponse?: string;
           responseStatus?: number;
           responseType?: string;
@@ -282,6 +297,7 @@ export default function GeneratePage() {
         error.errors = errors;
         error.warnings = warnings;
         error.debugInfo = debugInfo;
+        error.debugData = debugData;
         error.rawResponse = rawResponse;
         error.responseStatus = responseStatus;
         error.responseType = responseType;
@@ -307,10 +323,12 @@ export default function GeneratePage() {
       if (!data.success) {
         const error = new Error(data.error || 'Generation failed') as Error & {
           debugInfo?: GenerationStatus['debugInfo'];
+          debugData?: QuestionDebugInfo[];
           errors?: string[];
           warnings?: string[];
         };
         error.debugInfo = data.debugInfo;
+        error.debugData = data.debugData;
         error.errors = data.errors;
         error.warnings = data.warnings;
         throw error;
@@ -333,6 +351,7 @@ export default function GeneratePage() {
     } catch (error) {
       const errorObj = error as Error & {
         debugInfo?: GenerationStatus['debugInfo'];
+        debugData?: QuestionDebugInfo[];
         errors?: string[];
         warnings?: string[];
         rawResponse?: string;
@@ -348,6 +367,7 @@ export default function GeneratePage() {
         errors: errorObj.errors,
         warnings: errorObj.warnings,
         debugInfo: errorObj.debugInfo,
+        debugData: errorObj.debugData,
         rawResponse: errorObj.rawResponse,
         responseStatus: errorObj.responseStatus,
         responseType: errorObj.responseType,
@@ -1144,6 +1164,130 @@ export default function GeneratePage() {
                   <div className="mt-3 pt-3 border-t border-gray-300 dark:border-gray-700">
                     <p className="text-xs text-gray-700 dark:text-gray-400">
                       This shows the exact response from the server. If it's HTML, the API route crashed or returned a 404/500 error page.
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Question Debug Data - NEW SECTION */}
+              {status.debugData && status.debugData.length > 0 && (
+                <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-500 dark:border-purple-600 rounded-lg">
+                  <div className="flex items-center gap-2 mb-3">
+                    <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 className="font-bold text-purple-900 dark:text-purple-200 text-lg">
+                      Detailed Question Debug Info ({status.debugData.length} questions with issues)
+                    </h3>
+                  </div>
+                  
+                  <div className="space-y-4 max-h-96 overflow-y-auto">
+                    {status.debugData.map((debug, i) => (
+                      <div key={i} className="bg-white dark:bg-slate-800 border border-purple-300 dark:border-purple-700 rounded-lg p-4">
+                        {/* Question ID and Issue */}
+                        <div className="flex items-center gap-2 mb-3 pb-2 border-b border-purple-200 dark:border-purple-800">
+                          <span className="font-bold text-purple-600 dark:text-purple-400">
+                            Question {debug.questionId}
+                          </span>
+                          <span className="text-sm text-gray-600 dark:text-gray-400">
+                            • {debug.issue}
+                          </span>
+                        </div>
+                        
+                        {/* Question Text */}
+                        {debug.questionText && (
+                          <div className="mb-3">
+                            <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                              Question Text:
+                            </p>
+                            <p className="text-sm font-mono text-gray-900 dark:text-slate-100 bg-gray-100 dark:bg-gray-900 p-2 rounded">
+                              {debug.questionText}
+                            </p>
+                          </div>
+                        )}
+                        
+                        {/* Options Count */}
+                        {debug.optionsCount !== undefined && (
+                          <div className="mb-3">
+                            <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                              Options Count:
+                            </p>
+                            <p className="text-sm">
+                              <span className={`font-bold ${
+                                debug.optionsCount === 4 
+                                  ? 'text-green-600 dark:text-green-400' 
+                                  : 'text-red-600 dark:text-red-400'
+                              }`}>
+                                {debug.optionsCount} options
+                              </span>
+                              <span className="text-gray-600 dark:text-gray-400 ml-2">
+                                (expected: 4)
+                              </span>
+                            </p>
+                          </div>
+                        )}
+                        
+                        {/* Options List */}
+                        {debug.options && debug.options.length > 0 && (
+                          <div className="mb-3">
+                            <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                              Options:
+                            </p>
+                            <div className="space-y-1">
+                              {debug.options.map((opt, idx) => (
+                                <div key={idx} className="flex items-start gap-2 text-sm">
+                                  <span className="text-gray-500 dark:text-gray-500 font-mono">
+                                    {String.fromCharCode(65 + idx)}:
+                                  </span>
+                                  <span className="flex-1 font-mono text-gray-900 dark:text-slate-100 bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded">
+                                    {opt}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Expected vs Actual Format */}
+                        {debug.expectedFormat && debug.actualFormat && (
+                          <div className="grid grid-cols-2 gap-3 mb-3">
+                            <div>
+                              <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                                Expected:
+                              </p>
+                              <p className="text-xs font-mono text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/20 p-2 rounded">
+                                {debug.expectedFormat}
+                              </p>
+                            </div>
+                            <div>
+                              <p className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-1">
+                                Actual:
+                              </p>
+                              <p className="text-xs font-mono text-red-700 dark:text-red-300 bg-red-50 dark:bg-red-900/20 p-2 rounded">
+                                {debug.actualFormat}
+                              </p>
+                            </div>
+                          </div>
+                        )}
+                        
+                        {/* Full Question Object - Collapsible */}
+                        {debug.fullQuestion && (
+                          <details className="mt-3">
+                            <summary className="text-xs font-semibold text-gray-700 dark:text-gray-300 cursor-pointer hover:text-purple-600 dark:hover:text-purple-400">
+                              View Full Question JSON
+                            </summary>
+                            <pre className="text-xs font-mono bg-gray-900 text-gray-100 p-3 rounded overflow-x-auto mt-2 max-h-48 overflow-y-auto">
+                              {JSON.stringify(debug.fullQuestion, null, 2)}
+                            </pre>
+                          </details>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-3 pt-3 border-t border-purple-300 dark:border-purple-700">
+                    <p className="text-xs text-purple-800 dark:text-purple-300">
+                      🔍 This shows detailed information about questions that failed validation. Use this to debug the quiz generation prompts.
                     </p>
                   </div>
                 </div>

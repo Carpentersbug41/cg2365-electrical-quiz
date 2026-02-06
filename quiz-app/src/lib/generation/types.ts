@@ -133,6 +133,7 @@ export interface ValidationResult {
   valid: boolean;
   errors: string[];
   warnings: string[];
+  debugData?: any[];  // QuestionDebugInfo[] - using any to avoid circular dependency
 }
 
 export interface FileIntegrationResult {

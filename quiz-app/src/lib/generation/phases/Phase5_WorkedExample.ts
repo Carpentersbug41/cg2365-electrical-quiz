@@ -66,121 +66,91 @@ export class Phase5_WorkedExample extends PhasePromptBuilder {
   protected buildSystemPrompt(): string {
     return `You are a practical training specialist for C&G 2365 Electrical Training.
 
-Your task is to create worked examples and guided practice for calculation/procedure topics.
+Your task is to create a Worked Example (I Do) and a Guided Practice (We Do) that model and scaffold the SAME skill.
+
+TASK MODE OUTPUT CONTRACT (CRITICAL):
+- If TASK_MODE includes "PURPOSE_ONLY" or "IDENTIFICATION":
+  Output a SELECTION/IDENTIFICATION worked example (no procedural/operation steps).
+  Section style: selection cues, what it's for, what problem it solves, common wrong choice.
+- If TASK_MODE includes "SELECTION" or "DIAGNOSIS":
+  Output a DECISION-PROCESS worked example (criteria and reasoning, not physical steps).
+- If TASK_MODE includes "CALCULATION":
+  Output a CALCULATION worked example with formulas and arithmetic steps.
+- If TASK_MODE includes "PROCEDURE" (and NOT PURPOSE_ONLY):
+  Output a PROCEDURAL worked example (step-by-step allowed).
+- Default: treat as PROCEDURE unless constrained.
 
 WORKED EXAMPLE RULES:
-- Show complete step-by-step solution (3-5 steps)
-- Include formulas where applicable
-- Show calculations clearly
-- Explain each step in plain language
+- Worked example MUST have 3–5 steps (EXCEPT selection format which is fixed at 4 steps).
+- Each step must be clear, specific, and scoped to the explanation content.
+- Use plain language suitable for Level 2.
+- Use realistic scenarios (domestic/commercial/industrial as appropriate).
 
 GEOMETRY CALCULATION REQUIREMENTS (CRITICAL):
-When learning outcomes mention "calculate using formulas" or "calculate percentage fill":
+When the taught skill involves fill/space factor/percentage fill or similar:
+- ALWAYS show geometry method FIRST.
+- Only show factor-table method SECOND if applicable.
 
-RULE: ALWAYS show geometric calculation FIRST, factor tables SECOND (if applicable)
+NO INVENTED TABLE VALUES (CRITICAL):
+- Do NOT invent numeric values from standards/tables (e.g., IET On-Site Guide cable factors, enclosure factors, tables).
+- You may only use specific factor numbers IF they appear in the provided explanation text.
+- If factors are needed but not provided, describe the lookup step and put verification in notes:
+  "Look up the cable/enclosure factor in the current IET On-Site Guide table (verify edition and cable type)."
+- Geometry/arithmetic values you compute are allowed.
 
-For percentage/space factor calculations:
-1. FIRST worked example: Use pure geometry
-   - Calculate enclosure area (π×r² for conduit, width×height for trunking)
-   - Calculate cable area (π×r² for each cable)
-   - Show: Total Cable Area = Single Cable CSA × Quantity
-   - Show: Percentage Fill = (Total Cable Area ÷ Enclosure Area) × 100
-   - Show: Comparison to limit (e.g., ≤ 45%)
+SELECTION EXAMPLE FORMAT (MANDATORY when TASK_MODE includes PURPOSE_ONLY or IDENTIFICATION):
+Use exactly 4 steps:
+1) Identify the job context (material/type/task constraint)
+2) Select the correct tool/equipment OR circuit/topology OR device (as appropriate)
+3) State the purpose (one line)
+4) Common wrong choice and why (one line)
 
-2. SECOND worked example (if applicable): Use factor tables
-   - Show the simplified method using IET On-Site Guide factors
-   - Explain that this achieves the same result as the geometry method
-
-This ensures students understand the UNDERLYING MATH before using shortcuts.
-
-Example topics requiring this: "spacing factor", "percentage fill", "enclosure fill"
-
-SELECTION EXAMPLE FORMAT (when TASK_MODE includes IDENTIFICATION or PURPOSE_ONLY):
-
-When the lesson is about choosing/identifying kit, tools, or equipment:
-
-Structure the worked example as a SELECTION SCENARIO (not procedural steps):
-
-{
-  "title": "Worked Example: Equipment Selection",
-  "given": "[Job scenario: material type, task requirements, constraints]",
-  "steps": [
-    {
-      "stepNumber": 1,
-      "description": "Identify the containment material and task requirement",
-      "formula": null,
-      "calculation": null,
-      "result": "[e.g., 'Heavy-gauge steel conduit requiring bends']"
-    },
-    {
-      "stepNumber": 2,
-      "description": "Select appropriate tool",
-      "formula": null,
-      "calculation": null,
-      "result": "[e.g., 'Conduit bender with 25mm former']"
-    },
-    {
-      "stepNumber": 3,
-      "description": "State the purpose (one line)",
-      "formula": null,
-      "calculation": null,
-      "result": "[e.g., 'Creates smooth bends without collapsing the tube']"
-    },
-    {
-      "stepNumber": 4,
-      "description": "Common wrong choice and why",
-      "formula": null,
-      "calculation": null,
-      "result": "[e.g., 'Using hand bending would kink and collapse the conduit']"
-    }
-  ],
-  "notes": "Selection is based on material properties and task requirements, not personal preference."
-}
-
-NO physical operation steps or procedural content.
-
-TEACHING CONSTRAINTS (if provided):
-If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
-- Worked examples should focus on SELECTION and IDENTIFICATION
-- Example: "Given these requirements, which tool should be selected and why?"
-- NOT: "Step-by-step procedure to operate the tool"
-- BANNED CONTENT in examples:
-  * Physical actions: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, break the chip, lubricate, half-turn
-  * Process words: technique, method, step, process, operate
-  * Measurement workflow: gain, take-off, shrink, set, deduction, offset calculation, set-point, mark-up
-  * Cleaning/maintenance: clear, clean, remove, wipe, maintain, brush, flush
-  * Assembly/disassembly: assemble, install, mount, attach, detach, dismantle
-  * Adjustment/calibration: adjust, calibrate, tune, align, level
-
-If teachingConstraints.noCalculations:
-- Skip worked examples OR create selection-based scenarios
-- Example: "Match the cable size to the appropriate former"
+ABSOLUTE BAN for PURPOSE_ONLY / IDENTIFICATION:
+- NO physical operation steps or "how-to" instructions.
+- BANNED: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, lubricate, half-turn
+- BANNED: technique, method, step-by-step, process, operate
+- BANNED procedural sequencing: "first", "next", "then", "finally" (when used to describe operation)
+- BANNED "procedural implication" phrases: "do this by", "use it by", "operate it by"
 
 PROVENANCE AND CAVEATS (when using standard values):
+If you include any standards/guidance references in notes:
+- Name the source (e.g., "IET On-Site Guide", "BS 7671") and include "(verify current edition)".
+If you did NOT use numeric table values, say so explicitly in notes:
+- "No fixed factor numbers are given here; verify the correct factors in your current tables."
 
-When worked examples include values from standards (cable factors, enclosure factors, percentages):
+GUIDED PRACTICE MIRRORING CONTRACT (CRITICAL):
+Guided Practice MUST mirror the Worked Example exactly:
+- SAME number of steps
+- SAME stepNumbers
+- SAME decision points / process flow
+- Only the scenario/values change
+- No extra steps, no missing steps
 
-In the "notes" field, ALWAYS add:
-- "The factors used here are representative examples from IET On-Site Guide."
-- "Always verify factors from your current edition of the On-Site Guide, as values may vary by cable type, insulation specification, and OSG edition."
-- "Factor values shown are for illustration - consult the appropriate table for your specific installation."
+GUIDED PRACTICE expectedAnswer RULES (marking robustness):
 
-This prevents students assuming fixed universal values and teaches them to verify sources.
+⚠️ CRITICAL FORMAT REQUIREMENT:
+expectedAnswer is ALWAYS an array of strings, NEVER a single string.
 
-Example notes:
-"The cable factor of 12.6 for 2.5mm² stranded is from IET On-Site Guide Edition 8. Always verify factors from your current edition, as values may vary by cable type and insulation. If the total exceeded the enclosure factor, select larger containment."
+WRONG:  "expectedAnswer": "TN-S"          ❌
+WRONG:  "expectedAnswer": "16A"           ❌
+RIGHT:  "expectedAnswer": ["TN-S"]        ✅
+RIGHT:  "expectedAnswer": ["16A", "16"]   ✅
 
-GUIDED PRACTICE RULES:
-- Mirror the worked example structure exactly
-- Use similar problem with different values
-- Each step should prompt student to apply what they learned
-- Provide hints that guide without giving the answer
+Even for single-value answers, ALWAYS use array format: ["answer"]
+
+- Each step expectedAnswer MUST contain EXACTLY 1–2 variants (ARRAY FORMAT)
+- Canonical answer FIRST
+- Variants may only be tight normalization (case, singular/plural, with/without article)
+- For numeric: numbers only (no units): ["230", "230.0"]
+
+HINTS:
+- One sentence, guiding but not giving away the full answer.
 
 ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: WorkedExampleInput): string {
-    const { lessonId, topic, explanations, needsWorkedExample, teachingConstraints, taskMode } = input;
+    const { lessonId, topic, explanations, needsWorkedExample, taskMode } = input;
 
     // For identification/purpose-only tasks, ALWAYS create selection examples
     const isPurposeOnlyTask = taskMode?.includes('PURPOSE_ONLY') || taskMode?.includes('IDENTIFICATION');
@@ -195,101 +165,102 @@ Return:
 }`;
     }
 
-    const explanationTexts = explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n');
-
-    // For identification/purpose tasks, guide toward selection format
-    if (isPurposeOnlyTask) {
-      return `Create a SELECTION worked example for this identification/purpose lesson.
+    return `Create a worked example and guided practice for this lesson.
 
 LESSON TOPIC: ${topic}
 
-EXPLANATION CONTENT (use as reference):
-${explanationTexts}
+NEEDS WORKED EXAMPLE FLAG: ${needsWorkedExample ? 'true' : 'false'}
 
-TASK MODE: ${taskMode || 'IDENTIFICATION'}
+EXPLANATION CONTENT (use as the ONLY source of taught facts/terms):
+${explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n')}
 
-CRITICAL: Use the SELECTION EXAMPLE FORMAT (not procedural steps):
-- Step 1: Identify material/task requirement
-- Step 2: Select appropriate tool/equipment
-- Step 3: State the purpose (one line)
-- Step 4: Common wrong choice and why
+TASK MODE: ${taskMode || 'GENERAL'}
 
-NO physical operation steps (no "place", "rotate", "pull", "clamp", "thread", "lubricate").
+If NEEDS WORKED EXAMPLE is false AND TASK MODE is not PURPOSE_ONLY/IDENTIFICATION:
+Return:
+{
+  "workedExample": null,
+  "guidedPractice": null
+}
 
-Create ONE selection worked example and ONE guided selection practice.`;
-    }
+Otherwise, return JSON in EXACTLY this format:
 
-    return `Create a worked example and guided practice for this calculation/procedure topic.
+⚠️⚠️⚠️ CRITICAL JSON FORMAT REQUIREMENT ⚠️⚠️⚠️
 
-LESSON TOPIC: ${topic}
+expectedAnswer MUST ALWAYS BE AN ARRAY in guidedPractice.steps:
+- WRONG: "expectedAnswer": "parallel"
+- RIGHT: "expectedAnswer": ["parallel"]
+- WRONG: "expectedAnswer": "lighting circuit"
+- RIGHT: "expectedAnswer": ["lighting circuit", "light circuit"]
 
-EXPLANATION CONTENT (use as reference):
-${explanationTexts}
-${taskMode ? `
-TASK MODE: ${taskMode}
+Use ["answer"] format even for single values. Array format is MANDATORY.
 
-CRITICAL REMINDERS based on task mode:
-${taskMode.includes('CALCULATION') ? '- Show GEOMETRY calculation FIRST, factor tables SECOND' : ''}
-${taskMode.includes('PROCEDURE') ? '- Step-by-step procedures are appropriate for this task mode' : ''}
-` : ''}
-
-Create ONE worked example demonstrating the key calculation/procedure, and ONE guided practice problem that mirrors it.
-
-Return JSON in this exact format:
 {
   "workedExample": {
     "id": "${lessonId}-worked-example",
     "order": 6,
-    "title": "Worked Example: [Problem Type]",
-    "given": "[What information is provided in the problem]",
+    "title": "Worked Example: [short descriptive title]",
+    "given": "[what information is provided / scenario constraints]",
     "steps": [
       {
         "stepNumber": 1,
-        "description": "[What to do in this step]",
-        "formula": "[Formula if applicable, or null]",
-        "calculation": "[Calculation if applicable, or null]",
-        "result": "[Result if applicable, or null]"
-      },
-      {
-        "stepNumber": 2,
-        "description": "[Next step]",
-        "formula": "[Formula or null]",
-        "calculation": "[Calculation or null]",
-        "result": "[Result or null]"
+        "description": "[what happens in this step — scoped to task mode]",
+        "formula": null,
+        "calculation": null,
+        "result": "[clear outcome of the step]"
       }
     ],
-    "notes": "[Additional tips or common mistakes to avoid]"
+    "notes": "[provenance/caveats/common pitfalls]"
   },
   "guidedPractice": {
     "id": "${lessonId}-guided",
     "order": 7,
     "title": "Guided Practice (We Do)",
-    "problem": "[Similar problem with different values]",
+    "problem": "[similar scenario with different values/details]",
     "steps": [
       {
         "stepNumber": 1,
-        "prompt": "[Guiding question for step 1]",
-        "expectedAnswer": ["[Correct answer]", "[Alternative phrasing]"],
-        "hint": "[Hint if student struggles]"
-      },
-      {
-        "stepNumber": 2,
-        "prompt": "[Guiding question for step 2]",
-        "expectedAnswer": ["[Answer]", "[Alternative]"],
-        "hint": "[Hint]"
+        "prompt": "[question that maps to workedExample step 1]",
+        "expectedAnswer": ["[canonical answer]", "[optional tight variant]"],
+        "hint": "[one sentence hint]"
       }
     ]
   }
 }
 
-REQUIREMENTS:
-- Worked example should have 3-5 steps
-- Guided practice should mirror worked example exactly (same number of steps)
-- Include realistic values and scenarios
-- Show all calculations clearly
-- Provide helpful hints for guided practice
-- For percentage/factor calculations: GEOMETRY method BEFORE factor tables
-- Always add provenance notes for standard values (e.g., "Values from IET On-Site Guide - verify current edition")
-- If constraints present: Focus on selection/identification, not step-by-step procedures`;
+CRITICAL REQUIREMENTS (DO NOT BREAK):
+1) MIRRORING:
+- guidedPractice.steps MUST have EXACTLY the same number of steps as workedExample.steps
+- stepNumber set MUST match exactly (1..N)
+- Each guidedPractice step prompt must correspond to the same-number workedExample step
+- No extra steps, no missing steps
+
+2) TASK MODE SAFETY:
+- If TASK MODE includes PURPOSE_ONLY or IDENTIFICATION:
+  * Use the 4-step SELECTION format (exactly 4 steps)
+  * NO physical operation or how-to instructions
+  * NO banned verbs (place, clamp, rotate, pull, turn, tighten, thread, lubricate, insert, secure, operate, process, technique, method)
+  * Step 4 MUST be "common wrong choice and why" (one line)
+- If TASK MODE includes CALCULATION:
+  * 3–5 steps with formulas and arithmetic where applicable
+  * If fill/space factor/percentage fill: GEOMETRY FIRST, factor tables SECOND (if applicable)
+  * DO NOT invent any factor table numeric values unless they appear in the explanation text
+  * If tables are needed but numbers aren't provided, describe lookup and add "verify current table" in notes
+
+3) CONTENT SOURCE:
+- Do NOT introduce new facts or standards that are not present in the explanation text
+- No regulation numbers unless they appear in the explanation
+
+4) GUIDED PRACTICE MARKING:
+- expectedAnswer arrays must be tight:
+  * EXACTLY 1–2 strings per step
+  * canonical first
+  * no broad paraphrases
+  * numeric answers are numbers only (no units)
+
+5) NOTES:
+- If any standards/guidance are referenced: name the source + "(verify current edition)"
+- If you did not use numeric table values: state "No fixed factor numbers given; verify current tables."
+`;
   }
 }

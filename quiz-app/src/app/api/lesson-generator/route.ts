@@ -125,6 +125,7 @@ export async function POST(request: NextRequest) {
         error: 'Lesson validation failed',
         errors: lessonValidation.errors,
         warnings: lessonValidation.warnings,
+        debugData: lessonValidation.debugData,  // NEW: Pass debug data to client
       }, { status: 400 });
     }
 
@@ -156,6 +157,7 @@ export async function POST(request: NextRequest) {
         error: 'Quiz validation failed',
         errors: quizValidation.errors,
         warnings: quizValidation.warnings,
+        debugData: quizValidation.debugData,  // NEW: Pass debug data to client
       }, { status: 400 });
     }
 
