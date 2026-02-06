@@ -83,8 +83,8 @@ function generateContextPreview(content: string, position?: number): {
 /**
  * Format truncation error with actionable guidance
  */
-function formatTruncationError(type: 'lesson' | 'quiz', attemptedTokens: number[], complexity?: string): string {
-  const itemType = type === 'lesson' ? 'lesson' : 'quiz';
+function formatTruncationError(type: 'lesson' | 'quiz' | 'score', attemptedTokens: number[], complexity?: string): string {
+  const itemType = type === 'lesson' ? 'lesson' : type === 'score' ? 'score' : 'quiz';
   const tokenList = attemptedTokens.join(' → ');
   const maxToken = Math.max(...attemptedTokens);
   
@@ -857,7 +857,7 @@ OUTPUT FORMAT: Pure JSON only`;
   private async generateWithRetry(
     systemPrompt: string,
     userPrompt: string,
-    type: 'lesson' | 'quiz' | 'phase',
+    type: 'lesson' | 'quiz' | 'phase' | 'score',
     maxRetries: number,
     attemptHigherLimit = false,
     currentTokenLimit?: number

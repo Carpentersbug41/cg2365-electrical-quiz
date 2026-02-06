@@ -186,7 +186,7 @@ export function validatePatch(lesson: Lesson, patch: RefinementPatch): PatchVali
   }
   
   // 5. Check if operation is allowed
-  const allowedOps = ['replace', 'prepend', 'append'];
+  const allowedOps = ['replace', 'prepend', 'append', 'replaceSubstring'];
   const allowedOp = allowedOps.includes(patch.op);
   if (!allowedOp) {
     reasons.push(`Invalid operation: ${patch.op}`);
@@ -201,6 +201,38 @@ export function validatePatch(lesson: Lesson, patch: RefinementPatch): PatchVali
   const allowedPath = isAllowedPath(patch.path);
   if (!allowedPath) {
     reasons.push(`Path not allowed by schema: ${patch.path}`);
+  }
+  
+  // 8. Check for destructive replace on explanation content (SAFETY GATE)
+  if (
+    patch.op === 'replace' &&
+    patch.path.endsWith('.content.content') &&
+    typeof oldValue === 'string' &&
+    typeof patch.value === 'string'
+  ) {
+    const oldLen = oldValue.length;
+    const newLen = (patch.value as string).length;
+    
+    // Reject if new value is < 60% of original (likely accidental wipe)
+    if (newLen < oldLen * 0.6) {
+      reasons.push(`Destructive replace detected: new value is ${newLen} chars vs original ${oldLen} chars (${(newLen/oldLen*100).toFixed(0)}%)`);
+      reasons.push(`This likely indicates substring replace was intended - use replaceSubstring op instead`);
+      reasons.push(`To bypass this check, ensure replacement is at least 60% of original length`);
+    }
+    
+    // Check for missing required Phase 3 headings
+    const requiredHeadings = [
+      '### In this lesson',
+      '**What this is**',
+      '**Why it matters**',
+      '**Key Points**',
+      '### Coming Up Next'
+    ];
+    const missingHeadings = requiredHeadings.filter(h => !(patch.value as string).includes(h));
+    if (missingHeadings.length > 0) {
+      reasons.push(`Missing required Phase 3 headings: ${missingHeadings.join(', ')}`);
+      reasons.push(`Explanation blocks must maintain standard structure`);
+    }
   }
   
   return {
@@ -225,12 +257,20 @@ export function shouldRejectPatch(validation: PatchValidationResult): boolean {
   // - From provided but doesn't match
   // - Operation not allowed
   // - Path not allowed
+  // - Destructive replace detected (safety gate)
+  // - Missing required headings (safety gate)
   
   if (!validation.targetExists) return true;
   if (validation.wouldCreateStructure) return true;
   if (validation.fromProvided && !validation.fromMatches) return true;
   if (!validation.allowedOp) return true;
   if (!validation.allowedPath) return true;
+  
+  // Check for safety gate violations
+  const hasDestructiveReplace = validation.reasons.some(r => 
+    r.includes('Destructive replace') || r.includes('Missing required Phase 3 headings')
+  );
+  if (hasDestructiveReplace) return true;
   
   return false;
 }

@@ -48,6 +48,7 @@ import lesson203_3A11 from '@/data/lessons/203-3A11-circuit-types-what-they-do.j
 import lesson203_3A6 from '@/data/lessons/203-3A6-circuit-types-what-they-do.json';
 import lesson203_3A2 from '@/data/lessons/203-3A2-circuit-types-what-they-do.json';
 import lesson203_3A4 from '@/data/lessons/203-3A4-circuit-types-what-they-do.json';
+import lesson203_3AA from '@/data/lessons/203-3AA-circuit-types-what-they-do.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -91,6 +92,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson203_3AA,
   lesson203_3A4,
   lesson203_3A2,
   lesson203_3A6,

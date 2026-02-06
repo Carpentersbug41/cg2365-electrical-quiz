@@ -14,10 +14,13 @@ export interface RefinementInput {
 }
 
 export interface RefinementPatch {
-  op: 'replace' | 'prepend' | 'append';  // Patch operation type
+  op: 'replace' | 'prepend' | 'append' | 'replaceSubstring';  // Patch operation type
   path: string;           // JSON Pointer format (e.g., "/blocks/8/content/questions/3")
   from?: unknown;         // Optional: original value for validation
-  value: unknown;         // New value or text to append/prepend
+  value: unknown;         // New value or text to append/prepend/replaceSubstring
+  // For replaceSubstring only:
+  find?: string;          // Substring to find (required for replaceSubstring)
+  matchIndex?: number | 'all';  // Which occurrence to replace (default: 'all')
   reason?: string;        // Optional: audit trail describing the fix
   // Legacy fields for backward compatibility (internal use only)
   issue?: string;
@@ -46,9 +49,11 @@ interface IssueToFix {
 
 interface LLMPatchResponse {
   patches: Array<{
-    op: 'replace' | 'prepend' | 'append';
+    op: 'replace' | 'prepend' | 'append' | 'replaceSubstring';
     path: string;
     value: any;
+    find?: string;           // For replaceSubstring
+    matchIndex?: number | 'all';  // For replaceSubstring
     reason: string;
   }>;
 }
@@ -245,6 +250,8 @@ export class Phase10_Refinement extends PhasePromptBuilder {
         path: llmPatch.path,
         from: oldValue,
         value: llmPatch.value,
+        find: llmPatch.find,           // For replaceSubstring
+        matchIndex: llmPatch.matchIndex, // For replaceSubstring
         reason: llmPatch.reason || relatedIssue.issue,
         // Legacy fields for internal use
         issue: relatedIssue.issue,
@@ -300,6 +307,13 @@ export class Phase10_Refinement extends PhasePromptBuilder {
   }
 
   /**
+   * Escape special regex characters
+   */
+  private escapeRegex(str: string): string {
+    return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  /**
    * Apply patches to lesson (deep clone first)
    */
   applyPatches(lesson: Lesson, patches: RefinementPatch[]): Lesson {
@@ -321,6 +335,43 @@ export class Phase10_Refinement extends PhasePromptBuilder {
           finalValue = patch.value + oldValue;
         } else if (patch.op === 'append' && typeof oldValue === 'string') {
           finalValue = oldValue + patch.value;
+        } else if (patch.op === 'replaceSubstring') {
+          // Handle replaceSubstring operation
+          if (typeof oldValue !== 'string') {
+            console.warn(`   ⊘ Cannot replaceSubstring on non-string field at ${patch.path}`);
+            failCount++;
+            continue;
+          }
+          if (!patch.find) {
+            console.warn(`   ⊘ replaceSubstring requires 'find' field at ${patch.path}`);
+            failCount++;
+            continue;
+          }
+          
+          const findStr = patch.find as string;
+          const replaceStr = patch.value as string;
+          
+          if (!oldValue.includes(findStr)) {
+            console.warn(`   ⊘ Cannot find '${findStr.substring(0, 50)}...' in field at ${patch.path}`);
+            failCount++;
+            continue;
+          }
+          
+          // Apply replacement based on matchIndex
+          if (patch.matchIndex === 'all' || patch.matchIndex === undefined) {
+            // Replace all occurrences
+            finalValue = oldValue.replaceAll(findStr, replaceStr);
+          } else if (typeof patch.matchIndex === 'number') {
+            // Replace nth occurrence (0-indexed)
+            let count = 0;
+            const escapedFind = this.escapeRegex(findStr);
+            finalValue = oldValue.replace(new RegExp(escapedFind, 'g'), (match) => {
+              return count++ === patch.matchIndex ? replaceStr : match;
+            });
+          } else {
+            // Default: replace all
+            finalValue = oldValue.replaceAll(findStr, replaceStr);
+          }
         }
         // For 'replace' operation or non-string values, just use value as-is
         
@@ -328,8 +379,13 @@ export class Phase10_Refinement extends PhasePromptBuilder {
         const newValue = this.getValueAtPath(cloned, patch.path);
         
         console.log(`   ✓ ${patch.path} [${patch.op}]`);
-        console.log(`      Old: "${oldValue}"`);
-        console.log(`      New: "${newValue}"`);
+        if (patch.op === 'replaceSubstring') {
+          console.log(`      Find: "${patch.find}"`);
+          console.log(`      Replace with: "${patch.value}"`);
+        } else {
+          console.log(`      Old: "${typeof oldValue === 'string' && oldValue.length > 100 ? oldValue.substring(0, 100) + '...' : oldValue}"`);
+          console.log(`      New: "${typeof newValue === 'string' && newValue.length > 100 ? newValue.substring(0, 100) + '...' : newValue}"`);
+        }
         console.log(`      Reason: ${patch.reason || patch.issue}`);
         console.log(`      Expected improvement: +${patch.pointsRecovered || 0} points`);
         successCount++;
@@ -411,6 +467,34 @@ export class Phase10_Refinement extends PhasePromptBuilder {
       }
     }
     
+    // 4. Validate explanation structure (Phase 3 compliance)
+    const explanationBlocks = patched.blocks.filter(b => b.type === 'explanation');
+    for (const block of explanationBlocks) {
+      const content = block.content?.content;
+      if (typeof content !== 'string') continue;
+      
+      const requiredHeadings = [
+        '### In this lesson',
+        '**What this is**',
+        '**Why it matters**',
+        '**Key facts / rules**',
+        '**Common mistakes**',
+        '**Key Points**',
+        '**Quick recap**',
+        '### Coming Up Next'
+      ];
+      
+      const missingHeadings = requiredHeadings.filter(h => !content.includes(h));
+      if (missingHeadings.length > 2) { // Allow some flexibility (up to 2 missing)
+        console.warn(`[Refinement] Explanation block ${block.id} missing ${missingHeadings.length} required Phase 3 headings`);
+        console.warn(`[Refinement] Missing: ${missingHeadings.join(', ')}`);
+        console.warn(`[Refinement] This indicates patches may have destroyed the explanation structure`);
+        return false;
+      } else if (missingHeadings.length > 0) {
+        console.log(`[Refinement] Note: Explanation block ${block.id} missing ${missingHeadings.length} optional headings: ${missingHeadings.join(', ')}`);
+      }
+    }
+    
     return true;
   }
 
@@ -441,9 +525,13 @@ STRICT RULES:
      ]
    }
 4. OPERATION FIELD RULES:
-   - Use "replace" for suggestions like "Change X from Y to Z" or "Set X to Y"
-   - Use "prepend" for suggestions like "Prepend to X: [value]" (adds to beginning)
-   - Use "append" for suggestions like "Append to X: [value]" (adds to end)
+   - Use "replace" for FULL FIELD replacement (provide entire new value)
+   - Use "replaceSubstring" for in-string edits (provide find + value)
+     * find: the exact substring to locate
+     * value: what to replace it with
+     * Default behavior: replaces all occurrences
+   - Use "prepend" for adding to beginning
+   - Use "append" for adding to end
 5. Maximum 10 patches total
 6. Each patch must directly address ONE rubric issue
 7. Do NOT change any other fields
@@ -527,6 +615,35 @@ CORRECT OUTPUT:
     }
   ]
 }
+
+REPLACESUBSTRING EXAMPLE (CRITICAL - USE THIS FOR IN-STRING EDITS):
+Issue: "blocks[3].content.content mentions 'looping and linear' but should say 'ring final and radial'"
+Suggestion: "In blocks[3].content.content, change 'looping and linear wiring methods' to 'ring final and radial topologies'"
+
+CORRECT OUTPUT:
+{
+  "patches": [
+    {
+      "op": "replaceSubstring",
+      "path": "blocks[3].content.content",
+      "find": "looping and linear wiring methods",
+      "value": "ring final and radial topologies",
+      "reason": "Updated terminology per suggestion"
+    }
+  ]
+}
+
+WRONG OUTPUT (DO NOT DO THIS):
+{
+  "patches": [
+    {
+      "op": "replace",
+      "path": "blocks[3].content.content",
+      "value": "### Coming Up Next\\nWe will look closer at ring final and radial topologies."
+    }
+  ]
+}
+⚠️ This wipes the entire field! Use replaceSubstring instead!
 
 EXAMPLE WRONG OUTPUT (DO NOT DO THIS):
 "Actually, looking at the IDs, I think we should change them..."

@@ -13,6 +13,13 @@ import { RefinementPatch } from './phases/Phase10_Refinement';
 import { LLMScoringService, RubricScore } from './llmScoringService';
 
 /**
+ * Escape special regex characters
+ */
+function escapeRegex(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/**
  * Apply a single patch to a lesson (creates a new cloned lesson)
  */
 function applyPatch(lesson: Lesson, patch: RefinementPatch): Lesson {
@@ -51,6 +58,40 @@ function applyPatch(lesson: Lesson, patch: RefinementPatch): Lesson {
       current[lastPart] = patch.value + oldValue;
     } else if (patch.op === 'append' && typeof oldValue === 'string') {
       current[lastPart] = oldValue + patch.value;
+    } else if (patch.op === 'replaceSubstring') {
+      // Handle replaceSubstring operation
+      if (typeof oldValue !== 'string') {
+        console.warn(`[Isolation] Cannot replaceSubstring on non-string field at ${patch.path}`);
+        return cloned; // Return unmodified
+      }
+      if (!patch.find) {
+        console.warn(`[Isolation] replaceSubstring requires 'find' field at ${patch.path}`);
+        return cloned; // Return unmodified
+      }
+      
+      const findStr = patch.find as string;
+      const replaceStr = patch.value as string;
+      
+      if (!oldValue.includes(findStr)) {
+        console.warn(`[Isolation] Cannot find '${findStr.substring(0, 50)}...' in field at ${patch.path}`);
+        return cloned; // Return unmodified
+      }
+      
+      // Apply replacement based on matchIndex
+      if (patch.matchIndex === 'all' || patch.matchIndex === undefined) {
+        // Replace all occurrences
+        current[lastPart] = oldValue.replaceAll(findStr, replaceStr);
+      } else if (typeof patch.matchIndex === 'number') {
+        // Replace nth occurrence (0-indexed)
+        let count = 0;
+        const escapedFind = escapeRegex(findStr);
+        current[lastPart] = oldValue.replace(new RegExp(escapedFind, 'g'), (match) => {
+          return count++ === patch.matchIndex ? replaceStr : match;
+        });
+      } else {
+        // Default: replace all
+        current[lastPart] = oldValue.replaceAll(findStr, replaceStr);
+      }
     } else {
       // Default to replace
       current[lastPart] = patch.value;

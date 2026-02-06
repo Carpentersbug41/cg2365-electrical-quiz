@@ -861,7 +861,41 @@ export class SequentialLessonGenerator {
     }
 
     // Convert LLM patches to RefinementPatches
-    const refinementPatches = this.phase10.convertLLMPatches(parsed.data, issues, lesson);
+    let refinementPatches = this.phase10.convertLLMPatches(parsed.data, issues, lesson);
+    
+    // Detect and handle path collisions
+    const pathCounts = new Map<string, number>();
+    refinementPatches.forEach(p => {
+      pathCounts.set(p.path, (pathCounts.get(p.path) || 0) + 1);
+    });
+    
+    const collisions = Array.from(pathCounts.entries()).filter(([_, count]) => count > 1);
+    if (collisions.length > 0) {
+      console.log(`\n⚠️  [Validation] Found ${collisions.length} path collision(s):`);
+      collisions.forEach(([path, count]) => {
+        console.log(`   ${path}: ${count} patches targeting same path`);
+        const conflictingPatches = refinementPatches.filter(p => p.path === path);
+        const hasReplace = conflictingPatches.some(p => p.op === 'replace');
+        const hasOthers = conflictingPatches.some(p => p.op !== 'replace');
+        
+        if (hasReplace && hasOthers) {
+          console.log(`   ⚠️  UNSAFE: mix of replace + other operations`);
+          console.log(`   Action: Keeping only first patch for this path (safest option)`);
+          
+          // Keep only first patch for this path
+          const firstPatch = conflictingPatches[0];
+          const firstPatchIndex = refinementPatches.indexOf(firstPatch);
+          console.log(`   Keeping: Patch ${firstPatchIndex + 1} [${firstPatch.op}]`);
+          
+          // Remove all other patches for this path
+          refinementPatches = refinementPatches.filter(p => 
+            p.path !== path || p === firstPatch
+          );
+        } else {
+          console.log(`   Note: All patches use compatible operations - will apply sequentially`);
+        }
+      });
+    }
     
     // Validate patches before applying
     console.log(`\n🔍 [Validation] Validating ${refinementPatches.length} patches...`);

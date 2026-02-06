@@ -199,7 +199,7 @@ export class LLMScoringService {
     const response = await this.generateWithRetry(
       systemPrompt,
       userPrompt,
-      'lesson',
+      'score',  // Changed from 'lesson' to 'score' for proper truncation detection
       2,
       false,
       scoringConfig.maxTokens
@@ -224,9 +224,27 @@ TASK
 4) Respect Phase 10 constraints (no add/remove/reorder blocks).
 
 PHASE 10 CONSTRAINT (CRITICAL)
-- Allowed: replace field values; prepend/append to string content
+- Allowed operations:
+  * SUBSTRING_REPLACE: Change text within a string field (use for small in-string edits)
+  * PREPEND: Add text to beginning of field
+  * APPEND: Add text to end of field
+  * FULL_REPLACE: Replace entire field value (use sparingly for long fields)
 - Not Allowed: add blocks, remove blocks, reorder blocks, change block count
 - If an issue requires structural changes, mark fixability as "requiresRegeneration"
+
+SUGGESTION FORMAT (CRITICAL):
+For string field edits within long content (e.g., explanation blocks), use SUBSTRING_REPLACE format:
+"SUBSTRING_REPLACE in blocks[3].content.content: find 'old text' replace with 'new text'"
+
+For adding content:
+"PREPEND to blocks[3].content.content: 'text to add at start'"
+"APPEND to blocks[3].content.content: 'text to add at end'"
+
+For complete field replacement (only when necessary):
+"FULL_REPLACE blocks[4].content.questions[2].expectedAnswer with: ['variant1', 'variant2']"
+
+⚠️ NEVER write: "Change blocks[3].content.content from 'X' to 'Y'" (ambiguous - leads to content destruction!)
+✓ ALWAYS write: "SUBSTRING_REPLACE in blocks[3].content.content: find 'X' replace with 'Y'"
 
 SCORING RUBRIC (100 points total):
 
@@ -341,8 +359,14 @@ Return JSON in this EXACT format:
 
 PATCH OPERATION TYPES:
 
-"replace" - Replace entire field value
+"replaceSubstring" - Replace text WITHIN a string field (PREFERRED for explanation edits)
+  Required fields: "op", "path", "find", "value"
+  Use when: Fixing terminology, correcting phrases, updating specific text
+  Example: {"op": "replaceSubstring", "path": "/blocks/3/content/content", "find": "looping and linear wiring", "value": "ring final and radial topologies"}
+
+"replace" - Replace ENTIRE field value (use sparingly for long fields)
   Required fields: "op", "path", "from", "value"
+  Use when: Changing short fields entirely (IDs, titles, expectedAnswer arrays)
   Example: {"op": "replace", "path": "/blocks/4/content/title", "from": "Old Title", "value": "New Title"}
 
 "append" - Add text to END of existing string field

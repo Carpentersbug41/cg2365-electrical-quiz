@@ -1,0 +1,963 @@
+{
+  "runId": "42bca7a1-9e32-4c60-a068-cbc1b6ce4312",
+  "timestampISO": "2026-02-06T19:26:41.408Z",
+  "lessonMeta": {
+    "id": "203-3AA",
+    "unit": 203,
+    "topic": "Circuit Types: What They Do",
+    "title": "203-3AA — Circuit Types: What They Do"
+  },
+  "models": {
+    "generator": "gemini-2.0-flash-exp",
+    "scorer": "gemini-2.0-flash-exp",
+    "phase10": "gemini-2.0-flash-exp",
+    "postmortem": "gemini-2.0-flash-exp"
+  },
+  "config": {
+    "phase10Threshold": 97,
+    "phase10MaxFixes": 10,
+    "environment": "development"
+  },
+  "baseline": {
+    "lesson": {
+      "id": "203-3AA",
+      "title": "203.3AA — Circuit Types: What They Do",
+      "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+      "layout": "split-vis",
+      "unit": "Unit 203",
+      "topic": "Circuit Types: What They Do",
+      "learningOutcomes": [
+        "Identify common circuit types used in electrical installations",
+        "Explain the primary purpose and typical use cases for different circuit classifications",
+        "Describe the fundamental differences between ring final and radial circuit arrangements"
+      ],
+      "prerequisites": [],
+      "blocks": [
+        {
+          "id": "203-3AA-outcomes",
+          "type": "outcomes",
+          "order": 1,
+          "content": {
+            "outcomes": [
+              {
+                "text": "Identify common circuit types used in electrical installations",
+                "bloomLevel": "remember"
+              },
+              {
+                "text": "Explain the primary purpose and typical use cases for different circuit classifications",
+                "bloomLevel": "understand"
+              },
+              {
+                "text": "Describe the fundamental differences between ring final and radial circuit arrangements",
+                "bloomLevel": "understand"
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3AA-vocab",
+          "type": "vocab",
+          "order": 2,
+          "content": {
+            "terms": [
+              {
+                "term": "Final Circuit",
+                "definition": "An electrical circuit that originates at a distribution board and supplies current directly to equipment or socket-outlets."
+              },
+              {
+                "term": "Radial Circuit",
+                "definition": "A circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point, ending at the final outlet."
+              },
+              {
+                "term": "Ring Final Circuit",
+                "definition": "A circuit arrangement where the conductors form a continuous loop, starting and finishing at the same protective device in the consumer unit."
+              },
+              {
+                "term": "Lighting Circuit",
+                "definition": "A specific type of final circuit designed to provide power to fixed luminaires and their associated switching systems."
+              },
+              {
+                "term": "Power Circuit",
+                "definition": "A final circuit primarily intended to provide electrical supply to socket-outlets for the connection of various appliances."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3AA-diagram",
+          "type": "diagram",
+          "order": 3,
+          "content": {
+            "title": "Circuit Types: What They Do Diagram",
+            "description": "Visual representation of Circuit Types: What They Do",
+            "videoUrl": "",
+            "diagramType": "circuit",
+            "elementIds": [
+              "ring-final-circuit",
+              "radial-circuit",
+              "distribution-board",
+              "power-circuit",
+              "lighting-circuit"
+            ],
+            "placeholderText": "A split-view diagram. On the left, show a 'distribution-board' with a 'radial-circuit' (lighting-circuit) consisting of a single line connecting three light symbols in a sequence. On the right, show the 'distribution-board' with a 'ring-final-circuit' (power-circuit) where two lines leave a single MCB, pass through four socket-outlet symbols, and both return to that same MCB to form a complete loop. Labels should clearly identify the 'radial-circuit' and 'ring-final-circuit' structures."
+          }
+        },
+        {
+          "id": "203-3AA-explain-1",
+          "type": "explanation",
+          "order": 4,
+          "content": {
+            "title": "Classification of Circuit Types",
+            "content": "### In this lesson\nYou will learn how to identify common circuit types used in electrical installations based on their specific function.\nThis knowledge is essential when designing or maintaining a domestic or commercial installation to ensure equipment is supplied safely.\n\n*   Learn the distinction between lighting, power, and specialized circuits.\n*   Understand the primary purpose and typical use cases for different circuit classifications.\n*   Identify how circuits are separated to maintain safety and service continuity.\n\n**What this is**\nIn any electrical installation, a **Final Circuit** is an electrical circuit that originates at a distribution board and supplies current directly to equipment or socket-outlets. Rather than having one single circuit for an entire building, we divide the installation into several smaller circuits based on their intended function. This classification ensures that a fault in one area—such as a blown light bulb—does not leave the entire property in darkness or disable essential safety systems. Common classifications include a **Lighting Circuit**, a **Power Circuit**, and specialized circuits for heating, alarms, or data.\n\n**Why it matters**\nCorrectly identifying and separating circuit types is a fundamental requirement of BS 7671 (refer to current edition). By grouping loads logically, an electrician can ensure that the protective devices are appropriately matched to the equipment being served. Furthermore, separating circuits prevents \"nuisance tripping\" and ensures that safety-critical systems, like emergency lighting or fire alarms, remain operational even if a general power circuit fails. It also simplifies future maintenance and fault-finding by allowing specific sections of the installation to be isolated without affecting the rest of the building.\n\n**Key facts / rules**\n*   Every **Final Circuit** must be connected to its own protective device (MCB or RCBO) at the distribution board.\n*   A **Lighting Circuit** is dedicated to fixed luminaires and should not typically supply heavy power loads.\n*   A **Power Circuit** is primarily intended to provide electrical supply to socket-outlets for appliances.\n*   Heating circuits are often \"dedicated\" or \"stationary\" circuits, meaning they supply a single high-power item like an electric shower or immersion heater.\n*   Safety circuits, such as fire alarms or emergency lighting, often require higher levels of protection against fire and mechanical damage.\n*   Control and data circuits operate at lower voltages or different frequencies to transmit information rather than raw power.\n\n**When to choose it**\nSelecting the right circuit type depends entirely on the nature of the load and the required reliability. You would choose a **Lighting Circuit** for any installation of fixed ceiling lights or wall brackets where the current demand is relatively low. In contrast, you would choose a **Power Circuit** (feeding socket-outlets) for general-purpose areas where users need to plug in portable devices like kettles, vacuum cleaners, or computers.\n\nFor high-demand appliances that are fixed in place, such as an electric oven or a central heating boiler, a dedicated heating or motor circuit is the standard choice to prevent overloading general power lines. Emergency and alarm circuits are chosen specifically when life safety is a factor; these are often kept entirely separate from general circuits to ensure they are the last things to lose power in an emergency. Finally, data and control circuits are selected when there is a need to manage smart home systems or telecommunications, where interference from high-voltage power lines must be avoided.\n\n**Common mistakes**\n*   Mixing circuit types, such as connecting a high-power immersion heater to a general-purpose **Lighting Circuit**.\n*   Failing to provide enough separate circuits, leading to overloaded protective devices and frequent tripping.\n*   Labeling circuits incorrectly at the distribution board, which creates a significant safety hazard for future workers.\n\n**Key Points**\n*   A **Final Circuit** is the end-of-line wiring supplying equipment directly.\n*   Circuits are classified by use: lighting, power, heating, alarm, and data.\n*   Separation of circuits is required for safety and to prevent total loss of power.\n*   Dedicated circuits are used for high-power fixed appliances.\n\n**Quick recap**\nElectrical installations are divided into various circuit types, each with a specific purpose. We use a **Lighting Circuit** for fixed lights and a **Power Circuit** for socket-outlets. Specialized circuits for heating, alarms, and data ensure that high-load or safety-critical equipment operates correctly without interfering with general-use electrical points.\n\n### Coming Up Next\nWe will examine the physical layout of these circuits, specifically comparing the loop-based ring arrangement and the sequential radial arrangement."
+          }
+        },
+        {
+          "id": "203-3AA-check-1",
+          "type": "practice",
+          "order": 4.5,
+          "content": {
+            "title": "Check Your Understanding: Classification of Circuit Types",
+            "mode": "conceptual",
+            "sequential": true,
+            "questions": [
+              {
+                "id": "203-3AA-C1-L1-A",
+                "questionText": "What is a Final Circuit and where does it originate?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "A Final Circuit is an electrical circuit that originates at a distribution board and supplies current directly to equipment",
+                  "Final Circuit",
+                  "a final circuit",
+                  "final circuit originates at a distribution board"
+                ],
+                "hint": "Think about where the end-of-line wiring starts and what it supplies."
+              },
+              {
+                "id": "203-3AA-C1-L1-B",
+                "questionText": "What requirement must be met for every Final Circuit at the distribution board?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Every Final Circuit must be connected to its own protective device at the distribution board",
+                  "connected to its own protective device",
+                  "own protective device",
+                  "must have its own protective device"
+                ],
+                "hint": "Each circuit needs its own way to be protected from faults."
+              },
+              {
+                "id": "203-3AA-C1-L1-C",
+                "questionText": "What is the primary purpose of separating circuits within an installation?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Separating circuits prevents nuisance tripping and ensures that safety-critical systems remain operational",
+                  "prevents nuisance tripping",
+                  "ensures safety-critical systems remain operational",
+                  "prevents nuisance tripping and ensures safety"
+                ],
+                "hint": "Consider what happens to the lights if a power circuit has a fault."
+              },
+              {
+                "id": "203-3AA-C1-L2",
+                "questionText": "Using your answers to Q1 (the definition of a final circuit), Q2 (the use of protective devices), and Q3 (the purpose of separating circuits), explain why an installation is divided into different circuit types.",
+                "answerType": "short-text",
+                "cognitiveLevel": "connection",
+                "expectedAnswer": [
+                  "dividing final circuits with individual protective devices ensures that safety-critical systems remain operational even if a fault causes nuisance tripping elsewhere",
+                  "separating circuits ensures that each final circuit has its own protective device to prevent a single fault from disabling the entire installation",
+                  "it ensures safety and service continuity by providing dedicated protection for different equipment types"
+                ],
+                "hint": "Think about how individual protection and separation work together to keep the building safe and functional."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3AA-explain-2",
+          "type": "explanation",
+          "order": 5,
+          "content": {
+            "title": "Ring Final vs Radial Principles",
+            "content": "### In this lesson\nYou will learn to describe the fundamental differences between ring final and radial circuit arrangements.\nThis applies to any scenario where you are installing or identifying the wiring structure within a building's power system.\n\n*   Distinguish between a loop-based circuit and a sequential-run circuit.\n*   Identify common circuit types used in electrical installations by their physical wiring path.\n*   Understand why specific arrangements are used for different areas of a property.\n\n**What this is**\nWhen installing a **Power Circuit**, there are two primary ways to arrange the wiring. A **Radial Circuit** is a circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point, ending at the final outlet. It is like a branch on a tree. Conversely, a **Ring Final Circuit** is a circuit arrangement where the conductors form a continuous loop, starting and finishing at the same protective device in the consumer unit. In a ring, the current has two paths to reach any given outlet, which allows for a more efficient distribution of current across the conductors.\n\n**Why it matters**\nThe choice between ring and radial affects the amount of cable used, the ease of installation, and how the circuit handles electrical load. The **Ring Final Circuit** is a uniquely British standard designed to save copper while allowing a high number of socket-outlets on a single circuit. However, it requires careful testing to ensure the loop is continuous. A **Radial Circuit** is simpler to understand and troubleshoot but may require more individual circuits to cover the same floor area as a single ring, depending on the load requirements and cable sizes used.\n\n**Key facts / rules**\n*   A **Radial Circuit** terminates at the last point; there is no return path to the distribution board.\n*   A **Ring Final Circuit** must have both ends of the loop connected into the same terminal of the protective device.\n*   Radial circuits are commonly used for lighting, small power, or dedicated high-power appliances.\n*   Ring final circuits are almost exclusively used for general-purpose socket-outlets in domestic and light commercial settings.\n*   The continuity of the ring is critical; if the loop is broken, the circuit becomes two overloaded radials.\n*   Refer to the IET On-Site Guide (verify current edition) for the typical floor area limits served by these circuit types.\n\n**How to recognise it**\nYou can recognise a **Radial Circuit** by looking at the wiring at the distribution board; it will typically have only one set of conductors (Line, Neutral, and Earth) entering the protective device. If you were to look at the last socket on a radial, you would see only one cable entering the back of the accessory. In contrast, you can recognise a **Ring Final Circuit** at the distribution board by the presence of two sets of conductors connected into a single protective device (two Lines, two Neutrals, two Earths). \n\nAt a standard socket in the middle of a ring, you will see two cables—one \"incoming\" and one \"outgoing\"—effectively forming the loop. However, you must be careful, as a radial socket that is not the \"end of the line\" will also have two cables. Therefore, the most reliable way to identify a ring is the doubled-up connection at the consumer unit. Radial circuits are the standard for a **Lighting Circuit**, whereas the ring is a common choice for a general **Power Circuit** in UK housing.\n\n**Common mistakes**\n*   Connecting the two ends of a **Ring Final Circuit** into two different protective devices, which is highly dangerous.\n*   Accidentally leaving a \"break\" in a ring during installation, turning it into two separate radial legs.\n*   Adding too many \"spurs\" (extensions) to a ring or radial without following the specific rules for current-carrying capacity.\n\n**Key Points**\n*   **Radial Circuit**: One path, ends at the last outlet.\n*   **Ring Final Circuit**: Two paths, forms a continuous loop back to the board.\n*   Rings are common for UK power sockets; radials are common for lighting and dedicated appliances.\n*   Double conductors at the MCB/RCBO usually indicate a ring circuit.\n\n**Quick recap**\nThe two main wiring arrangements are radials and rings. A **Radial Circuit** runs in a straight line from the source to the outlets, while a **Ring Final Circuit** loops back to the source. Each has specific benefits, with radials being simpler for lighting and rings being efficient for large areas of power sockets.\n\n### Coming Up Next\nNow that you can identify circuit types and their arrangements, we will look at how to select the correct protective devices to keep these circuits safe."
+          }
+        },
+        {
+          "id": "203-3AA-check-2",
+          "type": "practice",
+          "order": 5.5,
+          "content": {
+            "title": "Check Your Understanding: Ring Final vs Radial Principles",
+            "mode": "conceptual",
+            "sequential": true,
+            "questions": [
+              {
+                "id": "203-3AA-C2-L1-A",
+                "questionText": "Identify the physical arrangement and path of a Radial Circuit.",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "A Radial Circuit is a circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point",
+                  "Radial Circuit",
+                  "runs sequentially to each point",
+                  "radial arrangement"
+                ],
+                "hint": "This arrangement is like a branch on a tree that ends at the last outlet."
+              },
+              {
+                "id": "203-3AA-C2-L1-B",
+                "questionText": "Identify the physical arrangement of a Ring Final Circuit.",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "A Ring Final Circuit is a circuit arrangement where the conductors form a continuous loop",
+                  "Ring Final Circuit",
+                  "continuous loop",
+                  "conductors form a loop"
+                ],
+                "hint": "In this arrangement, the wiring starts and finishes at the same protective device."
+              },
+              {
+                "id": "203-3AA-C2-L1-C",
+                "questionText": "What is the consequence if the loop in a ring final circuit is broken?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "if the loop is broken the circuit becomes two overloaded radials",
+                  "becomes two overloaded radials",
+                  "overloaded radials",
+                  "it becomes two overloaded radial circuits"
+                ],
+                "hint": "Think about what happens to the current distribution when the continuous path is interrupted."
+              },
+              {
+                "id": "203-3AA-C2-L2",
+                "questionText": "Using your answers to Q1 (radial sequential runs), Q2 (ring continuous loops), and Q3 (the effect of a broken loop), explain how the physical wiring arrangement relates to the safe operation of a power circuit.",
+                "answerType": "short-text",
+                "cognitiveLevel": "connection",
+                "expectedAnswer": [
+                  "the choice between a sequential radial run and a continuous loop determines how current is distributed and prevents the circuit from becoming overloaded if the path is broken",
+                  "identifying whether a circuit is a radial or a ring loop is essential because a broken ring becomes two overloaded radials which is unsafe",
+                  "the physical arrangement dictates the number of current paths and ensuring continuity in a loop is vital to prevent overloading"
+                ],
+                "hint": "Consider how the path of the conductors (loop vs sequence) affects the load on the cables."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3AA-practice",
+          "type": "practice",
+          "order": 8,
+          "content": {
+            "title": "Your Turn (You Do)",
+            "questions": [
+              {
+                "id": "203-3AA-P1",
+                "questionText": "Identify the specific type of final circuit designed to provide power to fixed luminaires and their switching systems.",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "Lighting Circuit",
+                  "a Lighting Circuit",
+                  "the Lighting Circuit"
+                ],
+                "hint": "This circuit is dedicated to fixed lights and has a relatively low current demand."
+              },
+              {
+                "id": "203-3AA-P2",
+                "questionText": "Which circuit arrangement is identified by two sets of conductors (Line, Neutral, and Earth) connected into the same terminal of a protective device at the consumer unit?",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "Ring Final Circuit",
+                  "a Ring Final Circuit",
+                  "the Ring Final Circuit"
+                ],
+                "hint": "This arrangement forms a continuous loop back to the distribution board."
+              },
+              {
+                "id": "203-3AA-P3",
+                "questionText": "What is the primary purpose of dividing an electrical installation into several smaller final circuits rather than using a single large circuit?",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "maintain safety and service continuity",
+                  "to maintain safety and service continuity",
+                  "safety and service continuity"
+                ],
+                "hint": "Consider the impact of a fault in one part of the building on the rest of the installation."
+              },
+              {
+                "id": "203-3AA-P4",
+                "questionText": "Select the correct circuit arrangement for a wiring path that starts at the consumer unit and runs sequentially to each point, terminating at the final outlet.",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "Radial Circuit",
+                  "a Radial Circuit",
+                  "the Radial Circuit"
+                ],
+                "hint": "This circuit does not return to the distribution board; it ends at the last point."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3AA-integrative",
+          "type": "practice",
+          "order": 9.5,
+          "content": {
+            "title": "Putting It All Together",
+            "mode": "integrative",
+            "sequential": true,
+            "questions": [
+              {
+                "id": "203-3AA-INT-1",
+                "questionText": "How does the classification of a circuit influence the choice between a ring final or radial arrangement? In your answer, include: (1) circuit classifications such as lighting or power, (2) the difference between loop-based and sequential-run paths, and (3) why specific arrangements are used for different circuit types. (2-3 sentences)",
+                "answerType": "short-text",
+                "cognitiveLevel": "connection",
+                "expectedAnswer": [
+                  "Circuit classifications like lighting and power are separated for safety, with lighting usually using a sequential-run radial arrangement while power circuits often use a loop-based ring final. These specific arrangements are chosen because the wiring path must match the load requirements and typical use cases of the specific circuit type.",
+                  "Lighting and power classifications require different wiring; radial circuits provide a sequential-run for lights, whereas ring final circuits create a loop-based path for power sockets. Choosing the correct arrangement ensures that the circuit type matches the intended use and safety needs of the installation's physical wiring path."
+                ],
+                "hint": "Think about how the physical shape of the wiring (loop vs. line) suits the needs of different classifications like lighting or socket outlets."
+              },
+              {
+                "id": "203-3AA-INT-2",
+                "questionText": "Explain how circuit classification and wiring structures work together to create a functional and safe installation. In your answer, include: (1) the importance of separating circuit types for safety, (2) the characteristics of a ring final loop, (3) the characteristics of a radial sequential run, and (4) how these arrangements provide a safe supply for equipment. (3-4 sentences)",
+                "answerType": "short-text",
+                "cognitiveLevel": "synthesis",
+                "expectedAnswer": [
+                  "To ensure a safe supply, an installation separates circuit types like lighting and power to prevent total loss of service if a fault occurs. A ring final circuit uses a loop-based arrangement to effectively share the load across two paths, while a radial circuit uses a sequential-run path from the source to the final point of use. Together, these classifications and structured arrangements ensure that equipment is supplied safely and the installation remains compliant with design principles.",
+                  "Separating circuits into classifications like lighting and power is vital for safety, utilizing different wiring structures such as the loop-based ring final or the sequential-run radial. While the ring final creates a continuous loop for higher power demands, the radial circuit follows a single path to its loads. Using these specific arrangements allows designers to provide a safe and reliable supply for all equipment while maintaining the distinction between different functional areas of the building."
+                ],
+                "hint": "Consider how the 'big picture' of an installation relies on both the purpose of the circuit (classification) and how the wires are physically routed (ring or radial)."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3AA-spaced-review",
+          "type": "spaced-review",
+          "order": 10,
+          "content": {
+            "title": "Spaced Review",
+            "questions": [],
+            "notes": "No prerequisites or foundation anchors for this lesson"
+          }
+        }
+      ],
+      "metadata": {
+        "created": "2026-02-06",
+        "updated": "2026-02-06",
+        "version": "1.0",
+        "author": "C&G 2365 Learning Team"
+      }
+    },
+    "score": {
+      "total": 96,
+      "breakdown": {
+        "schemaCompliance": 15,
+        "pedagogy": 28,
+        "questions": 24,
+        "marking": 9,
+        "visual": 5,
+        "safety": 0
+      },
+      "details": [
+        {
+          "section": "markingRobustness: Recall questions 203-3AA-C1-L1-A and 203-3AA-C2-L1-A have ov...",
+          "score": 0,
+          "maxScore": 2,
+          "issues": [
+            "Recall questions 203-3AA-C1-L1-A and 203-3AA-C2-L1-A have overly lenient expectedAnswer variants (e.g., 'Final Circuit' or 'Radial Circuit') that allow students to pass without actually answering the descriptive part of the question (origin and path)."
+          ],
+          "suggestions": [
+            "Change blocks[4].content.questions[0].expectedAnswer from 'A Final Circuit is an electrical circuit that originates at a distribution board and supplies current directly to equipment,Final Circuit,a final circuit,final circuit originates at a distribution board' to 'originates at a distribution board and supplies current directly to equipment,starts at the distribution board and supplies equipment,supplies current directly from the distribution board,originates at a distribution board'",
+            "Change blocks[6].content.questions[0].expectedAnswer from 'A Radial Circuit is a circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point,Radial Circuit,runs sequentially to each point,radial arrangement' to 'starts at the consumer unit and runs sequentially to each point,runs sequentially from the consumer unit to each outlet,starts at the board and ends at the final outlet,sequential run from the consumer unit'"
+          ]
+        },
+        {
+          "section": "questions: Connection and Synthesis questions (C1-L2, C2-L2, and the In...",
+          "score": 0,
+          "maxScore": 2,
+          "issues": [
+            "Connection and Synthesis questions (C1-L2, C2-L2, and the Integrative block) use 'short-text' answerType for responses requiring 2-4 sentences. This makes automated grading fragile and creates a poor student experience."
+          ],
+          "suggestions": [
+            "Change blocks[4].content.questions[3].answerType from 'short-text' to 'long-text'",
+            "Change blocks[6].content.questions[3].answerType from 'short-text' to 'long-text'",
+            "Change blocks[8].content.questions[0].answerType from 'short-text' to 'long-text'",
+            "Change blocks[8].content.questions[1].answerType from 'short-text' to 'long-text'"
+          ]
+        },
+        {
+          "section": "beginnerClarityStaging: The spaced-review block at the end of the lesson is empty. E...",
+          "score": 0,
+          "maxScore": 2,
+          "issues": [
+            "The spaced-review block at the end of the lesson is empty. Even without prerequisites, this block should be used to anchor the most critical concepts of the current lesson (Ring vs Radial) for long-term retention."
+          ],
+          "suggestions": [
+            "Change blocks[9].content.questions from '' to '[object Object]'"
+          ]
+        }
+      ],
+      "grade": "Strong"
+    }
+  },
+  "diffs": {
+    "changedPaths": [
+      "blocks"
+    ],
+    "changedBlocks": [
+      4
+    ],
+    "idAudit": {
+      "invalidIds": [
+        "203-3AA-outcomes",
+        "203-3AA-vocab",
+        "203-3AA-diagram",
+        "203-3AA-explain-1",
+        "203-3AA-check-1",
+        "203-3AA-explain-2",
+        "203-3AA-check-2",
+        "203-3AA-practice",
+        "203-3AA-integrative",
+        "203-3AA-spaced-review"
+      ],
+      "duplicateIds": []
+    }
+  },
+  "phase10": {
+    "triggered": true,
+    "extractedIssues": [
+      {
+        "section": "markingRobustness: Recall questions 203-3AA-C1-L1-A and 203-3AA-C2-L1-A have ov...",
+        "issue": "Recall questions 203-3AA-C1-L1-A and 203-3AA-C2-L1-A have overly lenient expectedAnswer variants (e.g., 'Final Circuit' or 'Radial Circuit') that allow students to pass without actually answering the descriptive part of the question (origin and path).",
+        "suggestion": "Change blocks[4].content.questions[0].expectedAnswer from 'A Final Circuit is an electrical circuit that originates at a distribution board and supplies current directly to equipment,Final Circuit,a final circuit,final circuit originates at a distribution board' to 'originates at a distribution board and supplies current directly to equipment,starts at the distribution board and supplies equipment,supplies current directly from the distribution board,originates at a distribution board'",
+        "pointsLost": 2,
+        "severity": 2
+      },
+      {
+        "section": "questions: Connection and Synthesis questions (C1-L2, C2-L2, and the In...",
+        "issue": "Connection and Synthesis questions (C1-L2, C2-L2, and the Integrative block) use 'short-text' answerType for responses requiring 2-4 sentences. This makes automated grading fragile and creates a poor student experience.",
+        "suggestion": "Change blocks[4].content.questions[3].answerType from 'short-text' to 'long-text'",
+        "pointsLost": 2,
+        "severity": 2
+      },
+      {
+        "section": "beginnerClarityStaging: The spaced-review block at the end of the lesson is empty. E...",
+        "issue": "The spaced-review block at the end of the lesson is empty. Even without prerequisites, this block should be used to anchor the most critical concepts of the current lesson (Ring vs Radial) for long-term retention.",
+        "suggestion": "Change blocks[9].content.questions from '' to '[object Object]'",
+        "pointsLost": 2,
+        "severity": 2
+      }
+    ],
+    "prompts": {
+      "system": "You are a surgical JSON editor for educational content.\n\nYour ONLY job: Implement the exact fixes specified in the suggestions.\n\nCRITICAL OUTPUT FORMAT:\n- Your response MUST start with the opening brace: {\n- Do NOT write any explanation before the JSON\n- Do NOT write \"Here's the fix:\" or similar preamble\n- Do NOT write reasoning about the changes\n- Start typing JSON immediately\n\nSTRICT RULES:\n1. Each suggestion contains the EXACT change to make (e.g., \"Change X from 'old' to 'new'\", \"Prepend to X:\", \"Append to X:\")\n2. Implement the suggestion EXACTLY as written - no creative interpretation\n3. Return patches in this exact format:\n   {\n     \"patches\": [\n       {\n         \"op\": \"replace\",  // Use \"replace\", \"prepend\", or \"append\"\n         \"path\": \"blocks[8].content.questions[3].questionText\",\n         \"value\": \"[exact value from suggestion]\",\n         \"reason\": \"[brief reason]\"\n       }\n     ]\n   }\n4. OPERATION FIELD RULES:\n   - Use \"replace\" for FULL FIELD replacement (provide entire new value)\n   - Use \"replaceSubstring\" for in-string edits (provide find + value)\n     * find: the exact substring to locate\n     * value: what to replace it with\n     * Default behavior: replaces all occurrences\n   - Use \"prepend\" for adding to beginning\n   - Use \"append\" for adding to end\n5. Maximum 10 patches total\n6. Each patch must directly address ONE rubric issue\n7. Do NOT change any other fields\n8. Do NOT make improvements beyond what the suggestion specifies\n\nEXPECTEDANSWER ARRAY ENFORCEMENT (CRITICAL):\n- If path ends with \".expectedAnswer\", value MUST be an array\n- NEVER patch expectedAnswer with a string value\n- Examples:\n  * WRONG: \"value\": \"correct answer\"\n  * RIGHT: \"value\": [\"correct answer\", \"acceptable variant\"]\n  * WRONG: \"value\": \"230V\"\n  * RIGHT: \"value\": [\"230V\", \"230\"]\n- If scorer suggestion shows string format, convert to array format in your patch\n\nEXAMPLE INPUT:\nIssue: \"Question ID 'blocks[4].content.questions[0].id' includes lesson prefix\"\nSuggestion: \"Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'\"\n\nEXAMPLE CORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[4].content.questions[0].id\",\n      \"value\": \"C1-L1-A\",\n      \"reason\": \"Removed lesson prefix per suggestion\"\n    }\n  ]\n}\n\nANOTHER EXAMPLE (expectedAnswer - MUST BE ARRAY):\nIssue: \"expectedAnswer ['approximately 20A'] is too vague\"\nSuggestion: \"Change blocks[6].content.questions[2].expectedAnswer from ['approximately 20A'] to ['20A', '20.0A']\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[6].content.questions[2].expectedAnswer\",\n      \"value\": [\"20A\", \"20.0A\"],\n      \"reason\": \"Added specific variants per suggestion (ARRAY FORMAT)\"\n    }\n  ]\n}\n\nCRITICAL: expectedAnswer MUST ALWAYS BE AN ARRAY:\n- WRONG: \"value\": \"ring circuit\"\n- RIGHT: \"value\": [\"ring circuit\", \"ring final circuit\"]\n- Even single values must be arrays: [\"answer\"]\n\nPREPEND EXAMPLE:\nIssue: \"blocks[3].content.content missing lesson intro\"\nSuggestion: \"Prepend to blocks[3].content.content: '### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n'\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"prepend\",\n      \"path\": \"blocks[3].content.content\",\n      \"value\": \"### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n\",\n      \"reason\": \"Added lesson intro per suggestion\"\n    }\n  ]\n}\n\nAPPEND EXAMPLE:\nIssue: \"blocks[5].content.content missing key points summary\"\nSuggestion: \"Append to blocks[5].content.content: '\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes'\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"append\",\n      \"path\": \"blocks[5].content.content\",\n      \"value\": \"\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes\",\n      \"reason\": \"Added key points summary per suggestion\"\n    }\n  ]\n}\n\nREPLACESUBSTRING EXAMPLE (CRITICAL - USE THIS FOR IN-STRING EDITS):\nIssue: \"blocks[3].content.content mentions 'looping and linear' but should say 'ring final and radial'\"\nSuggestion: \"In blocks[3].content.content, change 'looping and linear wiring methods' to 'ring final and radial topologies'\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"replaceSubstring\",\n      \"path\": \"blocks[3].content.content\",\n      \"find\": \"looping and linear wiring methods\",\n      \"value\": \"ring final and radial topologies\",\n      \"reason\": \"Updated terminology per suggestion\"\n    }\n  ]\n}\n\nWRONG OUTPUT (DO NOT DO THIS):\n{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[3].content.content\",\n      \"value\": \"### Coming Up Next\\nWe will look closer at ring final and radial topologies.\"\n    }\n  ]\n}\n⚠️ This wipes the entire field! Use replaceSubstring instead!\n\nEXAMPLE WRONG OUTPUT (DO NOT DO THIS):\n\"Actually, looking at the IDs, I think we should change them...\"\n\"Let me explain the fix first...\"\n\"Here's what I would do...\"\n\nPATH FORMAT:\n- Use dot notation for objects: \"learningOutcomes[0]\"\n- Use bracket notation for arrays: \"blocks[8].content.questions[3]\"\n- Combine: \"blocks[8].content.questions[3].questionText\"\n\nFORBIDDEN:\n- Rewriting entire sections\n- Adding fields not mentioned in issues\n- Changing multiple related fields without explicit instruction\n- Creative improvements beyond the specific issues\n- Changing block structure or order\n- Adding new blocks (use \"blocks[N]\" path only for existing blocks)\n- Removing blocks\n- Changing block count in any way\n\nCRITICAL: If a suggestion asks to \"insert\" or \"add\" a block, SKIP that patch.\nOnly patch existing blocks and their fields.\n\nFOCUS: You have a maximum of 10 patches. Use them wisely on the most impactful fixes.\n\nCRITICAL: Your first character MUST be '{'. No explanation. No preamble. JSON only.\n\n\nOUTPUT REQUIREMENTS:\n- Valid RFC 8259 JSON only (parseable by JSON.parse())\n- No markdown blocks, comments, or explanations\n- Double-quoted property names, no trailing commas\n- Return ONLY the JSON, nothing else",
+      "user": "Implement the EXACT fixes specified below for this lesson.\n\nLESSON ID: 203-3AA\nCURRENT SCORE: Needs improvement\n\nISSUES TO FIX (ranked by severity):\n1. [markingRobustness: Recall questions 203-3AA-C1-L1-A and 203-3AA-C2-L1-A have ov...] Recall questions 203-3AA-C1-L1-A and 203-3AA-C2-L1-A have overly lenient expectedAnswer variants (e.g., 'Final Circuit' or 'Radial Circuit') that allow students to pass without actually answering the descriptive part of the question (origin and path).\n   EXACT FIX: Change blocks[4].content.questions[0].expectedAnswer from 'A Final Circuit is an electrical circuit that originates at a distribution board and supplies current directly to equipment,Final Circuit,a final circuit,final circuit originates at a distribution board' to 'originates at a distribution board and supplies current directly to equipment,starts at the distribution board and supplies equipment,supplies current directly from the distribution board,originates at a distribution board'\n   Impact: 2 points\n\n2. [questions: Connection and Synthesis questions (C1-L2, C2-L2, and the In...] Connection and Synthesis questions (C1-L2, C2-L2, and the Integrative block) use 'short-text' answerType for responses requiring 2-4 sentences. This makes automated grading fragile and creates a poor student experience.\n   EXACT FIX: Change blocks[4].content.questions[3].answerType from 'short-text' to 'long-text'\n   Impact: 2 points\n\n3. [beginnerClarityStaging: The spaced-review block at the end of the lesson is empty. E...] The spaced-review block at the end of the lesson is empty. Even without prerequisites, this block should be used to anchor the most critical concepts of the current lesson (Ring vs Radial) for long-term retention.\n   EXACT FIX: Change blocks[9].content.questions from '' to '[object Object]'\n   Impact: 2 points\n\nLESSON JSON EXCERPT (relevant sections):\nLearning Outcomes: [\n  \"Identify common circuit types used in electrical installations\",\n  \"Explain the primary purpose and typical use cases for different circuit classifications\",\n  \"Describe the fundamental differences between ring final and radial circuit arrangements\"\n]\n\nBlocks (10 total):\n  [0] outcomes (order: 1)\n  [1] vocab (order: 2)\n  [2] diagram (order: 3)\n  [3] explanation (order: 4)\n  [4] practice (order: 4.5)\n  [5] explanation (order: 5)\n  [6] practice (order: 5.5)\n  [7] practice (order: 8)\n  [8] practice (order: 9.5)\n  [9] spaced-review (order: 10)\n\nPractice Block: {\n  \"id\": \"203-3AA-check-1\",\n  \"type\": \"practice\",\n  \"order\": 4.5,\n  \"content\": {\n    \"title\": \"Check Your Understanding: Classification of Circuit Types\",\n    \"mode\": \"conceptual\",\n    \"sequential\": true,\n    \"questions\": [\n      {\n        \"id\": \"203-3AA-C1-L1-A\",\n        \"questionText\": \"What is a Final Circuit and where does it originate?\",\n        \"answerType\": \"short-text\",\n        \"cognitiveLevel\": \"recall\",\n        \"expectedAnswer\": [\n          \"A Final Circuit is an electrical circuit th...\n\nGenerate patches to fix ONLY these specific issues. Return JSON in the format specified.\n\nRESPONSE FORMAT (MANDATORY):\n{\n  \"patches\": [\n    { \"op\": \"replace\", \"path\": \"...\", \"value\": ..., \"reason\": \"...\" }\n  ]\n}\n\nStart your response with '{' immediately. No explanations."
+    },
+    "llmRawResponse": "{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[4].content.questions[0].expectedAnswer\",\n      \"value\": [\n        \"originates at a distribution board and supplies current directly to equipment\",\n        \"starts at the distribution board and supplies equipment\",\n        \"supplies current directly from the distribution board\",\n        \"originates at a distribution board\"\n      ],\n      \"reason\": \"Removed overly lenient variants and updated expectedAnswer to require descriptive details about the circuit's origin and path.\"\n    },\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[4].content.questions[3].answerType\",\n      \"value\": \"long-text\",\n      \"reason\": \"Changed answerType to long-text to better accommodate multi-sentence synthesis responses.\"\n    }\n  ]\n}",
+    "patches": [
+      {
+        "index": 0,
+        "op": "replace",
+        "path": "blocks[4].content.questions[0].expectedAnswer",
+        "from": [
+          "A Final Circuit is an electrical circuit that originates at a distribution board and supplies current directly to equipment",
+          "Final Circuit",
+          "a final circuit",
+          "final circuit originates at a distribution board"
+        ],
+        "value": [
+          "originates at a distribution board and supplies current directly to equipment",
+          "starts at the distribution board and supplies equipment",
+          "supplies current directly from the distribution board",
+          "originates at a distribution board"
+        ],
+        "reason": "Removed overly lenient variants and updated expectedAnswer to require descriptive details about the circuit's origin and path.",
+        "oldValue": [
+          "A Final Circuit is an electrical circuit that originates at a distribution board and supplies current directly to equipment",
+          "Final Circuit",
+          "a final circuit",
+          "final circuit originates at a distribution board"
+        ],
+        "appliedValue": [
+          "originates at a distribution board and supplies current directly to equipment",
+          "starts at the distribution board and supplies equipment",
+          "supplies current directly from the distribution board",
+          "originates at a distribution board"
+        ],
+        "applyStatus": "applied",
+        "validation": {
+          "pathStyle": "unknown",
+          "targetExists": true,
+          "fromProvided": false,
+          "fromMatches": true,
+          "wouldCreateStructure": false,
+          "allowedOp": true,
+          "allowedPath": true,
+          "reasons": []
+        },
+        "scoreDeltaSequential": 0,
+        "sectionDeltasSequential": {},
+        "scoreDeltaIndependent": 2,
+        "sectionDeltasIndependent": {}
+      },
+      {
+        "index": 1,
+        "op": "replace",
+        "path": "blocks[4].content.questions[3].answerType",
+        "from": "short-text",
+        "value": "long-text",
+        "reason": "Changed answerType to long-text to better accommodate multi-sentence synthesis responses.",
+        "oldValue": "short-text",
+        "appliedValue": "long-text",
+        "applyStatus": "applied",
+        "validation": {
+          "pathStyle": "unknown",
+          "targetExists": true,
+          "fromProvided": false,
+          "fromMatches": true,
+          "wouldCreateStructure": false,
+          "allowedOp": true,
+          "allowedPath": true,
+          "reasons": []
+        },
+        "scoreDeltaSequential": -4,
+        "sectionDeltasSequential": {},
+        "scoreDeltaIndependent": 0,
+        "sectionDeltasIndependent": {}
+      }
+    ],
+    "accepted": false,
+    "llmParsed": {
+      "patches": [
+        {
+          "op": "replace",
+          "path": "blocks[4].content.questions[0].expectedAnswer",
+          "value": [
+            "originates at a distribution board and supplies current directly to equipment",
+            "starts at the distribution board and supplies equipment",
+            "supplies current directly from the distribution board",
+            "originates at a distribution board"
+          ],
+          "reason": "Removed overly lenient variants and updated expectedAnswer to require descriptive details about the circuit's origin and path."
+        },
+        {
+          "op": "replace",
+          "path": "blocks[4].content.questions[3].answerType",
+          "value": "long-text",
+          "reason": "Changed answerType to long-text to better accommodate multi-sentence synthesis responses."
+        }
+      ]
+    },
+    "refined": {
+      "lesson": {
+        "id": "203-3AA",
+        "title": "203.3AA — Circuit Types: What They Do",
+        "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+        "layout": "split-vis",
+        "unit": "Unit 203",
+        "topic": "Circuit Types: What They Do",
+        "learningOutcomes": [
+          "Identify common circuit types used in electrical installations",
+          "Explain the primary purpose and typical use cases for different circuit classifications",
+          "Describe the fundamental differences between ring final and radial circuit arrangements"
+        ],
+        "prerequisites": [],
+        "blocks": [
+          {
+            "id": "203-3AA-outcomes",
+            "type": "outcomes",
+            "order": 1,
+            "content": {
+              "outcomes": [
+                {
+                  "text": "Identify common circuit types used in electrical installations",
+                  "bloomLevel": "remember"
+                },
+                {
+                  "text": "Explain the primary purpose and typical use cases for different circuit classifications",
+                  "bloomLevel": "understand"
+                },
+                {
+                  "text": "Describe the fundamental differences between ring final and radial circuit arrangements",
+                  "bloomLevel": "understand"
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3AA-vocab",
+            "type": "vocab",
+            "order": 2,
+            "content": {
+              "terms": [
+                {
+                  "term": "Final Circuit",
+                  "definition": "An electrical circuit that originates at a distribution board and supplies current directly to equipment or socket-outlets."
+                },
+                {
+                  "term": "Radial Circuit",
+                  "definition": "A circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point, ending at the final outlet."
+                },
+                {
+                  "term": "Ring Final Circuit",
+                  "definition": "A circuit arrangement where the conductors form a continuous loop, starting and finishing at the same protective device in the consumer unit."
+                },
+                {
+                  "term": "Lighting Circuit",
+                  "definition": "A specific type of final circuit designed to provide power to fixed luminaires and their associated switching systems."
+                },
+                {
+                  "term": "Power Circuit",
+                  "definition": "A final circuit primarily intended to provide electrical supply to socket-outlets for the connection of various appliances."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3AA-diagram",
+            "type": "diagram",
+            "order": 3,
+            "content": {
+              "title": "Circuit Types: What They Do Diagram",
+              "description": "Visual representation of Circuit Types: What They Do",
+              "videoUrl": "",
+              "diagramType": "circuit",
+              "elementIds": [
+                "ring-final-circuit",
+                "radial-circuit",
+                "distribution-board",
+                "power-circuit",
+                "lighting-circuit"
+              ],
+              "placeholderText": "A split-view diagram. On the left, show a 'distribution-board' with a 'radial-circuit' (lighting-circuit) consisting of a single line connecting three light symbols in a sequence. On the right, show the 'distribution-board' with a 'ring-final-circuit' (power-circuit) where two lines leave a single MCB, pass through four socket-outlet symbols, and both return to that same MCB to form a complete loop. Labels should clearly identify the 'radial-circuit' and 'ring-final-circuit' structures."
+            }
+          },
+          {
+            "id": "203-3AA-explain-1",
+            "type": "explanation",
+            "order": 4,
+            "content": {
+              "title": "Classification of Circuit Types",
+              "content": "### In this lesson\nYou will learn how to identify common circuit types used in electrical installations based on their specific function.\nThis knowledge is essential when designing or maintaining a domestic or commercial installation to ensure equipment is supplied safely.\n\n*   Learn the distinction between lighting, power, and specialized circuits.\n*   Understand the primary purpose and typical use cases for different circuit classifications.\n*   Identify how circuits are separated to maintain safety and service continuity.\n\n**What this is**\nIn any electrical installation, a **Final Circuit** is an electrical circuit that originates at a distribution board and supplies current directly to equipment or socket-outlets. Rather than having one single circuit for an entire building, we divide the installation into several smaller circuits based on their intended function. This classification ensures that a fault in one area—such as a blown light bulb—does not leave the entire property in darkness or disable essential safety systems. Common classifications include a **Lighting Circuit**, a **Power Circuit**, and specialized circuits for heating, alarms, or data.\n\n**Why it matters**\nCorrectly identifying and separating circuit types is a fundamental requirement of BS 7671 (refer to current edition). By grouping loads logically, an electrician can ensure that the protective devices are appropriately matched to the equipment being served. Furthermore, separating circuits prevents \"nuisance tripping\" and ensures that safety-critical systems, like emergency lighting or fire alarms, remain operational even if a general power circuit fails. It also simplifies future maintenance and fault-finding by allowing specific sections of the installation to be isolated without affecting the rest of the building.\n\n**Key facts / rules**\n*   Every **Final Circuit** must be connected to its own protective device (MCB or RCBO) at the distribution board.\n*   A **Lighting Circuit** is dedicated to fixed luminaires and should not typically supply heavy power loads.\n*   A **Power Circuit** is primarily intended to provide electrical supply to socket-outlets for appliances.\n*   Heating circuits are often \"dedicated\" or \"stationary\" circuits, meaning they supply a single high-power item like an electric shower or immersion heater.\n*   Safety circuits, such as fire alarms or emergency lighting, often require higher levels of protection against fire and mechanical damage.\n*   Control and data circuits operate at lower voltages or different frequencies to transmit information rather than raw power.\n\n**When to choose it**\nSelecting the right circuit type depends entirely on the nature of the load and the required reliability. You would choose a **Lighting Circuit** for any installation of fixed ceiling lights or wall brackets where the current demand is relatively low. In contrast, you would choose a **Power Circuit** (feeding socket-outlets) for general-purpose areas where users need to plug in portable devices like kettles, vacuum cleaners, or computers.\n\nFor high-demand appliances that are fixed in place, such as an electric oven or a central heating boiler, a dedicated heating or motor circuit is the standard choice to prevent overloading general power lines. Emergency and alarm circuits are chosen specifically when life safety is a factor; these are often kept entirely separate from general circuits to ensure they are the last things to lose power in an emergency. Finally, data and control circuits are selected when there is a need to manage smart home systems or telecommunications, where interference from high-voltage power lines must be avoided.\n\n**Common mistakes**\n*   Mixing circuit types, such as connecting a high-power immersion heater to a general-purpose **Lighting Circuit**.\n*   Failing to provide enough separate circuits, leading to overloaded protective devices and frequent tripping.\n*   Labeling circuits incorrectly at the distribution board, which creates a significant safety hazard for future workers.\n\n**Key Points**\n*   A **Final Circuit** is the end-of-line wiring supplying equipment directly.\n*   Circuits are classified by use: lighting, power, heating, alarm, and data.\n*   Separation of circuits is required for safety and to prevent total loss of power.\n*   Dedicated circuits are used for high-power fixed appliances.\n\n**Quick recap**\nElectrical installations are divided into various circuit types, each with a specific purpose. We use a **Lighting Circuit** for fixed lights and a **Power Circuit** for socket-outlets. Specialized circuits for heating, alarms, and data ensure that high-load or safety-critical equipment operates correctly without interfering with general-use electrical points.\n\n### Coming Up Next\nWe will examine the physical layout of these circuits, specifically comparing the loop-based ring arrangement and the sequential radial arrangement."
+            }
+          },
+          {
+            "id": "203-3AA-check-1",
+            "type": "practice",
+            "order": 4.5,
+            "content": {
+              "title": "Check Your Understanding: Classification of Circuit Types",
+              "mode": "conceptual",
+              "sequential": true,
+              "questions": [
+                {
+                  "id": "203-3AA-C1-L1-A",
+                  "questionText": "What is a Final Circuit and where does it originate?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "originates at a distribution board and supplies current directly to equipment",
+                    "starts at the distribution board and supplies equipment",
+                    "supplies current directly from the distribution board",
+                    "originates at a distribution board"
+                  ],
+                  "hint": "Think about where the end-of-line wiring starts and what it supplies."
+                },
+                {
+                  "id": "203-3AA-C1-L1-B",
+                  "questionText": "What requirement must be met for every Final Circuit at the distribution board?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Every Final Circuit must be connected to its own protective device at the distribution board",
+                    "connected to its own protective device",
+                    "own protective device",
+                    "must have its own protective device"
+                  ],
+                  "hint": "Each circuit needs its own way to be protected from faults."
+                },
+                {
+                  "id": "203-3AA-C1-L1-C",
+                  "questionText": "What is the primary purpose of separating circuits within an installation?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Separating circuits prevents nuisance tripping and ensures that safety-critical systems remain operational",
+                    "prevents nuisance tripping",
+                    "ensures safety-critical systems remain operational",
+                    "prevents nuisance tripping and ensures safety"
+                  ],
+                  "hint": "Consider what happens to the lights if a power circuit has a fault."
+                },
+                {
+                  "id": "203-3AA-C1-L2",
+                  "questionText": "Using your answers to Q1 (the definition of a final circuit), Q2 (the use of protective devices), and Q3 (the purpose of separating circuits), explain why an installation is divided into different circuit types.",
+                  "answerType": "long-text",
+                  "cognitiveLevel": "connection",
+                  "expectedAnswer": [
+                    "dividing final circuits with individual protective devices ensures that safety-critical systems remain operational even if a fault causes nuisance tripping elsewhere",
+                    "separating circuits ensures that each final circuit has its own protective device to prevent a single fault from disabling the entire installation",
+                    "it ensures safety and service continuity by providing dedicated protection for different equipment types"
+                  ],
+                  "hint": "Think about how individual protection and separation work together to keep the building safe and functional."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3AA-explain-2",
+            "type": "explanation",
+            "order": 5,
+            "content": {
+              "title": "Ring Final vs Radial Principles",
+              "content": "### In this lesson\nYou will learn to describe the fundamental differences between ring final and radial circuit arrangements.\nThis applies to any scenario where you are installing or identifying the wiring structure within a building's power system.\n\n*   Distinguish between a loop-based circuit and a sequential-run circuit.\n*   Identify common circuit types used in electrical installations by their physical wiring path.\n*   Understand why specific arrangements are used for different areas of a property.\n\n**What this is**\nWhen installing a **Power Circuit**, there are two primary ways to arrange the wiring. A **Radial Circuit** is a circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point, ending at the final outlet. It is like a branch on a tree. Conversely, a **Ring Final Circuit** is a circuit arrangement where the conductors form a continuous loop, starting and finishing at the same protective device in the consumer unit. In a ring, the current has two paths to reach any given outlet, which allows for a more efficient distribution of current across the conductors.\n\n**Why it matters**\nThe choice between ring and radial affects the amount of cable used, the ease of installation, and how the circuit handles electrical load. The **Ring Final Circuit** is a uniquely British standard designed to save copper while allowing a high number of socket-outlets on a single circuit. However, it requires careful testing to ensure the loop is continuous. A **Radial Circuit** is simpler to understand and troubleshoot but may require more individual circuits to cover the same floor area as a single ring, depending on the load requirements and cable sizes used.\n\n**Key facts / rules**\n*   A **Radial Circuit** terminates at the last point; there is no return path to the distribution board.\n*   A **Ring Final Circuit** must have both ends of the loop connected into the same terminal of the protective device.\n*   Radial circuits are commonly used for lighting, small power, or dedicated high-power appliances.\n*   Ring final circuits are almost exclusively used for general-purpose socket-outlets in domestic and light commercial settings.\n*   The continuity of the ring is critical; if the loop is broken, the circuit becomes two overloaded radials.\n*   Refer to the IET On-Site Guide (verify current edition) for the typical floor area limits served by these circuit types.\n\n**How to recognise it**\nYou can recognise a **Radial Circuit** by looking at the wiring at the distribution board; it will typically have only one set of conductors (Line, Neutral, and Earth) entering the protective device. If you were to look at the last socket on a radial, you would see only one cable entering the back of the accessory. In contrast, you can recognise a **Ring Final Circuit** at the distribution board by the presence of two sets of conductors connected into a single protective device (two Lines, two Neutrals, two Earths). \n\nAt a standard socket in the middle of a ring, you will see two cables—one \"incoming\" and one \"outgoing\"—effectively forming the loop. However, you must be careful, as a radial socket that is not the \"end of the line\" will also have two cables. Therefore, the most reliable way to identify a ring is the doubled-up connection at the consumer unit. Radial circuits are the standard for a **Lighting Circuit**, whereas the ring is a common choice for a general **Power Circuit** in UK housing.\n\n**Common mistakes**\n*   Connecting the two ends of a **Ring Final Circuit** into two different protective devices, which is highly dangerous.\n*   Accidentally leaving a \"break\" in a ring during installation, turning it into two separate radial legs.\n*   Adding too many \"spurs\" (extensions) to a ring or radial without following the specific rules for current-carrying capacity.\n\n**Key Points**\n*   **Radial Circuit**: One path, ends at the last outlet.\n*   **Ring Final Circuit**: Two paths, forms a continuous loop back to the board.\n*   Rings are common for UK power sockets; radials are common for lighting and dedicated appliances.\n*   Double conductors at the MCB/RCBO usually indicate a ring circuit.\n\n**Quick recap**\nThe two main wiring arrangements are radials and rings. A **Radial Circuit** runs in a straight line from the source to the outlets, while a **Ring Final Circuit** loops back to the source. Each has specific benefits, with radials being simpler for lighting and rings being efficient for large areas of power sockets.\n\n### Coming Up Next\nNow that you can identify circuit types and their arrangements, we will look at how to select the correct protective devices to keep these circuits safe."
+            }
+          },
+          {
+            "id": "203-3AA-check-2",
+            "type": "practice",
+            "order": 5.5,
+            "content": {
+              "title": "Check Your Understanding: Ring Final vs Radial Principles",
+              "mode": "conceptual",
+              "sequential": true,
+              "questions": [
+                {
+                  "id": "203-3AA-C2-L1-A",
+                  "questionText": "Identify the physical arrangement and path of a Radial Circuit.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "A Radial Circuit is a circuit arrangement where the wiring starts at the consumer unit and runs sequentially to each point",
+                    "Radial Circuit",
+                    "runs sequentially to each point",
+                    "radial arrangement"
+                  ],
+                  "hint": "This arrangement is like a branch on a tree that ends at the last outlet."
+                },
+                {
+                  "id": "203-3AA-C2-L1-B",
+                  "questionText": "Identify the physical arrangement of a Ring Final Circuit.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "A Ring Final Circuit is a circuit arrangement where the conductors form a continuous loop",
+                    "Ring Final Circuit",
+                    "continuous loop",
+                    "conductors form a loop"
+                  ],
+                  "hint": "In this arrangement, the wiring starts and finishes at the same protective device."
+                },
+                {
+                  "id": "203-3AA-C2-L1-C",
+                  "questionText": "What is the consequence if the loop in a ring final circuit is broken?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "if the loop is broken the circuit becomes two overloaded radials",
+                    "becomes two overloaded radials",
+                    "overloaded radials",
+                    "it becomes two overloaded radial circuits"
+                  ],
+                  "hint": "Think about what happens to the current distribution when the continuous path is interrupted."
+                },
+                {
+                  "id": "203-3AA-C2-L2",
+                  "questionText": "Using your answers to Q1 (radial sequential runs), Q2 (ring continuous loops), and Q3 (the effect of a broken loop), explain how the physical wiring arrangement relates to the safe operation of a power circuit.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "connection",
+                  "expectedAnswer": [
+                    "the choice between a sequential radial run and a continuous loop determines how current is distributed and prevents the circuit from becoming overloaded if the path is broken",
+                    "identifying whether a circuit is a radial or a ring loop is essential because a broken ring becomes two overloaded radials which is unsafe",
+                    "the physical arrangement dictates the number of current paths and ensuring continuity in a loop is vital to prevent overloading"
+                  ],
+                  "hint": "Consider how the path of the conductors (loop vs sequence) affects the load on the cables."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3AA-practice",
+            "type": "practice",
+            "order": 8,
+            "content": {
+              "title": "Your Turn (You Do)",
+              "questions": [
+                {
+                  "id": "203-3AA-P1",
+                  "questionText": "Identify the specific type of final circuit designed to provide power to fixed luminaires and their switching systems.",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "Lighting Circuit",
+                    "a Lighting Circuit",
+                    "the Lighting Circuit"
+                  ],
+                  "hint": "This circuit is dedicated to fixed lights and has a relatively low current demand."
+                },
+                {
+                  "id": "203-3AA-P2",
+                  "questionText": "Which circuit arrangement is identified by two sets of conductors (Line, Neutral, and Earth) connected into the same terminal of a protective device at the consumer unit?",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "Ring Final Circuit",
+                    "a Ring Final Circuit",
+                    "the Ring Final Circuit"
+                  ],
+                  "hint": "This arrangement forms a continuous loop back to the distribution board."
+                },
+                {
+                  "id": "203-3AA-P3",
+                  "questionText": "What is the primary purpose of dividing an electrical installation into several smaller final circuits rather than using a single large circuit?",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "maintain safety and service continuity",
+                    "to maintain safety and service continuity",
+                    "safety and service continuity"
+                  ],
+                  "hint": "Consider the impact of a fault in one part of the building on the rest of the installation."
+                },
+                {
+                  "id": "203-3AA-P4",
+                  "questionText": "Select the correct circuit arrangement for a wiring path that starts at the consumer unit and runs sequentially to each point, terminating at the final outlet.",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "Radial Circuit",
+                    "a Radial Circuit",
+                    "the Radial Circuit"
+                  ],
+                  "hint": "This circuit does not return to the distribution board; it ends at the last point."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3AA-integrative",
+            "type": "practice",
+            "order": 9.5,
+            "content": {
+              "title": "Putting It All Together",
+              "mode": "integrative",
+              "sequential": true,
+              "questions": [
+                {
+                  "id": "203-3AA-INT-1",
+                  "questionText": "How does the classification of a circuit influence the choice between a ring final or radial arrangement? In your answer, include: (1) circuit classifications such as lighting or power, (2) the difference between loop-based and sequential-run paths, and (3) why specific arrangements are used for different circuit types. (2-3 sentences)",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "connection",
+                  "expectedAnswer": [
+                    "Circuit classifications like lighting and power are separated for safety, with lighting usually using a sequential-run radial arrangement while power circuits often use a loop-based ring final. These specific arrangements are chosen because the wiring path must match the load requirements and typical use cases of the specific circuit type.",
+                    "Lighting and power classifications require different wiring; radial circuits provide a sequential-run for lights, whereas ring final circuits create a loop-based path for power sockets. Choosing the correct arrangement ensures that the circuit type matches the intended use and safety needs of the installation's physical wiring path."
+                  ],
+                  "hint": "Think about how the physical shape of the wiring (loop vs. line) suits the needs of different classifications like lighting or socket outlets."
+                },
+                {
+                  "id": "203-3AA-INT-2",
+                  "questionText": "Explain how circuit classification and wiring structures work together to create a functional and safe installation. In your answer, include: (1) the importance of separating circuit types for safety, (2) the characteristics of a ring final loop, (3) the characteristics of a radial sequential run, and (4) how these arrangements provide a safe supply for equipment. (3-4 sentences)",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "synthesis",
+                  "expectedAnswer": [
+                    "To ensure a safe supply, an installation separates circuit types like lighting and power to prevent total loss of service if a fault occurs. A ring final circuit uses a loop-based arrangement to effectively share the load across two paths, while a radial circuit uses a sequential-run path from the source to the final point of use. Together, these classifications and structured arrangements ensure that equipment is supplied safely and the installation remains compliant with design principles.",
+                    "Separating circuits into classifications like lighting and power is vital for safety, utilizing different wiring structures such as the loop-based ring final or the sequential-run radial. While the ring final creates a continuous loop for higher power demands, the radial circuit follows a single path to its loads. Using these specific arrangements allows designers to provide a safe and reliable supply for all equipment while maintaining the distinction between different functional areas of the building."
+                  ],
+                  "hint": "Consider how the 'big picture' of an installation relies on both the purpose of the circuit (classification) and how the wires are physically routed (ring or radial)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3AA-spaced-review",
+            "type": "spaced-review",
+            "order": 10,
+            "content": {
+              "title": "Spaced Review",
+              "questions": [],
+              "notes": "No prerequisites or foundation anchors for this lesson"
+            }
+          }
+        ],
+        "metadata": {
+          "created": "2026-02-06",
+          "updated": "2026-02-06",
+          "version": "1.0",
+          "author": "C&G 2365 Learning Team"
+        }
+      },
+      "score": {
+        "total": 94,
+        "breakdown": {
+          "schemaCompliance": 14,
+          "pedagogy": 30,
+          "questions": 22,
+          "marking": 8,
+          "visual": 5,
+          "safety": 0
+        },
+        "details": [
+          {
+            "section": "markingRobustness: Integrative synthesis questions (203-3AA-INT-1 and 203-3AA-I...",
+            "score": 0,
+            "maxScore": 3,
+            "issues": [
+              "Integrative synthesis questions (203-3AA-INT-1 and 203-3AA-INT-2) are set to 'short-text' but require 2-4 sentences. This makes exact-match grading impossible for students."
+            ],
+            "suggestions": [
+              "Change blocks[8].content.questions[0].answerType from 'short-text' to 'long-text'",
+              "Change blocks[8].content.questions[1].answerType from 'short-text' to 'long-text'"
+            ]
+          },
+          {
+            "section": "markingRobustness: Connection question 203-3AA-C2-L2 is set to 'short-text' des...",
+            "score": 0,
+            "maxScore": 2,
+            "issues": [
+              "Connection question 203-3AA-C2-L2 is set to 'short-text' despite asking for an explanation and providing a long sentence as the expected answer. Inconsistent with the parallel question 203-3AA-C1-L2."
+            ],
+            "suggestions": [
+              "Change blocks[6].content.questions[3].answerType from 'short-text' to 'long-text'"
+            ]
+          },
+          {
+            "section": "schemaCompliance: The spaced-review block at blocks[9] contains no questions. ...",
+            "score": 0,
+            "maxScore": 1,
+            "issues": [
+              "The spaced-review block at blocks[9] contains no questions. While the notes state there are no prerequisites, a spaced review should anchor to previous fundamental concepts (e.g., basic safety or circuit theory) to be functional."
+            ],
+            "suggestions": [
+              "Cannot be fixed by Phase 10 - requires regeneration"
+            ]
+          }
+        ],
+        "grade": "Strong"
+      }
+    },
+    "rejectionReason": "Score did not improve"
+  },
+  "postmortem": {
+    "rootCause": "The refinement failed primarily because Patch 2 changed an answerType to 'long-text' without providing the necessary grading rubric required for that type, leading to a significant sequential score drop. Additionally, the agent failed to generate a patch for the empty spaced-review block despite identifying it as an issue.",
+    "harmfulPatches": [
+      {
+        "patchIndex": 1,
+        "why": "Changing 'short-text' to 'long-text' without adding a corresponding 'rubric' or 'gradingCriteria' often causes automated evaluators to penalize the question for being ungradable or incomplete. It also had a -4 point sequential impact.",
+        "pointsLost": -4
+      }
+    ],
+    "reasoningFlaws": [
+      "Type-Switching Oversight: The agent assumed 'long-text' is a drop-in replacement for 'short-text' without considering the structural requirements (like rubrics) of the new type.",
+      "Omission of Targeted Issue: The agent correctly identified the empty spaced-review block (Issue 3) but failed to generate any patch to populate it.",
+      "ID Neglect: The agent ignored the ID audit issues which were present in the baseline, failing to bring the lesson into naming convention compliance."
+    ],
+    "patterns": [
+      "Technical vs. Pedagogical Conflict: Pedagogically sound changes (making a synthesis question long-form) are failing due to technical schema/grading requirements.",
+      "Partial Implementation: Identifying three issues but only attempting to fix two."
+    ],
+    "recommendations": [
+      "Update the refinement prompt to mandate that any change from 'short-text' to 'long-text' must also generate a detailed 'rubric' field for the question.",
+      "Add a validation step to ensure that every 'Issue Targeted' by the analysis phase has at least one corresponding patch in the output.",
+      "Include a specific instruction to fix ID naming conventions (e.g., ensuring IDs follow the 'LessonID-BlockType-Index' pattern) when ID audit issues are detected."
+    ]
+  }
+}

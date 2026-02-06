@@ -29,7 +29,7 @@ export function detectTruncation(
   finishReason?: string,
   usageMetadata?: UsageMetadata,
   maxOutputTokens?: number,
-  type?: 'lesson' | 'quiz' | 'phase'
+  type?: 'lesson' | 'quiz' | 'phase' | 'score'
 ): TruncationCheckResult {
   const reasons: string[] = [];
   let confidence: 'high' | 'medium' | 'low' = 'low';
@@ -237,21 +237,21 @@ function hasUnterminatedString(text: string): boolean {
 /**
  * Check response patterns specific to lesson generation
  */
-function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'phase'): string[] {
+function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'phase' | 'score'): string[] {
   const issues: string[] = [];
   const trimmed = response.trim();
   const last200 = trimmed.slice(-200);
 
   // For lesson JSON, should contain closing structures
   if (trimmed.startsWith('{')) {
-    // Only check for blocks array if this is a complete lesson (not a phase)
-    // Phase responses are partial structures that won't have blocks
+    // Type-specific validation
     if (type === 'lesson' && !trimmed.includes('"blocks"')) {
       issues.push('Complete lesson JSON missing "blocks" property');
-    } else if (type === 'phase' && !trimmed.includes('"blocks"')) {
-      // Phase responses won't have blocks - this is NORMAL, don't report as issue
-      // Log for transparency but don't add to issues
-      console.log(`   ℹ️  Phase response doesn't have "blocks" (this is expected for phase responses)`);
+    } else if (type === 'score' && !trimmed.includes('"details"')) {
+      issues.push('Score response missing "details" property');
+    } else if (type === 'phase') {
+      // Phase responses are partial structures - don't check for specific properties
+      console.log(`   ℹ️  Phase response validation (no specific property checks)`);
     } else if (!type && !trimmed.includes('"blocks"')) {
       issues.push('Lesson JSON missing "blocks" property (type not specified)');
     }
@@ -261,11 +261,16 @@ function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'pha
       issues.push('Response lacks proper closing structures in final section');
     }
 
-    // Lesson blocks should end with closing array (only check for complete lessons, not phases)
+    // Type-specific array checks
     if (type === 'lesson') {
       const blocksMatch = trimmed.match(/"blocks"\s*:\s*\[/);
       if (blocksMatch && !trimmed.includes(']', blocksMatch.index!)) {
         issues.push('Blocks array appears to be unclosed');
+      }
+    } else if (type === 'score') {
+      const detailsMatch = trimmed.match(/"details"\s*:\s*\[/);
+      if (detailsMatch && !trimmed.includes(']', detailsMatch.index!)) {
+        issues.push('Details array appears to be unclosed');
       }
     }
   }

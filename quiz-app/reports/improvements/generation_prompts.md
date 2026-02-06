@@ -20,6 +20,14 @@ Analyze mustHaveTopics for teaching scope constraints:
 
 These constraints MUST be passed to downstream phases to prevent scope violations.
 
+TASK MODE COMPUTATION (CRITICAL):
+You MUST compute taskMode by analyzing the lesson requirements:
+1. Classify task types from topic/section/mustHaveTopics
+2. Detect if PURPOSE_ONLY constraint applies
+3. Generate taskMode string (e.g., "CALCULATION, PURPOSE_ONLY")
+
+This taskMode will be the SINGLE SOURCE OF TRUTH for all downstream phases.
+
 OUTPUT REQUIREMENTS:
 - Valid RFC 8259 JSON only (parseable by JSON.parse())
 - No markdown blocks, comments, or explanations
@@ -65,6 +73,7 @@ Return JSON in this exact format:
     "[Apply level outcome]"
   ],
   "estimatedComplexity": "simple|medium|complex",
+  "taskMode": "[Computed task mode string: CALCULATION, PURPOSE_ONLY, IDENTIFICATION, etc.]",
   "teachingConstraints": {
     "excludeHowTo": true|false,
     "purposeOnly": true|false,
@@ -73,6 +82,12 @@ Return JSON in this exact format:
     "specificScope": "any other constraint from mustHaveTopics"
   }
 }
+
+TASK MODE EXAMPLES:
+- Topic about "Cable Selection Criteria" → taskMode: "SELECTION"
+- Topic "Ohm's Law Calculations" → taskMode: "CALCULATION"
+- "What conduit bending machines are for, not how to use" → taskMode: "IDENTIFICATION, PURPOSE_ONLY"
+- "Safe Isolation Procedure" → taskMode: "PROCEDURE"
 
 RULES:
 - explanationSections: 1 section for simple topics, 2 for complex multi-part topics
@@ -206,6 +221,36 @@ SCOPE CONTROL (for PURPOSE_ONLY / IDENTIFICATION / SELECTION modes)
 - Avoid "how to test / verify / certify" unless the lesson explicitly requires it.
 - If you mention standards or guidance, name them (e.g., "BS 7671...", "IET On-Site Guide...") and add "(refer to current edition)".
 
+NUMERIC VALUES FROM STANDARDS (CRITICAL):
+- Do NOT include numeric values from BS 7671, IET On-Site Guide, or other standards tables UNLESS:
+  * The specific value appears in mustHaveTopics input
+  * The value appears in additionalInstructions input
+  * The value is a universal constant (e.g., UK mains voltage 230V, Earth fault loop impedance limit)
+- BANNED numeric content that will cause hallucinations:
+  * Cable current-carrying capacities (e.g., "2.5mm² carries 27A")
+  * Maximum circuit lengths (e.g., "Ring final max 100m²")
+  * Specific factor numbers from tables (e.g., "Cable factor 143")
+  * Diversity percentages from tables
+  * Specific Zs values for protective devices
+- ALLOWED numeric content:
+  * Basic formulas (Ohm's Law: V = I × R)
+  * General ranges ("typically 16A to 32A") with qualifier
+  * Example calculations IF the context values are realistic but clearly examples
+- If you need to reference a table/standard: describe WHAT to look up, not the specific values
+  * Good: "Refer to the cable current-carrying capacity tables in BS 7671 (verify current edition)"
+  * Bad: "A 2.5mm² cable carries 27A in typical installation conditions"
+
+DIAGRAM ELEMENT ID FORMAT (CRITICAL):
+If needsDiagram is true, diagramElements.elementIds MUST follow kebab-case format:
+- All lowercase
+- Words separated by hyphens (-)
+- No spaces, underscores, or capital letters
+- Examples:
+  * GOOD: "ring-final-circuit", "consumer-unit", "protective-conductor", "mcb-32a"
+  * BAD: "Ring Final Circuit", "Consumer_Unit", "protectiveConductor", "MCB 32A"
+- Element IDs should match vocabulary term IDs (which are also kebab-case)
+- 3-5 element IDs total
+
 LEARNING OUTCOMES COVERAGE (CRITICAL)
 - Every learning outcome must be explicitly taught somewhere in the explanation text.
 - Use key phrases from the learning outcomes so later questions can match wording.
@@ -229,8 +274,7 @@ LESSON DETAILS:
 
 TASK MODE: {taskMode || 'GENERAL'}
 
-TEACHING CONSTRAINTS (must obey):
-{teachingConstraints ? JSON.stringify(teachingConstraints, null, 2) : 'None provided'}
+CRITICAL: Do NOT include specific numeric values from standards/tables unless they appear in the inputs above. Describe lookup procedures instead.
 
 NEEDS DIAGRAM: {plan.needsDiagram ? 'true' : 'false'}
 
@@ -258,11 +302,11 @@ Return JSON in this exact format:
       "title": "[Section title]",
       "content": "[400-600 word explanation following 9-part structure]"
     }
-  ],
+  ]${plan.needsDiagram ? `,
   "diagramElements": {
-    "elementIds": ["ring-final", "distribution-board", "mcb", ...],
-    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements. Element IDs should match vocabulary term IDs or use kebab-case descriptive slugs."
-  }
+    "elementIds": ["ring-final-circuit", "distribution-board", "mcb-32a", "protective-conductor"],
+    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements. Element IDs MUST use kebab-case format (lowercase, hyphens only, no spaces)."
+  }` : ''}
 }
 
 CRITICAL REQUIREMENTS:
@@ -286,8 +330,8 @@ CRITICAL REQUIREMENTS:
 - Address ALL learning outcomes explicitly (use LO phrases in at least one sentence per LO)
 - Use vocabulary terms exactly as defined
 - Each explanation must be 400-600 words
-- Use \n\n for paragraph breaks, **bold** for emphasis
-- If diagram needed: provide 3-5 elementIds matching vocabulary terms with detailed placeholder description
+- Use \n\n for paragraph breaks, **bold** for emphasis${plan.needsDiagram ? `
+- If diagram needed: provide 3-5 elementIds matching vocabulary terms with detailed placeholder description` : ''}
 ```
 
 ---
@@ -379,7 +423,9 @@ Even for single-word answers, ALWAYS use array format: ["answer"]
 
 L1 QUESTIONS (recall):
 - expectedAnswer MUST contain EXACTLY 2–4 strings (ARRAY FORMAT)
-- The FIRST string is the canonical answer and MUST be copied verbatim from the explanation text (exact substring)
+- The FIRST string is the canonical answer and MUST be a verbatim substring of the NORMALIZED plain-text explanation
+- "Normalized" means: apply the same stripping rules as anchor facts (remove markdown, bullets, trailing punctuation)
+- Extract your anchor fact text from this normalized version
 - Example: "expectedAnswer": ["protective conductor", "earth conductor", "cpc"]
 - Remaining variants MUST be tight normalization ONLY:
   * case changes
@@ -389,12 +435,12 @@ L1 QUESTIONS (recall):
 - NO broad paraphrases. NO "catch-all" variants.
 
 L2 QUESTION (connection):
-- expectedAnswer MUST contain EXACTLY 1–2 strings (ARRAY FORMAT)
-- Canonical answer should be 1–2 sentences
-- Example: "expectedAnswer": ["All three work together to ensure safe isolation"]
-- Canonical answer MUST include the 3 Anchor Facts verbatim (you may embed them as clauses)
-- Optional second variant may differ only by trivial punctuation/article changes
-- Do NOT accept vague summaries
+- expectedAnswer MUST contain EXACTLY 2–4 strings (ARRAY FORMAT)
+- Focus on the CONNECTION CONCEPT, not verbatim phrasing
+- Include 2-4 acceptable ways to express the relationship between the 3 anchor facts
+- Example: "expectedAnswer": ["they work together to provide safe isolation", "all three ensure the circuit is safely de-energized", "combined they prevent electric shock during maintenance"]
+- Variants should capture the KEY RELATIONSHIP IDEA, not exact wording
+- Reject only if the connection is fundamentally wrong or missing
 
 HINTS:
 - Provide a short, helpful hint (one sentence). No new content.
@@ -454,7 +500,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 1]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]", "[optional tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]", "[optional tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -462,7 +508,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 1]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -470,7 +516,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 1]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -478,7 +524,7 @@ Return JSON in this exact format:
           "questionText": "Using your answers to Q1 ([brief Q1 topic]), Q2 ([brief Q2 topic]), and Q3 ([brief Q3 topic]), explain how these three facts relate or work together.",
           "answerType": "short-text",
           "cognitiveLevel": "connection",
-          "expectedAnswer": ["[1–2 sentences INCLUDING the 3 anchor phrases verbatim]", "[optional tight variant]"],
+          "expectedAnswer": ["[relationship/connection between 3 facts]", "[alternative phrasing of same relationship]", "[third acceptable variant]", "[optional fourth variant]"],
           "hint": "[one-sentence hint about connecting the three facts]"
         }
       ]
@@ -492,8 +538,8 @@ CRITICAL REQUIREMENTS:
 - Q1–Q3 must each test ONE specific anchor fact from the explanation.
 - L2 question MUST start with "Using your answers to Q1…, Q2…, and Q3…" and MUST reference all three facts by content.
 - expectedAnswer arrays must be TIGHT:
-  * L1: EXACTLY 2–4 strings, canonical FIRST, canonical MUST be verbatim substring from the explanation.
-  * L2: EXACTLY 1–2 strings, and MUST include the 3 anchor phrases verbatim.
+  * L1: EXACTLY 2–4 strings, canonical FIRST, canonical MUST be verbatim substring from the NORMALIZED plain-text explanation (markdown stripped).
+  * L2: EXACTLY 2–4 strings expressing the CONNECTION/RELATIONSHIP between the 3 anchor facts (focus on concept, not exact phrasing).
 - Do NOT introduce new terms not present in the explanation text.
 - If constraints indicate PURPOSE_ONLY / IDENTIFICATION: test selection/purpose/recognition only (no procedures).
 ```
@@ -509,8 +555,9 @@ You are a practical training specialist for C&G 2365 Electrical Training.
 
 Your task is to create a Worked Example (I Do) and a Guided Practice (We Do) that model and scaffold the SAME skill.
 
-UNIVERSAL WORKED EXAMPLE POLICY (CRITICAL):
-ALWAYS generate BOTH workedExample AND guidedPractice for ALL lesson types.
+WORKED EXAMPLE GENERATION POLICY (CRITICAL):
+Generate BOTH workedExample AND guidedPractice when needed based on NEEDS_WORKED_EXAMPLE flag or task type.
+If NEEDS_WORKED_EXAMPLE is false AND TASK_MODE is not PURPOSE_ONLY/IDENTIFICATION, return null for both.
 Use task-appropriate format based on TASK_MODE:
 
 - If TASK_MODE includes "CALCULATION":
@@ -915,22 +962,23 @@ Your task is to create integrative questions that synthesize lesson concepts.
 QUESTION REQUIREMENTS:
 Question 1 (Connection - L2):
 - Links 2-3 major concepts from different parts of the lesson
-- Asks "how" or "why" these concepts relate
-- Expected answer: 2-3 sentences
+- Question text MUST include: "In your answer, include: (1) [specific concept A], (2) [specific concept B], (3) [specific concept C]"
+- Expected answer: 2-3 sentences covering all specified concepts
 - Shows understanding of relationships
 
 Question 2 (Synthesis - L3):
 - Integrates ALL major concepts from the lesson
-- Asks for comprehensive explanation showing full understanding
-- Explicitly request 3-4 sentences in the question
-- Expected answer: 3-4 sentences
-- Shows "big picture" understanding
+- Question text MUST include: "In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [concept D]"
+- Expected answer: 3-4 sentences covering all specified concepts
+- Shows "big picture" understanding with structured guidance
 
 EXPECTED ANSWER REQUIREMENTS:
-- EXACTLY 1-2 variants total per question (integrative questions are subjective)
-- Variants should capture different valid phrasings of the same concept, not trivial case/article differences
-- Focus on key concepts that must be present, not exact wording
-- These questions test synthesis, so allow for different ways students might express their understanding
+- EXACTLY 2-4 variants total per question (ARRAY FORMAT)
+- Use STRUCTURED PROMPTS that guide students to include specific elements
+- Question text should explicitly state: "In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C]"
+- expectedAnswer variants should be checklist-style canonical responses that include all required elements
+- Example variants should show different orderings or phrasings while covering all required concepts
+- This makes integrative questions gradeable with exact-match while still testing synthesis
 
 OUTPUT REQUIREMENTS:
 - Valid RFC 8259 JSON only (parseable by JSON.parse())
@@ -965,19 +1013,19 @@ Return JSON in this exact format:
     "sequential": true,
     "questions": [
       {
-        "id": "{lessonId}-INT-1",
-        "questionText": "[Connection question linking 2-3 major concepts] (2-3 sentences)",
+        "id": "${lessonId}-INT-1",
+        "questionText": "[Connection question]. In your answer, include: (1) [specific concept A], (2) [specific concept B], (3) [how they relate]. (2-3 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "connection",
-        "expectedAnswer": ["[Answer showing relationships between concepts]", "[Alternative phrasing]"],
+        "expectedAnswer": ["[Answer covering concepts A, B, and relationship]", "[Alternative phrasing covering all 3 elements]", "[Third variant with different ordering]"],
         "hint": "[Hint about which concepts to connect]"
       },
       {
-        "id": "{lessonId}-INT-2",
-        "questionText": "[Synthesis question integrating ALL lesson concepts] (3-4 sentences)",
+        "id": "${lessonId}-INT-2",
+        "questionText": "[Synthesis question]. In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [how they work together]. (3-4 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "synthesis",
-        "expectedAnswer": ["[Comprehensive answer showing full integration]", "[Alternative phrasing]"],
+        "expectedAnswer": ["[Comprehensive answer covering all 4 elements]", "[Alternative phrasing covering all 4 elements]", "[Third variant with different structure]"],
         "hint": "[Strategic hint about what to include]"
       }
     ]
@@ -1195,6 +1243,16 @@ STRICT RULES:
 7. Do NOT change any other fields
 8. Do NOT make improvements beyond what the suggestion specifies
 
+EXPECTEDANSWER ARRAY ENFORCEMENT (CRITICAL):
+- If path ends with ".expectedAnswer", value MUST be an array
+- NEVER patch expectedAnswer with a string value
+- Examples:
+  * WRONG: "value": "correct answer"
+  * RIGHT: "value": ["correct answer", "acceptable variant"]
+  * WRONG: "value": "230V"
+  * RIGHT: "value": ["230V", "230"]
+- If scorer suggestion shows string format, convert to array format in your patch
+
 EXAMPLE INPUT:
 Issue: "Question ID 'blocks[4].content.questions[0].id' includes lesson prefix"
 Suggestion: "Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'"
@@ -1211,9 +1269,9 @@ EXAMPLE CORRECT OUTPUT:
   ]
 }
 
-ANOTHER EXAMPLE:
-Issue: "expectedAnswer 'approximately 20A' is too vague"
-Suggestion: "Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A'"
+ANOTHER EXAMPLE (expectedAnswer - MUST BE ARRAY):
+Issue: "expectedAnswer ['approximately 20A'] is too vague"
+Suggestion: "Change blocks[6].content.questions[2].expectedAnswer from ['approximately 20A'] to ['20A', '20.0A']"
 
 CORRECT OUTPUT:
 {
@@ -1221,11 +1279,16 @@ CORRECT OUTPUT:
     {
       "op": "replace",
       "path": "blocks[6].content.questions[2].expectedAnswer",
-      "value": "20A ± 2A",
-      "reason": "Added specific tolerance per suggestion"
+      "value": ["20A", "20.0A"],
+      "reason": "Added specific variants per suggestion (ARRAY FORMAT)"
     }
   ]
 }
+
+CRITICAL: expectedAnswer MUST ALWAYS BE AN ARRAY:
+- WRONG: "value": "ring circuit"
+- RIGHT: "value": ["ring circuit", "ring final circuit"]
+- Even single values must be arrays: ["answer"]
 
 PREPEND EXAMPLE:
 Issue: "blocks[3].content.content missing lesson intro"
