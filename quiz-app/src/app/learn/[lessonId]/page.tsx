@@ -56,9 +56,11 @@ import lesson203_3A4 from '@/data/lessons/203-3A4-circuit-types-what-they-do.jso
 import lesson203_3AA from '@/data/lessons/203-3AA-circuit-types-what-they-do.json';
 import lesson203_3A9 from '@/data/lessons/203-3A9-circuit-types-what-they-do.json';
 import lesson203_3AAA4 from '@/data/lessons/203-3AAA4-circuit-types-what-they-do.json';
+import lesson203_3ABC from '@/data/lessons/203-3ABC-circuit-types-what-they-do.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3ABC': lesson203_3ABC as Lesson,
   '203-3AAA4': lesson203_3AAA4 as Lesson,
   '203-3A9': lesson203_3A9 as Lesson,
   '203-3AA': lesson203_3AA as Lesson,

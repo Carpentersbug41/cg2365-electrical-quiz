@@ -404,6 +404,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3AAA4'),
     available: true,
     order: 20,
+  },
+  {
+    id: '203-3ABC',
+    title: 'Circuit Types: What They Do',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Circuit Types: What They Do',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3ABC'),
+    available: true,
+    order: 21,
   },// Unit 210: Communication
   {
     id: '204-10A',

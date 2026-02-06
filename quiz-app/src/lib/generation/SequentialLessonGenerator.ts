@@ -11,6 +11,7 @@ import { validatePatch, shouldRejectPatch } from './patchValidator';
 import { isolatePatches } from './patchIsolationScorer';
 import { analyzeRefinementRun } from './postmortemAnalyzer';
 import { v4 as uuidv4 } from 'uuid';
+import { lessonIndex } from '@/data/lessons/lessonIndex';
 
 // Phase imports
 import { Phase1_Planning, PlanningOutput } from './phases/Phase1_Planning';
@@ -227,7 +228,7 @@ export class SequentialLessonGenerator {
 
       // Phase 8: Spaced Review
       phaseStart = Date.now();
-      const spacedReviewResult = await this.runPhase8(request);
+      const spacedReviewResult = await this.runPhase8(request, planResult);
       phases.push({
         phase: 'Spaced Review',
         status: spacedReviewResult ? 'completed' : 'failed',
@@ -769,16 +770,100 @@ export class SequentialLessonGenerator {
   }
 
   /**
-   * Phase 8: Spaced Review
+   * Get up to 4 previous lesson titles for Phase 8 context
    */
-  private async runPhase8(request: GenerationRequest): Promise<SpacedReviewOutput | null> {
-    console.log('  🔄 Phase 8: Spaced review...');
-    debugLog('PHASE8_START', { lessonId: `${request.unit}-${request.lessonId}` });
+  private getPreviousLessonTitles(unitNumber: string, currentLessonId: string): string[] {
+    const moduleLessons = lessonIndex
+      .filter(l => l.unitNumber === unitNumber && l.available)
+      .sort((a, b) => a.order - b.order);
+    
+    const currentIndex = moduleLessons.findIndex(l => l.id === currentLessonId);
+    
+    if (currentIndex <= 0) {
+      return []; // First lesson or not found
+    }
+    
+    // Get up to 4 previous lessons
+    const startIndex = Math.max(0, currentIndex - 4);
+    return moduleLessons
+      .slice(startIndex, currentIndex)
+      .map(l => l.title);
+  }
+
+  /**
+   * Generate deterministic fallback for Phase 8 when LLM fails
+   */
+  private generateFallbackSpacedReview(
+    lessonId: string,
+    title: string,
+    learningOutcomes: string[]
+  ): SpacedReviewOutput {
+    console.log(`   🔧 Generating deterministic fallback spaced review...`);
+    
+    // Generate 3 foundation questions from learning outcomes
+    const questions = learningOutcomes.slice(0, 3).map((outcome, idx) => ({
+      id: `${lessonId}-SR-${idx + 1}`,
+      questionText: `What foundational concept is needed to understand: "${outcome}"?`,
+      expectedAnswer: [
+        'basic electrical principles',
+        'electrical fundamentals',
+        'prerequisite knowledge'
+      ],
+      hint: 'Think about what you learned in earlier lessons',
+      answerType: 'short-text' as const
+    }));
+    
+    // If less than 3 outcomes, pad with generic questions
+    while (questions.length < 3) {
+      const idx = questions.length;
+      questions.push({
+        id: `${lessonId}-SR-${idx + 1}`,
+        questionText: 'What basic electrical concept should you review before this lesson?',
+        expectedAnswer: [
+          'electrical safety',
+          'basic circuit theory',
+          'fundamental principles'
+        ],
+        hint: 'Review your earlier learning',
+        answerType: 'short-text' as const
+      });
+    }
+    
+    return {
+      spacedReview: {
+        id: `${lessonId}-spaced-review`,
+        order: 10,
+        title: 'Foundation Check',
+        questions: questions.slice(0, 3), // Ensure exactly 3
+        notes: `Deterministic fallback - generated from learning outcomes`
+      }
+    };
+  }
+
+  /**
+   * Phase 8: Spaced Review (Foundation Check)
+   */
+  private async runPhase8(request: GenerationRequest, planResult: PlanningOutput): Promise<SpacedReviewOutput | null> {
+    console.log('  🔄 Phase 8: Foundation check (spaced review)...');
+    const lessonId = `${request.unit}-${request.lessonId}`;
+    debugLog('PHASE8_START', { lessonId });
+
+    // Get up to 4 previous lesson titles for context
+    const prevTitles = this.getPreviousLessonTitles(request.unit.toString(), lessonId);
+    
+    // Extract learning outcomes from Phase 1
+    const learningOutcomes = planResult.learningOutcomes || [];
+    
+    if (learningOutcomes.length === 0) {
+      console.warn('   ⚠️  No learning outcomes available from Phase 1 - using fallback');
+      return this.generateFallbackSpacedReview(lessonId, request.topic, ['Basic electrical knowledge', 'Safety principles', 'Circuit fundamentals']);
+    }
 
     const input = {
-      lessonId: `${request.unit}-${request.lessonId}`,
-      prerequisites: request.prerequisites || [],
-      prerequisiteAnchors: request.prerequisiteAnchors,
+      lessonId,
+      title: request.topic,
+      learningOutcomes,
+      previousLessonTitles: prevTitles
     };
     const prompts = this.phase8.getPrompts(input);
 
@@ -793,12 +878,75 @@ export class SequentialLessonGenerator {
 
     const parsed = this.parseResponse<SpacedReviewOutput>(response, 'Phase8_SpacedReview');
     if (!parsed.success || !parsed.data) {
+      console.warn('   ⚠️  Phase 8 parsing failed - using fallback');
       debugLog('PHASE8_FAILED', { error: parsed.error });
-      return null;
+      return this.generateFallbackSpacedReview(lessonId, request.topic, learningOutcomes);
     }
 
-    debugLog('PHASE8_COMPLETE', { questionCount: parsed.data.spacedReview.questions.length });
-    console.log(`    ✓ Generated ${parsed.data.spacedReview.questions.length} review questions`);
+    // STRICT VALIDATION: Must have exactly 3 questions
+    const questions = parsed.data.spacedReview.questions;
+    if (questions.length !== 3) {
+      console.warn(`   ⚠️  Phase 8 returned ${questions.length} questions, expected 3`);
+      
+      // Retry once
+      console.log(`   🔄 Retrying Phase 8 (attempt 2/2)...`);
+      const retryResponse = await this.generateWithRetry(
+        prompts.systemPrompt,
+        prompts.userPrompt,
+        'phase',
+        1,
+        false,
+        5000
+      );
+      
+      const retryParsed = this.parseResponse<SpacedReviewOutput>(retryResponse, 'Phase8_SpacedReview');
+      if (retryParsed.success && retryParsed.data?.spacedReview.questions.length === 3) {
+        console.log(`   ✓ Retry successful - got 3 questions`);
+        // Continue validation with retry result
+        const retryQuestions = retryParsed.data.spacedReview.questions;
+        
+        // Validate and correct each question
+        for (let i = 0; i < retryQuestions.length; i++) {
+          const q = retryQuestions[i];
+          if (!q.questionText || !q.expectedAnswer || !Array.isArray(q.expectedAnswer)) {
+            console.warn(`   ⚠️  Retry question ${i + 1} has invalid format - using fallback`);
+            return this.generateFallbackSpacedReview(lessonId, request.topic, learningOutcomes);
+          }
+          
+          // Force answerType to short-text if not set correctly
+          if (q.answerType !== 'short-text') {
+            console.log(`   ⚠️  Correcting retry question ${i + 1} answerType to short-text`);
+            q.answerType = 'short-text';
+          }
+        }
+        
+        debugLog('PHASE8_COMPLETE', { questionCount: 3, retriedOnce: true });
+        console.log(`    ✓ Generated 3 foundation check questions (after retry)`);
+        return retryParsed.data;
+      }
+      
+      // Still wrong - use fallback
+      console.warn(`   ⚠️  Retry failed (got ${retryParsed.data?.spacedReview.questions.length || 0} questions) - generating deterministic fallback`);
+      return this.generateFallbackSpacedReview(lessonId, request.topic, learningOutcomes);
+    }
+
+    // Validate all questions have required fields and correct answerType
+    for (let i = 0; i < questions.length; i++) {
+      const q = questions[i];
+      if (!q.questionText || !q.expectedAnswer || !Array.isArray(q.expectedAnswer)) {
+        console.warn(`   ⚠️  Question ${i + 1} has invalid format - using fallback`);
+        return this.generateFallbackSpacedReview(lessonId, request.topic, learningOutcomes);
+      }
+      
+      // Force answerType to short-text if not set correctly
+      if (q.answerType !== 'short-text') {
+        console.log(`   ⚠️  Correcting question ${i + 1} answerType to short-text`);
+        q.answerType = 'short-text';
+      }
+    }
+
+    debugLog('PHASE8_COMPLETE', { questionCount: 3 });
+    console.log(`    ✓ Generated 3 foundation check questions`);
     
     return parsed.data;
   }
