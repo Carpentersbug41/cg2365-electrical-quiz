@@ -247,8 +247,14 @@ function checkResponsePatterns(response: string, type?: 'lesson' | 'quiz' | 'pha
     // Type-specific validation
     if (type === 'lesson' && !trimmed.includes('"blocks"')) {
       issues.push('Complete lesson JSON missing "blocks" property');
-    } else if (type === 'score' && !trimmed.includes('"details"')) {
-      issues.push('Score response missing "details" property');
+    } else if (type === 'score') {
+      // Score responses have variable schema - check for either "details" OR "total" or "issues"
+      // Don't flag as truncation unless truly incomplete
+      const hasScoreFields = trimmed.includes('"total"') || trimmed.includes('"issues"') || trimmed.includes('"details"');
+      if (!hasScoreFields) {
+        issues.push('Score response missing expected fields (total, issues, or details)');
+      }
+      // Note: "details" is optional in some score formats, so don't hard-require it
     } else if (type === 'phase') {
       // Phase responses are partial structures - don't check for specific properties
       console.log(`   ℹ️  Phase response validation (no specific property checks)`);

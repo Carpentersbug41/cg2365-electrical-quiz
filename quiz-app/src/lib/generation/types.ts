@@ -256,7 +256,7 @@ export interface IssueToFix {
  */
 export interface PatchDebug {
   index: number;
-  op: 'replace' | 'prepend' | 'append';
+  op: 'replace' | 'prepend' | 'append' | 'replaceSubstring';
   path: string;
   from?: unknown;
   value: unknown;

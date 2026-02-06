@@ -235,6 +235,21 @@ export function validatePatch(lesson: Lesson, patch: RefinementPatch): PatchVali
     }
   }
   
+  // 9. High-risk patch gate - block contract-breaking changes
+  const highRiskPatterns = [
+    { pattern: /\.answerType$/, name: 'answerType', reason: 'breaks grading contract' },
+    { pattern: /\.order$/, name: 'block order', reason: 'changes lesson sequence' },
+    { pattern: /blocks\[\d+\]\.type$/, name: 'block type', reason: 'changes block contract' },
+  ];
+  
+  for (const risk of highRiskPatterns) {
+    if (risk.pattern.test(patch.path)) {
+      reasons.push(`High-risk patch: modifying ${risk.name} is not allowed (${risk.reason})`);
+      reasons.push(`Such changes require full lesson regeneration, not surgical patching`);
+      break;
+    }
+  }
+  
   return {
     pathStyle,
     targetExists,
@@ -271,6 +286,12 @@ export function shouldRejectPatch(validation: PatchValidationResult): boolean {
     r.includes('Destructive replace') || r.includes('Missing required Phase 3 headings')
   );
   if (hasDestructiveReplace) return true;
+  
+  // Check for high-risk patch violations
+  const hasHighRiskViolation = validation.reasons.some(r => 
+    r.includes('High-risk patch')
+  );
+  if (hasHighRiskViolation) return true;
   
   return false;
 }

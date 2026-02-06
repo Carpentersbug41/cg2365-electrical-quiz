@@ -354,6 +354,36 @@ Patches 3 and 5 (expectedAnswer fields) were already arrays - no coercion needed
 
 ---
 
+## Additional Issue: answerType Changes
+
+### New Finding (Post-Implementation)
+
+Another Phase 10 failure pattern identified:
+
+**Patch:** `blocks[4].content.questions[3].answerType: "short-text" → "long-text"`
+**Impact:** -4 points in sequential isolation
+**Root Cause:** Changing answerType breaks the grading contract
+
+- Long-text requires essay rubric/scoring infrastructure
+- Short-text uses simple variant matching
+- Phase 10 changed the type without implementing the grading backend
+- Result: Question became ungradeable → score drop
+
+### Fix Implemented
+
+**Three-layer defense:**
+1. **Scorer guardrail** - Updated scorer prompt to forbid answerType suggestions
+2. **Early rejection** - Phase 10 filters out answerType patches immediately
+3. **Validator gate** - High-risk patch validator catches any that slip through
+
+**Alternative approach for scorer:**
+Instead of suggesting answerType change, suggest:
+- Add instructions to questionText: "Answer in 2-4 sentences..."
+- Tighten expectedAnswer variants
+- Mark as "requiresRegeneration" if fundamental change needed
+
+---
+
 ## Recommendations
 
 ### 1. Add Substring Replace Operation

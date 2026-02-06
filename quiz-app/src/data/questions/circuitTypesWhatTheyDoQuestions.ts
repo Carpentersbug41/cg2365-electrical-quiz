@@ -2,47 +2,47 @@ import { TaggedQuestion } from './types';
 
 /**
  * Circuit Types: What They Do Question Bank
- * Aligned with lesson 203-3AA learning outcomes
+ * Aligned with lesson 203-3A9 learning outcomes
  * Generated: 2026-02-06
  */
 
 export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "Which circuit topology is most commonly used for domestic lighting installations in the UK?",
+    "question": "Which circuit arrangement starts at the consumer unit, loops through several socket outlets, and returns back to the same protective device in the consumer unit?",
     "options": [
-      "Radial circuit",
       "Ring final circuit",
+      "Radial circuit",
       "Series circuit",
-      "Grid circuit"
+      "Parallel branch circuit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
-      "2": "USED_SERIES_RULE",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
+      "topology",
       "terminology",
-      "conceptual",
-      "units"
+      "application"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Domestic lighting is almost exclusively wired as a radial circuit, where the cable runs from the consumer unit to the first point, then the second, and so on, ending at the last point."
+    "explanation": "A ring final circuit is unique because the conductor forms a complete loop, starting and ending at the same point in the consumer unit."
   },
   {
     "id": 4017,
-    "question": "Two resistors with values of 15 Ω and 30 Ω are connected in series. What is the total resistance of the circuit?",
+    "question": "Two resistors with values of 10 Ω and 20 Ω are connected in series. What is the total resistance of this circuit?",
     "options": [
-      "45 Ω",
-      "10 Ω",
-      "450 Ω",
-      "15 Ω"
+      "30 Ω",
+      "6.67 Ω",
+      "200 Ω",
+      "10 Ω"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -51,26 +51,194 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Rules",
     "tags": [
       "series",
-      "calculation",
-      "resistance-rule"
+      "resistance-rule",
+      "calculation"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "In a series circuit, total resistance is the sum of individual resistances (Rt = R1 + R2). Therefore, 15 + 30 = 45 Ω."
+    "explanation": "In a series circuit, total resistance is found by simply adding the individual resistances together (Rt = R1 + R2)."
   },
   {
     "id": 4018,
-    "question": "What is the defining characteristic of a ring final circuit used for power sockets?",
+    "question": "In a parallel circuit connected to a 230 V supply, what is the voltage across each individual branch?",
     "options": [
-      "The circuit conductors form a continuous loop back to the distribution board",
-      "It uses only one single core cable for both live and neutral",
-      "It is only used for high-power heating appliances",
-      "It must be connected in series with the lighting circuit"
+      "230 V",
+      "115 V",
+      "0 V",
+      "460 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Rules",
+    "tags": [
+      "parallel",
+      "voltage-rule",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a parallel circuit, the voltage remains the same across all branches and is equal to the supply voltage."
+  },
+  {
+    "id": 4019,
+    "question": "Which type of circuit is most commonly used for domestic lighting installations in the UK?",
+    "options": [
+      "Radial circuit",
+      "Ring final circuit",
+      "Series circuit",
+      "Closed loop circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "application",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Domestic lighting is almost exclusively wired as radial circuits, where the cable runs from the consumer unit to the last point without returning."
+  },
+  {
+    "id": 4020,
+    "question": "A series circuit has a constant supply voltage. If the total resistance is increased, what happens to the total current flowing through the circuit?",
+    "options": [
+      "It decreases",
+      "It increases",
+      "It stays the same",
+      "It doubles"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "USED_PARALLEL_RULE",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Rules",
+    "tags": [
+      "series",
+      "current-rule",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "According to Ohm's Law (I = V/R), if voltage is constant and resistance increases, the current must decrease."
+  },
+  {
+    "id": 4021,
+    "question": "Calculate the total resistance of two 100 Ω resistors connected in parallel.",
+    "options": [
+      "50 Ω",
+      "200 Ω",
+      "100 Ω",
+      "10,000 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_SERIES_RULE",
+      "2": "OTHER",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Rules",
+    "tags": [
+      "parallel",
+      "resistance-rule",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "For two identical resistors in parallel, the total resistance is half the value of one resistor (Rt = R / n)."
+  },
+  {
+    "id": 4022,
+    "question": "What is the primary purpose of a control circuit in an electrical installation?",
+    "options": [
+      "To switch or regulate a larger power circuit",
+      "To provide high current to heating elements",
+      "To act as the main earthing conductor",
+      "To increase the supply frequency for motors"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Control circuits are designed to manage the operation of power circuits, such as using a low-current thermostat to switch a high-current heater."
+  },
+  {
+    "id": 4023,
+    "question": "A radial circuit serves three loads connected in parallel. If the loads draw 4 A, 6 A, and 2 A respectively, what is the total current taken from the supply?",
+    "options": [
+      "12 A",
+      "4 A",
+      "6 A",
+      "48 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Rules",
+    "tags": [
+      "parallel",
+      "current-rule",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a parallel arrangement (typical of radial circuits), the total current is the sum of the currents in each branch (It = I1 + I2 + I3)."
+  },
+  {
+    "id": 4024,
+    "question": "Which characteristic is specific to a Ring Final Circuit compared to a Radial Circuit?",
+    "options": [
+      "Current has two paths to reach any point on the ring",
+      "It is only used for high-voltage industrial lighting",
+      "It uses a single conductor that ends at the last socket",
+      "It cannot be protected by a standard circuit breaker"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -79,217 +247,54 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
       "3": "OTHER"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
+      "topology",
       "conceptual",
-      "terminology"
+      "application"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A ring final circuit starts at the distribution board, loops through all the socket outlets, and returns to the same terminals in the distribution board."
-  },
-  {
-    "id": 4019,
-    "question": "Two identical 100 Ω heating elements are connected in parallel. What is the total resistance?",
-    "options": [
-      "50 Ω",
-      "200 Ω",
-      "100 Ω",
-      "1 Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "RECIPROCAL_ERROR"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "calculation",
-      "resistance-rule"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "For two identical resistors in parallel, the total resistance is half the value of one resistor (Rt = R / n). So, 100 / 2 = 50 Ω."
-  },
-  {
-    "id": 4020,
-    "question": "Which type of circuit is typically installed to supply a fixed 9kW electric shower?",
-    "options": [
-      "A dedicated radial circuit",
-      "A 32A ring final circuit",
-      "A 6A lighting radial circuit",
-      "A data and comms circuit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "High-power fixed appliances like showers require their own dedicated radial circuit to handle the high current demand safely."
-  },
-  {
-    "id": 4021,
-    "question": "If a current of 4A flows through the first resistor in a simple series circuit, how much current flows through the second resistor?",
-    "options": [
-      "4A",
-      "2A",
-      "8A",
-      "0A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "series",
-      "current-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "In a series circuit, the current is the same at all points in the circuit."
-  },
-  {
-    "id": 4022,
-    "question": "What is the primary purpose of a control circuit in an electrical installation?",
-    "options": [
-      "To switch a high-power load using a lower voltage or current signal",
-      "To increase the total power consumption of the system",
-      "To provide a backup path for current if a fuse blows",
-      "To convert DC power into AC power for the mains"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Control circuits allow for the safe and efficient switching of large loads (like motors) using smaller, safer control signals."
-  },
-  {
-    "id": 4023,
-    "question": "In a parallel circuit supplied by 230V, what is the voltage across each individual branch?",
-    "options": [
-      "230V",
-      "115V",
-      "0V",
-      "460V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "voltage-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "In a parallel circuit, the voltage across each branch is equal to the supply voltage."
-  },
-  {
-    "id": 4024,
-    "question": "Why is it important to separate data cables from power cables in an installation?",
-    "options": [
-      "To prevent electromagnetic interference (EMI) affecting data signals",
-      "Because data cables are much heavier than power cables",
-      "To ensure the data cables can carry more current",
-      "Because data cables only work in series circuits"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_I_V_R",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Separation prevents 'noise' or EMI from power cables from distorting the low-voltage signals in data cables."
+    "explanation": "Because it forms a loop, current can travel in both directions around the ring to reach a socket, effectively splitting the load between two paths."
   },
   {
     "id": 4025,
-    "question": "If the end-to-end resistance (r1) of a ring final loop is 0.8 Ω, what is the theoretical resistance measured at the furthest point (midpoint) of the ring?",
+    "question": "A 230 V circuit supplies a 2.3 kW (2300 W) electric heater. What is the current flowing in the circuit?",
     "options": [
-      "0.2 Ω",
-      "0.8 Ω",
-      "1.6 Ω",
-      "0.4 Ω"
+      "10 A",
+      "0.1 A",
+      "529 A",
+      "23 A"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
+      "1": "DIVIDED_INSTEAD",
       "2": "MULTIPLIED_INSTEAD",
-      "3": "DIVIDED_INSTEAD"
+      "3": "FORMULA_NOT_REARRANGED"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Rules",
     "tags": [
+      "power",
       "calculation",
-      "resistance-rule"
+      "ohms-law"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "For a ring final circuit, the resistance at the midpoint is calculated as (r1 / 4). Therefore, 0.8 / 4 = 0.2 Ω."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Using the power formula I = P / V, 2300 W / 230 V = 10 A."
   },
   {
     "id": 4026,
-    "question": "In a standard UK domestic installation, which circuit topology involves the cable starting at the consumer unit, visiting each socket-outlet, and returning to the same consumer unit?",
+    "question": "Which of the following best describes the topology of a radial circuit?",
     "options": [
-      "Ring final circuit",
-      "Radial circuit",
-      "Series circuit",
-      "Parallel tree circuit"
+      "The circuit originates at the consumer unit and terminates at the last point of use",
+      "The circuit forms a continuous loop returning to the same fuse or circuit breaker",
+      "The circuit requires two separate live conductors for every point",
+      "The circuit is only permitted for use with data and communication cabling"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -300,108 +305,24 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
     "section": "Electrical Installations Technology",
     "category": "Circuit Types",
     "tags": [
+      "conceptual",
       "terminology",
-      "topology-confusion",
-      "conceptual"
+      "radial"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A ring final circuit is unique because the line, neutral, and CPC conductors form a continuous loop starting and ending at the consumer unit."
+    "explanation": "A radial circuit runs from the consumer unit to the various points on the circuit and ends at the final point, unlike a ring circuit which returns to the origin."
   },
   {
     "id": 4027,
-    "question": "Two resistors with values of 15 Ω and 25 Ω are connected in series. What is the total resistance of the circuit?",
+    "question": "An electrician installs two heaters in a series configuration. If each heater has a resistance of 20 ohms, what is the total resistance of the circuit?",
     "options": [
-      "40 Ω",
-      "9.38 Ω",
-      "375 Ω",
-      "10 Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_PARALLEL_RULE",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "SIGN_ERROR"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Resistance",
-    "tags": [
-      "series",
-      "resistance-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "In a series circuit, total resistance is the sum of all individual resistances (Rt = R1 + R2)."
-  },
-  {
-    "id": 4028,
-    "question": "Which type of circuit is most commonly used to supply a single high-power appliance, such as an electric oven or a 9.5 kW shower?",
-    "options": [
-      "Radial circuit",
-      "Ring final circuit",
-      "Series circuit",
-      "Data circuit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types",
-    "tags": [
-      "radial",
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "High-power appliances are usually connected to their own dedicated radial circuit to handle the high current demand safely."
-  },
-  {
-    "id": 4029,
-    "question": "A parallel circuit contains two branches. Branch 1 draws 4 A and Branch 2 draws 6 A. What is the total current supplied by the source?",
-    "options": [
-      "10 A",
-      "2 A",
-      "24 A",
-      "5 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "SIGN_ERROR",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Current",
-    "tags": [
-      "parallel",
-      "current-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "In a parallel circuit, the total current is the sum of the currents in each individual branch (It = I1 + I2)."
-  },
-  {
-    "id": 4030,
-    "question": "In a series circuit connected to a 230 V supply, there are two identical lamps. What is the voltage drop across each lamp?",
-    "options": [
-      "115 V",
-      "230 V",
-      "460 V",
-      "0 V"
+      "40 ohms",
+      "10 ohms",
+      "400 ohms",
+      "20 ohms"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -410,105 +331,77 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
       "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
-    "category": "Voltage",
+    "category": "Circuit Types",
     "tags": [
+      "calculation",
       "series",
-      "voltage-rule",
-      "calculation"
+      "resistance-rule"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In a series circuit, the supply voltage is shared between the components. If the components are identical, the voltage is split equally (230 V / 2 = 115 V)."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "In a series circuit, total resistance is the sum of the individual resistances (Rt = R1 + R2)."
   },
   {
-    "id": 4031,
-    "question": "A series circuit used for decorative lighting contains four identical lamps. If the total resistance of the circuit is 800Ω, what is the resistance of each individual lamp?",
+    "id": 4028,
+    "question": "Which circuit type is specifically designed to share the load between two paths by returning the final conductor to the same point in the consumer unit?",
     "options": [
-      "200Ω",
-      "3200Ω",
-      "800Ω",
-      "400Ω"
+      "Ring final circuit",
+      "Radial circuit",
+      "Control circuit",
+      "Emergency lighting circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "application",
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A ring final circuit is a unique UK topology where the circuit forms a loop, effectively providing two paths for the current and allowing for a higher current rating using smaller cables."
+  },
+  {
+    "id": 4029,
+    "question": "A simple 230V series circuit contains a single load with a resistance of 46 ohms. What is the current flowing through this circuit?",
+    "options": [
+      "5 A",
+      "10,580 A",
+      "0.2 A",
+      "46 A"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "MULTIPLIED_INSTEAD",
-      "2": "USED_PARALLEL_RULE",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "series",
-      "resistance-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In a series circuit, total resistance (Rt) is the sum of individual resistances. For identical components, R = Rt / number of components. 800 / 4 = 200Ω."
-  },
-  {
-    "id": 4032,
-    "question": "In a standard UK 32A ring final circuit, how is the current distributed from the consumer unit to the connected loads?",
-    "options": [
-      "It travels in two directions around the loop to reach the load",
-      "It travels in one direction only through each socket in series",
-      "It is restricted to the first half of the ring only",
-      "It alternates between the left and right legs every cycle"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A ring final circuit forms a loop; current leaves the protective device and travels through both legs of the ring to reach the sockets, effectively acting as two cables in parallel."
-  },
-  {
-    "id": 4033,
-    "question": "A 230V circuit supplies two heating elements connected in series. Element A has a resistance of 30Ω and Element B has a resistance of 70Ω. Calculate the voltage drop across Element B.",
-    "options": [
-      "161V",
-      "69V",
-      "115V",
-      "230V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "ROUNDING_ERROR",
+      "2": "FORMULA_NOT_REARRANGED",
       "3": "CONFUSED_I_V_R"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
-      "series",
-      "voltage-rule",
-      "calculation"
+      "calculation",
+      "ohms-law",
+      "current-rule"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Total R = 30 + 70 = 100Ω. Total I = V / R = 230 / 100 = 2.3A. Voltage drop across B = I * Rb = 2.3 * 70 = 161V."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Using Ohm's Law (I = V / R), the current is 230V / 46 ohms = 5A."
   },
   {
-    "id": 4034,
-    "question": "An electrician is installing a system where a low-voltage thermostat switches a 230V contactor to manage a large heating load. What type of circuit is the thermostat part of?",
+    "id": 4030,
+    "question": "Which of the following circuit types is primarily used to manage the operation of other equipment, such as switching a motor or a heating system?",
     "options": [
       "Control circuit",
       "Power circuit",
@@ -518,111 +411,86 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_AC_WITH_DC"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Control circuits are used to regulate the operation of other circuits, often using lower voltages or currents to switch larger power loads via relays or contactors."
-  },
-  {
-    "id": 4035,
-    "question": "Two 1150W heaters are connected in parallel to a 230V supply. What is the total current drawn by the circuit?",
-    "options": [
-      "10A",
-      "5A",
-      "2.5A",
-      "20A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "USED_SERIES_RULE",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "current-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Current for one heater: I = P / V = 1150 / 230 = 5A. In parallel, total current is the sum of branch currents: 5A + 5A = 10A."
-  },
-  {
-    "id": 4036,
-    "question": "What is a primary functional difference between a radial circuit and a ring final circuit in a domestic installation?",
-    "options": [
-      "A radial circuit ends at the last point of utilization, while a ring returns to the source",
-      "A radial circuit can only supply one socket, while a ring can supply unlimited sockets",
-      "A radial circuit uses less cable than a ring circuit for the same floor area",
-      "A radial circuit is only used for high-power appliances like cookers"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
+      "discrimination",
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A radial circuit runs from the consumer unit to the various points and stops at the final one. A ring final circuit returns to the consumer unit to form a continuous loop."
+    "estimatedTime": 45,
+    "explanation": "Control circuits are used to control the operation of other circuits or equipment, often operating at lower voltages or currents than the power circuit they manage."
   },
   {
-    "id": 4037,
-    "question": "When installing data and communication cabling alongside power circuits, why is physical segregation required?",
+    "id": 4031,
+    "question": "A series heating circuit consists of three heating elements with resistances of 12 Ω, 18 Ω, and 30 Ω. What is the total resistance of the circuit?",
     "options": [
-      "To prevent electromagnetic interference (EMI) affecting signal quality",
-      "To ensure the data cables do not overheat the power cables",
-      "To allow the data cables to carry higher voltage if needed",
-      "To prevent the power cables from drawing current from the data lines"
+      "60 Ω",
+      "6 Ω",
+      "0.16 Ω",
+      "6480 Ω"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_I_V_R",
-      "3": "OTHER"
+      "1": "USED_PARALLEL_RULE",
+      "2": "RECIPROCAL_ERROR",
+      "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
-      "application",
-      "legislation"
+      "series",
+      "resistance-rule",
+      "calculation"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Data cables carry low-voltage signals that are susceptible to electromagnetic interference from the magnetic fields generated by high-current power cables."
+    "explanation": "In a series circuit, total resistance is the sum of individual resistances: 12 + 18 + 30 = 60 Ω."
   },
   {
-    "id": 4038,
-    "question": "A parallel circuit has two branches. Branch 1 has a resistance of 46Ω and Branch 2 has a resistance of 46Ω. If the supply voltage is 230V, what is the total circuit current?",
+    "id": 4032,
+    "question": "Which of the following is a primary reason for using a ring final circuit instead of a radial circuit for socket outlets in a domestic installation?",
     "options": [
-      "10A",
-      "5A",
-      "2.5A",
-      "460A"
+      "It allows for a smaller conductor cross-sectional area to serve a larger floor area",
+      "It makes fault finding significantly easier for the electrician",
+      "It ensures that the voltage at every socket is exactly 230 V regardless of load",
+      "It prevents the need for an earth connection at the final socket"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "conceptual",
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Ring final circuits allow current to flow in two directions, effectively doubling the current-carrying capacity for a given cable size, allowing a 32A CPD to protect a 2.5mm² cable."
+  },
+  {
+    "id": 4033,
+    "question": "Two identical 230 V lamps are connected in parallel. If the resistance of each lamp is 460 Ω, what is the total resistance of the lighting circuit?",
+    "options": [
+      "230 Ω",
+      "920 Ω",
+      "0.004 Ω",
+      "211,600 Ω"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -631,253 +499,310 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
       "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
       "parallel",
-      "current-rule",
+      "resistance-rule",
       "calculation"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "For two identical resistors in parallel, the total resistance is half the value of one: 460 / 2 = 230 Ω."
+  },
+  {
+    "id": 4034,
+    "question": "An electrician is installing a 9.5 kW electric shower. Which circuit type and typical protective device rating would be most appropriate for this installation?",
+    "options": [
+      "A radial circuit protected by a 40 A or 45 A MCB",
+      "A ring final circuit protected by a 32 A MCB",
+      "A series circuit protected by a 20 A MCB",
+      "A radial circuit protected by a 13 A fused connection unit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "USED_SERIES_RULE",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "application",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "Branch 1 current: 230/46 = 5A. Branch 2 current: 230/46 = 5A. Total current = 5 + 5 = 10A. Alternatively, total R = 23Ω, 230/23 = 10A."
+    "explanation": "High-power appliances like showers require a dedicated radial circuit. At 230V, 9.5kW is approx 41.3A, requiring a 45A or 50A device depending on installation conditions."
   },
   {
-    "id": 4039,
-    "question": "Which of the following circuit types is specifically designed to provide power to life-safety systems during a mains failure?",
+    "id": 4035,
+    "question": "In a series circuit containing two resistors, R1 = 10 Ω and R2 = 15 Ω, connected to a 100 V supply, what is the voltage drop across R2?",
     "options": [
-      "Emergency lighting circuit",
-      "Ring final circuit",
-      "Control circuit",
-      "Data/Comms circuit"
+      "60 V",
+      "40 V",
+      "100 V",
+      "4 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "series",
+      "voltage-rule",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 100,
+    "explanation": "Total R = 25 Ω. Current I = V/R = 100/25 = 4 A. Voltage drop across R2 = I * R2 = 4 * 15 = 60 V."
+  },
+  {
+    "id": 4036,
+    "question": "Why are control circuits for industrial machinery often designed to operate at Extra-Low Voltage (ELV), such as 24 V DC, rather than 230 V AC?",
+    "options": [
+      "To increase safety for operators and facilitate more compact control components",
+      "Because DC current travels faster than AC current in control cables",
+      "To ensure the machinery uses less total energy during operation",
+      "Because 24 V components are always more expensive and durable"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "conceptual",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "ELV control circuits reduce the risk of electric shock to operators and allow for smaller, more sensitive switching components like PLCs and relays."
+  },
+  {
+    "id": 4037,
+    "question": "A ring final circuit is loaded with a single 20 A appliance connected exactly halfway around the ring. If the circuit is perfectly balanced, how much current flows through each leg of the ring at the consumer unit?",
+    "options": [
+      "10 A",
+      "20 A",
+      "40 A",
+      "5 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "calculation",
+      "current-rule",
+      "application"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "In a balanced ring, the current splits equally between the two paths. 20 A / 2 = 10 A per leg."
+  },
+  {
+    "id": 4038,
+    "question": "What is the primary purpose of an emergency lighting circuit in a commercial building?",
+    "options": [
+      "To provide illumination for safe egress during a mains power failure",
+      "To provide extra brightness during normal working hours",
+      "To reduce the electricity bill by using low-wattage bulbs",
+      "To act as a backup for the fire alarm system's sounders"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
+      "3": "CONFUSED_I_V_R"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
       "conceptual",
-      "terminology"
+      "legislation",
+      "application"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 1,
+    "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "Emergency lighting circuits include battery backups or secondary power sources to ensure illumination during a power cut for safe evacuation."
+    "explanation": "Emergency lighting is designed to operate when the normal supply fails, ensuring occupants can see clearly enough to exit the building safely."
+  },
+  {
+    "id": 4039,
+    "question": "When installing data and communication cabling alongside power circuits, why is physical separation or shielding required?",
+    "options": [
+      "To prevent electromagnetic interference (EMI) from corrupting data signals",
+      "To prevent the data cables from overheating the power cables",
+      "To ensure the data signals travel at the speed of light",
+      "To prevent the power cables from drawing current from the data system"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Power cables create magnetic fields that can induce unwanted currents (noise) in nearby data cables, leading to signal corruption."
   },
   {
     "id": 4040,
-    "question": "The end-to-end resistance (r1) of the line conductor in a ring final circuit is measured at 0.6Ω. What would be the expected resistance (R1) measured at the furthest point of the ring?",
+    "question": "A parallel lighting circuit has four lamps, each drawing 0.5 A. What is the total current supplied by the source?",
     "options": [
-      "0.15Ω",
-      "0.30Ω",
-      "0.60Ω",
-      "1.20Ω"
+      "2.0 A",
+      "0.5 A",
+      "0.125 A",
+      "8.0 A"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "USED_SERIES_RULE",
+      "1": "USED_SERIES_RULE",
+      "2": "DIVIDED_INSTEAD",
       "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
+    "category": "Circuit Types",
     "tags": [
       "parallel",
-      "calculation",
-      "application"
+      "current-rule",
+      "calculation"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "In a ring final circuit, the resistance at the furthest point (R1) is 1/4 of the end-to-end resistance (r1). 0.6 / 4 = 0.15Ω."
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "In a parallel circuit, the total current is the sum of the currents in each branch: 0.5 + 0.5 + 0.5 + 0.5 = 2.0 A."
   },
   {
     "id": 4041,
-    "question": "A series lighting circuit in a display case contains three lamps, each with a resistance of 150 Ω. What is the total resistance of the circuit?",
+    "question": "A radial power circuit supplies two industrial heaters connected in parallel. If Heater A has a resistance of 40 Ω and Heater B has a resistance of 60 Ω, what is the total resistance of the load?",
     "options": [
-      "450 Ω",
+      "24 Ω",
+      "100 Ω",
       "50 Ω",
-      "150 Ω",
-      "0.02 Ω"
+      "0.04 Ω"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "USED_PARALLEL_RULE",
-      "2": "CONFUSED_TERMINOLOGY",
+      "1": "USED_SERIES_RULE",
+      "2": "ROUNDING_ERROR",
       "3": "RECIPROCAL_ERROR"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
-      "series",
+      "parallel",
       "resistance-rule",
       "calculation"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In a series circuit, the total resistance is the sum of all individual resistances (Rt = R1 + R2 + R3). Therefore, 150 + 150 + 150 = 450 Ω."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "For resistors in parallel, 1/Rt = 1/R1 + 1/R2. Therefore, Rt = (40 × 60) / (40 + 60) = 2400 / 100 = 24 Ω."
   },
   {
     "id": 4042,
-    "question": "In a standard UK 32A ring final circuit, what is the primary technical reason for returning the line conductor to the same terminal in the consumer unit?",
+    "question": "In a domestic ring final circuit, what is the primary reason for connecting the line and neutral conductors in a continuous loop?",
     "options": [
-      "To provide two paths for current, effectively increasing the current-carrying capacity",
-      "To ensure the circuit operates as a series circuit to maintain constant current",
-      "To create a deliberate short circuit to ensure the protective device trips faster",
-      "To increase the total resistance of the circuit and reduce voltage drop"
+      "To allow the use of smaller cross-sectional area cables to supply a larger load",
+      "To ensure that if one socket fails, the rest of the circuit remains live",
+      "To increase the total resistance of the circuit to limit fault current",
+      "To allow the circuit to operate at a higher voltage than a radial circuit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "USED_SERIES_RULE"
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
-      "parallel",
       "conceptual",
-      "application"
+      "application",
+      "current-rule"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "A ring final circuit is essentially two parallel paths. This allows the use of smaller cables (typically 2.5mm²) to supply a 32A load, as the current splits between the two legs of the ring."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A ring final circuit provides two paths for current to flow, effectively doubling the current-carrying capacity of the cable, allowing 2.5mm² cable to be protected by a 32A device."
   },
   {
     "id": 4043,
-    "question": "A radial power circuit supplies two heaters connected in parallel. Heater A draws 5 A and Heater B draws 8 A. What is the total current drawn from the supply?",
+    "question": "An electrician is installing a new 9.2 kW electric shower on a 230 V supply. Which circuit arrangement is most appropriate for this installation?",
     "options": [
-      "13 A",
-      "3 A",
-      "3.07 A",
-      "40 A"
+      "A dedicated radial circuit using a 40 A or 45 A protective device",
+      "A 32 A ring final circuit shared with the bathroom heater",
+      "A 20 A radial circuit using 2.5 mm² twin and earth cable",
+      "A control circuit connected via a 13 A fused connection unit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "SIGN_ERROR",
-      "2": "USED_PARALLEL_RULE",
-      "3": "MULTIPLIED_INSTEAD"
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
-      "parallel",
-      "current-rule",
-      "calculation"
+      "application",
+      "calculation",
+      "power"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "According to Kirchhoff's Current Law, in a parallel circuit, the total current is the sum of the currents in the individual branches (It = I1 + I2). 5A + 8A = 13A."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "I = P / V. 9200W / 230V = 40A. High-power loads like showers require dedicated radial circuits with appropriately rated cables and protection."
   },
   {
     "id": 4044,
-    "question": "An electrician is installing a system that uses low-voltage signalling to activate a heavy-duty contactor for a motor. Which circuit category does this signalling part of the system belong to?",
+    "question": "A low-voltage control circuit contains two relay coils connected in series to a 24 V DC supply. Coil A has a resistance of 120 Ω and Coil B has a resistance of 240 Ω. What is the voltage drop across Coil B?",
     "options": [
-      "Control circuit",
-      "Power circuit",
-      "Data and communications circuit",
-      "Emergency lighting circuit"
+      "16 V",
+      "8 V",
+      "12 V",
+      "24 V"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "APPLICATION_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "terminology",
-      "application",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "Control circuits are used to control the operation of other equipment, often operating at lower voltages or currents than the power circuit they manage."
-  },
-  {
-    "id": 4045,
-    "question": "A 230V radial circuit feeds two identical 46 Ω heating elements connected in parallel. Calculate the total current flowing from the consumer unit.",
-    "options": [
-      "10 A",
-      "5 A",
-      "23 A",
-      "46 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "ohms-law",
-      "parallel",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 120,
-    "explanation": "First, find total resistance (Rt): For two identical resistors in parallel, Rt = R/2 = 46/2 = 23 Ω. Then use Ohm's Law: I = V / R = 230 / 23 = 10 A."
-  },
-  {
-    "id": 4046,
-    "question": "What is the main advantage of wiring domestic lighting circuits in parallel rather than in series?",
-    "options": [
-      "Each lamp receives the full supply voltage and can be controlled independently",
-      "The total circuit resistance increases, which reduces the heat in the cables",
-      "If one lamp fails, the total current increases to keep the other lamps bright",
-      "It requires significantly less cable than a series circuit arrangement"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "CONFUSED_I_V_R",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "conceptual",
-      "voltage-rule"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In parallel circuits, the voltage across each branch is the same as the supply voltage, allowing devices to operate at their rated voltage independently of others."
-  },
-  {
-    "id": 4047,
-    "question": "A series circuit consists of a 10 Ω resistor and a 15 Ω resistor connected to a 50V DC supply. Calculate the voltage drop across the 15 Ω resistor.",
-    "options": [
-      "30 V",
-      "20 V",
-      "50 V",
-      "2 V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_I_V_R",
       "2": "TOPOLOGY_CONFUSION",
       "3": "DIVIDED_INSTEAD"
     },
@@ -888,514 +813,598 @@ export const circuitTypesWhatTheyDoQuestions: TaggedQuestion[] = [
       "voltage-rule",
       "calculation"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 100,
-    "explanation": "Total resistance Rt = 10 + 15 = 25 Ω. Circuit current I = V / Rt = 50 / 25 = 2 A. Voltage drop across the 15 Ω resistor = I × R = 2 × 15 = 30 V."
+    "explanation": "Total R = 360 Ω. Current I = 24 / 360 = 0.0667 A. Voltage across Coil B = 0.0667 × 240 = 16 V. Alternatively, using the voltage divider rule: 24 × (240 / 360) = 16 V."
   },
   {
-    "id": 4048,
-    "question": "Which circuit type is designed with specific cable requirements (such as fire resistance) to ensure it continues to function during a building fire?",
+    "id": 4045,
+    "question": "When installing data and communication cabling alongside power circuits, why is it critical to maintain specific separation distances?",
     "options": [
-      "Emergency and fire alarm circuits",
-      "Ring final power circuits",
-      "Radial lighting circuits",
-      "Data and Comms circuits"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "APPLICATION_ERROR",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "application",
-      "terminology",
-      "health-safety"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Emergency and alarm circuits require high integrity and fire-resistant cables (like FP200) to ensure they operate during an emergency to protect life."
-  },
-  {
-    "id": 4049,
-    "question": "Calculate the total resistance of three 60 Ω resistors when they are connected in a parallel configuration.",
-    "options": [
-      "20 Ω",
-      "180 Ω",
-      "0.05 Ω",
-      "60 Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "RECIPROCAL_ERROR",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "resistance-rule",
-      "calculation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "For identical resistors in parallel, Rt = R / n. Here, 60 / 3 = 20 Ω. Alternatively, 1/Rt = 1/60 + 1/60 + 1/60 = 3/60, so Rt = 60/3 = 20 Ω."
-  },
-  {
-    "id": 4050,
-    "question": "What is the defining characteristic of a radial circuit layout in a domestic installation?",
-    "options": [
-      "The circuit cable runs from the consumer unit and ends at the final outlet",
-      "The circuit forms a complete loop starting and ending at the consumer unit",
-      "The circuit must only be used for high-power appliances like cookers",
-      "The current is the same at every point along the entire circuit length"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "APPLICATION_ERROR",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A radial circuit is like a branch of a tree; it starts at the source (consumer unit) and finishes at the last point of use, unlike a ring circuit which returns to the start."
-  },
-  {
-    "id": 4051,
-    "question": "In a standard UK Ring Final Circuit, how is the current distributed when a single 20 A load is connected exactly halfway around the ring loop?",
-    "options": [
-      "The current splits equally, with 10 A flowing through each leg of the ring",
-      "The full 20 A flows through the shortest leg to the consumer unit",
-      "The current is restricted to 13 A by the socket outlet regardless of the path",
-      "The current doubles to 40 A because there are two paths available"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "parallel",
-      "current-rule",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A ring final circuit acts as two parallel paths. If a load is at the midpoint, the resistance of each path is equal, meaning the current divides equally between both legs."
-  },
-  {
-    "id": 4052,
-    "question": "An electrician measures the end-to-end resistance (r1) of the line conductor loop for a Ring Final Circuit as 0.8 Ω. What is the expected resistance (R1) measured at a socket located at the furthest point of the ring?",
-    "options": [
-      "0.2 Ω",
-      "0.4 Ω",
-      "1.6 Ω",
-      "0.8 Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "resistance-rule",
-      "calculation",
-      "parallel"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "In a ring circuit, the resistance at the midpoint (R1) is calculated as (r1 / 4). This is because the two legs of the ring act as parallel resistors, each being half the total length (r1/2). Using the parallel rule: (0.4 × 0.4) / (0.4 + 0.4) = 0.16 / 0.8 = 0.2 Ω."
-  },
-  {
-    "id": 4053,
-    "question": "A large commercial hallway requires a lighting circuit where the lamps can be controlled from three separate entrances. Which combination of switches must be used?",
-    "options": [
-      "Two 2-way switches and one intermediate switch",
-      "Three 2-way switches connected in parallel",
-      "Three intermediate switches connected in series",
-      "Two 1-way switches and one intermediate switch"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "USED_SERIES_RULE",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "application",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "For three-point control, the circuit starts and ends with a 2-way switch, with any number of intermediate switches placed between them to facilitate the multi-point switching logic."
-  },
-  {
-    "id": 4054,
-    "question": "A radial circuit supplies a 230 V, 4.6 kW electric heater. If the total circuit resistance (R1 + Rn) is 0.4 Ω, calculate the voltage drop across the cable when the heater is in operation.",
-    "options": [
-      "8 V",
-      "11.5 V",
-      "18.4 V",
-      "4.6 V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "ROUNDING_ERROR",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "calculation",
-      "ohms-law",
-      "voltage-rule"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 100,
-    "explanation": "First, find current (I): I = P / V = 4600 / 230 = 20 A. Then, find voltage drop (Vd): Vd = I × R = 20 × 0.4 = 8 V."
-  },
-  {
-    "id": 4055,
-    "question": "Why is it a specific requirement to separate Category 1 (mains voltage) circuits from Category 2 (data and signal) circuits within an installation?",
-    "options": [
-      "To prevent electromagnetic interference (EMI) and ensure safety in the event of a fault",
-      "To prevent the data cables from drawing too much current from the mains",
-      "Because data cables operate at a higher frequency which causes the mains cable to overheat",
-      "To ensure the resistance of the data cables does not affect the ring final continuity"
+      "To prevent electromagnetic interference (EMI) from the power cables affecting data signals",
+      "To prevent the data cables from overheating due to the power cables",
+      "To ensure the data cables do not increase the voltage drop in the power circuit",
+      "To allow for the higher current levels found in communication circuits"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
       "conceptual",
-      "health-safety",
-      "terminology"
+      "legislation",
+      "units"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "Separation is required to prevent electrical noise (EMI) from disrupting data signals and to ensure that a high-voltage fault in Category 1 cannot energize the low-voltage Category 2 systems."
+    "estimatedTime": 60,
+    "explanation": "Power cables generate magnetic fields that can induce currents in nearby data cables, causing signal corruption (EMI). Separation or screening is required."
   },
   {
-    "id": 4056,
-    "question": "An electrician is testing a 32A ring final circuit that is 60 metres in total length. A single point load of 20A is connected at a socket exactly 15 metres from the consumer unit along the ring. Neglecting conductor resistance variations, how much current will flow through the shortest leg of the ring?",
+    "id": 4046,
+    "question": "During testing of a 32 A ring final circuit, the end-to-end resistance of the line conductor (r1) is measured at 0.6 Ω and the cpc (r2) is 1.0 Ω. What is the expected (R1+R2) reading at the furthest point of the ring?",
     "options": [
-      "15A",
-      "5A",
-      "10A",
-      "20A"
+      "0.4 Ω",
+      "1.6 Ω",
+      "0.8 Ω",
+      "0.15 Ω"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "USED_SERIES_RULE",
       "2": "DIVIDED_INSTEAD",
-      "3": "TOPOLOGY_CONFUSION"
+      "3": "RECIPROCAL_ERROR"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
       "calculation",
-      "parallel",
+      "resistance-rule",
       "application"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "In a ring final circuit, the current divides inversely proportional to the resistance (length) of the paths. The total length is 60m. Path A is 15m, Path B is 45m. Current in Path A = Total Current * (Length B / Total Length) = 20A * (45/60) = 15A."
-  },
-  {
-    "id": 4057,
-    "question": "A control circuit for a heavy-duty industrial motor utilizes a 24V DC secondary circuit to switch a 400V AC contactor. What is the primary functional reason for separating the control circuit from the power circuit in this manner?",
-    "options": [
-      "To improve operator safety and allow for smaller, low-voltage control components",
-      "To increase the torque of the motor during the start-up phase",
-      "To ensure the control circuit can handle the high inrush current of the motor",
-      "To eliminate the need for overcurrent protection on the main power cables"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_I_V_R",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "conceptual",
-      "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
+    "difficulty": 3,
     "estimatedTime": 120,
-    "explanation": "Control circuits are often Extra-Low Voltage (ELV) to enhance safety for operators interacting with switches and to allow for smaller, more cost-effective control components that do not need to withstand high power loads."
+    "explanation": "For a ring final circuit, the expected (R1+R2) reading at sockets is (r1 + r2) / 4. Here, (0.6 + 1.0) / 4 = 1.6 / 4 = 0.4 Ω."
   },
   {
-    "id": 4058,
-    "question": "A radial circuit using 2.5mm² twin and earth cable is 25 metres long. The combined resistance (R1+R2) for this cable is 14.82 mΩ/m. Calculate the total circuit resistance (R1+R2) at the furthest point, assuming no other factors apply.",
+    "id": 4047,
+    "question": "An emergency lighting system is designed so that the lamps are energized at all times during normal use and remain on during a mains failure. What type of circuit is this?",
     "options": [
-      "0.37 Ω",
-      "370.5 Ω",
-      "0.18 Ω",
-      "14.82 Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "DIVIDED_INSTEAD",
-      "3": "UNITS_MISSING"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "calculation",
-      "units",
-      "resistance-rule"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Resistance = (mΩ/m * length) / 1000. So, (14.82 * 25) / 1000 = 0.3705 Ω."
-  },
-  {
-    "id": 4059,
-    "question": "In a large commercial building, a 'Maintained' emergency lighting system is installed. Which of the following best describes the operation of this circuit type?",
-    "options": [
-      "The lamps operate at all times from the mains and switch to battery power upon mains failure",
-      "The lamps only illuminate when the local lighting circuit loses power",
-      "The lamps are only powered by a central battery system and never use the mains supply",
-      "The lamps are connected to a PIR sensor and only activate when movement is detected"
+      "Maintained",
+      "Non-maintained",
+      "Sustained",
+      "Radial control"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
+      "3": "CONFUSED_AC_DC_SOURCES"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
       "conceptual",
-      "health-safety",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Maintained emergency lighting is designed so the lamps are on at all times (using mains) and continue to stay on (using battery) if the mains fails. Non-maintained only turns on when mains fails."
-  },
-  {
-    "id": 4060,
-    "question": "A heating control panel contains two identical 240 Ω solenoid valves connected in parallel. This parallel pair is then connected in series with a 20 Ω thermostat. What is the total resistance of this control arrangement?",
-    "options": [
-      "140 Ω",
-      "500 Ω",
-      "130 Ω",
-      "10 Ω"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "RECIPROCAL_ERROR",
-      "3": "USED_PARALLEL_RULE"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "calculation",
-      "mixed-circuit",
-      "resistance-rule"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 180,
-    "explanation": "First, calculate the parallel solenoid valves: (240 / 2) = 120 Ω. Then add the series thermostat: 120 Ω + 20 Ω = 140 Ω."
-  },
-  {
-    "id": 4061,
-    "question": "A ring final circuit has been inadvertently broken at one point, effectively creating two radial circuits. If a high-load appliance is used near the break, what is the most likely risk to the installation?",
-    "options": [
-      "One leg of the circuit may become overloaded beyond its current carrying capacity",
-      "The circuit will immediately cease to function as the loop is broken",
-      "The voltage at the sockets will double because the resistance is halved",
-      "The RCD will trip instantly due to the imbalance of current in the ring"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "conceptual",
-      "application",
+      "terminology",
       "health-safety"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "A ring final circuit is protected by a 32A device, but the individual cable (usually 2.5mm²) is not rated for 32A. If the ring is broken, the full load may travel down one leg, potentially exceeding that cable's rating and causing a fire risk."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Maintained emergency lighting operates normally from the mains supply and switches to battery backup during a power failure without going out."
   },
   {
-    "id": 4062,
-    "question": "An electrician is installing Cat6 data cabling in the same compartment of a plastic trunking as 230V power cables. According to best practice for data/comms circuits, what action should be taken to prevent Electromagnetic Interference (EMI)?",
+    "id": 4048,
+    "question": "A lighting radial circuit has four 60 W lamps connected in parallel. If the supply voltage is 230 V, what is the total current flowing through the circuit protective device?",
     "options": [
-      "Maintain physical segregation using a grounded metallic divider or specific spacing",
-      "Connect the data cable screens in series with the power circuit earth",
-      "Increase the fuse rating of the power circuit to stabilize the magnetic field",
-      "Ensure the data cables are longer than the power cables to dissipate noise"
+      "1.04 A",
+      "0.26 A",
+      "4.16 A",
+      "0.95 A"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "USED_SERIES_RULE",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "application",
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Data and power cables must be segregated to prevent EMI from the power cables corrupting data signals. This is typically achieved by physical distance or a grounded conductive barrier."
-  },
-  {
-    "id": 4063,
-    "question": "A 230V radial circuit supplies a 9.2kW electric shower. If the circuit has a total resistance of 0.15 Ω, what is the voltage drop across the cable when the shower is in use?",
-    "options": [
-      "6V",
-      "1.38V",
-      "13.8V",
-      "40V"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "ROUNDING_ERROR",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "calculation",
-      "ohms-law",
-      "voltage-rule"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "First find current: I = P / V = 9200 / 230 = 40A. Then find voltage drop: V = I * R = 40 * 0.15 = 6V."
-  },
-  {
-    "id": 4064,
-    "question": "Why are fire alarm 'addressable' circuits often wired in a loop configuration rather than a radial configuration?",
-    "options": [
-      "To provide system integrity so the panel can communicate with devices from both ends if the cable is cut",
-      "To reduce the total amount of cable required for the installation",
-      "To increase the voltage available to the furthest sounder on the circuit",
-      "To allow the system to operate on DC power instead of AC power"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Circuit Types: What They Do",
-    "tags": [
-      "conceptual",
-      "health-safety",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3AA-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Addressable fire loops allow for redundant communication paths. If the loop is broken at one point, the control panel can still 'see' every device by communicating from both directions."
-  },
-  {
-    "id": 4065,
-    "question": "A workshop radial circuit supplies five 100W light fittings and one 2kW heater. If the lights are on for 8 hours and the heater is on for 2 hours, what is the total energy consumed in kilowatt-hours (kWh)?",
-    "options": [
-      "8 kWh",
-      "21 kWh",
-      "2.5 kWh",
-      "16.4 kWh"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "WRONG_UNITS",
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
       "3": "ROUNDING_ERROR"
     },
     "section": "Electrical Installations Technology",
     "category": "Circuit Types: What They Do",
     "tags": [
       "calculation",
-      "energy",
+      "current-rule",
       "power"
     ],
-    "learningOutcomeId": "203-3AA-LO1",
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Total Power = 4 × 60W = 240W. Current I = P / V = 240 / 230 = 1.043 A."
+  },
+  {
+    "id": 4049,
+    "question": "Which of the following circuit types is typically used for a fire alarm system to ensure integrity and minimize the risk of accidental disconnection?",
+    "options": [
+      "A dedicated radial circuit wired in fire-resistant cable",
+      "A ring final circuit shared with office computers",
+      "A parallel circuit tapped off the nearest lighting point",
+      "A series circuit to ensure all detectors trigger at once"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "application",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "Fire alarm systems require dedicated radial circuits, usually fed from a single point and wired in fire-resistant cable (like FP200) to maintain operation during a fire."
+  },
+  {
+    "id": 4050,
+    "question": "A circuit consists of a 15 Ω resistor in series with a parallel bank of two 30 Ω resistors. What is the total circuit resistance?",
+    "options": [
+      "30 Ω",
+      "75 Ω",
+      "25 Ω",
+      "10 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_SERIES_RULE",
+      "2": "RECIPROCAL_ERROR",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "mixed-circuit",
+      "calculation",
+      "resistance-rule"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 120,
+    "explanation": "First, calculate the parallel part: (30 × 30) / (30 + 30) = 15 Ω. Then add the series resistor: 15 Ω + 15 Ω = 30 Ω."
+  },
+  {
+    "id": 4051,
+    "question": "In a standard UK domestic installation, what is the primary reason for using a ring final circuit instead of a radial circuit for socket outlets?",
+    "options": [
+      "To allow for a higher current carrying capacity using smaller cross-sectional area cables",
+      "To ensure that if one socket fails, the others in the circuit continue to work",
+      "To reduce the total voltage drop to zero at the furthest point of the circuit",
+      "To allow for easier testing and inspection of the protective conductors"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "ring-final",
+      "radial",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A ring final circuit allows current to flow in two directions to the load, effectively doubling the current-carrying capacity for a given cable size compared to a single radial leg."
+  },
+  {
+    "id": 4052,
+    "question": "An electrician is testing a ring final circuit. The end-to-end resistance of the phase conductor (r1) is measured as 0.8 Ω. What is the expected resistance (R1) measured between phase and neutral at the furthest point of the ring, assuming the neutral conductor is the same size?",
+    "options": [
+      "0.4 Ω",
+      "1.6 Ω",
+      "0.8 Ω",
+      "0.2 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "ring-final",
+      "calculation",
+      "resistance-rule"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "For a ring final circuit with equal sized conductors, the resistance at the furthest point (R1) is (r1 + rn) / 4. Here, (0.8 + 0.8) / 4 = 1.6 / 4 = 0.4 Ω."
+  },
+  {
+    "id": 4053,
+    "question": "Which circuit arrangement is most appropriate for a high-power fixed appliance, such as a 7 kW electric shower, in a domestic dwelling?",
+    "options": [
+      "A dedicated radial circuit",
+      "A spurred connection from a 32 A ring final circuit",
+      "A connection to a 30 A power/heating ring circuit",
+      "A control circuit via a signal relay"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "radial",
+      "application",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "High-power fixed appliances should be supplied by their own dedicated radial circuit to prevent overloading general-purpose circuits and to ensure effective isolation."
+  },
+  {
+    "id": 4054,
+    "question": "A radial lighting circuit has five lamps connected in parallel. Each lamp has a resistance of 2300 Ω when operational. If the supply voltage is 230 V, calculate the total current drawn by the circuit (ignoring cable resistance).",
+    "options": [
+      "0.5 A",
+      "0.1 A",
+      "2.5 A",
+      "11500 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "USED_SERIES_RULE"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "parallel",
+      "ohms-law",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Current for one lamp: I = V / R = 230 / 2300 = 0.1 A. Since there are 5 lamps in parallel, total current = 0.1 A * 5 = 0.5 A."
+  },
+  {
+    "id": 4055,
+    "question": "Why are data and communication cables typically required to be installed in separate containment or kept at a specific distance from power circuits?",
+    "options": [
+      "To prevent electromagnetic interference (EMI) from affecting signal integrity",
+      "Because data cables operate at a higher frequency and would overheat the power cables",
+      "To prevent the power circuit from drawing current from the data circuit",
+      "Because data circuits use AC and power circuits use DC, causing phase clashing"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "electromagnetic-induction"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Power cables generate electromagnetic fields that can induce noise (interference) into sensitive data cables, corrupting the digital signal. Separation or shielding is used to mitigate this."
+  },
+  {
+    "id": 4056,
+    "question": "A ring final circuit has an end-to-end resistance (r1) of 0.80 Ω for the line conductor and 0.80 Ω for the neutral conductor (rn). What is the theoretical resistance (R1 + Rn) measured at a socket outlet at the midpoint of the ring, assuming no loose connections?",
+    "options": [
+      "0.40 Ω",
+      "0.80 Ω",
+      "1.60 Ω",
+      "0.20 Ω"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "USED_SERIES_RULE",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "calculation",
+      "resistance-rule",
+      "parallel"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "In a ring final circuit, the resistance at the midpoint (R1 + Rn) is calculated as (r1 + rn) / 4. Here, (0.80 + 0.80) / 4 = 0.40 Ω. This is because the two paths of the ring act as parallel resistors."
+  },
+  {
+    "id": 4057,
+    "question": "In a commercial building, a control circuit uses a relay to switch a 400V motor. If the relay coil is rated at 24V DC and the control transformer has a primary voltage of 230V AC, what is the primary function of this specific circuit topology?",
+    "options": [
+      "To provide electrical isolation and safety for the operator",
+      "To increase the current available to the motor starter",
+      "To convert the AC supply to DC for higher torque",
+      "To reduce the resistance of the motor windings"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "conceptual",
+      "relays",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Control circuits often use Extra Low Voltage (ELV) such as 24V to ensure that the operator interface (switches/buttons) is isolated from the higher power voltages, significantly increasing safety."
+  },
+  {
+    "id": 4058,
+    "question": "An electrician is installing a radial circuit for a 7.2 kW electric shower on a 230V supply. Calculate the design current (Ib) for this circuit, ignoring diversity.",
+    "options": [
+      "31.30 A",
+      "16.56 A",
+      "33.33 A",
+      "28.40 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "ROUNDING_ERROR",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "calculation",
+      "power",
+      "ohms-law"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Using the formula I = P / V: 7200W / 230V = 31.304... A, which rounds to 31.30 A."
+  },
+  {
+    "id": 4059,
+    "question": "Why must Category 5e data cables be installed with a minimum separation distance from 230V power cables within a trunking system?",
+    "options": [
+      "To prevent electromagnetic interference (EMI) from corrupting data signals",
+      "To stop the data cables from overheating the power cables",
+      "To ensure the data cables do not increase the loop impedance of the power circuit",
+      "To prevent the power cables from drawing current from the data system"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "conceptual",
+      "legislation",
+      "application"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "High voltage power cables create electromagnetic fields that can induce currents in nearby data cables, causing signal noise or data corruption (EMI)."
+  },
+  {
+    "id": 4060,
+    "question": "A heating circuit consists of two 1.5 kW heating elements. If they are wired in series by mistake instead of parallel on a 230V supply, what will be the total power output of the circuit?",
+    "options": [
+      "0.75 kW",
+      "3.00 kW",
+      "1.50 kW",
+      "0.375 kW"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "USED_PARALLEL_RULE",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "calculation",
+      "series",
+      "power"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "Resistance of one element: R = V^2/P = 230^2/1500 = 35.27 Ω. In series, total R = 70.54 Ω. Total Power = V^2/R = 230^2 / 70.54 = 750W or 0.75 kW."
+  },
+  {
+    "id": 4061,
+    "question": "A 'maintained' emergency lighting luminaire differs from a 'non-maintained' luminaire because the maintained version:",
+    "options": [
+      "Operates at all times from the mains supply and switches to battery on failure",
+      "Only illuminates when the local lighting circuit power fails",
+      "Does not require a battery backup as it is connected to a generator",
+      "Uses a higher voltage battery to provide brighter illumination"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "units"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Maintained luminaires are lit under normal conditions (mains) and stay lit during power failure (battery). Non-maintained only light up when the power fails."
+  },
+  {
+    "id": 4062,
+    "question": "A radial lighting circuit has 12 LED downlights, each rated at 8W. If the circuit is protected by a 6A MCB and operates at 230V, what is the total current demand, and is the circuit adequately protected?",
+    "options": [
+      "0.42 A; Yes, it is adequately protected",
+      "2.30 A; No, the MCB is too small",
+      "0.42 A; No, the MCB is too large",
+      "1.50 A; Yes, it is adequately protected"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "CONFUSED_I_V_R",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "calculation",
+      "application",
+      "current-rule"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Total Power = 12 * 8W = 96W. Total Current = 96W / 230V = 0.417 A. A 6A MCB is the standard and correct protection for this load."
+  },
+  {
+    "id": 4063,
+    "question": "A fire alarm system uses a 'monitored loop'. If the end-of-line (EOL) resistor is removed or the cable is cut, how does the control panel identify this as a fault rather than an alarm?",
+    "options": [
+      "The circuit resistance becomes infinite (open circuit), indicating a break",
+      "The circuit resistance drops to zero (short circuit), triggering a fault",
+      "The voltage increases beyond 230V, triggering a surge protector",
+      "The current increases due to the lack of resistance from the EOL"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_I_V_R",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "conceptual",
+      "application",
+      "resistance-rule"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 150,
-    "explanation": "Lights: (5 * 100W) = 500W = 0.5kW. Energy = 0.5kW * 8h = 4kWh. Heater: 2kW * 2h = 4kWh. Total = 4 + 4 = 8kWh."
+    "explanation": "Fire alarm panels monitor a small current flowing through an EOL resistor. If the cable is cut, the current stops (infinite resistance), which the panel interprets as a 'Fault' signal."
+  },
+  {
+    "id": 4064,
+    "question": "Calculate the total voltage drop on a 25-meter radial circuit wired in 2.5mm² cable (mV/A/m = 18) supplying a 3 kW heater at 230V.",
+    "options": [
+      "5.87 V",
+      "1.35 V",
+      "13.04 V",
+      "4.50 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "UNITS_MISSING",
+      "2": "WRONG_UNITS",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "calculation",
+      "voltage-rule",
+      "units"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "First find current: I = 3000/230 = 13.04 A. Then VD = (mV/A/m * Ib * L) / 1000. VD = (18 * 13.04 * 25) / 1000 = 5.868 V."
+  },
+  {
+    "id": 4065,
+    "question": "In a ring final circuit, what is the primary risk if the ring continuity is broken at one point, effectively turning it into two radial circuits?",
+    "options": [
+      "Individual sections of the cable may become overloaded",
+      "The voltage at the sockets will increase to 400V",
+      "The MCB will trip immediately due to a short circuit",
+      "The total resistance of the circuit will decrease"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "USED_SERIES_RULE"
+    },
+    "section": "Electrical Installations Technology",
+    "category": "Circuit Types: What They Do",
+    "tags": [
+      "conceptual",
+      "application",
+      "current-rule"
+    ],
+    "learningOutcomeId": "203-3A9-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "A ring final circuit is designed to share current across two paths. If the ring is broken, one 'leg' of the radial may carry more current than the cable is rated for, even if the MCB doesn't trip."
   }
 ];

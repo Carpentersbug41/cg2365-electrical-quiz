@@ -224,6 +224,13 @@ export class Phase10_Refinement extends PhasePromptBuilder {
     const validPatches: RefinementPatch[] = [];
     
     llmPatches.patches.forEach((llmPatch, idx) => {
+      // CRITICAL: Block answerType changes - these break grading contract
+      if (llmPatch.path.endsWith('.answerType')) {
+        console.warn(`   ⊘ Rejecting patch: ${llmPatch.path} - answerType changes are NOT allowed in Phase 10`);
+        console.warn(`   ⊘ Reason: Changing answerType requires corresponding grading contract/rubric changes`);
+        return; // Skip this patch
+      }
+      
       // Check if patch references a non-existent block
       const blockMatch = llmPatch.path.match(/blocks\[(\d+)\]/);
       if (blockMatch) {

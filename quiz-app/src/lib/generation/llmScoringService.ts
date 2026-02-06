@@ -229,8 +229,11 @@ PHASE 10 CONSTRAINT (CRITICAL)
   * PREPEND: Add text to beginning of field
   * APPEND: Add text to end of field
   * FULL_REPLACE: Replace entire field value (use sparingly for long fields)
-- Not Allowed: add blocks, remove blocks, reorder blocks, change block count
-- If an issue requires structural changes, mark fixability as "requiresRegeneration"
+- Not Allowed: 
+  * Add blocks, remove blocks, reorder blocks, change block count
+  * Change answerType (e.g., short-text → long-text) - breaks grading contract
+  * Change block.order or block.type
+- If an issue requires structural changes or answerType changes, mark fixability as "requiresRegeneration"
 
 SUGGESTION FORMAT (CRITICAL):
 For string field edits within long content (e.g., explanation blocks), use SUBSTRING_REPLACE format:
@@ -245,6 +248,12 @@ For complete field replacement (only when necessary):
 
 ⚠️ NEVER write: "Change blocks[3].content.content from 'X' to 'Y'" (ambiguous - leads to content destruction!)
 ✓ ALWAYS write: "SUBSTRING_REPLACE in blocks[3].content.content: find 'X' replace with 'Y'"
+
+⚠️ NEVER suggest changing answerType (e.g., short-text → long-text)
+✓ INSTEAD: For questions needing longer answers:
+  - Add instructions to questionText: "Answer in 2-4 sentences..."
+  - Tighten expectedAnswer to be more specific
+  - Mark as "requiresRegeneration" if fundamental restructuring needed
 
 SCORING RUBRIC (100 points total):
 

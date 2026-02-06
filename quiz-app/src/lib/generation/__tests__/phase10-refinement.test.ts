@@ -483,3 +483,165 @@ describe('Phase 10 Refinement - Patch Validator Updates', () => {
     expect(validation.targetExists).toBe(true);
   });
 });
+
+describe('Phase 10 Refinement - answerType Safety Gate', () => {
+  const phase10 = new Phase10_Refinement();
+  
+  const mockLesson: Lesson = {
+    id: 'test',
+    title: 'Test',
+    description: 'Test',
+    layout: 'split-vis',
+    unit: 'Unit 1',
+    topic: 'Test',
+    learningOutcomes: ['Test'],
+    prerequisites: [],
+    blocks: [{
+      id: 'practice-1',
+      type: 'practice',
+      order: 1,
+      content: {
+        questions: [{
+          id: 'Q1',
+          questionText: 'Test question?',
+          answerType: 'short-text',
+          expectedAnswer: ['answer']
+        }]
+      }
+    }]
+  };
+
+  it('should reject patches that change answerType', () => {
+    const llmResponse = {
+      patches: [{
+        op: 'replace',
+        path: 'blocks[0].content.questions[0].answerType',
+        value: 'long-text',
+        reason: 'Need longer answer'
+      }]
+    };
+
+    const issues = [{
+      section: 'test',
+      issue: 'test',
+      suggestion: 'test',
+      pointsLost: 0,
+      severity: 0
+    }];
+
+    const patches = phase10.convertLLMPatches(llmResponse, issues, mockLesson);
+    
+    // Should be filtered out
+    expect(patches.length).toBe(0);
+  });
+
+  it('should allow other patches to pass through', () => {
+    const llmResponse = {
+      patches: [{
+        op: 'replace',
+        path: 'blocks[0].content.questions[0].expectedAnswer',
+        value: ['answer', 'response'],
+        reason: 'Add variants'
+      }]
+    };
+
+    const issues = [{
+      section: 'test',
+      issue: 'test',
+      suggestion: 'test',
+      pointsLost: 0,
+      severity: 0
+    }];
+
+    const patches = phase10.convertLLMPatches(llmResponse, issues, mockLesson);
+    
+    expect(patches.length).toBe(1);
+    expect(patches[0].path).toBe('blocks[0].content.questions[0].expectedAnswer');
+  });
+});
+
+describe('Phase 10 Refinement - High-Risk Patch Gate', () => {
+  const mockLesson: Lesson = {
+    id: 'test',
+    title: 'Test',
+    description: 'Test',
+    layout: 'split-vis',
+    unit: 'Unit 1',
+    topic: 'Test',
+    learningOutcomes: ['Test'],
+    prerequisites: [],
+    blocks: [{
+      id: 'practice-1',
+      type: 'practice',
+      order: 1,
+      content: {
+        questions: [{
+          id: 'Q1',
+          questionText: 'Test?',
+          answerType: 'short-text',
+          expectedAnswer: ['answer']
+        }]
+      }
+    }]
+  };
+
+  it('should reject answerType changes via validator', () => {
+    const patch: RefinementPatch = {
+      op: 'replace',
+      path: 'blocks[0].content.questions[0].answerType',
+      value: 'long-text',
+      reason: 'Test'
+    };
+
+    const validation = validatePatch(mockLesson, patch);
+    const shouldReject = shouldRejectPatch(validation);
+    
+    expect(shouldReject).toBe(true);
+    expect(validation.reasons.some(r => r.includes('High-risk patch'))).toBe(true);
+    expect(validation.reasons.some(r => r.includes('answerType'))).toBe(true);
+  });
+
+  it('should reject block order changes', () => {
+    const patch: RefinementPatch = {
+      op: 'replace',
+      path: 'blocks[0].order',
+      value: 5,
+      reason: 'Test'
+    };
+
+    const validation = validatePatch(mockLesson, patch);
+    const shouldReject = shouldRejectPatch(validation);
+    
+    expect(shouldReject).toBe(true);
+    expect(validation.reasons.some(r => r.includes('block order'))).toBe(true);
+  });
+
+  it('should reject block type changes', () => {
+    const patch: RefinementPatch = {
+      op: 'replace',
+      path: 'blocks[0].type',
+      value: 'explanation',
+      reason: 'Test'
+    };
+
+    const validation = validatePatch(mockLesson, patch);
+    const shouldReject = shouldRejectPatch(validation);
+    
+    expect(shouldReject).toBe(true);
+    expect(validation.reasons.some(r => r.includes('block type'))).toBe(true);
+  });
+
+  it('should allow safe patches', () => {
+    const patch: RefinementPatch = {
+      op: 'replace',
+      path: 'blocks[0].content.questions[0].questionText',
+      value: 'Updated question text?',
+      reason: 'Improve clarity'
+    };
+
+    const validation = validatePatch(mockLesson, patch);
+    const shouldReject = shouldRejectPatch(validation);
+    
+    expect(shouldReject).toBe(false);
+  });
+});
