@@ -23,14 +23,15 @@ export function DebugPanel({ debugBundle }: DebugPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
-  if (!debugBundle || !debugBundle.phase10?.triggered) {
-    return null; // Don't show panel if Phase 10 wasn't triggered
+  if (!debugBundle) {
+    return null; // Only return null if no bundle at all
   }
 
   const { baseline, phase10, diffs, postmortem } = debugBundle;
+  const phase10Triggered = phase10?.triggered || false;
   const baselineScore = baseline.score?.total || 0;
-  const refinedScore = phase10?.refined?.score?.total || 0;
-  const scoreDelta = refinedScore - baselineScore;
+  const refinedScore = phase10?.refined?.score?.total || baselineScore;
+  const scoreDelta = phase10Triggered ? refinedScore - baselineScore : 0;
 
   const toggleSection = (section: string) => {
     setActiveSection(activeSection === section ? null : section);
@@ -74,18 +75,23 @@ export function DebugPanel({ debugBundle }: DebugPanelProps) {
             />
           </svg>
           <h3 className="text-lg font-bold text-purple-900 dark:text-purple-200">
-            Phase 10 Debug Report
+            {phase10Triggered ? 'Phase 10 Debug Report' : 'Scoring Debug Report'}
           </h3>
           <span
             className={`px-2 py-1 text-xs font-semibold rounded ${
-              scoreDelta > 0
-                ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
-                : scoreDelta < 0
-                ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
-                : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300'
+              phase10Triggered
+                ? scoreDelta > 0
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
+                  : scoreDelta < 0
+                  ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300'
+                  : 'bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300'
+                : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300'
             }`}
           >
-            {scoreDelta > 0 ? '+' : ''}{scoreDelta} points
+            {phase10Triggered 
+              ? `${scoreDelta > 0 ? '+' : ''}${scoreDelta} points`
+              : `${baselineScore}/100 - No refinement needed`
+            }
           </span>
         </div>
         <svg
@@ -137,69 +143,109 @@ export function DebugPanel({ debugBundle }: DebugPanelProps) {
 
           {/* Collapsible Sections */}
           <div className="space-y-2">
-            {/* Timeline */}
-            <CollapsibleSection
-              title="Timeline"
-              isOpen={activeSection === 'timeline'}
-              onToggle={() => toggleSection('timeline')}
-            >
-              <TimelineSection bundle={debugBundle} />
-            </CollapsibleSection>
+            {!phase10Triggered && (
+              /* Phase 10 Not Triggered - Show Baseline Info */
+              <>
+                <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-300 dark:border-green-700 rounded">
+                  <h4 className="font-semibold text-green-900 dark:text-green-200 mb-2">
+                    Phase 10 Not Triggered
+                  </h4>
+                  <p className="text-sm text-green-800 dark:text-green-300">
+                    Score <strong>{baselineScore}/100</strong> met the quality threshold (≥{debugBundle.config.phase10Threshold}). 
+                    No refinement was needed.
+                  </p>
+                </div>
 
-            {/* Score Comparison */}
-            <CollapsibleSection
-              title="Score Comparison"
-              isOpen={activeSection === 'scores'}
-              onToggle={() => toggleSection('scores')}
-            >
-              <ScoreComparisonSection baseline={baseline} phase10={phase10} />
-            </CollapsibleSection>
+                {/* Baseline Score Breakdown */}
+                <CollapsibleSection
+                  title="Score Breakdown"
+                  isOpen={activeSection === 'scores'}
+                  onToggle={() => toggleSection('scores')}
+                >
+                  <BaselineScoreBreakdown baseline={baseline} />
+                </CollapsibleSection>
 
-            {/* Issues Targeted */}
-            <CollapsibleSection
-              title={`Issues Targeted (${phase10?.extractedIssues?.length || 0})`}
-              isOpen={activeSection === 'issues'}
-              onToggle={() => toggleSection('issues')}
-            >
-              <IssuesSection issues={phase10?.extractedIssues || []} />
-            </CollapsibleSection>
+                {/* Issues Detected (if any) */}
+                {phase10?.extractedIssues && phase10.extractedIssues.length > 0 && (
+                  <CollapsibleSection
+                    title={`Issues Detected (${phase10.extractedIssues.length}) - Not Fixed`}
+                    isOpen={activeSection === 'issues'}
+                    onToggle={() => toggleSection('issues')}
+                  >
+                    <IssuesSection issues={phase10.extractedIssues} />
+                  </CollapsibleSection>
+                )}
+              </>
+            )}
 
-            {/* Patches Table */}
-            <CollapsibleSection
-              title={`Patches Applied (${phase10?.patches?.length || 0})`}
-              isOpen={activeSection === 'patches'}
-              onToggle={() => toggleSection('patches')}
-            >
-              <PatchesTable patches={phase10?.patches || []} />
-            </CollapsibleSection>
+            {phase10Triggered && (
+              /* Phase 10 Triggered - Show Full Debug Info */
+              <>
+                {/* Timeline */}
+                <CollapsibleSection
+                  title="Timeline"
+                  isOpen={activeSection === 'timeline'}
+                  onToggle={() => toggleSection('timeline')}
+                >
+                  <TimelineSection bundle={debugBundle} />
+                </CollapsibleSection>
 
-            {/* Patch Isolation View */}
-            <CollapsibleSection
-              title="Patch Isolation Scoring"
-              isOpen={activeSection === 'isolation'}
-              onToggle={() => toggleSection('isolation')}
-            >
-              <IsolationView patches={phase10?.patches || []} />
-            </CollapsibleSection>
+                {/* Score Comparison */}
+                <CollapsibleSection
+                  title="Score Comparison"
+                  isOpen={activeSection === 'scores'}
+                  onToggle={() => toggleSection('scores')}
+                >
+                  <ScoreComparisonSection baseline={baseline} phase10={phase10} />
+                </CollapsibleSection>
 
-            {/* JSON Diff Viewer */}
-            <CollapsibleSection
-              title={`Changed Paths (${diffs?.changedPaths?.length || 0})`}
-              isOpen={activeSection === 'diffs'}
-              onToggle={() => toggleSection('diffs')}
-            >
-              <DiffsSection diffs={diffs} />
-            </CollapsibleSection>
+                {/* Issues Targeted */}
+                <CollapsibleSection
+                  title={`Issues Targeted (${phase10?.extractedIssues?.length || 0})`}
+                  isOpen={activeSection === 'issues'}
+                  onToggle={() => toggleSection('issues')}
+                >
+                  <IssuesSection issues={phase10?.extractedIssues || []} />
+                </CollapsibleSection>
 
-            {/* Postmortem Summary */}
-            {postmortem && (
-              <CollapsibleSection
-                title="Postmortem Analysis"
-                isOpen={activeSection === 'postmortem'}
-                onToggle={() => toggleSection('postmortem')}
-              >
-                <PostmortemSection postmortem={postmortem} />
-              </CollapsibleSection>
+                {/* Patches Table */}
+                <CollapsibleSection
+                  title={`Patches Applied (${phase10?.patches?.length || 0})`}
+                  isOpen={activeSection === 'patches'}
+                  onToggle={() => toggleSection('patches')}
+                >
+                  <PatchesTable patches={phase10?.patches || []} />
+                </CollapsibleSection>
+
+                {/* Patch Isolation View */}
+                <CollapsibleSection
+                  title="Patch Isolation Scoring"
+                  isOpen={activeSection === 'isolation'}
+                  onToggle={() => toggleSection('isolation')}
+                >
+                  <IsolationView patches={phase10?.patches || []} />
+                </CollapsibleSection>
+
+                {/* JSON Diff Viewer */}
+                <CollapsibleSection
+                  title={`Changed Paths (${diffs?.changedPaths?.length || 0})`}
+                  isOpen={activeSection === 'diffs'}
+                  onToggle={() => toggleSection('diffs')}
+                >
+                  <DiffsSection diffs={diffs} />
+                </CollapsibleSection>
+
+                {/* Postmortem Summary */}
+                {postmortem && (
+                  <CollapsibleSection
+                    title="Postmortem Analysis"
+                    isOpen={activeSection === 'postmortem'}
+                    onToggle={() => toggleSection('postmortem')}
+                  >
+                    <PostmortemSection postmortem={postmortem} />
+                  </CollapsibleSection>
+                )}
+              </>
             )}
           </div>
         </div>
@@ -289,6 +335,56 @@ function TimelineSection({ bundle }: { bundle: GenerationDebugBundle }) {
           {refinedScore - baselineScore} points)
         </span>
       </div>
+    </div>
+  );
+}
+
+function BaselineScoreBreakdown({ baseline }: any) {
+  if (!baseline.score) {
+    return <div className="text-sm text-gray-500">No score data available</div>;
+  }
+
+  const baselineDetails = baseline.score.details || [];
+
+  return (
+    <div className="overflow-x-auto">
+      <table className="min-w-full text-sm">
+        <thead>
+          <tr className="border-b border-gray-300 dark:border-slate-600">
+            <th className="text-left py-2 px-2 font-semibold text-gray-900 dark:text-white">
+              Section
+            </th>
+            <th className="text-right py-2 px-2 font-semibold text-gray-900 dark:text-white">
+              Score
+            </th>
+            <th className="text-right py-2 px-2 font-semibold text-gray-900 dark:text-white">
+              Issues
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b border-gray-200 dark:border-slate-700 font-bold">
+            <td className="py-2 px-2 text-gray-900 dark:text-white">Total</td>
+            <td className="py-2 px-2 text-right text-gray-900 dark:text-white">
+              {baseline.score.total}/100
+            </td>
+            <td className="py-2 px-2 text-right text-gray-900 dark:text-white">
+              {baselineDetails.reduce((sum: number, d: any) => sum + d.issues.length, 0)}
+            </td>
+          </tr>
+          {baselineDetails.map((detail: any, idx: number) => (
+            <tr key={idx} className="border-b border-gray-200 dark:border-slate-700">
+              <td className="py-2 px-2 text-gray-700 dark:text-gray-300">{detail.section}</td>
+              <td className="py-2 px-2 text-right text-gray-700 dark:text-gray-300">
+                {detail.score}/{detail.maxScore}
+              </td>
+              <td className="py-2 px-2 text-right text-gray-700 dark:text-gray-300">
+                {detail.issues.length}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

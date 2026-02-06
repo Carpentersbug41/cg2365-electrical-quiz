@@ -229,6 +229,14 @@ export class Phase10_Refinement extends PhasePromptBuilder {
         }
       }
       
+      // Validate expectedAnswer is array
+      if (llmPatch.path.endsWith('.expectedAnswer')) {
+        if (!Array.isArray(llmPatch.value)) {
+          console.warn(`   ⊘ Rejecting patch: ${llmPatch.path} value must be an array, got ${typeof llmPatch.value}`);
+          return; // Skip this patch
+        }
+      }
+      
       const relatedIssue = issues[idx] || issues[0];
       const oldValue = this.getValueAtPath(originalLesson, llmPatch.path);
       
@@ -441,6 +449,16 @@ STRICT RULES:
 7. Do NOT change any other fields
 8. Do NOT make improvements beyond what the suggestion specifies
 
+EXPECTEDANSWER ARRAY ENFORCEMENT (CRITICAL):
+- If path ends with ".expectedAnswer", value MUST be an array
+- NEVER patch expectedAnswer with a string value
+- Examples:
+  * WRONG: "value": "correct answer"
+  * RIGHT: "value": ["correct answer", "acceptable variant"]
+  * WRONG: "value": "230V"
+  * RIGHT: "value": ["230V", "230"]
+- If scorer suggestion shows string format, convert to array format in your patch
+
 EXAMPLE INPUT:
 Issue: "Question ID 'blocks[4].content.questions[0].id' includes lesson prefix"
 Suggestion: "Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'"
@@ -457,9 +475,9 @@ EXAMPLE CORRECT OUTPUT:
   ]
 }
 
-ANOTHER EXAMPLE:
-Issue: "expectedAnswer 'approximately 20A' is too vague"
-Suggestion: "Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A'"
+ANOTHER EXAMPLE (expectedAnswer - MUST BE ARRAY):
+Issue: "expectedAnswer ['approximately 20A'] is too vague"
+Suggestion: "Change blocks[6].content.questions[2].expectedAnswer from ['approximately 20A'] to ['20A', '20.0A']"
 
 CORRECT OUTPUT:
 {
@@ -467,11 +485,16 @@ CORRECT OUTPUT:
     {
       "op": "replace",
       "path": "blocks[6].content.questions[2].expectedAnswer",
-      "value": "20A ± 2A",
-      "reason": "Added specific tolerance per suggestion"
+      "value": ["20A", "20.0A"],
+      "reason": "Added specific variants per suggestion (ARRAY FORMAT)"
     }
   ]
 }
+
+CRITICAL: expectedAnswer MUST ALWAYS BE AN ARRAY:
+- WRONG: "value": "ring circuit"
+- RIGHT: "value": ["ring circuit", "ring final circuit"]
+- Even single values must be arrays: ["answer"]
 
 PREPEND EXAMPLE:
 Issue: "blocks[3].content.content missing lesson intro"

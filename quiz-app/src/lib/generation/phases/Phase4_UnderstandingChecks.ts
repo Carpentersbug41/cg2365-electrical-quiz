@@ -9,14 +9,7 @@ import { ExplanationBlock } from './Phase3_Explanation';
 export interface UnderstandingChecksInput {
   lessonId: string;
   explanations: ExplanationBlock[];
-  teachingConstraints?: {
-    excludeHowTo?: boolean;
-    purposeOnly?: boolean;
-    identificationOnly?: boolean;
-    noCalculations?: boolean;
-    specificScope?: string;
-  };
-  taskMode?: string; // Explicit task mode string
+  taskMode: string; // Explicit task mode string
 }
 
 export interface UnderstandingQuestion {
@@ -89,7 +82,7 @@ NO NEW TERMS (CRITICAL):
 - Do NOT introduce standards/regulation references unless they appear in the explanation text.
 
 TEACHING CONSTRAINTS (if provided):
-If teachingConstraints.excludeHowTo or teachingConstraints.purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
+If TASK_MODE includes "PURPOSE_ONLY":
 - Questions MUST test PURPOSE / IDENTIFICATION / SELECTION, NOT procedures
 - BANNED QUESTION PATTERNS:
   * "How do you [verb]..."
@@ -111,7 +104,7 @@ If teachingConstraints.excludeHowTo or teachingConstraints.purposeOnly OR TASK_M
   * "Identify the equipment/component for [scenario]"
   * "What does [X] enable/achieve/solve?"
 
-If teachingConstraints.identificationOnly OR TASK_MODE includes "IDENTIFICATION":
+If TASK_MODE includes "IDENTIFICATION":
 - Focus on recognition and selection cues
 - Avoid procedural phrasing entirely
 
@@ -155,7 +148,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: UnderstandingChecksInput): string {
-    const { lessonId, explanations, teachingConstraints, taskMode } = input;
+    const { lessonId, explanations, taskMode } = input;
 
     return `Create understanding check questions for this lesson's explanations.
 

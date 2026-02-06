@@ -111,7 +111,7 @@ export class Phase9_Assembler {
           videoUrl: youtubeUrl || '',
           imageUrl: imageUrl || undefined,
           diagramType: this.inferDiagramType(topic),
-          elementIds: diagramElements?.elementIds || [],
+          elementIds: diagramElements?.elementIds.map(id => this.normalizeElementId(id)) || [],
           placeholderText: diagramElements?.placeholderDescription || `Diagram showing ${topic}`,
         },
       });
@@ -284,6 +284,20 @@ export class Phase9_Assembler {
     if (index === 0) return 'remember';
     if (index === 1) return 'understand';
     return 'apply';
+  }
+
+  /**
+   * Normalize element ID to kebab-case format
+   * Converts "Ring Final Circuit" or "ring_final_circuit" to "ring-final-circuit"
+   */
+  private normalizeElementId(id: string): string {
+    return id
+      .toLowerCase()
+      .trim()
+      .replace(/[_\s]+/g, '-')  // Replace underscores and spaces with hyphens
+      .replace(/[^a-z0-9-]/g, '')  // Remove any non-alphanumeric characters except hyphens
+      .replace(/-+/g, '-')  // Replace multiple consecutive hyphens with single hyphen
+      .replace(/^-|-$/g, '');  // Remove leading/trailing hyphens
   }
 
   /**

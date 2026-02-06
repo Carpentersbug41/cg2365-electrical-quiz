@@ -11,14 +11,7 @@ export interface WorkedExampleInput {
   topic: string;
   explanations: ExplanationBlock[];
   needsWorkedExample: boolean;
-  teachingConstraints?: {
-    excludeHowTo?: boolean;
-    purposeOnly?: boolean;
-    identificationOnly?: boolean;
-    noCalculations?: boolean;
-    specificScope?: string;
-  };
-  taskMode?: string; // Explicit task mode string
+  taskMode: string; // Explicit task mode string
 }
 
 export interface WorkedExampleStep {

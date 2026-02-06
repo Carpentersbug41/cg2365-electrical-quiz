@@ -12,14 +12,7 @@ export interface PracticeInput {
   explanations: ExplanationBlock[];
   vocabulary: VocabularyOutput;
   hasWorkedExample: boolean;
-  teachingConstraints?: {
-    excludeHowTo?: boolean;
-    purposeOnly?: boolean;
-    identificationOnly?: boolean;
-    noCalculations?: boolean;
-    specificScope?: string;
-  };
-  taskMode?: string; // Explicit task mode string
+  taskMode: string; // Explicit task mode string
 }
 
 export interface PracticeQuestion {
@@ -58,7 +51,7 @@ QUESTION TYPES:
 - Mix of direct application and scenario-based questions
 
 TEACHING CONSTRAINTS (if provided):
-If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOSE_ONLY":
+If TASK_MODE includes "PURPOSE_ONLY":
 - Practice questions MUST test purpose/selection, NOT procedures
 - BANNED VERBS AND CONCEPTS in questions:
   * Physical actions: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, break the chip, lubricate, half-turn
@@ -79,7 +72,7 @@ If teachingConstraints.excludeHowTo or purposeOnly OR TASK_MODE includes "PURPOS
   * "Select the correct [item] for [material/situation]"
   * Matching exercises: scenario → equipment + purpose
 
-If teachingConstraints.identificationOnly OR TASK_MODE includes "IDENTIFICATION":
+If TASK_MODE includes "IDENTIFICATION":
 - Questions should be matching, selection, or "what is used for..." format
 
 ANSWER FORMAT RULES (CRITICAL - marking robustness):
@@ -154,7 +147,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: PracticeInput): string {
-    const { lessonId, explanations, vocabulary, hasWorkedExample, teachingConstraints, taskMode } = input;
+    const { lessonId, explanations, vocabulary, hasWorkedExample, taskMode } = input;
 
     const explanationTexts = explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n');
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\n');

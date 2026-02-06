@@ -15,8 +15,7 @@ export interface ExplanationInput {
   additionalInstructions?: string;
   plan: PlanningOutput;
   vocabulary: VocabularyOutput;
-  teachingConstraints?: PlanningOutput['teachingConstraints'];
-  taskMode?: string; // Explicit task mode string (e.g., "IDENTIFICATION, PURPOSE_ONLY")
+  taskMode: string; // Explicit task mode string (e.g., "IDENTIFICATION, PURPOSE_ONLY")
 }
 
 export interface ExplanationBlock {
@@ -115,6 +114,17 @@ NUMERIC VALUES FROM STANDARDS (CRITICAL):
   * Good: "Refer to the cable current-carrying capacity tables in BS 7671 (verify current edition)"
   * Bad: "A 2.5mm² cable carries 27A in typical installation conditions"
 
+DIAGRAM ELEMENT ID FORMAT (CRITICAL):
+If needsDiagram is true, diagramElements.elementIds MUST follow kebab-case format:
+- All lowercase
+- Words separated by hyphens (-)
+- No spaces, underscores, or capital letters
+- Examples:
+  * GOOD: "ring-final-circuit", "consumer-unit", "protective-conductor", "mcb-32a"
+  * BAD: "Ring Final Circuit", "Consumer_Unit", "protectiveConductor", "MCB 32A"
+- Element IDs should match vocabulary term IDs (which are also kebab-case)
+- 3-5 element IDs total
+
 LEARNING OUTCOMES COVERAGE (CRITICAL)
 - Every learning outcome must be explicitly taught somewhere in the explanation text.
 - Use key phrases from the learning outcomes so later questions can match wording.
@@ -123,7 +133,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: ExplanationInput): string {
-    const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, teachingConstraints, taskMode } = input;
+    const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, taskMode } = input;
 
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\n');
 
@@ -134,10 +144,7 @@ LESSON DETAILS:
 - Topic: ${topic}
 - Section: ${section}
 
-TASK MODE: ${taskMode || 'GENERAL'}
-
-TEACHING CONSTRAINTS (must obey):
-${teachingConstraints ? JSON.stringify(teachingConstraints, null, 2) : 'None provided'}
+TASK MODE: ${taskMode}
 
 CRITICAL: Do NOT include specific numeric values from standards/tables unless they appear in the inputs above. Describe lookup procedures instead.
 
@@ -175,8 +182,8 @@ Return JSON in this exact format:
     }` : ''}
   ]${plan.needsDiagram ? `,
   "diagramElements": {
-    "elementIds": ["ring-final", "distribution-board", "mcb", ...],
-    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements. Element IDs should match vocabulary term IDs or use kebab-case descriptive slugs."
+    "elementIds": ["ring-final-circuit", "distribution-board", "mcb-32a", "protective-conductor"],
+    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements. Element IDs MUST use kebab-case format (lowercase, hyphens only, no spaces)."
   }` : ''}
 }
 

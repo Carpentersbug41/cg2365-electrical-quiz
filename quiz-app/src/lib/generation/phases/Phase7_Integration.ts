@@ -48,22 +48,23 @@ Your task is to create integrative questions that synthesize lesson concepts.
 QUESTION REQUIREMENTS:
 Question 1 (Connection - L2):
 - Links 2-3 major concepts from different parts of the lesson
-- Asks "how" or "why" these concepts relate
-- Expected answer: 2-3 sentences
+- Question text MUST include: "In your answer, include: (1) [specific concept A], (2) [specific concept B], (3) [specific concept C]"
+- Expected answer: 2-3 sentences covering all specified concepts
 - Shows understanding of relationships
 
 Question 2 (Synthesis - L3):
 - Integrates ALL major concepts from the lesson
-- Asks for comprehensive explanation showing full understanding
-- Explicitly request 3-4 sentences in the question
-- Expected answer: 3-4 sentences
-- Shows "big picture" understanding
+- Question text MUST include: "In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [concept D]"
+- Expected answer: 3-4 sentences covering all specified concepts
+- Shows "big picture" understanding with structured guidance
 
 EXPECTED ANSWER REQUIREMENTS:
-- EXACTLY 1-2 variants total per question (integrative questions are subjective)
-- Variants should capture different valid phrasings of the same concept, not trivial case/article differences
-- Focus on key concepts that must be present, not exact wording
-- These questions test synthesis, so allow for different ways students might express their understanding
+- EXACTLY 2-4 variants total per question (ARRAY FORMAT)
+- Use STRUCTURED PROMPTS that guide students to include specific elements
+- Question text should explicitly state: "In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C]"
+- expectedAnswer variants should be checklist-style canonical responses that include all required elements
+- Example variants should show different orderings or phrasings while covering all required concepts
+- This makes integrative questions gradeable with exact-match while still testing synthesis
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -99,18 +100,18 @@ Return JSON in this exact format:
     "questions": [
       {
         "id": "${lessonId}-INT-1",
-        "questionText": "[Connection question linking 2-3 major concepts] (2-3 sentences)",
+        "questionText": "[Connection question]. In your answer, include: (1) [specific concept A], (2) [specific concept B], (3) [how they relate]. (2-3 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "connection",
-        "expectedAnswer": ["[Answer showing relationships between concepts]", "[Alternative phrasing]"],
+        "expectedAnswer": ["[Answer covering concepts A, B, and relationship]", "[Alternative phrasing covering all 3 elements]", "[Third variant with different ordering]"],
         "hint": "[Hint about which concepts to connect]"
       },
       {
         "id": "${lessonId}-INT-2",
-        "questionText": "[Synthesis question integrating ALL lesson concepts] (3-4 sentences)",
+        "questionText": "[Synthesis question]. In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [how they work together]. (3-4 sentences)",
         "answerType": "short-text",
         "cognitiveLevel": "synthesis",
-        "expectedAnswer": ["[Comprehensive answer showing full integration]", "[Alternative phrasing]"],
+        "expectedAnswer": ["[Comprehensive answer covering all 4 elements]", "[Alternative phrasing covering all 4 elements]", "[Third variant with different structure]"],
         "hint": "[Strategic hint about what to include]"
       }
     ]
