@@ -55,11 +55,19 @@ ANCHOR FACT METHOD (REQUIRED):
 For EACH explanation block:
 1) Select EXACTLY 3 "Anchor Facts" from the explanation text.
    - Each Anchor Fact MUST be a short verbatim phrase/sentence copied from the explanation (6–20 words).
+   - **Copy plain text only** - NO markdown symbols (**, __, etc.), NO bullet prefixes, NO trailing punctuation
    - Each Anchor Fact MUST be important, specific, and gradeable (not vague).
 2) Write Q1, Q2, Q3 as simple recall questions, each testing ONE Anchor Fact.
 3) Write Q4 (L2) as a connection question that explicitly connects ALL THREE Anchor Facts.
 
 IMPORTANT: Do NOT output the anchor facts as separate fields (no schema changes). Use them internally to generate questions and expected answers.
+
+PLAIN TEXT EXTRACTION RULES:
+- Strip markdown formatting: **bold**, __underline__, *italic*
+- Remove bullet prefixes: *, -, •, 1., 2., etc.
+- Remove trailing punctuation: ., !, ?
+- Normalize whitespace: collapse multiple spaces to single space
+- Keep technical terms and units intact
 
 QUESTION STRUCTURE (for each check):
 - Question 1 (L1-A): Simple recall - tests Anchor Fact 1

@@ -14,13 +14,17 @@ export interface RefinementInput {
 }
 
 export interface RefinementPatch {
-  path: string;           // JSON path (e.g., "blocks[8].content.questions[3]")
-  operation: 'replace' | 'prepend' | 'append';  // Type of operation to perform
-  issue: string;          // Description of what's wrong
-  suggestion: string;     // What to fix
-  oldValue: any;          // Original value
-  newValue: any;          // Fixed value
-  pointsRecovered: number;// Estimated points recovered
+  op: 'replace' | 'prepend' | 'append';  // Patch operation type
+  path: string;           // JSON Pointer format (e.g., "/blocks/8/content/questions/3")
+  from?: unknown;         // Optional: original value for validation
+  value: unknown;         // New value or text to append/prepend
+  reason?: string;        // Optional: audit trail describing the fix
+  // Legacy fields for backward compatibility (internal use only)
+  issue?: string;
+  suggestion?: string;
+  oldValue?: any;
+  newValue?: any;
+  pointsRecovered?: number;
 }
 
 export interface RefinementOutput {
@@ -42,9 +46,9 @@ interface IssueToFix {
 
 interface LLMPatchResponse {
   patches: Array<{
+    op: 'replace' | 'prepend' | 'append';
     path: string;
-    operation: 'replace' | 'prepend' | 'append';  // Type of operation to perform
-    newValue: any;
+    value: any;
     reason: string;
   }>;
 }
@@ -226,13 +230,19 @@ export class Phase10_Refinement extends PhasePromptBuilder {
       }
       
       const relatedIssue = issues[idx] || issues[0];
+      const oldValue = this.getValueAtPath(originalLesson, llmPatch.path);
+      
       validPatches.push({
+        op: llmPatch.op || 'replace',  // Default to replace if not specified
         path: llmPatch.path,
-        operation: llmPatch.operation || 'replace',  // Default to replace if not specified
+        from: oldValue,
+        value: llmPatch.value,
+        reason: llmPatch.reason || relatedIssue.issue,
+        // Legacy fields for internal use
         issue: relatedIssue.issue,
         suggestion: relatedIssue.suggestion,
-        oldValue: this.getValueAtPath(originalLesson, llmPatch.path),
-        newValue: llmPatch.newValue,
+        oldValue: oldValue,
+        newValue: llmPatch.value,
         pointsRecovered: relatedIssue.pointsLost
       });
     });
@@ -296,24 +306,24 @@ export class Phase10_Refinement extends PhasePromptBuilder {
     for (const patch of patches) {
       try {
         const oldValue = this.getValueAtPath(cloned, patch.path);
-        let finalValue = patch.newValue;
+        let finalValue = patch.value;
         
         // Handle prepend/append operations for string values
-        if (patch.operation === 'prepend' && typeof oldValue === 'string') {
-          finalValue = patch.newValue + oldValue;
-        } else if (patch.operation === 'append' && typeof oldValue === 'string') {
-          finalValue = oldValue + patch.newValue;
+        if (patch.op === 'prepend' && typeof oldValue === 'string') {
+          finalValue = patch.value + oldValue;
+        } else if (patch.op === 'append' && typeof oldValue === 'string') {
+          finalValue = oldValue + patch.value;
         }
-        // For 'replace' operation or non-string values, just use newValue as-is
+        // For 'replace' operation or non-string values, just use value as-is
         
         this.setValueAtPath(cloned, patch.path, finalValue);
         const newValue = this.getValueAtPath(cloned, patch.path);
         
-        console.log(`   ✓ ${patch.path} [${patch.operation}]`);
+        console.log(`   ✓ ${patch.path} [${patch.op}]`);
         console.log(`      Old: "${oldValue}"`);
         console.log(`      New: "${newValue}"`);
-        console.log(`      Reason: ${patch.issue}`);
-        console.log(`      Expected improvement: +${patch.pointsRecovered} points`);
+        console.log(`      Reason: ${patch.reason || patch.issue}`);
+        console.log(`      Expected improvement: +${patch.pointsRecovered || 0} points`);
         successCount++;
       } catch (e) {
         console.warn(`   ✗ FAILED at ${patch.path}:`, e);
@@ -415,9 +425,9 @@ STRICT RULES:
    {
      "patches": [
        {
+         "op": "replace",  // Use "replace", "prepend", or "append"
          "path": "blocks[8].content.questions[3].questionText",
-         "operation": "replace",  // Use "replace", "prepend", or "append"
-         "newValue": "[exact value from suggestion]",
+         "value": "[exact value from suggestion]",
          "reason": "[brief reason]"
        }
      ]
@@ -439,9 +449,9 @@ EXAMPLE CORRECT OUTPUT:
 {
   "patches": [
     {
+      "op": "replace",
       "path": "blocks[4].content.questions[0].id",
-      "operation": "replace",
-      "newValue": "C1-L1-A",
+      "value": "C1-L1-A",
       "reason": "Removed lesson prefix per suggestion"
     }
   ]
@@ -455,9 +465,9 @@ CORRECT OUTPUT:
 {
   "patches": [
     {
+      "op": "replace",
       "path": "blocks[6].content.questions[2].expectedAnswer",
-      "operation": "replace",
-      "newValue": "20A ± 2A",
+      "value": "20A ± 2A",
       "reason": "Added specific tolerance per suggestion"
     }
   ]
@@ -471,9 +481,9 @@ CORRECT OUTPUT:
 {
   "patches": [
     {
+      "op": "prepend",
       "path": "blocks[3].content.content",
-      "operation": "prepend",
-      "newValue": "### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n",
+      "value": "### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n",
       "reason": "Added lesson intro per suggestion"
     }
   ]
@@ -487,9 +497,9 @@ CORRECT OUTPUT:
 {
   "patches": [
     {
+      "op": "append",
       "path": "blocks[5].content.content",
-      "operation": "append",
-      "newValue": "\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes",
+      "value": "\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes",
       "reason": "Added key points summary per suggestion"
     }
   ]
@@ -550,7 +560,7 @@ Generate patches to fix ONLY these specific issues. Return JSON in the format sp
 RESPONSE FORMAT (MANDATORY):
 {
   "patches": [
-    { "path": "...", "newValue": ..., "reason": "..." }
+    { "op": "replace", "path": "...", "value": ..., "reason": "..." }
   ]
 }
 

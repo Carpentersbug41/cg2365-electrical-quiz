@@ -915,43 +915,81 @@ export default function GeneratePage() {
                   </div>
                 )}
 
-                {/* Auto-Refinement Notification */}
-                {status.result?.refinementMetadata?.wasRefined && (
-                  <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-400 dark:border-purple-600 rounded-lg">
+                {/* Lesson Quality Score */}
+                {status.result?.refinementMetadata && (
+                  <div className={`p-4 border-2 rounded-lg ${
+                    status.result.refinementMetadata.wasRefined 
+                      ? 'bg-purple-50 dark:bg-purple-900/20 border-purple-400 dark:border-purple-600'
+                      : 'bg-green-50 dark:bg-green-900/20 border-green-400 dark:border-green-600'
+                  }`}>
                     <div className="flex items-center gap-2 mb-3">
-                      <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                      <h3 className="font-bold text-purple-900 dark:text-purple-200 text-lg">
-                        🔧 Auto-Refinement Activated
-                      </h3>
+                      {status.result.refinementMetadata.wasRefined ? (
+                        <>
+                          <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                          </svg>
+                          <h3 className="font-bold text-purple-900 dark:text-purple-200 text-lg">
+                            🔧 Auto-Refinement Activated
+                          </h3>
+                        </>
+                      ) : (
+                        <>
+                          <svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                          <h3 className="font-bold text-green-900 dark:text-green-200 text-lg">
+                            ✅ Lesson Quality Score
+                          </h3>
+                        </>
+                      )}
                     </div>
                     <div className="space-y-3">
-                      <div className="grid grid-cols-3 gap-4 text-center">
-                        <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
-                          <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                            {status.result.refinementMetadata.originalScore}
+                      {status.result.refinementMetadata.wasRefined ? (
+                        <>
+                          <div className="grid grid-cols-3 gap-4 text-center">
+                            <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
+                              <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                                {status.result.refinementMetadata.originalScore}
+                              </div>
+                              <div className="text-xs text-gray-600 dark:text-gray-400">Original Score</div>
+                            </div>
+                            <div className="flex items-center justify-center">
+                              <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                              </svg>
+                            </div>
+                            <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
+                              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                                {status.result.refinementMetadata.finalScore}
+                              </div>
+                              <div className="text-xs text-gray-600 dark:text-gray-400">Refined Score</div>
+                            </div>
                           </div>
-                          <div className="text-xs text-gray-600 dark:text-gray-400">Original Score</div>
-                        </div>
-                        <div className="flex items-center justify-center">
-                          <svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                        </div>
-                        <div className="bg-white dark:bg-gray-800 p-3 rounded-lg">
-                          <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                            {status.result.refinementMetadata.finalScore}
+                          <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
+                            <p className="text-sm text-gray-800 dark:text-slate-200">
+                              <strong>Applied {status.result.refinementMetadata.patchesApplied} automatic fixes</strong> to improve lesson quality. 
+                              Both the original and refined versions have been saved for comparison.
+                            </p>
                           </div>
-                          <div className="text-xs text-gray-600 dark:text-gray-400">Refined Score</div>
-                        </div>
-                      </div>
-                      <div className="p-3 bg-purple-100 dark:bg-purple-900/30 rounded-lg">
-                        <p className="text-sm text-gray-800 dark:text-slate-200">
-                          <strong>Applied {status.result.refinementMetadata.patchesApplied} automatic fixes</strong> to improve lesson quality. 
-                          Both the original and refined versions have been saved for comparison.
-                        </p>
-                      </div>
+                        </>
+                      ) : (
+                        <>
+                          <div className="flex justify-center">
+                            <div className="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                              <div className="text-3xl font-bold text-green-600 dark:text-green-400">
+                                {status.result.refinementMetadata.finalScore}
+                                <span className="text-lg text-gray-600 dark:text-gray-400">/100</span>
+                              </div>
+                              <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Lesson Quality Score</div>
+                            </div>
+                          </div>
+                          <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                            <p className="text-sm text-gray-800 dark:text-slate-200">
+                              <strong>Excellent quality!</strong> This lesson scored {status.result.refinementMetadata.finalScore}/100 and met the quality threshold (≥93), so no refinement was needed.
+                            </p>
+                          </div>
+                        </>
+                      )}
                       {status.result.refinementMetadata.details && status.result.refinementMetadata.details.length > 0 && (
                         <details className="mt-2">
                           <summary className="cursor-pointer text-sm font-semibold text-purple-900 dark:text-purple-200 hover:underline">
@@ -969,12 +1007,14 @@ export default function GeneratePage() {
                         </details>
                       )}
                     </div>
-                    <div className="mt-3 pt-3 border-t border-purple-300 dark:border-purple-700">
-                      <p className="text-xs text-purple-800 dark:text-purple-300">
-                        💡 <strong>Compare versions:</strong> Check <code className="bg-purple-200 dark:bg-purple-900 px-1 py-0.5 rounded">{status.result.lessonFile}</code> (refined) 
-                        vs <code className="bg-purple-200 dark:bg-purple-900 px-1 py-0.5 rounded">{status.result.lessonFile.replace('.json', '-original.json')}</code>
-                      </p>
-                    </div>
+                    {status.result.refinementMetadata.wasRefined && (
+                      <div className="mt-3 pt-3 border-t border-purple-300 dark:border-purple-700">
+                        <p className="text-xs text-purple-800 dark:text-purple-300">
+                          💡 <strong>Compare versions:</strong> Check <code className="bg-purple-200 dark:bg-purple-900 px-1 py-0.5 rounded">{status.result.lessonFile}</code> (refined) 
+                          vs <code className="bg-purple-200 dark:bg-purple-900 px-1 py-0.5 rounded">{status.result.lessonFile.replace('.json', '-original.json')}</code>
+                        </p>
+                      </div>
+                    )}
                   </div>
                 )}
 

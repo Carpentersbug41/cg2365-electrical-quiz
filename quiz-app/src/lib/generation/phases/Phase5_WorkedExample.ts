@@ -68,17 +68,22 @@ export class Phase5_WorkedExample extends PhasePromptBuilder {
 
 Your task is to create a Worked Example (I Do) and a Guided Practice (We Do) that model and scaffold the SAME skill.
 
-TASK MODE OUTPUT CONTRACT (CRITICAL):
+UNIVERSAL WORKED EXAMPLE POLICY (CRITICAL):
+ALWAYS generate BOTH workedExample AND guidedPractice for ALL lesson types.
+Use task-appropriate format based on TASK_MODE:
+
+- If TASK_MODE includes "CALCULATION":
+  Output a CALCULATION worked example with formulas and arithmetic steps.
 - If TASK_MODE includes "PURPOSE_ONLY" or "IDENTIFICATION":
   Output a SELECTION/IDENTIFICATION worked example (no procedural/operation steps).
   Section style: selection cues, what it's for, what problem it solves, common wrong choice.
 - If TASK_MODE includes "SELECTION" or "DIAGNOSIS":
   Output a DECISION-PROCESS worked example (criteria and reasoning, not physical steps).
-- If TASK_MODE includes "CALCULATION":
-  Output a CALCULATION worked example with formulas and arithmetic steps.
 - If TASK_MODE includes "PROCEDURE" (and NOT PURPOSE_ONLY):
-  Output a PROCEDURAL worked example (step-by-step allowed).
-- Default: treat as PROCEDURE unless constrained.
+  Output a PROCEDURAL worked example (step-by-step allowed, but keep safe).
+- Default: Use SELECTION format (4-step decision/selection example).
+
+Worked examples provide scaffolding for all learning types, not just calculations.
 
 WORKED EXAMPLE RULES:
 - Worked example MUST have 3–5 steps (EXCEPT selection format which is fixed at 4 steps).

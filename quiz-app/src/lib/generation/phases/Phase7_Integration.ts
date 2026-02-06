@@ -59,6 +59,12 @@ Question 2 (Synthesis - L3):
 - Expected answer: 3-4 sentences
 - Shows "big picture" understanding
 
+EXPECTED ANSWER REQUIREMENTS:
+- EXACTLY 1-2 variants total per question (integrative questions are subjective)
+- Variants should capture different valid phrasings of the same concept, not trivial case/article differences
+- Focus on key concepts that must be present, not exact wording
+- These questions test synthesis, so allow for different ways students might express their understanding
+
 ${this.getJsonOutputInstructions()}`;
   }
 

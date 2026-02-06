@@ -35,6 +35,7 @@ export interface GenerationRequest {
   layout?: 'split-vis' | 'linear-flow';
   prerequisites?: string[];
   prerequisiteAnchors?: string; // Extracted key facts from prerequisite lessons for spaced review
+  foundationAnchors?: string; // Baseline electrical knowledge for lessons with no prerequisites
   mustHaveTopics?: string;
   additionalInstructions?: string;
   youtubeUrl?: string;

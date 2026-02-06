@@ -375,10 +375,31 @@ export class SequentialLessonGenerator {
         }
       } else {
         console.log(`✅ [Scoring] Score meets threshold (${initialScore.total} >= 93), no refinement needed`);
+        phases.push({
+          phase: 'Auto-Refinement',
+          status: 'skipped',
+          duration: 0,
+          output: `Score meets threshold (${initialScore.total}/100 >= ${threshold})`
+        });
       }
 
       debugLog('SEQUENTIAL_GEN_COMPLETE', { lessonId, finalScore: refinementResult?.refinedScore || initialScore.total });
       console.log(`✅ [Sequential] Generation complete for ${lessonId}`);
+
+      // Always include score metadata
+      const scoreMetadata = refinementResult && refinementResult.improvementSuccess ? {
+        wasRefined: true,
+        originalScore: initialScore.total,
+        finalScore: refinementResult.refinedScore,
+        patchesApplied: refinementResult.patchesApplied.length,
+        details: refinementResult.patchesApplied
+      } : {
+        wasRefined: false,
+        originalScore: initialScore.total,
+        finalScore: initialScore.total,
+        patchesApplied: 0,
+        details: []
+      };
 
       return {
         success: true,
@@ -386,13 +407,7 @@ export class SequentialLessonGenerator {
         originalLesson,
         rejectedRefinedLesson,
         phases,
-        refinementMetadata: refinementResult && refinementResult.improvementSuccess ? {
-          wasRefined: true,
-          originalScore: initialScore.total,
-          finalScore: refinementResult.refinedScore,
-          patchesApplied: refinementResult.patchesApplied.length,
-          details: refinementResult.patchesApplied
-        } : undefined
+        refinementMetadata: scoreMetadata
       };
 
     } catch (error) {

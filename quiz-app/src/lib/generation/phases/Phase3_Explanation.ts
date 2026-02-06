@@ -1,6 +1,6 @@
 /**
  * Phase 3: Explanation
- * Generates comprehensive teaching content following 8-part structure
+ * Generates comprehensive teaching content following 9-part structure
  */
 
 import { PhasePromptBuilder } from './PhasePromptBuilder';
@@ -62,8 +62,9 @@ REQUIRED EXPLANATION STRUCTURE (EACH explanation block MUST include these headin
 4) **Key facts / rules**  (REQUIRED heading exactly; use 4–8 bullet points)
 5) **[MODE SECTION]** (heading depends on TASK MODE below)
 6) **Common mistakes**
-7) **Quick recap** (1 short paragraph)
-8) ### Coming Up Next (1–2 sentences)
+7) **Key Points** (3-5 bullet summary of main takeaways for reinforcement)
+8) **Quick recap** (1 short paragraph)
+9) ### Coming Up Next (1–2 sentences)
 
 TASK MODE OVERRIDES (CRITICAL — section 5 heading + content rules)
 - If TASK_MODE includes "PURPOSE_ONLY":
@@ -134,7 +135,7 @@ ${plan.explanationSections.map((s, i) => `Section ${i + 1} (order ${s.order}):
 ${mustHaveTopics ? `\n\nMUST COVER THESE TOPICS:\n${mustHaveTopics}` : ''}
 ${additionalInstructions ? `\n\nADDITIONAL INSTRUCTIONS:\n${additionalInstructions}` : ''}
 
-Write ${plan.explanationSections.length} explanation block(s) following the required 8-part structure with MODE-DEPENDENT section 5 heading.
+Write ${plan.explanationSections.length} explanation block(s) following the required 9-part structure with MODE-DEPENDENT section 5 heading.
 
 Return JSON in this exact format:
 {
@@ -143,23 +144,23 @@ Return JSON in this exact format:
       "id": "${lessonId}-explain-1",
       "order": ${plan.explanationSections[0]?.order || 4},
       "title": "[Section title]",
-      "content": "[400-600 word explanation following 8-part structure]"
+      "content": "[400-600 word explanation following 9-part structure]"
     }${plan.explanationSections.length > 1 ? `,
     {
       "id": "${lessonId}-explain-2",
       "order": ${plan.explanationSections[1]?.order || 5},
       "title": "[Section 2 title]",
-      "content": "[400-600 word explanation following 8-part structure]"
+      "content": "[400-600 word explanation following 9-part structure]"
     }` : ''}
   ]${plan.needsDiagram ? `,
   "diagramElements": {
-    "elementIds": ["Element 1", "Element 2", "Element 3", ...],
-    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements"
+    "elementIds": ["ring-final", "distribution-board", "mcb", ...],
+    "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements. Element IDs should match vocabulary term IDs or use kebab-case descriptive slugs."
   }` : ''}
 }
 
 CRITICAL REQUIREMENTS:
-- Each explanation MUST follow the required 8-part structure:
+- Each explanation MUST follow the required 9-part structure:
   1) ### In this lesson (with 3 bullet takeaways)
   2) **What this is**
   3) **Why it matters**
@@ -172,8 +173,9 @@ CRITICAL REQUIREMENTS:
      * PROCEDURE (not PURPOSE_ONLY) -> **How to do it**
      * Default -> **How to use it**
   6) **Common mistakes**
-  7) **Quick recap**
-  8) ### Coming Up Next
+  7) **Key Points** (3-5 bullet summary)
+  8) **Quick recap**
+  9) ### Coming Up Next
 - MUST include "**Key facts / rules**" section (use exactly this heading)
 - Address ALL learning outcomes explicitly (use LO phrases in at least one sentence per LO)
 - Use vocabulary terms exactly as defined

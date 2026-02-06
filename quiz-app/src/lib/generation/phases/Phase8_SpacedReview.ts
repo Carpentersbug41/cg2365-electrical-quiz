@@ -9,6 +9,7 @@ export interface SpacedReviewInput {
   lessonId: string;
   prerequisites: string[];
   prerequisiteAnchors?: string;
+  foundationAnchors?: string; // Baseline knowledge for lessons with no prerequisites
 }
 
 export interface SpacedReviewQuestion {
@@ -38,36 +39,74 @@ export class Phase8_SpacedReview extends PhasePromptBuilder {
   protected buildSystemPrompt(): string {
     return `You are a spaced repetition specialist for C&G 2365 Electrical Training.
 
-Your task is to create review questions from PREREQUISITE lessons only.
+Your task is to create review questions from prerequisite lessons or foundation knowledge.
 
 CRITICAL RULES:
-- Questions MUST review concepts from prerequisite lessons (provided as anchors)
+- If prerequisites exist: Questions MUST review concepts from prerequisite lessons (provided as prerequisiteAnchors)
+- If no prerequisites but foundationAnchors provided: Questions review baseline electrical knowledge
 - Do NOT test current lesson content
-- Do NOT use generic fundamentals unless they appeared in prerequisites
 - Questions should be simple recall (appropriate for quick review)
-- Each question must be traceable to a specific prerequisite lesson
+- Each question must be traceable to a specific prerequisite or foundation concept
 
 FIELD NAME: Use "questionText" (NOT "attText", "question_text", or any variant)
+
+EXPECTED ANSWER REQUIREMENTS:
+- EXACTLY 2-4 variants total per question (simple recall questions)
+- Variants ONLY for normalization: case, pluralization, articles (a/an/the), hyphenation
+- NO broad paraphrases or synonyms that change meaning
+- Spaced review tests retention, so answers should be specific
 
 ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: SpacedReviewInput): string {
-    const { lessonId, prerequisites, prerequisiteAnchors } = input;
+    const { lessonId, prerequisites, prerequisiteAnchors, foundationAnchors } = input;
 
-    if (!prerequisites || prerequisites.length === 0) {
-      return `This lesson has no prerequisites.
+    // If no prerequisites AND no foundation anchors, return empty
+    if ((!prerequisites || prerequisites.length === 0) && !foundationAnchors) {
+      return `This lesson has no prerequisites or foundation anchors.
 
 Return:
 {
   "spacedReview": {
     "id": "${lessonId}-spaced-review",
     "order": 10,
-    "title": "Spaced Review (from prerequisites)",
+    "title": "Spaced Review",
     "questions": [],
-    "notes": "No prerequisites for this foundational lesson"
+    "notes": "No prerequisites or foundation anchors for this lesson"
   }
 }`;
+    }
+
+    // If no prerequisites BUT foundation anchors provided, use them
+    if ((!prerequisites || prerequisites.length === 0) && foundationAnchors) {
+      return `This lesson has no prerequisites, but foundational electrical knowledge should be reviewed.
+
+FOUNDATION ANCHORS (baseline electrical knowledge):
+${foundationAnchors}
+
+Create 3-4 spaced review questions from these foundational concepts.
+Each question should use "notes" field to indicate "FOUNDATION" as source.
+
+Return JSON in this exact format:
+{
+  "spacedReview": {
+    "id": "${lessonId}-spaced-review",
+    "order": 10,
+    "title": "Spaced Review (foundational concepts)",
+    "questions": [
+      {
+        "id": "${lessonId}-SR-1",
+        "questionText": "[Review question from foundation knowledge]",
+        "expectedAnswer": ["[Concise answer]", "[Alternative 1]", "[Alternative 2]"],
+        "hint": "[Helpful hint]"
+      }
+    ],
+    "notes": "FOUNDATION"
+  }
+}
+
+CRITICAL: Questions must derive from the foundation anchors provided. Each answer should have 2-4 variants for normalization only.`;
     }
 
     return `Create spaced review questions from prerequisite lessons.
@@ -92,7 +131,7 @@ Return JSON in this exact format:
       {
         "id": "${lessonId}-SR-1",
         "questionText": "[Review question from prerequisite 1]",
-        "expectedAnswer": ["[Concise answer]", "[Alternative phrasing]"],
+        "expectedAnswer": ["[Concise answer]", "[Alternative 1]", "[Alternative 2]"],
         "hint": "[Helpful hint]"
       },
       {

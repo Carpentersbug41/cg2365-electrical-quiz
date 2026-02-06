@@ -113,10 +113,15 @@ expectedAnswer for numeric:
 
 EXPECTED ANSWER REQUIREMENTS (CRITICAL - marking robustness):
 
-For ALL questions:
+For conceptual/text questions:
 - 1 canonical answer (exact wording from explanation)
-- Maximum 2-3 variants (case/singular/plural/acronym only)
-- NO broad paraphrases that accept incorrect understanding
+- EXACTLY 2-4 variants total (not 2-6)
+- Variants ONLY for normalization: case, pluralization, articles (a/an/the), hyphenation
+- NO broad paraphrases or synonyms that change meaning
+
+For numeric/calculation questions:
+- EXACTLY 1-2 variants (e.g., ["40", "40.0"])
+- Handles trailing zeros and minor rounding differences only
 - NO generic catch-all phrases
 
 For percentage/number answers:

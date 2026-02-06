@@ -21,17 +21,17 @@ export function normalizeLessonSchema(lesson: Lesson): NormalizationResult {
   const normalized: Lesson = JSON.parse(JSON.stringify(lesson)); // deep clone
 
   // Fix 1: Ensure all block IDs have lesson prefix
+  // Simply prepend lesson ID if missing (preserves full existing ID)
   normalized.blocks.forEach((block, blockIdx) => {
     if (!block.id.startsWith(normalized.id + '-')) {
       const oldId = block.id;
-      // Extract the suffix (e.g., "outcomes" from "203-3A4-outcomes" or just "outcomes")
-      const suffix = block.id.includes('-') ? block.id.split('-').slice(-1)[0] : block.id;
-      block.id = `${normalized.id}-${suffix}`;
+      block.id = `${normalized.id}-${block.id}`;
       fixes.push(`Block ${blockIdx} ID: '${oldId}' → '${block.id}'`);
     }
   });
 
   // Fix 2: Ensure all question IDs have lesson prefix
+  // Simply prepend lesson ID if missing (preserves full existing ID)
   normalized.blocks.forEach((block, blockIdx) => {
     if (block.content?.questions && Array.isArray(block.content.questions)) {
       block.content.questions.forEach((q: any, qIdx: number) => {
@@ -79,27 +79,42 @@ export function normalizeLessonSchema(lesson: Lesson): NormalizationResult {
     }
   });
 
-  // Fix 4: Ensure block orders are monotonic (no duplicates)
+  // Fix 4: Ensure block orders are unique (no duplicates)
+  // CRITICAL: Never renumber canonical orders (1,2,3,4,4.5,5,5.5,6,7,8,9.5,10)
   const orders = normalized.blocks.map(b => b.order);
   const hasDuplicates = orders.length !== new Set(orders).size;
   
   if (hasDuplicates) {
-    fixes.push('Fixed duplicate block orders - re-numbered maintaining relative positions');
-    // Sort by current order to maintain intended sequence
+    const canonicalOrders = [1, 2, 3, 4, 4.5, 5, 5.5, 6, 7, 8, 9.5, 10];
+    const duplicateOrders = orders.filter((o, i) => orders.indexOf(o) !== i);
+    const canonicalDuplicates = duplicateOrders.filter(o => canonicalOrders.includes(o));
+    
+    if (canonicalDuplicates.length > 0) {
+      // FAIL-FAST: Canonical order duplication breaks contract
+      throw new Error(
+        `Canonical order duplication detected: [${canonicalDuplicates.join(', ')}]. ` +
+        `Canonical orders (1,2,3,4,4.5,5,5.5,6,7,8,9.5,10) must be unique. ` +
+        `This indicates a phase output error that cannot be auto-fixed.`
+      );
+    }
+    
+    // Only fix non-canonical duplicate orders
+    fixes.push('Fixed duplicate non-canonical block orders');
     normalized.blocks.sort((a, b) => a.order - b.order);
     
-    // Re-number blocks with proper spacing
-    // Use integers with gaps: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-    // This maintains relative order while eliminating duplicates
-    let currentOrder = 1;
+    // Re-number only non-canonical duplicates
+    const seen = new Set<number>();
     normalized.blocks.forEach((block, idx) => {
-      if (idx > 0 && block.order === normalized.blocks[idx - 1].order) {
-        // Duplicate detected - assign next integer
-        block.order = currentOrder++;
-      } else {
-        // Keep existing order if no conflict
-        currentOrder = Math.ceil(block.order) + 1;
+      if (seen.has(block.order) && !canonicalOrders.includes(block.order)) {
+        // Find next available non-canonical order
+        let newOrder = block.order + 0.1;
+        while (seen.has(newOrder) || canonicalOrders.includes(newOrder)) {
+          newOrder += 0.1;
+        }
+        block.order = Math.round(newOrder * 10) / 10; // Round to 1 decimal
+        fixes.push(`Block ${idx} order changed to ${block.order} (non-canonical duplicate)`);
       }
+      seen.add(block.order);
     });
   }
 
