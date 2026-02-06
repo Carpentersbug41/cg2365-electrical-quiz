@@ -3,9 +3,14 @@
  * Orchestrates 9 specialized phases to generate high-quality lessons
  */
 
-import { GenerationRequest, Lesson, DebugInfo } from './types';
+import { GenerationRequest, Lesson, DebugInfo, GenerationDebugBundle } from './types';
 import { preprocessToValidJson, safeJsonParse, validateLLMResponse, cleanCodeBlocks, debugLog } from './utils';
 import { requiresWorkedExample, classifyLessonTask, isPurposeOnly, getTaskModeString } from './taskClassifier';
+import { DebugBundleCollector, saveDebugBundle } from './debugBundle';
+import { validatePatch, shouldRejectPatch } from './patchValidator';
+import { isolatePatches } from './patchIsolationScorer';
+import { analyzeRefinementRun } from './postmortemAnalyzer';
+import { v4 as uuidv4 } from 'uuid';
 
 // Phase imports
 import { Phase1_Planning, PlanningOutput } from './phases/Phase1_Planning';
@@ -21,6 +26,7 @@ import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/
 import { LLMScoringService, RubricScore } from './llmScoringService';
 import { getRefinementConfig, getScoringConfig } from './config';
 import { normalizeLessonSchema } from './lessonNormalizer';
+import { saveDiagnosticData } from './diagnosticUtils';
 
 export interface PhaseProgress {
   phase: string;
@@ -45,6 +51,7 @@ export interface SequentialGeneratorResult {
     patchesApplied: number;
     details: RefinementPatch[];
   };
+  debugBundle?: GenerationDebugBundle;
 }
 
 /**
@@ -96,6 +103,29 @@ export class SequentialLessonGenerator {
   async generate(request: GenerationRequest): Promise<SequentialGeneratorResult> {
     const lessonId = `${request.unit}-${request.lessonId}`;
     const phases: PhaseProgress[] = [];
+    
+    // Create debug bundle collector
+    const debugCollector = new DebugBundleCollector({
+      runId: uuidv4(),
+      timestampISO: new Date().toISOString(),
+      lessonMeta: {
+        id: lessonId,
+        unit: request.unit,
+        topic: request.topic,
+        title: `${lessonId} — ${request.topic}`,
+      },
+      models: {
+        generator: process.env.LLM_MODEL || 'gemini-2.0-flash-exp',
+        scorer: process.env.LLM_MODEL || 'gemini-2.0-flash-exp',
+        phase10: process.env.LLM_MODEL || 'gemini-2.0-flash-exp',
+        postmortem: process.env.LLM_MODEL || 'gemini-2.0-flash-exp',
+      },
+      config: {
+        phase10Threshold: getRefinementConfig().scoreThreshold,
+        phase10MaxFixes: getRefinementConfig().maxFixes,
+        environment: process.env.NODE_ENV || 'development',
+      },
+    });
     
     try {
       debugLog('SEQUENTIAL_GEN_START', { lessonId });
@@ -287,27 +317,33 @@ export class SequentialLessonGenerator {
         originalLesson = lesson;
         
         try {
-          refinementResult = await this.runPhase10(lesson, initialScore);
+          refinementResult = await this.runPhase10(lesson, initialScore, debugCollector);
           
-          // Re-score refined version if patches were applied
+          // Refinement result now includes refined score from isolation scoring
           if (refinementResult && refinementResult.improvementSuccess) {
-            // Audit refined lesson before scoring
+            // Audit refined lesson
             this.phase10.auditAllIDs(refinementResult.refined);
             
-            // Verbose logging: Before re-scoring
-            console.log(`\n📊 [Re-scoring] Running scorer on refined lesson...`);
-            console.log(`📊 [Re-scoring] Refined lesson has ${refinementResult.refined.blocks.length} blocks`);
-            console.log(`📊 [Re-scoring] Applied ${refinementResult.patchesApplied.length} patches:`);
+            // Verbose logging: Score already computed in runPhase10
+            console.log(`\n📊 [Score Summary] Refined lesson scored during isolation phase`);
+            console.log(`📊 [Score Summary] Refined lesson has ${refinementResult.refined.blocks.length} blocks`);
+            console.log(`📊 [Score Summary] Applied ${refinementResult.patchesApplied.length} patches:`);
             refinementResult.patchesApplied.forEach((patch, idx) => {
               console.log(`   ${idx + 1}. ${patch.path}`);
-              console.log(`      Issue: ${patch.issue}`);
-              console.log(`      Fix: ${patch.oldValue} → ${patch.newValue}`);
-              console.log(`      Points to recover: ${patch.pointsRecovered}`);
+              console.log(`      Issue: ${patch.issue || patch.reason}`);
+              console.log(`      Fix: ${patch.oldValue} → ${patch.value}`);
             });
             console.log('');
             
-            const refinedScore = await this.scorer.scoreLesson(refinementResult.refined);
-            refinementResult.refinedScore = refinedScore.total;
+            // Use the refined score from runPhase10 (already computed during isolation scoring)
+            const refinedScore = {
+              total: refinementResult.refinedScore,
+              details: [],
+              breakdown: {} as any,
+              grade: refinementResult.refinedScore >= 95 ? 'Ship it' : 
+                     refinementResult.refinedScore >= 90 ? 'Strong' :
+                     refinementResult.refinedScore >= 85 ? 'Usable' : 'Needs rework'
+            };
             
             // Verbose logging: Detailed score comparison
             console.log(`\n📊 [Re-scoring] Detailed Score Comparison:`);
@@ -333,6 +369,17 @@ export class SequentialLessonGenerator {
               console.log(`✅ [Refinement] Original lesson saved for comparison`);
               finalLesson = refinementResult.refined;
               
+              // Save diagnostic data for successful refinement
+              await saveDiagnosticData(
+                lesson.id,
+                initialScore,
+                refinedScore,
+                refinementResult.patchesApplied,
+                true, // wasAccepted
+                refinementResult.originalLesson,
+                refinementResult.refined
+              );
+              
               phases.push({
                 phase: 'Auto-Refinement',
                 status: 'completed',
@@ -348,6 +395,17 @@ export class SequentialLessonGenerator {
               
               // Store rejected refined lesson for debugging
               rejectedRefinedLesson = refinementResult.refined;
+              
+              // Save diagnostic data for failed refinement
+              await saveDiagnosticData(
+                lesson.id,
+                initialScore,
+                refinedScore,
+                refinementResult.patchesApplied,
+                false, // wasAccepted
+                refinementResult.originalLesson,
+                refinementResult.refined
+              );
               
               phases.push({
                 phase: 'Auto-Refinement',
@@ -407,7 +465,8 @@ export class SequentialLessonGenerator {
         originalLesson,
         rejectedRefinedLesson,
         phases,
-        refinementMetadata: scoreMetadata
+        refinementMetadata: scoreMetadata,
+        debugBundle: debugCollector.getBundle(),
       };
 
     } catch (error) {
@@ -754,12 +813,15 @@ export class SequentialLessonGenerator {
   /**
    * Phase 10: Auto-Refinement
    */
-  private async runPhase10(lesson: Lesson, rubricScore: RubricScore): Promise<RefinementOutput | null> {
+  private async runPhase10(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
     console.log('  🔧 Phase 10: Auto-refinement...');
     debugLog('PHASE10_START', { lessonId: lesson.id, initialScore: rubricScore.total });
 
     // Prepare refinement input (extract top issues)
     const { issues, lesson: lessonForPrompt } = this.phase10.prepareRefinementInput(lesson, rubricScore, getRefinementConfig().maxFixes);
+    
+    // Record baseline in debug bundle
+    debugCollector.recordBaseline(lesson, rubricScore, issues);
     
     if (issues.length === 0) {
       console.log('    ✓ No fixable issues found');
@@ -773,6 +835,9 @@ export class SequentialLessonGenerator {
     
     // Get prompts from Phase10
     const prompts = this.phase10.getPrompts({ lesson: lessonForPrompt, issues });
+    
+    // Record prompts in debug bundle
+    debugCollector.recordPhase10Prompts(prompts.systemPrompt, prompts.userPrompt);
 
     // Call LLM for patches
     const response = await this.generateWithRetry(
@@ -783,43 +848,109 @@ export class SequentialLessonGenerator {
       false,
       8000
     );
+    
+    // Record LLM response
+    debugCollector.recordPhase10Response(response, undefined);
 
     const parsed = this.parseResponse<{ patches: Array<{ path: string; newValue: any; reason: string }> }>(
       response, 
       'Phase10_Refinement'
     );
     
+    // Record parsed response
+    debugCollector.recordPhase10Response(response, parsed.data);
+    
     if (!parsed.success || !parsed.data || !parsed.data.patches || parsed.data.patches.length === 0) {
       debugLog('PHASE10_FAILED', { error: parsed.error });
       console.log('    ⚠️  No patches generated');
+      debugCollector.recordAcceptance(false, 'No patches generated');
+      await saveDebugBundle(debugCollector.getBundle());
       return null;
     }
 
     // Convert LLM patches to RefinementPatches
     const refinementPatches = this.phase10.convertLLMPatches(parsed.data, issues, lesson);
     
-    // Apply patches
-    const refinedLesson = this.phase10.applyPatches(lesson, refinementPatches);
+    // Validate patches before applying
+    console.log(`\n🔍 [Validation] Validating ${refinementPatches.length} patches...`);
+    const validatedPatches = refinementPatches.map((patch, idx) => {
+      const validation = validatePatch(lesson, patch);
+      const rejected = shouldRejectPatch(validation);
+      
+      if (rejected) {
+        console.log(`   ✗ Patch ${idx + 1} REJECTED: ${validation.reasons.join('; ')}`);
+      } else {
+        console.log(`   ✓ Patch ${idx + 1} validated: ${patch.path}`);
+      }
+      
+      return {
+        ...patch,
+        validation,
+        applyStatus: rejected ? ('rejected' as const) : ('applied' as const),
+      };
+    });
     
-    // Validate
+    // Filter out rejected patches
+    const acceptedPatches = validatedPatches.filter(p => p.applyStatus === 'applied');
+    console.log(`\n🔍 [Validation] ${acceptedPatches.length}/${refinementPatches.length} patches accepted`);
+    
+    if (acceptedPatches.length === 0) {
+      console.log('    ⚠️  All patches rejected by validation');
+      debugCollector.recordAcceptance(false, 'All patches rejected by validation');
+      await saveDebugBundle(debugCollector.getBundle());
+      return null;
+    }
+    
+    // Apply accepted patches
+    const refinedLesson = this.phase10.applyPatches(lesson, acceptedPatches);
+    
+    // Validate refined lesson structure
     if (!this.phase10.validatePatches(lesson, refinedLesson)) {
       console.log('    ❌ Validation failed, keeping original');
+      debugCollector.recordAcceptance(false, 'Post-apply validation failed');
+      await saveDebugBundle(debugCollector.getBundle());
       return null;
     }
 
-    debugLog('PHASE10_COMPLETE', { patchCount: refinementPatches.length });
-    console.log(`    ✓ Applied ${refinementPatches.length} patches`);
+    // Run patch isolation scoring (sequential + independent)
+    console.log(`\n🔬 [Isolation] Starting patch isolation scoring...`);
+    const patchesWithIsolation = await isolatePatches(lesson, acceptedPatches, this.scorer);
+    
+    // Record patches in debug bundle
+    debugCollector.recordPatches(patchesWithIsolation);
+    
+    // Re-score refined lesson
+    console.log(`\n📊 [Re-scoring] Scoring refined lesson...`);
+    const refinedScore = await this.scorer.scoreLesson(refinedLesson);
+    
+    // Record refined lesson and score
+    debugCollector.recordRefined(refinedLesson, refinedScore);
+    
+    // Determine if refinement was successful
+    const scoreImproved = refinedScore.total > rubricScore.total;
+    debugCollector.recordAcceptance(scoreImproved, scoreImproved ? undefined : 'Score did not improve');
+    
+    // Run postmortem analysis
+    console.log(`\n🔍 [Postmortem] Running postmortem analysis...`);
+    const postmortem = await analyzeRefinementRun(debugCollector.getBundle(), this.generateWithRetry);
+    debugCollector.recordPostmortem(postmortem);
+    
+    // Save debug bundle to disk
+    await saveDebugBundle(debugCollector.getBundle());
+    
+    debugLog('PHASE10_COMPLETE', { patchCount: acceptedPatches.length });
+    console.log(`    ✓ Applied ${acceptedPatches.length} patches`);
     
     // Log detailed patch information
-    this.phase10.logPatches(refinementPatches);
+    this.phase10.logPatches(acceptedPatches);
     
     return {
       originalLesson: lesson,
       refined: refinedLesson,
-      patchesApplied: refinementPatches,
+      patchesApplied: acceptedPatches,
       originalScore: rubricScore.total,
-      refinedScore: rubricScore.total, // Will be re-scored by caller
-      improvementSuccess: true
+      refinedScore: refinedScore.total,
+      improvementSuccess: scoreImproved
     };
   }
 

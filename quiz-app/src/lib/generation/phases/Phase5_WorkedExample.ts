@@ -68,8 +68,9 @@ export class Phase5_WorkedExample extends PhasePromptBuilder {
 
 Your task is to create a Worked Example (I Do) and a Guided Practice (We Do) that model and scaffold the SAME skill.
 
-UNIVERSAL WORKED EXAMPLE POLICY (CRITICAL):
-ALWAYS generate BOTH workedExample AND guidedPractice for ALL lesson types.
+WORKED EXAMPLE GENERATION POLICY (CRITICAL):
+Generate BOTH workedExample AND guidedPractice when needed based on NEEDS_WORKED_EXAMPLE flag or task type.
+If NEEDS_WORKED_EXAMPLE is false AND TASK_MODE is not PURPOSE_ONLY/IDENTIFICATION, return null for both.
 Use task-appropriate format based on TASK_MODE:
 
 - If TASK_MODE includes "CALCULATION":

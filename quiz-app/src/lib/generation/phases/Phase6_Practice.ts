@@ -235,7 +235,10 @@ REQUIREMENTS:
   * Example: expectedAnswer: ["5.5", "5.50"], hint: "Answer in millimetres (mm)"
 - For short-text questions:
   * answerType: "short-text"
-  * expectedAnswer: Array with 4-6 acceptable phrasings (minimum 2-4 for definitions)
+  * expectedAnswer: Array with EXACTLY 2-4 variants based on answer type:
+    - Definitions/terms: 2-3 variants (canonical + normalization only)
+    - Scenario/purpose answers: 2-4 variants (canonical + tight paraphrases)
+    - Numeric answers: 1-2 variants (e.g., ["40", "40.0"])
   * For percentage/terminology: Include numeric, written, with/without articles
 - Include realistic scenarios where appropriate
 - If constraints present: Test PURPOSE and IDENTIFICATION, not step-by-step procedures`;

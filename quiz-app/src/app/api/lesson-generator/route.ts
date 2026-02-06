@@ -280,6 +280,7 @@ export async function POST(request: NextRequest) {
       warnings,
       phases: lessonResult.phases,
       refinementMetadata: lessonResult.refinementMetadata,
+      debugBundle: lessonResult.debugBundle,
     };
 
     return NextResponse.json(response, { headers });

@@ -13,7 +13,12 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest watch",
     "generate:games": "tsx scripts/generateGamesForLesson.ts",
-    "generate:sounds": "node scripts/generateSoundFiles.js"
+    "generate:sounds": "node scripts/generateSoundFiles.js",
+    "phase10:analyze": "npx tsx scripts/runPhase10Diagnostics.ts analyze",
+    "phase10:analyze-failures": "npx tsx scripts/runPhase10Diagnostics.ts analyze-failures",
+    "phase10:analyze-recent": "npx tsx scripts/runPhase10Diagnostics.ts analyze-recent",
+    "phase10:dashboard": "npx tsx scripts/runPhase10Diagnostics.ts dashboard",
+    "phase10:summary": "npx tsx scripts/runPhase10Diagnostics.ts summary"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

@@ -129,7 +129,9 @@ Even for single-word answers, ALWAYS use array format: ["answer"]
 
 L1 QUESTIONS (recall):
 - expectedAnswer MUST contain EXACTLY 2–4 strings (ARRAY FORMAT)
-- The FIRST string is the canonical answer and MUST be copied verbatim from the explanation text (exact substring)
+- The FIRST string is the canonical answer and MUST be a verbatim substring of the NORMALIZED plain-text explanation
+- "Normalized" means: apply the same stripping rules as anchor facts (remove markdown, bullets, trailing punctuation)
+- Extract your anchor fact text from this normalized version
 - Example: "expectedAnswer": ["protective conductor", "earth conductor", "cpc"]
 - Remaining variants MUST be tight normalization ONLY:
   * case changes
@@ -139,12 +141,12 @@ L1 QUESTIONS (recall):
 - NO broad paraphrases. NO "catch-all" variants.
 
 L2 QUESTION (connection):
-- expectedAnswer MUST contain EXACTLY 1–2 strings (ARRAY FORMAT)
-- Canonical answer should be 1–2 sentences
-- Example: "expectedAnswer": ["All three work together to ensure safe isolation"]
-- Canonical answer MUST include the 3 Anchor Facts verbatim (you may embed them as clauses)
-- Optional second variant may differ only by trivial punctuation/article changes
-- Do NOT accept vague summaries
+- expectedAnswer MUST contain EXACTLY 2–4 strings (ARRAY FORMAT)
+- Focus on the CONNECTION CONCEPT, not verbatim phrasing
+- Include 2-4 acceptable ways to express the relationship between the 3 anchor facts
+- Example: "expectedAnswer": ["they work together to provide safe isolation", "all three ensure the circuit is safely de-energized", "combined they prevent electric shock during maintenance"]
+- Variants should capture the KEY RELATIONSHIP IDEA, not exact wording
+- Reject only if the connection is fundamentally wrong or missing
 
 HINTS:
 - Provide a short, helpful hint (one sentence). No new content.
@@ -200,7 +202,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 1]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]", "[optional tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]", "[optional tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -208,7 +210,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 1]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -216,7 +218,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 1]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -224,7 +226,7 @@ Return JSON in this exact format:
           "questionText": "Using your answers to Q1 ([brief Q1 topic]), Q2 ([brief Q2 topic]), and Q3 ([brief Q3 topic]), explain how these three facts relate or work together.",
           "answerType": "short-text",
           "cognitiveLevel": "connection",
-          "expectedAnswer": ["[1–2 sentences INCLUDING the 3 anchor phrases verbatim]", "[optional tight variant]"],
+          "expectedAnswer": ["[relationship/connection between 3 facts]", "[alternative phrasing of same relationship]", "[third acceptable variant]", "[optional fourth variant]"],
           "hint": "[one-sentence hint about connecting the three facts]"
         }
       ]
@@ -241,7 +243,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 2]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -249,7 +251,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 2]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -257,7 +259,7 @@ Return JSON in this exact format:
           "questionText": "[Recall question testing ONE specific anchor fact from explanation 2]",
           "answerType": "short-text",
           "cognitiveLevel": "recall",
-          "expectedAnswer": ["[VERBATIM canonical substring from explanation]", "[tight variant]"],
+          "expectedAnswer": ["[VERBATIM substring from NORMALIZED plain-text explanation]", "[tight variant]"],
           "hint": "[one-sentence hint]"
         },
         {
@@ -279,8 +281,8 @@ CRITICAL REQUIREMENTS:
 - Q1–Q3 must each test ONE specific anchor fact from the explanation.
 - L2 question MUST start with "Using your answers to Q1…, Q2…, and Q3…" and MUST reference all three facts by content.
 - expectedAnswer arrays must be TIGHT:
-  * L1: EXACTLY 2–4 strings, canonical FIRST, canonical MUST be verbatim substring from the explanation.
-  * L2: EXACTLY 1–2 strings, and MUST include the 3 anchor phrases verbatim.
+  * L1: EXACTLY 2–4 strings, canonical FIRST, canonical MUST be verbatim substring from the NORMALIZED plain-text explanation (markdown stripped).
+  * L2: EXACTLY 2–4 strings expressing the CONNECTION/RELATIONSHIP between the 3 anchor facts (focus on concept, not exact phrasing).
 - Do NOT introduce new terms not present in the explanation text.
 - If constraints indicate PURPOSE_ONLY / IDENTIFICATION: test selection/purpose/recognition only (no procedures).`;
   }

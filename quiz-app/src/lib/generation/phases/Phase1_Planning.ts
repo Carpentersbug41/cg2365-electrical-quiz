@@ -5,6 +5,7 @@
 
 import { PhasePromptBuilder } from './PhasePromptBuilder';
 import { GenerationRequest } from '../types';
+import { classifyLessonTask, isPurposeOnly, getTaskModeString } from '../taskClassifier';
 
 export interface PlanningInput {
   request: GenerationRequest;
@@ -23,6 +24,7 @@ export interface PlanningOutput {
   needsWorkedExample: boolean;
   learningOutcomes: string[];
   estimatedComplexity: 'simple' | 'medium' | 'complex';
+  taskMode: string; // AUTHORITATIVE task mode (e.g., "CALCULATION, PURPOSE_ONLY")
   teachingConstraints?: {
     excludeHowTo?: boolean;        // "not how to use"
     purposeOnly?: boolean;          // "what for, not procedures"
@@ -50,6 +52,14 @@ Analyze mustHaveTopics for teaching scope constraints:
 - Any other scope limitation → specificScope: "[the constraint]"
 
 These constraints MUST be passed to downstream phases to prevent scope violations.
+
+TASK MODE COMPUTATION (CRITICAL):
+You MUST compute taskMode by analyzing the lesson requirements:
+1. Classify task types from topic/section/mustHaveTopics
+2. Detect if PURPOSE_ONLY constraint applies
+3. Generate taskMode string (e.g., "CALCULATION, PURPOSE_ONLY")
+
+This taskMode will be the SINGLE SOURCE OF TRUTH for all downstream phases.
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -93,6 +103,7 @@ Return JSON in this exact format:
     "[Apply level outcome]"
   ],
   "estimatedComplexity": "simple|medium|complex",
+  "taskMode": "[Computed task mode string: CALCULATION, PURPOSE_ONLY, IDENTIFICATION, etc.]",
   "teachingConstraints": {
     "excludeHowTo": true|false,
     "purposeOnly": true|false,
@@ -101,6 +112,12 @@ Return JSON in this exact format:
     "specificScope": "any other constraint from mustHaveTopics"
   }
 }
+
+TASK MODE EXAMPLES:
+- Topic about "Cable Selection Criteria" → taskMode: "SELECTION"
+- Topic "Ohm's Law Calculations" → taskMode: "CALCULATION"
+- "What conduit bending machines are for, not how to use" → taskMode: "IDENTIFICATION, PURPOSE_ONLY"
+- "Safe Isolation Procedure" → taskMode: "PROCEDURE"
 
 RULES:
 - explanationSections: 1 section for simple topics, 2 for complex multi-part topics

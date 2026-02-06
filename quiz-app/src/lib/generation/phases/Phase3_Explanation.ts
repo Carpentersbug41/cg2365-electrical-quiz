@@ -96,6 +96,25 @@ SCOPE CONTROL (for PURPOSE_ONLY / IDENTIFICATION / SELECTION modes)
 - Avoid "how to test / verify / certify" unless the lesson explicitly requires it.
 - If you mention standards or guidance, name them (e.g., "BS 7671...", "IET On-Site Guide...") and add "(refer to current edition)".
 
+NUMERIC VALUES FROM STANDARDS (CRITICAL):
+- Do NOT include numeric values from BS 7671, IET On-Site Guide, or other standards tables UNLESS:
+  * The specific value appears in mustHaveTopics input
+  * The value appears in additionalInstructions input
+  * The value is a universal constant (e.g., UK mains voltage 230V, Earth fault loop impedance limit)
+- BANNED numeric content that will cause hallucinations:
+  * Cable current-carrying capacities (e.g., "2.5mm² carries 27A")
+  * Maximum circuit lengths (e.g., "Ring final max 100m²")
+  * Specific factor numbers from tables (e.g., "Cable factor 143")
+  * Diversity percentages from tables
+  * Specific Zs values for protective devices
+- ALLOWED numeric content:
+  * Basic formulas (Ohm's Law: V = I × R)
+  * General ranges ("typically 16A to 32A") with qualifier
+  * Example calculations IF the context values are realistic but clearly examples
+- If you need to reference a table/standard: describe WHAT to look up, not the specific values
+  * Good: "Refer to the cable current-carrying capacity tables in BS 7671 (verify current edition)"
+  * Bad: "A 2.5mm² cable carries 27A in typical installation conditions"
+
 LEARNING OUTCOMES COVERAGE (CRITICAL)
 - Every learning outcome must be explicitly taught somewhere in the explanation text.
 - Use key phrases from the learning outcomes so later questions can match wording.
@@ -119,6 +138,8 @@ TASK MODE: ${taskMode || 'GENERAL'}
 
 TEACHING CONSTRAINTS (must obey):
 ${teachingConstraints ? JSON.stringify(teachingConstraints, null, 2) : 'None provided'}
+
+CRITICAL: Do NOT include specific numeric values from standards/tables unless they appear in the inputs above. Describe lookup procedures instead.
 
 NEEDS DIAGRAM: ${plan.needsDiagram ? 'true' : 'false'}
 

@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { DebugPanel } from '@/components/generate/DebugPanel';
 
 interface GenerationForm {
   unit: number;
@@ -87,6 +88,7 @@ interface GenerationStatus {
       patchesApplied: number;
       details: RefinementPatch[];
     };
+    debugBundle?: any; // GenerationDebugBundle from types
   };
   error?: string;
   errors?: string[];
@@ -346,6 +348,8 @@ export default function GeneratePage() {
           commitUrl: data.commitUrl,
           warnings: data.warnings || [],
           phases: data.phases || [],
+          refinementMetadata: data.refinementMetadata,
+          debugBundle: data.debugBundle,
         },
       });
     } catch (error) {
@@ -1016,6 +1020,11 @@ export default function GeneratePage() {
                       </div>
                     )}
                   </div>
+                )}
+
+                {/* Debug Panel (Phase 10) */}
+                {status.result?.debugBundle && (
+                  <DebugPanel debugBundle={status.result.debugBundle} />
                 )}
 
                 {/* Enhanced Warnings Display */}

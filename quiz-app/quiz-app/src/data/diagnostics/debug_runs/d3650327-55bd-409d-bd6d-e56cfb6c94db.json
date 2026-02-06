@@ -1,0 +1,1046 @@
+{
+  "runId": "d3650327-55bd-409d-bd6d-e56cfb6c94db",
+  "timestampISO": "2026-02-06T17:47:32.591Z",
+  "lessonMeta": {
+    "id": "203-3A4",
+    "unit": 203,
+    "topic": "Circuit Types: What They Do",
+    "title": "203-3A4 — Circuit Types: What They Do"
+  },
+  "models": {
+    "generator": "gemini-2.0-flash-exp",
+    "scorer": "gemini-2.0-flash-exp",
+    "phase10": "gemini-2.0-flash-exp",
+    "postmortem": "gemini-2.0-flash-exp"
+  },
+  "config": {
+    "phase10Threshold": 97,
+    "phase10MaxFixes": 10,
+    "environment": "development"
+  },
+  "baseline": {
+    "lesson": {
+      "id": "203-3A4",
+      "title": "203.3A4 — Circuit Types: What They Do",
+      "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+      "layout": "split-vis",
+      "unit": "Unit 203",
+      "topic": "Circuit Types: What They Do",
+      "learningOutcomes": [
+        "Identify the primary types of electrical circuits used in domestic and commercial installations.",
+        "Explain the typical applications and purposes for lighting, power, alarm, and data circuits.",
+        "Describe the basic principles and typical uses of ring final and radial circuit configurations."
+      ],
+      "prerequisites": [],
+      "blocks": [
+        {
+          "id": "203-3A4-outcomes",
+          "type": "outcomes",
+          "order": 1,
+          "content": {
+            "outcomes": [
+              {
+                "text": "Identify the primary types of electrical circuits used in domestic and commercial installations.",
+                "bloomLevel": "remember"
+              },
+              {
+                "text": "Explain the typical applications and purposes for lighting, power, alarm, and data circuits.",
+                "bloomLevel": "understand"
+              },
+              {
+                "text": "Describe the basic principles and typical uses of ring final and radial circuit configurations.",
+                "bloomLevel": "understand"
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3A4-vocab",
+          "type": "vocab",
+          "order": 2,
+          "content": {
+            "terms": [
+              {
+                "term": "Final Circuit",
+                "definition": "A circuit connected directly from a distribution board to current-using equipment or socket-outlets."
+              },
+              {
+                "term": "Ring Final Circuit",
+                "definition": "A circuit configuration where the conductors form a continuous loop, starting and ending at the same protective device in the distribution board."
+              },
+              {
+                "term": "Radial Circuit",
+                "definition": "A circuit that originates at a distribution board and terminates at the last connected point or piece of equipment without returning to the source."
+              },
+              {
+                "term": "Control Circuit",
+                "definition": "A circuit used to regulate the operation of electrical equipment or systems, such as relays, contactors, or thermostats."
+              },
+              {
+                "term": "Data Circuit",
+                "definition": "A low-voltage circuit dedicated to the transmission of digital or analogue signals for communication, networking, or security systems."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3A4-diagram",
+          "type": "diagram",
+          "order": 3,
+          "content": {
+            "title": "Circuit Types: What They Do Diagram",
+            "description": "Visual representation of Circuit Types: What They Do",
+            "videoUrl": "",
+            "diagramType": "circuit",
+            "elementIds": [
+              "final-circuit",
+              "ring-final-circuit",
+              "radial-circuit",
+              "distribution-board",
+              "control-circuit",
+              "data-circuit"
+            ],
+            "placeholderText": "A comparison diagram showing two main sections. The left section shows a distribution board with a Radial Circuit extending to three lighting points and a separate high-power appliance. The right section shows the same distribution board with a Ring Final Circuit forming a complete loop through several socket-outlets and returning to the same breaker. Small callouts identify a Control Circuit (thermostat to boiler) and a Data Circuit (network cable between a hub and a computer) to illustrate functional variety."
+          }
+        },
+        {
+          "id": "203-3A4-explain-1",
+          "type": "explanation",
+          "order": 4,
+          "content": {
+            "title": "Circuit Categories and Purposes",
+            "content": "### In this lesson\nYou will learn to identify the primary types of electrical circuits used in domestic and commercial installations and explain their specific functions.\nIn a typical installation scenario, you must determine which circuit type is appropriate for different client needs, such as lighting, power, or communication.\n*   Identify the five main categories of electrical circuits.\n*   Understand the specific purpose of control and data systems.\n*   Learn how BS 7671 (refer to current edition) requires the separation of circuit types.\n\n**What this is**\nIn any modern electrical installation, a **Final Circuit** is the fundamental building block. This is a circuit connected directly from a distribution board to current-using equipment or socket-outlets. Rather than having one single circuit for an entire building, we divide the installation into various categories based on what the electricity is actually doing. These categories typically include lighting, power/heating, alarm/emergency, data/comms, and control systems. Each category has a distinct role in ensuring the building is functional, safe, and efficient.\n\n**Why it matters**\nSeparating circuits by their purpose is a requirement of BS 7671 (refer to current edition) to prevent a fault on one circuit from plunging an entire building into darkness or disabling critical safety systems. For instance, if a faulty toaster trips a power circuit, the lighting circuit should remain operational. Furthermore, different types of equipment have different electrical characteristics; a **Data Circuit** carrying sensitive digital signals must be handled differently than a high-current heating circuit to avoid electromagnetic interference and ensure system reliability.\n\n**Key facts / rules**\n*   A **Final Circuit** must be protected by an appropriate overcurrent protective device (OCPD) at the distribution board.\n*   Lighting circuits are typically rated at 6A or 10A in domestic settings.\n*   Power circuits for socket-outlets are generally rated at 20A or 32A.\n*   A **Control Circuit** is used to regulate the operation of equipment, such as a thermostat controlling a central heating boiler.\n*   A **Data Circuit** is a low-voltage system dedicated to digital or analogue signals, such as Ethernet or security sensors.\n*   Emergency circuits, such as fire alarms, often require fire-resistant cabling and dedicated pathways.\n*   Circuit separation aids in future maintenance and fault-finding by isolating specific functions.\n\n**When to choose it**\nYou would choose a dedicated lighting circuit when the primary goal is providing illumination, allowing for smaller cable sizes and specific switching arrangements. Power and heating circuits are selected when high-current appliances or general-purpose socket-outlets are required. You should specify a **Control Circuit** when a system needs automated logic, such as using a contactor to switch a heavy industrial motor or a PIR sensor to trigger outdoor security lights. A **Data Circuit** is the correct choice whenever the installation requires the transmission of information—such as internet connectivity, telephone lines, or CCTV signals—where high voltages would damage the equipment. Alarm and emergency circuits are selected specifically to meet building regulations and safety standards, ensuring that fire detection or emergency exit signs function even during a primary power failure.\n\n**Common mistakes**\nOne common error is mixing different functional types on the same circuit, such as connecting a high-speed **Data Circuit** cable too close to high-power cables, which causes signal interference. Another mistake is failing to provide enough separate circuits, leading to \"nuisance tripping\" where the total load of several appliances exceeds the capacity of a single protective device.\n\n**Key Points**\n*   Every **Final Circuit** originates at the distribution board and serves a specific set of equipment.\n*   **Control Circuit** applications include relays, contactors, and thermostats for system regulation.\n*   **Data Circuit** installations focus on signal integrity for networking and security.\n*   Circuit separation is essential for safety, maintenance, and compliance with BS 7671 (refer to current edition).\n\n**Quick recap**\nElectrical installations are divided into specific circuit types based on their function. A **Final Circuit** serves the end-user equipment, while specialized categories like lighting, power, control, and data ensure that different electrical needs are met safely and without interference between systems.\n\n### Coming Up Next\nWe will look closer at the physical configurations of these circuits, specifically focusing on the differences between ring and radial arrangements."
+          }
+        },
+        {
+          "id": "203-3A4-check-1",
+          "type": "practice",
+          "order": 4.5,
+          "content": {
+            "title": "Check Your Understanding: Circuit Categories and Purposes",
+            "mode": "conceptual",
+            "sequential": true,
+            "questions": [
+              {
+                "id": "203-3A4-C1-L1-A",
+                "questionText": "What is the fundamental building block of any modern electrical installation?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Final Circuit is the fundamental building block",
+                  "a final circuit is the fundamental building block",
+                  "the final circuit is the fundamental building block"
+                ],
+                "hint": "This term describes the circuit connected directly from a distribution board to equipment."
+              },
+              {
+                "id": "203-3A4-C1-L1-B",
+                "questionText": "State the purpose of a control circuit in an electrical installation.",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Control Circuit is used to regulate the operation of equipment",
+                  "a control circuit is used to regulate the operation of equipment",
+                  "the control circuit is used to regulate the operation of equipment"
+                ],
+                "hint": "Think about how a thermostat interacts with a boiler."
+              },
+              {
+                "id": "203-3A4-C1-L1-C",
+                "questionText": "What is a data circuit specifically dedicated to within an installation?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Data Circuit is a low-voltage system dedicated to digital or analogue signals",
+                  "a data circuit is a low-voltage system dedicated to digital or analogue signals"
+                ],
+                "hint": "This system handles information transmission like Ethernet or security sensors."
+              },
+              {
+                "id": "203-3A4-C1-L2",
+                "questionText": "Using your answers to Q1 (building blocks), Q2 (regulating equipment), and Q3 (digital signals), explain how these circuit types relate to one another in a building.",
+                "answerType": "short-text",
+                "cognitiveLevel": "connection",
+                "expectedAnswer": [
+                  "A Final Circuit is the fundamental building block of an installation, which may be a Control Circuit is used to regulate the operation of equipment or a Data Circuit is a low-voltage system dedicated to digital or analogue signals."
+                ],
+                "hint": "Connect the basic building block to the specialized types used for regulation and information."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3A4-explain-2",
+          "type": "explanation",
+          "order": 5,
+          "content": {
+            "title": "Ring Final and Radial Principles",
+            "content": "### In this lesson\nYou will learn to describe the basic principles and typical uses of ring final and radial circuit configurations within an installation.\nYou will be evaluating which circuit geometry best suits a specific area of a building, such as a kitchen or a bedroom.\n*   Define the structure of a **Ring Final Circuit**.\n*   Define the structure of a **Radial Circuit**.\n*   Identify the typical applications for each configuration in domestic and commercial settings.\n\n**What this is**\nWhen designing a **Final Circuit**, the physical path the cables take from the distribution board is critical. A **Radial Circuit** is a configuration that originates at a distribution board and terminates at the last connected point or piece of equipment without returning to the source. It is like a branch of a tree. In contrast, a **Ring Final Circuit** is a configuration where the conductors form a continuous loop, starting and ending at the same protective device in the distribution board. This \"ring\" allows current to flow in two directions to reach any point on the circuit, effectively doubling the current-carrying capacity of the cable used.\n\n**Why it matters**\nThe choice between these two configurations affects the cost of the installation, the ease of maintenance, and the total power available to the user. **Ring Final Circuit** configurations are a staple of UK electrical installations, allowing a large number of socket-outlets to be served by a single 32A circuit using relatively thin 2.5mm² cable. **Radial Circuit** configurations are often simpler to install and test, and they are the standard choice for lighting and high-power fixed appliances like electric cookers or showers where a single point of use is required.\n\n**Key facts / rules**\n*   A **Radial Circuit** can be used for any type of load, including lighting, power, and heavy appliances.\n*   A **Ring Final Circuit** is almost exclusively used for socket-outlets in domestic and light commercial settings.\n*   The IET On-Site Guide (refer to current edition) provides standard circuit arrangements for both types.\n*   In a **Ring Final Circuit**, the continuity of the loop is vital; if the ring is broken, the circuit becomes two radials, which may lead to cable overloading.\n*   Radial circuits for sockets are commonly protected by 20A or 32A breakers depending on cable size and floor area.\n*   Lighting is almost always installed as a **Radial Circuit** due to the lower current demands.\n\n**When to choose it**\nYou should choose a **Ring Final Circuit** when you need to provide power to a large floor area (typically up to 100m²) with many socket-outlets, such as in a living room or a large office space. This configuration is highly efficient for general-purpose use where many small appliances might be plugged in simultaneously. Conversely, you should choose a **Radial Circuit** for dedicated, high-load equipment like an electric water heater, a hand dryer, or an oven, where the equipment stays in one place and requires its own dedicated supply. Radials are also the preferred choice for lighting systems because the total load is usually low and the wiring layout is more straightforward. In smaller rooms or for specific equipment like a washing machine in a utility room, a 20A radial is often a more practical choice than extending a ring.\n\n**Common mistakes**\nA frequent error is \"interconnecting\" two different ring circuits, which creates a complex and dangerous web that is difficult to isolate. Another mistake is adding too many spurs (extensions) to a **Ring Final Circuit**, which can lead to localized overloading of the cable. Finally, failing to ensure the ends of a ring are properly terminated into the same terminal at the distribution board is a major installation fault.\n\n**Key Points**\n*   A **Radial Circuit** is a single line from the board to the last point.\n*   A **Ring Final Circuit** is a continuous loop that returns to the source.\n*   Rings are typically used for general-purpose socket-outlets over large areas.\n*   Radials are used for lighting and dedicated high-power appliances.\n\n**Quick recap**\nUnderstanding the difference between ring and radial configurations allows an electrician to design an installation that is both cost-effective and capable of handling the required electrical load. While radials are simpler and used for specific tasks, rings provide a flexible solution for general power needs across large spaces.\n\n### Coming Up Next\nNow that you understand what circuits do and how they are shaped, we will explore the specific components and protective devices that keep these circuits safe."
+          }
+        },
+        {
+          "id": "203-3A4-check-2",
+          "type": "practice",
+          "order": 5.5,
+          "content": {
+            "title": "Check Your Understanding: Ring Final and Radial Principles",
+            "mode": "conceptual",
+            "sequential": true,
+            "questions": [
+              {
+                "id": "203-3A4-C2-L1-A",
+                "questionText": "Which circuit configuration originates at a distribution board and terminates at the last connected point?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Radial Circuit originates at a distribution board and terminates at the last connected point",
+                  "a radial circuit originates at a distribution board and terminates at the last connected point"
+                ],
+                "hint": "This circuit type does not return to the source, similar to a tree branch."
+              },
+              {
+                "id": "203-3A4-C2-L1-B",
+                "questionText": "Identify the circuit configuration where the conductors form a continuous loop.",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "Ring Final Circuit is a configuration where the conductors form a continuous loop",
+                  "a ring final circuit is a configuration where the conductors form a continuous loop"
+                ],
+                "hint": "This arrangement starts and ends at the same protective device."
+              },
+              {
+                "id": "203-3A4-C2-L1-C",
+                "questionText": "What must be maintained in a ring circuit to ensure it functions correctly and safely?",
+                "answerType": "short-text",
+                "cognitiveLevel": "recall",
+                "expectedAnswer": [
+                  "continuity of the loop is vital in a Ring Final Circuit",
+                  "the continuity of the loop is vital in a ring final circuit"
+                ],
+                "hint": "If this is broken, the circuit effectively becomes two radial circuits."
+              },
+              {
+                "id": "203-3A4-C2-L2",
+                "questionText": "Using your answers to Q1 (terminating at the last point), Q2 (continuous loops), and Q3 (loop integrity), explain the difference between these two circuit types.",
+                "answerType": "short-text",
+                "cognitiveLevel": "connection",
+                "expectedAnswer": [
+                  "While a Radial Circuit originates at a distribution board and terminates at the last connected point, a Ring Final Circuit is a configuration where the conductors form a continuous loop and the continuity of the loop is vital for safety."
+                ],
+                "hint": "Contrast the single-line path with the loop path and explain why the loop's path must remain unbroken."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3A4-practice",
+          "type": "practice",
+          "order": 8,
+          "content": {
+            "title": "Your Turn (You Do)",
+            "questions": [
+              {
+                "id": "203-3A4-P1",
+                "questionText": "What is the standard overcurrent protective device rating in Amps for a Ring Final Circuit serving socket-outlets? (Round to the nearest whole number)",
+                "answerType": "numeric",
+                "expectedAnswer": [
+                  "32",
+                  "32.0"
+                ],
+                "hint": "Current rating in Amperes (A)"
+              },
+              {
+                "id": "203-3A4-P2",
+                "questionText": "What is the maximum floor area in square metres (m²) typically served by a single Ring Final Circuit? (Round to the nearest whole number)",
+                "answerType": "numeric",
+                "expectedAnswer": [
+                  "100",
+                  "100.0"
+                ],
+                "hint": "Floor area in square metres (m²)"
+              },
+              {
+                "id": "203-3A4-P3",
+                "questionText": "Identify the type of circuit configuration that originates at a distribution board and terminates at the last connected point without returning to the source.",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "Radial Circuit",
+                  "a Radial Circuit",
+                  "Radial"
+                ],
+                "hint": "This circuit does not form a loop."
+              },
+              {
+                "id": "203-3A4-P4",
+                "questionText": "Which type of circuit is used specifically for the transmission of digital or analogue signals like Ethernet or CCTV?",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "Data Circuit",
+                  "a Data Circuit",
+                  "Data"
+                ],
+                "hint": "A low-voltage system dedicated to digital or analogue signals."
+              },
+              {
+                "id": "203-3A4-P5",
+                "questionText": "State the purpose of a Control Circuit in an electrical installation.",
+                "answerType": "short-text",
+                "expectedAnswer": [
+                  "To regulate the operation of equipment",
+                  "regulate the operation of equipment",
+                  "To regulate equipment operation"
+                ],
+                "hint": "Think about what thermostats or relays do for a system."
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3A4-integrative",
+          "type": "practice",
+          "order": 9.5,
+          "content": {
+            "title": "Putting It All Together",
+            "mode": "integrative",
+            "sequential": true,
+            "questions": [
+              {
+                "id": "203-3A4-INT-1",
+                "questionText": "Explain how the intended purpose of a circuit, such as for lighting versus power sockets, influences the selection between a radial or ring final configuration. How does the expected load of these categories relate to the circuit's physical structure? (2-3 sentences)",
+                "answerType": "short-text",
+                "cognitiveLevel": "connection",
+                "expectedAnswer": [
+                  "The purpose of the circuit dictates the expected current demand, where lighting circuits use radial configurations because they typically handle lower, distributed loads. In contrast, power circuits often utilize ring final configurations to allow higher current loads to be shared across two cable paths, ensuring the circuit can safely power multiple heavy appliances.",
+                  "Circuit categories like lighting are usually wired as radials because the total load is relatively low, whereas power socket circuits may use ring final configurations to increase current carrying capacity. The choice of configuration is directly linked to whether the circuit's purpose requires the high-capacity load distribution provided by a ring or the simpler path of a radial."
+                ],
+                "hint": "Consider how the current demand of different circuit types (like lighting vs. power) affects the need for one or two paths for electricity to flow."
+              },
+              {
+                "id": "203-3A4-INT-2",
+                "questionText": "When designing an installation, explain how you would integrate different circuit categories, such as power, lighting, and data, with their appropriate radial or ring final configurations to create a functional system. Describe how the specific application of each circuit determines its geometry and why this is necessary for a safe installation. Please provide your answer in 3-4 sentences.",
+                "answerType": "short-text",
+                "cognitiveLevel": "synthesis",
+                "expectedAnswer": [
+                  "A complete installation integrates various circuit categories by matching their specific power or data requirements to the most efficient configuration, such as using radials for lighting and specialized data cabling. Power circuits are then assigned either ring final or radial configurations based on the floor area and the anticipated load of the appliances in that specific room. This systematic approach ensures that every circuit is fit for its intended purpose while maintaining the safety standards required for domestic or commercial environments.",
+                  "Installers must synthesize their knowledge of circuit purposes to select radials for lighting and data, while choosing between ring final and radial configurations for power sockets based on the building's layout. The geometry of the circuit is chosen to handle the specific electrical stress of the application, such as the high-load demands of a kitchen versus the low-power needs of a bedroom. By correctly identifying the circuit category and applying the right configuration, the installer ensures the entire system is balanced, efficient, and compliant with regulations."
+                ],
+                "hint": "Think about the 'big picture' of a building; how do you decide which configuration fits a specific room's purpose (like a kitchen vs. a server room)?"
+              }
+            ]
+          }
+        },
+        {
+          "id": "203-3A4-spaced-review",
+          "type": "spaced-review",
+          "order": 10,
+          "content": {
+            "title": "Spaced Review",
+            "questions": [],
+            "notes": "No prerequisites or foundation anchors for this lesson"
+          }
+        }
+      ],
+      "metadata": {
+        "created": "2026-02-06",
+        "updated": "2026-02-06",
+        "version": "1.0",
+        "author": "C&G 2365 Learning Team"
+      }
+    },
+    "score": {
+      "total": 91,
+      "breakdown": {
+        "schemaCompliance": 15,
+        "pedagogy": 30,
+        "questions": 21,
+        "marking": 5,
+        "visual": 5,
+        "safety": 0
+      },
+      "details": [
+        {
+          "section": "markingRobustness: Check blocks at blocks[4] and blocks[6] (Question 4) use com...",
+          "score": 0,
+          "maxScore": 3,
+          "issues": [
+            "Check blocks at blocks[4] and blocks[6] (Question 4) use complex, multi-clause sentences as expected answers for short-text fields. This is nearly impossible for students to match exactly, leading to false negatives."
+          ],
+          "suggestions": [
+            "Change blocks[4].content.questions[3].expectedAnswer from 'A Final Circuit is the fundamental building block of an installation, which may be a Control Circuit is used to regulate the operation of equipment or a Data Circuit is a low-voltage system dedicated to digital or analogue signals.' to 'final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data'",
+            "Change blocks[6].content.questions[3].expectedAnswer from 'While a Radial Circuit originates at a distribution board and terminates at the last connected point, a Ring Final Circuit is a configuration where the conductors form a continuous loop and the continuity of the loop is vital for safety.' to 'radials terminate at the end while rings loop back,radials are branches and rings are loops,radials do not return to the board but rings do'"
+          ]
+        },
+        {
+          "section": "questions: Questions at blocks[4]/questions[3] and blocks[6]/questions[...",
+          "score": 0,
+          "maxScore": 2,
+          "issues": [
+            "Questions at blocks[4]/questions[3] and blocks[6]/questions[3] use meta-referential wording ('Using your answers to Q1, Q2, and Q3...'). This is fragile in digital learning environments where question order or visibility may vary."
+          ],
+          "suggestions": [
+            "Change blocks[4].content.questions[3].questionText from 'Using your answers to Q1 (building blocks), Q2 (regulating equipment), and Q3 (digital signals), explain how these circuit types relate to one another in a building.' to 'Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.'",
+            "Change blocks[6].content.questions[3].questionText from 'Using your answers to Q1 (terminating at the last point), Q2 (continuous loops), and Q3 (loop integrity), explain the difference between these two circuit types.' to 'Explain the fundamental difference in cable path between a radial circuit and a ring final circuit.'"
+          ]
+        },
+        {
+          "section": "markingRobustness: Integrative block at blocks[8] contains paragraph-length exp...",
+          "score": 0,
+          "maxScore": 3,
+          "issues": [
+            "Integrative block at blocks[8] contains paragraph-length expected answers (3-4 sentences) for 'short-text' fields. Short-text types are unsuitable for essay-style synthesis; they will fail to grade correctly."
+          ],
+          "suggestions": [
+            "Change blocks[8].content.questions[0].expectedAnswer from 'The purpose of the circuit dictates the expected current demand, where lighting circuits use radial configurations because they typically handle lower, distributed loads. In contrast, power circuits often utilize ring final configurations to allow higher current loads to be shared across two cable paths, ensuring the circuit can safely power multiple heavy appliances.,Circuit categories like lighting are usually wired as radials because the total load is relatively low, whereas power socket circuits may use ring final configurations to increase current carrying capacity. The choice of configuration is directly linked to whether the circuit's purpose requires the high-capacity load distribution provided by a ring or the simpler path of a radial.' to 'Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used'"
+          ]
+        },
+        {
+          "section": "markingRobustness: Numeric questions at blocks[7] include '.0' variations in ex...",
+          "score": 0,
+          "maxScore": 1,
+          "issues": [
+            "Numeric questions at blocks[7] include '.0' variations in expectedAnswer despite the prompt explicitly asking for a 'whole number'. This is redundant and can occasionally cause float-matching issues in some engines."
+          ],
+          "suggestions": [
+            "Change blocks[7].content.questions[0].expectedAnswer from '32,32.0' to '32'",
+            "Change blocks[7].content.questions[1].expectedAnswer from '100,100.0' to '100'"
+          ]
+        }
+      ],
+      "grade": "Strong"
+    }
+  },
+  "diffs": {
+    "changedPaths": [
+      "blocks"
+    ],
+    "changedBlocks": [
+      4,
+      7,
+      8
+    ],
+    "idAudit": {
+      "invalidIds": [
+        "203-3A4-outcomes",
+        "203-3A4-vocab",
+        "203-3A4-diagram",
+        "203-3A4-explain-1",
+        "203-3A4-check-1",
+        "203-3A4-explain-2",
+        "203-3A4-check-2",
+        "203-3A4-practice",
+        "203-3A4-integrative",
+        "203-3A4-spaced-review"
+      ],
+      "duplicateIds": []
+    }
+  },
+  "phase10": {
+    "triggered": true,
+    "extractedIssues": [
+      {
+        "section": "markingRobustness: Check blocks at blocks[4] and blocks[6] (Question 4) use com...",
+        "issue": "Check blocks at blocks[4] and blocks[6] (Question 4) use complex, multi-clause sentences as expected answers for short-text fields. This is nearly impossible for students to match exactly, leading to false negatives.",
+        "suggestion": "Change blocks[4].content.questions[3].expectedAnswer from 'A Final Circuit is the fundamental building block of an installation, which may be a Control Circuit is used to regulate the operation of equipment or a Data Circuit is a low-voltage system dedicated to digital or analogue signals.' to 'final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data'",
+        "pointsLost": 3,
+        "severity": 3
+      },
+      {
+        "section": "markingRobustness: Integrative block at blocks[8] contains paragraph-length exp...",
+        "issue": "Integrative block at blocks[8] contains paragraph-length expected answers (3-4 sentences) for 'short-text' fields. Short-text types are unsuitable for essay-style synthesis; they will fail to grade correctly.",
+        "suggestion": "Change blocks[8].content.questions[0].expectedAnswer from 'The purpose of the circuit dictates the expected current demand, where lighting circuits use radial configurations because they typically handle lower, distributed loads. In contrast, power circuits often utilize ring final configurations to allow higher current loads to be shared across two cable paths, ensuring the circuit can safely power multiple heavy appliances.,Circuit categories like lighting are usually wired as radials because the total load is relatively low, whereas power socket circuits may use ring final configurations to increase current carrying capacity. The choice of configuration is directly linked to whether the circuit's purpose requires the high-capacity load distribution provided by a ring or the simpler path of a radial.' to 'Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used'",
+        "pointsLost": 3,
+        "severity": 3
+      },
+      {
+        "section": "questions: Questions at blocks[4]/questions[3] and blocks[6]/questions[...",
+        "issue": "Questions at blocks[4]/questions[3] and blocks[6]/questions[3] use meta-referential wording ('Using your answers to Q1, Q2, and Q3...'). This is fragile in digital learning environments where question order or visibility may vary.",
+        "suggestion": "Change blocks[4].content.questions[3].questionText from 'Using your answers to Q1 (building blocks), Q2 (regulating equipment), and Q3 (digital signals), explain how these circuit types relate to one another in a building.' to 'Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.'",
+        "pointsLost": 2,
+        "severity": 2
+      },
+      {
+        "section": "markingRobustness: Numeric questions at blocks[7] include '.0' variations in ex...",
+        "issue": "Numeric questions at blocks[7] include '.0' variations in expectedAnswer despite the prompt explicitly asking for a 'whole number'. This is redundant and can occasionally cause float-matching issues in some engines.",
+        "suggestion": "Change blocks[7].content.questions[0].expectedAnswer from '32,32.0' to '32'",
+        "pointsLost": 1,
+        "severity": 1
+      }
+    ],
+    "prompts": {
+      "system": "You are a surgical JSON editor for educational content.\n\nYour ONLY job: Implement the exact fixes specified in the suggestions.\n\nCRITICAL OUTPUT FORMAT:\n- Your response MUST start with the opening brace: {\n- Do NOT write any explanation before the JSON\n- Do NOT write \"Here's the fix:\" or similar preamble\n- Do NOT write reasoning about the changes\n- Start typing JSON immediately\n\nSTRICT RULES:\n1. Each suggestion contains the EXACT change to make (e.g., \"Change X from 'old' to 'new'\", \"Prepend to X:\", \"Append to X:\")\n2. Implement the suggestion EXACTLY as written - no creative interpretation\n3. Return patches in this exact format:\n   {\n     \"patches\": [\n       {\n         \"op\": \"replace\",  // Use \"replace\", \"prepend\", or \"append\"\n         \"path\": \"blocks[8].content.questions[3].questionText\",\n         \"value\": \"[exact value from suggestion]\",\n         \"reason\": \"[brief reason]\"\n       }\n     ]\n   }\n4. OPERATION FIELD RULES:\n   - Use \"replace\" for suggestions like \"Change X from Y to Z\" or \"Set X to Y\"\n   - Use \"prepend\" for suggestions like \"Prepend to X: [value]\" (adds to beginning)\n   - Use \"append\" for suggestions like \"Append to X: [value]\" (adds to end)\n5. Maximum 10 patches total\n6. Each patch must directly address ONE rubric issue\n7. Do NOT change any other fields\n8. Do NOT make improvements beyond what the suggestion specifies\n\nEXAMPLE INPUT:\nIssue: \"Question ID 'blocks[4].content.questions[0].id' includes lesson prefix\"\nSuggestion: \"Change blocks[4].content.questions[0].id from '203-3A4-C1-L1-A' to 'C1-L1-A'\"\n\nEXAMPLE CORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[4].content.questions[0].id\",\n      \"value\": \"C1-L1-A\",\n      \"reason\": \"Removed lesson prefix per suggestion\"\n    }\n  ]\n}\n\nANOTHER EXAMPLE:\nIssue: \"expectedAnswer 'approximately 20A' is too vague\"\nSuggestion: \"Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A'\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[6].content.questions[2].expectedAnswer\",\n      \"value\": \"20A ± 2A\",\n      \"reason\": \"Added specific tolerance per suggestion\"\n    }\n  ]\n}\n\nPREPEND EXAMPLE:\nIssue: \"blocks[3].content.content missing lesson intro\"\nSuggestion: \"Prepend to blocks[3].content.content: '### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n'\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"prepend\",\n      \"path\": \"blocks[3].content.content\",\n      \"value\": \"### In this lesson\\n\\nYou will learn about circuit protection...\\n\\n\",\n      \"reason\": \"Added lesson intro per suggestion\"\n    }\n  ]\n}\n\nAPPEND EXAMPLE:\nIssue: \"blocks[5].content.content missing key points summary\"\nSuggestion: \"Append to blocks[5].content.content: '\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes'\"\n\nCORRECT OUTPUT:\n{\n  \"patches\": [\n    {\n      \"op\": \"append\",\n      \"path\": \"blocks[5].content.content\",\n      \"value\": \"\\n\\n### Key Points\\n1. Always check voltage ratings\\n2. Use appropriate cable sizes\",\n      \"reason\": \"Added key points summary per suggestion\"\n    }\n  ]\n}\n\nEXAMPLE WRONG OUTPUT (DO NOT DO THIS):\n\"Actually, looking at the IDs, I think we should change them...\"\n\"Let me explain the fix first...\"\n\"Here's what I would do...\"\n\nPATH FORMAT:\n- Use dot notation for objects: \"learningOutcomes[0]\"\n- Use bracket notation for arrays: \"blocks[8].content.questions[3]\"\n- Combine: \"blocks[8].content.questions[3].questionText\"\n\nFORBIDDEN:\n- Rewriting entire sections\n- Adding fields not mentioned in issues\n- Changing multiple related fields without explicit instruction\n- Creative improvements beyond the specific issues\n- Changing block structure or order\n- Adding new blocks (use \"blocks[N]\" path only for existing blocks)\n- Removing blocks\n- Changing block count in any way\n\nCRITICAL: If a suggestion asks to \"insert\" or \"add\" a block, SKIP that patch.\nOnly patch existing blocks and their fields.\n\nFOCUS: You have a maximum of 10 patches. Use them wisely on the most impactful fixes.\n\nCRITICAL: Your first character MUST be '{'. No explanation. No preamble. JSON only.\n\n\nOUTPUT REQUIREMENTS:\n- Valid RFC 8259 JSON only (parseable by JSON.parse())\n- No markdown blocks, comments, or explanations\n- Double-quoted property names, no trailing commas\n- Return ONLY the JSON, nothing else",
+      "user": "Implement the EXACT fixes specified below for this lesson.\n\nLESSON ID: 203-3A4\nCURRENT SCORE: Needs improvement\n\nISSUES TO FIX (ranked by severity):\n1. [markingRobustness: Check blocks at blocks[4] and blocks[6] (Question 4) use com...] Check blocks at blocks[4] and blocks[6] (Question 4) use complex, multi-clause sentences as expected answers for short-text fields. This is nearly impossible for students to match exactly, leading to false negatives.\n   EXACT FIX: Change blocks[4].content.questions[3].expectedAnswer from 'A Final Circuit is the fundamental building block of an installation, which may be a Control Circuit is used to regulate the operation of equipment or a Data Circuit is a low-voltage system dedicated to digital or analogue signals.' to 'final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data'\n   Impact: 3 points\n\n2. [markingRobustness: Integrative block at blocks[8] contains paragraph-length exp...] Integrative block at blocks[8] contains paragraph-length expected answers (3-4 sentences) for 'short-text' fields. Short-text types are unsuitable for essay-style synthesis; they will fail to grade correctly.\n   EXACT FIX: Change blocks[8].content.questions[0].expectedAnswer from 'The purpose of the circuit dictates the expected current demand, where lighting circuits use radial configurations because they typically handle lower, distributed loads. In contrast, power circuits often utilize ring final configurations to allow higher current loads to be shared across two cable paths, ensuring the circuit can safely power multiple heavy appliances.,Circuit categories like lighting are usually wired as radials because the total load is relatively low, whereas power socket circuits may use ring final configurations to increase current carrying capacity. The choice of configuration is directly linked to whether the circuit's purpose requires the high-capacity load distribution provided by a ring or the simpler path of a radial.' to 'Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used'\n   Impact: 3 points\n\n3. [questions: Questions at blocks[4]/questions[3] and blocks[6]/questions[...] Questions at blocks[4]/questions[3] and blocks[6]/questions[3] use meta-referential wording ('Using your answers to Q1, Q2, and Q3...'). This is fragile in digital learning environments where question order or visibility may vary.\n   EXACT FIX: Change blocks[4].content.questions[3].questionText from 'Using your answers to Q1 (building blocks), Q2 (regulating equipment), and Q3 (digital signals), explain how these circuit types relate to one another in a building.' to 'Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.'\n   Impact: 2 points\n\n4. [markingRobustness: Numeric questions at blocks[7] include '.0' variations in ex...] Numeric questions at blocks[7] include '.0' variations in expectedAnswer despite the prompt explicitly asking for a 'whole number'. This is redundant and can occasionally cause float-matching issues in some engines.\n   EXACT FIX: Change blocks[7].content.questions[0].expectedAnswer from '32,32.0' to '32'\n   Impact: 1 points\n\nLESSON JSON EXCERPT (relevant sections):\nLearning Outcomes: [\n  \"Identify the primary types of electrical circuits used in domestic and commercial installations.\",\n  \"Explain the typical applications and purposes for lighting, power, alarm, and data circuits.\",\n  \"Describe the basic principles and typical uses of ring final and radial circuit configurations.\"\n]\n\nBlocks (10 total):\n  [0] outcomes (order: 1)\n  [1] vocab (order: 2)\n  [2] diagram (order: 3)\n  [3] explanation (order: 4)\n  [4] practice (order: 4.5)\n  [5] explanation (order: 5)\n  [6] practice (order: 5.5)\n  [7] practice (order: 8)\n  [8] practice (order: 9.5)\n  [9] spaced-review (order: 10)\n\nPractice Block: {\n  \"id\": \"203-3A4-check-1\",\n  \"type\": \"practice\",\n  \"order\": 4.5,\n  \"content\": {\n    \"title\": \"Check Your Understanding: Circuit Categories and Purposes\",\n    \"mode\": \"conceptual\",\n    \"sequential\": true,\n    \"questions\": [\n      {\n        \"id\": \"203-3A4-C1-L1-A\",\n        \"questionText\": \"What is the fundamental building block of any modern electrical installation?\",\n        \"answerType\": \"short-text\",\n        \"cognitiveLevel\": \"recall\",\n        \"expectedAnswer\": [\n          \"Final Circuit is t...\n\nGenerate patches to fix ONLY these specific issues. Return JSON in the format specified.\n\nRESPONSE FORMAT (MANDATORY):\n{\n  \"patches\": [\n    { \"op\": \"replace\", \"path\": \"...\", \"value\": ..., \"reason\": \"...\" }\n  ]\n}\n\nStart your response with '{' immediately. No explanations."
+    },
+    "llmRawResponse": "{\n  \"patches\": [\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[4].content.questions[3].expectedAnswer\",\n      \"value\": \"final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data\",\n      \"reason\": \"Simplified complex expected answer for short-text field to improve marking robustness\"\n    },\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[8].content.questions[0].expectedAnswer\",\n      \"value\": \"Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used\",\n      \"reason\": \"Shortened essay-length expected answer for short-text field to improve marking robustness\"\n    },\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[4].content.questions[3].questionText\",\n      \"value\": \"Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.\",\n      \"reason\": \"Removed meta-referential wording to improve question stability\"\n    },\n    {\n      \"op\": \"replace\",\n      \"path\": \"blocks[7].content.questions[0].expectedAnswer\",\n      \"value\": \"32\",\n      \"reason\": \"Removed redundant .0 variation from whole number answer\"\n    }\n  ]\n}",
+    "patches": [
+      {
+        "index": 0,
+        "op": "replace",
+        "path": "blocks[4].content.questions[3].expectedAnswer",
+        "from": [
+          "A Final Circuit is the fundamental building block of an installation, which may be a Control Circuit is used to regulate the operation of equipment or a Data Circuit is a low-voltage system dedicated to digital or analogue signals."
+        ],
+        "value": "final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data",
+        "reason": "Simplified complex expected answer for short-text field to improve marking robustness",
+        "oldValue": [
+          "A Final Circuit is the fundamental building block of an installation, which may be a Control Circuit is used to regulate the operation of equipment or a Data Circuit is a low-voltage system dedicated to digital or analogue signals."
+        ],
+        "appliedValue": "final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data",
+        "applyStatus": "applied",
+        "validation": {
+          "pathStyle": "unknown",
+          "targetExists": true,
+          "fromProvided": false,
+          "fromMatches": true,
+          "wouldCreateStructure": false,
+          "allowedOp": true,
+          "allowedPath": true,
+          "reasons": []
+        },
+        "scoreDeltaSequential": -6,
+        "sectionDeltasSequential": {},
+        "scoreDeltaIndependent": -6,
+        "sectionDeltasIndependent": {}
+      },
+      {
+        "index": 1,
+        "op": "replace",
+        "path": "blocks[8].content.questions[0].expectedAnswer",
+        "from": [
+          "The purpose of the circuit dictates the expected current demand, where lighting circuits use radial configurations because they typically handle lower, distributed loads. In contrast, power circuits often utilize ring final configurations to allow higher current loads to be shared across two cable paths, ensuring the circuit can safely power multiple heavy appliances.",
+          "Circuit categories like lighting are usually wired as radials because the total load is relatively low, whereas power socket circuits may use ring final configurations to increase current carrying capacity. The choice of configuration is directly linked to whether the circuit's purpose requires the high-capacity load distribution provided by a ring or the simpler path of a radial."
+        ],
+        "value": "Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used",
+        "reason": "Shortened essay-length expected answer for short-text field to improve marking robustness",
+        "oldValue": [
+          "The purpose of the circuit dictates the expected current demand, where lighting circuits use radial configurations because they typically handle lower, distributed loads. In contrast, power circuits often utilize ring final configurations to allow higher current loads to be shared across two cable paths, ensuring the circuit can safely power multiple heavy appliances.",
+          "Circuit categories like lighting are usually wired as radials because the total load is relatively low, whereas power socket circuits may use ring final configurations to increase current carrying capacity. The choice of configuration is directly linked to whether the circuit's purpose requires the high-capacity load distribution provided by a ring or the simpler path of a radial."
+        ],
+        "appliedValue": "Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used",
+        "applyStatus": "applied",
+        "validation": {
+          "pathStyle": "unknown",
+          "targetExists": true,
+          "fromProvided": false,
+          "fromMatches": true,
+          "wouldCreateStructure": false,
+          "allowedOp": true,
+          "allowedPath": true,
+          "reasons": []
+        },
+        "scoreDeltaSequential": 7,
+        "sectionDeltasSequential": {},
+        "scoreDeltaIndependent": 0,
+        "sectionDeltasIndependent": {}
+      },
+      {
+        "index": 2,
+        "op": "replace",
+        "path": "blocks[4].content.questions[3].questionText",
+        "from": "Using your answers to Q1 (building blocks), Q2 (regulating equipment), and Q3 (digital signals), explain how these circuit types relate to one another in a building.",
+        "value": "Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.",
+        "reason": "Removed meta-referential wording to improve question stability",
+        "oldValue": "Using your answers to Q1 (building blocks), Q2 (regulating equipment), and Q3 (digital signals), explain how these circuit types relate to one another in a building.",
+        "appliedValue": "Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.",
+        "applyStatus": "applied",
+        "validation": {
+          "pathStyle": "unknown",
+          "targetExists": true,
+          "fromProvided": false,
+          "fromMatches": true,
+          "wouldCreateStructure": false,
+          "allowedOp": true,
+          "allowedPath": true,
+          "reasons": []
+        },
+        "scoreDeltaSequential": 0,
+        "sectionDeltasSequential": {},
+        "scoreDeltaIndependent": 2,
+        "sectionDeltasIndependent": {}
+      },
+      {
+        "index": 3,
+        "op": "replace",
+        "path": "blocks[7].content.questions[0].expectedAnswer",
+        "from": [
+          "32",
+          "32.0"
+        ],
+        "value": "32",
+        "reason": "Removed redundant .0 variation from whole number answer",
+        "oldValue": [
+          "32",
+          "32.0"
+        ],
+        "appliedValue": "32",
+        "applyStatus": "applied",
+        "validation": {
+          "pathStyle": "unknown",
+          "targetExists": true,
+          "fromProvided": false,
+          "fromMatches": true,
+          "wouldCreateStructure": false,
+          "allowedOp": true,
+          "allowedPath": true,
+          "reasons": []
+        },
+        "scoreDeltaSequential": -2,
+        "sectionDeltasSequential": {},
+        "scoreDeltaIndependent": 2,
+        "sectionDeltasIndependent": {}
+      }
+    ],
+    "accepted": false,
+    "llmParsed": {
+      "patches": [
+        {
+          "op": "replace",
+          "path": "blocks[4].content.questions[3].expectedAnswer",
+          "value": "final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data",
+          "reason": "Simplified complex expected answer for short-text field to improve marking robustness"
+        },
+        {
+          "op": "replace",
+          "path": "blocks[8].content.questions[0].expectedAnswer",
+          "value": "Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used",
+          "reason": "Shortened essay-length expected answer for short-text field to improve marking robustness"
+        },
+        {
+          "op": "replace",
+          "path": "blocks[4].content.questions[3].questionText",
+          "value": "Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.",
+          "reason": "Removed meta-referential wording to improve question stability"
+        },
+        {
+          "op": "replace",
+          "path": "blocks[7].content.questions[0].expectedAnswer",
+          "value": "32",
+          "reason": "Removed redundant .0 variation from whole number answer"
+        }
+      ]
+    },
+    "refined": {
+      "lesson": {
+        "id": "203-3A4",
+        "title": "203.3A4 — Circuit Types: What They Do",
+        "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+        "layout": "split-vis",
+        "unit": "Unit 203",
+        "topic": "Circuit Types: What They Do",
+        "learningOutcomes": [
+          "Identify the primary types of electrical circuits used in domestic and commercial installations.",
+          "Explain the typical applications and purposes for lighting, power, alarm, and data circuits.",
+          "Describe the basic principles and typical uses of ring final and radial circuit configurations."
+        ],
+        "prerequisites": [],
+        "blocks": [
+          {
+            "id": "203-3A4-outcomes",
+            "type": "outcomes",
+            "order": 1,
+            "content": {
+              "outcomes": [
+                {
+                  "text": "Identify the primary types of electrical circuits used in domestic and commercial installations.",
+                  "bloomLevel": "remember"
+                },
+                {
+                  "text": "Explain the typical applications and purposes for lighting, power, alarm, and data circuits.",
+                  "bloomLevel": "understand"
+                },
+                {
+                  "text": "Describe the basic principles and typical uses of ring final and radial circuit configurations.",
+                  "bloomLevel": "understand"
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3A4-vocab",
+            "type": "vocab",
+            "order": 2,
+            "content": {
+              "terms": [
+                {
+                  "term": "Final Circuit",
+                  "definition": "A circuit connected directly from a distribution board to current-using equipment or socket-outlets."
+                },
+                {
+                  "term": "Ring Final Circuit",
+                  "definition": "A circuit configuration where the conductors form a continuous loop, starting and ending at the same protective device in the distribution board."
+                },
+                {
+                  "term": "Radial Circuit",
+                  "definition": "A circuit that originates at a distribution board and terminates at the last connected point or piece of equipment without returning to the source."
+                },
+                {
+                  "term": "Control Circuit",
+                  "definition": "A circuit used to regulate the operation of electrical equipment or systems, such as relays, contactors, or thermostats."
+                },
+                {
+                  "term": "Data Circuit",
+                  "definition": "A low-voltage circuit dedicated to the transmission of digital or analogue signals for communication, networking, or security systems."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3A4-diagram",
+            "type": "diagram",
+            "order": 3,
+            "content": {
+              "title": "Circuit Types: What They Do Diagram",
+              "description": "Visual representation of Circuit Types: What They Do",
+              "videoUrl": "",
+              "diagramType": "circuit",
+              "elementIds": [
+                "final-circuit",
+                "ring-final-circuit",
+                "radial-circuit",
+                "distribution-board",
+                "control-circuit",
+                "data-circuit"
+              ],
+              "placeholderText": "A comparison diagram showing two main sections. The left section shows a distribution board with a Radial Circuit extending to three lighting points and a separate high-power appliance. The right section shows the same distribution board with a Ring Final Circuit forming a complete loop through several socket-outlets and returning to the same breaker. Small callouts identify a Control Circuit (thermostat to boiler) and a Data Circuit (network cable between a hub and a computer) to illustrate functional variety."
+            }
+          },
+          {
+            "id": "203-3A4-explain-1",
+            "type": "explanation",
+            "order": 4,
+            "content": {
+              "title": "Circuit Categories and Purposes",
+              "content": "### In this lesson\nYou will learn to identify the primary types of electrical circuits used in domestic and commercial installations and explain their specific functions.\nIn a typical installation scenario, you must determine which circuit type is appropriate for different client needs, such as lighting, power, or communication.\n*   Identify the five main categories of electrical circuits.\n*   Understand the specific purpose of control and data systems.\n*   Learn how BS 7671 (refer to current edition) requires the separation of circuit types.\n\n**What this is**\nIn any modern electrical installation, a **Final Circuit** is the fundamental building block. This is a circuit connected directly from a distribution board to current-using equipment or socket-outlets. Rather than having one single circuit for an entire building, we divide the installation into various categories based on what the electricity is actually doing. These categories typically include lighting, power/heating, alarm/emergency, data/comms, and control systems. Each category has a distinct role in ensuring the building is functional, safe, and efficient.\n\n**Why it matters**\nSeparating circuits by their purpose is a requirement of BS 7671 (refer to current edition) to prevent a fault on one circuit from plunging an entire building into darkness or disabling critical safety systems. For instance, if a faulty toaster trips a power circuit, the lighting circuit should remain operational. Furthermore, different types of equipment have different electrical characteristics; a **Data Circuit** carrying sensitive digital signals must be handled differently than a high-current heating circuit to avoid electromagnetic interference and ensure system reliability.\n\n**Key facts / rules**\n*   A **Final Circuit** must be protected by an appropriate overcurrent protective device (OCPD) at the distribution board.\n*   Lighting circuits are typically rated at 6A or 10A in domestic settings.\n*   Power circuits for socket-outlets are generally rated at 20A or 32A.\n*   A **Control Circuit** is used to regulate the operation of equipment, such as a thermostat controlling a central heating boiler.\n*   A **Data Circuit** is a low-voltage system dedicated to digital or analogue signals, such as Ethernet or security sensors.\n*   Emergency circuits, such as fire alarms, often require fire-resistant cabling and dedicated pathways.\n*   Circuit separation aids in future maintenance and fault-finding by isolating specific functions.\n\n**When to choose it**\nYou would choose a dedicated lighting circuit when the primary goal is providing illumination, allowing for smaller cable sizes and specific switching arrangements. Power and heating circuits are selected when high-current appliances or general-purpose socket-outlets are required. You should specify a **Control Circuit** when a system needs automated logic, such as using a contactor to switch a heavy industrial motor or a PIR sensor to trigger outdoor security lights. A **Data Circuit** is the correct choice whenever the installation requires the transmission of information—such as internet connectivity, telephone lines, or CCTV signals—where high voltages would damage the equipment. Alarm and emergency circuits are selected specifically to meet building regulations and safety standards, ensuring that fire detection or emergency exit signs function even during a primary power failure.\n\n**Common mistakes**\nOne common error is mixing different functional types on the same circuit, such as connecting a high-speed **Data Circuit** cable too close to high-power cables, which causes signal interference. Another mistake is failing to provide enough separate circuits, leading to \"nuisance tripping\" where the total load of several appliances exceeds the capacity of a single protective device.\n\n**Key Points**\n*   Every **Final Circuit** originates at the distribution board and serves a specific set of equipment.\n*   **Control Circuit** applications include relays, contactors, and thermostats for system regulation.\n*   **Data Circuit** installations focus on signal integrity for networking and security.\n*   Circuit separation is essential for safety, maintenance, and compliance with BS 7671 (refer to current edition).\n\n**Quick recap**\nElectrical installations are divided into specific circuit types based on their function. A **Final Circuit** serves the end-user equipment, while specialized categories like lighting, power, control, and data ensure that different electrical needs are met safely and without interference between systems.\n\n### Coming Up Next\nWe will look closer at the physical configurations of these circuits, specifically focusing on the differences between ring and radial arrangements."
+            }
+          },
+          {
+            "id": "203-3A4-check-1",
+            "type": "practice",
+            "order": 4.5,
+            "content": {
+              "title": "Check Your Understanding: Circuit Categories and Purposes",
+              "mode": "conceptual",
+              "sequential": true,
+              "questions": [
+                {
+                  "id": "203-3A4-C1-L1-A",
+                  "questionText": "What is the fundamental building block of any modern electrical installation?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Final Circuit is the fundamental building block",
+                    "a final circuit is the fundamental building block",
+                    "the final circuit is the fundamental building block"
+                  ],
+                  "hint": "This term describes the circuit connected directly from a distribution board to equipment."
+                },
+                {
+                  "id": "203-3A4-C1-L1-B",
+                  "questionText": "State the purpose of a control circuit in an electrical installation.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Control Circuit is used to regulate the operation of equipment",
+                    "a control circuit is used to regulate the operation of equipment",
+                    "the control circuit is used to regulate the operation of equipment"
+                  ],
+                  "hint": "Think about how a thermostat interacts with a boiler."
+                },
+                {
+                  "id": "203-3A4-C1-L1-C",
+                  "questionText": "What is a data circuit specifically dedicated to within an installation?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Data Circuit is a low-voltage system dedicated to digital or analogue signals",
+                    "a data circuit is a low-voltage system dedicated to digital or analogue signals"
+                  ],
+                  "hint": "This system handles information transmission like Ethernet or security sensors."
+                },
+                {
+                  "id": "203-3A4-C1-L2",
+                  "questionText": "Explain how the 'final circuit' concept encompasses specialized types like control and data circuits within a building.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "connection",
+                  "expectedAnswer": "final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data",
+                  "hint": "Connect the basic building block to the specialized types used for regulation and information."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3A4-explain-2",
+            "type": "explanation",
+            "order": 5,
+            "content": {
+              "title": "Ring Final and Radial Principles",
+              "content": "### In this lesson\nYou will learn to describe the basic principles and typical uses of ring final and radial circuit configurations within an installation.\nYou will be evaluating which circuit geometry best suits a specific area of a building, such as a kitchen or a bedroom.\n*   Define the structure of a **Ring Final Circuit**.\n*   Define the structure of a **Radial Circuit**.\n*   Identify the typical applications for each configuration in domestic and commercial settings.\n\n**What this is**\nWhen designing a **Final Circuit**, the physical path the cables take from the distribution board is critical. A **Radial Circuit** is a configuration that originates at a distribution board and terminates at the last connected point or piece of equipment without returning to the source. It is like a branch of a tree. In contrast, a **Ring Final Circuit** is a configuration where the conductors form a continuous loop, starting and ending at the same protective device in the distribution board. This \"ring\" allows current to flow in two directions to reach any point on the circuit, effectively doubling the current-carrying capacity of the cable used.\n\n**Why it matters**\nThe choice between these two configurations affects the cost of the installation, the ease of maintenance, and the total power available to the user. **Ring Final Circuit** configurations are a staple of UK electrical installations, allowing a large number of socket-outlets to be served by a single 32A circuit using relatively thin 2.5mm² cable. **Radial Circuit** configurations are often simpler to install and test, and they are the standard choice for lighting and high-power fixed appliances like electric cookers or showers where a single point of use is required.\n\n**Key facts / rules**\n*   A **Radial Circuit** can be used for any type of load, including lighting, power, and heavy appliances.\n*   A **Ring Final Circuit** is almost exclusively used for socket-outlets in domestic and light commercial settings.\n*   The IET On-Site Guide (refer to current edition) provides standard circuit arrangements for both types.\n*   In a **Ring Final Circuit**, the continuity of the loop is vital; if the ring is broken, the circuit becomes two radials, which may lead to cable overloading.\n*   Radial circuits for sockets are commonly protected by 20A or 32A breakers depending on cable size and floor area.\n*   Lighting is almost always installed as a **Radial Circuit** due to the lower current demands.\n\n**When to choose it**\nYou should choose a **Ring Final Circuit** when you need to provide power to a large floor area (typically up to 100m²) with many socket-outlets, such as in a living room or a large office space. This configuration is highly efficient for general-purpose use where many small appliances might be plugged in simultaneously. Conversely, you should choose a **Radial Circuit** for dedicated, high-load equipment like an electric water heater, a hand dryer, or an oven, where the equipment stays in one place and requires its own dedicated supply. Radials are also the preferred choice for lighting systems because the total load is usually low and the wiring layout is more straightforward. In smaller rooms or for specific equipment like a washing machine in a utility room, a 20A radial is often a more practical choice than extending a ring.\n\n**Common mistakes**\nA frequent error is \"interconnecting\" two different ring circuits, which creates a complex and dangerous web that is difficult to isolate. Another mistake is adding too many spurs (extensions) to a **Ring Final Circuit**, which can lead to localized overloading of the cable. Finally, failing to ensure the ends of a ring are properly terminated into the same terminal at the distribution board is a major installation fault.\n\n**Key Points**\n*   A **Radial Circuit** is a single line from the board to the last point.\n*   A **Ring Final Circuit** is a continuous loop that returns to the source.\n*   Rings are typically used for general-purpose socket-outlets over large areas.\n*   Radials are used for lighting and dedicated high-power appliances.\n\n**Quick recap**\nUnderstanding the difference between ring and radial configurations allows an electrician to design an installation that is both cost-effective and capable of handling the required electrical load. While radials are simpler and used for specific tasks, rings provide a flexible solution for general power needs across large spaces.\n\n### Coming Up Next\nNow that you understand what circuits do and how they are shaped, we will explore the specific components and protective devices that keep these circuits safe."
+            }
+          },
+          {
+            "id": "203-3A4-check-2",
+            "type": "practice",
+            "order": 5.5,
+            "content": {
+              "title": "Check Your Understanding: Ring Final and Radial Principles",
+              "mode": "conceptual",
+              "sequential": true,
+              "questions": [
+                {
+                  "id": "203-3A4-C2-L1-A",
+                  "questionText": "Which circuit configuration originates at a distribution board and terminates at the last connected point?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Radial Circuit originates at a distribution board and terminates at the last connected point",
+                    "a radial circuit originates at a distribution board and terminates at the last connected point"
+                  ],
+                  "hint": "This circuit type does not return to the source, similar to a tree branch."
+                },
+                {
+                  "id": "203-3A4-C2-L1-B",
+                  "questionText": "Identify the circuit configuration where the conductors form a continuous loop.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "Ring Final Circuit is a configuration where the conductors form a continuous loop",
+                    "a ring final circuit is a configuration where the conductors form a continuous loop"
+                  ],
+                  "hint": "This arrangement starts and ends at the same protective device."
+                },
+                {
+                  "id": "203-3A4-C2-L1-C",
+                  "questionText": "What must be maintained in a ring circuit to ensure it functions correctly and safely?",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "recall",
+                  "expectedAnswer": [
+                    "continuity of the loop is vital in a Ring Final Circuit",
+                    "the continuity of the loop is vital in a ring final circuit"
+                  ],
+                  "hint": "If this is broken, the circuit effectively becomes two radial circuits."
+                },
+                {
+                  "id": "203-3A4-C2-L2",
+                  "questionText": "Using your answers to Q1 (terminating at the last point), Q2 (continuous loops), and Q3 (loop integrity), explain the difference between these two circuit types.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "connection",
+                  "expectedAnswer": [
+                    "While a Radial Circuit originates at a distribution board and terminates at the last connected point, a Ring Final Circuit is a configuration where the conductors form a continuous loop and the continuity of the loop is vital for safety."
+                  ],
+                  "hint": "Contrast the single-line path with the loop path and explain why the loop's path must remain unbroken."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3A4-practice",
+            "type": "practice",
+            "order": 8,
+            "content": {
+              "title": "Your Turn (You Do)",
+              "questions": [
+                {
+                  "id": "203-3A4-P1",
+                  "questionText": "What is the standard overcurrent protective device rating in Amps for a Ring Final Circuit serving socket-outlets? (Round to the nearest whole number)",
+                  "answerType": "numeric",
+                  "expectedAnswer": "32",
+                  "hint": "Current rating in Amperes (A)"
+                },
+                {
+                  "id": "203-3A4-P2",
+                  "questionText": "What is the maximum floor area in square metres (m²) typically served by a single Ring Final Circuit? (Round to the nearest whole number)",
+                  "answerType": "numeric",
+                  "expectedAnswer": [
+                    "100",
+                    "100.0"
+                  ],
+                  "hint": "Floor area in square metres (m²)"
+                },
+                {
+                  "id": "203-3A4-P3",
+                  "questionText": "Identify the type of circuit configuration that originates at a distribution board and terminates at the last connected point without returning to the source.",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "Radial Circuit",
+                    "a Radial Circuit",
+                    "Radial"
+                  ],
+                  "hint": "This circuit does not form a loop."
+                },
+                {
+                  "id": "203-3A4-P4",
+                  "questionText": "Which type of circuit is used specifically for the transmission of digital or analogue signals like Ethernet or CCTV?",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "Data Circuit",
+                    "a Data Circuit",
+                    "Data"
+                  ],
+                  "hint": "A low-voltage system dedicated to digital or analogue signals."
+                },
+                {
+                  "id": "203-3A4-P5",
+                  "questionText": "State the purpose of a Control Circuit in an electrical installation.",
+                  "answerType": "short-text",
+                  "expectedAnswer": [
+                    "To regulate the operation of equipment",
+                    "regulate the operation of equipment",
+                    "To regulate equipment operation"
+                  ],
+                  "hint": "Think about what thermostats or relays do for a system."
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3A4-integrative",
+            "type": "practice",
+            "order": 9.5,
+            "content": {
+              "title": "Putting It All Together",
+              "mode": "integrative",
+              "sequential": true,
+              "questions": [
+                {
+                  "id": "203-3A4-INT-1",
+                  "questionText": "Explain how the intended purpose of a circuit, such as for lighting versus power sockets, influences the selection between a radial or ring final configuration. How does the expected load of these categories relate to the circuit's physical structure? (2-3 sentences)",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "connection",
+                  "expectedAnswer": "Load demand determines the configuration,Higher loads like sockets use rings while lower loads use radials,Current demand dictates if a ring or radial is used",
+                  "hint": "Consider how the current demand of different circuit types (like lighting vs. power) affects the need for one or two paths for electricity to flow."
+                },
+                {
+                  "id": "203-3A4-INT-2",
+                  "questionText": "When designing an installation, explain how you would integrate different circuit categories, such as power, lighting, and data, with their appropriate radial or ring final configurations to create a functional system. Describe how the specific application of each circuit determines its geometry and why this is necessary for a safe installation. Please provide your answer in 3-4 sentences.",
+                  "answerType": "short-text",
+                  "cognitiveLevel": "synthesis",
+                  "expectedAnswer": [
+                    "A complete installation integrates various circuit categories by matching their specific power or data requirements to the most efficient configuration, such as using radials for lighting and specialized data cabling. Power circuits are then assigned either ring final or radial configurations based on the floor area and the anticipated load of the appliances in that specific room. This systematic approach ensures that every circuit is fit for its intended purpose while maintaining the safety standards required for domestic or commercial environments.",
+                    "Installers must synthesize their knowledge of circuit purposes to select radials for lighting and data, while choosing between ring final and radial configurations for power sockets based on the building's layout. The geometry of the circuit is chosen to handle the specific electrical stress of the application, such as the high-load demands of a kitchen versus the low-power needs of a bedroom. By correctly identifying the circuit category and applying the right configuration, the installer ensures the entire system is balanced, efficient, and compliant with regulations."
+                  ],
+                  "hint": "Think about the 'big picture' of a building; how do you decide which configuration fits a specific room's purpose (like a kitchen vs. a server room)?"
+                }
+              ]
+            }
+          },
+          {
+            "id": "203-3A4-spaced-review",
+            "type": "spaced-review",
+            "order": 10,
+            "content": {
+              "title": "Spaced Review",
+              "questions": [],
+              "notes": "No prerequisites or foundation anchors for this lesson"
+            }
+          }
+        ],
+        "metadata": {
+          "created": "2026-02-06",
+          "updated": "2026-02-06",
+          "version": "1.0",
+          "author": "C&G 2365 Learning Team"
+        }
+      },
+      "score": {
+        "total": 87,
+        "breakdown": {
+          "schemaCompliance": 15,
+          "pedagogy": 28,
+          "questions": 21,
+          "marking": 6,
+          "visual": 4,
+          "safety": 0
+        },
+        "details": [
+          {
+            "section": "markingRobustness: Multiple short-text questions (e.g., blocks[4.5].questions[0...",
+            "score": 0,
+            "maxScore": 3,
+            "issues": [
+              "Multiple short-text questions (e.g., blocks[4.5].questions[0,1,2]) require students to type full, verbatim sentences as answers. This creates a poor user experience as minor variations in punctuation or phrasing will trigger incorrect marks."
+            ],
+            "suggestions": [
+              "Change blocks[4].content.questions[0].expectedAnswer from 'Final Circuit is the fundamental building block,a final circuit is the fundamental building block,the final circuit is the fundamental building block' to 'Final Circuit,the Final Circuit,Final Circuits'",
+              "Change blocks[4].content.questions[1].expectedAnswer from 'Control Circuit is used to regulate the operation of equipment,a control circuit is used to regulate the operation of equipment,the control circuit is used to regulate the operation of equipment' to 'regulate equipment,regulate the operation of equipment,control equipment'"
+            ]
+          },
+          {
+            "section": "markingRobustness: Check block question at blocks[4.5].questions[3] (203-3A4-C1...",
+            "score": 0,
+            "maxScore": 3,
+            "issues": [
+              "Check block question at blocks[4.5].questions[3] (203-3A4-C1-L2) uses a single comma-separated string for expectedAnswer instead of a JSON array of variations, which will cause matching failures."
+            ],
+            "suggestions": [
+              "Change blocks[4].content.questions[3].expectedAnswer from 'final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes like control or data' to 'final circuits include control and data types,final circuits can be for control or data,final circuits serve different purposes'"
+            ]
+          },
+          {
+            "section": "alignment: The Independent Practice (blocks[7]) introduces numeric calc...",
+            "score": 0,
+            "maxScore": 2,
+            "issues": [
+              "The Independent Practice (blocks[7]) introduces numeric calculation/recall (32A, 100m²) that was never modeled in a Worked Example or Guided Practice. This creates a sudden jump in cognitive load."
+            ],
+            "suggestions": [
+              "Cannot be fixed by Phase 10 - requires regeneration"
+            ]
+          },
+          {
+            "section": "visual: The diagram at blocks[2] is not explicitly referenced in the...",
+            "score": 0,
+            "maxScore": 1,
+            "issues": [
+              "The diagram at blocks[2] is not explicitly referenced in the surrounding explanation text, reducing its effectiveness as a visual aid."
+            ],
+            "suggestions": [
+              "Prepend to blocks[3].content.content: 'Refer to the diagram to see how these circuit types are physically arranged in a distribution board.\n\n'"
+            ]
+          },
+          {
+            "section": "markingRobustness: Check block question at blocks[6.5].questions[3] (203-3A4-C2...",
+            "score": 0,
+            "maxScore": 2,
+            "issues": [
+              "Check block question at blocks[6.5].questions[3] (203-3A4-C2-L2) only provides one extremely long sentence as an expected answer, making it nearly impossible for a student to get 'correct' in a short-text field."
+            ],
+            "suggestions": [
+              "Change blocks[6].content.questions[3].expectedAnswer from 'While a Radial Circuit originates at a distribution board and terminates at the last connected point, a Ring Final Circuit is a configuration where the conductors form a continuous loop and the continuity of the loop is vital for safety.' to 'radial terminates at last point while ring forms loop,radial is a branch and ring is a loop,radials do not return to source but rings do'"
+            ]
+          }
+        ],
+        "grade": "Usable"
+      }
+    },
+    "rejectionReason": "Score did not improve"
+  },
+  "postmortem": {
+    "rootCause": "The primary cause of the score decline was Patch 1, where the attempt to improve 'marking robustness' resulted in an over-simplification of the expected answer, stripping away essential technical definitions (e.g., 'fundamental building block', 'digital or analogue signals') that the pedagogy likely required.",
+    "harmfulPatches": [
+      {
+        "patchIndex": 0,
+        "why": "The patch replaced a detailed technical definition with vague summaries. While more 'markable', it lost the specific terminology ('building block', 'regulating equipment') that defined the learning objective for that question, leading to a significant drop in alignment or depth scores.",
+        "pointsLost": -6
+      },
+      {
+        "patchIndex": 3,
+        "why": "While it had a positive independent impact, its negative sequential impact suggests that in the context of the already-weakened lesson (after Patch 1), removing answer variations further reduced the 'coverage' score of the assessment block.",
+        "pointsLost": -2
+      }
+    ],
+    "reasoningFlaws": [
+      "Over-simplification: The logic assumed that shorter is always better for 'short-text', ignoring that the field still needs to capture the specific technical concepts taught in the lesson.",
+      "Ignoring semantic requirements: The refinement focused on the 'mechanical' matching of the string rather than ensuring the 'expectedAnswer' still represented a correct and complete response to the question's prompt.",
+      "Context Blindness: Patch 3 removed 'Using your answers to Q1, Q2...' but Patch 1 simultaneously removed the specific content that Q1, Q2, and Q3 were meant to provide, making the final question's context even weaker."
+    ],
+    "patterns": [
+      "Trade-off Failure: There is a recurring conflict between 'Marking Robustness' (simple strings) and 'Pedagogical Depth' (detailed technical answers).",
+      "Sequential Degradation: When an early patch significantly damages the lesson's technical accuracy, subsequent 'correct' patches (like Patch 4) can result in negative sequential scores due to how the evaluator perceives the cumulative loss of quality."
+    ],
+    "recommendations": [
+      "Implement a 'Key Term Retention' rule: When simplifying expected answers for robustness, the system must identify and preserve technical keywords (e.g., 'fundamental building block', 'digital signals').",
+      "Adjust Short-Text Thresholds: Provide guidance that 'short-text' fields can handle up to 20-30 words; if an answer requires more, the recommendation should be to split the question or change the question type rather than gutting the answer content.",
+      "Refine Patch 1 Suggestions: Instead of replacing the whole sentence with a vague list, suggest 2-3 variations that each contain the core technical truth in different phrasing."
+    ]
+  }
+}
