@@ -20,6 +20,7 @@ import { Phase9_Assembler } from './phases/Phase9_Assembler';
 import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/Phase10_Refinement';
 import { LLMScoringService, RubricScore } from './llmScoringService';
 import { getRefinementConfig, getScoringConfig } from './config';
+import { normalizeLessonSchema } from './lessonNormalizer';
 
 export interface PhaseProgress {
   phase: string;
@@ -239,10 +240,22 @@ export class SequentialLessonGenerator {
         output: `Assembled ${lesson.blocks.length} blocks`,
       });
 
-      // Score the lesson
+      // Normalize lesson schema before scoring (fix deterministic issues)
+      console.log(`\n📐 [Normalization] Checking for mechanical fixes...`);
+      const { normalized: normalizedLesson, fixesApplied } = normalizeLessonSchema(lesson);
+      
+      if (fixesApplied.length > 0) {
+        console.log(`📐 [Normalization] Applied ${fixesApplied.length} automatic fixes:`);
+        fixesApplied.forEach(fix => console.log(`   ✓ ${fix}`));
+        lesson = normalizedLesson; // Use normalized version going forward
+      } else {
+        console.log(`📐 [Normalization] No mechanical fixes needed - lesson already clean`);
+      }
+
+      // Score the normalized lesson
       phaseStart = Date.now();
       const initialScore = await this.scorer.scoreLesson(lesson);
-      console.log(`📊 [Scoring] Initial score: ${initialScore.total}/100 (${initialScore.grade})`);
+      console.log(`\n📊 [Scoring] Initial score: ${initialScore.total}/100 (${initialScore.grade})`);
       
       // Verbose logging: Detailed score breakdown
       console.log(`\n📊 [Scoring] Detailed Initial Score Breakdown:`);

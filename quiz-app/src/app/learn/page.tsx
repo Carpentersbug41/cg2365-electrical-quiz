@@ -44,9 +44,7 @@ import lesson203_3D from '@/data/lessons/203-3D-protective-devices-basics-fuses-
 import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment.json';
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
-import lesson203_3A2 from '@/data/lessons/203-3A2-circuit-types-what-they-do.json';
-import lesson203_3A20 from '@/data/lessons/203-3A20-circuit-types-what-they-do.json';
-import lesson203_3A30 from '@/data/lessons/203-3A30-circuit-types-what-they-do.json';
+import lesson203_3A11 from '@/data/lessons/203-3A11-circuit-types-what-they-do.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -90,9 +88,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
-  lesson203_3A30,
-  lesson203_3A20,
-  lesson203_3A2,  lesson203_3F,  lesson202_3F,
+  lesson203_3A11,  lesson203_3F,  lesson202_3F,
   lesson203_3E,
   lesson203_3D,
   lesson203_3C,

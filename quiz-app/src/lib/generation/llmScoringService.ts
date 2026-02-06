@@ -216,201 +216,155 @@ export class LLMScoringService {
    */
   private buildScoringSystemPrompt(): string {
     return `You are an expert educational content reviewer for electrical trade training.
-Your job is to score lessons on a 100-point rubric and provide detailed, actionable feedback.
+
+TASK
+1) Score the lesson JSON on a 100-point rubric.
+2) Identify the TOP 10 highest-impact learning quality issues.
+3) For each issue, provide precise field-level patches.
+4) Respect Phase 10 constraints (no add/remove/reorder blocks).
+
+PHASE 10 CONSTRAINT (CRITICAL)
+- Allowed: replace field values; prepend/append to string content
+- Not Allowed: add blocks, remove blocks, reorder blocks, change block count
+- If an issue requires structural changes, mark fixability as "requiresRegeneration"
 
 SCORING RUBRIC (100 points total):
 
-A) Schema & Contract Compliance (20 points)
-   A1: Valid JSON + required fields (6 points)
-   A2: Block order contract (8 points)
-      - explanation → understanding checks → worked example → practice → integrative → spaced review
-   A3: IDs + naming patterns (6 points)
-      - Question IDs MUST include lesson prefix: {lessonId}-C1-L1-A (checks), {lessonId}-INT-1 (integrative), {lessonId}-P1 (practice), {lessonId}-SR-1 (review)
-      - No duplicate IDs
-      - Block IDs match lesson ID
+A) Schema & Contract Compliance (15 points)
+   - Valid JSON, required fields present, no duplicate IDs
+   - Relative ordering correct: checks after explanations; worked before guided; guided before independent; integrative near end; spaced review last
+   - NOTE: Schema issues like IDs and field types are pre-normalized before scoring, so only flag if critically broken
 
-B) Pedagogy & Staging (25 points)
-   B1: Teaching-before-testing (10 points)
-      - Explanation comes before questions about that content
-      - Understanding checks appear immediately after relevant explanation sections
-   B2: Explanation quality + required outline (10 points)
-      - Clear, well-structured explanations
-      - Has "In this lesson" preview
-      - Has "Key Points" summary  
-      - Has "Coming Up Next" transition
-   B3: Appropriate scaffolding (5 points)
-      - Difficulty progresses logically
-      - Concepts build on each other
+B) Beginner Clarity & Staging (30 points)
+   B1: Beginner Orientation (10 points)
+       - Has "In this lesson" preview section explaining what students will learn
+       - Has "Key Points" summary section with bullet list of main takeaways
+       - Has "Coming Up Next" transition connecting to next lesson
+   B2: Teaching-Before-Testing (10 points)
+       - Content appears in explanation before questions assess it
+       - No questions about terms/concepts not yet explicitly taught
+       - Understanding checks placed immediately after relevant explanations
+   B3: Scaffolding (10 points)
+       - Difficulty ramps smoothly from simple to complex
+       - Concepts build logically on each other
+       - No sudden jumps in complexity
 
-C) Questions & Cognitive Structure (25 points)
-   C1: Scope + accuracy (10 points)
-      - Questions match lesson scope
-      - Technically accurate
-      - Appropriate difficulty level
-   C2: Question quality + banned verbs (10 points)
-      - Well-written, clear questions
-      - No banned verbs in wrong contexts: "list", "describe", "explain" for calculation tasks
-      - No absolute language: "always", "never", "all", "none" (unless technically accurate)
-   C3: expectedAnswer quality (5 points)
-      - Specific enough for grading
-      - Appropriate format for question type
-      - Not too vague or too rigid
+C) Worked/Guided/Independent Alignment (15 points)
+   - Guided practice mirrors worked example steps exactly (same decision points, same process flow)
+   - Independent practice matches what was modelled in worked/guided sections (no new task types suddenly introduced)
+   - If no worked example exists, score full points
 
-D) Marking Robustness (20 points)
-   D1: expectedAnswer tightness (10 points)
-      - Multiple choice has single clear correct answer
-      - Calculations have specific values with tolerances
-      - Not open-ended where precision is needed
-   D2: Answer format clarity (10 points)
-      - Answer format matches question type
-      - Units specified where needed
-      - No ambiguity in what constitutes correct answer
+D) Questions & Cognitive Structure (25 points)
+   D1: Scope + Technical Accuracy (10 points)
+       - Questions match lesson scope and learning outcomes
+       - Technically correct information throughout
+       - Appropriate difficulty level for target audience
+   D2: Question Quality (10 points)
+       - Clear, unambiguous wording
+       - Avoids unjustified absolutes ("always", "never" - prefer "typically", "often", "usually")
+       - Uses appropriate question verbs for task type
+   D3: Integrative Block Structure (5 points)
+       - If integrative block exists, it contains exactly 2 questions
+       - Question 1: connection question (ties together 2-3 major concepts)
+       - Question 2: synthesis question (integrates all lesson concepts in 3-4 sentences)
 
-E) Visual/Diagram Alignment (5 points)
-   - Diagrams referenced appropriately
-   - Visual aids support learning
-   - No missing diagram references
+E) Marking Robustness (10 points)
+   - expectedAnswer is gradeable and matches answerType
+   - For numeric answers: expectedAnswer contains numbers only (no units - units go in hint)
+   - For short-text: provides 2-6 acceptable variations
 
-F) Safety, Accuracy, Professionalism (5 points)
-   - Technically accurate information
-   - Appropriate safety emphasis for electrical work
-   - Professional tone throughout
+F) Visual/Diagram Alignment (5 points)
+   - Diagrams referenced appropriately in explanations and questions
+   - No missing or broken diagram references
 
-CRITICAL STRUCTURAL CONSTRAINT:
-Phase 10 can ONLY modify existing fields in existing blocks.
-It CANNOT add blocks, remove blocks, reorder blocks, or change block count.
+PRIORITIZATION RULES (CRITICAL)
+- Maximum 10 issues total
+- Focus on learning quality issues (sections B, C, D) - these drive student success
+- Schema/mechanical issues (A, E) are pre-normalized - only flag if critically broken
+- Impact ranking: Beginner Clarity (B) > Alignment (C) > Questions (D) > Marking (E) > Schema (A)
+- If there are many similar mechanical issues (e.g., 20 IDs missing prefix), group them into ONE issue with note: "Deterministic fix - recommend code pre-pass"
 
-DO NOT suggest:
-- "Insert a new block..."
-- "Remove blocks[X]..."
-- "Reorder blocks to..."
-- "Add a worked-example block..."
-- "Move blocks[X] before blocks[Y]..."
-
-ONLY suggest field-level changes to existing blocks:
-- "Change blocks[X].field from 'old' to 'new'"
-- "Prepend to blocks[X].content.content: '...'"
-- "Append to blocks[X].content.content: '...'"
-
-If a structural issue exists (e.g., wrong block order, missing block type), 
-note it in the issues array but mark the suggestion as: "Cannot be fixed by Phase 10 - requires regeneration"
-
-CRITICAL RULES FOR ISSUES & SUGGESTIONS:
-1. Return ONLY valid JSON, no markdown code blocks
-2. Total score MUST equal sum of breakdown scores
-3. Focus on the TOP 10 most impactful issues (ignore minor problems)
-4. For EACH issue, provide a SPECIFIC suggestion with the exact rewrite/change
-5. NEVER group multiple array items into one issue - create SEPARATE issue/suggestion pairs for EACH item that needs fixing
-
-SUGGESTION FORMAT - BE LASER FOCUSED:
-❌ BAD: "Make expectedAnswer more specific"
-✅ GOOD: "Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A'"
-
-❌ BAD: "Improve question wording"  
-✅ GOOD: "Change blocks[7].content.questions[1].questionText from 'What happens?' to 'Calculate the total resistance when three 10Ω resistors are connected in series.'"
-
-❌ BAD: "Fix ID pattern"
-✅ GOOD: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A4-C1-L1-A'"
-
-CRITICAL OPERATION VERBS - USE PRECISELY:
-
-For CONTENT ADDITIONS (adding text to beginning/end of existing content):
-✅ CORRECT: "Prepend to blocks[3].content.content: '### In this lesson\\n\\nYou will learn...\\n\\n'"
-✅ CORRECT: "Append to blocks[5].content.content: '\\n\\n### Key Points\\n1. Point one\\n2. Point two'"
-❌ WRONG: "Add 'In this lesson...' to the start of blocks[3].content.content" (ambiguous - add or replace?)
-
-For VALUE REPLACEMENTS (changing specific fields):
-✅ CORRECT: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A9-C1-L1-A'"
-✅ CORRECT: "Change blocks[7].content.questions[2].expectedAnswer from 'yes' to '10A,10.0'"
-❌ WRONG: "Fix the ID" (not specific enough)
-
-For MULTIPLE ITEMS IN ARRAY - Create SEPARATE issue AND suggestion for EACH item:
-CRITICAL: If a block has 4 invalid question IDs, you MUST create 4 separate issue/suggestion pairs (one for EACH invalid ID).
-
-✅ CORRECT (separate issue/suggestion for EACH invalid ID):
-  Issue 1: "Question ID 'blocks[4].content.questions[0].id' is 'C1-L1-A' but missing required lesson prefix"
-  Suggestion 1: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A9-C1-L1-A'"
-  
-  Issue 2: "Question ID 'blocks[4].content.questions[1].id' is 'C1-L1-B' but missing required lesson prefix"
-  Suggestion 2: "Change blocks[4].content.questions[1].id from 'C1-L1-B' to '203-3A9-C1-L1-B'"
-  
-  Issue 3: "Question ID 'blocks[4].content.questions[2].id' is 'C1-L1-C' but missing required lesson prefix"
-  Suggestion 3: "Change blocks[4].content.questions[2].id from 'C1-L1-C' to '203-3A9-C1-L1-C'"
-  
-  Issue 4: "Question ID 'blocks[4].content.questions[3].id' is 'C1-L2' but missing required lesson prefix"
-  Suggestion 4: "Change blocks[4].content.questions[3].id from 'C1-L2' to '203-3A9-C1-L2'"
-
-❌ WRONG - Generic issue grouping multiple IDs:
-  Issue: "Question IDs in block 4 are missing the lesson prefix '203-3A9-'"
-  Suggestion: "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A9-C1-L1-A'"
-  (This only fixes the FIRST ID, leaving questions[1], [2], [3] broken!)
-
-❌ WRONG - Generic suggestion without specific path:
-  "Change ALL question IDs in blocks[4] to add prefix" (requires iteration, only first item will be fixed)
-
-OPERATION VERB RULES:
-- "Prepend to X:" = add to BEGINNING of existing string (keeps original content)
-- "Append to X:" = add to END of existing string (keeps original content)
-- "Change X from Y to Z:" = REPLACE value Y with value Z (overwrites completely)
-- "Set X to Y:" = REPLACE/assign value (overwrites completely)
-- NEVER use "Add" (ambiguous - could mean append or replace)
-
-Each suggestion should be so specific that someone could implement it WITHOUT needing to make creative decisions.
-
-PRIORITIZATION:
-- Only report issues that significantly impact quality (score impact ≥ 0.5 points)
-- Rank by impact: Schema/Safety > Pedagogy > Questions > Visual
-- Maximum 10 issues total across ALL sections (laser focus on highest impact)
-
-GRADE SCALE:
-- 95-100: "Ship it" (excellent, production-ready)
-- 90-94: "Strong" (good quality, minor improvements)
-- 85-89: "Usable" (acceptable, some issues)
-- Below 85: "Needs rework" (significant problems)
+OUTPUT FORMAT (JSON ONLY, no markdown)
 
 Return JSON in this EXACT format:
+
 {
-  "total": 92,
+  "total": 91,
   "breakdown": {
-    "schemaCompliance": 18,
-    "pedagogy": 23,
+    "schemaCompliance": 14,
+    "beginnerClarityStaging": 24,
+    "alignment": 12,
     "questions": 22,
-    "marking": 18,
-    "visual": 5,
-    "safety": 5
+    "markingRobustness": 9,
+    "visual": 5
   },
-  "details": [
+  "issues": [
     {
-      "section": "A3: IDs + naming patterns",
-      "score": 2,
-      "maxScore": 6,
-      "issues": [
-        "Question ID 'blocks[4].content.questions[0].id' is 'C1-L1-A' but missing required lesson prefix",
-        "Question ID 'blocks[4].content.questions[1].id' is 'C1-L1-B' but missing required lesson prefix",
-        "Question ID 'blocks[4].content.questions[2].id' is 'C1-L1-C' but missing required lesson prefix",
-        "Question ID 'blocks[4].content.questions[3].id' is 'C1-L2' but missing required lesson prefix"
-      ],
-      "suggestions": [
-        "Change blocks[4].content.questions[0].id from 'C1-L1-A' to '203-3A4-C1-L1-A'",
-        "Change blocks[4].content.questions[1].id from 'C1-L1-B' to '203-3A4-C1-L1-B'",
-        "Change blocks[4].content.questions[2].id from 'C1-L1-C' to '203-3A4-C1-L1-C'",
-        "Change blocks[4].content.questions[3].id from 'C1-L2' to '203-3A4-C1-L2'"
+      "id": "ISSUE-1",
+      "impact": 3,
+      "category": "beginnerClarityStaging",
+      "problem": "Explanation block at blocks[3] missing required 'Key Points' summary section with bullet list. Students need explicit takeaways for retention.",
+      "fixability": "phase10",
+      "patches": [
+        {
+          "op": "append",
+          "path": "/blocks/3/content/content",
+          "value": "\\n\\n### Key Points\\n- [Point one extracted from explanation]\\n- [Point two extracted from explanation]\\n- [Point three extracted from explanation]"
+        }
       ]
     },
     {
-      "section": "C3: expectedAnswer quality",
-      "score": 3,
-      "maxScore": 5,
-      "issues": [
-        "Question 'blocks[6].content.questions[2].expectedAnswer' is 'approximately 20A' which is too vague for grading"
-      ],
-      "suggestions": [
-        "Change blocks[6].content.questions[2].expectedAnswer from 'approximately 20A' to '20A ± 2A' to provide specific tolerance"
+      "id": "ISSUE-2",
+      "impact": 2,
+      "category": "beginnerClarityStaging",
+      "problem": "Check block at blocks[4] asks about 'residual current' but explanation at blocks[3] never explicitly defines this term. Violates teaching-before-testing.",
+      "fixability": "phase10",
+      "patches": [
+        {
+          "op": "prepend",
+          "path": "/blocks/3/content/content",
+          "value": "### In this lesson\\n\\nYou will learn about residual current and how it affects circuit protection.\\n\\n"
+        }
       ]
+    },
+    {
+      "id": "ISSUE-3",
+      "impact": 2,
+      "category": "alignment",
+      "problem": "Guided practice at blocks[7] uses different steps than worked example at blocks[6]. Should mirror exactly for effective scaffolding.",
+      "fixability": "requiresRegeneration",
+      "patches": []
     }
   ],
   "grade": "Strong"
-}`;
+}
+
+PATCH OPERATION TYPES:
+
+"replace" - Replace entire field value
+  Required fields: "op", "path", "from", "value"
+  Example: {"op": "replace", "path": "/blocks/4/content/title", "from": "Old Title", "value": "New Title"}
+
+"append" - Add text to END of existing string field
+  Required fields: "op", "path", "value"
+  Example: {"op": "append", "path": "/blocks/3/content/content", "value": "\\n\\n### Key Points\\n- Point one"}
+
+"prepend" - Add text to BEGINNING of existing string field
+  Required fields: "op", "path", "value"
+  Example: {"op": "prepend", "path": "/blocks/3/content/content", "value": "### In this lesson\\n\\nOverview text\\n\\n"}
+
+VALIDATION RULES:
+- Total MUST equal sum of breakdown scores (CRITICAL - previous example had math error!)
+- All paths must use JSON Pointer format (/blocks/3/content/title)
+- Each issue must have at least one patch (unless fixability is "requiresRegeneration")
+- Maximum 10 issues total
+- Focus issues on learning quality (B, C, D sections), not mechanical schema fixes (A, E sections)
+
+GRADE SCALE:
+- 95-100: "Ship it" (excellent, production-ready)
+- 90-94: "Strong" (good quality, minor improvements needed)
+- 85-89: "Usable" (acceptable quality, some issues to address)
+- Below 85: "Needs rework" (significant problems require attention)`;
   }
 
   /**
@@ -425,18 +379,18 @@ Return JSON in this EXACT format:
 LESSON TO SCORE:
 ${lessonJson}
 
-CRITICAL: For each issue, provide a SPECIFIC suggestion with the EXACT change to make.
-- Include JSON paths (e.g., "blocks[4].content.questions[0].id")
-- Include old and new values (e.g., "Change from 'X' to 'Y'")
-- Be so specific that someone can implement it without making creative decisions
+CRITICAL REMINDERS:
+1. Focus on TOP 10 learning quality issues (sections B, C, D) - schema issues (A, E) are pre-normalized
+2. Use structured patch format with JSON Pointer paths (e.g., "/blocks/3/content/content")
+3. Ensure total score equals sum of breakdown scores (avoid math errors!)
+4. Each patch must specify "op" (replace/append/prepend), "path", and "value"
+5. Mark structural issues as "requiresRegeneration" with empty patches array
 
-Focus on the TOP 10 most impactful issues only (laser focus, not everything).
-
-Return ONLY the JSON scoring object, no additional text.`;
+Return ONLY the JSON scoring object following the exact format specified above. No markdown, no additional text.`;
   }
 
   /**
-   * Parse LLM scoring response
+   * Parse LLM scoring response (handles both new and legacy formats)
    */
   private parseScoringResponse(response: string): RubricScore {
     // Clean the response
@@ -464,18 +418,79 @@ Return ONLY the JSON scoring object, no additional text.`;
     if (!data.breakdown || typeof data.breakdown !== 'object') {
       throw new Error('LLM response missing required field: breakdown');
     }
-    if (!Array.isArray(data.details)) {
-      throw new Error('LLM response missing required field: details');
-    }
     if (typeof data.grade !== 'string') {
       throw new Error('LLM response missing required field: grade');
     }
 
-    // Return as RubricScore
+    // Check if this is new format (issues array) or legacy format (details array)
+    const isNewFormat = Array.isArray(data.issues);
+    const isLegacyFormat = Array.isArray(data.details);
+
+    if (!isNewFormat && !isLegacyFormat) {
+      throw new Error('LLM response missing required field: issues or details array');
+    }
+
+    // Convert new format to legacy RubricScore format for backward compatibility
+    let details: RubricDetail[];
+
+    if (isNewFormat) {
+      // NEW FORMAT: Convert issues with patches to details with suggestions
+      details = data.issues.map((issue: any) => {
+        // Convert patches to suggestion strings for Phase 10
+        const suggestions = (issue.patches || []).map((patch: any) => {
+          const jsonPath = patch.path || '';
+          // Convert JSON Pointer (/blocks/3/content/title) to dot notation (blocks[3].content.title)
+          const dotPath = jsonPath
+            .replace(/^\//, '')
+            .replace(/\//g, '.')
+            .replace(/\.(\d+)\./g, '[$1].')
+            .replace(/\.(\d+)$/, '[$1]');
+
+          if (patch.op === 'replace') {
+            const from = patch.from || '[current value]';
+            const value = patch.value || '';
+            return `Change ${dotPath} from '${from}' to '${value}'`;
+          } else if (patch.op === 'append') {
+            return `Append to ${dotPath}: '${patch.value || ''}'`;
+          } else if (patch.op === 'prepend') {
+            return `Prepend to ${dotPath}: '${patch.value || ''}'`;
+          }
+          return `Modify ${dotPath}`;
+        });
+
+        // If no patches (requiresRegeneration), add a note
+        if (issue.fixability === 'requiresRegeneration') {
+          suggestions.push('Cannot be fixed by Phase 10 - requires regeneration');
+        }
+
+        return {
+          section: `${issue.category || 'General'}: ${(issue.problem || '').substring(0, 60)}${issue.problem && issue.problem.length > 60 ? '...' : ''}`,
+          score: 0, // Not directly provided in new format
+          maxScore: issue.impact || 1,
+          issues: [issue.problem || 'Issue detected'],
+          suggestions: suggestions.length > 0 ? suggestions : ['Review and fix manually'],
+        };
+      });
+    } else {
+      // LEGACY FORMAT: Use details as-is
+      details = data.details;
+    }
+
+    // Map new breakdown field names to legacy names if needed
+    const breakdown = {
+      schemaCompliance: data.breakdown.schemaCompliance || 0,
+      pedagogy: data.breakdown.beginnerClarityStaging || data.breakdown.pedagogy || 0,
+      questions: data.breakdown.questions || 0,
+      marking: data.breakdown.markingRobustness || data.breakdown.marking || 0,
+      visual: data.breakdown.visual || 0,
+      safety: data.breakdown.safety || 0,
+    };
+
+    // Return as RubricScore (backward compatible)
     return {
       total: data.total,
-      breakdown: data.breakdown,
-      details: data.details,
+      breakdown: breakdown,
+      details: details,
       grade: data.grade,
       autoCap: data.autoCap,
     };

@@ -61,10 +61,11 @@ export const GENERATION_CONFIG = {
     temperature: 0.0,
     
     /**
-     * Max tokens for scoring response
-     * Increased to 8000 to prevent truncation (lesson JSON ~2-3k + prompts ~2k + response ~2k)
+     * Max output tokens for scoring response
+     * Set to 16000 to ensure complex lessons never truncate
+     * After investing ~70K tokens in generation, scoring must have headroom
      */
-    maxTokens: 8000,
+    maxTokens: 16000,
   },
   
   /**
