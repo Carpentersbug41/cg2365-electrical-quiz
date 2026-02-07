@@ -230,9 +230,12 @@ CONTENT RULES:
 - Do not introduce "[object Object]" or placeholder text.
 - If the scoring report contains malformed suggestions (e.g. '[object Object]'), ignore those suggestions and instead implement the intended fix safely.
 
-ANSWER TYPE RULES:
+ANSWER TYPE RULES (CRITICAL):
+- VALID answerTypes: "short-text", "multiple-choice", "calculation", "true-false"
+- NEVER use: "numeric", "long-text", "essay", "open-ended", or any other type
 - Do NOT change answerType unless you also update the question's grading expectations so marking remains robust.
 - Prefer keeping answerType unchanged and improving hints/expectedAnswer variants unless explicitly required.
+- If you must change answerType, use ONLY one of the 4 valid types above.
 
 OUTPUT FORMAT:
 Return the full lesson JSON object.

@@ -153,6 +153,25 @@ export default function GeneratePage() {
     error: null,
   });
 
+  // Improve Lesson state
+  const [selectedImproveLesson, setSelectedImproveLesson] = useState<string>('');
+  const [improveStatus, setImproveStatus] = useState<{
+    improving: boolean;
+    success: boolean;
+    error: string | null;
+    result?: {
+      wasImproved: boolean;
+      originalScore: number;
+      finalScore: number;
+      scoreDelta: number;
+      validationFailures?: string[];
+    };
+  }>({
+    improving: false,
+    success: false,
+    error: null,
+  });
+
   // Fetch lessons on mount
   useEffect(() => {
     async function fetchLessons() {
@@ -501,6 +520,58 @@ export default function GeneratePage() {
         deleting: false,
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error during deletion',
+      });
+    }
+  };
+
+  const handleImproveLesson = async () => {
+    if (!selectedImproveLesson) return;
+    
+    if (!window.confirm(`Run Phase 10 v2 refinement on "${selectedImproveLesson}"?\n\nThis will score the lesson, attempt to improve it, and save the result if the score improves.`)) {
+      return;
+    }
+    
+    setImproveStatus({ improving: true, success: false, error: null });
+    
+    try {
+      const response = await fetch('/api/improve-lesson', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lessonId: selectedImproveLesson }),
+      });
+      
+      const data = await response.json();
+      
+      if (data.success) {
+        setImproveStatus({
+          improving: false,
+          success: true,
+          error: null,
+          result: {
+            wasImproved: data.wasImproved,
+            originalScore: data.originalScore,
+            finalScore: data.finalScore,
+            scoreDelta: data.scoreDelta,
+            validationFailures: data.validationFailures,
+          },
+        });
+        
+        // Reset selection after 5 seconds
+        setTimeout(() => {
+          setSelectedImproveLesson('');
+        }, 5000);
+      } else {
+        setImproveStatus({
+          improving: false,
+          success: false,
+          error: data.error || 'Improvement failed',
+        });
+      }
+    } catch (error) {
+      setImproveStatus({
+        improving: false,
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error',
       });
     }
   };
@@ -1587,6 +1658,137 @@ export default function GeneratePage() {
               <p className="text-xs text-yellow-800 dark:text-yellow-300">
                 <strong>Warning:</strong> Deletion is permanent and removes the lesson from all 7 integration points (lessonIndex, page imports, question files, etc.). Make sure you have a backup if needed.
               </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Improve Lesson Card */}
+        <div className="mt-6 bg-white dark:bg-slate-800 rounded-lg shadow-lg p-6">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-blue-600 dark:text-blue-400">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+            </svg>
+            Improve Existing Lesson
+          </h3>
+          
+          <p className="text-sm text-gray-600 dark:text-slate-400 mb-4">
+            Run Phase 10 v2 refinement on an existing lesson to improve its quality.
+          </p>
+          
+          <div className="space-y-4">
+            {/* Lesson Dropdown */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                Select Lesson
+              </label>
+              <select
+                value={selectedImproveLesson}
+                onChange={(e) => setSelectedImproveLesson(e.target.value)}
+                disabled={improveStatus.improving}
+                className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+              >
+                <option value="">-- Select a lesson --</option>
+                {Object.entries(lessonsByUnit).map(([unitNumber, unitLessons]) => (
+                  <optgroup key={unitNumber} label={`Unit ${unitNumber}`}>
+                    {unitLessons.map((lesson) => (
+                      <option key={lesson.id} value={lesson.id}>
+                        {lesson.id} - {lesson.title}
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
+              </select>
+            </div>
+
+            {/* Improve Button */}
+            <button
+              onClick={handleImproveLesson}
+              disabled={!selectedImproveLesson || improveStatus.improving}
+              className="w-full px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            >
+              {improveStatus.improving ? (
+                <>
+                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  <span>Improving...</span>
+                </>
+              ) : (
+                <>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                  </svg>
+                  <span>Improve Lesson</span>
+                </>
+              )}
+            </button>
+
+            {/* Success Message */}
+            {improveStatus.success && improveStatus.result && (
+              <div className={`p-4 rounded-lg border ${
+                improveStatus.result.wasImproved
+                  ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800'
+                  : 'bg-yellow-50 dark:bg-yellow-900/20 border-yellow-200 dark:border-yellow-800'
+              }`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <svg className={`w-5 h-5 ${
+                    improveStatus.result.wasImproved 
+                      ? 'text-green-600 dark:text-green-400' 
+                      : 'text-yellow-600 dark:text-yellow-400'
+                  }`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <h4 className={`font-semibold ${
+                    improveStatus.result.wasImproved 
+                      ? 'text-green-900 dark:text-green-200' 
+                      : 'text-yellow-900 dark:text-yellow-200'
+                  }`}>
+                    {improveStatus.result.wasImproved ? 'Lesson Improved!' : 'No Improvement Made'}
+                  </h4>
+                </div>
+                <div className={`text-sm ${
+                  improveStatus.result.wasImproved 
+                    ? 'text-green-800 dark:text-green-300' 
+                    : 'text-yellow-800 dark:text-yellow-300'
+                }`}>
+                  <p><strong>Original Score:</strong> {improveStatus.result.originalScore}/100</p>
+                  <p><strong>Final Score:</strong> {improveStatus.result.finalScore}/100</p>
+                  <p><strong>Delta:</strong> {improveStatus.result.scoreDelta > 0 ? '+' : ''}{improveStatus.result.scoreDelta}</p>
+                  {improveStatus.result.validationFailures && improveStatus.result.validationFailures.length > 0 && (
+                    <div className="mt-2">
+                      <p className="font-medium">Validation Issues:</p>
+                      <ul className="list-disc list-inside ml-2 mt-1 text-xs">
+                        {improveStatus.result.validationFailures.map((failure, i) => (
+                          <li key={i}>{failure}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Error Message */}
+            {improveStatus.error && (
+              <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                <div className="flex items-center gap-2 mb-2">
+                  <svg className="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <h4 className="font-semibold text-red-900 dark:text-red-200">
+                    Improvement Failed
+                  </h4>
+                </div>
+                <p className="text-sm text-red-800 dark:text-red-300">
+                  {improveStatus.error}
+                </p>
+              </div>
+            )}
+
+            {/* Info Note */}
+            <div className="text-xs text-gray-500 dark:text-slate-500 p-3 bg-gray-50 dark:bg-slate-700/50 rounded">
+              <strong>Note:</strong> This runs Phase 10 v2 refinement only. The lesson will be scored, refined by the LLM, validated, and re-scored. Only improvements that pass validation and score gates will be saved.
             </div>
           </div>
         </div>
