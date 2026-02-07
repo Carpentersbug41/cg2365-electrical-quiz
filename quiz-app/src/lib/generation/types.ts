@@ -363,6 +363,19 @@ export interface GenerationDebugBundle {
     };
   };
   
+  // Phase 10 v2 execution (if strategy='rewrite')
+  phase10v2?: {
+    prompts: {
+      system: string;
+      user: string;
+    };
+    rawResponse: string;
+    candidateLesson: any | null; // Lesson object or null if rejected
+    validationFailures: string[];
+    scoreDelta: number | null;
+    accepted: boolean;
+  };
+  
   // Postmortem analysis
   postmortem?: PostmortemAnalysis;
 }

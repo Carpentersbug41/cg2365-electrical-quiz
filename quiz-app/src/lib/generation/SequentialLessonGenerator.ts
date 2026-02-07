@@ -24,8 +24,9 @@ import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integrati
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
 import { Phase9_Assembler } from './phases/Phase9_Assembler';
 import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/Phase10_Refinement';
+import { Phase10_Rewrite } from './phases/Phase10_Rewrite';
 import { LLMScoringService, RubricScore } from './llmScoringService';
-import { getRefinementConfig, getScoringConfig } from './config';
+import { getRefinementConfig, getScoringConfig, getPhase10Strategy } from './config';
 import { normalizeLessonSchema } from './lessonNormalizer';
 import { saveDiagnosticData } from './diagnosticUtils';
 
@@ -954,7 +955,75 @@ export class SequentialLessonGenerator {
   /**
    * Phase 10: Auto-Refinement
    */
+  /**
+   * Phase 10: Auto-Refinement (ROUTER)
+   * Routes to v1 (patch) or v2 (rewrite) based on strategy config
+   */
   private async runPhase10(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
+    const strategy = getPhase10Strategy();
+    
+    console.log(`  🔧 Phase 10: Auto-refinement (strategy: ${strategy})...`);
+    
+    if (strategy === 'rewrite') {
+      return await this.runPhase10Rewrite(lesson, rubricScore, debugCollector);
+    } else {
+      return await this.runPhase10Patch(lesson, rubricScore, debugCollector);
+    }
+  }
+
+  /**
+   * Phase 10 v2: Holistic Rewrite
+   */
+  private async runPhase10Rewrite(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
+    console.log('  🔧 Phase 10 v2: Holistic Rewrite...');
+    debugLog('PHASE10V2_START', { lessonId: lesson.id, initialScore: rubricScore.total });
+    
+    const rewriter = new Phase10_Rewrite();
+    const result = await rewriter.rewriteLesson(
+      lesson,
+      rubricScore,
+      this.generateWithRetry,
+      this.scorer
+    );
+    
+    // Record in debug bundle
+    debugCollector.recordPhase10v2Attempt(
+      rewriter.lastPrompts,
+      rewriter.lastRawResponse,
+      result.candidateLesson,
+      result.validationFailures,
+      result.scoreComparison,
+      result.candidateLesson !== null
+    );
+    
+    if (!result.candidateLesson) {
+      console.log(`    ⊘ Candidate rejected: ${result.validationFailures.join(', ')}`);
+      debugLog('PHASE10V2_REJECTED', { reasons: result.validationFailures });
+      await saveDebugBundle(debugCollector.getBundle());
+      return null;
+    }
+    
+    const improvement = result.scoreComparison!.delta;
+    console.log(`    ✓ Candidate accepted (score: ${result.scoreComparison!.original} → ${result.scoreComparison!.candidate}, Δ${improvement >= 0 ? '+' : ''}${improvement})`);
+    debugLog('PHASE10V2_ACCEPTED', { scoreDelta: improvement });
+    
+    // Save debug bundle
+    await saveDebugBundle(debugCollector.getBundle());
+    
+    return {
+      originalLesson: lesson,
+      refined: result.candidateLesson,
+      patchesApplied: [], // v2 doesn't use patches
+      originalScore: rubricScore.total,
+      refinedScore: result.scoreComparison!.candidate,
+      improvementSuccess: true
+    };
+  }
+
+  /**
+   * Phase 10 v1: Patch-based Refinement (LEGACY)
+   */
+  private async runPhase10Patch(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
     console.log('  🔧 Phase 10: Auto-refinement...');
     debugLog('PHASE10_START', { lessonId: lesson.id, initialScore: rubricScore.total });
 

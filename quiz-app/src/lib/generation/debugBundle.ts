@@ -151,6 +151,27 @@ export class DebugBundleCollector {
   }
 
   /**
+   * Record Phase 10 v2 attempt (holistic rewrite)
+   */
+  recordPhase10v2Attempt(
+    prompts: { system: string; user: string },
+    rawResponse: string,
+    candidate: any | null,
+    validationFailures: string[],
+    scoreComparison: any,
+    accepted: boolean
+  ): void {
+    this.bundle.phase10v2 = {
+      prompts,
+      rawResponse,
+      candidateLesson: candidate,
+      validationFailures,
+      scoreDelta: scoreComparison?.delta || null,
+      accepted
+    };
+  }
+
+  /**
    * Compute diffs between baseline and refined lessons
    */
   private computeDiffs(): void {

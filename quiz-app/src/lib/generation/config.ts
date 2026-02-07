@@ -41,6 +41,30 @@ export const GENERATION_CONFIG = {
      * Default: true
      */
     autoApply: true,
+    
+    /**
+     * Phase 10 strategy: 'patch' or 'rewrite'
+     * 'patch': v1 surgical JSON patches (current stable)
+     * 'rewrite': v2 holistic rewrite with hard safety gates (experimental)
+     * Default: 'patch'
+     */
+    strategy: 'patch' as 'patch' | 'rewrite',
+    
+    /**
+     * Enable Phase 10 v2 (holistic rewrite)
+     * When true, uses rewrite strategy
+     * When false, uses patch strategy
+     * Default: false (v1 patch remains default until v2 proven)
+     */
+    rewriteEnabled: false,
+    
+    /**
+     * Enable shadow mode for v2 testing
+     * When true, runs both v1 and v2 but ships v1 result
+     * Used to collect comparison metrics without risk
+     * Default: false
+     */
+    rewriteShadowMode: false,
   },
   
   /**
@@ -103,4 +127,12 @@ export function getScoringConfig() {
  */
 export function shouldRefine(score: number): boolean {
   return GENERATION_CONFIG.refinement.enabled && score < GENERATION_CONFIG.refinement.scoreThreshold;
+}
+
+/**
+ * Get Phase 10 strategy (patch or rewrite)
+ * Returns 'rewrite' if rewriteEnabled is true, otherwise 'patch'
+ */
+export function getPhase10Strategy(): 'patch' | 'rewrite' {
+  return GENERATION_CONFIG.refinement.rewriteEnabled ? 'rewrite' : 'patch';
 }

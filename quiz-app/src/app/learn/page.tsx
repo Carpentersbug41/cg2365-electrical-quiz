@@ -44,14 +44,8 @@ import lesson203_3D from '@/data/lessons/203-3D-protective-devices-basics-fuses-
 import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment.json';
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
-import lesson203_3A11 from '@/data/lessons/203-3A11-circuit-types-what-they-do.json';
-import lesson203_3A6 from '@/data/lessons/203-3A6-circuit-types-what-they-do.json';
-import lesson203_3A2 from '@/data/lessons/203-3A2-circuit-types-what-they-do.json';
-import lesson203_3A4 from '@/data/lessons/203-3A4-circuit-types-what-they-do.json';
-import lesson203_3AA from '@/data/lessons/203-3AA-circuit-types-what-they-do.json';
-import lesson203_3A9 from '@/data/lessons/203-3A9-circuit-types-what-they-do.json';
-import lesson203_3AAA4 from '@/data/lessons/203-3AAA4-circuit-types-what-they-do.json';
 import lesson203_3ABC from '@/data/lessons/203-3ABC-circuit-types-what-they-do.json';
+import lesson203_3A1 from '@/data/lessons/203-3A1-circuit-types-what-they-do.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -95,14 +89,8 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
-  lesson203_3ABC,
-  lesson203_3AAA4,
-  lesson203_3A9,
-  lesson203_3AA,
-  lesson203_3A4,
-  lesson203_3A2,
-  lesson203_3A6,
-  lesson203_3A11,  lesson203_3F,  lesson202_3F,
+  lesson203_3A1,
+  lesson203_3ABC,  lesson203_3F,  lesson202_3F,
   lesson203_3E,
   lesson203_3D,
   lesson203_3C,

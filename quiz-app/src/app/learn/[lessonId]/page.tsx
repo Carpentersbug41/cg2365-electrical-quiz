@@ -49,25 +49,13 @@ import lesson203_3D from '@/data/lessons/203-3D-protective-devices-basics-fuses-
 import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment.json';
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
-import lesson203_3A11 from '@/data/lessons/203-3A11-circuit-types-what-they-do.json';
-import lesson203_3A6 from '@/data/lessons/203-3A6-circuit-types-what-they-do.json';
-import lesson203_3A2 from '@/data/lessons/203-3A2-circuit-types-what-they-do.json';
-import lesson203_3A4 from '@/data/lessons/203-3A4-circuit-types-what-they-do.json';
-import lesson203_3AA from '@/data/lessons/203-3AA-circuit-types-what-they-do.json';
-import lesson203_3A9 from '@/data/lessons/203-3A9-circuit-types-what-they-do.json';
-import lesson203_3AAA4 from '@/data/lessons/203-3AAA4-circuit-types-what-they-do.json';
 import lesson203_3ABC from '@/data/lessons/203-3ABC-circuit-types-what-they-do.json';
+import lesson203_3A1 from '@/data/lessons/203-3A1-circuit-types-what-they-do.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
-  '203-3ABC': lesson203_3ABC as Lesson,
-  '203-3AAA4': lesson203_3AAA4 as Lesson,
-  '203-3A9': lesson203_3A9 as Lesson,
-  '203-3AA': lesson203_3AA as Lesson,
-  '203-3A4': lesson203_3A4 as Lesson,
-  '203-3A2': lesson203_3A2 as Lesson,
-  '203-3A6': lesson203_3A6 as Lesson,
-  '203-3A11': lesson203_3A11 as Lesson,  '203-3F': lesson203_3F as Lesson,  '202-3F': lesson202_3F as Lesson,
+  '203-3A1': lesson203_3A1 as Lesson,
+  '203-3ABC': lesson203_3ABC as Lesson,  '203-3F': lesson203_3F as Lesson,  '202-3F': lesson202_3F as Lesson,
   '203-3E': lesson203_3E as Lesson,
   '203-3D': lesson203_3D as Lesson,
   '203-3C': lesson203_3C as Lesson,

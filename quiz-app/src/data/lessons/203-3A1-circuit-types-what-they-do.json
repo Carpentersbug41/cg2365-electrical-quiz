@@ -1,0 +1,376 @@
+{
+  "id": "203-3A1",
+  "title": "203.3A1 — Circuit Types: What They Do",
+  "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Circuit Types: What They Do",
+  "learningOutcomes": [
+    "Identify different categories of electrical circuits including lighting, power, data, and control.",
+    "Explain the typical applications and purposes for various circuit types in a domestic or commercial installation.",
+    "Describe the fundamental principles and common uses of ring final and radial circuit topologies."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3A1-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify different categories of electrical circuits including lighting, power, data, and control.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the typical applications and purposes for various circuit types in a domestic or commercial installation.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Describe the fundamental principles and common uses of ring final and radial circuit topologies.",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A1-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Final Circuit",
+            "definition": "The end-point of an electrical installation that delivers power directly to appliances, luminaires, or socket-outlets."
+          },
+          {
+            "term": "Radial Circuit",
+            "definition": "A linear circuit arrangement where the cable runs from the consumer unit to each point and ends at the final outlet without returning."
+          },
+          {
+            "term": "Ring Final Circuit",
+            "definition": "A circuit topology where the conductors form a continuous loop starting and ending at the same point in the distribution board."
+          },
+          {
+            "term": "Control Circuit",
+            "definition": "A circuit used to manage the operation of another circuit or a specific piece of equipment, such as a heating system or motor."
+          },
+          {
+            "term": "Data Circuit",
+            "definition": "A circuit designed for the transmission of digital or analogue information rather than for supplying electrical power to loads."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A1-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Circuit Types: What They Do Diagram",
+        "description": "Visual representation of Circuit Types: What They Do",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "ring-final-circuit",
+          "radial-circuit",
+          "consumer-unit",
+          "socket-outlet",
+          "final-circuit"
+        ],
+        "placeholderText": "A split-screen diagram showing two circuit topologies. On the left, a 'radial-circuit' originates from a 'consumer-unit' and connects three 'socket-outlet' symbols in a straight line, ending at the last one. On the right, a 'ring-final-circuit' originates from the same 'consumer-unit', connects three 'socket-outlet' symbols in a sequence, and then the cable returns to the original starting point in the consumer unit to form a complete loop. Both are examples of a 'final-circuit'."
+      }
+    },
+    {
+      "id": "203-3A1-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Circuit Categories and Applications",
+        "content": "### In this lesson\nYou will learn to identify different categories of electrical circuits and their specific functions within an installation. This context covers typical domestic and commercial environments where various systems must operate independently for safety and convenience. \n\n*   Distinguish between lighting, power, data, and control circuits.\n*   Understand the purpose of separating different electrical loads.\n*   Identify typical applications for specialized circuits like alarms and heating.\n\n**What this is**\nIn any modern installation, a **Final Circuit** is the end-point of the electrical distribution system, delivering energy directly to equipment or socket-outlets. Rather than having one single circuit for an entire building, we divide the installation into various categories based on the type of load they serve. This categorization includes lighting circuits for illumination, power circuits for appliances, and specialized systems like a **Control Circuit** for managing machinery or a **Data Circuit** for communication. Each category is designed to meet the specific electrical demands and safety requirements of the equipment it supplies.\n\n**Why it matters**\nSeparating circuits by category is a fundamental safety requirement. If a fault occurs on a power circuit—perhaps due to a faulty kettle—it should not cause the lights to go out, which could create a secondary hazard in the dark. Furthermore, different types of equipment have different power requirements; a high-power immersion heater needs a different circuit design than a low-power LED light fitting. By categorizing circuits, we ensure that sensitive equipment, such as computers on a **Data Circuit**, is not negatively affected by the electrical noise or switching surges created by heavy machinery or heating elements.\n\n**Key facts / rules**\n*   A **Final Circuit** must be protected by an overcurrent protective device at the origin.\n*   Lighting circuits typically supply fixed luminaires and are often rated lower than power circuits.\n*   Power circuits supply socket-outlets or fixed appliances like cookers and water heaters.\n*   A **Control Circuit** is dedicated to the logic and switching of other systems, such as central heating thermostats.\n*   A **Data Circuit** carries information (Cat5e/Cat6) and must be kept separate from power cables to prevent interference.\n*   Emergency systems, such as fire alarms or emergency lighting, often require specialized fire-resistant cabling.\n*   BS 7671:2018+A2:2022 (18th Edition) (refer to current edition) requires that an installation be divided into circuits to avoid danger and minimize inconvenience.\n\n**When to choose it**\nYou choose to separate circuits whenever the load types or the consequences of a failure differ significantly. For example, in a commercial office, you would select a dedicated **Data Circuit** for the networking infrastructure to ensure high-speed transmission without electromagnetic interference from the mains power. You would choose a dedicated **Control Circuit** for a HVAC system to allow the building management system to regulate temperature independently of the power supply to the desks. In domestic settings, you choose to separate lighting from power so that a tripped circuit breaker in the kitchen does not leave the hallways in total darkness.\n\n**Common mistakes**\n*   Mixing power and lighting loads on the same circuit, which makes maintenance difficult and reduces safety.\n*   Running data cables too close to high-voltage power cables without adequate screening or separation.\n*   Failing to label circuits correctly in the consumer unit, leading to confusion during fault finding.\n*   Overloading a single circuit by connecting too many high-current appliances to one **Final Circuit**.\n\n**Key Points**\n*   Circuit categorization prevents a single fault from disabling the entire installation.\n*   Lighting, power, data, and control systems have unique wiring and protection needs.\n*   A **Control Circuit** manages other equipment, while a **Data Circuit** transmits information.\n*   Separation of circuits is a core requirement of BS 7671:2018+A2:2022 (18th Edition) (refer to current edition).\n\n**Quick recap**\nElectrical installations are divided into specific categories such as lighting, power, data, and control to ensure safety, reliability, and functionality. Each **Final Circuit** is tailored to its specific load, ensuring that faults are localized and that sensitive data systems are protected from the electrical noise of power-heavy equipment.\n\n### Coming Up Next\nWe will explore the specific physical arrangements of these circuits, focusing on the differences between ring and radial topologies."
+      }
+    },
+    {
+      "id": "203-3A1-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Categories and Applications",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A1-C1-L1-A",
+            "questionText": "What is the term for the circuit that serves as the end point of the electrical distribution system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Final Circuit",
+              "a final circuit",
+              "final circuits"
+            ],
+            "hint": "This circuit delivers energy directly to equipment or socket-outlets."
+          },
+          {
+            "id": "203-3A1-C1-L1-B",
+            "questionText": "State the purpose of a Control Circuit within an electrical installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Control Circuit is dedicated to the logic and switching of other systems",
+              "Control Circuit",
+              "logic and switching"
+            ],
+            "hint": "Think about how systems like central heating thermostats operate."
+          },
+          {
+            "id": "203-3A1-C1-L1-C",
+            "questionText": "What is the primary function and installation requirement for a Data Circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Data Circuit carries information and must be kept separate from power cables",
+              "Data Circuit",
+              "carries information"
+            ],
+            "hint": "Consider the need to prevent interference from mains power."
+          },
+          {
+            "id": "203-3A1-C1-L2",
+            "questionText": "Using your answers to Q1 (final circuits), Q2 (control circuits), and Q3 (data circuits), explain how these different categories work together in an installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "categorizing final circuits into power control and data ensures that each system operates safely without interference",
+              "separating these circuit types allows for specific logic and information transmission alongside standard power delivery",
+              "these categories ensure that faults on a power circuit do not disable control or data systems"
+            ],
+            "hint": "Reflect on why we don't put all these different loads on one single circuit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A1-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Circuit Topologies: Ring vs Radial",
+        "content": "### In this lesson\nYou will learn about the fundamental principles of ring final and radial circuit topologies. You will explore how these arrangements are used in domestic and commercial installations to provide power to socket-outlets and fixed equipment.\n\n*   Understand the loop principle of a **Ring Final Circuit**.\n*   Identify the end-to-end structure of a **Radial Circuit**.\n*   Explain when to apply each topology based on the installation environment.\n\n**What this is**\nCircuit topology refers to the physical layout of the wiring. A **Radial Circuit** is the most straightforward arrangement; the cable leaves the consumer unit, travels to each point (such as a light or a socket), and terminates at the very last outlet. In contrast, a **Ring Final Circuit** is a unique topology where the conductor forms a continuous loop. The cable leaves the distribution board, connects to every socket on the circuit in a sequence, and then returns to the same protective device in the distribution board where it started. This creates two paths for the current to flow to any given point on the loop.\n\n**Why it matters**\nThe choice of topology affects the amount of cable used, the ease of installation, and the current-carrying capacity of the circuit. The **Ring Final Circuit** is a common feature in UK installations because it allows for a high density of socket-outlets over a large floor area while using relatively thin conductors, as the load is shared between the two sides of the loop. However, **Radial Circuit** arrangements are often simpler to test and verify, and they are the standard choice for dedicated high-power appliances like electric showers or cookers, where a single direct feed is more appropriate.\n\n**Key facts / rules**\n*   A **Radial Circuit** starts at the source and ends at the last point of utilization.\n*   A **Ring Final Circuit** must start and finish at the same terminals in the consumer unit.\n*   Radial circuits are commonly used for lighting and individual heavy appliances.\n*   Ring circuits are typically used for general-purpose socket-outlets in domestic buildings.\n*   The continuity of the loop in a ring circuit is critical for safety to prevent conductor overloading.\n*   Radial circuits can be used for any application, but they may require thicker cables for high-load areas compared to a ring.\n*   Refer to the IET On-Site Guide (a practical handbook providing simplified guidance on meeting BS 7671 standards) (current edition) for standard circuit arrangements and floor area limitations.\n\n**When to choose it**\nYou choose a **Ring Final Circuit** when you need to provide power to a large number of socket-outlets across a standard room or floor in a house, as it is an efficient way to cover a large area. It is particularly useful in kitchens or living rooms where many appliances might be used simultaneously. You choose a **Radial Circuit** for specific, high-load equipment that requires its own dedicated supply, such as a water heater. Radials are also the preferred choice in many commercial or industrial settings where the simplicity of the \"point-to-point\" layout makes fault finding and future modifications easier to manage.\n\n**Common mistakes**\n*   Accidentally creating a \"bridge\" across a **Ring Final Circuit**, which turns it into two interconnected loops and makes testing results invalid.\n*   Failing to ensure both ends of a ring circuit are securely terminated in the same protective device.\n*   Installing too many socket-outlets on a **Radial Circuit** that uses small-diameter cable, leading to potential overheating.\n*   Interchanging the conductors of two different ring circuits at the consumer unit during a board change.\n\n**Key Points**\n*   A **Radial Circuit** is a linear run from the source to the final outlet.\n*   A **Ring Final Circuit** is a continuous loop that returns to the source.\n*   Rings are common for domestic socket outlets; radials are used for lighting and heavy loads.\n*   Proper termination of both ends of a ring is vital for maintaining the circuit's current rating.\n\n**Quick recap**\nUnderstanding the difference between radial and ring topologies is essential for any installer. While **Radial Circuit** arrangements are simple and direct, **Ring Final Circuit** loops offer an efficient way to serve multiple outlets over a wide area by sharing the load across two paths. Choosing the right topology depends on the expected load, the floor area, and the specific requirements of the installation.\n\n### Coming Up Next\nNow that you understand circuit types and topologies, we will look at how to select the correct protective devices to keep these circuits safe."
+      }
+    },
+    {
+      "id": "203-3A1-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Topologies: Ring vs Radial",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A1-C2-L1-A",
+            "questionText": "Identify the physical structure of a Radial Circuit.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "starts at source and ends at last point",
+              "linear run",
+              "point to point"
+            ],
+            "hint": "This is a linear arrangement that does not return to the board."
+          },
+          {
+            "id": "203-3A1-C2-L1-B",
+            "questionText": "Where must both ends of a Ring Final Circuit be connected?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Ring Final Circuit must start and finish at the same terminals in the consumer unit",
+              "Ring Final Circuit",
+              "same terminals in the consumer unit"
+            ],
+            "hint": "The circuit forms a continuous loop back to its origin."
+          },
+          {
+            "id": "203-3A1-C2-L1-C",
+            "questionText": "Why is it necessary to maintain the loop in a ring circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "continuity of the loop in a ring circuit is critical for safety to prevent conductor overloading",
+              "prevent conductor overloading",
+              "safety to prevent conductor overloading"
+            ],
+            "hint": "Consider what happens to the current-carrying capacity if the loop is broken."
+          },
+          {
+            "id": "203-3A1-C2-L2",
+            "questionText": "Using your answers to Q1 (radial layout), Q2 (ring termination), and Q3 (ring continuity), explain how choosing the correct topology ensures a safe installation.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "selecting between linear radial paths or continuous ring loops ensures the conductors can handle the load without overloading",
+              "proper termination and continuity in rings or direct feeds in radials ensure the protective devices can operate safely",
+              "matching the circuit layout to the load requirements prevents danger by maintaining the correct current-carrying capacity"
+            ],
+            "hint": "Think about how the physical path of the cable relates to the safety of the conductors."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A1-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3A1-P1",
+            "questionText": "Identify the circuit topology where the conductors form a continuous loop starting and ending at the same point in the distribution board.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Ring Final Circuit",
+              "the Ring Final Circuit",
+              "a Ring Final Circuit"
+            ],
+            "hint": "This arrangement allows current to flow in two directions to reach an outlet."
+          },
+          {
+            "id": "203-3A1-P2",
+            "questionText": "What is the specific purpose of a Data Circuit in a modern electrical installation?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "data transmission",
+              "transmission of information",
+              "transmitting data",
+              "digital signals"
+            ],
+            "hint": "Think about what Cat5e or Cat6 cables are used for."
+          },
+          {
+            "id": "203-3A1-P3",
+            "questionText": "Which circuit arrangement runs from the source to each point and terminates at the very last outlet without returning to the consumer unit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Radial Circuit",
+              "the Radial Circuit",
+              "a Radial Circuit"
+            ],
+            "hint": "This is a linear 'point-to-point' arrangement."
+          },
+          {
+            "id": "203-3A1-P4",
+            "questionText": "State the purpose of a Control Circuit in a system such as central heating or motor logic.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "manage the operation of equipment",
+              "manage the operation of another circuit",
+              "manage other equipment"
+            ],
+            "hint": "It handles the switching and logic rather than the main power load."
+          },
+          {
+            "id": "203-3A1-P5",
+            "questionText": "According to BS 7671, what is the primary requirement for dividing an installation into separate final circuits?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "avoid danger and minimize inconvenience",
+              "prevent danger",
+              "minimize inconvenience",
+              "safety and convenience"
+            ],
+            "hint": "Consider the safety implications of a single fault affecting the whole building."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A1-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A1-INT-1",
+            "questionText": "Explain how specific topologies are chosen for different power applications. In your answer, include: (1) power circuit category, (2) radial circuit topology, (3) typical applications like high-load equipment. (2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Within the power circuit category, a radial circuit topology is frequently used to supply specific loads from the consumer unit. This arrangement is ideal for typical applications like high-load equipment such as electric showers or cookers that require dedicated circuits.",
+              "A radial circuit topology is the standard choice for the power circuit category when wiring high-load equipment. These typical applications require an end-to-end circuit structure to ensure the high current demand is safely managed on a single dedicated run."
+            ],
+            "hint": "Think about why a single run of cable (radial) is preferred over a loop (ring) for a single heavy appliance."
+          },
+          {
+            "id": "203-3A1-INT-2",
+            "questionText": "Describe the integration of various circuit types and structures within a modern installation. In your answer, include: (1) lighting and power circuit categories, (2) data and control circuit functions, (3) ring final circuit topology, (4) radial circuit topology. (3-4 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "A modern installation separates lighting and power circuit categories to maintain safety and prevent total power loss, often using a ring final circuit topology for general-purpose socket outlets. While power is distributed this way, radial circuit topology is typically used for lighting and high-power appliances to simplify the wiring layout. Finally, data and control circuit functions are installed as separate systems to manage communication and automated building services without interference from the mains power.",
+              "Installers use a ring final circuit topology for the power circuit category to efficiently serve multiple sockets, while lighting and power circuit categories for fixed loads usually employ radial circuit topology. Data and control circuit functions must be kept distinct from these power systems to ensure reliable signal transmission for alarms or networking. This combination of topologies and categories allows the installation to meet different application requirements for both convenience and technical performance."
+            ],
+            "hint": "Consider how an installer balances the need for high-current ring circuits for sockets with the simpler radial runs used for lights and specialized data systems."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A1-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3A1-SR-1",
+            "questionText": "What is the SI unit used to measure electrical current?",
+            "expectedAnswer": [
+              "Amperes",
+              "Amps",
+              "Ampere",
+              "A"
+            ],
+            "hint": "It is named after a French physicist and is often abbreviated to a single letter.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3A1-SR-2",
+            "questionText": "What device is used to automatically disconnect an electrical circuit during an overcurrent or fault condition?",
+            "expectedAnswer": [
+              "Circuit breaker",
+              "Fuse",
+              "MCB",
+              "Protective device"
+            ],
+            "hint": "Think of a fuse or an MCB found in a consumer unit.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3A1-SR-3",
+            "questionText": "What term is used to describe a material, such as copper, that allows electricity to flow through it easily?",
+            "expectedAnswer": [
+              "Conductor",
+              "Electrical conductor",
+              "Conductive material"
+            ],
+            "hint": "It is the opposite of an insulator.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Circuit Types: What They Do"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-07",
+    "updated": "2026-02-07",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
