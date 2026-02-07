@@ -6,6 +6,34 @@
 import { Lesson, LessonBlock, ValidationResult } from '../types';
 
 /**
+ * Enhanced validation result with detailed per-validator breakdown
+ */
+export interface DetailedValidationResult extends ValidationResult {
+  validators: {
+    structuralInvariants: {
+      passed: boolean;
+      errors: string[];
+      warnings: string[];
+    };
+    blockCompleteness: {
+      passed: boolean;
+      errors: string[];
+      warnings: string[];
+    };
+    corruptionDetection: {
+      passed: boolean;
+      errors: string[];
+      warnings: string[];
+    };
+    synthesisInstructions: {
+      passed: boolean;
+      errors: string[];
+      warnings: string[];
+    };
+  };
+}
+
+/**
  * Validate structural invariants between original and candidate lessons
  * HARD RULE: Block count, IDs, types, and orders must be EXACTLY preserved
  */
@@ -337,25 +365,89 @@ export function detectCorruption(candidate: Lesson): ValidationResult {
 }
 
 /**
+ * Validate synthesis question instructions
+ * Ensures synthesis questions use the approved instruction format
+ */
+export function validateSynthesisInstructions(
+  candidate: Lesson
+): ValidationResult {
+  const warnings: string[] = [];
+  const APPROVED = "Answer in 3-4 sentences OR concise bullet points.";
+  
+  candidate.blocks.forEach(block => {
+    if ((block.type === 'practice' || block.type === 'integrative' || block.type === 'spaced-review') 
+        && block.content.questions) {
+      (block.content.questions as any[]).forEach((q, idx) => {
+        if (q.cognitiveLevel === 'synthesis' && q.answerType === 'short-text') {
+          if (!q.questionText.includes(APPROVED)) {
+            warnings.push(
+              `${block.id} question ${idx} (${q.id}): synthesis with short-text should include exact instruction: "${APPROVED}"`
+            );
+          }
+        }
+      });
+    }
+  });
+  
+  return {
+    valid: true, // Warnings only, not fatal errors
+    errors: [],
+    warnings
+  };
+}
+
+/**
  * Run all validators on candidate lesson
- * Returns combined validation result
+ * Returns combined validation result with detailed breakdown
  */
 export function validateCandidate(
   original: Lesson,
   candidate: Lesson
-): ValidationResult {
-  const results: ValidationResult[] = [
-    validateStructuralInvariants(original, candidate),
-    validateBlockCompleteness(candidate),
-    detectCorruption(candidate),
+): DetailedValidationResult {
+  const structuralResult = validateStructuralInvariants(original, candidate);
+  const completenessResult = validateBlockCompleteness(candidate);
+  const corruptionResult = detectCorruption(candidate);
+  const synthesisResult = validateSynthesisInstructions(candidate);
+  
+  const allErrors = [
+    ...structuralResult.errors,
+    ...completenessResult.errors,
+    ...corruptionResult.errors,
+    ...synthesisResult.errors,
   ];
   
-  const allErrors = results.flatMap(r => r.errors);
-  const allWarnings = results.flatMap(r => r.warnings);
+  const allWarnings = [
+    ...structuralResult.warnings,
+    ...completenessResult.warnings,
+    ...corruptionResult.warnings,
+    ...synthesisResult.warnings,
+  ];
   
   return {
     valid: allErrors.length === 0,
     errors: allErrors,
-    warnings: allWarnings
+    warnings: allWarnings,
+    validators: {
+      structuralInvariants: {
+        passed: structuralResult.valid,
+        errors: structuralResult.errors,
+        warnings: structuralResult.warnings,
+      },
+      blockCompleteness: {
+        passed: completenessResult.valid,
+        errors: completenessResult.errors,
+        warnings: completenessResult.warnings,
+      },
+      corruptionDetection: {
+        passed: corruptionResult.valid,
+        errors: corruptionResult.errors,
+        warnings: corruptionResult.warnings,
+      },
+      synthesisInstructions: {
+        passed: synthesisResult.valid,
+        errors: synthesisResult.errors,
+        warnings: synthesisResult.warnings,
+      },
+    },
   };
 }

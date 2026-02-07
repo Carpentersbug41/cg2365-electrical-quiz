@@ -1,0 +1,27 @@
+{
+  "valid": true,
+  "errors": [],
+  "warnings": [],
+  "validators": {
+    "structuralInvariants": {
+      "passed": true,
+      "errors": [],
+      "warnings": []
+    },
+    "blockCompleteness": {
+      "passed": true,
+      "errors": [],
+      "warnings": []
+    },
+    "corruptionDetection": {
+      "passed": true,
+      "errors": [],
+      "warnings": []
+    },
+    "synthesisInstructions": {
+      "passed": true,
+      "errors": [],
+      "warnings": []
+    }
+  }
+}

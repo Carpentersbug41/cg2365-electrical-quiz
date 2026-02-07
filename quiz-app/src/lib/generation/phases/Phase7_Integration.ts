@@ -108,7 +108,7 @@ Return JSON in this exact format:
       },
       {
         "id": "${lessonId}-INT-2",
-        "questionText": "[Synthesis question]. In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [how they work together]. (3-4 sentences)",
+        "questionText": "[Synthesis question]. In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [how they work together]. Answer in 3-4 sentences OR concise bullet points.",
         "answerType": "short-text",
         "cognitiveLevel": "synthesis",
         "expectedAnswer": ["[Comprehensive answer covering all 4 elements]", "[Alternative phrasing covering all 4 elements]", "[Third variant with different structure]"],
@@ -120,7 +120,7 @@ Return JSON in this exact format:
 
 CRITICAL REQUIREMENTS:
 - Question 1 (Connection): Must link 2-3 different major concepts, request 2-3 sentences
-- Question 2 (Synthesis): Must integrate ALL concepts, request 3-4 sentences explicitly
+- Question 2 (Synthesis): Must integrate ALL concepts, end questionText with EXACTLY: "Answer in 3-4 sentences OR concise bullet points."
 - Both questions should require students to go beyond recall and show deep understanding
 - Expected answers should model comprehensive responses
 - Hints should guide strategic thinking, not give away answers`;

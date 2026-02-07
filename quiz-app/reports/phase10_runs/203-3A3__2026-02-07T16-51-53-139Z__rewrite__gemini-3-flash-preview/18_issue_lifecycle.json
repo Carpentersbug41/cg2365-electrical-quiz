@@ -1,0 +1,271 @@
+{
+  "runId": "203-3A3__2026-02-07T16-51-53-139Z__rewrite__gemini-3-flash-preview",
+  "lessonId": "203-3A3",
+  "issues": [
+    {
+      "issueId": "B1.beginnerClarity",
+      "rubricRef": "b",
+      "section": "questions",
+      "scoreBefore": 0,
+      "maxScore": 4,
+      "jsonPointers": [
+        "/blocks/8",
+        "/blocks/9"
+      ],
+      "fixability": "llm_editable",
+      "reason": "The lesson jumps from simple recall questions in the checks to high-level synthesis in the integrative block without a worked example or guided practice to model how to construct these complex answers.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/8/content/questions/1/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/8/content/questions/1/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/8/content/questions/1/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.2"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/8/content/questions/1/expectedAnswer/3",
+          "summary": "Added element at blocks.8.content.questions.1.expectedAnswer.3"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/8/content/questions/1/expectedAnswer/4",
+          "summary": "Added element at blocks.8.content.questions.1.expectedAnswer.4"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/8/content/questions/1/expectedAnswer/5",
+          "summary": "Added element at blocks.8.content.questions.1.expectedAnswer.5"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "D2.questions",
+      "rubricRef": "D",
+      "section": "questions",
+      "scoreBefore": 0,
+      "maxScore": 3,
+      "jsonPointers": [
+        "/blocks/4/content/questions/0/expectedAnswer",
+        "/blocks/4/content/questions/1/expectedAnswer",
+        "/blocks/4/content/questions/2/expectedAnswer",
+        "/blocks/6/content/questions/0/expectedAnswer",
+        "/blocks/6/content/questions/1/expectedAnswer",
+        "/blocks/6/content/questions/2/expectedAnswer"
+      ],
+      "fixability": "llm_editable",
+      "reason": "Expected answers for recall questions (e.g., 203-3A3-C1-L1-A) include redundant prompt text ('Final Circuit is defined as...'), which creates high friction for short-text matching.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/0/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.4.content.questions.0.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/0/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.4.content.questions.0.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/0/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.4.content.questions.0.expectedAnswer.2"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/1/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.4.content.questions.1.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/1/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.4.content.questions.1.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/1/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.4.content.questions.1.expectedAnswer.2"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/2/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.4.content.questions.2.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/2/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.4.content.questions.2.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/2/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.4.content.questions.2.expectedAnswer.2"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/0/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.6.content.questions.0.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/0/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.6.content.questions.0.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/0/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.6.content.questions.0.expectedAnswer.2"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/1/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.6.content.questions.1.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/1/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.6.content.questions.1.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/1/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.6.content.questions.1.expectedAnswer.2"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/2/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.6.content.questions.2.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/2/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.6.content.questions.2.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/2/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.6.content.questions.2.expectedAnswer.2"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "D3.questions",
+      "rubricRef": "D",
+      "section": "questions",
+      "scoreBefore": 0,
+      "maxScore": 3,
+      "jsonPointers": [
+        "/blocks/7/content/questions/0/questionText"
+      ],
+      "fixability": "llm_editable",
+      "reason": "Independent practice question P1 is virtually identical to check question C1-L1-A, providing no new context or application for the student to test their understanding.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/7/content/questions/0/questionText",
+          "summary": "Modified question text at blocks.7.content.questions.0.questionText"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "F4.visual",
+      "rubricRef": "F",
+      "section": "visual",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/3/content/content",
+        "/blocks/5/content/content"
+      ],
+      "fixability": "llm_editable",
+      "reason": "Add explicit references to the diagram in block 2 (e.g., 'As shown in the diagram...', 'Refer to the visual layout...') to anchor the explanation text to the provided visual aid.",
+      "plan": {
+        "strategy": "Add explicit references to the diagram in block 2 (e.g., 'As shown in the diagram...', 'Refer to the visual layout...') to anchor the explanation text to the provided visual aid.",
+        "targets": [
+          "/blocks/3/content/content",
+          "/blocks/5/content/content"
+        ]
+      },
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/3/content/content",
+          "summary": "Updated content in blocks.3"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/5/content/content",
+          "summary": "Updated content in blocks.5"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "B5.beginnerClarity",
+      "rubricRef": "b",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/1/content/terms"
+      ],
+      "fixability": "deterministic",
+      "reason": "Technical terms 'BS 7671' and 'Extra-low voltage (ELV)' are introduced in the text but are missing from the Vocab block, which may confuse beginners.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "add",
+          "path": "/blocks/1/content/terms/5",
+          "summary": "Added element at blocks.1.content.terms.5"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/1/content/terms/6",
+          "summary": "Added element at blocks.1.content.terms.6"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "D6.questions",
+      "rubricRef": "D",
+      "section": "questions",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/4/content/questions/3/questionText",
+        "/blocks/6/content/questions/3/questionText"
+      ],
+      "fixability": "deterministic",
+      "reason": "Connection-level questions at 203-3A3-C1-L2 and 203-3A3-C2-L2 lack formatting instructions (e.g., 'Answer in 1-2 sentences'), which can lead to overly brief or long-winded student responses.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/4/content/questions/3/questionText",
+          "summary": "Modified question text at blocks.4.content.questions.3.questionText"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/6/content/questions/3/questionText",
+          "summary": "Modified question text at blocks.6.content.questions.3.questionText"
+        }
+      ],
+      "outcome": "fixed"
+    }
+  ]
+}

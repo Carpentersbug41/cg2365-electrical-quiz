@@ -10,8 +10,11 @@ import { DebugBundleCollector, saveDebugBundle } from './debugBundle';
 import { validatePatch, shouldRejectPatch } from './patchValidator';
 import { isolatePatches } from './patchIsolationScorer';
 import { analyzeRefinementRun } from './postmortemAnalyzer';
+import { Phase10RunRecorder } from './Phase10RunRecorder';
 import { v4 as uuidv4 } from 'uuid';
 import { lessonIndex } from '@/data/lessons/lessonIndex';
+import * as fs from 'fs';
+import * as path from 'path';
 
 // Phase imports
 import { Phase1_Planning, PlanningOutput } from './phases/Phase1_Planning';
@@ -26,7 +29,7 @@ import { Phase9_Assembler } from './phases/Phase9_Assembler';
 import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/Phase10_Refinement';
 import { Phase10_Rewrite } from './phases/Phase10_Rewrite';
 import { LLMScoringService, RubricScore } from './llmScoringService';
-import { getRefinementConfig, getScoringConfig, getPhase10Strategy } from './config';
+import { getRefinementConfig, getScoringConfig, getPhase10Strategy, getDebugArtifactsConfig } from './config';
 import { normalizeLessonSchema } from './lessonNormalizer';
 import { saveDiagnosticData } from './diagnosticUtils';
 
@@ -969,15 +972,143 @@ export class SequentialLessonGenerator {
    */
   private async runPhase10(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
     const strategy = getPhase10Strategy();
+    const artifactsConfig = getDebugArtifactsConfig();
     
     console.log(`  🔧 Phase 10: Auto-refinement (strategy: ${strategy})...`);
+    console.log(`  🔍 [DEBUG] artifactsConfig.enabled = ${artifactsConfig.enabled}`);
+    console.log(`  🔍 [DEBUG] artifactsConfig.outputPath = ${artifactsConfig.outputPath}`);
     
-    if (strategy === 'rewrite') {
-      // v2 holistic rewrite (DEFAULT)
-      return await this.runPhase10Rewrite(lesson, rubricScore, debugCollector);
-    } else {
-      // v1 patch-based (OFFLINE - emergency only)
-      return await this.runPhase10Patch(lesson, rubricScore, debugCollector);
+    // Check if debug artifacts are enabled
+    if (!artifactsConfig.enabled) {
+      console.log(`  🔍 [DEBUG] Artifacts DISABLED - using old code path`);
+      // Original code path without recorder
+      if (strategy === 'rewrite') {
+        return await this.runPhase10Rewrite(lesson, rubricScore, debugCollector);
+      } else {
+        return await this.runPhase10Patch(lesson, rubricScore, debugCollector);
+      }
+    }
+    
+    console.log(`  🔍 [DEBUG] Artifacts ENABLED - creating recorder for lesson ${lesson.id}`);
+    
+    // New code path with Phase10RunRecorder
+    const recorder = new Phase10RunRecorder(
+      lesson.id,
+      strategy,
+      {
+        rewrite: process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        scoring: process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+      }
+    );
+    
+    console.log(`  🔍 [DEBUG] Recorder created, calling startRun()...`);
+    
+    try {
+      // Start recording
+      await recorder.startRun();
+      console.log(`  🔍 [DEBUG] startRun() completed`);
+      
+      // Write input lesson
+      await recorder.writeJson('00_input_lesson.json', lesson);
+      console.log(`  🔍 [DEBUG] Wrote input lesson`);
+      
+      // Record before score
+      recorder.recordScore('before', rubricScore);
+      console.log(`  🔍 [DEBUG] Recorded before score`);
+      
+      // Run Phase 10 with recorder
+      let result: RefinementOutput | null;
+      if (strategy === 'rewrite') {
+        console.log(`  🔍 [DEBUG] Running Phase10 with recorder...`);
+        result = await this.runPhase10RewriteWithRecorder(lesson, rubricScore, debugCollector, recorder);
+      } else {
+        result = await this.runPhase10Patch(lesson, rubricScore, debugCollector);
+      }
+      
+      console.log(`  🔍 [DEBUG] Phase10 completed, writing output...`);
+      
+      // Write output lesson
+      await recorder.writeJson('10_output_lesson.json', result?.refined || lesson);
+      
+      // Write diff if we have a refined lesson
+      if (result?.refined) {
+        console.log(`  🔍 [DEBUG] Writing diff...`);
+        await recorder.writeDiff(lesson, result.refined);
+        
+        // NEW: Generate issue lifecycle, stability check, and blockers
+        try {
+          // Get score after (should already be recorded)
+          const scoreAfter = await this.scorer.scoreLesson(result.refined);
+          
+          // 1. Optional: Score stability check (if enabled in config)
+          const { getDebugArtifactsConfig } = await import('./config');
+          const debugConfig = getDebugArtifactsConfig();
+          
+          if (debugConfig.scoreStability?.enabled) {
+            console.log(`  🔬 Running stability check...`);
+            const { runStabilityCheck } = await import('./scoreStabilityChecker');
+            const stabilityResult = await runStabilityCheck(result.refined, this.scorer, debugConfig.scoreStability.runs || 3);
+            await recorder.writeJson('20_score_stability.json', stabilityResult);
+          }
+          
+          // 2. Generate issue lifecycle
+          console.log(`  📋 Generating issue lifecycle...`);
+          const { generateIssueLifecycle } = await import('./issueLifecycleGenerator');
+          const { generatePointerDiff } = await import('./pointerDiffGenerator');
+          
+          const pointerDiff = generatePointerDiff(lesson, result.refined);
+          
+          // Try to get fixPlan from recorder's internal data (if planner ran)
+          let fixPlan: any = undefined;
+          try {
+            const planPath = path.join(recorder['runDir'] || '', '04_plan.json');
+            if (fs.existsSync(planPath)) {
+              const planContent = fs.readFileSync(planPath, 'utf-8');
+              fixPlan = JSON.parse(planContent);
+            }
+          } catch (e) {
+            // Plan not available - continue without it
+          }
+          
+          const lifecycle = generateIssueLifecycle({
+            runId: recorder['runId'] || '',
+            lessonId: lesson.id,
+            lesson: lesson,
+            scoreBeforeDetails: rubricScore.details,
+            plan: fixPlan,
+            pointerDiff: pointerDiff,
+            scoreAfterDetails: scoreAfter.details
+          });
+          recorder.recordIssueLifecycle(lifecycle);
+          
+          // 3. Analyze blockers
+          console.log(`  🚧 Analyzing blockers...`);
+          const { analyzeBlockers } = await import('./blockersAnalyzer');
+          const blockers = analyzeBlockers(fixPlan, scoreAfter);
+          recorder.recordBlockers(blockers);
+          
+        } catch (error) {
+          console.error(`  ⚠️  Failed to generate lifecycle/blockers:`, error);
+          // Continue - don't fail the whole run
+        }
+      }
+      
+      // Finalize recording (writes INDEX.json)
+      console.log(`  🔍 [DEBUG] Finalizing recorder...`);
+      await recorder.finalize();
+      console.log(`  🔍 [DEBUG] Recorder finalized successfully`);
+      
+      return result;
+      
+    } catch (error) {
+      console.error(`❌ [Phase10] Error during refinement:`, error);
+      console.error(`  🔍 [DEBUG] Error stack:`, error instanceof Error ? error.stack : 'No stack');
+      recorder.recordStatus('failed', {
+        step: 'unknown',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      });
+      await recorder.finalize();
+      throw error;
     }
   }
 
@@ -1000,6 +1131,102 @@ export class SequentialLessonGenerator {
       rubricScore,
       this.generateWithRetry,
       this.scorer
+    );
+    
+    // Record in debug bundle
+    debugCollector.recordPhase10v2Attempt(
+      rewriter.lastPrompts,
+      rewriter.lastRawResponse,
+      result.candidateLesson,
+      result.validationFailures,
+      result.scoreComparison,
+      result.candidateLesson !== null
+    );
+    
+    if (!result.candidateLesson) {
+      console.log(`    ⊘ Candidate rejected: ${result.validationFailures.join(', ')}`);
+      debugLog('PHASE10V2_REJECTED', { reasons: result.validationFailures });
+      await saveDebugBundle(debugCollector.getBundle());
+      return null;
+    }
+    
+    const improvement = result.scoreComparison!.delta;
+    console.log(`    ✓ Candidate accepted (score: ${result.scoreComparison!.original} → ${result.scoreComparison!.candidate}, Δ${improvement >= 0 ? '+' : ''}${improvement})`);
+    debugLog('PHASE10V2_ACCEPTED', { scoreDelta: improvement });
+    
+    // Save debug bundle
+    await saveDebugBundle(debugCollector.getBundle());
+    
+    return {
+      originalLesson: lesson,
+      refined: result.candidateLesson,
+      patchesApplied: [], // v2 doesn't use patches
+      originalScore: rubricScore.total,
+      refinedScore: result.scoreComparison!.candidate,
+      improvementSuccess: true
+    };
+  }
+
+  /**
+   * Phase 10 v2: Holistic Rewrite WITH Phase10RunRecorder
+   * Same as runPhase10Rewrite but passes recorder for artifact collection
+   */
+  private async runPhase10RewriteWithRecorder(
+    lesson: Lesson,
+    rubricScore: RubricScore,
+    debugCollector: DebugBundleCollector,
+    recorder: Phase10RunRecorder
+  ): Promise<RefinementOutput | null> {
+    console.log('  🔧 Phase 10 v2: Holistic Rewrite (with artifacts)...');
+    debugLog('PHASE10V2_START', { lessonId: lesson.id, initialScore: rubricScore.total });
+    
+    // NEW: Generate fix plan
+    const { Phase10_Planner } = await import('./phases/Phase10_Planner');
+    const planner = new Phase10_Planner();
+    let fixPlan;
+    
+    try {
+      console.log('  📋 Running planner stage...');
+      fixPlan = await planner.generatePlan(
+        lesson,
+        rubricScore,
+        this.generateWithRetry
+      );
+      
+      // Write plan artifacts
+      await recorder.writeJson('04_plan.json', fixPlan);
+      await recorder.writePrompt(
+        '04_prompt_plan.json',
+        'plan',
+        process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        planner.lastPrompts.system,
+        planner.lastPrompts.user,
+        {
+          maxTokens: 8000,
+          inputRefs: ['00_input_lesson.json', '01_score_before.json'],
+          notes: 'Fix plan generation with fixability classification',
+        }
+      );
+      
+      // Record plan metadata
+      recorder.recordFixPlan(fixPlan);
+      
+      console.log(`  ✅ Planner generated ${fixPlan.plan.length} plan items`);
+    } catch (error) {
+      console.error(`  ❌ Planner failed:`, error);
+      // Continue without plan - rewriter can still use scoring report
+      fixPlan = undefined;
+    }
+    
+    // Run rewriter with optional plan
+    const rewriter = new Phase10_Rewrite();
+    const result = await rewriter.rewriteLesson(
+      lesson,
+      rubricScore,
+      this.generateWithRetry,
+      this.scorer,
+      recorder,  // Pass recorder to enable artifact recording
+      fixPlan    // NEW: Pass fix plan to rewriter
     );
     
     // Record in debug bundle

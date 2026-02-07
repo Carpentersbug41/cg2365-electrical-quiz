@@ -1,0 +1,18 @@
+{
+  "lessonId": "203-3A3",
+  "timestamp": "2026-02-07T16:54:47.352Z",
+  "blockers": [
+    {
+      "issueId": "beginnerClarityStaging.synthesis.gap",
+      "type": "invariant_limits_fix",
+      "rubricRef": "beginnerClarityStaging",
+      "description": "Issue requires reordering blocks, but Phase 10 invariant forbids changing block order.",
+      "policyConflict": "Rubric expects different block ordering; Phase 10 cannot reorder blocks",
+      "recommendation": "Requires full lesson regeneration with corrected block order."
+    }
+  ],
+  "summary": {
+    "totalBlocked": 1,
+    "pointsBlocked": 3
+  }
+}

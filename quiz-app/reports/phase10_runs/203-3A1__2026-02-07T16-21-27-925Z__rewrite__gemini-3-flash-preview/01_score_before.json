@@ -1,0 +1,84 @@
+{
+  "total": 94,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 28,
+    "questions": 23,
+    "marking": 8,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "beginnerClarityStaging: The term 'BS 7671' is introduced in the explanation 'Functio...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The term 'BS 7671' is introduced in the explanation 'Functional Circuit Categories' without being defined in the vocabulary block or previous text, which may confuse beginners."
+      ],
+      "suggestions": [
+        "Append to blocks[1].content.terms: '[object Object]'"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms"
+      ]
+    },
+    {
+      "section": "markingRobustness: Synthesis question 203-3A1-INT-2 asks for 2-3 sentences, but...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Synthesis question 203-3A1-INT-2 asks for 2-3 sentences, but the expectedAnswer variations are single phrases. This will cause high friction in grading."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[1].expectedAnswer from 'safety of movement and cable economy,fault isolation and load sharing,prevents dark rooms and overheating,continuity of service and efficiency,safety of movement and fault isolation,isolation and economy,separation ensures lighting during power faults while ring circuits provide efficient load sharing,circuit separation maintains safety of movement and ring topology offers cable economy' to 'separation ensures lighting remains active during power faults for safety of movement while ring circuits provide efficient load sharing,maintains safety of movement by isolating faults and provides cable economy through ring topology,separating circuits prevents total blackout and ring final circuits allow smaller cables to handle larger loads,ensures continuity of service for lighting and cost-effective power distribution via ring loops,prevents tripping of lights when sockets fail and allows load sharing across two paths in a ring'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/1/expectedAnswer"
+      ]
+    },
+    {
+      "section": "questions: Question 203-3A1-INT-2 uses 'Answer in 2-3 sentences'. To be...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Question 203-3A1-INT-2 uses 'Answer in 2-3 sentences'. To better align with the pedagogical contract for synthesis grading, it should offer the option for bullet points."
+      ],
+      "suggestions": [
+        "Modify blocks[8].content.questions[1].questionText"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/1/questionText"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The explanation uses the phrase 'still-functioning lighting'...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The explanation uses the phrase 'still-functioning lighting' to describe a concept, but the check question answer expects 'continuity of service'. Terminology should be perfectly aligned for beginners."
+      ],
+      "suggestions": [
+        "Modify blocks[3].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/content"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The 'Coming Up Next' transition is located in the 'notes' fi...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "The 'Coming Up Next' transition is located in the 'notes' field of the spaced review. It is more effective when placed clearly at the end of the lesson content for visibility."
+      ],
+      "suggestions": [
+        "Modify blocks[9].content.notes"
+      ],
+      "jsonPointers": [
+        "/blocks/9/content/notes"
+      ]
+    }
+  ],
+  "grade": "Strong"
+}

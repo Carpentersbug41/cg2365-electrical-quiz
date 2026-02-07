@@ -1,0 +1,137 @@
+{
+  "lessonId": "203-3A1",
+  "timestamp": "2026-02-07T16:22:54.699Z",
+  "changes": [
+    {
+      "op": "add",
+      "path": "/blocks/1/content/terms/6",
+      "after": {
+        "term": "BS 7671",
+        "definition": "The British Standard for Requirements for Electrical Installations, also known as the IET Wiring Regulations."
+      },
+      "summary": "Added element at blocks.1.content.terms.6"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/3/content/content",
+      "before": "### In this lesson\nThis lesson explores how to identify the primary functions of different circuit types including lighting, power, and data. As shown in the functional diagram, different circuits serve distinct purposes. You are acting as an installation technician planning the layout of a new mixed-use building. \n\n*   Differentiate between power, lighting, and specialized circuits.\n*   Understand the purpose of control and data transmission systems.\n*   Identify the unique requirements for emergency and safety systems.\n\n**What this is**\nIn any electrical installation, every **Final Circuit** is categorized by its intended function. A **Final Circuit** is a circuit intended to supply electrical energy directly to current-using equipment or socket-outlets. Common categories include lighting circuits for illumination, power circuits for general-purpose socket-outlets, and specialized circuits like a **Control Circuit** or a **Data Circuit**.\n\n**Why it matters**\nUnderstanding circuit functions is critical for safety and efficiency. Separating functions ensures that a fault on a power circuit (such as a tripped socket) does not plunge a whole building into darkness. This ensures **safety of movement**, allowing occupants to navigate the building using the still-functioning lighting circuits. Specialized systems like emergency lighting must also be identified correctly to ensure they function during a mains failure.\n\n**Key facts / rules**\n*   Lighting circuits typically supply fixed luminaires and are often rated lower than power circuits.\n*   Power circuits supply socket-outlets or fixed appliances like heaters and cookers.\n*   A **Control Circuit** is used to regulate or manage the operation of other electrical equipment, often facilitating **remote switching** of high-power loads via thermostats or sensors.\n*   A **Data Circuit** is designed for the transmission of information rather than power distribution, often using twisted-pair or fiber-optic cabling.\n*   Emergency lighting circuits must provide illumination when the normal supply fails.\n*   All circuits must be clearly identified at the distribution board according to BS 7671 to prevent dangerous mistakes during maintenance.\n\n**When to choose it**\nYou should choose a dedicated lighting circuit when the primary goal is to provide fixed illumination. Power circuits are selected for general-purpose use. You would select a **Control Circuit** when you need to manage a high-power load from a remote switch or sensor. **Data Circuit** selection is necessary for networking. Emergency lighting is chosen specifically for escape routes to ensure safety during power outages.\n\n**Common mistakes**\nOne common error is mixing functional types, such as connecting a high-power heater to a lighting circuit. Another mistake is failing to provide adequate separation between power cables and a **Data Circuit**, which can lead to electromagnetic interference (EMI).\n\n**Key Points**\n*   A **Final Circuit** delivers energy or signals directly to the end-user equipment.\n*   Lighting and power circuits must be separated to maintain continuity of service and **safety of movement**.\n*   **Control Circuit** arrangements allow for the safe management of loads through **remote switching**.\n*   **Data Circuit** systems focus on information transmission and require protection from interference.\n*   Emergency lighting provides critical illumination during mains power failure.\n*   All circuits must be clearly identified at the distribution board to BS 7671 standards.\n\n**Quick recap**\nElectrical installations are divided into functional categories to ensure safety and usability. Lighting, power, control, data, and emergency circuits each serve a specific role. Proper identification and selection of these types are essential for a compliant installation.",
+      "after": "### In this lesson\nThis lesson explores how to identify the primary functions of different circuit types including lighting, power, and data. As shown in the functional diagram, different circuits serve distinct purposes. You are acting as an installation technician planning the layout of a new mixed-use building. \n\n*   Differentiate between power, lighting, and specialized circuits.\n*   Understand the purpose of control and data transmission systems.\n*   Identify the unique requirements for emergency and safety systems.\n\n**What this is**\nIn any electrical installation, every **Final Circuit** is categorized by its intended function. A **Final Circuit** is a circuit intended to supply electrical energy directly to current-using equipment or socket-outlets. Common categories include lighting circuits for illumination, power circuits for general-purpose socket-outlets, and specialized circuits like a **Control Circuit** or a **Data Circuit**.\n\n**Why it matters**\nUnderstanding circuit functions is critical for safety and efficiency. Separating functions ensures that a fault on a power circuit (such as a tripped socket) does not plunge a whole building into darkness. This ensures **continuity of service** and **safety of movement**, allowing occupants to navigate the building using the still-functioning lighting circuits.\n\n**Key facts / rules**\n*   Lighting circuits typically supply fixed luminaires and are often rated lower than power circuits.\n*   Power circuits supply socket-outlets or fixed appliances like heaters and cookers.\n*   A **Control Circuit** is used to regulate or manage the operation of other electrical equipment, often facilitating **remote switching** of high-power loads via thermostats or sensors.\n*   A **Data Circuit** is designed for the transmission of information rather than power distribution, often using twisted-pair or fiber-optic cabling.\n*   Emergency lighting circuits must provide illumination when the normal supply fails.\n*   All circuits must be clearly identified at the distribution board according to **BS 7671** (the UK Wiring Regulations) to prevent dangerous mistakes during maintenance.\n\n**When to choose it**\nYou should choose a dedicated lighting circuit when the primary goal is to provide fixed illumination. Power circuits are selected for general-purpose use. You would select a **Control Circuit** when you need to manage a high-power load from a remote switch or sensor. **Data Circuit** selection is necessary for networking. Emergency lighting is chosen specifically for escape routes to ensure safety during power outages.\n\n**Common mistakes**\nOne common error is mixing functional types, such as connecting a high-power heater to a lighting circuit. Another mistake is failing to provide adequate separation between power cables and a **Data Circuit**, which can lead to electromagnetic interference (EMI).\n\n**Key Points**\n*   A **Final Circuit** delivers energy or signals directly to the end-user equipment.\n*   Lighting and power circuits must be separated to maintain **continuity of service** and **safety of movement**.\n*   **Control Circuit** arrangements allow for the safe management of loads through **remote switching**.\n*   **Data Circuit** systems focus on information transmission and require protection from interference.\n*   Emergency lighting provides critical illumination during mains power failure.\n*   All circuits must be clearly identified at the distribution board to **BS 7671** standards.\n\n**Quick recap**\nElectrical installations are divided into functional categories to ensure safety and usability. Lighting, power, control, data, and emergency circuits each serve a specific role. Proper identification and selection of these types are essential for a compliant installation.",
+      "summary": "Updated content in blocks.3"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/0",
+      "before": "radial and ring",
+      "after": "lighting: radial; sockets: ring",
+      "summary": "Updated expected answer at blocks.8.content.questions.0.expectedAnswer.0"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/1",
+      "before": "radial; ring",
+      "after": "lighting: radial; power: ring final",
+      "summary": "Updated expected answer at blocks.8.content.questions.0.expectedAnswer.1"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/2",
+      "before": "radial for lighting and ring for power",
+      "after": "radial for lighting and ring for sockets",
+      "summary": "Updated expected answer at blocks.8.content.questions.0.expectedAnswer.2"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/3",
+      "before": "lighting is radial and sockets are ring",
+      "after": "lighting is radial, sockets are ring final",
+      "summary": "Updated expected answer at blocks.8.content.questions.0.expectedAnswer.3"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/4",
+      "before": "radial for lighting and ring final for sockets",
+      "after": "lighting: radial; socket-outlets: ring final",
+      "summary": "Updated expected answer at blocks.8.content.questions.0.expectedAnswer.4"
+    },
+    {
+      "op": "remove",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/5",
+      "before": "radial and ring final",
+      "summary": "Removed element at blocks.8.content.questions.0.expectedAnswer.5"
+    },
+    {
+      "op": "remove",
+      "path": "/blocks/8/content/questions/0/expectedAnswer/6",
+      "before": "radial then ring",
+      "summary": "Removed element at blocks.8.content.questions.0.expectedAnswer.6"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/questionText",
+      "before": "Explain the integrated benefits of separating lighting from power circuits and using ring topologies for sockets. Answer in 2-3 sentences.",
+      "after": "Explain the integrated benefits of separating lighting from power circuits and using ring topologies for sockets. Answer in 3-4 sentences OR concise bullet points.",
+      "summary": "Modified question text at blocks.8.content.questions.1.questionText"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/0",
+      "before": "safety of movement and cable economy",
+      "after": "continuity of service",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.0"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/1",
+      "before": "fault isolation and load sharing",
+      "after": "safety of movement",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.1"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/2",
+      "before": "prevents dark rooms and overheating",
+      "after": "fault isolation",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.2"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/3",
+      "before": "continuity of service and efficiency",
+      "after": "cable economy",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.3"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/4",
+      "before": "safety of movement and fault isolation",
+      "after": "load sharing across paths",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.4"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/5",
+      "before": "isolation and economy",
+      "after": "preventing total darkness",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.5"
+    },
+    {
+      "op": "remove",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/6",
+      "before": "separation ensures lighting during power faults while ring circuits provide efficient load sharing",
+      "summary": "Removed element at blocks.8.content.questions.1.expectedAnswer.6"
+    },
+    {
+      "op": "remove",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/7",
+      "before": "circuit separation maintains safety of movement and ring topology offers cable economy",
+      "summary": "Removed element at blocks.8.content.questions.1.expectedAnswer.7"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/9/content/notes",
+      "before": "Review of foundational electrical concepts.\n\n### Key Points Summary\n- Final circuits are categorized by function (lighting, power, data).\n- Radial circuits follow a linear path; Ring final circuits form a loop.\n- Separation of circuits ensures safety of movement during faults.\n- Ring circuits allow for cable economy but require careful testing for continuity.\n\n**Coming Up Next:**\nCircuit Protection and Overcurrent Devices.",
+      "after": "Review of foundational electrical concepts.\n\n### Key Points Summary\n- Final circuits are categorized by function (lighting, power, data).\n- Radial circuits follow a linear path; Ring final circuits form a loop.\n- Separation of circuits ensures safety of movement during faults.\n- Ring circuits allow for cable economy but require careful testing for continuity.\n\n**Coming Up Next:** Circuit Protection and Overcurrent Devices.",
+      "summary": "Changed blocks.9.content.notes from \"Review of foundational electrical concepts.\n\n### K...\" to \"Review of foundational electrical concepts.\n\n### K...\""
+    }
+  ]
+}

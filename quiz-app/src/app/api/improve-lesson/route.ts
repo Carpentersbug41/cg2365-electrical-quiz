@@ -6,6 +6,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getExistingLesson, findLessonFile } from '@/lib/generation/lessonDetector';
 import { Phase10_Rewrite } from '@/lib/generation/phases/Phase10_Rewrite';
+import { Phase10RunRecorder } from '@/lib/generation/Phase10RunRecorder';
+import { getDebugArtifactsConfig } from '@/lib/generation/config';
 import { LLMScoringService } from '@/lib/generation/llmScoringService';
 import { createLLMClientWithFallback } from '@/lib/llm/client';
 import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
@@ -143,6 +145,39 @@ export async function POST(request: NextRequest) {
     const originalScore = await scorer.scoreLesson(originalLesson);
     console.log(`📊 [ImproveLesson] Original score: ${originalScore.total}/100`);
 
+    // Check if debug artifacts are enabled
+    const artifactsConfig = getDebugArtifactsConfig();
+    console.log(`🔍 [DEBUG] artifactsConfig.enabled = ${artifactsConfig.enabled}`);
+    console.log(`🔍 [DEBUG] artifactsConfig.outputPath = ${artifactsConfig.outputPath}`);
+    
+    // Create recorder if enabled
+    let recorder: Phase10RunRecorder | undefined;
+    if (artifactsConfig.enabled) {
+      console.log(`🔍 [DEBUG] Creating Phase10RunRecorder for lesson ${lessonId}`);
+      recorder = new Phase10RunRecorder(
+        lessonId,
+        'rewrite',
+        {
+          rewrite: process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+          scoring: process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        }
+      );
+      
+      try {
+        console.log(`🔍 [DEBUG] Starting recorder...`);
+        await recorder.startRun();
+        console.log(`🔍 [DEBUG] Recorder started, writing input lesson...`);
+        await recorder.writeJson('00_input_lesson.json', originalLesson);
+        recorder.recordScore('before', originalScore);
+        console.log(`🔍 [DEBUG] Recorder setup complete`);
+      } catch (error) {
+        console.error(`❌ [DEBUG] Error setting up recorder:`, error);
+        recorder = undefined; // Disable recorder on error
+      }
+    } else {
+      console.log(`🔍 [DEBUG] Artifacts disabled, skipping recorder`);
+    }
+
     // Run Phase 10 v2 refinement
     console.log(`🔄 [ImproveLesson] Running Phase 10 v2 refinement...`);
     const phase10 = new Phase10_Rewrite();
@@ -150,7 +185,8 @@ export async function POST(request: NextRequest) {
       originalLesson,
       originalScore,
       generateWithRetry,
-      scorer
+      scorer,
+      recorder  // Pass recorder to Phase10_Rewrite
     );
 
     // Prepare response
@@ -185,6 +221,21 @@ export async function POST(request: NextRequest) {
       }
     } else {
       console.log(`ℹ️ [ImproveLesson] No improvement made - original lesson retained`);
+    }
+    
+    // Finalize recorder if it was created
+    if (recorder) {
+      try {
+        console.log(`🔍 [DEBUG] Finalizing recorder...`);
+        await recorder.writeJson('10_output_lesson.json', result.candidateLesson || originalLesson);
+        if (result.candidateLesson) {
+          await recorder.writeDiff(originalLesson, result.candidateLesson);
+        }
+        await recorder.finalize();
+        console.log(`🔍 [DEBUG] Recorder finalized successfully`);
+      } catch (error) {
+        console.error(`❌ [DEBUG] Error finalizing recorder:`, error);
+      }
     }
 
     return NextResponse.json(response);

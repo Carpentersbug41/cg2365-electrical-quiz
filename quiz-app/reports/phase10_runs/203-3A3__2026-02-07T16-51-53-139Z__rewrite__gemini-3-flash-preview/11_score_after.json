@@ -1,0 +1,60 @@
+{
+  "total": 97,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 29,
+    "questions": 24,
+    "marking": 9,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "markingRobustness: Connection questions (C1-L2, C2-L2, and INT-1) use rigid, fu...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Connection questions (C1-L2, C2-L2, and INT-1) use rigid, full-sentence expected answers. This creates high friction for students who provide the correct concepts but use different phrasing."
+      ],
+      "suggestions": [
+        "Change blocks[4].content.questions[3].expectedAnswer from 'separating final circuits control circuits and emergency circuits ensures the installation remains manageable and that safety systems are protected from general faults,categorizing circuits into final control and emergency types allows for specific roles to be managed safely without interference,dividing an installation into final control and emergency circuits ensures functionality and prevents safety system failure during faults' to 'manageable installation,safety systems protected,prevent general faults,organize installation,circuit categorization,separating roles'",
+        "Change blocks[6].content.questions[3].expectedAnswer from 'radial circuits run to a final point while ring final circuits form a loop to provide two paths for current for higher load capacity,a radial circuit terminates at the last point but a ring circuit forms a loop back to the board to provide two paths for current,the loop in a ring final circuit allows for higher load capacity via two paths compared to the single path of a radial circuit' to 'radial circuits terminal point,ring circuits continuous loop,two paths for current,higher load capacity,physical path differences'",
+        "Change blocks[8].content.questions[0].expectedAnswer from '(1) Power circuits provide energy to equipment, while (2) emergency circuits must be segregated for safety; (3) radial topologies are often used for these specific applications to ensure independent control and reliability.,(1) The purpose of power circuits is to deliver electricity to loads, but (2) emergency circuits require strict segregation from others; (3) radial topologies are typically chosen for these and other specific applications like lighting to maintain circuit independence.,(1) Power circuits distribute energy to outlets and appliances, (2) requiring emergency circuits to be kept separate (segregated); (3) radial topologies are then used for these specific applications to simplify the wiring and meet safety standards.' to 'power circuits deliver energy,emergency circuits segregated,radial topologies independent control,maintain circuit independence,safety standards'"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/questions/3/expectedAnswer",
+        "/blocks/6/content/questions/3/expectedAnswer",
+        "/blocks/8/content/questions/0/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Explanation block 1 uses the technical term 'nuisance trippi...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Explanation block 1 uses the technical term 'nuisance tripping' in the common mistakes section without providing a definition for beginners."
+      ],
+      "suggestions": [
+        "Modify blocks[3].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: Practice question 203-3A3-P4 has limited variations for the ...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Practice question 203-3A3-P4 has limited variations for the purpose of a control circuit, potentially failing correct student answers."
+      ],
+      "suggestions": [
+        "Change blocks[7].content.questions[3].expectedAnswer from 'regulate or command other equipment,to regulate or command other equipment' to 'regulate or command equipment,control other systems,manage other circuits,command operation,regulate electrical equipment'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/3/expectedAnswer"
+      ]
+    }
+  ],
+  "grade": "Strong"
+}

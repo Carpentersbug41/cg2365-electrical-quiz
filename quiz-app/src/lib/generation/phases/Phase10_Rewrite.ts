@@ -8,17 +8,21 @@
 import { PhasePromptBuilder } from './PhasePromptBuilder';
 import { Lesson } from '../types';
 import { RubricScore } from '../llmScoringService';
-import { validateCandidate } from './Phase10_Validators';
+import { validateCandidate, DetailedValidationResult } from './Phase10_Validators';
 import { preprocessToValidJson, safeJsonParse, validateLLMResponse, cleanCodeBlocks } from '../utils';
+import { Phase10RunRecorder } from '../Phase10RunRecorder';
+import { FixPlan } from './Phase10_Planner';
 
 export interface RewriteInput {
   originalLesson: Lesson;
   rubricScore: RubricScore;
+  fixPlan?: FixPlan;  // Optional fix plan from planner stage
 }
 
 export interface RewriteOutput {
   candidateLesson: Lesson | null;
   validationFailures: string[];
+  validationResult: DetailedValidationResult | null;
   scoreComparison: {
     original: number;
     candidate: number;
@@ -45,19 +49,40 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
     originalLesson: Lesson,
     rubricScore: RubricScore,
     generateFn: Function,
-    scorer: any
+    scorer: any,
+    recorder?: Phase10RunRecorder,
+    fixPlan?: FixPlan
   ): Promise<RewriteOutput> {
     this.scorer = scorer;
     
     console.log(`\n🔄 [Phase10v2] Starting holistic rewrite...`);
     console.log(`🔄 [Phase10v2] Original score: ${rubricScore.total}/100`);
+    if (fixPlan) {
+      console.log(`🔄 [Phase10v2] Using fix plan with ${fixPlan.plan.length} items`);
+    }
     
     // Build prompts
-    const input: RewriteInput = { originalLesson, rubricScore };
+    const input: RewriteInput = { originalLesson, rubricScore, fixPlan };
     const prompts = this.getPrompts(input);
     
     // Store for debug bundle
     this.lastPrompts = { system: prompts.systemPrompt, user: prompts.userPrompt };
+    
+    // Write prompts to recorder
+    if (recorder) {
+      await recorder.writePrompt(
+        '02_prompt_rewrite.json',
+        'rewrite',
+        process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        prompts.systemPrompt,
+        prompts.userPrompt,
+        {
+          maxTokens: 24000,
+          inputRefs: ['00_input_lesson.json', '01_score_before.json'],
+          notes: 'Holistic rewrite approach (v2)',
+        }
+      );
+    }
     
     // Call LLM with generateWithRetry
     console.log(`🔄 [Phase10v2] Calling LLM for holistic rewrite...`);
@@ -73,31 +98,62 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       
       this.lastRawResponse = response;
       
+      // Write raw response to recorder
+      if (recorder) {
+        await recorder.writeText('03_output_rewrite.txt', response);
+      }
+      
       // Parse JSON response
       console.log(`🔄 [Phase10v2] Parsing LLM response (${response.length} chars)...`);
       const candidateLesson = this.parseLLMResponse(response);
       
       if (!candidateLesson) {
+        // Record parse error
+        if (recorder) {
+          recorder.recordParseResult(undefined, 'Failed to parse LLM response as valid JSON');
+          recorder.recordStatus('failed', { step: 'parse', message: 'Failed to parse LLM response' });
+        }
+        
         return {
           candidateLesson: null,
           validationFailures: ['Failed to parse LLM response as valid JSON'],
+          validationResult: null,
           scoreComparison: null
         };
       }
       
       console.log(`🔄 [Phase10v2] Successfully parsed candidate lesson`);
       
+      // Enforce synthesis instruction format (post-processing guardrail)
+      console.log(`🔄 [Phase10v2] Enforcing synthesis instruction format...`);
+      this.enforceSynthesisInstruction(candidateLesson);
+      
+      // Record parsed candidate (for v2, no patches - this is full lesson rewrite)
+      if (recorder) {
+        recorder.recordParseResult([], undefined); // Empty patches array for v2
+      }
+      
       // Run hard validators
       console.log(`🔄 [Phase10v2] Running hard validators...`);
       const validation = validateCandidate(originalLesson, candidateLesson);
+      
+      // Record validation result
+      if (recorder) {
+        recorder.recordValidation(validation);
+      }
       
       if (!validation.valid) {
         console.log(`❌ [Phase10v2] Validation failed:`);
         validation.errors.forEach(err => console.log(`   - ${err}`));
         
+        if (recorder) {
+          recorder.recordStatus('failed', { step: 'validate', message: validation.errors.join('; ') });
+        }
+        
         return {
           candidateLesson: null,
           validationFailures: validation.errors,
+          validationResult: validation,
           scoreComparison: null
         };
       }
@@ -113,6 +169,11 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       console.log(`🔄 [Phase10v2] Scoring candidate lesson...`);
       const candidateScore = await this.scorer.scoreLesson(candidateLesson);
       
+      // Record after score
+      if (recorder) {
+        recorder.recordScore('after', candidateScore);
+      }
+      
       console.log(`📊 [Phase10v2] Candidate score: ${candidateScore.total}/100`);
       console.log(`📊 [Phase10v2] Score delta: ${candidateScore.total >= rubricScore.total ? '+' : ''}${candidateScore.total - rubricScore.total}`);
       
@@ -122,11 +183,19 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
         console.log(`❌ [Phase10v2] Score gate FAILED: score declined by ${decline} points`);
         console.log(`❌ [Phase10v2] Rejecting candidate and keeping original`);
         
+        if (recorder) {
+          recorder.recordStatus('failed', { 
+            step: 'score', 
+            message: `Score gate failed: score declined by ${decline} points` 
+          });
+        }
+        
         return {
           candidateLesson: null,
           validationFailures: [
             `Score gate failed: score declined from ${rubricScore.total} to ${candidateScore.total} (Δ-${decline})`
           ],
+          validationResult: validation,
           scoreComparison: {
             original: rubricScore.total,
             candidate: candidateScore.total,
@@ -143,9 +212,15 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
         console.log(`✅ [Phase10v2] Score gate PASSED: score unchanged (no harm)`);
       }
       
+      // Record success
+      if (recorder) {
+        recorder.recordStatus('success');
+      }
+      
       return {
         candidateLesson,
         validationFailures: [],
+        validationResult: validation,
         scoreComparison: {
           original: rubricScore.total,
           candidate: candidateScore.total,
@@ -155,9 +230,18 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       
     } catch (error) {
       console.error(`❌ [Phase10v2] Error during rewrite:`, error);
+      
+      if (recorder) {
+        recorder.recordStatus('failed', { 
+          step: 'unknown', 
+          message: error instanceof Error ? error.message : 'Unknown error' 
+        });
+      }
+      
       return {
         candidateLesson: null,
         validationFailures: [`Exception: ${error instanceof Error ? error.message : 'Unknown error'}`],
+        validationResult: null,
         scoreComparison: null
       };
     }
@@ -233,9 +317,20 @@ CONTENT RULES:
 ANSWER TYPE RULES (CRITICAL):
 - VALID answerTypes: "short-text", "multiple-choice", "calculation", "true-false"
 - NEVER use: "numeric", "long-text", "essay", "open-ended", or any other type
-- Do NOT change answerType unless you also update the question's grading expectations so marking remains robust.
-- Prefer keeping answerType unchanged and improving hints/expectedAnswer variants unless explicitly required.
-- If you must change answerType, use ONLY one of the 4 valid types above.
+- DO NOT change answerType anywhere. This is a hard constraint.
+- For synthesis questions (cognitiveLevel: "synthesis"): questionText MUST end with EXACTLY this instruction: "Answer in 3-4 sentences OR concise bullet points." AND expectedAnswer MUST be a checklist of 4-8 key concepts/phrases to grade against (not full sentence variants). Do not use any other numbers or phrasing variants.
+
+SYNTHESIS QUESTION REQUIREMENTS:
+- questionText ends with: "Answer in 3-4 sentences OR concise bullet points."
+- expectedAnswer format: ["key concept 1", "key concept 2", "key concept 3", "key concept 4", ...]
+- Example expectedAnswer: ["fault isolation and continuity", "cable economy", "load sharing across paths", "safety of movement during faults"]
+- Do NOT use full sentence variants for synthesis questions
+
+CONNECTION QUESTION REQUIREMENTS (D3 Question 1):
+- For mapping questions (e.g., "which circuit type for X and Y"), expectedAnswer must use explicit mappings
+- BAD: ["radial and ring", "ring and radial"]
+- GOOD: ["lighting: radial; sockets: ring", "radial for lighting, ring final for sockets"]
+- Prevents false positives from reversed answers
 
 OUTPUT FORMAT:
 Return the full lesson JSON object.
@@ -248,23 +343,41 @@ ${this.getJsonOutputInstructions()}`;
    * VERBATIM from spec
    */
   protected buildUserPrompt(input: any): string {
-    const { originalLesson, rubricScore } = input as RewriteInput;
+    const { originalLesson, rubricScore, fixPlan } = input as RewriteInput;
     
     // Format scoring report
     const scoringReport = this.formatScoringReport(rubricScore);
     
-    return `REFINE THIS LESSON JSON.
+    let prompt = `REFINE THIS LESSON JSON.
 
 ORIGINAL LESSON JSON:
 ${JSON.stringify(originalLesson, null, 2)}
 
 SCORING REPORT (issues + suggestions):
-${scoringReport}
+${scoringReport}`;
+
+    // Add fix plan if available
+    if (fixPlan && fixPlan.plan.length > 0) {
+      prompt += `
+
+FIX PLAN (implement every non-blocked item):
+${JSON.stringify(fixPlan, null, 2)}
+
+IMPLEMENTATION PRIORITY:
+- Implement ALL items marked as "deterministic" or "llm_editable"
+- DO NOT attempt items marked as "blocked_by_policy" or "requires_regeneration"
+- Follow the specific instructions and guardrails for each plan item
+- Use the suggested textSnippets where provided`;
+    }
+    
+    prompt += `
 
 TASK:
 - Produce a refined version of the full lesson JSON that addresses the scoring issues.
 - Preserve ALL structural invariants (same blocks, same ids/types/orders, same block count).
 - Return ONLY the refined JSON.`;
+    
+    return prompt;
   }
   
   /**
@@ -287,5 +400,31 @@ TASK:
     });
     
     return report;
+  }
+  
+  /**
+   * Enforce exact synthesis instruction format
+   * Ensures all synthesis questions use the approved instruction
+   */
+  private enforceSynthesisInstruction(lesson: Lesson): Lesson {
+    const APPROVED_INSTRUCTION = "Answer in 3-4 sentences OR concise bullet points.";
+    
+    lesson.blocks.forEach(block => {
+      if ((block.type === 'practice' || block.type === 'integrative' || block.type === 'spaced-review') 
+          && block.content.questions) {
+        block.content.questions.forEach((q: any) => {
+          if (q.cognitiveLevel === 'synthesis' && q.answerType === 'short-text') {
+            // Remove any existing "Answer in..." instruction (case insensitive)
+            let text = q.questionText.replace(/\s*\(?Answer in \d+-?\d* sentences?[^.]*\.?\)?/gi, '').trim();
+            // Also remove just "(3-4 sentences)" style without "Answer in"
+            text = text.replace(/\s*\(?\d+-?\d* sentences?\)?\.?$/gi, '').trim();
+            // Append approved instruction
+            q.questionText = `${text} ${APPROVED_INSTRUCTION}`;
+          }
+        });
+      }
+    });
+    
+    return lesson;
   }
 }

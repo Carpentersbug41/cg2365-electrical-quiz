@@ -109,6 +109,53 @@ export const GENERATION_CONFIG = {
      * Retry attempts for LLM calls
      */
     maxRetries: 3,
+  },
+  
+  /**
+   * Phase 10 Debug Artifacts Configuration
+   */
+  debugArtifacts: {
+    /**
+     * Enable/disable Phase 10 debug artifact recording
+     * When enabled, writes full run bundles to disk with prompts, outputs, scores, validation, diffs
+     * HARDCODED: Always enabled (set to false to disable)
+     */
+    enabled: true,
+    
+    /**
+     * Output path for Phase 10 run artifacts
+     * Default: 'reports/phase10_runs'
+     * Each run is saved in its own folder: <outputPath>/<runId>/
+     * Example: reports/phase10_runs/203-3D__2026-02-07T10-32-18-123Z__rewrite__model/
+     */
+    outputPath: process.env.PHASE10_DEBUG_PATH || 'reports/phase10_runs',
+    
+    /**
+     * Score stability check configuration
+     * Re-scores the same lesson multiple times to measure scorer variance
+     */
+    scoreStability: {
+      enabled: false,  // Set to true to enable stability checks
+      runs: 3          // Number of times to score the same lesson
+    },
+    
+    /**
+     * Issue tracking configuration
+     * Generates issue lifecycle and JSON pointer diffs
+     */
+    issueTracking: {
+      enabled: true,
+      usePointers: true  // Generate JSON pointer-level diffs (RFC 6901)
+    },
+    
+    /**
+     * Planner stage configuration
+     * Generates explicit fix plans between scoring and rewrite
+     */
+    plannerStage: {
+      enabled: true,
+      model: undefined  // Optional: use different model for planning (default: same as rewrite)
+    }
   }
 };
 
@@ -142,4 +189,11 @@ export function shouldRefine(score: number): boolean {
 export function getPhase10Strategy(): 'patch' | 'rewrite' {
   // v2 (rewrite) is default - v1 (patch) requires explicit opt-in
   return GENERATION_CONFIG.refinement.rewriteEnabled ? 'rewrite' : 'patch';
+}
+
+/**
+ * Get debug artifacts config (for easy access)
+ */
+export function getDebugArtifactsConfig() {
+  return GENERATION_CONFIG.debugArtifacts;
 }

@@ -39,6 +39,7 @@ export interface RubricDetail {
   maxScore: number;
   issues: string[];
   suggestions: string[];
+  jsonPointers?: string[];      // JSON Pointer paths affected by this issue
 }
 
 interface StructuralValidationResult {
@@ -293,12 +294,14 @@ D) Questions & Cognitive Structure (25 points)
    D3: Integrative Block Structure (5 points)
        - If integrative block exists, it contains exactly 2 questions
        - Question 1: connection question (ties together 2-3 major concepts)
-       - Question 2: synthesis question (integrates all lesson concepts in 3-4 sentences)
+       - Question 2: synthesis question (integrates all lesson concepts; student may answer in 3-4 sentences OR concise bullet points; grade on inclusion of key concepts, not exact phrasing)
+       - NOTE: Synthesis questions using short-text answerType with "Answer in 3-4 sentences OR concise bullet points" instruction are valid—do NOT flag as friction
 
 E) Marking Robustness (10 points)
    - expectedAnswer is gradeable and matches answerType
    - For numeric answers: expectedAnswer contains numbers only (no units - units go in hint)
-   - For short-text: provides 2-6 acceptable variations
+   - For short-text: provides 2-6 acceptable variations (or 4-8 key points/phrases for synthesis questions)
+   - EXCEPTION: For synthesis questions (cognitiveLevel: "synthesis"), short-text with instruction "Answer in 3-4 sentences OR concise bullet points" is VALID and should NOT be flagged as friction or incompatibility. Grade these questions on concept inclusion via key-points checklist.
 
 F) Visual/Diagram Alignment (5 points)
    - Diagrams referenced appropriately in explanations and questions
@@ -332,6 +335,7 @@ Return JSON in this EXACT format:
       "category": "beginnerClarityStaging",
       "problem": "Explanation block at blocks[3] missing required 'Key Points' summary section with bullet list. Students need explicit takeaways for retention.",
       "fixability": "phase10",
+      "jsonPointers": ["/blocks/3/content/content"],
       "patches": [
         {
           "op": "append",
@@ -346,6 +350,7 @@ Return JSON in this EXACT format:
       "category": "beginnerClarityStaging",
       "problem": "Check block at blocks[4] asks about 'residual current' but explanation at blocks[3] never explicitly defines this term. Violates teaching-before-testing.",
       "fixability": "phase10",
+      "jsonPointers": ["/blocks/3/content/content", "/blocks/4/content/questions"],
       "patches": [
         {
           "op": "prepend",
@@ -360,6 +365,7 @@ Return JSON in this EXACT format:
       "category": "alignment",
       "problem": "Guided practice at blocks[7] uses different steps than worked example at blocks[6]. Should mirror exactly for effective scaffolding.",
       "fixability": "requiresRegeneration",
+      "jsonPointers": ["/blocks/6", "/blocks/7"],
       "patches": []
     }
   ],
@@ -389,6 +395,7 @@ PATCH OPERATION TYPES:
 VALIDATION RULES:
 - Total MUST equal sum of breakdown scores (CRITICAL - previous example had math error!)
 - All paths must use JSON Pointer format (/blocks/3/content/title)
+- Each issue must include a "jsonPointers" array listing all affected JSON Pointer paths
 - Each issue must have at least one patch (unless fixability is "requiresRegeneration")
 - Maximum 10 issues total
 - Focus issues on learning quality (B, C, D sections), not mechanical schema fixes (A, E sections)
@@ -502,6 +509,7 @@ Return ONLY the JSON scoring object following the exact format specified above. 
           maxScore: issue.impact || 1,
           issues: [issue.problem || 'Issue detected'],
           suggestions: suggestions.length > 0 ? suggestions : ['Review and fix manually'],
+          jsonPointers: issue.jsonPointers || [], // Extract JSON pointers from issue
         };
       });
     } else {
