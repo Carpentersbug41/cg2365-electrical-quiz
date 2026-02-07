@@ -957,7 +957,15 @@ export class SequentialLessonGenerator {
    */
   /**
    * Phase 10: Auto-Refinement (ROUTER)
-   * Routes to v1 (patch) or v2 (rewrite) based on strategy config
+   * 
+   * DEFAULT: v2 holistic rewrite (safe, reliable)
+   * FALLBACK: v1 patch-based (offline - emergency only)
+   * 
+   * Routes to v2 (rewrite) by default.
+   * Only routes to v1 (patch) if explicitly enabled via rewriteEnabled: false.
+   * 
+   * If v2 fails validation/score gate: returns null → ships original lesson unchanged.
+   * NO automatic fallback to v1.
    */
   private async runPhase10(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
     const strategy = getPhase10Strategy();
@@ -965,14 +973,22 @@ export class SequentialLessonGenerator {
     console.log(`  🔧 Phase 10: Auto-refinement (strategy: ${strategy})...`);
     
     if (strategy === 'rewrite') {
+      // v2 holistic rewrite (DEFAULT)
       return await this.runPhase10Rewrite(lesson, rubricScore, debugCollector);
     } else {
+      // v1 patch-based (OFFLINE - emergency only)
       return await this.runPhase10Patch(lesson, rubricScore, debugCollector);
     }
   }
 
   /**
-   * Phase 10 v2: Holistic Rewrite
+   * Phase 10 v2: Holistic Rewrite (DEFAULT PRODUCTION STRATEGY)
+   * 
+   * Replaces v1 patch-based refinement with holistic rewrite approach.
+   * LLM outputs full improved lesson JSON with hard structural invariants.
+   * 
+   * If validation fails or score decreases: returns null → ships original lesson.
+   * NO fallback to v1 patches.
    */
   private async runPhase10Rewrite(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
     console.log('  🔧 Phase 10 v2: Holistic Rewrite...');
@@ -1021,10 +1037,19 @@ export class SequentialLessonGenerator {
   }
 
   /**
-   * Phase 10 v1: Patch-based Refinement (LEGACY)
+   * Phase 10 v1: Patch-based Refinement (DEPRECATED - OFFLINE)
+   * 
+   * WARNING: This method is DEPRECATED and should NOT run in production.
+   * v1 patch-based refinement has been replaced by v2 holistic rewrite.
+   * 
+   * This code is kept ONLY for emergency rollback.
+   * To enable: Set rewriteEnabled: false in config.ts
    */
   private async runPhase10Patch(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
-    console.log('  🔧 Phase 10: Auto-refinement...');
+    console.warn('⚠️  WARNING: Running Phase 10 v1 (DEPRECATED patch-based refinement)');
+    console.warn('⚠️  v1 is OFFLINE by default. This should only run for emergency rollback.');
+    console.warn('⚠️  To use v2 (recommended): Set rewriteEnabled: true in config.ts');
+    console.log('  🔧 Phase 10 v1: Patch-based refinement (LEGACY)...');
     debugLog('PHASE10_START', { lessonId: lesson.id, initialScore: rubricScore.total });
 
     // Prepare refinement input (extract top issues)

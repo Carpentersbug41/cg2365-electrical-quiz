@@ -44,19 +44,23 @@ export const GENERATION_CONFIG = {
     
     /**
      * Phase 10 strategy: 'patch' or 'rewrite'
-     * 'patch': v1 surgical JSON patches (current stable)
-     * 'rewrite': v2 holistic rewrite with hard safety gates (experimental)
-     * Default: 'patch'
+     * 'patch': v1 surgical JSON patches (DEPRECATED - offline except for emergency)
+     * 'rewrite': v2 holistic rewrite with hard safety gates (DEFAULT)
+     * Default: 'rewrite'
+     * 
+     * WARNING: v1 (patch) is offline by default. Only enable for emergency rollback.
      */
-    strategy: 'patch' as 'patch' | 'rewrite',
+    strategy: 'rewrite' as 'patch' | 'rewrite',
     
     /**
      * Enable Phase 10 v2 (holistic rewrite)
-     * When true, uses rewrite strategy
-     * When false, uses patch strategy
-     * Default: false (v1 patch remains default until v2 proven)
+     * When true, uses rewrite strategy (DEFAULT)
+     * When false, uses patch strategy (EMERGENCY FALLBACK ONLY)
+     * Default: true (v2 is production strategy)
+     * 
+     * Set to false ONLY for emergency rollback to v1 patches.
      */
-    rewriteEnabled: false,
+    rewriteEnabled: true,
     
     /**
      * Enable shadow mode for v2 testing
@@ -131,8 +135,11 @@ export function shouldRefine(score: number): boolean {
 
 /**
  * Get Phase 10 strategy (patch or rewrite)
- * Returns 'rewrite' if rewriteEnabled is true, otherwise 'patch'
+ * Default: 'rewrite' (v2) - v1 (patch) is offline except for emergency
+ * 
+ * To enable v1 emergency fallback: set rewriteEnabled: false in config
  */
 export function getPhase10Strategy(): 'patch' | 'rewrite' {
+  // v2 (rewrite) is default - v1 (patch) requires explicit opt-in
   return GENERATION_CONFIG.refinement.rewriteEnabled ? 'rewrite' : 'patch';
 }
