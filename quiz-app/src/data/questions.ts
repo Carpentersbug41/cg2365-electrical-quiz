@@ -49,6 +49,7 @@ import { sequentialGeneratorTestQuestions } from './questions/sequentialGenerato
 import { circuitTypesWhatTheyDoQuestions } from './questions/circuitTypesWhatTheyDoQuestions';
 import { rolesResponsibilitiesQuestions } from './questions/rolesResponsibilitiesQuestions';
 import { environmentalLegislationQuestions } from './questions/environmentalLegislationQuestions';
+import { magnetismBasicsQuestions } from './questions/magnetismBasicsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -92,6 +93,7 @@ export const questions: Question[] = [
   ...circuitTypesWhatTheyDoQuestions,
   ...rolesResponsibilitiesQuestions,
   ...environmentalLegislationQuestions,
+  ...magnetismBasicsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

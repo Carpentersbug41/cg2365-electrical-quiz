@@ -1,0 +1,155 @@
+{
+  "total": 85,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 37,
+    "questions": 20,
+    "marking": 8,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "alignment: The lesson lacks the 'Scenario sort' activity with 6 site si...",
+      "score": 0,
+      "maxScore": 5,
+      "issues": [
+        "The lesson lacks the 'Scenario sort' activity with 6 site situations and the 'Who should do what' matching activity explicitly requested in the context."
+      ],
+      "suggestions": [
+        "Change blocks[6].content.questions from '[current value]' to '[object Object]'"
+      ],
+      "jsonPointers": [
+        "/blocks/6/content/questions"
+      ]
+    },
+    {
+      "section": "questions: The spaced review includes Unit 202 content (Voltage) in a U...",
+      "score": 0,
+      "maxScore": 5,
+      "issues": [
+        "The spaced review includes Unit 202 content (Voltage) in a Unit 201 (Health & Safety) lesson."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[2] from '[current value]' to '[object Object]'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/2"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The term 'foreseeably' is used in the definition of Duty of ...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The term 'foreseeably' is used in the definition of Duty of Care but is not defined for a Level 2 beginner."
+      ],
+      "suggestions": [
+        "Append to blocks[1].content.terms: '[object Object]'"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms"
+      ]
+    },
+    {
+      "section": "markingRobustness: The connection question expected answers are too narrow for ...",
+      "score": 0,
+      "maxScore": 4,
+      "issues": [
+        "The connection question expected answers are too narrow for a 'short-text' type, likely leading to false negatives."
+      ],
+      "suggestions": [
+        "Change blocks[3].content.questions[3].expectedAnswer from '[current value]' to 'HASAWA (law) gives the dutyholder (person) a duty of care (legal responsibility),The law requires the responsible person to act with care,Legislation forces dutyholders to take responsibility for safety'"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/questions/3/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Missing a specific warning about the difference between the ...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "Missing a specific warning about the difference between the Client and the Employer."
+      ],
+      "suggestions": [
+        "Modify blocks[4].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: Accepting 'the organisation' for 'The Employer' is technical...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Accepting 'the organisation' for 'The Employer' is technically incorrect in the context of C&G 2365 Unit 201 range."
+      ],
+      "suggestions": [
+        "Change blocks[6].content.questions[4].expectedAnswer from '[current value]' to 'The Employer,Employer,Your employer'"
+      ],
+      "jsonPointers": [
+        "/blocks/6/content/questions/4/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The text mentions 'reporting a broken ladder' as a legal res...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The text mentions 'reporting a broken ladder' as a legal responsibility of the employee, but doesn't explain 'don't mess about' (horseplay) mentioned in the context."
+      ],
+      "suggestions": [
+        "Modify blocks[2].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/2/content/content"
+      ]
+    },
+    {
+      "section": "questions: Spaced review answers allow 'HASWA' but the lesson consisten...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "Spaced review answers allow 'HASWA' but the lesson consistently uses 'HASAWA'."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[0].expectedAnswer from '[current value]' to 'HASAWA,Health and Safety at Work Act,HASAWA 1974'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/0/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The definition of 'Client' is slightly too broad, overlappin...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The definition of 'Client' is slightly too broad, overlapping with 'Organisation'."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[4].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/4/definition"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answers for the synthesis question don't use a ...",
+      "score": 0,
+      "maxScore": 4,
+      "issues": [
+        "The expected answers for the synthesis question don't use a required-point checklist, making grading subjective."
+      ],
+      "suggestions": [
+        "Prepend to blocks[7].content.questions[1].expectedAnswer: 'MUST INCLUDE: (1) Individual duty of care, (2) Organisation policy/systems, (3) Client site info/hazards. Example: Safety is ensured when the organisation sets policies and the client provides asbestos data, allowing the individual to exercise their duty of care by following the rules.'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/1/expectedAnswer"
+      ]
+    }
+  ],
+  "grade": "Strong",
+  "overallAssessment": "The lesson provides a solid theoretical foundation but fails to implement the specific interactive activities (Scenario Sort and Matching) requested in the context. Additionally, the spaced review contains out-of-unit content (electrical theory in a health and safety unit) which violates the pedagogical requirement for module consistency."
+}

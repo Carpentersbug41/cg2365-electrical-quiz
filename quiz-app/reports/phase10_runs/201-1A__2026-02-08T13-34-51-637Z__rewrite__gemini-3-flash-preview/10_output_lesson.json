@@ -34,38 +34,6 @@
       }
     },
     {
-      "id": "201-1A-microbreak-1",
-      "type": "microbreak",
-      "content": {
-        "breakType": "game",
-        "gameType": "matching",
-        "duration": 90,
-        "pairs": [
-          {
-            "left": "HASAWA",
-            "right": "Primary UK safety legislation"
-          },
-          {
-            "left": "Client",
-            "right": "Provides site information and access"
-          },
-          {
-            "left": "Competent Person",
-            "right": "Has training, knowledge, and experience"
-          },
-          {
-            "left": "Foreseeably",
-            "right": "Predictable harm like a trip hazard"
-          },
-          {
-            "left": "Duty of Care",
-            "right": "Legal obligation to avoid causing harm"
-          }
-        ]
-      },
-      "order": 1.5
-    },
-    {
       "id": "201-1A-vocab",
       "type": "vocab",
       "order": 2,
@@ -97,76 +65,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "201-1A-microbreak-2",
-      "type": "microbreak",
-      "content": {
-        "breakType": "game",
-        "gameType": "sorting",
-        "duration": 90,
-        "buckets": [
-          "Employer/Organisation",
-          "Client"
-        ],
-        "items": [
-          {
-            "text": "Create safety systems and policies",
-            "correctBucket": 0
-          },
-          {
-            "text": "Provide site-specific information",
-            "correctBucket": 1
-          },
-          {
-            "text": "Allow safe access to the site",
-            "correctBucket": 1
-          },
-          {
-            "text": "Provide a safe working environment",
-            "correctBucket": 0
-          },
-          {
-            "text": "Ensure compliance with environmental laws",
-            "correctBucket": 0
-          },
-          {
-            "text": "Assign safety responsibilities to individuals",
-            "correctBucket": 0
-          }
-        ]
-      },
-      "order": 2.5
-    },
-    {
-      "id": "201-1A-microbreak-3",
-      "type": "microbreak",
-      "content": {
-        "breakType": "game",
-        "gameType": "spot-error",
-        "duration": 60,
-        "scenario": "A client is hiring an electrical contractor for a project.",
-        "options": [
-          {
-            "text": "The client provides site-specific information.",
-            "isError": false
-          },
-          {
-            "text": "The client manages the daily electrical tasks.",
-            "isError": true
-          },
-          {
-            "text": "The client allows safe access to site.",
-            "isError": false
-          },
-          {
-            "text": "The employer provides a safe environment.",
-            "isError": false
-          }
-        ],
-        "explanation": "Clients provide information and access, not daily task management."
-      },
-      "order": 3.5
     },
     {
       "id": "201-1A-explain-1",
@@ -236,42 +134,6 @@
           }
         ]
       }
-    },
-    {
-      "id": "201-1A-microbreak-4",
-      "type": "microbreak",
-      "content": {
-        "breakType": "game",
-        "gameType": "quick-win",
-        "duration": 90,
-        "questions": [
-          {
-            "question": "What is the primary UK safety law?",
-            "answer": "HASAWA"
-          },
-          {
-            "question": "Who provides site access and information?",
-            "answer": "The Client"
-          },
-          {
-            "question": "What term means a person could predict harm?",
-            "answer": "Foreseeably"
-          },
-          {
-            "question": "Who has training and experience for tasks?",
-            "answer": "Competent Person"
-          },
-          {
-            "question": "The legal obligation to avoid harm is...?",
-            "answer": "Duty of Care"
-          },
-          {
-            "question": "Who has specific legal responsibilities to manage risks?",
-            "answer": "Dutyholder"
-          }
-        ]
-      },
-      "order": 4.5
     },
     {
       "id": "201-1A-explain-2",
@@ -534,7 +396,7 @@
   "metadata": {
     "created": "2026-02-08",
     "updated": "2026-02-08",
-    "version": "1.2",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   }
 }

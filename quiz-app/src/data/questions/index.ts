@@ -42,11 +42,13 @@ import { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuest
 import { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
 import { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
 import { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
+import { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...magnetismBasicsQuestions,
   ...environmentalLegislationQuestions,
   ...rolesResponsibilitiesQuestions,
   ...circuitTypesWhatTheyDoQuestions,
@@ -128,6 +130,7 @@ export { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuest
 export { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
 export { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
 export { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
+export { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
 
 /**
  * Filter questions by tags

@@ -102,29 +102,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 3.1,
   },
-  {
-    id: '202-4A',
-    title: 'Parallel Circuits: Rules and Calculations',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Parallel Circuits',
-    description: 'Learn the three parallel circuit rules and apply them to calculations.',
-    questionCount: getLessonQuestionCount('202-4A'),
-    available: true,
-    order: 4,
-  },
-  {
-    id: '202-5A',
-    title: 'Power & Energy: Calculations and Applications',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Power & Energy',
-    description: 'Master electrical power calculations using P=VI, understand energy consumption, and calculate electricity costs.',
-    questionCount: getLessonQuestionCount('202-5A'),
-    available: true,
-    order: 5,
-  },
-  {
+      {
     id: '202-6A',
     title: 'Magnetism & Electromagnetism: Principles and Applications',
     unit: 'Unit 202',
@@ -192,7 +170,18 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 8.3,
   },
-  // Unit 203: Electrical Installations Technology
+  
+  {
+    id: '202-5A',
+    title: 'Magnetism basics',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Magnetism basics',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-5A'),
+    available: true,
+    order: 9.3,
+  },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {

@@ -51,7 +51,8 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
     generateFn: Function,
     scorer: any,
     recorder?: Phase10RunRecorder,
-    fixPlan?: FixPlan
+    fixPlan?: FixPlan,
+    additionalInstructions?: string
   ): Promise<RewriteOutput> {
     this.scorer = scorer;
     
@@ -65,8 +66,13 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
     const { getPhase10Model } = await import('@/lib/config/geminiConfig');
     const phase10Model = getPhase10Model();
     
-    // Build prompts
-    const input: RewriteInput = { originalLesson, rubricScore, fixPlan };
+    // Build prompts - now includes additionalInstructions
+    const input: RewriteInput & { additionalInstructions?: string } = { 
+      originalLesson, 
+      rubricScore, 
+      fixPlan,
+      additionalInstructions 
+    };
     const prompts = this.getPrompts(input);
     
     // Store for debug bundle
@@ -103,6 +109,14 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       
       this.lastRawResponse = response;
       
+      // Debug: LLM Response received
+      console.log(`🔍 [Phase10v2 DEBUG] LLM Response received:`);
+      console.log(`  - Length: ${response.length} characters`);
+      console.log(`  - First 200 chars: ${response.substring(0, 200)}`);
+      console.log(`  - Last 200 chars: ${response.substring(Math.max(0, response.length - 200))}`);
+      console.log(`  - Contains 'blocks': ${response.includes('"blocks"')}`);
+      console.log(`  - Contains lesson ID: ${response.includes(originalLesson.id)}`);
+      
       // Write raw response to recorder
       if (recorder) {
         await recorder.writeText('03_output_rewrite.txt', response);
@@ -111,6 +125,14 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       // Parse JSON response
       console.log(`🔄 [Phase10v2] Parsing LLM response (${response.length} chars)...`);
       const candidateLesson = this.parseLLMResponse(response);
+      
+      // Debug: Parse result
+      if (candidateLesson) {
+        console.log(`🔍 [Phase10v2 DEBUG] Parsed candidate has ${candidateLesson.blocks?.length || 0} blocks`);
+        console.log(`🔍 [Phase10v2 DEBUG] Candidate lesson ID: ${candidateLesson.id}`);
+      } else {
+        console.log(`❌ [Phase10v2 DEBUG] Failed to parse candidate - got NULL`);
+      }
       
       if (!candidateLesson) {
         // Record parse error
@@ -141,6 +163,15 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       // Run hard validators
       console.log(`🔄 [Phase10v2] Running hard validators...`);
       const validation = validateCandidate(originalLesson, candidateLesson);
+      
+      // Debug: Validation result
+      console.log(`🔍 [Phase10v2 DEBUG] Validation result:`);
+      console.log(`  - Valid: ${validation.valid}`);
+      console.log(`  - Errors: ${validation.errors.length}`);
+      console.log(`  - Warnings: ${validation.warnings.length}`);
+      if (validation.errors.length > 0) {
+        console.log(`  - Error details:`, validation.errors);
+      }
       
       // Record validation result
       if (recorder) {
@@ -179,8 +210,19 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
         recorder.recordScore('after', candidateScore);
       }
       
+      // Debug: Candidate scoring complete
+      console.log(`🔍 [Phase10v2 DEBUG] Candidate scoring complete:`);
+      console.log(`  - Candidate score: ${candidateScore.total}/100`);
+      console.log(`  - Original score: ${rubricScore.total}/100`);
+      console.log(`  - Delta: ${candidateScore.total - rubricScore.total}`);
+      
       console.log(`📊 [Phase10v2] Candidate score: ${candidateScore.total}/100`);
       console.log(`📊 [Phase10v2] Score delta: ${candidateScore.total >= rubricScore.total ? '+' : ''}${candidateScore.total - rubricScore.total}`);
+      
+      // Debug: Score gate check
+      console.log(`🔍 [Phase10v2 DEBUG] Score gate check:`);
+      console.log(`  - Will pass: ${candidateScore.total >= rubricScore.total}`);
+      console.log(`  - Threshold: score must be >= ${rubricScore.total}`);
       
       // SCORE GATE: Reject if score decreased
       if (candidateScore.total < rubricScore.total) {
@@ -324,10 +366,30 @@ CONTENT RULES:
 - Do not introduce "[object Object]" or placeholder text.
 - If the scoring report contains malformed suggestions (e.g. '[object Object]'), ignore those suggestions and instead implement the intended fix safely.
 
-ANSWER TYPE RULES (CRITICAL):
-- VALID answerTypes: "short-text", "multiple-choice", "calculation", "true-false"
-- NEVER use: "numeric", "long-text", "essay", "open-ended", or any other type
-- DO NOT change answerType anywhere. This is a hard constraint.
+ANSWER TYPE RULES (CRITICAL - VALIDATION WILL REJECT IF VIOLATED):
+There are ONLY 4 valid answerTypes. Using any other type will cause IMMEDIATE REJECTION.
+
+VALID answerTypes (ONLY THESE):
+1. "short-text" - for brief text answers (1-2 sentences)
+2. "multiple-choice" - for multiple choice questions
+3. "calculation" - for ANY numeric/mathematical questions
+4. "true-false" - for true/false questions
+
+FORBIDDEN answerTypes (WILL CAUSE REJECTION):
+- "numeric" ❌ WRONG - Use "calculation" instead
+- "long-text" ❌ WRONG - Use "short-text" instead
+- "essay" ❌ WRONG - Not supported
+- "open-ended" ❌ WRONG - Not supported
+- ANY other value ❌ WRONG
+
+CRITICAL EXAMPLE - COMMON MISTAKE TO AVOID:
+❌ WRONG: { "answerType": "numeric", "questionText": "Calculate..." }
+✅ RIGHT: { "answerType": "calculation", "questionText": "Calculate..." }
+
+If you use "numeric", the lesson will be REJECTED and you will have failed.
+Use "calculation" for ALL number-based questions without exception.
+
+DO NOT change answerType values - only fix content/pedagogy.
 - For synthesis questions (cognitiveLevel: "synthesis"): questionText MUST end with EXACTLY this instruction: "Answer in 3-4 sentences OR concise bullet points." AND expectedAnswer MUST be a checklist of 4-8 key concepts/phrases to grade against (not full sentence variants). Do not use any other numbers or phrasing variants.
 
 SYNTHESIS QUESTION REQUIREMENTS:
@@ -353,12 +415,20 @@ ${this.getJsonOutputInstructions()}`;
    * VERBATIM from spec
    */
   protected buildUserPrompt(input: any): string {
-    const { originalLesson, rubricScore, fixPlan } = input as RewriteInput;
+    const { originalLesson, rubricScore, fixPlan, additionalInstructions } = input as RewriteInput & { additionalInstructions?: string };
+    
+    let prompt = '';
+    
+    // If additional instructions provided, add them as user context
+    if (additionalInstructions && additionalInstructions.trim()) {
+      prompt += `ADDITIONAL CONTEXT FROM USER:\n${additionalInstructions.trim()}\n\n`;
+      prompt += `ASSISTANT ACKNOWLEDGMENT: I will ensure the lesson improvement follows this additional context and structure.\n\n`;
+    }
     
     // Format scoring report
     const scoringReport = this.formatScoringReport(rubricScore);
     
-    let prompt = `REFINE THIS LESSON JSON.
+    prompt += `REFINE THIS LESSON JSON.
 
 ORIGINAL LESSON JSON:
 ${JSON.stringify(originalLesson, null, 2)}

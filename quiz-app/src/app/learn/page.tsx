@@ -11,8 +11,6 @@ import lesson202_1A from '@/data/lessons/202-1A-electrical-quantities-units.json
 import lesson202_2A from '@/data/lessons/202-2A-ohms-law.json';
 import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
 import lesson202_3AB from '@/data/lessons/202-3AB-series-circuits-linear.json';
-import lesson202_4A from '@/data/lessons/202-4A-series-circuits-extended.json';
-import lesson202_5A from '@/data/lessons/202-5A-power-energy.json';
 import lesson202_6A from '@/data/lessons/202-6A-magnetism-electromagnetism.json';
 import lesson202_7A from '@/data/lessons/202-7A-ac-principles.json';
 import lesson202_7B from '@/data/lessons/202-7B-how-ac-is-generated.json';
@@ -47,6 +45,7 @@ import lesson203_3A3 from '@/data/lessons/203-3A3-circuit-types-what-they-do.jso
 import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
 import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
 import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
+import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -90,6 +89,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson202_5A,
   lesson201_1C,
   lesson201_1B,
   lesson201_1A,
@@ -119,10 +119,7 @@ const LESSONS = [
   lesson204_10A,  lesson202_1A,
   lesson202_2A,
   lesson202_3A,
-  lesson202_3AB,
-  lesson202_4A,
-  lesson202_5A,
-  lesson202_6A,
+  lesson202_3AB,  lesson202_6A,
   lesson202_7A,
   lesson202_7B,
   lesson202_7C,

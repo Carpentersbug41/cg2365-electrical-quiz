@@ -404,6 +404,11 @@ export function validateCandidate(
   original: Lesson,
   candidate: Lesson
 ): DetailedValidationResult {
+  // Debug: Starting validation
+  console.log(`🔍 [Validators DEBUG] Starting validation:`);
+  console.log(`  - Original blocks: ${original.blocks.length}`);
+  console.log(`  - Candidate blocks: ${candidate.blocks.length}`);
+  
   const structuralResult = validateStructuralInvariants(original, candidate);
   const completenessResult = validateBlockCompleteness(candidate);
   const corruptionResult = detectCorruption(candidate);

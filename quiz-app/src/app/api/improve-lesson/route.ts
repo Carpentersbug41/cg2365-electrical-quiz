@@ -18,6 +18,7 @@ import path from 'path';
 
 interface ImproveRequest {
   lessonId: string;
+  additionalInstructions?: string;
 }
 
 interface ImproveResponse {
@@ -123,8 +124,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const lessonId = body.lessonId;
+    const { lessonId, additionalInstructions } = body;
     console.log(`\n🔧 [ImproveLesson] Starting improvement for ${lessonId}`);
+    if (additionalInstructions) {
+      console.log(`📝 [ImproveLesson] Additional instructions provided: ${additionalInstructions.substring(0, 100)}...`);
+    }
 
     // Load existing lesson
     const originalLesson = getExistingLesson(lessonId);
@@ -140,9 +144,9 @@ export async function POST(request: NextRequest) {
     // Initialize scoring service
     const scorer = new LLMScoringService(generateWithRetry);
 
-    // Score original lesson
+    // Score original lesson with additional instructions
     console.log(`📊 [ImproveLesson] Scoring original lesson...`);
-    const originalScore = await scorer.scoreLesson(originalLesson);
+    const originalScore = await scorer.scoreLesson(originalLesson, additionalInstructions);
     console.log(`📊 [ImproveLesson] Original score: ${originalScore.total}/100`);
 
     // Check if debug artifacts are enabled
@@ -178,7 +182,7 @@ export async function POST(request: NextRequest) {
       console.log(`🔍 [DEBUG] Artifacts disabled, skipping recorder`);
     }
 
-    // Run Phase 10 v2 refinement
+    // Run Phase 10 v2 refinement with additional instructions
     console.log(`🔄 [ImproveLesson] Running Phase 10 v2 refinement...`);
     const phase10 = new Phase10_Rewrite();
     const result = await phase10.rewriteLesson(
@@ -186,8 +190,24 @@ export async function POST(request: NextRequest) {
       originalScore,
       generateWithRetry,
       scorer,
-      recorder  // Pass recorder to Phase10_Rewrite
+      recorder,
+      undefined,  // fixPlan
+      additionalInstructions  // NEW: Pass additional instructions
     );
+
+    // Debug: Phase 10 v2 Result Analysis
+    console.log(`\n🔍 [DEBUG] Phase 10 v2 Result:`);
+    console.log(`  - candidateLesson exists: ${result.candidateLesson !== null}`);
+    console.log(`  - validationFailures count: ${result.validationFailures.length}`);
+    if (result.validationFailures.length > 0) {
+      console.log(`  - validationFailures:`, result.validationFailures);
+    }
+    console.log(`  - scoreComparison exists: ${result.scoreComparison !== null}`);
+    if (result.scoreComparison) {
+      console.log(`  - scoreComparison.original: ${result.scoreComparison.original}`);
+      console.log(`  - scoreComparison.candidate: ${result.scoreComparison.candidate}`);
+      console.log(`  - scoreComparison.delta: ${result.scoreComparison.delta}`);
+    }
 
     // Prepare response
     const response: ImproveResponse = {
@@ -205,17 +225,56 @@ export async function POST(request: NextRequest) {
       },
     };
 
+    // Debug: Save Decision Analysis
+    console.log(`\n🔍 [DEBUG] Save Decision Analysis:`);
+    console.log(`  - Condition 1 (candidateLesson exists): ${result.candidateLesson !== null}`);
+    console.log(`  - Condition 2 (scoreComparison exists): ${result.scoreComparison !== null}`);
+    console.log(`  - Condition 3 (delta > 0): ${result.scoreComparison ? result.scoreComparison.delta > 0 : 'N/A'}`);
+    const willSave = result.candidateLesson && result.scoreComparison && result.scoreComparison.delta > 0;
+    console.log(`  - WILL SAVE: ${willSave}`);
+
+    if (!willSave) {
+      console.log(`\n❌ [DEBUG] Lesson NOT being saved because:`);
+      if (!result.candidateLesson) {
+        console.log(`  - candidateLesson is NULL (validation or parse failed)`);
+      }
+      if (!result.scoreComparison) {
+        console.log(`  - scoreComparison is NULL (scoring failed)`);
+      }
+      if (result.scoreComparison && result.scoreComparison.delta <= 0) {
+        console.log(`  - Score delta is ${result.scoreComparison.delta} (must be > 0 to save)`);
+        console.log(`  - Original score: ${result.scoreComparison.original}`);
+        console.log(`  - Candidate score: ${result.scoreComparison.candidate}`);
+      }
+    }
+
     // If improvement was made, save the improved lesson
     if (result.candidateLesson && result.scoreComparison && result.scoreComparison.delta > 0) {
       const lessonPath = findLessonFile(lessonId);
       if (lessonPath) {
         console.log(`💾 [ImproveLesson] Saving improved lesson to ${lessonPath}`);
+        console.log(`🔍 [DEBUG] About to write file:`);
+        console.log(`  - File exists before write: ${fs.existsSync(lessonPath)}`);
+        console.log(`  - Candidate lesson blocks: ${result.candidateLesson.blocks.length}`);
+        
+        const jsonString = JSON.stringify(result.candidateLesson, null, 2);
+        console.log(`  - JSON string length: ${jsonString.length} characters`);
+        
         fs.writeFileSync(
           lessonPath,
-          JSON.stringify(result.candidateLesson, null, 2),
+          jsonString,
           'utf-8'
         );
+        
         console.log(`✅ [ImproveLesson] Lesson saved successfully`);
+        console.log(`🔍 [DEBUG] File written, verifying...`);
+        
+        // Verify the write
+        const verifyContent = fs.readFileSync(lessonPath, 'utf-8');
+        const verifyLesson = JSON.parse(verifyContent);
+        console.log(`  - File size after write: ${verifyContent.length} characters`);
+        console.log(`  - Verified blocks count: ${verifyLesson.blocks.length}`);
+        console.log(`  - Write successful: ${verifyLesson.blocks.length === result.candidateLesson.blocks.length}`);
       } else {
         console.warn(`⚠️ [ImproveLesson] Could not find lesson file path to save`);
       }

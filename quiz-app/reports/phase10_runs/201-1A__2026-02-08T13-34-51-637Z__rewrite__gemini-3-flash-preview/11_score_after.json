@@ -1,0 +1,160 @@
+{
+  "total": 98,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 44,
+    "questions": 24,
+    "marking": 10,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "alignment: Spaced review questions are taken from the current lesson (2...",
+      "score": 0,
+      "maxScore": 5,
+      "issues": [
+        "Spaced review questions are taken from the current lesson (201-1A), not preceding lessons in Unit 201."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions from '[current value]' to '[object Object],[object Object]'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions"
+      ]
+    },
+    {
+      "section": "markingRobustness: The integrative synthesis question uses 'keyword soup' as th...",
+      "score": 0,
+      "maxScore": 4,
+      "issues": [
+        "The integrative synthesis question uses 'keyword soup' as the expected answer for a short-text response."
+      ],
+      "suggestions": [
+        "Change blocks[7].content.questions[1].expectedAnswer from '[current value]' to 'Individuals exercise a duty of care while the organisation provides safety systems and the client provides site hazard info, ensuring total compliance.,Safety is achieved by individuals following a duty of care, the organisation setting policies, and the client sharing site info to manage hazards.,The client provides site facts, the organisation sets the safety framework, and individuals fulfill their duty of care to ensure safe compliance.'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/1/expectedAnswer"
+      ]
+    },
+    {
+      "section": "markingRobustness: The question forces a very specific string format ('Provide:...",
+      "score": 0,
+      "maxScore": 4,
+      "issues": [
+        "The question forces a very specific string format ('Provide: Role; Use: Role') which is difficult for students to guess."
+      ],
+      "suggestions": [
+        "Modify blocks[6].content.questions[8].questionText",
+        "Change blocks[6].content.questions[8].expectedAnswer from '[current value]' to 'Employer provides, Employee uses,Employer and Employee,The employer provides it and the employee uses it,Employer/Employee'"
+      ],
+      "jsonPointers": [
+        "/blocks/6/content/questions/8/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The term 'Egress' is used in the explanation but is not defi...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The term 'Egress' is used in the explanation but is not defined in the vocab or text."
+      ],
+      "suggestions": [
+        "Append to blocks[1].content.terms: '[object Object]'"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The lesson lacks a concrete 'Worked Example' or 'Scenario Wa...",
+      "score": 0,
+      "maxScore": 4,
+      "issues": [
+        "The lesson lacks a concrete 'Worked Example' or 'Scenario Walkthrough' block before the practice phase."
+      ],
+      "suggestions": [
+        "Append to blocks[2].content.content: '\n\n**Worked Example: Reporting a Hazard**\n*   **Scenario:** You find a damaged drill with a frayed cable.\n*   **Action:** You stop using the drill immediately (Duty of Care).\n*   **Responsibility:** You report it to your supervisor (Employee duty).\n*   **Resolution:** The employer replaces the drill (Employer duty to provide safe tools).'"
+      ],
+      "jsonPointers": [
+        "/blocks/2/content/content"
+      ]
+    },
+    {
+      "section": "questions: Missing specific references to HASAWA Sections 2, 7, and 8.",
+      "score": 0,
+      "maxScore": 4,
+      "issues": [
+        "Missing specific references to HASAWA Sections 2, 7, and 8."
+      ],
+      "suggestions": [
+        "Modify blocks[2].content.content",
+        "Modify blocks[2].content.content",
+        "Modify blocks[2].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/2/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answer only accepts the digit '5'.",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The expected answer only accepts the digit '5'."
+      ],
+      "suggestions": [
+        "Append to blocks[6].content.questions[1].expectedAnswer: 'five'",
+        "Append to blocks[6].content.questions[1].expectedAnswer: '5 or more'"
+      ],
+      "jsonPointers": [
+        "/blocks/6/content/questions/1/expectedAnswer"
+      ]
+    },
+    {
+      "section": "markingRobustness: Connection question marking is too restrictive for an open-e...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "Connection question marking is too restrictive for an open-ended explanation."
+      ],
+      "suggestions": [
+        "Append to blocks[3].content.questions[3].expectedAnswer: 'The HASAWA is the law that forces a dutyholder to fulfill their duty of care.'",
+        "Append to blocks[3].content.questions[3].expectedAnswer: 'Legislation like HASAWA defines who the dutyholders are and what their duty of care involves.'"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/questions/3/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The term 'acts or omissions' is legalistic and may be unclea...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The term 'acts or omissions' is legalistic and may be unclear to a Level 2 student."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[0].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/0/definition"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The distinction between Client and Employer is clear, but th...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The distinction between Client and Employer is clear, but the 'Organisation' role as a 'System' is still a bit abstract."
+      ],
+      "suggestions": [
+        "Modify blocks[4].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/content"
+      ]
+    }
+  ],
+  "grade": "Strong",
+  "overallAssessment": "The lesson is technically sound but lacks specific exam-critical references (HASAWA sections) and contains fragile marking for complex questions. The Spaced Review violates the 'preceding lessons' rule as it repeats current lesson content instead of building on prior knowledge from the module."
+}

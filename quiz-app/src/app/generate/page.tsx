@@ -155,6 +155,7 @@ export default function GeneratePage() {
 
   // Improve Lesson state
   const [selectedImproveLesson, setSelectedImproveLesson] = useState<string>('');
+  const [additionalInstructions, setAdditionalInstructions] = useState<string>('');
   const [improveStatus, setImproveStatus] = useState<{
     improving: boolean;
     success: boolean;
@@ -537,7 +538,10 @@ export default function GeneratePage() {
       const response = await fetch('/api/improve-lesson', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lessonId: selectedImproveLesson }),
+        body: JSON.stringify({ 
+          lessonId: selectedImproveLesson,
+          additionalInstructions: additionalInstructions.trim() || undefined
+        }),
       });
       
       const data = await response.json();
@@ -1698,6 +1702,24 @@ export default function GeneratePage() {
                   </optgroup>
                 ))}
               </select>
+            </div>
+
+            {/* Additional Instructions (Optional) */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
+                Additional Instructions (Optional)
+              </label>
+              <textarea
+                value={additionalInstructions}
+                onChange={(e) => setAdditionalInstructions(e.target.value)}
+                disabled={improveStatus.improving}
+                rows={3}
+                placeholder="e.g., Focus particularly on spaced review quality, or ensure strict marking rubric for synthesis questions..."
+                className="w-full px-3 py-2 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 disabled:opacity-50 text-sm"
+              />
+              <p className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+                Provide specific context or requirements that the scoring and improvement should consider.
+              </p>
             </div>
 
             {/* Improve Button */}

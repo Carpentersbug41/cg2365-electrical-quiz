@@ -71,7 +71,7 @@ export class LLMScoringService {
   /**
    * Score a lesson using LLM-based evaluation
    */
-  async scoreLesson(lesson: Lesson): Promise<RubricScore> {
+  async scoreLesson(lesson: Lesson, additionalInstructions?: string): Promise<RubricScore> {
     // Step 1: Fast structural validation
     const structuralValidation = this.validateStructure(lesson);
     
@@ -82,7 +82,7 @@ export class LLMScoringService {
 
     // Step 2: LLM scoring (quality assessment)
     try {
-      const llmScore = await this.scoreLessonWithLLM(lesson);
+      const llmScore = await this.scoreLessonWithLLM(lesson, additionalInstructions);
       return llmScore;
     } catch (error: any) {
       console.error('[LLMScoringService] Error scoring lesson:', error);
@@ -194,9 +194,9 @@ export class LLMScoringService {
   /**
    * Score lesson using LLM
    */
-  private async scoreLessonWithLLM(lesson: Lesson): Promise<RubricScore> {
+  private async scoreLessonWithLLM(lesson: Lesson, additionalInstructions?: string): Promise<RubricScore> {
     const systemPrompt = this.buildScoringSystemPrompt();
-    const userPrompt = this.buildScoringUserPrompt(lesson);
+    const userPrompt = this.buildScoringUserPrompt(lesson, additionalInstructions);
 
     // Call LLM with scoring prompts
     const scoringConfig = getScoringConfig();
@@ -324,11 +324,19 @@ VALIDATION RULES
   /**
    * Build user prompt with lesson to score
    */
-  private buildScoringUserPrompt(lesson: Lesson): string {
+  private buildScoringUserPrompt(lesson: Lesson, additionalInstructions?: string): string {
     // Create a clean JSON representation of the lesson
     const lessonJson = JSON.stringify(lesson, null, 2);
     
-    return `Score this UK electrical installation lesson using the rubric.
+    let prompt = '';
+    
+    // If additional instructions provided, add them as user context
+    if (additionalInstructions && additionalInstructions.trim()) {
+      prompt += `ADDITIONAL CONTEXT FROM USER:\n${additionalInstructions.trim()}\n\n`;
+      prompt += `ASSISTANT ACKNOWLEDGMENT: I will ensure the lesson marking takes this additional context into consideration when scoring and suggesting improvements.\n\n`;
+    }
+    
+    prompt += `Score this UK electrical installation lesson using the rubric.
 
 LESSON TO SCORE:
 ${lessonJson}
@@ -340,6 +348,8 @@ CRITICAL REMINDERS:
 4. Focus on CONTENT QUALITY only - structure already validated
 
 Return ONLY the JSON scoring object. No markdown, no additional text.`;
+    
+    return prompt;
   }
 
   /**

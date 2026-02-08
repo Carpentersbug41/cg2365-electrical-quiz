@@ -1,0 +1,371 @@
+{
+  "id": "202-5A",
+  "title": "202.5A — Magnetism basics",
+  "description": "Learn about Magnetism basics in Science 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Magnetism basics",
+  "learningOutcomes": [
+    "Describe the principles of attraction and repulsion between magnetic poles",
+    "State the conceptual difference between magnetic flux and magnetic flux density",
+    "Classify simple visual examples as representing magnetic flux or flux density"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "202-5A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Describe the principles of attraction and repulsion between magnetic poles",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "State the conceptual difference between magnetic flux and magnetic flux density",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Classify simple visual examples as representing magnetic flux or flux density",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Magnetic Field",
+            "definition": "The invisible region surrounding a magnet or current-carrying conductor where magnetic forces can be detected."
+          },
+          {
+            "term": "Magnetic Poles",
+            "definition": "The two points at the ends of a magnet, designated North and South, where the magnetic force is at its strongest."
+          },
+          {
+            "term": "Law of Magnetic Poles",
+            "definition": "The fundamental principle stating that like poles repel each other while opposite poles attract each other."
+          },
+          {
+            "term": "Magnetic Flux",
+            "definition": "The total number of magnetic field lines produced by a source, represented by the symbol Φ and measured in Webers (Wb)."
+          },
+          {
+            "term": "Magnetic Flux Density",
+            "definition": "The concentration of magnetic flux passing through a specific unit of area, measured in Tesla (T)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Magnetism basics Diagram",
+        "description": "Visual representation of Magnetism basics",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "magnetic-field",
+          "magnetic-poles",
+          "magnetic-flux",
+          "magnetic-flux-density"
+        ],
+        "placeholderText": "A two-part diagram. Part A shows a bar magnet with North and South 'magnetic-poles' clearly labeled. Arcing lines represent the 'magnetic-field' flowing from North to South. Part B shows a comparison of two identical areas: one with many closely packed lines representing high 'magnetic-flux-density' and another with fewer, widely spaced lines representing low 'magnetic-flux-density'. A large arrow pointing to all lines combined is labeled as 'magnetic-flux'."
+      }
+    },
+    {
+      "id": "202-5A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Magnetic Attraction and Repulsion",
+        "content": "### In this lesson\n\nYou will learn how magnetic forces interact to cause movement or stability in electrical components. This knowledge is essential when you are installing or maintaining motors, contactors, and protective devices where magnets are used to trigger actions. \n\n*   Identify the behavior of North and South poles.\n*   Understand the invisible nature of the magnetic field.\n*   Apply the fundamental law of magnetic interaction.\n\n**What this is**\n\nMagnetism is a physical phenomenon produced by the motion of electric charge, resulting in attractive and repulsive forces between objects. At the heart of this are **Magnetic Poles**, which are the two specific points at the ends of a magnet where the force is most concentrated. These are always found in pairs: a North-seeking pole and a South-seeking pole. Surrounding every magnet is a **Magnetic Field**, which is the invisible region where these forces can be detected. While we cannot see the field with the naked eye, we can observe its effects on nearby ferrous materials or other magnets.\n\n**Why it matters**\n\nAs an electrician, you will rarely work with simple bar magnets, but you will constantly work with the principles they represent. The **Law of Magnetic Poles** is the foundation for how electric motors spin and how solenoids pull a plunger to open a valve or close a switch. If you understand how poles interact, you can understand how a circuit breaker uses magnetic force to trip during a short circuit. Without these predictable forces of attraction and repulsion, modern electrical distribution and automation would not function.\n\n**Key facts / rules**\n\n*   Every magnet must have at least one North pole and one South pole.\n*   **Magnetic Field** lines are conventionally shown as traveling from the North pole to the South pole outside the magnet.\n*   The **Law of Magnetic Poles** states that like poles (N-N or S-S) will always repel each other.\n*   The **Law of Magnetic Poles** states that opposite poles (N-S) will always attract each other.\n*   Magnetic forces are strongest at the poles and weaken as the distance from the poles increases.\n*   The magnetic field exists in three dimensions, surrounding the magnet in all directions.\n\n**How to recognise it**\n\nTo recognise the principles of attraction and repulsion in a practical or visual scenario, look at the physical reaction between two magnetic bodies. If two magnets are pushed toward each other and you feel a \"cushion\" of resistance that forces them apart, you are observing repulsion between like poles. Conversely, if the magnets snap together with force, you are observing attraction between opposite poles. In a diagram, you can recognise these interactions by the direction of the field lines. If the lines from two separate magnets appear to move toward each other and join, it represents attraction. If the lines appear to bend away from each other, like water hitting a wall, it represents repulsion. You might also recognise these effects in equipment like magnetic door locks, where the alignment of poles ensures a secure hold until the current is cut.\n\n**Common mistakes**\n\n*   Assuming that a magnet will attract all metals; it typically only attracts ferromagnetic materials like iron, steel, and nickel.\n*   Thinking that a magnet can have only one pole; if you snap a magnet in half, you simply create two smaller magnets, each with its own North and South pole.\n*   Confusing the direction of field lines, which always flow North to South externally.\n\n**Key Points**\n\n*   **Magnetic Poles** are the points of maximum magnetic strength.\n*   The **Law of Magnetic Poles** dictates that opposites attract and likes repel.\n*   A **Magnetic Field** is the area of influence surrounding a magnetic source.\n*   Magnetic forces are essential for the operation of motors and protective devices.\n\n**Quick recap**\n\nMagnetism relies on the interaction between North and South poles. By following the Law of Magnetic Poles, we know that opposite poles pull together while similar poles push apart. These interactions occur within an invisible magnetic field that surrounds the magnet, providing the mechanical force needed for many electrical applications.\n\n### Coming Up Next\n\nNow that we understand how magnets interact, we will look at how we measure the strength and quantity of these magnetic fields using the concepts of flux and flux density."
+      }
+    },
+    {
+      "id": "202-5A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Magnetic Attraction and Repulsion",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-5A-C1-L1-A",
+            "questionText": "What is the name for the two specific points at the ends of a magnet where the force is most concentrated?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Magnetic Poles",
+              "magnetic poles",
+              "poles"
+            ],
+            "hint": "These are the North and South seeking points on a magnet."
+          },
+          {
+            "id": "202-5A-C1-L1-B",
+            "questionText": "What term describes the invisible region where magnetic forces can be detected around a magnet?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Magnetic Field",
+              "magnetic field",
+              "the magnetic field"
+            ],
+            "hint": "This is the area of influence surrounding a magnetic source."
+          },
+          {
+            "id": "202-5A-C1-L1-C",
+            "questionText": "According to the Law of Magnetic Poles, what will like poles always do when they are near each other?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "repel each other",
+              "repel",
+              "always repel each other"
+            ],
+            "hint": "Think about what happens when two North poles are pushed together."
+          },
+          {
+            "id": "202-5A-C1-L2",
+            "questionText": "Using your answers to Q1 (magnetic poles), Q2 (magnetic field), and Q3 (repulsion), explain how these relate to the physical interaction between two similar magnets.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "magnetic poles interact within a magnetic field to repel each other if they are the same type",
+              "the magnetic field allows magnetic poles that are alike to repel each other",
+              "like poles repel each other through the influence of the magnetic field"
+            ],
+            "hint": "Consider how the invisible area around the poles causes them to push apart."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Magnetic Flux and Flux Density",
+        "content": "### In this lesson\n\nYou will learn the difference between the total amount of magnetism and how \"squashed\" or concentrated that magnetism is in a specific area. This is vital when comparing the efficiency of different electrical machines or transformers. \n\n*   Distinguish between total magnetic output and magnetic concentration.\n*   Identify the standard units for flux (Webers) and flux density (Tesla).\n*   Classify visual diagrams as representing either flux or flux density.\n\n**What this is**\n\nIn electrical science, we need a way to quantify the magnetic field. **Magnetic Flux** is the term used to describe the total number of magnetic field lines produced by a magnetic source. Think of it as the \"total volume\" of magnetism available. It is represented by the Greek symbol Φ (Phi) and is measured in Webers (Wb). On the other hand, **Magnetic Flux Density** describes how concentrated those lines are as they pass through a specific unit of area. It is represented by the symbol B and is measured in Tesla (T). While flux tells us the total amount, flux density tells us how strong the field is at a specific point.\n\n**Why it matters**\n\nUnderstanding the difference between these two is critical for equipment design and selection. For example, a large transformer and a small transformer might have the same total **Magnetic Flux**, but the smaller one will have a much higher **Magnetic Flux Density** because that flux is squeezed into a smaller core. High flux density is often desirable in motors to produce more torque, but if the density becomes too high, the material can reach \"saturation,\" where it cannot hold any more magnetism, leading to inefficiency and heat.\n\n**Key facts / rules**\n\n*   **Magnetic Flux** (Φ) represents the total magnetic field and is measured in Webers (Wb).\n*   **Magnetic Flux Density** (B) represents the concentration of flux per square metre and is measured in Tesla (T).\n*   The relationship is expressed as: Flux Density = Flux / Area (B = Φ / A).\n*   If the area decreases while the flux remains the same, the flux density increases.\n*   If the flux increases while the area remains the same, the flux density increases.\n*   Flux density is a vector quantity, meaning it has both magnitude and direction.\n\n**How to recognise it**\n\nTo classify visual examples, look at what the diagram is trying to emphasize. If a diagram shows a magnet with many lines coming out of it and labels the total count of those lines, it is representing **Magnetic Flux**. You are looking at the \"whole picture.\" However, if the diagram shows a small square \"window\" or a specific cross-section of a cable or core with lines passing through it, it is representing **Magnetic Flux Density**. \n\nImagine a showerhead: the total amount of water coming out per minute is like the flux. The pressure of the water hitting a single tile on the wall is like the flux density. In a technical drawing, if the field lines are drawn very close together, you are looking at an area of high flux density. If the lines are spread far apart, the flux density is low, even if the total flux in the entire system remains unchanged.\n\n**Common mistakes**\n\n*   Using the terms interchangeably; remember that flux is the \"total\" and density is the \"concentration.\"\n*   Confusing the units; Webers (Wb) belong to flux, while Tesla (T) belongs to flux density.\n*   Forgetting that area plays a role; you cannot determine density without knowing the physical space the flux is occupying.\n\n**Key Points**\n\n*   **Magnetic Flux** is the total quantity of magnetism (measured in Webers).\n*   **Magnetic Flux Density** is the intensity or concentration of magnetism (measured in Tesla).\n*   Flux density depends on both the total flux and the area it passes through.\n*   Visualizing line spacing helps distinguish between high and low density areas.\n\n**Quick recap**\n\nTotal magnetism is measured as flux in Webers, while the concentration of that magnetism in a given area is measured as flux density in Tesla. By understanding this distinction, electricians can better grasp how components like transformers and motors utilize magnetic fields efficiently or where they might face limitations due to material saturation.\n\n### Coming Up Next\n\nWe have covered the basics of permanent magnets and field measurements. Next, we will explore how electricity can be used to create magnetism on demand through the magnetic effects of an electric current."
+      }
+    },
+    {
+      "id": "202-5A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Magnetic Flux and Flux Density",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-5A-C2-L1-A",
+            "questionText": "Which term is used to describe the total number of magnetic field lines produced by a magnetic source?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Magnetic Flux",
+              "magnetic flux",
+              "flux"
+            ],
+            "hint": "This represents the total volume of magnetism available."
+          },
+          {
+            "id": "202-5A-C2-L1-B",
+            "questionText": "What term identifies how concentrated magnetic lines are as they pass through a specific unit of area?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Magnetic Flux Density",
+              "magnetic flux density",
+              "flux density"
+            ],
+            "hint": "This describes the intensity of the field at a specific point."
+          },
+          {
+            "id": "202-5A-C2-L1-C",
+            "questionText": "Which standard unit of measurement is used for Magnetic Flux Density?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Tesla",
+              "tesla",
+              "T"
+            ],
+            "hint": "This unit is represented by the symbol B."
+          },
+          {
+            "id": "202-5A-C2-L2",
+            "questionText": "Using your answers to Q1 (magnetic flux), Q2 (flux density), and Q3 (Tesla), explain how these terms identify the intensity of a magnetic field.",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "magnetic flux density measures how many lines of magnetic flux are concentrated in an area using Tesla as the unit",
+              "the total magnetic flux is measured in Tesla when identifying its concentration as magnetic flux density",
+              "Tesla is the unit used to identify the magnetic flux density of the total magnetic flux in a specific area"
+            ],
+            "hint": "Think about how the total lines and their concentration are measured."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Magnetic Principles Practice",
+        "questions": [
+          {
+            "id": "202-5A-P1",
+            "questionText": "Identify the standard unit of measurement used for Magnetic Flux Density (B).",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Tesla",
+              "Teslas",
+              "T"
+            ],
+            "hint": "This unit represents the concentration of magnetic flux."
+          },
+          {
+            "id": "202-5A-P2",
+            "questionText": "According to the Law of Magnetic Poles, what physical reaction occurs when two North poles are brought close together?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Repulsion",
+              "repulsion",
+              "They repel"
+            ],
+            "hint": "Consider the rule for 'like' poles."
+          },
+          {
+            "id": "202-5A-P3",
+            "questionText": "State the conventional direction in which magnetic field lines travel outside of a magnet.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "North to South",
+              "from North to South",
+              "North to South pole"
+            ],
+            "hint": "Field lines always flow from one specific pole to the other externally."
+          },
+          {
+            "id": "202-5A-P4",
+            "questionText": "A magnetic source produces a total Magnetic Flux of 0.08 Webers over a cross-sectional area of 0.02 square metres. Determine the Magnetic Flux Density. (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "4",
+              "4.0"
+            ],
+            "hint": "Use the formula: Flux Density = Flux / Area. Answer in Tesla (T)."
+          },
+          {
+            "id": "202-5A-P5",
+            "questionText": "If a transformer core has a total Magnetic Flux of 0.015 Webers and a cross-sectional area of 0.005 square metres, what is the resulting Magnetic Flux Density? (Round to the nearest whole number)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3",
+              "3.0"
+            ],
+            "hint": "Divide the total flux (Φ) by the area (A). Answer in Tesla (T)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-5A-INT-1",
+            "questionText": "Explain how the invisible magnetic field around a magnet determines its physical interaction with another magnet. In your answer, include: (1) the direction of magnetic flux lines, (2) the behavior of like poles, and (3) the behavior of unlike poles. (2-3 sentences)",
+            "answerType": "short-text",
+            "cognitiveLevel": "connection",
+            "expectedAnswer": [
+              "Magnetic flux lines flow from the North pole to the South pole, creating a field where like poles repel each other and unlike poles attract. This directional flow of magnetism is what governs the fundamental law of magnetic interaction.",
+              "The interaction is based on magnetic flux lines moving from North to South, which causes like poles to experience repulsion and unlike poles to experience attraction.",
+              "Because magnetic flux lines have a specific direction from North to South, unlike poles will attract one another while like poles will repel."
+            ],
+            "hint": "Think about the flow of magnetism from pole to pole and how that dictates whether magnets push or pull."
+          },
+          {
+            "id": "202-5A-INT-2",
+            "questionText": "Describe how the properties of a magnetic field determine the strength and type of force applied to an electrical component like a contactor. In your answer, include: (1) magnetic flux (Webers), (2) flux density (Tesla), (3) the law of attraction and repulsion, and (4) how concentration affects the magnetic force. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "short-text",
+            "cognitiveLevel": "synthesis",
+            "expectedAnswer": [
+              "Magnetic flux measured in Webers represents the total magnetism, while flux density in Tesla describes how concentrated that magnetism is in a specific area. The law of attraction and repulsion determines if the force pulls or pushes components together or apart. A higher flux density indicates a more concentrated field, which results in a much stronger magnetic force.",
+              "1. Total magnetism is magnetic flux (Webers). 2. Flux density (Tesla) measures the concentration of these lines. 3. The law of attraction and repulsion dictates the direction of the force between poles. 4. Greater flux density leads to a more powerful magnetic interaction or force.",
+              "Magnetic flux (Webers) is the total field produced, but flux density (Tesla) determines how 'squashed' or concentrated the field is. This concentration is vital because higher flux density creates a stronger force when the law of attraction and repulsion acts upon a component. Therefore, both the total output and the concentration determine the final mechanical effect."
+            ],
+            "hint": "Consider the difference between the total amount of magnetism and how 'squashed' it is, then relate that to the physical force between poles."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "202-5A-SR-1",
+            "questionText": "Which subatomic particle has a negative charge and orbits the nucleus of an atom?",
+            "expectedAnswer": [
+              "electron",
+              "electrons"
+            ],
+            "hint": "It is the flow of these particles that creates an electric current.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-5A-SR-2",
+            "questionText": "What is the base SI unit used to measure electrical current?",
+            "expectedAnswer": [
+              "ampere",
+              "amp",
+              "amperes",
+              "amps"
+            ],
+            "hint": "The symbol for this unit is 'A'.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-5A-SR-3",
+            "questionText": "What term is used to describe a material, such as plastic or rubber, that does not easily allow the flow of electricity?",
+            "expectedAnswer": [
+              "insulator",
+              "insulators",
+              "non-conductor"
+            ],
+            "hint": "This is the opposite of a conductor.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Magnetism basics"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-08",
+    "updated": "2026-02-08",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}
