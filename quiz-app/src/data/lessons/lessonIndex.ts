@@ -181,6 +181,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-5A'),
     available: true,
     order: 9.3,
+  },
+  {
+    id: '202-5B',
+    title: 'Magnetic effects of electrical current',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Magnetic effects of electrical current',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-5B'),
+    available: true,
+    order: 10.3,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

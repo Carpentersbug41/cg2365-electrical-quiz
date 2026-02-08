@@ -1,0 +1,141 @@
+{
+  "lessonId": "202-5B",
+  "timestamp": "2026-02-08T19:10:42.118Z",
+  "changes": [
+    {
+      "op": "replace",
+      "path": "/blocks/1/content/terms/0/definition",
+      "before": "The electrical pressure or push provided by an energy source that drives current through a circuit.",
+      "after": "The total energy supplied by a source (like a battery) per unit of electric charge, representing the 'pressure' available before current flows.",
+      "summary": "Changed blocks.1.content.terms.0.definition from \"The electrical pressure or push provided by an ene...\" to \"The total energy supplied by a source (like a batt...\""
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/1/content/terms/3/definition",
+      "before": "A cylindrical coil of wire that acts as a magnet and produces a concentrated magnetic field when carrying an electric current.",
+      "after": "A cylindrical coil of wire, usually with many turns, that acts as a magnet and produces a concentrated magnetic field when carrying an electric current.",
+      "summary": "Changed blocks.1.content.terms.3.definition from \"A cylindrical coil of wire that acts as a magnet a...\" to \"A cylindrical coil of wire, usually with many turn...\""
+    },
+    {
+      "op": "add",
+      "path": "/blocks/1/content/terms/6",
+      "after": {
+        "term": "Permeability",
+        "definition": "The ability of a material to support the formation of a magnetic field within itself; high permeability materials like soft iron concentrate magnetic flux."
+      },
+      "summary": "Added element at blocks.1.content.terms.6"
+    },
+    {
+      "op": "remove",
+      "path": "/blocks/2/content/imageUrl",
+      "summary": "Removed blocks.2.content.imageUrl"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/3/content/content",
+      "before": "### In this lesson\nThis lesson explores how electrical current creates invisible magnetic fields and how these fields interact with external magnets to create physical movement. You are learning this in the context of understanding the basic science behind electrical motors and protective devices used in domestic and commercial installations. \n\n*   Electrical current always produces a circular magnetic field around a conductor.\n*   The strength of this magnetic field is directly proportional to the amount of current flowing.\n*   A force is generated when a current-carrying conductor is placed within an external magnetic field.\n\n**What this is**\n**Electromagnetism** is the fundamental principle that links electricity and magnetism. Whenever an electrical current flows through a wire, it doesn't just stay inside the metal; it produces a magnetic field that radiates outwards in concentric circles. This is not a permanent magnetic state but a temporary one that exists only while the current is flowing. If the current is switched off, the magnetic field collapses. When we place this current-carrying conductor inside another magnetic field (such as between the poles of a permanent magnet), the two fields interact. This interaction results in a physical force that tries to push the conductor out of the field, a phenomenon known as the 'motor effect'.\n\n**Why it matters**\nUnderstanding the relationship between electrical current and magnetic fields is essential for any electrician. It is the core principle behind the operation of electric motors, where electrical energy is converted into mechanical movement. Furthermore, this effect is used in circuit protection. For example, in a Miniature Circuit Breaker (MCB), a high fault current creates a powerful magnetic field that triggers a mechanical trip, disconnecting the circuit to prevent fire or damage. Without this magnetic effect, we would have no way to automate high-speed safety disconnection or drive heavy machinery using electricity.\n\n**Key facts / rules**\n*   The direction of the magnetic field around a conductor is determined by the direction of the current flow.\n*   **Magnetic Flux** refers to the total number of magnetic field lines; more current creates more flux.\n*   The force on a conductor increases if the current increases or if the external magnetic field is made stronger.\n*   **Fleming's Left-Hand Rule** is used to predict the direction of the force (Motion), the Magnetic Field, and the Current.\n*   The force is greatest when the conductor is at right angles (90 degrees) to the magnetic field lines.\n*   If the conductor is parallel to the magnetic field, no force is produced.\n\n**When to choose it**\nSelection of this principle is critical when determining how a device will react to varying current levels. You would rely on these concepts when choosing a protective device that must trip instantly during a short circuit. In a practical scenario, if you need to increase the torque of a motor or the sensitivity of a magnetic trip, you would look for ways to increase the current or the density of the magnetic field. Choosing a device based on its magnetic characteristics ensures that it can provide the 'mechanical work' required, whether that is spinning a pump or pulling a contactor closed.\n\n**Common mistakes**\n*   Thinking that magnetism only exists in permanent magnets; remember that current flow *always* creates a field.\n*   Confusing the direction of the force; always use **Fleming's Left-Hand Rule** (Left hand for motors/force, Right hand for generators).\n*   Assuming the magnetic field is always the same strength regardless of current; in reality, a small current creates a weak field, while a high fault current creates a massive, potentially destructive field.\n\n**Key Points**\n*   Current flow creates a magnetic field around a conductor.\n*   **Magnetic Flux** increases as the current level rises.\n*   The 'motor effect' is the force produced when two magnetic fields interact.\n*   **Fleming's Left-Hand Rule** helps identify the direction of physical movement.\n\n**Quick recap**\nElectrical current and magnetism are inseparable. Every wire carrying a current produces a magnetic field, and when that wire is placed in an external field, it experiences a physical force. This effect is the foundation of motors and automated safety switches in electrical installations.\n\n### Coming Up Next\nWe will now look at how we can concentrate these magnetic fields using coils and cores to create powerful electromagnets and define the 'push' that drives the whole system.",
+      "after": "### In this lesson\nThis lesson explores how electrical current creates invisible magnetic fields and how these fields interact with external magnets to create physical movement. You are learning this in the context of understanding the basic science behind electrical motors and protective devices used in domestic and commercial installations. \n\n*   Electrical current always produces a circular magnetic field around a conductor.\n*   The strength of this magnetic field is directly proportional to the amount of current flowing.\n*   A force is generated when a current-carrying conductor is placed within an external magnetic field.\n\n**What this is**\n**Electromagnetism** is the fundamental principle that links electricity and magnetism. Whenever an electrical current flows through a wire, it produces a magnetic field that radiates outwards in concentric circles. This is a temporary state that exists only while the current is flowing. When we place this current-carrying conductor inside another magnetic field (such as between the poles of a permanent magnet), the two fields interact. This interaction results in a physical force that tries to push the conductor out of the field, known as the 'motor effect'.\n\n**Why it matters**\nUnderstanding the relationship between electrical current and magnetic fields is essential for any electrician. It is the core principle behind electric motors and circuit protection like Miniature Circuit Breakers (MCBs), where high fault currents create powerful magnetic fields that trigger mechanical trips.\n\n**Key facts / rules**\n*   The direction of the magnetic field around a conductor is determined by current flow.\n*   **Magnetic Flux** refers to the total number of magnetic field lines.\n*   **Magnetic Flux Density (B)** is the measure of the strength of a magnetic field, expressed as flux per unit area.\n*   The force on a conductor increases if the current increases or if the external magnetic field is made stronger.\n*   **Fleming's Left-Hand Rule** maps the variables: **Thumb** = Motion (Force), **First Finger** = Field (North to South), **Second Finger** = Current (Positive to Negative).\n*   The force is greatest when the conductor is at right angles (90 degrees) to the magnetic field lines.\n\n**Prediction Scenario:** If the current in a motor winding is doubled, the magnetic field strength around those conductors will also double, resulting in significantly more torque (turning force).\n\n**When to choose it**\nSelection of this principle is critical when determining how a device will react to varying current levels. You would rely on these concepts when choosing a protective device that must trip instantly during a short circuit.\n\n**Common mistakes**\n*   Thinking that magnetism only exists in permanent magnets.\n*   Confusing the direction of the force; always use **Fleming's Left-Hand Rule** (Left hand for motors/force).\n*   Assuming the magnetic field is always the same strength regardless of current.\n\n**Key Points**\n*   Current flow creates a magnetic field around a conductor.\n*   **Magnetic Flux** increases as the current level rises.\n*   The 'motor effect' is the force produced when two magnetic fields interact.\n*   **Fleming's Left-Hand Rule** helps identify the direction of physical movement.\n\n**Quick recap**\nElectrical current and magnetism are inseparable. Every wire carrying a current produces a magnetic field, and when that wire is placed in an external field, it experiences a physical force.",
+      "summary": "Updated content in blocks.3"
+    },
+    {
+      "op": "add",
+      "path": "/blocks/4/content/questions/1/expectedAnswer/3",
+      "after": "increases as current increases",
+      "summary": "Added element at blocks.4.content.questions.1.expectedAnswer.3"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/5/content/content",
+      "before": "### In this lesson\nIn this lesson, you will learn how to amplify magnetic effects using coils and how the conceptual 'pressure' of a circuit drives these processes. You are studying this to understand the components inside relays, contactors, and the fundamental nature of electrical sources. \n\n*   A **Solenoid** concentrates magnetic fields by looping a conductor into a coil.\n*   A **Magnetic Core** significantly increases the strength of an electromagnet.\n*   **Electromotive Force (EMF)** is the conceptual push or pressure that starts current flow.\n\n**What this is**\nWhile a single wire produces a weak magnetic field, we can concentrate that field by winding the wire into a cylindrical coil known as a **Solenoid**. When current passes through the coil, the individual magnetic fields of each loop add together, creating a much stronger and more useful field. To make this field even more powerful, we insert a **Magnetic Core**, typically made of soft iron, into the center of the solenoid. The iron core is easily magnetised and provides a 'path' for the **Magnetic Flux**, multiplying the overall strength of the magnet. Alongside this, we must understand **Electromotive Force (EMF)**. EMF is the total electrical pressure provided by a source (like a battery or transformer) before any current starts to flow through a load.\n\n**Why it matters**\nElectromagnets are the 'muscles' of an electrical system. They allow us to use a small electrical signal to move heavy mechanical parts. For example, in a central heating system, a relay uses a small electromagnet to switch on a large pump. Understanding the factors that influence electromagnet strength allows an electrician to troubleshoot why a contactor might be 'chattering' or failing to pull in. Furthermore, understanding EMF is vital for distinguishing between the 'source' pressure and the actual voltage measured at a socket, which is the first step in mastering circuit theory and voltage drop.\n\n**Key facts / rules**\n*   The strength of a **Solenoid** is increased by adding more turns of wire to the coil.\n*   Increasing the current flowing through the coil directly increases the magnetic field strength.\n*   A **Magnetic Core** increases the magnetic flux because it has high permeability (it conducts magnetic lines of force easily).\n*   **Electromotive Force (EMF)** is measured in Volts and represents the potential energy given to each unit of charge.\n*   EMF can be thought of as the 'pressure' from the supply, while current is the resulting 'flow'.\n*   Electromagnets are temporary; they lose their magnetism almost immediately when the current is switched off.\n\n**When to choose it**\nSelection of an electromagnet or solenoid depends on the required strength of the physical pull. You would choose a device with a high-permeability **Magnetic Core** when you need maximum force in a compact space, such as in a door release mechanism or a high-power contactor. When selecting components for a control circuit, you must ensure the **Electromotive Force (EMF)** of the supply is sufficient to overcome the resistance of the coil and provide enough current to create the required magnetic pull. If the current levels vary or drop too low, the magnetic field will weaken, and the device may fail to operate.\n\n**Common mistakes**\n*   Confusing **Electromotive Force (EMF)** with current; remember EMF is the 'push' (Volts), not the 'flow' (Amps).\n*   Thinking that adding any metal core will work; only ferromagnetic materials like iron or steel significantly increase the field strength.\n*   Assuming an electromagnet stays magnetic forever; unlike permanent magnets, they require a constant energy source to maintain their field.\n\n**Key Points**\n*   A **Solenoid** creates a concentrated magnetic field from an electrical current.\n*   A **Magnetic Core** is used to multiply the strength of the magnetic field.\n*   **Electromotive Force (EMF)** is the conceptual electrical pressure that drives the circuit.\n*   Varying the current or the number of coil turns changes the magnetic field strength.\n\n**Quick recap**\nElectromagnetism allows us to create switchable magnets using solenoids and iron cores. These devices are controlled by the electrical pressure known as EMF. By adjusting the current or the construction of the coil, we can precisely control the magnetic strength needed for various electrical components.\n\n### Coming Up Next\nNow that you understand how current creates magnetism and force, we will move on to see how these principles are applied to generate electricity in the first place.",
+      "after": "### In this lesson\nIn this lesson, you will learn how to amplify magnetic effects using coils and how the conceptual 'pressure' of a circuit drives these processes. You are studying this to understand the components inside relays, contactors, and the fundamental nature of electrical sources. \n\n*   A **Solenoid** concentrates magnetic fields by looping a conductor into a coil.\n*   A **Magnetic Core** significantly increases the strength of an electromagnet.\n*   **Electromotive Force (EMF)** is the conceptual push or pressure that starts current flow.\n\n**What this is**\nWhile a single wire produces a weak magnetic field, we can concentrate that field by winding the wire into a cylindrical coil known as a **Solenoid**. When current passes through the coil, the individual magnetic fields of each loop add together. To make this field even more powerful, we insert a **Magnetic Core**, typically made of soft iron, into the center. Iron has high **permeability**, meaning it conducts magnetic lines of force easily, multiplying the overall strength. **Electromotive Force (EMF)** is the total electrical pressure provided by a source before current flows through a load.\n\n**Why it matters**\nElectromagnets allow us to use a small electrical signal to move heavy mechanical parts, such as in relays or contactors. Understanding EMF is vital for distinguishing between the 'source' pressure and the actual voltage measured at a socket, which is the first step in mastering circuit theory.\n\n**Key facts / rules**\n*   The strength of a **Solenoid** is increased by adding more turns of wire to the coil.\n*   Increasing current directly increases magnetic field strength.\n*   A **Magnetic Core** increases the magnetic flux density because it has high permeability.\n*   **Electromotive Force (EMF)** is measured in Volts and represents potential energy per unit of charge.\n*   Electromagnets are temporary; they lose magnetism when current is switched off.\n\n**When to choose it**\nYou would choose a device with a high-permeability **Magnetic Core** when you need maximum force in a compact space, such as in a door release mechanism. You must ensure the **Electromotive Force (EMF)** of the supply is sufficient to overcome the resistance of the coil.\n\n**Common mistakes**\n*   Confusing **Electromotive Force (EMF)** with current (Push vs Flow).\n*   Thinking all metals are magnetic; common materials used by electricians like Copper and Aluminium are non-magnetic and will not increase the field strength of a solenoid.\n*   Assuming an electromagnet stays magnetic forever without power.\n\n**Key Points**\n*   A **Solenoid** creates a concentrated magnetic field from an electrical current.\n*   A **Magnetic Core** multiplies the strength of the magnetic field.\n*   **Electromotive Force (EMF)** is the conceptual electrical pressure that drives the circuit.\n*   Varying current or coil turns changes the magnetic field strength.\n\n**Quick recap**\nElectromagnetism allows us to create switchable magnets using solenoids and iron cores. These devices are controlled by the electrical pressure known as EMF.",
+      "summary": "Updated content in blocks.5"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/7/content/questions/2/answerType",
+      "before": "numeric",
+      "after": "calculation",
+      "summary": "Changed answer type from \"numeric\" to \"calculation\" at blocks.7.content.questions.2.answerType"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/0",
+      "before": "Electromotive Force (EMF) acts as the pressure that drives current through a solenoid, which is a coiled conductor that concentrates magnetic fields. By adding a magnetic core, the strength of this electromagnet is significantly increased. The resulting magnetic field strength is directly proportional to the current, meaning that increasing the EMF to drive more current will result in a stronger magnetic output.",
+      "after": "EMF drives current through a solenoid",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.0"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/1",
+      "before": "To create a strong electromagnet, a solenoid with a magnetic core is used to amplify the effects of the electrical current driven by the Electromotive Force (EMF). The strength of the magnetic field is influenced by the core material and the current level. Therefore, varying the current will predictively change the magnetic field's intensity and the force on the conductor.",
+      "after": "solenoid concentrates field",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.1"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/2",
+      "before": "1. EMF provides the pressure to drive current. 2. A solenoid and magnetic core are used to concentrate and increase magnetic strength. 3. Field strength is influenced by the number of turns and current level. 4. Increasing or decreasing the current directly varies the magnetic field strength produced.",
+      "after": "iron core increases flux density",
+      "summary": "Updated expected answer at blocks.8.content.questions.1.expectedAnswer.2"
+    },
+    {
+      "op": "add",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/3",
+      "after": "current proportional to field strength",
+      "summary": "Added element at blocks.8.content.questions.1.expectedAnswer.3"
+    },
+    {
+      "op": "add",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/4",
+      "after": "varying current varies output",
+      "summary": "Added element at blocks.8.content.questions.1.expectedAnswer.4"
+    },
+    {
+      "op": "add",
+      "path": "/blocks/8/content/questions/1/expectedAnswer/5",
+      "after": "high permeability core",
+      "summary": "Added element at blocks.8.content.questions.1.expectedAnswer.5"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/9/content/questions/0/questionText",
+      "before": "What is the SI unit used to measure electrical current?",
+      "after": "According to Ohm's Law (from earlier in Unit 202), if voltage remains constant and resistance increases, what happens to the current?",
+      "summary": "Modified question text at blocks.9.content.questions.0.questionText"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/9/content/questions/0/expectedAnswer/0",
+      "before": "Ampere",
+      "after": "Current decreases",
+      "summary": "Updated expected answer at blocks.9.content.questions.0.expectedAnswer.0"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/9/content/questions/0/expectedAnswer/1",
+      "before": "Amperes",
+      "after": "it decreases",
+      "summary": "Updated expected answer at blocks.9.content.questions.0.expectedAnswer.1"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/9/content/questions/0/expectedAnswer/2",
+      "before": "Amps",
+      "after": "current goes down",
+      "summary": "Updated expected answer at blocks.9.content.questions.0.expectedAnswer.2"
+    },
+    {
+      "op": "remove",
+      "path": "/blocks/9/content/questions/0/expectedAnswer/3",
+      "before": "Amp",
+      "summary": "Removed element at blocks.9.content.questions.0.expectedAnswer.3"
+    },
+    {
+      "op": "replace",
+      "path": "/blocks/9/content/questions/0/hint",
+      "before": "It is represented by the symbol 'A' in electrical units.",
+      "after": "Resistance is the opposition to flow; more opposition means less flow for the same push.",
+      "summary": "Modified hint at blocks.9.content.questions.0.hint"
+    }
+  ]
+}

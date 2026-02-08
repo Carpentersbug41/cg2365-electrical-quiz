@@ -43,11 +43,13 @@ import { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestio
 import { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
 import { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
 import { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
+import { magneticEffectsOfElectricalCurrentQuestions } from './magneticEffectsOfElectricalCurrentQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...magneticEffectsOfElectricalCurrentQuestions,
   ...magnetismBasicsQuestions,
   ...environmentalLegislationQuestions,
   ...rolesResponsibilitiesQuestions,
@@ -131,6 +133,7 @@ export { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestio
 export { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
 export { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
 export { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
+export { magneticEffectsOfElectricalCurrentQuestions } from './magneticEffectsOfElectricalCurrentQuestions';
 
 /**
  * Filter questions by tags

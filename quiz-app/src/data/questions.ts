@@ -50,6 +50,7 @@ import { circuitTypesWhatTheyDoQuestions } from './questions/circuitTypesWhatThe
 import { rolesResponsibilitiesQuestions } from './questions/rolesResponsibilitiesQuestions';
 import { environmentalLegislationQuestions } from './questions/environmentalLegislationQuestions';
 import { magnetismBasicsQuestions } from './questions/magnetismBasicsQuestions';
+import { magneticEffectsOfElectricalCurrentQuestions } from './questions/magneticEffectsOfElectricalCurrentQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -94,6 +95,7 @@ export const questions: Question[] = [
   ...rolesResponsibilitiesQuestions,
   ...environmentalLegislationQuestions,
   ...magnetismBasicsQuestions,
+  ...magneticEffectsOfElectricalCurrentQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

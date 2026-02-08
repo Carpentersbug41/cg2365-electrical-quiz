@@ -1,0 +1,148 @@
+{
+  "lessonId": "202-5B",
+  "timestamp": "2026-02-08T19:09:40.002Z",
+  "plan": [
+    {
+      "issueId": "beginnerClarityStaging.ISSUE1",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/1/content/terms/0/definition"
+      ],
+      "instructions": "Update the definition of EMF to align with City & Guilds 2365 technical standards.",
+      "guardrails": [
+        "preserve existing term name",
+        "ensure technical accuracy"
+      ],
+      "textSnippets": [
+        "The total energy supplied by a source (like a battery) per unit of electric charge, representing the 'pressure' available before current flows."
+      ]
+    },
+    {
+      "issueId": "beginnerClarityStaging.ISSUE2",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/3/content/content"
+      ],
+      "instructions": "In the explanation of Fleming's Left-Hand Rule, explicitly map the thumb and fingers to their physical variables.",
+      "guardrails": [
+        "preserve existing content flow"
+      ],
+      "textSnippets": [
+        "**Fleming's Left-Hand Rule:**\n- **Thumb:** Motion or Force\n- **First Finger:** Field (North to South)\n- **Second Finger:** Current (Positive to Negative)"
+      ]
+    },
+    {
+      "issueId": "beginnerClarityStaging.ISSUE3",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/1/content/terms"
+      ],
+      "instructions": "Add 'Permeability' to the vocabulary list to support its use in later explanations.",
+      "guardrails": [
+        "do not remove existing terms"
+      ],
+      "textSnippets": [
+        "{ \"term\": \"Permeability\", \"definition\": \"A measure of how easily a magnetic field can pass through a material.\" }"
+      ]
+    },
+    {
+      "issueId": "questions.ISSUE4",
+      "rubricRef": "questions",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/3/content/content"
+      ],
+      "instructions": "Add a definition for 'Magnetic Flux Density' to provide the necessary background for question 202-5B-P2.",
+      "guardrails": [
+        "ensure distinction between flux and flux density is clear"
+      ],
+      "textSnippets": [
+        "**Magnetic Flux Density (B):** This is the amount of magnetic flux passing through a specific area, measured in Tesla (T)."
+      ]
+    },
+    {
+      "issueId": "markingRobustness.ISSUE5",
+      "rubricRef": "markingRobustness",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/4/content/questions/1/expectedAnswer"
+      ],
+      "instructions": "Expand the list of acceptable answers to include common phrasing variations for the relationship between current and magnetic field strength.",
+      "guardrails": [
+        "keep answers technically correct"
+      ]
+    },
+    {
+      "issueId": "beginnerClarityStaging.ISSUE6",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/5/content/content"
+      ],
+      "instructions": "Add information about non-magnetic metals commonly used by electricians to provide practical context.",
+      "guardrails": [
+        "mention Copper and Aluminium explicitly"
+      ],
+      "textSnippets": [
+        "Note that many common metals used in electrical work, such as Copper and Aluminium, are non-magnetic and will not be attracted to a magnet."
+      ]
+    },
+    {
+      "issueId": "alignment.ISSUE7",
+      "rubricRef": "alignment",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/3/content/content"
+      ],
+      "instructions": "Add a 'Predict' scenario to model the thinking required for Outcome 4.",
+      "guardrails": [
+        "use a 'what-if' structure"
+      ],
+      "textSnippets": [
+        "### Prediction Scenario\nIf the current in a motor winding is doubled, the magnetic field strength around those conductors will also double, resulting in significantly more torque (turning force)."
+      ]
+    },
+    {
+      "issueId": "markingRobustness.ISSUE8",
+      "rubricRef": "markingRobustness",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/8/content/questions/1/expectedAnswer"
+      ],
+      "instructions": "Update the synthesis question marking to include key-point variations rather than a single long string to reduce false negatives.",
+      "guardrails": [
+        "ensure all variations capture the link between EMF, current, solenoid, and core"
+      ]
+    },
+    {
+      "issueId": "questions.ISSUE9",
+      "rubricRef": "questions",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/9/content/questions/0"
+      ],
+      "instructions": "Increase the cognitive depth of the spaced review question by linking previous Unit 202 knowledge (Ohm's Law) to current variables.",
+      "guardrails": [
+        "do not change question type"
+      ],
+      "textSnippets": [
+        "According to Ohm's Law, if voltage remains constant and resistance increases, what happens to the current?"
+      ]
+    },
+    {
+      "issueId": "beginnerClarityStaging.ISSUE10",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/1/content/terms/3/definition"
+      ],
+      "instructions": "Refine the definition of 'Solenoid' to include the critical characteristic of having many turns.",
+      "guardrails": [
+        "preserve existing definition context"
+      ]
+    }
+  ]
+}
