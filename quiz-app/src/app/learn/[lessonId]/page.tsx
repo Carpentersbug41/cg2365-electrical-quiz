@@ -12,7 +12,6 @@ import DiagnosticGate from '@/components/learning/DiagnosticGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 
 // Import lesson data
-import lesson201_1A from '@/data/lessons/201-1A-health-safety-legislation.json';
 import lesson202_1A from '@/data/lessons/202-1A-electrical-quantities-units.json';
 import lesson202_2A from '@/data/lessons/202-2A-ohms-law.json';
 import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
@@ -50,9 +49,11 @@ import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3A3 from '@/data/lessons/203-3A3-circuit-types-what-they-do.json';
+import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '201-1A': lesson201_1A as Lesson,
   '203-3A3': lesson203_3A3 as Lesson,  '203-3F': lesson203_3F as Lesson,  '202-3F': lesson202_3F as Lesson,
   '203-3E': lesson203_3E as Lesson,
   '203-3D': lesson203_3D as Lesson,
@@ -76,9 +77,7 @@ const LESSONS: Record<string, Lesson> = {
   '204-11B': lesson204_11B as Lesson,
   '204-11A': lesson204_11A as Lesson,
   '204-10B': lesson204_10B as Lesson,
-  '204-10A': lesson204_10A as Lesson,
-  '201-1A': lesson201_1A as Lesson,
-  '202-1A': lesson202_1A as Lesson,
+  '204-10A': lesson204_10A as Lesson,  '202-1A': lesson202_1A as Lesson,
   '202-2A': lesson202_2A as Lesson,
   '202-3A': lesson202_3A as Lesson,
   '202-3AB': lesson202_3AB as Lesson,

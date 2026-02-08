@@ -860,7 +860,8 @@ OUTPUT FORMAT: Pure JSON only`;
     type: 'lesson' | 'quiz' | 'phase' | 'score',
     maxRetries: number,
     attemptHigherLimit = false,
-    currentTokenLimit?: number
+    currentTokenLimit?: number,
+    modelOverride?: string  // NEW: Allow caller to specify model (e.g., for Phase 10)
   ): Promise<string> {
     let lastError: Error | undefined;
     const tokenLimit = currentTokenLimit || (attemptHigherLimit 
@@ -871,7 +872,7 @@ OUTPUT FORMAT: Pure JSON only`;
       try {
         const client = await createLLMClientWithFallback();
         const model = client.getGenerativeModel({
-          model: getGeminiModelWithDefault(),
+          model: modelOverride || getGeminiModelWithDefault(),  // Use override if provided
           systemInstruction: systemPrompt,
           generationConfig: {
             temperature: 0.7,

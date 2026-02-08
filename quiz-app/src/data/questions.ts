@@ -47,6 +47,7 @@ import { specialisedInstallingEquipmentQuestions } from './questions/specialised
 import { spacingFactorEnclosureFillQuestions } from './questions/spacingFactorEnclosureFillQuestions';
 import { sequentialGeneratorTestQuestions } from './questions/sequentialGeneratorTestQuestions';
 import { circuitTypesWhatTheyDoQuestions } from './questions/circuitTypesWhatTheyDoQuestions';
+import { rolesResponsibilitiesQuestions } from './questions/rolesResponsibilitiesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -88,6 +89,7 @@ export const questions: Question[] = [
   ...spacingFactorEnclosureFillQuestions,
   ...sequentialGeneratorTestQuestions,
   ...circuitTypesWhatTheyDoQuestions,
+  ...rolesResponsibilitiesQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

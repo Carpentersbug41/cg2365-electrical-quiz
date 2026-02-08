@@ -7,7 +7,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import lesson201_1A from '@/data/lessons/201-1A-health-safety-legislation.json';
 import lesson202_1A from '@/data/lessons/202-1A-electrical-quantities-units.json';
 import lesson202_2A from '@/data/lessons/202-2A-ohms-law.json';
 import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
@@ -45,6 +44,7 @@ import lesson203_3E from '@/data/lessons/203-3E-specialised-installing-equipment
 import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3A3 from '@/data/lessons/203-3A3-circuit-types-what-they-do.json';
+import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -88,6 +88,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson201_1A,
   lesson203_3A3,  lesson203_3F,  lesson202_3F,
   lesson203_3E,
   lesson203_3D,
@@ -111,9 +112,7 @@ const LESSONS = [
   lesson204_11B,
   lesson204_11A,
   lesson204_10B,
-  lesson204_10A,
-  lesson201_1A,
-  lesson202_1A,
+  lesson204_10A,  lesson202_1A,
   lesson202_2A,
   lesson202_3A,
   lesson202_3AB,

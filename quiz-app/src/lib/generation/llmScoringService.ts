@@ -12,20 +12,22 @@
 import { Lesson, LessonBlock } from './types';
 import { safeJsonParse, preprocessToValidJson } from './utils';
 import { getScoringConfig } from './config';
+import { getPhase10Model } from '@/lib/config/geminiConfig';
 
 // Re-export interfaces for compatibility with existing code
 export interface RubricScore {
   total: number;              // Out of 100
   breakdown: {
-    schemaCompliance: number;    // A: 20 points
-    pedagogy: number;            // B: 25 points
-    questions: number;           // C: 25 points
-    marking: number;             // D: 20 points
-    visual: number;              // E: 5 points
-    safety: number;              // F: 5 points
+    schemaCompliance: number;           // A: 15 points (assume validated)
+    pedagogy: number;                    // B: 30 points (maps from beginnerClarityStaging)
+    questions: number;                   // C: 25 points
+    marking: number;                     // D: 10 points (maps from markingRobustness)
+    visual: number;                      // E: 5 points
+    safety: number;                      // F: 0 points (deprecated, kept for backward compat)
   };
   details: RubricDetail[];
   grade: string;                 // "Ship it" | "Strong" | "Usable" | "Needs rework"
+  overallAssessment?: string;    // NEW: 2-3 sentence macro observation of pedagogical patterns
   autoCap?: {
     triggered: boolean;
     reason: string;
@@ -55,10 +57,11 @@ export class LLMScoringService {
   private generateWithRetry: (
     systemPrompt: string,
     userPrompt: string,
-    type: 'lesson' | 'quiz' | 'phase',
+    type: 'lesson' | 'quiz' | 'phase' | 'score',
     maxRetries: number,
     attemptHigherLimit?: boolean,
-    tokenLimit?: number
+    tokenLimit?: number,
+    modelOverride?: string  // NEW: Support model override for Phase 10
   ) => Promise<string>;
 
   constructor(generateWithRetryFn: any) {
@@ -197,13 +200,16 @@ export class LLMScoringService {
 
     // Call LLM with scoring prompts
     const scoringConfig = getScoringConfig();
+    const phase10Model = getPhase10Model();  // NEW: Use Phase 10 model for better reasoning
+    
     const response = await this.generateWithRetry(
       systemPrompt,
       userPrompt,
       'score',  // Changed from 'lesson' to 'score' for proper truncation detection
       2,
       false,
-      scoringConfig.maxTokens
+      scoringConfig.maxTokens,
+      phase10Model  // NEW: Pass Phase 10 model
     );
 
     // Parse LLM response
@@ -216,195 +222,103 @@ export class LLMScoringService {
    * Build system prompt for LLM scoring
    */
   private buildScoringSystemPrompt(): string {
-    return `You are an expert educational content reviewer for electrical trade training.
+    return `#You are an expert in 2365 city and guilds electrical who will suggest improvements to a lesson to raise the score to at least 96/100.
 
-TASK
-1) Score the lesson JSON on a 100-point rubric.
-2) Identify the TOP 10 highest-impact learning quality issues.
-3) For each issue, provide precise field-level patches.
-4) Respect Phase 10 constraints (no add/remove/reorder blocks).
+GOAL
+1) Score the lesson's CONTENT QUALITY and MARKING QUALITY on a 100-point rubric.
+2) Return  10 concrete examples where the pedagogy/marking needs improvement.  
+   Each example must include: where it occurs, a short excerpt, why it's a problem, and a much improved version.
+3) Never forget your objective is to suggest improvements that will raise the score to at least 96/100.
 
-PHASE 10 CONSTRAINT (CRITICAL)
-- Allowed operations:
-  * SUBSTRING_REPLACE: Change text within a string field (use for small in-string edits)
-  * PREPEND: Add text to beginning of field
-  * APPEND: Add text to end of field
-  * FULL_REPLACE: Replace entire field value (use sparingly for long fields)
-- Not Allowed: 
-  * Add blocks, remove blocks, reorder blocks, change block count
-  * Change answerType (e.g., short-text → long-text) - breaks grading contract
-  * Change block.order or block.type
-- If an issue requires structural changes or answerType changes, mark fixability as "requiresRegeneration"
 
-SUGGESTION FORMAT (CRITICAL):
-For string field edits within long content (e.g., explanation blocks), use SUBSTRING_REPLACE format:
-"SUBSTRING_REPLACE in blocks[3].content.content: find 'old text' replace with 'new text'"
+WHAT COUNTS AS "PEDAGOGY IMPROVEMENT" (FOCUS)
+- Clarity: simpler wording, define jargon, remove ambiguity, better sequencing in the explanation text.
+- Scaffolding: add steps/cues inside existing text so difficulty ramps smoothly.
+- Teaching-before-testing: add the missing explanation sentence(s) before a question assesses it.
+- Misconceptions: add a brief "common mistake" note where it prevents predictable errors.
+- Question quality: tighten stems, remove absolutes, improve cognitive fit.
+- Marking robustness: expectedAnswer becomes more gradeable without changing answerType.
+- Questions from spaced review should be from the same module as the lesson but from preceeding lessons!  So if the lesson is city and guilds 2365 unit / module 203 then the spaced review questions should be from unit / module 203 (preceding lessons) NOT 202 / 210 etc. 
+- Keep the spaced review questions from the same module!
 
-For adding content:
-"PREPEND to blocks[3].content.content: 'text to add at start'"
-"APPEND to blocks[3].content.content: 'text to add at end'"
+SCORING RUBRIC (100)
+A) schemaCompliance (15): Assume validated; give full points unless content is catastrophically unusable.
+B) beginnerClarityStaging (30): definitions, plain language, examples, misconceptions, readability
+C) alignment (15): worked/guided/independent alignment when present
+D) questions (25): teaching-before-testing, wording, cognitive fit, integrative quality
+E) markingRobustness (10): expectedAnswer gradeability and match to answerType
+F) visual (5): Assume validated; deduct only if CONTENT references missing/contradictory diagrams
 
-For complete field replacement (only when necessary):
-"FULL_REPLACE blocks[4].content.questions[2].expectedAnswer with: ['variant1', 'variant2']"
+ISSUES / EXAMPLES REQUIREMENTS (CRITICAL)
+- You MUST output EXACTLY 10 issues (no more, no fewer).
+- If fewer than 10 major problems exist, include lower-impact "polish" items (still real, still concrete).
+- Each issue must be specific and evidenced:
+  - Provide a JSON Pointer to the exact field
+  - Provide a short excerpt (max ~200 chars)
+  - Explain the pedagogical/marking consequence
+  - Provide at least one safe patch (unless truly requires regeneration)
 
-⚠️ NEVER write: "Change blocks[3].content.content from 'X' to 'Y'" (ambiguous - leads to content destruction!)
-✓ ALWAYS write: "SUBSTRING_REPLACE in blocks[3].content.content: find 'X' replace with 'Y'"
+  #Pedagogical reminder
 
-⚠️ NEVER suggest changing answerType (e.g., short-text → long-text)
-✓ INSTEAD: For questions needing longer answers:
-  - Add instructions to questionText: "Answer in 2-4 sentences..."
-  - Tighten expectedAnswer to be more specific
-  - Mark as "requiresRegeneration" if fundamental restructuring needed
+  - Staging / order must be logical: Keep a strict learning flow: Outcomes → Vocab → Diagram (if used) → Explanations → Checks/Practice → Worked example/Guided practice → Independent practice → Integrative → Spaced review. Never place questions before the explanation that contains their answers.
 
-SCORING RUBRIC (100 points total):
+- Spaced review must stay inside the same module/unit: Spaced-review questions must come from the same City & Guilds unit/module as the lesson, but from preceding lessons in that unit.
+Example: If the lesson is 2365 Unit 203, spaced review must be Unit 203 content only (earlier 203 lessons), not Unit 202/210/etc.
 
-A) Schema & Contract Compliance (15 points)
-   - Valid JSON, required fields present, no duplicate IDs
-   - Relative ordering correct: checks after explanations; worked before guided; guided before independent; integrative near end; spaced review last
-   - NOTE: Schema issues like IDs and field types are pre-normalized before scoring, so only flag if critically broken
+- Every question’s answer must exist in the lesson content: For every practice/check question, ensure the exact facts/definitions needed to answer are explicitly stated in an earlier explanation, vocab, worked example, or notes block (no “implied” answers).
 
-B) Beginner Clarity & Staging (30 points)
-   B1: Beginner Orientation (10 points)
-       - Has "In this lesson" preview section explaining what students will learn
-       - Has "Key Points" summary section with bullet list of main takeaways
-       - Has "Coming Up Next" transition connecting to next lesson
-   B2: Teaching-Before-Testing (10 points)
-       - Content appears in explanation before questions assess it
-       - No questions about terms/concepts not yet explicitly taught
-       - Understanding checks placed immediately after relevant explanations
-   B3: Scaffolding (10 points)
-       - Difficulty ramps smoothly from simple to complex
-       - Concepts build logically on each other
-       - No sudden jumps in complexity
+- Synthesis/connection marking must be strict enough: For connection/synthesis questions, don’t use loose keyword-soup expected answers. Use either:
 
-C) Worked/Guided/Independent Alignment (15 points)
-   - Guided practice mirrors worked example steps exactly (same decision points, same process flow)
-   - Independent practice matches what was modelled in worked/guided sections (no new task types suddenly introduced)
-   - If no worked example exists, score full points
+2–6 full acceptable answer variants, or
 
-D) Questions & Cognitive Structure (25 points)
-   D1: Scope + Technical Accuracy (10 points)
-       - Questions match lesson scope and learning outcomes
-       - Technically correct information throughout
-       - Appropriate difficulty level for target audience
-   D2: Question Quality (10 points)
-       - Clear, unambiguous wording
-       - Avoids unjustified absolutes ("always", "never" - prefer "typically", "often", "usually")
-       - Uses appropriate question verbs for task type
-   D3: Integrative Block Structure (5 points)
-       - If integrative block exists, it contains exactly 2 questions
-       - Question 1: connection question (ties together 2-3 major concepts)
-       - Question 2: synthesis question (integrates all lesson concepts; student may answer in 3-4 sentences OR concise bullet points; grade on inclusion of key concepts, not exact phrasing)
-       - NOTE: Synthesis questions using short-text answerType with "Answer in 3-4 sentences OR concise bullet points" instruction are valid—do NOT flag as friction
+a required key-point checklist (e.g., must include 3–5 specified points).
 
-E) Marking Robustness (10 points)
-   - expectedAnswer is gradeable and matches answerType
-   - For numeric answers: expectedAnswer contains numbers only (no units - units go in hint)
-   - For short-text: provides 2-6 acceptable variations (or 4-8 key points/phrases for synthesis questions)
-   - EXCEPTION: For synthesis questions (cognitiveLevel: "synthesis"), short-text with instruction "Answer in 3-4 sentences OR concise bullet points" is VALID and should NOT be flagged as friction or incompatibility. Grade these questions on concept inclusion via key-points checklist.
+- Technical definitions must be exam-safe and not over-claim: Avoid wording that can be nitpicked (e.g., emergency circuits “always work in a fire”). Use qualified, syllabus-safe phrasing (e.g., “arrangements to maintain operation during loss of normal supply”) and avoid absolute claims unless the spec says so
+- ALWYAS check that The improvements will raise the score to at least 96/100!
+PATCH OPS (ONLY THESE)
+- "replaceSubstring" (preferred for long strings): {op,path,find,value}
+- "replace" (sparingly): {op,path,from,value}
+- "append" / "prepend": {op,path,value}
 
-F) Visual/Diagram Alignment (5 points)
-   - Diagrams referenced appropriately in explanations and questions
-   - No missing or broken diagram references
-
-PRIORITIZATION RULES (CRITICAL)
-- Maximum 10 issues total
-- Focus on learning quality issues (sections B, C, D) - these drive student success
-- Schema/mechanical issues (A, E) are pre-normalized - only flag if critically broken
-- Impact ranking: Beginner Clarity (B) > Alignment (C) > Questions (D) > Marking (E) > Schema (A)
-- If there are many similar mechanical issues (e.g., 20 IDs missing prefix), group them into ONE issue with note: "Deterministic fix - recommend code pre-pass"
-
-OUTPUT FORMAT (JSON ONLY, no markdown)
-
-Return JSON in this EXACT format:
+OUTPUT FORMAT (JSON ONLY; NO MARKDOWN)
+Return exactly:
 
 {
-  "total": 91,
+  "total": 0,
   "breakdown": {
-    "schemaCompliance": 14,
-    "beginnerClarityStaging": 24,
-    "alignment": 12,
-    "questions": 22,
-    "markingRobustness": 9,
-    "visual": 5
+    "schemaCompliance": 0,
+    "beginnerClarityStaging": 0,
+    "alignment": 0,
+    "questions": 0,
+    "markingRobustness": 0,
+    "visual": 0
   },
+  "overallAssessment": "2-3 sentences describing the overall pedagogical pattern. Examples: 'Main weakness is teaching-before-testing violations across multiple blocks.' or 'Good scaffolding but marking robustness is weak throughout.' or 'Explanations are clear but questions lack cognitive alignment.'",
   "issues": [
     {
       "id": "ISSUE-1",
       "impact": 3,
-      "category": "beginnerClarityStaging",
-      "problem": "Explanation block at blocks[3] missing required 'Key Points' summary section with bullet list. Students need explicit takeaways for retention.",
-      "fixability": "phase10",
-      "jsonPointers": ["/blocks/3/content/content"],
+      "category": "beginnerClarityStaging|alignment|questions|markingRobustness",
+      "jsonPointers": ["/blocks/0/...", "/blocks/1/..."],
+      "excerpt": "short excerpt from the current field value",
+      "problem": "What is wrong pedagogically/marking-wise",
+      "whyItMatters": "Concrete learning or grading consequence",
+      "fixability": "phase10|requiresRegeneration",
       "patches": [
-        {
-          "op": "append",
-          "path": "/blocks/3/content/content",
-          "value": "\\n\\n### Key Points\\n- [Point one extracted from explanation]\\n- [Point two extracted from explanation]\\n- [Point three extracted from explanation]"
-        }
+        { "op": "replaceSubstring|replace|append|prepend", "path": "/blocks/x/...", "find": "...", "from": "...", "value": "..." }
       ]
-    },
-    {
-      "id": "ISSUE-2",
-      "impact": 2,
-      "category": "beginnerClarityStaging",
-      "problem": "Check block at blocks[4] asks about 'residual current' but explanation at blocks[3] never explicitly defines this term. Violates teaching-before-testing.",
-      "fixability": "phase10",
-      "jsonPointers": ["/blocks/3/content/content", "/blocks/4/content/questions"],
-      "patches": [
-        {
-          "op": "prepend",
-          "path": "/blocks/3/content/content",
-          "value": "### In this lesson\\n\\nYou will learn about residual current and how it affects circuit protection.\\n\\n"
-        }
-      ]
-    },
-    {
-      "id": "ISSUE-3",
-      "impact": 2,
-      "category": "alignment",
-      "problem": "Guided practice at blocks[7] uses different steps than worked example at blocks[6]. Should mirror exactly for effective scaffolding.",
-      "fixability": "requiresRegeneration",
-      "jsonPointers": ["/blocks/6", "/blocks/7"],
-      "patches": []
     }
   ],
-  "grade": "Strong"
+  "grade": "Ship it|Strong|Usable|Needs rework"
 }
 
-PATCH OPERATION TYPES:
+VALIDATION RULES
 
-"replaceSubstring" - Replace text WITHIN a string field (PREFERRED for explanation edits)
-  Required fields: "op", "path", "find", "value"
-  Use when: Fixing terminology, correcting phrases, updating specific text
-  Example: {"op": "replaceSubstring", "path": "/blocks/3/content/content", "find": "looping and linear wiring", "value": "ring final and radial topologies"}
+- issues array length MUST be exactly 10.
+- ALWAYS check that The improvements will raise the score to at least 96/100!  If not do again!
 
-"replace" - Replace ENTIRE field value (use sparingly for long fields)
-  Required fields: "op", "path", "from", "value"
-  Use when: Changing short fields entirely (IDs, titles, expectedAnswer arrays)
-  Example: {"op": "replace", "path": "/blocks/4/content/title", "from": "Old Title", "value": "New Title"}
-
-"append" - Add text to END of existing string field
-  Required fields: "op", "path", "value"
-  Example: {"op": "append", "path": "/blocks/3/content/content", "value": "\\n\\n### Key Points\\n- Point one"}
-
-"prepend" - Add text to BEGINNING of existing string field
-  Required fields: "op", "path", "value"
-  Example: {"op": "prepend", "path": "/blocks/3/content/content", "value": "### In this lesson\\n\\nOverview text\\n\\n"}
-
-VALIDATION RULES:
-- Total MUST equal sum of breakdown scores (CRITICAL - previous example had math error!)
-- All paths must use JSON Pointer format (/blocks/3/content/title)
-- Each issue must include a "jsonPointers" array listing all affected JSON Pointer paths
-- Each issue must have at least one patch (unless fixability is "requiresRegeneration")
-- Maximum 10 issues total
-- Focus issues on learning quality (B, C, D sections), not mechanical schema fixes (A, E sections)
-
-GRADE SCALE:
-- 95-100: "Ship it" (excellent, production-ready)
-- 90-94: "Strong" (good quality, minor improvements needed)
-- 85-89: "Usable" (acceptable quality, some issues to address)
-- Below 85: "Needs rework" (significant problems require attention)`;
+- overallAssessment must be 2-3 sentences maximum, identifying the PRIMARY pedagogical pattern or cross-cutting theme.
+- No extra keys. No commentary.`;
   }
 
   /**
@@ -414,19 +328,18 @@ GRADE SCALE:
     // Create a clean JSON representation of the lesson
     const lessonJson = JSON.stringify(lesson, null, 2);
     
-    return `Score this electrical trade lesson using the rubric.
+    return `Score this UK electrical installation lesson using the rubric.
 
 LESSON TO SCORE:
 ${lessonJson}
 
 CRITICAL REMINDERS:
-1. Focus on TOP 10 learning quality issues (sections B, C, D) - schema issues (A, E) are pre-normalized
-2. Use structured patch format with JSON Pointer paths (e.g., "/blocks/3/content/content")
-3. Ensure total score equals sum of breakdown scores (avoid math errors!)
-4. Each patch must specify "op" (replace/append/prepend), "path", and "value"
-5. Mark structural issues as "requiresRegeneration" with empty patches array
+1. Return EXACTLY 10 issues (no more, no fewer)
+2. Each issue must include: excerpt, problem, whyItMatters, fixability, patches
+3. Ensure total score equals sum of breakdown scores
+4. Focus on CONTENT QUALITY only - structure already validated
 
-Return ONLY the JSON scoring object following the exact format specified above. No markdown, no additional text.`;
+Return ONLY the JSON scoring object. No markdown, no additional text.`;
   }
 
   /**
@@ -468,6 +381,11 @@ Return ONLY the JSON scoring object following the exact format specified above. 
 
     if (!isNewFormat && !isLegacyFormat) {
       throw new Error('LLM response missing required field: issues or details array');
+    }
+
+    // Enforce exactly 10 issues requirement for new format
+    if (isNewFormat && (!data.issues || data.issues.length !== 10)) {
+      throw new Error(`LLM must return exactly 10 issues, got ${data.issues?.length || 0}`);
     }
 
     // Convert new format to legacy RubricScore format for backward compatibility
@@ -517,14 +435,17 @@ Return ONLY the JSON scoring object following the exact format specified above. 
       details = data.details;
     }
 
-    // Map new breakdown field names to legacy names if needed
+    // Map new breakdown field names to legacy names for backward compatibility
+    // New format has: schemaCompliance, beginnerClarityStaging, alignment, questions, markingRobustness, visual
+    // Legacy format needs: schemaCompliance, pedagogy, questions, marking, visual, safety
+    // Strategy: Map beginnerClarityStaging+alignment → pedagogy to preserve backward compat
     const breakdown = {
       schemaCompliance: data.breakdown.schemaCompliance || 0,
-      pedagogy: data.breakdown.beginnerClarityStaging || data.breakdown.pedagogy || 0,
+      pedagogy: (data.breakdown.beginnerClarityStaging || 0) + (data.breakdown.alignment || 0) || data.breakdown.pedagogy || 0,
       questions: data.breakdown.questions || 0,
       marking: data.breakdown.markingRobustness || data.breakdown.marking || 0,
       visual: data.breakdown.visual || 0,
-      safety: data.breakdown.safety || 0,
+      safety: 0,  // Always 0 for backward compatibility (deprecated)
     };
 
     // Return as RubricScore (backward compatible)
@@ -533,6 +454,7 @@ Return ONLY the JSON scoring object following the exact format specified above. 
       breakdown: breakdown,
       details: details,
       grade: data.grade,
+      overallAssessment: data.overallAssessment,
       autoCap: data.autoCap,
     };
   }

@@ -23,19 +23,19 @@ export interface LessonIndexEntry {
  */
 export const lessonIndex: LessonIndexEntry[] = [
   // Unit 201: Health & Safety
+  
+  
   {
     id: '201-1A',
-    title: 'Health & Safety Legislation: Understanding Your Responsibilities',
+    title: 'Roles & responsibilities',
     unit: 'Unit 201',
     unitNumber: '201',
-    topic: 'Health & Safety Legislation',
-    description: 'Learn the purpose of health and safety legislation, understand the Health and Safety at Work Act and Electricity at Work Regulations, and know the responsibilities of employers and employees.',
+    topic: 'Roles & responsibilities',
+    description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('201-1A'),
     available: true,
     order: 1,
-  },
-
-  // Unit 202: Science 2365 Level 2
+  },// Unit 202: Science 2365 Level 2
   {
     id: '202-1A',
     title: 'Electrical Quantities: Units and Measurements',

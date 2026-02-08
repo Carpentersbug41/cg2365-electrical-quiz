@@ -1,0 +1,155 @@
+{
+  "total": 97,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 44,
+    "questions": 24,
+    "marking": 9,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "questions: The hint is mismatched with the question. The question asks ...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The hint is mismatched with the question. The question asks 'Why' (purpose), but the hint describes 'What' (definition)."
+      ],
+      "suggestions": [
+        "Change blocks[7].content.questions[0].hint from '[current value]' to 'Think about the safety implications of a single fault turning off every light and socket in a building.'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/0/hint"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Technical inaccuracy. BS 7671 specifies safety services must...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Technical inaccuracy. BS 7671 specifies safety services must remain operational for a 'minimum specified time' during an emergency, not indefinitely."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[4].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/4/definition"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answers for a synthesis question are too fragme...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The expected answers for a synthesis question are too fragmentary (keyword-style) for a 3-4 sentence requirement."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[1].expectedAnswer from '[current value]' to 'Power circuits deliver energy to equipment while control circuits regulate their operation. A ring final circuit forms a continuous loop for higher capacity, whereas radial circuits use a point-to-point structure for lighting or dedicated high-power loads.,The installation uses different categories like power and control to manage equipment, often using ring loops for domestic sockets to increase capacity or radial lines for specific items like cookers and lights.'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/1/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Teaching-before-testing gap. The vocab defines ELV limits (5...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Teaching-before-testing gap. The vocab defines ELV limits (50V/120V), but the explanation text omits these critical values."
+      ],
+      "suggestions": [
+        "Modify blocks[3].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/content"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Vague terminology. In 2365, we usually refer to 'points of u...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Vague terminology. In 2365, we usually refer to 'points of utilization' or 'last point of use'."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[1].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/1/definition"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Missing concrete example. Beginners struggle to visualize ho...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Missing concrete example. Beginners struggle to visualize how a loop 'increases capacity'."
+      ],
+      "suggestions": [
+        "Modify blocks[5].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/5/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answers are too broad for a 'connection' level ...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The expected answers are too broad for a 'connection' level question that asks the student to use three specific previous answers."
+      ],
+      "suggestions": [
+        "Change blocks[4].content.questions[3].expectedAnswer from '[current value]' to 'Separating final, control, and safety circuits ensures that a fault in one does not cause total power loss and keeps critical systems operational.,It organizes the building so power, control, and safety systems work independently, preventing one fault from affecting the whole installation.'"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/questions/3/expectedAnswer"
+      ]
+    },
+    {
+      "section": "alignment: The prompt asks for three specific points, but the expected ...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The prompt asks for three specific points, but the expected answers are very condensed and might miss the 'radial' application detail."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[0].expectedAnswer from '[current value]' to 'Power circuits provide energy for general use, while safety services are segregated for emergency reliability. Radials are selected for specific high-power loads like showers to provide independent control.,We use power circuits for general loads and separate safety services for fire alarms. Radials are chosen for dedicated appliances to ensure they have their own protection.'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/0/expectedAnswer"
+      ]
+    },
+    {
+      "section": "questions: The hint is too close to the answer (giveaway).",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "The hint is too close to the answer (giveaway)."
+      ],
+      "suggestions": [
+        "Change blocks[7].content.questions[1].hint from '[current value]' to 'This circuit starts at the consumer unit and returns to the same terminal to form a complete circle.'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/1/hint"
+      ]
+    },
+    {
+      "section": "questions: Vague hint. In Unit 203, students should distinguish between...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Vague hint. In Unit 203, students should distinguish between different types of circuit breakers."
+      ],
+      "suggestions": [
+        "Change blocks[9].content.questions[2].hint from '[current value]' to 'Think of the specific three-letter acronym for the device that protects against overcurrent in a CU.'"
+      ],
+      "jsonPointers": [
+        "/blocks/9/content/questions/2/hint"
+      ]
+    }
+  ],
+  "grade": "Strong",
+  "overallAssessment": "The lesson is structurally sound and follows the teaching-before-testing principle well. The primary areas for improvement are tightening the technical accuracy of definitions to align with BS 7671 and strengthening the marking robustness for synthesis questions to ensure consistent grading."
+}

@@ -40,11 +40,13 @@ import { specialisedInstallingEquipmentQuestions } from './specialisedInstalling
 import { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
 import { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
 import { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
+import { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...rolesResponsibilitiesQuestions,
   ...circuitTypesWhatTheyDoQuestions,
   ...sequentialGeneratorTestQuestions,
   ...spacingFactorEnclosureFillQuestions,
@@ -122,6 +124,7 @@ export { specialisedInstallingEquipmentQuestions } from './specialisedInstalling
 export { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFillQuestions';
 export { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
 export { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
+export { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
 
 /**
  * Filter questions by tags

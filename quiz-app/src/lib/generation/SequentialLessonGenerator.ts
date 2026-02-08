@@ -83,7 +83,8 @@ export class SequentialLessonGenerator {
     type: 'lesson' | 'quiz' | 'phase',
     maxRetries: number,
     attemptHigherLimit?: boolean,
-    currentTokenLimit?: number
+    currentTokenLimit?: number,
+    modelOverride?: string  // NEW: Allow caller to specify model (e.g., for Phase 10)
   ) => Promise<string>;
 
   constructor(generateWithRetryFn: any) {
@@ -991,13 +992,17 @@ export class SequentialLessonGenerator {
     
     console.log(`  🔍 [DEBUG] Artifacts ENABLED - creating recorder for lesson ${lesson.id}`);
     
+    // Get Phase 10 model for recording and execution
+    const { getPhase10Model } = await import('@/lib/config/geminiConfig');
+    const phase10Model = getPhase10Model();
+    
     // New code path with Phase10RunRecorder
     const recorder = new Phase10RunRecorder(
       lesson.id,
       strategy,
       {
-        rewrite: process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
-        scoring: process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        rewrite: phase10Model,   // Use Phase 10 model
+        scoring: phase10Model,   // Use Phase 10 model
       }
     );
     
@@ -1198,7 +1203,7 @@ export class SequentialLessonGenerator {
       await recorder.writePrompt(
         '04_prompt_plan.json',
         'plan',
-        process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        phase10Model,  // Use Phase 10 model in recording
         planner.lastPrompts.system,
         planner.lastPrompts.user,
         {

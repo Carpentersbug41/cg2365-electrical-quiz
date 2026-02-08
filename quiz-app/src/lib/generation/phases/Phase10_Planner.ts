@@ -13,7 +13,7 @@ import { preprocessToValidJson, safeJsonParse } from '../utils';
 export interface FixPlanItem {
   issueId: string;
   rubricRef: string;            // e.g., "B1", "D3"
-  fixability: 'deterministic' | 'llm_editable' | 'blocked_by_policy' | 'requires_regeneration';
+  fixability: 'llm_editable' | 'blocked_by_policy' | 'requires_regeneration';
   targets: string[];            // JSON Pointer paths
   instructions: string;
   guardrails?: string[];        // e.g., "do not change id/type/order"
@@ -50,6 +50,10 @@ export class Phase10_Planner extends PhasePromptBuilder {
     // Store for debug bundle
     this.lastPrompts = { system: prompts.systemPrompt, user: prompts.userPrompt };
     
+    // Get Phase 10 model for better reasoning
+    const { getPhase10Model } = await import('@/lib/config/geminiConfig');
+    const phase10Model = getPhase10Model();
+    
     // Call LLM with planner prompts
     console.log(`📋 [Phase10Planner] Calling LLM for planning...`);
     try {
@@ -59,7 +63,8 @@ export class Phase10_Planner extends PhasePromptBuilder {
         'phase',
         2,       // maxRetries
         false,   // attemptHigherLimit
-        8000     // currentTokenLimit - planning doesn't need as much
+        8000,    // currentTokenLimit - planning doesn't need as much
+        phase10Model  // NEW: Pass Phase 10 model
       );
       
       this.lastRawResponse = response;
@@ -70,7 +75,7 @@ export class Phase10_Planner extends PhasePromptBuilder {
       
       console.log(`✅ [Phase10Planner] Generated plan with ${fixPlan.plan.length} items`);
       const fixableCount = fixPlan.plan.filter(
-        p => p.fixability === 'deterministic' || p.fixability === 'llm_editable'
+        p => p.fixability === 'llm_editable'
       ).length;
       const blockedCount = fixPlan.plan.filter(
         p => p.fixability === 'blocked_by_policy' || p.fixability === 'requires_regeneration'
@@ -141,6 +146,10 @@ export class Phase10_Planner extends PhasePromptBuilder {
 
 Your task is to analyze scoring issues and create an explicit fix plan that classifies each issue by fixability and provides structured instructions.
 
+CRITICAL: Deterministic structure validation is handled by Phase10_Validators.ts BEFORE planning.
+Your job is to classify PEDAGOGICAL improvements that enhance learning quality.
+Focus on content clarity, teaching effectiveness, and gradeability - NOT structure.
+
 PHASE 10 INVARIANTS (CRITICAL):
 - Cannot add blocks
 - Cannot remove blocks
@@ -158,30 +167,28 @@ ALLOWED OPERATIONS:
 - Update learning outcomes
 - Add/edit/remove items in arrays within existing blocks (e.g., add vocab terms to existing vocab block, add questions to existing practice block)
 
-FIXABILITY CLASSIFICATIONS:
+FIXABILITY CLASSIFICATIONS (PEDAGOGY FOCUS):
 
-1. "deterministic" - Mechanical fixes that follow a clear rule:
-   - Add missing "Coming Up Next" text
-   - Standardize formatting
-   - Fix consistent terminology issues
+1. "llm_editable" - Content improvements requiring pedagogical judgment:
+   - Improve clarity of explanations (simpler wording, define jargon)
+   - Enhance question wording (remove ambiguity, improve cognitive fit)
+   - Add teaching context or examples
+   - Improve hint quality and scaffolding
+   - Strengthen expectedAnswer gradeability
+   - Add missing explanations before questions (teaching-before-testing)
+   - Improve worked/guided/independent alignment
 
-2. "llm_editable" - Content improvements requiring judgment:
-   - Improve clarity of explanations
-   - Enhance question wording
-   - Add context or examples
-   - Improve hint quality
-
-3. "blocked_by_policy" - Conflicts with Phase 10 constraints:
-   - Issue requires answerType change (answerType changes are STRICTLY FORBIDDEN)
+2. "blocked_by_policy" - Conflicts with Phase 10 constraints:
+   - Issue requires answerType change (STRICTLY FORBIDDEN)
    - Issue requires structural changes (add/remove/reorder blocks)
    - Note the specific policy conflict
 
-4. "requires_regeneration" - Needs structural changes:
+3. "requires_regeneration" - Needs fundamental restructuring:
    - Issue requires adding/removing entire blocks
    - Needs reordering blocks
    - Requires changing block types
-   - Fundamental restructuring of content
-   - NOTE: Adding items to arrays WITHIN existing blocks is allowed (vocab terms, learning outcomes, etc.)
+   - Fundamental restructuring of content flow
+   - NOTE: Adding items to arrays WITHIN existing blocks is allowed
 
 OUTPUT FORMAT:
 
@@ -199,12 +206,12 @@ Return ONLY valid JSON with this structure:
       "textSnippets": ["### In this lesson\\n\\nYou will learn about..."]
     },
     {
-      "issueId": "B1.orientation.comingUpNext",
-      "rubricRef": "B1",
-      "fixability": "deterministic",
-      "targets": ["/blocks/9/content/notes"],
-      "instructions": "Append 'Coming Up Next: [Next Lesson Topic]' to notes field.",
-      "textSnippets": [" Coming Up Next: Circuit Protection and Overcurrent Devices."]
+      "issueId": "B2.teaching.definition",
+      "rubricRef": "B2",
+      "fixability": "llm_editable",
+      "targets": ["/blocks/3/content/content"],
+      "instructions": "Add clear definition of 'residual current' before the question at blocks[4] assesses it. Violates teaching-before-testing principle.",
+      "guardrails": ["preserve existing content", "do not change block structure"]
     },
     {
       "issueId": "D3.integrative.synthesis.format",
@@ -222,7 +229,7 @@ RULES:
 - Be specific in instructions - explain WHAT to add/change and WHERE
 - For blocked issues, clearly state the policy conflict
 - Include guardrails for safety (e.g., "preserve existing content", "do not change IDs")
-- Optional textSnippets for deterministic fixes
+- Optional textSnippets can suggest specific pedagogical improvements
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -257,7 +264,7 @@ ${issuesText}
 
 TASK:
 For each scoring issue above, create a fix plan item that:
-1. Classifies fixability (deterministic / llm_editable / blocked_by_policy / requires_regeneration)
+1. Classifies fixability (llm_editable / blocked_by_policy / requires_regeneration)
 2. Lists target JSON Pointer paths
 3. Provides clear, specific instructions
 4. Notes any guardrails or safety constraints

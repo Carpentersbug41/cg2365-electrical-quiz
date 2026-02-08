@@ -101,3 +101,22 @@ export function isVertexAIConfigured(): boolean {
 export function shouldUseVertexAI(): boolean {
   return process.env.USE_VERTEX_AI === 'true';
 }
+
+/**
+ * Get the Phase 10 model name from environment variables
+ * Phase 10 uses a more powerful model for better reasoning on lesson improvements
+ * @returns Phase 10 model name from PHASE10_MODEL env, or falls back to GEMINI_MODEL
+ */
+export function getPhase10Model(): string {
+  // Use dedicated Phase 10 model if set, otherwise fall back to main model
+  const phase10Model = process.env.PHASE10_MODEL;
+  if (phase10Model) {
+    console.log('🎯 [Phase 10 Config] Using dedicated Phase 10 model:', phase10Model);
+    return phase10Model;
+  }
+  
+  // Fallback to main model
+  const fallbackModel = getGeminiModelWithDefault();
+  console.log('🎯 [Phase 10 Config] PHASE10_MODEL not set, using GEMINI_MODEL:', fallbackModel);
+  return fallbackModel;
+}

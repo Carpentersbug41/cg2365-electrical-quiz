@@ -1,0 +1,156 @@
+{
+  "total": 97,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 44,
+    "questions": 24,
+    "marking": 9,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "beginnerClarityStaging: Missing the critical requirement for 'segregation' which is ...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Missing the critical requirement for 'segregation' which is a key exam point for C&G 2365 Unit 203."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[4].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/4/definition"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The term 'earth leakage' is mentioned but not explained in t...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The term 'earth leakage' is mentioned but not explained in the context of why multiple circuits solve it."
+      ],
+      "suggestions": [
+        "Modify blocks[3].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answers for this 'connection' question are too ...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The expected answers for this 'connection' question are too narrow for the variety of ways a student might explain organization."
+      ],
+      "suggestions": [
+        "Append to blocks[4].content.questions[3].expectedAnswer: 'logical grouping for maintenance'",
+        "Append to blocks[4].content.questions[3].expectedAnswer: 'isolates faults to specific areas'"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/questions/3/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Does not explicitly mention that current 'splits' based on t...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Does not explicitly mention that current 'splits' based on the resistance of the paths (Ohm's Law application)."
+      ],
+      "suggestions": [
+        "Modify blocks[5].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/5/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answer is a long, specific sentence that is dif...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The expected answer is a long, specific sentence that is difficult to match exactly in a short-text field."
+      ],
+      "suggestions": [
+        "Change blocks[6].content.questions[3].expectedAnswer from '[current value]' to 'radial is a single line, ring is a loop,radials end at the last point, rings return to the board,rings have two current paths, radials have one,radial ends at the last point while ring forms a continuous loop'"
+      ],
+      "jsonPointers": [
+        "/blocks/6/content/questions/3/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The definition is correct but 'ripple-free' is a technical t...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "The definition is correct but 'ripple-free' is a technical term that should be briefly clarified for level 2."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[6].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/6/definition"
+      ]
+    },
+    {
+      "section": "markingRobustness: Missing the key phrase 'maintenance and fault finding' which...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Missing the key phrase 'maintenance and fault finding' which is a primary reason in C&G textbooks."
+      ],
+      "suggestions": [
+        "Append to blocks[7].content.questions[0].expectedAnswer: 'easier maintenance and fault finding'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/0/expectedAnswer"
+      ]
+    },
+    {
+      "section": "markingRobustness: The prompt asks for 'specific purpose' but the answer is sli...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The prompt asks for 'specific purpose' but the answer is slightly vague. Needs to include 'low power' or 'switching' context."
+      ],
+      "suggestions": [
+        "Append to blocks[7].content.questions[3].expectedAnswer: 'switching or controlling higher power loads'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/3/expectedAnswer"
+      ]
+    },
+    {
+      "section": "markingRobustness: The synthesis question requires 3 distinct points but the ex...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The synthesis question requires 3 distinct points but the expected answer is a single string."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[0].expectedAnswer from '[current value]' to 'power circuits for general use, safety services segregated, radials for high power,separate loads for safety, segregate fire alarms, use radials for dedicated appliances,power for sockets, safety for alarms, radial for showers'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/0/expectedAnswer"
+      ]
+    },
+    {
+      "section": "alignment: The question is good but the hint is too specific to the acr...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The question is good but the hint is too specific to the acronym 'MCB'."
+      ],
+      "suggestions": [
+        "Change blocks[9].content.questions[2].hint from '[current value]' to 'Think of the mechanical switch in the consumer unit that 'trips' during an overload.'"
+      ],
+      "jsonPointers": [
+        "/blocks/9/content/questions/2/questionText"
+      ]
+    }
+  ],
+  "grade": "Strong",
+  "overallAssessment": "The lesson demonstrates strong logical sequencing and clear technical definitions. Improvements are primarily needed in marking robustness for open-ended questions and adding technical depth to the explanation of nuisance tripping and ring circuit current distribution."
+}

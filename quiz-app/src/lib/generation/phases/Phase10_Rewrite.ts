@@ -61,6 +61,10 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       console.log(`🔄 [Phase10v2] Using fix plan with ${fixPlan.plan.length} items`);
     }
     
+    // Get Phase 10 model for better reasoning
+    const { getPhase10Model } = await import('@/lib/config/geminiConfig');
+    const phase10Model = getPhase10Model();
+    
     // Build prompts
     const input: RewriteInput = { originalLesson, rubricScore, fixPlan };
     const prompts = this.getPrompts(input);
@@ -73,7 +77,7 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
       await recorder.writePrompt(
         '02_prompt_rewrite.json',
         'rewrite',
-        process.env.GEMINI_MODEL || 'gemini-2.0-flash-exp',
+        phase10Model,  // Use Phase 10 model in recording
         prompts.systemPrompt,
         prompts.userPrompt,
         {
@@ -93,7 +97,8 @@ export class Phase10_Rewrite extends PhasePromptBuilder {
         'phase', // type
         2,       // maxRetries
         false,   // attemptHigherLimit
-        24000    // currentTokenLimit - increased for full lesson JSON
+        24000,   // currentTokenLimit - increased for full lesson JSON
+        phase10Model  // NEW: Pass Phase 10 model
       );
       
       this.lastRawResponse = response;
@@ -295,7 +300,12 @@ You will be given:
 2) A scoring report listing issues and suggested improvements.
 
 Your job:
-Return a NEW lesson JSON that fixes the issues while preserving the lesson's structure.
+Improve the lesson's PEDAGOGICAL QUALITY (clarity, teaching effectiveness, gradeability).
+Return a NEW lesson JSON that fixes the pedagogical issues while preserving the lesson's structure.
+
+CRITICAL: Structure validation is enforced by Phase10_Validators.ts BEFORE this stage.
+Focus on PEDAGOGY: content clarity, teaching-before-testing, scaffolding, question quality, and marking robustness.
+Do NOT worry about schema/structure - that's already validated.
 
 STRICT RULES (HARD):
 - Output ONLY valid JSON. No commentary. No markdown. No code fences.
@@ -364,7 +374,7 @@ FIX PLAN (implement every non-blocked item):
 ${JSON.stringify(fixPlan, null, 2)}
 
 IMPLEMENTATION PRIORITY:
-- Implement ALL items marked as "deterministic" or "llm_editable"
+- Implement ALL items marked as "llm_editable"
 - DO NOT attempt items marked as "blocked_by_policy" or "requires_regeneration"
 - Follow the specific instructions and guardrails for each plan item
 - Use the suggested textSnippets where provided`;
@@ -385,6 +395,12 @@ TASK:
    */
   private formatScoringReport(score: RubricScore): string {
     let report = `Total Score: ${score.total}/100 (${score.grade})\n\n`;
+    
+    // Add overall assessment if available
+    if (score.overallAssessment) {
+      report += `OVERALL ASSESSMENT:\n${score.overallAssessment}\n\n`;
+    }
+    
     report += `Issues by Section:\n`;
     
     score.details.forEach(detail => {
