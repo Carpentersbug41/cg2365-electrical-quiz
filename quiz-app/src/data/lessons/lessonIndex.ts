@@ -192,6 +192,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-5B'),
     available: true,
     order: 10.3,
+  },
+  {
+    id: '202-5C',
+    title: 'Generating AC + sine wave characteristics',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Generating AC + sine wave characteristics',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-5C'),
+    available: true,
+    order: 11.3,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

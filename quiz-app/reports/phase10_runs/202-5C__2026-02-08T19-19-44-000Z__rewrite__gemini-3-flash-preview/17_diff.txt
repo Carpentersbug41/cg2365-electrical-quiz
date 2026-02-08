@@ -1,0 +1,68 @@
+# Phase 10 Lesson Diff
+
+Lesson: 202-5C
+Timestamp: 2026-02-08T19:21:16.324Z
+
+================================================================================
+
+## Metadata Changes
+
+## Block Changes
+
+Block 1: vocab (202-5C-vocab) - CHANGED
+
+  Content: CHANGED (915 → 1097 chars)
+    - terms: CHANGED
+
+Block 3: explanation (202-5C-explain-1) - CHANGED
+
+  Content: CHANGED (4348 → 4349 chars)
+    - content: CHANGED
+
+Block 4: practice (202-5C-check-1) - CHANGED
+
+  Content: CHANGED (2598 → 2631 chars)
+    - questions: CHANGED
+
+Block 5: explanation (202-5C-explain-2) - CHANGED
+
+  Content: CHANGED (4383 → 4390 chars)
+    - content: CHANGED
+
+Block 6: practice (202-5C-check-2) - CHANGED
+
+  Content: CHANGED (2237 → 2255 chars)
+    - questions: CHANGED
+
+Block 7: worked-example (202-5C-worked-example) - CHANGED
+
+  Content: CHANGED (1487 → 1513 chars)
+    - steps: CHANGED
+    - notes: CHANGED
+
+Block 8: guided-practice (202-5C-guided) - CHANGED
+
+  Content: CHANGED (1378 → 1367 chars)
+    - steps: CHANGED
+
+Block 9: practice (202-5C-practice) - CHANGED
+
+  Content: CHANGED (2048 → 2114 chars)
+    - questions: CHANGED
+
+Block 10: practice (202-5C-integrative) - CHANGED
+
+  Content: CHANGED (3074 → 2254 chars)
+    - questions: CHANGED
+
+Block 11: spaced-review (202-5C-spaced-review) - CHANGED
+
+  Content: CHANGED (1168 → 1172 chars)
+    - questions: CHANGED
+
+================================================================================
+
+Summary: 10 of 12 blocks changed
+
+Before Hash: 51ecb2936ab6735c
+After Hash:  ce75d8183e439c62

@@ -1,0 +1,134 @@
+{
+  "lessonId": "202-5C",
+  "timestamp": "2026-02-08T19:19:59.968Z",
+  "plan": [
+    {
+      "issueId": "1",
+      "rubricRef": "questions",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/11/content/questions/2"
+      ],
+      "instructions": "Replace the existing question about Frequency/Hertz (current lesson content) with a review question from a previous topic, such as basic DC circuit components or Ohm's Law, to ensure it functions as a spaced review of prior knowledge.",
+      "guardrails": [
+        "do not change block id or type",
+        "ensure the new question relates to a prerequisite or earlier topic"
+      ]
+    },
+    {
+      "issueId": "2",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/5/content/content"
+      ],
+      "instructions": "Add explicit formulas for calculating RMS and Average values from peak values. Include: Vrms = Vpeak × 0.707 and Vavg = Vpeak × 0.637.",
+      "guardrails": [
+        "preserve existing content",
+        "use clear mathematical formatting"
+      ]
+    },
+    {
+      "issueId": "3",
+      "rubricRef": "alignment",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/7/content/steps/0/description",
+        "/blocks/7/content/steps/1/description"
+      ],
+      "instructions": "Rewrite the worked example step descriptions to remove practical/task-based phrasing and replace it with theoretical analysis. Step 0 should focus on identifying the physical position of the loop relative to the magnetic field. Step 1 should focus on determining the rate of flux cutting based on the angle of rotation.",
+      "guardrails": [
+        "maintain the same number of steps",
+        "ensure alignment with the theory of AC generation"
+      ]
+    },
+    {
+      "issueId": "4",
+      "rubricRef": "markingRobustness",
+      "fixability": "blocked_by_policy",
+      "targets": [
+        "/blocks/9/content/questions/0/answerType",
+        "/blocks/9/content/questions/1/answerType"
+      ],
+      "instructions": "The issue requires changing the answerType from 'numeric' to 'short-text' to accommodate units (Hz, s) in the student response. This is strictly forbidden by Phase 10 policy. Mitigation: Update the questionText to explicitly state 'Give your answer as a number only.'",
+      "guardrails": [
+        "do not change answerType"
+      ]
+    },
+    {
+      "issueId": "5",
+      "rubricRef": "markingRobustness",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/4/content/questions/0/expectedAnswer"
+      ],
+      "instructions": "Simplify the expected answers for the short-text field to improve marking robustness. Add concise phrases like 'magnetic flux cutting' and 'cutting flux' to the array.",
+      "guardrails": [
+        "keep answers concise",
+        "ensure synonyms are technically accurate"
+      ]
+    },
+    {
+      "issueId": "6",
+      "rubricRef": "markingRobustness",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/9/content/questions/3/expectedAnswer"
+      ],
+      "instructions": "Add the key technical term 'perpendicular' to the expected answers array for this question.",
+      "guardrails": [
+        "preserve existing expected answers"
+      ]
+    },
+    {
+      "issueId": "7",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/1/content/terms"
+      ],
+      "instructions": "Add 'Magnetic Flux' as a term to the vocabulary list, including a definition related to the total magnetic field passing through a given area, as it is a prerequisite for understanding AC generation.",
+      "guardrails": [
+        "do not remove existing terms",
+        "ensure definition is at a beginner-appropriate level"
+      ]
+    },
+    {
+      "issueId": "8",
+      "rubricRef": "markingRobustness",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/6/content/questions/1/expectedAnswer"
+      ],
+      "instructions": "Add 'period' as a valid synonym to the expected answers array.",
+      "guardrails": [
+        "ensure correct spelling"
+      ]
+    },
+    {
+      "issueId": "9",
+      "rubricRef": "beginnerClarityStaging",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/3/content/content"
+      ],
+      "instructions": "Update the explanation text to explicitly link degrees of rotation (0°, 90°, 180°, 270°) to the vertical/horizontal positions and their corresponding peak or zero voltage values.",
+      "guardrails": [
+        "preserve existing content",
+        "ensure technical accuracy of the degree-to-voltage relationship"
+      ]
+    },
+    {
+      "issueId": "10",
+      "rubricRef": "markingRobustness",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/10/content/questions/1/expectedAnswer"
+      ],
+      "instructions": "Update the expected answer array to include 'effective value' to align with the phrasing used in the question text regarding RMS.",
+      "guardrails": [
+        "ensure the answer is technically synonymous with the question's intent"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,273 @@
+{
+  "runId": "202-5C__2026-02-08T19-19-44-000Z__rewrite__gemini-3-flash-preview",
+  "lessonId": "202-5C",
+  "issues": [
+    {
+      "issueId": "D1.questions",
+      "rubricRef": "D",
+      "section": "questions",
+      "scoreBefore": 0,
+      "maxScore": 3,
+      "jsonPointers": [
+        "/blocks/11/content/questions/2"
+      ],
+      "fixability": "llm_editable",
+      "reason": "Spaced review contains content taught in the current lesson (Frequency/Hertz).",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/11/content/questions/2/questionText",
+          "summary": "Modified question text at blocks.11.content.questions.2.questionText"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/11/content/questions/2/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.11.content.questions.2.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/11/content/questions/2/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.11.content.questions.2.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/11/content/questions/2/hint",
+          "summary": "Modified hint at blocks.11.content.questions.2.hint"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "B2.beginnerClarity",
+      "rubricRef": "b",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/5/content/content"
+      ],
+      "fixability": "llm_editable",
+      "reason": "Missing explicit formula for RMS and Average values (0.707 and 0.637).",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/5/content/content",
+          "summary": "Updated content in blocks.5"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "C3.alignment",
+      "rubricRef": "a",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 3,
+      "jsonPointers": [
+        "/blocks/7/content/steps/1",
+        "/blocks/7/content/steps/2"
+      ],
+      "fixability": "llm_editable",
+      "reason": "Worked example steps use a practical task template that doesn't fit a science theory context.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/7/content/steps/1/description",
+          "summary": "Updated description at blocks.7.content.steps.1.description"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/7/content/steps/2/description",
+          "summary": "Updated description at blocks.7.content.steps.2.description"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/7/content/steps/2/result",
+          "summary": "Changed blocks.7.content.steps.2.result from \"To identify the specific angle (0° or 180°) where ...\" to \"At horizontal angles (parallel), the conductor doe...\""
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "E4.marking",
+      "rubricRef": "E",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 3,
+      "jsonPointers": [
+        "/blocks/9/content/questions/0/expectedAnswer",
+        "/blocks/9/content/questions/1/expectedAnswer"
+      ],
+      "fixability": "deterministic",
+      "reason": "Numeric answer type will mark a student wrong if they include the unit (Hz or s).",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/9/content/questions/0/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.9.content.questions.0.expectedAnswer.1"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/9/content/questions/0/expectedAnswer/2",
+          "summary": "Added element at blocks.9.content.questions.0.expectedAnswer.2"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/9/content/questions/1/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.9.content.questions.1.expectedAnswer.1"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/9/content/questions/1/expectedAnswer/2",
+          "summary": "Added element at blocks.9.content.questions.1.expectedAnswer.2"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "E5.marking",
+      "rubricRef": "E",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/4/content/questions/0/expectedAnswer"
+      ],
+      "fixability": "deterministic",
+      "reason": "Expected answers are too wordy for a short-text field.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "add",
+          "path": "/blocks/4/content/questions/0/expectedAnswer/3",
+          "summary": "Added element at blocks.4.content.questions.0.expectedAnswer.3"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "E6.marking",
+      "rubricRef": "E",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/9/content/questions/3/expectedAnswer"
+      ],
+      "fixability": "deterministic",
+      "reason": "Missing the key technical term 'perpendicular' in the expected answers.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "add",
+          "path": "/blocks/9/content/questions/3/expectedAnswer/3",
+          "summary": "Added element at blocks.9.content.questions.3.expectedAnswer.3"
+        }
+      ],
+      "outcome": "unmoved"
+    },
+    {
+      "issueId": "B7.beginnerClarity",
+      "rubricRef": "b",
+      "section": "vocabulary",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/1/content/terms"
+      ],
+      "fixability": "deterministic",
+      "reason": "Vocab list is missing 'Magnetic Flux' despite it being a prerequisite concept for the lesson.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "add",
+          "path": "/blocks/1/content/terms/5",
+          "summary": "Added element at blocks.1.content.terms.5"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "E8.marking",
+      "rubricRef": "E",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 1,
+      "jsonPointers": [
+        "/blocks/6/content/questions/1/expectedAnswer"
+      ],
+      "fixability": "deterministic",
+      "reason": "Missing 'Period' as a valid synonym.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "add",
+          "path": "/blocks/6/content/questions/1/expectedAnswer/3",
+          "summary": "Added element at blocks.6.content.questions.1.expectedAnswer.3"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "B9.beginnerClarity",
+      "rubricRef": "b",
+      "section": "general",
+      "scoreBefore": 0,
+      "maxScore": 2,
+      "jsonPointers": [
+        "/blocks/3/content/content"
+      ],
+      "fixability": "llm_editable",
+      "reason": "The text links vertical/horizontal to peak/zero but doesn't explicitly state the degrees in this specific paragraph.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/3/content/content",
+          "summary": "Updated content in blocks.3"
+        }
+      ],
+      "outcome": "fixed"
+    },
+    {
+      "issueId": "D10.questions",
+      "rubricRef": "D",
+      "section": "questions",
+      "scoreBefore": 0,
+      "maxScore": 1,
+      "jsonPointers": [
+        "/blocks/10/content/questions/1/expectedAnswer"
+      ],
+      "fixability": "llm_editable",
+      "reason": "The integrative question expected answer for RMS uses 'practical calculations' but the question asks for 'effective value'.",
+      "plan": null,
+      "appliedEdits": [
+        {
+          "op": "replace",
+          "path": "/blocks/10/content/questions/1/expectedAnswer/0",
+          "summary": "Updated expected answer at blocks.10.content.questions.1.expectedAnswer.0"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/10/content/questions/1/expectedAnswer/1",
+          "summary": "Updated expected answer at blocks.10.content.questions.1.expectedAnswer.1"
+        },
+        {
+          "op": "replace",
+          "path": "/blocks/10/content/questions/1/expectedAnswer/2",
+          "summary": "Updated expected answer at blocks.10.content.questions.1.expectedAnswer.2"
+        },
+        {
+          "op": "add",
+          "path": "/blocks/10/content/questions/1/expectedAnswer/3",
+          "summary": "Added element at blocks.10.content.questions.1.expectedAnswer.3"
+        }
+      ],
+      "outcome": "fixed"
+    }
+  ]
+}

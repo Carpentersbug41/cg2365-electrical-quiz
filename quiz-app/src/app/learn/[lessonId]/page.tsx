@@ -52,9 +52,11 @@ import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
 import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson202_5B from '@/data/lessons/202-5B-magnetic-effects-of-electrical-current.json';
+import lesson202_5C from '@/data/lessons/202-5C-generating-ac-sine-wave-characteristics.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '202-5C': lesson202_5C as Lesson,
   '202-5B': lesson202_5B as Lesson,
   '202-5A': lesson202_5A as Lesson,
   '201-1C': lesson201_1C as Lesson,

@@ -1,0 +1,18 @@
+{
+  "lessonId": "202-5C",
+  "timestamp": "2026-02-08T19:21:54.257Z",
+  "blockers": [
+    {
+      "issueId": "4",
+      "type": "blocked_by_policy",
+      "rubricRef": "markingRobustness",
+      "description": "The issue requires changing the answerType from 'numeric' to 'short-text' to accommodate units (Hz, s) in the student response. This is strictly forbidden by Phase 10 policy. Mitigation: Update the questionText to explicitly state 'Give your answer as a number only.'",
+      "policyConflict": "Conflicts with Phase 10 policy constraints",
+      "recommendation": "Review policy constraints or adjust rubric expectations."
+    }
+  ],
+  "summary": {
+    "totalBlocked": 1,
+    "pointsBlocked": 3
+  }
+}

@@ -44,11 +44,13 @@ import { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions
 import { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
 import { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
 import { magneticEffectsOfElectricalCurrentQuestions } from './magneticEffectsOfElectricalCurrentQuestions';
+import { generatingAcSineWaveCharacteristicsQuestions } from './generatingAcSineWaveCharacteristicsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...generatingAcSineWaveCharacteristicsQuestions,
   ...magneticEffectsOfElectricalCurrentQuestions,
   ...magnetismBasicsQuestions,
   ...environmentalLegislationQuestions,
@@ -134,6 +136,7 @@ export { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions
 export { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
 export { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
 export { magneticEffectsOfElectricalCurrentQuestions } from './magneticEffectsOfElectricalCurrentQuestions';
+export { generatingAcSineWaveCharacteristicsQuestions } from './generatingAcSineWaveCharacteristicsQuestions';
 
 /**
  * Filter questions by tags
