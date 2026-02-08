@@ -41,11 +41,13 @@ import { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFil
 import { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
 import { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
 import { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
+import { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...environmentalLegislationQuestions,
   ...rolesResponsibilitiesQuestions,
   ...circuitTypesWhatTheyDoQuestions,
   ...sequentialGeneratorTestQuestions,
@@ -125,6 +127,7 @@ export { spacingFactorEnclosureFillQuestions } from './spacingFactorEnclosureFil
 export { sequentialGeneratorTestQuestions } from './sequentialGeneratorTestQuestions';
 export { circuitTypesWhatTheyDoQuestions } from './circuitTypesWhatTheyDoQuestions';
 export { rolesResponsibilitiesQuestions } from './rolesResponsibilitiesQuestions';
+export { environmentalLegislationQuestions } from './environmentalLegislationQuestions';
 
 /**
  * Filter questions by tags

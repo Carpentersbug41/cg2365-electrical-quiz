@@ -48,6 +48,7 @@ import { spacingFactorEnclosureFillQuestions } from './questions/spacingFactorEn
 import { sequentialGeneratorTestQuestions } from './questions/sequentialGeneratorTestQuestions';
 import { circuitTypesWhatTheyDoQuestions } from './questions/circuitTypesWhatTheyDoQuestions';
 import { rolesResponsibilitiesQuestions } from './questions/rolesResponsibilitiesQuestions';
+import { environmentalLegislationQuestions } from './questions/environmentalLegislationQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -90,6 +91,7 @@ export const questions: Question[] = [
   ...sequentialGeneratorTestQuestions,
   ...circuitTypesWhatTheyDoQuestions,
   ...rolesResponsibilitiesQuestions,
+  ...environmentalLegislationQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

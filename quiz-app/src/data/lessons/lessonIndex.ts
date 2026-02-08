@@ -46,6 +46,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('201-1B'),
     available: true,
     order: 2,
+  },
+  {
+    id: '201-1C',
+    title: 'Environmental legislation',
+    unit: 'Unit 201',
+    unitNumber: '201',
+    topic: 'Environmental legislation',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('201-1C'),
+    available: true,
+    order: 3,
   },// Unit 202: Science 2365 Level 2
   {
     id: '202-1A',
