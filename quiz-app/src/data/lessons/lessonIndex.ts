@@ -35,6 +35,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('201-1A'),
     available: true,
     order: 1,
+  },
+  {
+    id: '201-1B',
+    title: 'Health & Safety legislation',
+    unit: 'Unit 201',
+    unitNumber: '201',
+    topic: 'Health & Safety legislation',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('201-1B'),
+    available: true,
+    order: 2,
   },// Unit 202: Science 2365 Level 2
   {
     id: '202-1A',

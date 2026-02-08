@@ -1,0 +1,25 @@
+{
+  "total": 0,
+  "breakdown": {
+    "schemaCompliance": 0,
+    "pedagogy": 0,
+    "questions": 0,
+    "marking": 0,
+    "visual": 0,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "Scoring Error",
+      "score": 0,
+      "maxScore": 100,
+      "issues": [
+        "Failed to score lesson: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-3-pro:generateContent: [404 Not Found] models/gemini-3-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods."
+      ],
+      "suggestions": [
+        "Try regenerating the lesson or contact support"
+      ]
+    }
+  ],
+  "grade": "Needs rework"
+}

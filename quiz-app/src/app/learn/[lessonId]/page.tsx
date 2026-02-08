@@ -50,9 +50,11 @@ import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.js
 import lesson203_3F from '@/data/lessons/203-3F-spacing-factor-enclosure-fill.json';
 import lesson203_3A3 from '@/data/lessons/203-3A3-circuit-types-what-they-do.json';
 import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
+import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '201-1B': lesson201_1B as Lesson,
   '201-1A': lesson201_1A as Lesson,
   '203-3A3': lesson203_3A3 as Lesson,  '203-3F': lesson203_3F as Lesson,  '202-3F': lesson202_3F as Lesson,
   '203-3E': lesson203_3E as Lesson,

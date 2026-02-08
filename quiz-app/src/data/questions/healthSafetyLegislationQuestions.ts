@@ -1,1265 +1,1404 @@
 import { TaggedQuestion } from './types';
 
 /**
- * Health & Safety Legislation Question Bank
- * Aligned with lesson 201-1A learning outcomes
- * Covers purpose of legislation, HASAWA, EAWR, and employer/employee responsibilities
+ * Health & Safety legislation Question Bank
+ * Aligned with lesson 201-1B learning outcomes
+ * Generated: 2026-02-08
  */
 
 export const healthSafetyLegislationQuestions: TaggedQuestion[] = [
-  // ===== EASY QUESTIONS (Difficulty 1-2) =====
-  
   {
-    id: 2001,
-    question: "What is the main purpose of health and safety legislation?",
-    options: [
-      "To protect people from harm in the workplace",
-      "To increase business profits",
-      "To reduce the number of employees needed",
-      "To make work more difficult"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "The primary purpose of health and safety legislation is to protect people from harm, injury, and death in the workplace.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2002,
-    question: "What does HASAWA stand for?",
-    options: [
-      "Health and Safety at Work Act",
-      "Health and Safety Advice for Workers Association",
-      "Hazardous Activities and Safe Work Act",
-      "Health Advice for Safe and Aware Workers"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "HASAWA stands for the Health and Safety at Work Act (1974), the primary UK workplace safety legislation.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2003,
-    question: "What does EAWR stand for?",
-    options: [
+    "id": 4016,
+    "question": "Which specific regulation is designed to prevent danger and injury from all electrical systems and work activities?",
+    "options": [
       "Electricity at Work Regulations",
-      "Electrical Apparatus Working Rules",
-      "Emergency Action for Workplace Risks",
-      "Electrical Assessment and Warning Requirements"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "EAWR stands for the Electricity at Work Regulations (1989), which cover electrical safety in the workplace.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2004,
-    question: "When were the Electricity at Work Regulations introduced?",
-    options: [
-      "1989",
-      "1974",
-      "2000",
-      "1995"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "The Electricity at Work Regulations were introduced in 1989.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2005,
-    question: "According to the Electricity at Work Regulations, should work on live conductors be avoided?",
-    options: [
-      "Yes, wherever possible",
-      "No, it's perfectly safe",
-      "Only for voltages above 1000V",
-      "Only on Fridays"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Regulation 14 states that work on live conductors should be avoided wherever possible. Live working should only be done if it's unreasonable to make the system dead.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2006,
-    question: "Who is responsible for providing a safe workplace?",
-    options: [
-      "The employer",
-      "The employee",
-      "The government",
-      "No one — it's optional"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Employers have a legal duty under the Health and Safety at Work Act to provide a safe workplace for their employees.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2007,
-    question: "What must an employee do if they discover a hazard at work?",
-    options: [
-      "Report it to their employer",
-      "Ignore it — it's not their responsibility",
-      "Fix it themselves without telling anyone",
-      "Only report it if someone gets injured"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Employees have a duty to report hazards and defects to their employer. This helps prevent accidents before they occur.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2008,
-    question: "Who must provide training for employees to work safely?",
-    options: [
-      "The employer",
-      "The employee must train themselves",
-      "The local council",
-      "Training is optional"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Employers must provide information, instruction, training, and supervision to enable employees to work safely.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2009,
-    question: "What does PPE stand for?",
-    options: [
-      "Personal Protective Equipment",
-      "Professional Power Engineering",
-      "Practical Protection Essentials",
-      "Personal Power Equipment"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "PPE stands for Personal Protective Equipment, such as safety boots, gloves, hard hats, and safety glasses.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2010,
-    question: "Who must provide PPE (Personal Protective Equipment) when it is needed?",
-    options: [
-      "The employer",
-      "The employee must buy their own",
-      "The government",
-      "No one — PPE is optional"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Employers must provide suitable PPE free of charge when risks cannot be adequately controlled by other means.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2011,
-    question: "What must employees do with the PPE provided to them?",
-    options: [
-      "Use it correctly",
-      "Leave it in the van",
-      "Sell it to other workers",
-      "Only use it when the boss is watching"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Employees must use PPE correctly as instructed. It's a legal duty to cooperate with safety arrangements.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2012,
-    question: "What does 'competent person' mean in the context of electrical work?",
-    options: [
-      "Someone with sufficient training, experience, and knowledge to work safely",
-      "Anyone who thinks they can do the job",
-      "Anyone over 18 years old",
-      "Someone who owns a set of tools"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "A competent person has sufficient training, experience, knowledge, and other qualities to enable them to perform a specific task safely.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2013,
-    question: "Are health and safety regulations optional?",
-    options: [
-      "No, they are legal requirements",
-      "Yes, they are just guidelines",
-      "Only in large companies",
-      "Only for dangerous industries"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO1",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "Health and safety regulations are not optional — they are legal requirements. Breaking them can result in prosecution.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2014,
-    question: "Can employees be prosecuted for breaking health and safety regulations?",
-    options: [
-      "Yes, both employers and employees can be prosecuted",
-      "No, only employers can be prosecuted",
-      "No, health and safety laws don't apply to employees",
-      "Yes, but only if someone is injured"
-    ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 30,
-    explanation: "Both employers and employees have legal duties. Employees can be prosecuted for serious breaches, such as deliberately ignoring safety procedures.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2015,
-    question: "What is the primary legislation covering workplace health and safety in the UK?",
-    options: [
       "Health and Safety at Work Act",
+      "Provision and Use of Work Equipment Regulations",
+      "Management of Health and Safety at Work Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Electricity at Work Regulations (EAWR) are the specific statutory requirements for electrical safety in the UK workplace."
+  },
+  {
+    "id": 4017,
+    "question": "Under the Health and Safety at Work Act (HASAWA), which of the following is a legal duty of an employee?",
+    "options": [
+      "To take reasonable care of themselves and others",
+      "To provide all necessary personal protective equipment (PPE)",
+      "To write the company health and safety policy",
+      "To carry out formal risk assessments for the site"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Employees have a legal duty under HASAWA to act responsibly and ensure their actions do not harm themselves or their colleagues."
+  },
+  {
+    "id": 4018,
+    "question": "Which regulation requires an employer to ensure that tools like battery-powered drills and hydraulic crimpers are safe, maintained, and suitable for the job?",
+    "options": [
+      "Provision and Use of Work Equipment Regulations (PUWER)",
+      "Electricity at Work Regulations (EAWR)",
+      "Manual Handling Operations Regulations",
+      "Control of Substances Hazardous to Health (COSHH)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "PUWER covers the safety and suitability of all work equipment, including hand tools and power tools used by electricians."
+  },
+  {
+    "id": 4019,
+    "question": "An electrician is using a ladder to install a smoke detector on a ceiling. Which regulation is most relevant to managing the risk of falling?",
+    "options": [
+      "Working at Height Regulations",
+      "Workplace (Health, Safety and Welfare) Regulations",
+      "Management of Health and Safety at Work Regulations",
+      "Manual Handling Operations Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Working at Height Regulations apply to any work where there is a risk of a fall liable to cause personal injury."
+  },
+  {
+    "id": 4020,
+    "question": "Which regulation requires the use of risk assessments to identify hazards and implement safe systems of work on a construction site?",
+    "options": [
+      "Management of Health and Safety at Work Regulations",
+      "Health and Safety at Work Act",
+      "Control of Asbestos at Work Regulations",
+      "PPE at Work Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Management of Health and Safety at Work Regulations (MHSWR) explicitly require employers to carry out risk assessments."
+  },
+  {
+    "id": 4021,
+    "question": "When disposing of old fluorescent tubes and electronic ballasts, which environmental regulation must be followed?",
+    "options": [
+      "WEEE Regulations",
+      "Control of Pollution Act",
+      "Control of Noise at Work Regulations",
+      "Manual Handling Operations Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "units",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Waste Electrical and Electronic Equipment (WEEE) Regulations govern the disposal and recycling of electrical items."
+  },
+  {
+    "id": 4022,
+    "question": "Which regulation is concerned with protecting workers from hazardous substances such as PVC solvent cements or cleaning chemicals?",
+    "options": [
+      "COSHH",
+      "PUWER",
+      "EAWR",
+      "Environmental Protection Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "COSHH (Control of Substances Hazardous to Health) focuses on identifying and controlling risks from chemicals, dusts, and vapours."
+  },
+  {
+    "id": 4023,
+    "question": "Which regulation ensures that site workers have access to clean drinking water, toilets, and adequate lighting?",
+    "options": [
+      "Workplace (Health, Safety and Welfare) Regulations",
+      "Health and Safety at Work Act",
+      "Hazardous Waste Regulations",
+      "Provision and Use of Work Equipment Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Workplace (Health, Safety and Welfare) Regulations cover the basic facilities and environment required for a safe and healthy workplace."
+  },
+  {
+    "id": 4024,
+    "question": "If an electrician suspects they have encountered old insulation material containing asbestos, which regulation dictates the procedures they must follow?",
+    "options": [
+      "Control of Asbestos at Work Regulations",
+      "Environmental Protection Act",
+      "COSHH",
+      "Electricity at Work Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Control of Asbestos at Work Regulations provide specific legal requirements for managing and working near asbestos-containing materials."
+  },
+  {
+    "id": 4025,
+    "question": "Which legislation is primarily responsible for ensuring that hazardous waste, such as lead-acid batteries, is not mixed with general site waste?",
+    "options": [
+      "Hazardous Waste Regulations",
+      "Control of Noise at Work Regulations",
+      "PPE at Work Regulations",
+      "Provision and Use of Work Equipment Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Hazardous Waste Regulations require the segregation, correct labeling, and documented disposal of materials that are harmful to the environment."
+  },
+  {
+    "id": 4026,
+    "question": "Which specific regulation requires that all electrical systems and work activities are managed to prevent danger and electrical injury?",
+    "options": [
       "Electricity at Work Regulations",
-      "Building Regulations",
-      "Employment Rights Act"
+      "Health and Safety at Work Act",
+      "Working at Height Regulations",
+      "Control of Substances Hazardous to Health"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 1,
-    estimatedTime: 30,
-    explanation: "The Health and Safety at Work Act (1974) is the primary legislation covering workplace health and safety in the UK.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  // ===== MEDIUM QUESTIONS (Difficulty 2-3) =====
-
-  {
-    id: 2016,
-    question: "What does 'so far as is reasonably practicable' mean in health and safety law?",
-    options: [
-      "Safety measures should be implemented unless the cost is grossly disproportionate to the risk",
-      "Safety measures are optional if they're too expensive",
-      "All safety measures must be implemented regardless of cost",
-      "Safety measures only need to be considered if there's been an accident"
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "health-safety"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "'Reasonably practicable' means you must do everything reasonable to ensure safety, unless the cost is grossly disproportionate to the risk reduction achieved.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Electricity at Work Regulations (EAWR) 1989 are specifically designed to ensure electrical safety in the workplace."
   },
-
   {
-    id: 2017,
-    question: "Which regulation specifically requires that only competent persons work on electrical systems?",
-    options: [
-      "Regulation 16 of the Electricity at Work Regulations",
-      "Regulation 5 of the Health and Safety at Work Act",
-      "Regulation 12 of the Building Regulations",
-      "Regulation 3 of the Employment Act"
+    "id": 4027,
+    "question": "Under the Health and Safety at Work Act (HASAWA), whose primary duty is it to provide necessary PPE and a safe system of work for employees?",
+    "options": [
+      "The Employer",
+      "The Employee",
+      "The Client",
+      "The Local Authority"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Regulation 16 of the Electricity at Work Regulations states that no person shall work on electrical systems unless they are competent to do so.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2018,
-    question: "Which regulation of the Electricity at Work Regulations covers work on or near live conductors?",
-    options: [
-      "Regulation 14",
-      "Regulation 4",
-      "Regulation 16",
-      "Regulation 12"
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "health-safety"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Regulation 14 covers work on or near live conductors, stating it should be avoided wherever possible.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The HASAWA places the primary duty of care on the employer to provide a safe environment, equipment, and training."
   },
-
   {
-    id: 2019,
-    question: "Under what circumstances is live electrical work permitted?",
-    options: [
-      "Only when it is unreasonable to make the system dead, and appropriate precautions are taken",
-      "Whenever it's more convenient than isolating the supply",
-      "Never — live working is always prohibited",
-      "Only for voltages below 50V"
+    "id": 4028,
+    "question": "Which regulation governs the correct disposal and recycling of old fluorescent tubes and electrical control gear?",
+    "options": [
+      "WEEE Regulations",
+      "PUWER",
+      "Manual Handling Operations Regulations",
+      "COSHH"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Live working is only permitted when it's unreasonable to make the system dead (e.g., testing or fault-finding where isolation would defeat the purpose), and only with appropriate precautions.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2020,
-    question: "An apprentice has been taught basic wiring but has not been trained in safe isolation procedures. Can they work on an electrical installation?",
-    options: [
-      "No, they are not yet competent to work safely without supervision",
-      "Yes, because they know basic wiring",
-      "Yes, as long as they are over 18",
-      "Yes, but only on lighting circuits"
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "units"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Competence includes knowledge of safe working procedures. Without training in safe isolation, the apprentice is not competent to work unsupervised.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Waste Electrical and Electronic Equipment (WEEE) Regulations cover the disposal and recycling of electrical items."
   },
-
   {
-    id: 2021,
-    question: "What must an employer do before asking an employee to perform a potentially hazardous task?",
-    options: [
-      "Conduct a risk assessment and provide appropriate training and equipment",
-      "Just tell them to be careful",
-      "Provide them with a phone number for emergency services",
-      "Nothing — it's the employee's responsibility to assess risks"
+    "id": 4029,
+    "question": "An electrician is planning to use a mobile tower scaffold to install high-level trunking. Which regulation is most relevant to this specific task?",
+    "options": [
+      "Working at Height Regulations",
+      "Workplace (Health, Safety and Welfare) Regulations",
+      "Provision and Use of Work Equipment Regulations",
+      "Environmental Protection Act"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Employers must conduct risk assessments, provide appropriate training, equipment, and supervision for potentially hazardous tasks.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
-  },
-
-  {
-    id: 2022,
-    question: "An employee notices a power tool has a damaged cable. What should they do?",
-    options: [
-      "Stop using the tool immediately and report it to their supervisor",
-      "Continue using it carefully",
-      "Wrap the damaged part in electrical tape and carry on",
-      "Only report it if they get a shock"
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "application",
+      "health-safety"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Employees must report hazards and defects, and must not use equipment they know to be faulty. Stop work and report it immediately.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Working at Height Regulations apply to any work where there is a risk of a fall liable to cause personal injury."
   },
-
   {
-    id: 2023,
-    question: "Who is responsible for maintaining electrical systems in the workplace?",
-    options: [
+    "id": 4030,
+    "question": "What is the main purpose of the COSHH regulations in an electrical workshop?",
+    "options": [
+      "To control risks from hazardous substances like solvents or dust",
+      "To ensure that all power tools are regularly PAT tested",
+      "To provide adequate lighting and ventilation in the room",
+      "To prevent injuries from lifting heavy cable drums"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "COSHH (Control of Substances Hazardous to Health) focuses on protecting workers from harmful substances such as chemicals, fumes, and dusts."
+  },
+  {
+    "id": 4031,
+    "question": "Under the Health and Safety at Work Act, an electrician is installing a new consumer unit. Which of the following best describes the employee's legal duty regarding the safety of others on site?",
+    "options": [
+      "To take reasonable care for the health and safety of themselves and others who may be affected by their acts",
+      "To ensure the employer has provided a written safe system of work before starting any task",
+      "To provide all necessary PPE required for the specific installation task",
+      "To take full legal responsibility for any accidents that occur within the work zone"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Section 7 of the HASAWA states employees must take reasonable care of themselves and others affected by their actions, and cooperate with their employer."
+  },
+  {
+    "id": 4032,
+    "question": "An electrician is required to work near live exposed conductors to perform fault finding. According to the Electricity at Work Regulations (EAWR), this is only permissible if it is unreasonable for the conductor to be dead and:",
+    "options": [
+      "Suitable precautions, including where necessary the provision of protective equipment, are taken",
+      "The electrician has at least five years of experience in live working",
+      "The client has provided written permission to keep the power on",
+      "The work is being carried out during normal business hours with a supervisor present"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "ac-dc",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Regulation 14 of the EAWR states live work is only allowed if it is unreasonable for it to be dead, it is reasonable to work live, and suitable precautions are taken."
+  },
+  {
+    "id": 4033,
+    "question": "When planning a large commercial installation, which regulation specifically requires the employer to carry out a formal assessment of the risks to the health and safety of their employees?",
+    "options": [
+      "Management of Health and Safety at Work Regulations",
+      "Workplace (Health, Safety and Welfare) Regulations",
+      "Provision and Use of Work Equipment Regulations (PUWER)",
+      "Health and Safety at Work Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Management of Health and Safety at Work Regulations (MHSWR) make the requirement for risk assessments explicit."
+  },
+  {
+    "id": 4034,
+    "question": "An electrician needs to replace a light fitting 4 meters high in a warehouse. According to the Working at Height Regulations, what is the first priority in the hierarchy of control?",
+    "options": [
+      "Avoid working at height where it is reasonably practicable to do so",
+      "Use a fall-arrest system to minimize the distance of a potential fall",
+      "Ensure the ladder is tied off at the top and secured at the base",
+      "Ensure the operative has been trained in the use of mobile towers"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The hierarchy of control for working at height always starts with 'Avoid' (e.g., using extendable tools from the ground)."
+  },
+  {
+    "id": 4035,
+    "question": "Under the Provision and Use of Work Equipment Regulations (PUWER), who is responsible for ensuring that a power drill used on site is suitable for the task and properly maintained?",
+    "options": [
       "The employer",
-      "Each individual employee",
-      "The building owner only",
-      "Electrical systems don't require maintenance"
+      "The manufacturer",
+      "The building owner",
+      "The local Health and Safety Executive (HSE) inspector"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Regulation 4 of the Electricity at Work Regulations requires employers to ensure electrical systems are maintained to prevent danger.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "PUWER places the primary duty on employers to ensure work equipment is suitable, safe for use, and maintained."
   },
-
   {
-    id: 2024,
-    question: "What should an employee do if they are asked to perform electrical work they are not trained for?",
-    options: [
-      "Politely refuse and explain they are not competent for that task",
-      "Do their best and hope nothing goes wrong",
-      "Do it without telling anyone",
-      "Complain but do it anyway"
+    "id": 4036,
+    "question": "An electrician is using a solvent-based adhesive to fix trunking. Which regulation requires the electrician to follow the instructions found on the product's Safety Data Sheet (SDS)?",
+    "options": [
+      "Control of Substances Hazardous to Health (COSHH) Regulations",
+      "Environmental Protection Act",
+      "Workplace (Health, Safety and Welfare) Regulations",
+      "Manual Handling Operations Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Employees must take reasonable care for their own safety. If they are not competent for a task, they must refuse and explain why.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "COSHH covers the use and control of hazardous substances like solvents and adhesives."
   },
-
   {
-    id: 2025,
-    question: "Which regulation of the Electricity at Work Regulations covers the construction and maintenance of electrical systems?",
-    options: [
-      "Regulation 4",
-      "Regulation 14",
-      "Regulation 16",
-      "Regulation 20"
+    "id": 4037,
+    "question": "While rewiring an old office, an electrician suspects that some thermal insulation contains asbestos. What is the correct legal procedure to follow?",
+    "options": [
+      "Stop work immediately, inform the supervisor, and do not disturb the material",
+      "Carefully double-bag the material and place it in the general site skip",
+      "Wetting the material down with water and continuing the work using a standard dust mask",
+      "Breaking a small piece off to take to a local laboratory for testing"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'discrimination'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Regulation 4 requires that all electrical systems are constructed and maintained to prevent danger.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Under Asbestos regulations, if asbestos is suspected, work must stop to prevent the spread of fibers until a specialist assessment is made."
   },
-
   {
-    id: 2026,
-    question: "When must an employer have a written health and safety policy?",
-    options: [
-      "If they have 5 or more employees",
-      "If they have 50 or more employees",
-      "Only if they work with electricity",
-      "Written policies are not required"
+    "id": 4038,
+    "question": "Which specific environmental regulation requires an electrical contractor to ensure that old fluorescent tubes and smoke detectors are recycled or disposed of separately from general waste?",
+    "options": [
+      "Waste Electrical and Electronic Equipment (WEEE) Regulations",
+      "Control of Pollution Act",
+      "Pollution Prevention and Control Act",
+      "Control of Noise at Work Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Under the Health and Safety at Work Act, employers with 5 or more employees must have a written health and safety policy.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "units",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "WEEE regulations cover the end-of-life disposal and recycling of electrical components and equipment."
   },
-
   {
-    id: 2027,
-    question: "What type of electrical work typically requires live working?",
-    options: [
-      "Testing and fault-finding where isolation would prevent the test",
-      "Installing new sockets",
-      "Replacing light switches",
-      "Wiring a new circuit"
+    "id": 4039,
+    "question": "A contractor is removing several old lead-acid batteries from a backup power system. Under the Hazardous Waste Regulations, what document must be completed to track the waste from the site to the disposal point?",
+    "options": [
+      "Consignment Note",
+      "Risk Assessment",
+      "Method Statement",
+      "Delivery Note"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Live working may be necessary for testing or fault-finding where isolation would defeat the purpose of the work. Installation work should always be done on dead circuits.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Hazardous waste must be accompanied by a Consignment Note to ensure a clear audit trail of its disposal."
   },
-
   {
-    id: 2028,
-    question: "Which of these is an employer responsibility?",
-    options: [
-      "Conducting risk assessments",
-      "Using equipment properly",
-      "Reporting hazards",
-      "Taking reasonable care for their own safety"
+    "id": 4040,
+    "question": "The 'Duty of Care' regarding waste produced on a construction site, ensuring it is handled and recovered or disposed of without harming the environment, is a core requirement of which Act?",
+    "options": [
+      "Environmental Protection Act",
+      "Control of Asbestos at Work Regulations",
+      "Manual Handling Operations Regulations",
+      "Personal Protective Equipment at Work Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'discrimination'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Conducting risk assessments is an employer responsibility. The other options are employee responsibilities.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Environmental Protection Act (EPA) establishes the 'Duty of Care' for anyone who produces, imports, carries, keeps, treats or disposes of controlled waste."
   },
-
   {
-    id: 2029,
-    question: "Which of these is an employee responsibility?",
-    options: [
-      "Cooperating with the employer on safety matters",
-      "Providing PPE",
-      "Conducting risk assessments",
-      "Providing training"
+    "id": 4041,
+    "question": "Which regulation specifically requires that all electrical systems shall be constructed and maintained, as far as is reasonably practicable, to prevent danger?",
+    "options": [
+      "Electricity at Work Regulations",
+      "Health and Safety at Work Act",
+      "Provision and Use of Work Equipment Regulations",
+      "Management of Health and Safety at Work Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'discrimination'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Cooperating with the employer on safety matters is an employee responsibility. The other options are employer responsibilities.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "ea-wr",
+      "hasawa"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "While HASAWA is the overarching act, the Electricity at Work Regulations (EAWR) specifically target the safety and maintenance of electrical systems to prevent danger."
   },
-
   {
-    id: 2030,
-    question: "Why does specific legislation exist for electrical work (EAWR) in addition to general workplace safety laws (HASAWA)?",
-    options: [
-      "Because electricity presents unique hazards that require specific controls",
-      "Because electricians didn't want to follow general safety laws",
-      "Because the HASAWA doesn't apply to electrical work",
-      "Because electrical work is not covered by any other legislation"
+    "id": 4042,
+    "question": "An electrician is about to begin a complex installation in a high-traffic hospital corridor. According to the Management of Health and Safety at Work Regulations, what is the employer's first priority?",
+    "options": [
+      "Carrying out a suitable and sufficient risk assessment",
+      "Issuing high-visibility PPE to the electrician",
+      "Ensuring the electrician has a valid CSCS card",
+      "Providing a copy of the Health and Safety at Work Act poster"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO1",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Electricity presents unique hazards (shock, burns, fire) that are often invisible. Specific regulations ensure electrical work is carried out safely.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "risk-assessment",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Management of Health and Safety at Work Regulations (MHSWR) place a primary duty on employers to assess risks before work commences to plan safe systems of work."
   },
-
   {
-    id: 2031,
-    question: "A worker removes a machine guard because it slows down their work. Have they broken any regulations?",
-    options: [
-      "Yes, employees must not interfere with or misuse safety equipment",
-      "No, they can remove guards if it improves productivity",
-      "No, only the employer is responsible for guards",
-      "Yes, but only if they cause an accident"
+    "id": 4043,
+    "question": "Under the Health and Safety at Work Act, which of the following is a legal duty specifically assigned to the employee?",
+    "options": [
+      "Taking reasonable care for the health and safety of themselves and others",
+      "Providing all necessary Personal Protective Equipment (PPE) free of charge",
+      "Developing the company's health and safety policy document",
+      "Ensuring the workplace has adequate ventilation and lighting"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Employees have a legal duty not to interfere with or misuse safety equipment. Removing a guard is a breach of this duty.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "hasawa",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Employees have a duty under HASAWA Section 7 to take reasonable care of themselves and others who may be affected by their acts or omissions."
   },
-
   {
-    id: 2032,
-    question: "What must electrical systems be maintained to prevent, according to Regulation 4 of EAWR?",
-    options: [
-      "Danger",
-      "Wear and tear",
-      "Corrosion",
-      "Obsolescence"
+    "id": 4044,
+    "question": "An electrician is using a solvent-based adhesive to join PVC conduit. Which regulation requires the employer to assess the risks associated with the fumes from this substance?",
+    "options": [
+      "Control of Substances Hazardous to Health (COSHH)",
+      "Environmental Protection Act",
+      "Provision and Use of Work Equipment Regulations (PUWER)",
+      "Workplace (Health, Safety and Welfare) Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Regulation 4 states that electrical systems must be maintained to prevent danger. While preventing wear, corrosion, and obsolescence may be good practice, the legal requirement is to prevent danger.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "coshh",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "COSHH regulations cover the use of hazardous substances, including solvents, adhesives, and dusts, requiring assessments and control measures."
   },
-
   {
-    id: 2033,
-    question: "An employer asks an employee to work in unsafe conditions. What should the employee do?",
-    options: [
-      "Refuse the unsafe work and report it",
-      "Do the work to avoid conflict",
-      "Do the work but complain afterwards",
-      "Quit their job immediately"
+    "id": 4045,
+    "question": "After completing a large-scale lighting upgrade, an electrician has 100 old fluorescent tubes and 20 old emergency battery packs. Which legislation dictates the specific disposal route for these items?",
+    "options": [
+      "WEEE Regulations",
+      "Control of Pollution Act",
+      "Manual Handling Operations Regulations",
+      "Electricity at Work Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Employees have the right to refuse unsafe work. They must take reasonable care for their own safety and report unsafe conditions.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The Waste Electrical and Electronic Equipment (WEEE) Regulations govern the disposal and recycling of electrical components like lamps and batteries."
   },
-
   {
-    id: 2034,
-    question: "What three qualities must a 'competent person' have to work on electrical systems?",
-    options: [
-      "Training, knowledge, and experience",
-      "Age, strength, and speed",
-      "Tools, transport, and time",
-      "Confidence, courage, and creativity"
+    "id": 4046,
+    "question": "When using a site-provided 110V SDS drill, the electrician notices the casing is cracked and the trigger sticks. Which regulation places the duty on the employer to ensure this equipment is safe and well-maintained?",
+    "options": [
+      "Provision and Use of Work Equipment Regulations (PUWER)",
+      "Electricity at Work Regulations",
+      "Management of Health and Safety at Work Regulations",
+      "PPE at Work Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "A competent person must have sufficient training, knowledge, experience, and other qualities to perform a task safely.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "puwer",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "PUWER requires that all work equipment is suitable for its purpose, maintained in a safe condition, and inspected regularly."
   },
-
   {
-    id: 2035,
-    question: "Can an employer avoid providing PPE by asking employees to bring their own?",
-    options: [
-      "No, employers must provide PPE free of charge when it is needed",
-      "Yes, employees should buy their own PPE",
-      "Yes, if they reimburse employees for the cost",
-      "Yes, as long as they tell employees where to buy it"
+    "id": 4047,
+    "question": "A task involves installing cable tray at a height of 5 meters in a warehouse. Following the 'Hierarchy of Control' within the Working at Height Regulations, what should be the first consideration?",
+    "options": [
+      "Avoiding working at height altogether if possible",
+      "Using a fall-arrest harness and lanyard",
+      "Setting up a mobile tower scaffold",
+      "Ensuring a second person is footing the ladder"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Employers have a legal duty to provide suitable PPE free of charge. They cannot pass this cost to employees.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "wah",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The first step in the WAH hierarchy is to avoid working at height. If it cannot be avoided, then you look at preventing falls (scaffolds) and then minimizing consequences (harnesses)."
   },
-
   {
-    id: 2036,
-    question: "Under the Electricity at Work Regulations, what must be provided for every circuit?",
-    options: [
-      "Means of isolation",
-      "A guarantee certificate",
-      "A circuit diagram",
-      "An instruction manual"
+    "id": 4048,
+    "question": "Which piece of legislation is most likely to apply if an electrician is complained about for creating excessive noise and dust while chasing walls in a residential apartment block at 11 PM?",
+    "options": [
+      "Control of Pollution Act",
+      "Manual Handling Operations Regulations",
+      "Hazardous Waste Regulations",
+      "WEEE Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Regulation 12 requires that means of isolation must be provided for every circuit to allow safe working.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The Control of Pollution Act deals with noise and air pollution (dust) that can cause a nuisance to the public and the environment."
   },
-
   {
-    id: 2037,
-    question: "What is the consequence of breaking health and safety regulations?",
-    options: [
-      "Prosecution, fines, or imprisonment for serious breaches",
-      "A verbal warning only",
-      "Nothing — regulations are just guidelines",
-      "A letter of apology"
+    "id": 4049,
+    "question": "An electrician discovers an unmarked grey board in an old factory that they suspect contains asbestos. According to the Control of Asbestos at Work Regulations, what is the correct immediate action?",
+    "options": [
+      "Stop work immediately, clear the area, and report to the supervisor",
+      "Double-bag the board in plastic and put it in the general skip",
+      "Wear a standard P2 dust mask and continue with the removal",
+      "Spray the board with water to keep the dust down and finish the task"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO1",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Health and safety regulations are legal requirements. Serious breaches can result in prosecution, fines, or even imprisonment.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "asbestos",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "If asbestos is suspected, work must stop immediately to prevent the spread of fibers, and the area must be secured until a specialist assessment is made."
   },
-
   {
-    id: 2038,
-    question: "What must employers do if 5 or more people are employed?",
-    options: [
-      "Have a written health and safety policy",
-      "Register with the Health and Safety Executive",
-      "Hire a dedicated safety officer",
-      "Conduct monthly safety inspections"
+    "id": 4050,
+    "question": "The Workplace (Health, Safety and Welfare) Regulations require employers to provide which of the following for their employees?",
+    "options": [
+      "Adequate sanitary conveniences and washing facilities",
+      "Insulated tools for live working",
+      "A personal company vehicle for site travel",
+      "The latest edition of the IET Wiring Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 45,
-    explanation: "Employers with 5 or more employees must have a written health and safety policy under the Health and Safety at Work Act.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "These regulations focus on the 'welfare' aspect of the workplace, including toilets, washing facilities, drinking water, and rest areas."
   },
-
   {
-    id: 2039,
-    question: "Who can be held responsible if an accident occurs due to unsafe working practices?",
-    options: [
-      "Both the employer and the employee, depending on the circumstances",
-      "Only the employer",
-      "Only the employee",
-      "No one — accidents just happen"
+    "id": 4051,
+    "question": "An electrician is required to work on a live distribution board. Which specific legislation dictates that this should only be done if it is 'unreasonable in all circumstances for it to be dead'?",
+    "options": [
+      "Electricity at Work Regulations",
+      "Health and Safety at Work Act",
+      "Management of Health and Safety at Work Regulations",
+      "Provision and Use of Work Equipment Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Both employers and employees have legal duties. Responsibility depends on whether proper training was provided, procedures were followed, etc.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Electricity at Work Regulations (EAWR) Regulation 14 specifically covers work on or near live conductors, stating it must be avoided unless it is absolutely necessary and safe to do so."
   },
-
   {
-    id: 2040,
-    question: "A new employee is unsure how to safely use a piece of electrical test equipment. What should they do?",
-    options: [
-      "Ask for training before using the equipment",
-      "Watch a YouTube video and then use it",
-      "Try to figure it out themselves",
-      "Use it carefully and hope for the best"
+    "id": 4052,
+    "question": "Under the Management of Health and Safety at Work Regulations, whose primary responsibility is it to carry out and document a formal risk assessment for a new electrical installation project?",
+    "options": [
+      "The Employer",
+      "The Employee",
+      "The Health and Safety Executive",
+      "The Client"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 2,
-    estimatedTime: 60,
-    explanation: "Employees must not use equipment they are not trained to use safely. They should request proper training from their employer.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "While employees have a duty to cooperate, the Management of Health and Safety at Work Regulations place the legal burden on the employer to ensure risk assessments are conducted and recorded."
   },
-
-  // ===== HARD QUESTIONS (Difficulty 4-5) =====
-
   {
-    id: 2041,
-    question: "A contractor arrives on site claiming to be an electrician. They have tools but no qualifications or proof of competence. Can they legally work on the electrical installation?",
-    options: [
-      "No, they cannot demonstrate competence as required by Regulation 16",
-      "Yes, if they say they have experience",
-      "Yes, if they have the right tools",
-      "Yes, as long as they're supervised"
+    "id": 4053,
+    "question": "An electrician is replacing several fluorescent tubes and an old fire alarm panel. According to the WEEE and Hazardous Waste Regulations, how should these items be handled?",
+    "options": [
+      "Segregated from general waste and disposed of at a licensed facility",
+      "Placed in the general site skip to be sorted by the waste contractor",
+      "Broken down into small parts and disposed of in household waste",
+      "Returned to the manufacturer via a standard courier service"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Regulation 16 requires persons to be competent before working on electrical systems. Competence must be demonstrable through qualifications, training records, or documented experience.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "WRONG_UNITS",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Environmental legislation",
+    "tags": [
+      "legislation",
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Fluorescent tubes (mercury) and electronic panels are classified as hazardous waste and WEEE; they must be kept separate from general waste and handled by a licensed waste carrier."
   },
-
   {
-    id: 2042,
-    question: "An employer provides safety training but an employee deliberately ignores the procedures and causes an accident. Who can be prosecuted?",
-    options: [
-      "The employee can be prosecuted for deliberately ignoring safety procedures",
-      "Only the employer for not supervising properly",
-      "No one — it was an accident",
-      "The training provider"
+    "id": 4054,
+    "question": "Which specific legislation is primarily aimed at controlling the disposal of mercury-containing lamps and lead-acid batteries to prevent environmental contamination?",
+    "options": [
+      "Hazardous Waste Regulations",
+      "COSHH",
+      "Provision and Use of Work Equipment Regulations",
+      "Workplace (Health, Safety and Welfare) Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Employees have a legal duty to follow safety procedures. Deliberately ignoring procedures after proper training is a breach of the employee's duties and can result in prosecution.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Environmental legislation",
+    "tags": [
+      "legislation",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "While COSHH deals with exposure and handling, the Hazardous Waste Regulations specifically govern the storage, transport, and disposal of substances that are harmful to the environment."
   },
-
   {
-    id: 2043,
-    question: "A fault-finding task requires testing a circuit while it is energized. What conditions must be met before this work can be carried out?",
-    options: [
-      "It must be unreasonable to isolate, the person must be competent, and appropriate precautions must be taken",
-      "Just wear rubber gloves",
-      "Get permission from the building owner",
-      "Turn off nearby circuits only"
+    "id": 4055,
+    "question": "An electrician is using a 110V SDS drill and notices the outer insulation of the cable is frayed. Under the Provision and Use of Work Equipment Regulations (PUWER), what is the immediate legal obligation of the employee?",
+    "options": [
+      "Stop using the drill and report the fault to their supervisor",
+      "Apply insulation tape to the frayed section and finish the task",
+      "Continue using the drill but ensure it does not get wet",
+      "Wait for the next scheduled portable appliance test (PAT)"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Regulation 14 allows live working only when: (1) it's unreasonable to make dead, (2) the person is competent, and (3) appropriate precautions are taken (insulated tools, barriers, etc.).",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "PUWER requires equipment to be safe for use. Employees have a duty to report any equipment they know to be defective and must not attempt unauthorized repairs on electrical equipment."
   },
-
   {
-    id: 2044,
-    question: "An employer claims a safety measure is 'too expensive' under the 'reasonably practicable' principle. Under what circumstances would this be acceptable?",
-    options: [
-      "Only if the cost is grossly disproportionate to the very small risk reduction achieved",
-      "Whenever the employer says so",
-      "If it costs more than £1000",
-      "If it would delay the project"
+    "id": 4056,
+    "question": "An electrician is instructed by a site manager to bypass a locked-off isolator to finish a job quickly. Under the Health and Safety at Work Act Section 7, what is the electrician's primary legal obligation?",
+    "options": [
+      "To refuse the instruction as it endangers themselves and others",
+      "To follow the instruction as the site manager assumes all legal liability",
+      "To perform the work only if the employer provides a written indemnity",
+      "To complete the work but report the incident to the HSE within 24 hours"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "'Reasonably practicable' has a specific legal meaning: measures must be taken unless the cost is grossly disproportionate to the risk. The burden of proof is on the employer.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Section 7 of HASAWA places a duty on employees to take reasonable care for the health and safety of themselves and others who may be affected by their acts or omissions. Following an unsafe instruction violates this duty."
   },
-
   {
-    id: 2045,
-    question: "A qualified electrician is asked to work on a specialized industrial system they have never seen before. Are they competent to work on it?",
-    options: [
-      "Not necessarily — competence is task-specific and they may need additional training or supervision",
-      "Yes, if they're qualified they can work on anything",
-      "Yes, as long as they have general electrical qualifications",
-      "No, they need a different qualification for each system"
+    "id": 4057,
+    "question": "Regulation 4(4) of the Electricity at Work Regulations 1989 states that equipment must be maintained to prevent danger. Which statement best describes the 'absolute' nature of this duty in a legal context?",
+    "options": [
+      "The requirement must be met regardless of cost or difficulty",
+      "The requirement must be met only if it is 'reasonably practicable'",
+      "The duty only applies if the equipment is over 230V",
+      "The duty is only triggered after a reported electrical shock occurs"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Competence is task-specific. A qualified electrician may still need additional training, instruction, or supervision for unfamiliar or specialized systems.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "In the EAWR, 'Absolute' duties must be met without qualification. Unlike 'reasonably practicable' duties, cost and time cannot be used as an excuse for non-compliance with absolute regulations."
   },
-
   {
-    id: 2046,
-    question: "An employer conducts a risk assessment and concludes a particular electrical task presents minimal risk. Do they still need to follow the Electricity at Work Regulations?",
-    options: [
-      "Yes, the Electricity at Work Regulations apply to all electrical work regardless of risk level",
-      "No, low-risk tasks are exempt",
-      "No, risk assessments override legislation",
-      "Only if the voltage is above 230V"
+    "id": 4058,
+    "question": "When assessing the risks of a manual handling task involving the installation of a 45kg uninterruptible power supply (UPS) in a cramped server room, which 'TILE' factor is being addressed by considering the lack of space?",
+    "options": [
+      "Environment",
+      "Individual",
+      "Load",
+      "Task"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "The EAWR apply to ALL electrical systems, equipment, and work activities. There is no minimum risk threshold below which regulations don't apply.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "manual-handling",
+      "discrimination",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "TILE stands for Task, Individual, Load, and Environment. Space constraints, lighting, and floor conditions all fall under the 'Environment' category."
   },
-
   {
-    id: 2047,
-    question: "A self-employed electrician works alone. Which health and safety duties apply to them?",
-    options: [
-      "They must ensure their own safety and the safety of others affected by their work",
-      "None — self-employed people are exempt from health and safety law",
-      "Only the duties of employees",
-      "Only the duties of employers"
+    "id": 4059,
+    "question": "An electrical contractor is removing old fluorescent fittings containing mercury-vapour lamps and PCB-filled capacitors. Which combination of legislation dictates the disposal process?",
+    "options": [
+      "Hazardous Waste Regulations and WEEE Regulations",
+      "COSHH and the Environmental Protection Act",
+      "PUWER and the Control of Pollution Act",
+      "Workplace Regulations and HASAWA"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Self-employed persons have duties under health and safety law. They must ensure their own safety and the safety of others who may be affected by their work.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Environmental legislation",
+    "tags": [
+      "legislation",
+      "units",
+      "discrimination"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Fluorescent lamps are WEEE (Waste Electrical and Electronic Equipment) and, due to mercury content, are also classified as Hazardous Waste, requiring specific carriage and disposal notes."
   },
-
   {
-    id: 2048,
-    question: "A supervisor pressures an apprentice to work faster by skipping safety checks. The apprentice complies and causes an accident. Who can be held responsible?",
-    options: [
-      "Both the supervisor (for creating pressure) and the apprentice (for not following procedures)",
-      "Only the apprentice",
-      "Only the supervisor",
-      "No one — it was an accident"
+    "id": 4060,
+    "question": "Under the Management of Health and Safety at Work Regulations, what is the legal requirement for an employer regarding Risk Assessments when they employ 5 or more people?",
+    "options": [
+      "The significant findings must be recorded in writing",
+      "The assessments must be reviewed by the HSE annually",
+      "The assessments must be signed by every employee daily",
+      "The assessments only need to cover activities involving electricity"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'application'],
-    learningOutcomeId: "201-1A-LO3",
-    answerType: 'mcq',
-    difficulty: 5,
-    estimatedTime: 90,
-    explanation: "Both parties have failed in their duties. The supervisor created unsafe pressure; the apprentice failed to follow procedures. Both can be held responsible in this scenario.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "If an employer has 5 or more employees, they are legally required to record the significant findings of their risk assessments in writing."
   },
-
   {
-    id: 2049,
-    question: "Why is 'competence' for electrical work assessed on a task-by-task basis rather than as a general qualification?",
-    options: [
-      "Because electrical work varies greatly in complexity and risk, and experience in one area doesn't guarantee competence in another",
-      "Because the regulations are poorly written",
-      "Because qualifications expire",
-      "Because different voltages require different qualifications"
+    "id": 4061,
+    "question": "An electrician finds a material they suspect to be asbestos while drilling into a ceiling void. According to the Control of Asbestos at Work Regulations, what is the correct immediate sequence of actions?",
+    "options": [
+      "Stop work, secure the area, and report to the supervisor",
+      "Put on a P3 mask and continue drilling with a vacuum attachment",
+      "Spray the material with water to dampen fibers and remove it",
+      "Double-wrap the debris in plastic bags and place in the general skip"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 4,
-    estimatedTime: 90,
-    explanation: "Electrical work ranges from simple tasks to highly complex systems. Competence must match the task: someone competent to wire a plug may not be competent to work on high-voltage systems.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The regulations require that if asbestos is suspected, work must stop immediately, the area must be cordoned off, and a supervisor/specialist must be notified to arrange for testing."
   },
-
   {
-    id: 2050,
-    question: "An electrical system is known to be dangerous but would cost £100,000 to make safe. The company has limited funds. What must the employer do under 'reasonably practicable'?",
-    options: [
-      "Implement the safety measures — serious risks must be controlled regardless of cost",
-      "Do nothing — the cost is too high",
-      "Wait until they have more money",
-      "Put up warning signs instead"
+    "id": 4062,
+    "question": "Which specific environmental legislation requires a 'Duty of Care' for waste, ensuring it is only transferred to an authorized person with a completed waste transfer note?",
+    "options": [
+      "Environmental Protection Act",
+      "Control of Pollution Act",
+      "Pollution Prevention and Control Act",
+      "Control of Noise at Work Regulations"
     ],
-    correctAnswer: 0,
-    section: "Health & Safety 2365 Level 1",
-    category: "Health & Safety Legislation",
-    tags: ['safety', 'conceptual', 'application'],
-    learningOutcomeId: "201-1A-LO2",
-    answerType: 'mcq',
-    difficulty: 5,
-    estimatedTime: 90,
-    explanation: "For serious risks, even high costs may not be 'grossly disproportionate'. Employers cannot use cost as an excuse for not controlling serious hazards. Alternative controls or ceasing the activity may be required.",
-    misconceptionCodes: {
-      1: 'OTHER',
-      2: 'OTHER',
-      3: 'OTHER'
-    }
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Environmental legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "units"
+    ],
+    "learningOutcomeId": "201-1C-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Environmental Protection Act (specifically Section 34) imposes a 'Duty of Care' on anyone who produces, carries, keeps, treats, or disposes of controlled waste."
+  },
+  {
+    "id": 4063,
+    "question": "A contractor provides a portable tower scaffold for an electrician to change high-bay LED fittings. Under PUWER, what is the contractor's specific duty regarding this equipment?",
+    "options": [
+      "To ensure it is suitable for the intended use and regularly inspected",
+      "To ensure the electrician wears a full-body harness at all times",
+      "To provide a second person to hold the base of the tower",
+      "To replace the tower with a new one every 12 months"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Provision and Use of Work Equipment Regulations (PUWER) requires that work equipment is suitable for the task, maintained in a safe condition, and inspected by a competent person."
+  },
+  {
+    "id": 4064,
+    "question": "In the 'Hierarchy of Control' required by the Working at Height Regulations, which action must be prioritized before considering the use of personal fall arrest equipment?",
+    "options": [
+      "Using work equipment that prevents a fall, such as a guard-railed platform",
+      "Ensuring the operative has completed a one-day ladder safety course",
+      "Providing a thicker impact-absorbing mat at the base of the ladder",
+      "Limiting the duration of the work to less than 30 minutes"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The hierarchy of control for WAH is: Avoid working at height; Prevent a fall (collective measures like guard rails); Mitigate the distance/consequences of a fall (personal PPE)."
+  },
+  {
+    "id": 4065,
+    "question": "Which regulation is primarily concerned with the provision of adequate lighting, ventilation, and sanitary facilities for workers on a construction site?",
+    "options": [
+      "Workplace (Health, Safety and Welfare) Regulations",
+      "Management of Health and Safety at Work Regulations",
+      "Provision and Use of Work Equipment Regulations",
+      "Health and Safety at Work Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Health & Safety Level 2",
+    "category": "Health & Safety legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "health-safety"
+    ],
+    "learningOutcomeId": "201-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "The Workplace (Health, Safety and Welfare) Regulations cover the basic environment of the workplace, including welfare facilities, lighting, and ventilation."
   }
 ];
