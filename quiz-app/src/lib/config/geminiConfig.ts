@@ -120,3 +120,29 @@ export function getPhase10Model(): string {
   console.log('🎯 [Phase 10 Config] PHASE10_MODEL not set, using GEMINI_MODEL:', fallbackModel);
   return fallbackModel;
 }
+
+/**
+ * Get the Phase 12 model name from environment variables
+ * Phase 12 uses the most powerful model for complex lesson refinement
+ * @returns Phase 12 model name from PHASE12_MODEL env, or falls back to PHASE10_MODEL, then GEMINI_MODEL
+ */
+export function getPhase12Model(): string {
+  // Use dedicated Phase 12 model if set
+  const phase12Model = process.env.PHASE12_MODEL;
+  if (phase12Model) {
+    console.log('🎯 [Phase 12 Config] Using dedicated Phase 12 model:', phase12Model);
+    return phase12Model;
+  }
+  
+  // Fallback to Phase 10 model
+  const phase10Model = process.env.PHASE10_MODEL;
+  if (phase10Model) {
+    console.log('🎯 [Phase 12 Config] PHASE12_MODEL not set, using PHASE10_MODEL:', phase10Model);
+    return phase10Model;
+  }
+  
+  // Final fallback to main model
+  const fallbackModel = getGeminiModelWithDefault();
+  console.log('🎯 [Phase 12 Config] PHASE12_MODEL and PHASE10_MODEL not set, using GEMINI_MODEL:', fallbackModel);
+  return fallbackModel;
+}

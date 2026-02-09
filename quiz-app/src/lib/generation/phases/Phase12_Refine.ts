@@ -75,11 +75,11 @@ export class Phase12_Refine extends PhasePromptBuilder {
     debugLogger.logPrompt('user', prompts.userPrompt);
     
     // Step 3: Call LLM to generate complete refined lesson
-    const { getPhase10Model } = await import('@/lib/config/geminiConfig');
-    const phase10Model = getPhase10Model();
+    const { getPhase12Model } = await import('@/lib/config/geminiConfig');
+    const phase12Model = getPhase12Model();
     
     console.log(`🤖 [Phase12_Refine] Calling LLM for full-lesson refinement...`);
-    debugLogger.logLLMCall(phase10Model);
+    debugLogger.logLLMCall(phase12Model);
     
     const llmStartTime = Date.now();
     try {
@@ -90,7 +90,7 @@ export class Phase12_Refine extends PhasePromptBuilder {
         2,       // maxRetries
         false,   // attemptHigherLimit
         16000,   // tokenLimit - needs space for full lesson JSON
-        phase10Model
+        phase12Model
       );
       
       const llmDuration = Date.now() - llmStartTime;

@@ -409,7 +409,148 @@ Updates 7 codebase files automatically:
 - Rolls back git branch
 - Returns detailed error messages
 
-### 4. Simulator Module (`/electron-simulation`)
+### 4. Lesson Improvement Pipeline (Phases 10-13)
+
+Automated lesson quality improvement system that evaluates and refines lessons after initial generation.
+
+#### Overview
+
+After a lesson is generated (Phases 1-9), the system automatically evaluates its pedagogical quality and applies improvements if needed. The pipeline activates when the initial lesson score falls below a threshold (default: 97/100).
+
+**Pipeline Flow**:
+```
+Generated Lesson → Phase 10 (Score) → Phase 12 (Refine) → Phase 13 (Rescore & Decision) → Final Lesson
+```
+
+#### Phase 10: Pedagogical Scoring
+
+**Purpose**: Evaluate lesson quality using pedagogical criteria anchored to C&G 2365 syllabus.
+
+**Scoring Rubric** (100 points total):
+- **Beginner Clarity** (30 points): Technical terms defined, plain language, concrete examples, misconceptions addressed
+- **Teaching-Before-Testing** (25 points): All tested content taught first, clear progression from instruction to assessment
+- **Marking Robustness** (20 points): Comprehensive expectedAnswer arrays, appropriate answer types, gradeable by LLM
+- **Alignment to LO/AC** (15 points): Content addresses target Assessment Criteria, appropriate depth for Level 2
+- **Question Quality** (10 points): Clear wording, appropriate cognitive levels, smooth difficulty progression
+
+**Syllabus Integration**:
+- Uses Retrieval Augmented Generation (RAG) to fetch relevant C&G 2365 syllabus context
+- Parses lesson ID to identify Unit and Learning Outcome
+- Retrieves Assessment Criteria for objective evaluation
+- Ensures content aligns with official qualification requirements
+
+**Output**:
+- Total score (0-100) with grade classification
+- Breakdown by category
+- Exactly 10 prioritized issues with:
+  - JSON Pointer locations (RFC 6901)
+  - Problem descriptions
+  - Pedagogical impact explanations
+  - Alignment gaps (if applicable)
+
+#### Phase 12: Full-Lesson Refinement
+
+**Purpose**: Generate improved lesson content while preserving structural integrity.
+
+**Input**:
+- Original lesson JSON
+- Phase 10 score and issues
+- Syllabus context
+- Additional user instructions (optional)
+
+**Process**:
+- LLM receives original lesson + pedagogical issues
+- Generates complete refined lesson JSON
+- Preserves all structural elements:
+  - Block count (must remain identical)
+  - Block IDs (used for progress tracking)
+  - Block types (determine rendering)
+  - Block orders (define lesson sequence)
+  - answerType fields (affect UI and validation)
+
+**Improvements Made**:
+- Enhanced clarity and beginner-friendliness
+- Expanded vocabulary definitions
+- Improved explanations and examples
+- Better question wording
+- More comprehensive expectedAnswer arrays
+- Better alignment with Assessment Criteria
+
+**Validation**:
+- Structure preservation checks
+- Schema validation
+- Content completeness verification
+
+#### Phase 13: Rescore & Decision
+
+**Purpose**: Independently validate improvements and make final accept/reject decision.
+
+**Process**:
+1. Rescore candidate lesson using Phase 10 rubric
+2. Calculate improvement delta
+3. Compare scores
+4. Make decision:
+   - **Accept**: If candidate improves on original (candidate score > original score)
+   - **Reject**: If candidate doesn't improve or degrades quality
+
+**Decision Logic**:
+- Conservative approach: Only accepts improvements that demonstrably enhance quality
+- Returns best version (original or candidate)
+- Provides detailed score comparison breakdown
+
+**Output**:
+- Accept/reject decision
+- Score comparison (original vs candidate)
+- Improvement delta
+- Final lesson (best version)
+
+#### Configuration
+
+**Activation Threshold**:
+- Default: 97/100
+- Configurable in `src/lib/generation/config.ts`
+- Pipeline only runs if initial score < threshold
+
+**Settings**:
+```typescript
+refinement: {
+  enabled: true,           // Master switch
+  scoreThreshold: 97,      // Activate if score < 97
+  saveOriginal: true,      // Save pre-improvement version
+  autoApply: true          // Apply automatically
+}
+```
+
+#### Integration
+
+**Automatic Activation**:
+- Runs automatically after Phase 9 (lesson assembly)
+- No manual intervention required
+- Seamlessly integrated into generation workflow
+
+**Error Handling**:
+- Conservative approach: If any phase fails, keeps original lesson
+- Never ships degraded content
+- Comprehensive error logging for debugging
+
+**Debug Artifacts**:
+- Saves complete pipeline artifacts when enabled
+- Includes prompts, responses, scores, and comparisons
+- Useful for analyzing improvement effectiveness
+
+#### Benefits
+
+1. **Objective Quality Assessment**: Syllabus-anchored scoring ensures lessons meet C&G 2365 requirements
+2. **Automated Refinement**: No manual editing needed for common pedagogical issues
+3. **Structure Preservation**: Maintains compatibility with progress tracking and quiz generation
+4. **Conservative Validation**: Only accepts demonstrably better improvements
+5. **Full Observability**: Detailed logging and artifacts for analysis
+
+**For detailed documentation on prompts and implementation, see**:
+- `reports/app_des/phases_prompts.md` - Phase-by-phase prompt documentation
+- `reports/app_des/improvement_pahes10_13prompts.md` - Detailed function documentation
+
+### 5. Simulator Module (`/electron-simulation`)
 
 Real-time circuit simulation for visual learning.
 

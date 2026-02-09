@@ -1268,3 +1268,345 @@ The assembler follows a strict block order contract:
 - Order 10: Spaced review (MUST be last)
 
 The assembler validates that all required blocks exist, that block orders are unique and monotonic increasing, and that the order contract is followed correctly.
+
+---
+
+## Phase 10: Pedagogical Scoring
+
+### What It Does
+
+Evaluates lesson quality using pedagogical criteria anchored to the C&G 2365 syllabus. This phase runs automatically after lesson generation (Phase 9) if the initial lesson score falls below a threshold (default: 97/100).
+
+**Key Functions**:
+- Retrieves relevant syllabus context using RAG (Retrieval Augmented Generation)
+- Scores lesson across 5 pedagogical categories (100 points total)
+- Identifies exactly 10 prioritized issues with precise JSON Pointer locations
+- Provides detailed breakdown and alignment gaps
+
+**Note**: Phase 11 (patch-based improvement suggestions) was replaced by Phase 12's full-lesson refinement approach. The pipeline now goes directly from Phase 10 to Phase 12.
+
+### System Prompt
+
+```
+You are an expert City & Guilds 2365 electrical installations assessor.
+
+GOAL: Score this lesson's PEDAGOGICAL QUALITY anchored to the C&G 2365 syllabus.
+
+SYLLABUS CONTEXT (retrieved from C&G 2365 specification):
+Unit: {unit} - {unitTitle}
+Learning Outcome: {learningOutcome} - {loTitle}
+Assessment Criteria (full LO):
+  {assessmentCriteria list}
+
+This lesson must align with the TARGET Assessment Criteria listed above.
+
+SCORING RUBRIC (100 points total):
+
+A) Beginner Clarity (30 points):
+   - Definitions of technical terms provided
+   - Plain language explanations (avoid jargon or define it)
+   - Concrete examples illustrating concepts
+   - Common misconceptions addressed
+   - Readable, well-structured content
+
+B) Teaching-Before-Testing (25 points):
+   - Every question has its answer taught BEFORE the question appears
+   - Explanations precede practice questions
+   - No "cold" questions where content hasn't been taught yet
+   - Clear progression from teaching to assessment
+
+C) Marking Robustness (20 points):
+   - expectedAnswer arrays are gradeable by an LLM
+   - Answer coverage matches question scope
+   - For short-text: specific phrases/keywords
+   - For long-text: key-point checklists (4-8 points to check)
+   - answerType matches question complexity
+
+D) Alignment to LO/AC (15 points):
+   - Content addresses the TARGET Assessment Criteria for this lesson
+   - If lesson.targetAssessmentCriteria is specified, check only those ACs
+   - If not specified, check all ACs from the syllabus context
+   - DO NOT penalize for missing ACs outside the lesson's target scope
+   - Examples and scenarios match vocational context
+   - Terminology matches syllabus wording
+
+E) Question Quality (10 points):
+   - Clear, unambiguous wording
+   - Appropriate cognitive level (Bloom's)
+   - Smooth difficulty progression
+   - No trick questions or gotchas
+
+CRITICAL REQUIREMENTS:
+- Return EXACTLY 10 issues (no more, no fewer)
+- Each issue MUST reference a specific AC from syllabus context (if available)
+- Focus on CONTENT quality, not structure (validators handle that)
+- For each issue: category, jsonPointers, excerpt, problem, whyItMatters, alignmentGap
+
+OUTPUT FORMAT (JSON only, no markdown):
+{
+  "total": 0-100,
+  "grade": "Ship it|Strong|Usable|Needs rework",
+  "syllabus": { 
+    "unit": "...",
+    "unitTitle": "...",
+    "learningOutcome": "...",
+    "loTitle": "...",
+    "assessmentCriteria": ["..."]
+  },
+  "breakdown": {
+    "beginnerClarity": 0-30,
+    "teachingBeforeTesting": 0-25,
+    "markingRobustness": 0-20,
+    "alignmentToLO": 0-15,
+    "questionQuality": 0-10
+  },
+  "issues": [ /* exactly 10 */ ],
+  "overallAssessment": "2-3 sentence summary of main pedagogical patterns"
+}
+
+VALIDATION RULES:
+- issues array length MUST be exactly 10
+- total MUST equal sum of breakdown values
+- Each issue MUST have: id, category, jsonPointers, excerpt, problem, whyItMatters
+- overallAssessment MUST be 2-3 sentences maximum
+```
+
+### User Prompt
+
+```
+Score this C&G 2365 electrical installation lesson using the pedagogical rubric.
+
+LESSON TO SCORE:
+{lesson JSON}
+
+CRITICAL REMINDERS:
+1. Return EXACTLY 10 issues (no more, no fewer)
+2. Each issue must include: excerpt, problem, whyItMatters, alignmentGap
+3. Ensure total score equals sum of breakdown scores
+4. Focus on PEDAGOGICAL QUALITY - structure already validated
+5. Reference specific Assessment Criteria in issues when applicable
+
+Return ONLY the JSON scoring object. No markdown, no additional text.
+```
+
+### Output Format
+
+```typescript
+interface Phase10Score {
+  total: number;  // 0-100
+  grade: 'Ship it' | 'Strong' | 'Usable' | 'Needs rework';
+  syllabus: {
+    unit: string;
+    unitTitle: string;
+    learningOutcome: string;
+    loTitle: string;
+    assessmentCriteria: string[];
+  };
+  breakdown: {
+    beginnerClarity: number;          // 30 points
+    teachingBeforeTesting: number;    // 25 points
+    markingRobustness: number;        // 20 points
+    alignmentToLO: number;            // 15 points
+    questionQuality: number;          // 10 points
+  };
+  issues: Phase10Issue[];  // Exactly 10 issues
+  overallAssessment?: string;
+}
+
+interface Phase10Issue {
+  id: string;                  // e.g., "ISSUE-1"
+  category: string;            // Which rubric category
+  jsonPointers: string[];      // RFC 6901 paths, e.g., ["/blocks/5/content/content"]
+  excerpt: string;             // Relevant text snippet
+  problem: string;             // What's wrong
+  whyItMatters: string;        // Pedagogical impact
+  alignmentGap?: string;       // How it violates LO/AC (if applicable)
+}
+```
+
+### Syllabus RAG Integration
+
+Phase 10 uses Retrieval Augmented Generation to fetch relevant syllabus context:
+
+1. **Parse Lesson ID**: Extracts Unit and Learning Outcome from lesson ID (e.g., "203-3A12" → Unit 203, LO3)
+2. **Exact Match**: Tries to find exact match by Unit + Learning Outcome
+3. **BM25 Fallback**: If no exact match, uses BM25 search to find most relevant syllabus chunk
+4. **Context Injection**: Injects retrieved context into scoring prompt for objective assessment
+
+---
+
+## Phase 12: Full-Lesson Refinement
+
+### What It Does
+
+Generates a complete refined lesson JSON that addresses pedagogical issues identified in Phase 10 while preserving all structural elements. This phase replaces the old Phase 11+12 patch-based system with a holistic refinement approach.
+
+**Key Functions**:
+- Receives original lesson + Phase 10 score + issues
+- Outputs complete refined lesson JSON (not patches)
+- Preserves structure: block count, IDs, types, orders, answerTypes
+- Improves content quality within structural constraints
+
+### System Prompt
+
+```
+You are a C&G 2365 pedagogical refinement expert.
+
+TASK: Output a COMPLETE refined lesson JSON that fixes the pedagogical issues below while preserving the exact structure.
+
+SYLLABUS CONTEXT (C&G 2365):
+Unit: {unit} - {unitTitle}
+Learning Outcome: {learningOutcome} - {loTitle}
+Assessment Criteria:
+  {assessmentCriteria list}
+
+LOCKED STRUCTURE (IMMUTABLE - DO NOT CHANGE):
+- Block count: {blocksLength} (MUST remain {blocksLength})
+- Block IDs, types, and order values (MUST remain exactly as listed below):
+  {blocks list with IDs, types, orders}
+
+- answerType fields (MUST remain unchanged):
+  {answerTypes map}
+
+PEDAGOGICAL ISSUES TO FIX:
+Score: {total}/100 ({grade})
+Breakdown:
+  - Beginner Clarity: {beginnerClarity}/30
+  - Teaching-Before-Testing: {teachingBeforeTesting}/25
+  - Marking Robustness: {markingRobustness}/20
+  - Alignment to LO: {alignmentToLO}/15
+  - Question Quality: {questionQuality}/10
+
+Issues ({issues.length}):
+{issues list with problem, whyItMatters, alignmentGap, excerpt}
+
+REFINEMENT RULES:
+1. Output COMPLETE Lesson JSON (full object with all fields, all blocks, all content)
+2. Fix content within blocks to address the pedagogical issues
+3. Improve clarity, examples, explanations, question wording, expectedAnswer arrays
+4. DO NOT add, remove, or reorder blocks
+5. DO NOT change block IDs, types, or order values
+6. DO NOT change answerType fields
+7. Preserve all required schema fields (id, title, description, layout, unit, topic, learningOutcomes, prerequisites, blocks, metadata)
+8. Maintain all block structure (each block must have id, type, order, content)
+
+PEDAGOGICAL PRIORITIES:
+- Clear, beginner-friendly language
+- Teach concepts before testing them
+- Robust expectedAnswer arrays (gradeable by LLM)
+- Alignment with C&G 2365 syllabus
+- High-quality, unambiguous questions
+
+Return the COMPLETE refined lesson as valid JSON. Nothing else.
+```
+
+### User Prompt
+
+```
+ORIGINAL LESSON TO REFINE:
+{originalLesson JSON}
+
+Output the complete refined lesson JSON that fixes the pedagogical issues while preserving the structure.
+```
+
+### Structure Preservation
+
+**Critical Constraints** (enforced by validation):
+- **Block Count**: Must remain identical
+- **Block IDs**: Must remain unchanged (used for progress tracking)
+- **Block Types**: Must remain unchanged (determine rendering)
+- **Block Orders**: Must remain unchanged (define lesson sequence)
+- **answerType Fields**: Must remain unchanged (affect UI and validation)
+
+**Why Structure Preservation Matters**:
+- Block IDs are used for user progress tracking
+- Block types determine which React component renders
+- Block orders define pedagogical flow
+- answerType affects UI rendering and marking logic
+- Changing structure would break existing progress data and quiz associations
+
+### Output Format
+
+```typescript
+interface RefinementOutput {
+  refinedLesson: Lesson;      // Complete improved lesson JSON
+  success: boolean;
+  error?: string;
+  validationErrors?: string[];
+}
+```
+
+---
+
+## Phase 13: Rescore & Decision
+
+### What It Does
+
+Independently rescores the candidate lesson (from Phase 12) using the same Phase 10 rubric and makes a final accept/reject decision. This phase does not use LLM prompts - it uses Phase 10's scorer and applies decision logic.
+
+**Key Functions**:
+- Rescores candidate lesson with Phase 10 scorer
+- Calculates improvement delta
+- Compares scores (original vs candidate)
+- Makes accept/reject decision based on improvement
+- Returns best version (original or candidate)
+
+### Process Flow
+
+1. **Rescore Candidate**: Uses Phase 10 scorer to independently evaluate refined lesson
+2. **Calculate Delta**: `improvement = candidateScore.total - originalScore.total`
+3. **Compare Scores**: Checks if candidate improves on original
+4. **Decision Logic**:
+   - **Accept**: If `candidateScore.total > originalScore.total`
+   - **Reject**: If `candidateScore.total <= originalScore.total`
+5. **Return Result**: Returns best version with detailed comparison
+
+### Decision Logic
+
+```typescript
+const improves = candidateScore.total > originalScore.total;
+const accepted = improves;
+
+// Returns:
+{
+  accepted: boolean;
+  originalScore: number;
+  candidateScore: number;
+  improvement: number;
+  finalLesson: Lesson;  // Original or candidate (whichever is better)
+  reason: string;
+  originalScoreDetail?: Phase10Score;
+  candidateScoreDetail?: Phase10Score;
+}
+```
+
+**Conservative Approach**:
+- Only accepts improvements that demonstrably enhance quality
+- Prefers original over potentially broken improvements
+- Never ships degraded content
+
+### Score Comparison Output
+
+The phase provides detailed comparison across all rubric categories:
+
+```
+Score Comparison:
+                           Original    Candidate    Delta
+  Beginner Clarity           22/30       28/30      +6
+  Teaching-Before-Testing    20/25       24/25      +4
+  Marking Robustness         12/20       18/20      +6
+  Alignment to LO             6/15       12/15      +6
+  Question Quality            7/10        9/10      +2
+  ─────────────────────────────────────────────────────
+  TOTAL                      67/100      91/100     +24
+
+Decision: ✅ ACCEPT
+Reason: Candidate improves on original (91 > 67)
+```
+
+### No LLM Prompts
+
+Phase 13 does not use LLM prompts. It:
+- Reuses Phase 10's scorer (which has its own prompts)
+- Applies deterministic decision logic
+- Provides detailed comparison output
