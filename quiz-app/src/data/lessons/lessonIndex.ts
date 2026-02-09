@@ -102,18 +102,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 3.1,
   },
-      {
-    id: '202-6A',
-    title: 'Magnetism & Electromagnetism: Principles and Applications',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism & Electromagnetism',
-    description: 'Learn about magnetic fields, permanent magnets, electromagnets, and how electricity and magnetism relate. Explore the basic principles behind motors, relays, and transformers.',
-    questionCount: getLessonQuestionCount('202-6A'),
-    available: true,
-    order: 6,
-  },
-  {
+        {
     id: '202-7A',
     title: 'Alternating Current (AC) Principles',
     unit: 'Unit 202',
@@ -172,17 +161,7 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
   
       
-  {
-    id: '202-5A',
-    title: 'Magnetism basics: attraction/repulsion + flux vs flux density',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism basics: attraction/repulsion + flux vs flux density',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5A'),
-    available: true,
-    order: 9.3,
-  },// Unit 203: Electrical Installations Technology
+  // Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {
@@ -352,6 +331,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3A3'),
     available: true,
     order: 14,
+  },
+  {
+    id: '203-3A12',
+    title: 'Circuit Types: What They Do',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Circuit Types: What They Do',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3A12'),
+    available: true,
+    order: 15,
   },// Unit 210: Communication
   {
     id: '204-10A',

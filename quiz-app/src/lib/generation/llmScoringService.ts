@@ -1,15 +1,16 @@
 /**
  * LLM-Based Lesson Scoring Service
  * 
- * Replaces hardcoded rubric with intelligent LLM scoring.
- * Scores lessons like a human instructor would, judging quality holistically.
+ * Backward-compatible wrapper around Phase 10 scoring architecture.
+ * Delegates to Phase10_Score for pedagogical assessment anchored to syllabus.
  * 
  * Architecture:
  * 1. Structural Validator (fast, deterministic) - Basic JSON structure checks
- * 2. LLM Scorer (intelligent, holistic) - Quality assessment by AI
+ * 2. Phase10_Score (pedagogical, syllabus-anchored) - Quality assessment by AI with RAG
  */
 
 import { Lesson, LessonBlock } from './types';
+import { Phase10_Score, Phase10Score } from './phases/Phase10_Score';
 import { safeJsonParse, preprocessToValidJson } from './utils';
 import { getScoringConfig } from './config';
 import { getPhase10Model } from '@/lib/config/geminiConfig';
@@ -69,7 +70,7 @@ export class LLMScoringService {
   }
 
   /**
-   * Score a lesson using LLM-based evaluation
+   * Score a lesson using Phase 10 pedagogical scoring
    */
   async scoreLesson(lesson: Lesson, additionalInstructions?: string): Promise<RubricScore> {
     // Step 1: Fast structural validation
@@ -80,10 +81,18 @@ export class LLMScoringService {
       return this.createStructuralFailureScore(structuralValidation.errors);
     }
 
-    // Step 2: LLM scoring (quality assessment)
+    // Step 2: Use Phase10_Score for pedagogical assessment
     try {
-      const llmScore = await this.scoreLessonWithLLM(lesson, additionalInstructions);
-      return llmScore;
+      const scorer = new Phase10_Score();
+      const phase10Score = await scorer.scoreLesson(
+        lesson,
+        this.generateWithRetry,
+        additionalInstructions
+      );
+      
+      // Convert Phase10Score to RubricScore for backward compatibility
+      return this.convertToRubricScore(phase10Score);
+      
     } catch (error: any) {
       console.error('[LLMScoringService] Error scoring lesson:', error);
       
@@ -192,30 +201,58 @@ export class LLMScoringService {
   }
 
   /**
-   * Score lesson using LLM
+   * Convert Phase10Score to RubricScore for backward compatibility
    */
-  private async scoreLessonWithLLM(lesson: Lesson, additionalInstructions?: string): Promise<RubricScore> {
-    const systemPrompt = this.buildScoringSystemPrompt();
-    const userPrompt = this.buildScoringUserPrompt(lesson, additionalInstructions);
-
-    // Call LLM with scoring prompts
-    const scoringConfig = getScoringConfig();
-    const phase10Model = getPhase10Model();  // NEW: Use Phase 10 model for better reasoning
+  private convertToRubricScore(phase10Score: Phase10Score): RubricScore {
+    // Map Phase 10 breakdown to legacy breakdown
+    const pedagogy = phase10Score.breakdown.beginnerClarity + 
+                     (phase10Score.breakdown.teachingBeforeTesting * 30 / 25);  // Scale to 30 points max
     
-    const response = await this.generateWithRetry(
-      systemPrompt,
-      userPrompt,
-      'score',  // Changed from 'lesson' to 'score' for proper truncation detection
-      2,
-      false,
-      scoringConfig.maxTokens,
-      phase10Model  // NEW: Pass Phase 10 model
-    );
-
-    // Parse LLM response
-    const parsed = this.parseScoringResponse(response);
+    const questions = phase10Score.breakdown.questionQuality + 
+                      (phase10Score.breakdown.alignmentToLO * 25 / 15);  // Scale to 25 points max
     
-    return parsed;
+    const marking = phase10Score.breakdown.markingRobustness / 2;  // Scale from 20 to 10 points
+    
+    // Convert issues to RubricDetails
+    const details: RubricDetail[] = phase10Score.issues.map((issue, idx) => ({
+      section: `${issue.category}: ${issue.problem.substring(0, 50)}${issue.problem.length > 50 ? '...' : ''}`,
+      score: 0,  // Not directly available in Phase 10
+      maxScore: this.getCategoryMaxScore(issue.category),
+      issues: [issue.problem],
+      suggestions: issue.alignmentGap ? 
+        [`Alignment gap: ${issue.alignmentGap}`, issue.whyItMatters] : 
+        [issue.whyItMatters],
+      jsonPointers: issue.jsonPointers,
+    }));
+    
+    return {
+      total: phase10Score.total,
+      breakdown: {
+        schemaCompliance: 15,  // Assume validated (structural check passed)
+        pedagogy: Math.round(Math.min(30, pedagogy)),
+        questions: Math.round(Math.min(25, questions)),
+        marking: Math.round(Math.min(10, marking)),
+        visual: 5,  // Assume validated
+        safety: 0,  // Deprecated
+      },
+      details,
+      grade: phase10Score.grade,
+      overallAssessment: phase10Score.overallAssessment,
+    };
+  }
+  
+  /**
+   * Get max score for a category
+   */
+  private getCategoryMaxScore(category: string): number {
+    switch (category) {
+      case 'beginnerClarity': return 30;
+      case 'teachingBeforeTesting': return 25;
+      case 'markingRobustness': return 20;
+      case 'alignmentToLO': return 15;
+      case 'questionQuality': return 10;
+      default: return 10;
+    }
   }
 
   /**

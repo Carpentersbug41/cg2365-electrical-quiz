@@ -1,8 +1,11 @@
 /**
- * Debug Bundle Collector for Phase 10 Refinement
+ * Debug Bundle Collector (Legacy)
  * 
- * Captures comprehensive diagnostic data during generation to make
- * Phase 10 refinement regressions immediately explainable.
+ * NOTE: The new Phase 10-13 pipeline uses debugLogger.ts for verbose terminal logging.
+ * This collector is still used for baseline recording and bundle generation, but
+ * Phase 10-13 specific methods (recordPhase10v2Attempt, etc.) are deprecated.
+ * 
+ * Captures comprehensive diagnostic data during generation.
  */
 
 import * as fs from 'fs';

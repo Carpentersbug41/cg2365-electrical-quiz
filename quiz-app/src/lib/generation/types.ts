@@ -67,8 +67,7 @@ export interface PhaseProgress {
   output?: string;
 }
 
-// Note: RefinementPatch is defined in phases/Phase10_Refinement.ts
-// Import it when needed: import { RefinementPatch } from './phases/Phase10_Refinement';
+// Note: Phase 10-13 pipeline outputs are defined in their respective phase files
 
 export interface GenerationResponse {
   success: boolean;
@@ -85,7 +84,7 @@ export interface GenerationResponse {
     originalScore: number;
     finalScore: number;
     patchesApplied: number;
-    details: any[]; // RefinementPatch[] - using any[] to avoid circular dependency
+    details: any[]; // Patch details from Phase 12 (Implement)
   };
   debugBundle?: GenerationDebugBundle;
 }
@@ -177,8 +176,8 @@ export interface Phase10DiagnosticData {
   refinedScore: any;   // RubricScore from llmScoringService
   scoreDelta: number;
   
-  // Patches applied during refinement
-  patchesApplied: any[];  // RefinementPatch[] - using any to avoid circular dependency
+  // Patches applied during Phase 12 (Implement)
+  patchesApplied: any[];  // Patch details from Phase 12
   
   // Section-level impact analysis
   sectionImpacts: Array<{

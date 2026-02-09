@@ -5,28 +5,25 @@
 
 export const GENERATION_CONFIG = {
   /**
-   * Phase 10: Auto-Refinement Configuration
+   * Phase 10-13: Lesson Improvement Pipeline Configuration
+   * - Phase 10: Scoring (identify issues)
+   * - Phase 11: Suggesting (generate fixes)
+   * - Phase 12: Implementing (apply fixes)
+   * - Phase 13: Rescoring (validate improvements)
    */
   refinement: {
     /**
      * Enable/disable auto-refinement
-     * Set to false to completely skip Phase 10
+     * Set to false to completely skip Phase 10-13 pipeline
      */
     enabled: true,
     
     /**
      * Score threshold for triggering refinement
      * Refinement activates if lesson score < this value
-     * Default: 97 (for testing - aims for 98-100 after refinement)
+     * Default: 97 (aims for 98-100 after refinement)
      */
     scoreThreshold: 97,
-    
-    /**
-     * Maximum number of patches to apply per refinement
-     * Limits LLM to fixing top N issues
-     * Set to 10 to maintain laser focus on most impactful issues
-     */
-    maxFixes: 10,
     
     /**
      * Save original lesson when refinement is applied
@@ -41,34 +38,6 @@ export const GENERATION_CONFIG = {
      * Default: true
      */
     autoApply: true,
-    
-    /**
-     * Phase 10 strategy: 'patch' or 'rewrite'
-     * 'patch': v1 surgical JSON patches (DEPRECATED - offline except for emergency)
-     * 'rewrite': v2 holistic rewrite with hard safety gates (DEFAULT)
-     * Default: 'rewrite'
-     * 
-     * WARNING: v1 (patch) is offline by default. Only enable for emergency rollback.
-     */
-    strategy: 'rewrite' as 'patch' | 'rewrite',
-    
-    /**
-     * Enable Phase 10 v2 (holistic rewrite)
-     * When true, uses rewrite strategy (DEFAULT)
-     * When false, uses patch strategy (EMERGENCY FALLBACK ONLY)
-     * Default: true (v2 is production strategy)
-     * 
-     * Set to false ONLY for emergency rollback to v1 patches.
-     */
-    rewriteEnabled: true,
-    
-    /**
-     * Enable shadow mode for v2 testing
-     * When true, runs both v1 and v2 but ships v1 result
-     * Used to collect comparison metrics without risk
-     * Default: false
-     */
-    rewriteShadowMode: false,
   },
   
   /**
@@ -112,21 +81,21 @@ export const GENERATION_CONFIG = {
   },
   
   /**
-   * Phase 10 Debug Artifacts Configuration
+   * Phase 10-13 Debug Artifacts Configuration
    */
   debugArtifacts: {
     /**
-     * Enable/disable Phase 10 debug artifact recording
+     * Enable/disable Phase 10-13 debug artifact recording
      * When enabled, writes full run bundles to disk with prompts, outputs, scores, validation, diffs
-     * HARDCODED: Always enabled (set to false to disable)
+     * Default: true
      */
     enabled: true,
     
     /**
-     * Output path for Phase 10 run artifacts
+     * Output path for Phase 10-13 run artifacts
      * Default: 'reports/phase10_runs'
      * Each run is saved in its own folder: <outputPath>/<runId>/
-     * Example: reports/phase10_runs/203-3D__2026-02-07T10-32-18-123Z__rewrite__model/
+     * Example: reports/phase10_runs/203-3D__2026-02-07T10-32-18-123Z__phase10-13__model/
      */
     outputPath: process.env.PHASE10_DEBUG_PATH || 'reports/phase10_runs',
     
@@ -147,15 +116,6 @@ export const GENERATION_CONFIG = {
       enabled: true,
       usePointers: true  // Generate JSON pointer-level diffs (RFC 6901)
     },
-    
-    /**
-     * Planner stage configuration
-     * Generates explicit fix plans between scoring and rewrite
-     */
-    plannerStage: {
-      enabled: true,
-      model: undefined  // Optional: use different model for planning (default: same as rewrite)
-    }
   }
 };
 
@@ -178,17 +138,6 @@ export function getScoringConfig() {
  */
 export function shouldRefine(score: number): boolean {
   return GENERATION_CONFIG.refinement.enabled && score < GENERATION_CONFIG.refinement.scoreThreshold;
-}
-
-/**
- * Get Phase 10 strategy (patch or rewrite)
- * Default: 'rewrite' (v2) - v1 (patch) is offline except for emergency
- * 
- * To enable v1 emergency fallback: set rewriteEnabled: false in config
- */
-export function getPhase10Strategy(): 'patch' | 'rewrite' {
-  // v2 (rewrite) is default - v1 (patch) requires explicit opt-in
-  return GENERATION_CONFIG.refinement.rewriteEnabled ? 'rewrite' : 'patch';
 }
 
 /**

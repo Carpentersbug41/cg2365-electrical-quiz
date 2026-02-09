@@ -7,14 +7,8 @@ import { GenerationRequest, Lesson, DebugInfo, GenerationDebugBundle } from './t
 import { preprocessToValidJson, safeJsonParse, validateLLMResponse, cleanCodeBlocks, debugLog } from './utils';
 import { requiresWorkedExample, classifyLessonTask, isPurposeOnly, getTaskModeString } from './taskClassifier';
 import { DebugBundleCollector, saveDebugBundle } from './debugBundle';
-import { validatePatch, shouldRejectPatch } from './patchValidator';
-import { isolatePatches } from './patchIsolationScorer';
-import { analyzeRefinementRun } from './postmortemAnalyzer';
-import { Phase10RunRecorder } from './Phase10RunRecorder';
 import { v4 as uuidv4 } from 'uuid';
 import { lessonIndex } from '@/data/lessons/lessonIndex';
-import * as fs from 'fs';
-import * as path from 'path';
 
 // Phase imports
 import { Phase1_Planning, PlanningOutput } from './phases/Phase1_Planning';
@@ -26,18 +20,29 @@ import { Phase6_Practice, PracticeOutput } from './phases/Phase6_Practice';
 import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integration';
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
 import { Phase9_Assembler } from './phases/Phase9_Assembler';
-import { Phase10_Refinement, RefinementOutput, RefinementPatch } from './phases/Phase10_Refinement';
-import { Phase10_Rewrite } from './phases/Phase10_Rewrite';
+import { Phase10_Score } from './phases/Phase10_Score';
+import { Phase11_Suggest } from './phases/Phase11_Suggest';
+import { Phase12_Implement } from './phases/Phase12_Implement';
+import { Phase13_Rescore } from './phases/Phase13_Rescore';
 import { LLMScoringService, RubricScore } from './llmScoringService';
-import { getRefinementConfig, getScoringConfig, getPhase10Strategy, getDebugArtifactsConfig } from './config';
+import { getRefinementConfig } from './config';
 import { normalizeLessonSchema } from './lessonNormalizer';
-import { saveDiagnosticData } from './diagnosticUtils';
 
 export interface PhaseProgress {
   phase: string;
   status: 'pending' | 'running' | 'completed' | 'failed';
   duration?: number;
   output?: string;
+}
+
+// Compatibility type for Phase 10-13 pipeline
+export interface RefinementOutput {
+  originalLesson: Lesson;
+  refined: Lesson;
+  patchesApplied: any[];
+  originalScore: number;
+  refinedScore: number;
+  improvementSuccess: boolean;
 }
 
 export interface SequentialGeneratorResult {
@@ -54,7 +59,7 @@ export interface SequentialGeneratorResult {
     originalScore: number;
     finalScore: number;
     patchesApplied: number;
-    details: RefinementPatch[];
+    details: any[];
   };
   debugBundle?: GenerationDebugBundle;
 }
@@ -73,7 +78,6 @@ export class SequentialLessonGenerator {
   private phase7: Phase7_Integration;
   private phase8: Phase8_SpacedReview;
   private phase9: Phase9_Assembler;
-  private phase10: Phase10_Refinement;
   private scorer: LLMScoringService;
 
   // LLM caller function (injected from FileGenerator)
@@ -97,7 +101,6 @@ export class SequentialLessonGenerator {
     this.phase7 = new Phase7_Integration();
     this.phase8 = new Phase8_SpacedReview();
     this.phase9 = new Phase9_Assembler();
-    this.phase10 = new Phase10_Refinement();
     this.scorer = new LLMScoringService(generateWithRetryFn);
     
     this.generateWithRetry = generateWithRetryFn;
@@ -308,11 +311,8 @@ export class SequentialLessonGenerator {
       let rejectedRefinedLesson: Lesson | undefined = undefined;
       let refinementResult: RefinementOutput | null = null;
 
-      // Extract issues for debug bundle (always, even if Phase 10 doesn't run)
-      const { issues } = this.phase10.prepareRefinementInput(lesson, initialScore, getRefinementConfig().maxFixes);
-      
       // Record baseline in debug bundle (always)
-      debugCollector.recordBaseline(lesson, initialScore, issues);
+      debugCollector.recordBaseline(lesson, initialScore, []);
 
       // Phase 10: Auto-Refinement (if score < threshold)
       const threshold = getRefinementConfig().scoreThreshold;
@@ -957,501 +957,85 @@ export class SequentialLessonGenerator {
   }
 
   /**
-   * Phase 10: Auto-Refinement
-   */
-  /**
-   * Phase 10: Auto-Refinement (ROUTER)
+   * Phase 10-13: Pedagogical Improvement Pipeline
    * 
-   * DEFAULT: v2 holistic rewrite (safe, reliable)
-   * FALLBACK: v1 patch-based (offline - emergency only)
-   * 
-   * Routes to v2 (rewrite) by default.
-   * Only routes to v1 (patch) if explicitly enabled via rewriteEnabled: false.
-   * 
-   * If v2 fails validation/score gate: returns null → ships original lesson unchanged.
-   * NO automatic fallback to v1.
+   * Runs the new pipeline: Score → Suggest → Implement → Rescore
    */
   private async runPhase10(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
-    const strategy = getPhase10Strategy();
-    const artifactsConfig = getDebugArtifactsConfig();
-    
-    console.log(`  🔧 Phase 10: Auto-refinement (strategy: ${strategy})...`);
-    console.log(`  🔍 [DEBUG] artifactsConfig.enabled = ${artifactsConfig.enabled}`);
-    console.log(`  🔍 [DEBUG] artifactsConfig.outputPath = ${artifactsConfig.outputPath}`);
-    
-    // Check if debug artifacts are enabled
-    if (!artifactsConfig.enabled) {
-      console.log(`  🔍 [DEBUG] Artifacts DISABLED - using old code path`);
-      // Original code path without recorder
-      if (strategy === 'rewrite') {
-        return await this.runPhase10Rewrite(lesson, rubricScore, debugCollector);
-      } else {
-        return await this.runPhase10Patch(lesson, rubricScore, debugCollector);
-      }
-    }
-    
-    console.log(`  🔍 [DEBUG] Artifacts ENABLED - creating recorder for lesson ${lesson.id}`);
-    
-    // Get Phase 10 model for recording and execution
-    const { getPhase10Model } = await import('@/lib/config/geminiConfig');
-    const phase10Model = getPhase10Model();
-    
-    // New code path with Phase10RunRecorder
-    const recorder = new Phase10RunRecorder(
-      lesson.id,
-      strategy,
-      {
-        rewrite: phase10Model,   // Use Phase 10 model
-        scoring: phase10Model,   // Use Phase 10 model
-      }
-    );
-    
-    console.log(`  🔍 [DEBUG] Recorder created, calling startRun()...`);
+    console.log('  🔧 Phase 10-13: Pedagogical Improvement Pipeline...');
     
     try {
-      // Start recording
-      await recorder.startRun();
-      console.log(`  🔍 [DEBUG] startRun() completed`);
-      
-      // Write input lesson
-      await recorder.writeJson('00_input_lesson.json', lesson);
-      console.log(`  🔍 [DEBUG] Wrote input lesson`);
-      
-      // Record before score
-      recorder.recordScore('before', rubricScore);
-      console.log(`  🔍 [DEBUG] Recorded before score`);
-      
-      // Run Phase 10 with recorder
-      let result: RefinementOutput | null;
-      if (strategy === 'rewrite') {
-        console.log(`  🔍 [DEBUG] Running Phase10 with recorder...`);
-        result = await this.runPhase10RewriteWithRecorder(lesson, rubricScore, debugCollector, recorder);
-      } else {
-        result = await this.runPhase10Patch(lesson, rubricScore, debugCollector);
-      }
-      
-      console.log(`  🔍 [DEBUG] Phase10 completed, writing output...`);
-      
-      // Write output lesson
-      await recorder.writeJson('10_output_lesson.json', result?.refined || lesson);
-      
-      // Write diff if we have a refined lesson
-      if (result?.refined) {
-        console.log(`  🔍 [DEBUG] Writing diff...`);
-        await recorder.writeDiff(lesson, result.refined);
-        
-        // NEW: Generate issue lifecycle, stability check, and blockers
-        try {
-          // Get score after (should already be recorded)
-          const scoreAfter = await this.scorer.scoreLesson(result.refined);
-          
-          // 1. Optional: Score stability check (if enabled in config)
-          const { getDebugArtifactsConfig } = await import('./config');
-          const debugConfig = getDebugArtifactsConfig();
-          
-          if (debugConfig.scoreStability?.enabled) {
-            console.log(`  🔬 Running stability check...`);
-            const { runStabilityCheck } = await import('./scoreStabilityChecker');
-            const stabilityResult = await runStabilityCheck(result.refined, this.scorer, debugConfig.scoreStability.runs || 3);
-            await recorder.writeJson('20_score_stability.json', stabilityResult);
-          }
-          
-          // 2. Generate issue lifecycle
-          console.log(`  📋 Generating issue lifecycle...`);
-          const { generateIssueLifecycle } = await import('./issueLifecycleGenerator');
-          const { generatePointerDiff } = await import('./pointerDiffGenerator');
-          
-          const pointerDiff = generatePointerDiff(lesson, result.refined);
-          
-          // Try to get fixPlan from recorder's internal data (if planner ran)
-          let fixPlan: any = undefined;
-          try {
-            const planPath = path.join(recorder['runDir'] || '', '04_plan.json');
-            if (fs.existsSync(planPath)) {
-              const planContent = fs.readFileSync(planPath, 'utf-8');
-              fixPlan = JSON.parse(planContent);
-            }
-          } catch (e) {
-            // Plan not available - continue without it
-          }
-          
-          const lifecycle = generateIssueLifecycle({
-            runId: recorder['runId'] || '',
-            lessonId: lesson.id,
-            lesson: lesson,
-            scoreBeforeDetails: rubricScore.details,
-            plan: fixPlan,
-            pointerDiff: pointerDiff,
-            scoreAfterDetails: scoreAfter.details
-          });
-          recorder.recordIssueLifecycle(lifecycle);
-          
-          // 3. Analyze blockers
-          console.log(`  🚧 Analyzing blockers...`);
-          const { analyzeBlockers } = await import('./blockersAnalyzer');
-          const blockers = analyzeBlockers(fixPlan, scoreAfter);
-          recorder.recordBlockers(blockers);
-          
-        } catch (error) {
-          console.error(`  ⚠️  Failed to generate lifecycle/blockers:`, error);
-          // Continue - don't fail the whole run
-        }
-      }
-      
-      // Finalize recording (writes INDEX.json)
-      console.log(`  🔍 [DEBUG] Finalizing recorder...`);
-      await recorder.finalize();
-      console.log(`  🔍 [DEBUG] Recorder finalized successfully`);
-      
-      return result;
-      
-    } catch (error) {
-      console.error(`❌ [Phase10] Error during refinement:`, error);
-      console.error(`  🔍 [DEBUG] Error stack:`, error instanceof Error ? error.stack : 'No stack');
-      recorder.recordStatus('failed', {
-        step: 'unknown',
-        message: error instanceof Error ? error.message : 'Unknown error'
-      });
-      await recorder.finalize();
-      throw error;
-    }
-  }
-
-  /**
-   * Phase 10 v2: Holistic Rewrite (DEFAULT PRODUCTION STRATEGY)
-   * 
-   * Replaces v1 patch-based refinement with holistic rewrite approach.
-   * LLM outputs full improved lesson JSON with hard structural invariants.
-   * 
-   * If validation fails or score decreases: returns null → ships original lesson.
-   * NO fallback to v1 patches.
-   */
-  private async runPhase10Rewrite(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
-    console.log('  🔧 Phase 10 v2: Holistic Rewrite...');
-    debugLog('PHASE10V2_START', { lessonId: lesson.id, initialScore: rubricScore.total });
-    
-    const rewriter = new Phase10_Rewrite();
-    const result = await rewriter.rewriteLesson(
-      lesson,
-      rubricScore,
-      this.generateWithRetry,
-      this.scorer
-    );
-    
-    // Record in debug bundle
-    debugCollector.recordPhase10v2Attempt(
-      rewriter.lastPrompts,
-      rewriter.lastRawResponse,
-      result.candidateLesson,
-      result.validationFailures,
-      result.scoreComparison,
-      result.candidateLesson !== null
-    );
-    
-    if (!result.candidateLesson) {
-      console.log(`    ⊘ Candidate rejected: ${result.validationFailures.join(', ')}`);
-      debugLog('PHASE10V2_REJECTED', { reasons: result.validationFailures });
-      await saveDebugBundle(debugCollector.getBundle());
-      return null;
-    }
-    
-    const improvement = result.scoreComparison!.delta;
-    console.log(`    ✓ Candidate accepted (score: ${result.scoreComparison!.original} → ${result.scoreComparison!.candidate}, Δ${improvement >= 0 ? '+' : ''}${improvement})`);
-    debugLog('PHASE10V2_ACCEPTED', { scoreDelta: improvement });
-    
-    // Save debug bundle
-    await saveDebugBundle(debugCollector.getBundle());
-    
-    return {
-      originalLesson: lesson,
-      refined: result.candidateLesson,
-      patchesApplied: [], // v2 doesn't use patches
-      originalScore: rubricScore.total,
-      refinedScore: result.scoreComparison!.candidate,
-      improvementSuccess: true
-    };
-  }
-
-  /**
-   * Phase 10 v2: Holistic Rewrite WITH Phase10RunRecorder
-   * Same as runPhase10Rewrite but passes recorder for artifact collection
-   */
-  private async runPhase10RewriteWithRecorder(
-    lesson: Lesson,
-    rubricScore: RubricScore,
-    debugCollector: DebugBundleCollector,
-    recorder: Phase10RunRecorder
-  ): Promise<RefinementOutput | null> {
-    console.log('  🔧 Phase 10 v2: Holistic Rewrite (with artifacts)...');
-    debugLog('PHASE10V2_START', { lessonId: lesson.id, initialScore: rubricScore.total });
-    
-    // NEW: Generate fix plan
-    const { Phase10_Planner } = await import('./phases/Phase10_Planner');
-    const planner = new Phase10_Planner();
-    let fixPlan;
-    
-    try {
-      console.log('  📋 Running planner stage...');
-      fixPlan = await planner.generatePlan(
+      // Phase 10: Score with new pedagogical rubric
+      const scorer = new Phase10_Score();
+      const phase10Score = await scorer.scoreLesson(
         lesson,
-        rubricScore,
         this.generateWithRetry
       );
       
-      // Write plan artifacts
-      await recorder.writeJson('04_plan.json', fixPlan);
-      await recorder.writePrompt(
-        '04_prompt_plan.json',
-        'plan',
-        phase10Model,  // Use Phase 10 model in recording
-        planner.lastPrompts.system,
-        planner.lastPrompts.user,
-        {
-          maxTokens: 8000,
-          inputRefs: ['00_input_lesson.json', '01_score_before.json'],
-          notes: 'Fix plan generation with fixability classification',
-        }
+      console.log(`  📊 Phase 10 Score: ${phase10Score.total}/100 (${phase10Score.grade})`);
+      
+      // Phase 11: Generate improvement suggestions
+      const suggester = new Phase11_Suggest();
+      const suggestions = await suggester.generateSuggestions(
+        lesson,
+        phase10Score,
+        scorer.lastSyllabusContext,
+        this.generateWithRetry
       );
       
-      // Record plan metadata
-      recorder.recordFixPlan(fixPlan);
-      
-      console.log(`  ✅ Planner generated ${fixPlan.plan.length} plan items`);
-    } catch (error) {
-      console.error(`  ❌ Planner failed:`, error);
-      // Continue without plan - rewriter can still use scoring report
-      fixPlan = undefined;
-    }
-    
-    // Run rewriter with optional plan
-    const rewriter = new Phase10_Rewrite();
-    const result = await rewriter.rewriteLesson(
-      lesson,
-      rubricScore,
-      this.generateWithRetry,
-      this.scorer,
-      recorder,  // Pass recorder to enable artifact recording
-      fixPlan    // NEW: Pass fix plan to rewriter
-    );
-    
-    // Record in debug bundle
-    debugCollector.recordPhase10v2Attempt(
-      rewriter.lastPrompts,
-      rewriter.lastRawResponse,
-      result.candidateLesson,
-      result.validationFailures,
-      result.scoreComparison,
-      result.candidateLesson !== null
-    );
-    
-    if (!result.candidateLesson) {
-      console.log(`    ⊘ Candidate rejected: ${result.validationFailures.join(', ')}`);
-      debugLog('PHASE10V2_REJECTED', { reasons: result.validationFailures });
-      await saveDebugBundle(debugCollector.getBundle());
-      return null;
-    }
-    
-    const improvement = result.scoreComparison!.delta;
-    console.log(`    ✓ Candidate accepted (score: ${result.scoreComparison!.original} → ${result.scoreComparison!.candidate}, Δ${improvement >= 0 ? '+' : ''}${improvement})`);
-    debugLog('PHASE10V2_ACCEPTED', { scoreDelta: improvement });
-    
-    // Save debug bundle
-    await saveDebugBundle(debugCollector.getBundle());
-    
-    return {
-      originalLesson: lesson,
-      refined: result.candidateLesson,
-      patchesApplied: [], // v2 doesn't use patches
-      originalScore: rubricScore.total,
-      refinedScore: result.scoreComparison!.candidate,
-      improvementSuccess: true
-    };
-  }
-
-  /**
-   * Phase 10 v1: Patch-based Refinement (DEPRECATED - OFFLINE)
-   * 
-   * WARNING: This method is DEPRECATED and should NOT run in production.
-   * v1 patch-based refinement has been replaced by v2 holistic rewrite.
-   * 
-   * This code is kept ONLY for emergency rollback.
-   * To enable: Set rewriteEnabled: false in config.ts
-   */
-  private async runPhase10Patch(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
-    console.warn('⚠️  WARNING: Running Phase 10 v1 (DEPRECATED patch-based refinement)');
-    console.warn('⚠️  v1 is OFFLINE by default. This should only run for emergency rollback.');
-    console.warn('⚠️  To use v2 (recommended): Set rewriteEnabled: true in config.ts');
-    console.log('  🔧 Phase 10 v1: Patch-based refinement (LEGACY)...');
-    debugLog('PHASE10_START', { lessonId: lesson.id, initialScore: rubricScore.total });
-
-    // Prepare refinement input (extract top issues)
-    const { issues, lesson: lessonForPrompt } = this.phase10.prepareRefinementInput(lesson, rubricScore, getRefinementConfig().maxFixes);
-    
-    // Note: recordBaseline() is now called before Phase 10 check in generate()
-    
-    if (issues.length === 0) {
-      console.log('    ✓ No fixable issues found');
-      return null;
-    }
-    
-    console.log(`    📝 Targeting ${issues.length} issues for fix`);
-    
-    // Log what issues we're targeting
-    this.phase10.logIssues(issues);
-    
-    // Get prompts from Phase10
-    const prompts = this.phase10.getPrompts({ lesson: lessonForPrompt, issues });
-    
-    // Record prompts in debug bundle
-    debugCollector.recordPhase10Prompts(prompts.systemPrompt, prompts.userPrompt);
-
-    // Call LLM for patches
-    const response = await this.generateWithRetry(
-      prompts.systemPrompt,
-      prompts.userPrompt,
-      'phase',
-      2,
-      false,
-      8000
-    );
-    
-    // Record LLM response
-    debugCollector.recordPhase10Response(response, undefined);
-
-    const parsed = this.parseResponse<{ patches: Array<{ path: string; newValue: any; reason: string }> }>(
-      response, 
-      'Phase10_Refinement'
-    );
-    
-    // Record parsed response
-    debugCollector.recordPhase10Response(response, parsed.data);
-    
-    if (!parsed.success || !parsed.data || !parsed.data.patches || parsed.data.patches.length === 0) {
-      debugLog('PHASE10_FAILED', { error: parsed.error });
-      console.log('    ⚠️  No patches generated');
-      debugCollector.recordAcceptance(false, 'No patches generated');
-      await saveDebugBundle(debugCollector.getBundle());
-      return null;
-    }
-
-    // Convert LLM patches to RefinementPatches
-    let refinementPatches = this.phase10.convertLLMPatches(parsed.data, issues, lesson);
-    
-    // Detect and handle path collisions
-    const pathCounts = new Map<string, number>();
-    refinementPatches.forEach(p => {
-      pathCounts.set(p.path, (pathCounts.get(p.path) || 0) + 1);
-    });
-    
-    const collisions = Array.from(pathCounts.entries()).filter(([_, count]) => count > 1);
-    if (collisions.length > 0) {
-      console.log(`\n⚠️  [Validation] Found ${collisions.length} path collision(s):`);
-      collisions.forEach(([path, count]) => {
-        console.log(`   ${path}: ${count} patches targeting same path`);
-        const conflictingPatches = refinementPatches.filter(p => p.path === path);
-        const hasReplace = conflictingPatches.some(p => p.op === 'replace');
-        const hasOthers = conflictingPatches.some(p => p.op !== 'replace');
-        
-        if (hasReplace && hasOthers) {
-          console.log(`   ⚠️  UNSAFE: mix of replace + other operations`);
-          console.log(`   Action: Keeping only first patch for this path (safest option)`);
-          
-          // Keep only first patch for this path
-          const firstPatch = conflictingPatches[0];
-          const firstPatchIndex = refinementPatches.indexOf(firstPatch);
-          console.log(`   Keeping: Patch ${firstPatchIndex + 1} [${firstPatch.op}]`);
-          
-          // Remove all other patches for this path
-          refinementPatches = refinementPatches.filter(p => 
-            p.path !== path || p === firstPatch
-          );
-        } else {
-          console.log(`   Note: All patches use compatible operations - will apply sequentially`);
-        }
-      });
-    }
-    
-    // Validate patches before applying
-    console.log(`\n🔍 [Validation] Validating ${refinementPatches.length} patches...`);
-    const validatedPatches = refinementPatches.map((patch, idx) => {
-      const validation = validatePatch(lesson, patch);
-      const rejected = shouldRejectPatch(validation);
-      
-      if (rejected) {
-        console.log(`   ✗ Patch ${idx + 1} REJECTED: ${validation.reasons.join('; ')}`);
-      } else {
-        console.log(`   ✓ Patch ${idx + 1} validated: ${patch.path}`);
+      if (suggestions.fixablePlans.length === 0) {
+        console.log('  ⚠️  No fixable improvements identified');
+        return null;
       }
       
+      console.log(`  🔧 Phase 11: Generated ${suggestions.fixablePlans.length} fix plans`);
+      
+      // Phase 12: Implement improvements
+      const implementer = new Phase12_Implement();
+      const implementation = await implementer.implementImprovements(
+        lesson,
+        suggestions
+      );
+      
+      if (!implementation.success) {
+        console.log(`  ❌ Phase 12 failed: ${implementation.error}`);
+        return null;
+      }
+      
+      console.log(`  ✅ Phase 12: Applied ${implementation.patchesApplied} patches`);
+      
+      // Phase 13: Rescore and compare
+      const rescorer = new Phase13_Rescore();
+      const result = await rescorer.rescoreAndCompare(
+        lesson,
+        implementation.candidateLesson!,
+        phase10Score,
+        scorer.lastSyllabusContext,
+        this.generateWithRetry,
+        96  // threshold
+      );
+      
+      if (!result.accepted) {
+        console.log(`  ❌ Phase 13: Candidate rejected - ${result.reason}`);
+        return null;
+      }
+      
+      console.log(`  ✅ Phase 13: Accepted (${result.originalScore} → ${result.candidateScore}, +${result.improvement})`);
+      
+      // Convert to RefinementOutput format for compatibility
       return {
-        ...patch,
-        validation,
-        applyStatus: rejected ? ('rejected' as const) : ('applied' as const),
+        originalLesson: lesson,
+        refined: result.finalLesson,
+        patchesApplied: [],  // New pipeline doesn't track patches this way
+        originalScore: result.originalScore,
+        refinedScore: result.candidateScore,
+        improvementSuccess: true
       };
-    });
-    
-    // Filter out rejected patches
-    const acceptedPatches = validatedPatches.filter(p => p.applyStatus === 'applied');
-    console.log(`\n🔍 [Validation] ${acceptedPatches.length}/${refinementPatches.length} patches accepted`);
-    
-    if (acceptedPatches.length === 0) {
-      console.log('    ⚠️  All patches rejected by validation');
-      debugCollector.recordAcceptance(false, 'All patches rejected by validation');
-      await saveDebugBundle(debugCollector.getBundle());
+      
+    } catch (error) {
+      console.error(`❌ Phase 10-13 pipeline error:`, error);
       return null;
     }
-    
-    // Apply accepted patches
-    const refinedLesson = this.phase10.applyPatches(lesson, acceptedPatches);
-    
-    // Validate refined lesson structure
-    if (!this.phase10.validatePatches(lesson, refinedLesson)) {
-      console.log('    ❌ Validation failed, keeping original');
-      debugCollector.recordAcceptance(false, 'Post-apply validation failed');
-      await saveDebugBundle(debugCollector.getBundle());
-      return null;
-    }
-
-    // Run patch isolation scoring (sequential + independent)
-    console.log(`\n🔬 [Isolation] Starting patch isolation scoring...`);
-    const patchesWithIsolation = await isolatePatches(lesson, acceptedPatches, this.scorer);
-    
-    // Record patches in debug bundle
-    debugCollector.recordPatches(patchesWithIsolation);
-    
-    // Re-score refined lesson
-    console.log(`\n📊 [Re-scoring] Scoring refined lesson...`);
-    const refinedScore = await this.scorer.scoreLesson(refinedLesson);
-    
-    // Record refined lesson and score
-    debugCollector.recordRefined(refinedLesson, refinedScore);
-    
-    // Determine if refinement was successful
-    const scoreImproved = refinedScore.total > rubricScore.total;
-    debugCollector.recordAcceptance(scoreImproved, scoreImproved ? undefined : 'Score did not improve');
-    
-    // Run postmortem analysis
-    console.log(`\n🔍 [Postmortem] Running postmortem analysis...`);
-    const postmortem = await analyzeRefinementRun(debugCollector.getBundle(), this.generateWithRetry);
-    debugCollector.recordPostmortem(postmortem);
-    
-    // Save debug bundle to disk
-    await saveDebugBundle(debugCollector.getBundle());
-    
-    debugLog('PHASE10_COMPLETE', { patchCount: acceptedPatches.length });
-    console.log(`    ✓ Applied ${acceptedPatches.length} patches`);
-    
-    // Log detailed patch information
-    this.phase10.logPatches(acceptedPatches);
-    
-    return {
-      originalLesson: lesson,
-      refined: refinedLesson,
-      patchesApplied: acceptedPatches,
-      originalScore: rubricScore.total,
-      refinedScore: refinedScore.total,
-      improvementSuccess: scoreImproved
-    };
   }
 
   /**

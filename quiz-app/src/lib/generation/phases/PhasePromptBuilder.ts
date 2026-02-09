@@ -27,7 +27,7 @@ export abstract class PhasePromptBuilder {
   /**
    * Build the system prompt for this phase
    */
-  protected abstract buildSystemPrompt(): string;
+  protected abstract buildSystemPrompt(input: any): string;
 
   /**
    * Build the user prompt for this phase
@@ -39,7 +39,7 @@ export abstract class PhasePromptBuilder {
    */
   public getPrompts(input: any): { systemPrompt: string; userPrompt: string } {
     return {
-      systemPrompt: this.buildSystemPrompt(),
+      systemPrompt: this.buildSystemPrompt(input),
       userPrompt: this.buildUserPrompt(input),
     };
   }
