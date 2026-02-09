@@ -37,7 +37,7 @@ export class Phase13_Rescore {
     originalScore: Phase10Score,
     syllabusContext: SyllabusContext | null,
     generateFn: Function,
-    threshold: number = 96
+    threshold: number = 95  // Unused now, kept for compatibility
   ): Promise<Phase13Result> {
     const stopTimer = debugLogger.startTimer('Phase 13: Rescore & Compare');
     
@@ -110,21 +110,16 @@ export class Phase13_Rescore {
       }
     ]);
     
-    // Decision logic
-    const meetsThreshold = candidateScore.total >= threshold;
-    const improves = candidateScore.total >= originalScore.total;
+    // Decision logic: Keep best score (no threshold gate)
+    const improves = candidateScore.total > originalScore.total;
     
-    const accepted = meetsThreshold && improves;
+    const accepted = improves;
     
     let reason: string;
     if (accepted) {
-      reason = `Candidate meets threshold (${candidateScore.total} >= ${threshold}) and improves on original (${candidateScore.total} >= ${originalScore.total})`;
-    } else if (!meetsThreshold && !improves) {
-      reason = `Candidate fails threshold (${candidateScore.total} < ${threshold}) and does not improve (${candidateScore.total} < ${originalScore.total})`;
-    } else if (!meetsThreshold) {
-      reason = `Candidate improves but fails threshold (${candidateScore.total} < ${threshold})`;
+      reason = `Candidate improves on original (${candidateScore.total} > ${originalScore.total})`;
     } else {
-      reason = `Candidate meets threshold but does not improve (${candidateScore.total} < ${originalScore.total})`;
+      reason = `Candidate does not improve (${candidateScore.total} <= ${originalScore.total})`;
     }
     
     console.log(`📊 [Phase13_Rescore] Decision: ${accepted ? '✅ ACCEPT' : '❌ REJECT'}`);
@@ -133,11 +128,10 @@ export class Phase13_Rescore {
     // Verbose: Log decision details
     if (debugLogger.isEnabled()) {
       console.log(`\n🎯 Decision Logic:`);
-      console.log(`  - Meets threshold (${threshold}): ${meetsThreshold ? '✅ YES' : '❌ NO'} (${candidateScore.total} ${meetsThreshold ? '>=' : '<'} ${threshold})`);
-      console.log(`  - Improves on original: ${improves ? '✅ YES' : '❌ NO'} (${candidateScore.total} ${improves ? '>=' : '<'} ${originalScore.total})`);
-      console.log(`  - Final Decision: ${accepted ? '✅ ACCEPT' : '❌ REJECT'}`);
+      console.log(`  - Improves on original: ${improves ? '✅ YES' : '❌ NO'} (${candidateScore.total} ${improves ? '>' : '<='} ${originalScore.total})`);
+      console.log(`  - Final Decision: ${accepted ? '✅ ACCEPT' : '⚠️  KEEP ORIGINAL'}`);
       console.log(`  - Reason: ${reason}`);
-      console.log(`  - Final Lesson: ${accepted ? 'CANDIDATE' : 'ORIGINAL'}`);
+      console.log(`  - Final Lesson: ${accepted ? 'CANDIDATE' : 'ORIGINAL'} (best score)`);
     }
     
     if (accepted) {

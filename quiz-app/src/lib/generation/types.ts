@@ -106,6 +106,7 @@ export interface Lesson {
   learningOutcomes: string[];
   prerequisites: string[];
   blocks: LessonBlock[];
+  targetAssessmentCriteria?: string[]; // Optional: specific ACs this lesson is scoped to cover (e.g., ["AC 5.1", "AC 5.2"])
   metadata: {
     created: string;
     updated: string;

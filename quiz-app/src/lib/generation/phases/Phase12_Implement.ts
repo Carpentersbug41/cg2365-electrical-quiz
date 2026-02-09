@@ -276,24 +276,29 @@ export class Phase12_Implement {
     // Get the final property name
     const finalKey = this.parsePathPart(parts[parts.length - 1]);
     
-    // Apply the operation
+    // Apply the operation (mutates obj in place)
     switch (patch.op) {
       case 'replaceSubstring':
-        return this.applyReplaceSubstring(current, finalKey, patch);
+        this.applyReplaceSubstring(current, finalKey, patch);
+        break;
       
       case 'append':
-        return this.applyAppend(current, finalKey, patch);
+        this.applyAppend(current, finalKey, patch);
+        break;
       
       case 'prepend':
-        return this.applyPrepend(current, finalKey, patch);
+        this.applyPrepend(current, finalKey, patch);
+        break;
       
       case 'replace':
-        return this.applyReplace(current, finalKey, patch);
+        this.applyReplace(current, finalKey, patch);
+        break;
       
       default:
         throw new Error(`Unknown patch operation: ${(patch as any).op}`);
     }
     
+    // Return the full lesson object, not the parent fragment
     return lesson;
   }
   

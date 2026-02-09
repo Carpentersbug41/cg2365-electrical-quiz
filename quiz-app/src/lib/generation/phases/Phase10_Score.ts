@@ -233,16 +233,25 @@ export class Phase10_Score extends PhasePromptBuilder {
    * Build system prompt for pedagogical scoring
    */
   protected buildSystemPrompt(input: any): string {
-    const { syllabusContext } = input;
+    const { lesson, syllabusContext } = input;
+    
+    // Determine which ACs to check
+    const targetACs = lesson.targetAssessmentCriteria 
+      || (syllabusContext ? syllabusContext.assessmentCriteria : []);
+    
+    const acScopeNote = lesson.targetAssessmentCriteria 
+      ? `\nNOTE: This lesson is scoped to cover only the following Assessment Criteria:\n${lesson.targetAssessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}\n\nDo NOT penalize the lesson for not covering other ACs from this Learning Outcome.`
+      : '';
     
     const syllabusSection = syllabusContext ? `
 SYLLABUS CONTEXT (retrieved from C&G 2365 specification):
 Unit: ${syllabusContext.unit} - ${syllabusContext.unitTitle}
 Learning Outcome: ${syllabusContext.learningOutcome} - ${syllabusContext.loTitle}
-Assessment Criteria:
+Assessment Criteria (full LO):
 ${syllabusContext.assessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}
+${acScopeNote}
 
-This lesson MUST align with the above LO and ACs from the official syllabus.
+This lesson must align with the TARGET Assessment Criteria listed ${lesson.targetAssessmentCriteria ? 'above' : '(all ACs from the LO)'}.
 ` : `
 SYLLABUS CONTEXT: Not available (lesson ID could not be mapped to syllabus).
 Score based on general pedagogical quality without specific LO alignment.
@@ -277,8 +286,10 @@ C) Marking Robustness (20 points):
    - answerType matches question complexity
 
 D) Alignment to LO/AC (15 points):
-   - Content directly addresses the specific LO and ACs listed above
-   - All ACs are covered in the lesson
+   - Content addresses the TARGET Assessment Criteria for this lesson
+   - If lesson.targetAssessmentCriteria is specified, check only those ACs
+   - If not specified, check all ACs from the syllabus context
+   - DO NOT penalize for missing ACs outside the lesson's target scope
    - Examples and scenarios match vocational context
    - Terminology matches syllabus wording
 

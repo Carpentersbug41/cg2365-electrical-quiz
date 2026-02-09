@@ -852,6 +852,37 @@ OUTPUT FORMAT: Pure JSON only`;
   }
 
   /**
+   * Build message array for LLM call, extracting additionalInstructions if present
+   */
+  private buildMessageArray(userPrompt: string): string | Array<{ role: string; parts: Array<{ text: string }> }> {
+    // Check if userPrompt contains the ADDITIONAL CONTEXT pattern
+    const additionalContextMatch = userPrompt.match(/^ADDITIONAL CONTEXT FROM USER:\n([\s\S]*?)\n\nASSISTANT ACKNOWLEDGMENT: ([\s\S]*?)\n\n([\s\S]*)$/);
+    
+    if (additionalContextMatch) {
+      const [, additionalContext, acknowledgment, mainPrompt] = additionalContextMatch;
+      
+      // Return message array format
+      return [
+        { 
+          role: 'user', 
+          parts: [{ text: `ADDITIONAL CONTEXT FROM USER:\n${additionalContext}` }] 
+        },
+        { 
+          role: 'model', 
+          parts: [{ text: acknowledgment }] 
+        },
+        { 
+          role: 'user', 
+          parts: [{ text: mainPrompt }] 
+        }
+      ];
+    }
+    
+    // No additional instructions, return string as-is
+    return userPrompt;
+  }
+
+  /**
    * Generate content with retry logic and truncation detection
    */
   private async generateWithRetry(
@@ -880,7 +911,9 @@ OUTPUT FORMAT: Pure JSON only`;
           },
         });
 
-        const result = await model.generateContent(userPrompt);
+        // Build message array (converts string to messages if additionalInstructions present)
+        const messages = this.buildMessageArray(userPrompt);
+        const result = await model.generateContent(messages);
         
         // Extract response data
         const candidate = result.response.candidates?.[0];

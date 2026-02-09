@@ -20,11 +20,9 @@ import { Phase6_Practice, PracticeOutput } from './phases/Phase6_Practice';
 import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integration';
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
 import { Phase9_Assembler } from './phases/Phase9_Assembler';
-import { Phase10_Score } from './phases/Phase10_Score';
-import { Phase11_Suggest } from './phases/Phase11_Suggest';
-import { Phase12_Implement } from './phases/Phase12_Implement';
+import { Phase10_Score, Phase10Score } from './phases/Phase10_Score';
+import { Phase12_Refine } from './phases/Phase12_Refine';
 import { Phase13_Rescore } from './phases/Phase13_Rescore';
-import { LLMScoringService, RubricScore } from './llmScoringService';
 import { getRefinementConfig } from './config';
 import { normalizeLessonSchema } from './lessonNormalizer';
 
@@ -78,7 +76,7 @@ export class SequentialLessonGenerator {
   private phase7: Phase7_Integration;
   private phase8: Phase8_SpacedReview;
   private phase9: Phase9_Assembler;
-  private scorer: LLMScoringService;
+  private phase10: Phase10_Score;
 
   // LLM caller function (injected from FileGenerator)
   private generateWithRetry: (
@@ -101,7 +99,7 @@ export class SequentialLessonGenerator {
     this.phase7 = new Phase7_Integration();
     this.phase8 = new Phase8_SpacedReview();
     this.phase9 = new Phase9_Assembler();
-    this.scorer = new LLMScoringService(generateWithRetryFn);
+    this.phase10 = new Phase10_Score();
     
     this.generateWithRetry = generateWithRetryFn;
   }
@@ -286,24 +284,21 @@ export class SequentialLessonGenerator {
         console.log(`📐 [Normalization] No mechanical fixes needed - lesson already clean`);
       }
 
-      // Score the normalized lesson
+      // Score the normalized lesson with Phase10 pedagogical scorer
       phaseStart = Date.now();
-      const initialScore = await this.scorer.scoreLesson(lesson);
+      const initialScore = await this.phase10.scoreLesson(lesson, this.generateWithRetry);
       console.log(`\n📊 [Scoring] Initial score: ${initialScore.total}/100 (${initialScore.grade})`);
       
       // Verbose logging: Detailed score breakdown
       console.log(`\n📊 [Scoring] Detailed Initial Score Breakdown:`);
-      initialScore.details.forEach(detail => {
-        console.log(`   ${detail.section}: ${detail.score}/${detail.maxScore}`);
-        if (detail.issues.length > 0) {
-          detail.issues.forEach((issue, idx) => {
-            console.log(`      Issue ${idx + 1}: ${issue}`);
-            if (detail.suggestions[idx]) {
-              console.log(`      Suggestion: ${detail.suggestions[idx]}`);
-            }
-          });
-        }
-      });
+      console.log(`   Beginner Clarity: ${initialScore.breakdown.beginnerClarity}/30`);
+      console.log(`   Teaching-Before-Testing: ${initialScore.breakdown.teachingBeforeTesting}/25`);
+      console.log(`   Marking Robustness: ${initialScore.breakdown.markingRobustness}/20`);
+      console.log(`   Alignment to LO: ${initialScore.breakdown.alignmentToLO}/15`);
+      console.log(`   Question Quality: ${initialScore.breakdown.questionQuality}/10`);
+      if (initialScore.issues && initialScore.issues.length > 0) {
+        console.log(`   Issues: ${initialScore.issues.length}`);
+      }
       console.log('');
 
       let finalLesson = lesson;
@@ -324,7 +319,7 @@ export class SequentialLessonGenerator {
         originalLesson = lesson;
         
         try {
-          refinementResult = await this.runPhase10(lesson, initialScore, debugCollector);
+          refinementResult = await this.runPhase10(lesson, initialScore, debugCollector, request);
           
           // Refinement result now includes refined score from isolation scoring
           if (refinementResult && refinementResult.improvementSuccess) {
@@ -582,7 +577,7 @@ export class SequentialLessonGenerator {
     const response = await this.generateWithRetry(
       prompts.systemPrompt,
       prompts.userPrompt,
-      'lesson',
+      'phase',
       2,
       false,
       8000 // Higher token limit for explanations
@@ -961,66 +956,52 @@ export class SequentialLessonGenerator {
    * 
    * Runs the new pipeline: Score → Suggest → Implement → Rescore
    */
-  private async runPhase10(lesson: Lesson, rubricScore: RubricScore, debugCollector: DebugBundleCollector): Promise<RefinementOutput | null> {
+  private async runPhase10(lesson: Lesson, phase10Score: Phase10Score, debugCollector: DebugBundleCollector, request: GenerationRequest): Promise<RefinementOutput | null> {
     console.log('  🔧 Phase 10-13: Pedagogical Improvement Pipeline...');
     
     try {
-      // Phase 10: Score with new pedagogical rubric
-      const scorer = new Phase10_Score();
-      const phase10Score = await scorer.scoreLesson(
-        lesson,
+      // Phase 10 score already computed - reuse it to avoid double scoring
+      console.log(`  📊 Phase 10 Score (reused): ${phase10Score.total}/100 (${phase10Score.grade})`);
+      
+      // Phase 12: Refine lesson (full-lesson output, replaces Phase11+Phase12 patching)
+      const refiner = new Phase12_Refine();
+      const refinement = await refiner.refineLesson(
+        {
+          originalLesson: lesson,
+          phase10Score,
+          syllabusContext: this.phase10.lastSyllabusContext,
+          additionalInstructions: request.additionalInstructions
+        },
         this.generateWithRetry
       );
       
-      console.log(`  📊 Phase 10 Score: ${phase10Score.total}/100 (${phase10Score.grade})`);
-      
-      // Phase 11: Generate improvement suggestions
-      const suggester = new Phase11_Suggest();
-      const suggestions = await suggester.generateSuggestions(
-        lesson,
-        phase10Score,
-        scorer.lastSyllabusContext,
-        this.generateWithRetry
-      );
-      
-      if (suggestions.fixablePlans.length === 0) {
-        console.log('  ⚠️  No fixable improvements identified');
+      if (!refinement.success) {
+        console.log(`  ❌ Phase 12 failed: ${refinement.error}`);
+        if (refinement.validationErrors && refinement.validationErrors.length > 0) {
+          refinement.validationErrors.forEach(err => console.log(`     - ${err}`));
+        }
         return null;
       }
       
-      console.log(`  🔧 Phase 11: Generated ${suggestions.fixablePlans.length} fix plans`);
-      
-      // Phase 12: Implement improvements
-      const implementer = new Phase12_Implement();
-      const implementation = await implementer.implementImprovements(
-        lesson,
-        suggestions
-      );
-      
-      if (!implementation.success) {
-        console.log(`  ❌ Phase 12 failed: ${implementation.error}`);
-        return null;
-      }
-      
-      console.log(`  ✅ Phase 12: Applied ${implementation.patchesApplied} patches`);
+      console.log(`  ✅ Phase 12: Refinement complete`);
       
       // Phase 13: Rescore and compare
       const rescorer = new Phase13_Rescore();
       const result = await rescorer.rescoreAndCompare(
         lesson,
-        implementation.candidateLesson!,
+        refinement.refinedLesson,
         phase10Score,
-        scorer.lastSyllabusContext,
+        this.phase10.lastSyllabusContext,
         this.generateWithRetry,
         96  // threshold
       );
       
       if (!result.accepted) {
-        console.log(`  ❌ Phase 13: Candidate rejected - ${result.reason}`);
-        return null;
+        console.log(`  ⚠️  Phase 13: Candidate did not improve - ${result.reason}`);
+        console.log(`  ↩️  Keeping original lesson (best score: ${result.originalScore})`);
+      } else {
+        console.log(`  ✅ Phase 13: Accepted (${result.originalScore} → ${result.candidateScore}, +${result.improvement})`);
       }
-      
-      console.log(`  ✅ Phase 13: Accepted (${result.originalScore} → ${result.candidateScore}, +${result.improvement})`);
       
       // Convert to RefinementOutput format for compatibility
       return {
