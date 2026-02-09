@@ -17,6 +17,7 @@ export interface Phase12Result {
   validationResult?: any;
   error?: string;
   patchesApplied?: number;
+  patchesSkipped?: number;
 }
 
 export class Phase12_Implement {
@@ -56,6 +57,8 @@ export class Phase12_Implement {
     debugLogger.logStep('\n📋 Creating deep clone of original lesson...');
     let candidateLesson: any = JSON.parse(JSON.stringify(originalLesson));
     let patchesApplied = 0;
+    let patchesSkipped = 0;
+    const skippedReasons: string[] = [];
     
     // Count total patches
     const totalPatches = suggestions.fixablePlans.reduce((sum, plan) => sum + plan.patches.length, 0);
@@ -79,6 +82,18 @@ export class Phase12_Implement {
         // Verbose: Show patch details
         debugLogger.logPatch(patchNum, totalPatches, patch, plan.issueId);
         
+        // Revalidate path against CURRENT lesson state before applying patch
+        const isValid = this.isPathValid(candidateLesson, patch.path);
+        
+        if (!isValid) {
+          patchesSkipped++;
+          const reason = `Path ${patch.path} no longer valid after previous mutations`;
+          skippedReasons.push(`${plan.issueId}: ${reason}`);
+          console.warn(`  ⚠️ Skipping patch ${patchNum}/${totalPatches}: ${reason}`);
+          debugLogger.logWarning(`${plan.issueId}: ${reason}`);
+          continue;
+        }
+        
         try {
           // Get value before patch (for verbose logging)
           const beforeValue = debugLogger.isEnabled() ? this.getValueAtPath(candidateLesson, patch.path) : null;
@@ -101,19 +116,23 @@ export class Phase12_Implement {
           }
           
         } catch (error: any) {
-          console.error(`    ❌ Failed to apply patch: ${error.message}`);
-          debugLogger.logError(`Failed to apply patch: ${error.message}`);
-          stopTimer();
-          return {
-            success: false,
-            error: `Failed to apply patch to ${patch.path}: ${error.message}`,
-          };
+          patchesSkipped++;
+          const reason = `Failed to apply: ${error.message}`;
+          skippedReasons.push(`${plan.issueId}: ${reason}`);
+          console.error(`  ❌ Patch ${patchNum}/${totalPatches} failed: ${error.message}`);
+          debugLogger.logError(`${plan.issueId}: ${reason}`);
+          // Continue with next patch instead of failing completely
         }
       }
     }
     
     console.log(`✅ [Phase12_Implement] Applied ${patchesApplied} patches`);
-    debugLogger.logSuccess(`Applied ${patchesApplied} patches successfully`);
+    if (patchesSkipped > 0) {
+      console.log(`⚠️ [Phase12_Implement] Skipped ${patchesSkipped} patches`);
+      console.log(`\n⚠️ Skipped Patches:`);
+      skippedReasons.forEach(reason => console.log(`   - ${reason}`));
+    }
+    debugLogger.logSuccess(`Applied ${patchesApplied} patches successfully${patchesSkipped > 0 ? `, skipped ${patchesSkipped}` : ''}`);
     
     // Validate the candidate
     console.log(`🔍 [Phase12_Implement] Validating candidate...`);
@@ -142,6 +161,22 @@ export class Phase12_Implement {
       }
     }
     
+    // Success criteria: Phase 12 succeeds if at least one patch was applied OR all patches were attempted
+    // and the candidate lesson passes validation
+    if (patchesApplied === 0 && patchesSkipped === totalPatches) {
+      console.error(`❌ [Phase12_Implement] No patches could be applied (all ${totalPatches} skipped)`);
+      debugLogger.logError('No patches could be applied');
+      stopTimer();
+      
+      return {
+        success: false,
+        validationResult,
+        error: 'No patches could be applied',
+        patchesApplied: 0,
+        patchesSkipped,
+      };
+    }
+    
     if (!validationResult.passed) {
       console.error(`❌ [Phase12_Implement] Validation failed:`);
       validationResult.errors.forEach((err: string) => {
@@ -155,6 +190,7 @@ export class Phase12_Implement {
         validationResult,
         error: 'Candidate failed validation',
         patchesApplied,
+        patchesSkipped,
       };
     }
     
@@ -167,6 +203,7 @@ export class Phase12_Implement {
       candidateLesson: candidateLesson as Lesson,
       validationResult,
       patchesApplied,
+      patchesSkipped,
     };
   }
   
@@ -186,6 +223,28 @@ export class Phase12_Implement {
     }
     
     return current;
+  }
+
+  /**
+   * Check if a JSON Pointer path is valid in the current lesson state
+   */
+  private isPathValid(lesson: any, path: string): boolean {
+    const parts = path.split('/').filter(p => p !== '');
+    
+    if (parts.length === 0) {
+      return false;
+    }
+    
+    let current = lesson;
+    for (const part of parts) {
+      const key = this.parsePathPart(part);
+      if (current[key] === undefined) {
+        return false;
+      }
+      current = current[key];
+    }
+    
+    return true;
   }
   
   /**

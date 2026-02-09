@@ -161,7 +161,18 @@ export const lessonIndex: LessonIndexEntry[] = [
   },
   
       
-  // Unit 203: Electrical Installations Technology
+  
+  {
+    id: '202-202-5A',
+    title: ' Magnetism basics ',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: ' Magnetism basics ',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-202-5A'),
+    available: true,
+    order: 9.3,
+  },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {
