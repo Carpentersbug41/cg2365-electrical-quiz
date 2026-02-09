@@ -1,0 +1,158 @@
+{
+  "total": 97,
+  "breakdown": {
+    "schemaCompliance": 15,
+    "pedagogy": 44,
+    "questions": 24,
+    "marking": 9,
+    "visual": 5,
+    "safety": 0
+  },
+  "details": [
+    {
+      "section": "beginnerClarityStaging: The worked example is placed at the very beginning of the ex...",
+      "score": 0,
+      "maxScore": 3,
+      "issues": [
+        "The worked example is placed at the very beginning of the explanation block, before the concepts of flux and density are defined."
+      ],
+      "suggestions": [
+        "Change blocks[5].content.content from '[current value]' to '### In this lesson\nYou will learn to distinguish between the total magnetic field produced and how concentrated that field is in a given space. This is essential for understanding how magnetic components like transformer cores are selected for specific electrical loads.\n\n*   Flux represents the total quantity of magnetic field lines.\n*   Flux density represents the concentration of those lines per unit area.\n*   Different units (Webers and Teslas) are used to measure these distinct properties.\n\n**What this is**\n**Magnetic Flux (Φ)** refers to the total number of magnetic field lines passing through a specific surface. Think of it as the \"total volume\" of magnetism. The SI unit for this is the **Weber (Wb)**. On the other hand, **Magnetic Flux Density (B)** describes how tightly packed those field lines are within a specific area. The relationship is expressed as $B = \\Phi / A$. The SI unit for flux density is the **Tesla (T)**, which is defined as one **Weber (Wb)** per square metre.\n\n**Worked Example:**\nA magnet produces 0.5 Wb of flux over an area of 0.25 m². To find the density (B):\n1. Identify values: Φ = 0.5, A = 0.25\n2. Apply formula: B = Φ / A\n3. Result: **2 Tesla (T)**\n\n**Why it matters**\nIn electrical engineering, we need to know more than just the total amount of magnetism; we need to know if that magnetism is \"strong\" enough to do work. For example, in a transformer, if the **Magnetic Flux Density** becomes too high, the iron core can become **saturated** and stop working efficiently. Choosing the right material and cross-sectional area ensures that the flux is handled correctly without overheating the component.\n\n**Key facts / rules**\n*   **Magnetic Flux (Φ)** is the total amount of magnetic field, measured in **Webers (Wb)**.\n*   **Magnetic Flux Density (B)** is the concentration of the field, measured in **Tesla (T)**.\n*   One **Tesla (T)** is equal to one Weber per square metre (Wb/m²).\n*   If the area decreases but the total flux stays the same, the flux density increases.\n*   If the total flux increases but the area stays the same, the flux density increases.\n*   Flux density is a vector quantity, meaning it has both magnitude and direction.\n\n**How to recognise it**\nTo classify scenarios correctly, look for whether the description focuses on a \"total\" or a \"concentration.\" For example, if a manufacturer states the total output of a magnet, they are describing **Magnetic Flux**. If they describe the strength of the field at the surface of a specific 10mm² sensor, they are describing **Magnetic Flux Density**. A helpful conceptual analogy is rain: the total amount of water falling on a whole garden is the flux, while the amount of water hitting a single square inch of a patio is the flux density. On the diagram, notice that the **magnetic-flux-density** is represented by how closely the lines are drawn together in a specific area.\n\n**Common mistakes**\nLearners often confuse **Magnetic Flux** with **Magnetic Flux Density**; **Magnetic Flux** is the total amount of field lines (measured in Webers) whereas **Magnetic Flux Density** is how concentrated those lines are in a specific area (measured in Tesla). Many people forget that density is dependent on the area the flux is passing through. Learners also forget the concept of **magnetic saturation**, where a material reaches a point where it cannot hold any more flux density, regardless of how much total flux is applied.\n\n**Key Points**\n*   Flux (Wb) = Total amount of magnetic field.\n*   Flux Density (T) = Concentration of field per square metre.\n*   Smaller area with the same flux results in higher density.\n*   Tesla is the unit of measurement for field strength (density).\n\n**Quick recap**\n**Magnetic Flux** (Webers) tells us the total amount of magnetic field lines present. **Magnetic Flux Density** (Tesla) tells us how squashed together those lines are. If you squeeze the same amount of flux into a smaller pipe, the density goes up.\n\n### Coming Up Next\nWith these basics mastered, we will move on to see how electricity can be used to create these magnetic fields in a process called electromagnetism.'"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: Missing variants for units in calculation questions.",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Missing variants for units in calculation questions."
+      ],
+      "suggestions": [
+        "Append to blocks[7].content.questions[1].expectedAnswer: '4T'",
+        "Append to blocks[7].content.questions[1].expectedAnswer: '4 Tesla'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/1/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Ambiguous terminology. 'Magnetic Field Strength' is a separa...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Ambiguous terminology. 'Magnetic Field Strength' is a separate vector (H) measured in A/m."
+      ],
+      "suggestions": [
+        "Modify blocks[1].content.terms[4].definition"
+      ],
+      "jsonPointers": [
+        "/blocks/1/content/terms/4/definition"
+      ]
+    },
+    {
+      "section": "markingRobustness: The integrative expected answer uses a 'keyword soup' which ...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "The integrative expected answer uses a 'keyword soup' which is poor for qualitative assessment."
+      ],
+      "suggestions": [
+        "Change blocks[8].content.questions[0].expectedAnswer from '[current value]' to 'Like poles repel and unlike poles attract, creating a magnetic field where the total quantity of lines is defined as magnetic flux. Flux density then measures how concentrated those magnetic lines are within a specific cross-sectional area.,Unlike poles attract and like poles repel; these interactions generate magnetic flux (total lines), while the concentration of these lines in an area is called flux density.'"
+      ],
+      "jsonPointers": [
+        "/blocks/8/content/questions/1/expectedAnswer"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: Missing clarification on non-magnetic materials.",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Missing clarification on non-magnetic materials."
+      ],
+      "suggestions": [
+        "Modify blocks[3].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/3/content/content"
+      ]
+    },
+    {
+      "section": "markingRobustness: The expected answer is missing the most obvious simple answe...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "The expected answer is missing the most obvious simple answer: 'the poles'."
+      ],
+      "suggestions": [
+        "Append to blocks[4].content.questions[0].expectedAnswer: 'the poles'",
+        "Append to blocks[4].content.questions[0].expectedAnswer: 'magnetic poles'"
+      ],
+      "jsonPointers": [
+        "/blocks/4/content/questions/0/expectedAnswer"
+      ]
+    },
+    {
+      "section": "alignment: Calculation is too simple (8/2).",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Calculation is too simple (8/2)."
+      ],
+      "suggestions": [
+        "Modify blocks[7].content.questions[1].questionText"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/1/questionText"
+      ]
+    },
+    {
+      "section": "beginnerClarityStaging: The rain analogy lacks a 'per area' distinction for the flux...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "The rain analogy lacks a 'per area' distinction for the flux part."
+      ],
+      "suggestions": [
+        "Modify blocks[5].content.content"
+      ],
+      "jsonPointers": [
+        "/blocks/5/content/content"
+      ]
+    },
+    {
+      "section": "questions: Spaced review questions are 'siloed' and don't bridge to the...",
+      "score": 0,
+      "maxScore": 2,
+      "issues": [
+        "Spaced review questions are 'siloed' and don't bridge to the current topic."
+      ],
+      "suggestions": [
+        "Modify blocks[9].content.questions[0].questionText"
+      ],
+      "jsonPointers": [
+        "/blocks/9/content/questions/0/questionText"
+      ]
+    },
+    {
+      "section": "markingRobustness: Missing common lowercase/misspelling variants for 'repulsion...",
+      "score": 0,
+      "maxScore": 1,
+      "issues": [
+        "Missing common lowercase/misspelling variants for 'repulsion'."
+      ],
+      "suggestions": [
+        "Append to blocks[7].content.questions[2].expectedAnswer: 'repulsing'",
+        "Append to blocks[7].content.questions[2].expectedAnswer: 'pushing away'"
+      ],
+      "jsonPointers": [
+        "/blocks/7/content/questions/2/expectedAnswer"
+      ]
+    }
+  ],
+  "grade": "Strong",
+  "overallAssessment": "The lesson is technically sound and follows a logical progression, but suffers from a 'testing before teaching' sequence in the second explanation block where the worked example precedes the theory. Marking robustness in the integrative section needs to transition from keyword lists to structured checklists for better grading accuracy."
+}

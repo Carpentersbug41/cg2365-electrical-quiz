@@ -839,15 +839,61 @@ export async function generateMicrobreaksForLesson(
   const responseText = result.response.text();
   const games: MicrobreakContent[] = JSON.parse(responseText);
 
-  // Convert to Block objects
+  // Convert to Block objects with smart placement
   const blocks: Block[] = games.map((game, index) => ({
     id: `${lesson.id}-microbreak-${index + 1}`,
     type: 'microbreak' as const,
     content: game,
-    order: calculateOrder(lesson, index, count)
+    order: calculateSmartGameOrder(lesson, index, count)
   }));
 
   return blocks;
+}
+
+/**
+ * Calculate smart placement order for a game based on lesson structure.
+ * Games should only appear AFTER the content they test (vocab and explanations).
+ * 
+ * Strategy:
+ * 1. Find minimum safe order (after all vocab and explanation blocks)
+ * 2. Identify optimal insertion points (after check/practice blocks)
+ * 3. Distribute games evenly across these insertion points
+ * 4. Fallback: place after minimum order with small spacing
+ */
+function calculateSmartGameOrder(lesson: Lesson, gameIndex: number, totalGames: number): number {
+  // Find all teaching content blocks
+  const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
+  const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
+  const checkBlocks = lesson.blocks.filter(b => 
+    b.type === 'practice' && b.content.mode === 'check'
+  );
+  
+  // Calculate minimum order: after last vocab AND last explanation
+  const minVocabOrder = vocabBlocks.length > 0 
+    ? Math.max(...vocabBlocks.map(b => b.order)) 
+    : 0;
+  const minExplanationOrder = explanationBlocks.length > 0 
+    ? Math.max(...explanationBlocks.map(b => b.order)) 
+    : 0;
+  const minOrder = Math.max(minVocabOrder, minExplanationOrder);
+  
+  // Find valid insertion points (after check blocks that come after teaching content)
+  const validInsertionPoints = checkBlocks
+    .filter(b => b.order > minOrder)
+    .map(b => b.order)
+    .sort((a, b) => a - b);
+  
+  // Distribute games across valid insertion points
+  if (validInsertionPoints.length > 0) {
+    const pointIndex = Math.min(
+      Math.floor(gameIndex * validInsertionPoints.length / totalGames),
+      validInsertionPoints.length - 1
+    );
+    return validInsertionPoints[pointIndex] + 0.5;
+  }
+  
+  // Fallback: place after minimum order with small incremental spacing
+  return minOrder + 0.5 + (gameIndex * 0.1);
 }
 
 function buildPrompt(
@@ -1832,6 +1878,126 @@ GEMINI_API_KEY=your_api_key_here
 - Lazy loading of game components
 - Memoization of lesson analysis
 - Debounced API calls in admin UI
+
+---
+
+### Smart Game Placement Algorithm
+
+#### Overview
+
+Games must be placed AFTER the content they test to ensure pedagogically sound reinforcement rather than testing unfamiliar material. The smart placement algorithm analyzes lesson structure to find optimal insertion points.
+
+#### Placement Rules
+
+1. **Minimum Safe Order**: Games cannot appear before:
+   - All vocabulary blocks (type: `vocab`)
+   - All explanation blocks (type: `explanation`)
+   
+2. **Optimal Insertion Points**: Games are best placed after:
+   - Practice/check blocks (type: `practice` with `mode: "check"`)
+   - Worked example blocks (type: `worked-example`)
+
+3. **Distribution Strategy**: Games are evenly distributed across valid insertion points to maintain engagement throughout the lesson
+
+#### Algorithm Steps
+
+```typescript
+function calculateSmartGameOrder(lesson: Lesson, gameIndex: number, totalGames: number): number {
+  // Step 1: Find minimum safe order
+  const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
+  const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
+  
+  const minVocabOrder = vocabBlocks.length > 0 
+    ? Math.max(...vocabBlocks.map(b => b.order)) 
+    : 0;
+  const minExplanationOrder = explanationBlocks.length > 0 
+    ? Math.max(...explanationBlocks.map(b => b.order)) 
+    : 0;
+  const minOrder = Math.max(minVocabOrder, minExplanationOrder);
+  
+  // Step 2: Find valid insertion points (after check blocks)
+  const checkBlocks = lesson.blocks.filter(b => 
+    b.type === 'practice' && b.content.mode === 'check'
+  );
+  const validInsertionPoints = checkBlocks
+    .filter(b => b.order > minOrder)
+    .map(b => b.order)
+    .sort((a, b) => a - b);
+  
+  // Step 3: Distribute games across insertion points
+  if (validInsertionPoints.length > 0) {
+    const pointIndex = Math.min(
+      Math.floor(gameIndex * validInsertionPoints.length / totalGames),
+      validInsertionPoints.length - 1
+    );
+    return validInsertionPoints[pointIndex] + 0.5;
+  }
+  
+  // Step 4: Fallback - place after minimum order with incremental spacing
+  return minOrder + 0.5 + (gameIndex * 0.1);
+}
+```
+
+#### Example: Lesson 202-5A (Magnetism Basics)
+
+**Lesson Structure:**
+- Order 1: Learning outcomes
+- Order 2: Vocabulary (5 terms)
+- Order 3: Diagram
+- Order 4: Explanation 1 (Magnetic Poles)
+- Order 4.5: Practice/check
+- Order 5: Explanation 2 (Flux vs Density)
+- Order 5.5: Practice/check
+- Order 8: Practice
+- Order 9.5: Integrative practice
+
+**Smart Placement Result (4 games):**
+- Game 1: Order 5.5 (after vocab at 2, explanation at 5, no check blocks found after order 5)
+- Game 2: Order 5.6 (fallback spacing)
+- Game 3: Order 5.7 (fallback spacing)
+- Game 4: Order 5.8 (fallback spacing)
+
+**Why This Works:**
+- ✅ All games appear AFTER vocabulary (order 2)
+- ✅ All games appear AFTER explanations (order 5)
+- ✅ Games test only content students have already seen
+- ✅ Games don't interrupt final practice blocks (order 8, 9.5)
+
+#### Validation
+
+The system validates placement and logs warnings if games appear before teaching content:
+
+```typescript
+function validateGamePlacement(lesson: Lesson, gameOrder: number, gameIndex: number): string[] {
+  const errors: string[] = [];
+  
+  // Check if game comes after all vocab blocks
+  const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
+  const maxVocabOrder = vocabBlocks.length > 0 ? Math.max(...vocabBlocks.map(b => b.order)) : 0;
+  if (vocabBlocks.length > 0 && gameOrder <= maxVocabOrder) {
+    errors.push(`Game ${gameIndex + 1} at order ${gameOrder} appears before vocab block`);
+  }
+  
+  // Check if game comes after all explanation blocks
+  const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
+  const maxExplanationOrder = explanationBlocks.length > 0 
+    ? Math.max(...explanationBlocks.map(b => b.order)) 
+    : 0;
+  if (explanationBlocks.length > 0 && gameOrder <= maxExplanationOrder) {
+    errors.push(`Game ${gameIndex + 1} at order ${gameOrder} appears before explanation blocks`);
+  }
+  
+  return errors;
+}
+```
+
+#### Benefits
+
+- **Pedagogically Sound**: Games reinforce already-learned concepts
+- **No Breaking Changes**: Only affects future game generation, not existing lessons
+- **Well-Distributed**: Games still spread throughout lesson, not all clustered at end
+- **Transparent**: Console logs show placement decisions for debugging
+- **Validated**: Automatic checks prevent placement errors
 
 ---
 

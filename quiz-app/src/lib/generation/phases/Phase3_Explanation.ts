@@ -65,6 +65,11 @@ REQUIRED EXPLANATION STRUCTURE (EACH explanation block MUST include these headin
 8) **Quick recap** (1 short paragraph)
 9) ### Coming Up Next (1–2 sentences)
 
+CONTRAST REQUIREMENT (CRITICAL):
+- In **Common mistakes**, include **at least one explicit contrast** in this format:
+  - "Learners often confuse **X** with **Y**; **X** is … whereas **Y** is …"
+- X and Y must both appear in the explanation (no new terms).
+
 TASK MODE OVERRIDES (CRITICAL — section 5 heading + content rules)
 - If TASK_MODE includes "PURPOSE_ONLY":
   Section 5 heading MUST be: **When to choose it**
@@ -99,13 +104,14 @@ NUMERIC VALUES FROM STANDARDS (CRITICAL):
 - Do NOT include numeric values from BS 7671, IET On-Site Guide, or other standards tables UNLESS:
   * The specific value appears in mustHaveTopics input
   * The value appears in additionalInstructions input
-  * The value is a universal constant (e.g., UK mains voltage 230V, Earth fault loop impedance limit)
+  * The value is a universal constant (e.g., UK mains voltage 230V)
 - BANNED numeric content that will cause hallucinations:
   * Cable current-carrying capacities (e.g., "2.5mm² carries 27A")
   * Maximum circuit lengths (e.g., "Ring final max 100m²")
   * Specific factor numbers from tables (e.g., "Cable factor 143")
   * Diversity percentages from tables
   * Specific Zs values for protective devices
+  * Do NOT quote Zs/loop impedance limits unless provided in inputs
 - ALLOWED numeric content:
   * Basic formulas (Ohm's Law: V = I × R)
   * General ranges ("typically 16A to 32A") with qualifier
@@ -124,6 +130,11 @@ If needsDiagram is true, diagramElements.elementIds MUST follow kebab-case forma
   * BAD: "Ring Final Circuit", "Consumer_Unit", "protectiveConductor", "MCB 32A"
 - Element IDs should match vocabulary term IDs (which are also kebab-case)
 - 3-5 element IDs total
+
+DIAGRAM INTEGRATION (CRITICAL):
+- If needsDiagram is true, include **one sentence** in the explanation that explicitly "reads" the diagram, e.g.:
+  - "On the diagram, notice that [label/feature] indicates [meaning]."
+- Do not introduce new terms not already in vocab/lesson content.
 
 LEARNING OUTCOMES COVERAGE (CRITICAL)
 - Every learning outcome must be explicitly taught somewhere in the explanation text.

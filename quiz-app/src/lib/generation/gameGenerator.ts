@@ -21,6 +21,88 @@ interface GameGenerationOptions {
 }
 
 /**
+ * Calculate smart placement order for a game based on lesson structure.
+ * Games should only appear AFTER the content they test (vocab and explanations).
+ * 
+ * Strategy:
+ * 1. Find minimum safe order (after all vocab and explanation blocks)
+ * 2. Identify optimal insertion points (after check/practice blocks)
+ * 3. Distribute games evenly across these insertion points
+ * 4. Fallback: place after minimum order with small spacing
+ */
+function calculateSmartGameOrder(lesson: Lesson, gameIndex: number, totalGames: number): number {
+  // Find all teaching content blocks
+  const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
+  const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
+  const checkBlocks = lesson.blocks.filter(b => 
+    b.type === 'practice' && (b.content as any).mode === 'check'
+  );
+  const workedExampleBlocks = lesson.blocks.filter(b => b.type === 'worked-example');
+  
+  // Calculate minimum order: after last vocab AND last explanation
+  const minVocabOrder = vocabBlocks.length > 0 
+    ? Math.max(...vocabBlocks.map(b => b.order)) 
+    : 0;
+  const minExplanationOrder = explanationBlocks.length > 0 
+    ? Math.max(...explanationBlocks.map(b => b.order)) 
+    : 0;
+  const minOrder = Math.max(minVocabOrder, minExplanationOrder);
+  
+  // Find valid insertion points (after check/practice blocks that come after teaching content)
+  const validInsertionPoints = [
+    ...checkBlocks.map(b => ({ order: b.order, type: 'check' })),
+    ...workedExampleBlocks.map(b => ({ order: b.order, type: 'worked-example' }))
+  ]
+    .filter(point => point.order > minOrder)
+    .map(point => point.order)
+    .sort((a, b) => a - b);
+  
+  // Remove duplicates and sort
+  const uniqueInsertionPoints = [...new Set(validInsertionPoints)].sort((a, b) => a - b);
+  
+  // Distribute games across valid insertion points
+  if (uniqueInsertionPoints.length > 0) {
+    const pointIndex = Math.min(
+      Math.floor(gameIndex * uniqueInsertionPoints.length / totalGames),
+      uniqueInsertionPoints.length - 1
+    );
+    const insertionOrder = uniqueInsertionPoints[pointIndex] + 0.5;
+    
+    console.log(`📍 Game ${gameIndex + 1}/${totalGames}: Placing at order ${insertionOrder} (after ${uniqueInsertionPoints.length} valid points, min order: ${minOrder})`);
+    return insertionOrder;
+  }
+  
+  // Fallback: place after minimum order with small incremental spacing
+  const fallbackOrder = minOrder + 0.5 + (gameIndex * 0.1);
+  console.log(`📍 Game ${gameIndex + 1}/${totalGames}: Using fallback placement at order ${fallbackOrder} (no check blocks found, min order: ${minOrder})`);
+  return fallbackOrder;
+}
+
+/**
+ * Validate that game placement is pedagogically sound (after content it tests).
+ * Returns validation errors if placement is problematic.
+ */
+function validateGamePlacement(lesson: Lesson, gameOrder: number, gameIndex: number): string[] {
+  const errors: string[] = [];
+  
+  // Check if game comes after all vocab blocks
+  const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
+  const maxVocabOrder = vocabBlocks.length > 0 ? Math.max(...vocabBlocks.map(b => b.order)) : 0;
+  if (vocabBlocks.length > 0 && gameOrder <= maxVocabOrder) {
+    errors.push(`Game ${gameIndex + 1} at order ${gameOrder} appears before vocab block (order ${maxVocabOrder})`);
+  }
+  
+  // Check if game comes after all explanation blocks
+  const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
+  const maxExplanationOrder = explanationBlocks.length > 0 ? Math.max(...explanationBlocks.map(b => b.order)) : 0;
+  if (explanationBlocks.length > 0 && gameOrder <= maxExplanationOrder) {
+    errors.push(`Game ${gameIndex + 1} at order ${gameOrder} appears before explanation blocks (last at order ${maxExplanationOrder})`);
+  }
+  
+  return errors;
+}
+
+/**
  * Generate microbreak games for a lesson using LLM
  */
 export async function generateMicrobreaksForLesson(
@@ -98,26 +180,44 @@ Return a JSON array of ${count} game objects. Use variety in game types if multi
     const responseText = result.response.text();
     const games: MicrobreakContent[] = JSON.parse(responseText);
 
-    // Validate and convert to Block objects
-    const blocks: Block[] = games.map((game, index) => {
-      // Determine order
+    // Validate and convert to Block objects with smart placement
+    const blocks: Block[] = [];
+    const validationErrors: string[] = [];
+    
+    for (let index = 0; index < games.length; index++) {
+      const game = games[index];
+      
+      // Determine order using smart placement algorithm
       let order: number;
       if (options?.insertAfterBlocks && options.insertAfterBlocks[index]) {
+        // Manual placement: respect user-specified insertion point
         const targetBlock = lesson.blocks.find(b => b.id === options.insertAfterBlocks![index]);
         order = targetBlock ? targetBlock.order + 0.5 : (lesson.blocks.length + index + 1);
+        console.log(`📍 Game ${index + 1}/${count}: Manual placement after block ${options.insertAfterBlocks[index]} at order ${order}`);
       } else {
-        // Insert at reasonable intervals through the lesson
-        const interval = Math.floor(lesson.blocks.length / (count + 1));
-        order = (index + 1) * interval + 0.5;
+        // Smart placement: place after teaching content
+        order = calculateSmartGameOrder(lesson, index, count);
+      }
+      
+      // Validate placement
+      const errors = validateGamePlacement(lesson, order, index);
+      if (errors.length > 0) {
+        validationErrors.push(...errors);
       }
 
-      return {
+      blocks.push({
         id: `${lesson.id}-microbreak-${index + 1}`,
         type: 'microbreak' as const,
         content: game,
         order
-      };
-    });
+      });
+    }
+    
+    // Log validation warnings if any
+    if (validationErrors.length > 0) {
+      console.warn('⚠️ Game placement validation warnings:');
+      validationErrors.forEach(err => console.warn(`  - ${err}`));
+    }
 
     console.log(`✓ Generated ${blocks.length} microbreak games for lesson ${lesson.id}`);
     return blocks;

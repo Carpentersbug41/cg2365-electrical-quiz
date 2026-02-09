@@ -55,6 +55,10 @@ For EACH explanation block:
 
 IMPORTANT: Do NOT output the anchor facts as separate fields (no schema changes). Use them internally to generate questions and expected answers.
 
+ANCHOR FACT SELECTION RULE (CRITICAL):
+- At least **one** of the 3 anchor facts MUST be a **contrast/boundary** statement (e.g., "X … whereas Y …" or "X … not Y …") if such a statement exists in the explanation.
+- If multiple contrast statements exist, prefer the most exam-relevant confusion.
+
 PLAIN TEXT EXTRACTION RULES:
 - Strip markdown formatting: **bold**, __underline__, *italic*
 - Remove bullet prefixes: *, -, •, 1., 2., etc.
@@ -80,6 +84,10 @@ L2 CONNECTION QUESTION REQUIREMENTS (CRITICAL):
 NO NEW TERMS (CRITICAL):
 - Do NOT introduce new technical terms in questionText that do not appear in the explanation text.
 - Do NOT introduce standards/regulation references unless they appear in the explanation text.
+
+DIAGRAM QUESTION REQUIREMENT (CRITICAL):
+- If the explanation includes a sentence beginning with "On the diagram…", then **one** of Q1–Q3 MUST directly reference that diagram feature/label.
+- The expectedAnswer canonical string MUST be a verbatim substring of the normalized "On the diagram…" sentence.
 
 TEACHING CONSTRAINTS (if provided):
 If TASK_MODE includes "PURPOSE_ONLY":
@@ -126,6 +134,11 @@ L1 QUESTIONS (recall):
 - "Normalized" means: apply the same stripping rules as anchor facts (remove markdown, bullets, trailing punctuation)
 - Extract your anchor fact text from this normalized version
 - Example: "expectedAnswer": ["protective conductor", "earth conductor", "cpc"]
+
+EXPECTED ANSWER LENGTH (CRITICAL):
+- For L1 questions, the **canonical** expectedAnswer (first string) MUST be **1–8 words** unless the concept requires a longer technical phrase.
+- Do NOT use full-sentence anchor facts as canonical answers.
+
 - Remaining variants MUST be tight normalization ONLY:
   * case changes
   * singular/plural

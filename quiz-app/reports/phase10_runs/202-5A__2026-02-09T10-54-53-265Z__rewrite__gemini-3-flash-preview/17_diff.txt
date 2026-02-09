@@ -1,0 +1,52 @@
+# Phase 10 Lesson Diff
+
+Lesson: 202-5A
+Timestamp: 2026-02-09T10:56:27.557Z
+
+================================================================================
+
+## Metadata Changes
+
+## Block Changes
+
+Block 1: vocab (202-5A-vocab) - CHANGED
+
+  Content: CHANGED (972 → 927 chars)
+    - terms: CHANGED
+
+Block 3: explanation (202-5A-explain-1) - CHANGED
+
+  Content: CHANGED (3756 → 3798 chars)
+    - content: CHANGED
+
+Block 4: practice (202-5A-check-1) - CHANGED
+
+  Content: CHANGED (2287 → 2323 chars)
+    - questions: CHANGED
+
+Block 5: explanation (202-5A-explain-2) - CHANGED
+
+  Content: CHANGED (3874 → 4254 chars)
+    - content: CHANGED
+
+Block 7: practice (202-5A-practice) - CHANGED
+
+  Content: CHANGED (2165 → 2294 chars)
+    - questions: CHANGED
+
+Block 8: practice (202-5A-integrative) - CHANGED
+
+  Content: CHANGED (3231 → 2321 chars)
+    - questions: CHANGED
+
+Block 9: spaced-review (202-5A-spaced-review) - CHANGED
+
+  Content: CHANGED (1257 → 1269 chars)
+    - notes: CHANGED
+
+================================================================================
+
+Summary: 7 of 10 blocks changed
+
+Before Hash: 657dd8da1ea70dc7
+After Hash:  b81059ca5bbb45a1

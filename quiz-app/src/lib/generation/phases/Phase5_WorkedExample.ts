@@ -104,11 +104,16 @@ Use exactly 4 steps:
 3) State the purpose (one line)
 4) Common wrong choice and why (one line)
 
+STEP 4 QUALITY REQUIREMENT:
+- Step 4 "common wrong choice" must be a **plausible confusion** a student would actually pick (not a strawman).
+- Prefer the confusion mentioned in the Phase 3 contrast (if present in explanation text).
+
 ABSOLUTE BAN for PURPOSE_ONLY / IDENTIFICATION:
 - NO physical operation steps or "how-to" instructions.
 - BANNED: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, lubricate, half-turn
 - BANNED: technique, method, step-by-step, process, operate
-- BANNED procedural sequencing: "first", "next", "then", "finally" (when used to describe operation)
+- BANNED procedural sequencing language **when describing physical operation** (e.g., "first tighten… then rotate…")
+- Numbered steps (Step 1–4) remain allowed for selection format
 - BANNED "procedural implication" phrases: "do this by", "use it by", "operate it by"
 
 PROVENANCE AND CAVEATS (when using standard values):

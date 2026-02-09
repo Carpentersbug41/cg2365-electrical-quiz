@@ -45,9 +45,7 @@ import lesson203_3A3 from '@/data/lessons/203-3A3-circuit-types-what-they-do.jso
 import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
 import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
 import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
-import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
-import lesson202_5B from '@/data/lessons/202-5B-magnetic-effects-of-electrical-current.json';
-import lesson202_5C from '@/data/lessons/202-5C-generating-ac-sine-wave-characteristics.json';
+import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics-attraction-repulsion-flux-vs-flux-density.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -91,10 +89,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
-  lesson202_5C,
-  lesson202_5B,
-  lesson202_5A,
-  lesson201_1C,
+  lesson202_5A,  lesson201_1C,
   lesson201_1B,
   lesson201_1A,
   lesson203_3A3,  lesson203_3F,  lesson202_3F,

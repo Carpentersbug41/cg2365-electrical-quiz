@@ -50,6 +50,10 @@ QUESTION TYPES:
 - Include 2-3 short-text conceptual/application questions
 - Mix of direct application and scenario-based questions
 
+TRANSFER REQUIREMENT (CRITICAL):
+- At least **one** practice question must be a **novel scenario transfer**:
+  - Same concept as taught, but new context/details not copied from explanation wording.
+
 TEACHING CONSTRAINTS (if provided):
 If TASK_MODE includes "PURPOSE_ONLY":
 - Practice questions MUST test purpose/selection, NOT procedures
@@ -103,6 +107,9 @@ Rounding instructions MUST be in questionText:
 expectedAnswer for numeric:
 - Include both forms: ["40", "40.0"] or ["1125", "1125.0"]
 - This handles students who include/exclude trailing zeros
+
+NUMERIC ANSWER TYPE ENFORCEMENT (CRITICAL):
+- If a question has a numeric expectedAnswer, answerType MUST be "numeric" (never "short-text").
 
 EXPECTED ANSWER REQUIREMENTS (CRITICAL - marking robustness):
 

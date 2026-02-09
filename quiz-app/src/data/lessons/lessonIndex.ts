@@ -171,38 +171,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 8.3,
   },
   
+      
   {
     id: '202-5A',
-    title: 'Magnetism basics',
+    title: 'Magnetism basics: attraction/repulsion + flux vs flux density',
     unit: 'Unit 202',
     unitNumber: '202',
-    topic: 'Magnetism basics',
+    topic: 'Magnetism basics: attraction/repulsion + flux vs flux density',
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('202-5A'),
     available: true,
     order: 9.3,
-  },
-  {
-    id: '202-5B',
-    title: 'Magnetic effects of electrical current',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetic effects of electrical current',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5B'),
-    available: true,
-    order: 10.3,
-  },
-  {
-    id: '202-5C',
-    title: 'Generating AC + sine wave characteristics',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Generating AC + sine wave characteristics',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5C'),
-    available: true,
-    order: 11.3,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

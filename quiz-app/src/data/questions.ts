@@ -52,6 +52,7 @@ import { environmentalLegislationQuestions } from './questions/environmentalLegi
 import { magnetismBasicsQuestions } from './questions/magnetismBasicsQuestions';
 import { magneticEffectsOfElectricalCurrentQuestions } from './questions/magneticEffectsOfElectricalCurrentQuestions';
 import { generatingAcSineWaveCharacteristicsQuestions } from './questions/generatingAcSineWaveCharacteristicsQuestions';
+import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './questions/magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -98,6 +99,7 @@ export const questions: Question[] = [
   ...magnetismBasicsQuestions,
   ...magneticEffectsOfElectricalCurrentQuestions,
   ...generatingAcSineWaveCharacteristicsQuestions,
+  ...magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

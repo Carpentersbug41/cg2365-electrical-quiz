@@ -1,0 +1,132 @@
+{
+  "lessonId": "202-5A",
+  "timestamp": "2026-02-09T10:55:07.310Z",
+  "plan": [
+    {
+      "issueId": "Issue 1: beginnerClarityStaging",
+      "rubricRef": "B1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/5/content/content"
+      ],
+      "instructions": "Incorporate the formal mathematical formula for magnetic flux density (B = Φ / A) into the explanation text where the relationship is discussed.",
+      "guardrails": [
+        "preserve existing content",
+        "do not change block structure"
+      ]
+    },
+    {
+      "issueId": "Issue 2: beginnerClarityStaging",
+      "rubricRef": "B1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/1/content/terms/1/term",
+        "/blocks/1/content/terms/2/term"
+      ],
+      "instructions": "Update the vocabulary terms to include their standard symbols: change 'Magnetic Flux' to 'Magnetic Flux (Φ)' and 'Magnetic Flux Density' to 'Magnetic Flux Density (B)'.",
+      "guardrails": [
+        "preserve existing definitions"
+      ]
+    },
+    {
+      "issueId": "Issue 3: alignment",
+      "rubricRef": "A1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/5/content/content"
+      ],
+      "instructions": "Prepend a worked example for calculating flux density to the start of the explanation block. Text: '**Worked Example:** A magnet produces 0.5 Wb of flux over an area of 0.25 m². To find the density (B): 1. Identify values: Φ = 0.5, A = 0.25. 2. Apply formula: B = 0.5 / 0.25. 3. Result: **2 Tesla (T)**.'",
+      "guardrails": [
+        "ensure the example is clearly separated from the main body text"
+      ]
+    },
+    {
+      "issueId": "Issue 4: beginnerClarityStaging",
+      "rubricRef": "B1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/3/content/content"
+      ],
+      "instructions": "Expand the description of magnetic field lines to include technical properties: they form closed loops, travel North to South outside the magnet, and never intersect.",
+      "guardrails": [
+        "preserve existing content"
+      ]
+    },
+    {
+      "issueId": "Issue 5: markingRobustness",
+      "rubricRef": "D3",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/8/content/questions/0/expectedAnswer",
+        "/blocks/8/content/questions/1/expectedAnswer"
+      ],
+      "instructions": "Add keyword-based variants to the expectedAnswer arrays for integrative questions. For Q1, add: 'unlike attract like repel flux total density concentration'. For Q2, add: 'Weber total Tesla concentration area'.",
+      "guardrails": [
+        "do not remove existing full-sentence variants"
+      ]
+    },
+    {
+      "issueId": "Issue 6: markingRobustness",
+      "rubricRef": "D3",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/7/content/questions/1/questionText",
+        "/blocks/7/content/questions/3/questionText"
+      ],
+      "instructions": "Clarify input requirements for numeric questions by appending '(Provide the numeric value only)' to the question text.",
+      "guardrails": [
+        "do not change answerType"
+      ]
+    },
+    {
+      "issueId": "Issue 7: beginnerClarityStaging",
+      "rubricRef": "B1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/5/content/content"
+      ],
+      "instructions": "Add a 'Common Mistakes' section to the end of the explanation text that addresses magnetic saturation (the point where increasing magnetizing force no longer increases flux density).",
+      "guardrails": [
+        "preserve existing content"
+      ]
+    },
+    {
+      "issueId": "Issue 8: alignment",
+      "rubricRef": "A1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/9/content/notes"
+      ],
+      "instructions": "Replace the generic review notes with: 'Review of fundamental concepts from Unit 202 (Lessons 202.1-202.4) regarding electron flow and conductors.'",
+      "guardrails": [
+        "ensure notes remain concise"
+      ]
+    },
+    {
+      "issueId": "Issue 9: alignment",
+      "rubricRef": "A1",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/7/content/questions/4/questionText",
+        "/blocks/7/content/questions/4/expectedAnswer"
+      ],
+      "instructions": "Update question P5 to a classification task. New text: 'A manufacturer specifies that a magnet produces a total of 0.05 Webers. Is this specification describing \"Magnetic Flux\" or \"Magnetic Flux Density\"?'. Update expectedAnswer to ['Magnetic Flux'].",
+      "guardrails": [
+        "ensure answer matches the new question text"
+      ]
+    },
+    {
+      "issueId": "Issue 10: markingRobustness",
+      "rubricRef": "D3",
+      "fixability": "llm_editable",
+      "targets": [
+        "/blocks/4/content/questions/1/expectedAnswer",
+        "/blocks/4/content/questions/2/expectedAnswer"
+      ],
+      "instructions": "Add single-word verb variants to the expectedAnswer arrays. Add 'attract' to the first question's answer list and 'repel' to the second.",
+      "guardrails": [
+        "preserve existing answers"
+      ]
+    }
+  ]
+}

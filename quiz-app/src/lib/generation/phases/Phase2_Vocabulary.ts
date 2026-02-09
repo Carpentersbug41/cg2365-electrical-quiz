@@ -37,6 +37,7 @@ DEFINITION QUALITY:
 - Clear, concise, and technically accurate
 - Appropriate for Level 2 electrician students
 - Focus on practical understanding, not overly academic
+- For commonly confused terms, definitions should include a boundary clause: "X is …, not …" OR "Different from … because …"
 
 ${this.getJsonOutputInstructions()}`;
   }
