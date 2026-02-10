@@ -20,7 +20,8 @@ export async function POST(request: NextRequest) {
       answerType, 
       questionText: providedQuestionText,
       expectedAnswer: providedExpectedAnswer,
-      cognitiveLevel
+      cognitiveLevel,
+      keyPoints
     } = body;
 
     // Log marking request
@@ -88,7 +89,11 @@ export async function POST(request: NextRequest) {
       providedQuestionText,
       providedExpectedAnswer,
       typeof userAnswer === 'string' ? userAnswer : String(userAnswer),
-      cognitiveLevel
+      {
+        cognitiveLevel: cognitiveLevel,
+        answerType: answerType as 'short-text' | 'long-text' | undefined,
+        keyPoints: keyPoints,
+      }
     );
 
     // If service unavailable, return error response

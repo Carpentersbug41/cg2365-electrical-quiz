@@ -103,6 +103,7 @@ export interface MarkingRequest {
   questionText?: string;
   expectedAnswer?: string; // Model answer for conceptual questions
   cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis';
+  keyPoints?: string[]; // Rubric points for long-text questions
   context?: {
     lessonId: string;
     attemptNumber: number;

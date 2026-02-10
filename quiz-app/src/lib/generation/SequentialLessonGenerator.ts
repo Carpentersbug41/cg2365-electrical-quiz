@@ -323,9 +323,6 @@ export class SequentialLessonGenerator {
           
           // Refinement result now includes refined score from isolation scoring
           if (refinementResult && refinementResult.improvementSuccess) {
-            // Audit refined lesson
-            this.phase10.auditAllIDs(refinementResult.refined);
-            
             // Verbose logging: Score already computed in runPhase10
             console.log(`\n📊 [Score Summary] Refined lesson scored during isolation phase`);
             console.log(`📊 [Score Summary] Refined lesson has ${refinementResult.refined.blocks.length} blocks`);

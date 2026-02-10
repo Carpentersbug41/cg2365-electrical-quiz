@@ -9,7 +9,7 @@ import { PhasePromptBuilder } from './PhasePromptBuilder';
 import { Lesson } from '../types';
 import { retrieveSyllabusContext, SyllabusContext } from '@/lib/syllabus/syllabusRAG';
 import { preprocessToValidJson, safeJsonParse } from '../utils';
-import { debugLogger } from '../debugLogger';
+import { debugLogger } from '@/lib/generation/debugLogger';
 
 export interface Phase10Score {
   total: number;  // 0-100
@@ -28,7 +28,7 @@ export interface Phase10Score {
     alignmentToLO: number;            // 15 points
     questionQuality: number;          // 10 points
   };
-  issues: Phase10Issue[];  // Exactly 10 issues
+  issues: Phase10Issue[];  // 0-10 issues max
   overallAssessment?: string;  // 2-3 sentence summary
 }
 
@@ -219,9 +219,9 @@ export class Phase10_Score extends PhasePromptBuilder {
         throw new Error('Score response missing required field: issues array');
       }
       
-      // Enforce exactly 10 issues requirement
-      if (data.issues.length !== 10) {
-        throw new Error(`Phase 10 must return exactly 10 issues, got ${data.issues.length}`);
+      // Enforce max 10 issues requirement
+      if (data.issues.length > 10) {
+        throw new Error(`Phase 10 must return at most 10 issues, got ${data.issues.length}`);
       }
       
       // Return typed score
@@ -244,7 +244,7 @@ export class Phase10_Score extends PhasePromptBuilder {
       || (syllabusContext ? syllabusContext.assessmentCriteria : []);
     
     const acScopeNote = lesson.targetAssessmentCriteria 
-      ? `\nNOTE: This lesson is scoped to cover only the following Assessment Criteria:\n${lesson.targetAssessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}\n\nDo NOT penalize the lesson for not covering other ACs from this Learning Outcome.`
+      ? `\nNOTE: This lesson is scoped to cover only the following Assessment Criteria:\n${lesson.targetAssessmentCriteria.map((ac: string, i: number) => `  ${i + 1}. ${ac}`).join('\n')}\n\nDo NOT penalize the lesson for not covering other ACs from this Learning Outcome.`
       : '';
     
     const syllabusSection = syllabusContext ? `
@@ -252,7 +252,7 @@ SYLLABUS CONTEXT (retrieved from C&G 2365 specification):
 Unit: ${syllabusContext.unit} - ${syllabusContext.unitTitle}
 Learning Outcome: ${syllabusContext.learningOutcome} - ${syllabusContext.loTitle}
 Assessment Criteria (full LO):
-${syllabusContext.assessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}
+${syllabusContext.assessmentCriteria.map((ac: string, i: number) => `  ${i + 1}. ${ac}`).join('\n')}
 ${acScopeNote}
 
 This lesson must align with the TARGET Assessment Criteria listed ${lesson.targetAssessmentCriteria ? 'above' : '(all ACs from the LO)'}.
@@ -304,8 +304,8 @@ E) Question Quality (10 points):
    - No trick questions or gotchas
 
 CRITICAL REQUIREMENTS:
-- Return EXACTLY 10 issues (no more, no fewer)
-- Each issue MUST reference a specific AC from syllabus context (if available)
+- Return 0–10 issues (no more than 10). If fewer than 10 real issues exist, return fewer. Never invent filler issues to reach 10. Sort issues by severity/impact (most important first).
+- Where syllabus context exists, each issue should reference a relevant AC when applicable. If the issue is cross-cutting (clarity/teaching-before-testing/marking robustness/question quality), set alignmentGap to 'GENERAL PEDAGOGY' rather than forcing an AC.
 - Focus on CONTENT quality, not structure (validators handle that)
 - For each issue: category, jsonPointers, excerpt, problem, whyItMatters, alignmentGap
 
@@ -327,12 +327,12 @@ OUTPUT FORMAT (JSON only, no markdown):
     "alignmentToLO": 0-15,
     "questionQuality": 0-10
   },
-  "issues": [ /* exactly 10 */ ],
+  "issues": [ /* 0-10 */ ],
   "overallAssessment": "2-3 sentence summary of main pedagogical patterns"
 }
 
 VALIDATION RULES:
-- issues array length MUST be exactly 10
+- issues array length MUST be <= 10
 - total MUST equal sum of breakdown values
 - Each issue MUST have: id, category, jsonPointers, excerpt, problem, whyItMatters
 - overallAssessment MUST be 2-3 sentences maximum
@@ -363,7 +363,7 @@ LESSON TO SCORE:
 ${lessonJson}
 
 CRITICAL REMINDERS:
-1. Return EXACTLY 10 issues (no more, no fewer)
+1. Return 0–10 issues (no more than 10). If the lesson is strong, return fewer issues.
 2. Each issue must include: excerpt, problem, whyItMatters, alignmentGap
 3. Ensure total score equals sum of breakdown scores
 4. Focus on PEDAGOGICAL QUALITY - structure already validated

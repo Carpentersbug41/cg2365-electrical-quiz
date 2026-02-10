@@ -94,8 +94,9 @@ export default function PracticeBlock({ block }: BlockProps) {
           expectedAnswer: Array.isArray(question.expectedAnswer) 
             ? question.expectedAnswer[0] 
             : question.expectedAnswer,
-          answerType: 'conceptual',
+          answerType: question.answerType || 'short-text',
           cognitiveLevel: question.cognitiveLevel || 'recall',
+          keyPoints: question.keyPoints,
         }),
       });
 
@@ -166,6 +167,26 @@ export default function PracticeBlock({ block }: BlockProps) {
     }
   };
 
+  // Get textarea config based on answer type
+  const getTextareaConfig = (question: any) => {
+    if (question.answerType === 'long-text') {
+      return {
+        rows: 6,
+        placeholder: "Write your answer in 3-4 sentences, addressing each required point..."
+      };
+    }
+    if (question.cognitiveLevel === 'synthesis') {
+      return {
+        rows: 5,
+        placeholder: "Explain your thinking in 2-3 sentences..."
+      };
+    }
+    return {
+      rows: 4,
+      placeholder: "Type your answer... (explain your thinking)"
+    };
+  };
+
   return (
     <div 
       className="rounded-2xl shadow-lg p-6 border-2 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200" 
@@ -229,14 +250,19 @@ export default function PracticeBlock({ block }: BlockProps) {
                 </div>
               ) : (
                 <>
-                <textarea
-                  value={answers[question.id] || ''}
-                  onChange={(e) => handleAnswerChange(question.id, e.target.value)}
-                  disabled={submitted[question.id]}
-                  placeholder="Type your answer... (explain your thinking)"
-                  rows={4}
-                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-purple-400 dark:focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 mb-3 disabled:bg-gray-100 dark:disabled:bg-slate-700 resize-y"
-                />
+                {(() => {
+                  const textareaConfig = getTextareaConfig(question);
+                  return (
+                    <textarea
+                      value={answers[question.id] || ''}
+                      onChange={(e) => handleAnswerChange(question.id, e.target.value)}
+                      disabled={submitted[question.id]}
+                      placeholder={textareaConfig.placeholder}
+                      rows={textareaConfig.rows}
+                      className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-purple-400 dark:focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-400 dark:focus:ring-purple-500 mb-3 disabled:bg-gray-100 dark:disabled:bg-slate-700 resize-y"
+                    />
+                  );
+                })()}
 
                 {question.hint && !submitted[question.id] && (
                   <details className="mb-3">

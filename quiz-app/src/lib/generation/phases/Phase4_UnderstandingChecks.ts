@@ -15,9 +15,10 @@ export interface UnderstandingChecksInput {
 export interface UnderstandingQuestion {
   id: string;
   questionText: string;
-  answerType: 'short-text';
+  answerType: 'short-text' | 'long-text';
   cognitiveLevel: 'recall' | 'connection';
-  expectedAnswer: string[];
+  expectedAnswer?: string[];  // Optional for long-text (examples)
+  keyPoints?: string[];        // Required when answerType === 'long-text'
   hint: string;
 }
 
@@ -154,6 +155,16 @@ L2 QUESTION (connection):
 - Variants should capture the KEY RELATIONSHIP IDEA, not exact wording
 - Reject only if the connection is fundamentally wrong or missing
 
+L2 QUESTION (connection) - ANSWER TYPE REQUIREMENTS:
+- answerType MUST be "long-text" (not "short-text")
+- MUST include keyPoints array with 3-5 key ideas that connect the three anchor facts
+- keyPoints should capture: relationship between fact 1 & 2, how fact 3 connects, causal/functional link
+- expectedAnswer is OPTIONAL: include 2-3 example answers showing different valid phrasings
+- Example keyPoints:
+  * "Links fact A and fact B through shared property X"
+  * "Explains how fact C depends on facts A and B"
+  * "Demonstrates causal relationship from A → B → C"
+
 HINTS:
 - Provide a short, helpful hint (one sentence). No new content.
 
@@ -230,9 +241,14 @@ Return JSON in this exact format:
         {
           "id": "${lessonId}-C1-L2",
           "questionText": "Using your answers to Q1 ([brief Q1 topic]), Q2 ([brief Q2 topic]), and Q3 ([brief Q3 topic]), explain how these three facts relate or work together.",
-          "answerType": "short-text",
+          "answerType": "long-text",
           "cognitiveLevel": "connection",
-          "expectedAnswer": ["[relationship/connection between 3 facts]", "[alternative phrasing of same relationship]", "[third acceptable variant]", "[optional fourth variant]"],
+          "keyPoints": [
+            "[Specific connection between fact 1 and fact 2]",
+            "[How fact 3 relates to the other two]",
+            "[Causal or functional relationship explanation]"
+          ],
+          "expectedAnswer": ["[Example answer covering all keyPoints]", "[Alternative phrasing example]"],
           "hint": "[one-sentence hint about connecting the three facts]"
         }
       ]
@@ -271,9 +287,14 @@ Return JSON in this exact format:
         {
           "id": "${lessonId}-C2-L2",
           "questionText": "Using your answers to Q1 ([brief Q1 topic]), Q2 ([brief Q2 topic]), and Q3 ([brief Q3 topic]), explain how these three facts relate or work together.",
-          "answerType": "short-text",
+          "answerType": "long-text",
           "cognitiveLevel": "connection",
-          "expectedAnswer": ["[1–2 sentences INCLUDING the 3 anchor phrases verbatim]", "[optional tight variant]"],
+          "keyPoints": [
+            "[Specific connection between fact 1 and fact 2]",
+            "[How fact 3 relates to the other two]",
+            "[Causal or functional relationship explanation]"
+          ],
+          "expectedAnswer": ["[Example answer covering all keyPoints]", "[Alternative phrasing example]"],
           "hint": "[one-sentence hint]"
         }
       ]
@@ -290,6 +311,11 @@ CRITICAL REQUIREMENTS:
   * L1: EXACTLY 2–4 strings, canonical FIRST, canonical MUST be verbatim substring from the NORMALIZED plain-text explanation (markdown stripped).
   * L2: EXACTLY 2–4 strings expressing the CONNECTION/RELATIONSHIP between the 3 anchor facts (focus on concept, not exact phrasing).
 - Do NOT introduce new terms not present in the explanation text.
-- If constraints indicate PURPOSE_ONLY / IDENTIFICATION: test selection/purpose/recognition only (no procedures).`;
+- If constraints indicate PURPOSE_ONLY / IDENTIFICATION: test selection/purpose/recognition only (no procedures).
+
+⚠️ L2 CONNECTION QUESTION FORMAT:
+- answerType: "long-text" (NOT "short-text")
+- keyPoints: Array of 3-5 connection ideas (REQUIRED)
+- expectedAnswer: 2-3 example answers (OPTIONAL but recommended)`;
   }
 }

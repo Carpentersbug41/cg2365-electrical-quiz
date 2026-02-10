@@ -106,6 +106,7 @@ export class ValidationService {
       this.validateQuestionStaging(lesson.blocks, errors, warnings);
       this.validateMicrobreakPlacement(lesson.blocks, errors, warnings);
       this.validateAnswerCoverage(lesson.blocks, errors, warnings);
+      this.validateLongTextQuestions(lesson.blocks, errors);
     }
 
     // Validate metadata
@@ -293,6 +294,38 @@ export class ValidationService {
             `Review if the answer can be clearly derived from what was taught. ` +
             `Answers: ${JSON.stringify(question.expectedAnswer).substring(0, 100)}`
           );
+        }
+      }
+    }
+  }
+
+  /**
+   * Validate long-text questions have required keyPoints
+   */
+  private validateLongTextQuestions(blocks: LessonBlock[], errors: string[]): void {
+    for (const block of blocks) {
+      if (block.type === 'practice') {
+        const content = block.content as any;
+        if (content.questions) {
+          for (const q of content.questions) {
+            if (q.answerType === 'long-text') {
+              // Must have keyPoints array with 3-8 items
+              if (!q.keyPoints || !Array.isArray(q.keyPoints)) {
+                errors.push(`Question ${q.id}: long-text requires keyPoints array`);
+              } else if (q.keyPoints.length < 3) {
+                errors.push(`Question ${q.id}: long-text requires at least 3 keyPoints (has ${q.keyPoints.length})`);
+              } else if (q.keyPoints.length > 8) {
+                errors.push(`Question ${q.id}: long-text should have at most 8 keyPoints (has ${q.keyPoints.length})`);
+              } else {
+                // keyPoints must be non-empty strings
+                for (let i = 0; i < q.keyPoints.length; i++) {
+                  if (typeof q.keyPoints[i] !== 'string' || q.keyPoints[i].trim().length === 0) {
+                    errors.push(`Question ${q.id}: keyPoints[${i}] must be non-empty string`);
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

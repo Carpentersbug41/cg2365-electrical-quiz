@@ -162,39 +162,7 @@ export const lessonIndex: LessonIndexEntry[] = [
   
       
   
-  {
-    id: '202-202-5A',
-    title: ' Magnetism basics ',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: ' Magnetism basics ',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-202-5A'),
-    available: true,
-    order: 9.3,
-  },
-  {
-    id: '202-5AA',
-    title: 'Magnetism basics ',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism basics ',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5AA'),
-    available: true,
-    order: 10.3,
-  },
-  {
-    id: '202-5A1',
-    title: 'Magnetism basics ',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism basics ',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5A1'),
-    available: true,
-    order: 11.3,
-  },// Unit 203: Electrical Installations Technology
+      // Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {
@@ -354,72 +322,7 @@ export const lessonIndex: LessonIndexEntry[] = [
       
                     
   
-  {
-    id: '203-3A3',
-    title: 'Circuit Types: What They Do',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A3'),
-    available: true,
-    order: 14,
-  },
-  {
-    id: '203-3A12',
-    title: 'Circuit Types: What They Do',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A12'),
-    available: true,
-    order: 15,
-  },
-  {
-    id: '203-3A111',
-    title: 'Circuit Types: What They Do',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A111'),
-    available: true,
-    order: 16,
-  },
-  {
-    id: '203-3A112',
-    title: 'Circuit Types: What They Do',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A112'),
-    available: true,
-    order: 17,
-  },
-  {
-    id: '203-3A1115',
-    title: 'Circuit Types: What They Do',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A1115'),
-    available: true,
-    order: 18,
-  },
-  {
-    id: '203-3A1116',
-    title: 'Circuit Types: What They Do',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A1116'),
-    available: true,
-    order: 19,
-  },// Unit 210: Communication
+            // Unit 210: Communication
   {
     id: '204-10A',
     title: 'Dead-test language — what each test proves',

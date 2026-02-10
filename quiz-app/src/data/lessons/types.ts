@@ -90,7 +90,9 @@ export interface PracticeBlockContent {
   questions: {
     id: string;
     questionText: string;
-    expectedAnswer: string | string[]; // Model answer for LLM comparison
+    answerType?: 'short-text' | 'long-text';  // Answer type (default: short-text)
+    expectedAnswer?: string | string[];        // Model answer for LLM comparison
+    keyPoints?: string[];                      // Rubric points for long-text
     cognitiveLevel?: 'recall' | 'connection' | 'synthesis'; // Depth of cognitive processing
     hint?: string;
   }[];

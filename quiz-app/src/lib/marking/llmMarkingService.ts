@@ -25,6 +25,8 @@ export interface LLMMarkingRequest {
   modelAnswer: string;
   userAnswer: string;
   cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis';
+  answerType?: 'short-text' | 'long-text';
+  keyPoints?: string[];
 }
 
 /**
@@ -125,14 +127,39 @@ function buildMarkingPrompt(params: LLMMarkingRequest): string {
     hypothesis: "predicting or justifying beyond the text",
   };
   
-  return `You are an expert electrical science educator marking a C&G 2365 Level 2 student answer.
+  let prompt = `You are an expert electrical science educator marking a C&G 2365 Level 2 student answer.
 
 QUESTION:
 ${params.questionText}
 
 COGNITIVE LEVEL: ${params.cognitiveLevel || 'understanding'}
 This question tests: ${cognitiveDescriptions[params.cognitiveLevel || 'understanding'] || 'understanding of concepts'}
+`;
 
+  // Add keyPoints rubric if present
+  if (params.answerType === 'long-text' && params.keyPoints && params.keyPoints.length > 0) {
+    const cogLevel = params.cognitiveLevel || 'connection';
+    const threshold = cogLevel === 'synthesis' ? 0.70 : 0.60;  // 70% for synthesis, 60% for connection
+    const minPoints = Math.ceil(params.keyPoints.length * threshold);
+    
+    prompt += `
+ANSWER TYPE: Long-text (explanation/synthesis)
+
+KEY POINTS RUBRIC:
+The student's answer must address these specific points:
+${params.keyPoints.map((point, idx) => `${idx + 1}. ${point}`).join('\n')}
+
+RUBRIC-BASED SCORING:
+- Award credit for EACH key point demonstrated (${params.keyPoints.length} total)
+- Pass threshold: Student must address at least ${minPoints} out of ${params.keyPoints.length} points (${Math.round(threshold * 100)}% for ${cogLevel})
+- Allow different phrasing as long as the core concept is present
+- Score calculation: (points addressed / total points)
+- Check for semantic understanding, not exact wording
+
+`;
+  }
+
+  prompt += `
 MODEL ANSWER (for reference):
 ${params.modelAnswer}
 
@@ -141,8 +168,19 @@ ${params.userAnswer}
 
 MARKING INSTRUCTIONS:
 1. Determine if the student demonstrates understanding of the core concept
-2. Award credit for SEMANTIC correctness, not exact word matching
-3. Students may use different terminology but still show understanding
+2. Award credit for SEMANTIC correctness, not exact word matching`;
+
+  if (params.answerType === 'long-text' && params.keyPoints) {
+    prompt += `
+3. CHECK EACH KEY POINT: Does the student's answer address this point? (yes/no/partial)
+4. Count how many points are adequately addressed
+5. Score = (points addressed) / ${params.keyPoints?.length || 1}`;
+  } else {
+    prompt += `
+3. Students may use different terminology but still show understanding`;
+  }
+
+  prompt += `
 4. Consider the cognitive level being tested
 5. Be fair but maintain C&G 2365 Level 2 standards
 6. Assess technical accuracy, not writing style
@@ -189,6 +227,8 @@ OTHER STRICT RULES:
 - Use neutral tone: "Correct" not "Correct!"
 - Confirm → compress → stop (no follow-up prompts)
 - Focus on the core concept or rule, not encouragement`;
+
+  return prompt;
 }
 
 /**
@@ -293,7 +333,11 @@ export async function markConceptualQuestion(
   questionText: string,
   modelAnswer: string,
   userAnswer: string,
-  cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis'
+  options?: {
+    cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis';
+    answerType?: 'short-text' | 'long-text';
+    keyPoints?: string[];
+  }
 ): Promise<ExtendedMarkingResult> {
   
   // Basic validation
@@ -315,7 +359,9 @@ export async function markConceptualQuestion(
       questionText,
       modelAnswer,
       userAnswer,
-      cognitiveLevel,
+      cognitiveLevel: options?.cognitiveLevel,
+      answerType: options?.answerType,
+      keyPoints: options?.keyPoints,
     });
     
     // Get model name for metadata
