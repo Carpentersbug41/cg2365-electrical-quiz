@@ -1,20 +1,20 @@
 import { TaggedQuestion } from './types';
 
 /**
- * Magnetism basics  Question Bank
- * Aligned with lesson 202-5A1 learning outcomes
+ * Magnetism basics Question Bank
+ * Aligned with lesson 202-202-5A learning outcomes
  * Generated: 2026-02-10
  */
 
 export const magnetismBasicsQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What will happen if the North poles of two permanent magnets are brought close to each other?",
+    "question": "What is the physical reaction when two North poles of two different magnets are brought close to each other?",
     "options": [
       "They will repel each other",
       "They will attract each other",
-      "They will become demagnetised",
-      "Nothing will happen"
+      "They will neutralize each other",
+      "They will begin to rotate"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -29,7 +29,7 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
       "magnetic-poles",
       "conceptual"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5-AC1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 30,
@@ -37,12 +37,264 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
   },
   {
     "id": 4017,
-    "question": "Which term is used to describe the total amount of magnetic field lines produced by a magnet?",
+    "question": "Which term describes the total number of magnetic lines of force produced by a magnet?",
     "options": [
       "Magnetic flux",
       "Flux density",
-      "Reluctance",
-      "Permeability"
+      "Electromagnetic induction",
+      "Magnetic resistance"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetism",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5-AC2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Magnetic flux is the measurement of the total magnetic field (total lines of force) passing through a given area."
+  },
+  {
+    "id": 4018,
+    "question": "What is the SI unit for measuring magnetic flux?",
+    "options": [
+      "Weber (Wb)",
+      "Tesla (T)",
+      "Ohm (Ω)",
+      "Ampere (A)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "WRONG_UNITS",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "units",
+      "discrimination",
+      "magnetism"
+    ],
+    "learningOutcomeId": "202-202-5-AC2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "The Weber (Wb) is the unit for magnetic flux, whereas the Tesla (T) is the unit for magnetic flux density."
+  },
+  {
+    "id": 4019,
+    "question": "If the total magnetic flux remains constant but the area it passes through is reduced, what happens to the flux density?",
+    "options": [
+      "It increases",
+      "It decreases",
+      "It remains the same",
+      "It drops to zero"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "conceptual",
+      "resistance-rule",
+      "magnetism"
+    ],
+    "learningOutcomeId": "202-202-5-AC2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Flux density is flux per unit area (B = Φ/A). If the area (A) gets smaller, the density (B) must increase for the same amount of flux."
+  },
+  {
+    "id": 4020,
+    "question": "An electrician brings the South pole of a permanent magnet towards an unmarked end of another magnet and they pull together. What is the unmarked end?",
+    "options": [
+      "A North pole",
+      "A South pole",
+      "A neutral pole",
+      "A non-magnetic material"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "magnetic-poles",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5-AC1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Opposite poles attract. If the South pole attracts the unmarked end, that end must be a North pole."
+  },
+  {
+    "id": 4021,
+    "question": "Which unit is used to measure the concentration of magnetic field lines per square metre?",
+    "options": [
+      "Tesla",
+      "Weber",
+      "Henry",
+      "Volt"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "WRONG_UNITS",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "units",
+      "discrimination",
+      "magnetism"
+    ],
+    "learningOutcomeId": "202-202-5-AC2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "Tesla (T) is the unit of magnetic flux density, which measures how concentrated the magnetic flux is over a specific area."
+  },
+  {
+    "id": 4022,
+    "question": "Which of the following describes the relationship between magnetic flux and magnetic flux density?",
+    "options": [
+      "Flux density is the amount of flux passing through a specific area",
+      "Flux and flux density are two words for the same measurement",
+      "Flux density is the length of the magnetic field lines",
+      "Flux is the speed at which the magnetic field moves"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "magnetism"
+    ],
+    "learningOutcomeId": "202-202-5-AC2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Magnetic flux is the total field, while flux density (Tesla) describes how densely packed those lines are within a defined area (square metres)."
+  },
+  {
+    "id": 4023,
+    "question": "What is the conventional direction of magnetic flux lines outside of a permanent bar magnet?",
+    "options": [
+      "From North pole to South pole",
+      "From South pole to North pole",
+      "From the centre to the edges",
+      "From the positive terminal to the negative terminal"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "conceptual",
+      "magnetic-poles",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5-AC1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Outside a magnet, the magnetic field lines are conventionally shown as traveling from the North pole to the South pole."
+  },
+  {
+    "id": 4024,
+    "question": "Which of these materials is most suitable for use as a permanent magnet due to its magnetic properties?",
+    "options": [
+      "Steel",
+      "Copper",
+      "Aluminium",
+      "PVC"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "discrimination",
+      "magnetism"
+    ],
+    "learningOutcomeId": "202-202-5-AC1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "Steel is a ferromagnetic material that can be magnetized to create a permanent magnet, unlike copper or aluminium which are non-magnetic."
+  },
+  {
+    "id": 4025,
+    "question": "If a magnetic flux of 4 Webers passes through an area of 2 square metres, what is the magnetic flux density?",
+    "options": [
+      "2 Tesla",
+      "0.5 Tesla",
+      "8 Tesla",
+      "6 Tesla"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "calculation",
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "202-202-5-AC2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Flux density (B) = Flux (Φ) / Area (A). Therefore, 4 Wb / 2 m² = 2 Tesla."
+  },
+  {
+    "id": 4026,
+    "question": "What reaction occurs when the North pole of one magnet is brought close to the North pole of another magnet?",
+    "options": [
+      "Repulsion",
+      "Attraction",
+      "No reaction",
+      "Demagnetization"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -54,23 +306,218 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
     "category": "Magnetism basics",
     "tags": [
       "magnetism",
+      "magnetic-poles",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "According to the laws of magnetism, like poles (such as North and North) repel each other, while opposite poles attract."
+  },
+  {
+    "id": 4027,
+    "question": "Which term describes the total amount of magnetic field lines produced by a magnetic source?",
+    "options": [
+      "Magnetic flux",
+      "Flux density",
+      "Resistance",
+      "Electromotive force"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetism",
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Magnetic flux (symbol Φ) represents the total number of magnetic field lines."
+    "explanation": "Magnetic flux is the measure of the total magnetic field passing through a given area, represented by the symbol Φ (Phi)."
   },
   {
-    "id": 4018,
-    "question": "What is the standard SI unit for magnetic flux density?",
+    "id": 4028,
+    "question": "Which term is used to describe how concentrated the magnetic field lines are in a specific area?",
     "options": [
-      "Tesla",
-      "Weber",
-      "Henry",
-      "Ohm"
+      "Flux density",
+      "Total flux",
+      "Permeability",
+      "Frequency"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetism",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Flux density (B) measures the concentration of magnetic flux per unit area (usually measured in Teslas)."
+  },
+  {
+    "id": 4029,
+    "question": "What is the fundamental rule regarding the interaction between magnetic poles?",
+    "options": [
+      "Like poles repel and opposite poles attract",
+      "Like poles attract and opposite poles repel",
+      "All magnetic poles attract each other",
+      "Magnetic poles only react to copper materials"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetism",
+      "magnetic-poles",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "In magnetism, 'like' poles (N-N or S-S) push away from each other (repel), while 'opposite' poles (N-S) pull toward each other (attract)."
+  },
+  {
+    "id": 4030,
+    "question": "An electrician notices that iron filings are most tightly clustered at the very tips of a bar magnet. This indicates that these areas have the highest:",
+    "options": [
+      "Flux density",
+      "Electrical resistance",
+      "Current flow",
+      "Voltage drop"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetism",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The poles of a magnet are where the magnetic field lines are most concentrated. Because flux density is a measure of concentration, it is highest at the poles."
+  },
+  {
+    "id": 4031,
+    "question": "Two bar magnets are placed on a workbench with their North poles facing each other. What physical effect will occur between the two magnets?",
+    "options": [
+      "A force of repulsion will push them apart",
+      "A force of attraction will pull them together",
+      "The magnetic fields will cancel out, leaving no force",
+      "The magnets will rotate until they both face East"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetic-poles",
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "In magnetism, like poles (North-North or South-South) repel each other, while opposite poles attract."
+  },
+  {
+    "id": 4032,
+    "question": "Which of the following best defines the term 'magnetic flux'?",
+    "options": [
+      "The total number of magnetic field lines produced by a magnet",
+      "The concentration of magnetic lines in a specific area",
+      "The force required to move a magnet through a coil",
+      "The resistance of a material to magnetic fields"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Magnetic flux (represented by the symbol Φ) refers to the total quantity of magnetism, or the total number of magnetic field lines."
+  },
+  {
+    "id": 4033,
+    "question": "An electrician is comparing two magnets. If both magnets produce the same total flux, but Magnet A has a smaller pole surface area than Magnet B, which statement is true?",
+    "options": [
+      "Magnet A has a higher flux density than Magnet B",
+      "Magnet B has a higher flux density than Magnet A",
+      "Both magnets have the same flux density",
+      "Magnet A has more total flux lines than Magnet B"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "calculation",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Flux density (B) is calculated as Flux (Φ) divided by Area (A). If the flux is the same, a smaller area results in a higher density."
+  },
+  {
+    "id": 4034,
+    "question": "What is the unit of measurement for magnetic flux density?",
+    "options": [
+      "Tesla (T)",
+      "Weber (Wb)",
+      "Henry (H)",
+      "Ohm (Ω)"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -81,47 +528,430 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "magnetism",
       "units",
-      "discrimination"
+      "terminology"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO1",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Flux density is measured in Tesla (T), whereas total flux is measured in Webers (Wb)."
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Magnetic flux density is measured in Tesla (T), which is equivalent to Webers per square metre (Wb/m²)."
   },
   {
-    "id": 4019,
-    "question": "If a fixed amount of magnetic flux is concentrated into a smaller area, how is the flux density affected?",
+    "id": 4035,
+    "question": "Calculate the magnetic flux density (B) if a total flux of 0.05 Wb passes through a cross-sectional area of 0.02 m².",
     "options": [
-      "The flux density increases",
-      "The flux density decreases",
-      "The flux density stays the same",
-      "The flux density becomes zero"
+      "2.5 T",
+      "0.001 T",
+      "0.4 T",
+      "0.07 T"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "CONFUSED_TERMINOLOGY",
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
       "3": "OTHER"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "magnetism",
-      "conceptual",
-      "explanation"
+      "calculation",
+      "units"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Using the formula B = Φ / A: 0.05 / 0.02 = 2.5 Tesla."
+  },
+  {
+    "id": 4036,
+    "question": "By convention, in which direction do magnetic flux lines travel outside of a permanent bar magnet?",
+    "options": [
+      "From the North pole to the South pole",
+      "From the South pole to the North pole",
+      "Clockwise around the axis of the magnet",
+      "From the center of the magnet outwards in all directions"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "conceptual",
+      "magnetic-poles"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Flux density (B) is flux divided by area (B=Φ/A). If the area decreases while flux remains the same, the density must increase."
+    "explanation": "Outside a magnet, the magnetic field lines are always shown as traveling from the North pole to the South pole."
   },
   {
-    "id": 4020,
-    "question": "In the study of magnetism, what does the symbol 'Φ' (Phi) represent?",
+    "id": 4037,
+    "question": "A magnetic circuit has a flux density of 1.2 T. If the area of the core is doubled while the total flux remains the same, what will be the new flux density?",
+    "options": [
+      "0.6 T",
+      "2.4 T",
+      "1.2 T",
+      "4.8 T"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "calculation",
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 100,
+    "explanation": "Since B = Φ / A, doubling the area (the denominator) will result in the flux density being halved (1.2 / 2 = 0.6)."
+  },
+  {
+    "id": 4038,
+    "question": "Which of the following describes a material that is easily magnetized but also loses its magnetism quickly when the external field is removed?",
+    "options": [
+      "Soft magnetic material",
+      "Hard magnetic material",
+      "Non-magnetic material",
+      "Diamagnetic material"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Soft magnetic materials, like soft iron, are easily magnetized and demagnetized, making them ideal for transformer cores and electromagnets."
+  },
+  {
+    "id": 4039,
+    "question": "In a practical application like a relay, what happens to the magnetic field when the coil is de-energized?",
+    "options": [
+      "The magnetic flux collapses",
+      "The magnetic flux density increases",
+      "The poles of the magnet reverse",
+      "The flux remains constant but the area decreases"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "conceptual",
+      "relays"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "In an electromagnet or relay, the magnetic field (flux) is created by current. When the current stops, the flux collapses."
+  },
+  {
+    "id": 4040,
+    "question": "Which instrument would an electrician use to measure the total amount of magnetic field lines (flux) in a circuit, rather than the concentration?",
+    "options": [
+      "Fluxmeter",
+      "Tesla-meter",
+      "Ammeter",
+      "Flux-density probe"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_I_V_R",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "units"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A fluxmeter measures the total magnetic flux (Webers), whereas a Tesla-meter or Gauss-meter measures flux density (Tesla)."
+  },
+  {
+    "id": 4041,
+    "question": "Two permanent bar magnets are placed on a workbench with their North poles facing each other. What physical effect will occur between the two magnets?",
+    "options": [
+      "They will push away from each other due to repulsion",
+      "They will move toward each other due to attraction",
+      "They will rotate until they both point toward magnetic North",
+      "No force will be exerted because the poles are identical"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "magnetic-poles",
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "In magnetism, like poles (North-North or South-South) repel each other, while opposite poles attract."
+  },
+  {
+    "id": 4042,
+    "question": "Which term is used to describe the total number of magnetic field lines produced by a magnet, measured in Webers (Wb)?",
+    "options": [
+      "Magnetic flux",
+      "Magnetic flux density",
+      "Magnetic permeability",
+      "Magnetic reluctance"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "units",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Magnetic flux (symbol Φ) represents the total quantity of magnetism and is measured in Webers."
+  },
+  {
+    "id": 4043,
+    "question": "If a constant amount of magnetic flux is forced into a smaller cross-sectional area, what happens to the magnetic flux density?",
+    "options": [
+      "The flux density increases",
+      "The flux density decreases",
+      "The flux density remains the same",
+      "The flux density drops to zero"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "202-202-5A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Flux density (B) is calculated as Flux (Φ) divided by Area (A). If Area decreases while Flux remains constant, the density must increase."
+  },
+  {
+    "id": 4044,
+    "question": "An electrician is comparing two magnets. Magnet A has a flux of 10mWb over an area of 2cm². Magnet B has a flux of 10mWb over an area of 4cm². Which statement is correct?",
+    "options": [
+      "Magnet A has a higher flux density than Magnet B",
+      "Magnet B has a higher flux density than Magnet A",
+      "Both magnets have the same flux density",
+      "Magnet B has more total flux than Magnet A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "units",
+      "calculation"
+    ],
+    "learningOutcomeId": "202-202-5A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Flux density is flux per unit area. Since Magnet A has the same flux concentrated in a smaller area (2cm² vs 4cm²), its flux density is higher."
+  },
+  {
+    "id": 4045,
+    "question": "What is the standard SI unit for measuring magnetic flux density (B)?",
+    "options": [
+      "Tesla (T)",
+      "Weber (Wb)",
+      "Henry (H)",
+      "Farad (F)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "WRONG_UNITS",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "units",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5A-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Magnetic flux density is measured in Teslas (T), which is equivalent to Webers per square metre (Wb/m²)."
+  },
+  {
+    "id": 4046,
+    "question": "When illustrating the magnetic field around a bar magnet, in which direction do the lines of flux traditionally travel outside the magnet?",
+    "options": [
+      "From the North pole to the South pole",
+      "From the South pole to the North pole",
+      "Clockwise around the magnet's centre",
+      "Inward from both poles toward the centre"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "By convention, magnetic flux lines are drawn exiting the North pole and entering the South pole outside of the magnet."
+  },
+  {
+    "id": 4047,
+    "question": "A magnetic security contact is installed on a door frame. If the magnet on the door is mounted with its South pole facing the South pole of the frame sensor, what will happen as the door closes?",
+    "options": [
+      "The magnets will repel each other",
+      "The magnets will attract each other",
+      "The magnetic field will be cancelled out",
+      "The magnets will become demagnetized"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "magnetic-poles"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Like poles (South and South) repel each other. For a sensor to pull together, opposite poles should face each other."
+  },
+  {
+    "id": 4048,
+    "question": "Which mathematical formula correctly relates Magnetic Flux Density (B), Magnetic Flux (Φ), and Area (A)?",
+    "options": [
+      "B = Φ / A",
+      "B = Φ × A",
+      "B = A / Φ",
+      "B = Φ + A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "RECIPROCAL_ERROR",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "calculation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Flux density is defined as the amount of magnetic flux per unit area, hence B = Φ / A."
+  },
+  {
+    "id": 4049,
+    "question": "Which of the following materials would be most suitable for use as a permanent magnet in a simple DC motor?",
+    "options": [
+      "Hardened steel",
+      "Soft iron",
+      "Copper",
+      "Aluminium"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Hardened steel retains its magnetism well, making it suitable for permanent magnets. Soft iron is used for temporary electromagnets as it loses magnetism easily."
+  },
+  {
+    "id": 4050,
+    "question": "In electrical science, what does the symbol 'Φ' (Phi) represent?",
     "options": [
       "Magnetic flux",
       "Flux density",
@@ -137,854 +967,163 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "magnetism",
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO2",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
+    "difficulty": 2,
+    "estimatedTime": 45,
     "explanation": "The Greek letter Phi (Φ) is the standard symbol for magnetic flux."
   },
   {
-    "id": 4021,
-    "question": "An electrician places the South pole of one magnet near the North pole of another. What physical effect will be observed?",
+    "id": 4051,
+    "question": "Which statement correctly identifies the difference between magnetic flux and magnetic flux density?",
     "options": [
-      "They will attract each other",
-      "They will repel each other",
-      "They will generate a spark",
-      "They will lose their magnetism"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "magnetic-poles",
-      "application"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Opposite poles (North and South) attract each other."
-  },
-  {
-    "id": 4022,
-    "question": "What is the unit of measurement for magnetic flux?",
-    "options": [
-      "Weber",
-      "Tesla",
-      "Ampere",
-      "Volt"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "WRONG_UNITS",
-      "3": "WRONG_UNITS"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "units",
-      "discrimination"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Magnetic flux is measured in Webers (Wb)."
-  },
-  {
-    "id": 4023,
-    "question": "Which statement correctly describes the relationship between flux and flux density?",
-    "options": [
-      "Flux density is the amount of flux per unit area",
-      "Flux and flux density are exactly the same thing",
-      "Flux density is measured in Webers",
-      "Flux is the concentration of the magnetic field"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "WRONG_UNITS",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Flux density describes how concentrated the flux is in a specific area (B = Φ / A)."
-  },
-  {
-    "id": 4024,
-    "question": "A bar magnet has its magnetic field lines drawn. Where would you expect to see the highest flux density?",
-    "options": [
-      "At the North and South poles",
-      "Directly in the centre of the magnet",
-      "Far away from the magnet",
-      "Only on the sides of the magnet"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "magnetic-poles",
-      "application"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The magnetic field lines are most concentrated at the poles, meaning the flux density is highest there."
-  },
-  {
-    "id": 4025,
-    "question": "When using the formula B = Φ / A, what does the letter 'A' represent?",
-    "options": [
-      "The area the flux passes through in m²",
-      "The current in Amperes",
-      "The length of the magnet",
-      "The attraction force"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "units",
-      "application"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "In the flux density formula, 'A' stands for the cross-sectional area measured in square metres (m²)."
-  },
-  {
-    "id": 4026,
-    "question": "When the North pole of one permanent magnet is brought close to the North pole of another magnet, what physical effect occurs?",
-    "options": [
-      "They repel each other",
-      "They attract each other",
-      "They cancel each other out",
-      "They create a vacuum"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "magnetic-poles",
-      "conceptual"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "In magnetism, like poles (North-North or South-South) repel each other, while opposite poles attract."
-  },
-  {
-    "id": 4027,
-    "question": "Which term is used to describe the total amount of magnetic field lines produced by a magnet?",
-    "options": [
-      "Magnetic flux",
-      "Flux density",
-      "Magnetic resistance",
-      "Electromotive force"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Magnetic flux refers to the total number of magnetic field lines. Flux density refers to how concentrated those lines are in a specific area."
-  },
-  {
-    "id": 4028,
-    "question": "What is the SI unit for magnetic flux density?",
-    "options": [
-      "Tesla",
-      "Weber",
-      "Henry",
-      "Farad"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "WRONG_UNITS",
-      "3": "WRONG_UNITS"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "units",
-      "magnetism",
-      "discrimination"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Magnetic flux density is measured in Tesla (T), whereas total magnetic flux is measured in Webers (Wb)."
-  },
-  {
-    "id": 4029,
-    "question": "If a constant amount of magnetic flux is forced through a smaller cross-sectional area, what will happen to the flux density?",
-    "options": [
-      "It will increase",
-      "It will decrease",
-      "It will remain the same",
-      "It will disappear"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "conceptual",
-      "calculation"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Flux density is calculated as Flux divided by Area (B = Φ / A). If the area decreases while flux remains constant, the density must increase."
-  },
-  {
-    "id": 4030,
-    "question": "An electrician is trying to identify the poles of two magnets. If the ends of the magnets pull together with force, what does this indicate about the poles?",
-    "options": [
-      "The poles are opposite (North and South)",
-      "The poles are identical (North and North)",
-      "Both magnets are demagnetized",
-      "The magnets are made of plastic"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetism",
-      "application",
-      "magnetic-poles"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Magnetic attraction only occurs between opposite poles (North and South). Identical poles would result in a repulsive force."
-  },
-  {
-    "id": 4031,
-    "question": "Two bar magnets are placed on a workbench with their North poles facing each other. What physical reaction will occur between the two magnets?",
-    "options": [
-      "They will exert a force of repulsion and move away from each other",
-      "They will exert a force of attraction and pull together",
-      "The magnetic fields will cancel out, resulting in no movement",
-      "The magnets will rotate until a North pole faces a South pole"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetic-poles",
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Like poles (North-North or South-South) always repel each other, while opposite poles attract."
-  },
-  {
-    "id": 4032,
-    "question": "In magnetic theory, how is 'magnetic flux density' distinct from 'magnetic flux'?",
-    "options": [
-      "Flux density measures the concentration of flux per unit area, whereas flux is the total amount",
-      "Flux density is measured in Webers, whereas flux is measured in Teslas",
-      "Flux density refers to permanent magnets, whereas flux refers to electromagnets",
-      "Flux density is the speed of magnetic lines, whereas flux is the distance they travel"
+      "Flux is the total number of magnetic lines of force, while flux density is the concentration of those lines per unit area.",
+      "Flux is the measurement of magnetic strength in Tesla, while flux density is measured in Webers.",
+      "Flux refers to the force of attraction, while flux density refers to the force of repulsion between poles.",
+      "Flux is only present in permanent magnets, while flux density is only present in electromagnets."
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "WRONG_UNITS",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
       "terminology",
       "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 60,
-    "explanation": "Magnetic flux (Φ) is the total number of magnetic field lines, while flux density (B) is the amount of flux passing through a specific area (B = Φ/A)."
-  },
-  {
-    "id": 4033,
-    "question": "A magnetic circuit has a total flux of 0.005 Webers passing through a pole face with an area of 0.002 square metres. Calculate the magnetic flux density.",
-    "options": [
-      "2.5 Tesla",
-      "0.00001 Tesla",
-      "0.4 Tesla",
-      "1.0 Tesla"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "DIVIDED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "calculation",
-      "units",
-      "application"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Flux Density (B) = Flux (Φ) / Area (A). Therefore, 0.005 / 0.002 = 2.5 Tesla."
-  },
-  {
-    "id": 4034,
-    "question": "An electrician is investigating why a relay is not pulling in correctly. If the total magnetic flux remains constant but the contact area is increased, what happens to the flux density?",
-    "options": [
-      "The flux density will decrease",
-      "The flux density will increase",
-      "The flux density will remain exactly the same",
-      "The flux density will fluctuate between North and South"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "application",
-      "conceptual",
-      "relays"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Since B = Φ/A, increasing the area (A) while keeping flux (Φ) constant results in a lower flux density (B)."
-  },
-  {
-    "id": 4035,
-    "question": "Which of the following describes the correct direction of magnetic flux lines external to a permanent bar magnet?",
-    "options": [
-      "From the North pole to the South pole",
-      "From the South pole to the North pole",
-      "From the centre of the magnet outwards in all directions",
-      "From the positive terminal to the negative terminal"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "discrimination",
-      "conceptual",
-      "magnetic-poles"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "By convention, magnetic flux lines are always shown leaving the North pole and entering the South pole outside of the magnet."
-  },
-  {
-    "id": 4036,
-    "question": "What is the SI unit for magnetic flux?",
-    "options": [
-      "Weber (Wb)",
-      "Tesla (T)",
-      "Henry (H)",
-      "Ampere-turn (At)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "WRONG_UNITS",
-      "3": "WRONG_UNITS"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "units",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 30,
-    "explanation": "The Weber (Wb) is the unit of total magnetic flux, while the Tesla (T) is the unit of flux density."
-  },
-  {
-    "id": 4037,
-    "question": "A magnet is moved towards a piece of soft iron. Which of the following best describes the interaction?",
-    "options": [
-      "The magnet induces a temporary pole in the iron, causing attraction",
-      "The iron is repelled because it has no magnetic poles",
-      "The iron becomes a permanent magnet instantly",
-      "No reaction occurs until the iron is connected to a battery"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "application",
-      "conceptual",
-      "magnetic-poles"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 60,
-    "explanation": "Magnetic induction causes the soft iron to develop a temporary opposite pole facing the magnet, resulting in attraction."
-  },
-  {
-    "id": 4038,
-    "question": "Which statement correctly identifies a characteristic of magnetic lines of flux?",
-    "options": [
-      "They form continuous loops and never intersect or cross",
-      "They are only present in materials that conduct electricity",
-      "They travel faster through air than through ferromagnetic materials",
-      "They represent the flow of electrons through a magnetic field"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "conceptual",
-      "discrimination",
-      "explanation"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Magnetic flux lines are continuous loops that never cross each other; they are most concentrated where the field is strongest."
-  },
-  {
-    "id": 4039,
-    "question": "If the flux density in a transformer core is 1.2 Tesla and the cross-sectional area of the core is 0.05 square metres, what is the total flux?",
-    "options": [
-      "0.06 Webers",
-      "24 Webers",
-      "0.041 Webers",
-      "1.25 Webers"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "RECIPROCAL_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "calculation",
-      "application",
-      "transformers"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Rearranging B = Φ/A gives Φ = B × A. Therefore, 1.2 T × 0.05 m² = 0.06 Webers."
-  },
-  {
-    "id": 4040,
-    "question": "A permanent magnet is broken into two smaller pieces. What is the result regarding their magnetic poles?",
-    "options": [
-      "Each piece will have its own North and South pole",
-      "One piece will be a North pole and the other will be a South pole",
-      "Both pieces will lose their magnetism entirely",
-      "The pieces will only have poles if they are reattached"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "conceptual",
-      "magnetic-poles",
-      "discrimination"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 60,
-    "explanation": "Magnetism is a molecular property; breaking a magnet simply creates two smaller magnets, each with its own North and South pole."
-  },
-  {
-    "id": 4041,
-    "question": "Two bar magnets are placed on a workbench with their North poles facing each other. What mechanical effect will occur between the two magnets?",
-    "options": [
-      "A force of repulsion will push them apart",
-      "A force of attraction will pull them together",
-      "The magnetic fields will cancel out and create no force",
-      "The magnets will rotate until they align East to West"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetic-poles",
-      "conceptual"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Like poles (North-North or South-South) always repel each other, while opposite poles attract."
-  },
-  {
-    "id": 4042,
-    "question": "Which of the following correctly defines the relationship between magnetic flux and magnetic flux density?",
-    "options": [
-      "Flux is the total field lines, while density is the concentration of lines per square metre",
-      "Flux is measured in Teslas, while flux density is measured in Webers",
-      "Flux and flux density are two different names for the exact same measurement",
-      "Flux density represents the total field, while flux represents the field at a single point"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Magnetic flux (Φ) is the total amount of magnetic field, whereas flux density (B) is the amount of flux passing through a specific unit of area (B = Φ / A)."
-  },
-  {
-    "id": 4043,
-    "question": "A magnetic circuit produces a total flux of 0.015 Webers. If the cross-sectional area of the core is 0.03 square metres, what is the magnetic flux density?",
-    "options": [
-      "0.5 Tesla",
-      "0.00045 Tesla",
-      "2.0 Tesla",
-      "0.045 Tesla"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "DIVIDED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "calculation",
       "units"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Flux density (B) = Flux (Φ) / Area (A). Therefore, 0.015 / 0.03 = 0.5 T."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Magnetic flux (symbol Φ) represents the total magnetic field or number of lines of force, while flux density (symbol B) measures how many of those lines pass through a specific area (B = Φ / A)."
   },
   {
-    "id": 4044,
-    "question": "When visualizing a magnetic field using flux lines, in which direction are the lines conventionally shown to travel outside of the magnet?",
+    "id": 4052,
+    "question": "If a constant magnetic flux of 0.05 Webers is concentrated from an area of 1.0 m² into a smaller area of 0.2 m², what happens to the magnetic flux density?",
     "options": [
-      "From the North pole to the South pole",
-      "From the South pole to the North pole",
-      "From the centre of the magnet outwards in all directions",
-      "In clockwise circles around the longitudinal axis"
+      "The flux density increases because the same amount of flux is packed into a smaller space.",
+      "The flux density decreases because there is less area for the magnetism to exist.",
+      "The flux density remains the same because the total amount of flux has not changed.",
+      "The flux density becomes zero because the lines of force cancel each other out."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "calculation",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Flux density is inversely proportional to the area for a given flux. If the area decreases, the lines of force become more concentrated, resulting in a higher flux density."
+  },
+  {
+    "id": 4053,
+    "question": "An electrician is testing two unmarked permanent magnets. When the ends of the magnets are brought together, they push away from each other. What does this indicate about the poles?",
+    "options": [
+      "The poles facing each other are 'like' poles, such as two North poles.",
+      "The poles facing each other are 'unlike' poles, such as a North and a South pole.",
+      "One of the magnets is not actually magnetized and is acting as a spacer.",
+      "The magnets are placed in a vacuum where attraction is not possible."
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "SIGN_ERROR",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "discrimination",
-      "sine-wave"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "By convention, magnetic flux lines are always drawn flowing from the North pole to the South pole outside of the magnet."
-  },
-  {
-    "id": 4045,
-    "question": "An electrician is comparing two magnets. Magnet A has a flux density of 0.8 T over a small area. Magnet B has the same flux density but over a much larger area. Which magnet produces the most total flux?",
-    "options": [
-      "Magnet B",
-      "Magnet A",
-      "Both produce the same total flux",
-      "It is impossible to determine without the exact area measurements"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Since Φ = B × A, if the flux density (B) is the same, the magnet with the larger area (A) will result in a higher total flux (Φ)."
-  },
-  {
-    "id": 4046,
-    "question": "In a practical application like a heavy-duty contactor, what happens to the magnetic flux density if the same amount of flux is forced through a smaller iron core?",
-    "options": [
-      "The flux density increases",
-      "The flux density decreases",
-      "The flux density remains constant",
-      "The total flux will automatically decrease to compensate"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
+      "discrimination",
       "application",
-      "conceptual"
+      "magnetic-poles"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 60,
-    "explanation": "Flux density is inversely proportional to area (B = Φ/A). If the area decreases while flux remains the same, the density must increase."
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The fundamental law of magnetism states that like poles repel each other and unlike poles attract each other."
   },
   {
-    "id": 4047,
-    "question": "Which of the following units is used to measure the total quantity of magnetic flux?",
+    "id": 4054,
+    "question": "In the design of a transformer core, why is it important to consider the magnetic flux density (Tesla) rather than just the total magnetic flux (Webers)?",
     "options": [
-      "Weber (Wb)",
-      "Tesla (T)",
-      "Henry (H)",
-      "Ampere (A)"
+      "To ensure the core material does not become saturated by having too many lines of force in a small area.",
+      "Because flux density determines the physical weight of the magnet used in the core.",
+      "Because total flux only applies to DC circuits, whereas density applies to AC circuits.",
+      "To ensure the insulation on the windings can withstand the magnetic pressure."
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_WITH_DC",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "application",
+      "transformers",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Magnetic flux density is critical because magnetic materials have a limit to how much flux they can carry per square metre before they reach 'saturation', where they can no longer be effectively magnetized."
+  },
+  {
+    "id": 4055,
+    "question": "Which of the following correctly matches the magnetic property to its SI unit of measurement?",
+    "options": [
+      "Magnetic Flux: Weber (Wb); Magnetic Flux Density: Tesla (T)",
+      "Magnetic Flux: Tesla (T); Magnetic Flux Density: Weber (Wb)",
+      "Magnetic Flux: Ampere (A); Magnetic Flux Density: Volt (V)",
+      "Magnetic Flux: Newton (N); Magnetic Flux Density: Weber (Wb)"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "WRONG_UNITS",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "2": "CONFUSED_I_V_R",
+      "3": "UNITS_MISSING"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "discrimination",
-      "units"
+      "units",
+      "terminology",
+      "discrimination"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 30,
-    "explanation": "The Weber (Wb) is the SI unit for magnetic flux. The Tesla (T) is the unit for magnetic flux density."
-  },
-  {
-    "id": 4048,
-    "question": "A magnetic relay fails to operate. A technician finds that the steel armature is not being pulled toward the electromagnet. Which magnetic principle is the relay designed to use?",
-    "options": [
-      "Magnetic attraction of a ferromagnetic material",
-      "Magnetic repulsion of a non-ferrous material",
-      "The reciprocal error of the magnetic field",
-      "Electrostatic discharge between the poles"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "RECIPROCAL_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "application",
-      "relays"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Relays use the principle of magnetic attraction where an electromagnet pulls a ferromagnetic (iron/steel) armature to close or open contacts."
-  },
-  {
-    "id": 4049,
-    "question": "Calculate the total magnetic flux (Φ) in a transformer core that has a cross-sectional area of 0.02 square metres and a flux density of 1.5 Teslas.",
-    "options": [
-      "0.03 Webers",
-      "75 Webers",
-      "0.013 Webers",
-      "1.52 Webers"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "DIVIDED_INSTEAD",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "OTHER"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "calculation",
-      "transformers"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "To find flux (Φ), rearrange the formula B = Φ / A to Φ = B × A. Therefore, 1.5 T × 0.02 m² = 0.03 Wb."
-  },
-  {
-    "id": 4050,
-    "question": "Which of the following materials would be most suitable for use as a permanent magnet due to its ability to retain magnetism?",
-    "options": [
-      "Steel",
-      "Soft Iron",
-      "Copper",
-      "Aluminium"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "Steel is a hard magnetic material that retains its magnetism well, making it suitable for permanent magnets. Soft iron loses magnetism quickly, making it better for electromagnets."
+    "explanation": "The Weber (Wb) is the unit of magnetic flux, and the Tesla (T) is the unit of magnetic flux density (equivalent to Webers per square metre)."
   },
   {
-    "id": 4051,
-    "question": "A magnetic circuit has a constant total magnetic flux. If the cross-sectional area of the magnetic core is reduced by half, what will happen to the magnetic flux density?",
+    "id": 4056,
+    "question": "A permanent magnet has a constant total magnetic flux of 200 μWb. If the cross-sectional area of the magnetic path is reduced by exactly half, what will be the resulting effect on the magnetic flux density?",
     "options": [
-      "The flux density will double in value",
-      "The flux density will be reduced by half",
-      "The flux density will remain exactly the same",
-      "The flux density will increase by four times"
+      "The flux density will double",
+      "The flux density will be halved",
+      "The flux density will remain unchanged",
+      "The flux density will increase by a factor of four"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -995,24 +1134,78 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "magnetism",
       "calculation",
-      "conceptual"
+      "conceptual",
+      "units"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Flux density (B) is calculated as Flux (Φ) divided by Area (A). Since Area is in the denominator, reducing the area by half while keeping flux constant results in the flux density doubling."
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Flux density (B) is calculated as Flux (Φ) divided by Area (A). If the area is halved while flux remains constant, the density must double."
   },
   {
-    "id": 4052,
-    "question": "When comparing magnetic flux and magnetic flux density, which of the following statements is correct regarding their measurement?",
+    "id": 4057,
+    "question": "Two bar magnets are placed end-to-end with a small air gap between them. If the magnetic flux lines are observed to flow directly and uniformly from the end of Magnet A into the end of Magnet B without any divergence or 'pushing away', which of the following is true?",
     "options": [
-      "Flux is the total number of magnetic lines (Webers), while flux density is the concentration (Tesla)",
-      "Flux is measured in Tesla (T), while flux density is measured in Webers (Wb)",
-      "Flux density is the total field produced, while flux is the field strength per square metre",
-      "Flux and flux density are two different names for the same physical quantity"
+      "Opposite poles are facing each other, resulting in attraction",
+      "Like poles are facing each other, resulting in repulsion",
+      "Both facing ends are North poles",
+      "Both magnets have lost their magnetic properties"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "202-202-5A-LO5",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Magnetic flux lines flow from North to South. If lines flow directly from one magnet to another without diverging, the poles must be opposite (North facing South), creating attraction."
+  },
+  {
+    "id": 4058,
+    "question": "An electrician is comparing two magnetic cores. Core A has a cross-sectional area of 0.01 m² and a total flux of 0.05 Wb. Core B has an area of 0.02 m² and a total flux of 0.1 Wb. Which statement correctly identifies the magnetic state of the cores?",
+    "options": [
+      "Both cores have the same magnetic flux density",
+      "Core A has a higher flux density than Core B",
+      "Core B has a higher flux density than Core A",
+      "Core B has twice the flux density of Core A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "calculation",
+      "discrimination"
+    ],
+    "learningOutcomeId": "202-202-5A-LO5",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Flux density B = Φ / A. For Core A: 0.05 / 0.01 = 5 Tesla. For Core B: 0.1 / 0.02 = 5 Tesla. Therefore, both have the same density."
+  },
+  {
+    "id": 4059,
+    "question": "Which of the following best describes the fundamental difference between magnetic flux and magnetic flux density?",
+    "options": [
+      "Flux is the total number of field lines, while density is the concentration of lines per unit area",
+      "Flux is measured in Tesla, while flux density is measured in Webers",
+      "Flux refers to permanent magnets, while flux density refers only to electromagnets",
+      "Flux is the force of attraction, while flux density is the force of repulsion"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1023,378 +1216,175 @@ export const magnetismBasicsQuestions: TaggedQuestion[] = [
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "units",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Magnetic flux (Φ) represents the total number of magnetic field lines and is measured in Webers. Flux density (B) is the amount of flux per unit area and is measured in Tesla (Webers per square metre)."
-  },
-  {
-    "id": 4053,
-    "question": "An electrician is installing a magnetic security sensor. If the North pole of a permanent magnet is brought close to an unmarked side of another magnet and they immediately push away from each other, what is the polarity of the unmarked side?",
-    "options": [
-      "North pole",
-      "South pole",
-      "Positive pole",
-      "Negative pole"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "SIGN_ERROR",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetic-poles",
       "conceptual",
-      "application"
+      "terminology"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The fundamental law of magnetism states that 'like poles repel'. If the North pole of the first magnet causes repulsion, the unmarked side of the second magnet must also be a North pole."
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Magnetic flux (Φ) represents the total magnetic field produced, whereas flux density (B) measures how concentrated that field is over a specific area."
   },
   {
-    "id": 4054,
-    "question": "A transformer core has a cross-sectional area of 0.05 m² and a measured magnetic flux density of 1.2 Tesla. What is the total magnetic flux present in the core?",
+    "id": 4060,
+    "question": "A magnetic circuit in a protective relay is required to operate with a flux density of 1.2 T. If the iron core has a cross-sectional area of 0.005 m², what is the total magnetic flux required to trigger the relay?",
     "options": [
-      "0.06 Webers",
-      "24.0 Webers",
-      "1.25 Webers",
-      "0.04 Webers"
+      "0.006 Wb",
+      "240 Wb",
+      "1.205 Wb",
+      "0.004 Wb"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "DIVIDED_INSTEAD",
-      "2": "OTHER",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "calculation",
-      "units",
-      "application"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Using the formula Φ = B × A, we multiply the flux density (1.2 T) by the area (0.05 m²) to find the total flux: 1.2 × 0.05 = 0.06 Wb."
-  },
-  {
-    "id": 4055,
-    "question": "Which mathematical formula correctly expresses the relationship between magnetic flux (Φ), magnetic flux density (B), and the area (A) through which the flux passes?",
-    "options": [
-      "B = Φ / A",
-      "Φ = B / A",
-      "A = B × Φ",
-      "B = A / Φ"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "RECIPROCAL_ERROR"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "discrimination",
-      "terminology",
-      "units"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Flux density (B) is defined as the amount of flux (Φ) per unit area (A), leading to the formula B = Φ / A."
-  },
-  {
-    "id": 4056,
-    "question": "A permanent magnet has a total magnetic flux of 20 μWb. If this flux is concentrated into a smaller pole face area, which statement correctly describes the change in magnetic properties?",
-    "options": [
-      "Flux density increases while total flux remains constant",
-      "Both flux density and total flux increase due to concentration",
-      "Flux density remains constant while total flux decreases",
-      "Flux density decreases while total flux increases"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "DIVIDED_INSTEAD"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetic-poles",
-      "conceptual",
-      "units"
-    ],
-    "learningOutcomeId": "202-5A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Magnetic flux is the total amount of magnetism, while flux density is the concentration (flux per unit area). Reducing the area increases the density even if the total flux remains the same."
-  },
-  {
-    "id": 4057,
-    "question": "Which of the following scenarios specifically describes the concept of 'magnetic flux density' rather than 'magnetic flux'?",
-    "options": [
-      "The measurement of 1.2 Tesla within a transformer core",
-      "The total number of magnetic lines of force leaving a North pole",
-      "The total Weber (Wb) count of a permanent magnet",
-      "The magnetic field strength regardless of the cross-sectional area"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "UNITS_MISSING",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "units"
-    ],
-    "learningOutcomeId": "202-5A1-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Flux density is measured in Tesla (T), which represents the concentration of magnetic flux. Weber (Wb) is the unit for total magnetic flux."
-  },
-  {
-    "id": 4058,
-    "question": "A magnetic core has a cross-sectional area of 0.005 m². If the total magnetic flux passing through the core is 0.01 Wb, what is the magnetic flux density (B)?",
-    "options": [
-      "2.0 T",
-      "0.00005 T",
-      "0.5 T",
-      "20.0 T"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "DIVIDED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
       "3": "ROUNDING_ERROR"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
       "calculation",
-      "application",
-      "units"
+      "application"
     ],
-    "learningOutcomeId": "202-5A1-LO3",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 150,
-    "explanation": "Flux density (B) = Flux (Φ) / Area (A). Therefore, 0.01 / 0.005 = 2.0 Tesla."
+    "explanation": "Using the formula Φ = B × A: 1.2 T × 0.005 m² = 0.006 Webers."
   },
   {
-    "id": 4059,
-    "question": "In a magnetic circuit, if the cross-sectional area of the path is doubled but the total magnetic flux (Φ) remains unchanged, how is the flux density (B) affected?",
+    "id": 4061,
+    "question": "During a site test, a known North pole of a compass is brought near an unmarked end of a metal bar. If the compass needle is strongly repelled, what is the most technically accurate conclusion?",
     "options": [
-      "It is reduced to half of its original value",
-      "It is doubled in value",
-      "It remains exactly the same",
-      "It increases by a factor of four"
+      "The unmarked end is definitely a North pole",
+      "The unmarked end is definitely a South pole",
+      "The metal bar is made of unmagnetized soft iron",
+      "The metal bar is a non-magnetic material like aluminium"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
+      "1": "TOPOLOGY_CONFUSION",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
-      "conceptual",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "202-5A1-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Since B = Φ / A, flux density is inversely proportional to the area. If the area doubles, the density is halved."
-  },
-  {
-    "id": 4060,
-    "question": "When two magnets are placed with like poles facing each other, the magnetic flux lines from one magnet cannot cross the flux lines of the other. This results in which physical phenomenon?",
-    "options": [
-      "A region of magnetic repulsion where the lines distort away from each other",
-      "A region of magnetic attraction where the lines merge into a single path",
-      "The total cancellation of all magnetic flux in the surrounding area",
-      "An increase in the magnetic flux density at the center point between the poles"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "magnetic-poles",
       "discrimination",
-      "explanation"
+      "application"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
     "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Like poles repel because magnetic flux lines cannot cross; instead, they distort and push away from each other, creating a repulsive force."
-  },
-  {
-    "id": 4061,
-    "question": "An electrician is comparing two magnets. Magnet A has a pole area of 0.001 m² and a flux of 1 mWb. Magnet B has a pole area of 0.0005 m² and a flux of 0.8 mWb. Which magnet has the higher flux density?",
-    "options": [
-      "Magnet B",
-      "Magnet A",
-      "Both have the same flux density",
-      "Neither, as flux density depends on current only"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "ROUNDING_ERROR",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "application",
-      "calculation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "202-5A1-LO3",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 180,
-    "explanation": "Magnet A: 0.001 / 0.001 = 1 T. Magnet B: 0.0008 / 0.0005 = 1.6 T. Therefore, Magnet B has a higher flux density."
+    "estimatedTime": 90,
+    "explanation": "Repulsion is the only 'sure' test for polarity. Since like poles repel, if the North pole of the compass is repelled, the end of the bar must be a North pole."
   },
   {
     "id": 4062,
-    "question": "Magnetic flux lines are fundamental to understanding magnetic fields. Which of the following is a true characteristic of these lines?",
+    "question": "Why does the lifting force of a permanent magnet appear much stronger at the tips (poles) than in the middle of the magnet's body?",
     "options": [
-      "They form continuous loops, passing from North to South externally and South to North internally",
-      "They originate at the North pole and terminate at the South pole without returning",
-      "They can cross each other when two strong magnetic fields interact",
-      "They represent the flow of electrons through the magnetic material"
+      "The magnetic flux density is highest at the poles where the lines of force are most concentrated",
+      "The total magnetic flux is only present at the poles and does not exist in the center",
+      "The center of the magnet acts as a neutral point where flux lines cancel each other out",
+      "The poles have a higher voltage potential than the center of the magnet"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
       "conceptual",
-      "terminology",
-      "magnetic-poles"
+      "explanation"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "Magnetic flux lines are continuous loops. While they appear to travel N to S outside the magnet, they complete the circuit S to N inside the magnet."
+    "explanation": "While total flux is the same through the magnet, the flux density (concentration of lines) is highest at the poles, leading to a stronger magnetic force."
   },
   {
     "id": 4063,
-    "question": "Which unit of measurement is specifically used to quantify the 'total amount' of magnetism produced by a source, rather than its concentration?",
+    "question": "An industrial electromagnet is modified by grinding the contact face to a smaller area while keeping the coil current and total flux the same. What is the effect on the flux density at the contact face?",
     "options": [
-      "Weber (Wb)",
-      "Tesla (T)",
-      "Henry (H)",
-      "Ampere-turns (At)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "WRONG_UNITS",
-      "2": "WRONG_UNITS",
-      "3": "WRONG_UNITS"
-    },
-    "section": "Science 2365 Level 2",
-    "category": "Magnetism basics",
-    "tags": [
-      "units",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "202-5A1-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 60,
-    "explanation": "The Weber (Wb) is the unit for magnetic flux (the total amount). Tesla is for flux density (concentration)."
-  },
-  {
-    "id": 4064,
-    "question": "A relay is designed to operate when the magnetic flux density reaches 0.5 T. If the core area is 0.002 m², what is the minimum magnetic flux required to trigger the relay?",
-    "options": [
-      "0.001 Wb",
-      "250 Wb",
-      "0.004 Wb",
-      "0.25 Wb"
+      "The flux density increases",
+      "The flux density decreases",
+      "The flux density remains the same",
+      "The flux density becomes zero"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "DIVIDED_INSTEAD",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "FORMULA_NOT_REARRANGED"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
       "application",
-      "calculation",
-      "relays"
+      "conceptual"
     ],
-    "learningOutcomeId": "202-5A1-LO3",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "Rearranging the formula B = Φ / A gives Φ = B × A. So, 0.5 T × 0.002 m² = 0.001 Wb."
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Because B = Φ / A, reducing the area (A) while keeping flux (Φ) constant results in a higher flux density (B)."
   },
   {
-    "id": 4065,
-    "question": "If a permanent bar magnet is broken into two smaller pieces exactly in the middle, what occurs at the point of the break?",
+    "id": 4064,
+    "question": "Which specific unit of measurement is used by an electrical engineer to quantify the concentration of magnetic field lines passing through a transformer core?",
     "options": [
-      "Two new poles are created at the break, making each piece a complete magnet",
-      "The magnetism is lost as the internal flux lines are severed",
-      "One piece becomes a North-only magnet and the other a South-only magnet",
-      "The flux density at the break point becomes zero as the field collapses"
+      "Tesla",
+      "Weber",
+      "Henry",
+      "Farad"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "WRONG_UNITS",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Magnetism basics",
+    "tags": [
+      "terminology",
+      "units"
+    ],
+    "learningOutcomeId": "202-202-5A-LO5",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Concentration of field lines refers to flux density, which is measured in Tesla (T)."
+  },
+  {
+    "id": 4065,
+    "question": "A pair of attracting magnets are moved further apart. The force of attraction drops significantly. In terms of magnetic field theory, why does this occur?",
+    "options": [
+      "The flux density in the air gap between the magnets decreases as the lines of force spread out",
+      "The total magnetic flux produced by each magnet decreases with distance",
+      "The magnetic poles naturally weaken when they are not in contact with other magnets",
+      "The air gap acts as a conductor that drains the magnetic flux"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
     "section": "Science 2365 Level 2",
     "category": "Magnetism basics",
     "tags": [
       "conceptual",
-      "magnetic-poles",
-      "explanation"
+      "application"
     ],
-    "learningOutcomeId": "202-5A1-LO1",
+    "learningOutcomeId": "202-202-5A-LO5",
     "answerType": "mcq",
     "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Magnetism is a molecular property; breaking a magnet creates two new magnets, each with its own North and South pole."
+    "estimatedTime": 150,
+    "explanation": "As distance increases, the magnetic flux lines spread out over a much larger volume/area, meaning the flux density in the space between the magnets decreases, reducing the force."
   }
 ];
