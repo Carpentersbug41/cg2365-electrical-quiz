@@ -29,7 +29,11 @@ export class Phase12_Implement {
     suggestions: Phase11Suggestions
   ): Promise<Phase12Result> {
     const stopTimer = debugLogger.startTimer('Phase 12: Implement Improvements');
-    
+
+    if (process.env.DEBUG_PHASE10 === 'true') {
+      console.log('\n\n>>> ENTERING PHASE 12: Implement Improvements (NO LLM - applying patches) <<<\n');
+    }
+
     console.log(`\n🔨 [Phase12_Implement] Applying improvements to lesson ${originalLesson.id}...`);
     console.log(`   - Fix plans to apply: ${suggestions.fixablePlans.length}`);
     

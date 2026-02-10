@@ -664,6 +664,17 @@ OUTPUT FORMAT: Pure JSON only`;
       allQuestions.push(...hardQuestions.questions);
       debugLog('HARD_BATCH_SUCCESS', { count: hardQuestions.questions.length });
 
+      // Pre-validation logging
+      console.log(`[QuizGen] Generated ${allQuestions.length} questions total`);
+      console.log(`[QuizGen] Breakdown: Easy=${easyQuestions.questions.length}, Medium=${mediumQuestions.questions.length}, Hard=${hardQuestions.questions.length}`);
+
+      // Quick sanity check before returning
+      const invalidCounts = allQuestions.filter(q => !q.options || q.options.length !== 4);
+      if (invalidCounts.length > 0) {
+        console.error(`[QuizGen] ERROR: ${invalidCounts.length} questions still have invalid option counts after sanitization!`);
+        console.error(`Question IDs:`, invalidCounts.map(q => q.id));
+      }
+
       debugLog('QUIZ_GEN_COMPLETE', { totalQuestions: allQuestions.length });
       return { success: true, questions: allQuestions };
     } catch (error) {
@@ -833,7 +844,19 @@ OUTPUT FORMAT: Pure JSON only`;
           };
         }
 
-        allQuestions.push(...questions);
+        // Sanitize questions before adding to batch
+        const { sanitized, warnings: sanitizeWarnings, rejected } = this.sanitizeQuizQuestions(questions);
+
+        if (sanitizeWarnings.length > 0) {
+          console.log(`[QuizGen] Sanitization applied to batch ${i + 1}/${chunks}:`);
+          sanitizeWarnings.forEach(w => console.log(`  - ${w}`));
+        }
+
+        if (rejected.length > 0) {
+          console.warn(`[QuizGen] Rejected ${rejected.length} invalid question(s):`, rejected);
+        }
+
+        allQuestions.push(...sanitized);
 
         // Small delay between chunks to avoid rate limits
         if (i < chunks - 1) {
@@ -849,6 +872,106 @@ OUTPUT FORMAT: Pure JSON only`;
         error: error instanceof Error ? error.message : 'Unknown error generating question batch',
       };
     }
+  }
+
+  /**
+   * Sanitize quiz questions to ensure they meet validation requirements
+   * Runs BEFORE validation to auto-fix common LLM errors
+   */
+  private sanitizeQuizQuestions(questions: QuizQuestion[]): {
+    sanitized: QuizQuestion[];
+    warnings: string[];
+    rejected: number[];
+  } {
+    const sanitized: QuizQuestion[] = [];
+    const warnings: string[] = [];
+    const rejected: number[] = [];
+
+    for (const question of questions) {
+      // Check if options array exists
+      if (!question.options || !Array.isArray(question.options)) {
+        warnings.push(`Question ${question.id}: Missing options array - REJECTED`);
+        rejected.push(question.id);
+        continue;
+      }
+
+      // Remove duplicate options (case-sensitive exact match)
+      const uniqueOptions = Array.from(new Set(question.options));
+      const hadDuplicates = uniqueOptions.length !== question.options.length;
+
+      if (hadDuplicates) {
+        warnings.push(
+          `Question ${question.id}: Removed ${question.options.length - uniqueOptions.length} duplicate option(s)`
+        );
+      }
+
+      // Reject if < 2 unique options (can't create valid MCQ)
+      if (uniqueOptions.length < 2) {
+        warnings.push(
+          `Question ${question.id}: Only ${uniqueOptions.length} unique option(s) - REJECTED (need at least 2)`
+        );
+        rejected.push(question.id);
+        continue;
+      }
+
+      // Trim or pad to exactly 4 options
+      let finalOptions: string[];
+      let adjustedCorrectAnswer = question.correctAnswer;
+
+      if (uniqueOptions.length === 4) {
+        // Perfect - use as is
+        finalOptions = uniqueOptions;
+      } else if (uniqueOptions.length > 4) {
+        // Too many - trim to 4
+        // Strategy: Keep correct answer + 3 others
+        const correctOption = question.options[question.correctAnswer];
+        const correctInUnique = uniqueOptions.indexOf(correctOption);
+        
+        if (correctInUnique === -1) {
+          // Correct answer was a duplicate - use first occurrence
+          warnings.push(`Question ${question.id}: Correct answer was duplicate - using first occurrence`);
+          finalOptions = uniqueOptions.slice(0, 4);
+          adjustedCorrectAnswer = 0; // Put correct answer first
+          finalOptions.unshift(correctOption);
+          finalOptions.pop(); // Keep total at 4
+        } else {
+          // Keep correct answer + fill with other unique options
+          finalOptions = [correctOption];
+          adjustedCorrectAnswer = 0;
+          
+          for (const opt of uniqueOptions) {
+            if (opt !== correctOption && finalOptions.length < 4) {
+              finalOptions.push(opt);
+            }
+          }
+        }
+        
+        warnings.push(
+          `Question ${question.id}: Trimmed from ${uniqueOptions.length} to 4 options`
+        );
+      } else {
+        // Too few (2 or 3) - pad with generic distractors
+        finalOptions = [...uniqueOptions];
+        const paddingNeeded = 4 - uniqueOptions.length;
+        
+        for (let i = 0; i < paddingNeeded; i++) {
+          finalOptions.push(`[Additional option ${i + 1}]`);
+        }
+        
+        warnings.push(
+          `Question ${question.id}: Padded from ${uniqueOptions.length} to 4 options with placeholders`
+        );
+      }
+
+      // Create sanitized question
+      sanitized.push({
+        ...question,
+        options: finalOptions,
+        correctAnswer: adjustedCorrectAnswer,
+      });
+    }
+
+    return { sanitized, warnings, rejected };
   }
 
   /**
@@ -913,6 +1036,33 @@ OUTPUT FORMAT: Pure JSON only`;
 
         // Build message array (converts string to messages if additionalInstructions present)
         const messages = this.buildMessageArray(userPrompt);
+
+        // Phase 10-13 verbose debug: log full prompts/responses when flags set and modelOverride present
+        const phase1013Verbose = process.env.DEBUG_PHASE10 === 'true' && process.env.DEBUG_PHASE10_PROMPTS === 'true' && modelOverride;
+        if (phase1013Verbose) {
+          console.log('\n╔════════════════════════════════════════════════════════════════════╗');
+          console.log('║  PHASE 10-13 LLM CALL                                              ║');
+          console.log(`║  Type: ${type} | Model: ${modelOverride} | Attempt: ${attempt + 1}                          ║`);
+          console.log('╚════════════════════════════════════════════════════════════════════╝\n');
+          console.log('---------- SYSTEM PROMPT (BEGIN) ----------');
+          console.log(systemPrompt);
+          console.log('---------- SYSTEM PROMPT (END) ----------\n');
+          console.log('---------- CONVERSATION / MESSAGES (BEGIN) ----------');
+          if (Array.isArray(messages)) {
+            messages.forEach((msg: { role: string; parts: Array<{ text: string }> }, idx: number) => {
+              const role = msg.role || 'unknown';
+              const text = msg.parts?.[0]?.text ?? '';
+              console.log(`\n=== Message ${idx + 1} (role: ${role}) ===`);
+              console.log(text);
+            });
+          } else {
+            console.log('\n=== Single user message ===');
+            console.log(messages);
+          }
+          console.log('\n---------- CONVERSATION / MESSAGES (END) ----------\n');
+          console.log('>>> Sending to API... >>>\n');
+        }
+
         const result = await model.generateContent(messages);
         
         // Extract response data
@@ -935,6 +1085,17 @@ OUTPUT FORMAT: Pure JSON only`;
         }
 
         const text = result.response.text();
+
+        // Phase 10-13 verbose debug: log full response
+        if (phase1013Verbose) {
+          console.log('\n<<< RESPONSE RECEIVED <<<\n');
+          console.log('---------- LLM RESPONSE (BEGIN) ----------');
+          console.log(text);
+          console.log('---------- LLM RESPONSE (END) ----------\n');
+          console.log('╔════════════════════════════════════════════════════════════════════╗');
+          console.log('║  END PHASE 10-13 LLM CALL                                          ║');
+          console.log('╚════════════════════════════════════════════════════════════════════╝\n');
+        }
 
         // CRITICAL: Validate response before parsing
         const validation = validateLLMResponse(text);

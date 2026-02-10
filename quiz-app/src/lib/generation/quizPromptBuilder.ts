@@ -46,6 +46,12 @@ CRITICAL OUTPUT REQUIREMENT:
 - No markdown code blocks
 - No explanations outside the array
 
+CRITICAL: EACH QUESTION MUST HAVE EXACTLY 4 UNIQUE OPTIONS
+- No more than 4 options
+- No fewer than 4 options
+- No duplicate options
+- All options must be distinct and different from each other
+
 QUESTION STRUCTURE (valid JSON format):
 
 {
@@ -115,14 +121,15 @@ QUESTION TYPES TO INCLUDE:
 
 CRITICAL RULES:
 
-1. **IDs**: Must be unique, starting from provided start ID
-2. **Correct Answer**: Must be at index specified by correctAnswer (typically 0)
-3. **Misconception Codes**: Map EACH wrong answer to a valid code
-4. **Tags**: Use 2-4 relevant tags from approved list
-5. **Learning Outcomes**: Distribute across LO1, LO2, LO3
-6. **Clarity**: Questions must be unambiguous
-7. **Plausibility**: Distractors must be believable, not obviously wrong
-8. **Explanation**: Clear and educational
+1. **Options Array**: EXACTLY 4 UNIQUE options (no duplicates, no more, no fewer)
+2. **IDs**: Must be unique, starting from provided start ID
+3. **Correct Answer**: Must be at index specified by correctAnswer (typically 0)
+4. **Misconception Codes**: Map EACH wrong answer to a valid code
+5. **Tags**: Use 2-4 relevant tags from approved list
+6. **Learning Outcomes**: Distribute across LO1, LO2, LO3
+7. **Clarity**: Questions must be unambiguous
+8. **Plausibility**: Distractors must be believable, not obviously wrong
+9. **Explanation**: Clear and educational
 
 QUALITY STANDARDS:
 

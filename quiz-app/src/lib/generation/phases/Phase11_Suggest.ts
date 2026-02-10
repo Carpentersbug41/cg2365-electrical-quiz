@@ -103,7 +103,11 @@ export class Phase11_Suggest extends PhasePromptBuilder {
     
     console.log(`🔧 [Phase11_Suggest] Calling LLM for fix planning...`);
     debugLogger.logLLMCall(phase10Model);
-    
+
+    if (process.env.DEBUG_PHASE10 === 'true') {
+      console.log('\n\n>>> ENTERING PHASE 11: Improvement Suggestions - LLM CALL <<<\n');
+    }
+
     const llmStartTime = Date.now();
     try {
       const response = await generateFn(

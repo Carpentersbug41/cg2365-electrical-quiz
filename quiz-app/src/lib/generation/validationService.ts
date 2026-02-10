@@ -788,7 +788,11 @@ export class ValidationService {
 
       if (!question.options || question.options.length !== 4) {
         const optionsCount = question.options?.length || 0;
-        errors.push(`Question ${question.id} must have exactly 4 options (found ${optionsCount})`);
+        const duplicateCount = question.options ? question.options.length - new Set(question.options).size : 0;
+        const duplicateInfo = duplicateCount > 0 ? ` (includes ${duplicateCount} duplicate(s))` : '';
+        errors.push(
+          `Question ${question.id} must have exactly 4 options (found ${optionsCount}${duplicateInfo})`
+        );
         debugData.push({
           questionId: question.id,
           issue: 'Invalid options count',

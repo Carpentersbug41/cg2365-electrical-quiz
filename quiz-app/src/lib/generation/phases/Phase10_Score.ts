@@ -120,7 +120,11 @@ export class Phase10_Score extends PhasePromptBuilder {
     
     console.log(`📊 [Phase10_Score] Calling LLM for pedagogical assessment...`);
     debugLogger.logLLMCall(phase10Model);
-    
+
+    if (process.env.DEBUG_PHASE10 === 'true') {
+      console.log('\n\n>>> ENTERING PHASE 10: Pedagogical Scoring - LLM CALL <<<\n');
+    }
+
     const llmStartTime = Date.now();
     try {
       const response = await generateFn(

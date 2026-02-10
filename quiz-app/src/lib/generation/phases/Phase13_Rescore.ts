@@ -57,7 +57,11 @@ export class Phase13_Rescore {
     // Rescore the candidate using Phase 10 scorer
     console.log(`📊 [Phase13_Rescore] Scoring candidate...`);
     debugLogger.logStep('\n🔄 Rescoring candidate lesson with Phase 10...');
-    
+
+    if (process.env.DEBUG_PHASE10 === 'true') {
+      console.log('\n\n>>> ENTERING PHASE 13: Rescore & Compare - Calling Phase 10 for rescore <<<\n');
+    }
+
     const candidateScore = await this.scorer.scoreLesson(
       candidateLesson,
       generateFn,

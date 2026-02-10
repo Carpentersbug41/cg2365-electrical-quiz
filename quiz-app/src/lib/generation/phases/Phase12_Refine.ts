@@ -80,7 +80,11 @@ export class Phase12_Refine extends PhasePromptBuilder {
     
     console.log(`🤖 [Phase12_Refine] Calling LLM for full-lesson refinement...`);
     debugLogger.logLLMCall(phase12Model);
-    
+
+    if (process.env.DEBUG_PHASE10 === 'true') {
+      console.log('\n\n>>> ENTERING PHASE 12: Full-Lesson Refinement - LLM CALL <<<\n');
+    }
+
     const llmStartTime = Date.now();
     try {
       const response = await generateFn(
