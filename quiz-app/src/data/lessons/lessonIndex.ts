@@ -333,7 +333,18 @@ export const lessonIndex: LessonIndexEntry[] = [
       
                     
   
-            // Unit 210: Communication
+            
+  {
+    id: '203-3A1',
+    title: 'Circuit Types: What They Do',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Circuit Types: What They Do',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3A1'),
+    available: true,
+    order: 14,
+  },// Unit 210: Communication
   {
     id: '204-10A',
     title: 'Dead-test language — what each test proves',
