@@ -287,6 +287,7 @@ A) Beginner Clarity (30 points):
    - Includes concrete anchors after formal definitions (analogy, observable comparison, or everyday anchor)
    - Includes micro-scenarios where concepts involve measurement/quantity/units/comparison/ratio/intensity/scale/performance differences
    - Common misconceptions addressed
+   - Uses an explicit misconceptions targeting block (2-3 misconception/correction items) when lesson design expects it
    - Simplified wording remains technically defensible (no misleading overclaims)
    - Readable, well-structured content
 
@@ -296,6 +297,7 @@ B) Teaching-Before-Testing (25 points):
    - No "cold" questions where content hasn't been taught yet
    - Clear progression from teaching to assessment
    - Includes at least one early reasoning check after recall before moving to the next major concept
+   - Progression visibly follows Recall -> Reasoning -> Integration
 
 C) Marking Robustness (20 points):
    - expectedAnswer arrays are gradeable by an LLM
@@ -310,6 +312,7 @@ D) Alignment to LO/AC (15 points):
    - If not specified, check all ACs from the syllabus context
    - DO NOT penalize for missing ACs outside the lesson's target scope
    - Prefer explicit scope declarations in lesson metadata (syllabus anchors + covered/out-of-scope AC list)
+   - Prefer explicit syllabus anchor block with unit, LO, covered AC, and out-of-scope AC
    - If scope declarations are missing, raise a clear alignment issue
    - Examples and scenarios match vocational context
    - Terminology matches syllabus wording
@@ -328,6 +331,7 @@ CRITICAL REQUIREMENTS:
 - Focus on CONTENT quality, not structure (validators handle that)
 - For each issue: category, jsonPointers, excerpt, problem, whyItMatters, alignmentGap
 - If lesson omits explicit syllabus anchors/scope or a structured misconceptions target block, treat that as a valid pedagogical issue when it affects alignment/clarity.
+- If concrete anchors, micro-scenarios, early reasoning, or technical precision are missing, raise explicit issues.
 
 OUTPUT FORMAT (JSON only, no markdown):
 {

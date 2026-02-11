@@ -248,6 +248,8 @@ PEDAGOGICAL TIGHTENING PRIORITIES:
 - Add micro-scenarios for quantity/unit/comparison concepts when missing.
 - Raise early cognitive demand from recall to reasoning where missing.
 - Tighten technical precision (simplify without distortion).
+- Add/repair explicit syllabus anchors and in-scope/out-of-scope scope declarations when missing.
+- Add/repair structured misconceptions targeting (2-3 misconception/correction pairs) when missing.
 
 PHASE 10 INVARIANTS (CRITICAL - CANNOT VIOLATE):
 - Cannot add blocks
@@ -271,6 +273,8 @@ FIXABILITY CLASSIFICATION:
    - Improve hint quality
    - Strengthen expectedAnswer gradeability
    - Add missing explanations (within existing blocks)
+   - Add concrete anchors, micro-scenarios, and early-reasoning prompts
+   - Add or repair scope/misconception metadata inside existing lesson object
 
 2. "blocked_by_policy" - Conflicts with Phase 10 constraints:
    - Requires answerType change (STRICTLY FORBIDDEN)
@@ -297,6 +301,7 @@ You can use these operations:
 
 4. "replace": Replace entire field value (use sparingly)
    { "op": "replace", "path": "/blocks/5/content/expectedAnswer", "from": "[old value]", "value": ["new", "answer", "array"] }
+   For structured metadata fields (scope/anchors/misconceptions), replace value may be a JSON object/array.
 
 OUTPUT FORMAT (JSON only):
 {
