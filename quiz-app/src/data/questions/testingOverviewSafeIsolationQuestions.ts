@@ -9,120 +9,94 @@ import { TaggedQuestion } from './types';
 export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "Why is safe isolation considered the most critical first step before carrying out dead testing?",
+    "question": "What is the primary purpose of carrying out a safe isolation procedure before starting work on an electrical system?",
     "options": [
-      "To ensure the safety of the person working on the installation",
-      "To prevent the test instruments from running out of battery",
-      "To make sure the circuit breakers are in the 'on' position",
-      "To allow the insulation resistance tester to calibrate correctly"
+      "To prevent the installation from being accidentally re-energised while work is in progress",
+      "To ensure that the electricity meter stops recording usage during the work",
+      "To allow the electrician to work on live parts without getting a shock",
+      "To test if the main circuit breaker is tripping at the correct speed"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_DC_SOURCES",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Safe Isolation",
     "tags": [
       "health-safety",
-      "conceptual"
+      "legislation",
+      "terminology"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Safe isolation is non-negotiable because it ensures the installation is not energised, preventing electric shock during the inspection and testing process."
+    "explanation": "Safe isolation is a non-negotiable safety procedure designed to ensure the circuit is dead and secured with a lock and warning sign to prevent accidental re-energisation."
   },
   {
     "id": 4017,
-    "question": "In the standard sequence of initial verification, when should the visual inspection take place?",
+    "question": "At which point in the initial verification process should a visual inspection be carried out?",
     "options": [
-      "Before any electrical testing begins",
-      "After the insulation resistance test is complete",
-      "Only if the electrical tests show a fault",
-      "Immediately after the functionality test"
+      "Before any electrical testing takes place",
+      "Immediately after the insulation resistance test",
+      "Only after the circuit has been energised",
+      "After all dead tests are completed but before live testing"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
+      "1": "OTHER",
       "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
+      "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "terminology",
-      "discrimination"
+      "conceptual",
+      "terminology"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Visual inspection must always precede testing to identify obvious defects, damage, or missing components that could make testing dangerous or inaccurate."
+    "explanation": "Inspection must always precede testing to ensure the installation is safe enough to be tested and to identify obvious defects that testing might not show."
   },
   {
     "id": 4018,
-    "question": "An electrician is using a voltage indicator to prove a circuit is dead. What is the correct procedure for 'proving' the tester?",
+    "question": "According to the standard sequence of dead tests, which test follows the continuity of protective conductors?",
     "options": [
-      "Test against a known source, test the circuit, then re-test against the known source",
-      "Test the circuit, then test against a known source to see if it works",
-      "Test the circuit twice to ensure the reading is consistent",
-      "Test against a known source once at the start of the day"
+      "Continuity of ring final circuit conductors",
+      "Insulation resistance",
+      "Polarity",
+      "Earth fault loop impedance"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_AC_DC_SOURCES"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "health-safety",
-      "application"
+      "conceptual",
+      "discrimination"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO6",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "To ensure the tester hasn't failed during the process, you must verify it against a known source (proving unit) both before and after checking the circuit."
+    "explanation": "The sequence is designed to ensure safety; ring final circuit continuity follows protective conductor continuity before moving on to insulation tests."
   },
   {
     "id": 4019,
-    "question": "Which of the following describes the correct order for the first three dead tests?",
+    "question": "While performing a visual inspection, an electrician discovers a badly cracked socket outlet. What is the correct 'stop-and-fix' action?",
     "options": [
-      "Continuity, insulation resistance, polarity",
-      "Polarity, continuity, insulation resistance",
-      "Insulation resistance, polarity, continuity",
-      "Continuity, polarity, insulation resistance"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The standard sequence ensures that the basic path (continuity) is safe before checking the integrity of the insulation, followed by verifying the correct connection (polarity)."
-  },
-  {
-    "id": 4020,
-    "question": "During a visual inspection, an electrician finds a socket outlet with a cracked faceplate and exposed live parts. What is the correct 'stop-and-fix' action?",
-    "options": [
-      "Replace the socket before proceeding with any electrical tests",
-      "Ignore the crack as the circuit will be dead during testing anyway",
-      "Carry out the insulation resistance test and note the crack later",
-      "Wrap the socket in tape and continue with the test sequence"
+      "Repair or replace the socket before proceeding to any electrical testing",
+      "Proceed with the insulation resistance test to see if the crack affects the reading",
+      "Note the defect on the certificate and continue with all other tests",
+      "Wait until the live functional testing is complete before fixing it"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -130,271 +104,297 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
       "application",
       "health-safety"
     ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "If a defect is found during inspection that makes testing unsafe or inaccurate, it must be rectified before the testing process continues."
+  },
+  {
+    "id": 4020,
+    "question": "What is the final step in the 'prove dead' part of a safe isolation procedure?",
+    "options": [
+      "Re-test the voltage indicator on a known source or proving unit",
+      "Turn off the main isolator and lock it in the 'off' position",
+      "Attach a 'Danger: Men at Work' sign to the consumer unit",
+      "Verify that the lights in the room have gone out"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Safe Isolation",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "You must prove your voltage indicator is still working correctly after checking the circuit to ensure the 'zero' reading was accurate."
+  },
+  {
+    "id": 4021,
+    "question": "Which of the following is classified as a 'dead test' during initial verification?",
+    "options": [
+      "Insulation resistance test",
+      "Earth fault loop impedance test",
+      "RCD trip time test",
+      "Verification of supply phase rotation"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "CONFUSED_AC_DC_SOURCES",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Insulation resistance is performed with the supply disconnected (dead), whereas the others require the supply to be connected (live)."
+  },
+  {
+    "id": 4022,
+    "question": "What is the main reason for recording test results on an Electrical Installation Certificate?",
+    "options": [
+      "To provide a permanent record of the installation's safety at the time of testing",
+      "To allow the electricity supplier to calculate the customer's bill",
+      "To prove that the electrician used the most expensive tools available",
+      "To ensure that the circuit breakers never trip in the future"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Recording results is part of the verification process to prove compliance with safety standards and provide a baseline for future inspections."
+  },
+  {
+    "id": 4023,
+    "question": "An electrician has isolated a circuit and locked the breaker. Which piece of equipment is required to verify the circuit is dead?",
+    "options": [
+      "An approved GS38 compliant voltage indicator",
+      "A non-contact voltage 'stick' or 'pen'",
+      "A digital multimeter set to the resistance scale",
+      "A clamp meter set to measure AC current"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_I_V_R",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Safe Isolation",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Only a GS38 compliant voltage indicator (with a proving unit) should be used for safe isolation; non-contact pens and multimeters are not reliable for this safety-critical task."
+  },
+  {
+    "id": 4024,
+    "question": "What does a 'dead polarity' test confirm?",
+    "options": [
+      "That switches and fuses are connected in the line conductor only",
+      "That the earth wire is thicker than the neutral wire",
+      "That the circuit can carry twice its rated current without tripping",
+      "That the insulation around the wires is the correct colour"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Polarity testing ensures that all single-pole protective devices, switches, and thermostats are installed in the line conductor, not the neutral."
+  },
+  {
+    "id": 4025,
+    "question": "A student suggests that safe isolation is only necessary if the homeowner is present. Why is this incorrect?",
+    "options": [
+      "Safe isolation is a non-negotiable legal and safety requirement regardless of who is present",
+      "It is only incorrect if the main switch is already turned off",
+      "It is only necessary if the installation is older than ten years",
+      "Safe isolation is actually only required for commercial buildings"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Safe Isolation",
+    "tags": [
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Safe isolation is a fundamental safety procedure that must be followed every time work is performed on an electrical installation to protect the worker."
+  },
+  {
+    "id": 4026,
+    "question": "What is the non-negotiable first step that must be carried out before any dead testing begins on an electrical installation?",
+    "options": [
+      "Safe isolation",
+      "Insulation resistance test",
+      "Visual inspection",
+      "Functional testing"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview + safe isolation",
+    "tags": [
+      "health-safety",
+      "terminology",
+      "conceptual"
+    ],
     "learningOutcomeId": "204-15A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "If a defect is found during inspection that makes the installation unsafe or will cause a test failure, it must be rectified before testing begins."
+    "explanation": "Safe isolation is the mandatory first step to ensure the safety of the person testing and to prevent damage to the installation or equipment."
   },
   {
-    "id": 4021,
-    "question": "What is the definition of 'Dead Testing' in the context of initial verification?",
+    "id": 4027,
+    "question": "Which of the following activities is classified as an 'inspection' rather than a 'test'?",
     "options": [
-      "Tests performed while the installation is safely isolated from the supply",
-      "Tests performed on an installation that has failed and is 'dead'",
-      "Tests performed while the main switch is on but no loads are connected",
-      "Tests performed using a battery-powered drill to check connections"
+      "Checking that cables are correctly identified by colour",
+      "Measuring the resistance of the earthing conductor",
+      "Verifying the insulation resistance between live parts",
+      "Checking the continuity of a ring final circuit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Dead testing refers to the series of electrical tests carried out while the installation is disconnected from the mains supply for safety."
-  },
-  {
-    "id": 4022,
-    "question": "What is the main purpose of recording test results on a Schedule of Test Results?",
-    "options": [
-      "To provide a permanent record of the installation's safety at that time",
-      "To allow the electricity supplier to calculate the monthly bill",
-      "To ensure that the test instruments are calibrated automatically",
-      "To keep a record of how many hours the electrician worked"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Recording results provides evidence that the installation met the required safety standards at the time of testing and serves as a baseline for future inspections."
-  },
-  {
-    "id": 4023,
-    "question": "Which of these is a 'functionality test' that can be performed during dead testing?",
-    "options": [
-      "Operating a switch to confirm it physically opens and closes the circuit",
-      "Measuring the voltage at the furthest point of the circuit",
-      "Checking the resistance of the insulation between conductors",
-      "Using a high-voltage probe to check the earthing spike"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Functionality testing involves checking that devices like switches and RCDs operate correctly through their physical movement or continuity."
-  },
-  {
-    "id": 4024,
-    "question": "What does a polarity test specifically check for in a standard UK lighting circuit?",
-    "options": [
-      "That the switch is located in the line conductor, not the neutral",
-      "That the light bulb is the correct wattage for the room size",
-      "That the earth wire is thicker than the neutral wire",
-      "That the circuit is connected to a DC power supply"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Polarity testing ensures that all single-pole fuses, switches, and circuit breakers are connected in the line conductor only."
-  },
-  {
-    "id": 4025,
-    "question": "Which item is essential to use alongside a padlock when performing safe isolation on a consumer unit?",
-    "options": [
-      "A warning notice or 'caution' tag",
-      "A roll of green and yellow earth tape",
-      "A temporary link wire for the neutral bar",
-      "A digital multimeter set to DC Amps"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A warning notice must be attached to the point of isolation to inform others why the power is off and to prevent unauthorized attempts to restore the supply."
-  },
-  {
-    "id": 4026,
-    "question": "What is the primary reason for performing safe isolation before commencing any dead testing on an electrical installation?",
-    "options": [
-      "To ensure the safety of the person carrying out the work and others",
-      "To prevent the test instrument batteries from draining too quickly",
-      "To make sure the circuit breakers are in the 'off' position for the IR test",
-      "To allow the cables to cool down before measuring their resistance"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Safe isolation is a non-negotiable safety procedure designed to prevent electric shock and ensure the installation is dead before work or testing begins."
-  },
-  {
-    "id": 4027,
-    "question": "In the standard sequence of initial verification, which activity must be completed before any dead testing is carried out?",
-    "options": [
-      "A thorough visual inspection",
-      "An insulation resistance test",
-      "A functionality test of all switches",
-      "Recording the final results on a certificate"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview + safe isolation",
     "tags": [
       "terminology",
-      "discrimination",
-      "conceptual"
+      "discrimination"
     ],
     "learningOutcomeId": "204-15A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Visual inspection must always precede testing to identify obvious defects, damage, or safety issues that could make testing dangerous or inaccurate."
+    "explanation": "Inspection involves using the senses (vision, touch, smell) to check for compliance, such as cable identification, whereas testing requires the use of instruments."
   },
   {
     "id": 4028,
-    "question": "When following the correct high-level dead testing sequence, which test typically follows the continuity of protective conductors?",
+    "question": "When following the correct high-level sequence for dead testing, which test usually follows the continuity of protective conductors?",
     "options": [
-      "Continuity of ring final circuits (if applicable)",
-      "Insulation resistance testing",
-      "Polarity testing",
-      "Functionality testing"
+      "Continuity of ring final circuit conductors",
+      "Insulation resistance",
+      "Polarity",
+      "Functional testing"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "TOPOLOGY_CONFUSION"
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview + safe isolation",
     "tags": [
-      "calculation",
-      "discrimination"
+      "terminology",
+      "conceptual"
     ],
     "learningOutcomeId": "204-15A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "After testing the protective conductor continuity, the next step in the dead test sequence is to verify the continuity of ring final circuits if they are present in the installation."
+    "explanation": "In the standard sequence of dead tests, ring final circuit continuity follows protective conductor continuity before moving on to insulation resistance."
   },
   {
     "id": 4029,
-    "question": "An electrician is about to begin testing but notices that a consumer unit has significant fire damage and exposed busbars. What is the correct 'stop-and-fix' procedure?",
+    "question": "While performing an initial inspection, an electrician discovers a badly charred fuse carrier in a consumer unit. What is the correct 'stop-and-fix' procedure?",
     "options": [
-      "Stop immediately and rectify the safety issues before proceeding with any tests",
-      "Carry out an insulation resistance test to see if the internal wiring is still okay",
-      "Only test the circuits that do not appear to be affected by the fire damage",
-      "Complete the testing sequence and note the damage on the final report"
+      "Replace the carrier before proceeding with any electrical tests",
+      "Perform an insulation resistance test to see if it is safe to use",
+      "Complete all other tests and note the break on the certificate",
+      "Ignore the break as it will be caught during functional testing"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
+      "1": "OTHER",
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview + safe isolation",
     "tags": [
-      "application",
-      "health-safety"
+      "health-safety",
+      "application"
     ],
     "learningOutcomeId": "204-15A-LO3",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "If dangerous conditions or obvious damage are found, the electrician must stop and fix the issues. Testing should not proceed on an unsafe installation."
+    "estimatedTime": 45,
+    "explanation": "If an obvious defect or danger is found during inspection, the process must stop and the fault must be rectified before any testing can safely proceed."
   },
   {
     "id": 4030,
-    "question": "Which of the following best describes the role of 'recording results' in the testing process?",
+    "question": "What is the primary purpose of recording test results during the initial verification of an installation?",
     "options": [
-      "It is an integral part of the testing process to verify the installation meets safety standards",
-      "It is an optional administrative task used only for billing the customer",
-      "It is a task performed only if the installation fails a specific test",
-      "It is a legal requirement that is only necessary for large commercial installations"
+      "To provide a formal record that the installation is safe for use",
+      "To allow the electrician to calculate the final bill",
+      "To prove that the testing instruments are within calibration",
+      "To provide the homeowner with a list of cable lengths"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -402,54 +402,55 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview + safe isolation",
     "tags": [
-      "conceptual",
+      "legislation",
+      "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Recording results is not just paperwork; it is a fundamental part of the verification process to prove the installation is safe and compliant."
+    "explanation": "Recording results is a critical part of the testing process, providing a legal and technical record that the installation met safety standards at the time of testing."
   },
   {
     "id": 4031,
-    "question": "What is the primary difference between a 'dead inspection' and 'dead testing' during the initial verification of an installation?",
+    "question": "According to the correct high-level sequence for dead testing, which of the following represents the correct order of tests after the initial inspection?",
     "options": [
-      "Inspection is a visual check for defects, while testing uses calibrated instruments to verify values",
-      "Inspection is only done on live circuits, while testing is only done on dead circuits",
-      "Inspection is carried out by the client, while testing must be done by the electrician",
-      "Inspection occurs after the results are recorded, while testing occurs before"
+      "Continuity of protective conductors, Ring final circuit continuity, Insulation resistance, Polarity",
+      "Polarity, Continuity of protective conductors, Insulation resistance, Ring final circuit continuity",
+      "Insulation resistance, Polarity, Continuity of protective conductors, Ring final circuit continuity",
+      "Continuity of protective conductors, Polarity, Ring final circuit continuity, Insulation resistance"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview",
     "tags": [
-      "explanation",
+      "calculation",
       "terminology",
-      "conceptual"
+      "explanation"
     ],
-    "learningOutcomeId": "204-15A-LO5",
+    "learningOutcomeId": "204-15A-LO6",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Inspection is the visual part of the process where the electrician looks for damage or non-compliance; testing is the physical measurement of electrical properties using instruments."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The standard sequence ensures that the earthing and circuit integrity are confirmed (Continuity/Ring) before applying high-voltage tests (Insulation Resistance) and finally checking the connection of conductors (Polarity)."
   },
   {
     "id": 4032,
-    "question": "According to the standard high-level sequence for dead testing, which test must be successfully completed before an insulation resistance test is performed?",
+    "question": "An electrician is conducting an initial verification and discovers a loose connection and a broken enclosure on a distribution board. What is the correct 'stop-and-fix' procedure?",
     "options": [
-      "Continuity of protective conductors",
-      "Functional testing of switches",
-      "Phase rotation testing",
-      "Supply polarity testing"
+      "Address the defects immediately before proceeding to any electrical testing",
+      "Note the defects on the test results sheet and proceed with insulation resistance testing",
+      "Complete all dead tests first, then repair the defects before live testing",
+      "Ignore the loose connection as it will be identified during the continuity test anyway"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -457,175 +458,35 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview",
     "tags": [
-      "calculation",
-      "conceptual",
-      "application"
+      "health-safety",
+      "application",
+      "explanation"
     ],
-    "learningOutcomeId": "204-15A-LO6",
+    "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Continuity of protective conductors must be verified first to ensure that the earthing path is intact before applying the high voltages used in insulation resistance testing."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "If obvious damage or safety issues are found during the inspection phase, they must be rectified ('Stop-and-Fix') before any testing begins to ensure safety and accurate results."
   },
   {
     "id": 4033,
-    "question": "When following the safe isolation procedure, what is the mandatory final step before beginning work on the isolated equipment?",
+    "question": "During the safe isolation procedure, why is it mandatory to test the voltage indicator against a known source (proving unit) both before AND after checking the circuit is dead?",
     "options": [
-      "Re-prove the voltage indicator on the known source to ensure it still functions",
-      "Check the circuit with a multimeter set to the resistance scale",
-      "Notify the building owner that the power is now off",
-      "Remove the lockout tag to show the work has started"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Safe isolation",
-    "tags": [
-      "health-safety",
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO5",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The 'prove-test-prove' method requires re-checking the voltage indicator on a known source after testing the circuit to ensure the indicator did not fail during the test."
-  },
-  {
-    "id": 4034,
-    "question": "Why is it essential to carry out a visual inspection before any electrical dead testing takes place?",
-    "options": [
-      "To identify defects like loose connections or damage that could make testing dangerous",
-      "To calculate the total cost of the materials used in the installation",
-      "To ensure the circuit breakers are all rated at exactly 32 Amps",
-      "To allow the cables to cool down before instruments are connected"
+      "To confirm the voltage indicator did not fail during the actual test",
+      "To ensure the proving unit has enough battery to complete the day's work",
+      "To calibrate the voltage indicator for the specific voltage of the circuit",
+      "To discharge any capacitive energy stored in the voltage indicator"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview",
-    "tags": [
-      "explanation",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "204-15A-LO5",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Visual inspection identifies obvious hazards such as exposed live parts or poor terminations that could cause a fault or danger during the testing phase."
-  },
-  {
-    "id": 4035,
-    "question": "An electrician discovers a cracked socket outlet during an initial inspection. What is the correct 'stop-and-fix' protocol?",
-    "options": [
-      "Rectify the fault before proceeding with the testing sequence",
-      "Ignore the crack as it is only a dead test and not a live test",
-      "Complete all tests first and then list the crack as a recommendation",
-      "Apply electrical tape over the crack and proceed to insulation testing"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview",
-    "tags": [
-      "application",
-      "discrimination",
-      "health-safety"
-    ],
-    "learningOutcomeId": "204-15A-LO5",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 80,
-    "explanation": "If a defect is found during inspection that could affect safety or the accuracy of results, it must be fixed before the testing sequence continues."
-  },
-  {
-    "id": 4036,
-    "question": "Which of the following describes the correct sequence of dead tests for a new ring final circuit?",
-    "options": [
-      "Continuity of protective conductors, Ring final circuit continuity, Insulation resistance, Polarity",
-      "Insulation resistance, Polarity, Continuity of protective conductors, Functional testing",
-      "Polarity, Continuity of protective conductors, Insulation resistance, Ring final circuit continuity",
-      "Functional testing, Insulation resistance, Polarity, Continuity of protective conductors"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview",
-    "tags": [
-      "discrimination",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "204-15A-LO6",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The sequence is designed to ensure the circuit is safe and complete (continuity) before checking the quality of insulation and the correct connection of conductors (polarity)."
-  },
-  {
-    "id": 4037,
-    "question": "What is the primary purpose of recording test results on an Electrical Installation Certificate?",
-    "options": [
-      "To provide a permanent record for comparison with future test results and design values",
-      "To ensure the electrician gets paid for the time spent testing",
-      "To prove to the local authority that the lights are working correctly",
-      "To reset the internal memory of the multi-function tester"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview",
-    "tags": [
-      "explanation",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "204-15A-LO6",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Recording results is a critical part of the verification process, allowing for the identification of deterioration over time by comparing current results with original data."
-  },
-  {
-    "id": 4038,
-    "question": "A trainee electrician states that safe isolation is only necessary if the circuit looks like it is in use. Why is this incorrect?",
-    "options": [
-      "Safe isolation is non-negotiable and must be performed regardless of the circuit's appearance",
-      "Safe isolation is only required for industrial voltages above 400V",
-      "You only need to isolate if the customer is present on the site",
-      "Visual appearance is a reliable way to determine if a circuit is live"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Safe isolation",
     "tags": [
       "health-safety",
@@ -634,18 +495,45 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
     ],
     "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Electricity is invisible; therefore, safe isolation and proving dead using a voltage indicator is the only way to ensure safety."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Proving the unit before ensures it works; proving it after ensures it didn't fail while you were using it to confirm the circuit was dead, which could lead to a false-negative reading."
   },
   {
-    "id": 4039,
-    "question": "Which term describes the complete process of inspecting and testing a new electrical installation before it is energized?",
+    "id": 4034,
+    "question": "Which of the following is classified strictly as a 'dead test' during the initial verification of an installation?",
     "options": [
-      "Initial Verification",
-      "Periodic Inspection",
-      "Condition Reporting",
-      "Functional Analysis"
+      "Insulation resistance",
+      "Earth fault loop impedance (Ze)",
+      "RCD trip time testing",
+      "Prospective fault current (PFC)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Insulation resistance is performed with the supply disconnected (dead). The other options require the installation to be energized (live) to measure the parameters."
+  },
+  {
+    "id": 4035,
+    "question": "What is the primary difference between 'dead inspection' and 'dead testing' in the context of initial verification?",
+    "options": [
+      "Inspection is a visual check for defects, while testing uses instruments to verify values",
+      "Inspection requires the power to be on, while testing requires the power to be off",
+      "Inspection is only for old installations, while testing is only for new ones",
+      "Inspection is performed by the client, while testing is performed by the electrician"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -653,27 +541,26 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
     "category": "Testing overview",
     "tags": [
-      "terminology",
-      "discrimination",
-      "conceptual"
+      "conceptual",
+      "terminology"
     ],
     "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Initial Verification is the formal term for the inspection and testing of a new installation to ensure it complies with BS 7671."
+    "estimatedTime": 60,
+    "explanation": "Inspection (LO5) is the process of using sight, touch, and smell to find defects. Dead testing (LO6) involves using calibrated instruments to verify the electrical integrity of the circuit."
   },
   {
-    "id": 4040,
-    "question": "When locking off a circuit for safe isolation, who should ideally hold the key to the padlock?",
+    "id": 4036,
+    "question": "In the safe isolation procedure, which of the following is the correct sequence of actions after identifying the circuit to be worked on?",
     "options": [
-      "The person who is carrying out the work on the circuit",
-      "The site foreman or the person in charge of the building",
-      "The apprentice who is assisting with the installation",
-      "The key should be left in the lock for easy access in emergencies"
+      "Isolate, lock-off, verify indicator on proving unit, test for dead, re-verify indicator",
+      "Test for dead, isolate, lock-off, verify indicator on proving unit, re-verify indicator",
+      "Isolate, test for dead, lock-off, verify indicator on proving unit, re-verify indicator",
+      "Verify indicator on proving unit, isolate, test for dead, lock-off, re-verify indicator"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -681,82 +568,190 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
+    "section": "Science 2365 Level 2",
+    "category": "Safe isolation",
+    "tags": [
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "You must first isolate and secure the isolation (lock-off) before checking the tester works, testing the circuit, and re-checking the tester."
+  },
+  {
+    "id": 4037,
+    "question": "Why is the continuity of protective conductors the very first instrument test performed in the dead testing sequence?",
+    "options": [
+      "To ensure that the earthing system is functional before any other tests are carried out",
+      "Because it is the only test that does not require a multi-function tester",
+      "Because it must be done while the circuit is still live",
+      "To check if the circuit breaker is the correct rating for the cable"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Establishing that the protective (earth) path is complete is critical for safety and for the validity of subsequent tests like Insulation Resistance."
+  },
+  {
+    "id": 4038,
+    "question": "When completing a dead test, what is the significance of 'recording results' according to the IET On-Site Guide and verification procedures?",
+    "options": [
+      "It is a mandatory part of the verification process to prove the installation is safe",
+      "It is an optional step used only if the electrician wants to provide a warranty",
+      "It is only required if a fault is found during the inspection phase",
+      "It is only necessary for industrial installations, not domestic ones"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Recording results is not just paperwork; it is a formal part of the verification process that documents the safety and compliance of the installation."
+  },
+  {
+    "id": 4039,
+    "question": "An electrician is testing a newly installed radial socket circuit. After completing the continuity of protective conductors, what is the next logical step in the dead testing sequence?",
+    "options": [
+      "Insulation resistance testing",
+      "Ring final circuit continuity testing",
+      "Earth fault loop impedance testing",
+      "Functional testing of the socket switches"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Since it is a radial circuit, the 'Ring final circuit' test is skipped. The next step in the standard sequence for a radial is Insulation Resistance."
+  },
+  {
+    "id": 4040,
+    "question": "Which of the following would be a 'stop-and-fix' trigger that prevents an electrician from starting the insulation resistance test?",
+    "options": [
+      "Finding a neutral conductor that has been crushed by a metal clip",
+      "Discovering that the client has not yet chosen the light fittings",
+      "Realizing the circuit is protected by a Type B circuit breaker",
+      "Noticing that the cable is clipped every 300mm instead of 250mm"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "A crushed conductor is a serious defect that could lead to a short circuit or fire. This must be fixed before applying the high voltage (500V DC) used in an insulation resistance test."
+  },
+  {
+    "id": 4041,
+    "question": "An electrician is preparing to carry out initial verification on a newly installed lighting circuit. According to the correct sequence of events, which action must be completed before any electrical test instruments are used?",
+    "options": [
+      "A thorough visual inspection of the installation",
+      "Testing the continuity of the protective conductors",
+      "Measuring the insulation resistance between live conductors",
+      "Checking the polarity of the supply at the consumer unit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 60,
+    "explanation": "Initial verification always begins with a visual inspection to ensure the installation is safe to test and meets the design specification before instruments are applied."
+  },
+  {
+    "id": 4042,
+    "question": "During the safe isolation procedure, after turning off the isolator and locking it, what is the mandatory next step before testing for dead on the circuit?",
+    "options": [
+      "Verify the voltage indicator on a known supply or proving unit",
+      "Test between Line and Earth on the outgoing side of the isolator",
+      "Ask the site manager if the power has been successfully cut",
+      "Check the circuit diagram to ensure the correct breaker was pulled"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
     "category": "Safe isolation",
     "tags": [
       "health-safety",
       "application",
-      "discrimination"
+      "terminology"
     ],
     "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "To prevent accidental re-energization, the person performing the work must have sole control over the point of isolation."
-  },
-  {
-    "id": 4041,
-    "question": "During the safe isolation procedure, why is it critical to use a proving unit to check the voltage indicator both before and after testing for the presence of voltage?",
-    "options": [
-      "To ensure the voltage indicator is functioning correctly and hasn't failed during the test",
-      "To calibrate the voltage indicator to the specific frequency of the mains supply",
-      "To discharge any capacitive build-up within the test leads of the instrument",
-      "To ensure the battery life of the voltage indicator is at at least 90% capacity"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "health-safety",
-      "calculation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
-    "explanation": "Proving the instrument before ensures it works; proving it after ensures it didn't fail while you were relying on it to show a 'dead' reading, which could be a false negative."
-  },
-  {
-    "id": 4042,
-    "question": "Which of the following activities is classified as an 'inspection' task rather than a 'test' task during the initial verification of an installation?",
-    "options": [
-      "Verifying that the correct identification and warning labels are fixed to the distribution board",
-      "Measuring the resistance between the line and neutral conductors to check for short circuits",
-      "Confirming that the resistance of the protective conductor is low enough for safety",
-      "Operating a test instrument to determine the insulation resistance of the circuit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Inspection is a visual process involving the senses (sight, touch) to verify compliance, whereas testing involves the use of calibrated instruments to obtain numerical values."
+    "explanation": "You must prove your voltage indicator is working on a known source (proving unit) immediately before and after checking the circuit is dead."
   },
   {
     "id": 4043,
-    "question": "An electrician is carrying out an initial inspection and finds a significantly damaged cable sheath where it enters a metal enclosure. What is the correct 'stop-and-fix' procedure?",
+    "question": "Which of the following represents the correct sequence for 'dead' testing an electrical installation?",
     "options": [
-      "Stop the inspection, repair the damage immediately, and then proceed with the process",
-      "Record the damage on the schedule of test results and continue with the insulation test",
-      "Complete all dead tests first to see if the damage affects the readings before fixing it",
-      "Wait until the live testing phase to see if the damaged sheath causes an earth fault"
+      "Continuity, Insulation Resistance, Polarity",
+      "Insulation Resistance, Continuity, Polarity",
+      "Polarity, Continuity, Insulation Resistance",
+      "Continuity, Polarity, Insulation Resistance"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -764,53 +759,26 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "application",
-      "health-safety"
+      "conceptual",
+      "explanation"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO6",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "If an obvious safety defect is found during inspection, it must be rectified before testing proceeds to ensure the safety of the person testing and the integrity of the installation."
+    "explanation": "Continuity must be verified first to ensure the path is complete; then insulation resistance checks for leaks/shorts; finally dead polarity ensures switches are in the correct conductor."
   },
   {
     "id": 4044,
-    "question": "Why is it standard practice to perform the continuity of protective conductors test before the insulation resistance test?",
+    "question": "While performing a visual inspection on a distribution board before testing, an electrician notices an exposed live busbar that cannot be easily shrouded. What is the correct course of action?",
     "options": [
-      "To ensure a continuous path to earth exists so that the insulation test can accurately detect faults to earth",
-      "Because the insulation resistance test uses high voltage which could damage an ungrounded system",
-      "To allow the test instrument to automatically calculate the expected insulation values",
-      "Because the continuity test is a live test and must be done while the system is energised"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "conceptual",
-      "resistance-rule"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The insulation resistance test measures the leakage to earth; if the earthing conductor is not continuous, the test cannot verify the insulation's integrity relative to the mass of earth."
-  },
-  {
-    "id": 4045,
-    "question": "Following the correct sequence of dead tests, which test must be carried out immediately after the continuity of protective conductors for a standard radial circuit?",
-    "options": [
-      "Insulation resistance",
-      "Continuity of ring final circuit conductors",
-      "Polarity",
-      "Functionality"
+      "Stop and fix the defect before proceeding with any dead tests",
+      "Note the defect on the test result sheet and continue with testing",
+      "Proceed with dead testing but skip the insulation resistance test",
+      "Complete all dead tests first and then repair all faults at once"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -818,554 +786,596 @@ export const testingOverviewSafeIsolationQuestions: TaggedQuestion[] = [
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "For a radial circuit (where ring testing isn't applicable), the sequence moves from continuity of protective conductors directly to insulation resistance."
-  },
-  {
-    "id": 4046,
-    "question": "An electrician is isolating a three-phase motor circuit for maintenance. What is the final step of the safe isolation procedure before starting work?",
-    "options": [
-      "Re-proving the voltage indicator against a known source or proving unit",
-      "Applying a 'Caution' notice to the local isolator handle",
-      "Testing between all phases and between each phase and earth",
-      "Locking the distribution board cover with a unique key"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO5",
     "answerType": "mcq",
     "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The procedure is: Prove indicator, Test for Dead, then Re-prove indicator. Re-proving is the final critical step to confirm the 'dead' reading was accurate."
+    "estimatedTime": 75,
+    "explanation": "Under the 'stop-and-fix' principle, any defects found during inspection that make the installation unsafe or would invalidate test results must be rectified before testing starts."
   },
   {
-    "id": 4047,
-    "question": "When recording results on a Schedule of Test Results, what does the term 'Initial Verification' signify?",
+    "id": 4045,
+    "question": "Which of these is classified as a 'dead test' during the initial verification of a new radial power circuit?",
     "options": [
-      "The process of inspecting and testing a new installation before it is put into service",
-      "The first annual check of a property's electrical system for insurance purposes",
-      "The process of checking a circuit after a fuse has blown to find the fault",
-      "A quick visual check performed by a homeowner before an electrician arrives"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Initial verification is the formal process defined in BS 7671 for ensuring a new installation (or addition/alteration) is safe and compliant before being energised."
-  },
-  {
-    "id": 4048,
-    "question": "Which of these is a valid 'dead' functionality test for a lighting circuit controlled by a dimmer switch?",
-    "options": [
-      "Using a continuity tester to verify the circuit opens and closes as the dimmer knob is operated",
-      "Turning the dimmer to maximum and measuring the voltage at the lamp holder",
-      "Checking the temperature of the dimmer switch after it has been running for an hour",
-      "Ensuring the dimmer switch matches the colour of the other wall accessories"
+      "Continuity of protective conductors",
+      "Earth fault loop impedance (Zs)",
+      "Residual current device (RCD) trip time",
+      "Phase rotation at a three-phase motor"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_AC_DC_SOURCES",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
       "discrimination",
-      "application"
+      "terminology"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Continuity testing is performed using a low-resistance ohmmeter while the circuit is safely isolated (dead)."
+  },
+  {
+    "id": 4046,
+    "question": "What is the primary reason for performing a 'dead' polarity test before the installation is energized?",
+    "options": [
+      "To ensure single-pole switches are connected in the line conductor",
+      "To measure the total resistance of the line and neutral loops",
+      "To check if the insulation can withstand the supply voltage",
+      "To verify that the RCD will trip within the required time limits"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
-    "explanation": "Dead functionality tests involve using a continuity tester (low resistance ohmmeter) to ensure switches and controls physically break and make the circuit as intended without power."
+    "explanation": "Dead polarity confirms that switches and fuses are in the line conductor and that sockets are wired correctly before they are made live."
+  },
+  {
+    "id": 4047,
+    "question": "An electrician is using a multi-function tester (MFT) to record results. Why is it important to record the results of dead tests immediately after performing them?",
+    "options": [
+      "To provide a formal record for the certification and future comparison",
+      "Because the MFT memory will automatically delete results after 5 minutes",
+      "To ensure the customer can be billed for each individual test performed",
+      "Because the local authority requires live updates during the testing process"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Recording results is a critical part of the verification process, forming the basis of the Electrical Installation Certificate and allowing for future safety comparisons."
+  },
+  {
+    "id": 4048,
+    "question": "When isolating a three-phase distribution board for dead testing, which sequence correctly follows the Health and Safety Executive (HSE) guidance for safe isolation?",
+    "options": [
+      "Identify, Isolate, Lock-off, Prove dead, Re-prove tester",
+      "Isolate, Prove dead, Identify, Lock-off, Re-prove tester",
+      "Lock-off, Isolate, Prove dead, Re-prove tester, Identify",
+      "Identify, Prove dead, Isolate, Lock-off, Re-prove tester"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Safe isolation",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The sequence must start with identifying the correct circuit, then isolating and securing it (lock-off), followed by the 'test-prove-test' method to ensure it is dead."
   },
   {
     "id": 4049,
-    "question": "A student suggests using a 'voltage stick' (non-contact indicator) to prove a circuit is dead because it is faster. Why is this incorrect according to safety regulations?",
+    "question": "Which of these items would typically be checked during the 'functionality' stage of dead testing?",
     "options": [
-      "They are not reliable for proving dead as they can be affected by shielded cables or nearby fields",
-      "They require a high-voltage battery which is prone to leaking and causing errors",
-      "They can only be used on DC circuits and will not function on UK mains AC",
-      "They are only permitted for use by apprentice electricians, not qualified supervisors"
+      "The mechanical operation of switches and circuit breakers",
+      "The value of the earth electrode resistance",
+      "The thickness of the cable insulation using a micrometer",
+      "The magnetic flux density of the transformer core"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "CONFUSED_AC_DC_SOURCES",
+      "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "health-safety",
+      "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO6",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Non-contact voltage indicators are useful for detection but are not approved for proving dead because they can give false negatives due to cable shielding or low sensitivity."
+    "explanation": "Functionality checks at the dead stage involve ensuring switches, dimmers, and breakers operate mechanically as intended."
   },
   {
     "id": 4050,
-    "question": "At what stage of the installation process should the 'Dead Inspection' typically be carried out?",
+    "question": "During dead testing, an electrician finds that the continuity of a protective conductor is significantly higher than expected. What should be the next step?",
     "options": [
-      "Continuously throughout the installation and specifically before dead testing begins",
-      "Only after the circuit has been energised and the client is using the installation",
-      "Immediately after the insulation resistance test is recorded as a pass",
-      "Only if the dead tests provide unexpected or 'failed' resistance readings"
+      "Investigate and rectify the high resistance before proceeding to IR testing",
+      "Proceed to Insulation Resistance (IR) testing to see if it balances out",
+      "Ignore the result as long as the circuit still powers a lightbulb",
+      "Multiply the result by the temperature correction factor and record it"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "MULTIPLIED_INSTEAD"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
       "application",
-      "terminology"
+      "discrimination"
     ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Inspection is an ongoing process during construction and must be formally completed before any electrical testing is performed to ensure the system is safe to test."
-  },
-  {
-    "id": 4051,
-    "question": "Which of the following best describes why a visual inspection must be completed before any dead testing begins?",
-    "options": [
-      "To identify obvious defects that could make the testing process or the installation dangerous",
-      "To ensure the customer is happy with the physical placement of all switches and sockets",
-      "To calculate the expected resistance values for the test result documentation",
-      "To verify that the mains supply is turned on and ready for live testing"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "explanation",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Inspection is the first step of initial verification; it identifies faults like loose connections or damaged insulation that could pose a risk during the testing phase."
-  },
-  {
-    "id": 4052,
-    "question": "In the standard high-level sequence for dead testing, which test should be carried out immediately after the continuity of protective conductors?",
-    "options": [
-      "Continuity of ring final circuit conductors (if applicable)",
-      "Insulation resistance",
-      "Polarity",
-      "Functionality of switches"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "calculation",
-      "discrimination",
-      "units"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
+    "learningOutcomeId": "204-15A-LO6",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
-    "explanation": "The correct sequence for dead testing starts with continuity of protective conductors, followed by continuity of ring final circuit conductors, then insulation resistance, and finally polarity."
+    "explanation": "If a dead test fails or gives an unexpected result, you must find and fix the fault before moving to the next test in the sequence, as subsequent tests may be inaccurate or unsafe."
   },
   {
-    "id": 4053,
-    "question": "An electrician is about to carry out dead testing on a new domestic kitchen circuit. After identifying the correct circuit, what is the non-negotiable first step?",
+    "id": 4051,
+    "question": "An electrician is performing initial verification on a new domestic installation. What is the correct high-level sequence for performing dead tests before the results are recorded?",
     "options": [
-      "Perform a full safe isolation procedure and prove the circuit is dead",
-      "Begin the continuity test of the protective conductors immediately",
-      "Check the insulation resistance to ensure the cables are healthy",
-      "Inspect the consumer unit for any loose connections before turning off the power"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "application",
-      "health-safety",
-      "legislation"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Safe isolation is the mandatory first step before any work or dead testing begins to ensure the safety of the person performing the tests."
-  },
-  {
-    "id": 4054,
-    "question": "During a dead inspection, you discover that the main earthing conductor is disconnected. According to the 'stop-and-fix' criteria, what should you do?",
-    "options": [
-      "Stop the process and rectify the fault before proceeding to any electrical tests",
-      "Proceed with the insulation resistance test and fix the earth connection later",
-      "Record the fault on the test result sheet and continue with polarity tests",
-      "Ignore the fault as the system is currently dead and there is no risk of shock"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "discrimination",
-      "explanation",
-      "health-safety"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "If a major safety defect like a disconnected earth is found during inspection, the process must stop and the defect must be fixed before testing can safely proceed."
-  },
-  {
-    "id": 4055,
-    "question": "What is the primary purpose of recording test results during the initial verification of an electrical installation?",
-    "options": [
-      "To provide a permanent record of the installation's safety at the time of testing",
-      "To allow the electrician to accurately calculate the final invoice for the customer",
-      "To ensure that the circuit breakers are correctly sized for the connected load",
-      "To prove to the local authority that the work was completed within the agreed timeframe"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "conceptual",
-      "terminology",
-      "legislation"
-    ],
-    "learningOutcomeId": "204-15A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Recording results is not just paperwork; it is a critical part of the safety process, providing a baseline for future inspections and evidence of compliance with regulations."
-  },
-  {
-    "id": 4056,
-    "question": "A technician is performing the initial verification of a newly installed industrial lighting sub-main. After completing the visual inspection but before commencing any dead testing, what is the most critical procedural step to ensure the safety of the technician and others?",
-    "options": [
-      "Carry out full safe isolation, including locking off and proving the test instrument against a known source.",
-      "Check the continuity of the protective conductor to ensure a path to earth exists for the test instrument.",
-      "Verify the polarity of the incoming supply using a certified voltage indicator.",
-      "Confirm that all lamps have been removed to prevent false insulation resistance readings."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "application"
-    ],
-    "learningOutcomeId": "204-LO5-AC1",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Safe isolation is the non-negotiable entry rule. It must be performed before any testing or internal inspection where live parts may be exposed, involving locking off, tagging, and proving the voltage indicator."
-  },
-  {
-    "id": 4057,
-    "question": "During the inspection phase of a 'dead' electrical installation, a technician identifies that the insulation on several conductors at the consumer unit has been compromised by heat damage. According to the 'stop-and-fix' criteria, how should the technician proceed?",
-    "options": [
-      "Halt the process immediately, rectify the damage, and re-inspect before starting any dead tests.",
-      "Proceed with the continuity tests but skip the insulation resistance test to avoid further damage.",
-      "Record the damage on the test result schedule and continue with the full testing sequence.",
-      "Complete all dead tests first to see if the heat damage has affected the circuit's electrical integrity."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "health-safety",
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "204-LO5-AC1",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The 'stop-and-fix' rule dictates that if obvious damage or unsafe conditions are found during inspection, they must be rectified before testing begins to ensure the validity of tests and safety."
-  },
-  {
-    "id": 4058,
-    "question": "Which of the following sequences represents the correct high-level order for performing dead tests on a ring final circuit prior to energisation?",
-    "options": [
-      "Continuity of protective conductors, Ring final circuit continuity, Insulation resistance, Polarity.",
-      "Insulation resistance, Continuity of protective conductors, Polarity, Ring final circuit continuity.",
-      "Ring final circuit continuity, Polarity, Continuity of protective conductors, Insulation resistance.",
-      "Continuity of protective conductors, Polarity, Insulation resistance, Ring final circuit continuity."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
-    "tags": [
-      "calculation",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "204-LO6-AC1",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The sequence is strictly defined: Continuity (CPC) must be first to ensure safety, followed by Ring Final Continuity (if applicable), then Insulation Resistance, and finally Polarity (dead)."
-  },
-  {
-    "id": 4059,
-    "question": "A technician is explaining the difference between 'dead inspection' and 'dead testing' to an apprentice. Which statement accurately distinguishes the two within the context of initial verification?",
-    "options": [
-      "Inspection is a qualitative visual check for defects, while testing is a quantitative measurement using calibrated instruments.",
-      "Inspection involves checking if the circuit is live, while testing involves checking if the circuit is dead.",
-      "Inspection is only required for old installations, whereas dead testing is only required for new installations.",
-      "Inspection is performed after the circuit is energised, while dead testing is performed while the power is off."
+      "Continuity, Ring Final Circuit (if applicable), Insulation Resistance, Polarity",
+      "Insulation Resistance, Polarity, Continuity, Ring Final Circuit",
+      "Polarity, Continuity, Insulation Resistance, Ring Final Circuit",
+      "Functionality, Polarity, Insulation Resistance, Continuity"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing sequence",
+    "tags": [
+      "calculation",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The standard sequence for dead testing in BS 7671 and C&G 2365 is Continuity (including protective conductors), Ring Final Circuit continuity, Insulation Resistance, and finally Polarity."
+  },
+  {
+    "id": 4052,
+    "question": "When following the safe isolation procedure, what is the mandatory final step after using a voltage indicator to confirm the circuit is dead?",
+    "options": [
+      "Re-verify the voltage indicator against a known source or proving unit",
+      "Lock the means of isolation and retain the key in your possession",
+      "Immediately begin the dead inspection of the distribution board",
+      "Place a warning notice at the point of isolation to inform others"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "TOPOLOGY_CONFUSION",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Safe isolation",
+    "tags": [
+      "health-safety",
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Safe isolation is only complete when you have proved the circuit dead and then re-proved that your test instrument is still functioning correctly using a proving unit."
+  },
+  {
+    "id": 4053,
+    "question": "During the initial dead inspection of a radial power circuit, an electrician identifies a severely loose connection and heat damage at a socket outlet. What is the correct action to take?",
+    "options": [
+      "Stop the process, rectify the fault, and re-inspect before proceeding to dead tests",
+      "Proceed to the Insulation Resistance test to see if the heat damage has affected the cable",
+      "Complete all dead tests and record the loose connection as a 'comment' on the certificate",
+      "Ignore the damage as initial verification only requires testing the circuit's electrical values"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "HEALTH_SAFETY"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Inspection",
+    "tags": [
+      "application",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "A 'stop-and-fix' approach is required if an unsafe condition or obvious defect is found during inspection; you must not proceed to testing until the installation is in a safe and suitable state."
+  },
+  {
+    "id": 4054,
+    "question": "Which of the following activities is classified as part of the 'dead inspection' phase of initial verification?",
+    "options": [
+      "Verifying that all electrical equipment is correctly selected and erected",
+      "Measuring the resistance of the main protective bonding conductors",
+      "Using a low-resistance ohmmeter to check the continuity of a circuit",
+      "Applying 500V DC between live conductors to check for insulation breakdown"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_AC_WITH_DC",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "terminology",
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "204-15A-LO5",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Inspection is a visual and manual process to confirm equipment is correctly installed; measuring or applying voltages with instruments is classified as 'testing'."
+  },
+  {
+    "id": 4055,
+    "question": "Why is the 'Recording Results' stage considered a critical part of the dead testing workflow in Level 2 electrical science?",
+    "options": [
+      "It allows results to be compared against BS 7671 limits to verify circuit safety",
+      "It is primarily a legal requirement to ensure the customer pays the final invoice",
+      "It serves as a log for the tools used so they can be recalibrated at the end of the day",
+      "It is a method of proving to the supervisor that the electrician was present on site"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Recording results",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "terminology"
+    ],
+    "learningOutcomeId": "204-15A-LO6",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Recording results is not just paperwork; it is the process of documenting measured values so they can be verified against the maximum values allowed by BS 7671 regulations."
+  },
+  {
+    "id": 4056,
+    "question": "An electrician is preparing to carry out initial verification on a new domestic installation. According to the standard dead testing sequence, which test must be successfully completed immediately after the continuity of protective conductors but before insulation resistance?",
+    "options": [
+      "Continuity of ring final circuit conductors (if applicable)",
+      "Polarity of the supply at the intake position",
+      "Functionality of all switching devices",
+      "Earth electrode resistance measurement"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "calculation",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "In the standard sequence of dead tests, continuity of protective conductors is first. If the installation includes ring final circuits, their continuity must be verified next before proceeding to insulation resistance testing."
+  },
+  {
+    "id": 4057,
+    "question": "During the safe isolation procedure, why is it mandatory to use a known live source or a proving unit to check the voltage indicator both before and after testing the circuit for the absence of voltage?",
+    "options": [
+      "To ensure the indicator has not failed during the measurement process",
+      "To calibrate the sensitivity of the voltage indicator for the specific circuit",
+      "To discharge any residual capacitive energy from the circuit under test",
+      "To verify that the supply frequency matches the indicator's rating"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Safe isolation",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The 'test-prove-test' method ensures that the voltage indicator was working when the 'dead' reading was taken. If the indicator fails during the check, a false 'dead' reading could lead to a fatal accident."
+  },
+  {
+    "id": 4058,
+    "question": "While conducting a 'dead' inspection of a distribution board, an electrician notices that a circuit breaker is undersized for the cable it protects, and there is evidence of heat damage on the busbar. What is the most appropriate action according to the 'stop-and-fix' criteria?",
+    "options": [
+      "Stop the process and rectify the fault before proceeding to any dead testing",
+      "Complete all dead tests first and record the faults in the observations section",
+      "Proceed to insulation resistance testing to see if the heat damage caused a breakdown",
+      "Ignore the busbar damage as it is a component of the board rather than the circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
+    "tags": [
+      "application",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "If an unsafe condition or a significant defect is found during inspection, the electrician must stop and fix the issue. Testing an installation known to be faulty or unsafe is counterproductive and potentially dangerous."
+  },
+  {
+    "id": 4059,
+    "question": "Which of the following best describes the fundamental difference between 'dead inspection' and 'dead testing' in the context of initial verification?",
+    "options": [
+      "Inspection is a visual check for compliance, while testing uses instruments to verify values",
+      "Inspection involves checking for voltage, while testing involves measuring resistance",
+      "Inspection is only done by the client, while testing is done by the electrician",
+      "Inspection occurs after the circuit is energized, while testing occurs before"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "204-LO5-AC1",
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
     "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Inspection is the visual, qualitative assessment of the installation (e.g., checking for damage, correct labels), while testing provides numerical, quantitative data using specific test equipment."
+    "estimatedTime": 90,
+    "explanation": "Inspection is the visual verification that the installation is correctly installed and compliant with regulations. Testing uses calibrated instruments to obtain numerical values that confirm the installation's safety."
   },
   {
     "id": 4060,
-    "question": "Why is it mandatory to perform the Continuity of Protective Conductors test as the very first step in the dead testing sequence?",
+    "question": "In the sequence of dead tests, why must the insulation resistance (IR) test be performed only after the continuity of protective conductors has been confirmed?",
     "options": [
-      "To verify that every part of the installation is connected to the Earthing Terminal before subsequent tests apply voltage to the system.",
-      "To ensure that the circuit breaker will trip instantly if a short circuit occurs during the insulation resistance test.",
-      "To discharge any capacitive energy stored in the cables from previous live testing activities.",
-      "To calibrate the low-resistance ohmmeter against the resistance of the circuit's phase conductors."
+      "To ensure the earth path is intact so that any leakage to earth is actually detected",
+      "Because the IR tester requires a low-resistance path to calibrate its internal battery",
+      "To prevent the high voltage of the IR tester from damaging the multimeter used for continuity",
+      "Because IR testing is a live test and continuity is a dead test"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "FORMULA_NOT_REARRANGED"
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_AC_DC_SOURCES"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
       "conceptual",
-      "voltage-rule"
+      "application",
+      "resistance-rule"
     ],
-    "learningOutcomeId": "204-LO6-AC1",
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "Performing the CPC continuity test first ensures that the protective path is intact, which is vital for safety, especially since Insulation Resistance testing involves injecting 250V or 500V DC into the circuit."
+    "explanation": "Insulation resistance tests for leaks between conductors and to earth. If the earth conductor is not continuous, the test may fail to detect a leak to a disconnected part of the earthing system, giving a false sense of safety."
   },
   {
     "id": 4061,
-    "question": "When performing safe isolation on a three-phase and neutral distribution board, the technician uses a voltage indicator to prove the system is dead. Which sequence of checks is required to fully 'prove' the board is isolated?",
+    "question": "An electrician is working on a site where the client insists that recording results is just 'paperwork' and should be done at the end of the week. Why is this view incorrect in a professional testing context?",
     "options": [
-      "Check between all phases, each phase to neutral, and each phase to earth, then re-verify the indicator.",
-      "Check between Phase 1 and Neutral only, as this confirms the main switch has disconnected the supply.",
-      "Check between all phases and neutral, then assume the earth connection is safe if the neutral is dead.",
-      "Check the incoming side of the main isolator to ensure the grid supply is still active before locking off."
+      "Results must be recorded immediately to ensure accuracy and provide a legal record of safety",
+      "The test instruments automatically lock if results are not uploaded every hour",
+      "Recording results is the only way to discharge the static electricity from the test leads",
+      "Results are only valid for 24 hours unless they are written on a certified form"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "UNITS_MISSING"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "health-safety",
-      "application"
+      "legislation",
+      "conceptual",
+      "health-safety"
     ],
-    "learningOutcomeId": "204-LO5-AC1",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "For three-phase systems, safe isolation requires checking all combinations (L1-L2, L2-L3, L3-L1, L1-N, L2-N, L3-N, L1-E, L2-E, L3-E, N-E) to ensure no voltage is present from any source."
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Recording results is an integral part of the testing process. It provides a baseline for future testing and serves as documented evidence that the installation was safe at the time of verification."
   },
   {
     "id": 4062,
-    "question": "During dead testing, the 'Functionality' test of a double-pole switch is being conducted. How is this achieved if the circuit is not yet energised?",
+    "question": "A student is asked to identify the correct instrument for 'proving dead' during the safe isolation procedure. Which combination is the only acceptable choice according to industry safety standards?",
     "options": [
-      "By using a continuity tester to verify that the switch opens and closes both the line and neutral connections manually.",
-      "By flicking the switch and listening for the mechanical 'click' to ensure the spring mechanism is functional.",
-      "By performing an insulation resistance test across the open contacts to ensure no current leaks through.",
-      "By connecting a temporary battery supply to the switch to see if the connected load operates."
+      "A dedicated two-pole voltage indicator and a matching proving unit",
+      "A digital multimeter set to the highest AC voltage range",
+      "A non-contact voltage detector (voltage pen) and a known live socket",
+      "A clamp meter set to the resistance (Ohms) setting"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Safe isolation",
     "tags": [
-      "conceptual",
-      "discrimination"
+      "discrimination",
+      "health-safety",
+      "application"
     ],
-    "learningOutcomeId": "204-LO6-AC5",
-    "difficulty": 4,
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "Dead functionality testing involves using a continuity meter (low-resistance ohmmeter) to confirm that the switch correctly makes and breaks the circuit connection."
+    "explanation": "GS38 and industry standards require a dedicated two-pole voltage indicator. Multimeters are not recommended as they can be easily set to the wrong range/mode, and non-contact pens are not reliable for proving dead."
   },
   {
     "id": 4063,
-    "question": "A technician completes a set of dead tests and immediately energises the circuit without recording the results on the schedule. Why is this considered a failure in the testing process?",
+    "question": "How is 'functionality testing' classified when performed during the dead testing phase of initial verification?",
     "options": [
-      "Recording results is an integral part of the test sequence to ensure accuracy and provide a legal record of safety.",
-      "Results must be recorded to calculate the exact amount of VAT required for the electrical installation certificate.",
-      "The test instruments automatically delete data if the results are not manually written down within 5 minutes.",
-      "Energising a circuit without a written signature automatically voids the manufacturer's warranty on the consumer unit."
+      "Checking the mechanical operation of switches and isolators without power applied",
+      "Energizing the circuit to see if the light bulbs illuminate correctly",
+      "Using a high-voltage pulse to ensure the circuit breaker trips within 40ms",
+      "Measuring the current draw of the load using a battery-powered simulator"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "legislation",
-      "conceptual"
+      "discrimination",
+      "terminology"
     ],
-    "learningOutcomeId": "204-LO6-AC6",
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
     "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Recording results is not just 'paperwork'; it is a critical part of the verification process that ensures the values meet BS 7671 requirements before the installation is put into service."
+    "estimatedTime": 120,
+    "explanation": "During the dead testing phase, functionality refers to the mechanical movement and basic continuity check of switches and devices to ensure they operate (open and close) as intended before the circuit is live."
   },
   {
     "id": 4064,
-    "question": "Which of the following would be a valid reason to 'stop-and-fix' during the Ring Final Circuit continuity test (Step 2 of the sequence)?",
+    "question": "When verifying polarity during the dead testing stage, what is the electrician specifically confirming?",
     "options": [
-      "The measured resistance of the neutral loop is significantly higher than the resistance of the line loop.",
-      "The circuit breaker is rated at 32A while the cable used is 2.5mm² Twin and Earth.",
-      "The technician realizes the visual inspection was skipped and decides to go back and do it now.",
-      "The test leads of the multi-function tester have not been 'nulled' or zeroed out."
+      "That all single-pole control devices are installed in the line conductor only",
+      "That the neutral conductor is connected to the earth terminal at the consumer unit",
+      "That the AC supply is oscillating at exactly 50 Hz",
+      "That the magnetic field of the transformers is rotating clockwise"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "ROUNDING_ERROR"
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "CONFUSED_AC_DC_GENERATOR_PARTS"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Testing overview",
     "tags": [
-      "application",
-      "discrimination"
+      "conceptual",
+      "discrimination",
+      "voltage-rule"
     ],
-    "learningOutcomeId": "204-LO6-AC2",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "In a ring circuit, the line and neutral loops should be approximately the same resistance. A significant difference indicates a loose connection or a broken conductor, requiring an immediate stop to investigate."
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Dead polarity testing confirms that switches, fuses, and circuit breakers are correctly located in the line conductor (not the neutral) and that socket outlets and terminals are wired correctly."
   },
   {
     "id": 4065,
-    "question": "An electrician is about to perform Insulation Resistance testing on a circuit containing sensitive electronic LED drivers. What is the correct 'dead testing' approach to prevent damage?",
+    "question": "An electrician performs safe isolation on a local isolator but fails to lock it off or post a warning sign. While they are working, another contractor re-energizes the board. Which 'non-negotiable' rule of safe isolation was violated?",
     "options": [
-      "Disconnect the sensitive equipment or link the line and neutral together before testing to earth.",
-      "Increase the test voltage to 1000V to ensure the electronic components can withstand surges.",
-      "Perform the test with the LED drivers switched 'on' to ensure the internal circuitry is tested.",
-      "Skip the insulation resistance test entirely and rely on the continuity test for safety."
+      "Securing the isolation and preventing unauthorized re-energization",
+      "Failing to use a calibrated multimeter for the voltage check",
+      "Forgetting to check the phase rotation of the supply",
+      "Failing to record the time of isolation in the site diary"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_AC_DC_SOURCES"
     },
-    "section": "Electrical Installations Technology",
-    "category": "Testing overview + safe isolation",
+    "section": "Science 2365 Level 2",
+    "category": "Safe isolation",
     "tags": [
       "application",
-      "health-safety"
+      "health-safety",
+      "legislation"
     ],
-    "learningOutcomeId": "204-LO6-AC3",
+    "learningOutcomeId": "204-15A-LO1",
+    "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "To protect sensitive electronics during a 500V IR test, components should be disconnected. If not possible, testing with Line and Neutral joined together to Earth is an acceptable 'dead' method."
+    "explanation": "Safe isolation is not just about turning off the power; it is the process of ensuring it stays off. Locking off and tagging are critical steps to prevent accidental re-energization by others."
   }
 ];

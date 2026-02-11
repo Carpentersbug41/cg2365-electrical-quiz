@@ -1,6 +1,5 @@
 'use client';
 
-import { Fragment } from 'react';
 import { Check, Circle } from 'lucide-react';
 
 interface LessonOption {
@@ -15,14 +14,14 @@ interface LessonOption {
 
 interface LessonSelectorProps {
   lessons: LessonOption[];
-  selectedLessonId: string | null;
-  onSelect: (lessonId: string) => void;
+  selectedLessonFilename: string | null;
+  onSelect: (lessonFilename: string) => void;
   disabled?: boolean;
 }
 
 export default function LessonSelector({ 
   lessons, 
-  selectedLessonId, 
+  selectedLessonFilename, 
   onSelect,
   disabled = false
 }: LessonSelectorProps) {
@@ -35,7 +34,7 @@ export default function LessonSelector({
     return acc;
   }, {} as Record<string, LessonOption[]>);
 
-  const selectedLesson = lessons.find(l => l.id === selectedLessonId);
+  const selectedLesson = lessons.find(l => l.filename === selectedLessonFilename);
 
   return (
     <div className="space-y-2">
@@ -44,7 +43,7 @@ export default function LessonSelector({
       </label>
       
       <select
-        value={selectedLessonId || ''}
+        value={selectedLessonFilename || ''}
         onChange={(e) => onSelect(e.target.value)}
         disabled={disabled}
         className="w-full px-4 py-3 text-base rounded-lg border-2 border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
@@ -53,7 +52,7 @@ export default function LessonSelector({
         {Object.entries(groupedLessons).map(([unit, unitLessons]) => (
           <optgroup key={unit} label={unit}>
             {unitLessons.map(lesson => (
-              <option key={lesson.id} value={lesson.id}>
+              <option key={lesson.filename} value={lesson.filename}>
                 {lesson.microbreakCount > 0 ? '✓' : '○'} {lesson.id} - {lesson.title.substring(0, 60)}
                 {lesson.title.length > 60 ? '...' : ''} 
                 {lesson.microbreakCount > 0 ? ` (${lesson.microbreakCount} games)` : ''}

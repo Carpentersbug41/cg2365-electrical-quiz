@@ -27,7 +27,7 @@ type GenerationStatus = 'idle' | 'generating' | 'preview' | 'saving' | 'success'
 export default function GameGeneratorForm() {
   const [lessons, setLessons] = useState<LessonOption[]>([]);
   const [loadingLessons, setLoadingLessons] = useState(true);
-  const [selectedLessonId, setSelectedLessonId] = useState<string | null>(null);
+  const [selectedLessonFilename, setSelectedLessonFilename] = useState<string | null>(null);
   const [selectedGameTypes, setSelectedGameTypes] = useState<Set<GameType>>(new Set(['matching', 'sorting']));
   const [gameCount, setGameCount] = useState(2);
   const [status, setStatus] = useState<GenerationStatus>('idle');
@@ -59,7 +59,7 @@ export default function GameGeneratorForm() {
     }
   };
 
-  const selectedLesson = lessons.find(l => l.id === selectedLessonId);
+  const selectedLesson = lessons.find(l => l.filename === selectedLessonFilename);
 
   const toggleGameType = (gameType: GameType) => {
     const newTypes = new Set(selectedGameTypes);
@@ -72,7 +72,7 @@ export default function GameGeneratorForm() {
   };
 
   const handleGeneratePreview = async () => {
-    if (!selectedLessonId || selectedGameTypes.size === 0) {
+    if (!selectedLessonFilename || selectedGameTypes.size === 0) {
       setErrorMessage('Please select a lesson and at least one game type');
       return;
     }
@@ -153,7 +153,7 @@ export default function GameGeneratorForm() {
   };
 
   const handleSaveToLesson = async () => {
-    if (!selectedLessonId || generatedGames.length === 0) return;
+    if (!selectedLessonFilename || generatedGames.length === 0) return;
 
     if (!selectedLesson?.filename) {
       setErrorMessage('Invalid lesson selection');
@@ -264,8 +264,8 @@ export default function GameGeneratorForm() {
         ) : (
           <LessonSelector
             lessons={lessons}
-            selectedLessonId={selectedLessonId}
-            onSelect={setSelectedLessonId}
+            selectedLessonFilename={selectedLessonFilename}
+            onSelect={setSelectedLessonFilename}
             disabled={isGenerating}
           />
         )}
@@ -367,7 +367,7 @@ export default function GameGeneratorForm() {
       <div className="flex gap-3">
         <button
           onClick={handleGeneratePreview}
-          disabled={!selectedLessonId || selectedGameTypes.size === 0 || isGenerating}
+          disabled={!selectedLessonFilename || selectedGameTypes.size === 0 || isGenerating}
           className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
         >
           {status === 'generating' ? (

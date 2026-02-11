@@ -469,12 +469,12 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 11,
   },
-        {
+          {
     id: '204-15A',
-    title: 'Initial Verification Overview + Safe Isolation',
+    title: 'Testing overview + safe isolation',
     unit: 'Unit 204',
     unitNumber: '204',
-    topic: 'Initial Verification Overview + Safe Isolation',
+    topic: 'Testing overview + safe isolation',
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('204-15A'),
     available: true,
