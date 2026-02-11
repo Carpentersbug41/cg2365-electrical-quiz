@@ -173,6 +173,38 @@
       }
     },
     {
+      "id": "204-9A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Spirit Level",
+            "right": "Checks horizontal or vertical surfaces"
+          },
+          {
+            "left": "Torque",
+            "right": "Rotational force for fasteners"
+          },
+          {
+            "left": "Datum",
+            "right": "Fixed reference point for measurements"
+          },
+          {
+            "left": "Marking Out",
+            "right": "Transferring dimensions to work surfaces"
+          },
+          {
+            "left": "Pre-use Inspection",
+            "right": "Safety check performed before use"
+          }
+        ]
+      },
+      "order": 5.2
+    },
+    {
       "id": "204-9A-check-2",
       "type": "practice",
       "order": 5.5,
@@ -236,6 +268,46 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-9A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Hand Tools",
+          "Power Tools"
+        ],
+        "items": [
+          {
+            "text": "Spirit Level",
+            "correctBucket": 0
+          },
+          {
+            "text": "Hammer Drill",
+            "correctBucket": 1
+          },
+          {
+            "text": "Manual Screwdriver",
+            "correctBucket": 0
+          },
+          {
+            "text": "Electric Drill",
+            "correctBucket": 1
+          },
+          {
+            "text": "Marking Pencil",
+            "correctBucket": 0
+          },
+          {
+            "text": "Electric Screwdriver",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 5.75
     },
     {
       "id": "204-9A-practice",
@@ -302,6 +374,38 @@
       }
     },
     {
+      "id": "204-9A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What checks if a surface is perfectly horizontal?",
+            "answer": "Spirit Level"
+          },
+          {
+            "question": "What is the allowable limit of variation called?",
+            "answer": "Tolerance"
+          },
+          {
+            "question": "What check ensures a tool is safe to use?",
+            "answer": "Pre-use Inspection"
+          },
+          {
+            "question": "What is the fixed reference point for measurements?",
+            "answer": "Datum"
+          },
+          {
+            "question": "What rotational force prevents material damage?",
+            "answer": "Torque"
+          }
+        ]
+      },
+      "order": 8.25
+    },
+    {
       "id": "204-9A-integrative",
       "type": "practice",
       "order": 9.5,
@@ -351,6 +455,36 @@
           }
         ]
       }
+    },
+    {
+      "id": "204-9A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "A technician is performing a Pre-use Inspection on a drill.",
+        "options": [
+          {
+            "text": "Check the tool is fit for purpose",
+            "isError": false
+          },
+          {
+            "text": "Perform a visual check for damage",
+            "isError": false
+          },
+          {
+            "text": "Skip the check to save time",
+            "isError": true
+          },
+          {
+            "text": "Verify the tool is safe to use",
+            "isError": false
+          }
+        ],
+        "explanation": "A Pre-use Inspection is a mandatory visual and functional check to ensure safety."
+      },
+      "order": 9.7
     },
     {
       "id": "204-9A-spaced-review",
@@ -407,7 +541,7 @@
   "metadata": {
     "created": "2026-02-11",
     "updated": "2026-02-11",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
