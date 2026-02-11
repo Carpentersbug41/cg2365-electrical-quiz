@@ -68,7 +68,7 @@
           }
         ]
       },
-      "order": 1.5
+      "order": 3.2
     },
     {
       "id": "203-1A-vocab",
@@ -149,7 +149,7 @@
           }
         ]
       },
-      "order": 2.5
+      "order": 4.25
     },
     {
       "id": "203-1A-explain-statutory-regs",
@@ -232,7 +232,7 @@
         ],
         "explanation": "Non-statutory documents are guidance, not laws made by Parliament."
       },
-      "order": 3.5
+      "order": 5.25
     },
     {
       "id": "203-1A-worked-example",
@@ -304,7 +304,7 @@
           }
         ]
       },
-      "order": 4.5
+      "order": 7.25
     },
     {
       "id": "203-1A-guided",

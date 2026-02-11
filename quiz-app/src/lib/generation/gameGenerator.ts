@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { getGeminiModelWithDefault, getGeminiApiKey } from '@/lib/config/geminiConfig';
 import { Lesson, Block, MicrobreakContent, VocabBlockContent, ExplanationBlockContent } from '@/data/lessons/types';
@@ -21,62 +20,118 @@ interface GameGenerationOptions {
   count?: number;
 }
 
+function roundOrder(order: number): number {
+  return Math.round(order * 1000) / 1000;
+}
+
 /**
- * Calculate smart placement order for a game based on lesson structure.
- * Games should only appear AFTER the content they test (vocab and explanations).
- * 
- * Strategy:
- * 1. Find minimum safe order (after all vocab and explanation blocks)
- * 2. Identify optimal insertion points (after check/practice blocks)
- * 3. Distribute games evenly across these insertion points
- * 4. Fallback: place after minimum order with small spacing
+ * Games must not appear before relevant teaching.
+ * If explanation blocks exist, anchor after the final explanation.
+ * Otherwise, anchor after the final vocabulary block.
  */
-function calculateSmartGameOrder(lesson: Lesson, gameIndex: number, totalGames: number): number {
-  // Find all teaching content blocks
+function getMinimumSafeGameOrder(lesson: Lesson): number {
   const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
   const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
-  const checkBlocks = lesson.blocks.filter(b => 
-    b.type === 'practice' && (b.content as any).mode === 'check'
-  );
-  const workedExampleBlocks = lesson.blocks.filter(b => b.type === 'worked-example');
-  
-  // Calculate minimum order: after last vocab AND last explanation
-  const minVocabOrder = vocabBlocks.length > 0 
-    ? Math.max(...vocabBlocks.map(b => b.order)) 
-    : 0;
-  const minExplanationOrder = explanationBlocks.length > 0 
-    ? Math.max(...explanationBlocks.map(b => b.order)) 
-    : 0;
-  const minOrder = Math.max(minVocabOrder, minExplanationOrder);
-  
-  // Find valid insertion points (after check/practice blocks that come after teaching content)
-  const validInsertionPoints = [
-    ...checkBlocks.map(b => ({ order: b.order, type: 'check' })),
-    ...workedExampleBlocks.map(b => ({ order: b.order, type: 'worked-example' }))
-  ]
-    .filter(point => point.order > minOrder)
-    .map(point => point.order)
-    .sort((a, b) => a - b);
-  
-  // Remove duplicates and sort
-  const uniqueInsertionPoints = [...new Set(validInsertionPoints)].sort((a, b) => a - b);
-  
-  // Distribute games across valid insertion points
-  if (uniqueInsertionPoints.length > 0) {
-    const pointIndex = Math.min(
-      Math.floor(gameIndex * uniqueInsertionPoints.length / totalGames),
-      uniqueInsertionPoints.length - 1
+
+  const maxVocabOrder = vocabBlocks.length > 0 ? Math.max(...vocabBlocks.map(b => b.order)) : 0;
+  const maxExplanationOrder = explanationBlocks.length > 0 ? Math.max(...explanationBlocks.map(b => b.order)) : 0;
+
+  return explanationBlocks.length > 0 ? maxExplanationOrder : maxVocabOrder;
+}
+
+/**
+ * Build insertion slots that keep microbreaks interleaved with learning blocks.
+ * One slot per gap avoids back-to-back microbreaks.
+ */
+function buildInterleavedGameOrders(lesson: Lesson, requestedCount: number): number[] {
+  if (requestedCount <= 0) return [];
+
+  const minSafeOrder = getMinimumSafeGameOrder(lesson);
+  const nonMicroBlocks = lesson.blocks
+    .filter(b => b.type !== 'microbreak')
+    .sort((a, b) => a.order - b.order);
+  const existingMicrobreaks = lesson.blocks
+    .filter(b => b.type === 'microbreak')
+    .sort((a, b) => a.order - b.order);
+
+  const occupiedOrders = new Set(lesson.blocks.map(b => roundOrder(b.order)));
+  const slotOrders: number[] = [];
+
+  for (let i = 0; i < nonMicroBlocks.length; i++) {
+    const anchor = nonMicroBlocks[i];
+    if (anchor.order < minSafeOrder) continue;
+    if (anchor.type === 'spaced-review') continue;
+
+    const nextBlock = nonMicroBlocks[i + 1];
+    const nextOrder = nextBlock ? nextBlock.order : anchor.order + 1;
+    const gap = nextOrder - anchor.order;
+    if (gap <= 0.05) continue;
+
+    // Keep one microbreak per gap so there is always learning between microbreaks.
+    const hasMicrobreakInGap = existingMicrobreaks.some(
+      mb => mb.order > anchor.order && mb.order < nextOrder
     );
-    const insertionOrder = uniqueInsertionPoints[pointIndex] + 0.5;
-    
-    console.log(`📍 Game ${gameIndex + 1}/${totalGames}: Placing at order ${insertionOrder} (after ${uniqueInsertionPoints.length} valid points, min order: ${minOrder})`);
-    return insertionOrder;
+    if (hasMicrobreakInGap) continue;
+
+    const offset = Math.min(0.25, gap * 0.4);
+    let candidateOrder = roundOrder(anchor.order + Math.max(0.05, offset));
+
+    if (candidateOrder >= nextOrder) {
+      candidateOrder = roundOrder(anchor.order + gap / 2);
+    }
+    if (candidateOrder <= anchor.order || candidateOrder >= nextOrder) {
+      continue;
+    }
+
+    while (occupiedOrders.has(candidateOrder) && candidateOrder < nextOrder - 0.01) {
+      candidateOrder = roundOrder(candidateOrder + 0.01);
+    }
+    if (candidateOrder <= anchor.order || candidateOrder >= nextOrder) {
+      continue;
+    }
+
+    slotOrders.push(candidateOrder);
+    occupiedOrders.add(candidateOrder);
   }
-  
-  // Fallback: place after minimum order with small incremental spacing
-  const fallbackOrder = minOrder + 0.5 + (gameIndex * 0.1);
-  console.log(`📍 Game ${gameIndex + 1}/${totalGames}: Using fallback placement at order ${fallbackOrder} (no check blocks found, min order: ${minOrder})`);
-  return fallbackOrder;
+
+  const uniqueSlots = [...new Set(slotOrders)].sort((a, b) => a - b);
+  if (uniqueSlots.length === 0) return [];
+
+  const finalCount = Math.min(requestedCount, uniqueSlots.length);
+  if (requestedCount > uniqueSlots.length) {
+    console.warn(
+      `[GameGenerator] Requested ${requestedCount} game(s), but only ${uniqueSlots.length} interleaved slot(s) are available. Capping to ${finalCount}.`
+    );
+  }
+
+  if (finalCount === 1) {
+    return [uniqueSlots[Math.floor(uniqueSlots.length / 2)]];
+  }
+
+  const selectedOrders: number[] = [];
+  let previousIndex = -1;
+  for (let i = 0; i < finalCount; i++) {
+    let slotIndex = Math.round((i * (uniqueSlots.length - 1)) / (finalCount - 1));
+    if (slotIndex <= previousIndex) slotIndex = previousIndex + 1;
+    if (slotIndex >= uniqueSlots.length) slotIndex = uniqueSlots.length - 1;
+
+    selectedOrders.push(uniqueSlots[slotIndex]);
+    previousIndex = slotIndex;
+  }
+
+  return selectedOrders;
+}
+
+function getNextMicrobreakNumber(lesson: Lesson): number {
+  const maxExistingNumber = lesson.blocks
+    .filter(b => b.type === 'microbreak')
+    .map(b => {
+      const match = b.id.match(/-microbreak-(\d+)$/);
+      return match ? Number.parseInt(match[1], 10) : 0;
+    })
+    .reduce((max, current) => Math.max(max, current), 0);
+
+  return maxExistingNumber + 1;
 }
 
 /**
@@ -85,26 +140,24 @@ function calculateSmartGameOrder(lesson: Lesson, gameIndex: number, totalGames: 
  */
 function validateGamePlacement(lesson: Lesson, gameOrder: number, gameIndex: number): string[] {
   const errors: string[] = [];
-  
-  // Check if game comes after all vocab blocks
+
   const vocabBlocks = lesson.blocks.filter(b => b.type === 'vocab');
   const maxVocabOrder = vocabBlocks.length > 0 ? Math.max(...vocabBlocks.map(b => b.order)) : 0;
   if (vocabBlocks.length > 0 && gameOrder <= maxVocabOrder) {
     errors.push(`Game ${gameIndex + 1} at order ${gameOrder} appears before vocab block (order ${maxVocabOrder})`);
   }
-  
-  // Check if game comes after all explanation blocks
+
   const explanationBlocks = lesson.blocks.filter(b => b.type === 'explanation');
   const maxExplanationOrder = explanationBlocks.length > 0 ? Math.max(...explanationBlocks.map(b => b.order)) : 0;
   if (explanationBlocks.length > 0 && gameOrder <= maxExplanationOrder) {
     errors.push(`Game ${gameIndex + 1} at order ${gameOrder} appears before explanation blocks (last at order ${maxExplanationOrder})`);
   }
-  
+
   return errors;
 }
 
 /**
- * Generate microbreak games for a lesson using LLM
+ * Generate microbreak games for a lesson using LLM.
  */
 export async function generateMicrobreaksForLesson(
   lesson: Lesson,
@@ -113,8 +166,18 @@ export async function generateMicrobreaksForLesson(
   const apiKey = getGeminiApiKey();
   if (!apiKey) throw new Error('GEMINI_API_KEY not set');
 
+  const requestedCount = Math.max(0, options?.count || 2);
+  const hasManualPlacement = Boolean(options?.insertAfterBlocks && options.insertAfterBlocks.length > 0);
+  const plannedOrders = hasManualPlacement ? [] : buildInterleavedGameOrders(lesson, requestedCount);
+  const count = hasManualPlacement ? requestedCount : plannedOrders.length;
+
+  if (count === 0) {
+    console.warn(`[GameGenerator] No valid insertion slot available for lesson ${lesson.id}.`);
+    return [];
+  }
+
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ 
+  const model = genAI.getGenerativeModel({
     model: getGeminiModelWithDefault(),
     generationConfig: {
       temperature: 0.8,
@@ -122,7 +185,6 @@ export async function generateMicrobreaksForLesson(
     }
   });
 
-  // Extract lesson content for context
   const vocabBlocks = lesson.blocks
     .filter(b => b.type === 'vocab')
     .map(b => b.content as VocabBlockContent);
@@ -131,19 +193,16 @@ export async function generateMicrobreaksForLesson(
     .filter(b => b.type === 'explanation')
     .map(b => b.content as ExplanationBlockContent);
 
-  // Build vocab list
-  const vocabTerms = vocabBlocks.flatMap(v => 
+  const vocabTerms = vocabBlocks.flatMap(v =>
     v.terms.map(t => ({ term: t.term, definition: t.definition }))
   );
 
-  // Build key concepts list
   const keyConcepts = explanationBlocks.map(e => ({
     title: e.title,
-    content: e.content.substring(0, 500) // Limit to avoid token overflow
+    content: e.content.substring(0, 500)
   }));
 
   const gameTypes = options?.gameTypes || ['matching', 'sorting'];
-  const count = options?.count || 2;
 
   const prompt = `${GAME_GENERATION_PROMPT}
 
@@ -179,50 +238,58 @@ Return a JSON array of ${count} game objects. Use variety in game types if multi
   try {
     const result = await model.generateContent(prompt);
     const responseText = result.response.text();
-    const games: MicrobreakContent[] = JSON.parse(responseText);
+    const parsed = JSON.parse(responseText);
+    if (!Array.isArray(parsed)) {
+      throw new Error('LLM response is not an array of game objects');
+    }
 
-    // Validate and convert to Block objects with smart placement
+    const games = (parsed as MicrobreakContent[]).slice(0, count);
+    if (games.length < count) {
+      console.warn(`[GameGenerator] LLM returned ${games.length}/${count} game(s).`);
+    }
+
     const blocks: Block[] = [];
     const validationErrors: string[] = [];
-    
+    const nextMicrobreakNumber = getNextMicrobreakNumber(lesson);
+    const occupiedOrders = new Set(lesson.blocks.map(b => roundOrder(b.order)));
+
     for (let index = 0; index < games.length; index++) {
       const game = games[index];
-      
-      // Determine order using smart placement algorithm
+
       let order: number;
-      if (options?.insertAfterBlocks && options.insertAfterBlocks[index]) {
-        // Manual placement: respect user-specified insertion point
-        const targetBlock = lesson.blocks.find(b => b.id === options.insertAfterBlocks![index]);
-        order = targetBlock ? targetBlock.order + 0.5 : (lesson.blocks.length + index + 1);
-        console.log(`📍 Game ${index + 1}/${count}: Manual placement after block ${options.insertAfterBlocks[index]} at order ${order}`);
+      if (hasManualPlacement) {
+        const targetBlockId = options?.insertAfterBlocks?.[index];
+        const targetBlock = targetBlockId
+          ? lesson.blocks.find(b => b.id === targetBlockId)
+          : undefined;
+        order = targetBlock ? roundOrder(targetBlock.order + 0.2) : roundOrder(lesson.blocks.length + index + 1);
       } else {
-        // Smart placement: place after teaching content
-        order = calculateSmartGameOrder(lesson, index, count);
-      }
-      
-      // Validate placement
-      const errors = validateGamePlacement(lesson, order, index);
-      if (errors.length > 0) {
-        validationErrors.push(...errors);
+        order = plannedOrders[index];
       }
 
+      while (occupiedOrders.has(order)) {
+        order = roundOrder(order + 0.01);
+      }
+      occupiedOrders.add(order);
+
+      const errors = validateGamePlacement(lesson, order, index);
+      if (errors.length > 0) validationErrors.push(...errors);
+
       blocks.push({
-        id: `${lesson.id}-microbreak-${index + 1}`,
-        type: 'microbreak' as const,
+        id: `${lesson.id}-microbreak-${nextMicrobreakNumber + index}`,
+        type: 'microbreak',
         content: game,
         order
       });
     }
-    
-    // Log validation warnings if any
+
     if (validationErrors.length > 0) {
-      console.warn('⚠️ Game placement validation warnings:');
+      console.warn('[GameGenerator] Game placement validation warnings:');
       validationErrors.forEach(err => console.warn(`  - ${err}`));
     }
 
-    console.log(`✓ Generated ${blocks.length} microbreak games for lesson ${lesson.id}`);
+    console.log(`[GameGenerator] Generated ${blocks.length} microbreak game(s) for lesson ${lesson.id}`);
     return blocks;
-
   } catch (error) {
     console.error('Failed to generate microbreak games:', error);
     throw new Error(`Game generation failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -230,10 +297,9 @@ Return a JSON array of ${count} game objects. Use variety in game types if multi
 }
 
 /**
- * Generate a simple matching game manually (fallback if LLM fails)
+ * Generate a simple matching game manually (fallback if LLM fails).
  */
 export function generateSimpleMatchingGame(lesson: Lesson, blockIndex: number = 1): Block {
-  // Extract vocab terms
   const vocabBlock = lesson.blocks.find(b => b.type === 'vocab');
   if (!vocabBlock) {
     throw new Error('No vocabulary block found in lesson');
@@ -242,7 +308,7 @@ export function generateSimpleMatchingGame(lesson: Lesson, blockIndex: number = 
   const vocabContent = vocabBlock.content as VocabBlockContent;
   const pairs = vocabContent.terms.slice(0, 5).map(t => ({
     left: t.term,
-    right: t.definition.substring(0, 50) // Truncate long definitions
+    right: t.definition.substring(0, 50)
   }));
 
   return {
@@ -259,12 +325,9 @@ export function generateSimpleMatchingGame(lesson: Lesson, blockIndex: number = 
 }
 
 /**
- * Generate a simple sorting game manually (fallback if LLM fails)
+ * Generate a simple sorting game manually (fallback if LLM fails).
  */
 export function generateSimpleSortingGame(lesson: Lesson, categories: [string, string], blockIndex: number = 2): Block {
-  // This would need domain-specific logic to categorize items
-  // For now, return a template that needs manual completion
-  
   return {
     id: `${lesson.id}-microbreak-${blockIndex}`,
     type: 'microbreak',
@@ -283,4 +346,3 @@ export function generateSimpleSortingGame(lesson: Lesson, categories: [string, s
     order: lesson.blocks.length + blockIndex
   };
 }
-

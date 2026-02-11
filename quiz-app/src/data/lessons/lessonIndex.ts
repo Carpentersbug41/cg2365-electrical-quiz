@@ -480,6 +480,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 12,
   },
+  {
+    id: '204-9A',
+    title: 'Tools & measuring/marking out for wiring systems',
+    unit: 'Unit 204',
+    unitNumber: '204',
+    topic: 'Tools & measuring/marking out for wiring systems',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('204-9A'),
+    available: true,
+    order: 13,
+  },
 ];
 
 /**

@@ -51,9 +51,11 @@ import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
 import lesson203_3A123 from '@/data/lessons/203-3A123-circuit-types-what-they-do.json';
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
+import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '204-9A': lesson204_9A as Lesson,
   '204-15A': lesson204_15A as Lesson,
   '202-5A': lesson202_5A as Lesson,
   '203-3A123': lesson203_3A123 as Lesson,  // Backward-compatible alias for legacy lesson IDs.

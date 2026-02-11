@@ -1,0 +1,457 @@
+{
+  "id": "204-9A",
+  "title": "204.9A — Tools & measuring/marking out for wiring systems",
+  "description": "Learn about Tools & measuring/marking out for wiring systems in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 204",
+  "topic": "Tools & measuring/marking out for wiring systems",
+  "learningOutcomes": [
+    "Identify common measuring, marking-out, and hand tools used in technical installations",
+    "Describe the specific purpose and application for various hand and power tools",
+    "Explain the standard pre-use safety checks required for tools and equipment",
+    "Select the correct tool for a given installation task based on its functional purpose"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "204-9A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common measuring, marking-out, and hand tools used in technical installations",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the specific purpose and application for various hand and power tools",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the standard pre-use safety checks required for tools and equipment",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select the correct tool for a given installation task based on its functional purpose",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-9A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Marking Out",
+            "definition": "The process of transferring dimensions from a design or specification onto the work surface to guide the accurate installation of components."
+          },
+          {
+            "term": "Datum",
+            "definition": "A fixed reference point or line from which all measurements are taken to ensure consistency and prevent cumulative errors."
+          },
+          {
+            "term": "Tolerance",
+            "definition": "The allowable limit of variation in a dimension, which is different from an error because it is a pre-defined range within which the work is considered acceptable."
+          },
+          {
+            "term": "Spirit Level",
+            "definition": "A tool used to determine if a surface is perfectly horizontal or vertical, which is different from a straight edge because it uses a fluid-filled vial to indicate orientation."
+          },
+          {
+            "term": "Pre-use Inspection",
+            "definition": "A visual and functional check of a tool's condition performed before use to ensure it is safe and fit for its intended purpose."
+          },
+          {
+            "term": "Torque",
+            "definition": "The rotational force applied by a tool to a fastener, which must be controlled to prevent material damage or ensure a secure connection."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-9A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Tools & measuring/marking out for wiring systems Diagram",
+        "description": "Visual representation of Tools & measuring/marking out for wiring systems",
+        "videoUrl": "",
+        "diagramType": "wiring",
+        "elementIds": [
+          "datum-reference",
+          "marking-out-line",
+          "spirit-level-vial",
+          "torque-adjustment-ring"
+        ],
+        "placeholderText": "The diagram should illustrate the relationship between a fixed datum-reference and the resulting marking-out-line on a wall surface. It should also feature a close-up of a spirit-level-vial showing the bubble centered between the lines for horizontal accuracy. Additionally, show a power drill with the torque-adjustment-ring highlighted to demonstrate how rotational force is controlled."
+      }
+    },
+    {
+      "id": "204-9A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Measuring, Marking, and Hand Tools",
+        "content": "### In this lesson\nYou will learn to identify the manual tools required to prepare a workspace and install technical components accurately.\nThis knowledge allows you to translate technical drawings into physical installations while maintaining precision.\n\n*   Identify measuring and marking-out tools and their specific functions.\n*   Distinguish between common hand tools used for cutting, fastening, and shaping.\n*   Select the correct tool for a task based on its functional purpose.\n\n**What this is**\nMeasuring and marking out is the foundational stage of any installation. **Marking Out** is the process of transferring dimensions from a design or specification onto the work surface to guide the accurate installation of components. This process relies on a **Datum**, which is a fixed reference point or line from which all measurements are taken to ensure consistency and prevent cumulative errors. Hand tools are manual devices used to manipulate materials, such as cable cutters for trimming conductors or files and reamers for smoothing edges after a cut. \n\n**Why it matters**\nAccuracy at the start of a project prevents wasted material and ensures that components fit together as intended. If a technician ignores the **Datum**, small errors in individual measurements can add up, causing the final component to be out of position. Furthermore, understanding the **Tolerance**, or the allowable limit of variation in a dimension, ensures that the work remains functional and safe even if it is not mathematically perfect. \n\n**Key facts / rules**\n*   A **Spirit Level** uses a fluid-filled vial to indicate if a surface is perfectly horizontal or vertical.\n*   A plumb line uses gravity to establish a true vertical reference over long distances.\n*   Gauges are used for repetitive measurements to ensure uniformity across multiple components.\n*   Rules and tapes provide linear measurements and should be checked for damage that could obscure the scale.\n*   Cutting tools like saws and knives must be kept sharp to ensure clean edges and reduce physical effort.\n*   Screwdrivers and wrenches must match the fastener size exactly to prevent rounding or stripping the head.\n\n**How to recognise it**\nYou can recognise measuring tools by their graduated scales (like a steel rule) or their orientation indicators. For example, a **Spirit Level** is distinguished by its transparent vial containing a bubble; it is different from a straight edge because the vial allows you to check for level or plumb, whereas a straight edge only checks for flatness. Marking tools often include chalk lines, pencils, or scribers designed to leave a visible, temporary mark on a surface. Hand tools for installation are identified by their mechanical action: pliers and cable cutters use a pivot for leverage, while hammers use a weighted head for impact. \n\n**Concrete Anchor:** Think of **Marking Out** like a tailor using chalk on fabric before cutting; without those lines, the final suit would never fit the customer correctly. Similarly, using a **Spirit Level** is like watching the water line in a glass; no matter how you tilt the glass, the water surface stays level.\n\n**Micro-scenario:** A technician needs to install five brackets in a perfectly straight line across a 10-metre wall. If they measure from bracket to bracket (incremental) instead of from a single **Datum** (fixed point), a 2mm error on each bracket results in the final bracket being 10mm out of place.\n\n**Common mistakes**\nLearners often confuse a **Spirit Level** with a straight edge; a **Spirit Level** is used to find a true horizontal or vertical orientation, whereas a straight edge is simply used to check if a surface is flat or to draw straight lines. \n\nMisconceptions (targeted):\n*   Misconception: Measuring and marking out is optional on small, simple jobs. | Correction: Even small jobs require a **Datum** to ensure components align with existing structures and meet professional standards. | AC: AC1.1\n*   Misconception: **Tolerance** is just another word for a measurement error. | Correction: **Tolerance** is a pre-defined, acceptable range of variation, while an error is a mistake that falls outside that range. | AC: AC1.1\n\n**Key Points**\n*   Always measure from a consistent **Datum** to avoid cumulative errors.\n*   Select the tool that matches the material and the fastener size.\n*   Use a **Spirit Level** to ensure installations are aesthetically and functionally level.\n*   Understand the **Tolerance** required for the specific installation task.\n\n**Quick recap**\nEffective installation begins with accurate **Marking Out** from a fixed **Datum**. By identifying and selecting the correct hand tools—such as levels for orientation, rules for dimensioning, and specific cutters or wrenches for assembly—you ensure the task is completed within the required **Tolerance** and to a professional standard.\n\n### Coming Up Next\nWe will look at power tools and the essential safety routines required before you pull the trigger."
+      }
+    },
+    {
+      "id": "204-9A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Measuring, Marking, and Hand Tools",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-9A-C1-L1-A",
+            "questionText": "What is the specific purpose of the marking out process?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "transferring dimensions",
+              "transfer dimensions",
+              "transferring design dimensions"
+            ],
+            "hint": "Think about how we move information from a drawing to the physical work surface."
+          },
+          {
+            "id": "204-9A-C1-L1-B",
+            "questionText": "What is the function of a datum in a technical installation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "fixed reference point",
+              "fixed reference line",
+              "reference point"
+            ],
+            "hint": "It provides a consistent starting point for every measurement taken."
+          },
+          {
+            "id": "204-9A-C1-L1-C",
+            "questionText": "What is a spirit level specifically used for?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "find true orientation",
+              "find horizontal or vertical",
+              "horizontal or vertical orientation"
+            ],
+            "hint": "Consider how this tool differs from a standard straight edge."
+          },
+          {
+            "id": "204-9A-C1-L2",
+            "questionText": "Using your answers to Q1 (transferring dimensions), Q2 (fixed reference points), and Q3 (finding true orientation), explain how these concepts work together. Why must a technician use a datum and a level together during the marking out process?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Marking out requires a datum to prevent cumulative errors during dimension transfer",
+              "A spirit level ensures the marking out is correctly oriented horizontally or vertically",
+              "Using both ensures that the installation is accurately positioned and correctly aligned",
+              "Failure to use a datum leads to positional errors even if the level is correct"
+            ],
+            "expectedAnswer": [
+              "A technician uses a datum to ensure all dimensions are transferred from the same starting point to avoid errors, while the spirit level ensures those marks follow a true vertical or horizontal line. This relationship matters because an installation could be measured correctly from the datum but still be crooked if the orientation is not checked.",
+              "Marking out uses a datum as a fixed reference to keep measurements consistent and a spirit level to ensure the orientation is correct. We know they must work together because without a datum, small errors add up, and without a level, the components might be accurately spaced but slanted."
+            ],
+            "hint": "Consider what happens to the final installation if you have the right measurements but the wrong orientation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-9A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Power Tools and Safety Checks",
+        "content": "### In this lesson\nYou will learn to identify common power tools used in technical installations and the essential safety routines required for their operation.\nThis knowledge ensures that you can select the right equipment for heavy-duty tasks while protecting yourself and others.\n\n*   Identify power tools such as drills, hammer drills, and electric screwdrivers.\n*   Describe the purpose of a **Pre-use Inspection**.\n*   Explain the importance of controlling **Torque** and choosing correct attachments.\n\n**What this is**\nPower tools use an external energy source (electricity or battery) to perform tasks that would be difficult or slow with hand tools. Common examples include hammer drills for masonry, pillar drills for stationary precision drilling, and electric screwdrivers for high-volume fastening. Before any power tool is used, a **Pre-use Inspection** must be conducted. This is a visual and functional check of a tool's condition performed before use to ensure it is safe and fit for its intended purpose. \n\n**Why it matters**\nPower tools operate at high speeds and generate significant forces. If a tool is damaged or has a missing guard, it can cause serious injury or damage the work surface. Controlling the **Torque**, which is the rotational force applied by a tool to a fastener, is critical; too much force can snap a screw or crush a component, while too little force results in a loose connection. Regular safety checks ensure that attachments are secure and that the tool is set to the correct speed for the material being worked on.\n\n**Key facts / rules**\n*   A **Pre-use Inspection** includes checking the casing for cracks and the cable for frays.\n*   Guards must always be in place and functional to protect the operator from moving parts.\n*   Attachments (like drill bits or driver bits) must be sharp and suitable for the material.\n*   Correct Personal Protective Equipment (PPE), such as eye protection, must be worn when using power tools.\n*   Variable speed settings should be adjusted based on the diameter of the bit and the hardness of the material.\n*   Battery-operated tools should be checked for secure battery seating and clear terminals.\n\n**When to choose it**\nChoose a power tool when the task requires high repetition or significant force that manual tools cannot easily provide. For example, choose a hammer drill when you need to penetrate hard masonry, as the percussive action is specifically designed for this purpose. Choose an electric screwdriver when installing a large number of fasteners to reduce user fatigue and ensure consistent **Torque** application. Conversely, avoid power tools for delicate tasks where the high force might exceed the material's **Tolerance**, potentially causing irreversible damage.\n\n**Concrete Anchor:** Performing a **Pre-use Inspection** on a drill is like checking the tyres and brakes on a car before a long journey; you do it to ensure the machine will perform safely under pressure. Adjusting the **Torque** setting is like using a dimmer switch for a light; you provide exactly the amount of power needed for the situation, no more and no less.\n\n**Micro-scenario:** A technician is choosing between a hand screwdriver and a power driver for 50 terminal screws. If they use the power driver without setting the **Torque** limit, they risk stripping the threads on every single connection, whereas the hand tool provides better tactile feedback for a single delicate screw.\n\n**Common mistakes**\nLearners often confuse a standard drill with a hammer drill; a standard drill provides only rotation for wood or metal, whereas a hammer drill adds a pulsating impact for masonry. \n\nMisconceptions (targeted):\n*   Misconception: If a power tool worked yesterday, it doesn't need a **Pre-use Inspection** today. | Correction: Tools can be damaged during transport or storage; a check must be performed every time you start a new session. | AC: AC1.3\n*   Misconception: Higher speed always means faster work. | Correction: High speeds on hard materials can overheat the bit and ruin the tool; the speed must be matched to the task. | AC: AC1.2\n\n**Key Points**\n*   Always perform a **Pre-use Inspection** before connecting a tool to power.\n*   Ensure all guards and safety attachments are correctly fitted.\n*   Match the tool and its attachments to the specific material being worked.\n*   Use **Torque** settings to prevent damage to fasteners and components.\n\n**Quick recap**\nPower tools like drills and electric screwdrivers increase efficiency but require strict safety protocols. By performing a **Pre-use Inspection**, selecting the correct attachments, and managing **Torque**, you ensure that the tool is used safely and effectively. Always remember that the right tool for the job is the one that meets the functional requirement while staying within the safety limits of the equipment.\n\n### Coming Up Next\nIn the next section, we will explore how to apply these tools in specific wiring system installation scenarios."
+      }
+    },
+    {
+      "id": "204-9A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Power Tools and Safety Checks",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-9A-C2-L1-A",
+            "questionText": "What does a pre-use inspection consist of?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "visual and functional check",
+              "check of tool condition",
+              "visual functional check"
+            ],
+            "hint": "This is the routine performed every time before a tool is connected to power."
+          },
+          {
+            "id": "204-9A-C2-L1-B",
+            "questionText": "What does the term torque describe in the context of power tools?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "rotational force",
+              "rotational force applied",
+              "turning force"
+            ],
+            "hint": "Think about the force required to turn a fastener into a material."
+          },
+          {
+            "id": "204-9A-C2-L1-C",
+            "questionText": "For what specific purpose would a technician select a hammer drill instead of a standard drill?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "penetrate hard masonry",
+              "drilling masonry",
+              "masonry work"
+            ],
+            "hint": "Look for the material that requires a pulsating impact action."
+          },
+          {
+            "id": "204-9A-C2-L2",
+            "questionText": "Using your answers to Q1 (visual and functional checks), Q2 (rotational force), and Q3 (drilling masonry), explain how these selection and safety factors protect the installation. How do we know this connection is valid?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Pre-use inspections ensure the tool is safe to apply high force",
+              "Selecting a hammer drill for masonry ensures the tool is functionally matched to the material",
+              "Controlling torque prevents the rotational force from damaging the fastener once the hole is drilled",
+              "Safety checks and correct tool selection are required to stay within the material tolerance"
+            ],
+            "expectedAnswer": [
+              "A pre-use inspection ensures the tool is safe before applying the rotational force of torque. Selecting a hammer drill for masonry ensures the tool is fit for purpose, while managing torque prevents damage to the component. We know this is valid because using a damaged tool or the wrong action for the material will result in safety failures or broken parts.",
+              "These facts connect because the technician must first check the tool is safe, then select the hammer drill specifically for masonry, and finally manage the torque to avoid stripping threads. What must be true is that safety, tool selection, and force control are all needed to complete the job without injury or material waste."
+            ],
+            "hint": "Explain how checking the tool's condition and selecting the right force prevents damage to the work."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-9A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "204-9A-P1",
+            "questionText": "A technical specification requires a component to be installed at a height of 1200mm with a tolerance of +/- 5mm. What is the minimum acceptable height for this installation?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1195"
+            ],
+            "hint": "Subtract the allowable variation from the target dimension. Provide the value in mm."
+          },
+          {
+            "id": "204-9A-P2",
+            "questionText": "Explain why a technician must measure all points from a single datum rather than using incremental measurements from one component to the next.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "prevent cumulative errors",
+              "avoid cumulative errors",
+              "ensure consistency",
+              "prevent error buildup"
+            ],
+            "hint": "Think about what happens to small inaccuracies when they are added together over a long distance."
+          },
+          {
+            "id": "204-9A-P3",
+            "questionText": "A technician needs to ensure a newly installed vertical support beam is perfectly upright. Which tool should be selected specifically for identifying this vertical orientation?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "spirit level",
+              "plumb line",
+              "level",
+              "a spirit level"
+            ],
+            "hint": "Identify the tool that uses gravity or a fluid-filled vial to show true vertical or horizontal alignment."
+          },
+          {
+            "id": "204-9A-P4",
+            "questionText": "If a technician installs 8 brackets in a row and makes a 4mm measurement error on every bracket by measuring from the previous one instead of a fixed point, how many millimetres out of position will the final bracket be?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "32"
+            ],
+            "hint": "Calculate the total displacement by multiplying the individual error by the number of components. Provide the value in mm."
+          },
+          {
+            "id": "204-9A-P5",
+            "questionText": "What must be true if a power tool is considered safe to use after a pre-use inspection?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "fit for purpose",
+              "undamaged and functional",
+              "guards are in place",
+              "safe and fit"
+            ],
+            "hint": "Consider the condition of the casing, cables, and safety guards."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-9A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "204-9A-INT-1",
+            "questionText": "Explain the relationship between accurate marking-out and the subsequent selection and inspection of power tools. In your answer, include: (1) how marking-out tools define the task parameters, (2) the criteria for matching a power tool to those parameters, and (3) the role of the pre-use safety check in this sequence. Why must the safety check be performed specifically after the tool and its attachments are selected? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Marking-out tools provide the physical dimensions and locations that dictate the required tool capacity.",
+              "Power tool selection (e.g., drill bit size or screwdriver type) is directly dependent on the precision of the initial marks.",
+              "Pre-use safety checks ensure the selected tool and its specific attachments are fit for the intended mechanical load.",
+              "The safety check must be performed after selection because different attachments (like masonry vs. metal bits) present unique risks and failure points.",
+              "Accurate marking prevents tool misuse by ensuring the operator selects equipment designed for the specific material and scale."
+            ],
+            "expectedAnswer": [
+              "Accurate marking-out defines the exact location and size of the installation task, which allows the technician to select a power tool with the correct capacity and attachments. Once the specific tool and attachment are chosen, a pre-use safety check must be performed to ensure that the specific combination is secure and undamaged before application. This sequence is necessary because a safety check is only effective when it evaluates the exact configuration of the tool being used for the marked task.",
+              "Marking-out tools establish the technical boundaries of the job, which dictates whether a standard or heavy-duty power tool is required. After matching the tool to the marks, the pre-use check verifies that the equipment is safe to operate under the expected torque and speed. We must check the tool after selection because safety hazards, such as a loose chuck or damaged cable, can vary depending on the specific attachment and power settings required for the layout."
+            ],
+            "hint": "Think about how the physical marks on a workpiece dictate which specific drill bit or screwdriver head you pick up, and why you wouldn't check a tool before you know which parts you are using."
+          },
+          {
+            "id": "204-9A-INT-2",
+            "questionText": "Synthesize the complete workflow of a technical installation that transitions from manual preparation to the use of mechanical equipment. In your answer, include: (1) the use of measuring and marking tools to establish accuracy, (2) the functional reasoning for choosing a power tool over a hand tool, (3) the integration of pre-use safety routines, and (4) the role of torque control in ensuring installation integrity. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Measuring and marking tools translate technical drawings into physical reference points on the workspace.",
+              "Power tools are selected for tasks requiring high force, speed, or repetition that hand tools cannot efficiently provide.",
+              "Pre-use safety routines (inspections) act as a critical gatekeeping step before high-energy tools are activated.",
+              "Torque control is the final adjustment that prevents over-tightening and protects the component's structural integrity.",
+              "The workflow moves logically from low-energy layout (marking) to high-energy execution (power tools).",
+              "Each stage of the process relies on the accuracy of the previous stage to maintain safety and quality standards.",
+              "Selection of the correct tool is based on the functional requirements identified during the marking phase.",
+              "Integration of safety checks throughout the workflow minimizes the risk of equipment failure during operation."
+            ],
+            "expectedAnswer": [
+              "The installation begins by using measuring and marking tools to establish precise reference points, which then informs the selection of a power tool for tasks requiring more force than manual hand tools can provide. Before operation, a pre-use safety check is integrated to verify the equipment's condition, followed by the application of the tool with specific torque controls to prevent damage to the fasteners. This integrated approach ensures that the transition from layout to execution is safe, accurate, and technically sound.",
+              "• Measuring and marking tools are first used to define the exact physical parameters of the installation based on technical specifications.\n• A power tool is then selected if the task requires high-energy output or repetition that exceeds the functional capacity of manual hand tools.\n• A pre-use safety routine is conducted to ensure the chosen tool and its attachments are free from defects before any power is applied.\n• Finally, torque control is utilized during the fastening process to maintain the integrity of the components and ensure a secure fit."
+            ],
+            "hint": "Consider the logical progression from the first mark on a wall to the final tightening of a bolt using a powered driver."
+          }
+        ]
+      }
+    },
+    {
+      "id": "204-9A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "204-9A-SR-1",
+            "questionText": "What general term describes a device operated by hand to perform a specific physical task?",
+            "expectedAnswer": [
+              "hand tool",
+              "manual tool",
+              "tool"
+            ],
+            "hint": "Think of the basic category for items like hammers or screwdrivers.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "204-9A-SR-2",
+            "questionText": "What is the main reason for marking out a position before beginning an installation task?",
+            "expectedAnswer": [
+              "accuracy",
+              "precision",
+              "correct placement",
+              "alignment"
+            ],
+            "hint": "Think about why we don't just guess where to put things.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "204-9A-SR-3",
+            "questionText": "What type of inspection should be carried out on any equipment immediately before it is used?",
+            "expectedAnswer": [
+              "safety check",
+              "visual check",
+              "pre-use check",
+              "inspection"
+            ],
+            "hint": "This is a check done to ensure the item is in good working order.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Tools & measuring/marking out for wiring systems"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2",
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-02-11",
+    "updated": "2026-02-11",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "204",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1",
+        "AC2",
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC4",
+        "AC5",
+        "AC6"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification and purpose of measuring, marking, hand, and power tools, including pre-use safety verification.",
+      "outOfScope": "Tool usage techniques, installation procedures, workspace preparation, and testing/inspection.",
+      "rationale": "Focuses on foundational identification and safety awareness before progressing to practical application and installation phases."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Exclude installation techniques and workspace preparation hazards"
+    },
+    "misconceptions": [
+      {
+        "misconception": "Measuring and marking out is optional on small, simple jobs.",
+        "correction": "Even small jobs require a Datum to ensure components align with existing structures and meet professional standards.",
+        "relatedAC": "AC1.1"
+      },
+      {
+        "misconception": "If a power tool worked yesterday, it doesn't need a Pre-use Inspection today.",
+        "correction": "Tools can be damaged during transport or storage; a check must be performed every time you start a new session.",
+        "relatedAC": "AC1.3"
+      },
+      {
+        "misconception": "Tolerance is just another word for a measurement error.",
+        "correction": "Tolerance is a pre-defined, acceptable range of variation, while an error is a mistake that falls outside that range.",
+        "relatedAC": "AC1.1"
+      }
+    ]
+  }
+}

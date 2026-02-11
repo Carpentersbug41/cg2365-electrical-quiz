@@ -56,6 +56,7 @@ import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './
 import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './questions/inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 import { initialVerificationOverviewSafeIsolationQuestions } from './questions/initialVerificationOverviewSafeIsolationQuestions';
 import { testingOverviewSafeIsolationQuestions } from './questions/testingOverviewSafeIsolationQuestions';
+import { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './questions/toolsMeasuringMarkingOutForWiringSystemsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -106,6 +107,7 @@ export const questions: Question[] = [
   ...inspectionTestingGatewayDeadInspectionDeadTestingQuestions,
   ...initialVerificationOverviewSafeIsolationQuestions,
   ...testingOverviewSafeIsolationQuestions,
+  ...toolsMeasuringMarkingOutForWiringSystemsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

@@ -109,7 +109,7 @@
           }
         ]
       },
-      "order": 2.5
+      "order": 4.2
     },
     {
       "id": "204-13B-diagram",
@@ -235,7 +235,7 @@
           }
         ]
       },
-      "order": 4.5
+      "order": 5.25
     },
     {
       "id": "204-13B-worked-example",
@@ -397,7 +397,7 @@
         ],
         "explanation": "The CPC (earth) must be terminated at its own connector, not the Switched live group."
       },
-      "order": 6.5
+      "order": 6.25
     },
     {
       "id": "204-13B-practice",
@@ -484,7 +484,7 @@
           }
         ]
       },
-      "order": 8.5
+      "order": 9.7
     },
     {
       "id": "204-13B-integrative",

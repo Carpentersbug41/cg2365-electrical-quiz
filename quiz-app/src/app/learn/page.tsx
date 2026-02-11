@@ -46,6 +46,7 @@ import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
 import lesson203_3A123 from '@/data/lessons/203-3A123-circuit-types-what-they-do.json';
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
+import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -109,6 +110,7 @@ const RAW_LESSONS = [  lesson202_5A,
   lesson204_13A,
   lesson204_14B,
   lesson204_14A,
+  lesson204_15A,
   lesson204_12B,
   lesson204_12A,
   lesson204_11C,

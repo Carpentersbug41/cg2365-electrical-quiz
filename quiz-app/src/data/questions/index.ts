@@ -49,11 +49,13 @@ import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './
 import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 import { initialVerificationOverviewSafeIsolationQuestions } from './initialVerificationOverviewSafeIsolationQuestions';
 import { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
+import { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './toolsMeasuringMarkingOutForWiringSystemsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...toolsMeasuringMarkingOutForWiringSystemsQuestions,
   ...testingOverviewSafeIsolationQuestions,
   ...initialVerificationOverviewSafeIsolationQuestions,
   ...inspectionTestingGatewayDeadInspectionDeadTestingQuestions,
@@ -149,6 +151,7 @@ export { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './
 export { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 export { initialVerificationOverviewSafeIsolationQuestions } from './initialVerificationOverviewSafeIsolationQuestions';
 export { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
+export { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './toolsMeasuringMarkingOutForWiringSystemsQuestions';
 
 /**
  * Filter questions by tags

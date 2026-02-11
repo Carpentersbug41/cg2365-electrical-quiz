@@ -235,6 +235,136 @@
       }
     },
     {
+      "id": "204-15A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Safe Isolation",
+            "right": "Secured against re-energisation"
+          },
+          {
+            "left": "Visual Inspection",
+            "right": "Assessment without measurement instruments"
+          },
+          {
+            "left": "Continuity",
+            "right": "Low-resistance unbroken path"
+          },
+          {
+            "left": "Polarity",
+            "right": "Switches in line conductor"
+          }
+        ]
+      },
+      "order": 5.2
+    },
+    {
+      "id": "204-15A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Visual Inspection",
+          "Dead Testing"
+        ],
+        "items": [
+          {
+            "text": "Checking for damaged cables",
+            "correctBucket": 0
+          },
+          {
+            "text": "Measuring low-resistance paths",
+            "correctBucket": 1
+          },
+          {
+            "text": "Identifying missing labels",
+            "correctBucket": 0
+          },
+          {
+            "text": "Measuring insulation resistance",
+            "correctBucket": 1
+          },
+          {
+            "text": "Checking for broken enclosures",
+            "correctBucket": 0
+          },
+          {
+            "text": "Verifying polarity with a meter",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 5.75
+    },
+    {
+      "id": "204-15A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "Identify the incorrect statement about Safe Isolation.",
+        "options": [
+          {
+            "text": "It is a mandatory safety procedure.",
+            "isError": false
+          },
+          {
+            "text": "It ensures the circuit is de-energised.",
+            "isError": false
+          },
+          {
+            "text": "It is exactly the same as switching off.",
+            "isError": true
+          },
+          {
+            "text": "It secures against re-energisation.",
+            "isError": false
+          }
+        ],
+        "explanation": "Safe isolation requires securing the circuit, not just switching it off."
+      },
+      "order": 8.25
+    },
+    {
+      "id": "204-15A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "Mandatory safety protocol before work begins?",
+            "answer": "Safe Isolation"
+          },
+          {
+            "question": "Assessment done before using instruments?",
+            "answer": "Visual Inspection"
+          },
+          {
+            "question": "Test checking for an unbroken path?",
+            "answer": "Continuity"
+          },
+          {
+            "question": "Tests performed on a de-energised system?",
+            "answer": "Dead Testing"
+          },
+          {
+            "question": "Test measuring current leakage prevention?",
+            "answer": "Insulation Resistance"
+          }
+        ]
+      },
+      "order": 9.7
+    },
+    {
       "id": "204-15A-practice",
       "type": "practice",
       "order": 8,
@@ -405,7 +535,7 @@
   "metadata": {
     "created": "2026-02-11",
     "updated": "2026-02-11",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY, SEQUENCE",
     "syllabusAnchors": {

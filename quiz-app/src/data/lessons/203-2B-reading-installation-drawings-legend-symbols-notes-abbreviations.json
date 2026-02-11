@@ -169,7 +169,7 @@
     {
       "id": "203-2B-microbreak-1",
       "type": "microbreak",
-      "order": 4.8,
+      "order": 5.7,
       "content": {
         "breakType": "game",
         "gameType": "matching",
@@ -201,7 +201,7 @@
     {
       "id": "203-2B-microbreak-2",
       "type": "microbreak",
-      "order": 4.9,
+      "order": 7.25,
       "content": {
         "breakType": "game",
         "gameType": "sorting",
@@ -304,7 +304,7 @@
     {
       "id": "203-2B-microbreak-3",
       "type": "microbreak",
-      "order": 6.6,
+      "order": 9.2,
       "content": {
         "breakType": "game",
         "gameType": "spot-error",
@@ -404,7 +404,7 @@
     {
       "id": "203-2B-microbreak-4",
       "type": "microbreak",
-      "order": 8.6,
+      "order": 9.7,
       "content": {
         "breakType": "game",
         "gameType": "quick-win",
