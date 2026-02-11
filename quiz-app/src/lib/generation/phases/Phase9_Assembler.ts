@@ -253,11 +253,21 @@ export class Phase9_Assembler {
       learningOutcomes: plan.learningOutcomes,
       prerequisites: prerequisites || [],
       blocks,
+      ...(plan.syllabusAnchors?.coveredAC?.length
+        ? { targetAssessmentCriteria: plan.syllabusAnchors.coveredAC }
+        : {}),
       metadata: {
         created: new Date().toISOString().split('T')[0],
         updated: new Date().toISOString().split('T')[0],
         version: '1.0',
         author: 'C&G 2365 Learning Team',
+        ...(plan.taskMode ? { taskMode: plan.taskMode } : {}),
+        ...(plan.syllabusAnchors ? { syllabusAnchors: plan.syllabusAnchors } : {}),
+        ...(plan.scope ? { scope: plan.scope } : {}),
+        ...(plan.teachingConstraints ? { teachingConstraints: plan.teachingConstraints } : {}),
+        ...(explanations.misconceptions && explanations.misconceptions.length > 0
+          ? { misconceptions: explanations.misconceptions }
+          : {}),
         ...(youtubeUrl && { youtubeUrl }),
       },
     };

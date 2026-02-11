@@ -242,11 +242,20 @@ export class Phase10_Score extends PhasePromptBuilder {
     const { lesson, syllabusContext } = input;
     
     // Determine which ACs to check
-    const targetACs = lesson.targetAssessmentCriteria 
+    const mappedTargetACs = lesson.targetAssessmentCriteria && syllabusContext
+      ? lesson.targetAssessmentCriteria.map((ac: string) => {
+          const m = ac.trim().match(/^AC(\d+)$/i);
+          if (!m) return ac;
+          const idx = parseInt(m[1], 10) - 1;
+          return syllabusContext.assessmentCriteria[idx] || ac;
+        })
+      : lesson.targetAssessmentCriteria;
+
+    const targetACs = mappedTargetACs
       || (syllabusContext ? syllabusContext.assessmentCriteria : []);
     
-    const acScopeNote = lesson.targetAssessmentCriteria 
-      ? `\nNOTE: This lesson is scoped to cover only the following Assessment Criteria:\n${lesson.targetAssessmentCriteria.map((ac: string, i: number) => `  ${i + 1}. ${ac}`).join('\n')}\n\nDo NOT penalize the lesson for not covering other ACs from this Learning Outcome.`
+    const acScopeNote = targetACs.length > 0 && !!lesson.targetAssessmentCriteria
+      ? `\nNOTE: This lesson is scoped to cover only the following Assessment Criteria:\n${targetACs.map((ac: string, i: number) => `  ${i + 1}. ${ac}`).join('\n')}\n\nDo NOT penalize the lesson for not covering other ACs from this Learning Outcome.`
       : '';
     
     const syllabusSection = syllabusContext ? `

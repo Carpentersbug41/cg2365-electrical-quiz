@@ -798,14 +798,14 @@ export class SequentialLessonGenerator {
   ): SpacedReviewOutput {
     console.log(`   🔧 Generating deterministic fallback spaced review...`);
     
-    // Generate 3 foundation questions from learning outcomes
+    // Generate 3 foundation questions from learning outcomes (domain-agnostic fallback)
     const questions = learningOutcomes.slice(0, 3).map((outcome, idx) => ({
       id: `${lessonId}-SR-${idx + 1}`,
-      questionText: `What foundational concept is needed to understand: "${outcome}"?`,
+      questionText: `Which prerequisite concept from earlier lessons supports this outcome: "${outcome}"?`,
       expectedAnswer: [
-        'basic electrical principles',
-        'electrical fundamentals',
-        'prerequisite knowledge'
+        'prerequisite concept from earlier lessons',
+        'key prior concept',
+        'foundation knowledge'
       ],
       hint: 'Think about what you learned in earlier lessons',
       answerType: 'short-text' as const
@@ -816,11 +816,11 @@ export class SequentialLessonGenerator {
       const idx = questions.length;
       questions.push({
         id: `${lessonId}-SR-${idx + 1}`,
-        questionText: 'What basic electrical concept should you review before this lesson?',
+        questionText: `Name one prerequisite idea you should review before starting "${title}".`,
         expectedAnswer: [
-          'electrical safety',
-          'basic circuit theory',
-          'fundamental principles'
+          'a key prior concept',
+          'foundation knowledge',
+          'prerequisite topic'
         ],
         hint: 'Review your earlier learning',
         answerType: 'short-text' as const
@@ -861,7 +861,9 @@ export class SequentialLessonGenerator {
       lessonId,
       title: request.topic,
       learningOutcomes,
-      previousLessonTitles: prevTitles
+      previousLessonTitles: prevTitles,
+      prerequisiteAnchors: request.prerequisiteAnchors,
+      foundationAnchors: request.foundationAnchors,
     };
     const prompts = this.phase8.getPrompts(input);
 
