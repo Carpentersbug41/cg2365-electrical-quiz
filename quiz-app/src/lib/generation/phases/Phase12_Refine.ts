@@ -93,7 +93,7 @@ export class Phase12_Refine extends PhasePromptBuilder {
         prompts.systemPrompt,
         prompts.userPrompt,
         'lesson',
-        2,       // maxRetries
+        3,       // maxRetries (extra resilience for transient API failures)
         false,   // attemptHigherLimit
         16000,   // tokenLimit - needs space for full lesson JSON
         phase12Model
@@ -250,8 +250,8 @@ export class Phase12_Refine extends PhasePromptBuilder {
     }
     
     // Basic validation that it's a lesson
-    const lesson = parsed.data;
-    if (!lesson.id || !lesson.blocks || !Array.isArray(lesson.blocks)) {
+    const lesson = parsed.data as Partial<Lesson> | null;
+    if (!lesson || !lesson.id || !lesson.blocks || !Array.isArray(lesson.blocks)) {
       console.error(`❌ [Phase12_Refine] Parsed JSON is not a valid lesson`);
       return null;
     }
@@ -267,7 +267,7 @@ export class Phase12_Refine extends PhasePromptBuilder {
     
     // Build structure signature for prompt
     const signature = this.extractStructureSignature(originalLesson);
-    const blocksList = originalLesson.blocks.map((b, i) => 
+    const blocksList = originalLesson.blocks.map((b: Lesson['blocks'][number], i: number) => 
       `  ${i + 1}. ID: ${b.id}, Type: ${b.type}, Order: ${b.order}`
     ).join('\n');
     
@@ -280,7 +280,7 @@ SYLLABUS CONTEXT (syllabus specification):
 Unit: ${syllabusContext.unit} - ${syllabusContext.unitTitle}
 Learning Outcome: ${syllabusContext.learningOutcome} - ${syllabusContext.loTitle}
 Assessment Criteria:
-${syllabusContext.assessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}
+${syllabusContext.assessmentCriteria.map((ac: string, i: number) => `  ${i + 1}. ${ac}`).join('\n')}
 ` : '';
     
     return `You are a pedagogical refinement expert for City & Guilds technical and vocational lessons.
@@ -326,7 +326,7 @@ IMPROVEMENT-STAGE SCORE GUARDRAILS (NON-NEGOTIABLE):
 - TARGET: Improve all domains where possible while fixing all listed issues.
 
 Issues (${phase10Score.issues.length}):
-${phase10Score.issues.map((issue, i) => `
+${phase10Score.issues.map((issue: Phase10Score['issues'][number], i: number) => `
 ${i + 1}. ${issue.id} (${issue.category})
    Problem: ${issue.problem}
    Why It Matters: ${issue.whyItMatters}

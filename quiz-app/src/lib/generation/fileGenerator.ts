@@ -25,7 +25,7 @@
  */
 
 import { createLLMClientWithFallback, type GenerateContentInput } from '@/lib/llm/client';
-import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
+import { getGeminiFallbackModel, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { LessonPromptBuilder } from './lessonPromptBuilder';
 import { QuizPromptBuilder } from './quizPromptBuilder';
 import { ValidationService } from './validationService';
@@ -1021,6 +1021,52 @@ OUTPUT FORMAT: Pure JSON only`;
   }
 
   /**
+   * Resolve a fallback model for transient endpoint/model availability failures.
+   */
+  private resolveFallbackModel(primaryModel: string): string | null {
+    try {
+      const configuredFallback = getGeminiFallbackModel();
+      if (configuredFallback && configuredFallback !== primaryModel) {
+        return configuredFallback;
+      }
+    } catch {
+      // Optional in some environments.
+    }
+
+    try {
+      const defaultModel = getGeminiModelWithDefault();
+      if (defaultModel !== primaryModel) {
+        return defaultModel;
+      }
+    } catch {
+      // If no default is configured, keep existing error behavior.
+    }
+
+    return null;
+  }
+
+  /**
+   * Identify transient/retryable model transport failures.
+   */
+  private isRetryableModelFailure(error: Error): boolean {
+    const msg = error.message.toLowerCase();
+    return (
+      msg.includes('fetch failed') ||
+      msg.includes('network') ||
+      msg.includes('timeout') ||
+      msg.includes('timed out') ||
+      msg.includes('econnreset') ||
+      msg.includes('enotfound') ||
+      msg.includes('temporarily unavailable') ||
+      msg.includes('service unavailable') ||
+      msg.includes('model not found') ||
+      msg.includes('404') ||
+      msg.includes('429') ||
+      msg.includes('503')
+    );
+  }
+
+  /**
    * Generate content with retry logic and truncation detection
    */
   private async generateWithRetry(
@@ -1033,6 +1079,9 @@ OUTPUT FORMAT: Pure JSON only`;
     modelOverride?: string  // NEW: Allow caller to specify model (e.g., for Phase 10)
   ): Promise<string> {
     let lastError: Error | undefined;
+    let activeModel = modelOverride || getGeminiModelWithDefault();
+    const fallbackModel = this.resolveFallbackModel(activeModel);
+    let switchedToFallback = false;
     const tokenLimit = currentTokenLimit || (attemptHigherLimit 
       ? GENERATION_LIMITS.MAX_TOKENS_RETRY 
       : GENERATION_LIMITS.MAX_TOKENS);
@@ -1041,7 +1090,7 @@ OUTPUT FORMAT: Pure JSON only`;
       try {
         const client = await createLLMClientWithFallback();
         const model = client.getGenerativeModel({
-          model: modelOverride || getGeminiModelWithDefault(),  // Use override if provided
+          model: activeModel,
           systemInstruction: systemPrompt,
           generationConfig: {
             temperature: 0.7,
@@ -1057,7 +1106,7 @@ OUTPUT FORMAT: Pure JSON only`;
         if (phase1013Verbose) {
           console.log('\n╔════════════════════════════════════════════════════════════════════╗');
           console.log('║  PHASE 10-13 LLM CALL                                              ║');
-          console.log(`║  Type: ${type} | Model: ${modelOverride} | Attempt: ${attempt + 1}                          ║`);
+          console.log(`║  Type: ${type} | Model: ${activeModel} | Attempt: ${attempt + 1}                          ║`);
           console.log('╚════════════════════════════════════════════════════════════════════╝\n');
           console.log('---------- SYSTEM PROMPT (BEGIN) ----------');
           console.log(systemPrompt);
@@ -1203,6 +1252,7 @@ OUTPUT FORMAT: Pure JSON only`;
         console.error(`   Error message: ${lastError.message}`);
         console.error(`   Token limit: ${tokenLimit}`);
         console.error(`   Type: ${type}`);
+        console.error(`   Model: ${activeModel}`);
         console.error(`   Attempt higher limit: ${attemptHigherLimit}`);
         
         if (lastError.stack) {
@@ -1216,9 +1266,39 @@ OUTPUT FORMAT: Pure JSON only`;
           errorMessage: lastError.message,
           tokenLimit,
           type,
+          model: activeModel,
           attemptHigherLimit,
           stackPreview: lastError.stack?.substring(0, 200)
         });
+
+        // If this looks like a transient model transport/availability error, fail over once.
+        if (
+          !switchedToFallback &&
+          fallbackModel &&
+          activeModel !== fallbackModel &&
+          this.isRetryableModelFailure(lastError)
+        ) {
+          console.warn(`\n↪️  MODEL FAILOVER: Switching model for retry`);
+          console.warn(`   Previous model: ${activeModel}`);
+          console.warn(`   Fallback model: ${fallbackModel}`);
+          console.warn(`   Trigger: ${lastError.message}`);
+
+          debugLog('MODEL_FAILOVER', {
+            type,
+            attempt: attempt + 1,
+            fromModel: activeModel,
+            toModel: fallbackModel,
+            reason: lastError.message,
+          });
+
+          activeModel = fallbackModel;
+          switchedToFallback = true;
+
+          if (attempt < maxRetries - 1) {
+            await sleep(Math.max(1000, Math.floor(GENERATION_LIMITS.RETRY_DELAY_MS / 2)));
+            continue;
+          }
+        }
         
         // If truncated and haven't tried higher limit yet, retry with more tokens
         if (lastError.message.includes('TRUNCATED_RESPONSE') && !attemptHigherLimit) {
@@ -1226,7 +1306,7 @@ OUTPUT FORMAT: Pure JSON only`;
           console.log(`   Previous limit: ${tokenLimit}`);
           console.log(`   New limit: ${GENERATION_LIMITS.MAX_TOKENS_RETRY}`);
           console.log(`   Reason: ${lastError.message}`);
-          return this.generateWithRetry(systemPrompt, userPrompt, type, 1, true);
+          return this.generateWithRetry(systemPrompt, userPrompt, type, 1, true, undefined, activeModel);
         }
 
         // Log that we're retrying

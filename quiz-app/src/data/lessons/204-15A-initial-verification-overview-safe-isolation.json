@@ -6,9 +6,9 @@
   "unit": "Unit 204",
   "topic": "Initial Verification Overview + Safe Isolation",
   "learningOutcomes": [
-    "Recall the correct high-level sequence for dead testing and inspection.",
-    "Explain the purpose of safe isolation and the consequences of failing to prove an installation is dead.",
-    "Identify 'stop-and-fix' situations that require intervention before testing begins."
+    "Recall the correct high-level sequence of dead testing activities.",
+    "Explain the purpose of safe isolation and the consequences of failing to prove-dead.",
+    "Identify visual indicators and unsafe conditions that require a work stoppage before testing."
   ],
   "prerequisites": [],
   "blocks": [
@@ -19,15 +19,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Recall the correct high-level sequence for dead testing and inspection.",
+            "text": "Recall the correct high-level sequence of dead testing activities.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain the purpose of safe isolation and the consequences of failing to prove an installation is dead.",
+            "text": "Explain the purpose of safe isolation and the consequences of failing to prove-dead.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Identify 'stop-and-fix' situations that require intervention before testing begins.",
+            "text": "Identify visual indicators and unsafe conditions that require a work stoppage before testing.",
             "bloomLevel": "remember"
           }
         ]
@@ -40,24 +40,28 @@
       "content": {
         "terms": [
           {
+            "term": "Initial Verification",
+            "definition": "The systematic process of inspecting and testing an installation before it is put into service to ensure it is safe and meets required standards."
+          },
+          {
             "term": "Safe Isolation",
-            "definition": "The mandatory procedure used to disconnect an electrical supply and ensure it cannot be re-energized while work is being carried out."
+            "definition": "A mandatory procedure used to ensure electrical equipment is disconnected from the supply and secured against re-energisation, not just switched off."
           },
           {
             "term": "Proving Dead",
-            "definition": "The act of using a verified voltage indicator to confirm the absence of electricity, different from simply checking the position of a switch or breaker."
+            "definition": "The act of confirming the absence of voltage using a calibrated test lamp and proving unit, which is different from using a non-contact voltage detector."
           },
           {
-            "term": "Initial Verification",
-            "definition": "The systematic process of inspection and testing to confirm a new or modified installation is safe and compliant before it is put into service."
+            "term": "Visual Inspection",
+            "definition": "The preliminary check of an installation for damage or non-compliance using the senses, which must be completed before any physical testing begins."
           },
           {
             "term": "Dead Testing",
-            "definition": "A series of electrical tests performed on an unpowered system to verify the integrity of conductors and connections prior to energization."
+            "definition": "A series of electrical measurements performed while the installation is disconnected from the power supply, different from live testing because it eliminates the risk of electric shock during the process."
           },
           {
-            "term": "Stop-and-Fix Trigger",
-            "definition": "A critical safety defect or non-compliance identified during inspection that must be corrected before any further testing or commissioning can proceed."
+            "term": "Sequence of Tests",
+            "definition": "The mandatory chronological order of testing activities where each check must be successfully completed before the next begins to maintain safety."
           }
         ]
       }
@@ -72,12 +76,12 @@
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
-          "safe-isolation-point",
-          "voltage-indicator",
-          "lockout-device",
-          "test-sequence-chart"
+          "test-lamp",
+          "proving-unit",
+          "isolation-lock",
+          "inspection-checklist"
         ],
-        "placeholderText": "The diagram should illustrate the Safe Isolation process and the Dead Testing sequence. On the left, show a 'safe-isolation-point' (a circuit breaker) with a 'lockout-device' (padlock and tag) attached. A 'voltage-indicator' should be shown being applied to the circuit to represent Proving Dead. On the right, a 'test-sequence-chart' should list the high-level steps: 1. Inspection, 2. Continuity, 3. Insulation Resistance, 4. Polarity, with a clear 'STOP' icon pointing to a damaged cable to represent a Stop-and-Fix Trigger. The diagram reads from left to right, showing that safety steps must be completed before the testing sequence begins."
+        "placeholderText": "A flowchart showing the safety workflow: starting with a Visual Inspection (linked to an inspection-checklist), moving to Safe Isolation (represented by an isolation-lock), and detailing the Proving Dead cycle where a test-lamp is checked against a proving-unit both before and after touching the circuit test points. The diagram should emphasize the circular 'Test-Point-Test' verification loop."
       }
     },
     {
@@ -85,8 +89,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Initial Verification and Safe Isolation Principles",
-        "content": "### In this lesson\nThis lesson introduces the fundamental safety protocols required before any technical work begins on an installation. You will learn the conceptual purpose of verifying a system's safety and the mandatory steps to ensure a work area is non-energized.\n\n*   The definition and purpose of **Initial Verification**.\n*   The mandatory requirement for **Safe Isolation** to prevent accidental re-energization.\n*   The critical distinction between switching off a supply and **Proving Dead**.\n\n**What this is**\n**Initial Verification** is the systematic process of inspection and testing to confirm a new or modified installation is safe and compliant before it is put into service. It acts as the final safety gate between the construction phase and the operational phase. A core component of this process is **Safe Isolation**, which is the mandatory procedure used to disconnect an electrical supply and ensure it cannot be re-energized while work is being carried out. This is not merely flicking a switch; it involves physical locking and clear signage to prevent human error. Following isolation, the technician must perform the act of **Proving Dead**. This is the act of using a verified voltage indicator to confirm the absence of electricity, different from simply checking the position of a switch or breaker.\n\n**Why it matters**\nFailing to perform these steps correctly leads to catastrophic consequences, including electric shock, equipment damage, or fire. You cannot rely on a visual check of a switch because internal components can fail or circuits can be cross-wired. By proving the installation is dead, you provide a technical guarantee of safety for yourself and others. This process ensures that the **Dead Testing**—a series of electrical tests performed on an unpowered system—can be conducted without risk of the technician touching live parts.\n\n**Key facts / rules**\n*   **Initial Verification** must happen before an installation is energized for use.\n*   **Safe Isolation** is a legal and safety requirement, not an optional step.\n*   Only a dedicated, verified voltage indicator should be used for **Proving Dead**.\n*   Isolation must be secured using a physical lock and a unique key held by the person working.\n*   A warning notice must be posted at the point of isolation to inform others.\n*   The sequence must be: Isolate, Lock-off, Tag, and then Prove Dead.\n\n**When to choose it**\n**Safe Isolation** must be chosen every single time work is to be carried out on or near an electrical system. You apply it when a circuit needs to be modified, when a new component is being added, or when performing **Initial Verification**. The decision to proceed to testing is only made once the system is confirmed as dead. For example, if you are tasked with testing a new lighting circuit, you do not simply start; you first identify the correct point of isolation, secure it, and verify the absence of voltage. \n\n*Concrete Anchor:* Think of **Safe Isolation** like putting a physical padlock on a safety gate at a construction site. Even if the gate looks closed, the lock ensures nobody can accidentally open it while you are standing in the path of a moving vehicle. **Proving Dead** is like pushing on the gate after it is locked to ensure the latch actually holds.\n\n*Micro-scenario:* If a technician switches off a breaker but fails to use a voltage indicator, they may be unaware that the breaker has a mechanical fault and is still passing 230V. By **Proving Dead**, the technician identifies this 230V presence immediately, avoiding a potentially fatal shock.\n\n**Common mistakes**\nLearners often confuse **Safe Isolation** with **Proving Dead**; **Safe Isolation** is the administrative and physical process of securing the supply, whereas **Proving Dead** is the specific technical measurement used to confirm that the isolation was successful. Another error is assuming a \"test lamp\" is the same as a verified voltage indicator; always verify the indicator against a known source before and after use.\n\nMisconceptions (targeted):\n*   Misconception: Turning off the main switch is sufficient to start work. | Correction: You must physically lock the switch and use a voltage indicator to prove the absence of electricity. | AC: AC2\n*   Misconception: You only need to isolate the specific circuit you are touching. | Correction: You must ensure no shared neutrals or cross-connections can re-energize the area where you are working. | AC: AC2\n\n**Key Points**\n*   **Initial Verification** confirms safety before use.\n*   **Safe Isolation** prevents accidental power-up.\n*   **Proving Dead** is a technical measurement of zero volts.\n*   Safety labels and locks are mandatory components of the process.\n\n**Quick recap**\nBefore any testing or inspection begins, an installation must undergo **Initial Verification**. This starts with **Safe Isolation** to secure the power source and **Proving Dead** to confirm the environment is safe. These steps are non-negotiable and protect the technician from the consequences of unexpected energization.\n\n### Coming Up Next\nNow that we understand the safety prerequisites, we will look at the specific order in which we carry out inspections and the sequence of tests used to verify the system's integrity."
+        "title": "The Verification Workflow",
+        "content": "### In this lesson\nThis lesson teaches the high-level workflow required to confirm a new system is ready for use. You will learn how to organize the transition from a finished installation to a functional one through a structured hierarchy. Key takeaways include the definition of initial verification, the necessity of visual checks before physical testing, and the mandatory chronological order of the testing sequence.\n\n**What this is**\n**Initial Verification** is the systematic process of inspecting and testing an installation before it is put into service to ensure it is safe and meets required standards. It is not a random check; it is a formal, documented process that validates the quality of the work performed. This process is divided into two main phases: the **Visual Inspection** and the **Sequence of Tests**. The **Visual Inspection** is the preliminary check of an installation for damage or non-compliance using the senses, which must be completed before any physical testing begins. Once the system passes the visual check, it moves into **Dead Testing**, which is a series of electrical measurements performed while the installation is disconnected from the power supply. This phase eliminates the risk of electric shock during the process and ensures that the fundamental structure of the installation is sound.\n\n**Why it matters**\nFollowing a structured workflow ensures that safety is built into the process rather than added as an afterthought. By conducting **Initial Verification**, a technician identifies faults that could lead to fire or injury before the system is ever energized. The **Sequence of Tests** is particularly critical because it follows a logical path where each result provides the foundation for the next. For example, you must confirm a path is continuous before you can test if its insulation is effective. Skipping steps or performing them out of order can lead to false readings or, in many cases, damage to the equipment being tested.\n\n**Key facts / rules**\n*   **Initial Verification** typically occurs only on new installations or significant additions.\n*   **Visual Inspection** must always precede physical testing to identify obvious hazards.\n*   The **Sequence of Tests** is a mandatory chronological order that ensures safety and accuracy.\n*   **Dead Testing** is the primary method used during this phase to maintain a zero-voltage environment.\n*   All results must be recorded on the appropriate industry-standard documentation.\n*   A failure in any part of the sequence requires a stop to investigate and repair before continuing.\n\n**When to choose it**\nTechnicians choose this workflow at the completion of a project or after major modifications. You apply **Initial Verification** when you need to provide a legal and technical guarantee that the work meets safety regulations. It is chosen specifically before the system is connected to a live supply. If a technician is presented with a completed installation and asked to \"turn it on,\" they must instead choose to perform the full **Sequence of Tests** first. For example, if a circuit has a measurement of 0.1 ohms in the first test but requires a value below 0.5 ohms to pass, the technician confirms it is safe to proceed to the next test in the sequence.\n\n**Common mistakes**\nLearners often confuse **Initial Verification** with periodic maintenance; **Initial Verification** is a comprehensive check for new work before service, whereas periodic maintenance is a recurring check on existing systems. Another common error is attempting to perform testing before the **Visual Inspection** is complete, which can lead to testing a circuit that has visible, dangerous defects.\n\nMisconceptions (targeted):\n* Misconception: You can perform tests in any order as long as they all get done. | Correction: The **Sequence of Tests** is a mandatory chronological order where each test relies on the safety established by the previous one. | AC: AC1\n* Misconception: **Visual Inspection** is just a quick look-over. | Correction: It is a formal, sensory check that must be documented and completed before any instruments are used. | AC: AC3\n\n**Key Points**\n*   **Initial Verification** is a mandatory process for all new installations.\n*   The **Visual Inspection** is the first step and relies on sight, touch, and smell.\n*   **Dead Testing** provides a safe environment to measure system integrity.\n*   The **Sequence of Tests** must be followed in a specific, logical order.\n\n**Quick recap**\n**Initial Verification** is the high-level process of ensuring a new installation is safe through a structured sequence. It begins with a **Visual Inspection** to find obvious faults and continues with a specific **Sequence of Tests** performed as **Dead Testing**. This ensures that every part of the system is verified in a logical, safe order before the power is ever turned on.\n\n### Coming Up Next\nNext, we will look at the specific safety thresholds and the mandatory procedures required to ensure the system is safe to touch during these tests."
       }
     },
     {
@@ -94,62 +98,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Initial Verification and Safe Isolation Principles",
+        "title": "Check Your Understanding: The Verification Workflow",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "204-15A-C1-L1-A",
-            "questionText": "What is the systematic process of inspection and testing used to confirm a new or modified installation is safe?",
+            "questionText": "What must always precede physical testing to identify obvious hazards?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Initial Verification",
-              "initial verification",
-              "Initial verification"
+              "Visual Inspection",
+              "Visual check",
+              "Inspecting"
             ],
-            "hint": "This process acts as the final safety gate before a system is put into service."
+            "hint": "Think about the preliminary check that uses the senses before instruments are used."
           },
           {
             "id": "204-15A-C1-L1-B",
-            "questionText": "What is the mandatory procedure used to disconnect an electrical supply and ensure it cannot be re-energized?",
+            "questionText": "What is the name for the mandatory chronological order that ensures safety and accuracy?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Safe Isolation",
-              "safe isolation",
-              "Safe isolation"
+              "Sequence of Tests",
+              "Testing sequence",
+              "The sequence of tests"
             ],
-            "hint": "This involves physical locking and signage to prevent human error."
+            "hint": "This refers to the structured hierarchy of measurements where each result builds on the last."
           },
           {
             "id": "204-15A-C1-L1-C",
-            "questionText": "Which act involves using a verified voltage indicator to confirm the absence of electricity?",
+            "questionText": "What is the primary method used during this phase to maintain a zero-voltage environment?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Proving Dead",
-              "proving dead",
-              "Proving dead"
+              "Dead Testing",
+              "Dead tests",
+              "Testing disconnected"
             ],
-            "hint": "This is a technical measurement that is different from simply checking a switch position."
+            "hint": "This phase involves electrical measurements performed while the installation is disconnected from the power supply."
           },
           {
             "id": "204-15A-C1-L2",
-            "questionText": "Using your answers to Q1 (Initial Verification), Q2 (Safe Isolation), and Q3 (Proving Dead), explain how these facts connect. Why is it insufficient to perform only one of these actions when starting technical work?",
+            "questionText": "Using your answers to Q1 (Visual Inspection), Q2 (Sequence of Tests), and Q3 (Dead Testing), explain how these facts connect. Why must a technician follow this specific workflow?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Initial Verification is the overall goal which requires a safe working environment",
-              "Safe Isolation provides the physical disconnection needed to work safely",
-              "Proving Dead provides the technical guarantee that the isolation actually worked",
-              "Relying on isolation without proving dead is dangerous because switches can fail mechanically"
+              "Visual inspection identifies hazards that could make dead testing dangerous",
+              "The sequence of tests ensures each measurement provides a safe foundation for the next",
+              "Dead testing maintains the zero-voltage environment required for the testing sequence to be safe",
+              "Skipping the order can lead to false readings or equipment damage"
             ],
             "expectedAnswer": [
-              "Initial Verification requires both Safe Isolation and Proving Dead to ensure the system is truly safe for testing. Safe Isolation physically disconnects the power, but Proving Dead is necessary to confirm no voltage is present, as a switch alone cannot be trusted.",
-              "To complete an Initial Verification, a technician must first use Safe Isolation to secure the supply and then perform Proving Dead to verify the absence of electricity. These work together to provide a technical guarantee of safety that a simple visual check cannot provide."
+              "A technician follows this workflow because the Visual Inspection identifies obvious hazards before any Dead Testing begins, ensuring the Sequence of Tests is performed in a safe, zero-voltage environment where each result builds on the previous one.",
+              "This relationship matters because performing the Sequence of Tests as Dead Testing ensures safety, but only if a Visual Inspection has first confirmed there are no obvious defects that would make testing dangerous or inaccurate."
             ],
-            "hint": "Consider how the physical act of locking a switch relates to the technical measurement of voltage."
+            "hint": "Consider how the preliminary check protects the technician before they begin the chronological measurements."
           }
         ]
       }
@@ -159,8 +163,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "The Dead Testing Workflow and Stop-and-Fix Triggers",
-        "content": "### In this lesson\nThis lesson outlines the logical sequence of events during the inspection and testing phase. You will learn the high-level order of operations and how to identify critical faults that halt the process.\n\n*   The correct high-level sequence for **Dead Testing** and inspection.\n*   How to identify a **Stop-and-Fix Trigger**.\n*   The requirement to record results and maintain a logical workflow.\n\n**What this is**\nOnce an installation is isolated, the technician follows a specific sequence. It begins with a visual inspection to ensure everything is physically correct. Following this, **Dead Testing** begins. This is a series of electrical tests performed on an unpowered system to verify the integrity of conductors and connections prior to energization. If at any point a major safety defect is found, it becomes a **Stop-and-Fix Trigger**. This is a critical safety defect or non-compliance identified during inspection that must be corrected before any further testing or commissioning can proceed. You cannot test a system that is fundamentally broken or dangerous.\n\n**Why it matters**\nThe sequence of **Dead Testing** is designed to find the most basic faults first. For instance, you check that the protective conductors are connected (continuity) before you check if the insulation is strong. If you perform tests out of order, you might miss a fault that makes a subsequent test dangerous or inaccurate. Identifying a **Stop-and-Fix Trigger** early prevents wasted time and ensures that the final \"live\" energization is as safe as possible.\n\n**Key facts / rules**\n*   Inspection must always precede testing.\n*   The high-level sequence is: Inspection -> **Dead Testing** -> Live Testing (in later lessons).\n*   The standard dead test order includes: Continuity of Protective Conductors, Ring Final Circuit continuity (if applicable), Insulation Resistance, and Polarity.\n*   A **Stop-and-Fix Trigger** requires immediate intervention; do not \"test around\" the fault.\n*   All results must be recorded precisely as found (verify current edition/version of forms).\n*   Testing must be systematic and cover the entire extent of the work.\n\n**How to do it**\nTo perform the workflow correctly, start by visually checking all enclosures, cables, and connections for damage or poor workmanship. If you see exposed live parts or a snapped wire, this is a **Stop-and-Fix Trigger**. Once the visual check is clear, follow the sequence: first, verify the earthing path (Continuity); second, check the insulation between wires (Insulation Resistance); and third, ensure the switches are in the correct line (Polarity). If any test fails to meet the required standard (verify current edition/version for limits), you must stop, investigate the cause, and repair it before moving to the next test in the sequence.\n\n*Concrete Anchor:* Think of this like checking a car before a long trip. First, you look for flat tires or oil leaks (Inspection). If you find a flat tire, that is a **Stop-and-Fix Trigger**—you don't start the engine to check the radio until the tire is fixed. The sequence ensures the most important safety features are checked first.\n\n*Micro-scenario:* During an inspection, a technician notices a cable has been crushed by a floorboard, exposing the inner copper. This is a **Stop-and-Fix Trigger**. Even if the schedule is tight, the technician must replace the cable before performing an Insulation Resistance test.\n\n**Common mistakes**\nLearners often confuse **Initial Verification** with **Dead Testing**; **Initial Verification** is the entire process (including inspection and paperwork), whereas **Dead Testing** refers specifically to the electrical measurements taken while the power is off. Another mistake is trying to complete all tests before fixing a major fault found at the start; always address triggers immediately.\n\nMisconceptions (targeted):\n*   Misconception: You can finish all the tests and then fix all the problems at the end. | Correction: A **Stop-and-Fix Trigger** must be resolved immediately because it may make further tests invalid or unsafe. | AC: AC3\n*   Misconception: The order of tests doesn't matter as long as they all pass. | Correction: The sequence is logical; checking continuity first ensures the safety path is present for subsequent tests. | AC: AC1\n\n**Key Points**\n*   Inspection always comes before testing.\n*   The **Dead Testing** sequence is fixed and logical.\n*   **Stop-and-Fix Triggers** prevent dangerous progression.\n*   Documentation is the final step of the verification process.\n\n**Quick recap**\nThe workflow for verifying an installation follows a strict path: Inspect, then perform **Dead Testing** in a specific order (Continuity, Insulation Resistance, Polarity). If a **Stop-and-Fix Trigger** is identified, work stops until the defect is rectified. This logical approach ensures every safety layer is validated before the system is eventually powered up.\n\n### Coming Up Next\nIn the next lesson, we will dive into the specific methods and equipment used for the first dead test: Continuity of Protective Conductors."
+        "title": "Safety Thresholds",
+        "content": "### In this lesson\nThis lesson covers the critical safety protocols that must be established before any physical contact with a system occurs. You will learn the rigorous steps of safe isolation and how to identify conditions that require an immediate work stoppage. Key takeaways include the purpose of proving dead, the tools required for safe isolation, and identifying \"stop-and-fix\" triggers.\n\n**What this is**\n**Safe Isolation** is a mandatory procedure used to ensure electrical equipment is disconnected from the supply and secured against re-energisation, not just switched off. It involves a multi-step process: identifying the source, disconnecting it, locking it in the 'off' position, and placing a warning tag. The most critical part of this process is **Proving Dead**. This is the act of confirming the absence of voltage using a calibrated test lamp and proving unit, which is different from using a non-contact voltage detector. A non-contact detector (like a \"voltage pen\") is often unreliable and should not be used for safety-critical checks. To prove dead, you must test your lamp on a known live source (the proving unit), then test the circuit, then test the lamp on the proving unit again to confirm it is still working.\n\n**Why it matters**\nFailing to perform **Safe Isolation** can have fatal consequences. If a technician assumes a circuit is off because a switch is down, they risk encountering \"back-feed\" or someone else turning the power back on while they are working. **Proving Dead** provides a physical guarantee that the environment is safe. Beyond the procedural safety, a technician must also look for \"stop-and-fix\" triggers during their initial checks. These are visual indicators like charred components, exposed wires, or severe mechanical damage. If these are found, testing cannot proceed because the act of testing itself could be dangerous or yield useless data.\n\n**Key facts / rules**\n*   **Safe Isolation** requires a physical lock and a unique key held by the technician.\n*   **Proving Dead** must be done with a dedicated test lamp and a proving unit.\n*   The \"Test-Point-Test\" method (proving the tester before and after) is mandatory.\n*   Visual indicators of heat or arcing are immediate grounds for a work stoppage.\n*   A \"dead\" circuit must show a reading of zero volts; any other reading indicates a failure in isolation.\n*   Safety signs and tags must be used to communicate the isolation status to others.\n\n**How to do it**\nTo perform the procedure, first locate the point of isolation and switch it off. Secure the device with a lock and a \"Do Not Operate\" tag. Next, take your calibrated test lamp and check it against the proving unit; the lamp should illuminate to show it is functional. Then, apply the test lamp to the circuit conductors to confirm no voltage is present. Finally, re-check the test lamp against the proving unit. If the lamp fails to light up during the final check, you cannot assume the circuit was dead, and the process must be repeated with a working lamp. For example, if a technician finds a circuit reading 50V instead of 0V, they must stop immediately and trace the source of the stray voltage before touching any components.\n\n**Common mistakes**\nLearners often confuse **Proving Dead** with simply switching off; **Proving Dead** involves a verified physical check of voltage absence, whereas switching off only changes the state of a control device. Another mistake is using a non-contact voltage detector for safety verification, which is dangerous as these devices can give false negatives. \n\nMisconceptions (targeted):\n* Misconception: A circuit is safe if the main switch is off and the lights went out. | Correction: You must perform **Safe Isolation** and **Proving Dead** to account for faulty switches or alternative power sources. | AC: AC2\n* Misconception: If I find a broken enclosure, I can just test around it. | Correction: Obvious damage is a \"stop-and-fix\" trigger that requires repair before any **Dead Testing** can begin. | AC: AC3\n\n**Key Points**\n*   **Safe Isolation** prevents accidental re-energisation of the system.\n*   **Proving Dead** requires a three-step check with a proving unit.\n*   Non-contact voltage pens are not acceptable for proving dead.\n*   Visual hazards like exposed conductors require an immediate work stoppage.\n\n**Quick recap**\nSafety in testing relies on two pillars: **Safe Isolation** and identifying unsafe conditions. By following the lock-tag-verify method and **Proving Dead** with a test lamp and proving unit, you ensure the system is truly de-energized. If you encounter significant damage during your **Visual Inspection**, you must stop and fix the issue before proceeding with the **Sequence of Tests**.\n\n### Coming Up Next\nIn the next lesson, we will begin the first physical test in the sequence: checking the continuity of protective conductors."
       }
     },
     {
@@ -168,62 +172,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: The Dead Testing Workflow and Stop-and-Fix Triggers",
+        "title": "Check Your Understanding: Safety Thresholds",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "204-15A-C2-L1-A",
-            "questionText": "What must always precede testing to ensure everything is physically correct?",
+            "questionText": "What must be used alongside a dedicated test lamp to prove a system is dead?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Inspection",
-              "inspection",
-              "Visual inspection"
+              "Proving unit",
+              "A proving unit",
+              "Calibrated proving unit"
             ],
-            "hint": "This is the first step in the workflow and involves checking enclosures and connections for damage."
+            "hint": "This device is used to check that the test lamp is functional before and after testing the circuit."
           },
           {
             "id": "204-15A-C2-L1-B",
-            "questionText": "What is the term for a series of electrical tests performed on an unpowered system to verify the integrity of conductors?",
+            "questionText": "Which type of tool is not acceptable for use when proving a circuit is dead?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Dead Testing",
-              "dead testing",
-              "Dead testing"
+              "Non-contact voltage pen",
+              "Voltage detector",
+              "Voltage pen"
             ],
-            "hint": "These tests verify the earthing path and insulation before the system is energized."
+            "hint": "This device is often unreliable and cannot provide the physical guarantee required for safety-critical checks."
           },
           {
             "id": "204-15A-C2-L1-C",
-            "questionText": "What is a critical safety defect or non-compliance identified during inspection that must be corrected before further testing?",
+            "questionText": "What are visual indicators of heat or arcing considered grounds for?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Stop-and-Fix Trigger",
-              "stop-and-fix trigger",
-              "Stop and Fix Trigger"
+              "Work stoppage",
+              "Immediate stop",
+              "Stop and fix"
             ],
-            "hint": "This requires immediate intervention and prevents you from 'testing around' a fault."
+            "hint": "Identify the action required when charred components or severe mechanical damage are found."
           },
           {
             "id": "204-15A-C2-L2",
-            "questionText": "Using your answers to Q1 (Inspection), Q2 (Dead Testing), and Q3 (Stop-and-Fix Trigger), explain how these facts connect. How do we know that the order of these events is critical for safety?",
+            "questionText": "Using your answers to Q1 (Proving unit), Q2 (Non-contact voltage pen), and Q3 (Work stoppage), explain how these facts connect. How do we know the environment is safe for contact?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Inspection is placed first to identify physical dangers before any equipment is touched for testing",
-              "Identifying a Stop-and-Fix Trigger during inspection halts the process to prevent testing a dangerous system",
-              "Dead Testing can only accurately and safely verify the conductors once the physical inspection is clear",
-              "This sequence ensures the most basic safety faults are resolved before complex measurements begin"
+              "Safety is only verified when using a test lamp and proving unit rather than unreliable non-contact pens",
+              "Proving dead ensures no voltage is present, but physical damage also prevents safe contact",
+              "A work stoppage is triggered by visual hazards even if the circuit is proven dead",
+              "Safe contact requires both a verified zero-voltage reading and the absence of 'stop-and-fix' triggers"
             ],
             "expectedAnswer": [
-              "Inspection must come first because it identifies Stop-and-Fix Triggers, such as exposed live parts, that would make Dead Testing dangerous or invalid. By following this order, we ensure the installation is physically sound before we use instruments to test the integrity of the conductors.",
-              "We know the sequence is critical because an inspection might reveal a Stop-and-Fix Trigger that requires immediate repair. If we skipped straight to Dead Testing without inspecting, we might perform tests on a fundamentally broken system, risking safety and wasting time."
+              "We know the environment is safe because we have used a reliable test lamp and proving unit instead of a non-contact voltage pen, and we have confirmed there are no visual hazards that would require an immediate work stoppage.",
+              "These facts connect to ensure safety by requiring both a verified absence of voltage using the correct tools and a visual check for damage; if either the proving unit check fails or a work stoppage trigger is found, the system is not safe to touch."
             ],
-            "hint": "Think about why we look for flat tires before we start a car engine to check the radio."
+            "hint": "Think about why both a physical measurement with the correct tools and a visual assessment of damage are necessary before touching the system."
           }
         ]
       }
@@ -237,45 +241,45 @@
         "questions": [
           {
             "id": "204-15A-P1",
-            "questionText": "What must be true about the instrument used for 'Proving Dead' to ensure the result is legally and technically reliable?",
+            "questionText": "Why must a formal Visual Inspection be completed before any physical testing instruments are applied to a system?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Verified voltage indicator",
-              "A verified voltage indicator",
-              "Verified indicator"
+              "identify obvious hazards",
+              "detect visible damage",
+              "ensure basic safety",
+              "prevent equipment damage"
             ],
-            "hint": "Think about the specific type of tool mentioned in the safety rules compared to a standard multimeter."
+            "hint": "Consider what might happen if you use an instrument on a system with visible, dangerous defects."
           },
           {
             "id": "204-15A-P2",
-            "questionText": "In the standard logical sequence of Dead Testing, which position (1, 2, or 3) is assigned to 'Continuity' tests to ensure the safety path is present?",
+            "questionText": "When using the mandatory 'Test-Point-Test' method to prove a system is de-energized, how many total times is the test instrument checked against the known proving unit?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "1"
+              "2"
             ],
-            "hint": "Continuity is the very first electrical test performed after inspection."
+            "hint": "Count the checks performed on the proving unit itself during the three-step verification process."
           },
           {
             "id": "204-15A-P3",
-            "questionText": "A technician is verifying a new hydraulic assembly and discovers a cracked valve during the visual check. Why cannot the technician proceed to the pressure-integrity test?",
+            "questionText": "In a new installation of any technical nature, what must be true if a technician identifies a 'stop-and-fix' trigger during the preliminary inspection?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Stop-and-fix trigger",
-              "Stop and fix trigger",
-              "Critical safety defect"
+              "testing cannot proceed",
+              "must stop and repair",
+              "cannot continue",
+              "suspend testing"
             ],
-            "hint": "Identify the specific term used for a major fault that halts the testing sequence."
+            "hint": "Think about the mandatory requirement when an immediate hazard or non-compliance is found."
           },
           {
             "id": "204-15A-P4",
-            "questionText": "Why is 'Proving Dead' required even if a technician has already physically locked the isolation switch in the 'off' position?",
-            "answerType": "short-text",
+            "questionText": "If a system failure is detected during the second step of a mandatory Sequence of Tests, how many of the remaining tests in that sequence can be performed before the fault is investigated?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Mechanical failure",
-              "Internal components can fail",
-              "Internal failure"
+              "0"
             ],
-            "hint": "Consider what might happen inside the switch that a visual check cannot detect."
+            "hint": "Consider the rule regarding failures within a chronological testing order."
           }
         ]
       }
@@ -291,41 +295,42 @@
         "questions": [
           {
             "id": "204-15A-INT-1",
-            "questionText": "Explain the relationship between the safe isolation process and the dead testing workflow. In your answer, include: (1) the specific purpose of proving an installation is dead, (2) the definition of a stop-and-fix trigger, and (3) how failing to prove dead affects the safety of the subsequent testing sequence. Why is proving dead considered the non-negotiable prerequisite for any further technical intervention? (2-3 sentences)",
+            "questionText": "Explain the operational link between visual inspections and the safe isolation procedure within a standard verification workflow. In your answer, include: (1) the purpose of identifying visual indicators, (2) the objective of the safe isolation protocol, (3) the chronological relationship between these two stages. Why must visual checks be finalized before the safe isolation process is initiated? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Defines proving dead as verifying the absence of energy rather than just switching off",
-              "Identifies stop-and-fix triggers as critical faults requiring immediate intervention",
-              "Explains that testing an energized system leads to immediate danger or equipment damage",
-              "Reasons that isolation is the baseline safety state required for all dead testing",
-              "Connects the sequence of isolation to the ability to safely identify faults"
+              "Visual indicators identify immediate hazards or non-compliance that prevent safe interaction.",
+              "Safe isolation establishes a verified de-energized state for physical testing.",
+              "Visual inspection is the mandatory first step before any physical contact or isolation occurs.",
+              "The relationship ensures that technicians do not attempt to isolate or touch a system that is visibly compromised.",
+              "Reasoning: Visual checks prevent exposure to obvious faults that could cause injury during the isolation process itself."
             ],
             "expectedAnswer": [
-              "Proving dead ensures the system is non-energized, while stop-and-fix triggers identify faults that halt the workflow before damage occurs. If isolation is not proven, the technician risks injury during the subsequent testing sequence. This relationship is non-negotiable because physical safety must be confirmed before any diagnostic data can be safely gathered.",
-              "The purpose of proving dead is to ensure a safe work environment, whereas stop-and-fix triggers are safety-critical faults discovered during the workflow. Failing to isolate correctly means the technician is performing 'dead' tests on an energized system, which is life-threatening. This sequence is mandatory because technical verification cannot proceed until the risk of electrocution or system short-circuit is eliminated."
+              "Visual indicators are used to identify unsafe conditions or installation errors before any physical contact occurs, while safe isolation is the process of ensuring the system is dead. In the verification workflow, visual checks must be completed first to ensure it is safe to proceed with isolation. This relationship holds because performing isolation on a visibly damaged or incorrectly installed system could expose the technician to immediate risk.",
+              "The purpose of visual inspection is to catch 'stop-and-fix' triggers, whereas safe isolation creates a safety threshold for dead testing; the workflow dictates that inspection always precedes isolation. This order is necessary because visual checks verify the physical integrity of the equipment, ensuring that the act of isolating or proving-dead does not trigger a fault or contact a live component."
             ],
-            "hint": "Think about how the state of the installation (energized vs. non-energized) dictates whether it is safe to proceed with the testing sequence."
+            "hint": "Consider the risks of touching a system before you have looked for obvious faults."
           },
           {
             "id": "204-15A-INT-2",
-            "questionText": "Evaluate how the initial verification process relies on the synthesis of isolation protocols, standardized testing sequences, and the identification of critical faults. In your answer, include: (1) the safety purpose of safe isolation, (2) the logical necessity of a high-level testing sequence, (3) the role of stop-and-fix triggers in preventing further system damage, and (4) how these three components collectively validate the integrity of the installation. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Synthesize the transition from a completed installation to the commencement of dead testing by evaluating the integration of safety protocols and workflow sequences. In your answer, include: (1) the mandatory sequence of the verification workflow, (2) the specific triggers that require a work stoppage, (3) the role of proving-dead within the safety threshold, (4) how these elements collectively mitigate risk during initial verification. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Safe isolation establishes the fundamental non-energized environment for work",
-              "Adhering to a testing sequence ensures all components are verified in a logical, reproducible order",
-              "Stop-and-fix triggers act as a safety buffer to halt testing when immediate hazards are found",
-              "Synthesis of these steps ensures the verification is both safe for the technician and accurate for the system",
-              "Explains that skipping any element invalidates the entire safety verification process",
-              "Recognizes that the sequence prevents the technician from overlooking hidden faults",
-              "States that the collective process ensures the installation is fit for service or re-energization"
+              "Verification follows a strict hierarchy: Visual Inspection followed by Testing.",
+              "Work stoppage triggers include identifying unsafe conditions or visual non-compliance.",
+              "Safe isolation/proving-dead is the prerequisite threshold for all physical testing.",
+              "The workflow ensures no testing occurs until the system is visually verified and electrically isolated.",
+              "Proving-dead confirms the effectiveness of the isolation before the test sequence starts.",
+              "Risk is mitigated by identifying hazards early (visual) and confirming a safe state (isolation) before contact.",
+              "Chronological testing ensures that each step builds on the safety of the previous one.",
+              "Failure to follow the sequence or ignore stoppage triggers leads to potential injury or equipment damage."
             ],
             "expectedAnswer": [
-              "Safe isolation protects the technician by ensuring the work area is non-energized, while a standardized sequence ensures all components are tested in a logical order to prevent missed faults. Stop-and-fix triggers allow for immediate intervention when critical hazards are found, preventing the testing of inherently unsafe systems. Together, these elements ensure that the initial verification is conducted safely and systematically, providing a valid assessment of the installation's integrity.",
-              "Initial verification is validated through three main pillars: safe isolation provides the necessary non-energized environment; the testing sequence provides a logical framework for data collection; and stop-and-fix triggers prevent testing on systems that pose an immediate risk. By synthesizing these components, a technician ensures that the installation is safe for both the worker and the end-user. This integrated approach minimizes risk while maximizing the reliability of the technical results."
+              "The verification workflow begins with a visual inspection to identify work stoppage triggers, followed by a mandatory safe isolation procedure that includes proving the system is dead. These elements work together by ensuring that obvious physical hazards are corrected before the technician establishes an electrical safety threshold. By following this strict chronological sequence, the technician mitigates the risk of interacting with a live or faulty system during the subsequent testing phases.",
+              "• The process follows a mandatory sequence of visual inspection followed by physical dead testing.\n• Work stoppage is triggered by any visual indicators of unsafe conditions or non-compliant installations.\n• Proving-dead is the final step of safe isolation, confirming the safety threshold is active before testing.\n• Together, these steps ensure that hazards are identified visually and confirmed electrically before any diagnostic work begins."
             ],
-            "hint": "Consider how safety protocols and logical workflows work together to provide a complete picture of a system's condition."
+            "hint": "Think about how the 'Stop-and-Fix' rule protects the technician during the transition from inspection to testing."
           }
         ]
       }
@@ -339,33 +344,37 @@
         "questions": [
           {
             "id": "204-15A-SR-1",
-            "questionText": "What does the abbreviation PPE stand for in a technical or construction environment?",
+            "questionText": "What is the name of the process used to identify potential hazards and evaluate risks before starting any technical task?",
             "expectedAnswer": [
-              "Personal Protective Equipment",
-              "Personal Protection Equipment"
+              "Risk assessment",
+              "RA",
+              "Site risk assessment",
+              "Point of work risk assessment"
             ],
-            "hint": "It refers to the safety gear worn by workers to minimize exposure to hazards.",
+            "hint": "It involves looking for dangers and deciding how to control them.",
             "answerType": "short-text"
           },
           {
             "id": "204-15A-SR-2",
-            "questionText": "Which color is used on safety signs to indicate a prohibition, such as 'No Entry' or 'Stop'?",
+            "questionText": "What acronym is used to describe the equipment worn by a technician to provide protection against health and safety risks?",
             "expectedAnswer": [
-              "Red",
-              "Red and white"
+              "PPE",
+              "Personal Protective Equipment",
+              "Personal Protection Equipment"
             ],
-            "hint": "Think of the color of a stop sign or a fire extinguisher sign.",
+            "hint": "Think of items like gloves, goggles, or safety boots.",
             "answerType": "short-text"
           },
           {
             "id": "204-15A-SR-3",
-            "questionText": "What document must be completed or reviewed to identify potential hazards before starting a new technical task?",
+            "questionText": "Before using any piece of test equipment or a hand tool, what type of inspection should be carried out to ensure it is in good working order?",
             "expectedAnswer": [
-              "Risk Assessment",
-              "RA",
-              "RAMS"
+              "Visual inspection",
+              "Pre-use check",
+              "Visual check",
+              "User check"
             ],
-            "hint": "It is a formal process of evaluating the risks and deciding on precautions.",
+            "hint": "It is a quick check performed by the user to look for damage or defects.",
             "answerType": "short-text"
           }
         ],
