@@ -468,7 +468,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 11,
   },
-    {
+      {
     id: '204-15A',
     title: 'Initial Verification Overview + Safe Isolation',
     unit: 'Unit 204',

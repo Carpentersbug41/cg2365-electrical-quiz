@@ -318,6 +318,13 @@ Breakdown:
   - Alignment to LO: ${phase10Score.breakdown.alignmentToLO}/15
   - Question Quality: ${phase10Score.breakdown.questionQuality}/10
 
+IMPROVEMENT-STAGE SCORE GUARDRAILS (NON-NEGOTIABLE):
+- This is an improvement-stage rewrite, not a fresh draft.
+- HARD RULE: Do not regress any scoring domain versus the baseline breakdown above.
+- HARD RULE: Preserve or raise every domain score; never trade one domain for another.
+- PRIORITY: Raise Beginner Clarity and Teaching-Before-Testing first, then optimize remaining domains.
+- TARGET: Improve all domains where possible while fixing all listed issues.
+
 Issues (${phase10Score.issues.length}):
 ${phase10Score.issues.map((issue, i) => `
 ${i + 1}. ${issue.id} (${issue.category})
@@ -334,6 +341,9 @@ REFINEMENT RULES:
 3a. Add concrete anchors after formal definitions when missing
 3b. Add micro-scenarios for measurement/unit/comparison concepts when missing
 3c. Ensure at least one early reasoning check after recall before next major concept
+3d. For every assessed term/process/equipment in questions, teach it explicitly in earlier teaching content
+3e. Do not test specific PPE/hazard terms unless they are already introduced and explained before the question
+3f. For abstract terms (e.g., fault current), add an observable anchor or analogy before first assessment use
 4. DO NOT add, remove, or reorder blocks
 5. DO NOT change block IDs, types, or order values
 6. DO NOT change answerType fields
@@ -341,10 +351,13 @@ REFINEMENT RULES:
 8. Maintain all block structure (each block must have id, type, order, content)
 9. Preserve scope/anchor metadata if present (targetAssessmentCriteria, metadata.syllabusAnchors, metadata.scope, metadata.misconceptions)
 10. If the issues explicitly call for missing scope/anchor/misconception metadata, add them without changing structural invariants
+11. Before final output, silently verify that no question tests content before it is taught and that beginner-facing concrete anchors exist for every abstract concept
 
 PEDAGOGICAL PRIORITIES:
 - Clear, beginner-friendly language
 - Teach concepts before testing them
+- Keep or improve every rubric domain from the baseline score
+- Specifically improve Beginner Clarity and Teaching-Before-Testing in this improvement stage
 - Robust expectedAnswer arrays (gradeable by LLM)
 - Alignment with syllabus outcomes, assessment criteria, and declared scope
 - High-quality, unambiguous questions
@@ -373,7 +386,16 @@ Return the COMPLETE refined lesson as valid JSON. Nothing else.`;
     prompt += `ORIGINAL LESSON TO REFINE:
 ${lessonJson}
 
-Output the complete refined lesson JSON that fixes the pedagogical issues while preserving the structure.`;
+IMPROVEMENT-STAGE NON-REGRESSION TARGETS:
+- Baseline Beginner Clarity: ${input.phase10Score.breakdown.beginnerClarity}/30
+- Baseline Teaching-Before-Testing: ${input.phase10Score.breakdown.teachingBeforeTesting}/25
+- Baseline Marking Robustness: ${input.phase10Score.breakdown.markingRobustness}/20
+- Baseline Alignment to LO: ${input.phase10Score.breakdown.alignmentToLO}/15
+- Baseline Question Quality: ${input.phase10Score.breakdown.questionQuality}/10
+- Do not lower any baseline domain score.
+- Explicitly improve Beginner Clarity and Teaching-Before-Testing where possible.
+
+Output the complete refined lesson JSON that fixes the pedagogical issues while preserving the structure and avoiding score regressions.`;
     
     return prompt;
   }

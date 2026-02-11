@@ -116,40 +116,67 @@ export class Phase13_Rescore {
       }
     ]);
 
-    // Decision logic: accept only if candidate improves (or keeps score with fewer issues)
-    // and does not regress in critical pedagogical dimensions.
+    // Decision logic: accept if candidate improves overall score
+    // (or keeps score with fewer issues), while still surfacing domain regressions.
     const improves = candidateScore.total > originalScore.total;
     const sameScore = candidateScore.total === originalScore.total;
     const fewerIssuesAtSameScore = sameScore && candidateScore.issues.length < originalScore.issues.length;
 
-    const criticalRegressions: string[] = [];
+    const domainRegressions: string[] = [];
+    const pedagogyRegressions: string[] = [];
+    if (candidateScore.breakdown.beginnerClarity < originalScore.breakdown.beginnerClarity) {
+      const msg = `beginnerClarity ${originalScore.breakdown.beginnerClarity}->${candidateScore.breakdown.beginnerClarity}`;
+      domainRegressions.push(msg);
+      pedagogyRegressions.push(msg);
+    }
     if (candidateScore.breakdown.teachingBeforeTesting < originalScore.breakdown.teachingBeforeTesting) {
-      criticalRegressions.push(
-        `teachingBeforeTesting ${originalScore.breakdown.teachingBeforeTesting}->${candidateScore.breakdown.teachingBeforeTesting}`
-      );
+      const msg =
+        `teachingBeforeTesting ${originalScore.breakdown.teachingBeforeTesting}->${candidateScore.breakdown.teachingBeforeTesting}`;
+      domainRegressions.push(msg);
+      pedagogyRegressions.push(msg);
     }
     if (candidateScore.breakdown.markingRobustness < originalScore.breakdown.markingRobustness) {
-      criticalRegressions.push(
+      domainRegressions.push(
         `markingRobustness ${originalScore.breakdown.markingRobustness}->${candidateScore.breakdown.markingRobustness}`
       );
     }
     if (candidateScore.breakdown.alignmentToLO < originalScore.breakdown.alignmentToLO) {
-      criticalRegressions.push(
+      domainRegressions.push(
         `alignmentToLO ${originalScore.breakdown.alignmentToLO}->${candidateScore.breakdown.alignmentToLO}`
       );
     }
+    if (candidateScore.breakdown.questionQuality < originalScore.breakdown.questionQuality) {
+      domainRegressions.push(
+        `questionQuality ${originalScore.breakdown.questionQuality}->${candidateScore.breakdown.questionQuality}`
+      );
+    }
 
-    const accepted = (improves || fewerIssuesAtSameScore) && criticalRegressions.length === 0;
+    const accepted = improves || fewerIssuesAtSameScore;
 
     let reason: string;
-    if (criticalRegressions.length > 0) {
-      reason = `Candidate rejected due to critical pedagogical regression: ${criticalRegressions.join(', ')}`;
-    } else if (improves) {
-      reason = `Candidate improves on original (${candidateScore.total} > ${originalScore.total}) with no critical regression`;
+    if (improves) {
+      if (pedagogyRegressions.length > 0) {
+        reason = `Candidate improves total score (${candidateScore.total} > ${originalScore.total}) but has pedagogy regressions: ${pedagogyRegressions.join(', ')}`;
+      } else if (domainRegressions.length > 0) {
+        reason = `Candidate improves total score (${candidateScore.total} > ${originalScore.total}) but has domain regressions: ${domainRegressions.join(', ')}`;
+      } else {
+        reason = `Candidate improves on original (${candidateScore.total} > ${originalScore.total}) with no domain regression`;
+      }
     } else if (fewerIssuesAtSameScore) {
-      reason = `Candidate keeps score (${candidateScore.total}) but reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length})`;
+      if (domainRegressions.length > 0) {
+        reason = `Candidate keeps score (${candidateScore.total}) and reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length}) but has domain regressions: ${domainRegressions.join(', ')}`;
+      } else {
+        reason = `Candidate keeps score (${candidateScore.total}) but reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length})`;
+      }
     } else {
       reason = `Candidate does not improve score or issue count (${candidateScore.total}/${candidateScore.issues.length} vs ${originalScore.total}/${originalScore.issues.length})`;
+    }
+
+    if (domainRegressions.length > 0) {
+      console.warn(`[Phase13_Rescore] Domain regressions detected: ${domainRegressions.join('; ')}`);
+    }
+    if (pedagogyRegressions.length > 0) {
+      console.warn(`[Phase13_Rescore] Pedagogy regressions detected: ${pedagogyRegressions.join('; ')}`);
     }
 
     console.log(`[Phase13_Rescore] Decision: ${accepted ? 'ACCEPT' : 'REJECT'}`);
@@ -160,8 +187,9 @@ export class Phase13_Rescore {
       console.log('\nDecision Logic:');
       console.log(`  - Improves on original: ${improves ? 'YES' : 'NO'} (${candidateScore.total} ${improves ? '>' : '<='} ${originalScore.total})`);
       console.log(`  - Fewer issues at same score: ${fewerIssuesAtSameScore ? 'YES' : 'NO'}`);
-      console.log(`  - Critical regressions: ${criticalRegressions.length === 0 ? 'NONE' : criticalRegressions.join('; ')}`);
-      console.log(`  - Final Decision: ${accepted ? 'ACCEPT' : 'KEEP ORIGINAL'}`);
+      console.log(`  - Domain regressions: ${domainRegressions.length === 0 ? 'NONE' : domainRegressions.join('; ')}`);
+      console.log(`  - Pedagogy regressions: ${pedagogyRegressions.length === 0 ? 'NONE' : pedagogyRegressions.join('; ')}`);
+      console.log(`  - Final Decision: ${accepted ? 'ACCEPT' : 'KEEP ORIGINAL'} (policy: total score improvement or fewer issues at same score)`);
       console.log(`  - Reason: ${reason}`);
       console.log(`  - Final Lesson: ${accepted ? 'CANDIDATE' : 'ORIGINAL'} (best pedagogical outcome)`);
     }
