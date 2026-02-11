@@ -468,12 +468,12 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 11,
   },
-  {
+    {
     id: '204-15A',
-    title: 'Inspection & Testing Gateway + Dead Inspection + Dead Testing',
+    title: 'Initial Verification Overview + Safe Isolation',
     unit: 'Unit 204',
     unitNumber: '204',
-    topic: 'Inspection & Testing Gateway + Dead Inspection + Dead Testing',
+    topic: 'Initial Verification Overview + Safe Isolation',
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('204-15A'),
     available: true,

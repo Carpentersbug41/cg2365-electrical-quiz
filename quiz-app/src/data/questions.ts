@@ -54,6 +54,7 @@ import { magneticEffectsOfElectricalCurrentQuestions } from './questions/magneti
 import { generatingAcSineWaveCharacteristicsQuestions } from './questions/generatingAcSineWaveCharacteristicsQuestions';
 import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './questions/magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
 import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './questions/inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
+import { initialVerificationOverviewSafeIsolationQuestions } from './questions/initialVerificationOverviewSafeIsolationQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -102,6 +103,7 @@ export const questions: Question[] = [
   ...generatingAcSineWaveCharacteristicsQuestions,
   ...magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions,
   ...inspectionTestingGatewayDeadInspectionDeadTestingQuestions,
+  ...initialVerificationOverviewSafeIsolationQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes
