@@ -28,16 +28,19 @@ export class Phase2_Vocabulary extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(): string {
-    return `You are a technical vocabulary specialist for C&G 2365 Electrical Training.
+    return `You are a technical vocabulary specialist for City & Guilds technical and vocational training.
 
 Your task is to identify and define the 4-6 most essential technical terms for this lesson.
 
 DEFINITION QUALITY:
 - One sentence per definition
 - Clear, concise, and technically accurate
-- Appropriate for Level 2 electrician students
+- Appropriate for technical learners at the lesson's level
 - Focus on practical understanding, not overly academic
-- For commonly confused terms, definitions should include a boundary clause: "X is …, not …" OR "Different from … because …"
+- For commonly confused terms, definitions should include a boundary clause: "X is ..., not ..." OR "Different from ... because ..."
+
+DOMAIN-AGNOSTIC RULE:
+- Use wording that transfers across trades and technical subject areas.
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -75,10 +78,11 @@ Return JSON in this exact format:
 }
 
 REQUIREMENTS:
-- Include ONLY essential terms (not basic electrical knowledge)
+- Include ONLY essential terms (not generic filler knowledge)
 - Definitions must be one sentence each
 - Use consistent terminology throughout
 - Order terms logically (foundational concepts first)
 - Focus on terms specific to this lesson topic`;
   }
 }
+

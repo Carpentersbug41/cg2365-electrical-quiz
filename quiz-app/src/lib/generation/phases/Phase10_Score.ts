@@ -1,7 +1,7 @@
 /**
  * Phase 10: Pedagogical Scoring
  * 
- * Scores lesson quality anchored to C&G 2365 syllabus Learning Outcomes and Assessment Criteria.
+ * Scores lesson quality anchored to syllabus Learning Outcomes and Assessment Criteria.
  * Uses RAG to retrieve relevant syllabus context for accurate assessment.
  */
 
@@ -248,7 +248,7 @@ export class Phase10_Score extends PhasePromptBuilder {
       : '';
     
     const syllabusSection = syllabusContext ? `
-SYLLABUS CONTEXT (retrieved from C&G 2365 specification):
+SYLLABUS CONTEXT (retrieved from syllabus specification):
 Unit: ${syllabusContext.unit} - ${syllabusContext.unitTitle}
 Learning Outcome: ${syllabusContext.learningOutcome} - ${syllabusContext.loTitle}
 Assessment Criteria (full LO):
@@ -261,9 +261,21 @@ SYLLABUS CONTEXT: Not available (lesson ID could not be mapped to syllabus).
 Score based on general pedagogical quality without specific LO alignment.
 `;
     
-    return `You are an expert City & Guilds 2365 electrical installations assessor.
+    return `You are an expert pedagogical quality assessor for City & Guilds technical and vocational lessons.
 
-GOAL: Score this lesson's PEDAGOGICAL QUALITY anchored to the C&G 2365 syllabus.
+GOAL: Score this lesson's PEDAGOGICAL QUALITY anchored to syllabus outcomes and criteria.
+
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Do not assume any specific trade, science branch, equipment family, or regulation set.
+- Evaluate pedagogy using patterns that transfer across technical subjects.
+
+UNIVERSAL PEDAGOGICAL STANDARDS:
+- Concrete before abstract.
+- Observable before symbolic.
+- Concept before unit.
+- Definition + concrete anchor + micro-scenario.
+- Recall -> reasoning -> integration.
+- Simplified but technically defensible language.
 
 ${syllabusSection}
 
@@ -272,8 +284,10 @@ SCORING RUBRIC (100 points total):
 A) Beginner Clarity (30 points):
    - Definitions of technical terms provided
    - Plain language explanations (avoid jargon or define it)
-   - Concrete examples illustrating concepts
+   - Includes concrete anchors after formal definitions (analogy, observable comparison, or everyday anchor)
+   - Includes micro-scenarios where concepts involve measurement/quantity/units/comparison/ratio/intensity/scale/performance differences
    - Common misconceptions addressed
+   - Simplified wording remains technically defensible (no misleading overclaims)
    - Readable, well-structured content
 
 B) Teaching-Before-Testing (25 points):
@@ -281,6 +295,7 @@ B) Teaching-Before-Testing (25 points):
    - Explanations precede practice questions
    - No "cold" questions where content hasn't been taught yet
    - Clear progression from teaching to assessment
+   - Includes at least one early reasoning check after recall before moving to the next major concept
 
 C) Marking Robustness (20 points):
    - expectedAnswer arrays are gradeable by an LLM
@@ -303,10 +318,11 @@ E) Question Quality (10 points):
    - Clear, unambiguous wording
    - Appropriate cognitive level (Bloom's)
    - Smooth difficulty progression
+   - Meaningful reasoning prompts, not recall restatements
    - No trick questions or gotchas
 
 CRITICAL REQUIREMENTS:
-- Return 0–10 issues (no more than 10). If fewer than 10 real issues exist, return fewer. Never invent filler issues to reach 10. Sort issues by severity/impact (most important first).
+- Return 0-10 issues (no more than 10). If fewer than 10 real issues exist, return fewer. Never invent filler issues to reach 10. Sort issues by severity/impact (most important first).
 - Where syllabus context exists, each issue should reference a relevant AC when applicable. If the issue is cross-cutting (clarity/teaching-before-testing/marking robustness/question quality), set alignmentGap to 'GENERAL PEDAGOGY' rather than forcing an AC.
 - Use AC labels in alignmentGap as AC1/AC2/AC3 indexed to the listed Assessment Criteria.
 - Focus on CONTENT quality, not structure (validators handle that)
@@ -361,13 +377,13 @@ ${this.getJsonOutputInstructions()}`;
       prompt += `ASSISTANT ACKNOWLEDGMENT: I will consider this context when scoring and identifying issues.\n\n`;
     }
     
-    prompt += `Score this C&G 2365 electrical installation lesson using the pedagogical rubric.
+    prompt += `Score this lesson using the pedagogical rubric.
 
 LESSON TO SCORE:
 ${lessonJson}
 
 CRITICAL REMINDERS:
-1. Return 0–10 issues (no more than 10). If the lesson is strong, return fewer issues.
+1. Return 0-10 issues (no more than 10). If the lesson is strong, return fewer issues.
 2. Each issue must include: excerpt, problem, whyItMatters, alignmentGap
 3. Ensure total score equals sum of breakdown scores
 4. Focus on PEDAGOGICAL QUALITY - structure already validated
@@ -379,3 +395,5 @@ Return ONLY the JSON scoring object. No markdown, no additional text.`;
     return prompt;
   }
 }
+
+

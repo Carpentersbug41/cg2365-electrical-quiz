@@ -57,98 +57,63 @@ export class Phase5_WorkedExample extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(): string {
-    return `You are a practical training specialist for C&G 2365 Electrical Training.
+    return `You are a practical training specialist for City & Guilds technical and vocational training.
 
 Your task is to create a Worked Example (I Do) and a Guided Practice (We Do) that model and scaffold the SAME skill.
+
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Do not assume any specific trade or subject domain.
+- Use transferable pedagogical framing across technical disciplines.
 
 WORKED EXAMPLE GENERATION POLICY (CRITICAL):
 Generate BOTH workedExample AND guidedPractice when needed based on NEEDS_WORKED_EXAMPLE flag or task type.
 If NEEDS_WORKED_EXAMPLE is false AND TASK_MODE is not PURPOSE_ONLY/IDENTIFICATION, return null for both.
-Use task-appropriate format based on TASK_MODE:
 
-- If TASK_MODE includes "CALCULATION":
-  Output a CALCULATION worked example with formulas and arithmetic steps.
-- If TASK_MODE includes "PURPOSE_ONLY" or "IDENTIFICATION":
-  Output a SELECTION/IDENTIFICATION worked example (no procedural/operation steps).
-  Section style: selection cues, what it's for, what problem it solves, common wrong choice.
-- If TASK_MODE includes "SELECTION" or "DIAGNOSIS":
-  Output a DECISION-PROCESS worked example (criteria and reasoning, not physical steps).
-- If TASK_MODE includes "PROCEDURE" (and NOT PURPOSE_ONLY):
-  Output a PROCEDURAL worked example (step-by-step allowed, but keep safe).
-- Default: Use SELECTION format (4-step decision/selection example).
-
-Worked examples provide scaffolding for all learning types, not just calculations.
+Task-mode behavior:
+- CALCULATION: formula + arithmetic steps
+- PURPOSE_ONLY / IDENTIFICATION: selection/recognition format (no operation steps)
+- SELECTION / DIAGNOSIS: decision-process format (criteria + reasoning)
+- PROCEDURE (and not PURPOSE_ONLY): procedural format allowed
+- Default: selection format
 
 WORKED EXAMPLE RULES:
-- Worked example MUST have 3–5 steps (EXCEPT selection format which is fixed at 4 steps).
-- Each step must be clear, specific, and scoped to the explanation content.
-- Use plain language suitable for Level 2.
-- Use realistic scenarios (domestic/commercial/industrial as appropriate).
+- 3-5 steps (except selection format fixed at 4 steps)
+- Clear and scoped to taught explanation content
+- Plain language appropriate to learner level
+- Use realistic scenarios without domain lock-in
 
-GEOMETRY CALCULATION REQUIREMENTS (CRITICAL):
-When the taught skill involves fill/space factor/percentage fill or similar:
-- ALWAYS show geometry method FIRST.
-- Only show factor-table method SECOND if applicable.
+NO INVENTED TABLE/STANDARD VALUES (CRITICAL):
+- Do NOT invent numeric values from external standards, manuals, or reference tables.
+- Use such values only if explicitly present in explanation text or inputs.
+- If lookup is needed, state lookup action in notes and add "verify current edition/version".
 
-NO INVENTED TABLE VALUES (CRITICAL):
-- Do NOT invent numeric values from standards/tables (e.g., IET On-Site Guide cable factors, enclosure factors, tables).
-- You may only use specific factor numbers IF they appear in the provided explanation text.
-- If factors are needed but not provided, describe the lookup step and put verification in notes:
-  "Look up the cable/enclosure factor in the current IET On-Site Guide table (verify edition and cable type)."
-- Geometry/arithmetic values you compute are allowed.
-
-SELECTION EXAMPLE FORMAT (MANDATORY when TASK_MODE includes PURPOSE_ONLY or IDENTIFICATION):
+SELECTION EXAMPLE FORMAT (MANDATORY for PURPOSE_ONLY / IDENTIFICATION):
 Use exactly 4 steps:
-1) Identify the job context (material/type/task constraint)
-2) Select the correct tool/equipment OR circuit/topology OR device (as appropriate)
-3) State the purpose (one line)
-4) Common wrong choice and why (one line)
-
-STEP 4 QUALITY REQUIREMENT:
-- Step 4 "common wrong choice" must be a **plausible confusion** a student would actually pick (not a strawman).
-- Prefer the confusion mentioned in the Phase 3 contrast (if present in explanation text).
+1) Identify context/constraints
+2) Select appropriate option
+3) State purpose/result
+4) State common wrong choice and why
 
 ABSOLUTE BAN for PURPOSE_ONLY / IDENTIFICATION:
-- NO physical operation steps or "how-to" instructions.
-- BANNED: place, clamp, rotate, pull, turn, push, tighten, loosen, secure, insert, thread, lubricate, half-turn
-- BANNED: technique, method, step-by-step, process, operate
-- BANNED procedural sequencing language **when describing physical operation** (e.g., "first tighten… then rotate…")
-- Numbered steps (Step 1–4) remain allowed for selection format
-- BANNED "procedural implication" phrases: "do this by", "use it by", "operate it by"
-
-PROVENANCE AND CAVEATS (when using standard values):
-If you include any standards/guidance references in notes:
-- Name the source (e.g., "IET On-Site Guide", "BS 7671") and include "(verify current edition)".
-If you did NOT use numeric table values, say so explicitly in notes:
-- "No fixed factor numbers are given here; verify the correct factors in your current tables."
+- No physical operation instructions
+- No step-by-step operation workflow language
 
 GUIDED PRACTICE MIRRORING CONTRACT (CRITICAL):
-Guided Practice MUST mirror the Worked Example exactly:
+Guided Practice MUST mirror Worked Example exactly:
 - SAME number of steps
 - SAME stepNumbers
-- SAME decision points / process flow
-- Only the scenario/values change
-- No extra steps, no missing steps
+- SAME decision points/process flow
+- Scenario/details can change
 
-GUIDED PRACTICE expectedAnswer RULES (marking robustness):
-
-⚠️ CRITICAL FORMAT REQUIREMENT:
-expectedAnswer is ALWAYS an array of strings, NEVER a single string.
-
-WRONG:  "expectedAnswer": "TN-S"          ❌
-WRONG:  "expectedAnswer": "16A"           ❌
-RIGHT:  "expectedAnswer": ["TN-S"]        ✅
-RIGHT:  "expectedAnswer": ["16A", "16"]   ✅
-
-Even for single-value answers, ALWAYS use array format: ["answer"]
-
-- Each step expectedAnswer MUST contain EXACTLY 1–2 variants (ARRAY FORMAT)
-- Canonical answer FIRST
-- Variants may only be tight normalization (case, singular/plural, with/without article)
-- For numeric: numbers only (no units): ["230", "230.0"]
+GUIDED PRACTICE expectedAnswer RULES:
+- expectedAnswer ALWAYS array of strings
+- 1-2 variants per step
+- canonical first
+- normalization-only variants
+- numeric answers: numbers only (no units)
 
 HINTS:
-- One sentence, guiding but not giving away the full answer.
+- One sentence, guiding, not giving away full answer
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -156,9 +121,8 @@ ${this.getJsonOutputInstructions()}`;
   protected buildUserPrompt(input: WorkedExampleInput): string {
     const { lessonId, topic, explanations, needsWorkedExample, taskMode } = input;
 
-    // For identification/purpose-only tasks, ALWAYS create selection examples
     const isPurposeOnlyTask = taskMode?.includes('PURPOSE_ONLY') || taskMode?.includes('IDENTIFICATION');
-    
+
     if (!needsWorkedExample && !isPurposeOnlyTask) {
       return `This lesson does not require worked examples.
 
@@ -187,31 +151,20 @@ Return:
   "guidedPractice": null
 }
 
-Otherwise, return JSON in EXACTLY this format:
-
-⚠️⚠️⚠️ CRITICAL JSON FORMAT REQUIREMENT ⚠️⚠️⚠️
-
-expectedAnswer MUST ALWAYS BE AN ARRAY in guidedPractice.steps:
-- WRONG: "expectedAnswer": "parallel"
-- RIGHT: "expectedAnswer": ["parallel"]
-- WRONG: "expectedAnswer": "lighting circuit"
-- RIGHT: "expectedAnswer": ["lighting circuit", "light circuit"]
-
-Use ["answer"] format even for single values. Array format is MANDATORY.
-
+Otherwise, return JSON in this format:
 {
   "workedExample": {
     "id": "${lessonId}-worked-example",
     "order": 6,
     "title": "Worked Example: [short descriptive title]",
-    "given": "[what information is provided / scenario constraints]",
+    "given": "[scenario constraints]",
     "steps": [
       {
         "stepNumber": 1,
-        "description": "[what happens in this step — scoped to task mode]",
+        "description": "[step description]",
         "formula": null,
         "calculation": null,
-        "result": "[clear outcome of the step]"
+        "result": "[step result]"
       }
     ],
     "notes": "[provenance/caveats/common pitfalls]"
@@ -220,51 +173,23 @@ Use ["answer"] format even for single values. Array format is MANDATORY.
     "id": "${lessonId}-guided",
     "order": 7,
     "title": "Guided Practice (We Do)",
-    "problem": "[similar scenario with different values/details]",
+    "problem": "[similar scenario with changed details]",
     "steps": [
       {
         "stepNumber": 1,
-        "prompt": "[question that maps to workedExample step 1]",
-        "expectedAnswer": ["[canonical answer]", "[optional tight variant]"],
-        "hint": "[one sentence hint]"
+        "prompt": "[question matching worked-example step 1]",
+        "expectedAnswer": ["[canonical]", "[optional variant]"],
+        "hint": "[one-sentence hint]"
       }
     ]
   }
 }
 
-CRITICAL REQUIREMENTS (DO NOT BREAK):
-1) MIRRORING:
-- guidedPractice.steps MUST have EXACTLY the same number of steps as workedExample.steps
-- stepNumber set MUST match exactly (1..N)
-- Each guidedPractice step prompt must correspond to the same-number workedExample step
-- No extra steps, no missing steps
-
-2) TASK MODE SAFETY:
-- If TASK MODE includes PURPOSE_ONLY or IDENTIFICATION:
-  * Use the 4-step SELECTION format (exactly 4 steps)
-  * NO physical operation or how-to instructions
-  * NO banned verbs (place, clamp, rotate, pull, turn, tighten, thread, lubricate, insert, secure, operate, process, technique, method)
-  * Step 4 MUST be "common wrong choice and why" (one line)
-- If TASK MODE includes CALCULATION:
-  * 3–5 steps with formulas and arithmetic where applicable
-  * If fill/space factor/percentage fill: GEOMETRY FIRST, factor tables SECOND (if applicable)
-  * DO NOT invent any factor table numeric values unless they appear in the explanation text
-  * If tables are needed but numbers aren't provided, describe lookup and add "verify current table" in notes
-
-3) CONTENT SOURCE:
-- Do NOT introduce new facts or standards that are not present in the explanation text
-- No regulation numbers unless they appear in the explanation
-
-4) GUIDED PRACTICE MARKING:
-- expectedAnswer arrays must be tight:
-  * EXACTLY 1–2 strings per step
-  * canonical first
-  * no broad paraphrases
-  * numeric answers are numbers only (no units)
-
-5) NOTES:
-- If any standards/guidance are referenced: name the source + "(verify current edition)"
-- If you did not use numeric table values: state "No fixed factor numbers given; verify current tables."
-`;
+CRITICAL REQUIREMENTS:
+1) Mirroring: guidedPractice.steps must match workedExample.steps exactly
+2) For PURPOSE_ONLY / IDENTIFICATION: use 4-step selection format, no operation procedure language
+3) Do not introduce untaught facts or values
+4) expectedAnswer arrays only, 1-2 variants per guided step
+5) If lookup/reference values are mentioned, include "verify current edition/version" in notes`; 
   }
 }

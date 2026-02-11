@@ -42,39 +42,32 @@ export class Phase7_Integration extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(): string {
-    return `You are an advanced assessment specialist for C&G 2365 Electrical Training.
+    return `You are an advanced assessment specialist for City & Guilds technical and vocational training.
 
 Your task is to create integrative questions that synthesize lesson concepts.
 
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Use assessment language transferable across all technical subjects.
+
 QUESTION REQUIREMENTS:
 Question 1 (Connection - L2):
-- Links 2-3 major concepts from different parts of the lesson
-- Question text MUST include: "In your answer, include: (1) [specific concept A], (2) [specific concept B], (3) [specific concept C]"
-- Expected answer: 2-3 sentences covering all specified concepts
-- Shows understanding of relationships
+- Link 2-3 major concepts from different parts of the lesson.
+- Include a structured prompt: "In your answer, include: (1)... (2)... (3)...".
+- Include explicit reasoning demand (Why/How do we know/What must be true).
 
 Question 2 (Synthesis - L3):
-- Integrates ALL major concepts from the lesson
-- Question text MUST include: "In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C], (4) [concept D]"
-- Expected answer: 3-4 sentences covering all specified concepts
-- Shows "big picture" understanding with structured guidance
+- Integrate all major concepts from the lesson.
+- Include structured prompt: "In your answer, include: (1)... (2)... (3)... (4)...".
+- End with EXACTLY: "Answer in 3-4 sentences OR concise bullet points."
 
-EXPECTED ANSWER REQUIREMENTS:
-- EXACTLY 2-4 variants total per question (ARRAY FORMAT)
-- Use STRUCTURED PROMPTS that guide students to include specific elements
-- Question text should explicitly state: "In your answer, include: (1) [concept A], (2) [concept B], (3) [concept C]"
-- expectedAnswer variants should be checklist-style canonical responses that include all required elements
-- Example variants should show different orderings or phrasings while covering all required concepts
-- This makes integrative questions gradeable with exact-match while still testing synthesis
+LONG-TEXT REQUIREMENTS:
+- Both questions MUST use answerType: "long-text".
+- INT-1 keyPoints: 4-6
+- INT-2 keyPoints: 6-10
+- expectedAnswer: 2-3 comprehensive examples
 
-LONG-TEXT ANSWER TYPE REQUIREMENTS:
-- Both INT-1 and INT-2 MUST use answerType: "long-text"
-- MUST include keyPoints array:
-  * INT-1: 4-6 keyPoints (connection level)
-  * INT-2: 6-10 keyPoints (synthesis level)
-- Each keyPoint should be a specific, checkable idea
-- expectedAnswer: Include 2-3 comprehensive example answers
-- keyPoints should match the "include: (1)...(2)...(3)..." structure in questionText
+TECHNICAL PRECISION RULE:
+- Prompts should reward accurate reasoning, not vague generality.
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -110,17 +103,17 @@ Return JSON in this exact format:
     "questions": [
       {
         "id": "${lessonId}-INT-1",
-        "questionText": "[Connection question]. In your answer, include: (1) [specific concept A], (2) [specific concept B], (3) [how they relate]. (2-3 sentences)",
+        "questionText": "[Connection question]. In your answer, include: (1) [concept A], (2) [concept B], (3) [how they relate]. Why does this relationship hold? (2-3 sentences)",
         "answerType": "long-text",
         "cognitiveLevel": "connection",
         "keyPoints": [
           "[Addresses concept A accurately]",
           "[Addresses concept B accurately]",
-          "[Explains relationship between A and B]",
-          "[Uses lesson terminology/examples]"
+          "[Explains connection between A and B]",
+          "[Uses defensible reasoning]"
         ],
-        "expectedAnswer": ["[Example answer covering all 4 keyPoints]", "[Alternative comprehensive answer]"],
-        "hint": "[Hint about which concepts to connect]"
+        "expectedAnswer": ["[Example answer covering key points]", "[Alternative answer]"] ,
+        "hint": "[Hint about what to connect]"
       },
       {
         "id": "${lessonId}-INT-2",
@@ -128,31 +121,24 @@ Return JSON in this exact format:
         "answerType": "long-text",
         "cognitiveLevel": "synthesis",
         "keyPoints": [
-          "[Addresses concept A from section 1]",
-          "[Addresses concept B from section 2]",
-          "[Addresses concept C from section 3]",
+          "[Addresses concept A]",
+          "[Addresses concept B]",
+          "[Addresses concept C]",
           "[Explains integration of A, B, C]",
-          "[Provides practical application/example]",
-          "[Demonstrates big-picture understanding]"
+          "[Provides applied implication]",
+          "[Maintains technical precision]"
         ],
-        "expectedAnswer": ["[Comprehensive answer covering all 6 keyPoints]", "[Alternative comprehensive answer]"],
-        "hint": "[Strategic hint about what to include]"
+        "expectedAnswer": ["[Comprehensive answer]", "[Alternative comprehensive answer]"],
+        "hint": "[Strategic hint about synthesis]"
       }
     ]
   }
 }
 
 CRITICAL REQUIREMENTS:
-- Question 1 (Connection): Must link 2-3 different major concepts, request 2-3 sentences
-- Question 2 (Synthesis): Must integrate ALL concepts, end questionText with EXACTLY: "Answer in 3-4 sentences OR concise bullet points."
-- Both questions should require students to go beyond recall and show deep understanding
-- Expected answers should model comprehensive responses
-- Hints should guide strategic thinking, not give away answers
-
-⚠️ INTEGRATIVE QUESTION FORMAT:
-- Both questions: answerType MUST be "long-text"
-- INT-1: 4-6 keyPoints (connection level)
-- INT-2: 6-10 keyPoints (synthesis level)
-- expectedAnswer: 2-3 comprehensive examples (show different structures)`;
+- INT-1 must include explicit reasoning demand
+- INT-2 must end exactly with required sentence
+- Both questions long-text with keyPoints and example expectedAnswer
+- Domain-agnostic wording only`; 
   }
 }

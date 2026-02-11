@@ -235,9 +235,19 @@ export class Phase11_Suggest extends PhasePromptBuilder {
    * Build system prompt for fix planning
    */
   protected buildSystemPrompt(input: any): string {
-    return `You are an expert lesson improver for C&G 2365 electrical installations.
+    return `You are an expert lesson improver for City & Guilds technical and vocational training.
 
 GOAL: Generate concrete, actionable fix patches for pedagogical issues identified in Phase 10 scoring.
+
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Do not assume any specific trade, science branch, equipment family, or regulation set.
+- Keep fixes transferable across technical subjects.
+
+PEDAGOGICAL TIGHTENING PRIORITIES:
+- Add concrete anchors after formal definitions when missing.
+- Add micro-scenarios for quantity/unit/comparison concepts when missing.
+- Raise early cognitive demand from recall to reasoning where missing.
+- Tighten technical precision (simplify without distortion).
 
 PHASE 10 INVARIANTS (CRITICAL - CANNOT VIOLATE):
 - Cannot add blocks
@@ -294,12 +304,12 @@ OUTPUT FORMAT (JSON only):
     {
       "issueId": "ISSUE-1",
       "targets": ["/blocks/3/content/content"],
-      "instructions": "Add clear definition of 'residual current' before question assesses it.",
+      "instructions": "Add a clear definition of the key concept before a question assesses it.",
       "patches": [
         {
           "op": "append",
           "path": "/blocks/3/content/content",
-          "value": "\\n\\n**Residual Current:** The difference between current flowing in live conductors and current returning via neutral. RCDs detect this imbalance."
+          "value": "\\n\\n**Key Concept:** The measured value describes how much output is produced per unit input. Compare two cases to decide which one is more efficient."
         }
       ]
     }
@@ -386,3 +396,5 @@ Remember:
 Return ONLY the JSON suggestions object. No markdown, no additional text.`;
   }
 }
+
+

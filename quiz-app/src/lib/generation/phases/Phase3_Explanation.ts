@@ -48,112 +48,114 @@ export class Phase3_Explanation extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(): string {
-    return `You are an expert electrical training content writer for C&G 2365 courses.
+    return `You are an expert technical training content writer for City & Guilds courses.
 
-Your task: write clear, accurate teaching explanations that match the lesson scope and learning outcomes.
+Your task: write clear, accurate teaching explanations that match lesson scope and learning outcomes.
+
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Do not assume any specific trade, science branch, or industry context.
+- Use pedagogical patterns that transfer across all technical subject areas.
 
 OUTPUT RULES
-- Write 400–600 words per explanation block.
+- Write 400-600 words per explanation block.
 - Use \\n\\n for paragraph breaks.
 - Use **bold** for key terms (especially vocabulary terms).
-- Avoid unjustified absolutes. Use "typically", "commonly", "in most cases" unless a named source is provided.
+- Avoid unjustified absolutes. Prefer "typically", "commonly", "in many cases" unless a named source is provided.
+
+UNIVERSAL TEACHING PRINCIPLES (CRITICAL):
+- Concrete before abstract.
+- Observable before symbolic.
+- Concept before unit.
+- Recall to reasoning to integration.
+
+CONCRETE ANCHORING RULE (CRITICAL):
+- After defining any technical concept formally, include at least one:
+  * physical-world analogy, OR
+  * sensory/observable comparison, OR
+  * everyday contextual anchor.
+- The anchor must clarify, remain technically defensible, and avoid introducing misconceptions.
+
+MICRO WORKED SCENARIO RULE (CRITICAL):
+- For concepts involving measurement, quantity, units, comparison, ratio, intensity, scale, or performance difference:
+  * include a short micro-scenario (1-2 sentences),
+  * use simple numbers or a concrete applied case,
+  * force comparison or judgement.
+- This is not a full worked example block.
+
+TECHNICAL PRECISION TIGHTENING (CRITICAL):
+- Simplify language without technical misrepresentation.
+- Avoid "always" overclaims unless genuinely universal.
+- Avoid ambiguous causal wording and imprecise terminology.
 
 REQUIRED EXPLANATION STRUCTURE (EACH explanation block MUST include these headings in this order):
 1) ### In this lesson
    - 1 sentence: what you're learning (goal)
-   - 1 sentence: what context you're in (installation scenario)
-   - 3 bullet points: three key takeaways (short, exam-friendly)
+   - 1 sentence: context of application
+   - 3 bullet points: key takeaways
 2) **What this is**
 3) **Why it matters**
-4) **Key facts / rules**  (REQUIRED heading exactly; use 4–8 bullet points)
+4) **Key facts / rules** (REQUIRED heading exactly; use 4-8 bullet points)
 5) **[MODE SECTION]** (heading depends on TASK MODE below)
 6) **Common mistakes**
-7) **Key Points** (3-5 bullet summary of main takeaways for reinforcement)
+7) **Key Points** (3-5 bullet summary)
 8) **Quick recap** (1 short paragraph)
-9) ### Coming Up Next (1–2 sentences)
+9) ### Coming Up Next (1-2 sentences)
 
 CONTRAST REQUIREMENT (CRITICAL):
-- In **Common mistakes**, include **at least one explicit contrast** in this format:
-  - "Learners often confuse **X** with **Y**; **X** is … whereas **Y** is …"
-- X and Y must both appear in the explanation (no new terms).
+- In **Common mistakes**, include at least one explicit contrast:
+  "Learners often confuse **X** with **Y**; **X** is ... whereas **Y** is ..."
+- X and Y must both appear in the explanation (no invented terms).
 
 MISCONCEPTIONS TARGETING (CRITICAL):
 - In **Common mistakes**, include a compact structured list named "Misconceptions (targeted):"
-- Include exactly 2-3 bullets in this format:
+- Include exactly 2-3 bullets:
   * "Misconception: [wrong idea] | Correction: [precise fix] | AC: [AC label]"
 - Also output the same items in top-level JSON field "misconceptions" as objects:
   { "misconception": "...", "correction": "...", "relatedAC": "AC1" }
-- Use AC labels "AC1", "AC2", etc. (not "AC 5.1" style)
+- Use AC labels "AC1", "AC2", etc.
 
-TASK MODE OVERRIDES (CRITICAL — section 5 heading + content rules)
+TASK MODE OVERRIDES (CRITICAL)
 - If TASK_MODE includes "PURPOSE_ONLY":
-  Section 5 heading MUST be: **When to choose it**
-  Content: selection cues, scenarios, decision criteria, what problem it solves
-  DO NOT give step-by-step instructions or physical actions.
-
+  heading: **When to choose it**
+  content: selection cues, scenarios, decision criteria, problem solved
+  no step-by-step operation instructions.
 - If TASK_MODE includes "IDENTIFICATION" (and NOT PURPOSE_ONLY):
-  Section 5 heading MUST be: **How to recognise it**
-  Content: distinguishing features, comparisons, common confusions, where you'd see it
-
+  heading: **How to recognise it**
+  content: distinguishing features, comparisons, common confusions, where seen.
 - If TASK_MODE includes "SELECTION" or "DIAGNOSIS":
-  Section 5 heading MUST be: **How to apply it**
-  Content: decision process, criteria, systematic checks (NOT physical steps)
-
+  heading: **How to apply it**
+  content: decision process and criteria (not physical operation steps).
 - If TASK_MODE includes "CALCULATION":
-  Section 5 heading MUST be: **How to calculate it**
-  Content: formulas + worked reasoning in plain language
-
+  heading: **How to calculate it**
+  content: formulas + worked reasoning in plain language.
 - If TASK_MODE includes "PROCEDURE" (and NOT PURPOSE_ONLY):
-  Section 5 heading MUST be: **How to do it**
-  Content: procedures allowed, but keep them clear and safe
+  heading: **How to do it**
+  content: procedures allowed, clear and safe.
+- Default heading: **How to use it**.
 
-Default:
-  Section 5 heading: **How to use it** (practical application, not overly detailed)
+SCOPE CONTROL (for PURPOSE_ONLY / IDENTIFICATION / SELECTION):
+- Do NOT describe physical actions or step-by-step operation instructions.
+- Avoid verification/certification workflows unless explicitly required by lesson scope.
 
-SCOPE CONTROL (for PURPOSE_ONLY / IDENTIFICATION / SELECTION modes)
-- Do NOT describe physical actions or step-by-step procedures.
-- Avoid "how to test / verify / certify" unless the lesson explicitly requires it.
-- If you mention standards or guidance, name them (e.g., "BS 7671...", "IET On-Site Guide...") and add "(refer to current edition)".
-
-NUMERIC VALUES FROM STANDARDS (CRITICAL):
-- Do NOT include numeric values from BS 7671, IET On-Site Guide, or other standards tables UNLESS:
-  * The specific value appears in mustHaveTopics input
-  * The value appears in additionalInstructions input
-  * The value is a universal constant (e.g., UK mains voltage 230V)
-- BANNED numeric content that will cause hallucinations:
-  * Cable current-carrying capacities (e.g., "2.5mm² carries 27A")
-  * Maximum circuit lengths (e.g., "Ring final max 100m²")
-  * Specific factor numbers from tables (e.g., "Cable factor 143")
-  * Diversity percentages from tables
-  * Specific Zs values for protective devices
-  * Do NOT quote Zs/loop impedance limits unless provided in inputs
-- ALLOWED numeric content:
-  * Basic formulas (Ohm's Law: V = I × R)
-  * General ranges ("typically 16A to 32A") with qualifier
-  * Example calculations IF the context values are realistic but clearly examples
-- If you need to reference a table/standard: describe WHAT to look up, not the specific values
-  * Good: "Refer to the cable current-carrying capacity tables in BS 7671 (verify current edition)"
-  * Bad: "A 2.5mm² cable carries 27A in typical installation conditions"
+STANDARDS/TABLE VALUES SAFETY (CRITICAL):
+- Do NOT invent numeric values from standards, manuals, or tables.
+- Include specific external values only if explicitly present in mustHaveTopics or additionalInstructions.
+- If a lookup is needed, explain what to look up and state "(verify current edition/version)".
 
 DIAGRAM ELEMENT ID FORMAT (CRITICAL):
-If needsDiagram is true, diagramElements.elementIds MUST follow kebab-case format:
-- All lowercase
-- Words separated by hyphens (-)
-- No spaces, underscores, or capital letters
-- Examples:
-  * GOOD: "ring-final-circuit", "consumer-unit", "protective-conductor", "mcb-32a"
-  * BAD: "Ring Final Circuit", "Consumer_Unit", "protectiveConductor", "MCB 32A"
-- Element IDs should match vocabulary term IDs (which are also kebab-case)
+If needsDiagram is true, diagramElements.elementIds MUST follow kebab-case:
+- lowercase only
+- hyphen-separated words
+- no spaces, underscores, or capitals
 - 3-5 element IDs total
 
 DIAGRAM INTEGRATION (CRITICAL):
-- If needsDiagram is true, include **one sentence** in the explanation that explicitly "reads" the diagram, e.g.:
-  - "On the diagram, notice that [label/feature] indicates [meaning]."
-- Do not introduce new terms not already in vocab/lesson content.
+- If needsDiagram is true, include one sentence that "reads" the diagram.
+- Do not introduce new terms not already in vocabulary/lesson content.
 
-LEARNING OUTCOMES COVERAGE (CRITICAL)
-- Every learning outcome must be explicitly taught somewhere in the explanation text.
-- Use key phrases from the learning outcomes so later questions can match wording.
+LEARNING OUTCOMES COVERAGE (CRITICAL):
+- Every learning outcome must be explicitly taught somewhere in explanation text.
+- Reuse key LO phrasing so downstream questions can align.
 
 ${this.getJsonOutputInstructions()}`;
   }
@@ -161,7 +163,7 @@ ${this.getJsonOutputInstructions()}`;
   protected buildUserPrompt(input: ExplanationInput): string {
     const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, taskMode } = input;
 
-    const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\n');
+    const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\\n');
 
     return `Write explanation content for this lesson:
 
@@ -172,7 +174,10 @@ LESSON DETAILS:
 
 TASK MODE: ${taskMode}
 
-CRITICAL: Do NOT include specific numeric values from standards/tables unless they appear in the inputs above. Describe lookup procedures instead.
+CRITICAL:
+- Do NOT include specific numeric values from standards/tables unless they appear in the inputs above.
+- If a lookup is needed, describe lookup procedure and state "verify current edition/version".
+- Keep explanations domain-agnostic and transferable across technical subjects.
 
 NEEDS DIAGRAM: ${plan.needsDiagram ? 'true' : 'false'}
 
@@ -180,14 +185,14 @@ VOCABULARY TO USE CONSISTENTLY:
 ${vocabTerms}
 
 LEARNING OUTCOMES TO ADDRESS:
-${plan.learningOutcomes.map((lo, i) => `${i + 1}. ${lo}`).join('\n')}
+${plan.learningOutcomes.map((lo, i) => `${i + 1}. ${lo}`).join('\\n')}
 
 EXPLANATION SECTIONS NEEDED:
 ${plan.explanationSections.map((s, i) => `Section ${i + 1} (order ${s.order}):
   Title: ${s.title}
-  Topic: ${s.topic}`).join('\n\n')}
-${mustHaveTopics ? `\n\nMUST COVER THESE TOPICS:\n${mustHaveTopics}` : ''}
-${additionalInstructions ? `\n\nADDITIONAL INSTRUCTIONS:\n${additionalInstructions}` : ''}
+  Topic: ${s.topic}`).join('\\n\\n')}
+${mustHaveTopics ? `\\n\\nMUST COVER THESE TOPICS:\\n${mustHaveTopics}` : ''}
+${additionalInstructions ? `\\n\\nADDITIONAL INSTRUCTIONS:\\n${additionalInstructions}` : ''}
 
 Write ${plan.explanationSections.length} explanation block(s) following the required 9-part structure with MODE-DEPENDENT section 5 heading.
 
@@ -220,7 +225,7 @@ Return JSON in this exact format:
     }
   ]${plan.needsDiagram ? `,
   "diagramElements": {
-    "elementIds": ["ring-final-circuit", "distribution-board", "mcb-32a", "protective-conductor"],
+    "elementIds": ["core-component", "support-component", "measurement-point", "control-point"],
     "placeholderDescription": "Detailed description of what the diagram should show, including layout and relationships between elements. Element IDs MUST use kebab-case format (lowercase, hyphens only, no spaces)."
   }` : ''}
 }
@@ -231,7 +236,7 @@ CRITICAL REQUIREMENTS:
   2) **What this is**
   3) **Why it matters**
   4) **Key facts / rules** (REQUIRED heading exactly)
-  5) [MODE SECTION] — heading based on TASK MODE rules:
+  5) [MODE SECTION] - heading based on TASK MODE rules:
      * PURPOSE_ONLY -> **When to choose it**
      * IDENTIFICATION -> **How to recognise it**
      * SELECTION/DIAGNOSIS -> **How to apply it**
@@ -242,12 +247,16 @@ CRITICAL REQUIREMENTS:
   7) **Key Points** (3-5 bullet summary)
   8) **Quick recap**
   9) ### Coming Up Next
+- For each major concept, provide formal definition + concrete anchor (analogy/observable/everyday)
+- For measurable/quantitative/intensity concepts, include 1-2 sentence micro-scenario with simple numbers or clear applied comparison
 - MUST include "**Key facts / rules**" section (use exactly this heading)
 - Address ALL learning outcomes explicitly (use LO phrases in at least one sentence per LO)
 - Use vocabulary terms exactly as defined
 - Each explanation must be 400-600 words
+- Simplify without technical distortion; avoid overclaims and imprecise causal language
 - Include top-level "misconceptions" array with 2-3 items (misconception/correction/relatedAC)
 - Use \\n\\n for paragraph breaks, **bold** for emphasis${plan.needsDiagram ? `
 - If diagram needed: provide 3-5 elementIds matching vocabulary terms with detailed placeholder description` : ''}`;
   }
 }
+

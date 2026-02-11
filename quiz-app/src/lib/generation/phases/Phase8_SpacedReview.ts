@@ -38,32 +38,35 @@ export class Phase8_SpacedReview extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(): string {
-    return `You are a foundation check specialist for C&G 2365 Electrical Training.
+    return `You are a foundation check specialist for City & Guilds technical and vocational training.
 
-Your task: Write 3 foundation check questions the student should already know before starting this lesson.
+Your task: write 3 foundation check questions the learner should already know before starting this lesson.
+
+DOMAIN-AGNOSTIC RULE:
+- Questions must be transferable across technical subjects.
 
 CRITICAL RULES:
 - Generate EXACTLY 3 questions (no more, no fewer)
 - Questions test prerequisite knowledge, NOT current lesson content
 - Use previous lesson titles for context (if provided)
-- If no previous lessons: test baseline electrical knowledge appropriate for the course
+- If no previous lessons: test baseline technical learning readiness
 - All questions use answerType: "short-text"
-- Each expectedAnswer: array of 2-4 strings (variants for normalization only)
+- Each expectedAnswer: array of 2-4 strings
 
-FIELD NAME: Use "questionText" (NOT "attText" or any variant)
+FIELD NAME: Use "questionText" (NOT typo variants)
 
 ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: SpacedReviewInput): string {
     const { lessonId, title, learningOutcomes, previousLessonTitles } = input;
-    
+
     const contextSection = previousLessonTitles.length > 0
       ? `PREVIOUS LESSON TITLES (for context):
 ${previousLessonTitles.map((t, i) => `${i + 1}. ${t}`).join('\n')}`
-      : `This is an early lesson in the module. Test baseline electrical knowledge.`;
-    
-    return `Create 3 foundation check questions for students starting this lesson.
+      : `This is an early lesson in the module. Test baseline technical knowledge.`;
+
+    return `Create 3 foundation check questions for learners starting this lesson.
 
 CURRENT LESSON:
 - ID: ${lessonId}
@@ -73,7 +76,7 @@ ${learningOutcomes.map((o, i) => `  ${i + 1}. ${o}`).join('\n')}
 
 ${contextSection}
 
-Return JSON in this EXACT format:
+Return JSON in this exact format:
 {
   "spacedReview": {
     "id": "${lessonId}-spaced-review",
@@ -108,9 +111,9 @@ Return JSON in this EXACT format:
 
 REQUIREMENTS:
 - EXACTLY 3 questions
-- All answerType must be "short-text"
-- Each expectedAnswer: array of 2-4 strings
-- Questions test what student should know BEFORE this lesson
-- Use previous lesson context when available`;
+- All answerType = "short-text"
+- expectedAnswer arrays only
+- Questions review prerequisite knowledge before this lesson
+- Use prior lesson context when available`; 
   }
 }

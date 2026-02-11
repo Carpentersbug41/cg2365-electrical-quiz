@@ -1,0 +1,401 @@
+{
+  "id": "203-3A",
+  "title": "203.3A — Circuit Types: What They Do",
+  "description": "Learn about Circuit Types: What They Do in Electrical Installations Technology",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Circuit Types: What They Do",
+  "learningOutcomes": [
+    "Identify common circuit types used in technical installations based on their intended purpose",
+    "Describe the typical applications for specialized circuits including emergency, data, and control systems",
+    "Explain the operational principles of ring final and radial circuit configurations",
+    "Select the appropriate circuit type or topology for a given standard installation requirement"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common circuit types used in technical installations based on their intended purpose",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the typical applications for specialized circuits including emergency, data, and control systems",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the operational principles of ring final and radial circuit configurations",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select the appropriate circuit type or topology for a given standard installation requirement",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Circuit Topology",
+            "definition": "The physical layout or arrangement of conductors in a circuit, which determines how electrical energy or information is distributed across an installation."
+          },
+          {
+            "term": "Radial Circuit",
+            "definition": "A wiring arrangement where the cable originates at the distribution board and terminates at the last point of use, rather than returning to the source."
+          },
+          {
+            "term": "Ring Final Circuit",
+            "definition": "A wiring arrangement where the cable forms a continuous loop by starting and ending at the same protective device, providing two paths for current flow unlike a radial circuit."
+          },
+          {
+            "term": "Control Circuit",
+            "definition": "A circuit used to regulate the operation of other equipment or systems, rather than delivering the primary power required for the load."
+          },
+          {
+            "term": "Data Circuit",
+            "definition": "A specialized circuit designed to transmit information signals between devices, distinct from circuits intended for power distribution."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Circuit Types: What They Do Diagram",
+        "description": "Visual representation of Circuit Types: What They Do",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "distribution-board",
+          "radial-path",
+          "ring-loop",
+          "load-point",
+          "data-link"
+        ],
+        "placeholderText": "A schematic diagram showing a distribution board as the central source. One path (radial-path) extends to a series of load-points and stops at the last one. A second path (ring-loop) leaves the board, connects to several load-points in a circle, and returns to the same point on the board. A separate, thinner line (data-link) connects two devices to represent information flow, distinct from the power lines. The diagram illustrates how the Ring Final Circuit forms a continuous loop compared to the terminating Radial Circuit."
+      }
+    },
+    {
+      "id": "203-3A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Circuit Classifications by Purpose",
+        "content": "### In this lesson\nThis lesson identifies common circuit types used in technical installations based on their intended purpose. You will learn how to distinguish between circuits designed for power, lighting, and specialized functions like communication. \n\n*   The specific roles of lighting, power, and heating circuits.\n*   The functional differences between control and data systems.\n*   How to identify specialized circuits for emergency and alarm applications.\n\n**What this is**\nIn any technical installation, circuits are categorized by the specific job they perform. This classification ensures that the wiring and components are matched to the load they serve. A **Data Circuit** is a specialized circuit designed to transmit information signals between devices, distinct from circuits intended for power distribution. In contrast, a **Control Circuit** is a circuit used to regulate the operation of other equipment or systems, rather than delivering the primary power required for the load. Other common types include lighting circuits for illumination, power circuits for socket outlets, and dedicated heating circuits for high-demand thermal appliances.\n\n**Why it matters**\nUnderstanding circuit purposes is essential for safety and system efficiency. If a high-power heating load were connected to a circuit designed for low-power signaling, the system would fail or become a fire hazard. By correctly identifying the purpose, a technician ensures that the protective devices and cable sizes are appropriate for the intended use, maintaining the integrity of the entire installation.\n\n**Key facts / rules**\n*   Lighting circuits typically serve fixed luminaires and have lower current demands than power circuits.\n*   Power circuits are commonly used for general-purpose socket outlets and portable appliances.\n*   Heating circuits are often dedicated to a single high-power appliance to prevent overloading.\n*   Emergency circuits (such as fire alarms or emergency lighting) must remain functional during primary power failures.\n*   **Data Circuits** use shielded or twisted-pair cabling to protect sensitive information signals from interference.\n*   **Control Circuits** often operate at lower voltages to safely manage heavy machinery or complex automated sequences.\n\n**When to choose it**\nYou should choose a specific circuit type based on the equipment's operational requirements. If the goal is to provide a path for internet connectivity or sensor feedback, a **Data Circuit** is the correct selection. If the requirement is to switch a large motor on and off from a remote button, a **Control Circuit** is required. For standard environmental needs, lighting and power circuits are selected based on the total anticipated load and the number of points of use.\n\n**Common mistakes**\nLearners often confuse **Control Circuits** with **Data Circuits**; **Control Circuits** are used to switch or regulate equipment, whereas **Data Circuits** are specifically for transmitting information signals like internet or sensor data.\n\nMisconceptions (targeted):\n*   Misconception: Data circuits can be used to provide power to heavy appliances. | Correction: Data circuits are designed for low-power information signals and cannot support power loads. | AC2\n*   Misconception: All circuits in an installation are designed to carry the same amount of energy. | Correction: Circuits are sized specifically for their purpose, such as lighting (low) versus heating (high). | AC1\n\n**Key Points**\n*   Purpose determines the cable type and protection needed.\n*   Power circuits handle general appliances, while heating circuits handle high-load thermal units.\n*   **Control Circuits** manage other systems; **Data Circuits** move information.\n*   Emergency circuits require specialized routing to ensure reliability.\n\n**Quick recap**\nCircuits are classified by their intended application, ranging from high-demand heating and power to low-demand signaling in data and control systems. Identifying the correct circuit type is the first step in ensuring an installation meets its functional requirements safely.\n\n### Coming Up Next\nWe will examine how these different circuit types are physically laid out using specific wiring arrangements known as topologies."
+      }
+    },
+    {
+      "id": "203-3A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Classifications by Purpose",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A-C1-L1-A",
+            "questionText": "What is the specific purpose of a Data Circuit in a technical installation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "transmit information signals",
+              "transmitting information signals",
+              "transmit signals"
+            ],
+            "hint": "Think about what kind of signals are sent between electronic devices."
+          },
+          {
+            "id": "203-3A-C1-L1-B",
+            "questionText": "What is the primary purpose of a Control Circuit when managing equipment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "manage heavy machinery",
+              "regulate equipment",
+              "manage automated sequences"
+            ],
+            "hint": "Consider how heavy machinery or automated systems are safely operated."
+          },
+          {
+            "id": "203-3A-C1-L1-C",
+            "questionText": "What type of load are data circuits designed to avoid because they cannot support them?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "power loads",
+              "heavy appliances",
+              "high-power loads"
+            ],
+            "hint": "Data circuits are limited to low-power information signals."
+          },
+          {
+            "id": "203-3A-C1-L2",
+            "questionText": "Using your answers to Q1 (Data Circuit signals), Q2 (Control Circuit management), and Q3 (data circuit power limits), explain why a technician must correctly identify a circuit's purpose before installation. Why does this relationship matter for system safety?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Data circuits are for information only and cannot handle the energy of power loads",
+              "Control circuits manage machinery operation rather than providing primary power",
+              "Incorrect identification leads to fire hazards or system failure if components are mismatched",
+              "Purpose determines the specific cable types and protective devices required"
+            ],
+            "expectedAnswer": [
+              "A technician must identify the purpose because data circuits only transmit signals and cannot support power loads, while control circuits manage machinery. If a high-power load is connected to a signaling circuit, it creates a fire hazard because the cables are not sized for that purpose.",
+              "Identifying the purpose ensures safety because data circuits are for low-power information and control circuits are for regulating equipment. We know this matters because using a data circuit for a power load would cause system failure."
+            ],
+            "hint": "Connect the specific role of each circuit to the risks of using the wrong cable for a high-power load."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Circuit Topologies: Ring and Radial",
+        "content": "### In this lesson\nThis lesson explains the operational principles of ring final and radial circuit configurations. You will learn how the physical layout of conductors influences how electricity is distributed throughout an installation.\n\n*   The fundamental differences between radial and ring layouts.\n*   The concept of current sharing in a loop configuration.\n*   How to select the appropriate topology for different installation requirements.\n\n**What this is**\n**Circuit Topology** refers to the physical layout or arrangement of conductors in a circuit, which determines how electrical energy or information is distributed across an installation. The two most common topologies are radial and ring. A **Radial Circuit** is a wiring arrangement where the cable originates at the distribution board and terminates at the last point of use, rather than returning to the source. A **Ring Final Circuit** is a wiring arrangement where the cable forms a continuous loop by starting and ending at the same protective device, providing two paths for current flow unlike a radial circuit.\n\n**Why it matters**\nThe choice of **Circuit Topology** affects the amount of cable used, the ease of installation, and the capacity of the circuit to handle load. For example, a ring configuration allows for a higher total current capacity using thinner cables because the current can reach any point in the circuit from two different directions. Understanding these principles allows a technician to select the most efficient layout for a specific building size or load density.\n\n**Key facts / rules**\n*   A **Radial Circuit** is like a tree branch, extending from the source to a final point.\n*   A **Ring Final Circuit** must form a complete, unbroken loop to function correctly as a ring.\n*   Radial circuits are commonly used for high-power individual appliances like cookers or showers.\n*   Ring circuits are typically used for floor socket outlets in domestic or commercial settings.\n*   In a ring, if the loop is broken, the circuit may still function but will act as two separate radials, potentially overloading the cables.\n*   Radial circuits are easier to test and troubleshoot because they have a clear beginning and end.\n\n**When to choose it**\nChoose a **Radial Circuit** for dedicated, high-power appliances or when wiring small areas where a loop would be unnecessary. Choose a **Ring Final Circuit** when you need to provide power to many socket outlets across a large floor area, as the loop allows for efficient current distribution. \n\nConsider a scenario where you have a 32A load. In a radial circuit, the single cable must be thick enough to carry the full 32A. In a ring circuit, the load is split between two paths, meaning each \"leg\" of the ring might only carry a portion of the total current, allowing for smaller, more flexible cables.\n\n**Common mistakes**\nLearners often confuse a **Radial Circuit** with a **Ring Final Circuit** when they see multiple cables at a socket; a **Radial Circuit** can have \"daisy-chained\" outlets that look like a loop but do not return to the distribution board, whereas a **Ring Final Circuit** always returns to its origin.\n\nMisconceptions (targeted):\n*   Misconception: A ring circuit provides higher voltage to appliances than a radial circuit. | Correction: Both topologies provide the same nominal voltage; the difference is in the path and capacity for current flow. | AC3\n*   Misconception: Breaking a ring circuit always causes the power to go out. | Correction: A break in a ring often leaves the power on but creates a dangerous overload risk as the current sharing is lost. | AC3\n\n**Key Points**\n*   **Circuit Topology** is the physical path the wiring takes.\n*   Radials end at the last point; rings return to the start.\n*   Rings offer two paths for current, allowing for current sharing.\n*   Selection depends on the total load and the physical area of the installation.\n\n**Quick recap**\nRadial and ring circuits are the building blocks of installation layout. Radials are simple \"one-way\" paths, while rings create a continuous loop that allows for efficient power sharing across many outlets. Selecting the right topology is a balance between load requirements and installation complexity.\n\n### Coming Up Next\nNow that you understand circuit types and layouts, we will explore the specific protective devices used to keep these circuits safe from faults."
+      }
+    },
+    {
+      "id": "203-3A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Topologies: Ring and Radial",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A-C2-L1-A",
+            "questionText": "Where does the cable in a Radial Circuit terminate?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "last point of use",
+              "final point",
+              "the last point"
+            ],
+            "hint": "Consider the path of a radial circuit compared to a tree branch."
+          },
+          {
+            "id": "203-3A-C2-L1-B",
+            "questionText": "Where does a Ring Final Circuit start and end to form its continuous loop?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "same protective device",
+              "the same protective device",
+              "distribution board"
+            ],
+            "hint": "A ring must return to its point of origin to function correctly."
+          },
+          {
+            "id": "203-3A-C2-L1-C",
+            "questionText": "Which topology is commonly selected for individual high-power appliances like cookers or showers?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "radial circuit",
+              "radial",
+              "radial arrangements"
+            ],
+            "hint": "Think about the simplest path for a single, high-demand device."
+          },
+          {
+            "id": "203-3A-C2-L2",
+            "questionText": "Using your answers to Q1 (Radial termination), Q2 (Ring loop), and Q3 (high-power appliance selection), explain how the physical path of a circuit determines its application. How do we know which layout is appropriate for a single heavy load?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Radials are simple paths ending at the last point, making them suitable for single high-power loads",
+              "Rings return to the start to allow current sharing across multiple points",
+              "A single heavy load like a cooker does not need a loop for current sharing and uses a dedicated radial",
+              "Selection depends on whether the goal is to serve one high-demand point or many distributed outlets"
+            ],
+            "expectedAnswer": [
+              "The physical path determines capacity; radials terminate at the last point and are used for single high-power appliances like cookers. Rings form a loop for current sharing among many outlets. We know a radial is appropriate for a heavy load because it provides a dedicated, direct path from the source.",
+              "We choose a radial for a single heavy load because it is a direct arrangement ending at the last point of use. A ring loop is used for sharing current across many points, which is not required for a single cooker or shower."
+            ],
+            "hint": "Contrast the 'one-way' path of a radial with the 'loop' of a ring when considering a single high-demand appliance."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Circuit Classifications and Topologies Practice",
+        "questions": [
+          {
+            "id": "203-3A-P1",
+            "questionText": "Explain why a ring final circuit can safely support a higher current load than a radial circuit of the same cable size.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "two paths for current",
+              "current sharing",
+              "two paths",
+              "dual paths"
+            ],
+            "hint": "Think about how many ways the electricity can travel to reach an appliance in a loop."
+          },
+          {
+            "id": "203-3A-P2",
+            "questionText": "When identifying a ring final circuit at the distribution board, how many conductor ends for the same circuit will be connected into the single protective device?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "2"
+            ],
+            "hint": "A ring circuit must start and end at the same point to form a continuous loop."
+          },
+          {
+            "id": "203-3A-P3",
+            "questionText": "A technician needs to install a system to transmit digital feedback from a temperature sensor to a monitoring station. Which circuit classification must be used for this purpose?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "data circuit",
+              "data",
+              "data systems"
+            ],
+            "hint": "This circuit type is specifically for information signals rather than power or regulation."
+          },
+          {
+            "id": "203-3A-P4",
+            "questionText": "In a standard radial circuit topology, how many cables return from the final point of use to the original source to complete a loop?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0"
+            ],
+            "hint": "Consider the definition of a radial layout compared to a ring layout."
+          },
+          {
+            "id": "203-3A-P5",
+            "questionText": "What must be true if a circuit is classified as a control circuit rather than a power circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "regulates other equipment",
+              "manages other systems",
+              "switches other loads",
+              "does not deliver primary power"
+            ],
+            "hint": "Focus on the functional role of the circuit in relation to other machinery."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3A-INT-1",
+            "questionText": "Analyze how the intended purpose of a circuit dictates the selection of its physical layout. In your answer, include: (1) the distinction between high-load power and low-load lighting classifications, (2) the operational differences between radial and ring topologies, (3) how load requirements influence the choice of configuration. Why does this relationship between purpose and topology hold in a technical installation? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies that circuit classification (e.g., power vs. lighting) determines the expected current demand.",
+              "Explains that ring topologies allow for current sharing across a loop, suitable for higher loads.",
+              "Explains that radial topologies provide a single path of distribution, suitable for lower loads or localized systems.",
+              "Connects the physical layout to the need for efficient load management and conductor protection.",
+              "Reasoning confirms that topology must align with purpose to prevent system failure or inefficiency."
+            ],
+            "expectedAnswer": [
+              "Circuit classification determines the expected load, with power circuits requiring higher capacity than lighting circuits. Ring topologies are often selected for power to utilize current sharing across a loop, while radial topologies are used for lighting to simplify distribution. This relationship holds because the physical layout must be capable of supporting the specific functional demands and current levels of the intended application to ensure operational safety.",
+              "The purpose of a circuit defines its load profile, which necessitates a specific topology like a ring final for high-demand areas or a radial for specialized, lower-load paths. We know this relationship is essential because choosing an inappropriate layout for the circuit's purpose could lead to excessive voltage drop or conductor overheating. Therefore, the topology is a direct response to the operational requirements of the circuit classification."
+            ],
+            "hint": "Think about how the physical path of the conductor (loop vs. single line) supports the amount of energy the circuit is designed to carry."
+          },
+          {
+            "id": "203-3A-INT-2",
+            "questionText": "Evaluate the integration of circuit classifications and topologies in the design of a complex technical system. In your answer, include: (1) the functional roles of general power, lighting, and specialized circuits (such as data or emergency), (2) the operational principles of ring and radial configurations, (3) the criteria for selecting one topology over another for a specific installation requirement, (4) how these factors work together to ensure a safe and functional distribution network. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Differentiates between general purpose (power/lighting) and specialized (data/emergency) circuit roles.",
+              "Describes the loop principle of ring final circuits and the end-to-end principle of radial circuits.",
+              "Evaluates selection criteria based on load, distance, and system redundancy.",
+              "Synthesizes how topology supports the specific functional requirements of the classification.",
+              "Explains the impact of specialized circuits (control/data) on the overall system layout.",
+              "Addresses the necessity of matching physical conductor arrangements to operational purposes.",
+              "Maintains technical precision regarding current sharing and distribution efficiency."
+            ],
+            "expectedAnswer": [
+              "System design requires classifying circuits by their functional purpose—such as power, lighting, or specialized data and emergency systems—to determine their specific load and reliability needs. These classifications are then mapped to either ring final topologies for current sharing in high-load areas or radial topologies for dedicated, simpler distribution paths. By matching the physical layout (topology) to the intended application (classification), the installation achieves an efficient and safe distribution network that meets all technical requirements. This integration ensures that specialized systems remain functional while general power demands are managed through appropriate conductor configurations.",
+              "- Circuit classification identifies the specific functional needs of power, lighting, and specialized systems like data or emergency controls.\n- These needs dictate the use of ring final topologies for loop-based current sharing or radial topologies for direct distribution to individual points.\n- Selection is based on balancing load requirements, physical distance, and the need for specialized isolation or redundancy.\n- The resulting network integrates these layouts to ensure that every circuit type operates within its design parameters while supporting the overall installation's purpose."
+            ],
+            "hint": "Consider how the functional goal of a circuit (what it does) and its physical structure (how it is wired) must be aligned to create a successful installation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3A-SR-1",
+            "questionText": "What part of a technical drawing provides a list and explanation of the symbols used within it?",
+            "expectedAnswer": [
+              "Legend",
+              "Key",
+              "Symbol Key"
+            ],
+            "hint": "It acts as a dictionary for the graphical icons on the plan.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3A-SR-2",
+            "questionText": "What term describes the mathematical ratio used to represent real-world dimensions on a technical drawing?",
+            "expectedAnswer": [
+              "Scale",
+              "Drawing scale",
+              "The scale"
+            ],
+            "hint": "Think of 1:50 or 1:100.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3A-SR-3",
+            "questionText": "What standardized visual elements are used on diagrams to represent specific components without using text descriptions?",
+            "expectedAnswer": [
+              "Symbols",
+              "Graphical symbols",
+              "Technical symbols"
+            ],
+            "hint": "These ensure consistency regardless of the language the installer speaks.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Circuit Types: What They Do"
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-02-11",
+    "updated": "2026-02-11",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team"
+  }
+}

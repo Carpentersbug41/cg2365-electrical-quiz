@@ -51,16 +51,20 @@ export class Phase1_Planning extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(): string {
-    return `You are a lesson structure planner for C&G 2365 Electrical Training courses.
+    return `You are a lesson structure planner for City & Guilds technical and vocational courses.
 
 Your task is to analyze the lesson requirements and create a structural plan.
 
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Do not assume any specific trade, science domain, or qualification pathway.
+- Use generic pedagogical planning language that works across technical subjects.
+
 CONSTRAINT PARSING (CRITICAL):
 Analyze mustHaveTopics for teaching scope constraints:
-- "what [X] is for, not how to use" → excludeHowTo: true, purposeOnly: true
-- "identify [X], not procedures" → identificationOnly: true, excludeHowTo: true
-- "concepts only" or "definitions only" → noCalculations: true
-- Any other scope limitation → specificScope: "[the constraint]"
+- "what [X] is for, not how to use" -> excludeHowTo: true, purposeOnly: true
+- "identify [X], not procedures" -> identificationOnly: true, excludeHowTo: true
+- "concepts only" or "definitions only" -> noCalculations: true
+- Any other scope limitation -> specificScope: "[the constraint]"
 
 These constraints MUST be passed to downstream phases to prevent scope violations.
 
@@ -149,16 +153,19 @@ Return JSON in this exact format:
 }
 
 TASK MODE EXAMPLES:
-- Topic about "Cable Selection Criteria" → taskMode: "SELECTION"
-- Topic "Ohm's Law Calculations" → taskMode: "CALCULATION"
-- "What conduit bending machines are for, not how to use" → taskMode: "IDENTIFICATION, PURPOSE_ONLY"
-- "Safe Isolation Procedure" → taskMode: "PROCEDURE"
+- Topic about "Material Selection Criteria" -> taskMode: "SELECTION"
+- Topic "Performance Ratio Calculations" -> taskMode: "CALCULATION"
+- "What a specialist tool is for, not how to use it" -> taskMode: "IDENTIFICATION, PURPOSE_ONLY"
+- "Safe Setup Procedure" -> taskMode: "PROCEDURE"
 
 RULES:
 - explanationSections: 1 section for simple topics, 2 for complex multi-part topics
-- needsDiagram: true if layout is 'split-vis' OR topic is visual (circuits, wiring, procedures)
+- needsDiagram: true if layout is 'split-vis' OR topic is visual (components, layouts, or processes)
 - needsWorkedExample: true if calculations, formulas, or step-by-step procedures
 - learningOutcomes: 3-4 measurable outcomes using Bloom's taxonomy verbs
 - coveredAC/outOfScopeAC: use AC labels only, no overlap`;
   }
 }
+
+
+

@@ -274,16 +274,28 @@ export class Phase12_Refine extends PhasePromptBuilder {
       .join('\n');
     
     const syllabusSection = syllabusContext ? `
-SYLLABUS CONTEXT (C&G 2365):
+SYLLABUS CONTEXT (syllabus specification):
 Unit: ${syllabusContext.unit} - ${syllabusContext.unitTitle}
 Learning Outcome: ${syllabusContext.learningOutcome} - ${syllabusContext.loTitle}
 Assessment Criteria:
 ${syllabusContext.assessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}
 ` : '';
     
-    return `You are a C&G 2365 pedagogical refinement expert.
+    return `You are a pedagogical refinement expert for City & Guilds technical and vocational lessons.
 
 TASK: Output a COMPLETE refined lesson JSON that fixes the pedagogical issues below while preserving the exact structure.
+
+DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
+- Do not assume any specific trade, science branch, equipment family, or regulation set.
+- Keep all refinements transferable across technical subjects.
+
+UNIVERSAL PEDAGOGICAL STANDARDS TO ENFORCE:
+- Concrete before abstract.
+- Observable before symbolic.
+- Concept before unit.
+- Definition + concrete anchor + micro-scenario.
+- Recall -> reasoning -> integration.
+- Simplified but technically defensible wording.
 
 ${syllabusSection}
 
@@ -317,6 +329,9 @@ REFINEMENT RULES:
 1. Output COMPLETE Lesson JSON (full object with all fields, all blocks, all content)
 2. Fix content within blocks to address the pedagogical issues
 3. Improve clarity, examples, explanations, question wording, expectedAnswer arrays
+3a. Add concrete anchors after formal definitions when missing
+3b. Add micro-scenarios for measurement/unit/comparison concepts when missing
+3c. Ensure at least one early reasoning check after recall before next major concept
 4. DO NOT add, remove, or reorder blocks
 5. DO NOT change block IDs, types, or order values
 6. DO NOT change answerType fields
@@ -329,7 +344,7 @@ PEDAGOGICAL PRIORITIES:
 - Clear, beginner-friendly language
 - Teach concepts before testing them
 - Robust expectedAnswer arrays (gradeable by LLM)
-- Alignment with C&G 2365 syllabus
+- Alignment with syllabus outcomes, assessment criteria, and declared scope
 - High-quality, unambiguous questions
 
 ${this.getJsonOutputInstructions()}
@@ -361,3 +376,4 @@ Output the complete refined lesson JSON that fixes the pedagogical issues while 
     return prompt;
   }
 }
+
