@@ -87,8 +87,10 @@ NO NEW TERMS (CRITICAL):
 - Do NOT introduce standards/regulation references unless they appear in the explanation text.
 
 DIAGRAM QUESTION REQUIREMENT (CRITICAL):
-- If the explanation includes a sentence beginning with "On the diagram…", then **one** of Q1–Q3 MUST directly reference that diagram feature/label.
-- The expectedAnswer canonical string MUST be a verbatim substring of the normalized "On the diagram…" sentence.
+- If the explanation includes a sentence beginning with "On the diagram…", one of Q1–Q3 SHOULD check the related concept.
+- The canonical expected answer should prioritize the scientific idea, not visual styling words (e.g., avoid dependence on "shaded area", "left side", "blue arrow").
+- For magnetic direction questions, prefer: "direction a north test pole would move (outside the magnet: N to S)".
+- Accept concept-equivalent phrasing even if not tied to the exact diagram wording.
 
 TEACHING CONSTRAINTS (if provided):
 If TASK_MODE includes "PURPOSE_ONLY":
@@ -131,14 +133,15 @@ Even for single-word answers, ALWAYS use array format: ["answer"]
 
 L1 QUESTIONS (recall):
 - expectedAnswer MUST contain EXACTLY 2–4 strings (ARRAY FORMAT)
-- The FIRST string is the canonical answer and MUST be a verbatim substring of the NORMALIZED plain-text explanation
-- "Normalized" means: apply the same stripping rules as anchor facts (remove markdown, bullets, trailing punctuation)
-- Extract your anchor fact text from this normalized version
+- The FIRST string is the canonical answer and should be a short key phrase tightly grounded in taught wording.
+- Prefer a verbatim substring from the normalized plain-text explanation when it stays concise.
+- "Normalized" means: apply the same stripping rules as anchor facts (remove markdown, bullets, trailing punctuation).
 - Example: "expectedAnswer": ["protective conductor", "earth conductor", "cpc"]
 
 EXPECTED ANSWER LENGTH (CRITICAL):
-- For L1 questions, the **canonical** expectedAnswer (first string) MUST be **1–8 words** unless the concept requires a longer technical phrase.
+- For L1 questions, the **canonical** expectedAnswer (first string) MUST be **1–6 words** unless a longer technical term is unavoidable.
 - Do NOT use full-sentence anchor facts as canonical answers.
+- If the anchor fact is a contrast sentence, extract a compact relation phrase (e.g., "opposites attract, likes repel"), not the full sentence.
 
 - Remaining variants MUST be tight normalization ONLY:
   * case changes
@@ -308,7 +311,7 @@ CRITICAL REQUIREMENTS:
 - Q1–Q3 must each test ONE specific anchor fact from the explanation.
 - L2 question MUST start with "Using your answers to Q1…, Q2…, and Q3…" and MUST reference all three facts by content.
 - expectedAnswer arrays must be TIGHT:
-  * L1: EXACTLY 2–4 strings, canonical FIRST, canonical MUST be verbatim substring from the NORMALIZED plain-text explanation (markdown stripped).
+  * L1: EXACTLY 2–4 strings, canonical FIRST, canonical should be a concise key phrase (prefer 1-6 words) grounded in taught wording.
   * L2: EXACTLY 2–4 strings expressing the CONNECTION/RELATIONSHIP between the 3 anchor facts (focus on concept, not exact phrasing).
 - Do NOT introduce new terms not present in the explanation text.
 - If constraints indicate PURPOSE_ONLY / IDENTIFICATION: test selection/purpose/recognition only (no procedures).

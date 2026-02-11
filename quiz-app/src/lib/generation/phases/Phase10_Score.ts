@@ -294,6 +294,8 @@ D) Alignment to LO/AC (15 points):
    - If lesson.targetAssessmentCriteria is specified, check only those ACs
    - If not specified, check all ACs from the syllabus context
    - DO NOT penalize for missing ACs outside the lesson's target scope
+   - Prefer explicit scope declarations in lesson metadata (syllabus anchors + covered/out-of-scope AC list)
+   - If scope declarations are missing, raise a clear alignment issue
    - Examples and scenarios match vocational context
    - Terminology matches syllabus wording
 
@@ -306,8 +308,10 @@ E) Question Quality (10 points):
 CRITICAL REQUIREMENTS:
 - Return 0–10 issues (no more than 10). If fewer than 10 real issues exist, return fewer. Never invent filler issues to reach 10. Sort issues by severity/impact (most important first).
 - Where syllabus context exists, each issue should reference a relevant AC when applicable. If the issue is cross-cutting (clarity/teaching-before-testing/marking robustness/question quality), set alignmentGap to 'GENERAL PEDAGOGY' rather than forcing an AC.
+- Use AC labels in alignmentGap as AC1/AC2/AC3 indexed to the listed Assessment Criteria.
 - Focus on CONTENT quality, not structure (validators handle that)
 - For each issue: category, jsonPointers, excerpt, problem, whyItMatters, alignmentGap
+- If lesson omits explicit syllabus anchors/scope or a structured misconceptions target block, treat that as a valid pedagogical issue when it affects alignment/clarity.
 
 OUTPUT FORMAT (JSON only, no markdown):
 {
@@ -368,6 +372,7 @@ CRITICAL REMINDERS:
 3. Ensure total score equals sum of breakdown scores
 4. Focus on PEDAGOGICAL QUALITY - structure already validated
 5. Reference specific Assessment Criteria in issues when applicable
+6. Use AC labels like AC1/AC2 (mapped to listed criteria), not free-form AC numbering styles
 
 Return ONLY the JSON scoring object. No markdown, no additional text.`;
     

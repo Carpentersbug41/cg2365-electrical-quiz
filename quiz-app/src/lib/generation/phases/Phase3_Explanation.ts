@@ -30,9 +30,16 @@ export interface DiagramElements {
   placeholderDescription: string;
 }
 
+export interface TargetedMisconception {
+  misconception: string;
+  correction: string;
+  relatedAC: string; // AC label like "AC1"
+}
+
 export interface ExplanationOutput {
   explanations: ExplanationBlock[];
   diagramElements?: DiagramElements;
+  misconceptions?: TargetedMisconception[];
 }
 
 export class Phase3_Explanation extends PhasePromptBuilder {
@@ -69,6 +76,14 @@ CONTRAST REQUIREMENT (CRITICAL):
 - In **Common mistakes**, include **at least one explicit contrast** in this format:
   - "Learners often confuse **X** with **Y**; **X** is … whereas **Y** is …"
 - X and Y must both appear in the explanation (no new terms).
+
+MISCONCEPTIONS TARGETING (CRITICAL):
+- In **Common mistakes**, include a compact structured list named "Misconceptions (targeted):"
+- Include exactly 2-3 bullets in this format:
+  * "Misconception: [wrong idea] | Correction: [precise fix] | AC: [AC label]"
+- Also output the same items in top-level JSON field "misconceptions" as objects:
+  { "misconception": "...", "correction": "...", "relatedAC": "AC1" }
+- Use AC labels "AC1", "AC2", etc. (not "AC 5.1" style)
 
 TASK MODE OVERRIDES (CRITICAL — section 5 heading + content rules)
 - If TASK_MODE includes "PURPOSE_ONLY":
@@ -191,6 +206,18 @@ Return JSON in this exact format:
       "title": "[Section 2 title]",
       "content": "[400-600 word explanation following 9-part structure]"
     }` : ''}
+  ],
+  "misconceptions": [
+    {
+      "misconception": "[specific wrong idea learners commonly hold]",
+      "correction": "[clear correction in beginner-safe language]",
+      "relatedAC": "AC1"
+    },
+    {
+      "misconception": "[second misconception]",
+      "correction": "[second correction]",
+      "relatedAC": "AC2"
+    }
   ]${plan.needsDiagram ? `,
   "diagramElements": {
     "elementIds": ["ring-final-circuit", "distribution-board", "mcb-32a", "protective-conductor"],
@@ -211,7 +238,7 @@ CRITICAL REQUIREMENTS:
      * CALCULATION -> **How to calculate it**
      * PROCEDURE (not PURPOSE_ONLY) -> **How to do it**
      * Default -> **How to use it**
-  6) **Common mistakes**
+  6) **Common mistakes** (must include "Misconceptions (targeted):" with 2-3 structured bullets)
   7) **Key Points** (3-5 bullet summary)
   8) **Quick recap**
   9) ### Coming Up Next
@@ -219,6 +246,7 @@ CRITICAL REQUIREMENTS:
 - Address ALL learning outcomes explicitly (use LO phrases in at least one sentence per LO)
 - Use vocabulary terms exactly as defined
 - Each explanation must be 400-600 words
+- Include top-level "misconceptions" array with 2-3 items (misconception/correction/relatedAC)
 - Use \\n\\n for paragraph breaks, **bold** for emphasis${plan.needsDiagram ? `
 - If diagram needed: provide 3-5 elementIds matching vocabulary terms with detailed placeholder description` : ''}`;
   }

@@ -163,28 +163,7 @@ export const lessonIndex: LessonIndexEntry[] = [
       
   
       
-  {
-    id: '202-202-5A',
-    title: 'Magnetism basics',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism basics',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-202-5A'),
-    available: true,
-    order: 9.3,
-  },
-  {
-    id: '202-5AAA',
-    title: 'Magnetism basics',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism basics',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5AAA'),
-    available: true,
-    order: 10.3,
-  },// Unit 203: Electrical Installations Technology
+    // Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
   {
@@ -345,6 +324,7 @@ export const lessonIndex: LessonIndexEntry[] = [
                     
   
             
+  
   {
     id: '203-3A1',
     title: 'Circuit Types: What They Do',

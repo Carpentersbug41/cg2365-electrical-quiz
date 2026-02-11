@@ -25,6 +25,17 @@ export interface PlanningOutput {
   learningOutcomes: string[];
   estimatedComplexity: 'simple' | 'medium' | 'complex';
   taskMode: string; // AUTHORITATIVE task mode (e.g., "CALCULATION, PURPOSE_ONLY")
+  syllabusAnchors?: {
+    unit: string;
+    learningOutcome: string;
+    coveredAC: string[];     // In-scope AC labels (e.g., ["AC1", "AC2"])
+    outOfScopeAC: string[];  // Explicitly out-of-scope AC labels
+  };
+  scope?: {
+    inScope: string;
+    outOfScope: string;
+    rationale: string;
+  };
   teachingConstraints?: {
     excludeHowTo?: boolean;        // "not how to use"
     purposeOnly?: boolean;          // "what for, not procedures"
@@ -61,6 +72,18 @@ You MUST compute taskMode by analyzing the lesson requirements:
 
 This taskMode will be the SINGLE SOURCE OF TRUTH for all downstream phases.
 
+SYLLABUS SCOPE ANCHORING (CRITICAL):
+You MUST output explicit syllabus anchors and scope control fields:
+- syllabusAnchors.unit
+- syllabusAnchors.learningOutcome
+- syllabusAnchors.coveredAC (in-scope AC labels only)
+- syllabusAnchors.outOfScopeAC (explicitly excluded AC labels)
+- scope.inScope, scope.outOfScope, scope.rationale
+
+AC LABEL FORMAT:
+- Use AC labels as "AC1", "AC2", "AC3" (not "AC 5.1" style).
+- coveredAC and outOfScopeAC must be disjoint (no overlap).
+
 ${this.getJsonOutputInstructions()}`;
   }
 
@@ -83,6 +106,7 @@ ANALYSIS REQUIRED:
 2. Identify how many explanation sections are needed (1-2 max)
 3. Create 3-4 learning outcomes (remember, understand, apply levels)
 4. Determine if worked example is needed: ${requiresWorkedExample ? 'YES (calculation/procedure topic)' : 'MAYBE (check topic)'}
+5. Define syllabus scope anchors (covered ACs vs out-of-scope ACs) for this lesson
 
 Return JSON in this exact format:
 {
@@ -104,6 +128,17 @@ Return JSON in this exact format:
   ],
   "estimatedComplexity": "simple|medium|complex",
   "taskMode": "[Computed task mode string: CALCULATION, PURPOSE_ONLY, IDENTIFICATION, etc.]",
+  "syllabusAnchors": {
+    "unit": "${request.unit}",
+    "learningOutcome": "[LO number, e.g., LO5]",
+    "coveredAC": ["AC1", "AC2"],
+    "outOfScopeAC": ["AC3", "AC4", "AC5"]
+  },
+  "scope": {
+    "inScope": "[One-line statement of what this lesson covers]",
+    "outOfScope": "[One-line statement of what this lesson intentionally does not cover]",
+    "rationale": "[One sentence explaining why this scope split is pedagogically correct]"
+  },
   "teachingConstraints": {
     "excludeHowTo": true|false,
     "purposeOnly": true|false,
@@ -123,6 +158,7 @@ RULES:
 - explanationSections: 1 section for simple topics, 2 for complex multi-part topics
 - needsDiagram: true if layout is 'split-vis' OR topic is visual (circuits, wiring, procedures)
 - needsWorkedExample: true if calculations, formulas, or step-by-step procedures
-- learningOutcomes: 3-4 measurable outcomes using Bloom's taxonomy verbs`;
+- learningOutcomes: 3-4 measurable outcomes using Bloom's taxonomy verbs
+- coveredAC/outOfScopeAC: use AC labels only, no overlap`;
   }
 }

@@ -322,6 +322,8 @@ REFINEMENT RULES:
 6. DO NOT change answerType fields
 7. Preserve all required schema fields (id, title, description, layout, unit, topic, learningOutcomes, prerequisites, blocks, metadata)
 8. Maintain all block structure (each block must have id, type, order, content)
+9. Preserve scope/anchor metadata if present (targetAssessmentCriteria, metadata.syllabusAnchors, metadata.scope, metadata.misconceptions)
+10. If the issues explicitly call for missing scope/anchor/misconception metadata, add them without changing structural invariants
 
 PEDAGOGICAL PRIORITIES:
 - Clear, beginner-friendly language

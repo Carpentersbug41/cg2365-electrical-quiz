@@ -99,10 +99,11 @@ Even for single-word answers, ALWAYS use array format: ["answer"]
 
 NUMERIC QUESTION REQUIREMENTS:
 
-Rounding instructions MUST be in questionText:
-- For percentages: "(Round to 1 decimal place)" or "(Round to nearest whole number)"
-- For areas/dimensions: "(Round to 1 decimal place)" or "(Round to nearest mm²)"
-- For factors: "(Round to nearest whole number)"
+Rounding instructions are CONDITIONAL (not always required):
+- Include rounding instructions ONLY when the calculation can produce non-integer or precision-sensitive values.
+- Do NOT add rounding instructions to exact integer fact questions (for example, fixed counts or direct identity facts).
+- For percentages/ratios/areas where precision is needed, include explicit rounding text.
+- If result is exact by construction, omit rounding text.
 
 expectedAnswer for numeric:
 - Include both forms: ["40", "40.0"] or ["1125", "1125.0"]
@@ -230,7 +231,8 @@ REQUIREMENTS:
 - For numeric questions:
   * answerType: "numeric"
   * expectedAnswer: Array with ONLY numbers (no units!) - include both forms: ["40", "40.0"]
-  * MUST include rounding instruction in questionText: "(Round to 1 decimal place)" or "(Round to nearest whole number)"
+  * Include rounding instruction in questionText ONLY when mathematically needed
+  * Do NOT append "Round to nearest whole number" to exact integer fact questions
   * hint: Include units and context
   * Example: expectedAnswer: ["5.5", "5.50"], hint: "Answer in millimetres (mm)"
 - For short-text questions:
