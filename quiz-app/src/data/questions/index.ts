@@ -48,11 +48,13 @@ import { generatingAcSineWaveCharacteristicsQuestions } from './generatingAcSine
 import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
 import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 import { initialVerificationOverviewSafeIsolationQuestions } from './initialVerificationOverviewSafeIsolationQuestions';
+import { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...testingOverviewSafeIsolationQuestions,
   ...initialVerificationOverviewSafeIsolationQuestions,
   ...inspectionTestingGatewayDeadInspectionDeadTestingQuestions,
   ...magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions,
@@ -146,6 +148,7 @@ export { generatingAcSineWaveCharacteristicsQuestions } from './generatingAcSine
 export { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
 export { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 export { initialVerificationOverviewSafeIsolationQuestions } from './initialVerificationOverviewSafeIsolationQuestions';
+export { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
 
 /**
  * Filter questions by tags

@@ -55,6 +55,7 @@ import { generatingAcSineWaveCharacteristicsQuestions } from './questions/genera
 import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './questions/magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
 import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './questions/inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 import { initialVerificationOverviewSafeIsolationQuestions } from './questions/initialVerificationOverviewSafeIsolationQuestions';
+import { testingOverviewSafeIsolationQuestions } from './questions/testingOverviewSafeIsolationQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -104,6 +105,7 @@ export const questions: Question[] = [
   ...magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions,
   ...inspectionTestingGatewayDeadInspectionDeadTestingQuestions,
   ...initialVerificationOverviewSafeIsolationQuestions,
+  ...testingOverviewSafeIsolationQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

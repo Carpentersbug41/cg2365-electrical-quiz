@@ -89,6 +89,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const LESSONS = [
+  lesson204_15A,
   lesson202_5A,
   lesson203_3A123,
   lesson204_15A,  lesson201_1C,
