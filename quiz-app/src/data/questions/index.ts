@@ -46,11 +46,13 @@ import { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
 import { magneticEffectsOfElectricalCurrentQuestions } from './magneticEffectsOfElectricalCurrentQuestions';
 import { generatingAcSineWaveCharacteristicsQuestions } from './generatingAcSineWaveCharacteristicsQuestions';
 import { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
+import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...inspectionTestingGatewayDeadInspectionDeadTestingQuestions,
   ...magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions,
   ...generatingAcSineWaveCharacteristicsQuestions,
   ...magneticEffectsOfElectricalCurrentQuestions,
@@ -140,6 +142,7 @@ export { magnetismBasicsQuestions } from './magnetismBasicsQuestions';
 export { magneticEffectsOfElectricalCurrentQuestions } from './magneticEffectsOfElectricalCurrentQuestions';
 export { generatingAcSineWaveCharacteristicsQuestions } from './generatingAcSineWaveCharacteristicsQuestions';
 export { magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions } from './magnetismBasicsAttractionRepulsionFluxVsFluxDensityQuestions';
+export { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './inspectionTestingGatewayDeadInspectionDeadTestingQuestions';
 
 /**
  * Filter questions by tags
