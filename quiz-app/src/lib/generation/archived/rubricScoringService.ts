@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Rubric-Based Lesson Scoring Service
  * 
@@ -1130,3 +1131,4 @@ export class RubricScoringService {
     }
   }
 }
+

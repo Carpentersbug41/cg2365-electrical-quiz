@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Phase 10 Debug Framework - Basic Tests
  * 
@@ -298,3 +299,4 @@ testBlockersAnalyzer();
 
 console.log('\n==========================================');
 console.log('Tests Complete!');
+

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 10 Run Recorder
  * 
@@ -1225,3 +1226,4 @@ export class Phase10RunRecorder {
     return crypto.createHash('sha256').update(json).digest('hex').substring(0, 16);
   }
 }
+

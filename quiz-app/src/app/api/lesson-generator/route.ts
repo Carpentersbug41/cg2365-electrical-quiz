@@ -15,6 +15,14 @@ import { generateLessonId, generateLessonFilename, generateQuizFilename } from '
 import fs from 'fs';
 import path from 'path';
 
+type LessonGenerationResult = Awaited<ReturnType<FileGenerator['generateLesson']>> & {
+  phases?: GenerationResponse['phases'];
+  refinementMetadata?: GenerationResponse['refinementMetadata'];
+  debugBundle?: GenerationResponse['debugBundle'];
+  originalLesson?: unknown;
+  rejectedRefinedLesson?: unknown;
+};
+
 // Debug logger
 function debugLog(stage: string, data: unknown) {
   const logEntry = JSON.stringify({
@@ -102,7 +110,7 @@ export async function POST(request: NextRequest) {
     // Step 1: Generate lesson
     debugLog('STEP_1_START', { step: 'generateLesson' });
     console.log('[Generator] Step 1: Generating lesson...');
-    const lessonResult = await fileGenerator.generateLesson(body);
+    const lessonResult = await fileGenerator.generateLesson(body) as LessonGenerationResult;
     
     debugLog('STEP_1_COMPLETE', { success: lessonResult.success, error: lessonResult.error });
     

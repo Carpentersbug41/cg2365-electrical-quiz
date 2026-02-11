@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { getGeminiModelWithDefault, getGeminiApiKey } from '@/lib/config/geminiConfig';
 import { Lesson, Block, MicrobreakContent, VocabBlockContent, ExplanationBlockContent } from '@/data/lessons/types';
@@ -282,3 +283,4 @@ export function generateSimpleSortingGame(lesson: Lesson, categories: [string, s
     order: lesson.blocks.length + blockIndex
   };
 }
+

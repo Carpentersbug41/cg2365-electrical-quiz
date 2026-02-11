@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 10: Pedagogical Scoring
  * 
@@ -399,5 +401,7 @@ Return ONLY the JSON scoring object. No markdown, no additional text.`;
     return prompt;
   }
 }
+
+
 
 

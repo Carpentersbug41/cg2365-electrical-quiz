@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Validation Service
  * Validates generated lessons and quizzes for quality and correctness
@@ -962,3 +963,4 @@ export class ValidationService {
     return warnings;
   }
 }
+

@@ -115,7 +115,8 @@ export type MisconceptionCode =
   | 'PARTIAL_UNDERSTANDING'     // Partially correct but incomplete understanding
   | 'HEALTH_SAFETY'             // Health and safety misconception
   | 'CALCULATION_ERROR'         // General calculation error
-  | 'OTHER';                    // Other error
+  | 'OTHER'                     // Other error
+  | string;
 
 /**
  * Question Tag: For filtering and organization
@@ -194,7 +195,8 @@ export type QuestionTag =
   | 'legislation'      // Statutory regulations and legislation
   | 'methodology'      // Testing methodology and procedures
   | 'topology-confusion' // Topology confusion concepts
-  | 'identification';  // Component/circuit identification
+  | 'identification'   // Component/circuit identification
+  | string;
 
 /**
  * Answer Type: Determines marking strategy
@@ -294,6 +296,12 @@ export interface TaggedQuestion extends BaseQuestion {
    * Used when variantIds not available
    */
   variantTemplate?: QuestionVariantTemplate;
+
+  /**
+   * Compatibility escape hatch for legacy/generated question metadata fields.
+   * Keeps strict core fields while allowing additional non-breaking properties.
+   */
+  [key: string]: unknown;
 }
 
 /**

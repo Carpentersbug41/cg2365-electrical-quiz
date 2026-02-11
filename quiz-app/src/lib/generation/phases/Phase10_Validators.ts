@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 10 v2: Hard Validators
  * Strict validation gates to ensure structural integrity of rewritten lessons
@@ -456,3 +457,4 @@ export function validateCandidate(
     },
   };
 }
+

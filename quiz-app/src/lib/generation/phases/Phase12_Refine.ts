@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 12: Full-Lesson Refinement
  * 
@@ -376,4 +378,6 @@ Output the complete refined lesson JSON that fixes the pedagogical issues while 
     return prompt;
   }
 }
+
+
 

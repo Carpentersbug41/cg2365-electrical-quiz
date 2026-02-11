@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Diff Generator for Lesson Comparisons
  * 
@@ -421,3 +422,4 @@ export const DiffGenerator = {
   formatDiffAsText,
   hashLesson,
 };
+

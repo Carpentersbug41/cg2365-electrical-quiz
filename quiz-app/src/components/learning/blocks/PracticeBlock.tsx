@@ -168,7 +168,7 @@ export default function PracticeBlock({ block }: BlockProps) {
   };
 
   // Get textarea config based on answer type
-  const getTextareaConfig = (question: any) => {
+  const getTextareaConfig = (question: PracticeBlockContent['questions'][number]) => {
     if (question.answerType === 'long-text') {
       return {
         rows: 6,
@@ -417,4 +417,3 @@ export default function PracticeBlock({ block }: BlockProps) {
     </div>
   );
 }
-

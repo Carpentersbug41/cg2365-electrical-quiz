@@ -24,7 +24,7 @@
  * Test thoroughly before committing!
  */
 
-import { createLLMClientWithFallback } from '@/lib/llm/client';
+import { createLLMClientWithFallback, type GenerateContentInput } from '@/lib/llm/client';
 import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { LessonPromptBuilder } from './lessonPromptBuilder';
 import { QuizPromptBuilder } from './quizPromptBuilder';
@@ -55,6 +55,19 @@ import {
 } from './truncationDetector';
 import fs from 'fs';
 import path from 'path';
+
+type LessonGenerationResult = {
+  success: boolean;
+  content: Lesson;
+  error?: string;
+  warnings?: string[];
+  debugInfo?: DebugInfo;
+  phases?: unknown;
+  refinementMetadata?: unknown;
+  debugBundle?: unknown;
+  originalLesson?: Lesson;
+  rejectedRefinedLesson?: Lesson;
+};
 
 // Context preview helper for error debugging
 function generateContextPreview(content: string, position?: number): {
@@ -146,8 +159,8 @@ function estimateLessonComplexity(request: GenerationRequest): {
   const reasons: string[] = [];
   let score = 0;
 
-  // Count must-have topics (if provided in description or mustHave)
-  const topicText = `${request.topic} ${request.description || ''} ${request.mustHave || ''}`;
+  // Count must-have topics from current request fields.
+  const topicText = `${request.topic} ${request.mustHaveTopics || ''} ${request.additionalInstructions || ''}`;
   const topicCount = (topicText.match(/[,;]\s*/g) || []).length + 1;
   
   if (topicCount >= 7) {
@@ -322,7 +335,7 @@ OUTPUT FORMAT: Pure JSON only`;
   /**
    * Generate complete lesson JSON file with two-pass validation and repair
    */
-  async generateLesson(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[]; debugInfo?: DebugInfo }> {
+  async generateLesson(request: GenerationRequest): Promise<LessonGenerationResult> {
     // Feature flag: Use sequential generation if enabled
     const USE_SEQUENTIAL = process.env.USE_SEQUENTIAL_GENERATION === 'true';
     
@@ -538,7 +551,7 @@ OUTPUT FORMAT: Pure JSON only`;
    * Generate lesson using sequential pipeline (9 focused phases)
    * This is the NEW generation approach that breaks the monolithic prompt into phases
    */
-  async generateLessonSequential(request: GenerationRequest): Promise<{ success: boolean; content: Lesson; error?: string; warnings?: string[]; debugInfo?: DebugInfo }> {
+  async generateLessonSequential(request: GenerationRequest): Promise<LessonGenerationResult> {
     try {
       const lessonId = generateLessonId(request.unit, request.lessonId);
       
@@ -977,28 +990,30 @@ OUTPUT FORMAT: Pure JSON only`;
   /**
    * Build message array for LLM call, extracting additionalInstructions if present
    */
-  private buildMessageArray(userPrompt: string): string | Array<{ role: string; parts: Array<{ text: string }> }> {
+  private buildMessageArray(userPrompt: string): string | GenerateContentInput {
     // Check if userPrompt contains the ADDITIONAL CONTEXT pattern
     const additionalContextMatch = userPrompt.match(/^ADDITIONAL CONTEXT FROM USER:\n([\s\S]*?)\n\nASSISTANT ACKNOWLEDGMENT: ([\s\S]*?)\n\n([\s\S]*)$/);
     
     if (additionalContextMatch) {
       const [, additionalContext, acknowledgment, mainPrompt] = additionalContextMatch;
       
-      // Return message array format
-      return [
-        { 
-          role: 'user', 
-          parts: [{ text: `ADDITIONAL CONTEXT FROM USER:\n${additionalContext}` }] 
-        },
-        { 
-          role: 'model', 
-          parts: [{ text: acknowledgment }] 
-        },
-        { 
-          role: 'user', 
-          parts: [{ text: mainPrompt }] 
-        }
-      ];
+      // Return structured content format expected by LLM client wrapper.
+      return {
+        contents: [
+          {
+            role: 'user',
+            parts: [{ text: `ADDITIONAL CONTEXT FROM USER:\n${additionalContext}` }],
+          },
+          {
+            role: 'model',
+            parts: [{ text: acknowledgment }],
+          },
+          {
+            role: 'user',
+            parts: [{ text: mainPrompt }],
+          },
+        ],
+      };
     }
     
     // No additional instructions, return string as-is
@@ -1048,8 +1063,8 @@ OUTPUT FORMAT: Pure JSON only`;
           console.log(systemPrompt);
           console.log('---------- SYSTEM PROMPT (END) ----------\n');
           console.log('---------- CONVERSATION / MESSAGES (BEGIN) ----------');
-          if (Array.isArray(messages)) {
-            messages.forEach((msg: { role: string; parts: Array<{ text: string }> }, idx: number) => {
+          if (typeof messages !== 'string') {
+            messages.contents.forEach((msg, idx: number) => {
               const role = msg.role || 'unknown';
               const text = msg.parts?.[0]?.text ?? '';
               console.log(`\n=== Message ${idx + 1} (role: ${role}) ===`);

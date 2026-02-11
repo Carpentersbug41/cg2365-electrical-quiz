@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 /**
@@ -1287,7 +1288,7 @@ export default function GeneratePage() {
                   </div>
                   <div className="mt-3 pt-3 border-t border-gray-300 dark:border-gray-700">
                     <p className="text-xs text-gray-700 dark:text-gray-400">
-                      This shows the exact response from the server. If it's HTML, the API route crashed or returned a 404/500 error page.
+                      This shows the exact response from the server. If it&apos;s HTML, the API route crashed or returned a 404/500 error page.
                     </p>
                   </div>
                 </div>
@@ -1818,3 +1819,4 @@ export default function GeneratePage() {
     </div>
   );
 }
+

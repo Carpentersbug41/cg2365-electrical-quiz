@@ -72,6 +72,14 @@ export interface GenerateContentInput {
 export interface GenerateContentResult {
   response: {
     text(): string;
+    candidates?: Array<{
+      finishReason?: string;
+    }>;
+    usageMetadata?: {
+      candidatesTokenCount?: number;
+      promptTokenCount?: number;
+      totalTokenCount?: number;
+    };
   };
 }
 
@@ -127,18 +135,24 @@ class GoogleAIStudioModel implements GenerativeModelInterface {
   async generateContent(input: string | GenerateContentInput): Promise<GenerateContentResult> {
     if (typeof input === 'string') {
       const result = await this.model.generateContent(input);
+      const metadata = extractResponseMetadata(result.response);
       return {
         response: {
           text: () => result.response.text(),
+          candidates: metadata.candidates,
+          usageMetadata: metadata.usageMetadata,
         },
       };
     } else {
       // For structured input, convert to Google AI Studio format
       const prompt = input.contents.map(c => c.parts.map(p => p.text).join('')).join('\n');
       const result = await this.model.generateContent(prompt);
+      const metadata = extractResponseMetadata(result.response);
       return {
         response: {
           text: () => result.response.text(),
+          candidates: metadata.candidates,
+          usageMetadata: metadata.usageMetadata,
         },
       };
     }
@@ -218,6 +232,33 @@ function extractTextFromVertexAIResponse(response: { candidates?: Array<{ conten
 }
 
 /**
+ * Extract optional response metadata in a provider-agnostic shape.
+ */
+function extractResponseMetadata(response: unknown): Pick<GenerateContentResult['response'], 'candidates' | 'usageMetadata'> {
+  const raw = response as {
+    candidates?: Array<{ finishReason?: unknown }>;
+    usageMetadata?: {
+      candidatesTokenCount?: number;
+      promptTokenCount?: number;
+      totalTokenCount?: number;
+    };
+  };
+
+  return {
+    candidates: raw.candidates?.map((candidate) => ({
+      finishReason: candidate.finishReason !== undefined ? String(candidate.finishReason) : undefined,
+    })),
+    usageMetadata: raw.usageMetadata
+      ? {
+          candidatesTokenCount: raw.usageMetadata.candidatesTokenCount,
+          promptTokenCount: raw.usageMetadata.promptTokenCount,
+          totalTokenCount: raw.usageMetadata.totalTokenCount,
+        }
+      : undefined,
+  };
+}
+
+/**
  * Vertex AI Model Wrapper
  */
 class VertexAIModel implements GenerativeModelInterface {
@@ -246,10 +287,13 @@ class VertexAIModel implements GenerativeModelInterface {
         maxOutputTokens: typeof input === 'object' ? input.generationConfig?.maxOutputTokens : undefined,
       },
     });
+    const metadata = extractResponseMetadata(result.response);
 
     return {
       response: {
         text: () => extractTextFromVertexAIResponse(result.response),
+        candidates: metadata.candidates,
+        usageMetadata: metadata.usageMetadata,
       },
     };
   }
@@ -289,11 +333,14 @@ class VertexAIChat implements ChatInterface {
 
     // Add model response to history
     const responseText = extractTextFromVertexAIResponse(result.response);
+    const metadata = extractResponseMetadata(result.response);
     this.history.push({ role: 'model', parts: [{ text: responseText }] });
 
     return {
       response: {
         text: () => responseText,
+        candidates: metadata.candidates,
+        usageMetadata: metadata.usageMetadata,
       },
     };
   }

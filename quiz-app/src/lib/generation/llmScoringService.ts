@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * LLM-Based Lesson Scoring Service
  * 
@@ -506,3 +507,4 @@ Return ONLY the JSON scoring object. No markdown, no additional text.`;
     };
   }
 }
+

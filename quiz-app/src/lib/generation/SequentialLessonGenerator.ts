@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Sequential Lesson Generator
  * Orchestrates 9 specialized phases to generate high-quality lessons
@@ -1086,3 +1087,4 @@ export class SequentialLessonGenerator {
     };
   }
 }
+

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 /**
@@ -786,3 +787,4 @@ function generateMarkdownReport(bundle: GenerationDebugBundle): string {
   
   return lines.join('\n');
 }
+

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Base class for phase-specific prompt builders
  * Provides shared utilities and consistent interface for all phases
@@ -77,3 +78,4 @@ OUTPUT REQUIREMENTS:
     };
   }
 }
+

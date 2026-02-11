@@ -42,7 +42,10 @@ export async function POST(request: NextRequest) {
     const lessonData = JSON.parse(fs.readFileSync(lessonPath, 'utf-8'));
 
     // Create LLM client and generateWithRetry function for scoring
-    const model = await createLLMClientWithFallback(getGeminiModelWithDefault());
+    const client = await createLLMClientWithFallback();
+    const model = client.getGenerativeModel({
+      model: getGeminiModelWithDefault(),
+    });
     
     const generateWithRetry = async (
       systemPrompt: string,
@@ -76,12 +79,13 @@ export async function POST(request: NextRequest) {
       lessonId,
       score,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[score-lesson] Error:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to score lesson';
     return NextResponse.json(
       {
         success: false,
-        error: error.message || 'Failed to score lesson',
+        error: errorMessage,
       },
       { status: 500 }
     );

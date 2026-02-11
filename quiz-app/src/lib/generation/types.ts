@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Type definitions for lesson generation system
  * 
@@ -379,3 +380,4 @@ export interface GenerationDebugBundle {
   // Postmortem analysis
   postmortem?: PostmortemAnalysis;
 }
+

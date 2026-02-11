@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Lesson Schema Normalizer
  * 
@@ -120,7 +121,7 @@ export function normalizeLessonSchema(lesson: Lesson): NormalizationResult {
 
   // Fix 5: Ensure spaced-review questions use correct field name
   normalized.blocks.forEach((block, blockIdx) => {
-    if (block.type === 'spaced-review' && block.content?.questions) {
+    if (block.type === 'spaced-review' && Array.isArray(block.content?.questions)) {
       block.content.questions.forEach((q: any, qIdx: number) => {
         // Check for common typos
         if (q.attText || q.questiontext || q.question_text) {
@@ -182,7 +183,7 @@ export function validateNormalization(lesson: Lesson): string[] {
 
   // Check question IDs
   lesson.blocks.forEach((block, blockIdx) => {
-    if (block.content?.questions) {
+    if (Array.isArray(block.content?.questions)) {
       block.content.questions.forEach((q: any, qIdx: number) => {
         if (q.id && !q.id.startsWith(lesson.id + '-')) {
           issues.push(`Question ${blockIdx}.${qIdx} ID '${q.id}' missing lesson prefix`);
@@ -193,7 +194,7 @@ export function validateNormalization(lesson: Lesson): string[] {
 
   // Check expectedAnswer arrays
   lesson.blocks.forEach((block, blockIdx) => {
-    if (block.content?.questions) {
+    if (Array.isArray(block.content?.questions)) {
       block.content.questions.forEach((q: any, qIdx: number) => {
         if (q.expectedAnswer && !Array.isArray(q.expectedAnswer)) {
           issues.push(`Question ${blockIdx}.${qIdx} expectedAnswer is not an array`);
@@ -211,3 +212,4 @@ export function validateNormalization(lesson: Lesson): string[] {
 
   return issues;
 }
+

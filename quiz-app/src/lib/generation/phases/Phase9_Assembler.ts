@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 9: Assembler
  * Assembles all phase outputs into a complete lesson JSON
@@ -419,3 +420,4 @@ export class Phase9_Assembler {
     }
   }
 }
+

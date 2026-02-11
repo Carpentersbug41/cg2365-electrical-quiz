@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 /**
  * Phase 13: Rescore & Compare
  *
@@ -185,3 +186,4 @@ export class Phase13_Rescore {
     };
   }
 }
+

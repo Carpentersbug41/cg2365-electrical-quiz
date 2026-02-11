@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 /**
@@ -405,7 +406,7 @@ export default function TestGenerationPage() {
 
             {!score && !loading && (
               <div className="bg-white rounded-lg shadow p-12 text-center text-gray-500">
-                <p className="text-lg">Select a lesson and click "Score Lesson" to begin</p>
+                <p className="text-lg">Select a lesson and click &quot;Score Lesson&quot; to begin</p>
               </div>
             )}
 
@@ -421,3 +422,4 @@ export default function TestGenerationPage() {
     </div>
   );
 }
+

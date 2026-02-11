@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 11: Improvement Suggestions
  * 
@@ -368,7 +370,7 @@ SYLLABUS CONTEXT:
 Unit: ${syllabusContext.unit} - ${syllabusContext.unitTitle}
 Learning Outcome: ${syllabusContext.learningOutcome} - ${syllabusContext.loTitle}
 Assessment Criteria:
-${syllabusContext.assessmentCriteria.map((ac, i) => `  ${i + 1}. ${ac}`).join('\n')}
+${syllabusContext.assessmentCriteria.map((ac: string, i: number) => `  ${i + 1}. ${ac}`).join('\n')}
 ` : 'SYLLABUS CONTEXT: Not available';
     
     return `CREATE FIX PLANS FOR THESE PEDAGOGICAL ISSUES.
@@ -401,5 +403,7 @@ Remember:
 Return ONLY the JSON suggestions object. No markdown, no additional text.`;
   }
 }
+
+
 
 

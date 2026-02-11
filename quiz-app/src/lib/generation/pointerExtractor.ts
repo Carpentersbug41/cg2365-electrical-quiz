@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * JSON Pointer Extractor
  * 
@@ -285,3 +286,4 @@ export function isParentPointer(parent: string, child: string): boolean {
 export function getChildPointers(parent: string, allPointers: string[]): string[] {
   return allPointers.filter(p => p !== parent && p.startsWith(parent + '/'));
 }
+

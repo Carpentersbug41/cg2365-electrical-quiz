@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Phase 12: Implement Improvements
  * 
@@ -385,3 +386,4 @@ export class Phase12_Implement {
     return obj;
   }
 }
+

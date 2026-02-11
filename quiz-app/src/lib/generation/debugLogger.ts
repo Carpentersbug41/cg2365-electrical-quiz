@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Debug Logger for Phase 10-13 Pipeline
  * 
@@ -352,3 +353,4 @@ export class DebugLogger {
 
 // Global instance
 export const debugLogger = new DebugLogger();
+

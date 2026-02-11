@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Debug Bundle Collector (Legacy)
  * 
@@ -500,3 +501,4 @@ function generateMarkdownReport(bundle: GenerationDebugBundle): string {
 
   return lines.join('\n');
 }
+

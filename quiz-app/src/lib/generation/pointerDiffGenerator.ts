@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * JSON Pointer Diff Generator
  * 
@@ -264,3 +265,4 @@ export function filterSignificantChanges(diff: PointerDiff): PointerDiff {
     changes: significantChanges
   };
 }
+
