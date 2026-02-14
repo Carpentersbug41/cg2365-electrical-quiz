@@ -13,6 +13,8 @@ import {
   getModuleRunById,
   getRunSummary,
   getStageArtifact,
+  getSyllabusStructureByVersionAndUnit,
+  getSyllabusVersionById,
   listRunLessons,
   saveStageArtifact,
   updateModuleRun,
@@ -22,17 +24,17 @@ import { ModulePlannerError } from './errors';
 import {
   compareLoTag,
   deserializeRetrievedChunkRecords,
+  getAllUnits,
   getChunkById,
-  getChunksByIds,
+  getChunksForUnitLO,
   getLoNumber,
-  getUnitChunks,
   getUnitLos,
   normalizeLo,
-  parseAssessmentCriteriaFromContent,
   parseRangeFromContent,
   serializeRetrievedChunkRecords,
   toRetrievedChunkRecords,
 } from './syllabus';
+import { buildMasterLessonBlueprint, validateMasterLessonBlueprintContract } from './masterLessonBlueprint';
 import {
   validateCoverageTargets,
   validateLessonBlueprints,
@@ -55,6 +57,7 @@ import {
   ModuleRunRow,
   ModuleRunSummary,
   ModuleStage,
+  OrderingPreference,
   StageExecutionResult,
   StageReplayOptions,
   UnitStructure,
@@ -62,6 +65,9 @@ import {
   ValidationResult,
 } from './types';
 import { generateLessonFromBlueprint } from './adapter';
+import { createLLMClient } from '@/lib/llm/client';
+import { getGeminiApiKey, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
+import { cleanCodeBlocks, preprocessToValidJson, safeJsonParse } from '@/lib/generation/utils';
 
 type ValidationFn<T> = (value: unknown) => value is T;
 
@@ -75,23 +81,8 @@ const STAGE_STATUS: Record<ModuleStage, string> = {
   M6: 'm6-complete',
 };
 
-function requireRun(runId: string): ModuleRunRow {
-  const run = getModuleRunById(runId);
-  if (!run) {
-    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Run not found: ${runId}`, 404);
-  }
-  return run;
-}
-
-function requireRequest(run: ModuleRunRow): ModulePlanRequest {
-  if (!run.request_json) {
-    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'M0 Distill has not been completed.', 400);
-  }
-  return run.request_json;
-}
-
-function updateStageStatus(runId: string, stage: ModuleStage): void {
-  updateModuleRun(runId, { status: STAGE_STATUS[stage] });
+function normalizeTranscript(value: string): string {
+  return value.replace(/\r\n/g, '\n').trim();
 }
 
 function parseTypedArtifact<T>(
@@ -108,13 +99,28 @@ function parseTypedArtifact<T>(
   return row.artifact_json;
 }
 
-function getTypedStageArtifact<T>(runId: string, stage: ModuleStage, validator: ValidationFn<T>): T {
-  const artifact = getStageArtifact(runId, stage);
+async function getTypedStageArtifact<T>(runId: string, stage: ModuleStage, validator: ValidationFn<T>): Promise<T> {
+  const artifact = await getStageArtifact(runId, stage);
   return parseTypedArtifact(artifact, stage, validator);
 }
 
-function normalizeTranscript(value: string): string {
-  return value.replace(/\r\n/g, '\n').trim();
+async function requireRun(runId: string): Promise<ModuleRunRow> {
+  const run = await getModuleRunById(runId);
+  if (!run) {
+    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Run not found: ${runId}`, 404);
+  }
+  return run;
+}
+
+function requireRequest(run: ModuleRunRow): ModulePlanRequest {
+  if (!run.request_json) {
+    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'M0 Distill has not been completed.', 400);
+  }
+  return run.request_json;
+}
+
+async function updateStageStatus(runId: string, stage: ModuleStage): Promise<void> {
+  await updateModuleRun(runId, { status: STAGE_STATUS[stage] });
 }
 
 function sanitizeConstraints(input?: Partial<ModuleConstraints>): ModuleConstraints {
@@ -140,16 +146,16 @@ function sanitizeConstraints(input?: Partial<ModuleConstraints>): ModuleConstrai
   };
 }
 
-function resolveSelectedLos(unit: string, selectedLos?: string[]): string[] {
-  const available = getUnitLos(unit).map((lo) => normalizeLo(lo));
+async function resolveSelectedLos(versionId: string, unit: string, selectedLos?: string[]): Promise<string[]> {
+  const available = (await getUnitLos(versionId, unit)).map((lo) => normalizeLo(lo));
   if (available.length === 0) {
-    throw new ModulePlannerError('M1', 'RAG_EMPTY', `No syllabus chunks found for unit ${unit}.`, 400, { unit });
+    throw new ModulePlannerError('M1', 'RAG_EMPTY', `No syllabus structure found for unit ${unit}.`, 400, { unit });
   }
   const normalized = (selectedLos ?? []).map((lo) => normalizeLo(lo)).filter((lo) => lo.length > 0);
   if (normalized.length === 0) return [...available];
   const missing = normalized.filter((lo) => !available.includes(lo));
   if (missing.length > 0) {
-    throw new ModulePlannerError('M1', 'RAG_GROUNDEDNESS_FAIL', 'Selected LO is not present in retrieved unit content.', 400, {
+    throw new ModulePlannerError('M1', 'RAG_GROUNDEDNESS_FAIL', 'Selected LO is not present in unit structure.', 400, {
       missingLos: missing.join(', '),
     });
   }
@@ -162,10 +168,14 @@ function inferSelectedLosFromChat(chatTranscript: string): string[] {
   return Array.from(new Set(matches.map((m) => `LO${m[1]}`))).sort(compareLoTag);
 }
 
-function buildRequestHash(chatTranscript: string, request: ModulePlanRequest): string {
+function buildRequestHash(chatTranscript: string, request: ModulePlanRequest, contentHash: string | null): string {
   return stableHash({
     chatTranscript: normalizeTranscript(chatTranscript),
     request,
+    syllabus: {
+      syllabusVersionId: request.syllabusVersionId,
+      contentHash,
+    },
     config: {
       maxAcsPerLesson: MAX_ACS_PER_LESSON,
       ordering: request.orderingPreference,
@@ -175,26 +185,31 @@ function buildRequestHash(chatTranscript: string, request: ModulePlanRequest): s
   });
 }
 
-function stageReplay<T>(
+async function stageReplay<T>(
   run: ModuleRunRow,
   stage: ModuleStage,
   options: StageReplayOptions,
   validator: ValidationFn<T>
-): T | null {
+): Promise<T | null> {
   if (!options.replayFromArtifacts || !run.request_hash) return null;
-  const replayArtifact = findArtifactByRequestHash(run.request_hash, stage);
+  const replayArtifact = await findArtifactByRequestHash(run.request_hash, stage);
   if (!replayArtifact) return null;
-  const parsed = parseTypedArtifact(replayArtifact, stage, validator);
-  if (replayArtifact.module_run_id !== run.id) {
-    saveStageArtifact({
-      moduleRunId: run.id,
+  let parsed: T;
+  try {
+    parsed = parseTypedArtifact(replayArtifact, stage, validator);
+  } catch {
+    return null;
+  }
+  if (replayArtifact.run_id !== run.id) {
+    await saveStageArtifact({
+      runId: run.id,
       stage,
       artifactJson: parsed,
       retrievedChunkIds: replayArtifact.retrieved_chunk_ids,
       retrievedChunkText: replayArtifact.retrieved_chunk_text,
     });
   }
-  updateStageStatus(run.id, stage);
+  await updateStageStatus(run.id, stage);
   return parsed;
 }
 
@@ -253,20 +268,20 @@ function getMaxLessonsForLo(constraints: ModuleConstraints, lo: string): number 
   return constraints.defaultMaxLessonsPerLO;
 }
 
-function upsertArtifactAndStatus(
+async function upsertArtifactAndStatus(
   runId: string,
   stage: ModuleStage,
   artifact: unknown,
   options?: { retrievedChunkIds?: string[]; retrievedChunkText?: string }
-): void {
-  saveStageArtifact({
-    moduleRunId: runId,
+): Promise<void> {
+  await saveStageArtifact({
+    runId,
     stage,
     artifactJson: artifact,
     retrievedChunkIds: options?.retrievedChunkIds ?? [],
     retrievedChunkText: options?.retrievedChunkText ?? '',
   });
-  updateStageStatus(runId, stage);
+  await updateStageStatus(runId, stage);
 }
 
 function toUnitStructureValidator(value: unknown): value is UnitStructure {
@@ -288,67 +303,336 @@ function toBlueprintsValidator(value: unknown): value is LessonBlueprint[] {
 function toValidationResultValidator(value: unknown): value is ValidationResult {
   return validateValidationResult(value);
 }
+function getPlanValidationIssues(m2: CoverageTargets, m3: MinimalLessonPlan, constraints: ModuleConstraints): ValidationIssue[] {
+  const issues: ValidationIssue[] = [];
+  const expectedByLo = new Map<string, string[]>();
+  m2.los.forEach((lo) => expectedByLo.set(normalizeLo(lo.lo), lo.coverageTargets.map((target) => target.acKey)));
 
-export function createPlannerRun(input: { unit: string; chatTranscript: string }): ModuleRunRow {
+  for (const loPlan of m3.los) {
+    const lo = normalizeLo(loPlan.lo);
+    const expected = new Set(expectedByLo.get(lo) ?? []);
+    const assigned = loPlan.lessons.flatMap((lesson) => lesson.coversAcKeys);
+    const counts = new Map<string, number>();
+    assigned.forEach((key) => counts.set(key, (counts.get(key) ?? 0) + 1));
+
+    for (const key of assigned) {
+      if (!expected.has(key)) {
+        issues.push({
+          stage: 'M3',
+          severity: 'error',
+          code: 'UNKNOWN_AC_KEY',
+          message: 'Lesson references AC key outside canonical truth layer.',
+          meta: { lo, acKey: key },
+        });
+      }
+    }
+
+    for (const key of expected) {
+      if (!counts.has(key)) {
+        issues.push({
+          stage: 'M3',
+          severity: 'error',
+          code: 'MISSING_AC',
+          message: 'Canonical AC key is missing from lesson plan.',
+          meta: { lo, acKey: key },
+        });
+      }
+    }
+
+    for (const [acKey, count] of counts.entries()) {
+      if (count > 1) {
+        issues.push({
+          stage: 'M3',
+          severity: 'error',
+          code: 'DUPLICATE_AC_ASSIGNMENT',
+          message: 'AC key appears in more than one lesson.',
+          meta: { lo, acKey, count },
+        });
+      }
+    }
+
+    const cap = getMaxLessonsForLo(constraints, lo);
+    if (loPlan.lessonCount > cap) {
+      issues.push({
+        stage: 'M3',
+        severity: 'error',
+        code: 'EXCEEDS_MAX_LESSONS',
+        message: 'LO lesson count exceeds configured ceiling.',
+        meta: { lo, lessonCount: loPlan.lessonCount, cap },
+      });
+    }
+  }
+
+  return issues;
+}
+
+function buildDeterministicFallbackPlan(m2: CoverageTargets, request: ModulePlanRequest): MinimalLessonPlan {
+  return {
+    unit: m2.unit,
+    los: m2.los.map((loGroup) => {
+      const loTag = normalizeLo(loGroup.lo);
+      const loNumber = getLoNumber(loTag);
+      const grouped = chunkArray(loGroup.coverageTargets.map((t) => t.acKey), MAX_ACS_PER_LESSON);
+      const cap = getMaxLessonsForLo(request.constraints, loTag);
+      if (grouped.length > cap) {
+        throw new ModulePlannerError('M3', 'EXCEEDS_MAX_LESSONS', 'Fallback plan exceeds lesson cap.', 400, {
+          lo: loTag,
+          required: grouped.length,
+          cap,
+        });
+      }
+
+      return {
+        lo: loTag,
+        lessonCount: grouped.length,
+        lessons: grouped.map((keys, i) => ({
+          topicCode: `${request.unit}-${loNumber}${alphaIndex(i)}`,
+          title: loGroup.coverageTargets[Math.min(i, loGroup.coverageTargets.length - 1)]?.acText ?? `${loTag} Lesson ${i + 1}`,
+          coversAcKeys: keys,
+          whySplit: grouped.length > 1 ? 'Split to keep lesson scope manageable and deterministic.' : null,
+        })),
+      };
+    }),
+  };
+}
+
+async function callM3PlannerLLM(params: {
+  request: ModulePlanRequest;
+  coverage: CoverageTargets;
+  evidenceByLo: Record<string, string[]>;
+  repairErrors?: ValidationIssue[];
+  previousPlan?: MinimalLessonPlan;
+}): Promise<MinimalLessonPlan | null> {
+  if (!getGeminiApiKey()) return null;
+
+  let modelName: string;
+  try {
+    modelName = getGeminiModelWithDefault();
+  } catch {
+    return null;
+  }
+
+  const client = createLLMClient();
+  const model = client.getGenerativeModel({
+    model: modelName,
+    generationConfig: {
+      temperature: 0.1,
+      maxOutputTokens: 6000,
+      responseMimeType: 'application/json',
+    },
+    systemInstruction:
+      'You are Module Planner M3. You may only group and title lessons from canonical acKeys. Never invent or rename curriculum keys.',
+  });
+
+  const prompt = {
+    mode: params.repairErrors ? 'repair' : 'plan',
+    syllabusVersionId: params.request.syllabusVersionId,
+    unit: params.request.unit,
+    selectedLos: params.request.selectedLos,
+    constraints: params.request.constraints,
+    canonicalCoverage: params.coverage,
+    evidenceByLo: params.evidenceByLo,
+    previousPlan: params.previousPlan ?? null,
+    repairErrors: params.repairErrors ?? [],
+    hardRules: [
+      'Use only canonical acKeys in coversAcKeys.',
+      'Each canonical AC key must appear exactly once for each LO.',
+      'lessonCount must equal lessons.length for each LO.',
+      'Output strict JSON only.',
+    ],
+  };
+
+  const response = await model.generateContent(JSON.stringify(prompt));
+  const raw = cleanCodeBlocks(response.response.text());
+  const parsed = safeJsonParse<MinimalLessonPlan>(preprocessToValidJson(raw));
+  if (!parsed.success || !parsed.data) return null;
+  if (!validateMinimalLessonPlan(parsed.data)) return null;
+  return parsed.data;
+}
+
+async function runM3WithRepair(request: ModulePlanRequest, m2: CoverageTargets): Promise<MinimalLessonPlan> {
+  const evidenceByLo: Record<string, string[]> = {};
+  for (const lo of request.selectedLos) {
+    const loChunks = await getChunksForUnitLO(request.syllabusVersionId, request.unit, lo, 3);
+    evidenceByLo[normalizeLo(lo)] = loChunks.map((chunk) => chunk.text.slice(0, 1200));
+  }
+
+  const initialPlan =
+    (await callM3PlannerLLM({
+      request,
+      coverage: m2,
+      evidenceByLo,
+    })) ?? buildDeterministicFallbackPlan(m2, request);
+
+  const initialIssues = getPlanValidationIssues(m2, initialPlan, request.constraints);
+  if (initialIssues.length === 0) return initialPlan;
+
+  const repairedPlan = await callM3PlannerLLM({
+    request,
+    coverage: m2,
+    evidenceByLo,
+    repairErrors: initialIssues,
+    previousPlan: initialPlan,
+  });
+  if (!repairedPlan) {
+    throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 plan invalid and repair failed to return valid JSON.', 400);
+  }
+
+  const repairedIssues = getPlanValidationIssues(m2, repairedPlan, request.constraints);
+  if (repairedIssues.length > 0) {
+    throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 plan remained invalid after one repair attempt.', 400, {
+      errors: repairedIssues.map((issue) => issue.message).join(' | '),
+    });
+  }
+
+  return repairedPlan;
+}
+
+function pushIssue(issues: ValidationIssue[], issue: ValidationIssue): void {
+  issues.push(issue);
+}
+
+function validateM4AgainstM3AndM2(
+  issues: ValidationIssue[],
+  m2: CoverageTargets,
+  m3: MinimalLessonPlan,
+  m4: LessonBlueprint[]
+): void {
+  const m3AnchorSets = m3.los.flatMap((lo) =>
+    lo.lessons.map((lesson) => `${normalizeLo(lo.lo)}:${lesson.coversAcKeys.slice().sort().join('|')}`)
+  );
+  const m4AnchorSets = m4.map((blueprint) => `${normalizeLo(blueprint.lo)}:${blueprint.acAnchors.slice().sort().join('|')}`);
+  const m4AnchorSetValues = new Set(m4AnchorSets);
+  for (const set of m3AnchorSets) {
+    if (!m4AnchorSetValues.has(set)) {
+      pushIssue(issues, {
+        stage: 'M4',
+        severity: 'error',
+        code: 'DUPLICATE_LESSON',
+        message: 'Planned lesson does not map to a blueprint',
+        meta: { anchorSet: set },
+      });
+    }
+  }
+
+  const allExpectedAcs = new Set(m2.los.flatMap((lo) => lo.coverageTargets.map((target) => target.acKey)));
+  const counter = new Map<string, number>();
+  m4.forEach((blueprint) => {
+    blueprint.acAnchors.forEach((acKey) => {
+      counter.set(acKey, (counter.get(acKey) ?? 0) + 1);
+      if (!allExpectedAcs.has(acKey)) {
+        pushIssue(issues, {
+          stage: 'M4',
+          severity: 'error',
+          code: 'TOO_BROAD_SCOPE',
+          message: 'Blueprint includes AC outside coverage targets',
+          meta: { blueprintId: blueprint.id, acKey },
+        });
+      }
+    });
+  });
+  for (const [acKey, count] of counter.entries()) {
+    if (count > 1) {
+      pushIssue(issues, {
+        stage: 'M4',
+        severity: 'error',
+        code: 'OVERLAP_HIGH',
+        message: 'AC appears in multiple blueprints',
+        meta: { acKey, count },
+      });
+    }
+  }
+}
+export async function createPlannerRun(input: {
+  syllabusVersionId: string;
+  unit: string;
+  chatTranscript: string;
+}): Promise<ModuleRunRow> {
   const normalizedUnit = String(input.unit).trim();
+  const syllabusVersionId = String(input.syllabusVersionId ?? '').trim();
   if (!normalizedUnit) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'unit is required.', 400);
   }
-  if (getUnitLos(normalizedUnit).length === 0) {
-    throw new ModulePlannerError('M1', 'RAG_EMPTY', `Unknown unit: ${normalizedUnit}`, 400);
+  if (!syllabusVersionId) {
+    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'syllabusVersionId is required.', 400);
+  }
+  if (!(await getSyllabusVersionById(syllabusVersionId))) {
+    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Unknown syllabusVersionId ${syllabusVersionId}`, 400);
+  }
+  if ((await getUnitLos(syllabusVersionId, normalizedUnit)).length === 0) {
+    throw new ModulePlannerError('M1', 'RAG_EMPTY', `Unknown unit ${normalizedUnit} for syllabus version ${syllabusVersionId}`, 400);
   }
   return createModuleRun({
+    syllabusVersionId,
     unit: normalizedUnit,
+    selectedLos: [],
+    constraints: null,
+    orderingPreference: null,
+    notes: null,
     chatTranscript: normalizeTranscript(input.chatTranscript ?? ''),
   });
 }
 
-export function getPlannerRunSummary(runId: string): ModuleRunSummary {
-  const summary = getRunSummary(runId);
+export async function getPlannerRunSummary(runId: string): Promise<ModuleRunSummary> {
+  const summary = await getRunSummary(runId);
   if (!summary) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Run not found: ${runId}`, 404);
   }
   return summary;
 }
 
-export function runM0Distill(
+export async function runM0Distill(
   runId: string,
   input: DistillInput,
   options: StageReplayOptions = {}
-): StageExecutionResult<ModulePlanRequest> {
-  const run = requireRun(runId);
+): Promise<StageExecutionResult<ModulePlanRequest>> {
+  const run = await requireRun(runId);
   const transcript = normalizeTranscript(input.chatTranscript ?? run.chat_transcript ?? '');
   const unit = String(input.unit ?? run.unit).trim();
+  const syllabusVersionId = String(input.syllabusVersionId ?? run.syllabus_version_id ?? '').trim();
   if (!unit) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'Unit is required for distill stage.', 400);
+  }
+  if (!syllabusVersionId) {
+    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'syllabusVersionId is required for distill stage.', 400);
+  }
+
+  if (!(await getSyllabusVersionById(syllabusVersionId))) {
+    throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Unknown syllabusVersionId ${syllabusVersionId}`, 400);
   }
 
   if (input.requestJson) {
     if (!validateModulePlanRequest(input.requestJson)) {
       throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'requestJson is invalid for ModulePlanRequest schema.', 400);
     }
-    const requestHash = buildRequestHash(transcript, input.requestJson);
-    const updated = updateModuleRun(runId, {
+    const version = await getSyllabusVersionById(input.requestJson.syllabusVersionId);
+    const requestHash = buildRequestHash(transcript, input.requestJson, version?.content_hash ?? null);
+    const updated = await updateModuleRun(runId, {
+      syllabus_version_id: input.requestJson.syllabusVersionId,
       unit: input.requestJson.unit,
+      selected_los_json: input.requestJson.selectedLos,
+      constraints_json: input.requestJson.constraints,
+      ordering_preference: input.requestJson.orderingPreference,
+      notes: input.requestJson.notes,
       chat_transcript: transcript,
       request_json: input.requestJson,
       request_hash: requestHash,
     });
-    const replayed = stageReplay(updated, 'M0', options, validateModulePlanRequest);
-    if (replayed) {
-      return { stage: 'M0', replayed: true, artifact: replayed };
-    }
-    upsertArtifactAndStatus(runId, 'M0', input.requestJson);
+    const replayed = await stageReplay(updated, 'M0', options, validateModulePlanRequest);
+    if (replayed) return { stage: 'M0', replayed: true, artifact: replayed };
+    await upsertArtifactAndStatus(runId, 'M0', input.requestJson);
     return { stage: 'M0', replayed: false, artifact: input.requestJson };
   }
 
-  const selectedLos = resolveSelectedLos(
+  const selectedLos = await resolveSelectedLos(
+    syllabusVersionId,
     unit,
     input.selectedLos && input.selectedLos.length > 0 ? input.selectedLos : inferSelectedLosFromChat(transcript)
   );
   const constraints = sanitizeConstraints(input.constraints);
-  const orderingPreference = input.orderingPreference ?? DEFAULT_ORDERING_PREFERENCE;
+  const orderingPreference: OrderingPreference = input.orderingPreference ?? DEFAULT_ORDERING_PREFERENCE;
   const request: ModulePlanRequest = {
+    syllabusVersionId,
     unit,
     selectedLos,
     constraints,
@@ -358,140 +642,116 @@ export function runM0Distill(
         ? input.notes.trim()
         : transcript.slice(0, 600),
   };
+
   if (!validateModulePlanRequest(request)) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'Distill output failed schema validation.', 400);
   }
-  const requestHash = buildRequestHash(transcript, request);
-  const updated = updateModuleRun(runId, {
+
+  const version = await getSyllabusVersionById(request.syllabusVersionId);
+  const requestHash = buildRequestHash(transcript, request, version?.content_hash ?? null);
+  const updated = await updateModuleRun(runId, {
+    syllabus_version_id: request.syllabusVersionId,
     unit,
+    selected_los_json: selectedLos,
+    constraints_json: constraints,
+    ordering_preference: orderingPreference,
+    notes: request.notes,
     chat_transcript: transcript,
     request_json: request,
     request_hash: requestHash,
   });
-  const replayed = stageReplay(updated, 'M0', options, validateModulePlanRequest);
-  if (replayed) {
-    return { stage: 'M0', replayed: true, artifact: replayed };
-  }
-  upsertArtifactAndStatus(runId, 'M0', request);
+  const replayed = await stageReplay(updated, 'M0', options, validateModulePlanRequest);
+  if (replayed) return { stage: 'M0', replayed: true, artifact: replayed };
+
+  await upsertArtifactAndStatus(runId, 'M0', request);
   return { stage: 'M0', replayed: false, artifact: request };
 }
 
-export function runM1Analyze(
+export async function runM1Analyze(
   runId: string,
   options: StageReplayOptions = {}
-): StageExecutionResult<UnitStructure> {
-  const run = requireRun(runId);
+): Promise<StageExecutionResult<UnitStructure>> {
+  const run = await requireRun(runId);
   const request = requireRequest(run);
-  const replayed = stageReplay(run, 'M1', options, toUnitStructureValidator);
+  const replayed = await stageReplay(run, 'M1', options, toUnitStructureValidator);
   if (replayed) return { stage: 'M1', replayed: true, artifact: replayed };
 
-  const unitChunks = getUnitChunks(request.unit);
-  if (unitChunks.length === 0) {
-    throw new ModulePlannerError('M1', 'RAG_EMPTY', `No syllabus chunks found for unit ${request.unit}.`, 400, {
+  const structure = await getSyllabusStructureByVersionAndUnit(request.syllabusVersionId, request.unit);
+  if (!structure) {
+    throw new ModulePlannerError('M1', 'RAG_EMPTY', `No syllabus structure found for unit ${request.unit}.`, 400, {
       unit: request.unit,
     });
   }
 
-  const selectedLos = resolveSelectedLos(request.unit, request.selectedLos);
-  const selectedChunks = selectedLos.map((lo) => {
-    const found = unitChunks.find((chunk) => normalizeLo(chunk.learningOutcome) === lo);
-    if (!found) {
-      throw new ModulePlannerError('M1', 'RAG_GROUNDEDNESS_FAIL', 'Selected LO missing from retrieved unit chunks.', 400, {
-        lo,
-      });
-    }
-    return found;
-  });
-
+  const selectedLos = await resolveSelectedLos(request.syllabusVersionId, request.unit, request.selectedLos);
   const output: UnitStructure = {
     unit: request.unit,
-    unitTitle: selectedChunks[0]?.unitTitle ?? unitChunks[0].unitTitle,
-    los: selectedChunks.map((chunk) => ({
-      lo: normalizeLo(chunk.learningOutcome),
-      title: chunk.loTitle.trim(),
-      sourceChunkIds: [chunk.id],
-    })),
+    unitTitle: `Unit ${request.unit}`,
+    los: selectedLos.map((lo) => {
+      const loNumber = String(getLoNumber(lo));
+      const loStruct = structure.structure_json.los.find((entry) => entry.loNumber === loNumber);
+      return {
+        lo,
+        title: loStruct?.title ?? lo,
+        sourceChunkIds: [],
+      };
+    }),
   };
 
   if (!validateUnitStructure(output)) {
     throw new ModulePlannerError('M1', 'JSON_SCHEMA_FAIL', 'M1 output failed schema validation.', 400);
   }
 
-  const records = toRetrievedChunkRecords(selectedChunks);
-  upsertArtifactAndStatus(runId, 'M1', output, {
-    retrievedChunkIds: records.map((record) => record.id),
+  const chunkIds: string[] = [];
+  const records = [];
+  for (const lo of selectedLos) {
+    const chunks = await getChunksForUnitLO(request.syllabusVersionId, request.unit, lo, 3);
+    chunkIds.push(...chunks.map((chunk) => chunk.id));
+    records.push(...toRetrievedChunkRecords(chunks));
+  }
+  await upsertArtifactAndStatus(runId, 'M1', output, {
+    retrievedChunkIds: unique(chunkIds),
     retrievedChunkText: serializeRetrievedChunkRecords(records),
   });
   return { stage: 'M1', replayed: false, artifact: output };
 }
 
-export function runM2Coverage(
+export async function runM2Coverage(
   runId: string,
   options: StageReplayOptions = {}
-): StageExecutionResult<CoverageTargets> {
-  const run = requireRun(runId);
+): Promise<StageExecutionResult<CoverageTargets>> {
+  const run = await requireRun(runId);
   const request = requireRequest(run);
-  const replayed = stageReplay(run, 'M2', options, toCoverageTargetsValidator);
+  const replayed = await stageReplay(run, 'M2', options, toCoverageTargetsValidator);
   if (replayed) return { stage: 'M2', replayed: true, artifact: replayed };
 
-  const m1ArtifactRow = getStageArtifact(runId, 'M1');
-  const m1 = parseTypedArtifact(m1ArtifactRow, 'M1', toUnitStructureValidator);
-  const retrievedFromArtifact = deserializeRetrievedChunkRecords(m1ArtifactRow?.retrieved_chunk_text ?? '');
-  const records =
-    retrievedFromArtifact.length > 0
-      ? retrievedFromArtifact
-      : toRetrievedChunkRecords(getChunksByIds(m1ArtifactRow?.retrieved_chunk_ids ?? []));
-
-  if (records.length === 0) {
-    throw new ModulePlannerError('M2', 'RAG_EMPTY', 'M1 retrieved chunk payload is empty.', 400);
+  const structure = await getSyllabusStructureByVersionAndUnit(request.syllabusVersionId, request.unit);
+  if (!structure) {
+    throw new ModulePlannerError('M2', 'RAG_EMPTY', 'No structure row found for selected unit.', 400);
   }
-
-  const selectedLos = request.selectedLos.length > 0 ? request.selectedLos : m1.los.map((lo) => lo.lo);
+  const m1ArtifactRow = await getStageArtifact(runId, 'M1');
+  const records = deserializeRetrievedChunkRecords(m1ArtifactRow?.retrieved_chunk_text ?? '');
 
   const output: CoverageTargets = {
     unit: request.unit,
-    los: selectedLos.map((loTag) => {
-      const normalizedLo = normalizeLo(loTag);
-      const record = records.find((item) => normalizeLo(item.learningOutcome) === normalizedLo);
-      if (!record) {
-        throw new ModulePlannerError('M2', 'RAG_GROUNDEDNESS_FAIL', 'LO missing from replayed chunk payload.', 400, {
-          lo: normalizedLo,
-        });
+    los: request.selectedLos.map((loTag) => {
+      const lo = normalizeLo(loTag);
+      const loNumber = String(getLoNumber(lo));
+      const loStruct = structure.structure_json.los.find((entry) => entry.loNumber === loNumber);
+      if (!loStruct) {
+        throw new ModulePlannerError('M2', 'RAG_GROUNDEDNESS_FAIL', 'Selected LO missing from truth structure.', 400, { lo });
       }
-
-      const criteria = record.assessmentCriteria.length > 0 ? record.assessmentCriteria : parseAssessmentCriteriaFromContent(record.content);
-      if (criteria.length === 0) {
-        throw new ModulePlannerError('M2', 'MISSING_AC', 'No assessment criteria extracted for LO.', 400, {
-          lo: normalizedLo,
-        });
-      }
-
-      const loNumber = getLoNumber(normalizedLo);
-      const rangeText = parseRangeFromContent(record.content);
-      const coverageTargets: CoverageTarget[] = criteria.map((criterion, index) => {
-        const acText = criterion.replace(/\s+/g, ' ').trim();
-        const grounded = record.content.toLowerCase().includes(acText.toLowerCase().slice(0, Math.min(acText.length, 24)));
-        if (!grounded) {
-          throw new ModulePlannerError(
-            'M2',
-            'RAG_GROUNDEDNESS_FAIL',
-            'Extracted AC text is not grounded in retrieved chunk content.',
-            400,
-            { lo: normalizedLo, acText }
-          );
-        }
-        return {
-          acKey: `${request.unit}.LO${loNumber}.AC${loNumber}.${index + 1}`,
-          acText,
-          range: rangeText,
-          sourceChunkIds: [record.id],
-        };
-      });
-
-      return {
-        lo: normalizedLo,
-        coverageTargets,
-      };
+      const sourceChunkIds = records
+        .filter((record) => normalizeLo(record.learningOutcome) === lo)
+        .map((record) => record.id);
+      const sampleChunk = records.find((record) => normalizeLo(record.learningOutcome) === lo);
+      const coverageTargets: CoverageTarget[] = loStruct.acs.map((ac) => ({
+        acKey: ac.acKey,
+        acText: ac.text ?? ac.acKey,
+        range: sampleChunk ? parseRangeFromContent(sampleChunk.content) : null,
+        sourceChunkIds: unique(sourceChunkIds),
+      }));
+      return { lo, coverageTargets };
     }),
   };
 
@@ -499,117 +759,55 @@ export function runM2Coverage(
     throw new ModulePlannerError('M2', 'JSON_SCHEMA_FAIL', 'M2 output failed schema validation.', 400);
   }
 
-  upsertArtifactAndStatus(runId, 'M2', output, {
-    retrievedChunkIds: records.map((record) => record.id),
-    retrievedChunkText: serializeRetrievedChunkRecords(records),
+  await upsertArtifactAndStatus(runId, 'M2', output, {
+    retrievedChunkIds: m1ArtifactRow?.retrieved_chunk_ids ?? [],
+    retrievedChunkText: m1ArtifactRow?.retrieved_chunk_text ?? '',
   });
   return { stage: 'M2', replayed: false, artifact: output };
 }
-
-export function runM3Plan(
+export async function runM3Plan(
   runId: string,
   options: StageReplayOptions = {}
-): StageExecutionResult<MinimalLessonPlan> {
-  const run = requireRun(runId);
+): Promise<StageExecutionResult<MinimalLessonPlan>> {
+  const run = await requireRun(runId);
   const request = requireRequest(run);
-  const replayed = stageReplay(run, 'M3', options, toMinimalLessonPlanValidator);
+  const replayed = await stageReplay(run, 'M3', options, toMinimalLessonPlanValidator);
   if (replayed) return { stage: 'M3', replayed: true, artifact: replayed };
 
-  const m2 = getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
-
-  const output: MinimalLessonPlan = {
-    unit: m2.unit,
-    los: m2.los.map((loGroup) => {
-      const loTag = normalizeLo(loGroup.lo);
-      const loNumber = getLoNumber(loTag);
-      const allAcKeys = loGroup.coverageTargets.map((target) => target.acKey);
-      const duplicates = allAcKeys.filter((key, index) => allAcKeys.indexOf(key) !== index);
-      if (duplicates.length > 0) {
-        throw new ModulePlannerError('M3', 'DUPLICATE_AC_ASSIGNMENT', 'Duplicate ACs detected in M2 payload.', 400, {
-          lo: loTag,
-        });
-      }
-
-      const grouped = chunkArray(allAcKeys, MAX_ACS_PER_LESSON);
-      const maxLessons = getMaxLessonsForLo(request.constraints, loTag);
-      if (grouped.length > maxLessons) {
-        throw new ModulePlannerError(
-          'M3',
-          'EXCEEDS_MAX_LESSONS',
-          'Minimal lesson split exceeds configured cap for LO.',
-          400,
-          { lo: loTag, required: grouped.length, cap: maxLessons }
-        );
-      }
-
-      const lessons = grouped.map((group, index) => {
-        const topicCode = `${loNumber}${alphaIndex(index)}`;
-        const titleBase = loGroup.coverageTargets[0]?.acText ?? `${loTag} coverage`;
-        const title =
-          grouped.length === 1
-            ? `${titleBase}`
-            : `${titleBase} (Part ${index + 1})`;
-        return {
-          topicCode,
-          title,
-          coversAcKeys: group,
-          whySplit:
-            grouped.length > 1 && index > 0
-              ? 'Split to enforce anti-bloat cap (max 4 ACs per lesson).'
-              : null,
-        };
-      });
-
-      return {
-        lo: loTag,
-        lessonCount: lessons.length,
-        lessons,
-      };
-    }),
-  };
-
+  const m2 = await getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
+  const output = await runM3WithRepair(request, m2);
   if (!validateMinimalLessonPlan(output)) {
     throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 output failed schema validation.', 400);
   }
-
-  const expected = new Set(m2.los.flatMap((lo) => lo.coverageTargets.map((target) => target.acKey)));
-  const assigned = output.los.flatMap((lo) => lo.lessons.flatMap((lesson) => lesson.coversAcKeys));
-  const assignedSet = new Set(assigned);
-  if (assigned.length !== assignedSet.size) {
-    throw new ModulePlannerError('M3', 'DUPLICATE_AC_ASSIGNMENT', 'M3 assigned at least one AC more than once.', 400);
+  const issues = getPlanValidationIssues(m2, output, request.constraints);
+  if (issues.some((issue) => issue.severity === 'error')) {
+    throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 deterministic validation failed.', 400, {
+      errors: issues.map((issue) => issue.message).join(' | '),
+    });
   }
-  for (const key of expected) {
-    if (!assignedSet.has(key)) {
-      throw new ModulePlannerError('M3', 'MISSING_AC', 'M3 omitted an AC from M2.', 400, { acKey: key });
-    }
-  }
-
-  upsertArtifactAndStatus(runId, 'M3', output);
+  await upsertArtifactAndStatus(runId, 'M3', output);
   return { stage: 'M3', replayed: false, artifact: output };
 }
 
-export function runM4Blueprints(
+export async function runM4Blueprints(
   runId: string,
   options: StageReplayOptions = {}
-): StageExecutionResult<LessonBlueprint[]> {
-  const run = requireRun(runId);
+): Promise<StageExecutionResult<LessonBlueprint[]>> {
+  const run = await requireRun(runId);
   const request = requireRequest(run);
-  const replayed = stageReplay(run, 'M4', options, toBlueprintsValidator);
+  const replayed = await stageReplay(run, 'M4', options, toBlueprintsValidator);
   if (replayed) return { stage: 'M4', replayed: true, artifact: replayed };
 
-  const m2 = getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
-  const m3 = getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
+  const m2 = await getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
+  const m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
+
   const acTextByKey = new Map<string, string>();
-  m2.los.forEach((lo) => {
-    lo.coverageTargets.forEach((target) => {
-      acTextByKey.set(target.acKey, target.acText);
-    });
-  });
+  m2.los.forEach((lo) => lo.coverageTargets.forEach((target) => acTextByKey.set(target.acKey, target.acText)));
 
   const planningRows = m3.los
     .flatMap((lo) =>
       lo.lessons.map((lesson) => ({
-        lo: lo.lo,
+        lo: normalizeLo(lo.lo),
         topicCode: lesson.topicCode,
         title: lesson.title,
         coversAcKeys: lesson.coversAcKeys,
@@ -626,6 +824,16 @@ export function runM4Blueprints(
 
   const topicCodeCounter = new Map<string, number>();
   const blueprints: LessonBlueprint[] = [];
+  const allPlannedLessons = m3.los.flatMap((lo) =>
+    lo.lessons.map((lesson) => ({
+      lo: normalizeLo(lo.lo),
+      topicCode: lesson.topicCode,
+      lessonId: `${request.unit}-${lesson.topicCode}`,
+      title: lesson.title,
+      coversAcKeys: lesson.coversAcKeys,
+    }))
+  );
+
   for (const row of planningRows) {
     const loNumber = getLoNumber(row.lo);
     const current = (topicCodeCounter.get(row.topicCode) ?? 0) + 1;
@@ -633,189 +841,123 @@ export function runM4Blueprints(
     const id = `${request.unit}-${row.topicCode}${current}`;
     const acTexts = row.coversAcKeys.map((key) => acTextByKey.get(key) ?? '').filter((text) => text.length > 0);
     const mustHaveTopics = deriveMustHaveTopics(acTexts);
-    const topic = row.title;
-    const blueprint: LessonBlueprint = {
-      id,
+    const outOfScope = allPlannedLessons
+      .filter((planned) => planned.lo === row.lo && planned.topicCode !== row.topicCode)
+      .map((planned) => ({ topic: planned.title, taughtInLessonId: planned.lessonId }));
+    const rangeItems = row.coversAcKeys
+      .map((acKey) => {
+        for (const loGroup of m2.los) {
+          const target = loGroup.coverageTargets.find((item) => item.acKey === acKey);
+          if (target) return target.range ?? '';
+        }
+        return '';
+      })
+      .filter((item) => item.trim().length > 0);
+
+    const masterBlueprint = buildMasterLessonBlueprint({
+      lessonId: id,
       unit: request.unit,
       lo: `LO${loNumber}`,
-      acAnchors: [...row.coversAcKeys],
-      topic,
-      mustHaveTopics,
-      level: request.constraints.level,
-      layout: chooseLayout(topic, acTexts),
+      topic: row.title,
+      layout: chooseLayout(row.title, acTexts),
+      audience: request.constraints.audience,
       prerequisites:
         request.orderingPreference === 'foundation-first' && blueprints.length > 0
           ? [blueprints[blueprints.length - 1].id]
           : [],
-    };
-    blueprints.push(blueprint);
-  }
+      acAnchors: [...row.coversAcKeys],
+      acTexts,
+      rangeItems,
+      inScopeTopics: mustHaveTopics.length > 0 ? mustHaveTopics : acTexts,
+      outOfScopeTopics: outOfScope,
+    });
 
-  const acCorpus = m2.los
-    .flatMap((lo) => lo.coverageTargets.map((target) => target.acText.toLowerCase()))
-    .join(' ');
-  for (const blueprint of blueprints) {
-    for (const topic of blueprint.mustHaveTopics) {
-      if (!topic) continue;
-      const candidate = topic.toLowerCase().replace(/\.\.\.$/, '');
-      if (!acCorpus.includes(candidate.slice(0, Math.min(18, candidate.length)))) {
-        throw new ModulePlannerError('M4', 'TOO_BROAD_SCOPE', 'Blueprint topic escaped AC scope.', 400, {
-          blueprintId: blueprint.id,
-          topic,
-        });
-      }
-    }
+    blueprints.push({
+      id,
+      unit: request.unit,
+      lo: `LO${loNumber}`,
+      acAnchors: [...row.coversAcKeys],
+      topic: row.title,
+      mustHaveTopics,
+      level: request.constraints.level,
+      layout: masterBlueprint.identity.layout,
+      prerequisites: masterBlueprint.identity.prerequisites,
+      masterBlueprint,
+    });
   }
 
   if (!validateLessonBlueprints(blueprints)) {
     throw new ModulePlannerError('M4', 'JSON_SCHEMA_FAIL', 'M4 output failed schema validation.', 400);
   }
 
-  upsertArtifactAndStatus(runId, 'M4', blueprints);
+  await upsertArtifactAndStatus(runId, 'M4', blueprints);
   return { stage: 'M4', replayed: false, artifact: blueprints };
 }
 
-function pushIssue(
-  issues: ValidationIssue[],
-  issue: ValidationIssue
-): void {
-  issues.push(issue);
-}
-
-export function runM5Validate(
+export async function runM5Validate(
   runId: string,
   options: StageReplayOptions = {}
-): StageExecutionResult<ValidationResult> {
-  const run = requireRun(runId);
+): Promise<StageExecutionResult<ValidationResult>> {
+  const run = await requireRun(runId);
   const request = requireRequest(run);
-  const replayed = stageReplay(run, 'M5', options, toValidationResultValidator);
+  const replayed = await stageReplay(run, 'M5', options, toValidationResultValidator);
   if (replayed) return { stage: 'M5', replayed: true, artifact: replayed };
 
-  const m2 = getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
-  const m3 = getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
-  const m4 = getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
-  const issues: ValidationIssue[] = [];
+  const m2 = await getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
+  let m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
+  let m4 = await getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
 
-  const expectedByLo = new Map<string, string[]>();
-  m2.los.forEach((lo) => {
-    expectedByLo.set(lo.lo, lo.coverageTargets.map((target) => target.acKey));
-  });
+  let issues: ValidationIssue[] = [];
+  issues.push(...getPlanValidationIssues(m2, m3, request.constraints));
 
-  const assignedByLo = new Map<string, string[]>();
-  m3.los.forEach((lo) => {
-    const keys = lo.lessons.flatMap((lesson) => lesson.coversAcKeys);
-    assignedByLo.set(lo.lo, keys);
-  });
-
-  for (const [lo, expectedKeys] of expectedByLo.entries()) {
-    const assigned = assignedByLo.get(lo) ?? [];
-    const counts = new Map<string, number>();
-    assigned.forEach((key) => counts.set(key, (counts.get(key) ?? 0) + 1));
-    for (const expectedKey of expectedKeys) {
-      if (!counts.has(expectedKey)) {
-        pushIssue(issues, {
-          stage: 'M3',
-          severity: 'error',
-          code: 'MISSING_AC',
-          message: 'AC not covered',
-          meta: { acKey: expectedKey },
-        });
-      }
-    }
-    for (const [acKey, count] of counts.entries()) {
-      if (count > 1) {
-        pushIssue(issues, {
-          stage: 'M3',
-          severity: 'error',
-          code: 'DUPLICATE_AC_ASSIGNMENT',
-          message: 'AC assigned to multiple lessons',
-          meta: { acKey, count },
-        });
-      }
-    }
-  }
-
-  for (const loPlan of m3.los) {
-    const cap = getMaxLessonsForLo(request.constraints, loPlan.lo);
-    if (loPlan.lessonCount > cap) {
-      pushIssue(issues, {
-        stage: 'M3',
+  // Single automatic repair loop: re-run M3 (with its internal one-pass repair) and rebuild M4 once.
+  if (issues.some((issue) => issue.severity === 'error')) {
+    try {
+      await runM3Plan(runId, { replayFromArtifacts: false });
+      await runM4Blueprints(runId, { replayFromArtifacts: false });
+      m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
+      m4 = await getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
+      issues = getPlanValidationIssues(m2, m3, request.constraints);
+    } catch (repairError) {
+      issues.push({
+        stage: 'M5',
         severity: 'error',
-        code: 'EXCEEDS_MAX_LESSONS',
-        message: 'Lesson count exceeds configured cap',
-        meta: { lo: loPlan.lo, lessonCount: loPlan.lessonCount, cap },
+        code: 'JSON_SCHEMA_FAIL',
+        message: repairError instanceof Error ? repairError.message : 'Automatic repair failed.',
       });
     }
   }
 
-  const m3AnchorSets = m3.los.flatMap((lo) =>
-    lo.lessons.map((lesson) => `${lo.lo}:${lesson.coversAcKeys.slice().sort().join('|')}`)
-  );
-  const m4AnchorSets = m4.map((blueprint) => `${blueprint.lo}:${blueprint.acAnchors.slice().sort().join('|')}`);
-  const m4AnchorSetValues = new Set(m4AnchorSets);
+  validateM4AgainstM3AndM2(issues, m2, m3, m4);
 
-  for (const set of m3AnchorSets) {
-    if (!m4AnchorSetValues.has(set)) {
+  m4.forEach((blueprint) => {
+    if (!blueprint.masterBlueprint) {
       pushIssue(issues, {
         stage: 'M4',
         severity: 'error',
-        code: 'DUPLICATE_LESSON',
-        message: 'Planned lesson does not map to a blueprint',
-        meta: { anchorSet: set },
+        code: 'BLUEPRINT_MISSING_SECTION',
+        message: 'masterBlueprint section is missing',
+        meta: { blueprintId: blueprint.id },
       });
+      return;
     }
-  }
-
-  const allExpectedAcs = new Set(m2.los.flatMap((lo) => lo.coverageTargets.map((target) => target.acKey)));
-  const blueprintAcCounter = new Map<string, number>();
-  m4.forEach((blueprint) => {
-    blueprint.acAnchors.forEach((acKey) => {
-      blueprintAcCounter.set(acKey, (blueprintAcCounter.get(acKey) ?? 0) + 1);
-      if (!allExpectedAcs.has(acKey)) {
-        pushIssue(issues, {
-          stage: 'M4',
-          severity: 'error',
-          code: 'TOO_BROAD_SCOPE',
-          message: 'Blueprint includes AC outside M2 coverage targets',
-          meta: { blueprintId: blueprint.id, acKey },
-        });
-      }
-    });
-  });
-  for (const [acKey, count] of blueprintAcCounter.entries()) {
-    if (count > 1) {
+    const contractErrors = validateMasterLessonBlueprintContract(blueprint.masterBlueprint, blueprint.id);
+    for (const contractError of contractErrors) {
+      const code = contractError.includes('order')
+        ? 'BLUEPRINT_BLOCK_ORDER_INVALID'
+        : contractError.includes('ID')
+          ? 'BLUEPRINT_ID_PATTERN_INVALID'
+          : contractError.includes('anchor')
+            ? 'BLUEPRINT_ANCHOR_MISMATCH'
+            : 'BLUEPRINT_MISSING_SECTION';
       pushIssue(issues, {
-        stage: 'M4',
+        stage: 'M5',
         severity: 'error',
-        code: 'OVERLAP_HIGH',
-        message: 'AC appears in multiple blueprints',
-        meta: { acKey, count },
+        code,
+        message: contractError,
+        meta: { blueprintId: blueprint.id },
       });
     }
-  }
-
-  const acTextCorpusByKey = new Map<string, string>();
-  m2.los.forEach((lo) => {
-    lo.coverageTargets.forEach((target) => acTextCorpusByKey.set(target.acKey, target.acText.toLowerCase()));
-  });
-
-  m4.forEach((blueprint) => {
-    const localCorpus = blueprint.acAnchors
-      .map((acKey) => acTextCorpusByKey.get(acKey) ?? '')
-      .join(' ');
-    blueprint.mustHaveTopics.forEach((topic) => {
-      const normalizedTopic = topic.toLowerCase().replace(/\.\.\.$/, '');
-      if (!normalizedTopic) return;
-      if (!localCorpus.includes(normalizedTopic.slice(0, Math.min(18, normalizedTopic.length)))) {
-        pushIssue(issues, {
-          stage: 'M4',
-          severity: 'error',
-          code: 'TOO_BROAD_SCOPE',
-          message: 'mustHaveTopics contains content not supported by AC text',
-          meta: { blueprintId: blueprint.id, topic },
-        });
-      }
-    });
   });
 
   const output: ValidationResult = {
@@ -826,20 +968,16 @@ export function runM5Validate(
   if (!validateValidationResult(output)) {
     throw new ModulePlannerError('M5', 'JSON_SCHEMA_FAIL', 'M5 output failed schema validation.', 400);
   }
-
-  upsertArtifactAndStatus(runId, 'M5', output);
+  await upsertArtifactAndStatus(runId, 'M5', output);
   return { stage: 'M5', replayed: false, artifact: output };
 }
-
 async function runBlueprintGenerationQueue(
   runId: string,
   blueprints: LessonBlueprint[],
   options: { apiBaseUrl: string }
 ): Promise<void> {
-  const existingRows = listRunLessons(runId);
-  const successfulBlueprints = new Set(
-    existingRows.filter((row) => row.status === 'success').map((row) => row.blueprint_id)
-  );
+  const existingRows = await listRunLessons(runId);
+  const successfulBlueprints = new Set(existingRows.filter((row) => row.status === 'success').map((row) => row.blueprint_id));
   const remaining = blueprints.filter((blueprint) => !successfulBlueprints.has(blueprint.id));
   if (remaining.length === 0) return;
 
@@ -851,25 +989,26 @@ async function runBlueprintGenerationQueue(
     while (cursor < remaining.length && !abortError) {
       const index = cursor++;
       const blueprint = remaining[index];
-      upsertRunLesson({
-        moduleRunId: runId,
+      await upsertRunLesson({
+        runId,
         blueprintId: blueprint.id,
         lessonId: blueprint.id,
         status: 'pending',
       });
       try {
         const result = await generateLessonFromBlueprint(blueprint, { apiBaseUrl: options.apiBaseUrl });
-        upsertRunLesson({
-          moduleRunId: runId,
+        await upsertRunLesson({
+          runId,
           blueprintId: blueprint.id,
           lessonId: result.lessonId,
           status: 'success',
           error: null,
+          lessonJson: result.response,
         });
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown generation failure';
-        upsertRunLesson({
-          moduleRunId: runId,
+        await upsertRunLesson({
+          runId,
           blueprintId: blueprint.id,
           lessonId: blueprint.id,
           status: 'failed',
@@ -889,8 +1028,8 @@ export async function runM6Generate(
   runId: string,
   options: StageReplayOptions & { apiBaseUrl: string }
 ): Promise<StageExecutionResult<GenerateSummary>> {
-  const run = requireRun(runId);
-  const replayed = stageReplay(run, 'M6', options, (value): value is GenerateSummary => {
+  const run = await requireRun(runId);
+  const replayed = await stageReplay(run, 'M6', options, (value): value is GenerateSummary => {
     if (!value || typeof value !== 'object') return false;
     const obj = value as Record<string, unknown>;
     return (
@@ -902,17 +1041,17 @@ export async function runM6Generate(
   });
   if (replayed) return { stage: 'M6', replayed: true, artifact: replayed };
 
-  const validation = getTypedStageArtifact(runId, 'M5', toValidationResultValidator);
+  const validation = await getTypedStageArtifact(runId, 'M5', toValidationResultValidator);
   if (!validation.valid) {
     throw new ModulePlannerError('M6', 'JSON_SCHEMA_FAIL', 'M5 validation failed. Generation cannot proceed.', 400);
   }
-  const blueprints = getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
+  const blueprints = await getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
 
-  updateModuleRun(runId, { status: 'm6-running' });
+  await updateModuleRun(runId, { status: 'm6-running' });
   try {
     await runBlueprintGenerationQueue(runId, blueprints, { apiBaseUrl: options.apiBaseUrl });
   } catch (error) {
-    updateModuleRun(runId, { status: 'failed' });
+    await updateModuleRun(runId, { status: 'failed' });
     throw new ModulePlannerError(
       'M6',
       'JSON_SCHEMA_FAIL',
@@ -921,38 +1060,38 @@ export async function runM6Generate(
     );
   }
 
-  const lessons = listRunLessons(runId);
+  const lessons = await listRunLessons(runId);
   const summary: GenerateSummary = {
     generated: lessons.filter((row) => row.status === 'success').length,
     failed: lessons.filter((row) => row.status === 'failed').length,
     lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
   };
-  upsertArtifactAndStatus(runId, 'M6', summary);
+  await upsertArtifactAndStatus(runId, 'M6', summary);
   if (summary.failed > 0) {
-    updateModuleRun(runId, { status: 'failed' });
+    await updateModuleRun(runId, { status: 'failed' });
   }
   return { stage: 'M6', replayed: false, artifact: summary };
 }
 
-export function listModulePlannerUnits(): string[] {
-  const unitSet = new Set<string>();
-  ['201', '202', '203', '204', '210', '305'].forEach((u) => {
-    if (getUnitLos(u).length > 0) unitSet.add(u);
-  });
-  return Array.from(unitSet).sort();
+export async function listModulePlannerUnits(syllabusVersionId: string): Promise<string[]> {
+  return getAllUnits(syllabusVersionId);
 }
 
-export function getReplayableArtifacts(runId: string): Record<ModuleStage, boolean> {
-  const run = requireRun(runId);
+export async function listModulePlannerUnitLos(syllabusVersionId: string, unit: string): Promise<string[]> {
+  return getUnitLos(syllabusVersionId, unit);
+}
+
+export async function getReplayableArtifacts(runId: string): Promise<Record<ModuleStage, boolean>> {
+  const run = await requireRun(runId);
   const map: Partial<Record<ModuleStage, boolean>> = {};
-  (['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'] as ModuleStage[]).forEach((stage) => {
-    map[stage] = Boolean(run.request_hash && findArtifactByRequestHash(run.request_hash, stage));
-  });
+  for (const stage of ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'] as ModuleStage[]) {
+    map[stage] = Boolean(run.request_hash && (await findArtifactByRequestHash(run.request_hash, stage)));
+  }
   return map as Record<ModuleStage, boolean>;
 }
 
-export function ensureM1RagChunkReuse(runId: string): void {
-  const m1Artifact = getStageArtifact(runId, 'M1');
+export async function ensureM1RagChunkReuse(runId: string): Promise<void> {
+  const m1Artifact = await getStageArtifact(runId, 'M1');
   if (!m1Artifact) {
     throw new ModulePlannerError('M1', 'RAG_EMPTY', 'M1 artifact is missing.', 400);
   }
@@ -961,11 +1100,11 @@ export function ensureM1RagChunkReuse(runId: string): void {
   }
 }
 
-export function ensureM2UsesStoredChunks(runId: string): void {
-  ensureM1RagChunkReuse(runId);
-  const m2Artifact = getStageArtifact(runId, 'M2');
+export async function ensureM2UsesStoredChunks(runId: string): Promise<void> {
+  await ensureM1RagChunkReuse(runId);
+  const m2Artifact = await getStageArtifact(runId, 'M2');
   if (!m2Artifact) return;
-  const m1Artifact = getStageArtifact(runId, 'M1');
+  const m1Artifact = await getStageArtifact(runId, 'M1');
   const m1ChunkIds = (m1Artifact?.retrieved_chunk_ids ?? []).slice().sort().join(',');
   const m2ChunkIds = (m2Artifact.retrieved_chunk_ids ?? []).slice().sort().join(',');
   if (m1ChunkIds !== m2ChunkIds) {
@@ -973,10 +1112,10 @@ export function ensureM2UsesStoredChunks(runId: string): void {
   }
 }
 
-export function lookupChunkByIdOrThrow(chunkId: string): string {
-  const chunk = getChunkById(chunkId);
+export async function lookupChunkByIdOrThrow(syllabusVersionId: string, chunkId: string): Promise<string> {
+  const chunk = await getChunkById(syllabusVersionId, chunkId);
   if (!chunk) {
     throw new ModulePlannerError('M1', 'RAG_EMPTY', `Chunk ${chunkId} not found.`, 400);
   }
-  return chunk.content;
+  return chunk.text;
 }
