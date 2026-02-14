@@ -318,7 +318,6 @@ export class FileIntegrator {
   private updateLessonPage(filePath: string, request: GenerationRequest, lessonFilename: string): void {
     let content = fs.readFileSync(filePath, 'utf-8');
 
-    const fullLessonId = generateLessonId(request.unit, request.lessonId);
     const variableName = generateVariableName(request.unit, request.lessonId);
     
     // Ensure .json extension is included in import path
@@ -363,7 +362,6 @@ export class FileIntegrator {
   private updateLearnPage(filePath: string, request: GenerationRequest, lessonFilename: string): void {
     let content = fs.readFileSync(filePath, 'utf-8');
 
-    const fullLessonId = generateLessonId(request.unit, request.lessonId);
     const variableName = generateVariableName(request.unit, request.lessonId);
     
     // Ensure .json extension is included in import path
@@ -390,12 +388,28 @@ export class FileIntegrator {
     const variableAlreadyInArray = arrayEntryRegex.test(content);
 
     if (!variableAlreadyInArray) {
-      // Add to LESSONS array
-      const arrayMarker = 'const LESSONS = [';
-      const arrayIndex = content.indexOf(arrayMarker);
-      if (arrayIndex !== -1) {
-        const insertIndex = arrayIndex + arrayMarker.length;
-        content = content.slice(0, insertIndex) + '\n' + arrayEntry + content.slice(insertIndex);
+      // Add to lesson source array (supports old/new page structures).
+      const arrayMarkers = [
+        'const RAW_LESSONS = [',
+        'const LESSONS = [',
+      ];
+
+      let inserted = false;
+      for (const marker of arrayMarkers) {
+        const arrayIndex = content.indexOf(marker);
+        if (arrayIndex !== -1) {
+          const insertIndex = arrayIndex + marker.length;
+          content = content.slice(0, insertIndex) + '\n' + arrayEntry + content.slice(insertIndex);
+          inserted = true;
+          break;
+        }
+      }
+
+      if (!inserted) {
+        throw new Error(
+          '[FileIntegrator] Could not find lessons array marker in learn/page.tsx. ' +
+          'Expected one of: const RAW_LESSONS = [, const LESSONS = ['
+        );
       }
     }
 

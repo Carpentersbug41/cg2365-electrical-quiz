@@ -3,6 +3,14 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex flex-col items-center justify-center p-8 transition-colors duration-300">
+      <div className="w-full max-w-7xl flex justify-end mb-6">
+        <Link
+          href="/auth/sign-in"
+          className="px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-white dark:hover:bg-slate-700 transition-colors"
+        >
+          Sign in
+        </Link>
+      </div>
       <h1 className="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-700 dark:from-cyan-400 dark:to-blue-600 mb-4 text-center">
         Electrical Learning Hub
       </h1>

@@ -1070,3 +1070,483 @@
 {"timestamp":1770829944757,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-9A-tools-measuring-marking-out-for-wiring-systems.json","quizFilename":"toolsMeasuringMarkingOutForWiringSystemsQuestions.ts","wasRefined":false},"sessionId":"generation-1770829944757"}
 {"timestamp":1770829944758,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-9A-tools-measuring-marking-out-for-wiring-systems.json","quizFilename":"toolsMeasuringMarkingOutForWiringSystemsQuestions.ts"},"sessionId":"generation-1770829944758"}
 {"timestamp":1770829944782,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\src\\data\\questions\\index.ts","C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\src\\data\\questions.ts","C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\src\\data\\lessons\\lessonIndex.ts","C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\src\\app\\learn\\[lessonId]\\page.tsx","C:\\Users\\carpe\\Desktop\\hs_quiz\\quiz-app\\src\\app\\learn\\page.tsx"],"errors":[]},"sessionId":"generation-1770829944782"}
+{"timestamp":1770917017985,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1A","topic":"Golden Topic 1","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"GENERATION_START","data":{"fullLessonId":"201-1A"},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts"},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917017985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1A.json","201-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917017985"}
+{"timestamp":1770917019985,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1B","topic":"Golden Topic 2","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"GENERATION_START","data":{"fullLessonId":"201-1B"},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts"},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917019985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1B.json","201-1BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917019985"}
+{"timestamp":1770917021985,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"1A","topic":"Golden Topic 3","section":"Science 2365 Level 2"},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"GENERATION_START","data":{"fullLessonId":"202-1A"},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts"},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917021985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-1A.json","202-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917021985"}
+{"timestamp":1770917023985,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"3A","topic":"Golden Topic 4","section":"Science 2365 Level 2"},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"GENERATION_START","data":{"fullLessonId":"202-3A"},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts"},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917023985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-3A.json","202-3AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917023985"}
+{"timestamp":1770917025985,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"5B","topic":"Golden Topic 5","section":"Science 2365 Level 2"},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"GENERATION_START","data":{"fullLessonId":"202-5B"},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts"},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917025985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-5B.json","202-5BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917025985"}
+{"timestamp":1770917027985,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"1A","topic":"Golden Topic 6","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"GENERATION_START","data":{"fullLessonId":"203-1A"},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts"},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917027985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-1A.json","203-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917027985"}
+{"timestamp":1770917029985,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"2B","topic":"Golden Topic 7","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"GENERATION_START","data":{"fullLessonId":"203-2B"},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts"},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917029985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-2B.json","203-2BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917029985"}
+{"timestamp":1770917031985,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"1A","topic":"Golden Topic 8","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"GENERATION_START","data":{"fullLessonId":"204-1A"},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts"},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917031985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-1A.json","204-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917031985"}
+{"timestamp":1770917033985,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"2A","topic":"Golden Topic 9","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"GENERATION_START","data":{"fullLessonId":"204-2A"},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts"},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917033985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-2A.json","204-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917033985"}
+{"timestamp":1770917035985,"stage":"REQUEST_RECEIVED","data":{"unit":210,"lessonId":"1A","topic":"Golden Topic 10","section":"Communication 2365 Level 2"},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"GENERATION_START","data":{"fullLessonId":"210-1A"},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts"},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917035985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["210-1A.json","210-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917035985"}
+{"timestamp":1770917037985,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"1A","topic":"Golden Topic 11","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"GENERATION_START","data":{"fullLessonId":"305-1A"},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts"},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917037985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-1A.json","305-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917037985"}
+{"timestamp":1770917039985,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"2A","topic":"Golden Topic 12","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"GENERATION_START","data":{"fullLessonId":"305-2A"},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts"},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917039985,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-2A.json","305-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917039985"}
+{"timestamp":1770917037232,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1A","topic":"Golden Topic 1","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"GENERATION_START","data":{"fullLessonId":"201-1A"},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts"},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917037232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1A.json","201-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917037232"}
+{"timestamp":1770917039232,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1B","topic":"Golden Topic 2","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"GENERATION_START","data":{"fullLessonId":"201-1B"},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts"},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917039232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1B.json","201-1BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917039232"}
+{"timestamp":1770917041232,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"1A","topic":"Golden Topic 3","section":"Science 2365 Level 2"},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"GENERATION_START","data":{"fullLessonId":"202-1A"},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts"},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917041232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-1A.json","202-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917041232"}
+{"timestamp":1770917043232,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"3A","topic":"Golden Topic 4","section":"Science 2365 Level 2"},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"GENERATION_START","data":{"fullLessonId":"202-3A"},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts"},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917043232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-3A.json","202-3AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917043232"}
+{"timestamp":1770917045232,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"5B","topic":"Golden Topic 5","section":"Science 2365 Level 2"},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"GENERATION_START","data":{"fullLessonId":"202-5B"},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts"},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917045232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-5B.json","202-5BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917045232"}
+{"timestamp":1770917047232,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"1A","topic":"Golden Topic 6","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"GENERATION_START","data":{"fullLessonId":"203-1A"},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts"},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917047232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-1A.json","203-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917047232"}
+{"timestamp":1770917049232,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"2B","topic":"Golden Topic 7","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"GENERATION_START","data":{"fullLessonId":"203-2B"},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts"},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917049232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-2B.json","203-2BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917049232"}
+{"timestamp":1770917051232,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"1A","topic":"Golden Topic 8","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"GENERATION_START","data":{"fullLessonId":"204-1A"},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts"},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917051232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-1A.json","204-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917051232"}
+{"timestamp":1770917053232,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"2A","topic":"Golden Topic 9","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"GENERATION_START","data":{"fullLessonId":"204-2A"},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts"},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917053232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-2A.json","204-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917053232"}
+{"timestamp":1770917055232,"stage":"REQUEST_RECEIVED","data":{"unit":210,"lessonId":"1A","topic":"Golden Topic 10","section":"Communication 2365 Level 2"},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"GENERATION_START","data":{"fullLessonId":"210-1A"},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts"},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917055232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["210-1A.json","210-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917055232"}
+{"timestamp":1770917057232,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"1A","topic":"Golden Topic 11","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"GENERATION_START","data":{"fullLessonId":"305-1A"},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts"},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917057232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-1A.json","305-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917057232"}
+{"timestamp":1770917059232,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"2A","topic":"Golden Topic 12","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"GENERATION_START","data":{"fullLessonId":"305-2A"},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts"},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917059232,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-2A.json","305-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917059232"}
+{"timestamp":1770917057538,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1A","topic":"Golden Topic 1","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"GENERATION_START","data":{"fullLessonId":"201-1A"},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts"},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917057538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1A.json","201-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917057538"}
+{"timestamp":1770917059538,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1B","topic":"Golden Topic 2","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"GENERATION_START","data":{"fullLessonId":"201-1B"},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts"},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917059538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1B.json","201-1BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917059538"}
+{"timestamp":1770917061538,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"1A","topic":"Golden Topic 3","section":"Science 2365 Level 2"},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"GENERATION_START","data":{"fullLessonId":"202-1A"},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts"},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917061538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-1A.json","202-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917061538"}
+{"timestamp":1770917063538,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"3A","topic":"Golden Topic 4","section":"Science 2365 Level 2"},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"GENERATION_START","data":{"fullLessonId":"202-3A"},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts"},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917063538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-3A.json","202-3AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917063538"}
+{"timestamp":1770917065538,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"5B","topic":"Golden Topic 5","section":"Science 2365 Level 2"},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"GENERATION_START","data":{"fullLessonId":"202-5B"},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts"},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917065538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-5B.json","202-5BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917065538"}
+{"timestamp":1770917067538,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"1A","topic":"Golden Topic 6","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"GENERATION_START","data":{"fullLessonId":"203-1A"},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts"},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917067538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-1A.json","203-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917067538"}
+{"timestamp":1770917069538,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"2B","topic":"Golden Topic 7","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"GENERATION_START","data":{"fullLessonId":"203-2B"},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts"},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917069538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-2B.json","203-2BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917069538"}
+{"timestamp":1770917071538,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"1A","topic":"Golden Topic 8","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"GENERATION_START","data":{"fullLessonId":"204-1A"},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts"},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917071538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-1A.json","204-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917071538"}
+{"timestamp":1770917073538,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"2A","topic":"Golden Topic 9","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"GENERATION_START","data":{"fullLessonId":"204-2A"},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts"},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917073538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-2A.json","204-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917073538"}
+{"timestamp":1770917075538,"stage":"REQUEST_RECEIVED","data":{"unit":210,"lessonId":"1A","topic":"Golden Topic 10","section":"Communication 2365 Level 2"},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"GENERATION_START","data":{"fullLessonId":"210-1A"},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts"},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917075538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["210-1A.json","210-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917075538"}
+{"timestamp":1770917077538,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"1A","topic":"Golden Topic 11","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"GENERATION_START","data":{"fullLessonId":"305-1A"},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts"},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917077538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-1A.json","305-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917077538"}
+{"timestamp":1770917079538,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"2A","topic":"Golden Topic 12","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"GENERATION_START","data":{"fullLessonId":"305-2A"},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts"},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917079538,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-2A.json","305-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917079538"}
+{"timestamp":1770917071039,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1A","topic":"Golden Topic 1","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"GENERATION_START","data":{"fullLessonId":"201-1A"},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1A.json","quizFilename":"201-1AQuestions.ts"},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917071039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1A.json","201-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917071039"}
+{"timestamp":1770917073039,"stage":"REQUEST_RECEIVED","data":{"unit":201,"lessonId":"1B","topic":"Golden Topic 2","section":"Health and Safety 2365 Level 2"},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"GENERATION_START","data":{"fullLessonId":"201-1B"},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"201-1B.json","quizFilename":"201-1BQuestions.ts"},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917073039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["201-1B.json","201-1BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917073039"}
+{"timestamp":1770917075039,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"1A","topic":"Golden Topic 3","section":"Science 2365 Level 2"},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"GENERATION_START","data":{"fullLessonId":"202-1A"},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-1A.json","quizFilename":"202-1AQuestions.ts"},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917075039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-1A.json","202-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917075039"}
+{"timestamp":1770917077039,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"3A","topic":"Golden Topic 4","section":"Science 2365 Level 2"},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"GENERATION_START","data":{"fullLessonId":"202-3A"},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-3A.json","quizFilename":"202-3AQuestions.ts"},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917077039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-3A.json","202-3AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917077039"}
+{"timestamp":1770917079039,"stage":"REQUEST_RECEIVED","data":{"unit":202,"lessonId":"5B","topic":"Golden Topic 5","section":"Science 2365 Level 2"},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"GENERATION_START","data":{"fullLessonId":"202-5B"},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"202-5B.json","quizFilename":"202-5BQuestions.ts"},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917079039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["202-5B.json","202-5BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917079039"}
+{"timestamp":1770917081039,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"1A","topic":"Golden Topic 6","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"GENERATION_START","data":{"fullLessonId":"203-1A"},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-1A.json","quizFilename":"203-1AQuestions.ts"},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917081039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-1A.json","203-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917081039"}
+{"timestamp":1770917083039,"stage":"REQUEST_RECEIVED","data":{"unit":203,"lessonId":"2B","topic":"Golden Topic 7","section":"Installation 2365 Level 2"},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"GENERATION_START","data":{"fullLessonId":"203-2B"},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts","wasRefined":true},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"203-2B.json","quizFilename":"203-2BQuestions.ts"},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917083039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["203-2B.json","203-2BQuestions.ts"],"errors":[]},"sessionId":"generation-1770917083039"}
+{"timestamp":1770917085039,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"1A","topic":"Golden Topic 8","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"GENERATION_START","data":{"fullLessonId":"204-1A"},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-1A.json","quizFilename":"204-1AQuestions.ts"},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917085039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-1A.json","204-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917085039"}
+{"timestamp":1770917087039,"stage":"REQUEST_RECEIVED","data":{"unit":204,"lessonId":"2A","topic":"Golden Topic 9","section":"Wiring Systems 2365 Level 2"},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"GENERATION_START","data":{"fullLessonId":"204-2A"},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"204-2A.json","quizFilename":"204-2AQuestions.ts"},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917087039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["204-2A.json","204-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917087039"}
+{"timestamp":1770917089039,"stage":"REQUEST_RECEIVED","data":{"unit":210,"lessonId":"1A","topic":"Golden Topic 10","section":"Communication 2365 Level 2"},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"GENERATION_START","data":{"fullLessonId":"210-1A"},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"210-1A.json","quizFilename":"210-1AQuestions.ts"},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917089039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["210-1A.json","210-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917089039"}
+{"timestamp":1770917091039,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"1A","topic":"Golden Topic 11","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"GENERATION_START","data":{"fullLessonId":"305-1A"},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-1A.json","quizFilename":"305-1AQuestions.ts"},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917091039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-1A.json","305-1AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917091039"}
+{"timestamp":1770917093039,"stage":"REQUEST_RECEIVED","data":{"unit":305,"lessonId":"2A","topic":"Golden Topic 12","section":"Advanced Safety 2365 Level 3"},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"GENERATION_START","data":{"fullLessonId":"305-2A"},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_1_START","data":{"step":"generateLesson"},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_1_COMPLETE","data":{"success":true},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_3_START","data":{"step":"generateQuiz"},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_3_COMPLETE","data":{"success":true,"questionCount":1},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_5_START","data":{"step":"writeFiles"},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_5_COMPLETE","data":{"lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts","wasRefined":true},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_6_START","data":{"step":"integrateFiles","lessonFilename":"305-2A.json","quizFilename":"305-2AQuestions.ts"},"sessionId":"generation-1770917093039"}
+{"timestamp":1770917093039,"stage":"STEP_6_COMPLETE","data":{"success":true,"filesUpdated":["305-2A.json","305-2AQuestions.ts"],"errors":[]},"sessionId":"generation-1770917093039"}

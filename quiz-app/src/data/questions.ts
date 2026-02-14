@@ -1,5 +1,6 @@
 export interface Question {
   id: number;
+  stableId?: string;
   question: string;
   options: string[];
   correctAnswer: number;

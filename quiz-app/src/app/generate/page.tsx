@@ -6,7 +6,7 @@
  * Web interface for automated lesson generation
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { DebugPanel } from '@/components/generate/DebugPanel';
 
@@ -31,6 +31,7 @@ interface LessonIndexEntry {
   topic: string;
   description: string;
   questionCount: number;
+  generationScore?: number | null;
   available: boolean;
   order: number;
 }
@@ -173,23 +174,27 @@ export default function GeneratePage() {
     success: false,
     error: null,
   });
+  const selectedImproveLessonData = selectedImproveLesson
+    ? lessons.find((lesson) => lesson.id === selectedImproveLesson)
+    : null;
+
+  const fetchLessons = useCallback(async () => {
+    try {
+      const response = await fetch('/api/lessons');
+      const data = await response.json();
+      if (data.success) {
+        setLessons(data.lessons);
+        setLessonsByUnit(data.byUnit);
+      }
+    } catch (error) {
+      console.error('Failed to fetch lessons:', error);
+    }
+  }, []);
 
   // Fetch lessons on mount
   useEffect(() => {
-    async function fetchLessons() {
-      try {
-        const response = await fetch('/api/lessons');
-        const data = await response.json();
-        if (data.success) {
-          setLessons(data.lessons);
-          setLessonsByUnit(data.byUnit);
-        }
-      } catch (error) {
-        console.error('Failed to fetch lessons:', error);
-      }
-    }
-    fetchLessons();
-  }, []);
+    void fetchLessons();
+  }, [fetchLessons]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -373,6 +378,9 @@ export default function GeneratePage() {
           debugBundle: data.debugBundle,
         },
       });
+
+      // Refresh lesson list so newly generated score appears without page reload.
+      void fetchLessons();
     } catch (error) {
       const errorObj = error as Error & {
         debugInfo?: GenerationStatus['debugInfo'];
@@ -502,12 +510,7 @@ export default function GeneratePage() {
       });
 
       // Refresh lessons list
-      const lessonsResponse = await fetch('/api/lessons');
-      const lessonsData = await lessonsResponse.json();
-      if (lessonsData.success) {
-        setLessons(lessonsData.lessons);
-        setLessonsByUnit(lessonsData.byUnit);
-      }
+      await fetchLessons();
 
       // Clear selection
       setSelectedLessons([]);
@@ -1697,12 +1700,22 @@ export default function GeneratePage() {
                   <optgroup key={unitNumber} label={`Unit ${unitNumber}`}>
                     {unitLessons.map((lesson) => (
                       <option key={lesson.id} value={lesson.id}>
-                        {lesson.id} - {lesson.title}
+                        {lesson.id} - {lesson.title} {lesson.generationScore == null ? '[No score]' : `[${lesson.generationScore}/100]`}
                       </option>
                     ))}
                   </optgroup>
                 ))}
               </select>
+              {selectedImproveLessonData && (
+                <p className="mt-2 text-xs text-gray-600 dark:text-slate-400">
+                  Current generation score:{' '}
+                  <strong>
+                    {selectedImproveLessonData.generationScore == null
+                      ? 'Not available'
+                      : `${selectedImproveLessonData.generationScore}/100`}
+                  </strong>
+                </p>
+              )}
             </div>
 
             {/* Additional Instructions (Optional) */}

@@ -89,7 +89,8 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
   return aData.suffix.localeCompare(bData.suffix);
 }
 
-const RAW_LESSONS = [  lesson202_5A,
+const RAW_LESSONS = [  lesson204_9A,
+  lesson202_5A,
   lesson203_3A123,
   lesson201_1C,
   lesson201_1B,

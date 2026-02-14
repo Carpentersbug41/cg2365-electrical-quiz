@@ -6,6 +6,7 @@ import { Block } from '@/data/lessons/types';
 
 export interface BlockProps {
   block: Block;
+  lessonId?: string;
 }
 
 export interface PracticeBlockProps extends BlockProps {

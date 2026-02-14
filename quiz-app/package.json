@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/ensureNestedRoutesManifest.cjs",
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
@@ -21,8 +21,9 @@
     "phase10:summary": "npx tsx scripts/runPhase10Diagnostics.ts summary"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
     "@google-cloud/vertexai": "^1.4.0",
+    "@google/generative-ai": "^0.24.1",
+    "@supabase/supabase-js": "^2.49.1",
     "@types/canvas-confetti": "^1.9.0",
     "canvas-confetti": "^1.9.4",
     "lucide-react": "^0.555.0",

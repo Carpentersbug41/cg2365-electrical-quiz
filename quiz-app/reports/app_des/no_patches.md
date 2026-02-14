@@ -1,63 +1,73 @@
-# Directive: Phase 10–13 must remain FULL-JSON (No Patches, No Structural Games)
+# Phase 10-13 Policy and Reality: Full JSON Refinement (No Active Patch Runtime)
 
-## Non-negotiable decision
-Phase 10–13 is **FULL LESSON JSON refinement only**.
-
-- The refiner outputs **a complete Lesson JSON object**.
-- We do **not** use JSON patches (RFC6902 or “applyPatch”) anywhere in the Phase 10–13 runtime path.
-- We do **not** reintroduce “patch plans”, “patch appliers”, “replaceSubstring”, or any patch-based pipeline.
-
-If you are tempted to re-add patches: **don’t**. It’s rejected by product direction.
+Last verified: 2026-02-12
+Status: Policy + current-state reality check
 
 ---
 
-## Explicit bans (do not add / do not resurrect)
-### Banned concepts in Phase 10–13:
-- Patch generation (Phase11-style “fix plans” that produce patch ops)
-- Patch application (Phase12_Implement-style `applyPatch`, `replaceSubstring`, path-based mutations)
-- Any “structural gymnastics” intended to make patching safer:
-  - signature locking as a pretext to re-enable patching
-  - path-stability hacks
-  - “immutable structure constraints” used to justify patch ops
-  - partial JSON return fragments that must be merged
+## 1. Intended Architecture Policy
 
-### Banned files in the active path:
-- `Phase11_Suggest` must remain **unused**
-- `Phase12_Implement` must remain **unused**
-- No imports, no instantiation, no calls from `SequentialLessonGenerator` or any runtime orchestrator.
+For the active generation runtime, Phase 10-13 should operate as:
+1. Phase 10 scores the assembled lesson.
+2. Phase 12 refines by outputting a complete lesson JSON object.
+3. Phase 13 rescoring compares original vs candidate and keeps the better pedagogical result.
 
-They can exist on disk for archival only, but must be **dead code**.
+Active runtime should not depend on patch-operation execution in this path.
 
 ---
 
-## Required architecture (keep it simple)
-### Only this pipeline is allowed:
-1. Phase10: score original lesson  
-2. If score < trigger threshold → Phase12_Refine outputs **complete refined lesson JSON**
-3. Phase13: rescore candidate and **keep the best score**  
-   - If candidate improves, keep candidate  
-   - If not, keep original  
-   - **No “candidate must meet threshold” gate**
+## 2. What Is True in Current Runtime
 
-That’s it.
+In current production path (`SequentialLessonGenerator`):
+- Active refinement uses `Phase10_Score`, `Phase12_Refine`, and `Phase13_Rescore`.
+- `Phase11_Suggest` and `Phase12_Implement` are not imported or called in this runtime flow.
+- Phase 12 (`Refine`) outputs full lesson JSON and validates structural invariants.
+- Phase 13 decision is best-of comparison (improvement or tie with fewer issues), not a hard threshold gate.
 
 ---
 
-## Guardrails you must implement
-- Add a code comment in the orchestrator:
-  - “Phase10–13 is full-JSON only. Patches are forbidden.”
-- Add a unit test that fails if:
-  - `Phase11_Suggest` or `Phase12_Implement` are imported in production code
-  - any `applyPatch` / patch op types appear in the Phase10–13 runtime path
-- If any patch-related log strings appear in terminal output for Phase10–13, treat it as a regression.
+## 3. What Still Exists (Legacy Drift)
+
+Although patch runtime is inactive, patch-era artifacts still exist in codebase:
+- Legacy phase files:
+  - `src/lib/generation/phases/Phase11_Suggest.ts`
+  - `src/lib/generation/phases/Phase12_Implement.ts`
+- Legacy patch-oriented integration test:
+  - `src/lib/generation/__tests__/phase10-13-pipeline.test.ts`
+- Compatibility naming still present in active files:
+  - fields/log labels like `patchesApplied`
+  - rejected output filename suffix `-rejected-patches.json`
+  - config/comments with old phase labeling
+- Debug/analysis utilities and types still include patch-oriented shapes.
+
+This means the repository is mixed: runtime is full-JSON, surrounding naming and archival/testing layers are not fully cleaned.
 
 ---
 
-## Acceptance criteria
-We accept the work only if:
-- Phase10–13 runs with **zero patch operations**
-- Phase12 outputs **complete lesson JSON**
-- Phase13 returns **the better-scoring lesson** (no threshold gate)
-- Patch-related modules remain **unreachable** from production execution
+## 4. Operational Guardrail (Current)
 
-Failure to comply = revert the change.
+When modifying generation:
+- treat full-lesson JSON refine/rescore as the active architecture
+- do not wire `Phase11_Suggest` or `Phase12_Implement` back into runtime
+- do not add new patch-op execution paths to active generation orchestration
+
+---
+
+## 5. Practical Interpretation
+
+"No patches" is currently true for the active lesson-generation runtime path, but not yet fully true as a repository-wide cleanup claim.
+
+Use this distinction explicitly in docs and reviews:
+- runtime architecture: full-JSON refinement
+- residual legacy code: patch-era compatibility/archives
+
+---
+
+## 6. Acceptance Criteria for Future Cleanup
+
+A full repository-level "no patches" state would require:
+- removal or archival of patch-only test paths
+- removal/rename of patch-era compatibility fields and logs
+- config/comments aligned with active Phase 10 + 12 + 13 flow terminology
+
+Until then, enforce "no active patch runtime" rather than "zero patch references in repo".

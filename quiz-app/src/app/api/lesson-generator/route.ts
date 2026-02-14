@@ -171,6 +171,22 @@ export async function POST(request: NextRequest) {
 
     warnings.push(...quizValidation.warnings);
 
+    // Persist generation score in lesson metadata so admin UIs can surface quality quickly.
+    const originalGenerationScore = lessonResult.refinementMetadata?.originalScore;
+    const finalGenerationScore = lessonResult.refinementMetadata?.finalScore ?? originalGenerationScore;
+    if (typeof finalGenerationScore === 'number') {
+      const metadata = (lessonResult.content as { metadata?: Record<string, unknown> }).metadata || {};
+      metadata.generationScore = finalGenerationScore;
+      metadata.generationScoreDetails = {
+        originalScore: typeof originalGenerationScore === 'number' ? originalGenerationScore : null,
+        finalScore: finalGenerationScore,
+        wasRefined: Boolean(lessonResult.refinementMetadata?.wasRefined),
+        generatedAt: new Date().toISOString(),
+        source: 'phase10-13',
+      };
+      (lessonResult.content as { metadata: Record<string, unknown> }).metadata = metadata;
+    }
+
     // Step 5: Write files
     debugLog('STEP_5_START', { step: 'writeFiles' });
     console.log('[Generator] Step 5: Writing files...');

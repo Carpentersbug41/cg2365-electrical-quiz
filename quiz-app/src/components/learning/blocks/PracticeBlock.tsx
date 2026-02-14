@@ -9,6 +9,12 @@ import { AlertTriangle } from 'lucide-react';
 import { BlockProps } from './types';
 import { PracticeBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
+import { logAttempt } from '@/lib/authProgress/clientTelemetry';
+import {
+  extractLessonIdFromBlockId,
+  getAcMetaFromQuestion,
+  normalizeQuestionStableId,
+} from '@/lib/authProgress/questionIdentity';
 
 interface ErrorState {
   message: string;
@@ -16,8 +22,9 @@ interface ErrorState {
   canRetry: boolean;
 }
 
-export default function PracticeBlock({ block }: BlockProps) {
+export default function PracticeBlock({ block, lessonId }: BlockProps) {
   const content = block.content as PracticeBlockContent;
+  const resolvedLessonId = lessonId ?? extractLessonIdFromBlockId(block.id);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState<Record<string, boolean>>({});
   const [feedback, setFeedback] = useState<Record<string, MarkingResponse | null>>({});
@@ -73,6 +80,7 @@ export default function PracticeBlock({ block }: BlockProps) {
   const handleSubmit = async (questionId: string, questionIndex: number) => {
     setLoading({ ...loading, [questionId]: true });
     setErrors({ ...errors, [questionId]: null });
+    const nextAttemptNumber = (attemptCount[questionId] || 0) + 1;
     
     // Find the question to get its properties
     const question = content.questions.find(q => q.id === questionId);
@@ -117,6 +125,21 @@ export default function PracticeBlock({ block }: BlockProps) {
       
       setFeedback({ ...feedback, [questionId]: result });
       setSubmitted({ ...submitted, [questionId]: true });
+
+      const { ac_key, ac_source } = getAcMetaFromQuestion(question);
+      void logAttempt({
+        lesson_id: resolvedLessonId,
+        block_id: block.id,
+        question_stable_id: normalizeQuestionStableId(question.id),
+        question_type: 'short',
+        correct: Boolean(result.isCorrect),
+        score: typeof result.score === 'number' ? result.score : null,
+        user_answer: answers[questionId] ?? null,
+        attempt_number: nextAttemptNumber,
+        ac_key,
+        ac_source,
+        grading_mode: 'llm',
+      });
       
       // Play soft ding for correct answers
       if (result.isCorrect) {

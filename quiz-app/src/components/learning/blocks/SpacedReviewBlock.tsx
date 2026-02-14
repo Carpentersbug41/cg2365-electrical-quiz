@@ -9,9 +9,16 @@ import { BlockProps } from './types';
 import { SpacedReviewBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
+import { logAttempt } from '@/lib/authProgress/clientTelemetry';
+import {
+  extractLessonIdFromBlockId,
+  getAcMetaFromQuestion,
+  normalizeQuestionStableId,
+} from '@/lib/authProgress/questionIdentity';
 
-export default function SpacedReviewBlock({ block }: BlockProps) {
+export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
   const content = block.content as SpacedReviewBlockContent;
+  const resolvedLessonId = lessonId ?? extractLessonIdFromBlockId(block.id);
 
   // Normalize questions - handle both object format and legacy string format
   const normalizedQuestions = content.questions.map((q, index) => {
@@ -64,6 +71,7 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
 
   const handleSubmit = async (questionId: string, questionText: string, expectedAnswer: string | string[]) => {
     setLoading({ ...loading, [questionId]: true });
+    const nextAttemptNumber = (attemptCount[questionId] || 0) + 1;
     
     try {
       const response = await fetch('/api/marking', {
@@ -88,6 +96,22 @@ export default function SpacedReviewBlock({ block }: BlockProps) {
       
       setFeedback({ ...feedback, [questionId]: result });
       setSubmitted({ ...submitted, [questionId]: true });
+
+      const question = normalizedQuestions.find((item) => item.id === questionId);
+      const { ac_key, ac_source } = getAcMetaFromQuestion(question);
+      void logAttempt({
+        lesson_id: resolvedLessonId,
+        block_id: block.id,
+        question_stable_id: normalizeQuestionStableId(questionId),
+        question_type: 'short',
+        correct: Boolean(result.isCorrect),
+        score: typeof result.score === 'number' ? result.score : null,
+        user_answer: answers[questionId] ?? null,
+        attempt_number: nextAttemptNumber,
+        ac_key,
+        ac_source,
+        grading_mode: 'llm',
+      });
       
       // Increment attempt count if answer is incorrect
       if (!result.isCorrect) {

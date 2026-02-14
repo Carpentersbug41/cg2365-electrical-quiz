@@ -17,6 +17,8 @@ import { getMisconception } from '@/lib/marking/misconceptionCodes';
 import { TaggedQuestion } from '@/data/questions/types';
 import TypedRetrySection from './quiz/TypedRetrySection';
 import { saveAttempt, updateNeedsReview } from '@/lib/storage/indexedDBService';
+import { logAttempt, markLessonCompleted, markLessonStarted } from '@/lib/authProgress/clientTelemetry';
+import { getAcMetaFromQuestion, getStableIdForMcqQuestion } from '@/lib/authProgress/questionIdentity';
 
 interface QuizProps {
   section?: string;
@@ -208,7 +210,8 @@ export default function Quiz({
       setSelectedConfidences(newConfidences);
     }
 
-    const isCorrect = answerIndex === questions[currentQuestion].correctAnswer;
+    const currentQ = questions[currentQuestion];
+    const isCorrect = answerIndex === currentQ.correctAnswer;
 
     if (isCorrect) {
       // Correct Logic
@@ -254,17 +257,17 @@ export default function Quiz({
 
     // Store attempt in IndexedDB if context provided
     if (context && lessonId) {
-      const taggedQ = questions[currentQuestion] as TaggedQuestion;
+      const taggedQ = currentQ as TaggedQuestion;
       const misconceptionCode = !isCorrect && taggedQ.misconceptionCodes && answerIndex !== null
         ? taggedQ.misconceptionCodes[answerIndex]
         : undefined;
 
       saveAttempt({
-        questionId: questions[currentQuestion].id.toString(),
+        questionId: currentQ.id.toString(),
         lessonId,
         context,
         userAnswer: answerIndex,
-        correctAnswer: questions[currentQuestion].correctAnswer,
+        correctAnswer: currentQ.correctAnswer,
         confidence: confidence || 'not-sure',
         isCorrect,
         timestamp: new Date(),
@@ -281,6 +284,21 @@ export default function Quiz({
         }).catch(err => console.error('Failed to update needs review:', err));
       }
     }
+
+    const { ac_key, ac_source } = getAcMetaFromQuestion(currentQ);
+    void logAttempt({
+      lesson_id: lessonId ?? null,
+      block_id: null,
+      question_stable_id: getStableIdForMcqQuestion(currentQ),
+      question_type: 'mcq',
+      correct: isCorrect,
+      score: isCorrect ? 1 : 0,
+      user_answer: currentQ.options[answerIndex] ?? String(answerIndex),
+      attempt_number: 1,
+      ac_key,
+      ac_source,
+      grading_mode: 'deterministic',
+    });
   };
 
   const handleContinueAfterFeedback = () => {
@@ -407,6 +425,12 @@ export default function Quiz({
       const performanceRatio = percentage / 100;
       const reviewCount = getQuizProgress(quizId)?.attempts.length || 0;
       scheduleReview(lessonId, new Date(), reviewCount, performanceRatio);
+
+      void markLessonCompleted({
+        lessonId,
+        score: performanceRatio,
+        masteryAchieved: passed,
+      });
     }
     
     setShowResults(true);
@@ -438,6 +462,10 @@ export default function Quiz({
     setPendingAnswer(null);
     setPendingConfidence(null);
     setShowFeedback(false);
+
+    if (lessonId) {
+      void markLessonStarted(lessonId);
+    }
   };
   
   // Get questions for the selected section or custom questions

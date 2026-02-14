@@ -24,6 +24,7 @@ import MasteryGate from '../MasteryGate';
 import MicrobreakBlock from '../microbreaks/MicrobreakBlock';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
+import { markLessonStarted } from '@/lib/authProgress/clientTelemetry';
 
 export default function LayoutB({ lesson }: LayoutProps) {
   const [tutorOpen, setTutorOpen] = useState(false);
@@ -37,6 +38,8 @@ export default function LayoutB({ lesson }: LayoutProps) {
 
     const quiz = getQuizProgress(`${lesson.id}-quiz`);
     setQuizProgress(quiz);
+
+    void markLessonStarted(lesson.id);
   }, [lesson.id]);
 
   const contentBlocks = lesson.blocks.sort((a, b) => a.order - b.order);
@@ -46,21 +49,21 @@ export default function LayoutB({ lesson }: LayoutProps) {
     
     switch (block.type) {
       case 'outcomes':
-        return <OutcomesBlock key={key} block={block} />;
+        return <OutcomesBlock key={key} block={block} lessonId={lesson.id} />;
       case 'vocab':
-        return <VocabBlock key={key} block={block} />;
+        return <VocabBlock key={key} block={block} lessonId={lesson.id} />;
       case 'explanation':
-        return <ExplanationBlock key={key} block={block} />;
+        return <ExplanationBlock key={key} block={block} lessonId={lesson.id} />;
       case 'worked-example':
-        return <WorkedExampleBlock key={key} block={block} />;
+        return <WorkedExampleBlock key={key} block={block} lessonId={lesson.id} />;
       case 'guided-practice':
-        return <GuidedPracticeBlock key={key} block={block} />;
+        return <GuidedPracticeBlock key={key} block={block} lessonId={lesson.id} />;
       case 'practice':
-        return <PracticeBlock key={key} block={block} />;
+        return <PracticeBlock key={key} block={block} lessonId={lesson.id} />;
       case 'spaced-review':
-        return <SpacedReviewBlock key={key} block={block} />;
+        return <SpacedReviewBlock key={key} block={block} lessonId={lesson.id} />;
       case 'microbreak':
-        return <MicrobreakBlock key={key} block={block} />;
+        return <MicrobreakBlock key={key} block={block} lessonId={lesson.id} />;
       default:
         return null;
     }
@@ -245,5 +248,3 @@ export default function LayoutB({ lesson }: LayoutProps) {
     </div>
   );
 }
-
-
