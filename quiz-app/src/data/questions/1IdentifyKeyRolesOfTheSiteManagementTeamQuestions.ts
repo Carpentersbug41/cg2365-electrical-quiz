@@ -9,175 +9,39 @@ import { TaggedQuestion } from './types';
 export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "Which member of the site management team has the primary responsibility for the day-to-day health, safety, and progress of a specific construction site?",
+    "question": "Which member of the site management team is primarily responsible for the day-to-day running of the construction site and ensuring the project stays on schedule?",
     "options": [
       "Site Manager",
-      "Contracts Manager",
       "Quantity Surveyor",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management Roles",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Site Manager is responsible for the daily operations and safety on a specific site, whereas the Contracts Manager often oversees multiple projects."
-  },
-  {
-    "id": 4017,
-    "question": "Which role involves overseeing multiple projects and managing the legal and financial agreements between the client and the contractor?",
-    "options": [
-      "Contracts Manager",
-      "Site Foreman",
-      "Apprentice",
-      "Electrician"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management Roles",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Contracts Manager is a higher-level role that handles the business and legal aspects of several projects simultaneously."
-  },
-  {
-    "id": 4018,
-    "question": "An electrical apprentice notices a broken ladder on site. Who is the most appropriate person for them to report this to immediately?",
-    "options": [
-      "Site Supervisor",
-      "The Client",
-      "The Architect",
-      "A Delivery Driver"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Reporting Roles",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Apprentices and operatives should report safety concerns and progress issues to their immediate Site Supervisor or Foreman."
-  },
-  {
-    "id": 4019,
-    "question": "Which site visitor has the legal authority to enter a site unannounced and issue an 'Improvement Notice' if safety standards are not met?",
-    "options": [
-      "HSE Inspector",
-      "Quantity Surveyor",
-      "The Client",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors",
-    "tags": [
-      "discrimination",
-      "legislation",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Health and Safety Executive (HSE) Inspectors have statutory powers to inspect sites and enforce safety legislation."
-  },
-  {
-    "id": 4020,
-    "question": "What is the primary role of a Quantity Surveyor on a construction project?",
-    "options": [
-      "Managing costs, budgets, and payments",
-      "Installing the electrical containment",
-      "Drawing the final circuit diagrams",
-      "Delivering materials to the site"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management Roles",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Quantity Surveyor (QS) is responsible for the financial management of the project, including calculating material costs and worker payments."
-  },
-  {
-    "id": 4021,
-    "question": "On a large commercial site, who does the qualified electrician usually report to for their daily work instructions?",
-    "options": [
-      "Site Supervisor",
-      "Contracts Manager",
-      "The Client",
+      "Building Control Officer",
       "HSE Inspector"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
-    "category": "Reporting Roles",
+    "section": "Communication",
+    "category": "Site Management Roles",
     "tags": [
-      "application",
-      "terminology"
+      "terminology",
+      "explanation",
+      "health-safety"
     ],
-    "learningOutcomeId": "210.LO1.AC1.2",
+    "learningOutcomeId": "210.LO1.AC1.1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Electricians report to the Site Supervisor (or Foreman), who coordinates the various trades and monitors daily progress."
+    "explanation": "The Site Manager is responsible for the overall daily operations, coordination of trades, and ensuring the project meets its deadlines."
   },
   {
-    "id": 4022,
-    "question": "Which professional is responsible for creating the building design and ensuring the project is built according to the specified aesthetic and functional requirements?",
+    "id": 4017,
+    "question": "Which role is specifically responsible for managing the project costs, including material orders and payments to sub-contractors?",
     "options": [
-      "Architect",
-      "Site Manager",
       "Quantity Surveyor",
+      "Site Agent",
+      "Clerk of Works",
       "Electrician"
     ],
     "correctAnswer": 0,
@@ -186,244 +50,52 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
       "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Architect creates the plans and specifications for the building and visits the site to ensure the design is being followed."
-  },
-  {
-    "id": 4023,
-    "question": "What is the main purpose of the Site Supervisor's role in the management team?",
-    "options": [
-      "Coordinating work activities and monitoring trade progress",
-      "Paying the sub-contractors' invoices",
-      "Designing the electrical installation",
-      "Granting planning permission to the client"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management Roles",
     "tags": [
-      "conceptual",
-      "terminology"
+      "terminology",
+      "discrimination"
     ],
     "learningOutcomeId": "210.LO1.AC1.1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Site Supervisor focuses on the practical coordination of workers and ensures tasks are completed on schedule."
+    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the project, ensuring it stays within budget and handling the valuation of work."
   },
   {
-    "id": 4024,
-    "question": "Which of these people is classified as a 'visitor' who must sign the site register and receive a safety induction before entering the work area?",
+    "id": 4018,
+    "question": "An electrician needs to clarify a technical detail on the architectural drawings. Who in the site management team would usually be the first point of contact for this?",
     "options": [
-      "Building Control Officer",
-      "Site Manager",
-      "Site Supervisor",
-      "The Resident Electrician"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors",
-    "tags": [
-      "discrimination",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A Building Control Officer is a visitor who checks that work complies with Building Regulations. The others are permanent site staff."
-  },
-  {
-    "id": 4025,
-    "question": "An electrician realizes that a delivery of cable is incorrect. Who should they notify to ensure the correct materials are re-ordered and the project schedule is updated?",
-    "options": [
-      "Site Supervisor",
+      "Site Agent",
+      "Client",
       "HSE Inspector",
-      "The Architect",
-      "The Client"
+      "Delivery Driver"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
-    "section": "Communication 2365 Level 2",
-    "category": "Reporting Roles",
+    "section": "Communication",
+    "category": "Site Management Roles",
     "tags": [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Internal logistical issues like material errors must be reported to the immediate supervisor so they can manage the impact on the workflow."
-  },
-  {
-    "id": 4026,
-    "question": "Which member of the site management team is primarily responsible for the day-to-day running of the construction site and ensuring work is carried out safely?",
-    "options": [
-      "Site Manager",
-      "Electrical Apprentice",
-      "Delivery Driver",
-      "Client"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication",
-    "category": "Site Management Roles",
-    "tags": [
-      "terminology",
-      "health-safety",
-      "discrimination"
-    ],
     "learningOutcomeId": "210.LO1.AC1.1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Site Manager is responsible for the daily operations, safety, and progress of the site, whereas apprentices and drivers have specific production or delivery roles."
+    "explanation": "The Site Agent acts as the manager's representative on-site and handles technical coordination between the trades and the design team."
   },
   {
-    "id": 4027,
-    "question": "In the site hierarchy, who would a sub-contractor's electrician typically report to for daily work instructions and site-specific safety briefings?",
+    "id": 4019,
+    "question": "Which person is responsible for the actual installation of electrical systems and reports directly to the Electrical Supervisor?",
     "options": [
-      "Site Supervisor",
-      "Building Inspector",
-      "Local Resident",
-      "Finance Director"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication",
-    "category": "Reporting Lines",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Site Supervisor oversees the technical work and safety of tradespeople on the ground, acting as the direct link to the management team."
-  },
-  {
-    "id": 4028,
-    "question": "Which of the following people is classified as a 'site visitor' rather than a member of the site production team?",
-    "options": [
-      "Health and Safety Inspector",
+      "Electrician",
       "Site Manager",
-      "Electrical Improver",
-      "Project Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication",
-    "category": "Site Visitors",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A Health and Safety Inspector is an external visitor who comes to site for specific checks, unlike managers and improvers who are part of the permanent site staff."
-  },
-  {
-    "id": 4029,
-    "question": "What is the primary role of the Project Manager within the site management structure?",
-    "options": [
-      "Overseeing high-level planning, budgets, and overall coordination",
-      "Installing the main switchgear and distribution boards",
-      "Driving the delivery vehicle for site materials",
-      "Cleaning the site welfare facilities daily"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication",
-    "category": "Site Management Roles",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Project Manager focuses on the 'big picture', including the financial budget, legal requirements, and the timeline of the entire project."
-  },
-  {
-    "id": 4030,
-    "question": "An electrician is asked to stop work by a Building Control Officer. How should this officer be treated according to site protocols?",
-    "options": [
-      "As an official site visitor who has the authority to inspect work",
-      "As a member of the site management team who pays the wages",
-      "As a sub-contractor reporting directly to the electrician",
-      "As an apprentice who is learning the trade"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication",
-    "category": "Site Visitors",
-    "tags": [
-      "terminology",
-      "application",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A Building Control Officer is an external visitor with statutory authority to inspect work for compliance with Building Regulations."
-  },
-  {
-    "id": 4031,
-    "question": "A large construction project involves several different sites across a region. Which member of the site management team is primarily responsible for the overall strategic planning and financial control of all these projects, rather than the daily operation of just one?",
-    "options": [
-      "Contracts Manager",
-      "Site Manager",
-      "Site Supervisor",
+      "Quantity Surveyor",
       "Building Control Officer"
     ],
     "correctAnswer": 0,
@@ -432,33 +104,658 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
       "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
+    "section": "Communication",
+    "category": "Reporting Roles",
     "tags": [
       "terminology",
-      "conceptual",
-      "legislation"
+      "discrimination"
     ],
-    "learningOutcomeId": "210.LO1.AC1.1",
+    "learningOutcomeId": "210.LO1.AC1.2",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Contracts Manager operates at a higher level than the Site Manager, often overseeing multiple contracts and focusing on the legal and financial health of the projects."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Electrician is the skilled operative who performs the physical work and reports to their immediate supervisor."
   },
   {
-    "id": 4032,
-    "question": "An electrician discovers that the specified cable tray cannot be installed because a new structural beam has been placed in its path. Who should the electrician report this to first to ensure the design conflict is resolved through the correct chain of command?",
+    "id": 4020,
+    "question": "What is the primary role of an Electrical Supervisor on a large construction site?",
     "options": [
-      "Site Supervisor",
+      "Overseeing the quality and safety of electrical work",
+      "Calculating the total cost of the building",
+      "Inspecting the site for general health and safety law",
+      "Delivering materials to the site gate"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Reporting Roles",
+    "tags": [
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Electrical Supervisor ensures that the electrical team performs work to the required standard, follows the design, and adheres to safety rules."
+  },
+  {
+    "id": 4021,
+    "question": "If an apprentice electrician identifies a broken tool, who should they inform first as part of their reporting line?",
+    "options": [
+      "Their immediate supervisor",
       "The Client",
-      "The Architect",
-      "Quantity Surveyor"
+      "The HSE Inspector",
+      "The Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Reporting Roles",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Workers should always report issues to their immediate supervisor first to ensure the correct internal procedures are followed."
+  },
+  {
+    "id": 4022,
+    "question": "Which external visitor has the authority to stop work on-site if they observe a serious breach of safety legislation?",
+    "options": [
+      "HSE Inspector",
+      "Delivery Driver",
+      "Quantity Surveyor",
+      "Apprentice"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication",
+    "category": "Site Visitors",
+    "tags": [
+      "terminology",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Health and Safety Executive (HSE) Inspector is an external visitor with legal powers to enforce safety regulations on construction sites."
+  },
+  {
+    "id": 4023,
+    "question": "Which visitor is responsible for checking that the electrical installation meets the requirements of the Building Regulations?",
+    "options": [
+      "Building Control Officer",
+      "The Client",
+      "A Delivery Driver",
+      "The Site Agent"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
       "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication",
+    "category": "Site Visitors",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Building Control Officer ensures that all construction work complies with the Building Regulations, often through scheduled inspections."
+  },
+  {
+    "id": 4024,
+    "question": "The person or organization that is funding the construction project and will eventually own the building is known as the:",
+    "options": [
+      "Client",
+      "Clerk of Works",
+      "Sub-contractor",
+      "HSE Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication",
+    "category": "Site Visitors",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Client is the individual or entity for whom the project is being carried out."
+  },
+  {
+    "id": 4025,
+    "question": "What is the mandatory procedure for any visitor, such as a delivery driver, upon arriving at a construction site?",
+    "options": [
+      "Report to the site office and sign in",
+      "Walk directly to where the materials are needed",
+      "Ask an apprentice for directions",
+      "Wait at the gate until someone notices them"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Site Visitors",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "For safety and security, all visitors must report to the site office to sign in and receive any necessary safety inductions."
+  },
+  {
+    "id": 4026,
+    "question": "Which member of the site management team is primarily responsible for the overall day-to-day running and coordination of the entire construction project?",
+    "options": [
+      "Site Manager",
+      "Quantity Surveyor",
+      "Electrical Apprentice",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management Roles",
+    "tags": [
+      "terminology",
+      "discrimination",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Site Manager is responsible for the daily operations, safety, and coordination of all trades on a construction site."
+  },
+  {
+    "id": 4027,
+    "question": "Which individual typically reports directly to the Site Manager regarding the technical progress and quality of the electrical installation?",
+    "options": [
+      "Electrical Site Supervisor",
+      "HSE Inspector",
+      "Local Resident",
+      "Delivery Driver"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Reporting Structures",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Electrical Site Supervisor (or Foreman) manages the electrical team and reports progress directly to the site management team."
+  },
+  {
+    "id": 4028,
+    "question": "Which of the following people would be classified as a 'Site Visitor' rather than a member of the permanent site workforce?",
+    "options": [
+      "Building Control Officer",
+      "Site Foreman",
+      "Project Manager",
+      "Resident Electrician"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A Building Control Officer is an external professional who visits the site periodically to inspect work for compliance with regulations."
+  },
+  {
+    "id": 4029,
+    "question": "What is the primary role of a Quantity Surveyor within the site management team?",
+    "options": [
+      "Managing project costs and financial budgets",
+      "Designing the electrical circuit layouts",
+      "Physically installing the main switchgear",
+      "Providing first aid to all site staff"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management Roles",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Quantity Surveyors are responsible for the financial management of the project, including costs, contracts, and valuations."
+  },
+  {
+    "id": 4030,
+    "question": "A delivery driver arrives at the site gate with a pallet of conduit. According to standard site communication procedures, what is their first responsibility?",
+    "options": [
+      "Report to the site office or security gatehouse",
+      "Unload the materials in the nearest clear space",
+      "Ask a passing apprentice to sign the delivery note",
+      "Begin a site induction for other new arrivals"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "All visitors, including delivery drivers, must report to the site office or security to ensure they are accounted for and directed to the correct unloading area."
+  },
+  {
+    "id": 4031,
+    "question": "An electrician needs to clarify the daily work schedule and site-specific safety rules. Who is the primary person responsible for the day-to-day running of the construction site?",
+    "options": [
+      "Site Manager",
+      "Quantity Surveyor",
+      "Building Control Officer",
+      "Client Representative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site management team roles",
+    "tags": [
+      "terminology",
+      "communication",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Site Manager is responsible for the day-to-day operations, including safety and scheduling on the site."
+  },
+  {
+    "id": 4032,
+    "question": "While installing conduit, an electrician notices that the structural drawings conflict with the actual site layout. To whom should they first report this to ensure the project timeline and technical coordination are managed?",
+    "options": [
+      "Site Supervisor",
+      "HSE Inspector",
+      "Delivery Driver",
+      "Security Guard"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Reporting to site management",
+    "tags": [
+      "communication",
+      "application"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Site Supervisor or Foreman is the immediate point of contact for technical issues and trade coordination."
+  },
+  {
+    "id": 4033,
+    "question": "A person arrives on site to ensure that the work being carried out meets the specific quality standards and materials specified in the contract. They do not manage the staff but inspect the quality of the installation. Who is this?",
+    "options": [
+      "Clerk of Works",
+      "Project Manager",
+      "Site Foreman",
+      "Estimator"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site visitors",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The Clerk of Works is employed to represent the client's interests by ensuring quality and contract compliance."
+  },
+  {
+    "id": 4034,
+    "question": "An electrical contractor needs to submit a claim for 'variations' (extra work completed). Which member of the site management team is primarily responsible for verifying these costs and managing the budget?",
+    "options": [
+      "Quantity Surveyor",
+      "Health and Safety Officer",
+      "Architect",
+      "Site Agent"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site management team roles",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "Quantity Surveyors manage the financial aspects of the project, including valuations and variations."
+  },
+  {
+    "id": 4035,
+    "question": "During a site visit, a representative from the local authority arrives to check that the electrical installation complies with the Building Regulations. What is their job title?",
+    "options": [
+      "Building Control Officer",
+      "Contract Manager",
+      "Clerk of Works",
+      "Trade Union Representative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site visitors",
+    "tags": [
+      "legislation",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Building Control Officers ensure that construction work meets the legal requirements of the Building Regulations."
+  },
+  {
+    "id": 4036,
+    "question": "An electrician is asked to attend a site induction before starting work. Who is usually responsible for ensuring all workers and visitors have received this mandatory safety briefing?",
+    "options": [
+      "Site Manager",
+      "Electrical Apprentice",
+      "First Aider",
+      "Local Resident"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Reporting to site management",
+    "tags": [
+      "health-safety",
+      "communication"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Site Manager has the overall responsibility for health and safety on site, including the delivery of inductions."
+  },
+  {
+    "id": 4037,
+    "question": "Which role acts as the main link between the client and the construction team, often overseeing the strategic planning of multiple sites rather than just day-to-day tasks on one?",
+    "options": [
+      "Project Manager",
+      "Site Foreman",
+      "Ganger",
+      "Labourer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site management team roles",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Project Managers focus on the broader goals of the project, including planning, budgeting, and client liaison."
+  },
+  {
+    "id": 4038,
+    "question": "A Health and Safety Executive (HSE) inspector arrives for an unannounced inspection. What is the correct procedure for the electrical team?",
+    "options": [
+      "Allow them immediate access and cooperate fully with their requests",
+      "Ask them to leave until the Project Manager arrives from the head office",
+      "Refuse entry unless they have a pre-booked appointment",
+      "Continue working and ignore them unless they speak to you directly"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site visitors",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "HSE inspectors have legal powers to enter sites at any reasonable time and must be cooperated with."
+  },
+  {
+    "id": 4039,
+    "question": "In the site hierarchy, who does an electrical improver or apprentice typically report to directly on a daily basis regarding their specific tasks?",
+    "options": [
+      "Electrical Supervisor",
+      "Quantity Surveyor",
+      "Client Representative",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Reporting to site management",
+    "tags": [
+      "communication",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "An apprentice reports to their direct trade supervisor for technical tasks and instruction."
+  },
+  {
+    "id": 4040,
+    "question": "What is the primary difference between a Site Manager and a Site Foreman?",
+    "options": [
+      "The Site Manager oversees the whole site, while the Foreman usually manages a specific trade or group of workers",
+      "The Site Manager is only responsible for safety, while the Foreman handles all the money",
+      "The Site Manager works for the local council, while the Foreman works for the client",
+      "There is no difference; the titles are exactly the same in all contracts"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site management team roles",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Site Managers have overall site responsibility, whereas Foremen (or supervisors) manage specific teams or trades."
+  },
+  {
+    "id": 4041,
+    "question": "A large construction project is exceeding its budget for electrical containment. Which member of the site management team is primarily responsible for monitoring these costs and valuing the work completed?",
+    "options": [
+      "Quantity Surveyor",
+      "Site Manager",
+      "Project Manager",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of the site management team",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "The Quantity Surveyor (QS) is responsible for the financial management of a project, including cost control, variations, and valuing work for payment."
+  },
+  {
+    "id": 4042,
+    "question": "Which role within the site management team is responsible for the day-to-day running of a specific construction site, including the coordination of different trades and ensuring safety protocols are followed?",
+    "options": [
+      "Site Manager",
+      "Contracts Manager",
+      "Quantity Surveyor",
+      "HSE Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of the site management team",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Site Manager (or Site Agent) manages the daily operations on-site, ensuring the project stays on schedule and trades work safely together."
+  },
+  {
+    "id": 4043,
+    "question": "An electrical apprentice discovers that a batch of socket outlets is faulty. According to the standard chain of command, who should they inform first?",
+    "options": [
+      "Electrical Supervisor or Foreman",
+      "Site Manager",
+      "Client",
+      "HSE Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Identify key roles of individuals reporting to site management",
@@ -469,12 +766,39 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
     "learningOutcomeId": "210.LO1.AC1.2",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "In the standard chain of command, an operative reports issues to their immediate Site Supervisor, who then coordinates with management or the design team."
+    "estimatedTime": 75,
+    "explanation": "Apprentices report directly to their immediate supervisor or foreman, who then manages the issue up the chain of command if necessary."
   },
   {
-    "id": 4033,
-    "question": "During a site visit, a person arrives to verify that the electrical installation meets the requirements of the Building Regulations, specifically regarding fire safety and energy efficiency. Which role does this person hold?",
+    "id": 4044,
+    "question": "A specialist fire alarm company is hired by the main electrical contractor to install the detection system. In the site hierarchy, how is this specialist company classified?",
+    "options": [
+      "Sub-contractor",
+      "Site Management Team",
+      "Building Control",
+      "Client Representative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of individuals reporting to site management",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A sub-contractor is a person or company hired by a main contractor to perform a specific part of the overall project."
+  },
+  {
+    "id": 4045,
+    "question": "A person arrives on site to verify that the electrical installation meets the requirements of the Building Regulations. Which role does this person hold?",
     "options": [
       "Building Control Officer",
       "HSE Inspector",
@@ -484,7 +808,7 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
@@ -496,23 +820,50 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
     "learningOutcomeId": "210.LO1.AC1.3",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Building Control Officers ensure that the work complies with the Building Regulations, whereas HSE inspectors focus on health and safety law."
+    "estimatedTime": 75,
+    "explanation": "Building Control Officers ensure that construction work complies with Building Regulations, which is distinct from health and safety inspections."
   },
   {
-    "id": 4034,
-    "question": "A project is running over budget due to an increase in the price of copper. Which member of the site management team is responsible for assessing the financial impact of this change and managing the valuations of work completed?",
+    "id": 4046,
+    "question": "An HSE Inspector arrives for an unannounced site visit. What is their primary legal power in this role?",
     "options": [
-      "Quantity Surveyor",
-      "Site Manager",
-      "Project Architect",
-      "Site Supervisor"
+      "To stop work immediately if a serious risk is identified",
+      "To change the electrical design specifications",
+      "To approve the final cost variations for the client",
+      "To hire and fire sub-contractors on behalf of the manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "HSE Inspectors have the legal authority to issue prohibition notices, which stop work immediately if there is a risk of serious personal injury."
+  },
+  {
+    "id": 4047,
+    "question": "Which member of the management team is usually based off-site and oversees the legal aspects of multiple projects, including the signing of tenders and contracts?",
+    "options": [
+      "Contracts Manager",
+      "Site Agent",
+      "Foreman",
+      "Electrician"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Identify key roles of the site management team",
@@ -523,152 +874,210 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
     "learningOutcomeId": "210.LO1.AC1.1",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Quantity Surveyor (QS) manages all costs relating to building and civil engineering projects, from the initial calculations to the final figures."
+    "estimatedTime": 75,
+    "explanation": "The Contracts Manager typically works from a head office, managing the legal and administrative side of several different site contracts."
   },
   {
-    "id": 4035,
-    "question": "Which of the following best describes the primary role of a Site Manager compared to a Site Supervisor?",
+    "id": 4048,
+    "question": "A delivery driver arrives at a busy construction site with a pallet of conduit. What is the first action they must take as a site visitor?",
     "options": [
-      "The Site Manager has overall responsibility for the whole site, while the Supervisor manages specific trades or areas.",
-      "The Site Manager is only responsible for health and safety, while the Supervisor manages the budget.",
-      "The Site Manager works for the local authority, while the Supervisor works for the contractor.",
-      "The Site Manager performs the actual electrical installation, while the Supervisor watches."
+      "Report to the site office and sign the visitors' book",
+      "Unload the goods at the nearest available space",
+      "Find an electrician to help them unload",
+      "Begin work immediately to save time"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "All visitors, including delivery drivers, must report to the site office for induction or to sign in for safety and security reasons."
+  },
+  {
+    "id": 4049,
+    "question": "During a weekly progress meeting, the Site Manager asks for a technical update on the wiring of the plant room. Who is the most appropriate person to provide this detailed technical report?",
+    "options": [
+      "Electrical Supervisor",
+      "Quantity Surveyor",
+      "Client",
+      "Delivery Driver"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of individuals reporting to site management",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "The Electrical Supervisor oversees the technical work of the electricians and is best placed to report on specific technical progress to management."
+  },
+  {
+    "id": 4050,
+    "question": "Which visitor to a site represents the person or organization that is paying for the construction work and has the final say on the project's requirements?",
+    "options": [
+      "The Client",
+      "The Architect",
+      "Building Control",
+      "The Clerk of Works"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Client is the entity that commissioned the work. While they may employ representatives (like an Architect), they are the ultimate decision-makers."
+  },
+  {
+    "id": 4051,
+    "question": "Which member of the site management team is primarily responsible for the day-to-day coordination of different trades, ensuring the project remains on schedule and complies with health and safety regulations?",
+    "options": [
+      "Site Manager",
+      "Quantity Surveyor",
+      "Architect",
+      "Client"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Identify key roles of the site management team",
     "tags": [
+      "terminology",
+      "legislation",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Site Manager is responsible for the overall daily management of the construction site, including trade coordination and safety compliance."
+  },
+  {
+    "id": 4052,
+    "question": "An electrical improver identifies a significant safety hazard while working on a large commercial installation. According to standard site reporting lines, who is the first person they should inform?",
+    "options": [
+      "Site Supervisor or Foreman",
+      "Health and Safety Executive (HSE)",
+      "The Client",
+      "The Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of individuals reporting to site management",
+    "tags": [
+      "application",
+      "health-safety",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Standard reporting lines dictate that employees should first report issues to their immediate supervisor or site foreman before escalating higher."
+  },
+  {
+    "id": 4053,
+    "question": "A Building Control Officer arrives at the site to inspect the progress of the electrical first-fix. Which category of site personnel does this individual belong to?",
+    "options": [
+      "Statutory Visitor",
+      "Site Management Team",
+      "Direct Employee",
+      "Sub-contractor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
       "discrimination",
-      "conceptual"
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Building Control Officers are statutory visitors because they have a legal right and duty to inspect the site for compliance with regulations."
+  },
+  {
+    "id": 4054,
+    "question": "During a project, a variation in the electrical design requires a change in the cable specification, leading to increased material costs. Which professional is responsible for assessing these costs and managing the project budget?",
+    "options": [
+      "Quantity Surveyor",
+      "Site Manager",
+      "Clerk of Works",
+      "Site Foreman"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of the site management team",
+    "tags": [
+      "application",
+      "terminology",
+      "calculation"
     ],
     "learningOutcomeId": "210.LO1.AC1.1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "The Site Manager oversees the entire project's daily operations, whereas a Supervisor (or Foreman) typically manages a specific group of workers or a specific section of the site."
+    "explanation": "The Quantity Surveyor (QS) is responsible for the financial management of the project, including cost calculations for variations."
   },
   {
-    "id": 4036,
-    "question": "An electrical apprentice is asked by a visiting Client to add an extra socket in a room. What is the correct professional response for the apprentice?",
+    "id": 4055,
+    "question": "What is the primary role of a 'Clerk of Works' on a construction site in relation to the electrical installation?",
     "options": [
-      "Inform the Client that any changes must be requested through the Site Manager or Supervisor.",
-      "Install the socket immediately to ensure the Client is happy.",
-      "Tell the Client to buy the socket and they will fit it during their lunch break.",
-      "Ask the Building Control Officer if the extra socket is allowed."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Operatives must follow the chain of command. Variations to the contract (like adding sockets) involve costs and design changes that must be handled by management."
-  },
-  {
-    "id": 4037,
-    "question": "A Health and Safety Executive (HSE) inspector arrives on site for an unannounced visit. What is their primary role in relation to the electrical team?",
-    "options": [
-      "To ensure that work is being carried out safely and in accordance with statutory regulations.",
-      "To check that the electrical circuits are designed correctly for the building's load.",
-      "To sign off the Electrical Installation Certificate for the local council.",
-      "To provide training to apprentices on how to strip cables."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The HSE is the national regulator for workplace health and safety; their role is to enforce the law and prevent workplace death, injury, or ill health."
-  },
-  {
-    "id": 4038,
-    "question": "The Project Architect is visiting the site. Which of the following tasks would they be most likely to perform during this visit?",
-    "options": [
-      "Checking that the aesthetic and functional aspects of the installation match the design drawings.",
-      "Calculating the exact cost of the hourly labor for the electrical sub-contractor.",
-      "Testing the continuity of the protective conductors in the final circuits.",
-      "Delivering the bulk order of conduit and trunking to the stores."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Architects visit to ensure the project is being built according to their design specifications and to resolve any aesthetic or spatial issues."
-  },
-  {
-    "id": 4039,
-    "question": "A specialist sub-contractor is brought in to commission the fire alarm system. Who is responsible for ensuring this sub-contractor has received a proper site induction before they start work?",
-    "options": [
-      "Site Manager",
-      "The Architect",
-      "The Client",
-      "Building Control Officer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Site Manager has the ultimate responsibility for site safety and ensuring all persons on site, including sub-contractors, have been inducted."
-  },
-  {
-    "id": 4040,
-    "question": "In the context of a construction project, which role acts as the 'Principal Contractor's' representative on-site to coordinate different trades and ensure the program of work is met?",
-    "options": [
-      "Site Manager",
-      "Quantity Surveyor",
-      "Purchasing Officer",
-      "Estimator"
+      "To inspect the quality of materials and workmanship on behalf of the client",
+      "To manage the daily work schedules of the electrical sub-contractors",
+      "To design the electrical circuits and specify protection devices",
+      "To provide the funding and final sign-off for the project"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -677,25 +1086,26 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
+    "category": "Identify key roles of site visitors",
     "tags": [
       "conceptual",
-      "terminology"
+      "terminology",
+      "discrimination"
     ],
-    "learningOutcomeId": "210.LO1.AC1.1",
+    "learningOutcomeId": "210.LO1.AC1.3",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Site Manager is the central figure who coordinates the various trades (electrical, plumbing, carpentry) to ensure the project stays on schedule."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Clerk of Works acts as the 'eyes and ears' of the client, ensuring that the work is carried out to the required quality and specification."
   },
   {
-    "id": 4041,
-    "question": "An electrical contractor notices that the specified cable for a large installation has significantly increased in price, potentially exceeding the project budget. Which member of the site management team should be consulted to discuss the financial implications and material costs?",
+    "id": 4056,
+    "question": "During a large-scale commercial installation, an electrical contractor identifies that the specified containment system is no longer available, necessitating a more expensive alternative. Which member of the site management team is primarily responsible for evaluating the financial impact and approving the 'variation' cost?",
     "options": [
       "Quantity Surveyor",
       "Site Manager",
-      "Building Control Officer",
-      "Health and Safety Executive"
+      "Health and Safety Officer",
+      "Project Architect"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -710,44 +1120,241 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
       "application",
       "legislation"
     ],
-    "learningOutcomeId": "210.LO1.AC1.1",
+    "learningOutcomeId": "210-210-1A1-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Quantity Surveyor (QS) is responsible for managing all costs relating to building and civil engineering projects, including budget monitoring and material costs."
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The Quantity Surveyor (QS) is responsible for managing all costs relating to building and civil engineering projects, including variations to the original contract price."
   },
   {
-    "id": 4042,
-    "question": "A large construction project involves several different sub-contracted firms. Which role is primarily responsible for the high-level strategic planning and ensuring the project is completed on time and within the overall contract terms across multiple sites?",
+    "id": 4057,
+    "question": "A Site Manager is overseeing the daily operations of a multi-trade construction site. Which of the following tasks falls specifically under the Site Manager's remit rather than the Project Manager's?",
     "options": [
-      "Contracts Manager",
-      "Site Foreman",
-      "Apprentice",
-      "Site Supervisor"
+      "Coordinating daily logistics and on-site health and safety compliance",
+      "Securing long-term project funding and high-level stakeholder liaison",
+      "Defining the overall strategic project milestones and procurement strategy",
+      "Negotiating the primary contract terms with the client's legal team"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of the site management team",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Site Manager focuses on the day-to-day running of the site, including safety and logistics, whereas the Project Manager typically handles higher-level planning and external relations."
+  },
+  {
+    "id": 4058,
+    "question": "An individual arrives on-site claiming they have the legal authority to inspect electrical installation certificates and stop work immediately if they find a serious safety breach. Which role does this individual hold?",
+    "options": [
+      "HSE Inspector",
+      "Client Representative",
+      "Building Control Officer",
+      "Project Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Health and Safety Executive (HSE) Inspectors have statutory powers to enter sites, inspect documents, and issue prohibition notices to stop work if there is a risk of serious personal injury."
+  },
+  {
+    "id": 4059,
+    "question": "In the hierarchy of site reporting, an electrical improver notices a significant discrepancy between the schematic drawings and the actual site conditions. According to standard communication protocols, who should they notify first?",
+    "options": [
+      "Electrical Supervisor",
+      "Site Manager",
+      "Project Architect",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of individuals reporting to site management",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Individuals reporting to site management should follow the chain of command. An improver or apprentice reports directly to their immediate supervisor (the Electrical Supervisor/Foreman)."
+  },
+  {
+    "id": 4060,
+    "question": "Which site visitor is primarily concerned with ensuring that the electrical installation meets the minimum requirements of the Building Regulations, specifically regarding Part P and Part L?",
+    "options": [
+      "Building Control Officer",
+      "Clerk of Works",
+      "HSE Inspector",
+      "Insurance Risk Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Building Control Officers represent the local authority or an approved inspector to ensure the work complies with the Building Regulations."
+  },
+  {
+    "id": 4061,
+    "question": "A 'Clerk of Works' is often present on large local authority projects. What is the primary purpose of their role in relation to the electrical installation?",
+    "options": [
+      "To inspect the quality of workmanship and ensure materials match the specification",
+      "To manage the site payroll and subcontractor payments",
+      "To design the electrical circuits and produce CAD drawings",
+      "To act as the principal contractor under CDM regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The Clerk of Works (or Site Inspector) acts as the 'eyes and ears' of the client, focusing specifically on the quality of the build and adherence to specifications."
+  },
+  {
+    "id": 4062,
+    "question": "An electrical subcontractor has been hired to install a fire alarm system. Who is responsible for providing the subcontractor with the 'Construction Phase Plan' and ensuring they receive a site-specific induction?",
+    "options": [
+      "Site Manager",
+      "The Client",
+      "The Subcontractor's own office",
+      "Building Control"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
       "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Identify key roles of the site management team",
     "tags": [
-      "terminology",
-      "conceptual"
+      "health-safety",
+      "application",
+      "legislation"
     ],
-    "learningOutcomeId": "210.LO1.AC1.1",
+    "learningOutcomeId": "210-210-1A1-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Contracts Manager oversees the project from a high level, often managing multiple sites and ensuring the legal and contractual obligations are met."
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Site Manager (representing the Principal Contractor) is responsible for the overall health and safety management of the site, including inductions and the Construction Phase Plan."
   },
   {
-    "id": 4043,
-    "question": "An electrician arrives on a new site and needs to receive their initial site-specific safety induction. Who is typically responsible for ensuring this induction takes place and managing the daily health and safety on site?",
+    "id": 4063,
+    "question": "Which of the following best describes the synthesis of roles when a 'Design and Build' contract is used, compared to a traditional contract?",
     "options": [
-      "Site Manager",
+      "The contractor takes on the roles of both the designer and the installer",
+      "The Site Manager becomes the Quantity Surveyor for the project",
+      "The Client is legally required to perform all site inductions",
+      "The HSE Inspector must remain on-site full-time"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of the site management team",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "In a Design and Build contract, the main contractor is responsible for both the design work and the actual construction/installation, streamlining the management team structure."
+  },
+  {
+    "id": 4064,
+    "question": "During a site visit, a specialist commissioning engineer discovers that the main switchgear is incorrectly rated for the prospective fault current. To whom should they immediately issue a formal report to ensure the project's technical integrity is maintained?",
+    "options": [
+      "Project Manager",
+      "Delivery Driver",
+      "Apprentice Electrician",
+      "Trade Union Representative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Identify key roles of site visitors",
+    "tags": [
+      "application",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-210-1A1-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "A specialist visitor or engineer should report critical technical failures to the Project Manager or Site Manager to ensure the issue is logged and rectified through official channels."
+  },
+  {
+    "id": 4065,
+    "question": "Which role is most likely to be responsible for the 'Toolbox Talks' delivered to the electrical team every Monday morning?",
+    "options": [
+      "Electrical Supervisor",
       "Quantity Surveyor",
       "Client",
       "Building Control Officer"
@@ -759,619 +1366,16 @@ export const q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions: TaggedQuestion[
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
+    "category": "Identify key roles of individuals reporting to site management",
     "tags": [
       "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Site Manager is responsible for the day-to-day running of the site, including the coordination of health and safety and providing inductions."
-  },
-  {
-    "id": 4044,
-    "question": "During a commercial installation, a technical dispute arises between the electrical sub-contractor and the plumbing sub-contractor regarding the layout of services in a ceiling void. Who should the electrical Foreman report this to for a resolution?",
-    "options": [
-      "Site Manager",
-      "Health and Safety Executive",
-      "The Client",
-      "Quantity Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Site Manager coordinates the different trades on site and resolves conflicts between sub-contractors regarding site operations."
-  },
-  {
-    "id": 4045,
-    "question": "Which role acts as the first point of contact for an electrician regarding technical on-site issues and is responsible for supervising the work of a specific trade team?",
-    "options": [
-      "Site Supervisor",
-      "Contracts Manager",
-      "Project Manager",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A Site Supervisor or Foreman is the immediate lead for a trade team, providing technical guidance and direct supervision."
-  },
-  {
-    "id": 4046,
-    "question": "A visitor arrives on site and identifies themselves as a Building Control Officer. What is their primary role in relation to the electrical installation?",
-    "options": [
-      "To ensure the work complies with Building Regulations",
-      "To check the project is staying within the client's budget",
-      "To supervise the daily activities of the apprentices",
-      "To provide the electrical design and blueprints"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Building Control Officers inspect construction work to ensure it meets the minimum standards set out in the Building Regulations."
-  },
-  {
-    "id": 4047,
-    "question": "An inspector from the Health and Safety Executive (HSE) makes an unannounced visit to a construction site. Which of the following powers do they possess if they identify an immediate danger?",
-    "options": [
-      "The power to issue a Prohibition Notice and stop work immediately",
-      "The power to fire the Site Manager on the spot",
-      "The power to change the electrical design of the building",
-      "The power to increase the project budget to cover safety equipment"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "HSE inspectors have statutory powers to issue Prohibition Notices, which legally stop work if there is a risk of serious personal injury."
-  },
-  {
-    "id": 4048,
-    "question": "A client visits the site to view the progress of their new office building. According to site safety protocols, what must happen before they enter the construction area?",
-    "options": [
-      "They must be signed in and accompanied by a competent person",
-      "They can enter freely as they are paying for the project",
-      "They must wait until all electrical work has been isolated",
-      "They must be given a permanent site security pass"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "health-safety",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "All site visitors, including clients, must follow site rules which include signing in, receiving a briefing, and being accompanied for safety."
-  },
-  {
-    "id": 4049,
-    "question": "Which of the following best describes the relationship between a Project Manager and a Site Manager?",
-    "options": [
-      "The Project Manager focuses on the overall project goals and client liaison, while the Site Manager focuses on daily site operations",
-      "The Site Manager is senior to the Project Manager and handles all financial contracts",
-      "The Project Manager is only responsible for health and safety, while the Site Manager handles the budget",
-      "There is no difference; the titles are interchangeable in the construction industry"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Project Managers look at the 'big picture' (timeline, stakeholders, budget), whereas Site Managers deal with the practical execution and logistics on the ground."
-  },
-  {
-    "id": 4050,
-    "question": "An electrical apprentice identifies a faulty piece of site equipment (a 110V transformer). According to the standard chain of command, who should they report this to first?",
-    "options": [
-      "Their immediate Supervisor or Foreman",
-      "The Health and Safety Executive (HSE)",
-      "The Client",
-      "The Building Control Officer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Apprentices and electricians should report issues to their immediate supervisor as part of the internal site management structure."
-  },
-  {
-    "id": 4051,
-    "question": "On a large construction site, which member of the site management team is primarily responsible for acting as the 'eyes and ears' of the client to ensure that the work matches the quality and specifications defined in the contract?",
-    "options": [
-      "Clerk of Works",
-      "Site Manager",
-      "Quantity Surveyor",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-210-1A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Clerk of Works is specifically tasked with inspecting the quality of work and materials to ensure they comply with the contract specifications on behalf of the client."
-  },
-  {
-    "id": 4052,
-    "question": "A sub-contractor supervisor is managing a team of electricians. Which of the following tasks is a core part of their specific role when reporting to the site management team?",
-    "options": [
-      "Coordinating the daily progress and health and safety of their specific trade team",
-      "Managing the overall project budget and financial variations for the main contractor",
-      "Setting the master construction programme for all trades on the site",
-      "Signing off the final building regulations certificate for the entire project"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
       "conceptual",
-      "application",
       "terminology"
     ],
     "learningOutcomeId": "210-210-1A1-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "A trade supervisor reports to site management regarding their own team's progress and safety, rather than managing the site-wide budget or overall programme."
-  },
-  {
-    "id": 4053,
-    "question": "An inspector from the Health and Safety Executive (HSE) arrives at a site for an unannounced visit. What is the primary role of this visitor in relation to the site team?",
-    "options": [
-      "To ensure that the site and its management are complying with statutory health and safety legislation",
-      "To provide technical design advice on the electrical installation's power factor correction",
-      "To manage the daily signing-in procedures for all site operatives",
-      "To act as the client's representative for certifying monthly payment valuations"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "legislation",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-210-1A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The HSE inspector is a statutory visitor whose role is to enforce health and safety laws and ensure the site is operating safely."
-  },
-  {
-    "id": 4054,
-    "question": "During an installation, the client requests a significant change to the electrical layout. Which member of the site management team is responsible for calculating the financial impact and adjusting the contract value?",
-    "options": [
-      "Quantity Surveyor",
-      "Site Manager",
-      "Clerk of Works",
-      "Building Control Officer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "application",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-210-1A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the project, including the costs of variations and valuations."
-  },
-  {
-    "id": 4055,
-    "question": "In a standard site hierarchy, why is it essential for an electrical operative to report problems to their immediate supervisor rather than approaching the main contractor's site manager directly?",
-    "options": [
-      "To maintain clear lines of communication and professional accountability within the chain of command",
-      "Because the main contractor's site manager is legally prohibited from speaking to trade operatives",
-      "To ensure that the site manager does not have to provide personal protective equipment (PPE)",
-      "Because only the trade supervisor is permitted to hold a valid CSCS card on a construction site"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "conceptual",
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "210-210-1A1-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Following the chain of command ensures that information is filtered correctly through the people responsible for specific tasks and prevents confusion in site management."
-  },
-  {
-    "id": 4056,
-    "question": "An electrical contractor notices that the specified LSF (Low Smoke and Fume) cable for a project has increased in price by 30% since the tender was accepted. Which member of the site management team must the contractor consult to negotiate a 'variation' or 'extra' to cover these costs?",
-    "options": [
-      "Quantity Surveyor",
-      "Site Manager",
-      "Health and Safety Inspector",
-      "Building Control Officer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "terminology",
-      "application",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The Quantity Surveyor (QS) is responsible for the financial management of the project, including costs, contracts, and variations. While the Site Manager handles operations, the QS handles the money."
-  },
-  {
-    "id": 4057,
-    "question": "In the organizational structure of a large-scale construction project, which individual acts as the strategic link between the company's directors and the day-to-day operational Site Manager?",
-    "options": [
-      "Contracts Manager",
-      "Site Foreman",
-      "Apprentice",
-      "Chargehand"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "The Contracts Manager typically oversees multiple projects and ensures that the legal and high-level requirements of the contract are met, serving as a bridge between senior management and the site-specific team."
-  },
-  {
-    "id": 4058,
-    "question": "A visitor arrives on site to verify that the installation of emergency lighting and fire detection systems complies specifically with the approved plans and national Building Regulations. This person is most likely the:",
-    "options": [
-      "Building Control Officer",
-      "HSE Inspector",
-      "Quantity Surveyor",
-      "Contracts Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Building Control Officers ensure that the work meets the legal requirements of the Building Regulations. HSE inspectors focus on safety law, not necessarily design compliance."
-  },
-  {
-    "id": 4059,
-    "question": "During a complex industrial installation, the electrical team finds that the structural steelwork prevents the installation of the containment as shown on the drawings. Who is the primary person responsible for providing a technical design revision to solve this?",
-    "options": [
-      "Architect",
-      "Site Manager",
-      "Quantity Surveyor",
-      "HSE Inspector"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Architect (or the relevant design consultant) is responsible for the design and any changes to the aesthetic or structural layout that affect the installation plans."
-  },
-  {
-    "id": 4060,
-    "question": "Which statement best describes the difference in accountability between a Project Manager and a Site Manager?",
-    "options": [
-      "The Project Manager is accountable for the overall project success and budget, while the Site Manager is accountable for daily safety and progress on site.",
-      "The Site Manager is the client's representative, while the Project Manager works for the contractor.",
-      "The Project Manager only deals with health and safety, while the Site Manager only deals with materials.",
-      "The Site Manager is senior to the Project Manager in the company hierarchy."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Project Management is high-level and strategic (budget, timeline, client relations), whereas Site Management is operational and tactical (day-to-day site coordination)."
-  },
-  {
-    "id": 4061,
-    "question": "An electrical firm has one 'Chargehand' and one 'Foreman' on a large site. What is the typical distinction between these two roles reporting to site management?",
-    "options": [
-      "The Foreman manages the entire electrical department on site, while the Chargehand leads a specific small group or 'gang'.",
-      "The Chargehand is a visitor, while the Foreman is a permanent employee.",
-      "The Foreman is responsible for the budget, while the Chargehand is responsible for safety.",
-      "There is no difference; the terms are legally interchangeable under the EAWR 1989."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "A Foreman usually has a wider scope of responsibility over the whole trade on site, whereas a Chargehand is a 'working lead' for a specific team or task."
-  },
-  {
-    "id": 4062,
-    "question": "An electrician identifies a major risk of electrocution due to exposed live parts left by another contractor. If the electrical Foreman is not on site, who has the immediate legal authority and responsibility to stop work in that area?",
-    "options": [
-      "Site Manager",
-      "Quantity Surveyor",
-      "Architect",
-      "Sub-contractor's Apprentice"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Site Manager has the ultimate responsibility for site safety and the authority to halt work across all trades if a danger is identified."
-  },
-  {
-    "id": 4063,
-    "question": "Which visitor to a construction site has the statutory power to issue a 'Prohibition Notice', effectively shutting down all activity immediately without the permission of the Site Manager?",
-    "options": [
-      "Health and Safety Executive (HSE) Inspector",
-      "The Client",
-      "The Architect",
-      "The Building Control Officer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of site visitors",
-    "tags": [
-      "conceptual",
-      "health-safety",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "HSE Inspectors are government officials with statutory powers under the Health and Safety at Work Act to stop work if they believe there is a risk of serious personal injury."
-  },
-  {
-    "id": 4064,
-    "question": "A Site Supervisor is preparing the 'as-built' drawings and operation manuals at the end of a project. Who are they most likely to submit these documents to for final approval before they are handed to the client?",
-    "options": [
-      "Project Manager",
-      "HSE Inspector",
-      "Delivery Driver",
-      "Apprentice"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of individuals reporting to site management",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Project Manager coordinates the final handover documentation between the site team and the client."
-  },
-  {
-    "id": 4065,
-    "question": "Why is it critical for an electrician to understand the role of the Quantity Surveyor on a large commercial site?",
-    "options": [
-      "To ensure any extra work performed outside the original scope is recorded and paid for.",
-      "To obtain technical guidance on the selection of circuit breakers.",
-      "To report daily attendance for health and safety fire drills.",
-      "To request permission to use the site canteen."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Identify key roles of the site management team",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The QS manages the contract value. If an electrician does extra work without it being captured by the QS, the company may not be paid for the labor or materials used."
+    "explanation": "The Electrical Supervisor (or Foreman) is responsible for the direct supervision and safety briefings (Toolbox Talks) of their specific trade team."
   }
 ];

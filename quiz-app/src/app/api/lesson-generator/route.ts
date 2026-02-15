@@ -29,20 +29,43 @@ type LessonGenerationResult = Awaited<ReturnType<FileGenerator['generateLesson']
 };
 
 function buildBlueprintDebugData(
-  lesson: { id: string; blocks: Array<{ id: string; order: number }> },
+  lesson: { id: string; blocks: Array<{ id: string; type: string; order: number }> },
   masterBlueprint: MasterLessonBlueprint
 ) {
-  const expectedRequiredBlockIds = masterBlueprint.blockPlan.entries
-    .filter((entry) => entry.required)
-    .map((entry) => entry.id);
+  const deprecatedOptionalKeys = new Set(['explanation-b', 'check-b', 'explanation-c', 'check-c']);
+  const requiredEntries = masterBlueprint.blockPlan.entries.filter(
+    (entry) => entry.required && !deprecatedOptionalKeys.has(entry.key)
+  );
+  const expectedRequiredBlockIds = requiredEntries.map((entry) => entry.id);
   const actualBlockIds = lesson.blocks.map((block) => block.id);
-  const missingRequiredBlockIds = expectedRequiredBlockIds.filter((id) => !actualBlockIds.includes(id));
+  const blocksById = new Map(lesson.blocks.map((block) => [block.id, block]));
+  const blockByTypeAndOrder = (type: string, order: number) =>
+    lesson.blocks.find((block) => block.type === type && Math.abs(block.order - order) <= 0.0001);
+  const expectedOrderForEntry = (entry: MasterLessonBlueprint['blockPlan']['entries'][number]): number => {
+    if (entry.key === 'practice') return 8;
+    if (entry.key === 'integrative') return 9.5;
+    if (entry.key === 'spaced-review') return 10;
+    return entry.order;
+  };
+  const missingRequiredBlockIds = requiredEntries
+    .filter((entry) => {
+      const expectedOrder = expectedOrderForEntry(entry);
+      return !blocksById.get(entry.id) && !blockByTypeAndOrder(entry.type, expectedOrder);
+    })
+    .map((entry) => entry.id);
 
-  const byId = new Map(lesson.blocks.map((block) => [block.id, block]));
   const checkPlacementIssues: string[] = [];
-  for (const pair of masterBlueprint.blockPlan.checksAfterExplanation) {
-    const explanation = byId.get(pair.explanationId);
-    const check = byId.get(pair.checkId);
+  for (const pair of masterBlueprint.blockPlan.checksAfterExplanation.slice(0, 2)) {
+    const explanation =
+      blocksById.get(pair.explanationId) ??
+      (pair.explanationId.endsWith('-explain-a')
+        ? blockByTypeAndOrder('explanation', 4)
+        : blockByTypeAndOrder('explanation', 5));
+    const check =
+      blocksById.get(pair.checkId) ??
+      (pair.checkId.endsWith('-check-1')
+        ? blockByTypeAndOrder('practice', 4.5)
+        : blockByTypeAndOrder('practice', 5.5));
     if (!explanation || !check) continue;
     const expectedOrder = explanation.order + 0.5;
     if (Math.abs(check.order - expectedOrder) > 0.0001) {
@@ -249,7 +272,7 @@ export async function POST(request: NextRequest) {
       );
       if (blueprintErrors.length > 0) {
         const blueprintDebug = buildBlueprintDebugData(
-          lessonResult.content as { id: string; blocks: Array<{ id: string; order: number }> },
+          lessonResult.content as { id: string; blocks: Array<{ id: string; type: string; order: number }> },
           masterBlueprint
         );
         return NextResponse.json(

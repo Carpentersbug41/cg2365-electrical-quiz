@@ -16,7 +16,12 @@ import { Phase1_Planning, PlanningOutput } from './phases/Phase1_Planning';
 import { Phase2_Vocabulary, VocabularyOutput } from './phases/Phase2_Vocabulary';
 import { Phase3_Explanation, ExplanationOutput } from './phases/Phase3_Explanation';
 import { Phase4_UnderstandingChecks, UnderstandingChecksOutput } from './phases/Phase4_UnderstandingChecks';
-import { Phase5_WorkedExample, WorkedExampleOutput } from './phases/Phase5_WorkedExample';
+import {
+  Phase5_WorkedExample,
+  WorkedExampleOutput,
+  WorkedExampleBlock,
+  GuidedPracticeBlock,
+} from './phases/Phase5_WorkedExample';
 import { Phase6_Practice, PracticeOutput } from './phases/Phase6_Practice';
 import { Phase7_Integration, IntegrationOutput } from './phases/Phase7_Integration';
 import { Phase8_SpacedReview, SpacedReviewOutput } from './phases/Phase8_SpacedReview';
@@ -61,6 +66,23 @@ export interface SequentialGeneratorResult {
     details: any[];
   };
   debugBundle?: GenerationDebugBundle;
+}
+
+interface BlueprintBlockPlanEntryLike {
+  id?: unknown;
+  key?: unknown;
+  type?: unknown;
+  order?: unknown;
+  required?: unknown;
+}
+
+interface BlueprintWorkedRequirement {
+  requireWorkedExample: boolean;
+  requireGuidedPractice: boolean;
+  workedExampleId: string;
+  guidedPracticeId: string;
+  workedExampleOrder: number;
+  guidedPracticeOrder: number;
 }
 
 /**
@@ -482,9 +504,10 @@ export class SequentialLessonGenerator {
     console.log('  📋 Phase 1: Planning lesson structure...');
     debugLog('PHASE1_START', { lessonId: `${request.unit}-${request.lessonId}` });
 
-    const needsWorkedExample = requiresWorkedExample([
-      { type: 'calculation', confidence: 0.8 }
-    ]);
+    const taskTypes = classifyLessonTask(request.topic, request.section, request.mustHaveTopics);
+    const computedTaskMode = getTaskModeString(taskTypes, isPurposeOnly(request.mustHaveTopics));
+    const blueprintRequirement = this.getBlueprintWorkedRequirement(request);
+    const needsWorkedExample = requiresWorkedExample(taskTypes) || blueprintRequirement.requireWorkedExample;
 
     const input = { request, requiresWorkedExample: needsWorkedExample };
     const prompts = this.phase1.getPrompts(input);
@@ -504,13 +527,31 @@ export class SequentialLessonGenerator {
       return null;
     }
 
-    debugLog('PHASE1_COMPLETE', { 
-      layout: parsed.data.layout, 
-      explanationSections: parsed.data.explanationSections.length 
+    const normalizedPlan: PlanningOutput = {
+      ...parsed.data,
+      taskMode: parsed.data.taskMode?.trim() ? parsed.data.taskMode : computedTaskMode,
+      needsWorkedExample: parsed.data.needsWorkedExample || blueprintRequirement.requireWorkedExample,
+    };
+
+    if (!Array.isArray(normalizedPlan.explanationSections) || normalizedPlan.explanationSections.length === 0) {
+      normalizedPlan.explanationSections = [
+        {
+          order: 4,
+          title: request.topic,
+          topic: request.topic,
+        },
+      ];
+    }
+
+    debugLog('PHASE1_COMPLETE', {
+      layout: normalizedPlan.layout,
+      explanationSections: normalizedPlan.explanationSections.length,
+      needsWorkedExample: normalizedPlan.needsWorkedExample,
+      taskMode: normalizedPlan.taskMode,
     });
-    console.log(`    ✓ Layout: ${parsed.data.layout}, Sections: ${parsed.data.explanationSections.length}`);
+    console.log(`    ✓ Layout: ${normalizedPlan.layout}, Sections: ${normalizedPlan.explanationSections.length}`);
     
-    return parsed.data;
+    return normalizedPlan;
   }
 
   /**
@@ -641,17 +682,22 @@ export class SequentialLessonGenerator {
     explanations: ExplanationOutput
   ): Promise<WorkedExampleOutput | null> {
     console.log('  🔢 Phase 5: Worked example...');
-    debugLog('PHASE5_START', { lessonId: `${request.unit}-${request.lessonId}` });
+    const lessonId = `${request.unit}-${request.lessonId}`;
+    debugLog('PHASE5_START', { lessonId });
+    const blueprintRequirement = this.getBlueprintWorkedRequirement(request);
+    const mustIncludeWorkedBlocks =
+      blueprintRequirement.requireWorkedExample || blueprintRequirement.requireGuidedPractice;
+    const shouldGenerateWorkedExample = plan.needsWorkedExample || mustIncludeWorkedBlocks;
 
     const input = {
-      lessonId: `${request.unit}-${request.lessonId}`,
+      lessonId,
       topic: request.topic,
       explanations: explanations.explanations,
-      needsWorkedExample: plan.needsWorkedExample,
+      needsWorkedExample: shouldGenerateWorkedExample,
       taskMode: plan.taskMode,
     };
 
-    if (!plan.needsWorkedExample) {
+    if (!shouldGenerateWorkedExample) {
       console.log(`    ⊘ Skipped (not needed)`);
       return {
         workedExample: undefined,
@@ -673,16 +719,237 @@ export class SequentialLessonGenerator {
     const parsed = this.parseResponse<WorkedExampleOutput>(response, 'Phase5_WorkedExample');
     if (!parsed.success || !parsed.data) {
       debugLog('PHASE5_FAILED', { error: parsed.error });
+      if (mustIncludeWorkedBlocks) {
+        return this.createFallbackWorkedExampleOutput(
+          lessonId,
+          request.topic,
+          explanations.explanations,
+          blueprintRequirement
+        );
+      }
       return null;
     }
 
-    debugLog('PHASE5_COMPLETE', { 
-      hasWorkedExample: !!parsed.data.workedExample,
-      hasGuidedPractice: !!parsed.data.guidedPractice
+    const ensured = this.ensureRequiredWorkedExampleBlocks(
+      parsed.data,
+      lessonId,
+      request.topic,
+      explanations.explanations,
+      blueprintRequirement
+    );
+
+    debugLog('PHASE5_COMPLETE', {
+      hasWorkedExample: !!ensured.workedExample,
+      hasGuidedPractice: !!ensured.guidedPractice
     });
     console.log(`    ✓ Generated worked example + guided practice`);
     
-    return parsed.data;
+    return ensured;
+  }
+
+  private getBlueprintWorkedRequirement(request: GenerationRequest): BlueprintWorkedRequirement {
+    const lessonId = `${request.unit}-${request.lessonId}`;
+    const defaultRequirement: BlueprintWorkedRequirement = {
+      requireWorkedExample: false,
+      requireGuidedPractice: false,
+      workedExampleId: `${lessonId}-worked-example`,
+      guidedPracticeId: `${lessonId}-guided`,
+      workedExampleOrder: 6,
+      guidedPracticeOrder: 7,
+    };
+
+    if (!request.masterLessonBlueprint || typeof request.masterLessonBlueprint !== 'object') {
+      return defaultRequirement;
+    }
+
+    const blueprint = request.masterLessonBlueprint as {
+      blockPlan?: { entries?: unknown };
+      practiceSpec?: { guidedPracticeRequired?: unknown };
+    };
+    const entries = Array.isArray(blueprint.blockPlan?.entries)
+      ? (blueprint.blockPlan.entries as BlueprintBlockPlanEntryLike[])
+      : [];
+
+    const findRequiredEntry = (
+      matcher: (entry: BlueprintBlockPlanEntryLike) => boolean
+    ): BlueprintBlockPlanEntryLike | undefined =>
+      entries.find((entry) => entry.required === true && matcher(entry));
+
+    const workedEntry = findRequiredEntry(
+      (entry) => entry.type === 'worked-example' || entry.key === 'worked-example'
+    );
+    const guidedEntry = findRequiredEntry(
+      (entry) => entry.type === 'guided-practice' || entry.key === 'guided-practice'
+    );
+    const guidedPracticeRequiredBySpec = blueprint.practiceSpec?.guidedPracticeRequired === true;
+
+    const requireGuidedPractice = Boolean(guidedEntry) || guidedPracticeRequiredBySpec;
+    const requireWorkedExample = Boolean(workedEntry) || requireGuidedPractice;
+
+    return {
+      requireWorkedExample,
+      requireGuidedPractice,
+      workedExampleId:
+        typeof workedEntry?.id === 'string' && workedEntry.id.trim().length > 0
+          ? workedEntry.id
+          : defaultRequirement.workedExampleId,
+      guidedPracticeId:
+        typeof guidedEntry?.id === 'string' && guidedEntry.id.trim().length > 0
+          ? guidedEntry.id
+          : defaultRequirement.guidedPracticeId,
+      workedExampleOrder:
+        typeof workedEntry?.order === 'number' ? workedEntry.order : defaultRequirement.workedExampleOrder,
+      guidedPracticeOrder:
+        typeof guidedEntry?.order === 'number' ? guidedEntry.order : defaultRequirement.guidedPracticeOrder,
+    };
+  }
+
+  private ensureRequiredWorkedExampleBlocks(
+    output: WorkedExampleOutput,
+    lessonId: string,
+    topic: string,
+    explanations: ExplanationOutput['explanations'],
+    requirement: BlueprintWorkedRequirement
+  ): WorkedExampleOutput {
+    let workedExample = output.workedExample;
+    let guidedPractice = output.guidedPractice;
+
+    if (requirement.requireWorkedExample && !workedExample) {
+      workedExample = this.createFallbackWorkedExampleBlock(lessonId, topic, explanations);
+    }
+
+    if (requirement.requireGuidedPractice && !guidedPractice) {
+      guidedPractice = this.createFallbackGuidedPracticeBlock(lessonId, topic, workedExample);
+    }
+
+    if (workedExample && requirement.requireWorkedExample) {
+      workedExample = {
+        ...workedExample,
+        id: requirement.workedExampleId,
+        order: requirement.workedExampleOrder,
+      };
+    }
+
+    if (guidedPractice && requirement.requireGuidedPractice) {
+      guidedPractice = {
+        ...guidedPractice,
+        id: requirement.guidedPracticeId,
+        order: requirement.guidedPracticeOrder,
+      };
+    }
+
+    return {
+      workedExample,
+      guidedPractice,
+    };
+  }
+
+  private createFallbackWorkedExampleOutput(
+    lessonId: string,
+    topic: string,
+    explanations: ExplanationOutput['explanations'],
+    requirement: BlueprintWorkedRequirement
+  ): WorkedExampleOutput {
+    const workedExample = requirement.requireWorkedExample
+      ? {
+          ...this.createFallbackWorkedExampleBlock(lessonId, topic, explanations),
+          id: requirement.workedExampleId,
+          order: requirement.workedExampleOrder,
+        }
+      : undefined;
+
+    const guidedPractice = requirement.requireGuidedPractice
+      ? {
+          ...this.createFallbackGuidedPracticeBlock(lessonId, topic, workedExample),
+          id: requirement.guidedPracticeId,
+          order: requirement.guidedPracticeOrder,
+        }
+      : undefined;
+
+    return { workedExample, guidedPractice };
+  }
+
+  private createFallbackWorkedExampleBlock(
+    lessonId: string,
+    topic: string,
+    explanations: ExplanationOutput['explanations']
+  ): WorkedExampleBlock {
+    const anchorTitle = explanations[0]?.title || topic;
+    return {
+      id: `${lessonId}-worked-example`,
+      order: 6,
+      title: `Worked Example: Applying ${anchorTitle}`,
+      given: `A learner must apply ${topic} to a realistic workplace-style scenario using the lesson rules.`,
+      steps: [
+        {
+          stepNumber: 1,
+          description: `Identify the scenario context and the key requirement linked to ${anchorTitle}.`,
+          formula: null,
+          calculation: null,
+          result: 'Key requirement identified.',
+        },
+        {
+          stepNumber: 2,
+          description: 'Select the relevant rule, criterion, or information source from the taught explanation content.',
+          formula: null,
+          calculation: null,
+          result: 'Relevant rule selected.',
+        },
+        {
+          stepNumber: 3,
+          description: 'Apply the selected rule and justify why the chosen outcome is appropriate for the scenario.',
+          formula: null,
+          calculation: null,
+          result: 'Outcome justified with taught reasoning.',
+        },
+      ],
+      notes: 'Deterministic fallback: generated to satisfy required blueprint structure.',
+    };
+  }
+
+  private createFallbackGuidedPracticeBlock(
+    lessonId: string,
+    topic: string,
+    workedExample?: WorkedExampleBlock
+  ): GuidedPracticeBlock {
+    const steps = (workedExample?.steps ?? []).map((step) => ({
+      stepNumber: step.stepNumber,
+      prompt: `Step ${step.stepNumber}: ${step.description}`,
+      expectedAnswer: [step.result || 'A justified response based on taught lesson content.'],
+      hint: 'Use the same reasoning pattern as the worked example.',
+    }));
+
+    const fallbackSteps =
+      steps.length > 0
+        ? steps
+        : [
+            {
+              stepNumber: 1,
+              prompt: 'Identify the key requirement in the scenario.',
+              expectedAnswer: ['Key requirement identified from scenario details.'],
+              hint: 'Start by naming the requirement before choosing an action.',
+            },
+            {
+              stepNumber: 2,
+              prompt: 'Select the best matching rule or source of information.',
+              expectedAnswer: ['Relevant rule or source selected.'],
+              hint: 'Choose the rule that directly addresses the requirement.',
+            },
+            {
+              stepNumber: 3,
+              prompt: 'State and justify the final outcome for this scenario.',
+              expectedAnswer: ['Outcome justified using taught lesson reasoning.'],
+              hint: 'Explain why the outcome is appropriate, not just what it is.',
+            },
+          ];
+
+    return {
+      id: `${lessonId}-guided`,
+      order: 7,
+      title: 'Guided Practice (We Do)',
+      problem: `Apply ${topic} to a similar scenario and justify each step.`,
+      steps: fallbackSteps,
+    };
   }
 
   /**

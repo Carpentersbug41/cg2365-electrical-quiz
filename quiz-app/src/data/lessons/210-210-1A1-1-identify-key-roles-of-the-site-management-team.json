@@ -6,9 +6,9 @@
   "unit": "Unit 210",
   "topic": "1 Identify key roles of the site management team:",
   "learningOutcomes": [
-    "List the primary job titles within a typical site management team",
-    "Describe the key responsibilities of individuals reporting to site management",
-    "Differentiate between internal site personnel and various categories of site visitors"
+    "List the key job titles that comprise a standard site management team",
+    "Describe the primary responsibilities of individuals reporting to site management",
+    "Identify different categories of site visitors and their reasons for attendance"
   ],
   "prerequisites": [],
   "blocks": [
@@ -19,16 +19,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "List the primary job titles within a typical site management team",
+            "text": "List the key job titles that comprise a standard site management team",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the key responsibilities of individuals reporting to site management",
+            "text": "Describe the primary responsibilities of individuals reporting to site management",
             "bloomLevel": "understand"
           },
           {
-            "text": "Differentiate between internal site personnel and various categories of site visitors",
-            "bloomLevel": "apply"
+            "text": "Identify different categories of site visitors and their reasons for attendance",
+            "bloomLevel": "remember"
           }
         ]
       }
@@ -40,30 +40,49 @@
       "content": {
         "terms": [
           {
-            "term": "Hierarchy",
-            "definition": "The formal chain of command on a site that defines the levels of authority and establishes clear reporting lines between personnel."
-          },
-          {
             "term": "Site Manager",
-            "definition": "The individual responsible for the daily oversight of the entire project site, ensuring work is completed safely, on time, and within budget."
+            "definition": "The individual responsible for the daily oversight of an entire project or facility, ensuring work is completed safely, on schedule, and according to specifications."
           },
           {
             "term": "Site Supervisor",
-            "definition": "A person who monitors the work of a specific team or trade to ensure quality and safety, reporting directly to the site manager rather than managing the whole project."
+            "definition": "A person who manages specific operational teams and technical tasks on the ground, reporting to the site manager rather than overseeing overall project strategy."
           },
           {
-            "term": "Operative",
-            "definition": "A skilled or semi-skilled worker who carries out practical tasks on-site under the direction of a supervisor, not responsible for management duties."
+            "term": "Chain of Command",
+            "definition": "The formal hierarchy that defines who reports to whom and determines the flow of authority and communication throughout the site team."
           },
           {
-            "term": "Sub-contractor",
-            "definition": "An external business or individual hired to complete a specific package of work, rather than being a direct employee of the main contracting firm."
+            "term": "Subcontractor",
+            "definition": "A specialist individual or firm hired to perform a specific task or trade within a project, not to be confused with a direct employee of the main organization."
           },
           {
-            "term": "Site Visitor",
-            "definition": "Any individual on-site who is not part of the permanent workforce, such as a client or inspector, who must follow specific sign-in and safety protocols."
+            "term": "Site Induction",
+            "definition": "A mandatory safety and procedural briefing provided to all visitors and new staff before they are permitted to access the work area."
+          },
+          {
+            "term": "Statutory Visitor",
+            "definition": "An external official with a legal right to inspect the site for compliance with regulations, such as a health and safety inspector or building control officer."
           }
         ]
+      }
+    },
+    {
+      "id": "210-210-1A1-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "1 Identify key roles of the site management team: Diagram",
+        "description": "Visual representation of 1 Identify key roles of the site management team:",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "site-manager",
+          "site-supervisor",
+          "subcontractor",
+          "statutory-visitor",
+          "chain-of-command"
+        ],
+        "placeholderText": "The diagram should be a hierarchical flow chart showing the Site Manager at the top, connected by a vertical arrow (labeled 'Chain of Command') to the Site Supervisor. Below the Site Supervisor, several Subcontractors are shown as separate blocks. Off to the side, a Statutory Visitor is shown with a dashed line pointing towards the Site Manager, representing an external legal relationship rather than a direct reporting line. A 'Site Induction' box should be shown as a gatekeeper element that all roles must pass through to reach the main work area."
       }
     },
     {
@@ -71,8 +90,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Site Management and Operational Roles",
-        "content": "### In this lesson\nYou will learn how to identify the core members of a site management team and the workers who report to them. This knowledge is essential for navigating the professional environment of any technical project site. You will cover the definition of a site hierarchy, the specific duties of management personnel, and the roles of operational staff.\n\n**What this is**\nEvery technical site operates under a **Hierarchy**, which is the formal chain of command that defines levels of authority and establishes clear reporting lines. At the top of this structure is the **Site Manager**, the individual responsible for the daily oversight of the entire project site. They ensure work is completed safely, on time, and within budget. Reporting to them is the **Site Supervisor**, a person who monitors the work of a specific team or trade to ensure quality and safety. Finally, the **Operative** is a skilled or semi-skilled worker who carries out the practical, hands-on tasks. An **Operative** is not responsible for management duties and follows the direction of their supervisor.\n\nTo visualize this, imagine a professional orchestra. The **Site Manager** is like the Conductor, who oversees the entire performance and timing. The **Site Supervisor** is like a Section Leader (e.g., Lead Violinist), who ensures their specific group plays correctly. The **Operative** is like an individual musician playing their instrument to produce the actual music.\n\n**Why it matters**\nUnderstanding the **Hierarchy** ensures that communication is efficient and that safety protocols are followed. If an **Operative** identifies a hazard, they must know exactly who their **Site Supervisor** is to report it immediately. Without clear roles, tasks might be duplicated, or worse, critical safety checks might be missed because everyone assumes someone else is responsible.\n\n**Key facts / rules**\n*   The **Hierarchy** typically flows from the **Site Manager** down to the **Operative**.\n*   A **Site Manager** holds legal and financial responsibility for the whole project.\n*   A **Site Supervisor** focuses on technical quality and immediate team safety.\n*   **Operatives** are the primary force for physical task completion.\n*   Reporting lines usually require workers to speak to their immediate superior before escalating issues.\n*   Authority is linked to the job title within the management structure.\n\n**How to recognise it**\nYou can recognise these roles by observing the scope of their activities. A **Site Manager** is commonly seen in a site office or conducting high-level walkthroughs with blueprints, focusing on the \"big picture\" such as project deadlines. A **Site Supervisor** is typically found at the specific \"work face,\" checking the measurements or the quality of a specific installation against a technical drawing. An **Operative** is recognized by their constant engagement with tools and equipment, performing the physical labor required for the day's targets.\n\nIn a micro-scenario: If a project has 10 teams working simultaneously, there is usually 1 **Site Manager** overseeing the entire site, while each of the 10 teams will have its own **Site Supervisor** to manage the 5 **Operatives** assigned to that specific task. This forces a clear division of labor and oversight.\n\n**Common mistakes**\nLearners often confuse a **Site Manager** with a **Site Supervisor**; a **Site Manager** is responsible for the entire project's success and broad safety, whereas a **Site Supervisor** is focused on the specific output and safety of a single team or trade.\n\nMisconceptions (targeted):\n*   Misconception: Operatives can give formal work directions to other trades. | Correction: Operatives carry out tasks and report to supervisors; they do not hold management authority over others. | AC: AC1.2\n*   Misconception: Every person on site reports directly to the Site Manager. | Correction: Reporting follows a specific hierarchy where operatives report to supervisors, who then report to the manager to prevent communication bottlenecks. | AC: AC1.1\n\n**Key Points**\n*   The **Hierarchy** provides the structure for all site communication.\n*   The **Site Manager** manages the project; the **Site Supervisor** manages the team.\n*   **Operatives** focus on practical task execution rather than management.\n\n**Quick recap**\nA standard site is organized into a clear chain of command. The **Site Manager** oversees the whole project, the **Site Supervisor** manages specific teams or tasks, and the **Operative** performs the physical work. This structure ensures that everyone knows their responsibilities and who they should report to during the working day.\n\n### Coming Up Next\nWe will look at how external personnel, such as sub-contractors and site visitors, fit into this structure and the specific rules they must follow when arriving on-site."
+        "title": "Site Management and Reporting Lines",
+        "content": "### In this lesson\nThis lesson identifies the core leadership roles found on a technical site and how authority flows between them. You will learn to distinguish between strategic oversight and operational management while understanding the formal reporting structures used in professional environments.\n\n*   The specific job titles that form a site management team.\n*   The primary responsibilities of those who report to management.\n*   How the formal hierarchy governs technical work and safety.\n\n**What this is**\nIn any professional technical environment, a structured hierarchy ensures that work is performed safely and efficiently. This hierarchy is known as the **Chain of Command**. At the top of this structure is the **Site Manager**, who holds the ultimate responsibility for the project’s success, including safety, scheduling, and meeting technical specifications. Supporting them are **Site Supervisors**, who act as the link between high-level project goals and the physical work being performed. This structure ensures that every individual on-site knows exactly who to look to for instructions and who is responsible for their safety and performance.\n\n**Why it matters**\nWithout a clear **Chain of Command**, communication breaks down, leading to safety risks and project delays. For example, if a technical issue arises, a technician must know whether to consult their **Site Supervisor** for a practical solution or if the issue requires the **Site Manager** to adjust the overall project timeline. Understanding these roles ensures that instructions are followed correctly and that accountability is maintained throughout the project lifecycle.\n\n**Key facts / rules**\n*   The **Site Manager** oversees the entire project strategy and high-level safety compliance.\n*   A **Site Supervisor** manages specific operational teams and technical tasks on a daily basis.\n*   The **Chain of Command** dictates the flow of information; workers typically report to a supervisor, not directly to the manager.\n*   **Subcontractors** are specialist firms or individuals brought in for specific tasks but must still follow the site's management rules.\n*   All management roles share a legal and moral duty to ensure a safe working environment.\n*   Reporting lines are typically documented in a site-specific management plan.\n\n**How to recognise it**\nYou can recognise these roles by their scope of influence and their daily activities. A **Site Manager** is often found reviewing project documents, coordinating with clients, and checking the overall project schedule. In contrast, a **Site Supervisor** is usually seen on the ground, directing specific technical activities and ensuring that the immediate work area is safe and productive. \n\nTo anchor this in the physical world, consider a large commercial ship. The Captain (the **Site Manager**) is responsible for the entire vessel, the route, and the safety of everyone on board. The Deck Officers (the **Site Supervisors**) manage specific shifts and technical tasks like navigation or engine maintenance, reporting directly to the Captain while leading their own small teams.\n\n*Micro-scenario: If a project has 50 workers split into five specialized groups, the **Site Manager** monitors the 12-month completion date, while each **Site Supervisor** manages the 10 people in their specific group to ensure today's tasks are finished.* \n\n**Common mistakes**\nLearners often confuse a **Site Manager** with a **Site Supervisor**; a **Site Manager** is responsible for the overall project strategy and safety specifications, whereas a **Site Supervisor** is focused on the daily operational management of specific technical teams. Another common error is assuming **Subcontractors** operate outside the **Chain of Command**; while they are independent entities, they must report to the site management for safety and coordination.\n\nMisconceptions (targeted):\n*   Misconception: The Site Manager and Site Supervisor have the same daily tasks. | Correction: The Manager focuses on the whole project and strategy, while the Supervisor focuses on specific team operations. | AC: 210.LO1.AC1.1\n*   Misconception: Subcontractors do not need to follow the site's management hierarchy. | Correction: All personnel, including subcontractors, must follow the established Chain of Command for safety and coordination. | AC: 210.LO1.AC1.2\n\n**Key Points**\n*   The **Site Manager** holds overall project and safety responsibility.\n*   The **Site Supervisor** manages daily technical tasks and specific teams.\n*   The **Chain of Command** defines the reporting hierarchy and authority flow.\n*   **Subcontractors** provide specialist skills while remaining under site management oversight.\n\n**Quick recap**\nTechnical sites rely on a defined management team to maintain safety and progress. The **Site Manager** provides strategic oversight, the **Site Supervisor** provides operational leadership, and the **Chain of Command** ensures clear communication between all parties, including **Subcontractors**.\n\n### Coming Up Next\nNow that we have identified the internal management team, we will look at the various external individuals who visit technical sites and the legal reasons for their attendance."
       }
     },
     {
@@ -80,13 +99,13 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Site Management and Operational Roles",
+        "title": "Check Your Understanding: Site Management and Reporting Lines",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-210-1A1-C1-L1-A",
-            "questionText": "Which role is identified as the individual responsible for the daily oversight of the entire project site?",
+            "questionText": "Who oversees the entire project strategy and high-level safety compliance?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
@@ -94,48 +113,47 @@
               "The Site Manager",
               "Site Managers"
             ],
-            "hint": "This person is at the top of the site hierarchy."
+            "hint": "This person holds the ultimate responsibility for the success and strategy of the project."
           },
           {
             "id": "210-210-1A1-C1-L1-B",
-            "questionText": "Which specific role holds the legal and financial responsibility for the whole project?",
+            "questionText": "Who manages specific operational teams and technical tasks on a daily basis?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Site Manager",
-              "The Site Manager",
-              "Site Managers"
+              "Site Supervisor",
+              "A Site Supervisor",
+              "Site Supervisors"
             ],
-            "hint": "This role is compared to the conductor of an orchestra."
+            "hint": "This role acts as the link between high-level goals and the physical work being performed."
           },
           {
             "id": "210-210-1A1-C1-L1-C",
-            "questionText": "Which members of the team are the primary force for physical task completion?",
+            "questionText": "According to the chain of command, who do workers typically report to instead of the manager?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Operatives",
-              "Operative",
-              "The Operatives"
+              "A supervisor",
+              "Site Supervisor",
+              "The supervisor"
             ],
-            "hint": "These workers carry out the practical, hands-on tasks."
+            "hint": "Information flows through this role to ensure the hierarchy is maintained."
           },
           {
             "id": "210-210-1A1-C1-L2",
-            "questionText": "Using your answers to Q1 (daily oversight), Q2 (legal and financial responsibility), and Q3 (physical task completion), explain how these roles connect within the site hierarchy. Why must the Site Manager oversee the Operatives' work?",
+            "questionText": "Using your answers to Q1 (Site Manager), Q2 (Site Supervisor), and Q3 (Reporting), explain how these roles work together. Why must a worker know the difference between these two management roles when reporting an issue?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The Site Manager provides the top-level oversight and holds the ultimate responsibility for the project outcome",
-              "Operatives perform the actual physical work that determines the project's progress",
-              "The manager must oversee the operatives to ensure that the physical tasks align with the legal and financial requirements of the whole project",
-              "The hierarchy ensures that the 'big picture' goals of the manager are met by the practical actions of the operatives"
+              "Site Managers handle project-wide strategy while Supervisors handle immediate daily tasks",
+              "The Chain of Command requires workers to report to a supervisor to maintain the flow of information",
+              "Knowing the difference ensures issues are directed to the correct level of authority for either practical or strategic solutions"
             ],
             "expectedAnswer": [
-              "The Site Manager holds the legal and financial responsibility for the whole project, which means they must provide daily oversight of the entire site. Because the Operatives are the primary force for physical task completion, the Site Manager must ensure their practical work stays on time and within the project's budget.",
-              "The Site Manager is responsible for the daily oversight and legal success of the project, while Operatives focus on physical tasks. These connect because the manager must ensure that the physical labor of the operatives meets the overall project requirements they are legally responsible for."
+              "The Site Manager handles the project strategy while the Site Supervisor manages the daily team tasks. Because workers report to the supervisor first, they must know the difference to ensure that operational issues are handled by the supervisor and strategic issues are passed up the chain correctly.",
+              "A worker needs to distinguish between the roles because the chain of command dictates they report to a supervisor for daily tasks. This allows the Site Manager to focus on high-level strategy and safety while the supervisor handles the immediate technical team."
             ],
-            "hint": "Think about how the 'big picture' responsibility of a manager relates to the physical labor of the workers."
+            "hint": "Consider how the chain of command prevents the Site Manager from being overwhelmed by daily technical problems."
           }
         ]
       }
@@ -145,8 +163,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Site Visitors and External Personnel",
-        "content": "### In this lesson\nYou will learn how to differentiate between the internal site workforce and external personnel. This includes identifying the role of a sub-contractor and understanding the protocols for site visitors. This distinction is vital for maintaining site security and ensuring that all individuals are accounted for under safety regulations.\n\n**What this is**\nNot everyone on a site is a direct employee of the main firm. A **Sub-contractor** is an external business or individual hired to complete a specific package of work. They are specialists brought in for their expertise in a particular area. In contrast, a **Site Visitor** is any individual on-site who is not part of the permanent or contracted workforce. This includes clients, delivery drivers, or government inspectors. Unlike the workforce, a **Site Visitor** must follow strict sign-in and safety protocols, often requiring an escort while moving through the site.\n\nThink of a large hospital. The doctors and nurses are the internal workforce. A specialist company brought in to repair the X-ray machine is like a **Sub-contractor**. A person coming in for a scheduled tour or a delivery person dropping off supplies is a **Site Visitor**.\n\n**Why it matters**\nDistinguishing between these roles is a matter of safety and legal compliance. **Sub-contractors** have specific contractual duties and are integrated into the site **Hierarchy** for the duration of their task. **Site Visitors** are often unfamiliar with the hazards of the environment and represent a higher safety risk, which is why they must be identified and managed differently than the trained workforce.\n\n**Key facts / rules**\n*   **Sub-contractors** are hired for specific, limited-scope tasks.\n*   A **Sub-contractor** provides their own tools and often their own supervisors.\n*   **Site Visitors** must sign a visitor log immediately upon entry.\n*   Visitors generally do not perform practical work on the project.\n*   Both groups must adhere to the rules set by the **Site Manager**.\n*   Identification (such as specific high-visibility vests or badges) is often used to distinguish visitors.\n\n**How to recognise it**\nYou can recognise a **Sub-contractor** because they are often on-site for several days or weeks, performing technical labor, but they may wear a different uniform or use vehicles branded with a different company name than the main contractor. You can recognise a **Site Visitor** by their behavior and duration on site; they are usually dressed in clean clothing or temporary safety gear, are often accompanied by a member of the management team, and typically stay for only a few hours.\n\nIn a micro-scenario: A specialist team arrives to install 500 square meters of specialized flooring over two weeks; they are **Sub-contractors**. A local council official arrives for 20 minutes to check a planning permit; they are a **Site Visitor**. The difference is the intent: one is there to build, the other is there to observe or provide a service.\n\n**Common mistakes**\nLearners often confuse a **Sub-contractor** with a **Site Visitor**; a **Sub-contractor** is on-site to perform a specific package of practical work as part of the project team, whereas a **Site Visitor** is there for non-workforce reasons such as inspection, delivery, or observation.\n\nMisconceptions (targeted):\n*   Misconception: Sub-contractors are exempt from the site manager's authority. | Correction: All personnel, including sub-contractors, must operate under the site manager's safety and timing oversight. | AC: AC1.3\n*   Misconception: Anyone who isn't an operative is a visitor. | Correction: Sub-contractors are part of the productive workforce, even if they are not direct employees; only non-workers are classified as visitors. | AC: AC1.3\n\n**Key Points**\n*   **Sub-contractors** fulfill specialized work packages.\n*   **Site Visitors** include anyone not involved in the actual construction or technical work.\n*   Visitors require stricter supervision and mandatory sign-in procedures.\n\n**Quick recap**\nIt is important to tell the difference between those who are there to work and those who are there to visit. **Sub-contractors** are specialist workers who form part of the project team for a set time. **Site Visitors** are external individuals who must follow specific entry protocols and are not part of the daily workforce.\n\n### Coming Up Next\nNow that you can identify the roles on site, we will explore the formal and informal communication methods used to pass information between these different groups."
+        "title": "Site Visitors and External Roles",
+        "content": "### In this lesson\nThis lesson explores the different categories of individuals who access a technical site but are not part of the permanent daily workforce. You will learn to identify these visitors and understand the mandatory procedures required for their entry.\n\n*   The different categories of site visitors and their reasons for attendance.\n*   The role of the **Statutory Visitor** in site compliance.\n*   The purpose and necessity of a **Site Induction**.\n\n**What this is**\nTechnical sites are restricted areas, but they frequently require access by external parties. These individuals are classified as visitors. A critical category is the **Statutory Visitor**, which includes officials like health and safety inspectors or building control officers who have a legal right to enter and inspect the site. Other visitors may include delivery drivers, clients, or specialized consultants. Regardless of their role, every visitor must undergo a **Site Induction**—a mandatory briefing that explains site-specific hazards, emergency procedures, and safety rules—before they are allowed past the site boundary.\n\n**Why it matters**\nIdentifying visitors and their reasons for attendance is essential for security and safety. If an unauthorized person enters a high-risk area, they could cause an accident or be injured themselves. Furthermore, failing to facilitate a **Statutory Visitor** can lead to legal penalties or the immediate closure of the site. The **Site Induction** acts as the first line of defense, ensuring that even a temporary visitor understands the risks present on that specific site.\n\n**Key facts / rules**\n*   A **Statutory Visitor** has a legal right to access the site for inspection purposes (verify current local regulations).\n*   All visitors must sign in and out to maintain an accurate record for emergency evacuations.\n*   A **Site Induction** is mandatory for everyone before they access the work area for the first time.\n*   Visitors must typically be accompanied by a member of the site team unless they have been fully cleared for unescorted access.\n*   The reason for attendance must be recorded (e.g., equipment delivery, safety audit, client progress meeting).\n*   Visitors must wear the required personal protective equipment (PPE) as specified during their induction.\n\n**How to recognise it**\nYou can recognise visitor types by their purpose and the documentation they carry. A **Statutory Visitor** will usually present official identification and may arrive unannounced to perform a spot check. A delivery driver will have a manifest for specific materials, and a client will likely be there for a scheduled progress review. \n\nAn everyday contextual anchor for this is an airport. Just as everyone entering the secure gate area must pass through security and follow specific rules (the **Site Induction**), different people enter for different reasons: passengers (clients), baggage handlers (subcontractors), and government customs officials (the **Statutory Visitor**).\n\n*Micro-scenario: A delivery driver arrives with a 10-minute drop-off, while a health and safety inspector arrives for a 4-hour audit. Both must complete a **Site Induction** before entering the work zone, but only the inspector has the legal right to demand access to all site records.* \n\n**Common mistakes**\nLearners often confuse a generic visitor with a **Statutory Visitor**; a generic visitor (like a client) requires an invitation or permission to enter, whereas a **Statutory Visitor** has a legal right to inspect the site for compliance. Another common mistake is thinking that a **Site Induction** is only for long-term workers; in reality, it is a mandatory requirement for every single person who steps onto the operational site.\n\nMisconceptions (targeted):\n*   Misconception: Only permanent workers need a Site Induction. | Correction: Every visitor, regardless of their stay duration, must receive a Site Induction before entering the work area. | AC: 210.LO1.AC1.3\n*   Misconception: Statutory Visitors need a scheduled appointment to enter. | Correction: Statutory Visitors often have the legal right to enter a site unannounced for inspections. | AC: 210.LO1.AC1.3\n\n**Key Points**\n*   **Statutory Visitors** have legal authority to inspect the site for compliance.\n*   The **Site Induction** is a mandatory safety briefing for all new arrivals.\n*   Accurate visitor logs are essential for emergency safety and accountability.\n*   Visitors must always adhere to site-specific safety rules and PPE requirements.\n\n**Quick recap**\nManaging site access is a core responsibility of the management team. By identifying different categories of visitors—especially **Statutory Visitors**—and ensuring every person completes a **Site Induction**, the site remains compliant with the law and safe for everyone involved.\n\n### Coming Up Next\nWe have covered the roles and visitors on a site. Next, we will examine the specific communication methods used to relay technical information between these different groups."
       }
     },
     {
@@ -154,62 +172,61 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Site Visitors and External Personnel",
+        "title": "Check Your Understanding: Site Visitors and External Roles",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-210-1A1-C2-L1-A",
-            "questionText": "What is the term for an external business or individual hired to complete a specific package of work?",
+            "questionText": "Which category of visitor has a legal right to access the site for inspection purposes?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Sub-contractor",
-              "Subcontractor",
-              "Sub-contractors"
+              "Statutory Visitor",
+              "A Statutory Visitor",
+              "Statutory Visitors"
             ],
-            "hint": "These are specialists brought in for their expertise in a particular area."
+            "hint": "These individuals include health and safety inspectors or building control officers."
           },
           {
             "id": "210-210-1A1-C2-L1-B",
-            "questionText": "Which group is considered part of the productive workforce even if they are not direct employees?",
+            "questionText": "What is mandatory for everyone before they access the work area for the first time?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Sub-contractors",
-              "Subcontractors",
-              "Sub-contractor"
+              "Site Induction",
+              "A Site Induction",
+              "Induction"
             ],
-            "hint": "These individuals are hired to build or install specific parts of the project."
+            "hint": "This is a mandatory safety briefing that explains site-specific hazards."
           },
           {
             "id": "210-210-1A1-C2-L1-C",
-            "questionText": "Which group includes anyone who is not involved in the actual construction or technical work?",
+            "questionText": "What legal right do Statutory Visitors have regarding when they can enter a site for inspections?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Site Visitors",
-              "Site Visitor",
-              "Visitors"
+              "Enter unannounced",
+              "Unannounced inspections",
+              "Right to enter unannounced"
             ],
-            "hint": "This group includes delivery drivers and government inspectors."
+            "hint": "Think about whether these officials need to book an appointment before arriving."
           },
           {
             "id": "210-210-1A1-C2-L2",
-            "questionText": "Using your answers to Q1 (external work packages), Q2 (productive workforce), and Q3 (non-technical individuals), explain how we distinguish between these groups. How do we know if someone should be classified as a visitor rather than a sub-contractor?",
+            "questionText": "Using your answers to Q1 (Statutory Visitor), Q2 (Site Induction), and Q3 (Unannounced access), explain how site access is controlled. Why must a statutory visitor still complete an induction even though they have a legal right to enter?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Sub-contractors are hired for specific work packages and are part of the productive workforce",
-              "Site Visitors are not involved in construction or technical work",
-              "We know the difference based on the person's intent: sub-contractors are there to build/work, while visitors are there to observe, inspect, or deliver",
-              "Sub-contractors are integrated into the workforce hierarchy while visitors remain external to the work team"
+              "Statutory Visitors have legal authority for inspections and can arrive unannounced",
+              "The Site Induction is a universal safety requirement for everyone entering the work area",
+              "Inductions are necessary for statutory visitors to ensure they understand specific site hazards and emergency procedures during their inspection"
             ],
             "expectedAnswer": [
-              "We distinguish them by their role in the project; sub-contractors are hired for specific work packages and are part of the productive workforce. We know someone is a site visitor if they are not involved in the construction or technical work, meaning they are there for non-work reasons like inspection or delivery.",
-              "A sub-contractor is an external specialist who is part of the productive workforce for a specific package of work. In contrast, a site visitor is not involved in technical work at all. Therefore, if a person is not performing a technical task or part of the building team, they must be classified as a visitor."
+              "While a Statutory Visitor has the legal right to enter a site unannounced for inspections, they must still complete a Site Induction. This is because the induction is mandatory for everyone to ensure they are aware of specific site hazards and safety rules before entering the work area.",
+              "We know that every person must have a Site Induction before entering a work zone. This includes Statutory Visitors, who may arrive unannounced, because their legal right to inspect does not exempt them from the safety rules required to prevent accidents on that specific site."
             ],
-            "hint": "Focus on whether the person is there to perform technical work or if they are there for other reasons."
+            "hint": "Consider if a legal right to inspect also means a person is immune to physical hazards on the site."
           }
         ]
       }
@@ -223,57 +240,53 @@
         "questions": [
           {
             "id": "210-210-1A1-P1",
-            "questionText": "A technical project consists of 4 separate teams. Each team requires its own dedicated person to monitor technical quality and immediate safety. How many Site Supervisors are needed for this project?",
-            "answerType": "numeric",
+            "questionText": "Which specific role acts as the primary link between high-level project goals and the physical technical work being performed by teams on the ground?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "4"
+              "Site Supervisor",
+              "the Site Supervisor"
             ],
-            "hint": "Each individual team requires one dedicated supervisor according to the hierarchy rules."
+            "hint": "This role manages daily operations and specific technical tasks rather than overall project strategy."
           },
           {
             "id": "210-210-1A1-P2",
-            "questionText": "What must be true if an individual is on-site for a short duration, is not performing any practical or technical work, and is being escorted by a member of the management team?",
+            "questionText": "Why is a site induction mandatory for every visitor, regardless of how long they intend to stay in the work area?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "site visitor",
-              "visitor",
-              "a site visitor",
-              "a visitor"
+              "To explain site hazards",
+              "To communicate safety rules",
+              "To ensure site safety"
             ],
-            "hint": "This role is identified by their lack of participation in the project's productive work."
+            "hint": "Think about the need to understand specific risks and emergency procedures before entering a restricted zone."
           },
           {
             "id": "210-210-1A1-P3",
-            "questionText": "A site has 1 Site Manager and 3 Site Supervisors. Each Supervisor manages 8 Operatives. How many total people on this site hold a role that includes the authority to manage others?",
+            "questionText": "A facility has 5 supervisors managing 50 staff members, all reporting to one head of site. How many individuals in this hierarchy hold the ultimate responsibility for the entire project's success and high-level safety compliance?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "4"
+              "1"
             ],
-            "hint": "Include the person responsible for the whole site and the people responsible for the specific teams."
+            "hint": "Consider the role of the Site Manager in the chain of command."
           },
           {
             "id": "210-210-1A1-P4",
-            "questionText": "In a large-scale software deployment project, a specialist cybersecurity firm is hired for one week to perform a specific security audit. They are not direct employees of the main company. What is their role in the site hierarchy?",
+            "questionText": "In a secure data center, an external fire inspector arrives to verify that the facility meets legal safety standards. Identify the specific category of visitor this official represents.",
             "answerType": "short-text",
             "expectedAnswer": [
-              "sub-contractor",
-              "subcontractor",
-              "a sub-contractor",
-              "a subcontractor"
+              "Statutory Visitor",
+              "a statutory visitor",
+              "Statutory"
             ],
-            "hint": "This term describes an external business or individual hired for a specific package of work."
+            "hint": "This term refers to individuals with a legal right to inspect a site for compliance."
           },
           {
             "id": "210-210-1A1-P5",
-            "questionText": "Which specific role is identified by their constant engagement with tools and the performance of physical labor to meet daily targets?",
-            "answerType": "short-text",
+            "questionText": "A project is split into 4 specialist teams. Each team has 1 supervisor, and they all report to a single manager. How many people in total hold a leadership role (managers or supervisors) within this site's management team?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "operative",
-              "operatives",
-              "an operative",
-              "the operative"
+              "5"
             ],
-            "hint": "This role focuses on practical task execution rather than management duties."
+            "hint": "Add the number of supervisors to the single site manager."
           }
         ]
       }
@@ -289,42 +302,42 @@
         "questions": [
           {
             "id": "210-210-1A1-INT-1",
-            "questionText": "Explain the relationship between the site management hierarchy and the coordination of external sub-contractors. In your answer, include: (1) the role of management in directing site activities, (2) the definition of a sub-contractor compared to a direct employee, (3) how the chain of command integrates these external parties. Why must this formal reporting structure be maintained to ensure site safety? (2-3 sentences)",
+            "questionText": "Explain how the site management hierarchy interacts with external site visitors. In your answer, include: (1) the core roles within the management team, (2) the purpose of the site induction process, and (3) the reporting structure used to monitor visitor activity. Why must management maintain direct oversight of these entry procedures to ensure site integrity?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identifies site management as the authority for project oversight and task delegation.",
-              "Defines sub-contractors as external entities hired for specific technical expertise rather than direct employment.",
-              "Explains that sub-contractors must report through the established hierarchy to align with project goals.",
-              "Reasons that a formal chain of command is necessary to ensure every individual is accounted for under safety regulations.",
-              "Connects management oversight to the mitigation of risks associated with external personnel."
+              "Identifies management roles such as Site Manager or Assistant Site Manager",
+              "Explains that inductions ensure visitors understand safety and operational protocols",
+              "Describes how visitors report to management or designated supervisors upon arrival",
+              "Connects management authority to the legal and safety responsibility for all persons on site",
+              "Reasons that unmanaged access bypasses safety checks and reporting lines, creating liability"
             ],
             "expectedAnswer": [
-              "Site management provides the formal hierarchy needed to direct both direct employees and external sub-contractors, who are third-party specialists brought in for specific tasks. This relationship holds because a single chain of command ensures that all personnel, regardless of their employer, follow the same safety protocols and project timelines. Without this structured oversight, external personnel might operate outside of site-specific safety standards, creating accountability gaps.",
-              "The site management team acts as the central authority that integrates sub-contractors—external hires—into the daily operational workflow. This connection is vital because the hierarchy establishes clear reporting lines that ensure sub-contractors adhere to the site's safety and security regulations. We know this structure is essential because it allows management to maintain a complete record of all personnel for safety accounting and emergency procedures."
+              "The site management team, led by roles like the Site Manager, uses a formal reporting structure to oversee all personnel, including external visitors. Before entry, management ensures every visitor undergoes a site induction to communicate essential safety rules and operational boundaries. This oversight is necessary because management is legally responsible for site safety, and unescorted or unverified visitors could compromise the integrity of the technical environment.",
+              "Core management roles like the Site Manager and Project Manager establish reporting lines that all visitors must follow, typically starting with a site induction. This process ensures visitors are aware of the hazards and procedures relevant to their reason for attendance. Management must oversee this because they hold the ultimate authority for site compliance, and allowing unauthorized movement would break the chain of command and increase safety risks."
             ],
-            "hint": "Think about who holds the authority on site and how they track people who do not work directly for the main firm."
+            "hint": "Consider how the chain of command ensures that everyone on site, even temporary guests, follows the same safety standards."
           },
           {
             "id": "210-210-1A1-INT-2",
-            "questionText": "Evaluate how site management, operational staff, and external visitors are integrated into a single functional environment. In your answer, include: (1) the primary job titles within a management team, (2) the responsibilities of operational staff reporting to them, (3) the protocols used to differentiate internal personnel from visitors, (4) how these elements combine to ensure site security. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Evaluate how a site management team coordinates the permanent workforce and external stakeholders during a regulatory site inspection. In your answer, include: (1) the primary management roles involved, (2) the responsibilities of staff reporting to management, (3) the specific role of statutory visitors, and (4) how these groups collaborate to ensure site compliance. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Lists core management titles such as Site Manager or Supervisor.",
-              "Describes operational responsibilities like executing technical tasks and reporting progress.",
-              "Differentiates between internal workforce (direct/sub-contracted) and external visitors.",
-              "Mentions security protocols like site inductions or visitor logs.",
-              "Synthesizes how hierarchy and visitor management create an accountable environment.",
-              "Explains the role of management in coordinating these diverse groups.",
-              "Relates the integration of all roles to the maintenance of site safety standards.",
-              "Highlights the importance of clear communication channels across all personnel levels."
+              "Identifies Site Manager or Assistant Manager as the primary authority",
+              "Outlines reporting staff responsibilities in executing technical tasks and maintaining logs",
+              "Defines statutory visitors as external officials with legal rights to inspect site compliance",
+              "Describes the induction process for the statutory visitor",
+              "Explains how management facilitates the visitor's access to reporting staff",
+              "Details the flow of technical evidence from staff through management to the visitor",
+              "Synthesizes the interaction as a method for verifying site safety and legal standards",
+              "Highlights the importance of clear reporting lines during the inspection process"
             ],
             "expectedAnswer": [
-              "A functional site is managed by roles such as Site Managers and Supervisors, who oversee operational staff responsible for technical execution and reporting. To maintain security, the site uses strict protocols and inductions to distinguish internal personnel from external visitors and sub-contractors. These elements work together by ensuring that the management hierarchy accounts for every individual on-site, thereby aligning diverse groups under a unified safety and security framework.",
-              "• Site management titles (e.g., Site Manager, Foreman) establish the hierarchy needed to direct the technical responsibilities of operational staff.\n• Internal personnel are distinguished from visitors through identification and induction protocols to ensure site security.\n• These roles are synthesized through a chain of command where management coordinates the activities of both employees and external visitors.\n• This integrated approach ensures that all individuals are accounted for and adhere to the site’s mandatory safety regulations."
+              "The Site Manager coordinates the inspection by leading the statutory visitor through the mandatory induction while the reporting workforce provides the necessary technical data and operational evidence. Statutory visitors use their legal authority to verify that the work managed by the leadership team meets all regulatory standards. This collaboration ensures that the site remains compliant through a clear flow of information from the technical staff, through management, to the external inspector.",
+              "• The Site Manager provides oversight and facilitates the visit of the statutory official, who is there to inspect site compliance.\n• Reporting staff support this by maintaining accurate records and demonstrating safe working practices as directed by management.\n• The statutory visitor undergoes a site induction and then verifies that the management's reporting lines are effectively maintaining safety.\n• All three groups interact to provide a transparent account of site operations, ensuring legal and technical requirements are fully met."
             ],
-            "hint": "Consider how the hierarchy manages both the people who work there every day and those who are only visiting."
+            "hint": "Think about how management acts as the bridge between the daily technical workforce and the external officials who verify their work."
           }
         ]
       }
@@ -338,35 +351,38 @@
         "questions": [
           {
             "id": "210-210-1A1-SR-1",
-            "questionText": "What term is used to describe the specific location where technical, construction, or maintenance work is physically carried out?",
+            "questionText": "What term describes the specific location where technical work or project activities are carried out?",
             "expectedAnswer": [
               "site",
+              "the site",
               "worksite",
               "job site"
             ],
-            "hint": "It is the place where the project or task is located.",
+            "hint": "It is the first word in the lesson title.",
             "answerType": "short-text"
           },
           {
             "id": "210-210-1A1-SR-2",
-            "questionText": "What is the general term for a group of people who coordinate, direct, and oversee the work of others within an organization?",
+            "questionText": "What term is used for a group of people who work together to achieve a shared goal or task?",
             "expectedAnswer": [
-              "management team",
-              "management",
-              "leadership"
+              "team",
+              "a team",
+              "workgroup",
+              "crew"
             ],
-            "hint": "They are responsible for planning and controlling the project.",
+            "hint": "This word follows 'management' in the lesson title.",
             "answerType": "short-text"
           },
           {
             "id": "210-210-1A1-SR-3",
-            "questionText": "In a workplace context, what term refers to the collective group of people employed or contracted to perform work at a specific location?",
+            "questionText": "What is the general name for people who attend a place of work but are not employed to work there permanently?",
             "expectedAnswer": [
-              "personnel",
-              "staff",
-              "workforce"
+              "visitors",
+              "visitor",
+              "guests",
+              "site visitors"
             ],
-            "hint": "This term describes the internal individuals who carry out the tasks.",
+            "hint": "Check the third learning outcome for this category of person.",
             "answerType": "short-text"
           }
         ],
@@ -395,35 +411,36 @@
       ],
       "outOfScopeAC": [
         "AC4",
-        "AC5"
+        "AC5",
+        "AC6"
       ]
     },
     "scope": {
-      "inScope": "Identification and classification of roles for management, subordinates, and visitors within a construction or technical site environment.",
-      "outOfScope": "Detailed job descriptions, performance management procedures, or specific health and safety induction protocols.",
-      "rationale": "The lesson focuses on organizational awareness and communication lines rather than the execution of management tasks or specific site procedures."
+      "inScope": "The identification of roles, titles, and basic functions of site personnel and visitors.",
+      "outOfScope": "Specific communication protocols, operational procedures, or health and safety legislation.",
+      "rationale": "The lesson focuses on organizational awareness as a prerequisite for understanding site-wide communication flows."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": false,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus exclusively on role identification as per the must-have topics."
+      "specificScope": "Focus exclusively on role identification and hierarchy rather than procedural actions."
     },
     "misconceptions": [
       {
-        "misconception": "Operatives can give formal work directions to other trades.",
-        "correction": "Operatives carry out tasks and report to supervisors; they do not hold management authority over others.",
+        "misconception": "The Site Manager and Site Supervisor have the same daily tasks.",
+        "correction": "The Manager focuses on the whole project and strategy, while the Supervisor focuses on specific team operations.",
         "relatedAC": "AC1"
       },
       {
-        "misconception": "Every person on site reports directly to the Site Manager.",
-        "correction": "Reporting follows a specific hierarchy where operatives report to supervisors, who then report to the manager to prevent communication bottlenecks.",
+        "misconception": "Subcontractors do not need to follow the site's management hierarchy.",
+        "correction": "All personnel, including subcontractors, must follow the established Chain of Command for safety and coordination.",
         "relatedAC": "AC2"
       },
       {
-        "misconception": "Sub-contractors are exempt from the site manager's authority.",
-        "correction": "All personnel, including sub-contractors, must operate under the site manager's safety and timing oversight.",
+        "misconception": "Only permanent workers need a Site Induction.",
+        "correction": "Every visitor, regardless of their stay duration, must receive a Site Induction before entering the work area.",
         "relatedAC": "AC3"
       }
     ]
