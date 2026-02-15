@@ -80,6 +80,40 @@ function resolveApiBaseUrl(options?: BlueprintGenerationOptions): string {
   return 'http://localhost:3000';
 }
 
+async function sleep(ms: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function fetchLessonGeneratorWithRetry(
+  url: string,
+  init: RequestInit,
+  attempts: number = 3
+): Promise<Response> {
+  let lastError: unknown;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      const response = await fetch(url, init);
+      // Retry transient server failures.
+      if (response.status >= 500 && response.status < 600 && attempt < attempts) {
+        await sleep(400 * attempt);
+        continue;
+      }
+      return response;
+    } catch (error) {
+      lastError = error;
+      if (attempt < attempts) {
+        await sleep(400 * attempt);
+        continue;
+      }
+    }
+  }
+
+  const message =
+    lastError instanceof Error ? lastError.message : 'Unknown fetch failure during lesson generation';
+  throw new Error(`Lesson generator request failed after ${attempts} attempts: ${message}`);
+}
+
 export async function generateLessonFromBlueprint(
   blueprint: LessonBlueprint,
   options?: BlueprintGenerationOptions
@@ -90,13 +124,13 @@ export async function generateLessonFromBlueprint(
   }
 
   const baseUrl = resolveApiBaseUrl(options);
-  const response = await fetch(`${baseUrl}/api/lesson-generator`, {
+  const response = await fetchLessonGeneratorWithRetry(`${baseUrl}/api/lesson-generator`, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
     body: JSON.stringify(payload),
-  });
+  }, 4);
 
   let parsed: BlueprintGenerationResult['response'] | null = null;
   try {
