@@ -42,6 +42,8 @@ function buildBlueprintDebugData(
   const blockByTypeAndOrder = (type: string, order: number) =>
     lesson.blocks.find((block) => block.type === type && Math.abs(block.order - order) <= 0.0001);
   const expectedOrderForEntry = (entry: MasterLessonBlueprint['blockPlan']['entries'][number]): number => {
+    if (entry.key === 'worked-example') return 6;
+    if (entry.key === 'guided-practice') return 7;
     if (entry.key === 'practice') return 8;
     if (entry.key === 'integrative') return 9.5;
     if (entry.key === 'spaced-review') return 10;

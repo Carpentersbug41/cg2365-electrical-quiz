@@ -342,7 +342,8 @@ export function validateLessonAgainstMasterLessonBlueprint(
   }
   // Backward-compatible normalization:
   // - Older blueprints may over-require explain-b/check-b/explain-c/check-c
-  // - Older blueprints may use outdated orders for practice/integrative/spaced-review
+  // - Older blueprints may use shifted orders when worked/guided are present
+  // - Generator currently emits a legacy fixed-order contract for worked/guided/practice/integrative/spaced-review
   const deprecatedOptionalKeys = new Set(['explanation-b', 'check-b', 'explanation-c', 'check-c']);
   const requiredEntries = blueprint.blockPlan.entries.filter(
     (entry) => entry.required && !deprecatedOptionalKeys.has(entry.key)
@@ -352,6 +353,8 @@ export function validateLessonAgainstMasterLessonBlueprint(
     lesson.blocks.find((block) => block.type === type && Math.abs(block.order - order) <= 0.0001);
 
   const expectedOrderForEntry = (entry: MasterBlockPlanEntry): number => {
+    if (entry.key === 'worked-example') return 6;
+    if (entry.key === 'guided-practice') return 7;
     if (entry.key === 'practice') return 8;
     if (entry.key === 'integrative') return 9.5;
     if (entry.key === 'spaced-review') return 10;

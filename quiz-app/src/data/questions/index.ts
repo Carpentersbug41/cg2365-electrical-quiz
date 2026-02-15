@@ -51,11 +51,13 @@ import { initialVerificationOverviewSafeIsolationQuestions } from './initialVeri
 import { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
 import { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './toolsMeasuringMarkingOutForWiringSystemsQuestions';
 import { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './1IdentifyKeyRolesOfTheSiteManagementTeamQuestions';
+import { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from './1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions,
   ...q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions,
   ...toolsMeasuringMarkingOutForWiringSystemsQuestions,
   ...testingOverviewSafeIsolationQuestions,
@@ -155,6 +157,7 @@ export { initialVerificationOverviewSafeIsolationQuestions } from './initialVeri
 export { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
 export { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './toolsMeasuringMarkingOutForWiringSystemsQuestions';
 export { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './1IdentifyKeyRolesOfTheSiteManagementTeamQuestions';
+export { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from './1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions';
 
 /**
  * Filter questions by tags

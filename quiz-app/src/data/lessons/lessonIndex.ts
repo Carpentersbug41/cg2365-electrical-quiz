@@ -502,6 +502,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-210-1A1'),
     available: true,
     order: 1,
+  },
+  {
+    id: '210-210-2A1',
+    title: '1 Identify types of statutory legislation and guidance info:',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: '1 Identify types of statutory legislation and guidance info:',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-210-2A1'),
+    available: true,
+    order: 2,
   },];
 
 /**

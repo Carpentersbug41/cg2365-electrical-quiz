@@ -48,6 +48,7 @@ import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 import lesson210_210_1A1 from '@/data/lessons/210-210-1A1-1-identify-key-roles-of-the-site-management-team.json';
+import lesson210_210_2A1 from '@/data/lessons/210-210-2A1-1-identify-types-of-statutory-legislation-and-guidance-info.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -91,6 +92,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson210_210_2A1,
   lesson210_210_1A1,
   lesson210_210_1A1,  lesson204_9A,
   lesson202_5A,
