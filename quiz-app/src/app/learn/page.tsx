@@ -47,6 +47,7 @@ import lesson203_3A123 from '@/data/lessons/203-3A123-circuit-types-what-they-do
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
+import lesson210_210_1A1 from '@/data/lessons/210-210-1A1-1-identify-key-roles-of-the-site-management-team.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -89,7 +90,8 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
   return aData.suffix.localeCompare(bData.suffix);
 }
 
-const RAW_LESSONS = [  lesson204_9A,
+const RAW_LESSONS = [
+  lesson210_210_1A1,  lesson204_9A,
   lesson202_5A,
   lesson203_3A123,
   lesson201_1C,

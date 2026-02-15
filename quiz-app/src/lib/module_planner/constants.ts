@@ -1,4 +1,3 @@
-export const MODULE_PLANNER_DB_FILE = '.module_planner/module_planner_db.json';
 export const MAX_ACS_PER_LESSON = 4;
 export const DEFAULT_MAX_LESSONS_PER_LO = 2;
 export const DEFAULT_LEVEL = 'Level 2';
@@ -16,4 +15,3 @@ export function getModulePlannerConcurrency(): number {
   if (Number.isNaN(parsed)) return 1;
   return Math.max(MIN_CONCURRENCY, Math.min(MAX_CONCURRENCY, parsed));
 }
-

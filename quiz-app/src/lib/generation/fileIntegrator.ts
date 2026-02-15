@@ -30,7 +30,7 @@
  */
 
 import { GenerationRequest, FileIntegrationResult } from './types';
-import { generateLessonId, generateVariableName, generateQuizFilename } from './utils';
+import { generateLessonId, generateVariableName, toSafeIdentifier } from './utils';
 import fs from 'fs';
 import path from 'path';
 
@@ -107,7 +107,7 @@ export class FileIntegrator {
       const quizFilename = path.basename(quizFilePath);
       
       // Extract topic from filename for creating a minimal request
-      const variableName = quizFilename.replace('.ts', '');
+      const variableName = toSafeIdentifier(quizFilename.replace('.ts', ''));
       
       // Create a minimal request object
       const dummyRequest: GenerationRequest = {
@@ -150,7 +150,7 @@ export class FileIntegrator {
   private updateQuestionsIndex(filePath: string, request: GenerationRequest, quizFilename: string): void {
     let content = fs.readFileSync(filePath, 'utf-8');
 
-    const variableName = quizFilename.replace('.ts', '');
+    const variableName = toSafeIdentifier(quizFilename.replace('.ts', ''));
     const importStatement = `import { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
     const exportStatement = `export { ${variableName} } from './${quizFilename.replace('.ts', '')}';`;
 
@@ -207,7 +207,7 @@ export class FileIntegrator {
 
     let content = fs.readFileSync(filePath, 'utf-8');
 
-    const variableName = quizFilename.replace('.ts', '');
+    const variableName = toSafeIdentifier(quizFilename.replace('.ts', ''));
     const importStatement = `import { ${variableName} } from './questions/${quizFilename.replace('.ts', '')}';`;
 
     // Check if variable name already exists in ANY import (using regex for robust detection)
@@ -319,6 +319,7 @@ export class FileIntegrator {
     let content = fs.readFileSync(filePath, 'utf-8');
 
     const variableName = generateVariableName(request.unit, request.lessonId);
+    const fullLessonId = generateLessonId(request.unit, request.lessonId);
     
     // Ensure .json extension is included in import path
     const lessonPath = lessonFilename.endsWith('.json') ? lessonFilename : `${lessonFilename}.json`;

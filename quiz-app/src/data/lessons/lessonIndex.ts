@@ -491,7 +491,18 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 13,
   },
-];
+
+  {
+    id: '210-210-1A1',
+    title: '1 Identify key roles of the site management team:',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: '1 Identify key roles of the site management team:',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-210-1A1'),
+    available: true,
+    order: 1,
+  },];
 
 /**
  * Get lessons grouped by unit

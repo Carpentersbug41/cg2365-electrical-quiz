@@ -50,11 +50,13 @@ import { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './in
 import { initialVerificationOverviewSafeIsolationQuestions } from './initialVerificationOverviewSafeIsolationQuestions';
 import { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
 import { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './toolsMeasuringMarkingOutForWiringSystemsQuestions';
+import { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './1IdentifyKeyRolesOfTheSiteManagementTeamQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions,
   ...toolsMeasuringMarkingOutForWiringSystemsQuestions,
   ...testingOverviewSafeIsolationQuestions,
   ...initialVerificationOverviewSafeIsolationQuestions,
@@ -152,6 +154,7 @@ export { inspectionTestingGatewayDeadInspectionDeadTestingQuestions } from './in
 export { initialVerificationOverviewSafeIsolationQuestions } from './initialVerificationOverviewSafeIsolationQuestions';
 export { testingOverviewSafeIsolationQuestions } from './testingOverviewSafeIsolationQuestions';
 export { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './toolsMeasuringMarkingOutForWiringSystemsQuestions';
+export { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './1IdentifyKeyRolesOfTheSiteManagementTeamQuestions';
 
 /**
  * Filter questions by tags
@@ -170,5 +173,4 @@ export function getQuestionsByLesson(lessonId: string): TaggedQuestion[] {
     q.learningOutcomeId.startsWith(lessonId)
   );
 }
-
 

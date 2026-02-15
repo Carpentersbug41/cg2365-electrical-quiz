@@ -1,6 +1,6 @@
 # Module Planner v6 - Operator Guide and Interface Reference
 
-Last verified: 2026-02-13
+Last verified: 2026-02-14
 Route: `/admin/module`
 API base: `/api/admin/module/*`
 
@@ -17,9 +17,9 @@ Stages:
 - `M1` Analyze
 - `M2` Extract Coverage
 - `M3` Plan
-- `M4` Build Blueprints
-- `M5` Validate
-- `M6` Generate
+- `M4` Build Blueprints (now includes strict `masterBlueprint` contract)
+- `M5` Validate (now enforces blueprint contract compliance)
+- `M6` Generate (now blocks if lesson output violates blueprint contract)
 
 Feature flag:
 - `MODULE_PLANNER_ENABLED=true` is required
@@ -224,6 +224,9 @@ Stage endpoints:
 - `POST /api/admin/module/:id/m5-validate`
 - `POST /api/admin/module/:id/m6-generate`
 
+Generator payload from M6 to `/api/lesson-generator` now includes:
+- `masterLessonBlueprint` (hard contract consumed by generator API)
+
 Success shape:
 ```json
 {
@@ -253,9 +256,9 @@ Error shape:
 - `M1`: unit LO structure with `sourceChunkIds`
 - `M2`: canonical AC keys per LO
 - `M3`: minimal lesson plan with topic codes (`5A`, `5B`)
-- `M4`: `LessonBlueprint[]` with deterministic IDs like `202-5A1`
-- `M5`: validation (`valid` + `issues`)
-- `M6`: generation summary (`generated`, `failed`, `lessonIds`)
+- `M4`: `LessonBlueprint[]` with deterministic IDs like `202-5A1` and a populated `masterBlueprint` object per lesson
+- `M5`: validation (`valid` + `issues`) including blueprint section/order/ID/anchor checks
+- `M6`: generation summary (`generated`, `failed`, `lessonIds`) after enforcing blueprint contract at `/api/lesson-generator`
 
 If `M5.valid` is false, do not run `M6`.
 
@@ -280,6 +283,7 @@ Common causes:
 - Bad unit/LO -> `RAG_EMPTY` or `RAG_GROUNDEDNESS_FAIL`
 - Over-tight lesson cap -> `EXCEEDS_MAX_LESSONS`
 - Coverage mismatch -> `MISSING_AC`, `DUPLICATE_AC_ASSIGNMENT`
+- Blueprint contract mismatch -> `BLUEPRINT_MISSING_SECTION`, `BLUEPRINT_BLOCK_ORDER_INVALID`, `BLUEPRINT_ID_PATTERN_INVALID`, `BLUEPRINT_ANCHOR_MISMATCH`
 - Generation failure in M6 -> run status can become `failed`
 
 Quick checks:
@@ -287,6 +291,7 @@ Quick checks:
 2. Use valid unit and LO tags (`LO1`, `LO2`, ...).
 3. Increase `Max lessons / LO` if M3 fails cap checks.
 4. Re-run stage with replay disabled if artifact seems stale.
+5. If M5 fails blueprint checks, inspect `M4` artifact `masterBlueprint` and fix missing/invalid sections before M6.
 
 ---
 
@@ -302,6 +307,7 @@ Quick checks:
 
 - UI: `src/app/admin/module/page.tsx`
 - Stage engine: `src/lib/module_planner/planner.ts`
+- Master blueprint contract builder/validators: `src/lib/module_planner/masterLessonBlueprint.ts`
 - Schemas: `src/lib/module_planner/schemas.ts`
 - Types: `src/lib/module_planner/types.ts`
 - Syllabus parsing: `src/lib/module_planner/syllabus.ts`

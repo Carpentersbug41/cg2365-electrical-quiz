@@ -33,9 +33,10 @@ function isStringArray(value: unknown): value is string[] {
 
 export function validateModulePlanRequest(value: unknown): value is ModulePlanRequest {
   if (!isPlainObject(value)) return false;
-  if (assertKeys(value, ['unit', 'selectedLos', 'constraints', 'orderingPreference', 'notes'], 'ModulePlanRequest')) {
+  if (assertKeys(value, ['syllabusVersionId', 'unit', 'selectedLos', 'constraints', 'orderingPreference', 'notes'], 'ModulePlanRequest')) {
     return false;
   }
+  if (typeof value.syllabusVersionId !== 'string') return false;
   if (typeof value.unit !== 'string') return false;
   if (!isStringArray(value.selectedLos)) return false;
   if (typeof value.orderingPreference !== 'string') return false;
@@ -143,7 +144,7 @@ export function validateLessonBlueprints(value: unknown): value is LessonBluepri
     if (
       assertKeys(
         item,
-        ['id', 'unit', 'lo', 'acAnchors', 'topic', 'mustHaveTopics', 'level', 'layout', 'prerequisites'],
+        ['id', 'unit', 'lo', 'acAnchors', 'topic', 'mustHaveTopics', 'level', 'layout', 'prerequisites', 'masterBlueprint'],
         `LessonBlueprint[${index}]`
       )
     ) {
@@ -154,13 +155,14 @@ export function validateLessonBlueprints(value: unknown): value is LessonBluepri
       typeof item.id === 'string' &&
       typeof item.unit === 'string' &&
       typeof item.lo === 'string' &&
-      typeof item.topic === 'string' &&
-      typeof item.level === 'string' &&
-      layoutValid &&
-      isStringArray(item.acAnchors) &&
-      isStringArray(item.mustHaveTopics) &&
-      isStringArray(item.prerequisites)
-    );
+        typeof item.topic === 'string' &&
+        typeof item.level === 'string' &&
+        layoutValid &&
+        isStringArray(item.acAnchors) &&
+        isStringArray(item.mustHaveTopics) &&
+        isStringArray(item.prerequisites) &&
+        isPlainObject(item.masterBlueprint)
+      );
   });
 }
 
@@ -183,4 +185,3 @@ export function validateValidationResult(value: unknown): value is ValidationRes
     );
   });
 }
-

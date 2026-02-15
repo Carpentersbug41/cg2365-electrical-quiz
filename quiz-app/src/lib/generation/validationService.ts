@@ -49,6 +49,7 @@ export class ValidationService {
 
     // NORMALIZE: Convert comma-separated strings to arrays before validation
     if (lesson.blocks) {
+      this.normalizeLessonQuestionFields(lesson.blocks);
       for (const block of lesson.blocks) {
         if (block.type === 'practice' && block.content.questions) {
           this.normalizeExpectedAnswers(block.content.questions);
@@ -121,6 +122,47 @@ export class ValidationService {
       warnings,
       debugData: debugData.length > 0 ? debugData : undefined,
     };
+  }
+
+  /**
+   * Normalize common LLM field omissions/variants for lesson questions.
+   * Keeps validator strict while avoiding hard fails on trivial shape drift.
+   */
+  private normalizeLessonQuestionFields(blocks: LessonBlock[]): void {
+    for (const block of blocks) {
+      const questions = (block.content as Record<string, unknown>).questions;
+      if (!Array.isArray(questions)) continue;
+
+      for (const rawQuestion of questions) {
+        if (!rawQuestion || typeof rawQuestion !== 'object') continue;
+        const question = rawQuestion as Record<string, unknown>;
+
+        // Map alternate field spellings first.
+        if (!question.answerType && typeof question.answer_type === 'string') {
+          question.answerType = question.answer_type;
+        }
+
+        // Canonicalize answerType value variants.
+        if (typeof question.answerType === 'string') {
+          const normalized = question.answerType.toLowerCase().replace(/\s+/g, '').replace(/_/g, '-');
+          if (normalized === 'shorttext' || normalized === 'short-text') question.answerType = 'short-text';
+          else if (normalized === 'longtext' || normalized === 'long-text' || normalized === 'essay' || normalized === 'openended') {
+            question.answerType = 'long-text';
+          } else if (normalized === 'number' || normalized === 'numeric') {
+            question.answerType = 'numeric';
+          }
+        }
+
+        // Fill missing answerType deterministically.
+        if (!question.answerType) {
+          if (Array.isArray(question.keyPoints) && question.keyPoints.length > 0) {
+            question.answerType = 'long-text';
+          } else {
+            question.answerType = 'short-text';
+          }
+        }
+      }
+    }
   }
   
   /**

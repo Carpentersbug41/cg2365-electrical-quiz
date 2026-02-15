@@ -138,6 +138,17 @@ export function generateQuizFilename(topic: string): string {
 }
 
 /**
+ * Normalize arbitrary text into a safe TypeScript identifier.
+ */
+export function toSafeIdentifier(value: string, prefix: string = 'q'): string {
+  const sanitized = value.replace(/[^a-zA-Z0-9_$]/g, '_');
+  if (/^[a-zA-Z_$]/.test(sanitized)) {
+    return sanitized;
+  }
+  return `${prefix}${sanitized}`;
+}
+
+/**
  * Get current timestamp in ISO format
  */
 export function getCurrentTimestamp(): string {

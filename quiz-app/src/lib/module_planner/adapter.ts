@@ -14,6 +14,19 @@ export interface BlueprintGenerationResult {
     commitUrl?: string;
     warnings?: string[];
     error?: string;
+    errors?: string[];
+    blueprintDebug?: {
+      lessonId?: string;
+      expectedRequiredBlockIds?: string[];
+      actualBlockIds?: string[];
+      missingRequiredBlockIds?: string[];
+      checkPlacementIssues?: string[];
+    };
+    detailedError?: {
+      name?: string;
+      message?: string;
+      stack?: string;
+    };
   };
 }
 
@@ -35,6 +48,7 @@ interface ExistingLessonRequestPayload {
   prerequisites?: string[];
   mustHaveTopics?: string;
   additionalInstructions?: string;
+  masterLessonBlueprint?: LessonBlueprint['masterBlueprint'];
 }
 
 function toExistingLessonRequestPayload(blueprint: LessonBlueprint): ExistingLessonRequestPayload {
@@ -50,7 +64,11 @@ function toExistingLessonRequestPayload(blueprint: LessonBlueprint): ExistingLes
     layout: blueprint.layout,
     prerequisites: blueprint.prerequisites,
     mustHaveTopics: blueprint.mustHaveTopics.join('; '),
-    additionalInstructions: blueprint.acAnchors.length > 0 ? `AC Anchors: ${blueprint.acAnchors.join(', ')}` : undefined,
+    additionalInstructions:
+      blueprint.acAnchors.length > 0
+        ? `AC Anchors: ${blueprint.acAnchors.join(', ')}. Follow masterLessonBlueprint exactly; do not invent block structure.`
+        : 'Follow masterLessonBlueprint exactly; do not invent block structure.',
+    masterLessonBlueprint: blueprint.masterBlueprint,
   };
 }
 
@@ -88,7 +106,27 @@ export async function generateLessonFromBlueprint(
   }
 
   if (!response.ok || !parsed?.success) {
-    throw new Error(parsed?.error || `Lesson generation failed for ${blueprint.id} (status ${response.status})`);
+    const baseMessage = parsed?.error || `Lesson generation failed for ${blueprint.id} (status ${response.status})`;
+    const details: string[] = [];
+
+    if (Array.isArray(parsed?.errors) && parsed.errors.length > 0) {
+      details.push(`validation: ${parsed.errors.slice(0, 8).join(' | ')}`);
+    }
+    if (parsed?.blueprintDebug) {
+      const debug = parsed.blueprintDebug;
+      if (Array.isArray(debug.missingRequiredBlockIds) && debug.missingRequiredBlockIds.length > 0) {
+        details.push(`missingBlocks: ${debug.missingRequiredBlockIds.join(', ')}`);
+      }
+      if (Array.isArray(debug.checkPlacementIssues) && debug.checkPlacementIssues.length > 0) {
+        details.push(`checkPlacement: ${debug.checkPlacementIssues.join(' | ')}`);
+      }
+    }
+    if (parsed?.detailedError?.message) {
+      details.push(`detail: ${parsed.detailedError.message}`);
+    }
+
+    const detailSuffix = details.length > 0 ? ` | ${details.join(' | ')}` : '';
+    throw new Error(`${baseMessage}${detailSuffix}`);
   }
 
   return {
@@ -96,4 +134,3 @@ export async function generateLessonFromBlueprint(
     response: parsed,
   };
 }
-

@@ -35,6 +35,7 @@ import { GenerationRequest, Lesson, QuizQuestion, DebugInfo } from './types';
 import {
   generateLessonFilename,
   generateQuizFilename,
+  toSafeIdentifier,
   generateLessonId,
   getCurrentTimestamp,
   cleanCodeBlocks,
@@ -1369,7 +1370,7 @@ OUTPUT FORMAT: Pure JSON only`;
    */
   private generateQuizFileContent(request: GenerationRequest, questions: QuizQuestion[]): string {
     const fullLessonId = generateLessonId(request.unit, request.lessonId);
-    const variableName = generateQuizFilename(request.topic).replace('.ts', '').replace(/Questions$/, 'Questions');
+    const variableName = toSafeIdentifier(generateQuizFilename(request.topic).replace('.ts', ''));
 
     return `import { TaggedQuestion } from './types';
 

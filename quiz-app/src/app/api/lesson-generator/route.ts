@@ -12,6 +12,11 @@ import { ErrorHandler } from '@/lib/generation/errorHandler';
 import { globalRateLimiter } from '@/lib/generation/rateLimiter';
 import { GenerationRequest, GenerationResponse } from '@/lib/generation/types';
 import { generateLessonId, generateLessonFilename, generateQuizFilename } from '@/lib/generation/utils';
+import {
+  validateLessonAgainstMasterLessonBlueprint,
+  validateMasterLessonBlueprintContract,
+} from '@/lib/module_planner/masterLessonBlueprint';
+import { MasterLessonBlueprint } from '@/lib/module_planner/types';
 import fs from 'fs';
 import path from 'path';
 
@@ -22,6 +27,37 @@ type LessonGenerationResult = Awaited<ReturnType<FileGenerator['generateLesson']
   originalLesson?: unknown;
   rejectedRefinedLesson?: unknown;
 };
+
+function buildBlueprintDebugData(
+  lesson: { id: string; blocks: Array<{ id: string; order: number }> },
+  masterBlueprint: MasterLessonBlueprint
+) {
+  const expectedRequiredBlockIds = masterBlueprint.blockPlan.entries
+    .filter((entry) => entry.required)
+    .map((entry) => entry.id);
+  const actualBlockIds = lesson.blocks.map((block) => block.id);
+  const missingRequiredBlockIds = expectedRequiredBlockIds.filter((id) => !actualBlockIds.includes(id));
+
+  const byId = new Map(lesson.blocks.map((block) => [block.id, block]));
+  const checkPlacementIssues: string[] = [];
+  for (const pair of masterBlueprint.blockPlan.checksAfterExplanation) {
+    const explanation = byId.get(pair.explanationId);
+    const check = byId.get(pair.checkId);
+    if (!explanation || !check) continue;
+    const expectedOrder = explanation.order + 0.5;
+    if (Math.abs(check.order - expectedOrder) > 0.0001) {
+      checkPlacementIssues.push(`${pair.checkId} expected ${expectedOrder} got ${check.order}`);
+    }
+  }
+
+  return {
+    lessonId: lesson.id,
+    expectedRequiredBlockIds,
+    actualBlockIds,
+    missingRequiredBlockIds,
+    checkPlacementIssues,
+  };
+}
 
 // Debug logger
 function debugLog(stage: string, data: unknown) {
@@ -94,6 +130,24 @@ export async function POST(request: NextRequest) {
 
     debugLog('GENERATION_START', { fullLessonId });
     console.log(`[Generator] Starting generation for ${fullLessonId}`);
+
+    if (body.masterLessonBlueprint) {
+      const masterBlueprint = body.masterLessonBlueprint as unknown as MasterLessonBlueprint;
+      const contractErrors = validateMasterLessonBlueprintContract(
+        masterBlueprint,
+        fullLessonId
+      );
+      if (contractErrors.length > 0) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Master lesson blueprint contract is invalid',
+            errors: contractErrors,
+          },
+          { status: 400 }
+        );
+      }
+    }
 
     // Initialize services
     const fileGenerator = new FileGenerator();
@@ -185,6 +239,29 @@ export async function POST(request: NextRequest) {
         source: 'phase10-13',
       };
       (lessonResult.content as { metadata: Record<string, unknown> }).metadata = metadata;
+    }
+
+    if (body.masterLessonBlueprint) {
+      const masterBlueprint = body.masterLessonBlueprint as unknown as MasterLessonBlueprint;
+      const blueprintErrors = validateLessonAgainstMasterLessonBlueprint(
+        lessonResult.content,
+        masterBlueprint
+      );
+      if (blueprintErrors.length > 0) {
+        const blueprintDebug = buildBlueprintDebugData(
+          lessonResult.content as { id: string; blocks: Array<{ id: string; order: number }> },
+          masterBlueprint
+        );
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Generated lesson does not comply with master lesson blueprint',
+            errors: blueprintErrors,
+            blueprintDebug,
+          },
+          { status: 400 }
+        );
+      }
     }
 
     // Step 5: Write files

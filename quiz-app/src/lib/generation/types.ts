@@ -41,6 +41,7 @@ export interface GenerationRequest {
   additionalInstructions?: string;
   youtubeUrl?: string;
   imageUrl?: string;
+  masterLessonBlueprint?: Record<string, unknown>;
 }
 
 export interface DebugInfo {

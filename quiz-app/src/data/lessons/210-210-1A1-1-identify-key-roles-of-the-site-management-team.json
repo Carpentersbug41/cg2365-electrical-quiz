@@ -1,0 +1,430 @@
+{
+  "id": "210-210-1A1",
+  "title": "210.210-1A1 — 1 Identify key roles of the site management team:",
+  "description": "Learn about 1 Identify key roles of the site management team: in Communication 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 210",
+  "topic": "1 Identify key roles of the site management team:",
+  "learningOutcomes": [
+    "Identify the job titles and roles associated with a standard site management team.",
+    "Describe the responsibilities of individuals reporting to site management.",
+    "Distinguish between internal site personnel and external site visitors based on their roles."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "210-210-1A1-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the job titles and roles associated with a standard site management team.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the responsibilities of individuals reporting to site management.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between internal site personnel and external site visitors based on their roles.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-1A1-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Site Manager",
+            "definition": "The individual responsible for the overall daily operation, safety coordination, and management of resources on a project site."
+          },
+          {
+            "term": "Site Supervisor",
+            "definition": "An individual who monitors specific teams to ensure work is completed safely and in accordance with the project schedule."
+          },
+          {
+            "term": "Subcontractor",
+            "definition": "A specialist individual or firm hired to perform specific tasks, different from direct staff because they are contracted for a specific scope of work."
+          },
+          {
+            "term": "Building Control Officer",
+            "definition": "An external official who inspects the site at key stages to verify that work complies with legal regulations and standards."
+          },
+          {
+            "term": "Clerk of Works",
+            "definition": "A person who represents the client's interests by inspecting the quality of workmanship and materials to ensure they meet project specifications."
+          },
+          {
+            "term": "Competent Person",
+            "definition": "An individual who possesses the necessary skills, knowledge, and experience to perform specific tasks or manage technical risks safely."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-1A1-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Site Management and Reporting Personnel",
+        "content": "### In this lesson\nIn this lesson, you will learn how to identify the job titles and roles associated with a standard site management team. This knowledge allows you to understand the chain of command and know exactly who to report to during different stages of a project. \n\n*   The specific responsibilities of the **Site Manager** and **Site Supervisor**.\n*   How to identify a **Subcontractor** and their relationship to management.\n*   The definition of a **Competent Person** within the reporting structure.\n\n**What this is**\nThe site management team consists of the core individuals who direct the project from inception to completion. The **Site Manager** is the primary individual responsible for the overall daily operation, safety coordination, and management of resources on a project site. Reporting to them is the **Site Supervisor**, an individual who monitors specific teams to ensure work is completed safely and in accordance with the project schedule. Within this structure, you will also find a **Subcontractor**, which is a specialist individual or firm hired to perform specific tasks. They differ from direct staff because they are contracted for a specific scope of work. Finally, every individual performing a task must be a **Competent Person**, meaning they possess the necessary skills, knowledge, and experience to perform specific tasks or manage technical risks safely.\n\n**Why it matters**\nUnderstanding these roles is essential for safety and efficiency. If a technical issue arises, you must know whether it falls under the jurisdiction of your immediate **Site Supervisor** or requires the broader resource management of the **Site Manager**. Misidentifying these roles can lead to communication breakdowns, where instructions are ignored or safety risks are not properly reported to the individual with the authority to fix them.\n\n**Key facts / rules**\n*   The **Site Manager** holds the highest level of authority regarding site-wide resource allocation.\n*   A **Site Supervisor** typically manages the workflow of a specific trade or section of the project.\n*   A **Subcontractor** is responsible for a defined package of work, such as electrical or plumbing installations.\n*   All reporting personnel are expected to be a **Competent Person** for the specific tasks they are assigned.\n*   The **Site Manager** is the primary point of contact for health and safety coordination across all teams.\n*   Reporting lines usually flow from the operative to the **Site Supervisor**, then to the **Site Manager**.\n\n**How to recognise it**\nYou can recognise a **Site Manager** by their focus on the entire project site; they are often found in the site office managing documentation, budgets, and high-level safety plans. In contrast, you can recognise a **Site Supervisor** by their constant presence in the work area, directly observing the progress of specific teams and checking their output against the weekly schedule. \n\nConsider a project where 50 workers are installing ventilation systems. You might see five **Site Supervisors**, each looking after 10 workers, but only one **Site Manager** overseeing the entire building site. An everyday anchor for this is a professional kitchen: the Head Chef is like the **Site Manager** (overseeing the whole kitchen and budget), while a Sous Chef is like a **Site Supervisor** (managing a specific station like the grill or pastry).\n\n**Common mistakes**\nLearners often confuse a **Site Manager** with a **Site Supervisor**; a **Site Manager** is responsible for the whole site's resources and legal safety, whereas a **Site Supervisor** is focused on the day-to-day progress of a specific team. \n\nMisconceptions (targeted):\n*   Misconception: A **Subcontractor** is the same as a direct employee of the site management company. | Correction: A **Subcontractor** is an independent specialist hired only for a specific scope of work. | AC: AC1\n*   Misconception: Only managers need to be a **Competent Person**. | Correction: Any individual performing a technical task must be a **Competent Person** for that specific job. | AC: AC2\n\n**Key Points**\n*   The **Site Manager** manages the big picture, including safety and resources.\n*   The **Site Supervisor** manages specific teams and project schedules.\n*   A **Subcontractor** provides specialist services under a specific contract.\n*   Competency is a requirement for all technical roles on site.\n\n**Quick recap**\nThe site management team is a tiered structure. The **Site Manager** sits at the top of the site hierarchy, followed by **Site Supervisors** who oversee teams. These teams may include direct staff or a **Subcontractor** brought in for specialist expertise. Regardless of their specific title, every worker must be a **Competent Person** to ensure the project is completed safely and correctly.\n\n### Coming Up Next\nNext, we will look at individuals who visit the site from the outside, such as inspectors and client representatives, and how their roles differ from the internal management team."
+      }
+    },
+    {
+      "id": "210-210-1A1-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Site Management and Reporting Personnel",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-210-1A1-C1-L1-A",
+            "questionText": "Which role holds the highest level of authority regarding site-wide resource allocation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Site Manager",
+              "The Site Manager",
+              "Site Managers"
+            ],
+            "hint": "This individual is responsible for the overall daily operation and safety coordination of the entire project."
+          },
+          {
+            "id": "210-210-1A1-C1-L1-B",
+            "questionText": "Which role typically manages the workflow of a specific trade or section of the project?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Site Supervisor",
+              "The Site Supervisor",
+              "Site Supervisors"
+            ],
+            "hint": "This person monitors specific teams and reports to the overall manager."
+          },
+          {
+            "id": "210-210-1A1-C1-L1-C",
+            "questionText": "What is the term for a specialist individual or firm hired to perform specific tasks?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Subcontractor",
+              "A Subcontractor",
+              "Subcontractors"
+            ],
+            "hint": "These individuals differ from direct staff because they are contracted for a specific scope of work."
+          },
+          {
+            "id": "210-210-1A1-C1-L2",
+            "questionText": "Using your answers to Q1 (Site Manager), Q2 (Site Supervisor), and Q3 (Subcontractor), explain how these roles connect within the site hierarchy. Why must these roles be distinct to ensure project success?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The Site Manager oversees the entire project while Supervisors manage specific trades or sections",
+              "Subcontractors provide the specialist skills needed for specific tasks within those sections",
+              "Distinct roles ensure clear reporting lines from specialists up to site-wide authority",
+              "Separating these roles prevents communication breakdowns regarding resource allocation and safety"
+            ],
+            "expectedAnswer": [
+              "The Site Manager has site-wide authority, while Site Supervisors manage specific trades and Subcontractors provide specialist skills. These roles must be distinct so that specialists know who to report to and the Site Manager can focus on overall resources without getting lost in daily trade-specific workflows.",
+              "A Subcontractor performs specialist work under a Site Supervisor, who in turn reports to the Site Manager. This hierarchy is necessary because it ensures that safety and resources are coordinated at a high level while technical tasks are managed by those with direct oversight of the team."
+            ],
+            "hint": "Think about how the chain of command flows from a specialist task up to the overall management of the project site."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-1A1-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Identifying Site Visitors",
+        "content": "### In this lesson\nIn this lesson, you will learn how to distinguish between internal site personnel and external site visitors based on their roles. This helps you understand who has the authority to inspect your work and why they are present on site.\n\n*   The role of the **Building Control Officer** in legal compliance.\n*   The function of the **Clerk of Works** as a client representative.\n*   How to distinguish between external inspectors and internal management.\n\n**What this is**\nExternal site visitors are individuals who do not work for the main contractor but have a legal or contractual right to inspect the project. A **Building Control Officer** is an external official who inspects the site at key stages to verify that work complies with legal regulations and standards. In contrast, a **Clerk of Works** is a person who represents the client's interests by inspecting the quality of workmanship and materials to ensure they meet project specifications. While the **Site Manager** runs the site, these visitors observe and verify the results.\n\n**Why it matters**\nIt is vital to distinguish between these roles because they look for different things. A **Building Control Officer** is focused on safety and the law; if they find a violation, they can stop the project or prevent it from being legally occupied. A **Clerk of Works** is focused on quality and value for the client; they ensure the client is getting exactly what they paid for, such as specific materials or high-end finishes. Knowing who is who ensures you provide the right information during an inspection.\n\n**Key facts / rules**\n*   The **Building Control Officer** is responsible for enforcing national building regulations.\n*   The **Clerk of Works** acts as the \"eyes and ears\" of the client on-site.\n*   External visitors must always report to the **Site Manager** or site office before entering the work area.\n*   A **Building Control Officer** typically visits at specific milestones (e.g., foundations, drainage).\n*   A **Clerk of Works** may be on-site more frequently to monitor ongoing quality.\n*   Both roles have the authority to inspect work but represent different stakeholders (the law vs. the client).\n\n**How to recognise it**\nYou can recognise a **Building Control Officer** by their focus on statutory compliance; they will often ask for certificates and proof that the work meets minimum legal safety standards. You can recognise a **Clerk of Works** by their focus on the project specification; they will compare the work being done directly against the blueprints and material lists provided by the client. \n\nImagine a scenario where a wall is being built. The **Building Control Officer** checks if the wall is structurally sound and fire-safe (2 key legal checks). The **Clerk of Works** checks if the bricks are the exact color and brand specified in the contract. A physical-world analogy is a car's MOT test: the MOT inspector is like the **Building Control Officer** (checking if the car is legal/safe), while a car enthusiast buying the car is like the **Clerk of Works** (checking if the paint and interior are the high quality they expected).\n\n**Common mistakes**\nLearners often confuse a **Building Control Officer** with a **Clerk of Works**; a **Building Control Officer** is an external official checking for legal compliance, whereas a **Clerk of Works** represents the client to ensure quality and adherence to the specific project contract. \n\nMisconceptions (targeted):\n*   Misconception: The **Building Control Officer** works for the **Site Manager**. | Correction: They are an independent official, often from the local authority or a private approved inspector. | AC: AC3\n*   Misconception: A **Clerk of Works** can change the project design. | Correction: They only inspect to ensure the current design and quality standards are being met for the client. | AC: AC3\n\n**Key Points**\n*   **Building Control Officer**: External, focuses on law and building regulations.\n*   **Clerk of Works**: Client representative, focuses on quality and specifications.\n*   Visitors are distinct from internal management like the **Site Manager**.\n*   Always verify the identity and purpose of any visitor on your site.\n\n**Quick recap**\nWhile the internal management team handles the daily work, external visitors like the **Building Control Officer** and the **Clerk of Works** provide essential oversight. One ensures the work is legal and safe, while the other ensures the client’s quality standards are met. Recognising these roles ensures that the site remains compliant and the finished product meets all professional expectations.\n\n### Coming Up Next\nThis concludes our look at site roles. In the next topic, we will explore how these different roles communicate with each other using formal documentation and site meetings."
+      }
+    },
+    {
+      "id": "210-210-1A1-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Identifying Site Visitors",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-210-1A1-C2-L1-A",
+            "questionText": "Which external official is responsible for enforcing national building regulations on site?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Building Control Officer",
+              "The Building Control Officer",
+              "Building Control"
+            ],
+            "hint": "This person is an external official who checks that work complies with legal standards."
+          },
+          {
+            "id": "210-210-1A1-C2-L1-B",
+            "questionText": "Which individual acts as the eyes and ears of the client on-site to inspect quality?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Clerk of Works",
+              "The Clerk of Works",
+              "Clerk of Work"
+            ],
+            "hint": "This person represents the client's interests regarding workmanship and materials."
+          },
+          {
+            "id": "210-210-1A1-C2-L1-C",
+            "questionText": "Where must external visitors always report before they are allowed to enter the work area?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Site Manager or office",
+              "Site office",
+              "The Site Manager"
+            ],
+            "hint": "All visitors must check in with internal management before proceeding to the project area."
+          },
+          {
+            "id": "210-210-1A1-C2-L2",
+            "questionText": "Using your answers to Q1 (Building Control Officer), Q2 (Clerk of Works), and Q3 (reporting to the Site Manager), explain how external oversight is managed. How do we know which visitor to provide with safety certification versus material specifications?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Visitors report to the Site Manager first to establish their identity and purpose",
+              "The Building Control Officer is identified by their focus on legal safety and building regulations",
+              "The Clerk of Works is identified by their focus on client specifications and quality",
+              "Reporting protocols ensure internal management can direct the right information to the right external stakeholder"
+            ],
+            "expectedAnswer": [
+              "External visitors must report to the Site Manager to verify if they are a Building Control Officer checking for legal compliance or a Clerk of Works checking client quality. We know who needs safety certificates versus material specs based on whether their role is to enforce the law or represent the client's contract.",
+              "By reporting to the site office first, visitors are identified so the team knows how to assist them. A Building Control Officer will require proof of regulatory compliance, while a Clerk of Works will be looking at blueprints and material brands to ensure the client's specifications are met."
+            ],
+            "hint": "Consider the different goals of a legal official versus a client representative and how the site office coordinates their visit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-1A1-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "210-210-1A1-P1",
+            "questionText": "A project is divided into 4 distinct work areas, each with its own leader monitoring daily progress. All areas are overseen by a single individual managing the site-wide budget and safety plan. How many Site Supervisors are present?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "4"
+            ],
+            "hint": "The Site Supervisor monitors specific teams or sections, while the Site Manager oversees the entire project."
+          },
+          {
+            "id": "210-210-1A1-P2",
+            "questionText": "What must be true about an individual's status if they are assigned to perform a technical task or manage a risk safely on a project?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "competent person",
+              "competent",
+              "a competent person"
+            ],
+            "hint": "This term refers to someone with the necessary skills, knowledge, and experience for their specific task."
+          },
+          {
+            "id": "210-210-1A1-P3",
+            "questionText": "An external official arrives at the project to verify that the work meets national safety laws and statutory standards. What is the job title of this person?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "building control officer",
+              "building control",
+              "building control inspector"
+            ],
+            "hint": "This visitor focuses on legal compliance rather than the client's specific quality preferences."
+          },
+          {
+            "id": "210-210-1A1-P4",
+            "questionText": "In a manufacturing project, a representative is hired by the customer to ensure the machinery being built uses the exact high-grade materials listed in the contract. Which site-based role performs this equivalent function?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "clerk of works",
+              "clerk of the works",
+              "the clerk of works"
+            ],
+            "hint": "This person acts as the 'eyes and ears' of the client to ensure quality and specifications are met."
+          },
+          {
+            "id": "210-210-1A1-P5",
+            "questionText": "Which role is defined as an independent specialist individual or firm hired to perform a specific, limited scope of work rather than being part of the direct site staff?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "subcontractor",
+              "sub-contractor",
+              "a subcontractor"
+            ],
+            "hint": "They are often brought in for specialist tasks like electrical or plumbing installations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-1A1-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-210-1A1-INT-1",
+            "questionText": "Explain the operational relationship between internal site management and the personnel who report to them. In your answer, include: (1) the primary role of the Site Manager, (2) the specific function of a Competent Person, (3) how these roles interact regarding site reporting. Why must a clear reporting structure be maintained between these roles? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies the Site Manager as the lead for overall project coordination and command.",
+              "Defines a Competent Person as an individual with specific technical knowledge for designated tasks.",
+              "Describes the reporting flow from technical personnel up to the management team.",
+              "Explains that a clear structure ensures accountability and safety on site.",
+              "Recognizes that management relies on reporting to verify project progress."
+            ],
+            "expectedAnswer": [
+              "The Site Manager oversees the entire project and delegates technical tasks to a Competent Person, who has the specific skills required for safe execution. This relationship relies on a clear reporting structure so that technical issues are escalated to management immediately, ensuring that accountability is maintained and safety standards are met across the site.",
+              "A Site Manager holds authority over the project, while a Competent Person provides the specialized oversight for specific reporting tasks. Because the Site Manager is responsible for the overall outcome, a formal chain of command is necessary to ensure that technical data from the Competent Person accurately informs management's broader decisions."
+            ],
+            "hint": "Think about how technical expertise at the reporting level informs the decisions made by the overall site lead."
+          },
+          {
+            "id": "210-210-1A1-INT-2",
+            "questionText": "Evaluate how the coordination between internal management teams and external visitors ensures the successful completion of a project. In your answer, include: (1) the internal oversight provided by the Site Supervisor, (2) the technical contribution of Subcontractors, (3) the regulatory role of external visitors like the Building Control Officer, (4) how these groups collectively manage project standards. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Site Supervisor manages daily operations and internal quality control.",
+              "Subcontractors provide the specialized labor and technical execution of tasks.",
+              "Building Control Officers provide external verification of legal and safety compliance.",
+              "Clerk of Works acts as an external representative for the client's quality interests.",
+              "Internal personnel focus on the production and execution of the project plan.",
+              "External visitors provide objective checks that internal management might overlook.",
+              "Integration of these roles prevents rework by catching non-compliance early.",
+              "Effective communication ensures that external standards are met by internal teams."
+            ],
+            "expectedAnswer": [
+              "Project success is achieved when the Site Supervisor coordinates the specialized work of Subcontractors while preparing for inspections from external visitors like the Building Control Officer. While internal teams focus on the execution and production of the build, external visitors provide the objective verification needed to ensure the work meets legal and client standards. This collective oversight ensures that technical execution, quality control, and legal compliance are all satisfied simultaneously.",
+              "• The Site Supervisor oversees daily production and the technical output of Subcontractors.\n• External visitors, such as the Building Control Officer and Clerk of Works, verify that this work meets statutory and quality requirements.\n• These groups work together to ensure that internal production aligns with external regulatory standards.\n• This integration reduces project risk by identifying compliance issues before they become permanent defects."
+            ],
+            "hint": "Consider how internal production roles and external verification roles create a system of checks and balances."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-1A1-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "210-210-1A1-SR-1",
+            "questionText": "What term is used to describe the physical location where work and management activities are carried out?",
+            "expectedAnswer": [
+              "site",
+              "worksite",
+              "the site"
+            ],
+            "hint": "This term appears in the lesson title and refers to the place of work.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-210-1A1-SR-2",
+            "questionText": "What is the term for the specific name given to a professional position or role within a workplace?",
+            "expectedAnswer": [
+              "job title",
+              "title",
+              "position"
+            ],
+            "hint": "Think of the label used to identify a person's rank or function, such as 'Manager'.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-210-1A1-SR-3",
+            "questionText": "What term refers to the specific tasks and duties that an individual is expected to complete as part of their job?",
+            "expectedAnswer": [
+              "responsibilities",
+              "duties",
+              "tasks"
+            ],
+            "hint": "This word describes what a person is accountable for in their role.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting 1 Identify key roles of the site management team:"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2",
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-02-15",
+    "updated": "2026-02-15",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION",
+    "syllabusAnchors": {
+      "unit": "210",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1",
+        "AC2",
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of the roles and responsibilities of site management, reporting staff, and visitors.",
+      "outOfScope": "Specific communication procedures, management software usage, or health and safety induction protocols.",
+      "rationale": "The lesson focuses on organizational structure and role identification as a prerequisite for understanding site communication flows."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": false,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on identifying roles rather than managing personnel or performing tasks associated with those roles."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A Subcontractor is the same as a direct employee of the site management company.",
+        "correction": "A Subcontractor is an independent specialist hired only for a specific scope of work.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Only managers need to be a Competent Person.",
+        "correction": "Any individual performing a technical task must be a Competent Person for that specific job.",
+        "relatedAC": "AC2"
+      },
+      {
+        "misconception": "The Building Control Officer works for the Site Manager.",
+        "correction": "They are an independent official, often from the local authority or a private approved inspector.",
+        "relatedAC": "AC3"
+      }
+    ]
+  }
+}

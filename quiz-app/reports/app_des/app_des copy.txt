@@ -1,6 +1,6 @@
 # C&G 2365 Quiz App - Current Implementation Documentation
 
-Last verified: 2026-02-13
+Last verified: 2026-02-14
 Status: Active implementation reference
 Scope: Current code behavior only (not roadmap)
 
@@ -76,6 +76,7 @@ Implemented `route.ts` endpoints:
 - `/api/admin/module/:id/m4-blueprints`
 - `/api/admin/module/:id/m5-validate`
 - `/api/admin/module/:id/m6-generate`
+- `/api/syllabus/upload`
 - `/api/v1/attempts`
 - `/api/v1/progress/lesson-start`
 - `/api/v1/progress/lesson-complete`
@@ -299,7 +300,7 @@ The `/generate` UI still includes improve controls that call this endpoint, but 
 
 ---
 
-## 9. Module Planner v6 (`/admin/module`)
+## 9. Module Planner vNext (`/admin/module`)
 
 Module Planner is additive and isolated from lesson pipeline internals.
 
@@ -307,17 +308,19 @@ Module Planner is additive and isolated from lesson pipeline internals.
 
 1. Open `/admin/module`
 2. If disabled banner appears, set `MODULE_PLANNER_ENABLED=true`
-3. Choose `Unit`
-4. Optional `Selected LOs` as comma list (example: `LO1, LO5`)
-5. Enter `Chat Transcript` (your planning intent text)
-6. Optional `Notes`
-7. Set constraints:
+3. Provide admin token if `MODULE_PLANNER_ADMIN_TOKEN` is configured
+4. Upload syllabus file (`PDF`, `DOCX`, `TXT`) or select existing syllabus version
+5. Choose `Unit`
+6. Optional `Selected LOs` as comma list (example: `LO1, LO5`)
+7. Enter `Chat Transcript` (planning intent text)
+8. Optional `Notes`
+9. Set constraints:
 - `Max lessons / LO`
 - `Ordering` (`foundation-first` or `lo-order`)
 - `Level`
 - `Audience`
-8. Click `Create Run`
-9. Run stages in order:
+10. Click `Create Run`
+11. Run stages in order:
 - Distill
 - Analyze
 - Extract Coverage
@@ -325,20 +328,38 @@ Module Planner is additive and isolated from lesson pipeline internals.
 - Build Blueprints
 - Validate
 - Generate
-10. Review per-stage JSON cards and final Run Summary
+12. Review per-stage JSON cards and final Run Summary
 
 ### Interface details
 
+- Upload response includes `syllabusVersionId`, content hash, and chunk count
+- `Create Run` requires `syllabusVersionId`
 - `Replay-from-artifacts` checkbox enables deterministic replay by `request_hash`
 - Stage button `*` means replay artifact exists for that stage/hash
 - `Stop` cancels the current browser request only (does not force-cancel server work)
+- Run summary now includes chunk diagnostics (chunk IDs/page ranges from retrieved payload)
 - Top right `Lesson` button links back to `/generate`
 
 ### Prompts/instructions involved
 
-- Module Planner does not currently send freeform prompts to an LLM in M0-M6.
-- It uses deterministic parsing/planning logic over local syllabus chunks.
-- User-entered `Chat Transcript` and `Notes` are used as planning input data for distill/config, not as direct model prompts.
+- Upload/ingestion pipeline is deterministic-first:
+  - extract text
+  - clean text
+  - deterministic chunking
+  - deterministic Unit/LO/AC structure extraction
+  - optional low-confidence LLM normalizer fallback (strictly validated)
+- M3 planning is LLM-assisted:
+  - LLM may only group/title lessons over canonical `acKeys`
+  - it may not invent/rename curriculum keys
+- M5 deterministic validation blocks M6 on failure
+- M5 includes a single automatic repair loop (re-run M3 + M4 once)
+- User-entered `Chat Transcript` and `Notes` remain planning input context for M0/M3
+
+### Persistence/runtime
+
+- Planner and syllabus persistence are SQL-backed (Supabase tables), with test-memory fallback
+- Request hash includes syllabus version/content hash
+- Runtime planner flow no longer depends on `src/lib/syllabus/chunks.json` for planning (legacy chunks are used only for bootstrap seeding)
 
 Detailed endpoint/payload examples and stage contracts are in `reports/app_des/module_planner.md`.
 

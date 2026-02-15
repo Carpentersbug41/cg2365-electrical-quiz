@@ -1,19 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DistillInput, runM0Distill } from '@/lib/module_planner';
-import { guardModulePlannerEnabled, toErrorResponse } from '../../_utils';
+import { guardModulePlannerAccess, toErrorResponse } from '../../_utils';
 
 interface Params {
   params: Promise<{ id: string }>;
 }
 
 export async function POST(request: NextRequest, context: Params) {
-  const disabled = guardModulePlannerEnabled();
-  if (disabled) return disabled;
+  const denied = guardModulePlannerAccess(request);
+  if (denied) return denied;
 
   try {
     const { id } = await context.params;
     const body = (await request.json()) as DistillInput & { replayFromArtifacts?: boolean };
-    const result = runM0Distill(id, body, { replayFromArtifacts: body.replayFromArtifacts });
+    const result = await runM0Distill(id, body, { replayFromArtifacts: body.replayFromArtifacts });
     return NextResponse.json({
       success: true,
       stage: result.stage,
@@ -24,4 +24,3 @@ export async function POST(request: NextRequest, context: Params) {
     return toErrorResponse(error);
   }
 }
-

@@ -52,9 +52,11 @@ import lesson203_3A123 from '@/data/lessons/203-3A123-circuit-types-what-they-do
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
+import lesson210_210_1A1 from '@/data/lessons/210-210-1A1-1-identify-key-roles-of-the-site-management-team.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '210-210-1A1': lesson210_210_1A1 as Lesson,
   '204-9A': lesson204_9A as Lesson,
   '204-15A': lesson204_15A as Lesson,
   '202-5A': lesson202_5A as Lesson,

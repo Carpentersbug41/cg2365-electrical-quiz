@@ -1,6 +1,6 @@
 # Module Planner v6 - Technical Documentation
 
-Last verified: 2026-02-13
+Last verified: 2026-02-14
 Primary UI route: `/admin/module`
 Primary API routes: `/api/admin/module/*`
 Library root: `src/lib/module_planner/*`
@@ -37,6 +37,7 @@ Core:
 - `src/lib/module_planner/featureFlag.ts`
 - `src/lib/module_planner/errors.ts`
 - `src/lib/module_planner/stableHash.ts`
+- `src/lib/module_planner/masterLessonBlueprint.ts`
 - `src/lib/module_planner/schemas.ts`
 - `src/lib/module_planner/syllabus.ts`
 - `src/lib/module_planner/db.ts`
@@ -165,6 +166,20 @@ From `src/lib/module_planner/types.ts`.
 - `level: string`
 - `layout: 'split-vis'|'linear-flow'`
 - `prerequisites: string[]`
+- `masterBlueprint?: MasterLessonBlueprint`
+
+`MasterLessonBlueprint` (high level):
+- `identity`
+- `anchors`
+- `scopeControl`
+- `lessonOutcomes`
+- `blockPlan` (explicit required blocks/order/check-after-explanation mapping)
+- `checksSpec`
+- `practiceSpec`
+- `misconceptions`
+- `safetyRigRules`
+- `masteryGate`
+- `idConventions`
 
 `ValidationResult`:
 - `valid: boolean`
@@ -180,6 +195,11 @@ Validation issue codes:
 - `RAG_EMPTY`
 - `RAG_GROUNDEDNESS_FAIL`
 - `JSON_SCHEMA_FAIL`
+- `BLUEPRINT_MISSING_SECTION`
+- `BLUEPRINT_BLOCK_ORDER_INVALID`
+- `BLUEPRINT_ID_PATTERN_INVALID`
+- `BLUEPRINT_ANCHOR_MISMATCH`
+- `BLUEPRINT_GENERATION_MISMATCH`
 
 ---
 
@@ -279,12 +299,18 @@ M4 `runM4Blueprints`:
 - derives `mustHaveTopics` from AC texts
 - picks layout via keyword heuristic
 - sets prerequisites chain when `foundation-first`
+- constructs `masterBlueprint` contract via `buildMasterLessonBlueprint()`
 
 M5 `runM5Validate`:
 - cross-stage coverage checks
 - duplicate/overlap checks
 - cap checks
 - scope checks for `acAnchors` and `mustHaveTopics`
+- validates `masterBlueprint` contract with actionable errors:
+  - required sections
+  - block order/check placement
+  - ID convention consistency
+  - anchor parity with `blueprint.acAnchors`
 
 M6 `runM6Generate`:
 - requires `M5.valid=true`
@@ -292,6 +318,7 @@ M6 `runM6Generate`:
 - calls adapter only
 - persists per-blueprint run lesson status
 - builds generation summary artifact
+- passes `masterLessonBlueprint` into `/api/lesson-generator`
 
 Status transitions:
 - `created`
@@ -395,7 +422,8 @@ Blueprint -> existing lesson request mapping:
 - `layout`
 - `prerequisites`
 - `mustHaveTopics` (semicolon-joined)
-- `additionalInstructions` (`AC Anchors: ...`)
+- `additionalInstructions` (`AC Anchors: ... Follow masterLessonBlueprint exactly...`)
+- `masterLessonBlueprint` (verbatim contract)
 
 Snippet:
 ```ts
@@ -408,8 +436,9 @@ return {
   prerequisites: blueprint.prerequisites,
   mustHaveTopics: blueprint.mustHaveTopics.join('; '),
   additionalInstructions: blueprint.acAnchors.length > 0
-    ? `AC Anchors: ${blueprint.acAnchors.join(', ')}`
-    : undefined,
+    ? `AC Anchors: ${blueprint.acAnchors.join(', ')}. Follow masterLessonBlueprint exactly; do not invent block structure.`
+    : 'Follow masterLessonBlueprint exactly; do not invent block structure.',
+  masterLessonBlueprint: blueprint.masterBlueprint,
 };
 ```
 
@@ -478,6 +507,14 @@ prompt += `ASSISTANT ACKNOWLEDGMENT: I will consider this context when refining 
 - main prompt
 
 and emits multi-turn message objects to the LLM wrapper.
+
+## 13.3 Generator-side blueprint enforcement
+
+`/api/lesson-generator` now performs:
+- pre-generation contract validation (`validateMasterLessonBlueprintContract`)
+- post-generation lesson-vs-blueprint validation (`validateLessonAgainstMasterLessonBlueprint`)
+
+If either fails, API returns `400` and generation is blocked.
 
 ---
 

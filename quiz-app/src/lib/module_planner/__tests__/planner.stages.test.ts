@@ -1,4 +1,3 @@
-import path from 'path';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 vi.mock('@/lib/module_planner/adapter', () => {
@@ -23,25 +22,28 @@ import {
   runM6Generate,
 } from '@/lib/module_planner/planner';
 import { clearModulePlannerDbForTests } from '@/lib/module_planner/db';
-
-const DB_PATH = path.join(process.cwd(), '.module_planner', 'planner-stage-test-db.json');
+import { seedLegacyChunksAsDefaultVersionIfNeeded } from '@/lib/module_planner/syllabus';
 
 describe('module planner stages', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     vi.stubEnv('NODE_ENV', 'test');
-    process.env.MODULE_PLANNER_DB_PATH = DB_PATH;
-    clearModulePlannerDbForTests();
+    await clearModulePlannerDbForTests();
   });
 
-  it('runs M0-M5 with deterministic replay from request hash', () => {
-    const runA = createPlannerRun({
+  it('runs M0-M5 with deterministic replay from request hash', async () => {
+    const syllabusVersionId = await seedLegacyChunksAsDefaultVersionIfNeeded();
+    expect(syllabusVersionId).toBeTruthy();
+
+    const runA = await createPlannerRun({
+      syllabusVersionId: String(syllabusVersionId),
       unit: '202',
       chatTranscript: 'Please plan LO1 and LO5 in a concise sequence.',
     });
 
-    const m0a = runM0Distill(
+    const m0a = await runM0Distill(
       runA.id,
       {
+        syllabusVersionId: String(syllabusVersionId),
         unit: '202',
         selectedLos: ['LO1', 'LO5'],
         constraints: {
@@ -56,11 +58,11 @@ describe('module planner stages', () => {
       },
       { replayFromArtifacts: false }
     );
-    const m1a = runM1Analyze(runA.id, { replayFromArtifacts: false });
-    const m2a = runM2Coverage(runA.id, { replayFromArtifacts: false });
-    const m3a = runM3Plan(runA.id, { replayFromArtifacts: false });
-    const m4a = runM4Blueprints(runA.id, { replayFromArtifacts: false });
-    const m5a = runM5Validate(runA.id, { replayFromArtifacts: false });
+    const m1a = await runM1Analyze(runA.id, { replayFromArtifacts: false });
+    const m2a = await runM2Coverage(runA.id, { replayFromArtifacts: false });
+    const m3a = await runM3Plan(runA.id, { replayFromArtifacts: false });
+    const m4a = await runM4Blueprints(runA.id, { replayFromArtifacts: false });
+    const m5a = await runM5Validate(runA.id, { replayFromArtifacts: false });
 
     expect(m0a.artifact.unit).toBe('202');
     expect(m1a.artifact.unit).toBe('202');
@@ -68,16 +70,18 @@ describe('module planner stages', () => {
     expect(m3a.artifact.unit).toBe('202');
     expect(Array.isArray(m4a.artifact)).toBe(true);
     expect(m5a.artifact.valid).toBe(true);
-    ensureM2UsesStoredChunks(runA.id);
+    await ensureM2UsesStoredChunks(runA.id);
 
-    const runB = createPlannerRun({
+    const runB = await createPlannerRun({
+      syllabusVersionId: String(syllabusVersionId),
       unit: '202',
       chatTranscript: 'Please plan LO1 and LO5 in a concise sequence.',
     });
 
-    runM0Distill(
+    await runM0Distill(
       runB.id,
       {
+        syllabusVersionId: String(syllabusVersionId),
         unit: '202',
         selectedLos: ['LO1', 'LO5'],
         constraints: {
@@ -93,11 +97,11 @@ describe('module planner stages', () => {
       { replayFromArtifacts: false }
     );
 
-    const m1b = runM1Analyze(runB.id, { replayFromArtifacts: true });
-    const m2b = runM2Coverage(runB.id, { replayFromArtifacts: true });
-    const m3b = runM3Plan(runB.id, { replayFromArtifacts: true });
-    const m4b = runM4Blueprints(runB.id, { replayFromArtifacts: true });
-    const m5b = runM5Validate(runB.id, { replayFromArtifacts: true });
+    const m1b = await runM1Analyze(runB.id, { replayFromArtifacts: true });
+    const m2b = await runM2Coverage(runB.id, { replayFromArtifacts: true });
+    const m3b = await runM3Plan(runB.id, { replayFromArtifacts: true });
+    const m4b = await runM4Blueprints(runB.id, { replayFromArtifacts: true });
+    const m5b = await runM5Validate(runB.id, { replayFromArtifacts: true });
 
     expect(m1b.replayed).toBe(true);
     expect(m2b.replayed).toBe(true);
@@ -113,14 +117,19 @@ describe('module planner stages', () => {
   });
 
   it('runs M6 and stores generation summary', async () => {
-    const run = createPlannerRun({
+    const syllabusVersionId = await seedLegacyChunksAsDefaultVersionIfNeeded();
+    expect(syllabusVersionId).toBeTruthy();
+
+    const run = await createPlannerRun({
+      syllabusVersionId: String(syllabusVersionId),
       unit: '202',
       chatTranscript: 'Build LO5 only',
     });
 
-    runM0Distill(
+    await runM0Distill(
       run.id,
       {
+        syllabusVersionId: String(syllabusVersionId),
         unit: '202',
         selectedLos: ['LO5'],
         constraints: {
@@ -135,11 +144,11 @@ describe('module planner stages', () => {
       },
       { replayFromArtifacts: false }
     );
-    runM1Analyze(run.id, { replayFromArtifacts: false });
-    runM2Coverage(run.id, { replayFromArtifacts: false });
-    runM3Plan(run.id, { replayFromArtifacts: false });
-    runM4Blueprints(run.id, { replayFromArtifacts: false });
-    runM5Validate(run.id, { replayFromArtifacts: false });
+    await runM1Analyze(run.id, { replayFromArtifacts: false });
+    await runM2Coverage(run.id, { replayFromArtifacts: false });
+    await runM3Plan(run.id, { replayFromArtifacts: false });
+    await runM4Blueprints(run.id, { replayFromArtifacts: false });
+    await runM5Validate(run.id, { replayFromArtifacts: false });
 
     const m6 = await runM6Generate(run.id, {
       replayFromArtifacts: false,
@@ -150,7 +159,7 @@ describe('module planner stages', () => {
     expect(m6.artifact.failed).toBe(0);
     expect(m6.artifact.lessonIds.length).toBe(m6.artifact.generated);
 
-    const summary = getPlannerRunSummary(run.id);
+    const summary = await getPlannerRunSummary(run.id);
     expect(summary.lessons.every((row) => row.status === 'success')).toBe(true);
   });
 });

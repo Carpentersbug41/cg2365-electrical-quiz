@@ -730,6 +730,10 @@ OUTPUT FORMAT:
       ? `\n\nIMAGE URL: ${request.imageUrl}\n\nInclude this URL in the diagram block's "imageUrl" field. This is a static image that visually represents the circuit/concept being taught.`
       : '';
 
+    const masterBlueprintSection = request.masterLessonBlueprint
+      ? `\n\nMASTER LESSON BLUEPRINT CONTRACT (NON-NEGOTIABLE):\n${JSON.stringify(request.masterLessonBlueprint, null, 2)}\n\nHARD CONSTRAINTS:\n- This blueprint is mandatory. Follow its block IDs, block order, checks-after-explanations mapping, and ID conventions exactly.\n- Do not add required blocks that are absent from the blueprint.\n- Do not rename block IDs.\n- Do not move check blocks away from their paired explanations.\n- If there is any conflict, blueprint contract overrides generic defaults.`
+      : '';
+
     // Build prerequisite anchors section for spaced review
     const prerequisiteAnchorsSection = request.prerequisiteAnchors
       ? `\n\nPREREQUISITE ANCHORS (SPACED REVIEW MUST ONLY USE THESE):
@@ -778,7 +782,7 @@ SPACED REVIEW QUALITY STANDARDS:
 - Notes field MUST include provenance mapping: "SR-1 -> [prereqId] ([concept]); SR-2 -> [prereqId] ([concept]); SR-3 -> [prereqId] ([concept]); SR-4 -> [prereqId] ([concept])"
 
 TOPIC CONTEXT:
-${this.getTopicContext(request.topic, request.section, request.mustHaveTopics)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}${prerequisiteAnchorsSection}
+${this.getTopicContext(request.topic, request.section, request.mustHaveTopics)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}${prerequisiteAnchorsSection}${masterBlueprintSection}
 
 Generate the complete lesson JSON now. Remember: ONLY JSON, no markdown, no explanations.`;
   }

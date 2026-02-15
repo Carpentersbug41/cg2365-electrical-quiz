@@ -92,6 +92,8 @@ export default function ModulePlannerPage() {
   const [syllabusVersionId, setSyllabusVersionId] = useState('');
   const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [populateState, setPopulateState] = useState<PopulateState>('IDLE');
+  const [activeStage, setActiveStage] = useState<StageKey | null>(null);
+  const [activeTaskLabel, setActiveTaskLabel] = useState<string | null>(null);
 
   const abortRef = useRef<AbortController | null>(null);
 
@@ -262,6 +264,7 @@ export default function ModulePlannerPage() {
 
   const handlePopulateSyllabus = async () => {
     setLoading(true);
+    setActiveTaskLabel('Populating syllabus');
     setError(null);
     setInfo(null);
     setPopulateState('RUNNING');
@@ -280,6 +283,7 @@ export default function ModulePlannerPage() {
       setError(e instanceof Error ? e.message : 'Failed to populate syllabus');
     } finally {
       setLoading(false);
+      setActiveTaskLabel(null);
     }
   };
 
@@ -323,6 +327,7 @@ export default function ModulePlannerPage() {
     }
 
     setLoading(true);
+    setActiveTaskLabel('Uploading syllabus');
     setError(null);
     setInfo(null);
     try {
@@ -338,6 +343,7 @@ export default function ModulePlannerPage() {
       setError(e instanceof Error ? e.message : 'Failed to upload syllabus');
     } finally {
       setLoading(false);
+      setActiveTaskLabel(null);
     }
   };
 
@@ -351,6 +357,7 @@ export default function ModulePlannerPage() {
       return;
     }
     setLoading(true);
+    setActiveTaskLabel('Creating run');
     setError(null);
     setInfo(null);
     try {
@@ -367,6 +374,27 @@ export default function ModulePlannerPage() {
       setError(e instanceof Error ? e.message : 'Failed to create run');
     } finally {
       setLoading(false);
+      setActiveTaskLabel(null);
+    }
+  };
+
+  const handleRefreshRunSummary = async () => {
+    if (!runId) {
+      setError('Create or select a run before refreshing summary.');
+      return;
+    }
+    setLoading(true);
+    setActiveTaskLabel('Refreshing run summary');
+    setError(null);
+    setInfo(null);
+    try {
+      await loadRunSummary(runId);
+      setInfo(`Refreshed run summary for ${runId}.`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to refresh run summary');
+    } finally {
+      setLoading(false);
+      setActiveTaskLabel(null);
     }
   };
 
@@ -376,6 +404,8 @@ export default function ModulePlannerPage() {
       return;
     }
     setLoading(true);
+    setActiveStage(stage);
+    setActiveTaskLabel(`Running ${stage} - ${STAGE_LABEL[stage]}`);
     setError(null);
     setInfo(null);
     try {
@@ -409,6 +439,8 @@ export default function ModulePlannerPage() {
       setError(e instanceof Error ? e.message : `Failed stage ${stage}`);
     } finally {
       setLoading(false);
+      setActiveStage(null);
+      setActiveTaskLabel(null);
     }
   };
 
@@ -542,12 +574,44 @@ export default function ModulePlannerPage() {
 
         <section className="rounded-lg bg-white p-4 shadow-sm">
           <h2 className="mb-2 text-lg font-semibold">Stages</h2>
+          {loading && (
+            <div className="mb-3 rounded border border-sky-200 bg-sky-50 p-2 text-xs text-sky-800">
+              <p>{activeTaskLabel ?? 'Working...'}</p>
+              <div className="mt-2 h-2 w-full overflow-hidden rounded bg-sky-100">
+                <div className="h-full w-1/3 animate-pulse rounded bg-sky-500" />
+              </div>
+            </div>
+          )}
           <div className="flex flex-wrap gap-2">
             {stageOrder.map((stage) => (
-              <button key={stage} onClick={() => void runStage(stage)} disabled={loading || !runId} className="rounded border border-slate-300 px-3 py-2 text-sm disabled:opacity-60">
-                {STAGE_LABEL[stage]}{runSummary?.replayable?.[stage] ? ' *' : ''}
-              </button>
+              (() => {
+                const hasArtifact = Boolean(stageResults[stage]?.artifact);
+                const isRunning = activeStage === stage;
+                const className = isRunning
+                  ? 'border-sky-500 bg-sky-50 text-sky-900'
+                  : hasArtifact
+                    ? 'border-emerald-500 bg-emerald-50 text-emerald-900'
+                    : 'border-slate-300 bg-white text-slate-900';
+                return (
+                  <button
+                    key={stage}
+                    onClick={() => void runStage(stage)}
+                    disabled={loading || !runId}
+                    className={`rounded border px-3 py-2 text-sm disabled:opacity-60 ${className}`}
+                  >
+                    {isRunning ? 'Running...' : STAGE_LABEL[stage]}
+                    {isRunning ? '' : hasArtifact ? ' Done' : runSummary?.replayable?.[stage] ? ' *' : ''}
+                  </button>
+                );
+              })()
             ))}
+            <button
+              onClick={() => void handleRefreshRunSummary()}
+              disabled={loading || !runId}
+              className="rounded bg-slate-900 px-3 py-2 text-sm text-white disabled:opacity-60"
+            >
+              Refresh Run Summary
+            </button>
           </div>
         </section>
 
