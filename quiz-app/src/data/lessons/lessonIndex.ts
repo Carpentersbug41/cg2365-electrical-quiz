@@ -513,6 +513,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-210-2A1'),
     available: true,
     order: 2,
+  },
+  {
+    id: '210-210-3A1',
+    title: '1 Identify suitable communication methods:',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: '1 Identify suitable communication methods:',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-210-3A1'),
+    available: true,
+    order: 3,
   },];
 
 /**

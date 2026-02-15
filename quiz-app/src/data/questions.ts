@@ -60,6 +60,7 @@ import { testingOverviewSafeIsolationQuestions } from './questions/testingOvervi
 import { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './questions/toolsMeasuringMarkingOutForWiringSystemsQuestions';
 import { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './questions/1IdentifyKeyRolesOfTheSiteManagementTeamQuestions';
 import { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from './questions/1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions';
+import { q1IdentifySuitableCommunicationMethodsQuestions } from './questions/1IdentifySuitableCommunicationMethodsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -113,6 +114,7 @@ export const questions: Question[] = [
   ...toolsMeasuringMarkingOutForWiringSystemsQuestions,
   ...q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions,
   ...q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions,
+  ...q1IdentifySuitableCommunicationMethodsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

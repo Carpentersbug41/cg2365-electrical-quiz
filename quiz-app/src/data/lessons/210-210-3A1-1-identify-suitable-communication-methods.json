@@ -1,0 +1,432 @@
+{
+  "id": "210-210-3A1",
+  "title": "210.210-3A1 — 1 Identify suitable communication methods:",
+  "description": "Learn about 1 Identify suitable communication methods: in Communication 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 210",
+  "topic": "1 Identify suitable communication methods:",
+  "learningOutcomes": [
+    "Identify suitable communication methods for diverse workplace scenarios",
+    "Describe effective communication adaptations for individuals with specific needs or barriers",
+    "State the appropriate actions to resolve workplace conflicts and the consequences of poor communication on an organisation"
+  ],
+  "prerequisites": [
+    "210-210-2A1"
+  ],
+  "blocks": [
+    {
+      "id": "210-210-3A1-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify suitable communication methods for diverse workplace scenarios",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe effective communication adaptations for individuals with specific needs or barriers",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "State the appropriate actions to resolve workplace conflicts and the consequences of poor communication on an organisation",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-3A1-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Verbal Communication",
+            "definition": "The use of spoken language to exchange information, which differs from written communication because it includes non-verbal cues like tone and pitch."
+          },
+          {
+            "term": "Written Communication",
+            "definition": "The exchange of information through text or symbols, providing a formal record that is distinct from verbal communication due to its permanence."
+          },
+          {
+            "term": "Communication Barrier",
+            "definition": "Any physical, psychological, or environmental obstacle that prevents a message from being accurately received or understood."
+          },
+          {
+            "term": "Communication Adaptation",
+            "definition": "The intentional modification of a communication method to meet the specific requirements of an individual, not to be confused with changing the content of the message."
+          },
+          {
+            "term": "Electronic Communication",
+            "definition": "The transmission of information using digital platforms and devices, which differs from traditional methods by allowing for rapid, long-distance data exchange."
+          },
+          {
+            "term": "Conflict Resolution",
+            "definition": "The process of using negotiation and communication strategies to settle workplace disputes, not to be confused with simple avoidance of the issue."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-3A1-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Communication Methods and Individual Needs",
+        "content": "### In this lesson\nIn this lesson, you will learn how to identify and select the most effective ways to share information in a technical workplace. You will apply these methods to ensure that messages are clear regardless of the setting or the audience. \n\n*   Identify the differences between verbal, written, and electronic communication.\n*   Recognise common communication barriers and how they affect message delivery.\n*   Determine how to use communication adaptation to support individuals with specific needs.\n\n**What this is**\nCommunication is the process of transferring information from one person or group to another. In a professional environment, this typically takes three forms. **Verbal Communication** involves spoken words and relies heavily on tone and immediate feedback. **Written Communication** uses text or symbols to create a lasting record. **Electronic Communication** utilizes digital tools to send data quickly over distances. When these methods are blocked by a **Communication Barrier**, such as loud background noise or a language difference, the message may be lost or distorted.\n\n**Why it matters**\nChoosing the wrong method can lead to safety risks, wasted resources, or project delays. For example, giving complex technical instructions only through **Verbal Communication** might result in the listener forgetting a crucial step. Conversely, using **Written Communication** for an emergency stop command would be too slow. Understanding how to perform a **Communication Adaptation** ensures that everyone, including those with sensory impairments or different primary languages, can work safely and effectively.\n\n**Key facts / rules**\n*   **Verbal Communication** is best for immediate feedback and building rapport.\n*   **Written Communication** provides a permanent audit trail for legal or technical compliance.\n*   **Electronic Communication** allows for high-speed sharing of large data sets or remote updates.\n*   A **Communication Barrier** can be physical (noise), psychological (stress), or environmental (distance).\n*   **Communication Adaptation** modifies the delivery method but must never alter the core meaning of the message.\n*   Effective selection depends on the urgency, complexity, and sensitivity of the information.\n\n**When to choose it**\nSelection depends on the specific requirements of the scenario. You should choose **Written Communication** when the information must be referenced later, such as a safety policy or a technical specification. Choose **Verbal Communication** for quick check-ins or when you need to gauge a colleague's emotional reaction through their tone. **Electronic Communication** is the primary choice for sending the same update to fifty people in different locations simultaneously. If a colleague has a hearing impairment, you would choose a **Communication Adaptation** like using a sign-language interpreter or providing written transcripts of a briefing.\n\nPhysical-world analogy: **Written Communication** is like a stone carving; it is difficult to change and lasts a long time. **Verbal Communication** is like a campfire; it provides immediate warmth and interaction but disappears once the fire goes out.\n\nMicro-scenario: If you have to deliver a 20-step safety protocol to a new team, providing a printed checklist (written) is more effective than reciting it once from memory (verbal), as it reduces the risk of a 50% error rate in recall.\n\n**Common mistakes**\nLearners often confuse **Communication Adaptation** with changing the message content; adaptation is about the *how* (the delivery), whereas the content (the *what*) must remain identical to ensure accuracy. Another common error is assuming **Electronic Communication** is always the most efficient; in high-noise environments, a simple hand signal might be faster and clearer.\n\nMisconceptions (targeted):\n*   Misconception: A communication barrier only refers to a person's physical disability. | Correction: Barriers include environmental factors like loud machinery or psychological factors like workplace stress. | AC: AC3.2\n*   Misconception: Written communication is always better because it is permanent. | Correction: Written methods lack the non-verbal cues of verbal communication, which can lead to misunderstandings of intent or urgency. | AC: AC3.1\n\n**Key Points**\n*   Identify the method (verbal, written, electronic) based on the need for speed versus permanence.\n*   Recognise barriers like noise or language and actively work to bypass them.\n*   Adapt the delivery method to suit individuals without changing the message facts.\n*   Use digital platforms for wide-scale or rapid data exchange.\n\n**Quick recap**\nSelecting a communication method requires balancing the need for a permanent record against the need for immediate feedback. By identifying a **Communication Barrier** early, you can implement a **Communication Adaptation** to ensure all team members receive accurate information, regardless of their specific needs or the working environment.\n\n### Coming Up Next\nNext, we will look at how these communication choices directly impact the harmony of a team and the overall success of an organisation."
+      }
+    },
+    {
+      "id": "210-210-3A1-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Communication Methods and Individual Needs",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-210-3A1-C1-L1-A",
+            "questionText": "What is the primary purpose of using Written Communication for technical compliance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "permanent audit trail",
+              "permanent record",
+              "audit trail"
+            ],
+            "hint": "Think about why a record that lasts is needed for legal or technical reasons."
+          },
+          {
+            "id": "210-210-3A1-C1-L1-B",
+            "questionText": "When is the use of Verbal Communication most effective in the workplace?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "immediate feedback",
+              "building rapport",
+              "quick check-ins"
+            ],
+            "hint": "Consider the benefits of spoken words and tone during a conversation."
+          },
+          {
+            "id": "210-210-3A1-C1-L1-C",
+            "questionText": "What is the rule regarding the message content when performing a Communication Adaptation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "never alter core meaning",
+              "core meaning must remain",
+              "no change to meaning"
+            ],
+            "hint": "Adaptation changes how the message is delivered, but what must stay the same?"
+          },
+          {
+            "id": "210-210-3A1-C1-L2",
+            "questionText": "Using your answers to Q1 (audit trails), Q2 (immediate feedback), and Q3 (core meaning), why must a technician select the correct method and adapt it carefully for different individuals?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Selecting written or verbal methods ensures the specific goal of permanence or speed is met",
+              "Adaptation ensures that barriers do not prevent an individual from receiving the information",
+              "Maintaining the core meaning across all methods and adaptations ensures safety and technical accuracy are not compromised"
+            ],
+            "expectedAnswer": [
+              "A technician must choose between written for audit trails or verbal for feedback to meet the specific needs of the task. They must then adapt this delivery for individuals to overcome barriers, while ensuring the core meaning never changes so that the technical facts remain accurate.",
+              "Selecting the right method provides the necessary feedback or record, while adaptation ensures all staff can access the message. This relationship matters because if the core meaning is altered during adaptation, the safety and compliance of the audit trail or verbal instruction is lost."
+            ],
+            "hint": "Think about how choosing the right tool and adjusting it for the person ensures the facts of the message stay safe."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-3A1-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Conflict Management and Organizational Impact",
+        "content": "### In this lesson\nIn this lesson, you will learn how to identify workplace disputes and the appropriate actions to resolve them. You will also explore how the quality of information exchange affects the health and performance of an entire organisation.\n\n*   Identify the signs of interpersonal conflict in a technical environment.\n*   Describe the steps involved in professional **Conflict Resolution**.\n*   State the negative consequences that poor communication has on organisational performance.\n\n**What this is**\n**Conflict Resolution** is a structured approach to settling disputes between individuals or groups. It involves active listening, negotiation, and clear messaging to find a solution that allows work to continue. In contrast, poor communication occurs when messages are vague, late, or missing entirely. This lack of clarity often leads to mistakes, which then impacts the organisation's reputation, safety record, and financial stability.\n\n**Why it matters**\nIn a technical setting, a single misunderstanding can lead to a chain reaction of errors. If two departments are in conflict and stop sharing data, the quality of the final output will drop. Effective **Conflict Resolution** prevents these issues from escalating into long-term resentment or physical hazards. An organisation that communicates well typically sees higher morale, fewer accidents, and better efficiency.\n\n**Key facts / rules**\n*   Conflict often arises from a **Communication Barrier** or a lack of clear roles.\n*   **Conflict Resolution** requires focusing on the problem, not the person.\n*   Poor communication can lead to \"rework,\" where tasks must be done twice due to errors.\n*   Organisational impact includes loss of profit, damaged reputation, and increased staff turnover.\n*   Early intervention is the most effective way to handle workplace disputes.\n*   Clear protocols for reporting and feedback reduce the likelihood of conflict.\n\n**When to choose it**\nYou should choose to initiate **Conflict Resolution** as soon as you recognise a breakdown in cooperation between colleagues. This is necessary when a disagreement starts to affect the safety or progress of a task. For example, if two workers disagree on which tool to use, a supervisor might step in to facilitate a discussion. You should choose to review organisational communication if you notice a pattern of recurring errors, such as multiple team members missing the same deadline due to vague instructions.\n\nEveryday contextual anchor: **Conflict Resolution** is like a pressure relief valve in a heating system; it allows built-up tension to be released safely before the whole system breaks down.\n\nMicro-scenario: If a project experiences a 20% delay because two teams refuse to share digital files, the cost of the delay (poor communication) is significantly higher than the 30 minutes spent in a mediation meeting (conflict resolution).\n\n**Common mistakes**\nLearners often confuse **Conflict Resolution** with simple avoidance; avoidance ignores the problem, whereas resolution actively addresses the root cause to prevent it from happening again. Many also underestimate the impact of poor communication, thinking it only affects feelings, when it actually often results in measurable financial loss for the organisation.\n\nMisconceptions (targeted):\n*   Misconception: Conflict resolution is about winning the argument. | Correction: It is about finding a functional agreement that allows the organisation to meet its goals. | AC: AC3.3\n*   Misconception: Poor communication only affects the people involved in the conversation. | Correction: Poor communication impacts the entire organisation through reduced safety, lost time, and damaged reputation. | AC: AC3.4\n\n**Key Points**\n*   Recognise conflict early to prevent it from impacting technical safety.\n*   Use negotiation and active listening as primary tools for resolution.\n*   Understand that poor communication leads to financial and reputational damage.\n*   Prioritise clear, open channels to maintain a high-performing organisation.\n\n**Quick recap**\nEffective communication is the foundation of a functional workplace. By mastering **Conflict Resolution**, you can manage disputes before they damage productivity. Remember that the consequences of poor communication extend far beyond a single conversation, affecting the safety, efficiency, and reputation of the entire organisation.\n\n### Coming Up Next\nNow that you understand the principles of communication and conflict, you are ready to apply these skills to real-world workplace scenarios."
+      }
+    },
+    {
+      "id": "210-210-3A1-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Conflict Management and Organizational Impact",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-210-3A1-C2-L1-A",
+            "questionText": "What should be the primary focus during professional Conflict Resolution?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "problem not the person",
+              "the problem",
+              "focus on the problem"
+            ],
+            "hint": "Effective resolution avoids personal attacks and looks at the underlying issue."
+          },
+          {
+            "id": "210-210-3A1-C2-L1-B",
+            "questionText": "What is the organizational result of poor communication that requires repeating a task?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "rework",
+              "tasks done twice",
+              "doing tasks twice"
+            ],
+            "hint": "Consider the term used when work must be corrected due to errors."
+          },
+          {
+            "id": "210-210-3A1-C2-L1-C",
+            "questionText": "Identify two common workplace factors from which conflict often arises.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "communication barrier or lack of clear roles",
+              "barriers and unclear roles",
+              "communication barrier and clear roles"
+            ],
+            "hint": "Look for environmental or structural causes of disputes mentioned in the text."
+          },
+          {
+            "id": "210-210-3A1-C2-L2",
+            "questionText": "Using your answers to Q1 (focus on the problem), Q2 (rework), and Q3 (barriers and roles), how do we know that addressing the root causes of conflict protects the organization's performance?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifying communication barriers or unclear roles allows an organization to stop conflict before it starts",
+              "Focusing on the problem during resolution ensures that disputes are settled functionally",
+              "Resolving these issues prevents rework, which protects the organization from financial loss and wasted time"
+            ],
+            "expectedAnswer": [
+              "We know this because identifying barriers and unclear roles prevents the initial conflict. By focusing on the problem during resolution, teams can avoid the errors that lead to rework, thereby protecting the organization's financial stability and reputation.",
+              "Addressing root causes like communication barriers ensures roles are clear, which prevents disputes. When conflict is handled by focusing on the problem, it stops the cycle of poor communication and rework that would otherwise damage organizational performance."
+            ],
+            "hint": "Connect the cause of the dispute to the method of fixing it and the final cost to the company."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-3A1-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "210-210-3A1-P1",
+            "questionText": "A supervisor delivers a 20-step safety protocol using only verbal communication. Based on the lesson's micro-scenario regarding recall error rates for this method, how many steps are likely to be forgotten or performed incorrectly?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "10"
+            ],
+            "hint": "The lesson notes a 50% error rate in recall for verbal-only delivery of complex steps."
+          },
+          {
+            "id": "210-210-3A1-P2",
+            "questionText": "Why must the core meaning of a message remain identical during a communication adaptation?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "ensure accuracy",
+              "maintain accuracy",
+              "preserve accuracy",
+              "ensure message accuracy"
+            ],
+            "hint": "Consider the difference between changing the 'how' (delivery) versus the 'what' (content)."
+          },
+          {
+            "id": "210-210-3A1-P3",
+            "questionText": "A project lead needs to distribute a technical specification to a team of 100 remote contractors simultaneously. Which communication method is most appropriate for this specific purpose?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "electronic communication",
+              "electronic",
+              "electronic method",
+              "digital communication"
+            ],
+            "hint": "Identify the method designed for high-speed sharing of data sets over long distances."
+          },
+          {
+            "id": "210-210-3A1-P4",
+            "questionText": "A logistics firm experiences a 15% drop in daily productivity because two teams are in conflict and refuse to share data. If the firm usually processes 800 units per day, how many units are lost daily due to this breakdown in communication?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "120"
+            ],
+            "hint": "Calculate 15% of the 800 units processed daily."
+          },
+          {
+            "id": "210-210-3A1-P5",
+            "questionText": "What specific type of communication barrier is represented by a high-stress environment that prevents a worker from focusing on a set of instructions?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "psychological barrier",
+              "psychological",
+              "psychological factors"
+            ],
+            "hint": "Identify the barrier category related to the mental or emotional state of the individual."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-3A1-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-210-3A1-INT-1",
+            "questionText": "Explain how the proactive adaptation of communication methods serves as a primary tool for conflict prevention. In your answer, include: (1) the identification of communication barriers, (2) the specific adaptation of a chosen method to meet individual needs, and (3) the resulting effect on workplace conflict. Why does failing to adapt communication methods often lead to interpersonal disputes in a technical environment?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies specific communication barriers (e.g., technical jargon, environmental noise, or sensory needs)",
+              "Describes how to adapt a method (e.g., moving from verbal to written instructions for clarity)",
+              "Connects adaptation directly to the reduction of misunderstandings that trigger conflict",
+              "Explains that technical environments rely on precision, where ambiguity leads to frustration",
+              "Reasons that unaddressed barriers are perceived as a lack of professional consideration, escalating tension"
+            ],
+            "expectedAnswer": [
+              "When communication barriers like complex jargon are identified, adapting the method to include written diagrams ensures all team members understand the task regardless of their background. This adaptation prevents the technical misunderstandings that typically spark conflict, as clear expectations reduce the friction caused by errors. Failures in adaptation lead to disputes because team members may feel excluded or unsupported, causing professional frustration to escalate into interpersonal tension.",
+              "Identifying barriers such as hearing impairments requires adapting verbal communication to electronic formats to ensure information parity. By meeting these individual needs, an organization removes the information gaps that often lead to workplace conflict over missed deadlines or incorrect procedures. Reasoning suggests that without these adaptations, the resulting lack of clarity is often misinterpreted as incompetence or negligence, which triggers defensive reactions and disputes."
+            ],
+            "hint": "Consider how a misunderstanding of a technical instruction could be interpreted as a personal or professional failure by a colleague."
+          },
+          {
+            "id": "210-210-3A1-INT-2",
+            "questionText": "Evaluate the impact of an integrated communication strategy on organizational outcomes. In your answer, include: (1) the selection of appropriate communication methods for the audience, (2) the adaptation of delivery to overcome specific barriers, (3) the process for resolving conflicts caused by information gaps, and (4) the long-term consequences for organizational performance. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Selects appropriate communication methods (verbal, written, electronic) based on situational context",
+              "Integrates adaptation strategies to ensure inclusivity and overcome physical or cognitive barriers",
+              "Identifies the steps of conflict resolution required when communication fails",
+              "Links effective information exchange to positive organizational health and productivity",
+              "Describes negative consequences of poor communication such as decreased morale or high staff turnover",
+              "Demonstrates how conflict resolution restores organizational stability",
+              "Synthesizes how inclusive communication prevents the 'information silos' that damage performance",
+              "Maintains technical precision regarding workplace standards and professional conduct"
+            ],
+            "expectedAnswer": [
+              "An integrated strategy requires selecting the right medium for the audience and adapting it to bypass barriers, which ensures all personnel receive accurate data. When information gaps do occur, applying professional conflict resolution steps prevents minor errors from damaging organizational performance. Ultimately, high-quality communication fosters a productive environment, whereas poor communication leads to financial loss, low morale, and operational inefficiency.",
+              "• Organizations must select methods like electronic briefs for complex data while adapting delivery for those with specific accessibility needs to maintain clarity.\n• Effective conflict resolution must be employed to bridge gaps when communication fails, preventing long-term damage to team cohesion.\n• Consistent, inclusive communication improves organizational performance by reducing errors and turnover.\n• Conversely, failing to integrate these concepts results in poor organizational health and significant productivity declines."
+            ],
+            "hint": "Think about the full cycle from the first message sent to the final impact on the company's success or failure."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-210-3A1-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "210-210-3A1-SR-1",
+            "questionText": "What term describes the specific way or tool used to share information between people in a workplace?",
+            "expectedAnswer": [
+              "Communication method",
+              "Method of communication",
+              "Communication channel"
+            ],
+            "hint": "It is the 'how' of sending a message, such as using an email or a meeting.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-210-3A1-SR-2",
+            "questionText": "What is the general term for an obstacle that prevents a message from being received or understood correctly?",
+            "expectedAnswer": [
+              "Communication barrier",
+              "Barrier",
+              "Barrier to communication"
+            ],
+            "hint": "Think of things that get in the way of clear understanding between people.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-210-3A1-SR-3",
+            "questionText": "What term is used to describe a serious disagreement or argument between individuals within a professional setting?",
+            "expectedAnswer": [
+              "Workplace conflict",
+              "Conflict",
+              "Professional conflict"
+            ],
+            "hint": "This occurs when people at work have opposing views that cause friction.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting 1 Identify suitable communication methods:"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2",
+    "AC3",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-15",
+    "updated": "2026-02-15",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "210",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1",
+        "AC2",
+        "AC3",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC5",
+        "AC6"
+      ]
+    },
+    "scope": {
+      "inScope": "The identification and definition of communication methods, conflict resolution steps, and organizational impacts.",
+      "outOfScope": "The practical performance of communication tasks or the creation of technical site documentation.",
+      "rationale": "The learning requirements focus on stating and identifying concepts rather than demonstrating practical communication proficiency."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on identifying methods and stating impacts/actions."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A communication barrier only refers to a person's physical disability.",
+        "correction": "Barriers include environmental factors like loud machinery or psychological factors like workplace stress.",
+        "relatedAC": "AC3.2"
+      },
+      {
+        "misconception": "Conflict resolution is about winning the argument.",
+        "correction": "It is about finding a functional agreement that allows the organisation to meet its goals.",
+        "relatedAC": "AC3.3"
+      },
+      {
+        "misconception": "Poor communication only affects the people involved in the conversation.",
+        "correction": "Poor communication impacts the entire organisation through reduced safety, lost time, and damaged reputation.",
+        "relatedAC": "AC3.4"
+      }
+    ]
+  }
+}

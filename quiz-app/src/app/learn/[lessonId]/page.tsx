@@ -54,9 +54,11 @@ import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolatio
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 import lesson210_210_1A1 from '@/data/lessons/210-210-1A1-1-identify-key-roles-of-the-site-management-team.json';
 import lesson210_210_2A1 from '@/data/lessons/210-210-2A1-1-identify-types-of-statutory-legislation-and-guidance-info.json';
+import lesson210_210_3A1 from '@/data/lessons/210-210-3A1-1-identify-suitable-communication-methods.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '210-210-3A1': lesson210_210_3A1 as Lesson,
   '210-210-2A1': lesson210_210_2A1 as Lesson,
   '210-210-1A1': lesson210_210_1A1 as Lesson,
   '204-9A': lesson204_9A as Lesson,
