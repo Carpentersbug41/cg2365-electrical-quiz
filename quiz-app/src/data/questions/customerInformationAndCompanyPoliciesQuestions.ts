@@ -9,35 +9,306 @@ import { TaggedQuestion } from './types';
 export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What is the primary difference between a quotation and an estimate provided to a customer?",
+    "question": "What is the main difference between a quotation and an estimate provided to a customer?",
     "options": [
-      "A quotation is a fixed price for the work, while an estimate is a likely cost that may change",
-      "An estimate is a legally binding fixed price, while a quotation is just a guess",
-      "A quotation is only used for small jobs, while an estimate is for large contracts",
-      "There is no difference between the two terms in the electrical industry"
+      "A quotation is a fixed price, while an estimate is a likely cost",
+      "An estimate is legally binding, while a quotation is not",
+      "Quotations are only for labor, while estimates are for materials",
+      "There is no difference between the two documents"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "terminology",
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A quotation is a fixed price offer that, if accepted, becomes a binding contract. An estimate is a 'best guess' of the likely cost and may change as the work progresses."
+  },
+  {
+    "id": 4017,
+    "question": "Why is it important for an electrical company to have a dress code policy for its employees?",
+    "options": [
+      "To present a professional image to the customer",
+      "To ensure all employees look exactly the same",
+      "Because it is a legal requirement under the Wiring Regulations",
+      "To make it easier for the boss to find workers"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A dress code ensures that staff look professional and are easily identifiable, which builds trust and maintains the company's reputation with customers."
+  },
+  {
+    "id": 4018,
+    "question": "A customer asks a Level 2 apprentice to install an extra socket that was not on the original plan. What should the apprentice do?",
+    "options": [
+      "Refer the request to their supervisor or manager",
+      "Do the work immediately to keep the customer happy",
+      "Refuse to do the work and leave the site",
+      "Ask the customer for extra cash payment directly"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Apprentices and Level 2 staff have limits to their personal authority. Any changes to the agreed work (the contract) must be handled by a supervisor or manager to ensure pricing and safety are managed."
+  },
+  {
+    "id": 4019,
+    "question": "Under statutory cancellation rights, how long is the standard 'cooling-off' period for a contract signed in a customer's home?",
+    "options": [
+      "14 days",
+      "24 hours",
+      "30 days",
+      "7 days"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Consumer Contracts Regulations generally provide a 14-day cancellation (cooling-off) period for contracts made away from business premises."
+  },
+  {
+    "id": 4020,
+    "question": "What is the primary purpose of a 'statement' sent to a regular customer?",
+    "options": [
+      "To show a summary of all recent invoices and payments",
+      "To provide a technical description of the wiring",
+      "To give a fixed price for a new job",
+      "To list the employee's contact details"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A statement provides a summary of the financial account, showing what has been billed, what has been paid, and the current balance."
+  },
+  {
+    "id": 4021,
+    "question": "Which document is essential to provide to a customer during the handover of a new electrical installation?",
+    "options": [
+      "Electrical Installation Certificate",
+      "The electrician's time sheet",
+      "A copy of the company's health and safety policy",
+      "The apprentice's training record"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Electrical Installation Certificate (EIC) is a vital handover document that proves the work has been tested and complies with BS 7671."
+  },
+  {
+    "id": 4022,
+    "question": "What is the most likely consequence of poor timekeeping by an electrical operative?",
+    "options": [
+      "Loss of customer trust and potential future work",
+      "Increased battery life of power tools",
+      "Lower material costs for the company",
+      "Improved safety on the building site"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Reliability is key in business; poor timekeeping disrupts the customer's schedule and damages the reputation of both the worker and the company."
+  },
+  {
+    "id": 4023,
+    "question": "Which of these items would you expect to find in a standard Contract of Employment?",
+    "options": [
+      "Job title and holiday entitlement",
+      "The circuit chart for the current job",
+      "A list of the customer's neighbors",
+      "The fuse ratings for the consumer unit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A contract of employment covers the relationship between employer and employee, including pay, hours, job title, and holidays."
+  },
+  {
+    "id": 4024,
+    "question": "When working in a customer's property, which behavior is usually prohibited by company policy?",
+    "options": [
+      "Using the customer's personal items without permission",
+      "Wearing clean safety footwear",
+      "Clearing up debris after finishing a task",
+      "Arriving at the agreed start time"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Professional behavior includes respecting the customer's property; using their personal items (like a phone or kettle) without permission is unprofessional."
+  },
+  {
+    "id": 4025,
+    "question": "Why is it necessary for a company to keep accurate records of customer contact details and work history?",
+    "options": [
+      "To provide efficient follow-up service and maintenance",
+      "To share the data with random marketing companies",
+      "Because the local council requires a list of all residents",
+      "To ensure the electrician knows what the customer eats"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Maintaining records allows the company to track warranty periods, schedule future maintenance, and understand the history of the installation."
+  },
+  {
+    "id": 4026,
+    "question": "Which document provided to a customer represents a fixed price for a specific scope of work that cannot be changed once accepted?",
+    "options": [
+      "A formal quotation",
+      "A verbal estimate",
+      "A delivery note",
+      "A site diary entry"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
     "tags": [
       "terminology",
       "explanation",
       "discrimination"
     ],
-    "learningOutcomeId": "210.LO2.AC2.3",
+    "learningOutcomeId": "210-LO2-AC2.3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "In the electrical trade, a quotation is a fixed price offer that, once accepted, forms a contract. An estimate is a 'best guess' of the likely cost which can change if unforeseen work is required."
+    "explanation": "A quotation is a legally binding offer of a fixed price. An estimate is only an approximate calculation of the likely cost."
   },
   {
-    "id": 4017,
-    "question": "Under the Consumer Contracts Regulations, what is the standard statutory cancellation period for a contract signed in a customer's home?",
+    "id": 4027,
+    "question": "Under statutory cancellation rights for contracts signed in a customer's home, how long is the standard 'cooling-off' period?",
     "options": [
       "14 days",
       "7 days",
@@ -50,26 +321,27 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
     "tags": [
       "legislation",
-      "conceptual"
+      "discrimination",
+      "units"
     ],
-    "learningOutcomeId": "210.LO2.AC2.3",
+    "learningOutcomeId": "210-LO2-AC2.3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Customers generally have a statutory 'cooling-off' period of 14 days to cancel a contract made away from a business's premises."
+    "explanation": "The Consumer Contracts Regulations provide a statutory cooling-off period of 14 days for contracts made off-trade premises, such as in a customer's home."
   },
   {
-    "id": 4018,
-    "question": "An electrical apprentice is asked by a customer to add an extra socket while on site. What is the correct course of action for the apprentice?",
+    "id": 4028,
+    "question": "Which of the following actions is usually considered outside the personal authority of a Level 2 electrical trainee or apprentice?",
     "options": [
-      "Refer the customer to the supervisor or person in charge",
-      "Agree to do it for cash at the end of the day",
-      "Refuse the work and tell the customer it is not possible",
-      "Carry out the work immediately to keep the customer happy"
+      "Signing off an Installation Certificate for a new circuit",
+      "Assisting with the pulling of cables through conduit",
+      "Maintaining a clean and tidy work area",
+      "Reporting a broken tool to the site supervisor"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -77,26 +349,363 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
     "tags": [
-      "application",
-      "terminology"
+      "terminology",
+      "conceptual",
+      "health-safety"
     ],
-    "learningOutcomeId": "210.LO2.AC2.4",
+    "learningOutcomeId": "210-LO2-AC2.4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Apprentices and Level 2 staff have limits to their personal authority. They must refer changes to the scope of work or financial matters to their supervisor."
+    "explanation": "Level 2 trainees do not have the legal or professional authority to sign off and certify electrical installations; this must be done by a 'competent person' as defined by the industry."
   },
   {
-    "id": 4019,
-    "question": "Which document is issued by a company to request payment for work that has been completed?",
+    "id": 4029,
+    "question": "A new employee needs to check the company's rules regarding the use of mobile phones and timekeeping. Which document should they refer to?",
     "options": [
-      "Invoice",
-      "Quotation",
-      "Estimate",
-      "Purchase Order"
+      "Company Policy or Employee Handbook",
+      "The IET Wiring Regulations (BS 7671)",
+      "The Health and Safety at Work Act",
+      "A material requisition form"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "terminology",
+      "discrimination",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-LO2-AC2.4",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Internal rules regarding behavior, dress code, and timekeeping are found in company policies or the employee handbook, not in external technical regulations."
+  },
+  {
+    "id": 4030,
+    "question": "An electrician has finished installing a new digital room thermostat for a homeowner. What is a critical part of the 'handover' process?",
+    "options": [
+      "Demonstrating how to program the thermostat to the customer",
+      "Giving the customer a list of the wholesaler's prices",
+      "Asking the customer to buy the electrician lunch",
+      "Providing the customer with the company's bank details only"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "application",
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-LO2-AC2.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Handover information must include practical instructions and manuals to ensure the customer knows how to operate the newly installed equipment safely and efficiently."
+  },
+  {
+    "id": 4031,
+    "question": "A domestic electrical installation is completed and ready for handover. Which set of information is most critical to provide to the customer to ensure safe operation and compliance?",
+    "options": [
+      "Electrical installation certificates, operation manuals for equipment, and any relevant circuit diagrams",
+      "The final invoice for the work completed and a business card for future call-outs",
+      "A verbal explanation of how the consumer unit works and a set of spare keys for the property",
+      "A list of all the materials used and the total number of hours worked by the apprentice"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "handover information",
+      "application",
+      "documentation"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Handover must include formal certification (EIC/MWC) and technical guidance to ensure the customer can safely operate the system and understands the work done."
+  },
+  {
+    "id": 4032,
+    "question": "An electrical contractor provides a customer with a 'Quotation' for a full house rewire. What is the legal significance of this document compared to an 'Estimate'?",
+    "options": [
+      "A quotation is a fixed price offer that, if accepted, forms a legally binding contract",
+      "A quotation is an educated guess of the final costs which can change as the work progresses",
+      "An estimate is a legally binding fixed price that cannot be changed under any circumstances",
+      "There is no legal difference between a quotation and an estimate in the UK construction industry"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "quotations",
+      "estimates",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A quotation is a specific fixed price for a defined scope of work. An estimate is a rough calculation of costs that is subject to change."
+  },
+  {
+    "id": 4033,
+    "question": "Under the Consumer Contracts Regulations, a customer who agrees to a contract in their own home generally has a statutory 'cooling-off' period. What is the standard duration of this cancellation period?",
+    "options": [
+      "14 days from the date the contract was entered into",
+      "7 days from the date the work actually begins on site",
+      "24 hours from the time the quotation was signed",
+      "30 days from the date the final invoice is issued"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "statutory rights",
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 provide a 14-day cancellation period for contracts made off-trade premises."
+  },
+  {
+    "id": 4034,
+    "question": "A Level 2 electrical apprentice is working on a site and the customer asks them to install an additional socket that was not in the original plan. What is the correct procedure regarding limits of authority?",
+    "options": [
+      "Inform the customer they must speak to the supervisor or person in charge to adjust the contract",
+      "Carry out the work immediately to ensure the customer remains happy with the service",
+      "Tell the customer to buy the materials themselves and the apprentice will do it for cash",
+      "Ignore the request and continue with the original task without telling anyone"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "limits to authority",
+      "application",
+      "professionalism"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Apprentices and junior staff have limited authority. Variations to a contract must be handled by management to ensure correct pricing, safety, and insurance coverage."
+  },
+  {
+    "id": 4035,
+    "question": "Which document would an employee refer to if they needed to check their entitlement to sick pay and their required notice period for leaving the company?",
+    "options": [
+      "Contract of Employment",
+      "Company Dress Code Policy",
+      "A previous Invoice or Statement",
+      "The Health and Safety at Work Act poster"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "contract of employment",
+      "discrimination",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Contract of Employment outlines the specific terms and conditions of an individual's employment, including pay, hours, and notice periods."
+  },
+  {
+    "id": 4036,
+    "question": "What is the primary difference between an 'Invoice' and a 'Statement of Account' in a business relationship?",
+    "options": [
+      "An invoice is a request for payment for specific work; a statement shows the overall history of transactions",
+      "An invoice shows the total debt over a year; a statement is only for one single item",
+      "A statement is a legal demand for payment; an invoice is just a suggestion of what is owed",
+      "There is no difference; the terms are used interchangeably for all financial requests"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "invoices",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Invoices are individual bills for specific goods/services. A statement summarizes all invoices, credits, and payments over a period."
+  },
+  {
+    "id": 4037,
+    "question": "A company policy regarding 'Dress Code' for electricians usually requires the use of branded PPE and workwear. What is the main professional reason for this policy?",
+    "options": [
+      "To project a professional image and allow the customer to easily identify authorized staff",
+      "To ensure that all employees spend their own money on the same type of expensive clothing",
+      "To make it easier for the supervisor to see if an employee is missing from the site",
+      "To comply with fashion trends within the construction and engineering industry"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "dress code",
+      "conceptual",
+      "professionalism"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Standardized workwear promotes the company brand and provides security by identifying the worker as a legitimate representative of the business."
+  },
+  {
+    "id": 4038,
+    "question": "If an electrician is consistently 15 minutes late for work every morning, which company policy are they primarily violating, and what is the likely impact on the business?",
+    "options": [
+      "Timekeeping policy; it can lead to missed deadlines and a loss of customer confidence",
+      "Health and Safety policy; it increases the risk of electric shock for other workers",
+      "Data Protection policy; it allows unauthorized people to access the site earlier",
+      "Dress Code policy; the worker is not wearing their watch correctly"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "timekeeping",
+      "application",
+      "professionalism"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Timekeeping is a core part of professional behavior. Lateness affects team productivity and the company's reputation with the client."
+  },
+  {
+    "id": 4039,
+    "question": "Why is it important for an electrical firm to maintain accurate and secure 'Customer Information' records under GDPR/Data Protection legislation?",
+    "options": [
+      "To ensure customer privacy while maintaining records for warranty claims and safety recalls",
+      "To allow the company to sell the customer's contact details to marketing firms for extra profit",
+      "To keep a public record of which customers have the most expensive electrical equipment",
+      "To avoid having to provide any handover documentation at the end of the job"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "units"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Customer records must be kept securely for legitimate business reasons (like warranties) while respecting the legal right to privacy."
+  },
+  {
+    "id": 4040,
+    "question": "An electrician is faced with an aggressive customer who is unhappy with the placement of a switch. Which company policy should guide the electrician's behavior in this situation?",
+    "options": [
+      "Conflict Resolution or Customer Behaviour policy; maintain professionalism and refer to a supervisor",
+      "The 'Right to Reply' policy; argue back to defend the quality of the work completed",
+      "The 'Abandonment' policy; leave the site immediately without saying anything to the customer",
+      "The 'Payment First' policy; refuse to leave until the customer pays for the work already done"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "behaviour",
+      "application",
+      "professionalism"
+    ],
+    "learningOutcomeId": "210-2B-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Professionalism is key. Employees should follow company procedures for handling disputes, which usually involves staying calm and escalating the issue to management."
+  },
+  {
+    "id": 4041,
+    "question": "An electrical contractor provides a customer with a 'quotation' for a full house rewire. Once the customer accepts this, what is the legal status of the price provided?",
+    "options": [
+      "It is a fixed price that cannot be changed unless the scope of work is altered",
+      "It is an educated guess of the final cost and may fluctuate by 20%",
+      "It is a non-binding document used only for the customer's budget planning",
+      "It is a daily rate estimate that depends on how many hours the sparky works"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -104,26 +713,27 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
       "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
     "tags": [
       "terminology",
-      "discrimination"
+      "legislation",
+      "conceptual"
     ],
     "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "An invoice is the formal request for payment following the completion of work or a stage of work."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A quotation is a fixed price offer that, once accepted, forms a legally binding contract. Unlike an estimate, it cannot be changed unless the customer requests additional work."
   },
   {
-    "id": 4020,
-    "question": "Why is it important for an electrician to follow a company's dress code policy?",
+    "id": 4042,
+    "question": "A domestic customer signs a contract in their own home for the installation of a new consumer unit. Under the Consumer Contracts Regulations, what is the statutory minimum cancellation period (cooling-off period) they must be given?",
     "options": [
-      "To maintain a professional image and ensure safety requirements are met",
-      "To ensure that all employees look exactly the same",
-      "Because the customer is paying for the uniform",
-      "To make it easier for the supervisor to find them on site"
+      "14 days",
+      "7 days",
+      "28 days",
+      "24 hours"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -131,243 +741,83 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
     "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Dress codes in the electrical industry project professionalism and often incorporate Personal Protective Equipment (PPE) requirements for safety."
-  },
-  {
-    "id": 4021,
-    "question": "What should be included in the handover information provided to a customer after a new installation is complete?",
-    "options": [
-      "Operating instructions and manufacturer manuals for installed equipment",
-      "A copy of the electrician's personal qualifications",
-      "The wholesale prices paid for the materials",
-      "A list of other customers the company has worked for"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
-    "tags": [
-      "conceptual",
+      "legislation",
+      "units",
       "application"
     ],
     "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Handover information ensures the customer knows how to safely operate and maintain the new installation and its components."
+    "estimatedTime": 60,
+    "explanation": "Under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013, consumers generally have a 14-day right to cancel a contract made away from business premises."
   },
   {
-    "id": 4022,
-    "question": "Which document outlines the basic terms, hours of work, and holiday entitlement for an employee?",
+    "id": 4043,
+    "question": "While working on a site, a Level 2 electrical trainee is asked by the client to install an additional socket in the kitchen. What is the correct action regarding 'limits of authority'?",
     "options": [
-      "Contract of Employment",
-      "Company Health and Safety Policy",
-      "Job Specification",
-      "Site Induction Record"
+      "Politely inform the customer that they must contact the supervisor or office to vary the contract",
+      "Carry out the work immediately to ensure the customer is satisfied with the service",
+      "Ask the customer for cash payment directly to cover the extra materials and time",
+      "Refuse to speak to the customer and continue with the original task in silence"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A Contract of Employment is a legal agreement between the employer and employee detailing the terms and conditions of their working relationship."
-  },
-  {
-    "id": 4023,
-    "question": "If an electrician is going to be late for a scheduled appointment with a customer, what is the best professional practice?",
-    "options": [
-      "Contact the customer or supervisor as soon as possible to explain the delay",
-      "Arrive late and apologize when the job is finished",
-      "Work faster once you arrive to make up the lost time",
-      "Wait until the customer calls the office to complain"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
     "tags": [
+      "terminology",
       "application",
       "conceptual"
     ],
     "learningOutcomeId": "210.LO2.AC2.4",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Punctuality and communication are key to professional behavior; informing the relevant parties of delays manages expectations and maintains trust."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Junior staff and trainees have limited authority. They cannot vary a legal contract or agree to extra work; such requests must go through the proper management channels."
   },
   {
-    "id": 4024,
-    "question": "What is the primary purpose of a 'Statement' sent to a customer?",
+    "id": 4044,
+    "question": "Which document is typically sent to a customer monthly to show all outstanding invoices, payments made, and the current total balance on their account?",
     "options": [
-      "To provide a summary of all recent invoices and payments on an account",
-      "To give a final price for a new piece of work",
-      "To explain how to use the electrical installation",
-      "To warn the customer about safety hazards on site"
+      "A statement of account",
+      "A variation order",
+      "A pro-forma invoice",
+      "A delivery note"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A statement provides a chronological summary of transactions, showing what has been billed and what has been paid over a period of time."
-  },
-  {
-    "id": 4025,
-    "question": "An electrician is working in a domestic property. Which behavior would be considered professional according to company policy?",
-    "options": [
-      "Protecting the customer's flooring with dust sheets before starting work",
-      "Using the customer's kitchen to prepare a meal",
-      "Playing loud music to stay motivated while working",
-      "Discussing the company's internal financial problems with the customer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Customer Information and Company Policies",
-    "category": "Communication",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Respecting a customer's property by using dust sheets is a standard professional requirement and often a specific company policy."
-  },
-  {
-    "id": 4026,
-    "question": "What is the main difference between a formal quotation and an estimate provided to a customer?",
-    "options": [
-      "A quotation is a fixed price offer that cannot be changed once accepted",
-      "An estimate is a legally binding fixed price for the work",
-      "A quotation is a rough guess of the likely costs",
-      "An estimate is only provided after the work has been completed"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Customer Information",
     "tags": [
       "terminology",
-      "explanation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A quotation is a specific fixed price for a defined scope of work, whereas an estimate is an approximate calculation of the costs which may change."
-  },
-  {
-    "id": 4027,
-    "question": "Which of the following is a primary reason why an electrical contracting company enforces a strict dress code and professional behaviour policy?",
-    "options": [
-      "To maintain the professional reputation and image of the company",
-      "To ensure all employees spend the same amount of money on clothes",
-      "To make it easier for the customer to see who is the boss",
-      "To reduce the amount of electricity used on site"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
       "discrimination",
-      "terminology"
+      "units"
     ],
-    "learningOutcomeId": "210-2B-LO1",
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Company policies regarding dress and behaviour are designed to ensure the business is represented professionally to customers and the public."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A statement provides a summary of all transactions over a period, whereas an invoice is a request for payment for a specific piece of work."
   },
   {
-    "id": 4028,
-    "question": "While on a job, a customer asks a Level 2 apprentice to add an extra socket that was not in the original plan. What is the correct action for the apprentice to take?",
+    "id": 4045,
+    "question": "During the handover of a completed solar PV installation, why is it essential to provide the customer with the manufacturer's user manuals and the Electrical Installation Certificate?",
     "options": [
-      "Inform the customer they must speak to the supervisor or person in charge",
-      "Agree to do the work immediately to keep the customer happy",
-      "Ask the customer for extra cash payment to cover the materials",
-      "Ignore the request and continue with the original task"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Apprentices and Level 2 staff have limits to their authority; any changes to a contract or agreed scope of work must be handled by a supervisor."
-  },
-  {
-    "id": 4029,
-    "question": "Under statutory cancellation rights for a contract signed in a customer's home, what is the standard 'cooling off' period allowed for the customer to cancel?",
-    "options": [
-      "14 days",
-      "24 hours",
-      "48 hours",
-      "30 days"
+      "To ensure the customer can operate the system safely and meet legal/warranty requirements",
+      "To provide the customer with scrap paper for their own filing systems",
+      "Because the electrician is not allowed to keep any paperwork on their van",
+      "To prove that the electrician has read the instructions themselves"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -379,104 +829,190 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
     "category": "Customer Information",
     "tags": [
       "conceptual",
-      "legislation"
+      "application",
+      "health-safety"
     ],
-    "learningOutcomeId": "210-2B-LO1",
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Consumer Contracts Regulations generally provide a 14-day cancellation period for contracts made away from business premises."
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "Handover information is vital for safety, maintenance, and legal compliance. The EIC is a legal requirement under BS 7671."
   },
   {
-    "id": 4030,
-    "question": "Which information must be provided to the customer as part of the formal 'handover' process after completing an installation?",
+    "id": 4046,
+    "question": "A company policy states that all employees must wear branded high-visibility vests and safety boots at all times on site. What is the primary reason for this policy?",
     "options": [
-      "Operating instructions and electrical installation certificates",
-      "A copy of the company's annual tax return",
-      "A list of all other customers the company has worked for",
-      "The personal mobile numbers of all the site workers"
+      "To maintain a professional company image and ensure compliance with Health and Safety PPE requirements",
+      "To make it easier for the employer to see if anyone is trying to leave site early",
+      "To save the employees money by not having to buy their own fashionable work clothes",
+      "To ensure that all employees look identical so the customer cannot tell them apart"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "health-safety",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Dress codes in the electrical trade serve the dual purpose of professional branding and ensuring Personal Protective Equipment (PPE) standards are met."
+  },
+  {
+    "id": 4047,
+    "question": "Which part of a 'Contract of Employment' would an employee refer to if they felt they were being treated unfairly or had a dispute with a colleague?",
+    "options": [
+      "Grievance procedure",
+      "Remuneration clause",
+      "Pension contribution section",
+      "Working hours and patterns"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "legislation",
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The grievance procedure outlines the formal process an employee should follow to raise a complaint or concern at work."
+  },
+  {
+    "id": 4048,
+    "question": "An electrical firm holds a customer's address, phone number, and bank details. Under Data Protection legislation (GDPR), what is the company's primary responsibility?",
+    "options": [
+      "To keep the data secure and only use it for the purpose it was originally collected",
+      "To sell the data to local kitchen fitters to help the customer find more trades",
+      "To store the data on a public noticeboard so all staff can access it easily",
+      "To keep the data forever, even if the customer moves house or dies"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Customer Information",
     "tags": [
-      "discrimination",
-      "explanation"
+      "legislation",
+      "conceptual",
+      "application"
     ],
-    "learningOutcomeId": "210-2B-LO1",
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The handover ensures the customer receives the necessary technical documentation, safety certificates, and instructions on how to use the system."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "GDPR requires that personal data be processed securely, transparently, and only for specific, legitimate purposes."
   },
   {
-    "id": 4031,
-    "question": "A customer requests a fixed price for a kitchen lighting upgrade. Which document should the electrical contractor provide to ensure the price is legally binding and non-variable?",
+    "id": 4049,
+    "question": "A Level 2 apprentice is consistently 15 minutes late for work every morning. How does this behavior primarily affect the working relationship within the team?",
     "options": [
-      "A formal quotation",
-      "An itemised estimate",
-      "A pro-forma invoice",
+      "It disrupts project scheduling and places an unfair workload on colleagues who arrive on time",
+      "It has no effect as long as the apprentice works 15 minutes later at the end of the day",
+      "It only affects the apprentice's pay and has no impact on the rest of the site team",
+      "It is acceptable behavior as long as the apprentice brings cakes for the team once a week"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "conceptual",
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "Poor timekeeping is a breach of company policy that damages professional relationships, disrupts workflow, and affects the company's reputation with clients."
+  },
+  {
+    "id": 4050,
+    "question": "An electrician discovers that a customer's floorboards are glued down, meaning the original plan to run cables under the floor will take much longer. What document should be used to adjust the agreed price?",
+    "options": [
+      "A variation order",
+      "A new estimate",
+      "A credit note",
+      "A purchase order"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "terminology",
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "A variation order (or change order) is used to document and agree upon changes to the original scope of work and the associated costs."
+  },
+  {
+    "id": 4051,
+    "question": "A customer receives a document from an electrical contractor that provides a 'fixed price' for a rewiring job. Which document has the customer received?",
+    "options": [
+      "A quotation",
+      "An estimate",
+      "An invoice",
       "A statement of account"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Customer Information",
     "tags": [
       "terminology",
-      "explanation",
-      "units"
+      "legislation",
+      "conceptual"
     ],
-    "learningOutcomeId": "210-2B-LO1",
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "A quotation is a fixed price offer that, once accepted, becomes a legally binding contract. An estimate is only a 'best guess' and can change."
+    "explanation": "A quotation is a specific, fixed price offer that, once accepted, forms a legally binding contract. An estimate is only an educated guess of the likely cost."
   },
   {
-    "id": 4032,
-    "question": "An electrician provides an estimate of £400 for a consumer unit change. After starting, they find the earthing requires an upgrade, increasing the cost to £550. Why is the electrician allowed to increase the price?",
-    "options": [
-      "An estimate is a non-binding illustration of likely costs",
-      "The electrician is allowed a 50% margin of error by law",
-      "The customer signed a fixed-price quotation",
-      "Estimates automatically become invoices once work starts"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "calculation",
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Estimates are not fixed prices; they are approximations. If unforeseen work is required, the price can be adjusted, though the customer should be informed."
-  },
-  {
-    "id": 4033,
-    "question": "Under the Consumer Contracts Regulations, what is the standard statutory cancellation period (cooling-off period) for a contract signed at a customer's home?",
+    "id": 4052,
+    "question": "Under the Consumer Contracts Regulations, what is the standard statutory 'cooling-off' period for a contract signed in a customer's home?",
     "options": [
       "14 days",
       "7 days",
-      "21 days",
+      "24 hours",
       "28 days"
     ],
     "correctAnswer": 0,
@@ -489,595 +1025,22 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
     "category": "Customer Information",
     "tags": [
       "legislation",
-      "explanation",
-      "units"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013 provide a 14-day cooling-off period for 'off-premises' contracts."
-  },
-  {
-    "id": 4034,
-    "question": "Which document is specifically used to show a customer a summary of all their financial transactions, including paid and unpaid invoices over a set period?",
-    "options": [
-      "A statement",
-      "An invoice",
-      "A delivery note",
-      "A credit note"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A statement of account provides a summary of all invoices, credits, and payments made by a customer, showing the total balance due."
-  },
-  {
-    "id": 4035,
-    "question": "A Level 2 apprentice is working on a site and the client asks them to install an extra socket that wasn't on the original plan. What is the correct limit to the apprentice's personal authority in this scenario?",
-    "options": [
-      "Refer the client to the site supervisor or manager",
-      "Agree to do it if the client pays cash directly",
-      "Install the socket immediately to maintain good customer relations",
-      "Refuse the work and tell the client it is illegal to add sockets"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Apprentices and Level 2 staff have limited authority. Any changes to a contract or scope of work must be handled by a supervisor or manager."
-  },
-  {
-    "id": 4036,
-    "question": "During the handover of a completed domestic installation, which of the following must be explained to the customer to ensure safety and compliance?",
-    "options": [
-      "The operation of the RCD test button",
-      "The specific wholesale price of the cables",
-      "The internal wiring diagrams of the circuit breakers",
-      "The company's internal disciplinary procedure"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "discrimination",
-      "explanation"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Part of the handover is ensuring the customer knows how to operate the installation safely, which includes the periodic testing of RCDs."
-  },
-  {
-    "id": 4037,
-    "question": "A company policy states that 'all employees must wear company-branded high-visibility vests and carry ID at all times'. What is the primary reason for this policy?",
-    "options": [
-      "Professionalism, safety, and security on site",
-      "To ensure the employer can track the employee's location",
-      "To comply with the 18th Edition wiring regulations",
-      "To reduce the cost of personal work clothes"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Dress codes and ID policies are designed to maintain a professional image, ensure visibility for safety, and verify identity for security."
-  },
-  {
-    "id": 4038,
-    "question": "Which of the following is typically found in a 'Contract of Employment' rather than a 'Company Policy Manual'?",
-    "options": [
-      "Agreed hourly rate of pay and notice period",
-      "The correct procedure for booking a van for personal use",
-      "The preferred brand of hand tools to be used",
-      "A list of local wholesalers with credit accounts"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A contract of employment is a legal agreement between employer and employee covering specific terms like pay, hours, and notice periods."
-  },
-  {
-    "id": 4039,
-    "question": "An electrician is consistently 15 minutes late for a commercial project. Which company policy is being breached, and what is the likely impact on working relationships?",
-    "options": [
-      "Timekeeping policy; causes friction with colleagues and delays other trades",
-      "Dress code policy; results in immediate dismissal without warning",
-      "Handover policy; prevents the customer from receiving certificates",
-      "Grievance policy; allows the employee to claim overtime for the end of the day"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Poor timekeeping disrupts site schedules and creates tension within the team, affecting the overall efficiency of the project."
-  },
-  {
-    "id": 4040,
-    "question": "When completing a job, why is it essential to provide the customer with manufacturer instructions for any installed equipment (e.g., a smart thermostat)?",
-    "options": [
-      "It is part of the formal handover process for safe operation",
-      "It allows the electrician to charge a higher fee for 'consultation'",
-      "It is a legal requirement under the Electricity at Work Regulations",
-      "It transfers all liability for the installation to the manufacturer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The handover process includes providing all relevant documentation so the user can operate the system correctly and safely."
-  },
-  {
-    "id": 4041,
-    "question": "An electrical contractor provides a document to a customer specifying a fixed price of £1,200 for a consumer unit upgrade. This document is legally binding once accepted. What is this document called?",
-    "options": [
-      "A quotation",
-      "An estimate",
-      "A pro-forma invoice",
-      "A statement of account"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A quotation is a fixed price offer that cannot be changed once accepted, whereas an estimate is a 'best guess' that may change."
-  },
-  {
-    "id": 4042,
-    "question": "Under the Consumer Contracts Regulations, what is the standard statutory 'cooling-off' period for a contract signed in a customer's home?",
-    "options": [
-      "14 days",
-      "7 days",
-      "28 days",
-      "24 hours"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The statutory cancellation period for off-premises contracts is 14 days, allowing the consumer to cancel for any reason."
-  },
-  {
-    "id": 4043,
-    "question": "A Level 2 electrical trainee is asked by a homeowner to install an extra socket while they are on-site for a lighting repair. What is the correct professional response?",
-    "options": [
-      "Inform the customer that they must contact the supervisor to authorize and price the extra work",
-      "Install the socket immediately to ensure the customer is happy",
-      "Refuse the work and tell the customer it is not their problem",
-      "Complete the work and ask the customer for a cash payment directly"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Trainees have limited personal authority; variations to the agreed contract must be handled by a supervisor or manager to ensure correct pricing and insurance coverage."
-  },
-  {
-    "id": 4044,
-    "question": "What is the primary purpose of providing 'handover information' to a customer after completing a domestic installation?",
-    "options": [
-      "To ensure the customer knows how to operate the system safely and effectively",
-      "To provide a list of all the materials used for tax purposes",
-      "To give the customer a chance to complain about the noise during work",
-      "To ensure the electrician has a record of the customer's phone number"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Handover information ensures the client understands the operation, maintenance requirements, and safety features of the new installation."
-  },
-  {
-    "id": 4045,
-    "question": "A customer receives a document at the end of the month that lists all the individual invoices sent, payments made, and the total balance currently outstanding. This document is a:",
-    "options": [
-      "Statement of account",
-      "Credit note",
-      "Purchase order",
-      "Quotation"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A statement of account summarizes multiple transactions over a period, whereas an invoice relates to a specific job or delivery."
-  },
-  {
-    "id": 4046,
-    "question": "Which of the following would typically be found in a company's 'Code of Conduct' policy regarding site behavior?",
-    "options": [
-      "Requirements for polite communication and the prohibition of offensive language",
-      "The specific technical torque settings for electrical terminations",
-      "The maximum resistance allowed for a circuit protective conductor",
-      "The statutory minimum wage for the current year"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A Code of Conduct focuses on professional behavior, interpersonal relationships, and the company's reputation."
-  },
-  {
-    "id": 4047,
-    "question": "An electrician is running 15 minutes late for a scheduled appointment at a customer's house due to heavy traffic. According to professional standards, what should they do?",
-    "options": [
-      "Contact the customer or the office immediately to provide an updated arrival time",
-      "Drive faster to try and make up the time without telling anyone",
-      "Wait until they arrive to apologize for the delay",
-      "Cancel the appointment and go to the next job"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Professional timekeeping requires proactive communication if a delay occurs to maintain the company's reputation and respect the customer's time."
-  },
-  {
-    "id": 4048,
-    "question": "A contract of employment must include a 'written statement of employment particulars'. Which of these must be included by law?",
-    "options": [
-      "Scale or rate of remuneration and the intervals at which it is paid",
-      "The employee's preferred brand of hand tools",
-      "A list of the employee's social media accounts",
-      "The employer's home address and personal phone number"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "conceptual",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Legally, the written statement must include pay rates, hours of work, holiday entitlement, and job title."
-  },
-  {
-    "id": 4049,
-    "question": "A contractor provides an 'estimate' of £500 for a repair. During the work, they discover hidden damage that will cost an extra £200 to fix. Can the contractor charge the extra £200?",
-    "options": [
-      "Yes, as an estimate is not a fixed price, but they should inform the customer before proceeding",
-      "No, an estimate is a legally binding fixed price that cannot change",
-      "Yes, but only if they finish the job within the same day",
-      "No, the contractor must pay for the extra materials themselves"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "application",
       "discrimination"
     ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "An estimate is an approximate cost. If costs increase significantly, the contractor is allowed to charge more, but professional practice requires notifying the customer first."
-  },
-  {
-    "id": 4050,
-    "question": "Which document is issued by a contractor to a customer to request payment for work that has been completed?",
-    "options": [
-      "An invoice",
-      "A quotation",
-      "A delivery note",
-      "A tender"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "An invoice is a formal request for payment for goods or services provided."
-  },
-  {
-    "id": 4051,
-    "question": "An electrical contractor provides a customer with a 'quotation' for a house rewire. Legally, how does this document differ from an 'estimate'?",
-    "options": [
-      "It is a fixed price offer that becomes a binding contract once accepted by the customer.",
-      "It is a rough guide to the expected cost which the contractor can increase as the work progresses.",
-      "It is a verbal agreement that does not require any written documentation to be legally valid.",
-      "It is a document used only for internal accounting and is not shown to the customer."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A quotation is a fixed price for a specific scope of work. Once accepted, it forms a legally binding contract. An estimate is an educated guess of the cost and can be subject to change."
-  },
-  {
-    "id": 4052,
-    "question": "Under the Consumer Contracts Regulations, what is the standard statutory 'cooling-off' period for a contract signed in a customer's home for electrical work?",
-    "options": [
-      "14 days from the date the contract was entered into.",
-      "7 days from the date the work actually commences on site.",
-      "28 days from the date the final invoice is issued to the customer.",
-      "24 hours from the time the verbal agreement was made."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "legislation",
-      "discrimination",
-      "units"
-    ],
     "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "The statutory cancellation period (cooling-off period) for contracts made away from trade premises (such as in a home) is 14 days."
+    "explanation": "The Consumer Contracts Regulations provide a 14-day cancellation period (cooling-off period) for contracts made away from business premises, such as in a customer's home."
   },
   {
     "id": 4053,
-    "question": "A Level 2 electrical trainee is on-site alone when a customer asks them to install an additional socket that was not in the original plan. What is the correct action regarding limits of authority?",
+    "question": "While working on a domestic site, a customer asks a Level 2 trainee to add an extra socket in the kitchen. What is the correct professional response according to limits of authority?",
     "options": [
-      "Politely inform the customer they must contact the supervisor to discuss variations to the contract.",
-      "Agree to the request and install the socket to ensure the customer remains satisfied.",
-      "Provide the customer with a handwritten estimate for the extra work and take payment in cash.",
-      "Ignore the request and continue with the original tasks without speaking to the customer."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "application",
-      "terminology",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Trainees and Level 2 staff have limited authority. Any changes to the scope of work (variations) must be handled by a supervisor or manager to ensure the contract and insurance are updated."
-  },
-  {
-    "id": 4054,
-    "question": "Which set of information MUST be provided to a customer during the formal handover of a completed domestic electrical installation?",
-    "options": [
-      "Electrical Installation Certificate, Schedule of Test Results, and manufacturer's instructions.",
-      "A copy of the electrician's qualifications and a list of all tools used on the project.",
-      "The original quotation and a verbal confirmation that the circuits are safe to use.",
-      "A blank copy of the BS 7671 regulations and the contractor's insurance policy."
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "discrimination",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO2.AC2.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "Handover documentation must include the relevant certification (EIC or MEIWC), test results, and any operation/maintenance manuals for installed equipment."
-  },
-  {
-    "id": 4055,
-    "question": "An electrical firm requires all staff to wear company-branded PPE and carry ID cards at all times. What is the primary reason for this policy in terms of working relationships?",
-    "options": [
-      "To ensure professional representation of the company and provide security for the customer.",
-      "To allow the employer to track the exact location of the employees using GPS tags in the boots.",
-      "To ensure that all employees look identical so they can be easily replaced on site.",
-      "To satisfy the requirements of the local fashion and clothing retail regulations."
+      "Inform the customer that they must contact the supervisor or office to arrange a variation",
+      "Agree to install the socket immediately to provide good customer service",
+      "Tell the customer it is impossible to add any extra points once work has started",
+      "Ask the customer for cash payment directly to cover the extra materials"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1088,160 +1051,50 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
     "section": "Communication 2365 Level 2",
     "category": "Company Policies",
     "tags": [
-      "conceptual",
       "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Trainees and Level 2 staff have limited authority. Any changes to the agreed scope of work (variations) must be handled by a supervisor or the office to ensure proper pricing and documentation."
+  },
+  {
+    "id": 4054,
+    "question": "Which of the following is a primary reason why an electrical contracting company enforces a strict dress code and the wearing of branded PPE?",
+    "options": [
+      "To maintain a professional company image and ensure staff are easily identifiable",
+      "To ensure that all employees buy their clothes from the same approved supplier",
+      "Because it is a legal requirement under the Electricity at Work Regulations",
+      "To prevent employees from wearing their own clothes to work for tax reasons"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "conceptual",
       "health-safety"
     ],
     "learningOutcomeId": "210.LO2.AC2.4",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Dress codes and ID policies are designed to maintain professionalism, ensure safety through appropriate PPE, and provide customers with the security of knowing who is entering their property."
+    "explanation": "Company policies on dress code serve dual purposes: maintaining a professional reputation (image) and ensuring safety/identification on site."
   },
   {
-    "id": 4056,
-    "question": "A contractor provides a document for a domestic rewire that specifies a fixed price of £3,500, regardless of the time taken or minor material price fluctuations. Legally, what is the correct classification of this document?",
+    "id": 4055,
+    "question": "Upon completion of a new circuit installation, which combination of information MUST be included in the handover package to the customer?",
     "options": [
-      "A quotation",
-      "An estimate",
-      "A variation order",
-      "A pro-forma invoice"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "terminology",
-      "calculation",
-      "application"
-    ],
-    "learningOutcomeId": "210-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "A quotation is a fixed price offer that, once accepted, forms a legally binding contract. An estimate is only a 'best guess' and can change as the work progresses."
-  },
-  {
-    "id": 4057,
-    "question": "An electrical firm signs a contract at a customer's home for a non-emergency consumer unit upgrade. Under the Consumer Contracts Regulations, what is the statutory cooling-off period during which the customer can cancel without penalty?",
-    "options": [
-      "14 days",
-      "7 days",
-      "28 days",
-      "24 hours"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "legislation",
-      "application"
-    ],
-    "learningOutcomeId": "210-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "For contracts signed away from the trader's premises (off-premises contracts), the statutory cancellation period is 14 days under UK law."
-  },
-  {
-    "id": 4058,
-    "question": "During the handover of a new solar PV installation, which combination of documents is essential to ensure the customer can safely operate and maintain the system?",
-    "options": [
-      "Electrical Installation Certificate, user manuals, and manufacturer warranties",
-      "A final invoice and a business card for future faults",
-      "A verbal explanation of the inverter and a copy of the estimate",
-      "The building regulations notification and a schedule of inspections only"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "explanation",
-      "application"
-    ],
-    "learningOutcomeId": "210-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "A professional handover must include the safety certification (EIC), operational instructions (manuals), and proof of warranty for the components installed."
-  },
-  {
-    "id": 4059,
-    "question": "A Level 2 apprentice is working on-site when a customer asks them to add two extra sockets to the kitchen circuit for an additional cash payment. What is the correct professional response according to company policy and limits of authority?",
-    "options": [
-      "Politely decline and refer the customer to the site supervisor or manager",
-      "Agree to do the work after hours to save the customer money",
-      "Perform the work immediately and record it on the time sheet",
-      "Provide the customer with a verbal estimate for the extra work"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Apprentices and Level 2 staff have limited authority; they cannot negotiate contracts or variations. All changes must be processed through official company channels to ensure safety and insurance coverage."
-  },
-  {
-    "id": 4060,
-    "question": "A customer has multiple ongoing projects with an electrical contractor and receives a document that summarizes all recent invoices, payments made, and the total outstanding balance. What is this document called?",
-    "options": [
-      "A statement of account",
-      "A final invoice",
-      "A delivery note",
-      "A credit note"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Customer Information",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "A statement of account provides a summary of all financial transactions over a period, whereas an invoice relates to a specific job or delivery."
-  },
-  {
-    "id": 4061,
-    "question": "Which of the following describes the primary purpose of a company's dress code policy for electrical operatives, beyond professional branding?",
-    "options": [
-      "To ensure all staff are wearing appropriate and safe Personal Protective Equipment (PPE)",
-      "To make it easier for the customer to identify the cheapest contractor",
-      "To reduce the cost of laundry for the individual employees",
-      "To ensure that all employees look identical regardless of their role"
+      "Electrical installation certificates and manufacturer instructions for fitted equipment",
+      "A copy of the electrician's qualification certificates and a business card",
+      "Only the final invoice and the company's insurance details",
+      "A verbal explanation of how to use the consumer unit and a receipt for materials"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1250,79 +1103,137 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
+    "category": "Customer Information",
     "tags": [
-      "health-safety",
-      "conceptual"
+      "discrimination",
+      "application"
     ],
-    "learningOutcomeId": "210-2B-LO2",
+    "learningOutcomeId": "210.LO2.AC2.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "A formal handover must include the required safety certification (EIC or MEIWC) and any relevant technical documentation or manuals for the products installed."
+  },
+  {
+    "id": 4056,
+    "question": "An electrical contractor provides a customer with a formal 'Quotation' for a full house rewire. During the work, the contractor discovers that the floorboards are screwed and glued, significantly increasing the labor time. Legally, what is the status of the price provided?",
+    "options": [
+      "The price is legally binding and cannot be increased unless a variation clause was included in the contract",
+      "The contractor can increase the price automatically as it was only an estimate of the total costs",
+      "The contractor can charge for the extra hours as long as they provide a verbal update to the customer",
+      "The quotation becomes void once unforeseen circumstances are encountered on site"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "terminology",
+      "application",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "A quotation is a fixed price offer that, once accepted, forms a legally binding contract. Unlike an estimate, the price cannot be changed due to unforeseen labor difficulties unless the contract specifically allows for variations."
+  },
+  {
+    "id": 4057,
+    "question": "A domestic customer signs a contract in their own home for a solar PV installation costing £4,000. Under the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations, what is the statutory minimum cancellation period?",
+    "options": [
+      "14 days from the date the contract was entered into",
+      "7 days from the date the work is scheduled to begin",
+      "28 days from the date the deposit is paid",
+      "There is no cancellation period once a deposit has been processed"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "While branding is a factor, the primary functional purpose of a dress code in the trades is safety, ensuring operatives wear arc-rated clothing, safety boots, and high-visibility gear as required."
+    "explanation": "For contracts signed away from the business premises (off-premises contracts), the Consumer Contracts Regulations provide a statutory 14-day 'cooling-off' period."
   },
   {
-    "id": 4062,
-    "question": "An electrician realizes that the cable route specified in a quotation is blocked by structural steel, requiring a significantly longer run and more expensive containment. What document must be issued before proceeding with the extra work?",
+    "id": 4058,
+    "question": "A Level 2 electrical trainee is working on site when the customer asks them to add an extra double socket in the kitchen for a 'cash price' of £40. Why must the trainee refuse this request?",
     "options": [
-      "A variation order",
-      "A revised estimate",
-      "A completion certificate",
-      "A site diary entry"
+      "The trainee lacks the personal authority to vary the contract or agree to additional works",
+      "The trainee is only allowed to perform work that has been pre-recorded on a daily timesheet",
+      "The trainee is not legally allowed to handle cash payments under any circumstances",
+      "The trainee would be in breach of the Health and Safety at Work Act by taking extra work"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Level 2 staff and apprentices have strict limits to their personal authority. They cannot negotiate prices, vary contracts, or authorize extra work; these must be handled by the supervisor or manager."
+  },
+  {
+    "id": 4059,
+    "question": "Which of the following documents is a legal requirement to be provided during the 'handover' of a newly installed consumer unit to a domestic client?",
+    "options": [
+      "An Electrical Installation Certificate (EIC) and a Schedule of Test Results",
+      "A copy of the electrician's public liability insurance certificate",
+      "The manufacturer's catalog for all circuit breakers installed",
+      "A formal statement of account showing all previous payments"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Customer Information",
     "tags": [
       "application",
-      "discrimination"
+      "terminology",
+      "legislation"
     ],
-    "learningOutcomeId": "210-2B-LO2",
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
-    "difficulty": 5,
+    "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "A variation order (or change order) is used to formally document and agree upon changes to the original contract price or scope of work before that work is carried out."
+    "explanation": "BS 7671 requires that upon completion of an installation, an EIC along with the relevant schedules must be handed over to the person ordering the work."
   },
   {
-    "id": 4063,
-    "question": "Under what specific circumstance can a consumer's 14-day statutory right to cancel a contract be waived for electrical work?",
+    "id": 4060,
+    "question": "A company policy requires all staff to wear branded high-visibility vests and safety boots at all times. How does this policy relate to the 'Contract of Employment'?",
     "options": [
-      "If the consumer makes an express request in writing for the work to begin immediately for urgent repairs",
-      "If the contractor is a sole trader rather than a limited company",
-      "If the total value of the electrical work is less than £1,000",
-      "If the contractor provides a verbal discount in exchange for waiving the right"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
-    "tags": [
-      "legislation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2B-LO2",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The right to cancel can be waived if the consumer specifically requests the work to start within the 14-day period in writing, often for emergency or urgent maintenance."
-  },
-  {
-    "id": 4064,
-    "question": "In the context of working relationships, why is 'timekeeping' considered a critical company policy beyond just the individual's pay?",
-    "options": [
-      "Poor timekeeping disrupts the workflow of other trades and delays project milestones",
-      "It is only important if the employee is being paid an hourly rate",
-      "It is used solely to determine who should be promoted first",
-      "It is a legal requirement under the 18th Edition Wiring Regulations"
+      "It is a condition of employment that ensures compliance with Health and Safety and professional standards",
+      "It is a recommendation that only applies when working on large industrial construction sites",
+      "It is a marketing requirement only and has no standing in the employment contract",
+      "It is a discretionary policy that can be ignored if the employee provides their own tools"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1334,22 +1245,23 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
     "category": "Company Policies",
     "tags": [
       "conceptual",
-      "explanation"
+      "legislation",
+      "health-safety"
     ],
-    "learningOutcomeId": "210-2B-LO2",
+    "learningOutcomeId": "210.LO2.AC2.4",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "Electrical work is often part of a sequence (e.g., first fix before plastering). Lateness by one operative can cause a 'domino effect,' delaying other trades and increasing overall project costs."
+    "explanation": "Company policies regarding dress code and PPE are typically integrated into the Contract of Employment to ensure the business meets its legal H&S obligations and maintains its professional reputation."
   },
   {
-    "id": 4065,
-    "question": "Which document defines the specific legal relationship between an employer and an electrical operative, including notice periods, grievance procedures, and core duties?",
+    "id": 4061,
+    "question": "When managing a customer's account, what is the primary functional difference between an 'Invoice' and a 'Statement'?",
     "options": [
-      "The contract of employment",
-      "The company health and safety policy",
-      "The JIB handbook",
-      "The site induction record"
+      "An invoice is a demand for payment for specific work; a statement summarizes the account balance over a period",
+      "An invoice is a non-binding estimate; a statement is the final legally binding price",
+      "An invoice is used for business customers; a statement is used only for domestic customers",
+      "An invoice includes VAT; a statement is always issued as a tax-free summary"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1358,15 +1270,128 @@ export const customerInformationAndCompanyPoliciesQuestions: TaggedQuestion[] = 
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Company Policies",
+    "category": "Customer Information",
     "tags": [
+      "discrimination",
       "terminology",
-      "discrimination"
+      "conceptual"
     ],
-    "learningOutcomeId": "210-2B-LO2",
+    "learningOutcomeId": "210.LO2.AC2.3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "The contract of employment is the primary legal document setting out the terms and conditions of the working relationship between the employer and the employee."
+    "explanation": "An invoice is a request for payment for a specific set of goods or services. A statement provides a summary of all invoices, credits, and payments made over a specific timeframe (e.g., monthly)."
+  },
+  {
+    "id": 4062,
+    "question": "On a construction site, an electrician's persistent poor timekeeping leads to a delay in the 'first fix' completion. How does this most directly affect the working relationship with other trades?",
+    "options": [
+      "It prevents follow-on trades, such as plasterers, from starting their scheduled work on time",
+      "It increases the total VAT liability for the main contractor",
+      "It automatically voids the building insurance for the entire site",
+      "It forces the customer to renegotiate the statutory cancellation period"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "application",
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Construction projects rely on sequential tasks. If the electrical first fix is late, the plasterers cannot board or skim walls, leading to a cascade of delays and friction between trades."
+  },
+  {
+    "id": 4063,
+    "question": "What is the primary professional reason for a company to maintain detailed records of customer installation history and previous maintenance visits?",
+    "options": [
+      "To facilitate efficient future fault-finding and ensure continuity of technical service",
+      "To ensure the company can charge the customer for marketing materials every year",
+      "To bypass the need for new Electrical Installation Certificates on future works",
+      "To provide a list of names for the apprentice to practice administrative tasks"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.3",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Maintaining technical records allows a contractor to understand the history of an installation, which is vital for safe maintenance, identifying recurring faults, and providing professional advice."
+  },
+  {
+    "id": 4064,
+    "question": "An electrician provides a customer with an 'Estimate' for some garden lighting. The final bill is 25% higher due to the price of copper increasing. Is the customer legally required to pay the higher amount?",
+    "options": [
+      "Yes, because an estimate is only a 'best guess' and is not a fixed price agreement",
+      "No, because an estimate has the same legal standing as a fixed quotation",
+      "Yes, but only if the electrician can prove they didn't make a profit on the materials",
+      "No, because the Consumer Rights Act prohibits price increases after an estimate is signed"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Customer Information",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "An estimate is an approximate calculation of the likely cost. It is not legally binding in the same way as a quotation, though it must still be provided in 'good faith' and be reasonable."
+  },
+  {
+    "id": 4065,
+    "question": "A Level 2 employee frequently uses their mobile phone for personal calls while on the shop floor, despite a company policy prohibiting this. What is the most likely contractual consequence?",
+    "options": [
+      "It constitutes a breach of company policy which can lead to formal disciplinary action",
+      "The employer is legally required to reduce the employee's hourly rate immediately",
+      "The employee's Level 2 qualification is automatically revoked by the awarding body",
+      "Nothing, as company policies are only guidelines and not part of the employment contract"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Company Policies",
+    "tags": [
+      "conceptual",
+      "application",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.4",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Following company policies (behavior, timekeeping, etc.) is a requirement of the Contract of Employment. Failure to follow these can result in the company's disciplinary procedure being triggered."
   }
 ];
