@@ -1,14 +1,14 @@
 {
   "id": "210-1B",
-  "title": "210.1B — Site Visitors and Inspectors",
-  "description": "Learn to identify key external visitors on a construction site, focusing on statutory inspectors, regulatory bodies, and their specific legal roles.",
+  "title": "210.1B — Site Management and Reporting Roles",
+  "description": "Learn about the Site Management Team and reporting hierarchies in Communication 2365 Level 2",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Site Visitors and Inspectors",
+  "topic": "Site Management and Reporting Roles",
   "learningOutcomes": [
-    "List the key roles of common external visitors to a technical work site.",
-    "Explain the primary purpose of inspections carried out by regulatory bodies.",
-    "Identify the correct inspector to consult for specific site requirements such as safety, water, or building regulations."
+    "Identify key roles of the site management team including Site Managers and Quantity Surveyors",
+    "Identify key roles of individuals reporting to site management such as Supervisors and Operatives",
+    "Explain the chain of command and how information flows between site roles"
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "List the key roles of common external visitors to a technical work site.",
+            "text": "Identify key roles of the site management team including Site Managers and Quantity Surveyors",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain the primary purpose of inspections carried out by regulatory bodies.",
+            "text": "Identify key roles of individuals reporting to site management such as Supervisors and Operatives",
             "bloomLevel": "understand"
           },
           {
-            "text": "Identify the correct inspector to consult for specific site requirements such as safety, water, or building regulations.",
-            "bloomLevel": "remember"
+            "text": "Explain the chain of command and how information flows between site roles",
+            "bloomLevel": "apply"
           }
         ]
       }
@@ -42,24 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Statutory Inspector",
-            "definition": "An official with legal power (mandated by statute) to enter a site and enforce laws. Unlike a client, they are not there to discuss design, but to check legality."
+            "term": "Site Manager",
+            "definition": "The person with overall day-to-day responsibility for the safety, schedule, and quality of the construction site; often called the 'Site Agent' on larger projects."
           },
           {
-            "term": "Building Control Officer (BCO)",
-            "definition": "A specialized inspector who checks that the physical building work (like foundations or walls) meets national Building Regulations."
+            "term": "Contracts Manager",
+            "definition": "A senior manager who oversees multiple projects and deals with high-level client contracts and budgets, sitting above the Site Manager in the hierarchy."
           },
           {
-            "term": "Health and Safety Executive (HSE)",
-            "definition": "The national regulator for workplace safety. They focus on 'how' you are working (e.g., are you wearing a helmet?) rather than 'what' you are building."
+            "term": "Quantity Surveyor (QS)",
+            "definition": "The professional responsible for estimating and monitoring construction costs, ensuring the project stays within budget by measuring materials and labor."
           },
           {
-            "term": "Distribution Network Operator (DNO)",
-            "definition": "The company that owns the physical power lines and cables outside the site. You contact them to connect the building to the national grid."
+            "term": "Supervisor",
+            "definition": "Also known as a foreman or chargehand, this person directs the specific daily tasks of operatives and reports progress up to the Site Manager."
           },
           {
-            "term": "Compliance",
-            "definition": "The state of following all rules and laws. If a site is 'compliant', it passes the inspection."
+            "term": "Chain of Command",
+            "definition": "The official hierarchy of authority that dictates who reports to whom, ensuring instructions flow down from management and information flows up from operatives."
           }
         ]
       }
@@ -69,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "The Role of Site Visitors",
-        "content": "### Who visits the site?\nApart from the regular construction team (managers and tradespeople), other people will visit the site. These **External Visitors** usually fall into two categories:\n\n1.  **Commercial Visitors:** Clients, architects, or suppliers. They care about the schedule, the cost, and the look of the project.\n2.  **Statutory Inspectors:** Officials with legal powers. They care about the law and safety.\n\n**The Driving Test Analogy**\nThink of a construction site like a driving test. \n*   The **Worker** is the driver.\n*   The **Site Manager** is the driving instructor (helping you pass).\n*   The **Statutory Inspector** is the Examiner. They don't help you drive; they just check if you are following the rules (Compliance). If you break a serious rule, they can stop the test immediately.\n\n**What is Compliance?**\n**Compliance** means meeting the mandatory legal standards. A Statutory Inspector visits to verify compliance. They are not there to be helpful or give advice on how to build; they are there to confirm the work is legal. \n\n**Key Rules for All Visitors**\nRegardless of who they are (Client or Inspector), every visitor must:\n*   **Report to the Site Office:** This is the first step. The Site Management team must know exactly who is on site for safety reasons (e.g., in case of a fire roll call).\n*   **Sign In:** Record their arrival in the site log.\n*   **Wear PPE:** Follow the site's safety rules (helmets, boots, vests).\n\n**Powers of a Statutory Inspector**\nWhile a client can complain about the paint color, a **Statutory Inspector** has the power to enter the site by law. If they find dangerous non-compliance, they can issue notices to stop the work. You cannot refuse them entry if they have a legal warrant or reason.\n\n**Micro-scenario**\n*Imagine you are wiring a house. The homeowner visits to see where the sockets are (Commercial Visitor). Later, a Building Control Officer visits to test if the wiring is safe (Statutory Inspector). You treat both with respect, but the Officer has the legal power to make you redo the work if it is unsafe.*"
+        "title": "The Site Management Team (AC1)",
+        "content": "### In this lesson\nYou will learn about the key roles that run a construction site. You will identify who is responsible for the daily operations, who handles the money, and who oversees the big picture.\n\n*   The difference between a Site Manager and a Contracts Manager.\n*   The role of the Quantity Surveyor in cost control.\n*   How the management team coordinates the project.\n\n**What this is**\nThe **Site Management Team** is the group of professionals responsible for delivering the project. Think of a ship: the **Contracts Manager** is the Admiral (on land, managing the fleet/strategy), the **Site Manager** is the Captain (on the ship, managing the crew daily), and the **Quantity Surveyor** is the Purser (managing the money and supplies).\n\n**Why it matters**\nKnowing who is who ensures you speak to the right person. If you have a query about your pay or the cost of materials, you talk to the **Quantity Surveyor**. If you have a safety concern or a problem with the schedule, the **Site Manager** is the authority. Confusing these roles can lead to delays or unauthorized spending.\n\n**Key facts / rules**\n*   **Contracts Manager**: Visits occasionally. Manages the contract with the client and oversees multiple sites. Focus: Strategy & Profit.\n*   **Site Manager / Site Agent**: Based on site every day. Responsible for safety, labor, and deadlines. Focus: Getting the job done.\n*   **Quantity Surveyor (QS)**: Measures work completed and calculates costs. Focus: Budget & Value.\n\n**Micro-Scenario: The Cost Check**\nImagine a bricklayer needs more bricks. The **Site Manager** approves the *need* for bricks to keep work going. The **Quantity Surveyor** calculates that 1,000 bricks are required and checks if this fits the budget before placing the order. The **Contracts Manager** might later review why the project used more bricks than predicted.\n\n**When to choose it**\nWhen you need a decision made, look at the scale. Is it a daily issue? Go to the Site Manager. Is it a major contract change? It requires the Contracts Manager. Is it about money or measurements? It’s the QS.\n\n**Common mistakes**\nLearners often confuse the **Site Manager** with the **Contracts Manager**. Remember: The Site Manager is *on site* daily; the Contracts Manager manages the *contracts* (paperwork) for several sites and visits less often.\n\nMisconceptions (targeted):\n*   Misconception: The Site Manager handles all the payroll and invoicing personally. | Correction: The Quantity Surveyor is the specialist who manages costs, valuations, and invoicing. | AC: AC1\n*   Misconception: The Contracts Manager is the boss of the company. | Correction: They are a senior manager, but they report to Directors. They specifically manage project contracts. | AC: AC1\n\n**Key Points**\n*   **Site Manager**: Day-to-day site control.\n*   **Contracts Manager**: Multi-site strategic control.\n*   **Quantity Surveyor**: Cost and material control.\n\n### Coming Up Next\nNow that we know who runs the site, we will look at the individuals who report to them and do the physical work."
       }
     },
     {
@@ -78,61 +78,61 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Visitor Roles",
+        "title": "Check Your Understanding: Site Management",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "What is the very first thing any external visitor must do upon arriving at a construction site?",
+            "questionText": "Which management role is based on site every day and has overall responsibility for safety and schedule?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "report to the site office",
-              "go to the site office",
-              "sign in at the site office",
-              "report to the office"
+              "Site Manager",
+              "Site Agent",
+              "Project Manager"
             ],
-            "hint": "They need to make their presence known to the management team immediately."
+            "hint": "Think of the 'Captain' of the ship who is physically present."
           },
           {
             "id": "210-1B-C1-L1-B",
-            "questionText": "What term describes the state of work that meets all mandatory legal standards and laws?",
+            "questionText": "Which professional is responsible for estimating costs and monitoring the project budget?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Compliance",
-              "compliant",
-              "legal compliance"
+              "Quantity Surveyor",
+              "QS",
+              "Surveyor"
             ],
-            "hint": "It starts with C. It means you have followed the rules."
+            "hint": "This role involves measuring materials and managing money."
           },
           {
             "id": "210-1B-C1-L1-C",
-            "questionText": "Which type of visitor has the legal authority to enforce national regulations and potentially stop work?",
+            "questionText": "Who oversees multiple projects and manages the high-level client contracts?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Statutory Inspector",
-              "statutory"
+              "Contracts Manager",
+              "Contract Manager"
             ],
-            "hint": "This is an official with legal powers, unlike a client or architect."
+            "hint": "This manager sits above the Site Manager and looks at the bigger strategic picture."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Why must a Statutory Inspector (who has high legal authority) still report to the site office and sign in like any other visitor?",
+            "questionText": "Explain the relationship between the Site Manager and the Quantity Surveyor. Why are both roles needed for a successful project?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Safety accountability is the priority.",
-              "The site manager must know who is on site in case of emergency (e.g., fire).",
-              "Legal authority does not exempt someone from safety procedures."
+              "Site Manager focuses on physical progress, safety, and schedule",
+              "Quantity Surveyor focuses on costs, budget, and material quantities",
+              "Together they ensure the project is built correctly (Site Manager) and profitably (QS)",
+              "One manages the work, the other manages the money"
             ],
             "expectedAnswer": [
-              "Even though a Statutory Inspector has legal power, they must sign in for safety reasons. The site manager needs to know exactly who is on site in case of an emergency, like a fire, to ensure everyone is accounted for. Safety protocols apply to everyone without exception.",
-              "They must sign in so the site management team knows they are present. This is crucial for safety, such as during a fire drill or evacuation, ensuring the inspector is not left behind."
+              "The Site Manager ensures the work is done safely and on time, while the Quantity Surveyor ensures it is done within budget. Both are needed because a project that is finished on time but costs double the budget is a failure, just as a cheap project that is never finished is a failure. They balance physical progress with financial control.",
+              "The Site Manager handles the day-to-day operations and logistics, whereas the Quantity Surveyor handles the financial side. You need both to ensure the building is constructed to standard without running out of money."
             ],
-            "hint": "Think about what happens if there is a fire. Does the fire care if you are an inspector?"
+            "hint": "Think about the difference between 'building it' and 'paying for it'."
           }
         ]
       }
@@ -142,8 +142,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Specific Regulatory Inspectors",
-        "content": "### Knowing Who to Call\nDifferent inspectors cover different parts of the job. Mixing them up can cause delays. We will look at the three most common ones: **HSE**, **Building Control**, and the **DNO**.\n\n**1. Health and Safety Executive (HSE)**\n*   **Focus:** The *Safety of People*. \n*   **What they check:** Are workers wearing PPE? Is the scaffolding safe? Is there dust control?\n*   **Power:** They can issue a **Prohibition Notice** to stop work immediately if there is a risk of serious injury.\n*   **Analogy:** The \"Traffic Police\" of the site. They stop you if you are driving dangerously.\n\n**2. Building Control Officer (BCO)**\n*   **Focus:** The *Quality of the Building*.\n*   **What they check:** Is the foundation deep enough? Is the insulation correct? Does the structure meet Building Regulations?\n*   **Power:** They can refuse to sign off the project, meaning the building cannot be sold or used.\n*   **Analogy:** The \"Vehicle Inspector\" (MOT). They check if the car itself is built correctly.\n\n**3. Distribution Network Operator (DNO)**\n*   **Focus:** The *Supply Connection*.\n*   **What they check:** The physical cables, pipes, and transformers that bring electricity/gas to the site boundary.\n*   **Note:** The DNO owns the infrastructure. The \"Energy Supplier\" (who sends the bill) just sells the energy. You call the DNO for a new connection or if a main supply cable is damaged.\n\n**Comparison Table**\n| Official | Focus | Example Check |\n| :--- | :--- | :--- |\n| **HSE** | Safety of Workers | \"Is that ladder tied down?\" |\n| **Building Control** | Quality of Structure | \"Is that wall fire-rated?\" |\n| **DNO** | Infrastructure | \"Where should we put the main fuse?\" |\n\n**Micro-scenario: The Trench**\n*   If you dig a trench, the **HSE** checks if it is shored up so it doesn't collapse on you.\n*   The **Building Control Officer** checks if the trench is in the right place for the foundation.\n*   The **DNO** comes to lay the main power cable inside the trench.*"
+        "title": "Reporting Lines and Operatives (AC2)",
+        "content": "### In this lesson\nYou will learn about the individuals who report to the site management team. This includes the supervisors who direct work and the operatives who perform it.\n\n*   The role of the Supervisor/Foreman.\n*   The duties of the Operative.\n*   The function of Site Administration.\n*   Understanding the Chain of Command.\n\n**What this is**\nBelow the management team is the workforce. This is organized into a **Chain of Command**. Instructions flow down from the Site Manager -> Supervisor -> Operative. Reports flow back up. \n\n**Roles**\n1.  **Supervisor (Foreman/Ganger)**: The link between management and workers. They do not usually run the whole site but control a specific team (e.g., the electrical team). They ensure materials are ready and work is correct.\n2.  **Operative**: The skilled tradesperson (e.g., Electrician, Plumber, Bricklayer) or general laborer. They perform the physical installation.\n3.  **Site Administrator**: Reports to the Site Manager. Handles the 'office' side: filing drawings, checking timesheets, and signing in visitors.\n\n**Why it matters**\nFollowing the **Chain of Command** prevents confusion. If an **Operative** has a problem, they should tell their **Supervisor**, not bypass them to the Contracts Manager. This ensures problems are solved quickly at the right level.\n\n**Micro-Scenario: Span of Control**\nConsider a site with 20 electricians. It is too hard for one Site Manager to watch them all. So, the team is split: 2 **Supervisors** each manage 10 **Operatives**. If an operative installs 50 meters of cable tray, the Supervisor checks it measures correctly and meets the standard before telling the Site Manager the task is complete.\n\n**Key facts / rules**\n*   **Operatives** report to **Supervisors**.\n*   **Supervisors** report to the **Site Manager**.\n*   **Site Admin** supports the **Site Manager** with paperwork.\n*   **Span of Control**: The number of people a supervisor can effectively manage (usually 8-12).\n\n**Common mistakes**\nLearners often think the Site Manager tells every single worker what to do every hour. In reality, the Site Manager tells the **Supervisor** the plan for the week, and the Supervisor directs the **Operatives** daily.\n\nMisconceptions (targeted):\n*   Misconception: Operatives can change the design if they think a better way exists. | Correction: Operatives must follow the design; changes must be approved by the Supervisor and Management. | AC: AC2\n*   Misconception: The Site Administrator is just a receptionist. | Correction: They control critical project documentation and site access records. | AC: AC2\n\n**Key Points**\n*   Respect the **Chain of Command**.\n*   **Supervisors** translate management goals into daily tasks.\n*   **Operatives** deliver the physical work quality.\n\n### Coming Up Next\nWe will practice identifying these roles and calculating team structures."
       }
     },
     {
@@ -151,61 +151,64 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Specific Inspectors",
+        "title": "Check Your Understanding: Reporting Lines",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "Which organization has the power to issue a 'Prohibition Notice' to stop work immediately if they see a danger to life?",
+            "questionText": "Who acts as the direct link between the Site Manager and the Operatives?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Health and Safety Executive",
-              "HSE",
-              "The HSE"
+              "Supervisor",
+              "Foreman",
+              "Ganger",
+              "Chargehand"
             ],
-            "hint": "This body enforces workplace safety laws."
+            "hint": "This person directs the daily tasks of the work gang."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "Who should you contact if you need a new physical connection to the national electricity grid?",
+            "questionText": "Which role is responsible for performing the physical installation work on site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Distribution Network Operator",
-              "DNO",
-              "The DNO"
+              "Operative",
+              "Tradesperson",
+              "Electrician",
+              "Worker"
             ],
-            "hint": "Not the company that sends the bill, but the one that owns the cables."
+            "hint": "This is the person on the tools doing the job."
           },
           {
             "id": "210-1B-C2-L1-C",
-            "questionText": "Which officer checks that the finished structure (like walls and foundations) meets national construction standards?",
+            "questionText": "Who supports the Site Manager by handling documentation, filing, and visitor logs?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Building Control Officer",
-              "Building Control",
-              "BCO"
+              "Site Administrator",
+              "Site Admin",
+              "Administrator"
             ],
-            "hint": "They focus on the building's quality, not the workers' safety."
+            "hint": "This role is office-based and deals with paperwork."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "Explain the difference between the HSE and Building Control regarding a brick wall being built on site.",
+            "questionText": "Describe the 'Chain of Command' from the Operative to the Site Manager. Why is it important to follow this structure?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "HSE focuses on the process/safety (e.g., scaffolding, PPE).",
-              "Building Control focuses on the product/structure (e.g., stability, materials).",
-              "One protects the worker, the other protects the future occupant."
+              "Order: Operative -> Supervisor -> Site Manager",
+              "Ensures instructions flow down clearly",
+              "Ensures issues are resolved at the correct level",
+              "Prevents management overload and confusion"
             ],
             "expectedAnswer": [
-              "The HSE would check if the bricklayers are working safely, for example, using safe scaffolding and wearing hard hats. Building Control would check the wall itself to ensure it is strong enough, uses the right bricks, and is in the correct position according to the plans.",
-              "HSE looks at 'how' it is built (safety of the worker). Building Control looks at 'what' is built (quality of the wall)."
+              "The Chain of Command flows from the Operative up to the Supervisor, and then to the Site Manager. It is important to follow this so that the Site Manager isn't overwhelmed with minor issues that a Supervisor could fix, and to ensure that instructions from the top are clearly explained to the team by their direct leader.",
+              "Operatives report to Supervisors, who report to the Site Manager. Following this structure prevents confusion and ensures that information reaches the right person without bypassing the necessary checks."
             ],
-            "hint": "One looks at the worker's safety; the other looks at the wall's quality."
+            "hint": "Think about how information moves up the ladder and why skipping a step causes problems."
           }
         ]
       }
@@ -219,45 +222,52 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "A site log shows 6 permanent staff signed in. At 10:00 AM, 1 Building Control Officer and 2 Architects arrive. At 10:30 AM, 1 HSE Inspector arrives. No one has left. What is the total number of people currently recorded in the site log?",
+            "questionText": "A site management team consists of 1 Contracts Manager, 1 Project Manager, 1 Site Agent, and 2 Quantity Surveyors. How many individuals are part of this specific management group?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "10"
+              "5"
             ],
-            "hint": "6 staff + 1 BCO + 2 Architects + 1 HSE = ?"
+            "hint": "Simply count the total number of management roles listed."
           },
           {
             "id": "210-1B-P2",
-            "questionText": "You are about to cover up a foundation with concrete. Which specific inspector must view it first to ensure it meets regulations?",
+            "questionText": "If you are an operative and you find a discrepancy in the drawings, who is the first person you should report this to?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Building Control Officer",
-              "Building Control",
-              "BCO"
+              "Supervisor",
+              "Foreman",
+              "Line Manager"
             ],
-            "hint": "This person checks the structural quality before it is hidden."
+            "hint": "Follow the immediate chain of command; do not go straight to the top."
           },
           {
             "id": "210-1B-P3",
-            "questionText": "A digger has accidentally pulled up a main underground supply cable. Which organization owns this infrastructure and must be called to fix it?",
-            "answerType": "short-text",
+            "questionText": "A company policy requires 1 Supervisor for every 8 Operatives. If there are 24 Operatives on site, what is the minimum number of Supervisors required?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Distribution Network Operator",
-              "DNO",
-              "the DNO"
+              "3"
             ],
-            "hint": "It is the network operator, not the billing company."
+            "hint": "Divide the total operatives by the span of control (24 divided by 8)."
           },
           {
             "id": "210-1B-P4",
-            "questionText": "An official arrives and notices workers on the roof without harnesses. They issue a notice to stop work immediately. Who is this official?",
+            "questionText": "Which management role would you contact regarding a payment valuation or a budget issue?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "HSE Inspector",
-              "HSE",
-              "Health and Safety Executive"
+              "Quantity Surveyor",
+              "QS"
             ],
-            "hint": "They enforce safety laws and have the power to prohibit dangerous work."
+            "hint": "This person is the financial controller of the project."
+          },
+          {
+            "id": "210-1B-P5",
+            "questionText": "Who has the authority to make high-level strategic decisions for multiple sites at once?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Contracts Manager",
+              "Contract Manager"
+            ],
+            "hint": "This role sits above the Site Manager."
           }
         ]
       }
@@ -273,37 +283,38 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "Why is it important to distinguish between a Commercial Visitor (like a client) and a Statutory Inspector (like the HSE)? Explain how your behavior and the information you provide might differ for each.",
+            "questionText": "Explain the distinct responsibilities of the Site Manager compared to the Quantity Surveyor. In your answer, include: (1) the primary focus of each role (schedule/safety vs. cost), (2) how they interact during a material shortage, and (3) why separating these roles benefits the project. (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Statutory Inspectors have legal power; Clients do not.",
-              "Inspectors need evidence of legal compliance (certificates, logs).",
-              "Clients need updates on progress and aesthetics.",
-              "Obstructing an inspector can be a criminal offense."
+              "Site Manager focuses on operations, safety, and time",
+              "Quantity Surveyor focuses on budget, valuations, and procurement",
+              "Interaction: Site Manager identifies need, QS approves cost/orders",
+              "Separation ensures checks and balances (progress vs. profit)"
             ],
             "expectedAnswer": [
-              "It is important because a Statutory Inspector has the legal power to stop work or fine the project, whereas a client does not. For a client, I would focus on progress and how the project looks. For an inspector, I would focus on providing evidence of safety and compliance, such as test certificates, and ensure I do not obstruct their legal duties.",
-              "You must treat inspectors with specific attention to legal details because they verify compliance. With a client, you discuss the schedule. With an inspector (like HSE), you must provide safety documentation and immediate access to the site."
+              "The Site Manager focuses on the operational side, ensuring safety and schedule, while the Quantity Surveyor focuses on the financial side, managing the budget. During a material shortage, the Site Manager identifies the need for materials to keep work going, and the QS ensures the purchase is cost-effective and within budget. Separating these roles provides a check and balance, ensuring the project is built correctly without overspending.",
+              "While the Site Manager drives the physical work and safety, the QS controls the money. If materials run out, the Site Manager requests them, but the QS handles the financial approval. This separation prevents the Site Manager from spending recklessly just to speed up the job."
             ],
-            "hint": "Think about 'Power' and 'Purpose'. One pays the bills; the other enforces the law."
+            "hint": "Contrast 'getting it done' with 'keeping it affordable'."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "Scenario: You are the site supervisor. The DNO is arriving to connect power, but the HSE is also on site inspecting the trench safety. Explain how you manage these two visitors simultaneously to ensure the project proceeds legally and safely.",
+            "questionText": "Analyze the chain of command during a design change. If an Operative notices a cable route is blocked: (1) Who do they tell? (2) Who does that person report to? (3) Who likely makes the final decision if it costs money? Explain the flow of information.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Prioritize safety: Ensure the HSE is satisfied the trench is safe before allowing DNO access.",
-              "Coordination: Inform the DNO of the HSE's presence.",
-              "Compliance: Meet the requirements of both (safe trench for HSE, ready connection for DNO).",
-              "Sign-in: Ensure both are signed in at the office first."
+              "Flow: Operative -> Supervisor -> Site Manager -> QS/Contracts Manager",
+              "Operative identifies issue",
+              "Supervisor verifies and reports up",
+              "Site Manager assesses impact",
+              "QS/Contracts Manager approves cost if significant"
             ],
             "expectedAnswer": [
-              "First, I would ensure both visitors sign in at the site office. I would prioritize the HSE inspection to ensure the trench is declared safe to enter. Once the HSE is satisfied that the trench shoring is compliant, I would then allow the DNO operatives to enter the trench to make the connection. This ensures the DNO works in a safe environment and we satisfy both legal safety rules and infrastructure requirements.",
-              "I would manage this by ensuring the trench meets HSE safety standards before letting the DNO work in it. If the HSE finds a fault, the DNO must wait. This prevents the DNO from working in an unsafe trench, keeping the site compliant with both safety laws and utility schedules."
+              "The Operative should first tell their Supervisor, who verifies the blockage. The Supervisor then reports this to the Site Manager. If the solution requires significant extra cost or materials, the Site Manager will consult the Quantity Surveyor or Contracts Manager for approval. This flow ensures the decision is made by the person with the appropriate authority and budget control.",
+              "1. Operative tells Supervisor.\n2. Supervisor tells Site Manager.\n3. Site Manager/QS makes the decision.\nInformation flows up so that the Site Manager is aware of the delay, and the QS can account for any extra costs."
             ],
-            "hint": "You cannot let the DNO work in a trench that the HSE has just said is unsafe."
+            "hint": "Follow the hierarchy: Worker -> Leader -> Manager -> Financial Control."
           }
         ]
       }
@@ -313,93 +324,94 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Foundation Check (Previous Lesson)",
+        "title": "Foundation Check",
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "From the previous lesson: What is the collective term for the group of individuals responsible for the daily oversight and leadership of a technical work site?",
+            "questionText": "Who is the primary person or organization that commissions and pays for the construction project?",
             "expectedAnswer": [
-              "site management team",
-              "management team",
-              "site management"
+              "Client",
+              "The Client",
+              "Customer"
             ],
-            "hint": "Recall the team structure discussed in Lesson 1A.",
+            "hint": "This is the person at the very top who wants the building built.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "From the previous lesson: What specific type of legislation refers to formal laws that are mandatory (e.g., Acts of Parliament)?",
+            "questionText": "Which design team member is responsible for the aesthetic design and spatial arrangement of the building?",
             "expectedAnswer": [
-              "statutory legislation",
-              "statutory",
-              "statutes"
+              "Architect",
+              "The Architect"
             ],
-            "hint": "Think of the word 'Statute'.",
+            "hint": "They produce the drawings that show what the building will look like.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "From the previous lesson: What category of communication is used when sending formal emails or reports?",
+            "questionText": "Which engineer calculates the loads to ensure the building's framework (beams and columns) is strong enough?",
             "expectedAnswer": [
-              "written",
-              "written communication",
-              "electronic communication"
+              "Structural Engineer",
+              "Structural"
             ],
-            "hint": "It leaves a permanent record, unlike verbal communication.",
+            "hint": "They focus on the strength and stability of the skeleton of the building.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Spaced review of Unit 210-1A (Site Management & Communication Basics)."
+        "notes": "Foundation check before starting Site Management Roles"
       }
     }
   ],
   "targetAssessmentCriteria": [
-    "AC3"
+    "AC1",
+    "AC2"
   ],
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
     "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "taskMode": "IDENTIFICATION, HIERARCHY",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO1",
       "coveredAC": [
-        "AC3"
-      ],
-      "outOfScopeAC": [
         "AC1",
         "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
       ]
     },
     "scope": {
-      "inScope": "Identification of key site visitors (Statutory Inspectors, HSE, BCO, DNO) and their primary roles.",
-      "outOfScope": "Detailed site management structures (AC1) or reporting lines (AC2), which are covered in Lesson 210-1A.",
-      "rationale": "This lesson focuses specifically on external visitors and regulatory bodies as defined in AC3."
+      "inScope": "Roles and responsibilities of the Site Management Team and reporting individuals (Operatives/Supervisors).",
+      "outOfScope": "External site visitors (AC3), statutory inspectors, and design team roles (covered in 1A).",
+      "rationale": "The lesson focuses on the internal site hierarchy and management structure as defined by AC1 and AC2."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
-      "noCalculations": true,
-      "specificScope": "Focus on role recognition and remit identification for inspectors only."
+      "noCalculations": false,
+      "specificScope": "Focus on the 'who' and 'why' of the management hierarchy."
     },
     "misconceptions": [
       {
-        "misconception": "The HSE only visits a site after a serious accident has occurred.",
-        "correction": "The HSE has the legal authority to conduct unannounced routine inspections at any time to prevent accidents before they happen.",
-        "relatedAC": "AC3"
+        "misconception": "The Site Manager handles all the payroll and invoicing personally.",
+        "correction": "The Quantity Surveyor is the specialist who manages costs, valuations, and invoicing.",
+        "relatedAC": "AC1"
       },
       {
-        "misconception": "The DNO is the same company that sends the electricity bill.",
-        "correction": "The DNO owns the physical cables and infrastructure; the energy retailer handles the billing.",
-        "relatedAC": "AC3"
+        "misconception": "Operatives can change the design if they think a better way exists.",
+        "correction": "Operatives must follow the design; changes must be approved by the Supervisor and Management.",
+        "relatedAC": "AC2"
       },
       {
-        "misconception": "A Building Control Officer is there to help the builder finish faster.",
-        "correction": "A Building Control Officer is an independent regulator there to ensure the work meets legal standards, not to speed up the project.",
-        "relatedAC": "AC3"
+        "misconception": "The Contracts Manager is the boss of the company.",
+        "correction": "They are a senior manager, but they report to Directors. They specifically manage project contracts.",
+        "relatedAC": "AC1"
       }
     ]
   }
