@@ -39,6 +39,25 @@ export interface QuestionDebugInfo {
 }
 
 export class ValidationService {
+  private normalizeCognitiveLevel(raw: unknown): 'recall' | 'connection' | 'synthesis' | null {
+    if (typeof raw !== 'string') return null;
+    const normalized = raw.toLowerCase().trim();
+    if (normalized === 'recall' || normalized === 'remember') return 'recall';
+    if (
+      normalized === 'connection' ||
+      normalized === 'connect' ||
+      normalized === 'understand' ||
+      normalized === 'understanding' ||
+      normalized === 'apply' ||
+      normalized === 'application' ||
+      normalized === 'analysis'
+    ) {
+      return 'connection';
+    }
+    if (normalized === 'synthesis' || normalized === 'synthesise' || normalized === 'synthesize') return 'synthesis';
+    return null;
+  }
+
   /**
    * Validate lesson structure and content
    */
@@ -132,8 +151,12 @@ export class ValidationService {
     for (const block of blocks) {
       const questions = (block.content as Record<string, unknown>).questions;
       if (!Array.isArray(questions)) continue;
+      const mode = typeof (block.content as Record<string, unknown>).mode === 'string'
+        ? String((block.content as Record<string, unknown>).mode)
+        : null;
 
-      for (const rawQuestion of questions) {
+      for (let questionIndex = 0; questionIndex < questions.length; questionIndex += 1) {
+        const rawQuestion = questions[questionIndex];
         if (!rawQuestion || typeof rawQuestion !== 'object') continue;
         const question = rawQuestion as Record<string, unknown>;
 
@@ -160,6 +183,29 @@ export class ValidationService {
           } else {
             question.answerType = 'short-text';
           }
+        }
+
+        // Canonicalize cognitiveLevel variants early so strict check patterns can validate consistently.
+        const canonical = this.normalizeCognitiveLevel(question.cognitiveLevel);
+        if (canonical) {
+          question.cognitiveLevel = canonical;
+        }
+      }
+
+      // Enforce deterministic cognitive-level structure for conceptual checks and integrative blocks.
+      if (block.type === 'practice' && mode === 'conceptual') {
+        for (let questionIndex = 0; questionIndex < questions.length; questionIndex += 1) {
+          const question = questions[questionIndex];
+          if (!question || typeof question !== 'object') continue;
+          (question as Record<string, unknown>).cognitiveLevel = questionIndex < 3 ? 'recall' : 'connection';
+        }
+      }
+
+      if (block.type === 'practice' && mode === 'integrative') {
+        for (let questionIndex = 0; questionIndex < questions.length; questionIndex += 1) {
+          const question = questions[questionIndex];
+          if (!question || typeof question !== 'object') continue;
+          (question as Record<string, unknown>).cognitiveLevel = questionIndex === 0 ? 'connection' : 'synthesis';
         }
       }
     }

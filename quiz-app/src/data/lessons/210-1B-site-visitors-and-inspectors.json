@@ -6,9 +6,9 @@
   "unit": "Unit 210",
   "topic": "Site Visitors and Inspectors",
   "learningOutcomes": [
-    "Identify common types of site visitors and their primary reasons for being on-site",
-    "Describe the specific roles and responsibilities of different regulatory inspectors",
-    "Distinguish between the remits of health and safety inspectors versus utility-specific inspectors"
+    "Identify the common types of visitors and statutory inspectors found on a construction site.",
+    "Describe the primary roles and responsibilities of technical inspectors including HSE and Building Control.",
+    "Explain the purpose of site visits conducted by water and electrical services inspectors."
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify common types of site visitors and their primary reasons for being on-site",
+            "text": "Identify the common types of visitors and statutory inspectors found on a construction site.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the specific roles and responsibilities of different regulatory inspectors",
+            "text": "Describe the primary roles and responsibilities of technical inspectors including HSE and Building Control.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Distinguish between the remits of health and safety inspectors versus utility-specific inspectors",
-            "bloomLevel": "apply"
+            "text": "Explain the purpose of site visits conducted by water and electrical services inspectors.",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -43,28 +43,27 @@
         "terms": [
           {
             "term": "Statutory Inspector",
-            "definition": "An official with legal power to enter a site to enforce regulations, unlike a general visitor who needs permission.",
-            "anchor": "Example: An HSE inspector showing a warrant card to enter a locked plant room without an appointment."
+            "definition": "An official authorized by law to enter a site and ensure work meets legal regulations. Concrete Anchor: They carry a Warrant Card that grants legal right of entry."
           },
           {
-            "term": "Remit",
-            "definition": "The specific legal boundary of an inspector's authority, defining exactly what they can and cannot enforce.",
-            "anchor": "Example: A water inspector can check the main stopcock but cannot fine an electrician for not wearing a hard hat."
+            "term": "Building Control",
+            "definition": "A regulatory body responsible for checking that construction work complies with building regulations (structural integrity, fire safety). Concrete Anchor: They issue the final Completion Certificate needed to sell the building."
           },
           {
-            "term": "Building Control Officer",
-            "definition": "A regulator who ensures the permanent structure and systems meet national building regulations (e.g., fire safety, structural load).",
-            "anchor": "Example: An officer measuring the depth of thermal insulation to ensure it meets Part L requirements."
+            "term": "HSE Inspector",
+            "definition": "An officer from the Health and Safety Executive with legal powers to examine site conditions. Concrete Anchor: They can issue a 'Prohibition Notice' (a legal order) to stop work immediately."
           },
           {
-            "term": "Health and Safety Executive (HSE) Inspector",
-            "definition": "A statutory officer who enforces laws regarding the safety and welfare of the workforce during construction.",
-            "anchor": "Example: An inspector issuing a Prohibition Notice because a trench lacks proper shoring support."
+            "term": "Compliance",
+            "definition": "The state of meeting all specific legal, technical, and safety requirements. Concrete Anchor: Passing a specific test or matching a British Standard (BS) number."
           },
           {
-            "term": "Utility Inspector",
-            "definition": "A specialist who verifies that a specific service connection (gas, water, electric) is safe before connecting it to the public network.",
-            "anchor": "Example: An electrical engineer sealing the main intake fuse after verifying the meter tails are correct."
+            "term": "Site Induction",
+            "definition": "A mandatory safety briefing provided to all visitors and workers explaining hazards and rules. Concrete Anchor: Signing the visitor logbook after watching the safety video."
+          },
+          {
+            "term": "Enforcement",
+            "definition": "The use of legal authority to compel a contractor to correct failures or cease unsafe activities. Concrete Anchor: A fine or a formal written notice halting operations."
           }
         ]
       }
@@ -74,8 +73,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Roles of Site Visitors",
-        "content": "### In this lesson\nYou will learn to identify the people entering a site and why they are there. This distinction is critical because some visitors (like clients) need permission to enter, while others (like statutory inspectors) have a legal right to enter.\n\n*   General Visitors vs. Statutory Inspectors.\n*   Logistics and Management roles.\n*   Legal Rights of Entry.\n\n**What this is**\nA **Site Visitor** is anyone not part of the permanent installation workforce. They fall into two main categories:\n1.  **General Visitors**: People who are invited or have business on-site (e.g., clients, architects, delivery drivers). They must have permission to enter.\n2.  **Statutory Inspectors**: Officials with legal authority (e.g., HSE, Building Control). They have a 'Right of Entry' and can access the site to enforce laws, often without an appointment.\n\n**Why it matters**\nSite security depends on knowing who has the right to be there. You can stop a delivery driver if they don't have the right paperwork, but you cannot legally stop an HSE inspector who shows their warrant card. Misidentifying an inspector can lead to legal penalties.\n\n**Key facts / rules**\n*   **Clients**: Visit to check progress against the contract (e.g., \"Is the lighting installed on schedule?\").\n*   **Architects/Designers**: Visit to verify technical compliance (e.g., \"Are the cable trays routed as per the drawing?\").\n*   **Logistics/Delivery**: Visit briefly to drop off materials (e.g., delivering a pallet of distribution boards).\n*   **Statutory Inspectors**: Visit to enforce the law. They do **not** need an invitation.\n\n**When to choose it**\nUse this distinction when someone arrives at the site gate. \n*   If a van arrives with **switchgear components**, they are a logistics visitor—direct them to the loading bay.\n*   If a person arrives with a **warrant card** to check trench safety, they are a statutory inspector—grant access immediately and notify management.\n\n**Common mistakes**\nLearners often think all inspectors are the same. A **Client Inspector** (checking quality) has no legal power to fine you, whereas a **Statutory Inspector** (enforcing law) does.\n\nMisconceptions (targeted):\n*   Misconception: All visitors have the right to walk anywhere on a site independently. | Correction: Most visitors must be escorted. Only Statutory Inspectors have broad rights to access hazardous areas for investigation. | AC: AC3\n*   Misconception: Delivery drivers are part of the workforce. | Correction: They are visitors because they do not perform installation work. | AC: AC3\n\n**Key Points**\n*   General visitors (clients, delivery) need permission.\n*   Statutory inspectors (HSE, Building Control) have legal power.\n*   Always verify the identity of anyone entering the site."
+        "title": "Categories of Site Visitors",
+        "content": "### In this lesson\nYou will learn how to distinguish between the different groups of people who access a technical work environment. This knowledge is essential for maintaining site security and ensuring that only authorized personnel influence the workflow. You will explore:\n\n*   The distinction between general visitors and those with legal authority.\n*   The mandatory requirement for a **Site Induction**.\n*   The fundamental reasons why external parties require access to a project.\n\n**What this is**\nA site visitor is any individual who is not part of the permanent daily workforce but has a legitimate reason to enter the premises. These individuals are broadly categorized based on their level of authority and the purpose of their visit.\n\n1.  **General Visitors:** (e.g., clients, architects, delivery drivers). They enter to observe progress or deliver items. They have **zero** legal authority to give orders to workers.\n2.  **Statutory Inspectors:** (e.g., HSE officers, Building Control). They are officials authorized by law to enter a site. They possess a **Warrant Card** (legal ID) allowing them to examine documentation and physical work to confirm **Compliance**.\n\n**Why it matters**\nMaintaining a clear understanding of who is on-site is a matter of safety and legal liability. Every person who enters a work area introduces a potential risk. By identifying the type of visitor, site management determines the level of control required. For example, a **Statutory Inspector** typically has the right to roam areas unaccompanied to find faults, whereas a client visitor must be chaperoned at all times to prevent injury. Recognizing an inspector's authority ensures the site remains in **Compliance** with the law, avoiding fines or work stoppages.\n\n**Key facts / rules**\n*   **Universal Rule:** All visitors must report to the site office immediately upon arrival.\n*   **Safety Rule:** A **Site Induction** (briefing + logbook signature) must be completed by *every* visitor (0 exceptions) to explain hazards.\n*   **PPE Rule:** Visitors must wear appropriate Personal Protective Equipment (PPE) like hard hats and high-vis vests.\n*   **Authority Rule:** A **Statutory Inspector** has a legal right of entry and often does not require an appointment.\n*   **Limitation Rule:** General visitors have no legal authority to enforce changes or stop work activities.\n\n**How to recognise it**\nYou can identify a visitor's category by their identification and their 'weight' of authority. A general visitor waits for an escort. A **Statutory Inspector** presents a government-issued ID (Warrant Card) and may demand to see technical records immediately.\n\n**Analogy:**\nA general visitor is like a **hotel guest**—there to enjoy or view the facility, but they must follow house rules. A Statutory Inspector is like a **Fire Marshal**—there to test the alarms and shut the building down if it's unsafe.\n\n**Micro-Scenario: The Weight of Authority**\nImagine two people arrive at the gate:\n*   **Person A (Client):** Wants to move a wall for better views. They have **low authority**; the site manager can say \"No\" because the contract is already signed. They must wait 15 minutes for a chaperone.\n*   **Person B (HSE Inspector):** Sees an unsafe ladder. They have **absolute authority**; they issue a **Prohibition Notice** (legal order). The site manager *cannot* say \"No\" without risking jail time. The inspector enters immediately without waiting.\n\n**Common mistakes**\nLearners often confuse a general visitor with a **Statutory Inspector**; a general visitor is on-site for commercial reasons, whereas a **Statutory Inspector** is there to exercise legal authority and ensure regulatory **Compliance**.\n\nMisconceptions (targeted):\n*   Misconception: Any person in a suit or high-visibility vest can give orders on site. | Correction: Only those with specific legal or contractual authority, such as an inspector or site manager, can issue directions. | AC: 210.LO1.AC3\n*   Misconception: Inspectors must always give 24 hours' notice before arriving. | Correction: Many statutory inspectors (like HSE) have the legal power to perform unannounced spot checks. | AC: 210.LO1.AC3\n\n**Key Points**\n*   Visitors are split into general (no legal power) and statutory (legal power) categories.\n*   The **Site Induction** is a non-negotiable safety requirement for all entrants.\n*   **Compliance** is the primary goal of any visit from a **Statutory Inspector**.\n*   Identification (Warrant Card vs. Visitor Pass) must be verified before allowing access."
       }
     },
     {
@@ -83,63 +82,65 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Roles of Site Visitors",
+        "title": "Check Your Understanding: Categories of Site Visitors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "What is the primary reason a client visits a technical site?",
+            "questionText": "What is the purpose of the Site Induction that must be completed by every visitor?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "monitor progress against a contract",
-              "check progress",
-              "monitor timeline",
-              "verify completion"
+              "explain site-specific hazards and emergency procedures",
+              "explain hazards and emergency procedures",
+              "explain site-specific hazards",
+              "safety briefing"
             ],
-            "hint": "They are paying for the work and want to see if it is on schedule."
+            "hint": "Think about the safety information provided to anyone entering the site for the first time."
           },
           {
             "id": "210-1B-C1-L1-B",
-            "questionText": "For what purpose do delivery personnel briefly enter a site?",
+            "questionText": "What legal powers do statutory inspectors possess regarding site documentation and physical work?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "provide materials or equipment",
-              "deliver materials",
-              "drop off goods",
-              "logistics"
+              "examine documentation and physical work",
+              "examine documents and work",
+              "examine documentation and work",
+              "right of entry and inspection"
             ],
-            "hint": "They bring items like cable drums or switchgear but do not install them."
+            "hint": "Recall what an official is authorized by law to look at to confirm compliance."
           },
           {
             "id": "210-1B-C1-L1-C",
-            "questionText": "What specific right does a Statutory Inspector have regarding site entry that a general visitor does not?",
+            "questionText": "What legal authority do general visitors have to enforce changes or stop work activities?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "enter at any reasonable time",
-              "legal right to enter",
-              "enter without appointment",
-              "statutory right of entry"
+              "no legal authority",
+              "none",
+              "no authority",
+              "zero authority"
             ],
-            "hint": "They do not need to ask for permission if they are enforcing the law."
+            "hint": "Consider how the powers of a client or delivery person differ from those of an official inspector."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Compare a delivery driver delivering a transformer and an HSE inspector checking the crane used to lift it. How do their rights to enter the site differ?",
+            "questionText": "Using your answers to Q1 (Site Induction purpose), Q2 (Statutory Inspector powers), and Q3 (General visitor authority), why must site management accurately identify each visitor's category upon arrival?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Delivery driver is a general visitor requiring permission/invitation.",
-              "HSE inspector is a statutory official with legal right of entry.",
-              "Driver can be turned away; Inspector cannot be legally refused reasonable entry."
+              "Induction ensures all visitors understand safety regardless of their authority",
+              "Inspectors require access to documents and work to confirm legal compliance",
+              "General visitors must be managed differently because they cannot legally enforce changes",
+              "Accurate identification ensures only those with legal power influence the workflow"
             ],
             "expectedAnswer": [
-              "The delivery driver is a general visitor who needs permission to enter; they can be turned away if the site is not ready. The HSE inspector is a statutory official who has a legal right to enter to check safety; they cannot be refused entry without legal consequences."
+              "Site management must identify visitors so they can provide the correct induction for safety while recognizing that only statutory inspectors have the legal power to examine work and enforce changes. This ensures that general visitors, who have no legal authority, do not interfere with the workflow.",
+              "Distinguishing between visitors is vital because while everyone needs a safety induction, only statutory inspectors are legally allowed to examine documentation and work. Why this matters is that general visitors cannot stop work, so management must know who has the authority to enforce compliance."
             ],
-            "hint": "One is there for a commercial transaction, the other is there to enforce the law."
+            "hint": "Connect the need for safety briefings with the different levels of legal power held by visitors."
           }
         ]
       }
@@ -149,8 +150,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Specialist Regulatory Inspectors",
-        "content": "### In this lesson\nYou will learn to distinguish between the three main types of regulatory inspectors: Building Control, HSE, and Utility Inspectors. Each has a different **Remit** (scope of power).\n\n*   Building Control vs. HSE vs. Utility.\n*   Understanding 'Remit'.\n*   Who checks the structure vs. who checks the worker.\n\n**What this is**\nInspectors are not all the same. Their **Remit** defines what they are allowed to inspect and enforce.\n\n1.  **Building Control Officer**: Cares about the **Building**. They check if the permanent installation meets regulations (e.g., \"Is this fire stopping thick enough?\" or \"Does this beam support the load?\").\n2.  **HSE Inspector**: Cares about the **People/Workforce**. They check if the work is being done safely (e.g., \"Are those workers wearing hard hats?\" or \"Is that scaffolding safe?\").\n3.  **Utility Inspector**: Cares about the **Network**. They check specific connections before they go live (e.g., \"Is the main earthing conductor sized correctly before we connect the meter?\").\n\n**Why it matters**\nIf you call the wrong inspector, you waste time. If you have a dangerous trench, you report it to the HSE, not Building Control. If you need your electricity meter connected, you need a Utility Inspector, not the HSE.\n\n**Key facts / rules**\n*   **Building Control**: Checks compliance with Building Regulations (Part P, Part L, etc.). Focus: The finished product.\n*   **HSE**: Checks compliance with Health & Safety at Work Act. Focus: The working process.\n*   **Utility**: Checks compliance with network standards (ESQCR, Water Regs). Focus: The connection point.\n\n**When to choose it**\nImagine a scenario: An electrician is installing a fuse board while standing on a wobbly chair.\n*   **Building Control** looks at the fuse board: \"Is it installed at the correct height? Yes. Pass.\"\n*   **HSE** looks at the wobbly chair: \"Is the worker safe? No. Fail.\"\n\n**Common mistakes**\nConfusing Building Control with HSE. Remember: Building Control checks the *thing* you built; HSE checks *how* you are building it.\n\nMisconceptions (targeted):\n*   Misconception: A Utility Inspector can shut down a site for general safety violations. | Correction: Their remit is limited to their specific service (e.g., the gas pipe). They cannot fine you for a messy site unless it affects their pipe. | AC: AC3\n*   Misconception: Building Control checks if the finish looks nice. | Correction: They check for technical compliance (safety, efficiency), not aesthetics. | AC: AC3\n\n**Key Points**\n*   **Remit** = The limit of authority.\n*   HSE = Safety of people.\n*   Building Control = Compliance of structure.\n*   Utility = Integrity of network connection."
+        "title": "Statutory and Technical Inspectors",
+        "content": "### In this lesson\nYou will learn about the specific roles and legal powers of different technical inspectors. This knowledge helps you understand who is responsible for different aspects of a project's legality and safety. You will explore:\n\n*   The role of **Building Control** in ensuring structural and fire safety.\n*   The **Enforcement** powers of an **HSE Inspector**.\n*   The purpose of service-specific inspections for water and electricity.\n\n**What this is**\nStatutory and technical inspectors are specialized professionals who represent regulatory bodies.\n\n1.  **Building Control:** Focuses on the \"bones\" of the building (structural integrity, fire paths). They ensure the *finished product* is safe to live in. Anchor: They issue the **Completion Certificate**.\n2.  **HSE Inspector:** An officer from the Health and Safety Executive. They focus on the *process* of building (worker safety). They have powers to stop work immediately if life is at risk. Anchor: They issue a **Prohibition Notice**.\n3.  **Service Inspectors (Utility):** Verify that new water or electrical installations meet technical codes before connection. They protect the public network from damage.\n\n**Why it matters**\nThese inspectors act as the final check against dangerous work. If a project fails **Building Control**, it is legally uninhabitable (cannot be sold). If an **HSE Inspector** finds a life-threatening hazard, they use **Enforcement** powers to stop all work, costing the company thousands in delays and fines. Service inspectors ensure a single building's faulty wiring doesn't black out the neighborhood.\n\n**Key facts / rules**\n*   **Building Control** checks compliance with Building Regulations (Part A Structure, Part B Fire Safety, etc.).\n*   **HSE Inspectors** can enter any site at any reasonable time *without a warrant* or appointment to perform a spot check.\n*   **Water Inspectors** check for contamination risks (backflow) and waste.\n*   **Electrical Inspectors** verify the installation is safe to energize (connect to the grid).\n*   **Enforcement:** Failure to comply with a notice can lead to criminal prosecution.\n\n**When to choose it**\nYou trigger inspections based on milestones. You call **Building Control** before pouring concrete foundations. You call **Service Inspectors** when ready for connection. You *do not* call an HSE Inspector; they usually arrive unannounced or after an accident.\n\n**Micro-Scenario: Scale of Impact**\nCompare the intensity of intervention:\n*   **Scenario A (Water Inspector):** Finds a leaking valve. Result: They refuse to turn on the water supply. Impact: **Local delay** (1 day), affects only that building.\n*   **Scenario B (HSE Inspector):** Finds workers on a roof without guardrails. Result: Issues an immediate **Prohibition Notice**. Impact: **Site-wide shutdown** (indefinite), potential £50,000+ fine, criminal record for the manager. \nThe HSE Inspector's intervention has a much higher 'intensity' because immediate human life is at stake.\n\n**Common mistakes**\nLearners often confuse **Building Control** with an **HSE Inspector**; **Building Control** protects the *future occupant* (long-term safety), whereas an **HSE Inspector** protects the *current worker* (immediate safety).\n\nMisconceptions (targeted):\n*   Misconception: Electrical and water inspectors are there to fix the mistakes they find. | Correction: Their role is strictly to inspect and either approve or reject the work for connection; the contractor must do the fixing. | AC: 210.LO1.AC3\n*   Misconception: **Enforcement** only happens after someone gets hurt. | Correction: Inspectors can take enforcement action if they perceive a *risk*, even if no accident has occurred yet. | AC: 210.LO1.AC3\n\n**Key Points**\n*   **Building Control** = Structure & Fire Safety (Future Occupant).\n*   **HSE Inspector** = Workforce Safety (Current Worker).\n*   **Utility Inspectors** = Network Integrity (Public Supply).\n*   **Enforcement** tools include verbal advice, improvement notices, or prohibition notices (stop work)."
       }
     },
     {
@@ -158,63 +159,64 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Specialist Regulatory Inspectors",
+        "title": "Check Your Understanding: Statutory and Technical Inspectors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "What is the main responsibility of a Building Control Officer?",
+            "questionText": "What is the primary responsibility of the Building Control regulatory body?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "comply with national building standards",
-              "ensure building standards compliance",
-              "verify building regulations",
-              "check structural compliance"
+              "checking that construction work complies with building regulations",
+              "checking compliance with building regulations",
+              "ensure work meets building regulations",
+              "structural and fire safety"
             ],
-            "hint": "They focus on the permanent structure and whether it meets legislation like Part P or Part B."
+            "hint": "Focus on the organization responsible for structural integrity and safety standards."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "What is the primary function of an HSE Inspector when visiting a site?",
+            "questionText": "Which officer has the legal power to examine site conditions on behalf of the Health and Safety Executive?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "enforce health and safety compliance",
-              "investigate safety of workers",
-              "enforce welfare legislation",
-              "workforce safety"
+              "HSE Inspector",
+              "an HSE Inspector",
+              "Health and Safety Executive Inspector"
             ],
-            "hint": "They are concerned with the welfare of the people working, not the building itself."
+            "hint": "Identify the specific professional who performs inspections to protect the workforce."
           },
           {
             "id": "210-1B-C2-L1-C",
-            "questionText": "What defines the limit of a Utility Inspector's authority on a site?",
+            "questionText": "What do Building Control and utility inspectors ensure regarding the final installation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "compliance of their specific service",
-              "specific service remit",
-              "technical compliance of service",
-              "network connection standards"
+              "long-term safety and functionality",
+              "long-term safety",
+              "safety and functionality",
+              "future safety"
             ],
-            "hint": "Their power stops at the boundary of their specific network (e.g., water or gas)."
+            "hint": "Consider the focus of these inspectors compared to those who look at the immediate safety of workers."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "An electrician is installing a new distribution board. The board is technically perfect, but the electrician is not wearing safety boots. Which inspector would have an issue with this, and which would not? Explain why based on 'remit'.",
+            "questionText": "Using your answers to Q1 (Building Control responsibility), Q2 (HSE Inspector powers), and Q3 (Long-term safety), how do we know which inspector is required for a specific site issue?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "HSE inspector would have an issue because their remit is worker safety (PPE).",
-              "Building Control would not have an issue because their remit is the technical standard of the installation.",
-              "The remit distinguishes between the process (safety) and the product (compliance)."
+              "Building Control is identified by their focus on regulation compliance for the structure",
+              "HSE Inspectors are identified by their power to examine current site conditions and workforce safety",
+              "Utility and Building Control inspectors are selected to verify long-term functionality of the installation",
+              "The choice depends on whether the issue relates to the building process or the finished product"
             ],
             "expectedAnswer": [
-              "The HSE inspector would have an issue because their remit covers worker safety and PPE. The Building Control Officer would not have an issue because their remit covers the technical compliance of the installation itself, which is perfect in this scenario."
+              "We know which inspector is needed by looking at the goal: Building Control checks if the work meets regulations for the structure, while an HSE Inspector examines current site conditions for worker safety. Building Control and utility inspectors are specifically focused on the long-term safety and functionality of the finished installation.",
+              "The correct inspector is identified by the nature of the check; HSE Inspectors have the power to examine the safety of the workforce, whereas Building Control ensures construction complies with regulations. Both Building Control and utility inspectors work to ensure the long-term safety and functionality of the building."
             ],
-            "hint": "One checks the worker's safety, the other checks the installation's quality."
+            "hint": "Think about the difference between protecting the people building the site and protecting the people who will use the building later."
           }
         ]
       }
@@ -228,58 +230,63 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "A site log shows three people arrived today: a driver delivering cable tray, an architect checking the lighting layout, and an HSE officer investigating a fall. How many of these individuals are classified as Statutory Inspectors?",
-            "answerType": "numeric",
+            "questionText": "Why must a site manager distinguish between a general visitor and a Statutory Inspector regarding their movement on site?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "1"
+              "legal authority",
+              "legal powers",
+              "enforcement powers",
+              "statutory authority",
+              "right of entry"
             ],
-            "hint": "Only the individual with legal authority to enforce legislation (HSE) counts. The others are general visitors."
+            "hint": "Think about who has the right to roam unaccompanied or demand documentation by law."
           },
           {
             "id": "210-1B-P2",
-            "questionText": "What must be true about an individual's role for them to be classified as a 'visitor' rather than a member of the workforce?",
-            "answerType": "short-text",
+            "questionText": "According to safety regulations, what is the total number of visitor types who are exempt from completing a mandatory Site Induction?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "not permanent staff",
-              "not part of workforce",
-              "non-permanent staff",
-              "not part of the core team"
+              "0",
+              "zero"
             ],
-            "hint": "Think about whether they are employed to do the daily installation work or just visiting."
+            "hint": "The lesson states that every person entering the site must undergo this briefing."
           },
           {
             "id": "210-1B-P3",
-            "questionText": "A Water Board inspector notices a trip hazard in the electrical switchroom. Why can they not issue a fine for this specific hazard?",
+            "questionText": "An official arrives at a manufacturing facility to ensure the current machinery layout does not pose an immediate risk of injury to the operators. Which specific type of inspector is this?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "outside their remit",
-              "beyond their remit",
-              "not their remit",
-              "outside their authority"
+              "HSE Inspector",
+              "HSE",
+              "Health and Safety Executive inspector",
+              "HSE officer"
             ],
-            "hint": "Their legal power is limited to the water network, not general site safety."
+            "hint": "This inspector focuses on the safety of the people working, rather than the finished product."
           },
           {
             "id": "210-1B-P4",
-            "questionText": "A specialist arrives to test the seal on a new gas main before it is connected to the street supply. Which specific type of inspector is this?",
+            "questionText": "What must be true about an official's credentials for them to be classified as a Statutory Inspector rather than a general visitor?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Utility Inspector",
-              "Utility",
-              "Gas Inspector"
+              "legal right of entry",
+              "authorized by law",
+              "government identification",
+              "regulatory authority",
+              "warrant card"
             ],
-            "hint": "They are verifying a specific service connection to a public network."
+            "hint": "Consider what gives them the power to enter without an appointment or enforce changes."
           },
           {
             "id": "210-1B-P5",
-            "questionText": "A project manager needs to sign off that the fire-rated plasterboard used in a corridor meets Part B regulations. Which official verifies this?",
+            "questionText": "If a project is ready to be linked to the national power grid, which type of visitor is required to verify the technical safety of the connection?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Building Control Officer",
-              "Building Control",
-              "Building Inspector"
+              "service inspector",
+              "utility inspector",
+              "electrical inspector",
+              "electrical services inspector"
             ],
-            "hint": "This official focuses on the building's compliance with national regulations."
+            "hint": "These inspectors ensure the local installation won't damage the public infrastructure."
           }
         ]
       }
@@ -295,35 +302,41 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "Explain the difference between a 'General Visitor' and a 'Statutory Inspector' in terms of access rights. Why is it important for a site supervisor to understand the specific 'remit' of an inspector like a Utility Engineer vs an HSE Officer? (2-3 sentences)",
+            "questionText": "Analyze the relationship between site access protocols and the presence of statutory inspectors. In your answer, include: (1) the mandatory requirement for site induction, (2) the enforcement powers of an HSE inspector, and (3) the reason why even those with legal authority must follow site-specific safety procedures. Why must this relationship hold true for a project to remain compliant? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "General visitors need permission; Statutory inspectors have a legal right of entry.",
-              "Remit defines the boundary of authority (e.g., specific service vs general safety).",
-              "Understanding remit prevents unauthorized access to unrelated areas and ensures the right person deals with the right issue."
+              "Identifies that site induction is mandatory for all personnel to communicate specific hazards.",
+              "Recognizes that HSE inspectors have legal powers to enter and enforce safety standards.",
+              "Explains that inspectors must follow site protocols to ensure their own safety within a dynamic work environment.",
+              "Reasons that compliance is only maintained when legal authority and local safety management systems work in tandem.",
+              "Connects individual safety responsibility with the inspector's legal oversight role."
             ],
             "expectedAnswer": [
-              "General visitors require permission to enter, whereas Statutory Inspectors have a legal right of entry to enforce laws. It is important to understand the remit because a Utility Engineer only has authority over their specific service (like power or water), while an HSE Officer has authority over general workforce safety. Knowing this ensures the supervisor grants the correct level of access and directs the inspector to the relevant area."
+              "Site induction is mandatory to ensure all visitors understand local hazards, while HSE inspectors possess legal powers to enforce safety regulations. This relationship must hold because even those with enforcement authority are subject to site-specific risks, and following local protocols ensures they do not become a hazard themselves while verifying the project's legal compliance.",
+              "Even though an HSE inspector has the legal right of entry, they must still undergo a site induction to be briefed on current high-risk activities. This holds true because statutory authority does not grant immunity to physical site hazards, and a project is only compliant when all individuals, including inspectors, adhere to the established safety management system."
             ],
-            "hint": "Think about who needs an invitation and who has a warrant, and what specific part of the site they are allowed to control."
+            "hint": "Consider how the inspector's legal power interacts with the practical need to manage physical risks on a live site."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "You are the Site Manager. A Building Control Officer arrives to check the steel framework, and an HSE Inspector arrives to check scaffolding safety. Propose a brief protocol for handling both arrivals to ensure compliance and security.",
+            "questionText": "Evaluate how the different categories of site visitors and inspectors collectively contribute to the successful delivery of a technical project. In your answer, include: (1) the difference between general visitors and technical inspectors, (2) the specific role of Building Control, (3) the purpose of service-specific inspections (water/electricity), and (4) how these combined interactions ensure the legality and safety of the final installation. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Verify identities/warrant cards immediately.",
-              "Grant access based on legal right (Statutory).",
-              "Direct Building Control to the structural area (steelwork).",
-              "Direct HSE to the working area (scaffolding).",
-              "Ensure both are inducted/escorted as per site safety rules (even if they have right of entry, safety is paramount)."
+              "Distinguishes between general visitors (limited access/supervised) and inspectors (legal/technical authority).",
+              "Explains Building Control's focus on structural integrity and fire safety regulations.",
+              "Identifies that water and electrical inspectors verify specialized utility standards and connections.",
+              "Synthesizes how external oversight prevents technical errors and non-compliance.",
+              "Connects visitor management to the overall security and integrity of the workspace.",
+              "Recognizes that the cumulative effect of these visits is a project that meets all statutory and safety benchmarks.",
+              "Maintains technical precision regarding the distinct jurisdictions of different inspecting bodies."
             ],
             "expectedAnswer": [
-              "1. Verify the identity and warrant cards of both inspectors immediately.\n2. Grant access as both are Statutory Inspectors with legal rights of entry.\n3. Direct the Building Control Officer to the structural steelwork area to inspect the permanent works.\n4. Direct the HSE Inspector to the scaffolding area to inspect the safety of the working conditions.\n5. Ensure both are accompanied to ensure site safety protocols are maintained."
+              "General visitors are restricted by site inductions, whereas statutory inspectors like Building Control provide legal oversight of structural and fire safety. Service inspectors further verify that water and electrical installations meet technical standards, ensuring the final project is both functional and safe. Together, these interactions provide a multi-layered verification process that ensures the project is delivered in full compliance with national regulations.",
+              "• General visitors require induction and supervision, while technical inspectors exercise legal authority to verify specific work standards.\n• Building Control ensures structural and fire safety, while service inspectors validate the integrity of water and electrical systems.\n• The synthesis of these visits ensures that every technical aspect of the project is scrutinized by the relevant authority.\n• This combined oversight guarantees that the final installation is legally compliant, safe for use, and meets all required quality benchmarks."
             ],
-            "hint": "Address verification, access granting, and directing them to their specific areas of interest."
+            "hint": "Think about how each specialized inspector covers a different layer of the project's overall safety and legal requirements."
           }
         ]
       }
@@ -337,39 +350,39 @@
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "Which group is responsible for the overall daily supervision and management of a technical site?",
+            "questionText": "What is the collective name for the group of professionals responsible for the daily supervision and operation of a construction site?",
             "expectedAnswer": [
-              "site management",
               "site management team",
-              "management"
+              "management team",
+              "site management"
             ],
-            "hint": "Think about the team that oversees all roles and operations on site.",
+            "hint": "Think about the group of people who lead and manage the project on-site.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "What term is used for the formal laws and mandatory rules that a site must follow?",
+            "questionText": "What term describes the official laws and legal requirements that must be adhered to on a construction site?",
             "expectedAnswer": [
               "statutory legislation",
-              "legislation",
-              "statutes"
+              "statutory",
+              "legislation"
             ],
-            "hint": "This refers to the legal requirements (Acts and Regulations).",
+            "hint": "This refers to laws passed by the government that are mandatory to follow.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "What is the term for the different ways that information and instructions are shared between people on a site?",
+            "questionText": "What term is used to refer to the various skilled occupations and manual jobs performed by workers on a construction project?",
             "expectedAnswer": [
-              "communication methods",
-              "communication",
-              "methods of communication"
+              "trade roles",
+              "trades",
+              "trade"
             ],
-            "hint": "This relates to how teams exchange information effectively (e.g., radios, email, verbal).",
+            "hint": "Think of the different categories of skilled work found on site.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check regarding Site Management (AC1/AC2) before continuing with Visitors."
+        "notes": "Foundation check before starting Site Visitors and Inspectors"
       }
     }
   ],
@@ -379,7 +392,7 @@
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
-    "version": "1.1",
+    "version": "1.0",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
@@ -396,31 +409,31 @@
       ]
     },
     "scope": {
-      "inScope": "Identification and purpose of key site visitors and specific regulatory inspectors (Building Control, HSE, Utility).",
-      "outOfScope": "Communication methods with visitors, legal enforcement procedures, or site induction protocols.",
-      "rationale": "Focusing on role recognition establishes the necessary context before students learn how to interact with or report to these individuals."
+      "inScope": "Identification of site visitors and the specific roles of technical/statutory inspectors.",
+      "outOfScope": "Specific communication protocols, site induction procedures, or technical inspection methods.",
+      "rationale": "The lesson focus is on identifying external personnel and their purpose as a foundation for broader site communication knowledge."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus exclusively on identifying roles and functions of inspectors listed in the must-have topics."
+      "specificScope": "Focus on roles and identification of inspectors as per mustHaveTopics list."
     },
     "misconceptions": [
       {
-        "misconception": "All visitors have the right to walk anywhere on a site independently.",
-        "correction": "Most visitors must be escorted and are restricted to specific areas for safety reasons.",
+        "misconception": "Any person in a suit or high-visibility vest can give orders on site.",
+        "correction": "Only those with specific legal or contractual authority, such as an inspector or site manager, can issue directions.",
         "relatedAC": "AC3"
       },
       {
-        "misconception": "A delivery driver is considered part of the site workforce.",
-        "correction": "Delivery drivers are classified as visitors because they do not perform technical installation work on the site.",
+        "misconception": "Electrical and water inspectors are there to fix the mistakes they find.",
+        "correction": "Their role is strictly to inspect and either approve or reject the work for connection; the contractor must do the fixing.",
         "relatedAC": "AC3"
       },
       {
-        "misconception": "A Utility Inspector can shut down a site for general safety violations.",
-        "correction": "A Utility Inspector’s remit is usually limited to the safety and technical compliance of their specific service (e.g., water or gas).",
+        "misconception": "Building Control and HSE Inspectors have the same role.",
+        "correction": "Building Control focuses on the structural integrity of the building, while HSE focuses on the safety of the people working on it.",
         "relatedAC": "AC3"
       }
     ]
