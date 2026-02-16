@@ -6,9 +6,10 @@
   "unit": "Unit 210",
   "topic": "Conflict Resolution and Communication Impact",
   "learningOutcomes": [
-    "Identify the negative effects of poor communication on organizational productivity and reputation.",
-    "Explain how communication failures impact the relationship between operatives, management, and customers.",
-    "Determine appropriate actions to resolve conflicts between different stakeholders in a workplace setting."
+    "Identify the effects of poor communication on organizational efficiency and customer relations",
+    "Describe the common causes of conflict between different stakeholders in a technical environment",
+    "Explain the appropriate actions to take when resolving professional conflicts",
+    "Apply communication strategies to mitigate the impact of workplace disputes"
   ],
   "prerequisites": [
     "210-3A"
@@ -21,15 +22,19 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the negative effects of poor communication on organizational productivity and reputation.",
+            "text": "Identify the effects of poor communication on organizational efficiency and customer relations",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain how communication failures impact the relationship between operatives, management, and customers.",
+            "text": "Describe the common causes of conflict between different stakeholders in a technical environment",
             "bloomLevel": "understand"
           },
           {
-            "text": "Determine appropriate actions to resolve conflicts between different stakeholders in a workplace setting.",
+            "text": "Explain the appropriate actions to take when resolving professional conflicts",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Apply communication strategies to mitigate the impact of workplace disputes",
             "bloomLevel": "apply"
           }
         ]
@@ -43,43 +48,25 @@
         "terms": [
           {
             "term": "Stakeholder",
-            "definition": "Any person or group with an interest in the project, such as the client (customer), the boss (management), or the installation team (operatives)."
+            "definition": "Any individual or group affected by a technical project, such as a client, supervisor, or colleague."
           },
           {
-            "term": "Communication Breakdown",
-            "definition": "A failure to transfer information correctly between people, often resulting in mistakes, safety risks, or delays."
+            "term": "Communication Failure",
+            "definition": "An unsuccessful exchange of information that leads to operational errors or safety risks (e.g., a technician installing the wrong part due to an outdated diagram)."
           },
           {
             "term": "Conflict Resolution",
-            "definition": "The formal process of settling a disagreement to restore a working relationship."
+            "definition": "The application of professional strategies to settle disputes and restore working relationships (e.g., using active listening to calm an angry customer)."
           },
           {
             "term": "Escalation",
-            "definition": "Moving a problem up the chain of command (e.g., to a manager) because it cannot be solved at the current level."
+            "definition": "The formal procedure of reporting an unresolved issue to a higher level of management when direct resolution fails."
           },
           {
-            "term": "Mediation",
-            "definition": "Using a neutral third party to help two sides reach an agreement without taking sides."
+            "term": "Mitigation",
+            "definition": "Proactive actions taken to reduce the severity of negative impacts caused by errors or disputes (e.g., correcting a safety hazard immediately)."
           }
         ]
-      }
-    },
-    {
-      "id": "210-3B-diagram",
-      "type": "diagram",
-      "order": 3,
-      "content": {
-        "title": "Conflict Resolution and Communication Impact Diagram",
-        "description": "Visual representation of Conflict Resolution and Communication Impact",
-        "videoUrl": "",
-        "diagramType": "concept",
-        "elementIds": [
-          "stakeholder-group",
-          "communication-flow",
-          "conflict-trigger",
-          "resolution-path"
-        ],
-        "placeholderText": "The diagram should show a central 'communication-flow' connecting three 'stakeholder-group' circles (Operatives, Management, Customers). A jagged 'conflict-trigger' icon should be placed on the line between any two stakeholders, representing a breakdown. From this trigger point, an arrow labeled 'resolution-path' should lead to a box containing the terms 'Mediation' and 'Escalation', showing the transition from a problem to a procedural solution. The diagram demonstrates how a breakdown in the flow leads to a conflict that requires a specific resolution path."
       }
     },
     {
@@ -87,8 +74,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Organizational Impact of Poor Communication",
-        "content": "### In this lesson\nYou will learn the effects of poor communication (AC4) and how to handle resulting conflicts (AC3). We will focus on how lost information hurts productivity and reputation.\n\n**What this is**\nA **Communication Breakdown** is like a faulty data cable in a network. Even if the sender (Management) and receiver (Operative) are working perfectly, the message gets corrupted or lost in the middle. In a trade setting, this means instructions are misunderstood, safety warnings are missed, or client requests are ignored. \n\n**Why it matters**\nWhen communication fails, two major things happen:\n1.  **Productivity Drops:** If you install a conduit system based on old drawings because the new ones weren't sent, you have to rip it out and start again. This is called **re-work**. Re-work wastes time and materials, costing the company money.\n2.  **Reputation Suffers:** If a customer gets one price from an operative and a different price from a manager, they lose trust. A bad reputation can mean losing future contracts.\n\n**Key facts / rules**\n*   **Re-work:** The most common observable result of poor communication. It kills productivity.\n*   **Safety Risks:** If an operative stops reporting minor faults to a manager due to a bad relationship, those faults can become major accidents.\n*   **Relationships:** A breakdown creates \"us vs. them\" thinking between management and site staff.\n\n**Micro-Scenario**\nImagine Team A and Team B. \n*   Team A gets a full briefing. \n*   Team B misses the briefing and has to guess 40% of the details.\n*   **Result:** Team B is likely to have a 40% higher failure rate in quality control. This failure is not because they are bad at their trade, but because the **information transfer** failed.\n\n**Common mistakes**\nLearners often think communication is just \"being polite.\" In reality, it is a technical tool. A missing instruction is just as damaging as a missing screwdriver.\n\n**Misconceptions**\n*   **Misconception:** Communication issues only affect the people talking. \n    *   **Correction:** Poor communication impacts the entire organization's productivity (money) and reputation (trust). (AC4)\n*   **Misconception:** If the job gets done eventually, the communication was fine.\n    *   **Correction:** If you had to do the job twice (re-work), the communication failed. (AC4)"
+        "title": "Organizational Impacts of Communication Failure",
+        "content": "### In this lesson\nYou will learn how ineffective information exchange negatively affects technical businesses. This covers **AC4: State effects of poor communication on an organisation**.\n\n**What this is**\nA **communication failure** is a breakdown in the transfer of technical data or instructions. It is not just a personal disagreement; it is an operational error. \n\n*   **Concrete Example**: A site manager emails a change in socket locations, but the electrician checks the old paper plan. The electrician installs 20 sockets in the wrong place.\n\n**Why it matters**\nWhen communication fails, the organization suffers in three main ways:\n1.  **Efficiency**: Time and materials are wasted on rework (doing the job twice).\n2.  **Safety**: Unclear briefings lead to accidents (e.g., working on live circuits thought to be dead).\n3.  **Reputation**: Customers lose trust if instructions are ignored or updates are inconsistent.\n\n**Key facts / rules**\n*   **Rework**: The most common financial cost of poor communication.\n*   **Safety Incidents**: Often caused by assumptions replacing confirmed instructions.\n*   **Reputation Damage**: Occurs when the customer feels unheard or misled.\n\n**Analogy**\nThink of a **relay race**. The \"baton\" is the technical information. If the first runner drops the baton (fails to communicate), the whole team loses time. It doesn't matter how fast the second runner is; they cannot finish the race successfully without the baton.\n\n**Micro-Scenario**\nOperative A assumes Operative B has isolated the power supply because \"they usually do it.\" Operative B assumes Operative A did it. Result: A live circuit is touched. This is a safety impact caused entirely by a lack of verbal confirmation.\n\n**Common mistakes**\n*   **Mistaking personality for process**: A communication failure is about *information* (plans, times, safety), not whether two people like each other.\n\n**Misconceptions**\n*   *Misconception*: Communication issues only affect feelings. \n*   *Correction*: Poor communication causes physical errors, financial loss, and safety hazards. (AC4)"
       }
     },
     {
@@ -96,64 +83,66 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Organizational Impact",
+        "title": "Check Your Understanding: Impacts of Failure",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C1-L1-A",
-            "questionText": "What specific workplace outcome results from misunderstood instructions and requires a task to be performed a second time?",
+            "questionText": "What is the primary financial consequence for an organization when poor communication leads to errors?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "re-work",
               "rework",
-              "technical errors",
-              "errors"
+              "wasted materials",
+              "financial penalties",
+              "cost of rework",
+              "wasted time"
             ],
-            "hint": "This is the term for doing a job again because it was wrong the first time."
+            "hint": "Think about what happens after a job is done incorrectly—it must be done again."
           },
           {
             "id": "210-3B-C1-L1-B",
-            "questionText": "What happens to organizational productivity when time is wasted clarifying vague instructions?",
+            "questionText": "Which aspect of a business is damaged when a customer receives inconsistent updates or incorrect work?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "productivity drops",
-              "it drops",
-              "decreased productivity",
-              "decreases",
-              "lowers"
+              "reputation",
+              "customer relations",
+              "trust",
+              "professional reputation",
+              "business reputation"
             ],
-            "hint": "Does efficiency go up or down when you waste time?"
+            "hint": "This is about how the company is viewed by the public and clients."
           },
           {
             "id": "210-3B-C1-L1-C",
-            "questionText": "A communication breakdown is defined as a failure of what specific process?",
+            "questionText": "In a technical environment, what is the specific cause of a 'communication failure' compared to a general disagreement?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "information transfer",
-              "transfer of information",
-              "exchanging information"
+              "breakdown in technical data transfer",
+              "failed information exchange",
+              "loss of technical information",
+              "incorrect instructions"
             ],
-            "hint": "Think about the 'data cable' analogy—what is failing to move from A to B?"
+            "hint": "Focus on what is being lost: is it feelings or data?"
           },
           {
             "id": "210-3B-C1-L2",
-            "questionText": "Using your answers (re-work, productivity drops, information transfer), explain the chain reaction of a communication breakdown.",
+            "questionText": "Explain how a communication failure regarding a safety briefing leads to organizational loss. Connect the failure to the specific outcome.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Start with the failure of information transfer.",
-              "Explain that this leads to errors or re-work.",
-              "Conclude that re-work causes productivity to drop."
+              "Failure: Unclear or missed safety instructions.",
+              "Outcome: Accidents or equipment damage.",
+              "Organizational Loss: Stoppage of work, legal costs, or injury compensation."
             ],
             "expectedAnswer": [
-              "A failure of information transfer leads to misunderstandings. These misunderstandings cause re-work, which wastes time and resources, ultimately causing organizational productivity to drop.",
-              "When information transfer fails, operatives make mistakes that require re-work. Because time is spent fixing these errors instead of doing new work, productivity drops."
+              "If a safety briefing is unclear (communication failure), operatives may work unsafely, leading to accidents. This causes organizational loss through work stoppages, legal fees, and injury costs.",
+              "A breakdown in safety communication results in accidents. The organization loses money and efficiency because work must stop to address the hazard and investigate the incident."
             ],
-            "hint": "Connect the cause (bad transfer) to the symptom (re-work) and the result (low productivity)."
+            "hint": "Trace the path: Unclear instruction -> Unsafe Action -> Accident -> Cost."
           }
         ]
       }
@@ -163,8 +152,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Conflict Resolution Actions (AC3)",
-        "content": "### In this lesson\nWhen communication fails, conflict often follows. We will look at the formal actions to resolve these conflicts: **Mediation** and **Escalation**.\n\n**What this is**\n**Conflict Resolution** is a procedure, just like a safety check. It is the specific set of steps you take to stop a disagreement from stopping the work. \n\nThink of it like a **pressure relief valve** on a boiler. If pressure (conflict) builds up between people, the system (the project) might explode (fail). The resolution process is the valve that releases the pressure safely.\n\n**Three Main Actions:**\n1.  **Direct Resolution (Level 1):** You speak professionally to the person involved. \"Dave, I think we have different drawings. Can we check them?\"\n2.  **Mediation (Level 2):** If you can't agree, you bring in a **neutral third party** (like a supervisor) to help you talk. They don't take sides; they facilitate.\n3.  **Escalation (Level 3):** If the issue involves **safety**, **law**, or **harassment**, or if Level 1 and 2 fail, you must pass it up to higher management. This is not \"tattling\"; it is a formal duty to protect the company.\n\n**Micro-Scenario: Safety vs. Comfort**\nAn operative sees a colleague working without a harness (Safety Breach). \n*   *Step 1:* Tell the colleague directly. \n*   *Result:* Colleague ignores you. \n*   *Action:* You must now **Escalate** to the site manager immediately. You cannot use mediation for safety breaches because safety rules are non-negotiable.\n\n**Common mistakes**\n*   **Mistake:** Trying to fix a customer's contract complaint yourself.\n*   **Correction:** Operatives handle technical work. Financial or contract disputes with customers must be **Escalated** to management to avoid liability.\n\n**Misconceptions**\n*   **Misconception:** Mediation means the supervisor decides who wins.\n    *   **Correction:** Mediation is about helping both sides agree. If a decision is forced, it's arbitration or management direction, not mediation. (AC3)\n*   **Misconception:** You should always try to solve everything yourself.\n    *   **Correction:** You must escalate safety risks or legal issues immediately. (AC3)"
+        "title": "Professional Conflict Resolution",
+        "content": "### In this lesson\nYou will learn how to handle disputes professionally. This covers **AC3: State actions to deal with conflicts**.\n\n**What this is**\n**Conflict resolution** is the process of settling disagreements to keep the job moving. It involves specific actions depending on who the conflict is with:\n\n1.  **Between Operatives**: Use **private discussion**. Talk directly to the colleague away from the main work area to resolve the issue without disrupting others.\n2.  **Between Operative and Customer**: Use **de-escalation**. Listen actively, acknowledge their frustration, and provide facts (e.g., showing the contract specifications).\n3.  **Between Operative and Supervisor**: Use **clarification**. If an instruction seems unsafe or wrong, ask for it to be explained or checked against regulations.\n\n**Key Process: Escalation**\nIf these direct methods fail, you must use **escalation**. This means formally reporting the issue to the next level of management. \n*   *Rule*: Do not escalate immediately. Try to solve it locally first unless it is an immediate safety danger.\n\n**Analogy**\nThink of a **pressure relief valve** on a boiler. \n*   **Direct Resolution**: The valve opens slightly to let off steam (tension) so the system can keep running.\n*   **Escalation**: The emergency shutdown. Used only when the valve cannot handle the pressure.\n\n**Micro-Scenario**\nA customer shouts that the installation is messy. \n*   *Bad Action*: Shouting back (increases conflict).\n*   *Good Action (De-escalation)*: \"I understand you are unhappy with the dust. We will clean the area fully before we leave at 5 PM.\"\n\n**Misconceptions**\n*   *Misconception*: Winning the argument is the goal.\n*   *Correction*: The goal is restoring the workflow and relationship. (AC3)"
       }
     },
     {
@@ -172,61 +161,64 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Resolution Actions",
+        "title": "Check Your Understanding: Resolving Conflicts",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C2-L1-A",
-            "questionText": "Ideally, at what level should a minor workplace disagreement be resolved first?",
+            "questionText": "What is the first action to take when a conflict arises with a colleague?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "lowest possible level",
-              "lowest level",
-              "between individuals",
-              "level 1"
+              "private discussion",
+              "direct discussion",
+              "talk privately",
+              "discuss privately"
             ],
-            "hint": "Don't involve a manager unless you have tried talking to the person first (unless it's safety)."
+            "hint": "Don't involve the boss yet; talk to the person directly and away from others."
           },
           {
             "id": "210-3B-C2-L1-B",
-            "questionText": "What do we call the process where a neutral third party helps two sides reach an agreement?",
+            "questionText": "Which strategy should be used when a customer is angry and raising their voice?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "mediation",
-              "mediating"
+              "de-escalation",
+              "active listening",
+              "calming them down",
+              "de-escalate"
             ],
-            "hint": "It starts with M. The person does not take sides."
+            "hint": "The goal is to lower the tension, not argue back."
           },
           {
             "id": "210-3B-C2-L1-C",
-            "questionText": "What action must you take if a conflict involves a serious safety violation or legal issue?",
+            "questionText": "When direct attempts to resolve a serious dispute fail, what is the formal next step?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "escalation",
               "escalate",
-              "report it"
+              "report to management",
+              "formal escalation"
             ],
-            "hint": "Moving the issue up the chain of command."
+            "hint": "This involves passing the problem up the chain of command."
           },
           {
             "id": "210-3B-C2-L2",
-            "questionText": "Why is 'Escalation' the only correct choice for a safety violation, even if you could try Mediation?",
+            "questionText": "Why is 'escalation' considered a professional tool rather than 'telling on someone'? Explain its purpose in the workflow.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Safety violations are non-negotiable.",
-              "Mediation implies compromise, but you cannot compromise on safety rules.",
-              "Management must be informed to protect the company and personnel."
+              "Escalation is a structured procedure.",
+              "It is used when local authority is insufficient to solve the problem.",
+              "It ensures a decision is made so work can continue safely."
             ],
             "expectedAnswer": [
-              "Escalation is required for safety violations because safety rules are non-negotiable laws. Mediation is for finding a compromise, but you cannot compromise on safety, so a manager must enforce the rule immediately.",
-              "Safety issues put lives at risk. You cannot 'mediate' a risk; it must be reported (escalated) to someone with the authority to stop the work."
+              "Escalation is a formal procedure used when a problem cannot be solved by the people involved. Its purpose is to get a decision from a higher authority so the project can proceed, rather than just complaining about a person.",
+              "It is a management tool to break a deadlock. If two operatives cannot agree, escalation brings in a supervisor to make the final call, ensuring efficiency."
             ],
-            "hint": "Think about the difference between a disagreement (opinion) and a safety rule (law)."
+            "hint": "Think about the goal: is it to punish the person or to get the project moving again?"
           }
         ]
       }
@@ -236,39 +228,39 @@
       "type": "worked-example",
       "order": 6,
       "content": {
-        "title": "Worked Example: Choosing the Right Action",
-        "given": "Scenario: You are an operative. You notice a co-worker is cutting corners on electrical testing to save time. You spoke to them, but they laughed it off and continued. This creates a hidden danger for the customer.",
+        "title": "Worked Example: Handling Customer Conflict",
+        "given": "A customer is angry because they believe the agreed work included installing a new fuse box, but the operative's job sheet only lists socket replacements.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Identify the type of conflict",
+            "description": "Identify the source of conflict",
             "formula": null,
             "calculation": null,
-            "result": "This is a safety and quality violation. It is not just a personality clash."
+            "result": "Discrepancy between customer expectation and technical documentation (Job Sheet)."
           },
           {
             "stepNumber": 2,
-            "description": "Check previous attempts",
+            "description": "Choose the immediate action",
             "formula": null,
             "calculation": null,
-            "result": "Direct resolution (talking to them) has already failed."
+            "result": "De-escalate: Listen to the customer without interrupting. Do not say \"You are wrong.\""
           },
           {
             "stepNumber": 3,
-            "description": "Select the resolution action",
+            "description": "Verify facts",
             "formula": null,
             "calculation": null,
-            "result": "Escalation."
+            "result": "Check the job sheet and contact the supervisor to confirm the contract details."
           },
           {
             "stepNumber": 4,
-            "description": "Justify the choice",
+            "description": "Resolve or Escalate",
             "formula": null,
             "calculation": null,
-            "result": "Because the direct approach failed AND the issue involves safety/quality risks, I must report this to a supervisor (Escalate)."
+            "result": "If the customer accepts the job sheet evidence, proceed. If they refuse to let work start, ESCALATE to the supervisor."
           }
         ],
-        "notes": "If it was just an argument about what radio station to play, you might try Mediation. But safety risks always demand Escalation."
+        "notes": "Never promise work that is not in writing just to calm a customer down."
       }
     },
     {
@@ -276,46 +268,51 @@
       "type": "guided-practice",
       "order": 7,
       "content": {
-        "title": "Guided Practice (We Do)",
-        "problem": "A customer is angry because the project is running late. They demand a 10% discount on the final bill. You are the site operative.",
+        "title": "Guided Practice: Co-worker Dispute",
+        "problem": "Two electricians are arguing over who should use the only available hammer drill. Work has stopped for 15 minutes.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "Is this a technical issue or a contractual/financial issue?",
+            "prompt": "Identify the impact of this conflict on the organization.",
             "expectedAnswer": [
-              "contractual",
-              "financial",
-              "contractual/financial"
+              "Efficiency loss",
+              "Wasted time",
+              "Productivity drop",
+              "Work stoppage"
             ],
-            "hint": "Does it involve tools and installation, or money and contracts?"
+            "hint": "They are arguing instead of working."
           },
           {
             "stepNumber": 2,
-            "prompt": "Do you have the authority to change the contract price?",
+            "prompt": "What is the best initial method to resolve this resource conflict?",
             "expectedAnswer": [
-              "No",
-              "No authority"
+              "Direct negotiation",
+              "Compromise",
+              "Private discussion",
+              "Share the tool"
             ],
-            "hint": "Are operatives allowed to change the billing amount?"
+            "hint": "They should try to agree on a schedule (e.g., 'I use it for 1 hour, then you use it')."
           },
           {
             "stepNumber": 3,
-            "prompt": "What is the correct action: Mediation or Escalation?",
+            "prompt": "If they cannot agree and work remains stopped, what must be done?",
             "expectedAnswer": [
-              "Escalation",
-              "Escalate"
+              "Escalate to supervisor",
+              "Report to management",
+              "Escalation"
             ],
-            "hint": "Since you cannot fix it yourself, you must pass it to a manager."
+            "hint": "Someone with authority needs to decide who gets the drill."
           },
           {
             "stepNumber": 4,
-            "prompt": "What is the risk if you try to fix it yourself?",
+            "prompt": "Why is 'shouting to win the argument' the wrong choice here?",
             "expectedAnswer": [
-              "Admitting liability",
-              "Loss of money",
-              "Saying the wrong thing"
+              "It delays work further",
+              "Unprofessional",
+              "Damages working relationship",
+              "Does not solve the problem"
             ],
-            "hint": "What happens if you promise a discount the company didn't agree to?"
+            "hint": "Think about the long-term effect on the team."
           }
         ]
       }
@@ -329,54 +326,55 @@
         "questions": [
           {
             "id": "210-3B-P1",
-            "questionText": "In the micro-scenario, Team B received 40% less information. What was the percentage increase in their failure rate?",
+            "questionText": "Two operatives are assigned the same 6-hour task due to a communication failure. If both complete it (one unnecessarily), how many labor hours are wasted?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "40"
+              "6",
+              "6.0"
             ],
-            "hint": "Refer to the micro-scenario in the first explanation block."
+            "hint": "The task takes 6 hours. One person's work was useful, the other's was waste."
           },
           {
             "id": "210-3B-P2",
-            "questionText": "If an operative stops reporting technical faults to a manager due to a bad relationship, what type of risk increases?",
+            "questionText": "What term describes the process of reporting an issue up the chain of command when it cannot be solved locally?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "safety risk",
-              "safety",
-              "accident risk",
-              "technical failure"
+              "Escalation",
+              "Escalating",
+              "Formal escalation"
             ],
-            "hint": "Think about what happens if dangerous faults are ignored."
+            "hint": "It starts with E."
           },
           {
             "id": "210-3B-P3",
-            "questionText": "Two electricians disagree on who should use the drilling machine first. A supervisor steps in to help them agree on a schedule, without forcing a decision. What is this action called?",
+            "questionText": "An operative notices a safety hazard caused by a miscommunication and fixes it immediately. What is this proactive action called?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Mediation",
-              "Mediating"
+              "Mitigation",
+              "Mitigating"
             ],
-            "hint": "The supervisor is acting as a neutral third party."
+            "hint": "Reducing the severity of an impact."
           },
           {
             "id": "210-3B-P4",
-            "questionText": "When a customer receives conflicting information from different staff members, what specific asset of the company is damaged?",
+            "questionText": "What is the primary method for resolving a conflict between an operative and a customer?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "reputation",
-              "company reputation",
-              "trust"
+              "De-escalation",
+              "Active listening",
+              "Calm discussion"
             ],
-            "hint": "It takes years to build this, but only one bad job to lose it."
+            "hint": "Focus on lowering tension and providing facts."
           },
           {
             "id": "210-3B-P5",
-            "questionText": "A team works 80 hours a week. Due to poor communication, 25% of that time is spent on re-work. How many hours are lost to re-work?",
+            "questionText": "A supervisor spends 20 minutes resolving a conflict and 10 minutes documenting it (Total 30 mins). If this happens 4 times in a week, how many HOURS are lost?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "20"
+              "2",
+              "2.0"
             ],
-            "hint": "Calculate 25% (one quarter) of 80."
+            "hint": "30 minutes x 4 incidents = ? minutes. Then convert to hours."
           }
         ]
       }
@@ -392,39 +390,36 @@
         "questions": [
           {
             "id": "210-3B-INT-1",
-            "questionText": "Explain how a 'Communication Breakdown' leads to 'Re-work'. In your answer, use an example of a specific task (like installing cables) and describe the steps from the bad instruction to the final cost.",
+            "questionText": "A customer is furious because a project is delayed. The delay was caused because the materials were not ordered on time due to a lost email between the site supervisor and the supplier. Analyze this situation: (1) Identify the root cause (type of failure), (2) State the organizational impact, and (3) Describe the correct conflict resolution action the supervisor should take with the customer.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Breakdown: Instruction is vague or missing (e.g., wrong cable route).",
-              "Action: Operative installs work based on guess/old info.",
-              "Discovery: Error is found during inspection.",
-              "Re-work: Material must be removed and re-installed.",
-              "Cost: Labor time is paid twice for one job."
+              "Root Cause: Communication failure (lost email/data transfer).",
+              "Impact: Reputational damage and potential financial penalty (delay).",
+              "Action: De-escalation (apologize, explain facts, provide new timeline)."
             ],
             "expectedAnswer": [
-              "A communication breakdown happens when an operative receives the wrong drawing for a cable route. They install the cable (Action), but the manager later reveals it is in the wrong place (Discovery). The operative must rip it out and install it again (Re-work), which means the company pays for the hours twice (Cost).",
-              "If instructions are missing, an operative might guess where to put a socket. If they guess wrong, the socket has to be moved. This process of doing it, removing it, and doing it again is re-work, caused directly by the lack of clear instruction."
+              "The root cause is a communication failure (lost email). The organizational impact is damage to reputation and potential financial loss due to the delay. The supervisor should use de-escalation: listen to the customer's frustration, apologize for the oversight, and provide a confirmed delivery date to mitigate the issue.",
+              "This is a communication failure leading to efficiency loss and bad customer relations. The supervisor needs to de-escalate the conflict by admitting the error and presenting a clear plan to fix it."
             ],
-            "hint": "Trace the path: Bad Info -> Wrong Action -> Fix It -> Lost Money."
+            "hint": "Trace the problem: Lost Email -> Delay -> Angry Customer -> Solution."
           },
           {
             "id": "210-3B-INT-2",
-            "questionText": "Scenario: You are working on a site. A client yells at you because a wall was painted the wrong color. You did not paint the wall; a different team did. Describe the correct Conflict Resolution steps you should take.",
+            "questionText": "Compare 'Local Resolution' and 'Formal Escalation'. When should an operative switch from one to the other? Use a safety-critical example in your explanation.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Remain professional/calm (De-escalate emotion).",
-              "Do not accept liability (You didn't do it).",
-              "Identify it as a customer complaint involving another team.",
-              "Select Escalation: Refer the client to the site manager.",
-              "Explain why: Operatives cannot authorize repainting or handle client disputes."
+              "Local Resolution: Informal, direct, used first.",
+              "Escalation: Formal, involves management, used when local fails.",
+              "Switch point: When agreement cannot be reached or safety is at risk.",
+              "Example: Operatives disagree on isolation procedure."
             ],
             "expectedAnswer": [
-              "First, I would remain calm and listen to the client without admitting fault. Since I did not do the work and cannot authorize a fix, I would tell the client I will get the site manager immediately. This is Escalation, which is necessary because it is a customer dispute regarding quality that I have no authority to resolve.",
-              "I would stay professional and not argue. I would then escalate the issue by bringing the site manager to speak with the client. This ensures the complaint is handled by someone with the power to order the re-work."
+              "Local resolution is an informal discussion to solve problems quickly, while formal escalation involves management. An operative should switch to escalation if the local discussion fails to reach an agreement or if safety is compromised. For example, if two operatives disagree on whether a circuit is dead, work must stop and the issue must be escalated to a supervisor immediately to prevent electrocution.",
+              "You start with local resolution to save time. You switch to escalation if the other person refuses to listen or if the disagreement creates a hazard. In a safety-critical case like locking out a breaker, if there is any doubt or disagreement, you must escalate."
             ],
-            "hint": "Don't get angry back. Who has the authority to promise the wall will be repainted?"
+            "hint": "Think about a dispute over whether a machine is safe to use. If you can't agree, who decides?"
           }
         ]
       }
@@ -438,38 +433,40 @@
         "questions": [
           {
             "id": "210-3B-SR-1",
-            "questionText": "Which communication method (verbal or written) provides a permanent record that helps prevent future disputes?",
+            "questionText": "What is the term for the different ways information is shared (e.g., email, verbal, signs)?",
             "expectedAnswer": [
-              "written",
-              "written communication"
+              "Communication methods",
+              "Methods of communication"
             ],
-            "hint": "If you want to prove what was said later, should you say it or write it?",
+            "hint": "Recall the first topic in this unit.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-2",
-            "questionText": "The term 'Stakeholder' includes management and operatives. Who is the third major group that pays for the work?",
+            "questionText": "What creates a physical obstacle to hearing instructions on a noisy site?",
             "expectedAnswer": [
-              "customer",
-              "client",
-              "customers"
+              "Background noise",
+              "Noise",
+              "Physical barrier",
+              "Environmental barrier"
             ],
-            "hint": "The person or company receiving the service.",
+            "hint": "A type of communication barrier common on construction sites.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-3",
-            "questionText": "What type of external visitor (starting with I) checks that the site complies with laws, often preventing legal conflicts?",
+            "questionText": "Who is responsible for ensuring a message is understood?",
             "expectedAnswer": [
-              "inspector",
-              "site inspector",
-              "building inspector"
+              "The sender",
+              "Sender",
+              "Both sender and receiver",
+              "Everyone"
             ],
-            "hint": "They inspect the work for compliance.",
+            "hint": "The person giving the instruction checks for understanding.",
             "answerType": "short-text"
           }
         ],
-        "notes": "These questions review basic communication concepts (AC1) that are foundational to understanding how conflicts arise and are recorded."
+        "notes": "Review of AC1 and AC2 concepts."
       }
     }
   ],
@@ -480,9 +477,9 @@
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
-    "version": "1.1",
+    "version": "1.0",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "PROCEDURE, IDENTIFICATION",
+    "taskMode": "IDENTIFICATION, PROCEDURE",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO3",
@@ -497,31 +494,31 @@
       ]
     },
     "scope": {
-      "inScope": "The consequences of communication failure (AC4) and the procedural steps required to resolve interpersonal conflicts (AC3).",
-      "outOfScope": "The technical methods of communication (verbal/written) covered in previous lessons, except where relevant to conflict records.",
-      "rationale": "This lesson focuses on the behavioral outcomes and corrective actions of communication rather than the mechanics of the communication itself."
+      "inScope": "Consequences of communication breakdown (AC4) and procedural actions for resolving interpersonal conflicts (AC3).",
+      "outOfScope": "Formal legal grievance procedures, employment contract law, or technical documentation standards.",
+      "rationale": "Focuses on immediate interpersonal resolution and organizational impact."
     },
     "teachingConstraints": {
       "excludeHowTo": false,
       "purposeOnly": false,
       "identificationOnly": false,
       "noCalculations": false,
-      "specificScope": "Focus specifically on the impact of poor communication and the resolution of conflicts between defined stakeholder groups."
+      "specificScope": "Focus on interpersonal actions and organizational effects"
     },
     "misconceptions": [
       {
-        "misconception": "Communication issues only affect the people talking.",
-        "correction": "Poor communication impacts the entire organization's productivity and its external reputation.",
+        "misconception": "Communication issues only affect morale.",
+        "correction": "Poor communication directly reduces organizational efficiency and increases safety risks.",
         "relatedAC": "AC4"
       },
       {
-        "misconception": "Escalation is a sign of personal failure or 'tattling'.",
-        "correction": "Escalation is a formal procedure for issues exceeding operative authority or involving safety risks.",
+        "misconception": "Conflict resolution means winning the argument.",
+        "correction": "It is about finding a functional path forward to restore the working relationship.",
         "relatedAC": "AC3"
       },
       {
-        "misconception": "Mediation means the supervisor decides who is right.",
-        "correction": "Mediation is about helping both parties reach a mutual agreement to move forward productively.",
+        "misconception": "You should always escalate a problem immediately.",
+        "correction": "You should first attempt direct, professional resolution before using formal escalation procedures.",
         "relatedAC": "AC3"
       }
     ]
