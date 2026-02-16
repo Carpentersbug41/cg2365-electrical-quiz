@@ -55,11 +55,13 @@ import { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from '.
 import { q1IdentifySuitableCommunicationMethodsQuestions } from './1IdentifySuitableCommunicationMethodsQuestions';
 import { siteManagementAndTradeRolesQuestions } from './siteManagementAndTradeRolesQuestions';
 import { siteVisitorsAndInspectorsQuestions } from './siteVisitorsAndInspectorsQuestions';
+import { legislationAndWorkplaceDocumentationQuestions } from './legislationAndWorkplaceDocumentationQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...legislationAndWorkplaceDocumentationQuestions,
   ...siteVisitorsAndInspectorsQuestions,
   ...siteManagementAndTradeRolesQuestions,
   ...q1IdentifySuitableCommunicationMethodsQuestions,
@@ -167,6 +169,7 @@ export { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from '.
 export { q1IdentifySuitableCommunicationMethodsQuestions } from './1IdentifySuitableCommunicationMethodsQuestions';
 export { siteManagementAndTradeRolesQuestions } from './siteManagementAndTradeRolesQuestions';
 export { siteVisitorsAndInspectorsQuestions } from './siteVisitorsAndInspectorsQuestions';
+export { legislationAndWorkplaceDocumentationQuestions } from './legislationAndWorkplaceDocumentationQuestions';
 
 /**
  * Filter questions by tags

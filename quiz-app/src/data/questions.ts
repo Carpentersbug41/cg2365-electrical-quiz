@@ -63,6 +63,7 @@ import { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from '.
 import { q1IdentifySuitableCommunicationMethodsQuestions } from './questions/1IdentifySuitableCommunicationMethodsQuestions';
 import { siteManagementAndTradeRolesQuestions } from './questions/siteManagementAndTradeRolesQuestions';
 import { siteVisitorsAndInspectorsQuestions } from './questions/siteVisitorsAndInspectorsQuestions';
+import { legislationAndWorkplaceDocumentationQuestions } from './questions/legislationAndWorkplaceDocumentationQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -119,6 +120,7 @@ export const questions: Question[] = [
   ...q1IdentifySuitableCommunicationMethodsQuestions,
   ...siteManagementAndTradeRolesQuestions,
   ...siteVisitorsAndInspectorsQuestions,
+  ...legislationAndWorkplaceDocumentationQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes
