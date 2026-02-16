@@ -6,9 +6,9 @@
   "unit": "Unit 210",
   "topic": "Conflict Resolution and Communication Impact",
   "learningOutcomes": [
-    "Identify common sources of conflict between different stakeholders in a technical environment",
-    "Explain the negative effects of poor communication on organizational efficiency and customer relations",
-    "Describe appropriate professional actions to resolve interpersonal conflicts within a workplace hierarchy"
+    "Identify the common consequences of poor communication on organizational efficiency and customer relations.",
+    "Explain the typical causes of conflict between different stakeholders in a technical workplace.",
+    "Describe the appropriate professional actions to take when resolving conflicts with customers, co-workers, and supervisors."
   ],
   "prerequisites": [
     "210-3A"
@@ -21,15 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify common sources of conflict between different stakeholders in a technical environment",
+            "text": "Identify the common consequences of poor communication on organizational efficiency and customer relations.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain the negative effects of poor communication on organizational efficiency and customer relations",
+            "text": "Explain the typical causes of conflict between different stakeholders in a technical workplace.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Describe appropriate professional actions to resolve interpersonal conflicts within a workplace hierarchy",
+            "text": "Describe the appropriate professional actions to take when resolving conflicts with customers, co-workers, and supervisors.",
             "bloomLevel": "understand"
           }
         ]
@@ -43,23 +43,23 @@
         "terms": [
           {
             "term": "Stakeholder",
-            "definition": "A stakeholder is any person or group, such as a client, manager, or colleague, who has a direct interest in or is affected by the technical work being carried out."
+            "definition": "A stakeholder is any individual or group with a direct interest in the outcome of a task or project, such as a customer, supervisor, or co-worker."
           },
           {
-            "term": "Communication Breakdown",
-            "definition": "A communication breakdown is a failure to exchange information accurately or promptly, which leads to operational errors rather than a total lack of interaction."
+            "term": "Communication Barrier",
+            "definition": "A communication barrier is any factor that prevents the accurate transfer of information, which is different from a simple disagreement because it causes technical errors or delays."
           },
           {
-            "term": "Chain of Command",
-            "definition": "The chain of command is the formal hierarchy of an organization that establishes the reporting lines and the correct path for information flow and decision-making."
+            "term": "Conflict Resolution",
+            "definition": "Conflict resolution is the process of using professional communication techniques to reach a productive agreement between disputing parties, not simply winning an argument."
           },
           {
             "term": "Escalation",
-            "definition": "Escalation is the formal procedure of referring a conflict or technical issue to a person with higher authority when it cannot be resolved at the immediate level."
+            "definition": "Escalation is the formal procedure of referring a dispute or issue to a higher level of management when it cannot be resolved through direct negotiation."
           },
           {
-            "term": "Active Listening",
-            "definition": "Active listening is a communication method where the listener focuses entirely on the speaker to confirm understanding and de-escalate tension during a dispute."
+            "term": "Operational Impact",
+            "definition": "Operational impact is the measurable effect that communication quality has on an organization’s efficiency, costs, and professional reputation."
           }
         ]
       }
@@ -69,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Conflict Resolution Actions",
-        "content": "### In this lesson\nYou will learn how to professionally manage and resolve disagreements between different parties in a technical workplace. This knowledge is applied whenever friction occurs between team members, management, or clients to ensure work continues safely and effectively. You will learn the importance of the hierarchy, the role of attentive communication, and when to seek higher-level assistance.\n\n*   How to apply professional actions to resolve interpersonal conflicts.\n*   The role of the workplace hierarchy in managing disputes.\n*   Techniques for de-escalating tension with various stakeholders.\n\n**What this is**\nConflict resolution is the process of finding a peaceful and professional solution to a disagreement between two or more parties. In a technical environment, a **stakeholder**—such as a client, a supervisor, or a colleague—may have different priorities or expectations, leading to friction. Resolving these disputes requires a structured approach that respects the professional relationship and the organizational structure.\n\n**Why it matters**\nUnresolved conflict can stall progress, create a hazardous working environment, and damage professional reputations. By following established procedures, you ensure that technical standards are maintained and that interpersonal issues do not compromise the safety or quality of the project. Using a formal **chain of command** ensures that the right person makes the final decision, preventing confusion and resentment.\n\n**Key facts / rules**\n*   Always remain calm and professional, regardless of the other person's tone.\n*   **Active listening** is mandatory to ensure all perspectives are understood before proposing a solution.\n*   Conflicts with customers should typically be handled by following company policy and involving a supervisor if the issue persists.\n*   Disagreements between co-workers should first be addressed privately and professionally between the individuals.\n*   If a conflict cannot be resolved at the immediate level, the formal process of **escalation** must be used.\n*   The **chain of command** defines who has the authority to make a final ruling on a technical or interpersonal dispute.\n\n**How to do it**\nTo resolve a conflict, first engage in **active listening**. This involves focusing entirely on the **stakeholder**, acknowledging their points, and asking clarifying questions. For example, if a customer is unhappy with the progress of a task, listen to their specific concerns without interrupting. Once the issue is identified, compare the concerns against the project requirements or company policy. If the dispute is with a co-worker regarding a technical method, refer to the standard operating procedures. If an agreement cannot be reached, follow the **chain of command** to report the issue to a supervisor. This **escalation** should be done neutrally, presenting the facts of the disagreement rather than personal feelings. \n\nConsider a scenario where two operatives disagree on the sequence of a task: Operative A wants to finish in 30 minutes to move to the next job, while Operative B insists on a 60-minute thorough check. By comparing these views against the safety manual, they can reach an objective decision rather than a personal one.\n\n**Common mistakes**\nLearners often confuse **escalation** with a personal complaint; **escalation** is a formal procedure to resolve a technical or procedural block, whereas a complaint is often an emotional reaction. Another common error is ignoring the **chain of command** by taking a problem directly to a high-level manager before speaking with an immediate supervisor.\n\nMisconceptions (targeted):\n*   Misconception: Conflict resolution means winning the argument. | Correction: Conflict resolution is about finding a professional path forward that meets the project's requirements. | AC: 210.LO3.AC3.3\n*   Misconception: Active listening is just staying quiet while the other person speaks. | Correction: Active listening requires providing feedback and confirming understanding to ensure the speaker feels heard. | AC: 210.LO3.AC3.3\n\n**Key Points**\n*   Use **active listening** to de-escalate tension and gather facts.\n*   Respect the **chain of command** when disputes arise.\n*   Apply **escalation** procedures when an immediate resolution is not possible.\n*   Focus on professional standards rather than personal opinions.\n\n**Quick recap**\nConflict resolution involves using professional communication and organizational structures to solve disagreements. By engaging in **active listening** and respecting the **chain of command**, you can manage disputes with any **stakeholder** effectively, ensuring that the work environment remains productive and safe.\n\n### Coming Up Next\nNext, we will examine the specific organizational consequences that occur when these communication methods fail."
+        "title": "Organizational Impact of Communication",
+        "content": "### In this lesson\nYou will learn to identify the common consequences of poor communication on organizational efficiency and customer relations. This knowledge is applied whenever you interact with colleagues or clients to ensure projects remain on schedule and within budget.\n\n*   Recognising the signs of failing communication between different parties.\n*   Understanding how poor information flow creates technical delays.\n*   Identifying the long-term effects of communication errors on a company's reputation.\n\n**What this is**\n**Operational impact** refers to the measurable effect that communication quality has on an organization’s efficiency, costs, and professional reputation. It is the tangible result—either positive or negative—of how effectively information moves between an operative, their management, and the customer. When communication is clear, the **operational impact** is high productivity; when it is poor, the result is often wasted resources.\n\n**Why it matters**\nIn any technical environment, time and materials are the primary costs. If an operative fails to communicate a delay to a supervisor, or if a manager provides vague instructions to a team, the work cannot proceed correctly. This leads to redundant tasks and financial loss. Furthermore, a customer who receives conflicting information will lose trust in the organization, which can lead to a total loss of future business and a damaged professional standing.\n\n**Key facts / rules**\n*   Poor communication between operatives often leads to duplicated efforts or safety hazards.\n*   Misunderstandings between management and operatives typically cause scheduling conflicts and missed deadlines.\n*   Inaccurate information given to a customer reduces professional trust and may lead to legal or financial disputes.\n*   A **communication barrier** is any factor that prevents the accurate transfer of information, such as loud noise, technical jargon, or poor written instructions.\n*   Inefficiency is often a direct result of information being withheld or delayed.\n*   Reputational damage is harder to recover from than a single technical error.\n\n**How to recognise it**\nTo identify the **operational impact** of poor communication, look for physical signs of idling or confusion. For example, if you observe three workers waiting for a delivery that was never confirmed, you are seeing a direct impact on efficiency. You can also recognise it through the frequency of \"re-work,\" where a task must be done twice because the initial requirements were not clearly explained by the **stakeholder**.\n\nConsider a micro-scenario: An operative completes a task in 3 hours but forgets to log the completion. The next operative, unaware the task is finished, spends 1 hour preparing to do the same job. This results in a 25% loss of that worker's morning productivity due to a simple lack of status updates.\n\n**Common mistakes**\nLearners often confuse a **communication barrier** with a simple disagreement; a **communication barrier** is a structural or environmental factor that stops information from arriving, whereas a disagreement is a difference of opinion on the information received.\n\nMisconceptons (targeted):\n*   Misconception: Poor communication only affects the people talking. | Correction: Poor communication has a wider **operational impact** that affects the entire organization's budget and timeline. | AC: 210.LO3.AC3.3\n*   Misconception: If the technical work is perfect, communication doesn't matter. | Correction: Even perfect technical work can be rejected by a **stakeholder** if it does not meet the communicated requirements or arrives late. | AC: 210.LO3.AC3.3\n\n**Key Points**\n*   Poor communication leads to measurable delays and wasted costs.\n*   Every **stakeholder** is affected when information flow breaks down.\n*   Reputation is built on consistent, accurate updates to customers.\n*   Identifying a **communication barrier** early can prevent project failure.\n\n**Quick recap**\nOrganizational efficiency relies on the accurate transfer of data between all parties. When communication fails, the **operational impact** includes wasted time, increased costs, and a loss of customer trust. Recognising these signs early allows a team to correct their processes before significant damage occurs.\n\n### Coming Up Next\nNow that we understand the impact of poor communication, we will look at the specific professional actions required to resolve conflicts when they arise between different stakeholders."
       }
     },
     {
@@ -78,62 +78,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Conflict Resolution Actions",
+        "title": "Check Your Understanding: Organizational Impact of Communication",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C1-L1-A",
-            "questionText": "What is mandatory to ensure all perspectives are understood before proposing a solution?",
+            "questionText": "What are two common results of poor communication between operatives?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Active listening",
-              "active listening techniques",
-              "active listening is mandatory"
+              "duplicated efforts or safety hazards",
+              "duplicated efforts, safety hazards",
+              "safety hazards and duplicated efforts"
             ],
-            "hint": "This involves focusing entirely on the stakeholder and asking clarifying questions."
+            "hint": "Look for the specific physical consequences mentioned for workers in the field."
           },
           {
             "id": "210-3B-C1-L1-B",
-            "questionText": "Where should disagreements between co-workers first be addressed according to professional standards?",
+            "questionText": "What is the typical direct result of information being withheld or delayed?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Privately and professionally",
-              "privately and professionally between individuals",
-              "private and professional discussion"
+              "inefficiency",
+              "operational inefficiency",
+              "wasted resources"
             ],
-            "hint": "Think about the initial setting required before involving other parties."
+            "hint": "Think about how the organization's productivity changes when data is missing."
           },
           {
             "id": "210-3B-C1-L1-C",
-            "questionText": "What defines who has the authority to make a final ruling on a dispute?",
+            "questionText": "What term describes any factor that prevents the accurate transfer of information?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "The chain of command",
-              "chain of command",
-              "formal chain of command"
+              "communication barrier",
+              "a communication barrier",
+              "barriers to communication"
             ],
-            "hint": "This organizational structure ensures the right person makes the final decision."
+            "hint": "This term refers to structural or environmental obstacles like noise or jargon."
           },
           {
             "id": "210-3B-C1-L2",
-            "questionText": "Using your answers to Q1 (active listening), Q2 (private resolution), and Q3 (chain of command), explain how these facts connect. Why must a professional attempt active listening and private resolution before using the chain of command?",
+            "questionText": "Using your answers to Q1 (results of poor communication), Q2 (causes of inefficiency), and Q3 (communication barriers), explain how these concepts relate. Why must an organization identify barriers to maintain efficiency?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Active listening is the tool used to attempt private resolution between co-workers",
-              "Private resolution is the first step in the professional process before escalation",
-              "The chain of command is only used for a final ruling if private active listening fails",
-              "This relationship ensures disputes are managed at the lowest possible level to maintain efficiency"
+              "Communication barriers are the root cause that leads to information being withheld or delayed",
+              "Delayed information is the specific trigger for organizational inefficiency",
+              "This chain of events results in tangible problems like duplicated efforts or safety hazards",
+              "Efficiency is only possible when barriers are removed to allow information flow"
             ],
             "expectedAnswer": [
-              "Active listening allows co-workers to understand each other and resolve issues privately and professionally first. If these private efforts do not work, the chain of command is then used to provide a final ruling. This matters because it prevents every small disagreement from immediately becoming a formal management issue.",
-              "Professionals use active listening to try and reach an agreement privately between individuals. We must do this first because the chain of command is reserved for when an immediate resolution is not possible. This keeps the workplace productive by solving problems without unnecessary escalation."
+              "An organization must identify communication barriers because they cause information to be withheld or delayed, which directly leads to inefficiency. Without addressing these barriers, the resulting inefficiency causes operatives to waste time on duplicated efforts or encounter safety hazards.",
+              "Efficiency depends on the flow of information; if communication barriers prevent this flow, information is delayed. We know this relationship matters because these delays lead to measurable negative impacts like safety hazards and duplicated efforts."
             ],
-            "hint": "Consider how the first two actions serve as a filter before reaching the final authority."
+            "hint": "Consider how a barrier at the start leads to the specific wasted efforts mentioned in the text."
           }
         ]
       }
@@ -143,8 +143,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Impact of Poor Communication",
-        "content": "### In this lesson\nYou will learn to identify the signs and consequences of ineffective information exchange within a technical organization. This knowledge helps you understand how small errors in sharing data can lead to large-scale operational failures. You will explore how a **communication breakdown** impacts efficiency, safety, and the relationship between a company and its clients.\n\n*   Identifying common sources of conflict caused by poor information flow.\n*   Understanding the negative effects of miscommunication on organizational efficiency.\n*   Recognizing the impact of poor communication on customer relations.\n\n**What this is**\nPoor communication occurs when information is missing, incorrect, or delivered to the wrong person. This often results in a **communication breakdown**, which is not a total lack of talking, but a failure to exchange information accurately or promptly. This can happen between operatives, between management and staff, or between the company and an external **stakeholder**.\n\n**Why it matters**\nIn technical fields, precision is vital. A lack of clarity can lead to wasted materials, missed deadlines, and even physical danger. When a **communication breakdown** occurs, it erodes the trust a customer has in the organization, potentially leading to a loss of future work and a damaged professional reputation. Efficiency drops because tasks often have to be repeated or corrected.\n\n**Key facts / rules**\n*   Vague instructions are a primary source of conflict between management and operatives.\n*   Inaccurate data transfer leads to operational errors and wasted resources.\n*   Poor communication with a customer often results in unrealistic expectations and dissatisfaction.\n*   A **communication breakdown** can lead to safety hazards if critical warnings are not passed on.\n*   Efficiency is measured by the ability to complete a task correctly the first time; poor communication prevents this.\n*   The **chain of command** must be used to ensure information reaches the correct level of authority.\n\n**How to recognise it**\nYou can recognise poor communication by looking for specific indicators in the workplace. One major sign is a high rate of 're-work,' where tasks must be done twice because the initial requirements were misunderstood. Another indicator is a lack of alignment between different departments; for example, if the procurement team orders materials for a project that the technical team has already changed. In customer relations, poor communication is often visible through frequent complaints regarding delays or unexpected costs. \n\nImagine a scenario where a manager tells an operative to \"check the sensors\" without specifying which floor or which system. If the operative spends 4 hours checking the wrong area, the 100% increase in time spent is a direct result of a **communication breakdown**. This is like a broken link in a mechanical chain; even if every other part is strong, the system cannot pull the load.\n\n**Common mistakes**\nLearners often confuse a **communication breakdown** with a lack of effort; a **communication breakdown** is an operational failure of information flow, whereas a lack of effort is a performance issue. People also mistake \"hearing\" for \"understanding,\" assuming that because a message was sent, it was correctly interpreted by the **stakeholder**.\n\nMisconceptions (targeted):\n*   Misconception: Communication only fails if people stop talking to each other. | Correction: A communication breakdown often happens while people are talking, but the information being exchanged is inaccurate or incomplete. | AC: 210.LO3.AC3.4\n*   Misconception: Poor communication only affects the people involved in the conversation. | Correction: Poor communication impacts the entire organization's efficiency and the satisfaction of every stakeholder involved. | AC: 210.LO3.AC3.4\n\n**Key Points**\n*   **Communication breakdown** leads to operational errors and reduced efficiency.\n*   Vague instructions create conflict between different levels of the **chain of command**.\n*   Poor communication with customers damages professional reputation and trust.\n*   Accuracy in information exchange is critical for workplace safety.\n\n**Quick recap**\nPoor communication has a ripple effect throughout an organization, causing inefficiency, safety risks, and poor customer relations. By identifying the signs of a **communication breakdown**, such as re-work or conflicting instructions, you can take steps to correct the flow of information and maintain professional standards.\n\n### Coming Up Next\nIn the next module, we will look at the specific documentation used to record and prevent these communication issues."
+        "title": "Conflict Resolution Strategies",
+        "content": "### In this lesson\nYou will learn the appropriate professional actions to take when resolving conflicts with customers, co-workers, and supervisors. This ensures that disputes are handled constructively without damaging professional relationships or project outcomes.\n\n*   Applying active listening to understand the root cause of a dispute.\n*   Differentiating between direct negotiation and formal **escalation**.\n*   Maintaining professionalism when dealing with different types of **stakeholder**.\n\n**What this is**\n**Conflict resolution** is the process of using professional communication techniques to reach a productive agreement between disputing parties. It is not about winning an argument or proving someone wrong; rather, it is about finding a technical or procedural path forward that satisfies the project requirements. If a dispute cannot be settled locally, the process of **escalation** is used to involve higher management.\n\n**Why it matters**\nConflict is inevitable in high-pressure technical environments. Whether it is a disagreement over a method between co-workers or a customer complaining about a delay, how you respond determines the outcome. Professional **conflict resolution** keeps the team focused on the task, whereas unmanaged conflict leads to a toxic work environment, safety risks, and decreased productivity.\n\n**Key facts / rules**\n*   Stay calm and objective; avoid personalizing the issue or using emotional language.\n*   Listen to the other **stakeholder** fully before responding to ensure you understand their concern.\n*   Focus on the technical facts and the desired outcome rather than personal blame.\n*   Use **escalation** only after direct, professional attempts to resolve the issue have failed.\n*   When dealing with supervisors, present the problem alongside a potential solution.\n*   Always document the agreed-upon resolution to prevent the conflict from returning.\n\n**How to do it**\nTo perform effective **conflict resolution**, first identify the core issue. If a co-worker disagrees with your work sequence, stop and ask for their reasoning. Compare both methods against the project specifications. If you are dealing with an angry customer, acknowledge their frustration without accepting unfair blame, and provide a clear timeline for a fix. \n\nIn a micro-scenario, imagine a supervisor asks for a task to be finished by 4:00 PM, but you know it requires 2 more hours of testing. Instead of simply saying \"no\" or rushing and skipping the test, you should explain the safety risk and propose a 6:00 PM finish. This is a professional action that prioritizes the project over the conflict.\n\n**Common mistakes**\nLearners often confuse **conflict resolution** with winning an argument; **conflict resolution** is about reaching a functional agreement for the project, whereas winning an argument often leaves one party frustrated and uncooperative.\n\nMisconceptons (targeted):\n*   Misconception: **Escalation** is a sign of weakness or failure. | Correction: **Escalation** is a formal procedure used to protect the organization when a decision exceeds an operative's authority. | AC: 210.LO3.AC3.4\n*   Misconception: You should always agree with a customer to avoid conflict. | Correction: Professionalism requires you to provide accurate technical information, even if it contradicts the customer's initial wishes. | AC: 210.LO3.AC3.4\n\n**Key Points**\n*   Professionalism requires separating the person from the problem.\n*   Active listening is the first step in any resolution process.\n*   **Escalation** is a structured tool, not a last resort for anger.\n*   Successful resolution results in a clear, agreed-upon plan of action.\n\n**Quick recap**\nHandling conflict professionally involves staying calm, focusing on facts, and using structured techniques to find a solution. Whether dealing with a co-worker, supervisor, or customer, the goal of **conflict resolution** is to maintain the project's progress and the organization's reputation. If direct communication fails, follow the formal **escalation** procedure.\n\n### Coming Up Next\nWe have covered how to identify impact and resolve disputes. In the next session, we will explore how to document these interactions formally using standard industry reports."
       }
     },
     {
@@ -152,61 +152,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Impact of Poor Communication",
+        "title": "Check Your Understanding: Conflict Resolution Strategies",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C2-L1-A",
-            "questionText": "What is identified as a primary source of conflict between management and operatives?",
+            "questionText": "What action should be taken before responding to ensure a stakeholder's concern is understood?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Vague instructions",
-              "vague instruction",
-              "unclear instructions"
+              "listen fully",
+              "listen to the other stakeholder fully",
+              "active listening"
             ],
-            "hint": "This occurs when the details of a task are not specified clearly."
+            "hint": "This involves hearing the entire message before you begin your reply."
           },
           {
             "id": "210-3B-C2-L1-B",
-            "questionText": "How is efficiency measured in a technical work environment?",
+            "questionText": "When should the process of escalation be used during a dispute?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Ability to complete a task correctly the first time",
-              "completing a task correctly the first time",
-              "complete tasks correctly first time"
+              "after direct professional attempts fail",
+              "when direct attempts have failed",
+              "after professional resolution attempts fail"
             ],
-            "hint": "Efficiency is linked to the lack of re-work or corrections."
+            "hint": "Escalation is not the first step; it follows a specific set of failed actions."
           },
           {
             "id": "210-3B-C2-L1-C",
-            "questionText": "When does a communication breakdown often happen even if people are still talking to each other?",
+            "questionText": "What is the primary goal of conflict resolution within a project?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "When information is inaccurate",
-              "information being exchanged is inaccurate",
-              "information is inaccurate or incomplete"
+              "reaching a functional agreement",
+              "a functional agreement",
+              "reaching an agreement"
             ],
-            "hint": "A breakdown is not just a lack of talking, but a failure in the quality of the data."
+            "hint": "Contrast this goal with the idea of simply winning an argument."
           },
           {
             "id": "210-3B-C2-L2",
-            "questionText": "Using your answers to Q1 (vague instructions), Q2 (efficiency), and Q3 (inaccurate information), explain how these facts connect. How do we know that inaccurate information leads to a decrease in efficiency?",
+            "questionText": "Using your answers to Q1 (understanding concerns), Q2 (timing of escalation), and Q3 (the goal of resolution), explain how these steps work together. How do we know if a conflict has been handled professionally?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Vague instructions are a form of inaccurate or incomplete information exchange",
-              "Inaccurate information prevents an operative from completing a task correctly the first time",
-              "We know this connection is valid because the resulting need for re-work directly reduces the measured efficiency"
+              "Listening fully is the prerequisite for finding a functional agreement locally",
+              "Escalation is only professional when it is used as a structured tool after direct resolution fails",
+              "Professionalism is defined by prioritizing the project agreement over personal victory",
+              "Documentation ensures the functional agreement remains the focus of the parties involved"
             ],
             "expectedAnswer": [
-              "Vague instructions mean that the information being exchanged is inaccurate or incomplete, which is a communication breakdown. This prevents the worker from completing the task correctly the first time. We know this reduces efficiency because it leads to re-work, which wastes time and resources.",
-              "A communication breakdown happens when vague instructions provide inaccurate information to a worker. Because the worker lacks clear data, they cannot complete the task correctly the first time. This relationship is valid because any task that requires being done twice due to poor info is by definition inefficient."
+              "A conflict is handled professionally when parties listen fully to reach a functional agreement for the project. If these direct professional attempts fail, the process of escalation is then used as a structured tool. We know it is professional because the focus remains on project requirements rather than winning an argument.",
+              "Professional resolution requires listening fully to understand concerns so that a functional agreement can be reached. Escalation should only be triggered if those direct attempts fail. This connection ensures the project moves forward constructively without personal blame."
             ],
-            "hint": "Think about how the quality of an instruction affects the outcome of the work performed."
+            "hint": "Think about the sequence of actions and how the final goal dictates which action is taken first."
           }
         ]
       }
@@ -216,39 +217,39 @@
       "type": "worked-example",
       "order": 6,
       "content": {
-        "title": "Worked Example: Identifying Conflict Resolution Actions",
-        "given": "Two operatives disagree on the time required for a safety inspection. One wants to finish quickly to move to the next job, while the other insists on a longer, thorough check according to the manual.",
+        "title": "Worked Example: Identifying Operational Impact",
+        "given": "An operative completes a technical task in 3 hours but fails to log the completion in the system. The next operative, unaware the task is finished, spends 1 hour preparing to do the same job.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Identify context and constraints",
+            "description": "Identify the context and constraints of the communication failure.",
             "formula": null,
             "calculation": null,
-            "result": "Disagreement between co-workers regarding a technical method and safety standards."
+            "result": "An operative failed to provide a status update to a colleague regarding a finished task."
           },
           {
             "stepNumber": 2,
-            "description": "Select appropriate option",
+            "description": "Select the appropriate term for the effect this has on the organization.",
             "formula": null,
             "calculation": null,
-            "result": "Engage in active listening and compare views against the safety manual/standard operating procedures."
+            "result": "Operational impact (specifically inefficiency)."
           },
           {
             "stepNumber": 3,
-            "description": "State purpose or result",
+            "description": "State the specific purpose or result of this communication failure.",
             "formula": null,
             "calculation": null,
-            "result": "To reach an objective decision based on professional standards rather than personal opinion."
+            "result": "Redundant tasks and a 25% loss in the second worker's productivity."
           },
           {
             "stepNumber": 4,
-            "description": "State common wrong choice and why",
+            "description": "State a common wrong choice and why it does not apply here.",
             "formula": null,
             "calculation": null,
-            "result": "Ignoring the chain of command by taking the issue to a high-level manager before speaking privately with the colleague."
+            "result": "Communication barrier; this was a failure to share data, not a physical or environmental factor like loud noise."
           }
         ],
-        "notes": "Always refer to the specific standard operating procedures of your organization; verify current edition/version of safety manuals."
+        "notes": "Ensure you distinguish between the act of communicating and the measurable 'impact' it has on the budget and timeline."
       }
     },
     {
@@ -257,43 +258,43 @@
       "order": 7,
       "content": {
         "title": "Guided Practice (We Do)",
-        "problem": "A client (stakeholder) is unhappy with the progress of a technical project and is speaking to you in an aggressive tone, demanding an immediate change to the work schedule.",
+        "problem": "A manager provides vague instructions to a technical team. Because the requirements are not clear, the team performs the work incorrectly, resulting in the need for 're-work' and a delay in the project schedule.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "Identify the context and the stakeholders involved in this scenario.",
+            "prompt": "Identify the context and constraints of this communication failure.",
             "expectedAnswer": [
-              "External stakeholder conflict",
-              "Client disagreement"
+              "Manager provided vague instructions",
+              "Vague instructions"
             ],
-            "hint": "Consider who is involved and the nature of the friction being described."
+            "hint": "Look for who provided the information and what was wrong with the quality of that information."
           },
           {
             "stepNumber": 2,
-            "prompt": "Select the appropriate professional action to take first to manage the situation.",
+            "prompt": "Select the appropriate term for the effect this has on the organization.",
             "expectedAnswer": [
-              "Active listening",
-              "Follow company policy"
+              "Operational impact",
+              "Inefficiency"
             ],
-            "hint": "Recall the mandatory communication technique used to ensure all perspectives are understood."
+            "hint": "Refer to the term used for the measurable effect communication has on efficiency and costs."
           },
           {
             "stepNumber": 3,
-            "prompt": "State the purpose of using this specific communication action.",
+            "prompt": "State the specific result of this communication failure based on the scenario.",
             "expectedAnswer": [
-              "De-escalate tension",
-              "Gather facts"
+              "Re-work",
+              "Wasted resources"
             ],
-            "hint": "Think about what is achieved by acknowledging the stakeholder's points without interrupting."
+            "hint": "Identify the tangible consequence mentioned in the scenario that affects time or materials."
           },
           {
             "stepNumber": 4,
-            "prompt": "State a common wrong choice and why it would be ineffective in this context.",
+            "prompt": "Identify the common wrong choice (misconception) for this scenario and why it is incorrect.",
             "expectedAnswer": [
-              "Winning the argument",
-              "Personal complaint"
+              "Disagreement",
+              "A disagreement"
             ],
-            "hint": "Reflect on the misconception that conflict resolution is about personal victory rather than professional paths forward."
+            "hint": "Consider whether this was a difference of opinion or a failure in the clarity of information received."
           }
         ]
       }
@@ -307,59 +308,45 @@
         "questions": [
           {
             "id": "210-3B-P1",
-            "questionText": "A technician spends 5 hours on a task due to vague instructions. If the task should have taken 2 hours with clear communication, how many hours were wasted?",
+            "questionText": "An operative completes a 6-hour task but forgets to log the completion in the system. A second operative spends 3 hours preparing to do the same task before the error is discovered. How many hours of productivity were lost due to this communication failure?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "3",
-              "3.0"
+              "3"
             ],
-            "hint": "Subtract the required time from the total time spent to find the lost efficiency in hours."
+            "hint": "Calculate the total time spent by the second worker on unnecessary preparation."
           },
           {
             "id": "210-3B-P2",
-            "questionText": "Explain why a communication breakdown can occur even when two stakeholders are actively speaking to each other.",
-            "answerType": "short-text",
+            "questionText": "A technical project is budgeted for 60 total hours. Due to a communication barrier between management and the team, 15% of the total project time is spent on 're-work' to fix errors. How many hours were spent on re-work?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "inaccurate information",
-              "incomplete information",
-              "vague instructions",
-              "incorrect data"
+              "9",
+              "9.0"
             ],
-            "hint": "Consider the quality and accuracy of the information being exchanged rather than the volume of talking."
+            "hint": "Calculate 15% of 60 hours."
           },
           {
             "id": "210-3B-P3",
-            "questionText": "A stakeholder demands a work method that violates the safety manual. After listening to their concerns, the technician still cannot reach an agreement. What formal process should be used to resolve this?",
+            "questionText": "Explain why a project can still result in a negative operational impact even if the technical work is performed perfectly.",
             "answerType": "short-text",
             "expectedAnswer": [
-              "escalation",
-              "escalate the issue",
-              "formal escalation",
-              "escalate"
+              "Missed deadlines",
+              "Does not meet requirements",
+              "Requirements not met",
+              "Late delivery"
             ],
-            "hint": "This involves moving the problem to a higher level in the chain of command."
+            "hint": "Consider factors like timing and stakeholder expectations mentioned in the lesson."
           },
           {
             "id": "210-3B-P4",
-            "questionText": "What must be true if a conflict is being resolved professionally rather than one person simply winning the argument?",
+            "questionText": "What formal procedure should be used when a dispute cannot be settled through direct negotiation because the required decision exceeds an operative's authority?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "meets project requirements",
-              "follows technical standards",
-              "objective path forward",
-              "meets professional standards"
+              "Escalation",
+              "Formal escalation",
+              "Escalating the issue"
             ],
-            "hint": "Professional resolution focuses on the needs of the project and the organization rather than personal feelings."
-          },
-          {
-            "id": "210-3B-P5",
-            "questionText": "A supervisor gives a team of 4 operatives incorrect data. Each operative spends 1.5 hours working before the error is identified and corrected. How many total labor hours were lost to this breakdown?",
-            "answerType": "numeric",
-            "expectedAnswer": [
-              "6",
-              "6.0"
-            ],
-            "hint": "Multiply the number of operatives by the time each one spent on the incorrect task."
+            "hint": "This is a structured tool used to involve higher management."
           }
         ]
       }
@@ -375,41 +362,42 @@
         "questions": [
           {
             "id": "210-3B-INT-1",
-            "questionText": "Explain how a breakdown in information flow necessitates specific professional responses to maintain workplace harmony. In your answer, include: (1) a specific negative effect of poor communication on efficiency, (2) a professional action used to resolve interpersonal conflict, and (3) the role of the workplace hierarchy in the resolution process. Why is identifying the root communication error essential before applying a resolution action?",
+            "questionText": "Analyze the link between failing information flow and the escalation of stakeholder disputes. In your answer, include: (1) a specific consequence of poor communication on organizational efficiency, (2) how active listening helps identify the root cause of the resulting conflict, and (3) why unresolved technical delays necessitate moving from direct negotiation to formal escalation. Why must communication be proactive to prevent the breakdown of professional relationships? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identifies a specific impact on efficiency such as operational failure or safety risks.",
-              "Describes a professional resolution action like active listening or mediation.",
-              "Explains how the hierarchy provides a framework for escalation or formal guidance.",
-              "Connects the communication failure directly to the resulting interpersonal friction.",
-              "Argues that without identifying the root error, the resolution will only be temporary or superficial."
+              "Identifies a specific efficiency loss such as project delays or budget overruns",
+              "Explains how active listening uncovers hidden stakeholder concerns",
+              "Relates technical delays to the breakdown of informal negotiation",
+              "Justifies the use of formal escalation when project outcomes are at risk",
+              "Explains that proactive communication prevents assumptions that lead to conflict"
             ],
             "expectedAnswer": [
-              "A breakdown in communication often leads to operational failures that decrease efficiency, requiring professionals to use active listening to de-escalate resulting friction. If the conflict persists, the workplace hierarchy allows for the matter to be escalated to management for formal intervention. Identifying the root communication error is essential because the resolution action must address the specific source of the misunderstanding to prevent the same operational failure from recurring.",
-              "When data is shared incorrectly, it causes delays that harm efficiency, which must be addressed through professional mediation between the affected parties. The hierarchy ensures that there is a clear chain of command to authorize changes to communication protocols. One must identify the root error first because applying a generic resolution may fail to fix the underlying technical misinformation that caused the conflict."
+              "Poor information flow often leads to technical delays which disrupt organizational efficiency and strain stakeholder trust. Active listening allows a professional to identify if the root cause is a lack of resources or a misunderstanding of the brief, preventing unnecessary tension. If these delays remain unresolved through direct negotiation, formal escalation is required to reallocate resources and protect the project's viability.",
+              "Failing communication creates bottlenecks that reduce efficiency, often resulting in missed deadlines. By using active listening, professionals can determine if a conflict is caused by technical errors or interpersonal friction, allowing for targeted resolution. Proactive communication is essential because it addresses issues before they compound, ensuring that disputes do not require formal escalation to maintain professional standards."
             ],
-            "hint": "Consider how a misunderstanding about technical data leads to an argument and how you would fix both the data error and the argument."
+            "hint": "Consider how a lack of clear information leads to technical errors that eventually require a supervisor's intervention."
           },
           {
             "id": "210-3B-INT-2",
-            "questionText": "Synthesize the impact of stakeholder interactions on the overall success of a technical project. In your answer, include: (1) a primary source of conflict between stakeholders, (2) the resulting effect on organizational efficiency, (3) the role of attentive communication in resolution, and (4) how professional actions prevent the escalation of conflict within the hierarchy. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Synthesize how communication standards and conflict resolution strategies work together to protect organizational interests. In your answer, include: (1) the primary causes of conflict between technical stakeholders, (2) the impact of these conflicts on customer relations, (3) the professional actions used to mitigate these risks with supervisors, and (4) how these combined factors determine the long-term efficiency of the company. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Identifies a source of conflict such as misaligned objectives or resource competition.",
-              "Describes the negative impact on efficiency such as downtime or wasted resources.",
-              "Explains how attentive communication clarifies technical requirements and stakeholder needs.",
-              "Outlines professional actions like seeking higher-level assistance when appropriate.",
-              "Links conflict resolution to the preservation of customer relations and trust.",
-              "Demonstrates how hierarchy provides a structured path for resolving complex disputes.",
-              "Concludes that professional standards ensure operational continuity despite interpersonal friction."
+              "Identifies causes of conflict such as differing priorities or poor data sharing",
+              "Describes the negative impact on customer satisfaction and brand reputation",
+              "Details professional actions like negotiation, active listening, or formal reporting",
+              "Explains the role of supervisors in mediating technical disputes",
+              "Connects conflict resolution directly to organizational efficiency",
+              "Mentions the importance of maintaining professional relationships under pressure",
+              "Highlights the long-term benefits of standardized communication protocols",
+              "Integrates all major lesson concepts into a cohesive strategy"
             ],
             "expectedAnswer": [
-              "Conflicts often arise from misaligned stakeholder objectives, which can lead to significant downtime and reduced organizational efficiency. To resolve this, professionals use attentive communication to clarify requirements and apply hierarchical protocols to escalate issues that cannot be solved at a peer level. These professional actions prevent minor disagreements from damaging customer relations and ensure that the project remains technically viable and safe.",
-              "• A primary source of conflict is often the competition for limited resources between different departments.\n• This leads to decreased efficiency as teams wait for necessary inputs or approvals.\n• Attentive communication and professional mediation help stakeholders align their priorities and resolve friction.\n• Following the workplace hierarchy ensures that conflicts are managed by the appropriate authority, preserving long-term customer trust."
+              "Conflicts between stakeholders often arise from poor information flow, leading to technical delays that damage customer relations and organizational efficiency. To mitigate this, professionals must use active listening and direct negotiation, or escalate the matter to supervisors when project outcomes are threatened. Successfully managing these interactions ensures that the company maintains its reputation and operates at peak efficiency through standardized communication practices.",
+              "• Stakeholder conflicts usually stem from communication breakdowns that cause technical errors and project delays.\n• These disputes negatively affect customer relations by reducing the reliability of service delivery.\n• Professionals resolve these issues by applying active listening and engaging in formal escalation with supervisors when necessary.\n• Effective conflict management protects long-term organizational efficiency by ensuring projects remain on schedule and professional relationships remain intact."
             ],
-            "hint": "Focus on how professional behavior and communication flow together to keep a business running smoothly even when people disagree."
+            "hint": "Think about the full cycle from the first communication error to the final impact on the company's reputation."
           }
         ]
       }
@@ -423,37 +411,36 @@
         "questions": [
           {
             "id": "210-3B-SR-1",
-            "questionText": "What term is used to describe the range of individual differences, such as culture and background, that should be respected in a workplace?",
-            "expectedAnswer": [
-              "Diversity",
-              "Inclusion",
-              "Equality"
-            ],
-            "hint": "This was covered in your previous lesson on communication methods.",
-            "answerType": "short-text"
-          },
-          {
-            "id": "210-3B-SR-2",
-            "questionText": "Name one common method used to exchange information or instructions with others in a professional environment.",
+            "questionText": "Name one common method used to convey information to others in a professional environment.",
             "expectedAnswer": [
               "Verbal",
               "Written",
               "Email",
-              "Digital"
+              "Telephone"
             ],
-            "hint": "Consider the different ways you send or receive messages at work.",
+            "hint": "Consider the different ways you share information with colleagues or clients.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-3B-SR-2",
+            "questionText": "What documents outline the specific procedures a company expects its staff to follow when dealing with customers?",
+            "expectedAnswer": [
+              "Company policies",
+              "Workplace policies",
+              "Policies"
+            ],
+            "hint": "Think about the internal rules used to guide professional behavior.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-3",
-            "questionText": "Which workplace documents contain the official rules and standard procedures that all employees are required to follow?",
+            "questionText": "What are the formal written records used to document workplace activities and agreements called?",
             "expectedAnswer": [
-              "Company policies",
-              "Staff handbook",
               "Workplace documentation",
-              "Policies"
+              "Documentation",
+              "Records"
             ],
-            "hint": "These documents ensure that everyone follows the same organizational standards.",
+            "hint": "This refers to the formal paperwork used on a job site.",
             "answerType": "short-text"
           }
         ],
@@ -470,7 +457,7 @@
     "updated": "2026-02-16",
     "version": "1.0",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "PROCEDURE, IDENTIFICATION",
+    "taskMode": "IDENTIFICATION, PROCEDURE",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO3",
@@ -485,32 +472,27 @@
       ]
     },
     "scope": {
-      "inScope": "Interpersonal conflict resolution strategies and the systemic impact of communication failures on business operations.",
-      "outOfScope": "Formal legal mediation, technical documentation standards, or specific disciplinary HR procedures.",
-      "rationale": "The lesson focuses on the behavioral and organizational aspects of communication rather than the technical tools or legal frameworks."
+      "inScope": "Professional communication impacts and interpersonal conflict resolution techniques within a technical work environment.",
+      "outOfScope": "Formal legal disciplinary procedures, employment law, or technical documentation standards.",
+      "rationale": "Focus is placed on the immediate operational and interpersonal aspects of communication rather than administrative or legal frameworks."
     },
     "teachingConstraints": {
       "excludeHowTo": false,
       "purposeOnly": false,
       "identificationOnly": false,
       "noCalculations": true,
-      "specificScope": "Focus on the relationship between operative, supervisor, and customer interactions."
+      "specificScope": "Focus on interpersonal actions and organizational effects"
     },
     "misconceptions": [
       {
-        "misconception": "Escalation is a sign of personal failure or an inability to do the job.",
-        "correction": "Escalation is a formal, professional procedure used to ensure the correct level of authority handles a specific issue.",
+        "misconception": "Poor communication only affects the people talking.",
+        "correction": "Poor communication has a wider operational impact that affects the entire organization's budget and timeline.",
         "relatedAC": "210.LO3.AC3.3"
       },
       {
-        "misconception": "Communication only fails if people stop talking to each other.",
-        "correction": "A communication breakdown often happens while people are talking, but the information being exchanged is inaccurate or incomplete.",
+        "misconception": "Escalation is a sign of weakness or failure.",
+        "correction": "Escalation is a formal procedure used to protect the organization when a decision exceeds an operative's authority.",
         "relatedAC": "210.LO3.AC3.4"
-      },
-      {
-        "misconception": "Active listening is just staying quiet while the other person speaks.",
-        "correction": "Active listening requires providing feedback and confirming understanding to ensure the speaker feels heard.",
-        "relatedAC": "210.LO3.AC3.3"
       }
     ]
   }
