@@ -53,6 +53,7 @@ import lesson210_210_3A1 from '@/data/lessons/210-210-3A1-1-identify-suitable-co
 import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.json';
 import lesson210_1B from '@/data/lessons/210-1B-site-visitors-and-inspectors.json';
 import lesson210_2A from '@/data/lessons/210-2A-legislation-and-workplace-documentation.json';
+import lesson210_2B from '@/data/lessons/210-2B-customer-information-and-company-policies.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -96,6 +97,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson210_2B,
   lesson210_2A,
   lesson210_1B,
   lesson210_1A,

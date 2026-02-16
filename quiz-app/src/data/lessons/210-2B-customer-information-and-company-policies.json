@@ -1,0 +1,517 @@
+{
+  "id": "210-2B",
+  "title": "210.2B — Customer Information and Company Policies",
+  "description": "Learn about Customer Information and Company Policies in Communication 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 210",
+  "topic": "Customer Information and Company Policies",
+  "learningOutcomes": [
+    "Identify the purpose of customer-facing documents including quotations, estimates, and invoices.",
+    "Describe the statutory cancellation rights and handover information provided to customers.",
+    "Explain the importance of company policies regarding behavior, timekeeping, and dress code.",
+    "Define the limits of personal authority for apprentices and level 2 staff within a contract of employment."
+  ],
+  "prerequisites": [
+    "210-2A"
+  ],
+  "blocks": [
+    {
+      "id": "210-2B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the purpose of customer-facing documents including quotations, estimates, and invoices.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the statutory cancellation rights and handover information provided to customers.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the importance of company policies regarding behavior, timekeeping, and dress code.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Define the limits of personal authority for apprentices and level 2 staff within a contract of employment.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Estimate",
+            "definition": "A calculated guess of the likely cost for work, used when the full scope is unknown. It is not a fixed price."
+          },
+          {
+            "term": "Quotation",
+            "definition": "A fixed-price offer for specific work. Once accepted, it is a binding agreement and the price cannot change unless the work changes."
+          },
+          {
+            "term": "Invoice",
+            "definition": "A formal document sent after work is done, requesting payment for the agreed amount."
+          },
+          {
+            "term": "Statutory Cancellation Rights",
+            "definition": "Legal protections that give customers a 'cooling-off period' (time to change their mind) after signing a contract away from business premises."
+          },
+          {
+            "term": "Limits of Authority",
+            "definition": "Rules defining what an employee can and cannot do without permission, such as signing contracts or ordering expensive parts."
+          },
+          {
+            "term": "Company Policy",
+            "definition": "A set of internal rules guiding employee behavior, appearance, and timekeeping to ensure professionalism."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Customer Documentation and Rights",
+        "content": "### In this lesson\n\nWe will learn how to choose the right document when talking about money with a customer, and what rights the customer has. This covers **AC3** (Customer Information).\n\n**What this is**\n\nWhen you discuss costs with a customer, you must be clear about whether the price is fixed or flexible.\n\n1.  **Estimate:** Use this when you are **not sure** how much work is needed. \n    *   *Example:* You are asked to fix a leak under a floor. You don't know if it's a loose pipe or a cracked joint until you lift the floorboards. You give an **Estimate** of £150–£200. If the job is harder than expected, the price can go up.\n\n2.  **Quotation:** Use this when you know **exactly** what is needed. \n    *   *Example:* You are installing a specific shower unit. You know the cost of the unit and how long it takes. You give a **Quotation** of £450. Even if it takes you longer than expected, you cannot charge more than £450.\n\n3.  **Invoice:** This is sent **after** the job is done. It says, \"The work is finished, please pay this amount.\"\n\n**Statutory Cancellation Rights**\n\nCustomers often have a legal right to change their mind. If a customer signs a contract **at their home** (away from your business premises), the law usually gives them a **cooling-off period** (often 14 days). During this time, they can cancel the work without penalty. You must inform them of this right in writing.\n\n**Handover Information**\n\nWhen the job is done, you must give the customer the information they need to use the system safely. This includes user manuals, safety certificates, and maintenance advice.\n\n**Why it matters**\n\nIf you give a **Quotation** when you should have given an **Estimate**, you might lose money if the job becomes difficult. If you fail to tell a customer about their **Cancellation Rights**, the contract might not be valid, and they might not have to pay you.\n\n**Key Facts**\n\n*   **Estimate** = Approximate price (can change).\n*   **Quotation** = Fixed price (binding promise).\n*   **Invoice** = Bill for payment (after work).\n*   **Cancellation Rights** apply mainly to contracts signed **away from business premises** (e.g., at the customer's home)."
+      }
+    },
+    {
+      "id": "210-2B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Customer Documentation",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-2B-C1-L1-A",
+            "questionText": "Which document is a flexible approximation used when the full extent of the work is unknown?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Estimate",
+              "An estimate"
+            ],
+            "hint": "Think of the document used when you have to guess the cost because you can't see the full problem yet."
+          },
+          {
+            "id": "210-2B-C1-L1-B",
+            "questionText": "Which document is a fixed-price offer that becomes legally binding once accepted?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Quotation",
+              "A quotation"
+            ],
+            "hint": "This document promises a specific price that cannot change."
+          },
+          {
+            "id": "210-2B-C1-L1-C",
+            "questionText": "Statutory cancellation rights (cooling-off period) typically apply when a contract is signed in which location?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Away from business premises",
+              "At the customer's home",
+              "Customer's house",
+              "Away from the office"
+            ],
+            "hint": "These rights protect customers who sign agreements outside of the company's main office, such as in their own living room."
+          },
+          {
+            "id": "210-2B-C1-L2",
+            "questionText": "Why is it risky to provide a Quotation for a repair job where the damage is hidden?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Quotations are fixed prices",
+              "Hidden damage might require more work or parts",
+              "You cannot charge more than the quoted price",
+              "The business would lose money"
+            ],
+            "expectedAnswer": [
+              "A quotation is a fixed price. If you find more damage later, you cannot charge the customer extra, so the business would lose money on the additional work.",
+              "It is risky because a quotation is legally binding. If the hidden damage costs more to fix than you expected, you are stuck with the original lower price."
+            ],
+            "hint": "Think about what happens to the price of a Quotation if the job turns out to be much harder than expected."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Company Policies and Limits of Authority",
+        "content": "### In this lesson\n\nWe will look at the internal rules that govern how you behave at work. This covers **AC4** (Company Policies).\n\n**What this is**\n\nEvery company has a **Company Policy**. These are the \"house rules\" for employees. They usually cover:\n\n*   **Dress Code:** Wearing the correct uniform and Personal Protective Equipment (PPE). This identifies you to the customer and keeps you safe.\n*   **Timekeeping:** Arriving on time. Lateness delays the whole project and upsets customers.\n*   **Behavior:** Being polite and professional. You represent the company's brand.\n\n**Limits of Authority**\n\nEven if you are good at your job, you don't have the power to decide everything. **Limits of Authority** define what you can and cannot do. \n\n*   **Scenario:** You are an apprentice. A supplier arrives with a £5,000 delivery. \n    *   *Can you sign the delivery note?* Usually, yes, to say \"it arrived\".\n    *   *Can you order £5,000 of new parts?* No. You do not have the **authority** to spend the company's money.\n\nThese limits are often written in your **Contract of Employment**. They protect you from making expensive mistakes and protect the company from unauthorized spending.\n\n**Why it matters**\n\nIf you break **Company Policy** (e.g., by being rude or late), the company loses its reputation and you might face disciplinary action. If you exceed your **Limits of Authority** (e.g., promising a customer a discount you aren't allowed to give), the company might be forced to honor a deal that loses them money.\n\n**Key Facts**\n\n*   **Company Policy** sets standards for behavior, dress, and timekeeping.\n*   **Limits of Authority** prevent junior staff from making high-risk financial or legal decisions.\n*   Apprentices generally have very narrow limits of authority and must seek supervision for major decisions."
+      }
+    },
+    {
+      "id": "210-2B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Policies and Authority",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-2B-C2-L1-A",
+            "questionText": "What term describes the formal rules a company sets for behavior, timekeeping, and dress code?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Company Policy",
+              "Company Policies",
+              "Policy"
+            ],
+            "hint": "These are the 'house rules' that ensure everyone acts professionally."
+          },
+          {
+            "id": "210-2B-C2-L1-B",
+            "questionText": "What defines the specific boundaries of an employee's power to make decisions or spend money?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Limits of Authority",
+              "Limit of Authority",
+              "Authority limits"
+            ],
+            "hint": "This prevents junior staff from signing contracts they shouldn't."
+          },
+          {
+            "id": "210-2B-C2-L1-C",
+            "questionText": "Who typically has the narrowest limits of authority in a technical team?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Apprentice",
+              "Apprentices",
+              "Trainee",
+              "Junior staff"
+            ],
+            "hint": "Think about the person who is still in training and needs the most supervision."
+          },
+          {
+            "id": "210-2B-C2-L2",
+            "questionText": "Why is it important for an apprentice to check their limits of authority before agreeing to a customer's request for extra work?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Apprentices usually cannot authorize new work or costs",
+              "Agreeing might bind the company to a bad deal",
+              "It protects the apprentice from blame",
+              "It ensures the work is priced correctly by a supervisor"
+            ],
+            "expectedAnswer": [
+              "The apprentice likely does not have the authority to agree to extra costs or changes. If they agree, they might commit the company to work it cannot do or a price that is too low. Checking limits ensures a supervisor approves the change correctly.",
+              "An apprentice usually has narrow limits of authority. Agreeing to extra work without permission could cause financial loss or legal issues for the company, so they must refer the request to someone with the power to decide."
+            ],
+            "hint": "Consider what happens if an apprentice says 'yes' to a job that costs £1000 but only charges £100."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Selecting the Right Document",
+        "given": "A customer wants a new boiler installed. You know exactly which boiler is needed, how much the pipes cost, and exactly how long it will take.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the certainty of the job",
+            "formula": null,
+            "calculation": null,
+            "result": "The requirements are clear. The costs for materials and labor are known. There are no unknowns."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select the document type",
+            "formula": null,
+            "calculation": null,
+            "result": "Quotation"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Justify the choice",
+            "formula": null,
+            "calculation": null,
+            "result": "Because the costs are fixed and known, we can offer a fixed price. This gives the customer certainty."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Contrast with the wrong choice",
+            "formula": null,
+            "calculation": null,
+            "result": "If we used an Estimate, the customer might worry the price will go up. Since we know the cost, a Quotation is better."
+          }
+        ],
+        "notes": "Always use a Quotation for standard installs where risks are low. Use an Estimate for repairs where risks are high."
+      }
+    },
+    {
+      "id": "210-2B-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "You are asked to repair an old electrical fault in a large building. You do not know where the cable break is located. It could take 1 hour or 10 hours to find.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Is the scope of work fixed or uncertain?",
+            "expectedAnswer": [
+              "uncertain",
+              "not fixed"
+            ],
+            "hint": "Do you know exactly how long this will take before you start?"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Which document should you provide to the customer?",
+            "expectedAnswer": [
+              "Estimate",
+              "An estimate"
+            ],
+            "hint": "Choose the document that allows the price to change if the work takes longer."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Why is a Quotation a bad choice here?",
+            "expectedAnswer": [
+              "lose money",
+              "cannot change price",
+              "fixed price risk"
+            ],
+            "hint": "If you quoted for 1 hour but it took 10 hours, what would happen to your profit?"
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "If the customer signs the agreement at their office (business premises), do they automatically get statutory cancellation rights?",
+            "expectedAnswer": [
+              "No",
+              "Usually no"
+            ],
+            "hint": "Cancellation rights (cooling-off periods) typically apply to contracts signed away from business premises (e.g., at a home)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "210-2B-P1",
+            "questionText": "You provide an Estimate of £500. The job is harder than expected and costs £150 more in labor. What is the total amount you can put on the final invoice?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "650"
+            ],
+            "hint": "Estimates are not fixed. You can charge for the actual work done. 500 + 150."
+          },
+          {
+            "id": "210-2B-P2",
+            "questionText": "You provide a Quotation of £1200. You forgot to include £200 of materials in your calculation. The customer has not asked for any changes. What is the maximum you can charge?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1200"
+            ],
+            "hint": "Quotations are fixed. Mistakes in calculation are your problem, not the customer's."
+          },
+          {
+            "id": "210-2B-P3",
+            "questionText": "An apprentice wants to buy a new drill on the company account. They are told they cannot do this without a manager's signature. What restriction is stopping them?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "limits of authority",
+              "limit of authority",
+              "authority limits"
+            ],
+            "hint": "The term for the boundaries of what you are allowed to decide or spend."
+          },
+          {
+            "id": "210-2B-P4",
+            "questionText": "A customer signs a contract for a new boiler at their private home. Two days later, they decide they don't want it. What legal right allows them to cancel?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "statutory cancellation rights",
+              "cancellation rights",
+              "cooling off period",
+              "statutory rights"
+            ],
+            "hint": "This right gives a cooling-off period for contracts signed away from business premises."
+          },
+          {
+            "id": "210-2B-P5",
+            "questionText": "Which document is issued only after the work is fully completed?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "invoice",
+              "an invoice"
+            ],
+            "hint": "This is the request for payment."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-2B-INT-1",
+            "questionText": "A customer asks an apprentice to do extra work that is not on the original Quotation. Explain why the apprentice must say 'I need to check with my supervisor' instead of just doing it. Refer to both the document type (Quotation) and the apprentice's role (Limits of Authority).",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Quotations are fixed price; extra work requires a price change",
+              "Apprentices have low limits of authority",
+              "Apprentices cannot authorize changes to a binding contract",
+              "Doing the work without approval risks the company not getting paid"
+            ],
+            "expectedAnswer": [
+              "Because the original document is a Quotation, the price is fixed. Any extra work changes the contract and requires a new price agreement. The apprentice has narrow limits of authority and cannot authorize this change or set the new price. They must check with a supervisor to ensure the company gets paid for the extra work.",
+              "The apprentice cannot just do the work because a Quotation is a legally binding fixed price. Adding work requires changing that agreement. The apprentice's limits of authority do not allow them to renegotiate contracts, so they must refer it to a supervisor."
+            ],
+            "hint": "Combine the fact that a Quotation is fixed (cannot change easily) with the fact that an apprentice cannot make financial decisions."
+          },
+          {
+            "id": "210-2B-INT-2",
+            "questionText": "Explain how Company Policy on dress code and Limits of Authority work together to protect the company's reputation and finances.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Dress code ensures professional appearance and safety (Reputation)",
+              "Limits of Authority prevent financial errors (Finances)",
+              "Together they ensure staff act professionally and responsibly",
+              "Both are usually part of the employment contract"
+            ],
+            "expectedAnswer": [
+              "Company policy on dress code ensures staff look professional and safe, which protects the company's reputation with customers. Limits of authority ensure staff do not spend money or sign contracts they shouldn't, which protects the company's finances. Together, they ensure the business runs safely and profitably.",
+              "Dress codes protect reputation by ensuring a professional image. Limits of authority protect finances by preventing unauthorized spending. Both rules ensure that employees represent the company correctly and do not expose it to unnecessary risk."
+            ],
+            "hint": "Think about what goes wrong if you look messy (reputation) and what goes wrong if you spend money you shouldn't (finances)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "210-2B-SR-1",
+            "questionText": "What do we call the person or organization that pays for the building services work?",
+            "expectedAnswer": [
+              "customer",
+              "client",
+              "the customer"
+            ],
+            "hint": "This is the person you provide the Estimate or Quotation to.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-2B-SR-2",
+            "questionText": "What document defines the legal relationship between an employee and their employer?",
+            "expectedAnswer": [
+              "contract of employment",
+              "employment contract",
+              "contract"
+            ],
+            "hint": "This document usually contains your job title and limits of authority.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-2B-SR-3",
+            "questionText": "If a price is 'fixed', does it change or stay the same?",
+            "expectedAnswer": [
+              "stay the same",
+              "stays the same",
+              "same"
+            ],
+            "hint": "Think about the definition of a Quotation.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check to reinforce key terms used in this lesson."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC3",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-16",
+    "updated": "2026-02-16",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "210",
+      "learningOutcome": "LO2",
+      "coveredAC": [
+        "AC3",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Purpose of Estimates, Quotations, Invoices, Statutory Cancellation Rights, Handover Information, Company Policies, Limits of Authority.",
+      "outOfScope": "Technical drafting of contracts, calculation of tax, specific legislation lists (AC1), workplace technical info (AC2).",
+      "rationale": "Lesson focuses on Customer Information (AC3) and Company Policies (AC4) as per syllabus anchors 2.3 and 2.4."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": false,
+      "specificScope": "Focus on the 'why' and 'when' of documentation and policies."
+    },
+    "misconceptions": [
+      {
+        "misconception": "An Estimate is a fixed price promise.",
+        "correction": "An Estimate is an approximation; a Quotation is a fixed price.",
+        "relatedAC": "AC3"
+      },
+      {
+        "misconception": "I can sign any document if I know how to do the work.",
+        "correction": "Knowing how to do the work does not give you the Authority to sign legal or financial documents.",
+        "relatedAC": "AC4"
+      },
+      {
+        "misconception": "Cancellation rights apply to every job.",
+        "correction": "Cancellation rights typically apply to contracts signed away from business premises (e.g. at a customer's home).",
+        "relatedAC": "AC3"
+      }
+    ]
+  }
+}

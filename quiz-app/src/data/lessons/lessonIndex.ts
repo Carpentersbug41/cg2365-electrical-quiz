@@ -557,6 +557,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-2A'),
     available: true,
     order: 6,
+  },
+  {
+    id: '210-2B',
+    title: 'Customer Information and Company Policies',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: 'Customer Information and Company Policies',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-2B'),
+    available: true,
+    order: 7,
   },];
 
 /**
