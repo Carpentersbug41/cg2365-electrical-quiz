@@ -568,6 +568,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-2B'),
     available: true,
     order: 7,
+  },
+  {
+    id: '210-3A',
+    title: 'Communication Methods and Diversity',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: 'Communication Methods and Diversity',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-3A'),
+    available: true,
+    order: 8,
   },];
 
 /**
