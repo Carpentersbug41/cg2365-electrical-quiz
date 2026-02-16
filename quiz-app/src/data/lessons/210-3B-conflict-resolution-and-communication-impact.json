@@ -1,14 +1,14 @@
 {
   "id": "210-3B",
-  "title": "210.3B — Conflict Resolution and Communication Impact",
-  "description": "Learn about Conflict Resolution and Communication Impact in Communication 2365 Level 2",
+  "title": "210.3B — Communication Methods and Specific Needs",
+  "description": "Learn to identify suitable communication methods for workplace tasks and adapt communication for people with specific needs.",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Conflict Resolution and Communication Impact",
+  "topic": "Communication Methods and Specific Needs",
   "learningOutcomes": [
-    "Identify the negative effects of poor communication on an organisation's efficiency and reputation",
-    "Describe the impact of communication breakdowns between operatives, management, and customers",
-    "Select appropriate actions to resolve conflicts between co-workers, supervisors, and customers"
+    "Identify suitable communication methods for different professional situations (AC1).",
+    "Define effective communication adjustments for people with specific needs (AC2).",
+    "Select the appropriate method to ensure accuracy, safety, and understanding."
   ],
   "prerequisites": [
     "210-3A"
@@ -21,15 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the negative effects of poor communication on an organisation's efficiency and reputation",
+            "text": "Identify suitable communication methods for different professional situations.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the impact of communication breakdowns between operatives, management, and customers",
+            "text": "Define effective communication adjustments for people with specific needs.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Select appropriate actions to resolve conflicts between co-workers, supervisors, and customers",
+            "text": "Select the appropriate method to ensure accuracy, safety, and understanding.",
             "bloomLevel": "apply"
           }
         ]
@@ -42,24 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Stakeholder",
-            "definition": "Any individual or group who has an interest in the success of a project, such as the client, the boss, or the installation team."
+            "term": "Verbal Communication",
+            "definition": "The use of spoken words to exchange information, such as face-to-face conversations, telephone calls, or toolbox talks."
           },
           {
-            "term": "Communication Breakdown",
-            "definition": "A failure to pass information clearly or correctly, resulting in errors, delays, or waste."
+            "term": "Written Communication",
+            "definition": "The use of text or symbols recorded on paper or digital devices, providing a permanent record (e.g., emails, job sheets, site diaries)."
           },
           {
-            "term": "Conflict Resolution",
-            "definition": "The professional process of settling a disagreement to find a solution that allows work to proceed."
+            "term": "Non-verbal Communication",
+            "definition": "Exchanging information without words, using body language, hand signals, or gestures, often used when noise prevents speaking."
           },
           {
-            "term": "Active Listening",
-            "definition": "A technique where you concentrate, understand, respond, and remember what is being said, often by repeating it back to the speaker."
+            "term": "Specific Needs",
+            "definition": "Individual requirements due to disabilities (e.g., hearing or visual impairment) or language barriers that require communication to be adapted."
           },
           {
-            "term": "Escalation",
-            "definition": "The formal procedure of passing a difficult issue up the chain of command to a supervisor or manager."
+            "term": "Visual Aid",
+            "definition": "An image, diagram, or sign used to support understanding, especially helpful for language barriers or technical explanations."
           }
         ]
       }
@@ -69,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Organizational Impact of Poor Communication",
-        "content": "### In this lesson\nWe will look at what happens when communication fails. You will learn how a simple misunderstanding can cost a company money and damage its good name.\n\n*   **Efficiency:** How wasted time and materials hurt the bottom line.\n*   **Reputation:** How bad news travels and loses future customers.\n*   **Ripple Effect:** How a mistake by one person affects the whole team.\n\n**Concept: Communication Breakdown**\nImagine you are playing the \"Telephone Game\" (broken whispers). You whisper a message to the person next to you, and by the time it reaches the end of the line, it is completely different. On a work site, this is called a **Communication Breakdown**. It happens when information is missing, incorrect, or not shared with the right **Stakeholder** (the people who care about the project).\n\n**Concrete Impacts**\nWhen communication breaks down, it leads to two main physical problems:\n1.  **Rework:** Doing a job twice. For example, installing 50 meters of tray only to find out the specification changed and you have to take it down. \n2.  **Operational Lag:** Standing around waiting. For example, a team cannot start wiring because the supervisor hasn't sent the drawings.\n\n**Measuring the Loss (Efficiency)**\nWe measure the damage in **Efficiency**. Efficiency is the ratio of work done to resources used. If you use more hours to do the same job, efficiency drops.\n\n**How to Calculate Efficiency Loss:**\nIf a task takes longer than planned due to an error, we calculate the percentage loss using this logic:\n1.  Find the **Extra Hours** (Actual Time - Planned Time).\n2.  Divide **Extra Hours** by **Planned Time**.\n3.  Multiply by 100 to get the percentage.\n\n*Micro-Scenario:* \nA job is planned for **10 hours**. Due to a vague instruction, it takes **12 hours**.\n*   Extra Hours: 12 - 10 = **2 hours**.\n*   Calculation: 2 ÷ 10 = 0.20.\n*   Result: **20% loss** in efficiency.\n\n**Reputation Damage**\nEfficiency is about money and time (tangible). **Reputation** is about trust (intangible). If a company keeps missing deadlines because of poor communication, customers stop hiring them. It takes years to build a reputation but only one bad project to destroy it.\n\n**Key Points**\n*   **Stakeholders** include everyone: operatives, management, and clients.\n*   **Rework** and **Lag** are the visible signs of communication failure.\n*   **Reputation** damage is hard to fix and leads to lost contracts."
+        "title": "Identifying Suitable Communication Methods",
+        "content": "### In this lesson\nThis lesson covers how to choose the right tool for the job when communicating. Just as you wouldn't use a hammer to turn a screw, you shouldn't use a casual chat to record a legal contract.\n\n*   Identify **Verbal**, **Written**, and **Non-verbal** methods.\n*   Understand when to use each method based on the situation.\n*   Recognise the importance of written records for liability.\n\n**What this is**\nCommunication methods are the \"channels\" we use to transfer information. \n1.  **Verbal:** Speaking (Phone, Toolbox Talk, Meeting). Fast and allows immediate feedback.\n2.  **Written:** Text (Email, Site Diary, Accident Book, Job Sheet). Permanent and provides legal proof.\n3.  **Non-verbal:** Visuals (Hand Signals, Body Language, Safety Signs). Universal and works in noisy environments.\n\n**Why it matters**\nChoosing the wrong method leads to errors. If you only *tell* a client about a cost increase (Verbal) but don't write it down, you have no proof when they refuse to pay. If you try to *email* a warning to a crane operator during a lift, it will be too late; you must use **Hand Signals** (Non-verbal).\n\n**Key facts / rules**\n*   **Written Communication** is required for formal records, variations, and accident reporting because it creates a permanent audit trail.\n*   **Verbal Communication** is best for quick instructions, team coordination, and checking immediate understanding.\n*   **Non-verbal Communication** (like Banksman signals) is essential on noisy sites where voices cannot be heard.\n*   **Visual Aids** (drawings/plans) are used to explain complex technical layouts.\n\n**How to recognise it**\nThink of communication like traffic control:\n*   **Verbal** is like a police officer directing traffic—flexible and immediate.\n*   **Written** is like the painted lines on the road—permanent and legally binding.\n*   **Non-verbal** is like the traffic lights—visual signals that everyone understands without words.\n\n**Micro-scenario:** \nYou are on a noisy construction site. A crane is lifting a load. The operator cannot hear you. You use standard **Hand Signals** to direct them left or right. Later, you need to order more cement. You send an **Email** so there is a record of exactly how much was ordered and when.\n\n**Common mistakes**\nLearners often think verbal is always best because it is fast. \n*   Misconception: \"I told him, so that's enough.\" | Correction: In professional settings, \"if it isn't written down, it didn't happen.\" | AC: 210.LO3.AC1\n*   Misconception: \"Hand signals are just informal waving.\" | Correction: Site signals are a formal, standardized language for safety. | AC: 210.LO3.AC1\n\n**Key Points**\n*   Use **Written** for proof/records.\n*   Use **Verbal** for speed/dialogue.\n*   Use **Non-verbal** for safety/noise.\n\n### Coming Up Next\nNow that we can identify the methods, we will learn how to adapt them for people with specific needs, such as disabilities or language barriers."
       }
     },
     {
@@ -78,63 +78,68 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Impact",
+        "title": "Check Your Understanding: Communication Methods",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C1-L1-A",
-            "questionText": "What term describes a person or group with a direct interest in the project (e.g., client, manager, operative)?",
+            "questionText": "Which communication method provides a permanent record suitable for legal proof?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Stakeholder",
-              "Stakeholders",
-              "A Stakeholder"
+              "written communication",
+              "written",
+              "email",
+              "site diary",
+              "job sheet"
             ],
-            "hint": "This word starts with 'S' and refers to anyone who holds a stake in the outcome."
+            "hint": "Think about which method leaves a physical or digital trace that can be checked later."
           },
           {
             "id": "210-3B-C1-L1-B",
-            "questionText": "If a team has to remove and reinstall equipment because they were given the wrong plan, what is this waste of effort called?",
+            "questionText": "What is the most appropriate method to communicate with a crane operator on a noisy site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Rework",
-              "Re-work",
-              "Reworking"
+              "non-verbal",
+              "hand signals",
+              "signals",
+              "gestures",
+              "visual signals"
             ],
-            "hint": "It means doing the work again."
+            "hint": "When you cannot be heard, you must use visual signs."
           },
           {
             "id": "210-3B-C1-L1-C",
-            "questionText": "Which asset is 'intangible' (cannot be touched) but is destroyed when customers lose trust in a company?",
+            "questionText": "What is the main advantage of verbal communication like a toolbox talk?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Reputation",
-              "Brand",
-              "Company reputation",
-              "Good name"
+              "immediate feedback",
+              "speed",
+              "fast",
+              "quick",
+              "allows questions"
             ],
-            "hint": "It takes years to build this, but only one bad job to ruin it."
+            "hint": "Think about how quickly you can get a reply compared to an email."
           },
           {
             "id": "210-3B-C1-L2",
-            "questionText": "Explain why 'rework' is considered a double loss for an organisation. Use the concepts of 'resources' and 'schedule' in your answer.",
+            "questionText": "Using your answers to Q1 (written/proof) and Q2 (signals/noise), explain why a site manager uses a site diary for accidents but hand signals for lifting. Why can't they swap these methods?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Wastes materials (resources) that were used in the first attempt",
-              "Wastes labour hours (resources) doing the work twice",
-              "Delays the schedule because time is spent fixing errors instead of progressing",
-              "Lowers overall efficiency"
+              "Site diaries are written to provide permanent legal evidence of accidents.",
+              "Hand signals are visual/non-verbal to overcome noise during lifting.",
+              "Swapping them fails: You cannot signal a legal record for later use.",
+              "Swapping them fails: You cannot write a note to a crane operator mid-lift safely."
             ],
             "expectedAnswer": [
-              "Rework is a double loss because you waste the resources (materials and labour) used on the first incorrect attempt, and you also lose time on the schedule doing the job again. This reduces the organisation's efficiency significantly.",
-              "It wastes both resources and time. You pay for materials twice and pay labour twice, while the schedule falls behind because no new progress is being made."
+              "A site manager uses a site diary for accidents because it creates a permanent written record for legal proof, which hand signals cannot do. They use hand signals for lifting because the site is too noisy for speech and writing is too slow for immediate safety directions. You cannot swap them because signals leave no record and writing is unsafe during a live lift.",
+              "The diary provides the necessary written evidence for the accident. The hand signals provide the necessary immediate visual communication for the noise. Swapping them would mean no legal record for the accident and unsafe delays for the lift."
             ],
-            "hint": "Think about what happens to the materials you installed wrongly and the time you spent doing it."
+            "hint": "Consider the 'purpose' of each task: one needs evidence later, the other needs immediate safety now."
           }
         ]
       }
@@ -144,8 +149,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Conflict Resolution Actions",
-        "content": "### In this lesson\nConflicts happen. Deadlines get tight and tempers flare. You will learn how to handle these situations professionally so work can continue.\n\n*   **Active Listening:** Making sure you understand before you argue.\n*   **Conflict Resolution:** Finding a 'win-win' or workable solution.\n*   **Escalation:** Knowing when to call for backup.\n\n**Concept: Conflict Resolution**\nThe goal of **Conflict Resolution** is not to \"win\" the argument. The goal is to reach a **Mutually Acceptable Outcome**. This means finding a solution that allows the project to move forward safely and correctly.\n\n**Tool 1: Active Listening**\nMost arguments get worse because people stop listening and start planning their next insult. **Active Listening** breaks this cycle. It involves:\n1.  **Concentrating** on the speaker.\n2.  **Paraphrasing:** Repeating back what they said in your own words. \n    *   *Example:* \"So, you are saying the cable route I chose is blocked by a pipe?\"\n3.  **Verbal/Non-Verbal Cues:** Nodding and saying \"I see\" or \"Go on\".\n\n**Tool 2: Escalation**\nSometimes you cannot resolve a conflict yourself. Maybe the customer is asking for something illegal, or a co-worker refuses to follow safety rules. In these cases, you use **Escalation**.\n\nThink of **Escalation** like a **pressure relief valve** on a boiler. If the pressure gets too high, the valve opens to release it safely. Similarly, if a conflict gets too heated or complex, you follow the formal procedure to pass it up to a manager. This prevents an explosion (a fight or a lawsuit).\n\n**Micro-Scenario: Saving Time**\n*   **Scenario A:** An operative argues with a client for 90 minutes about a bill. Result: 90 minutes wasted, client angry.\n*   **Scenario B:** The operative listens for 5 minutes, realizes they cannot fix the billing issue, and **Escalates** it to the office manager. Result: Only 5 minutes used. **85 minutes saved** for productive work.\n\n**Key Rules**\n*   **De-escalate first:** Use active listening to lower the temperature.\n*   **Don't take it personally:** It's about the work, not you.\n*   **Follow procedure:** Escalation is a formal step, not \"telling tales.\""
+        "title": "Adapting for Specific Needs",
+        "content": "### In this lesson\nThis lesson explains how to adjust your communication method when the receiver has **Specific Needs**, such as a disability or language barrier. \n\n*   Define methods for people with **Hearing Impairment**.\n*   Define methods for people with **Visual Impairment**.\n*   Define methods for **Language Barriers** and **Learning Difficulties**.\n\n**What this is**\nCommunication only works if the message is received and understood. If the receiver has a specific need, the sender must adapt the method. This is like using a travel adapter for a plug; the electricity (information) is the same, but the connection (method) changes to fit the socket.\n\n**Why it matters**\nFailing to adapt is not just rude; it is ineffective and often illegal (discrimination). If you shout at a client who relies on lip-reading, they still won't understand you. If you give a text-heavy manual to someone with dyslexia or a language barrier, the safety instructions will be ignored.\n\n**Key facts / rules**\n1.  **Hearing Impairment:**\n    *   Face the person directly so they can lip-read.\n    *   Ensure good lighting on your face.\n    *   Use **Written** notes or text messages to confirm details.\n    *   Use **Sign Language** interpreters for formal meetings.\n2.  **Visual Impairment:**\n    *   Use clear **Verbal** descriptions of the environment.\n    *   Provide documents in **Large Print** or Braille.\n    *   Ensure good contrast on signs.\n3.  **Language Barriers:**\n    *   Use **Visual Aids** (diagrams, pictures).\n    *   Use translation apps or interpreters.\n    *   Use simple, standard English without slang.\n4.  **Learning Difficulties:**\n    *   Break information into small chunks.\n    *   Use pictures and demonstrations.\n    *   Check understanding frequently.\n\n**How to do it**\nWhen you meet someone with a specific need, ask them: \"What is the best way for us to communicate?\" \n\n**Micro-scenario:** \nYou are explaining a heating timer to a customer who does not speak English well. \n*   *Bad:* Speaking louder (does not help translation).\n*   *Good:* You draw a **diagram** (Visual Aid) of the timer settings and demonstrate the action physically. You use a translation app for key words like \"On\" and \"Off\".\n\n**Common mistakes**\n*   Misconception: \"Shouting helps people understand.\" | Correction: Shouting distorts lip movements and can seem aggressive; use clear enunciation or writing instead. | AC: 210.LO3.AC2\n*   Misconception: \"Visual aids are childish.\" | Correction: Diagrams are often the most precise way to overcome language or technical knowledge gaps. | AC: 210.LO3.AC2\n\n**Key Points**\n*   **Hearing:** Use Light, Lip-reading, Writing.\n*   **Visual:** Use Verbal description, Large print.\n*   **Language:** Use Diagrams, Translation.\n*   **General:** Always check for understanding.\n\n### Coming Up Next\nWe have covered the methods and how to adapt them. Next, we will practice applying these choices to specific workplace scenarios."
       }
     },
     {
@@ -153,63 +158,67 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Resolution",
+        "title": "Check Your Understanding: Specific Needs",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C2-L1-A",
-            "questionText": "What is the primary goal of professional conflict resolution?",
+            "questionText": "What is a suitable adjustment when communicating with someone who has a hearing impairment?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Mutually acceptable outcome",
-              "A mutually acceptable outcome",
-              "Allow work to continue",
-              "Find a path forward"
+              "face them directly",
+              "write it down",
+              "use written notes",
+              "good lighting",
+              "lip reading"
             ],
-            "hint": "It is not about 'winning'. It is about finding a solution that works for everyone."
+            "hint": "Think about what helps them see your words or read the message."
           },
           {
             "id": "210-3B-C2-L1-B",
-            "questionText": "Which communication technique involves repeating back what someone said to ensure you understood them?",
+            "questionText": "Which type of aid is most effective for overcoming a language barrier?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Active listening",
-              "Paraphrasing",
-              "Active listening technique"
+              "visual aids",
+              "diagrams",
+              "pictures",
+              "translation app",
+              "demonstration"
             ],
-            "hint": "This technique requires full concentration and feedback."
+            "hint": "If words don't work, what can you look at to understand?"
           },
           {
             "id": "210-3B-C2-L1-C",
-            "questionText": "What is the formal process of referring an unresolved issue to a higher authority?",
+            "questionText": "What should you provide for a client with a visual impairment regarding documents?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Escalation",
-              "Escalating",
-              "Escalation procedure"
+              "large print",
+              "braille",
+              "audio format",
+              "digital text"
             ],
-            "hint": "Think of the 'pressure relief valve' analogy."
+            "hint": "How can you make text easier to see or accessible without sight?"
           },
           {
             "id": "210-3B-C2-L2",
-            "questionText": "Why is 'Escalation' considered a professional tool rather than a personal failure? Use the concept of 'authority' in your answer.",
+            "questionText": "Using your answers to Q1 (hearing) and Q2 (language), explain why 'shouting' is a poor strategy for both groups. What is the shared principle of effective adaptation here?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Some issues are beyond an operative's authority (e.g., contract changes, legal issues)",
-              "Escalation follows a set procedure to get the issue to the person with the right authority",
-              "It protects the operative and the company from making unauthorized decisions",
-              "It prevents arguments by moving the decision-making to the correct level"
+              "Shouting does not translate language.",
+              "Shouting distorts lip movements making lip-reading harder.",
+              "The shared principle is clarity and switching channels (to visual/written), not just increasing volume.",
+              "Effective adaptation requires changing the method to suit the receiver's capability."
             ],
             "expectedAnswer": [
-              "Escalation is a professional tool because it recognizes that some problems are outside an operative's authority to solve. By moving the issue to a manager who has the authority, the problem is handled correctly according to company procedure.",
-              "It is not a failure; it is a procedure. Operatives have limited authority. When a problem exceeds that authority, escalation ensures it is resolved by someone with the power to make the decision."
+              "Shouting is poor because it does not help translate a foreign language, and for hearing impairments, it distorts your face making lip-reading difficult. The shared principle is that we must change the method (like using visuals or writing) rather than just increasing the volume.",
+              "Volume doesn't fix understanding. For language barriers, we need visuals. For hearing loss, we need clear visibility or writing. Shouting fails both because it doesn't address the actual barrier."
             ],
-            "hint": "Think about what an operative is allowed to decide versus what a manager is allowed to decide."
+            "hint": "Think about the 'adapter' analogy. Does forcing the plug harder (shouting) make it fit, or do you need a different tool?"
           }
         ]
       }
@@ -223,58 +232,58 @@
         "questions": [
           {
             "id": "210-3B-P1",
-            "questionText": "A project is scheduled to take 40 hours. Due to a communication breakdown, it takes 50 hours. What is the percentage loss in efficiency? (Calculation: [Extra Hours / Planned Hours] x 100)",
+            "questionText": "A written job sheet takes 5 minutes to complete. If you complete 6 job sheets in a day, how many total minutes are spent on written communication?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "25",
-              "25%",
-              "25.0"
+              "30"
             ],
-            "hint": "Extra hours = 50 - 40. Divide the extra hours by the original 40."
+            "hint": "Multiply the time per sheet by the number of sheets."
           },
           {
             "id": "210-3B-P2",
-            "questionText": "Why do we aim for a 'mutually acceptable outcome' instead of trying to win an argument?",
+            "questionText": "You need to warn a colleague of a falling object immediately, but it is too noisy to shout. What method do you use?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "maintain productivity",
-              "allow work to continue",
-              "keep the project moving",
-              "avoid delays"
+              "hand signals",
+              "visual signals",
+              "non-verbal",
+              "gestures"
             ],
-            "hint": "Winning an argument might make you feel good, but what happens to the work if the other person refuses to cooperate?"
+            "hint": "Immediate safety warning without sound."
           },
           {
             "id": "210-3B-P3",
-            "questionText": "You are arguing with a co-worker. You stop, look at them, and ask: 'So you think this method is unsafe?' What technique are you using?",
+            "questionText": "A customer claims you quoted £100, but you actually quoted £150. Which communication method would have prevented this dispute by providing proof?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "active listening",
-              "active-listening",
-              "paraphrasing"
+              "written",
+              "email",
+              "written quote",
+              "paperwork"
             ],
-            "hint": "You are actively checking your understanding of their point."
+            "hint": "The method that creates a permanent legal record."
           },
           {
             "id": "210-3B-P4",
-            "questionText": "An operative spends 90 minutes arguing with a customer. If they had used escalation after 10 minutes, how many minutes would they have saved?",
-            "answerType": "numeric",
+            "questionText": "You are giving a safety briefing to a worker with limited English. Besides speaking simply, what can you show them to ensure they understand the hazard zones?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "80"
+              "diagrams",
+              "pictures",
+              "visual aids",
+              "drawings",
+              "signs"
             ],
-            "hint": "Total time spent (90) minus the time spent before escalation (10)."
+            "hint": "A picture is worth a thousand words."
           },
           {
             "id": "210-3B-P5",
-            "questionText": "A company delivers late three times in a row without telling the client. The client cancels the contract and writes a bad review. What specific 'intangible' asset has been damaged?",
-            "answerType": "short-text",
+            "questionText": "A toolbox talk involves 1 supervisor and 4 operatives. If the talk lasts 15 minutes, how many total person-minutes are consumed by this verbal communication?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "reputation",
-              "company reputation",
-              "brand image",
-              "good name"
+              "75"
             ],
-            "hint": "It is the trust the industry has in the company."
+            "hint": "Total people (1+4) multiplied by the duration."
           }
         ]
       }
@@ -290,38 +299,38 @@
         "questions": [
           {
             "id": "210-3B-INT-1",
-            "questionText": "Explain how a communication breakdown between a supervisor and an operative can lead to 'rework'. In your answer, describe the sequence of events from the instruction to the physical result.",
+            "questionText": "Scenario: You are explaining a complex boiler fault to an elderly customer who has significant hearing loss. Analyze why a standard verbal explanation might fail and propose a combined strategy. In your answer, include: (1) The barrier to the standard method, (2) Two specific adaptations you would use, and (3) Why checking understanding is critical here.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Supervisor provides unclear or incorrect instruction (Breakdown)",
-              "Operative performs the task based on this bad information",
-              "The error is discovered after the work is done",
-              "The work must be dismantled and done again (Rework)",
-              "This wastes time and materials"
+              "Barrier: The customer cannot hear technical details clearly, leading to misunderstanding.",
+              "Adaptation 1: Face the customer directly in good light for lip-reading.",
+              "Adaptation 2: Write down the key points or costs (Written method) or use a diagram.",
+              "Reasoning: Checking understanding ensures the message was received despite the sensory deficit.",
+              "Demonstrates linking a specific need (hearing) to a method choice (written/visual)."
             ],
             "expectedAnswer": [
-              "A breakdown happens if the supervisor gives vague instructions. The operative does the work based on this misunderstanding. When the error is found, the work has to be ripped out and done again, which is rework.",
-              "First, the communication fails (e.g., wrong drawing). Second, the operative installs the item incorrectly. Third, the mistake is spotted. Finally, the item must be removed and re-installed, causing rework."
+              "A standard verbal explanation might fail because the customer cannot hear the technical details clearly. To fix this, I would face the customer directly in good light so they can lip-read, and I would also write down the fault details and cost on paper. Checking understanding is critical to ensure they actually agreed to the work and didn't just nod out of politeness.",
+              "The barrier is hearing loss. I would use written notes and diagrams to support my speech. I would also ensure I am facing them. Checking understanding prevents disputes later if they didn't hear the price correctly."
             ],
-            "hint": "Trace the path: Bad info -> Wrong Action -> Discovery -> Correction."
+            "hint": "Combine 'Verbal' best practices (facing them) with a 'Written' backup."
           },
           {
             "id": "210-3B-INT-2",
-            "questionText": "A customer is shouting about a delay that is not your fault. Describe the professional steps you would take to resolve this, using 'Active Listening' and 'Escalation'. Why is this better than arguing back?",
+            "questionText": "Evaluate the relationship between legal liability and communication methods. Why is 'Written Communication' considered superior for contracts but 'Non-verbal' superior for immediate crane safety? Answer in 3-4 sentences, explaining the specific property (e.g., permanence vs. speed) that makes each method correct for its context.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Step 1: Use Active Listening to understand the customer's frustration and de-escalate",
-              "Step 2: Recognize the issue is not your fault or within your control",
-              "Step 3: Use Escalation to refer the customer to a manager",
-              "Reasoning: Arguing wastes time and damages reputation; this process solves the problem professionally"
+              "Written communication has the property of permanence/traceability, required for contracts/liability.",
+              "Non-verbal communication has the property of visibility/immediacy, required for noisy safety situations.",
+              "Using the wrong property causes failure (e.g., writing takes too long for safety; signals leave no proof for contracts).",
+              "Synthesizes the trade-off between speed/visibility and evidence/detail."
             ],
             "expectedAnswer": [
-              "First, I would use active listening to let the customer know I understand their frustration. Then, since I cannot fix the delay myself, I would escalate the issue to my manager. This is better than arguing because it calms the situation and gets the problem to someone who can actually solve it, protecting the company's reputation.",
-              "I would listen actively to de-escalate the anger. Then I would explain that I need to bring in my supervisor to help them (Escalation). Arguing back would only waste time and might lose the client, whereas this method finds a solution."
+              "Written communication is superior for contracts because its main property is permanence; it creates a lasting record that proves exactly what was agreed for legal liability. Non-verbal communication is superior for crane safety because its main property is visual immediacy; it cuts through site noise instantly to prevent accidents. You cannot use writing for the crane because it is too slow, and you cannot use signals for contracts because they leave no evidence.",
+              "Contracts require proof, so we use written methods because they are permanent. Safety requires speed and visibility in noise, so we use non-verbal signals. The context dictates the method: one needs evidence, the other needs immediate reaction."
             ],
-            "hint": "First calm them down (listen), then move them to the right person (escalate)."
+            "hint": "Focus on the words 'Permanent Record' vs 'Immediate Visibility'."
           }
         ]
       }
@@ -335,95 +344,94 @@
         "questions": [
           {
             "id": "210-3B-SR-1",
-            "questionText": "Name one common method of written communication used on a site to record daily progress.",
+            "questionText": "Who is the 'Sender' in the communication cycle?",
             "expectedAnswer": [
-              "Site diary",
-              "Daily log",
-              "Timesheet",
-              "Job sheet"
+              "the person giving information",
+              "person speaking",
+              "source of information"
             ],
-            "hint": "A book or digital log where daily events are noted.",
+            "hint": "The person who starts the message.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-2",
-            "questionText": "What type of document contains the mandatory safety rules for a specific site?",
+            "questionText": "What is 'Feedback' in communication?",
             "expectedAnswer": [
-              "Risk assessment",
-              "Method statement",
-              "Safety policy",
-              "RAMS"
+              "confirmation",
+              "reply",
+              "response",
+              "checking understanding"
             ],
-            "hint": "It tells you the risks and how to work safely.",
+            "hint": "How you know the message was understood.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-3",
-            "questionText": "If you have a barrier to communication (like loud noise), what is a simple way to overcome it?",
+            "questionText": "What is 'Noise' in the context of communication barriers?",
             "expectedAnswer": [
-              "Move to a quiet area",
-              "Use hand signals",
-              "Write it down",
-              "Stop the noise"
+              "interference",
+              "distraction",
+              "background sound",
+              "barrier"
             ],
-            "hint": "Think about how you would talk if you couldn't hear well.",
+            "hint": "Anything that distorts or blocks the message.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check regarding communication methods (AC1/AC2) covered in previous lessons."
+        "notes": "Review of Communication Cycle (Lesson 3A) before progressing."
       }
     }
   ],
   "targetAssessmentCriteria": [
-    "AC3",
-    "AC4"
+    "AC1",
+    "AC2"
   ],
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
     "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, SITUATIONAL_RESPONSE",
+    "taskMode": "IDENTIFICATION, PROCEDURE",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO3",
       "coveredAC": [
-        "AC3",
-        "AC4"
+        "AC1",
+        "AC2"
       ],
       "outOfScopeAC": [
-        "AC1",
-        "AC2",
+        "AC3",
+        "AC4",
         "AC5"
       ]
     },
     "scope": {
-      "inScope": "Identification of communication impacts (efficiency/reputation) and selection of corrective actions (active listening/escalation) for workplace conflict.",
-      "outOfScope": "Formal legal mediation, disciplinary procedure documentation, and psychological theory of conflict.",
-      "rationale": "Level 2 requirements focus on recognizing appropriate workplace behaviors and organizational consequences rather than administrative or legal management."
+      "inScope": "Identification of verbal, written, and non-verbal communication methods. Adaptation of methods for hearing, visual, and language needs.",
+      "outOfScope": "Conflict resolution strategies (AC3), Effects of poor communication (AC4), Technical report writing standards.",
+      "rationale": "The lesson focuses on the selection of methods and inclusivity tools as required by AC1 and AC2."
     },
     "teachingConstraints": {
       "excludeHowTo": false,
       "purposeOnly": false,
-      "identificationOnly": true,
+      "identificationOnly": false,
       "noCalculations": false,
-      "specificScope": "Focus on the relationship dynamics between operatives, customers, and supervisors."
+      "specificScope": "Focus on method selection and specific need adaptation."
     },
     "misconceptions": [
       {
-        "misconception": "Conflict resolution means one person wins the argument.",
-        "correction": "The goal of conflict resolution is to reach a mutually acceptable outcome that allows work to continue productively.",
-        "relatedAC": "210.LO3.AC3.3"
+        "misconception": "Verbal communication is always sufficient because it is fast.",
+        "correction": "Written communication is required for liability, contracts, and formal records regardless of speed.",
+        "relatedAC": "210.LO3.AC1"
       },
       {
-        "misconception": "Active listening is simply staying quiet while the other person speaks.",
-        "correction": "Active listening requires conscious effort to provide feedback (paraphrasing) to ensure total understanding.",
-        "relatedAC": "210.LO3.AC3.3"
+        "misconception": "Shouting helps people with language barriers or hearing loss understand better.",
+        "correction": "Shouting often distorts lip-reading and does not translate language; visual aids or writing are effective adaptations.",
+        "relatedAC": "210.LO3.AC2"
       },
       {
-        "misconception": "Escalation is the same as complaining about a co-worker.",
-        "correction": "Escalation is a formal organisational procedure used to refer complex or unresolved issues to a higher level of authority.",
-        "relatedAC": "210.LO3.AC3.3"
+        "misconception": "Hand signals are informal and optional.",
+        "correction": "Standardized hand signals are a formal, mandatory safety communication method in noisy environments.",
+        "relatedAC": "210.LO3.AC1"
       }
     ]
   }
