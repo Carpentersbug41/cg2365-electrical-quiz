@@ -1,0 +1,453 @@
+{
+  "id": "210-1B",
+  "title": "210.1B — Construction Team Roles and Site Visitors",
+  "description": "Understand the roles of the site management team, those reporting to them, and the authority of site visitors.",
+  "layout": "linear-flow",
+  "unit": "Unit 210",
+  "topic": "Construction team members and roles",
+  "learningOutcomes": [
+    "Identify key roles within the site management team (AC1.1)",
+    "Identify individuals and roles reporting to site management (AC1.2)",
+    "Distinguish between the roles and authority of various site visitors (AC1.3)"
+  ],
+  "prerequisites": [
+    "210-1A"
+  ],
+  "blocks": [
+    {
+      "id": "210-1B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the Site Manager and Foreman as the primary site management team (AC1.1)",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the roles of sub-contractors and tradespeople reporting to management (AC1.2)",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between Statutory (HSE, Building Control) and Non-Statutory visitors (AC1.3)",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-1B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Site Manager",
+            "definition": "The person with overall responsibility for the project's progress, safety, and budget on-site."
+          },
+          {
+            "term": "Foreman / Supervisor",
+            "definition": "A person who oversees the day-to-day work of specific trades, ensuring tasks are completed correctly and on time."
+          },
+          {
+            "term": "Sub-contractor",
+            "definition": "A specialist company or individual hired to perform specific tasks (like electrical or plumbing) rather than the whole project."
+          },
+          {
+            "term": "Statutory Inspector",
+            "definition": "An official with legal authority (e.g., HSE) to enter a site and enforce laws, regardless of an invitation."
+          },
+          {
+            "term": "Building Control Officer",
+            "definition": "A professional who checks that construction work meets the technical standards of the Building Regulations."
+          },
+          {
+            "term": "Prohibition Notice",
+            "definition": "A legal order issued by an inspector that stops a specific work activity immediately because of a serious safety risk."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-1B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Site Hierarchy and Visitor Authority",
+        "description": "A visual map showing the internal management team and external regulatory visitors.",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "site-manager",
+          "foreman",
+          "sub-contractors",
+          "statutory-inspectors"
+        ],
+        "placeholderText": "A hierarchical flow chart. At the top: 'Site Manager' (Overall Authority). Below: 'Foreman/Supervisor' (Direct Supervision). Bottom: 'Sub-contractors/Trades' (Reporting Individuals). To the side, a dashed box labeled 'Site Visitors' points toward the team, divided into 'Statutory' (HSE/Building Control with legal shield icons) and 'Non-Statutory' (Architects/Clients with clipboard icons)."
+      }
+    },
+    {
+      "id": "210-1B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Site Team: Management and Reporting",
+        "content": "### The Internal Team\nTo communicate effectively, you must know the difference between the people who run the site and those who carry out the technical work.\n\n**1. Site Management Team (AC1.1)**\n*   **Site Manager:** Think of this person as the 'Captain' of the ship. They are responsible for the entire project, including health and safety, meeting deadlines, and managing the budget.\n*   **Foreman / Supervisor:** This is the 'Section Leader'. They work under the Site Manager and directly supervise the tradespeople. They ensure that daily tasks are done correctly and safely.\n\n**2. Reporting Individuals (AC1.2)**\n*   **Sub-contractors and Trades:** These are specialists (like electricians, plumbers, or carpenters) who report to the Foreman or Site Manager. \n\n**Concrete Anchor:** If a large pipe bursts, the **Site Manager** decides the overall emergency plan, the **Foreman** organizes the specific crew to fix it, and the **Sub-contractor** (the plumber) performs the actual repair and reports progress back up the chain.\n\n**Why it matters**\nIf you report a safety hazard to the wrong person, it might not be fixed. Always report technical issues to your immediate supervisor (Foreman) first.\n\n**Common Mistake**\nLearners often think the Site Manager does all the supervision. In reality, on large sites, the Manager handles the 'big picture' while the Foreman handles the 'minute-by-minute' work."
+      }
+    },
+    {
+      "id": "210-1B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Internal Roles",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-1B-C1-L1-A",
+            "questionText": "Who has the overall responsibility for the safety, budget, and progress of the entire project on-site?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Site Manager",
+              "The Site Manager",
+              "Project Manager"
+            ],
+            "hint": "They are the 'Captain' with the highest level of site authority."
+          },
+          {
+            "id": "210-1B-C1-L1-B",
+            "questionText": "Which role is responsible for the direct, day-to-day supervision of specific trades and tasks?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Foreman",
+              "Supervisor",
+              "Site Foreman",
+              "Ganger"
+            ],
+            "hint": "They report to the Site Manager and oversee the work on the ground."
+          },
+          {
+            "id": "210-1B-C1-L1-C",
+            "questionText": "What is the term for a specialist worker or company hired to do a specific part of the project?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Sub-contractor",
+              "Subcontractor",
+              "Tradesperson",
+              "Specialist"
+            ],
+            "hint": "They report to the site management team for their specific area of work."
+          },
+          {
+            "id": "210-1B-C1-L2",
+            "questionText": "Explain the reporting relationship between a sub-contractor, a foreman, and a site manager. Why is this hierarchy important for site safety?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Sub-contractors report to the Foreman regarding daily tasks",
+              "The Foreman reports to the Site Manager regarding progress and safety",
+              "Hierarchy ensures clear lines of communication",
+              "Prevents confusion during emergencies or safety issues"
+            ],
+            "expectedAnswer": [
+              "A sub-contractor reports to the foreman, who then reports to the site manager. This hierarchy is important because it ensures that safety information and task instructions are passed through a clear chain of command, preventing confusion and ensuring the person with overall responsibility (the site manager) is kept informed of all risks.",
+              "The sub-contractor performs the work and reports to the supervisor or foreman. The foreman then communicates with the site manager. This structure is vital for safety because it creates accountability; every worker knows who to report hazards to, and management can track site-wide safety through these levels."
+            ],
+            "hint": "Think about how information travels from the person doing the work up to the person in charge of the whole site."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-1B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Site Visitors and Statutory Authority",
+        "content": "### External Visitors (AC1.3)\nNot everyone on site is part of the permanent team. Visitors are categorized by their legal power.\n\n**1. Statutory Inspectors (Legal Authority)**\nThese people have the legal right to enter a site at any reasonable time. They represent the law.\n*   **Health and Safety Executive (HSE):** The national watchdog for site safety. They can stop dangerous work immediately using a **Prohibition Notice**.\n*   **Building Control Officer:** They ensure the building meets structural laws. If they aren't satisfied, they can prevent the building from being legally used.\n\n**2. Non-Statutory Visitors (Contractual/Advisory)**\nThese people are invited to the site for specific reasons but do not have the same legal enforcement powers as the HSE.\n*   **Architects / Clients:** They visit to check if the work looks the way they planned.\n*   **Insurance Inspectors:** They check for risks to protect the financial interests of the project.\n\n**Concrete Anchor:** \n*   A **Statutory Inspector** is like a Police Officer: They can stop you and issue a legal penalty if you break the law.\n*   A **Non-Statutory Visitor** is like a Driving Instructor: They give you advice and check your quality, but they cannot arrest you or seize your vehicle.\n\n**Key Rule:** All visitors must sign the site register and receive a safety induction, regardless of their authority."
+      }
+    },
+    {
+      "id": "210-1B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Visitor Authority",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-1B-C2-L1-A",
+            "questionText": "Which statutory body acts as the national watchdog for work-related health and safety?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "HSE",
+              "Health and Safety Executive",
+              "Health & Safety Executive"
+            ],
+            "hint": "They have the power to issue Prohibition Notices."
+          },
+          {
+            "id": "210-1B-C2-L1-B",
+            "questionText": "Which visitor focuses on ensuring the building structure complies with Building Regulations?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Building Control Officer",
+              "Building Control",
+              "Approved Inspector"
+            ],
+            "hint": "They check foundations, drainage, and structural integrity."
+          },
+          {
+            "id": "210-1B-C2-L1-C",
+            "questionText": "What is the main difference between a Statutory and Non-Statutory visitor regarding site entry?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Legal right of entry",
+              "Right of entry",
+              "Statutory can enter without invitation",
+              "Legal authority"
+            ],
+            "hint": "Think about who is allowed to enter 'at any reasonable time' by law."
+          },
+          {
+            "id": "210-1B-C2-L2",
+            "questionText": "Compare the authority of an HSE Inspector with that of an Architect visiting the site. If both notice a safety issue, how do their powers to address it differ?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "HSE has statutory/legal authority to enforce safety",
+              "Architect has contractual/advisory authority but no legal enforcement power",
+              "HSE can issue a Prohibition Notice to stop work immediately",
+              "Architect would report the issue to the Site Manager to take action"
+            ],
+            "expectedAnswer": [
+              "The HSE Inspector has statutory authority, meaning they can legally issue a Prohibition Notice to stop work immediately if they see a danger. An Architect is a non-statutory visitor; while they can advise that something is wrong, they do not have the legal power to stop work themselves and must instead report it to the site management team.",
+              "An HSE inspector can use the law to shut down a site or issue fines because they are a statutory official. An architect is non-statutory and acts as an advisor. If both saw a hazard, the HSE could stop the work instantly with a notice, whereas the architect would have to ask the site manager to fix it."
+            ],
+            "hint": "Think about who has the power of the law (Statutory) versus who is there as a consultant (Non-Statutory)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-1B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Applying Your Knowledge",
+        "questions": [
+          {
+            "id": "210-1B-P1",
+            "questionText": "How many levels of site management are typically involved in the direct reporting chain for a sub-contractor (Foreman and Site Manager)?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "2"
+            ],
+            "hint": "Count the Site Manager and the Foreman."
+          },
+          {
+            "id": "210-1B-P2",
+            "questionText": "A visitor arrives to check if the fire exit locations match the original design drawings. They do not have legal enforcement powers. What is their classification?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Non-Statutory Visitor",
+              "Non-statutory",
+              "Non statutory"
+            ],
+            "hint": "They are likely an architect or designer."
+          },
+          {
+            "id": "210-1B-P3",
+            "questionText": "Why does a Prohibition Notice require an immediate stop to work, whereas an Improvement Notice allows work to continue for a time?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "immediate danger",
+              "severity of risk",
+              "threat to life",
+              "imminent risk",
+              "serious injury",
+              "safety risk",
+              "danger to life",
+              "level of risk"
+            ],
+            "hint": "Think about the level of danger to the workers' lives."
+          },
+          {
+            "id": "210-1B-P4",
+            "questionText": "If a visitor is checking that the electrical earthing meets the 'Requirements for Electrical Installations', which regulatory role are they likely fulfilling?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Electrical Inspector",
+              "Electrical Services Inspector",
+              "Building Control"
+            ],
+            "hint": "They are a specialist looking at utility compliance."
+          },
+          {
+            "id": "210-1B-P5",
+            "questionText": "If a Site Manager is given a Prohibition Notice by the HSE, how many hours are they legally allowed to continue that specific dangerous activity?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0"
+            ],
+            "hint": "Prohibition means 'stop now'."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-1B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Integrative Case Study",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-1B-INT-1",
+            "questionText": "A Sub-contractor notices a structural crack in a supporting wall and reports it to the Foreman. The Foreman informs the Site Manager, who then calls in a Building Control Officer. Analyze this sequence: (1) Identify the management roles and the reporting individual. (2) Explain why the Building Control Officer is the correct visitor to call. (3) What legal power does this visitor have if the wall is unsafe?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Sub-contractor is the reporting individual; Foreman and Site Manager are the management team",
+              "Building Control is the correct visitor because they deal with structural regulations",
+              "Building Control has statutory power to reject the work or issue enforcement notices",
+              "The sequence shows a correct internal reporting chain followed by external expert verification"
+            ],
+            "expectedAnswer": [
+              "In this scenario, the Sub-contractor is the reporting individual, while the Foreman and Site Manager make up the management team. The Building Control Officer is the correct visitor because their specific statutory role is to ensure structural integrity and compliance with Building Regulations. If the wall is unsafe, the Building Control Officer has the legal power to issue an enforcement notice or refuse to certify the building, which can prevent it from being legally occupied.",
+              "The sub-contractor reports up to the foreman and site manager (the management team). Building Control is called because they are the statutory authority for structural standards. They have the power to stop the project from being signed off as safe, or they can mandate that the wall be rebuilt to meet the law."
+            ],
+            "hint": "Consider the roles of the internal team first, then the specific 'zone' of authority for the visitor."
+          },
+          {
+            "id": "210-1B-INT-2",
+            "questionText": "Evaluate how the Site Manager must interact differently with an HSE Inspector versus a Client. In your answer, include: (1) differences in entry rights, (2) differences in the consequences of ignoring their instructions, and (3) how the 'Statutory' vs 'Non-Statutory' labels define these interactions.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "HSE (Statutory) has legal right of entry; Client (Non-Statutory) usually requires an appointment",
+              "Ignoring HSE leads to legal penalties/fines; ignoring a Client leads to contractual/financial disputes",
+              "Statutory status grants legal enforcement power; Non-Statutory is based on a private agreement",
+              "Site Manager must prioritize statutory legal orders over client requests if they conflict"
+            ],
+            "expectedAnswer": [
+              "The Site Manager must treat the HSE Inspector as a statutory authority with a legal right to enter the site at any time, whereas a Client is a non-statutory visitor whose access is usually governed by an appointment. Ignoring the HSE's instructions can result in criminal prosecution, fines, or site closure through Prohibition Notices. In contrast, ignoring a Client's instructions is a contractual matter that might lead to financial loss but not legal arrest. The 'Statutory' label means the HSE's authority is derived from national law, while the Client's authority is derived from a private contract.",
+              "Statutory visitors like the HSE have the law on their side and can enter without warning; the Site Manager must follow their legal notices or face site closure. Non-statutory visitors like clients are there by contract; while their feedback is important for the project, they do not have the legal power to issue statutory notices. The Site Manager uses these labels to prioritize legal safety requirements over general project preferences."
+            ],
+            "hint": "Think about Law (Statutory) vs. Contract (Non-Statutory)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-1B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "210-1B-SR-1",
+            "questionText": "Which role has the highest level of overall authority within the internal site team?",
+            "expectedAnswer": [
+              "Site Manager",
+              "Project Manager",
+              "Construction Manager"
+            ],
+            "hint": "They are responsible for the whole site's success.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-1B-SR-2",
+            "questionText": "What type of visitor has a legal mandate to enter a site and enforce safety regulations?",
+            "expectedAnswer": [
+              "Statutory Inspector",
+              "Statutory",
+              "HSE Inspector",
+              "HSE"
+            ],
+            "hint": "Think of the term for someone backed by law.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-1B-SR-3",
+            "questionText": "To whom does a specialist sub-contractor typically report their daily progress?",
+            "expectedAnswer": [
+              "Foreman",
+              "Supervisor",
+              "Site Supervisor",
+              "Ganger"
+            ],
+            "hint": "This person provides direct day-to-day supervision.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Reviewing the hierarchy of site roles and visitor authority."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1.1",
+    "AC1.2",
+    "AC1.3"
+  ],
+  "metadata": {
+    "created": "2026-02-16",
+    "updated": "2026-02-16",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "210",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1.1",
+        "AC1.2",
+        "AC1.3"
+      ],
+      "outOfScopeAC": [
+        "AC1.4",
+        "AC1.5"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of site management roles, reporting lines, and the purpose of statutory/non-statutory visitors.",
+      "outOfScope": "Detailed procurement processes or specific technical building regulation clauses.",
+      "rationale": "Focuses on the communication hierarchy and the recognition of authority levels on a construction site."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on roles (Manager, Foreman, Sub-contractor) and Visitor types (HSE, Building Control)."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The Site Manager and Foreman are the same role.",
+        "correction": "The Site Manager has overall strategic responsibility, while the Foreman handles direct daily supervision of trades.",
+        "relatedAC": "AC1.1"
+      },
+      {
+        "misconception": "Any visitor can issue a Prohibition Notice.",
+        "correction": "Only statutory inspectors (like the HSE) have the legal power to issue formal enforcement notices.",
+        "relatedAC": "AC1.3"
+      },
+      {
+        "misconception": "Sub-contractors don't need to follow the site hierarchy.",
+        "correction": "Sub-contractors must report to the site management team to ensure coordinated safety and progress.",
+        "relatedAC": "AC1.2"
+      }
+    ]
+  }
+}

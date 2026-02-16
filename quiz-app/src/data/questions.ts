@@ -62,6 +62,7 @@ import { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './questions/
 import { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from './questions/1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions';
 import { q1IdentifySuitableCommunicationMethodsQuestions } from './questions/1IdentifySuitableCommunicationMethodsQuestions';
 import { siteManagementAndTradeRolesQuestions } from './questions/siteManagementAndTradeRolesQuestions';
+import { siteVisitorsAndInspectorsQuestions } from './questions/siteVisitorsAndInspectorsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -117,6 +118,7 @@ export const questions: Question[] = [
   ...q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions,
   ...q1IdentifySuitableCommunicationMethodsQuestions,
   ...siteManagementAndTradeRolesQuestions,
+  ...siteVisitorsAndInspectorsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

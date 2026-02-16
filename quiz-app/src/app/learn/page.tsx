@@ -51,6 +51,7 @@ import lesson210_210_1A1 from '@/data/lessons/210-210-1A1-1-identify-key-roles-o
 import lesson210_210_2A1 from '@/data/lessons/210-210-2A1-1-identify-types-of-statutory-legislation-and-guidance-info.json';
 import lesson210_210_3A1 from '@/data/lessons/210-210-3A1-1-identify-suitable-communication-methods.json';
 import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.json';
+import lesson210_1B from '@/data/lessons/210-1B-site-visitors-and-inspectors.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -94,6 +95,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson210_1B,
   lesson210_1A,
   lesson210_210_3A1,
   lesson210_210_2A1,
