@@ -9,279 +9,7 @@ import { TaggedQuestion } from './types';
 export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What is the primary responsibility of a Building Control Inspector on a construction site?",
-    "options": [
-      "Ensuring the work complies with the Building Regulations",
-      "Checking that the electrician has the correct hand tools",
-      "Installing the main incoming electrical supply cable",
-      "Designing the lighting layout for the client"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Building Control Inspectors ensure that all construction work meets the minimum standards set out in the Building Regulations, such as structural integrity and fire safety."
-  },
-  {
-    "id": 4017,
-    "question": "Which inspector has the legal authority to issue a 'Prohibition Notice' to stop work immediately if they identify a serious safety risk?",
-    "options": [
-      "Health and Safety Executive (HSE) Inspector",
-      "Water Authority Inspector",
-      "Electrical Approved Contractor Scheme Inspector",
-      "Site Quantity Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "HSE Inspectors have statutory powers to enter sites and stop dangerous activities by issuing Prohibition or Improvement notices."
-  },
-  {
-    "id": 4018,
-    "question": "If an individual arrives on site claiming to be an inspector, what is the first action an electrician should take?",
-    "options": [
-      "Ask to see their official identification (ID) card",
-      "Allow them to walk around the site unaccompanied",
-      "Immediately stop all work and leave the building",
-      "Offer them a set of site drawings and a ladder"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "For security and safety reasons, any visitor or inspector must provide valid identification before being granted access to the worksite."
-  },
-  {
-    "id": 4019,
-    "question": "What is a common reason for a Water Inspector to visit a construction site?",
-    "options": [
-      "To ensure installations do not contaminate the public water supply",
-      "To check that the electrical bonding to pipes is correct",
-      "To verify the depth of the electrical underground ducts",
-      "To inspect the fire alarm sounder levels"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Water Inspectors check that plumbing systems meet local bylaws to prevent waste, misuse, or contamination of the water supply."
-  },
-  {
-    "id": 4020,
-    "question": "Which organization's inspector would typically visit a site to audit the quality of work for membership in a 'Competent Person Scheme'?",
-    "options": [
-      "An electrical registration body (e.g., NICEIC or ECA)",
-      "The local Highways Agency",
-      "The Environmental Health Department",
-      "The Office for National Statistics"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Scheme providers like NICEIC, NAPIT, or ECA send inspectors to ensure their members are working to the current BS 7671 standards."
-  },
-  {
-    "id": 4021,
-    "question": "An HSE inspector asks to see the site 'Risk Assessments'. Why is this document important to them?",
-    "options": [
-      "It proves that hazards have been identified and controlled",
-      "It shows the total cost of the electrical installation",
-      "It lists the arrival times of all delivery vehicles",
-      "It contains the circuit diagrams for the consumer unit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Risk Assessments are legal requirements that demonstrate a contractor has considered site safety and implemented measures to prevent accidents."
-  },
-  {
-    "id": 4022,
-    "question": "Why should an electrician record the details of an inspector's visit in the site diary?",
-    "options": [
-      "To provide a formal record of communication and any instructions given",
-      "To calculate how many cups of tea were served that day",
-      "To ensure the inspector receives a bill for their time",
-      "To keep a list of people who might want to buy the house"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Keeping a site diary is essential for tracking progress and documenting any verbal instructions or approvals given by inspectors for future reference."
-  },
-  {
-    "id": 4023,
-    "question": "Which type of visitor is responsible for inspecting the connection between the consumer's installation and the public supply network?",
-    "options": [
-      "Distribution Network Operator (DNO) Inspector",
-      "Planning Officer",
-      "Gas Safe Inspector",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The DNO owns the incoming supply cable and meter equipment; their inspectors verify that the connection point is safe and appropriate."
-  },
-  {
-    "id": 4024,
-    "question": "An electrician is about to cover up floorboards over a new run of cables. Which inspector should ideally be notified if the work requires structural approval?",
-    "options": [
-      "Building Control Inspector",
-      "HSE Inspector",
-      "Clerk of Works",
-      "Fire Marshall"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Building Control often needs to inspect 'first-fix' work (cables and pipes) before they are hidden by floors or plaster to ensure they don't weaken the building structure."
-  },
-  {
-    "id": 4025,
-    "question": "Which of the following describes a 'conceptual' reason why site inspections are carried out?",
-    "options": [
-      "To maintain high standards of safety and quality across the industry",
-      "To make sure the electrician is wearing the right colored shirt",
-      "To check if the site radio is playing the correct music",
-      "To count the number of screws used in the backboxes"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The fundamental purpose of any inspection is to ensure that work is safe, functional, and meets the required quality standards."
-  },
-  {
-    "id": 4026,
-    "question": "Which inspector has the legal power to issue a 'Prohibition Notice' if they identify an immediate risk of serious personal injury on a construction site?",
+    "question": "Which inspector has the legal power to enter a construction site at any reasonable time to investigate safety standards?",
     "options": [
       "HSE Inspector",
       "Building Control Inspector",
@@ -301,48 +29,20 @@ export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
       "legislation",
       "terminology"
     ],
-    "learningOutcomeId": "210.LO1.AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Health and Safety Executive (HSE) inspector is responsible for enforcing health and safety law and can stop work immediately if they find dangerous conditions."
+    "explanation": "The Health and Safety Executive (HSE) inspector has broad legal powers to enter sites and ensure work is being carried out safely under the Health and Safety at Work Act."
   },
   {
-    "id": 4027,
-    "question": "What is the primary role of a Building Control Inspector during an electrical installation project?",
+    "id": 4017,
+    "question": "What is the primary responsibility of a Building Control Inspector when visiting a site?",
     "options": [
-      "To ensure the work complies with the Building Regulations",
-      "To manage the electrician's daily work schedule",
-      "To provide the materials and tools for the job",
-      "To check that the electrician has been paid correctly"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Building Control Inspectors verify that construction work, including specific electrical elements covered by Part P, meets the requirements of the Building Regulations."
-  },
-  {
-    "id": 4028,
-    "question": "An electrician is installing a new commercial kitchen. Which inspector would visit to specifically ensure that the plumbing and drainage do not cause contamination of the local supply?",
-    "options": [
-      "Water Inspector",
-      "HSE Inspector",
-      "Electrical Services Inspector",
-      "Building Control Inspector"
+      "Ensuring work complies with the Building Regulations",
+      "Checking the site's financial budget",
+      "Testing the quality of the drinking water",
+      "Providing the electrical design specifications"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -353,839 +53,628 @@ export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
     "section": "Communication 2365 Level 2",
     "category": "Site Visitors and Inspectors",
     "tags": [
-      "application",
+      "legislation",
       "terminology"
     ],
-    "learningOutcomeId": "210.LO1.AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Water Inspectors ensure that installations comply with Water Regulations to prevent waste, misuse, or contamination of the water supply."
+    "explanation": "Building Control Inspectors check that construction work meets the minimum standards set out in the Building Regulations, such as fire safety and structural integrity."
   },
   {
-    "id": 4029,
-    "question": "Which site visitor is responsible for assessing whether an electrical installation has been completed to the safety standards of BS 7671?",
+    "id": 4018,
+    "question": "An inspector arrives to verify that the plumbing installation meets local bylaws and prevents contamination. Who is this visitor?",
     "options": [
-      "Electrical Services Inspector",
       "Water Inspector",
       "HSE Inspector",
+      "Architect",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Water Inspectors ensure that water installations are safe, efficient, and do not cause contamination of the public water supply."
+  },
+  {
+    "id": 4019,
+    "question": "Which site visitor is responsible for managing the project costs and valuing the work completed for payment?",
+    "options": [
+      "Quantity Surveyor",
+      "Building Control Inspector",
+      "Clerk of Works",
+      "HSE Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A Quantity Surveyor (QS) manages the financial aspects of the project, including material costs and contractor payments."
+  },
+  {
+    "id": 4020,
+    "question": "If an HSE inspector identifies a risk of serious personal injury, they can issue a notice that stops work immediately. This is called a:",
+    "options": [
+      "Prohibition Notice",
+      "Improvement Notice",
+      "Completion Certificate",
+      "Planning Permission"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A Prohibition Notice is issued by the HSE to stop an activity immediately when there is a risk of serious injury."
+  },
+  {
+    "id": 4021,
+    "question": "Which visitor is primarily concerned with the overall design, aesthetics, and layout of the building project?",
+    "options": [
+      "Architect",
+      "Electrical Inspector",
+      "Water Inspector",
+      "HSE Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Architect creates the design and plans for the building and often visits the site to ensure the vision is being followed."
+  },
+  {
+    "id": 4022,
+    "question": "What is the main focus of an Electrical Services Inspector from a body like the NICEIC or ECA?",
+    "options": [
+      "Compliance with BS 7671 (The Wiring Regulations)",
+      "Checking the depth of the foundations",
+      "Inspecting the site's welfare facilities",
+      "Measuring the total floor area for taxation"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Electrical inspectors check that the installation work meets the safety and technical standards of BS 7671."
+  },
+  {
+    "id": 4023,
+    "question": "A person is employed by the client to be their 'eyes and ears' on site, checking that materials and workmanship are of the required quality. This person is the:",
+    "options": [
+      "Clerk of Works",
+      "Quantity Surveyor",
+      "HSE Inspector",
+      "Electrical Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Clerk of Works represents the client and focuses specifically on the quality of materials and workmanship on site."
+  },
+  {
+    "id": 4024,
+    "question": "Which inspector would typically check that a new consumer unit installation in a house complies with Part P of the Building Regulations?",
+    "options": [
+      "Building Control Inspector",
+      "Water Inspector",
+      "HSE Inspector",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Building Control is responsible for ensuring Part P (Electrical Safety) of the Building Regulations is followed in domestic settings."
+  },
+  {
+    "id": 4025,
+    "question": "During a site visit, an HSE inspector notices an electrician working on a ladder that is not secured. What is the most likely outcome?",
+    "options": [
+      "The inspector will issue an Improvement Notice or verbal warning",
+      "The inspector will ask the Architect for a new design",
+      "The inspector will check the Water Regulations",
+      "The inspector will calculate the cost of a new ladder"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "HSE inspectors focus on unsafe working practices and have the authority to issue warnings or notices to ensure safety improvements are made."
+  },
+  {
+    "id": 4026,
+    "question": "Which inspector has the legal authority to issue a prohibition notice if they identify an immediate risk of serious personal injury on a site?",
+    "options": [
+      "Health and Safety Executive (HSE) Inspector",
+      "Building Control Inspector",
+      "Water Inspector",
+      "Electrical Services Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-LO1-AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The HSE Inspector is responsible for enforcing health and safety legislation and has the power to stop dangerous work using a prohibition notice."
+  },
+  {
+    "id": 4027,
+    "question": "What is the primary responsibility of a Building Control Inspector during a site visit?",
+    "options": [
+      "To ensure the construction work complies with Building Regulations",
+      "To check that the site workers have the correct CSCS cards",
+      "To design the layout of the electrical installation",
+      "To inspect the quality of the internal office furniture"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-LO1-AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Building Control Inspectors check that the structural and safety aspects of a building meet the minimum standards set out in the Building Regulations."
+  },
+  {
+    "id": 4028,
+    "question": "Which site visitor is specifically concerned with preventing the waste, misuse, or contamination of the public water supply?",
+    "options": [
+      "Water Inspector",
+      "HSE Inspector",
+      "Electrical Services Inspector",
       "Planning Officer"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Visitors and Inspectors",
     "tags": [
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "210.LO1.AC1.3",
+    "learningOutcomeId": "210-LO1-AC1.3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Electrical Services Inspectors (often from bodies like NICEIC or ECA) check that electrical work is safe and complies with the IET Wiring Regulations (BS 7671)."
+    "explanation": "Water Inspectors ensure that plumbing installations adhere to water regulations to protect the public water supply from contamination and waste."
   },
   {
-    "id": 4030,
-    "question": "What is the main reason all site visitors must report to the site office and sign in before entering the work area?",
+    "id": 4029,
+    "question": "An electrician has completed the first-fix stage of a large commercial project. Who is most likely to visit the site to ensure the electrical work meets the specific requirements of the local supply authority?",
     "options": [
-      "To ensure everyone is accounted for in the event of an emergency",
-      "To allow the site manager to check their personal tools",
-      "To ensure they are issued a site parking permit",
-      "To verify their home address for tax purposes"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Signing in is a critical safety procedure so that site management knows exactly who is on-site if an evacuation or emergency occurs."
-  },
-  {
-    "id": 4031,
-    "question": "Which site visitor has the specific legal power to issue a 'Prohibition Notice', effectively stopping all work on a construction site immediately if a serious risk is identified?",
-    "options": [
-      "Health and Safety Executive (HSE) Inspector",
-      "Local Authority Building Control (LABC) Officer",
-      "Electrical Services Scheme Provider Inspector",
-      "Water Regulations Inspector"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 60,
-    "explanation": "HSE inspectors are government officials with the power to enforce health and safety law, including issuing Prohibition Notices which stop work immediately."
-  },
-  {
-    "id": 4032,
-    "question": "What is the primary role of a Building Control Inspector during the construction of a new domestic dwelling?",
-    "options": [
-      "To ensure the building work complies with the Building Regulations",
-      "To verify that the electrician is registered with a competent person scheme",
-      "To provide the electrical design specifications for the contractor",
-      "To inspect the quality of the internal decoration and finishes"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Building Control Inspectors check that the construction meets minimum standards for safety, health, and energy efficiency as defined by the Building Regulations."
-  },
-  {
-    "id": 4033,
-    "question": "An electrician is installing a high-powered electric shower. A Water Inspector visits the site; what is their main concern regarding this specific installation?",
-    "options": [
-      "The prevention of backflow and contamination of the mains water supply",
-      "The IP rating of the electrical shower unit in Zone 1",
-      "The size of the circuit breaker protecting the shower circuit",
-      "The structural integrity of the wall where the shower is mounted"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "terminology",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Water Inspectors ensure compliance with Water Supply (Water Fittings) Regulations, primarily focusing on preventing waste, misuse, and contamination (backflow)."
-  },
-  {
-    "id": 4034,
-    "question": "An HSE inspector issues an 'Improvement Notice' to a site manager. What does this notice legally require the site manager to do?",
-    "options": [
-      "Address a specific breach of health and safety law within a defined period",
-      "Immediately cease all work on site until a full audit is completed",
-      "Pay an on-the-spot fine to the inspector for minor safety violations",
-      "Dismiss the contractor responsible for the safety breach"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "health-safety",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "An Improvement Notice is issued when a law is being broken; it allows work to continue but requires the breach to be fixed within a specific timeframe."
-  },
-  {
-    "id": 4035,
-    "question": "A manufacturer's technical representative arrives on site to inspect a faulty 3-phase motor. What is the first administrative procedure they must complete before entering the work area?",
-    "options": [
-      "Sign the visitor log and receive a site-specific safety induction",
-      "Present their Level 3 NVQ electrical certificates to the site agent",
-      "Perform a full risk assessment for the entire construction site",
-      "Contact the local DNO to inform them of their presence on site"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "health-safety",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Safety protocols require all visitors to sign in and be inducted so they are aware of site hazards and emergency procedures."
-  },
-  {
-    "id": 4036,
-    "question": "Which inspector would be responsible for verifying that a new commercial electrical installation meets the requirements of BS 7671 for the purpose of issuing a compliance certificate for a scheme provider?",
-    "options": [
-      "Electrical Services Inspector (Area Engineer)",
-      "Building Control Officer",
-      "HSE Inspector",
-      "Public Health Inspector"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "discrimination",
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Electrical Services Inspectors (like those from NICEIC or ECA) audit work to ensure it meets the technical standards of BS 7671."
-  },
-  {
-    "id": 4037,
-    "question": "A Building Control Inspector is visiting a domestic renovation. Why would they be particularly interested in the installation of a new structural steel beam (RSJ)?",
-    "options": [
-      "To ensure the structural integrity of the building is maintained",
-      "To check that the beam has been correctly earthed to the MET",
-      "To verify the beam is painted with the correct color of primer",
-      "To ensure the beam does not interfere with the water mains pressure"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "conceptual",
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Building Control focuses on structural safety, ensuring that any alterations (like adding a beam) do not cause building failure."
-  },
-  {
-    "id": 4038,
-    "question": "During a site visit, an HSE inspector observes an apprentice working on a ladder that is not secured. Who is the inspector most likely to hold legally responsible for this safety breach?",
-    "options": [
-      "The employer and the site manager",
-      "The manufacturer of the ladder",
-      "The customer who owns the building",
-      "The local Building Control department"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "health-safety",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Under the Health and Safety at Work Act, employers and those in control of the site are responsible for the safety of workers and the provision of safe equipment."
-  },
-  {
-    "id": 4039,
-    "question": "Which type of inspector is primarily concerned with the 'Part P' compliance of electrical work in a domestic kitchen?",
-    "options": [
+      "Electrical Services Inspector",
       "Building Control Inspector",
       "Water Inspector",
-      "Fire Marshall",
       "HSE Inspector"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "discrimination",
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Part P is a specific section of the Building Regulations; therefore, Building Control is the authority responsible for its oversight."
-  },
-  {
-    "id": 4040,
-    "question": "Why is it essential for an electrician to check the identification of a person claiming to be an HSE inspector before allowing them access to the electrical switchroom?",
-    "options": [
-      "To ensure they are a legitimate authorized person for security and safety reasons",
-      "To check if the inspector has the correct electrical qualifications to be in the room",
-      "To determine if the inspector needs to pay an entry fee for the site",
-      "To see if the inspector is from a competing electrical company"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "conceptual",
-      "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Security and safety protocols dictate that the identity of all visitors must be verified to prevent unauthorized access to sensitive or dangerous areas."
-  },
-  {
-    "id": 4041,
-    "question": "A visitor arrives on site and demands to see the Risk Assessments and Method Statements (RAMS) for the current electrical installation. They have the legal power to issue an immediate 'Prohibition Notice' if they find a serious risk of personal injury. Who is this visitor?",
-    "options": [
-      "Health and Safety Executive (HSE) Inspector",
-      "Local Authority Building Control Officer",
-      "NICEIC Area Engineer",
-      "Clerk of Works"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The HSE Inspector has the statutory power under the Health and Safety at Work Act to enter sites and issue Prohibition Notices to stop dangerous work immediately."
-  },
-  {
-    "id": 4042,
-    "question": "An electrician is completing a new circuit in a domestic dwelling that is not part of a self-certification scheme. Which inspector must be notified to ensure the work complies with the Building Regulations?",
-    "options": [
-      "Building Control Inspector",
-      "Water Regulations Inspector",
-      "HSE Field Officer",
-      "Planning Officer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Building Control Inspectors ensure that building work meets the requirements of the Building Regulations, including Part P for electrical safety in dwellings."
-  },
-  {
-    "id": 4043,
-    "question": "During a site visit, a Water Inspector notices that an electrical immersion heater is installed in a way that could potentially contaminate the wholesome water supply through back-siphonage. What is the primary focus of this inspector's role?",
-    "options": [
-      "Prevention of waste, undue consumption, and contamination of water",
-      "Ensuring the electrical earthing of the water tank is correct",
-      "Checking the energy efficiency rating of the heater",
-      "Inspecting the structural integrity of the water cylinder support"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Water inspectors enforce the Water Supply (Water Fittings) Regulations, which primarily focus on preventing contamination, waste, and misuse of the water supply."
-  },
-  {
-    "id": 4044,
-    "question": "A representative from an electrical competent person scheme (such as NICEIC or NAPIT) arrives to inspect a sample of an electrician's work. What is the main purpose of this specific visit?",
-    "options": [
-      "To assess the technical competence of the enterprise and compliance with BS 7671",
-      "To check if the site workers are wearing correct PPE",
-      "To verify that the project is running on schedule for the client",
-      "To issue a completion certificate for the structural elements of the building"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "terminology",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Scheme providers conduct annual assessments to ensure their members are competent and that their work meets the standards of BS 7671."
-  },
-  {
-    "id": 4045,
-    "question": "Which site visitor is typically employed by the client to act as their 'eyes and ears' on-site, ensuring that the quality of materials and workmanship meets the specifications defined in the contract?",
-    "options": [
-      "Clerk of Works",
-      "HSE Inspector",
-      "Building Control Officer",
-      "District Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Clerk of Works (or Site Inspector) represents the client's interests, focusing specifically on the quality of the build and adherence to the contract."
-  },
-  {
-    "id": 4046,
-    "question": "An HSE Inspector is carrying out an unannounced visit. Under the Health and Safety at Work Act, what is a power they possess that most other site visitors do not?",
-    "options": [
-      "The right to enter a site at any reasonable time without a warrant",
-      "The right to change the design of the electrical installation",
-      "The power to fire sub-contractors for poor workmanship",
-      "The authority to grant planning permission for extensions"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "HSE inspectors have broad statutory powers, including the right of entry to premises to ensure health and safety legislation is being followed."
-  },
-  {
-    "id": 4047,
-    "question": "While installing a new commercial kitchen, you are visited by an Environmental Health Officer. Which aspect of your electrical work are they most likely to be concerned with?",
-    "options": [
-      "The hygiene implications of conduit placement and lighting levels for food safety",
-      "The loop impedance values of the final circuits",
-      "The cost of the materials used in the installation",
-      "The colour coding of the data cables in the office area"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Environmental Health Officers focus on public health and safety, including food hygiene, which involves how electrical fittings affect the cleanliness of a kitchen."
-  },
-  {
-    "id": 4048,
-    "question": "What is the primary document a Building Control Inspector will issue once they are satisfied that the electrical and structural work on a new build meets all relevant regulations?",
-    "options": [
-      "Completion Certificate",
-      "Electrical Installation Certificate",
-      "Prohibition Notice",
-      "Schedule of Test Results"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "A Completion Certificate is issued by Building Control to confirm that the project has been inspected and complies with the Building Regulations."
-  },
-  {
-    "id": 4049,
-    "question": "A site visitor asks to see the 'Site Induction' records and checks if all electricians are wearing their hard hats and safety boots in a designated area. This visitor is most likely from which organisation?",
-    "options": [
-      "Health and Safety Executive (HSE)",
-      "The Institute of Engineering and Technology (IET)",
-      "The Local Water Authority",
-      "The Parish Council"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Monitoring site safety, inductions, and PPE compliance is a core function of the HSE during a site inspection."
-  },
-  {
-    "id": 4050,
-    "question": "Why is it essential for an electrician to check the ID of any visitor claiming to be an inspector before allowing them access to the work area?",
-    "options": [
-      "To ensure they are who they claim to be and have the legal authority to be there",
-      "To determine how much to charge them for a site tour",
-      "To see if they are qualified to help with the electrical wiring",
-      "To check if they have a valid driving license for site vehicles"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Security and safety protocols require verifying the identity and authority of any visitor to prevent unauthorized access and ensure legal compliance."
-  },
-  {
-    "id": 4051,
-    "question": "A new domestic extension requires an inspection of the electrical installation to ensure it complies with Part P of the Building Regulations. Which visitor is legally responsible for verifying this compliance?",
-    "options": [
-      "Building Control Inspector",
-      "HSE Inspector",
-      "Water Inspector",
-      "Client Representative"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "terminology",
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Building Control Inspector is responsible for ensuring that all work, including electrical, complies with the relevant Building Regulations (such as Part P in England and Wales)."
-  },
-  {
-    "id": 4052,
-    "question": "During a routine site visit, an HSE inspector identifies a piece of electrical equipment that poses an immediate risk of electric shock. What is the most likely formal action they will take?",
-    "options": [
-      "Issue a Prohibition Notice to stop work immediately",
-      "Issue an Improvement Notice allowing 21 days for repair",
-      "Report the finding to the NICEIC for investigation",
-      "Request the site foreman to fix it by the end of the week"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "A Prohibition Notice is used by HSE inspectors when there is a risk of serious personal injury, stopping the activity immediately. An Improvement Notice is used when a law is being broken but there is no immediate serious risk."
-  },
-  {
-    "id": 4053,
-    "question": "An electrical contractor is undergoing an annual assessment by a representative from a trade body such as the NICEIC. What is the primary purpose of this specific visit?",
-    "options": [
-      "To ensure the contractor's work meets the standards of BS 7671",
-      "To inspect the site for health and safety violations under HASAWA",
-      "To verify that the water supply earthing is correctly bonded for the water board",
-      "To check if the building structure meets current fire safety regulations"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Electrical Services Inspectors from trade bodies (like NICEIC or ECA) assess the technical competence of the contractor and ensure their work complies with BS 7671 (The IET Wiring Regulations)."
-  },
-  {
-    "id": 4054,
-    "question": "While working on a commercial site, a Water Inspector requests access to the plant room to verify backflow prevention. Why must you, as the electrician, coordinate with them regarding the earthing system?",
-    "options": [
-      "To ensure the integrity of main protective bonding is maintained if pipes are altered",
-      "To confirm the water meter is correctly calibrated for billing purposes",
-      "To check if the water pressure is sufficient for the fire alarm sprinkler system",
-      "To verify that the water pipes are used as the primary means of earthing"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Visitors and Inspectors",
     "tags": [
       "application",
-      "terminology",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Water inspectors may require changes to pipework. As an electrician, you must ensure that any main protective bonding to the water service remains intact and compliant after their work is completed."
-  },
-  {
-    "id": 4055,
-    "question": "If a Building Control Inspector is not satisfied that the electrical work in a new dwelling meets the required standards, what is the most significant legal consequence for the property owner?",
-    "options": [
-      "A Completion Certificate will not be issued, making the property difficult to sell",
-      "The electrician will be immediately fined by the HSE for the poor work",
-      "The local water authority will disconnect the supply until the electrics are fixed",
-      "The NICEIC will remove the contractor from their approved list automatically"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual",
       "terminology"
-    ],
-    "learningOutcomeId": "210-1B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Without approval from Building Control, a Completion Certificate cannot be issued. This document is essential for the legal sale of a property and for ensuring the work complies with the law."
-  },
-  {
-    "id": 4056,
-    "question": "A Health and Safety Executive (HSE) inspector visits a site and observes a technician working on a 400V distribution board without a valid permit-to-work or adequate shrouding. If the inspector believes there is a risk of serious personal injury, which action are they legally empowered to take immediately?",
-    "options": [
-      "Issue a Prohibition Notice to stop the work activity instantly",
-      "Issue an Improvement Notice giving the contractor 21 days to fix the issue",
-      "Issue an on-the-spot personal fine to the technician for negligence",
-      "Seize the distribution board as evidence for a criminal prosecution"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "application"
     ],
     "learningOutcomeId": "210-LO1-AC1.3",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "An HSE inspector issues a Prohibition Notice when there is a risk of serious personal injury, which stops the activity immediately. An Improvement Notice is used when a law is being broken but there is no immediate serious risk."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Electrical Services Inspector (often from the DNO or a regulatory body) checks that electrical installations meet technical standards and supply requirements."
   },
   {
-    "id": 4057,
-    "question": "During a final inspection of a domestic renovation, the Local Authority Building Control (LABC) officer requests the Electrical Installation Certificate (EIC). Why is this specific document critical for the Building Inspector's role?",
+    "id": 4030,
+    "question": "Regardless of their role, what is the first action any official visitor must take when arriving at a construction site?",
     "options": [
-      "To verify compliance with Part P of the Building Regulations",
-      "To ensure the electrician has paid their NICEIC or ECA membership fees",
-      "To confirm the installation meets the Water Supply Regulations 1999",
-      "To provide a guarantee for the homeowner's insurance policy"
+      "Report to the site office and sign the visitors' book",
+      "Begin their inspection of the work areas immediately",
+      "Find the electrician to discuss the project progress",
+      "Take photographs of any visible defects from the gate"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-LO1-AC1.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "For safety and security, all visitors must report to the site office to sign in, receive a safety induction, and ensure the site manager is aware of their presence."
+  },
+  {
+    "id": 4031,
+    "question": "An electrician is completing a domestic installation that falls under 'notifiable work'. Which visitor has the legal authority to verify that the installation complies with the Building Regulations?",
+    "options": [
+      "Building Control Inspector",
+      "Health and Safety Executive (HSE) Inspector",
+      "Water Authority Inspector",
+      "Client's Architect"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Visitors and Inspectors",
     "tags": [
       "legislation",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Building Control Inspectors are responsible for ensuring work complies with Building Regulations (such as Part P for electrical safety in dwellings)."
+  },
+  {
+    "id": 4032,
+    "question": "During a site visit, an HSE Inspector observes an operative working on a live circuit without adequate precautions. What is the most likely legal action the inspector will take to stop the immediate danger?",
+    "options": [
+      "Issue a Prohibition Notice",
+      "Issue an Improvement Notice",
+      "Report the operative to the NICEIC",
+      "Request a site induction for the operative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "A Prohibition Notice is issued by the HSE when there is a risk of serious personal injury, stopping the activity immediately."
+  },
+  {
+    "id": 4033,
+    "question": "A Water Inspector visits a construction site where an electrician is installing main equipotential bonding. What is the primary concern of the Water Inspector regarding the electrical installation?",
+    "options": [
+      "Ensuring the electrical earthing does not compromise the water system's integrity or safety",
+      "Checking the current rating of the shower circuit breaker",
+      "Verifying that the electrician has a valid JIB gold card",
+      "Testing the continuity of the lighting ring final circuit"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_I_V_R",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "210-LO1-AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Building Control officers are responsible for ensuring all aspects of building work, including electrical safety (Part P), comply with the Building Regulations. The EIC serves as evidence of this compliance."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Water Inspectors ensure that installations comply with water regulations and that electrical connections (like bonding) are made correctly to pipes without causing damage or contamination."
   },
   {
-    "id": 4058,
-    "question": "An inspector from the local Water Authority arrives on site to inspect the installation of an electric shower. What is their primary technical concern regarding the electrical contractor's work?",
+    "id": 4034,
+    "question": "An Electrical Services Inspector from a competent person scheme (e.g., NICEIC or ELECSA) arrives for an annual assessment. What is their main role during this visit?",
     "options": [
-      "The prevention of backflow and contamination of the mains supply",
-      "The IP rating of the light fittings in the bathroom zone 1",
-      "The cross-sectional area of the supplementary bonding conductors",
-      "The energy efficiency rating of the water heating element"
+      "To verify that the firm's work meets the standards of BS 7671",
+      "To inspect the structural integrity of the building foundations",
+      "To check the site's compliance with the Work at Height Regulations",
+      "To approve the site's fire evacuation plan"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Electrical Services Inspectors evaluate the technical standard of electrical work against BS 7671 to ensure the firm remains competent for registration."
+  },
+  {
+    "id": 4035,
+    "question": "An unidentified person enters a restricted area of a construction site claiming to be an inspector. What is the first action an electrician should take?",
+    "options": [
+      "Politely ask to see their identification and site visitor pass",
+      "Immediately stop work and leave the site",
+      "Assume they are with the client and continue working",
+      "Provide them with a copy of the electrical test certificates"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "SIGN_ERROR"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "For security and safety, all site visitors must be identified and must have undergone a site induction or be accompanied."
+  },
+  {
+    "id": 4036,
+    "question": "Which visitor is specifically responsible for ensuring that the installation of fire alarms and emergency lighting meets the specific requirements of the local authority and fire safety legislation?",
+    "options": [
+      "Fire Safety Officer",
+      "Clerk of Works",
+      "Quantity Surveyor",
+      "Environmental Health Officer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Fire Safety Officers (or Fire Inspectors) focus on fire prevention, detection, and emergency escape routes."
+  },
+  {
+    "id": 4037,
+    "question": "A Building Control Inspector has requested to see the 'first-fix' wiring before the walls are plastered. Why is this inspection step necessary in the communication process?",
+    "options": [
+      "To ensure cables are installed in correct zones and adequately protected",
+      "To check the color of the insulation matches the client's preference",
+      "To measure the exact length of cable used for billing purposes",
+      "To verify that the consumer unit has been labeled correctly"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Inspectors need to see work before it is 'covered up' to ensure hidden elements like cable routing comply with safety regulations."
+  },
+  {
+    "id": 4038,
+    "question": "What is the primary difference between an HSE Inspector and a Client's Representative (Clerk of Works)?",
+    "options": [
+      "The HSE Inspector enforces statutory law, while the Clerk of Works ensures quality for the client",
+      "The HSE Inspector checks the budget, while the Clerk of Works checks safety",
+      "The HSE Inspector only visits after an accident, while the Clerk of Works is there daily",
+      "There is no difference; both roles have the same legal enforcement powers"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "HSE Inspectors have statutory powers to enforce the Health and Safety at Work Act. The Clerk of Works represents the client's interests regarding quality and specifications."
+  },
+  {
+    "id": 4039,
+    "question": "Which of the following is a legal requirement for all visitors, including inspectors, before they enter a live construction site?",
+    "options": [
+      "They must receive a site-specific safety induction",
+      "They must provide a copy of their insurance policy",
+      "They must be a qualified electrician or plumber",
+      "They must be accompanied by the local Member of Parliament"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Site inductions are mandatory to ensure visitors are aware of specific hazards, emergency procedures, and site rules."
+  },
+  {
+    "id": 4040,
+    "question": "An electrician is asked by a Building Control Officer to provide the 'Schedule of Test Results'. What is the purpose of this communication?",
+    "options": [
+      "To prove that the installation has been verified as safe through testing",
+      "To show how much the materials for the job cost",
+      "To provide a list of all employees who worked on the site",
+      "To confirm the date the scaffolding will be removed"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "WRONG_UNITS"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Visitors and Inspectors",
@@ -1193,74 +682,20 @@ export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "210-LO1-AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "While electricians focus on the electrical safety, Water Inspectors ensure that any equipment connected to the water mains (like showers) prevents back-siphonage and contamination under the Water Supply (Water Fittings) Regulations."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Test results are the technical evidence required by inspectors to ensure the electrical installation complies with safety standards before a completion certificate is issued."
   },
   {
-    "id": 4059,
-    "question": "A Distribution Network Operator (DNO) inspector visits a commercial site to commission a new three-phase supply. They refuse to energize the system. Which of the following is a valid reason for the DNO to withhold the connection?",
-    "options": [
-      "The main earthing terminal is not correctly connected to the DNO supply",
-      "The internal branch circuits have not been labeled in English",
-      "The light switches are mounted higher than 1200mm from the floor",
-      "The contractor failed to provide a schedule of inspections for the lighting"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-LO1-AC1.3",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The DNO's primary responsibility is the safety and integrity of the supply network. If the earthing arrangement is inadequate or missing, they cannot safely energize the intake."
-  },
-  {
-    "id": 4060,
-    "question": "Under the Health and Safety at Work Act, an HSE inspector has 'powers of entry'. Which statement best describes the extent of these powers on a construction site?",
-    "options": [
-      "They may enter at any reasonable time without a warrant if they believe a danger exists",
-      "They must provide 24 hours' written notice before entering a private site",
-      "They can only enter if accompanied by a member of the local police force",
-      "They may only enter during daylight hours when the site manager is present"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "legislation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-LO1-AC1.3",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "HSE inspectors have broad statutory powers to enter any premises which they think it is necessary to enter for the purposes of enforcing relevant statutory provisions, usually at any reasonable time."
-  },
-  {
-    "id": 4061,
-    "question": "Which site visitor is specifically responsible for ensuring that the 'as-built' drawings match the physical location of buried electrical conduits to prevent future structural damage?",
+    "id": 4041,
+    "question": "An electrician is installing a new consumer unit in a domestic property. Which visitor has the legal authority to ensure the work complies with the Building Regulations, specifically regarding Part P?",
     "options": [
       "Building Control Inspector",
       "HSE Inspector",
-      "Electrical Services Lead",
-      "Clerk of Works"
+      "Clerk of Works",
+      "Water Inspector"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1271,77 +706,79 @@ export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
     "section": "Communication 2365 Level 2",
     "category": "Site Visitors and Inspectors",
     "tags": [
-      "discrimination",
-      "terminology"
+      "legislation",
+      "terminology",
+      "application"
     ],
-    "learningOutcomeId": "210-LO1-AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Building Control Inspector (or LABC) ensures the structural integrity of the building is maintained, which includes verifying that service penetrations and conduit runs don't weaken the structure."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Building Control Inspector is responsible for ensuring that all building work meets the standards set out in the Building Regulations, including Part P (Electrical Safety)."
   },
   {
-    "id": 4062,
-    "question": "An electrician is asked to provide 'access for inspection' to a visitor. The visitor wants to check the depth of a trench containing both SWA cable and a blue MDPE water pipe. Who is this visitor most likely to be?",
+    "id": 4042,
+    "question": "During a routine site visit, an inspector identifies an immediate risk of a fall from height and issues a 'Prohibition Notice' to stop work instantly. Which organization does this inspector represent?",
     "options": [
-      "A Water Inspector enforcing separation distances",
-      "An HSE Inspector checking for trip hazards",
-      "A DNO Inspector checking the cable's current carrying capacity",
-      "A Building Control Inspector checking for thermal insulation"
+      "Health and Safety Executive (HSE)",
+      "Local Authority Building Control",
+      "NICEIC or ECA",
+      "The Client's Insurance Company"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Visitors and Inspectors",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-LO1-AC1.3",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Water Inspectors ensure that water pipes (MDPE) are buried at correct depths and maintain specific distances from other services (like SWA cables) to prevent contamination or heat transfer."
-  },
-  {
-    "id": 4063,
-    "question": "What is the primary difference between a 'statutory' inspector and a 'non-statutory' visitor, such as an NICEIC Area Engineer?",
-    "options": [
-      "Statutory inspectors derive their power from Acts of Parliament and can prosecute",
-      "Non-statutory visitors are allowed to issue Prohibition Notices",
-      "Statutory inspectors only visit sites where an accident has already occurred",
-      "Non-statutory visitors have the legal right to seize tools and equipment"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Visitors and Inspectors",
     "tags": [
-      "conceptual",
-      "legislation"
+      "health-safety",
+      "legislation",
+      "conceptual"
     ],
-    "learningOutcomeId": "210-LO1-AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Statutory inspectors (HSE, Building Control) have legal powers granted by legislation (like HASWA). Non-statutory visitors (NICEIC, ECA) are part of voluntary schemes or trade bodies with no power to prosecute."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The HSE has the statutory power to issue Prohibition Notices which stop dangerous activities immediately to prevent injury or death."
   },
   {
-    "id": 4064,
-    "question": "If an HSE inspector issues an 'Improvement Notice' following a site visit, what is the legal obligation of the employer?",
+    "id": 4043,
+    "question": "A large commercial project employs a visitor whose primary role is to act as the client's representative, ensuring that the quality of materials and workmanship matches the contract specification. What is this role called?",
     "options": [
-      "They must remedy the contravention within a specified period, usually not less than 21 days",
-      "They must stop all work on the site immediately until a court hearing",
-      "They must pay a fine to the inspector before the inspector leaves the site",
-      "They must terminate the employment of the person responsible for the breach"
+      "Clerk of Works",
+      "Building Control Officer",
+      "HSE Inspector",
+      "Electrical Services Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Clerk of Works is hired by the client to maintain quality control and ensure the project is built according to the specific plans and standards requested."
+  },
+  {
+    "id": 4044,
+    "question": "A Water Inspector visits a site where a new industrial cooling system is being connected. What is their primary legal concern under the Water Supply (Water Fittings) Regulations?",
+    "options": [
+      "Preventing the backflow of contaminated water into the mains",
+      "Ensuring the electrical earthing of the water pipes is correct",
+      "Checking that the water meter is recording usage accurately",
+      "Verifying that the water pressure is sufficient for fire sprinklers"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1355,20 +792,211 @@ export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "210-LO1-AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "An Improvement Notice identifies a legal breach and gives a deadline for it to be fixed. This is different from a Prohibition Notice, which stops work immediately."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Water Inspectors focus on public health, primarily ensuring that site installations do not allow waste or contaminants to flow back into the public drinking water supply."
   },
   {
-    "id": 4065,
-    "question": "A visitor arrives on a large construction site claiming to be an 'Insurance Inspector'. What is their primary role in relation to the electrical installation?",
+    "id": 4045,
+    "question": "An Electrical Services Inspector from a Competent Person Scheme (such as NICEIC) arrives to inspect a firm's work. What is the main objective of this specific inspection?",
     "options": [
-      "To assess risk and ensure the installation doesn't void the developer's liability cover",
-      "To certify that the installation complies with the IET Wiring Regulations",
-      "To check that all site workers have valid CSCS cards",
-      "To verify that the local water pressure is sufficient for fire sprinklers"
+      "To verify technical competence and compliance with BS 7671",
+      "To check that all site employees have valid CSCS cards",
+      "To investigate a report of a workplace accident",
+      "To sign off the structural integrity of the building"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Electrical Services Inspectors from trade bodies assess whether the contractor is following the IET Wiring Regulations (BS 7671) and maintains high technical standards."
+  },
+  {
+    "id": 4046,
+    "question": "A Building Control Inspector refuses to issue a completion certificate for a domestic extension because the electrician has not provided an Electrical Installation Certificate (EIC). Why is this within their remit?",
+    "options": [
+      "Electrical safety is a requirement of the Building Regulations (Part P)",
+      "The inspector is legally required to perform the electrical testing",
+      "The inspector works for the local Distribution Network Operator (DNO)",
+      "The inspector is enforcing the Health and Safety at Work Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "application",
+      "units"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Building Control cannot sign off a project unless all parts of the Building Regulations are met; Part P requires evidence (certification) that the electrical work is safe."
+  },
+  {
+    "id": 4047,
+    "question": "Which of the following visitors has the statutory power to enter a construction site at any reasonable time, without an appointment, to investigate a serious safety concern?",
+    "options": [
+      "HSE Inspector",
+      "Clerk of Works",
+      "NICEIC Area Engineer",
+      "The Client's Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "HSE Inspectors have broad legal powers under the Health and Safety at Work Act to enter premises for inspections and investigations without prior notice."
+  },
+  {
+    "id": 4048,
+    "question": "An electrician is instructed by a 'Clerk of Works' to remove and replace a section of traywork because it does not follow the specific route shown in the architect's drawings. What does this indicate about the Clerk of Works' role?",
+    "options": [
+      "They ensure the work matches the client's specific design and quality requirements",
+      "They are enforcing the national statutory safety laws",
+      "They are responsible for the electrician's disciplinary procedures",
+      "They are checking for compliance with the Water Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Clerk of Works focuses on quality and adherence to the specific contract drawings and specifications provided by the client's design team."
+  },
+  {
+    "id": 4049,
+    "question": "What is the fundamental difference between a 'Building Control Inspector' and an 'Electrical Services Inspector' regarding their jurisdiction?",
+    "options": [
+      "Building Control enforces legal regulations while Electrical Inspectors verify trade standards",
+      "Building Control only visits domestic sites while Electrical Inspectors only visit industrial sites",
+      "Building Control works for the HSE while Electrical Inspectors work for the Local Authority",
+      "Building Control checks the plumbing while Electrical Inspectors check the wiring"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Building Control is a statutory body (Local Authority or Private) enforcing law; Electrical Inspectors (like NICEIC) are trade bodies verifying technical standards and scheme membership."
+  },
+  {
+    "id": 4050,
+    "question": "A site visitor is inspecting the depth of an underground trench and the type of insulation used on pipes to prevent frost damage. Who is this visitor likely to be?",
+    "options": [
+      "Water Inspector",
+      "HSE Inspector",
+      "Electrical Services Inspector",
+      "Union Representative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Water Inspectors ensure that installations comply with the Water Supply (Water Fittings) Regulations, which includes protecting pipes from freezing and environmental damage."
+  },
+  {
+    "id": 4051,
+    "question": "A new domestic extension is nearing completion. Which inspector has the primary responsibility to verify that the structural integrity and thermal insulation meet the minimum legal standards before the project is signed off?",
+    "options": [
+      "Building Control Inspector",
+      "HSE Inspector",
+      "Electrical Services Inspector",
+      "Water Inspector"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Building Control Inspector is responsible for ensuring that all construction work complies with the Building Regulations, including structural safety and energy efficiency (insulation)."
+  },
+  {
+    "id": 4052,
+    "question": "During a routine visit to a construction site, an HSE (Health and Safety Executive) inspector identifies an immediate risk of a fall from height due to missing guardrails. What legal power can they exercise to stop work instantly?",
+    "options": [
+      "Issue a Prohibition Notice",
+      "Issue an Improvement Notice",
+      "Revoke the electrician's JIB card",
+      "Immediately fine the individual operative £500"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1379,13 +1007,378 @@ export const siteVisitorsAndInspectorsQuestions: TaggedQuestion[] = [
     "section": "Communication 2365 Level 2",
     "category": "Site Visitors and Inspectors",
     "tags": [
-      "discrimination",
+      "health-safety",
+      "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "210-LO1-AC1.3",
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "A Prohibition Notice is used by the HSE to stop an activity immediately if the inspector believes there is a risk of serious personal injury."
+  },
+  {
+    "id": 4053,
+    "question": "An Electrical Services Inspector from a competent person scheme (such as NICEIC or NAPIT) is visiting a site to assess a contractor's work. What is the primary purpose of this specific visit?",
+    "options": [
+      "To ensure the electrical installation complies with BS 7671",
+      "To check if the site's welfare facilities meet HSE standards",
+      "To inspect the plumbing and drainage for leaks",
+      "To verify that the site security guards are correctly licensed"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Electrical Services Inspectors focus specifically on the technical standards of electrical work and its compliance with the current edition of the IET Wiring Regulations (BS 7671)."
+  },
+  {
+    "id": 4054,
+    "question": "A Water Inspector arrives on a site where a new commercial kitchen is being installed. Which of the following would be their main area of concern during the inspection?",
+    "options": [
+      "Preventing contamination of the mains supply via backflow",
+      "Checking the fire rating of the kitchen doors",
+      "Testing the earth loop impedance of the kitchen sockets",
+      "Measuring the noise levels of the extraction fans"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Water Inspectors ensure that installations comply with Water Regulations, with a high priority on preventing backflow and contamination of the public water supply."
+  },
+  {
+    "id": 4055,
+    "question": "An electrician is working alone in a plant room when an unidentified person claiming to be a 'Site Inspector' asks to see the electrical completion certificates. What is the most professional first step the electrician should take?",
+    "options": [
+      "Ask to see their identification and direct them to the Site Manager",
+      "Hand over all original documents immediately to avoid a fine",
+      "Refuse to speak to them and continue working until they leave",
+      "Tell them that certificates are private and cannot be shown to outsiders"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "For security and site protocol, all visitors must be identified, and official inspections should be coordinated through the Site Manager or the person responsible for the site records."
+  },
+  {
+    "id": 4056,
+    "question": "During a large-scale renovation, a Building Control Inspector discovers that structural joists have been notched beyond the permitted depth to accommodate 25mm conduits. What is the most likely legal outcome regarding the electrical installation?",
+    "options": [
+      "The inspector can issue a notice to stop work and require structural remediation before the electrical work continues",
+      "The inspector must defer to the Electrical Services Inspector as it involves electrical containment",
+      "The electrician is only required to wrap the conduits in fire-rated tape to satisfy Part B",
+      "The inspector can only fine the homeowner, while the electrical work is allowed to proceed as planned"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Building Control Inspectors have the authority to ensure all work complies with Building Regulations, including structural integrity (Part A). If electrical routing compromises the structure, they can halt work."
+  },
+  {
+    "id": 4057,
+    "question": "An HSE Inspector visits a site and observes a contractor using a 230V drill without an RCD in a damp environment. Which enforcement action is the inspector most likely to take if they believe there is a risk of serious personal injury?",
+    "options": [
+      "Issue an immediate Prohibition Notice",
+      "Issue an Improvement Notice allowing 21 days for compliance",
+      "Provide a verbal warning and record it in the site diary",
+      "Report the incident to the local Building Control department"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "WRONG_UNITS"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "Insurance inspectors look for risks that might lead to claims (fire, flood, injury). They ensure that the work is being carried out safely to protect the insurance company's financial interest."
+    "explanation": "A Prohibition Notice is used by HSE inspectors to stop an activity immediately when there is a risk of serious personal injury."
+  },
+  {
+    "id": 4058,
+    "question": "Which of the following best distinguishes the primary role of an Electrical Services Inspector (e.g., from NICEIC or NAPIT) from that of a Building Control Inspector?",
+    "options": [
+      "The Electrical Services Inspector audits the technical standard of work against BS 7671, while Building Control ensures overall compliance with Building Regulations",
+      "The Electrical Services Inspector has the power to arrest for safety violations, whereas Building Control does not",
+      "Building Control only inspects commercial sites, while Electrical Services Inspectors only inspect domestic dwellings",
+      "The Electrical Services Inspector is a government official, while Building Control is always a private contractor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Electrical Services Inspectors represent 'Competent Person Schemes' to audit technical standards (BS 7671), whereas Building Control ensures the wider project meets legal Building Regulations."
+  },
+  {
+    "id": 4059,
+    "question": "An electrician is installing a supply to a new commercial kitchen. A Water Inspector arrives to check the installation. Which specific concern is the Water Inspector legally mandated to investigate?",
+    "options": [
+      "The risk of backflow or cross-contamination between the mains supply and the kitchen equipment",
+      "The IP rating of the electrical sockets located near the sink units",
+      "The bonding of the incoming water main to the main earthing terminal",
+      "The energy efficiency of the electric water heaters installed"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "application",
+      "discrimination",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Water Inspectors ensure compliance with the Water Supply (Water Fittings) Regulations, which focus on preventing contamination, waste, and undue consumption."
+  },
+  {
+    "id": 4060,
+    "question": "Under the CDM Regulations 2015, if an HSE Inspector finds that a site lacks a Construction Phase Plan, who is the primary person or entity they will hold legally responsible on a multi-contractor site?",
+    "options": [
+      "The Principal Contractor",
+      "The individual electrician on site",
+      "The Building Control Inspector",
+      "The local electricity distributor (DNO)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Principal Contractor is responsible for the Construction Phase Plan under CDM 2015 regulations for projects involving more than one contractor."
+  },
+  {
+    "id": 4061,
+    "question": "A Building Control Inspector requests that a finished wall be opened to inspect the routing of cables in a 'special location'. Which part of the Building Regulations gives them the authority to make this request?",
+    "options": [
+      "Regulation 14 (Inspection and testing of work)",
+      "Part P (Electrical Safety)",
+      "The Health and Safety at Work Act Section 2",
+      "BS 7671 Chapter 64"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "FORMULA_NOT_REARRANGED"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Building Regulations (Regulation 14) allow inspectors to require work to be cut into, laid open, or pulled down if they cannot verify compliance otherwise."
+  },
+  {
+    "id": 4062,
+    "question": "An Electrical Services Inspector conducting an annual assessment finds that the Qualified Supervisor (QS) has signed off certificates for work they did not actually oversee. What is the most likely consequence for the firm's registration?",
+    "options": [
+      "Suspension or removal from the Competent Person Scheme register",
+      "A mandatory fine issued by the HSE",
+      "An immediate prison sentence for the QS",
+      "Requirement to redo all work using 110V equipment only"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "conceptual",
+      "legislation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Competent Person Schemes require the QS to effectively supervise work. Failure to do so is a breach of the scheme's rules, leading to suspension or removal."
+  },
+  {
+    "id": 4063,
+    "question": "Which of the following visitors has the statutory right to enter a construction site at 'any reasonable time' to investigate a potential breach of safety law, even without the prior consent of the site owner?",
+    "options": [
+      "An HSE Inspector",
+      "An NICEIC Area Engineer",
+      "The Client's Architect",
+      "A Water Inspector investigating a private well"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Under the Health and Safety at Work Act, HSE inspectors have broad powers of entry to ensure workplace safety and investigate incidents."
+  },
+  {
+    "id": 4064,
+    "question": "During a site visit, a Water Inspector notes that a new high-pressure power shower has been connected directly to the mains supply without a break tank. Why is this a concern for the inspector?",
+    "options": [
+      "It risks causing a pressure drop in the local mains and potential back-siphonage of contaminated water",
+      "It violates Part P of the Building Regulations regarding electrical zones in bathrooms",
+      "The electrical current required for the pump exceeds the standard 13A rating",
+      "The noise levels of the pump violate the Environmental Protection Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "application",
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Water Regulations prevent installations that could cause back-siphonage or contamination of the public water supply."
+  },
+  {
+    "id": 4065,
+    "question": "A conflict occurs where a Building Control Inspector requires fire-stopping that would lead to cable overheating (derating). What is the correct professional communication procedure for the electrician?",
+    "options": [
+      "Discuss the conflict with both inspectors, propose a larger cable size or alternative routing, and document the agreed solution",
+      "Follow the Building Control Inspector's instruction only, as they have higher legal authority than BS 7671",
+      "Ignore the fire-stopping requirement to ensure the electrical circuit does not trip",
+      "Wait for the HSE inspector to arrive and make a final decision on the technical trade-off"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Visitors and Inspectors",
+    "tags": [
+      "conceptual",
+      "application",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-1B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Professional communication involves identifying the conflict between different regulations (Part B Fire Safety vs Part P/BS 7671 Electrical Safety) and finding a technical solution that satisfies both."
   }
 ];

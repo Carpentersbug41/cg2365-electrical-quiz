@@ -1,14 +1,14 @@
 {
   "id": "210-1B",
-  "title": "210.1B — Site Management and Reporting Roles",
-  "description": "Learn about the Site Management Team and reporting hierarchies in Communication 2365 Level 2",
+  "title": "210.1B — Site Management Team and Reporting Roles",
+  "description": "Learn about the key roles within a site management team and the reporting lines for individuals on a construction site.",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Site Management and Reporting Roles",
+  "topic": "Site Management and Reporting",
   "learningOutcomes": [
-    "Identify key roles of the site management team including Site Managers and Quantity Surveyors",
-    "Identify key roles of individuals reporting to site management such as Supervisors and Operatives",
-    "Explain the chain of command and how information flows between site roles"
+    "Identify key roles of the site management team (Project Manager, Site Manager)",
+    "Identify key roles of individuals reporting to site management (Supervisors, Admin)",
+    "Explain the chain of command and responsibilities on a construction site"
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify key roles of the site management team including Site Managers and Quantity Surveyors",
+            "text": "Identify key roles of the site management team (Project Manager, Site Manager)",
             "bloomLevel": "remember"
           },
           {
-            "text": "Identify key roles of individuals reporting to site management such as Supervisors and Operatives",
-            "bloomLevel": "understand"
+            "text": "Identify key roles of individuals reporting to site management (Supervisors, Admin)",
+            "bloomLevel": "remember"
           },
           {
-            "text": "Explain the chain of command and how information flows between site roles",
-            "bloomLevel": "apply"
+            "text": "Explain the chain of command and responsibilities on a construction site",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -42,24 +42,24 @@
       "content": {
         "terms": [
           {
+            "term": "Project Manager (PM)",
+            "definition": "The senior leader responsible for the overall success of the project, focusing on budget, client relations, and long-term scheduling."
+          },
+          {
             "term": "Site Manager",
-            "definition": "The person with overall day-to-day responsibility for the safety, schedule, and quality of the construction site; often called the 'Site Agent' on larger projects."
-          },
-          {
-            "term": "Contracts Manager",
-            "definition": "A senior manager who oversees multiple projects and deals with high-level client contracts and budgets, sitting above the Site Manager in the hierarchy."
-          },
-          {
-            "term": "Quantity Surveyor (QS)",
-            "definition": "The professional responsible for estimating and monitoring construction costs, ensuring the project stays within budget by measuring materials and labor."
-          },
-          {
-            "term": "Supervisor",
-            "definition": "Also known as a foreman or chargehand, this person directs the specific daily tasks of operatives and reports progress up to the Site Manager."
+            "definition": "The manager responsible for daily site operations, including safety enforcement, logistics, and coordinating work gangs."
           },
           {
             "term": "Chain of Command",
-            "definition": "The official hierarchy of authority that dictates who reports to whom, ensuring instructions flow down from management and information flows up from operatives."
+            "definition": "The formal line of authority along which orders are passed down and reports are passed up (e.g., Operative → Supervisor → Site Manager)."
+          },
+          {
+            "term": "Supervisor",
+            "definition": "A team leader who directs the work of specific operatives or trades and acts as the first point of contact for technical issues."
+          },
+          {
+            "term": "Quantity Surveyor (QS)",
+            "definition": "A professional responsible for managing all costs, contracts, and material quantities on a construction project."
           }
         ]
       }
@@ -69,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "The Site Management Team (AC1)",
-        "content": "### In this lesson\nYou will learn about the key roles that run a construction site. You will identify who is responsible for the daily operations, who handles the money, and who oversees the big picture.\n\n*   The difference between a Site Manager and a Contracts Manager.\n*   The role of the Quantity Surveyor in cost control.\n*   How the management team coordinates the project.\n\n**What this is**\nThe **Site Management Team** is the group of professionals responsible for delivering the project. Think of a ship: the **Contracts Manager** is the Admiral (on land, managing the fleet/strategy), the **Site Manager** is the Captain (on the ship, managing the crew daily), and the **Quantity Surveyor** is the Purser (managing the money and supplies).\n\n**Why it matters**\nKnowing who is who ensures you speak to the right person. If you have a query about your pay or the cost of materials, you talk to the **Quantity Surveyor**. If you have a safety concern or a problem with the schedule, the **Site Manager** is the authority. Confusing these roles can lead to delays or unauthorized spending.\n\n**Key facts / rules**\n*   **Contracts Manager**: Visits occasionally. Manages the contract with the client and oversees multiple sites. Focus: Strategy & Profit.\n*   **Site Manager / Site Agent**: Based on site every day. Responsible for safety, labor, and deadlines. Focus: Getting the job done.\n*   **Quantity Surveyor (QS)**: Measures work completed and calculates costs. Focus: Budget & Value.\n\n**Micro-Scenario: The Cost Check**\nImagine a bricklayer needs more bricks. The **Site Manager** approves the *need* for bricks to keep work going. The **Quantity Surveyor** calculates that 1,000 bricks are required and checks if this fits the budget before placing the order. The **Contracts Manager** might later review why the project used more bricks than predicted.\n\n**When to choose it**\nWhen you need a decision made, look at the scale. Is it a daily issue? Go to the Site Manager. Is it a major contract change? It requires the Contracts Manager. Is it about money or measurements? It’s the QS.\n\n**Common mistakes**\nLearners often confuse the **Site Manager** with the **Contracts Manager**. Remember: The Site Manager is *on site* daily; the Contracts Manager manages the *contracts* (paperwork) for several sites and visits less often.\n\nMisconceptions (targeted):\n*   Misconception: The Site Manager handles all the payroll and invoicing personally. | Correction: The Quantity Surveyor is the specialist who manages costs, valuations, and invoicing. | AC: AC1\n*   Misconception: The Contracts Manager is the boss of the company. | Correction: They are a senior manager, but they report to Directors. They specifically manage project contracts. | AC: AC1\n\n**Key Points**\n*   **Site Manager**: Day-to-day site control.\n*   **Contracts Manager**: Multi-site strategic control.\n*   **Quantity Surveyor**: Cost and material control.\n\n### Coming Up Next\nNow that we know who runs the site, we will look at the individuals who report to them and do the physical work."
+        "title": "The Site Management Team",
+        "content": "### In this lesson\nYou will learn the difference between strategic and operational roles on a site. This ensures you know who is responsible for the overall budget versus who handles daily safety and logistics.\n\n*   Identify the **Project Manager** as the strategic lead.\n*   Identify the **Site Manager** as the operational lead.\n*   Understand the role of the **Contract Manager**.\n\n**What this is**\nThe Site Management Team is the group of senior professionals who run the construction project. The two most critical roles to distinguish are the **Project Manager (PM)** and the **Site Manager**.\n\n*   **Project Manager (PM):** Think of the PM as the \"Architect of the Plan.\" They focus on the big picture: the budget, the client relationship, and the master schedule. They are often office-based or split their time between multiple sites.\n*   **Site Manager:** Think of the Site Manager as the \"Captain of the Ship.\" They are permanently on-site, ensuring that the work planned by the PM actually happens safely and correctly today. They manage site access, safety inductions, and material deliveries.\n*   **Contract Manager:** A senior role often overseeing multiple projects, dealing specifically with the legal and commercial terms of the construction contracts.\n\n**Why it matters**\nKnowing the difference prevents communication failures. If you have a question about the daily work plan or a safety hazard, you go to the Site Manager. If you have a question about the overall contract budget or a major design change request from the client, that is a Project Manager issue. Confusing these roles can lead to delays or safety breaches.\n\n**Key facts / rules**\n*   **Project Managers** handle money, clients, and long-term timelines.\n*   **Site Managers** handle daily logistics, health & safety enforcement, and sub-contractor coordination.\n*   **Contract Managers** handle legal agreements and commercial viability across projects.\n*   The Site Manager usually reports to the Project Manager or Contract Manager.\n\n**When to choose it**\n*   **Scenario A:** The client wants to change the type of flooring in the entire building. This affects cost and contracts. **Action:** Refer to the **Project Manager**.\n*   **Scenario B:** A delivery truck has arrived and blocked the fire exit. This is an immediate safety and logistics issue. **Action:** Refer to the **Site Manager**.\n\n**Common mistakes**\nLearners often confuse the Project Manager with the Site Manager. Remember: The **Project Manager** looks at the *spreadsheet* (money/time), while the **Site Manager** looks at the *site* (mud/safety).\n\n**Misconceptions (targeted):**\n*   *Misconception:* The Project Manager is always on site directing traffic. | *Correction:* The PM is often office-based; the Site Manager directs daily traffic and operations. | *AC: 210.LO1.AC1*\n*   *Misconception:* Site Managers negotiate the contract price with the client. | *Correction:* Contract negotiation is for the Project Manager or Quantity Surveyor; Site Managers execute the work. | *AC: 210.LO1.AC1*"
       }
     },
     {
@@ -78,61 +78,60 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Site Management",
+        "title": "Check Your Understanding: Management Roles",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "Which management role is based on site every day and has overall responsibility for safety and schedule?",
+            "questionText": "Which role is primarily responsible for the project budget and client relationship?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Project Manager",
+              "PM",
+              "The Project Manager"
+            ],
+            "hint": "Think of the person who manages the money and the long-term plan."
+          },
+          {
+            "id": "210-1B-C1-L1-B",
+            "questionText": "Which role is responsible for daily site safety, logistics, and operations?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Site Manager",
               "Site Agent",
-              "Project Manager"
+              "The Site Manager"
             ],
-            "hint": "Think of the 'Captain' of the ship who is physically present."
-          },
-          {
-            "id": "210-1B-C1-L1-B",
-            "questionText": "Which professional is responsible for estimating costs and monitoring the project budget?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Quantity Surveyor",
-              "QS",
-              "Surveyor"
-            ],
-            "hint": "This role involves measuring materials and managing money."
+            "hint": "Think of the person who is on site every day ensuring work happens safely."
           },
           {
             "id": "210-1B-C1-L1-C",
-            "questionText": "Who oversees multiple projects and manages the high-level client contracts?",
+            "questionText": "What is the term for the manager who oversees legal and commercial aspects across multiple projects?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Contracts Manager",
-              "Contract Manager"
+              "Contract Manager",
+              "Contracts Manager"
             ],
-            "hint": "This manager sits above the Site Manager and looks at the bigger strategic picture."
+            "hint": "This person deals with the contracts and commercial terms."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Explain the relationship between the Site Manager and the Quantity Surveyor. Why are both roles needed for a successful project?",
+            "questionText": "Explain the primary difference between a Project Manager and a Site Manager in terms of their focus.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Site Manager focuses on physical progress, safety, and schedule",
-              "Quantity Surveyor focuses on costs, budget, and material quantities",
-              "Together they ensure the project is built correctly (Site Manager) and profitably (QS)",
-              "One manages the work, the other manages the money"
+              "Project Manager focuses on strategy, budget, and client relations.",
+              "Site Manager focuses on daily operations, safety, and logistics.",
+              "PM is often office-based; SM is site-based."
             ],
             "expectedAnswer": [
-              "The Site Manager ensures the work is done safely and on time, while the Quantity Surveyor ensures it is done within budget. Both are needed because a project that is finished on time but costs double the budget is a failure, just as a cheap project that is never finished is a failure. They balance physical progress with financial control.",
-              "The Site Manager handles the day-to-day operations and logistics, whereas the Quantity Surveyor handles the financial side. You need both to ensure the building is constructed to standard without running out of money."
+              "The Project Manager focuses on the strategic aspects like budget and client relations, whereas the Site Manager focuses on the operational aspects like daily safety and logistics.",
+              "A Project Manager deals with the long-term plan and money, while the Site Manager deals with the immediate work and safety on the ground."
             ],
-            "hint": "Think about the difference between 'building it' and 'paying for it'."
+            "hint": "Compare 'strategy/money' with 'daily operations/safety'."
           }
         ]
       }
@@ -142,8 +141,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Reporting Lines and Operatives (AC2)",
-        "content": "### In this lesson\nYou will learn about the individuals who report to the site management team. This includes the supervisors who direct work and the operatives who perform it.\n\n*   The role of the Supervisor/Foreman.\n*   The duties of the Operative.\n*   The function of Site Administration.\n*   Understanding the Chain of Command.\n\n**What this is**\nBelow the management team is the workforce. This is organized into a **Chain of Command**. Instructions flow down from the Site Manager -> Supervisor -> Operative. Reports flow back up. \n\n**Roles**\n1.  **Supervisor (Foreman/Ganger)**: The link between management and workers. They do not usually run the whole site but control a specific team (e.g., the electrical team). They ensure materials are ready and work is correct.\n2.  **Operative**: The skilled tradesperson (e.g., Electrician, Plumber, Bricklayer) or general laborer. They perform the physical installation.\n3.  **Site Administrator**: Reports to the Site Manager. Handles the 'office' side: filing drawings, checking timesheets, and signing in visitors.\n\n**Why it matters**\nFollowing the **Chain of Command** prevents confusion. If an **Operative** has a problem, they should tell their **Supervisor**, not bypass them to the Contracts Manager. This ensures problems are solved quickly at the right level.\n\n**Micro-Scenario: Span of Control**\nConsider a site with 20 electricians. It is too hard for one Site Manager to watch them all. So, the team is split: 2 **Supervisors** each manage 10 **Operatives**. If an operative installs 50 meters of cable tray, the Supervisor checks it measures correctly and meets the standard before telling the Site Manager the task is complete.\n\n**Key facts / rules**\n*   **Operatives** report to **Supervisors**.\n*   **Supervisors** report to the **Site Manager**.\n*   **Site Admin** supports the **Site Manager** with paperwork.\n*   **Span of Control**: The number of people a supervisor can effectively manage (usually 8-12).\n\n**Common mistakes**\nLearners often think the Site Manager tells every single worker what to do every hour. In reality, the Site Manager tells the **Supervisor** the plan for the week, and the Supervisor directs the **Operatives** daily.\n\nMisconceptions (targeted):\n*   Misconception: Operatives can change the design if they think a better way exists. | Correction: Operatives must follow the design; changes must be approved by the Supervisor and Management. | AC: AC2\n*   Misconception: The Site Administrator is just a receptionist. | Correction: They control critical project documentation and site access records. | AC: AC2\n\n**Key Points**\n*   Respect the **Chain of Command**.\n*   **Supervisors** translate management goals into daily tasks.\n*   **Operatives** deliver the physical work quality.\n\n### Coming Up Next\nWe will practice identifying these roles and calculating team structures."
+        "title": "Reporting Lines and Supervision",
+        "content": "### In this lesson\nYou will learn about the roles that report to the site management team. This clarifies the **Chain of Command**, ensuring you know who to speak to first when you have an issue.\n\n*   Identify the role of the **Supervisor** or **Foreman**.\n*   Understand the function of **Site Administration**.\n*   Recognise the **Quantity Surveyor's** role in cost tracking.\n\n**What this is**\nBelow the senior management, there are specific roles that ensure the work gets done. This structure is called the **Chain of Command**.\n\n*   **Supervisor / Foreman:** These are the \"boots on the ground\" leaders. They direct specific gangs (e.g., the electrical team) and are the first point of contact for operatives. They ensure the quality of work matches the drawings.\n*   **Site Administrator:** Responsible for the paperwork, such as filing timesheets, ordering stationery, and maintaining induction records. They report to the Site Manager.\n*   **Quantity Surveyor (QS):** They count (\"survey\") materials and manage costs. They ensure the company gets paid for the work done. They often report to the Commercial/Contract Manager but work closely with the Site Manager.\n*   **Operatives:** The skilled tradespeople (electricians, plumbers) who report to their Supervisor.\n\n**Why it matters**\nThe Chain of Command ensures efficiency. A Project Manager cannot solve every missing screwdriver issue; that is for the Supervisor. Following the chain ensures that problems are solved at the right level.\n\n**Key facts / rules**\n*   **Operatives** report to **Supervisors**.\n*   **Supervisors** report to the **Site Manager**.\n*   **Site Administrators** support the management team with documentation.\n*   **Quantity Surveyors** manage the financial measurement of the work.\n\n**When to choose it**\n*   **Scenario A:** You are an apprentice and you need a new pair of gloves. **Action:** Ask your **Supervisor**.\n*   **Scenario B:** You need to check if your timesheet was submitted correctly. **Action:** Ask the **Site Administrator**.\n*   **Scenario C:** You need to measure how much cable was installed to bill the client. **Action:** This is a task for the **Quantity Surveyor**.\n\n**Common mistakes**\nLearners often think they should take every problem straight to the Site Manager. In reality, the **Supervisor** is the correct first contact for technical or equipment issues.\n\n**Misconceptions (targeted):**\n*   *Misconception:* The Quantity Surveyor is responsible for checking the safety of the wiring. | *Correction:* The QS checks the *cost* and *quantity*; the Supervisor or Site Manager checks safety and quality. | *AC: 210.LO1.AC2*\n*   *Misconception:* An operative reports directly to the Project Manager. | *Correction:* An operative reports to a Supervisor, who then reports to the Site Manager, following the Chain of Command. | *AC: 210.LO1.AC2*"
       }
     },
     {
@@ -157,58 +156,54 @@
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "Who acts as the direct link between the Site Manager and the Operatives?",
+            "questionText": "Who is the first point of contact for an operative regarding a daily work issue?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Supervisor",
               "Foreman",
-              "Ganger",
-              "Chargehand"
+              "The Supervisor"
             ],
-            "hint": "This person directs the daily tasks of the work gang."
+            "hint": "This person leads the specific work gang."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "Which role is responsible for performing the physical installation work on site?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Operative",
-              "Tradesperson",
-              "Electrician",
-              "Worker"
-            ],
-            "hint": "This is the person on the tools doing the job."
-          },
-          {
-            "id": "210-1B-C2-L1-C",
-            "questionText": "Who supports the Site Manager by handling documentation, filing, and visitor logs?",
+            "questionText": "Which role is responsible for filing timesheets and maintaining site records?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Site Administrator",
-              "Site Admin",
-              "Administrator"
+              "Administrator",
+              "Admin"
             ],
-            "hint": "This role is office-based and deals with paperwork."
+            "hint": "This person handles the office paperwork on site."
+          },
+          {
+            "id": "210-1B-C2-L1-C",
+            "questionText": "Which role focuses on measuring materials and managing costs for the work done?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Quantity Surveyor",
+              "QS"
+            ],
+            "hint": "This person surveys the quantity of work to calculate costs."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "Describe the 'Chain of Command' from the Operative to the Site Manager. Why is it important to follow this structure?",
+            "questionText": "Why is it important to follow the Chain of Command (e.g., Operative -> Supervisor -> Site Manager)?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Order: Operative -> Supervisor -> Site Manager",
-              "Ensures instructions flow down clearly",
-              "Ensures issues are resolved at the correct level",
-              "Prevents management overload and confusion"
+              "Ensures problems are solved at the correct level.",
+              "Prevents senior management from being overwhelmed by minor issues.",
+              "Maintains clear communication and efficiency."
             ],
             "expectedAnswer": [
-              "The Chain of Command flows from the Operative up to the Supervisor, and then to the Site Manager. It is important to follow this so that the Site Manager isn't overwhelmed with minor issues that a Supervisor could fix, and to ensure that instructions from the top are clearly explained to the team by their direct leader.",
-              "Operatives report to Supervisors, who report to the Site Manager. Following this structure prevents confusion and ensures that information reaches the right person without bypassing the necessary checks."
+              "Following the Chain of Command ensures that problems are solved at the appropriate level, preventing senior managers from being overwhelmed with minor issues.",
+              "It improves efficiency by ensuring that supervisors handle technical tasks while managers focus on site-wide operations."
             ],
-            "hint": "Think about how information moves up the ladder and why skipping a step causes problems."
+            "hint": "Think about efficiency and not wasting the Site Manager's time with minor tool issues."
           }
         ]
       }
@@ -222,52 +217,51 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "A site management team consists of 1 Contracts Manager, 1 Project Manager, 1 Site Agent, and 2 Quantity Surveyors. How many individuals are part of this specific management group?",
+            "questionText": "A site has 4 supervisors. Each supervisor manages a team of 6 operatives. How many total operatives are on the site?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "5"
+              "24"
             ],
-            "hint": "Simply count the total number of management roles listed."
+            "hint": "Multiply the number of supervisors by the number of operatives per team."
           },
           {
             "id": "210-1B-P2",
-            "questionText": "If you are an operative and you find a discrepancy in the drawings, who is the first person you should report this to?",
+            "questionText": "State the job role responsible for the overall financial budget and client relationship.",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Supervisor",
-              "Foreman",
-              "Line Manager"
+              "Project Manager",
+              "PM"
             ],
-            "hint": "Follow the immediate chain of command; do not go straight to the top."
+            "hint": "This is the strategic lead, not the daily site lead."
           },
           {
             "id": "210-1B-P3",
-            "questionText": "A company policy requires 1 Supervisor for every 8 Operatives. If there are 24 Operatives on site, what is the minimum number of Supervisors required?",
-            "answerType": "numeric",
+            "questionText": "An operative notices a safety hazard in their work area. According to the chain of command, who should they report this to first?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "3"
+              "Supervisor",
+              "Foreman"
             ],
-            "hint": "Divide the total operatives by the span of control (24 divided by 8)."
+            "hint": "The immediate leader of their work gang."
           },
           {
             "id": "210-1B-P4",
-            "questionText": "Which management role would you contact regarding a payment valuation or a budget issue?",
+            "questionText": "Which specialist role would a Site Manager consult to confirm the exact volume of concrete required for a bill of quantities?",
             "answerType": "short-text",
             "expectedAnswer": [
               "Quantity Surveyor",
               "QS"
             ],
-            "hint": "This person is the financial controller of the project."
+            "hint": "The person responsible for measuring quantities and costs."
           },
           {
             "id": "210-1B-P5",
-            "questionText": "Who has the authority to make high-level strategic decisions for multiple sites at once?",
-            "answerType": "short-text",
+            "questionText": "A project meeting includes 1 Project Manager, 1 Site Manager, 1 Contract Manager, and 4 Supervisors. How many people in this meeting are part of the 'Site Management Team' (excluding the supervisors)?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Contracts Manager",
-              "Contract Manager"
+              "3"
             ],
-            "hint": "This role sits above the Site Manager."
+            "hint": "Count the managers (PM, SM, CM) but exclude the reporting supervisors."
           }
         ]
       }
@@ -283,38 +277,34 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "Explain the distinct responsibilities of the Site Manager compared to the Quantity Surveyor. In your answer, include: (1) the primary focus of each role (schedule/safety vs. cost), (2) how they interact during a material shortage, and (3) why separating these roles benefits the project. (2-3 sentences)",
+            "questionText": "Explain the relationship between the Project Manager and the Site Manager. In your answer, include: (1) the primary focus of each role, (2) how they support each other, and (3) why both are needed for a successful project. (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Site Manager focuses on operations, safety, and time",
-              "Quantity Surveyor focuses on budget, valuations, and procurement",
-              "Interaction: Site Manager identifies need, QS approves cost/orders",
-              "Separation ensures checks and balances (progress vs. profit)"
+              "Project Manager focuses on strategy/budget; Site Manager focuses on operations/safety.",
+              "PM plans the work; SM executes the work on the ground.",
+              "Both are needed to ensure the project is both profitable (PM) and safe/buildable (SM)."
             ],
             "expectedAnswer": [
-              "The Site Manager focuses on the operational side, ensuring safety and schedule, while the Quantity Surveyor focuses on the financial side, managing the budget. During a material shortage, the Site Manager identifies the need for materials to keep work going, and the QS ensures the purchase is cost-effective and within budget. Separating these roles provides a check and balance, ensuring the project is built correctly without overspending.",
-              "While the Site Manager drives the physical work and safety, the QS controls the money. If materials run out, the Site Manager requests them, but the QS handles the financial approval. This separation prevents the Site Manager from spending recklessly just to speed up the job."
+              "The Project Manager focuses on the strategic budget and client needs, while the Site Manager focuses on daily operational safety and logistics. They support each other because the PM provides the plan and resources, which the SM then executes on the ground. Both are needed to ensure the project stays on budget while being built safely and to quality standards."
             ],
-            "hint": "Contrast 'getting it done' with 'keeping it affordable'."
+            "hint": "Think 'Strategy vs. Execution'. One plans the war, the other leads the battle."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "Analyze the chain of command during a design change. If an Operative notices a cable route is blocked: (1) Who do they tell? (2) Who does that person report to? (3) Who likely makes the final decision if it costs money? Explain the flow of information.",
+            "questionText": "Describe the flow of information in a Chain of Command when a design error is found by an operative. Trace the path from the Operative up to the Project Manager. Why is this path effective?",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Flow: Operative -> Supervisor -> Site Manager -> QS/Contracts Manager",
-              "Operative identifies issue",
-              "Supervisor verifies and reports up",
-              "Site Manager assesses impact",
-              "QS/Contracts Manager approves cost if significant"
+              "Operative reports to Supervisor.",
+              "Supervisor verifies and reports to Site Manager.",
+              "Site Manager assesses impact and reports to Project Manager.",
+              "Effective because it filters issues: Supervisor handles technical details, PM handles cost/client impact."
             ],
             "expectedAnswer": [
-              "The Operative should first tell their Supervisor, who verifies the blockage. The Supervisor then reports this to the Site Manager. If the solution requires significant extra cost or materials, the Site Manager will consult the Quantity Surveyor or Contracts Manager for approval. This flow ensures the decision is made by the person with the appropriate authority and budget control.",
-              "1. Operative tells Supervisor.\n2. Supervisor tells Site Manager.\n3. Site Manager/QS makes the decision.\nInformation flows up so that the Site Manager is aware of the delay, and the QS can account for any extra costs."
+              "The operative reports the error to their Supervisor, who verifies it and escalates it to the Site Manager. The Site Manager then reports the issue to the Project Manager if it affects the budget or timeline. This path is effective because it ensures technical details are checked at the lower levels before the strategic impact is assessed by senior management."
             ],
-            "hint": "Follow the hierarchy: Worker -> Leader -> Manager -> Financial Control."
+            "hint": "Start at the bottom (Operative) and move up step-by-step to the top (PM)."
           }
         ]
       }
@@ -324,41 +314,44 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Foundation Check",
+        "title": "Foundation Check: Communication Principles",
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "Who is the primary person or organization that commissions and pays for the construction project?",
+            "questionText": "What is the first stage of the communication cycle where the sender creates the message?",
             "expectedAnswer": [
-              "Client",
-              "The Client",
-              "Customer"
+              "Encoding",
+              "Encode"
             ],
-            "hint": "This is the person at the very top who wants the building built.",
+            "hint": "Turning thoughts into words or symbols.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "Which design team member is responsible for the aesthetic design and spatial arrangement of the building?",
+            "questionText": "Identify one form of formal written communication used on site.",
             "expectedAnswer": [
-              "Architect",
-              "The Architect"
+              "Email",
+              "Letter",
+              "Report",
+              "Site Diary",
+              "Memo"
             ],
-            "hint": "They produce the drawings that show what the building will look like.",
+            "hint": "A method that leaves a permanent record.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "Which engineer calculates the loads to ensure the building's framework (beams and columns) is strong enough?",
+            "questionText": "State one common barrier to effective communication on a noisy construction site.",
             "expectedAnswer": [
-              "Structural Engineer",
-              "Structural"
+              "Noise",
+              "Background noise",
+              "Distraction"
             ],
-            "hint": "They focus on the strength and stability of the skeleton of the building.",
+            "hint": "Physical sound that prevents hearing.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check before starting Site Management Roles"
+        "notes": "Review of Unit 210-1A Communication Principles."
       }
     }
   ],
@@ -371,7 +364,7 @@
     "updated": "2026-02-16",
     "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, HIERARCHY",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO1",
@@ -386,32 +379,32 @@
       ]
     },
     "scope": {
-      "inScope": "Roles and responsibilities of the Site Management Team and reporting individuals (Operatives/Supervisors).",
-      "outOfScope": "External site visitors (AC3), statutory inspectors, and design team roles (covered in 1A).",
-      "rationale": "The lesson focuses on the internal site hierarchy and management structure as defined by AC1 and AC2."
+      "inScope": "Roles and responsibilities of the Site Management Team (PM, SM) and reporting lines (Supervisors, Admin).",
+      "outOfScope": "Specific visitor procedures (AC3) or inspection checklists.",
+      "rationale": "The lesson focuses on the internal hierarchy and management structure of the construction team."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
       "noCalculations": false,
-      "specificScope": "Focus on the 'who' and 'why' of the management hierarchy."
+      "specificScope": "Focus on the 'who' and 'why' of management roles."
     },
     "misconceptions": [
       {
-        "misconception": "The Site Manager handles all the payroll and invoicing personally.",
-        "correction": "The Quantity Surveyor is the specialist who manages costs, valuations, and invoicing.",
-        "relatedAC": "AC1"
+        "misconception": "The Project Manager is always on site directing traffic.",
+        "correction": "The PM is often office-based; the Site Manager directs daily traffic and operations.",
+        "relatedAC": "210.LO1.AC1"
       },
       {
-        "misconception": "Operatives can change the design if they think a better way exists.",
-        "correction": "Operatives must follow the design; changes must be approved by the Supervisor and Management.",
-        "relatedAC": "AC2"
+        "misconception": "Site Managers negotiate the contract price with the client.",
+        "correction": "Contract negotiation is for the Project Manager or Quantity Surveyor; Site Managers execute the work.",
+        "relatedAC": "210.LO1.AC1"
       },
       {
-        "misconception": "The Contracts Manager is the boss of the company.",
-        "correction": "They are a senior manager, but they report to Directors. They specifically manage project contracts.",
-        "relatedAC": "AC1"
+        "misconception": "An operative reports directly to the Project Manager.",
+        "correction": "An operative reports to a Supervisor, who then reports to the Site Manager, following the Chain of Command.",
+        "relatedAC": "210.LO1.AC2"
       }
     ]
   }
