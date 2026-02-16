@@ -6,9 +6,9 @@
   "unit": "Unit 210",
   "topic": "Site Visitors and Inspectors",
   "learningOutcomes": [
-    "Identify the key roles and categories of visitors typically found on a technical site.",
-    "Describe the specific regulatory authority and focus areas of different site inspectors.",
-    "Match specific site compliance requirements to the correct inspectorate body."
+    "Identify the common types of visitors and inspectors found on a technical site",
+    "Describe the primary roles and responsibilities of building control, water, and HSE inspectors",
+    "Explain the specific function and authority of an electrical services inspector"
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the key roles and categories of visitors typically found on a technical site.",
+            "text": "Identify the common types of visitors and inspectors found on a technical site",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the specific regulatory authority and focus areas of different site inspectors.",
+            "text": "Describe the primary roles and responsibilities of building control, water, and HSE inspectors",
             "bloomLevel": "understand"
           },
           {
-            "text": "Match specific site compliance requirements to the correct inspectorate body.",
-            "bloomLevel": "apply"
+            "text": "Explain the specific function and authority of an electrical services inspector",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -43,27 +43,23 @@
         "terms": [
           {
             "term": "Statutory Authority",
-            "definition": "The legal power granted to specific bodies to enter a site and enforce laws. \n\n**Anchor:** Like a police officer who has the right to enter a property during an emergency, unlike a guest who needs an invitation."
-          },
-          {
-            "term": "Compliance",
-            "definition": "The state of meeting all legal, technical, and safety requirements. \n\n**Anchor:** Like stopping at a red light—you must do it to follow the law, not just because you want to."
+            "definition": "The legal power granted to an inspector or regulatory body to enforce legislation and enter a site, which distinguishes them from general visitors."
           },
           {
             "term": "Building Control",
-            "definition": "A regulatory body responsible for ensuring the finished structure meets safety laws (Building Regulations). \n\n**Anchor:** Like a car's MOT test—checking the vehicle is safe to be on the road, regardless of how it looks."
+            "definition": "A regulatory service responsible for ensuring that construction work meets the minimum standards set out in Building Regulations (e.g., fire safety, structure)."
           },
           {
-            "term": "Health and Safety Executive (HSE)",
-            "definition": "The national regulator that enforces workplace safety laws to protect people while they work. \n\n**Anchor:** Like a restaurant health inspector checking that the kitchen is clean and the chefs are safe."
+            "term": "HSE Inspector",
+            "definition": "A representative of the Health and Safety Executive with the legal power to inspect workplaces, investigate accidents, and enforce health and safety legislation."
           },
           {
-            "term": "Clerk of Works",
-            "definition": "A client representative who checks that materials and workmanship match the design quality. \n\n**Anchor:** Like a wedding planner checking that the flowers match exactly what was ordered."
+            "term": "Electrical Services Inspector",
+            "definition": "A specialist official responsible for verifying that electrical installations comply with technical standards and safety regulations before they are commissioned."
           },
           {
-            "term": "Distribution Network Operator (DNO)",
-            "definition": "The company responsible for the regional cables and infrastructure that bring electricity to the site. \n\n**Anchor:** Like the water company that owns the main pipes in the street, distinct from the plumber who fixes the sink inside your house."
+            "term": "Enforcement Notice",
+            "definition": "A formal legal instruction issued by an inspector that requires specific improvements or the immediate cessation of work."
           }
         ]
       }
@@ -73,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Roles and Purpose of Site Visitors",
-        "content": "### In this lesson\nYou will learn to identify the different people who visit a technical site and why they are there. This helps you manage security and safety. We will look at client representatives, utility providers, and legal inspectors.\n\n*   Categorise site visitors by their function (Quality vs. Law).\n*   Understand the **Clerk of Works** role.\n*   Distinguish between contractual guests and those with **Statutory Authority**.\n\n**What this is**\nSite visitors are people who don't work on the site every day but come for a specific reason. \n\n1.  **Client Representatives:** People like the **Clerk of Works**. They are there to check quality. Think of them as \"Quality Control.\"\n2.  **Statutory Inspectors:** People with **Statutory Authority**. They are there to enforce the law. Think of them as \"Site Police.\"\n3.  **Utility Providers:** People connecting services like power or water.\n\n**Why it matters**\nYou need to know who can stop the work and who cannot. If a **Clerk of Works** sees a problem, they report it to the client. If an inspector with **Statutory Authority** sees a danger, they can legally shut down the site immediately. Knowing the difference prevents confusion and ensures you give the right people the right access.\n\n**Key facts / rules**\n*   **Clerk of Works:** Focuses on *Quality*. They check if the bricks are the right colour and the pipes are the right brand. They represent the client (the person paying).\n*   **Statutory Authority:** Focuses on *Legality*. These inspectors (like HSE or Building Control) have a legal right to enter, often without notice.\n*   **Access:** All visitors usually sign in, but Statutory inspectors have legal backing if refused entry.\n\n**Micro-Scenario: The Wall Check**\nImagine a brick wall is being built.\n*   Visitor A looks at the wall and says, \"These aren't the red bricks we ordered; they are brown.\" -> This is a **Clerk of Works** (Contract/Quality).\n*   Visitor B looks at the wall and says, \"This wall is unstable and might fall on someone. Stop work immediately.\" -> This is an inspector with **Statutory Authority** (Safety/Law).\n\n**Common mistakes**\n*   **Mistake:** Thinking a Clerk of Works can arrest you or fine you.\n*   **Correction:** A Clerk of Works only checks the contract. Only Statutory bodies (like HSE) can issue legal fines or notices.\n\n**Key Points**\n*   **Clerk of Works** = Quality (Client's friend).\n*   **Statutory Authority** = Law (Government's enforcer).\n*   Always check ID to know if a visitor is there for the contract or the law."
+        "title": "Key Roles of Site Visitors and Regulatory Inspectors",
+        "content": "### In this lesson\nYou will learn to identify the common types of visitors and inspectors found on a technical site. This knowledge is essential for managing site safety and ensuring compliance with legal standards.\n\n**What this is**\nOn any technical site, people are divided into two categories: site personnel (workers) and visitors. Visitors include clients, delivery drivers, and regulatory inspectors. The key difference lies in **Statutory Authority**.\n\n**Concept: Statutory Authority**\nStatutory Authority is the legal power to enforce laws. \n*   **Analogy:** Think of a site like a football match. A spectator (General Visitor) can watch, but only the Referee (Inspector) has the authority to stop the game if rules are broken.\n*   **Micro-Scenario:** A pizza delivery driver (General Visitor) asks to enter a secure server room to deliver food. The Site Manager refuses, and the driver must leave. Ten minutes later, a Fire Inspector (Statutory Authority) asks to enter the same room to check alarms. The Site Manager **must** allow them in. The Inspector has the law behind them; the driver does not.\n\n**Specific Roles**\n1.  **Building Control:** They ensure the building is safe to inhabit. They enforce **Building Regulations**. They are not interested in the paint color (design); they check structural integrity and fire safety.\n2.  **Water Inspectors:** They ensure plumbing does not contaminate the public water supply. Their focus is preventing **backflow** (dirty water flowing back into clean mains) and wastage.\n\n**Why it matters**\nIf you treat an inspector like a casual visitor, you may break the law. If you fail to call Building Control at the right time (e.g., before covering up foundations), they can force you to dig it all up again.\n\n**Key facts / rules**\n*   **Statutory Authority** allows inspectors to enter a site at any reasonable time.\n*   **Building Control** enforces **Building Regulations** (Structure, Fire, Energy).\n*   **Water Inspectors** verify installations to prevent contamination and waste.\n*   General visitors (clients, suppliers) must be accompanied and have no legal power to order work to stop.\n\n**Common mistakes**\n*   *Confusing Building Control with Architects:* Architects design for looks and function; Building Control checks for legal safety compliance.\n*   *Assuming all visitors are equal:* A client pays the bills, but an inspector can shut the site down.\n\n**Misconceptions (Targeted)**\n*   *Misconception:* Building Control checks quality of finish (e.g., smooth plaster). | *Correction:* They only check compliance with safety regulations (e.g., fire resistance).\n*   *Misconception:* You can refuse entry to an inspector if you are busy. | *Correction:* Inspectors with Statutory Authority have a legal right to enter."
       }
     },
     {
@@ -82,63 +78,61 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Roles and Purpose of Site Visitors",
+        "title": "Check Your Understanding: Key Roles of Site Visitors and Regulatory Inspectors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "Who acts as the 'eyes and ears' of the client, focusing specifically on workmanship and material quality (e.g., checking the bricks match the order)?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Clerk of Works",
-              "The Clerk of Works",
-              "Clerks of Works"
-            ],
-            "hint": "This person is a client representative concerned with quality, not the police."
-          },
-          {
-            "id": "210-1B-C1-L1-B",
-            "questionText": "Which term describes the legal power held by inspectors to enter a site to enforce regulations, similar to a police officer's power?",
+            "questionText": "What is the term for the legal power granted to an inspector to enforce legislation and enter a site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Statutory Authority",
-              "Statutory Authorities",
-              "Personnel with Statutory Authority"
+              "statutory power"
             ],
-            "hint": "This is a legal right granted by law, not just a clause in a private contract."
+            "hint": "This term refers to the specific legal rights given to regulatory bodies (like a referee's power)."
           },
           {
-            "id": "210-1B-C1-L1-C",
-            "questionText": "A visitor's presence is usually tied to a 'specific ________', such as verifying quality or enforcing safety.",
+            "id": "210-1B-C1-L1-B",
+            "questionText": "What specific set of national standards does Building Control enforce to ensure minimum safety?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "outcome",
-              "specific outcome",
-              "purpose",
-              "reason"
+              "Building Regulations",
+              "The Building Regulations",
+              "Building Regs"
             ],
-            "hint": "Think about the result they want to achieve (e.g., a signed-off inspection)."
+            "hint": "They ensure the project complies with the 'Building ...'."
+          },
+          {
+            "id": "210-1B-C1-L1-C",
+            "questionText": "What is the primary hazard water inspectors try to prevent to protect the public supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "backflow",
+              "contamination",
+              "wastage",
+              "backflow and wastage"
+            ],
+            "hint": "It involves dirty water flowing back into the clean mains supply."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Explain the difference between a Clerk of Works and a Statutory Inspector. Why does a site manager need to treat them differently regarding access and authority?",
+            "questionText": "Using your answers to Q1 (Statutory Authority) and Q2 (Building Regulations), explain why a Site Manager cannot treat a Building Control officer the same way as a client visiting the site.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Clerk of Works checks quality/contract (private interest)",
-              "Statutory Inspector checks law/safety (public interest)",
-              "Statutory inspectors have legal right of entry (Statutory Authority)",
-              "Clerk of Works relies on the contract for access"
+              "Building Control officers have Statutory Authority; clients do not",
+              "Building Control enforces Building Regulations which are legal requirements",
+              "Inspectors can stop work or demand changes; clients can only request changes via contract",
+              "Denying access to an inspector is a legal breach"
             ],
             "expectedAnswer": [
-              "A Clerk of Works checks that the build matches the client's quality requirements, while a Statutory Inspector enforces national laws. The site manager must treat them differently because the Statutory Inspector has a legal right to enter and stop work (Statutory Authority), whereas the Clerk of Works only has authority defined by the private contract.",
-              "The Clerk of Works focuses on the quality of materials for the client. The Statutory Inspector focuses on legal compliance. The manager needs to know this because Statutory Inspectors can legally force entry or shut down the site, while the Clerk of Works cannot."
+              "A Site Manager cannot treat them the same because the Building Control officer has Statutory Authority to enforce Building Regulations. While a client is a guest, the inspector has the legal power to enter the site and stop work if it is unsafe. Ignoring an inspector leads to legal penalties, whereas ignoring a client is just a contractual issue."
             ],
-            "hint": "One is checking you got what you paid for; the other is checking you aren't breaking the law."
+            "hint": "Focus on the legal power (Statutory Authority) the inspector has to enforce the rules."
           }
         ]
       }
@@ -148,8 +142,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Regulatory and Technical Inspectors",
-        "content": "### In this lesson\nWe will look at three specific powerful bodies: **Building Control**, the **Health and Safety Executive (HSE)**, and the **Distribution Network Operator (DNO)**.\n\n*   **HSE:** Focuses on *People* (Safety while working).\n*   **Building Control:** Focuses on the *Building* (Safety of the structure).\n*   **DNO:** Focuses on the *Grid* (Connection to power).\n\n**What this is**\nThese are the main \"Statutory\" bodies you will meet.\n\n1.  **Health and Safety Executive (HSE):** They are the national regulator for workplace safety. \n    *   *Analogy:* Like a referee in a football match—they watch *how* the game is played to ensure no one gets hurt. They can stop the game (issue a Prohibition Notice) if it gets dangerous.\n\n2.  **Building Control:** They check the building against Building Regulations (Part P, etc.).\n    *   *Analogy:* Like an MOT tester for a car. They don't care if the car is fast or pretty; they care if the brakes work and it is safe to drive.\n\n3.  **Distribution Network Operator (DNO):** They own the power lines in the street.\n    *   *Analogy:* Like the water company. Your plumber fixes the pipes *inside* your house, but only the water company can touch the big main pipe *outside*. The DNO is the \"electricity company\" for the outside cables.\n\n**Why it matters**\nIf you mix these up, you call the wrong person.\n*   If a worker is not wearing a helmet, that is an **HSE** issue (Worker Safety).\n*   If the staircase is too narrow for a fire escape, that is a **Building Control** issue (Structural Safety).\n*   If you need to connect your new building to the street's power cable, that is a **DNO** issue (Infrastructure).\n\n**When to choose it**\n*   **Scenario:** You need to dig up the pavement to find the main power cable.\n    *   *Action:* Contact the **DNO**. Only they have the authority to touch the regional grid.\n*   **Scenario:** You are worried the trench is too deep and might collapse on workers.\n    *   *Action:* This relates to **HSE** rules (Construction Design and Management).\n\n**Common mistakes**\n*   **Mistake:** Thinking the DNO fixes the fuse board inside the house.\n*   **Correction:** The DNO stops at the meter/cut-out. Inside the house is the electrician's job.\n*   **Mistake:** Thinking Building Control checks if the workers are wearing boots.\n*   **Correction:** Building Control looks at the *building* (walls, wires, insulation), not the *workers*.\n\n**Key Points**\n*   **HSE** = Safe People (Process).\n*   **Building Control** = Safe Building (Product).\n*   **DNO** = Safe Connection (Grid)."
+        "title": "HSE and Electrical Services Inspectors",
+        "content": "### In this lesson\nYou will distinguish between the broad safety role of the **HSE** and the specific technical role of an **Electrical Services Inspector**. You will also learn about the **Enforcement Notice**.\n\n**HSE Inspector (Health and Safety Executive)**\nThe HSE is the national regulator for workplace health and safety. Their inspectors look at the \"Big Picture\" of safety.\n*   **Scope:** They check welfare facilities, scaffolding safety, PPE usage, and accident records.\n*   **Power:** They can investigate accidents and prosecute companies.\n\n**Electrical Services Inspector**\nThese are technical specialists. They don't usually check if you are wearing a hard hat; they check if the wires are safe.\n*   **Scope:** They verify compliance with technical standards (like the Wiring Regulations). They specifically check **earthing**, **bonding**, and **circuit protection**.\n*   **When:** Usually at the end of a job before power is turned on.\n\n**The Enforcement Notice**\nIf an inspector finds a dangerous fault, they issue an **Enforcement Notice**.\n*   **What it is:** A formal legal document ordering work to stop or improvements to be made.\n*   **Analogy:** In football, a verbal warning is like the referee talking to a player. An **Enforcement Notice** is a **Red Card**—you stop playing immediately.\n*   **Scenario:** An HSE inspector sees a trench without supports. They issue a Prohibition Notice (a type of Enforcement Notice). All work in the trench must stop immediately until it is fixed. A verbal promise to fix it is not enough.\n\n**Key facts / rules**\n*   **HSE Inspectors** focus on broad site safety and risk to life.\n*   **Electrical Inspectors** focus on technical details: **earthing, bonding, circuit protection**.\n*   An **Enforcement Notice** is a written legal order, not a suggestion.\n*   Ignoring an Enforcement Notice is a criminal offence.\n\n**Common mistakes**\n*   *Confusing the roles:* Calling an electrical inspector for a broken ladder (that's an HSE issue).\n*   *Underestimating a Notice:* Thinking an Enforcement Notice can be ignored until the end of the week. It usually applies immediately."
       }
     },
     {
@@ -157,61 +151,64 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Regulatory and Technical Inspectors",
+        "title": "Check Your Understanding: HSE and Electrical Services Inspectors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "Which national regulator focuses on the safety and welfare of people while they are working (e.g., ensuring scaffolding is safe)?",
+            "questionText": "Which official has the legal power to inspect broad workplace safety, investigate accidents, and enforce legislation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Health and Safety Executive",
-              "HSE",
-              "The HSE"
+              "HSE Inspector",
+              "Health and Safety Executive inspector",
+              "HSE"
             ],
-            "hint": "Think of the 'referee' who watches how the work is done to prevent injury."
+            "hint": "This inspector looks at the overall safety of the site environment (e.g., scaffolding, welfare)."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "Which body ensures the finished structure meets legal standards (like fire safety and insulation), similar to a car's MOT?",
+            "questionText": "Name one specific technical safety feature that Electrical Services Inspectors often check.",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Building Control",
-              "Building Control inspector",
-              "Building Control department"
+              "earthing",
+              "bonding",
+              "circuit protection",
+              "earthing and bonding",
+              "fuses",
+              "breakers"
             ],
-            "hint": "They check the 'product' (the building) rather than the 'process' (the workers)."
+            "hint": "Think of the safety paths for fault current or devices that cut the power."
           },
           {
             "id": "210-1B-C2-L1-C",
-            "questionText": "Who must you contact to approve the connection of a new building to the regional electricity grid?",
+            "questionText": "What is the name of the formal legal document used to order the immediate cessation of unsafe work?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Distribution Network Operator",
-              "DNO",
-              "The DNO"
+              "Enforcement Notice",
+              "Prohibition Notice",
+              "Improvement Notice"
             ],
-            "hint": "This company owns the infrastructure 'in the street' before it enters your building."
+            "hint": "It is like a 'Red Card' for the site—a written legal order."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "Imagine a site has two problems: (1) Workers are not wearing hard hats, and (2) The installed fire alarm system does not meet the building regulations. Which body handles each issue and why?",
+            "questionText": "Explain the difference between a verbal warning from a site manager and an Enforcement Notice from an HSE inspector. Why is the latter more serious?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Issue 1 (Hard hats) is HSE because it concerns worker safety/welfare",
-              "Issue 2 (Fire alarm regs) is Building Control because it concerns the finished building's compliance",
-              "Distinction: Process (HSE) vs Product (Building Control)"
+              "Verbal warning is internal management; Enforcement Notice is external legal action",
+              "Enforcement Notice carries criminal penalties if ignored",
+              "Enforcement Notice can force work to stop immediately (Statutory Authority)",
+              "HSE represents national law, Site Manager represents the company"
             ],
             "expectedAnswer": [
-              "The hard hat issue is for the HSE because they regulate worker safety and welfare during construction. The fire alarm issue is for Building Control because they check that the finished building installation meets the legal regulations.",
-              "HSE handles the workers not wearing hard hats (safe process). Building Control handles the fire alarm system compliance (safe product)."
+              "A verbal warning from a manager is an internal correction. An Enforcement Notice from an HSE inspector is a formal legal order backed by Statutory Authority. The latter is more serious because ignoring it is a criminal offence that can lead to prosecution and immediate site closure, whereas ignoring a manager usually just leads to disciplinary action."
             ],
-            "hint": "Separate the 'safety of the worker' from the 'legality of the building'."
+            "hint": "Consider the legal consequences: one leads to being fired, the other can lead to court."
           }
         ]
       }
@@ -225,58 +222,54 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "Which visitor is hired by the client to act as their 'eyes and ears', ensuring the materials used are exactly what was paid for?",
+            "questionText": "Which regulatory body must approve a project's structural and fire safety before it can be legally occupied?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Clerk of Works",
-              "the Clerk of Works",
-              "a Clerk of Works"
+              "Building Control",
+              "Local Authority Building Control",
+              "LABC"
             ],
-            "hint": "Think: Quality Control for the client."
+            "hint": "They enforce the Building Regulations."
           },
           {
             "id": "210-1B-P2",
-            "questionText": "If an inspector has 'Statutory Authority', what does this give them the legal right to do?",
-            "answerType": "short-text",
+            "questionText": "A meeting includes a Client, an Architect, a Supplier, and a Water Inspector. How many of these people have Statutory Authority to enforce laws on site?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Enter the site",
-              "Enter without notice",
-              "Enforce regulations",
-              "Stop the work",
-              "Enter site to enforce laws"
+              "1"
             ],
-            "hint": "Think of the police analogy—they don't need an invitation to enforce the law."
+            "hint": "Only the regulatory inspector has legal powers. The others are general visitors."
           },
           {
             "id": "210-1B-P3",
-            "questionText": "A site log records three visitors: an Architect (contractual design), a Clerk of Works (contractual quality), and a Building Control officer (statutory law). How many of these represent the client's private interests?",
+            "questionText": "An inspector issues three verbal warnings and one written Enforcement Notice. How many of these carry automatic legal penalties if ignored?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "2"
+              "1"
             ],
-            "hint": "The Architect and Clerk of Works work for the client. Building Control works for the law/government."
+            "hint": "Only the formal written notice is a legal order."
           },
           {
             "id": "210-1B-P4",
-            "questionText": "You need to upgrade the main fuse where the electricity enters the building from the street. Which organization owns this equipment?",
+            "questionText": "Which specialist inspector visits specifically to ensure that plumbing installations do not cause backflow?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "DNO",
-              "Distribution Network Operator",
-              "the DNO"
+              "Water inspector",
+              "Water services inspector",
+              "Water authority"
             ],
-            "hint": "The utility provider for the regional grid."
+            "hint": "They protect the public water supply."
           },
           {
             "id": "210-1B-P5",
-            "questionText": "Which body would issue a 'Prohibition Notice' to stop work if they saw a trench that was about to collapse on workers?",
+            "questionText": "If a visitor arrives to verify technical compliance regarding earthing and bonding, which specific role are they performing?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "HSE",
-              "Health and Safety Executive",
-              "the HSE"
+              "Electrical Services Inspector",
+              "Electrical inspector",
+              "Electrical services"
             ],
-            "hint": "They protect the people in the trench."
+            "hint": "Identify the official responsible for checking wires and circuit protection."
           }
         ]
       }
@@ -292,36 +285,35 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "Explain the difference between a 'Commercial' visitor (like a Clerk of Works) and a 'Statutory' visitor (like an HSE inspector). In your answer, include: (1) What is the main focus of each? (2) Where does their authority come from (contract vs law)? (3) Why must a site manager verify their identity before letting them in?",
+            "questionText": "A site manager is visited by a client and an HSE inspector at the same time. Describe the difference in how the manager must handle these two visitors. Include: (1) access rights (Statutory Authority), (2) the purpose of their visit, and (3) the consequences of ignoring their instructions.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Commercial/Clerk of Works focuses on quality/design; Statutory/HSE focuses on legal safety/compliance.",
-              "Commercial authority comes from the private contract; Statutory authority comes from national law (legislation).",
-              "Verification is needed to ensure they have the right to be there and to know if they can legally stop work or just report on it."
+              "HSE Inspector has Statutory Authority (right to enter); Client does not (guest)",
+              "HSE visits for safety compliance; Client visits for progress/design",
+              "Ignoring HSE leads to legal action/Enforcement Notices; ignoring Client leads to contract disputes",
+              "Manager must prioritize HSE legal requirements over Client preferences if they conflict"
             ],
             "expectedAnswer": [
-              "A Commercial visitor like a Clerk of Works focuses on quality and gets their authority from the client's contract. A Statutory visitor like the HSE focuses on safety law and gets their authority from legislation (Statutory Authority). The site manager must verify their identity to know if the visitor has the legal power to demand access or stop work, or if they are just there to check the design.",
-              "The Clerk of Works is there for the client to check quality (Contractual). The HSE is there for the government to check safety (Statutory). We verify identity to ensure we grant the correct legal access—statutory inspectors can enter by law, while others need permission."
+              "The manager must allow the HSE inspector entry immediately due to their Statutory Authority, whereas the client is a guest who must follow site rules. The HSE inspector is there to check legal safety compliance, while the client is there to check progress. Ignoring the HSE inspector can lead to criminal prosecution and Enforcement Notices stopping work, while ignoring the client is a contractual matter that does not carry criminal penalties."
             ],
-            "hint": "Compare 'checking the product for the buyer' vs 'enforcing the law for the government'."
+            "hint": "Compare 'legal power' vs 'paying customer'."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "A new building is nearing completion. Describe how the **Clerk of Works**, **Building Control**, and **DNO** might all be involved in the final stages. What is each one checking or doing? (3-4 sentences)",
+            "questionText": "Explain how Building Control, Water Inspectors, and Electrical Inspectors work together to ensure a building is safe. What specific 'part' of the building does each protect?",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Clerk of Works: Checking final finish/quality matches the client's spec.",
-              "Building Control: Checking the building is safe/compliant (e.g., fire exits, insulation).",
-              "DNO: Connecting the final power supply to the grid.",
-              "Integration: All three verify different aspects (Quality, Legality, Utility) to finish the job."
+              "Building Control protects the structure and fire safety (Building Regs)",
+              "Water Inspectors protect the public water supply from contamination (Backflow)",
+              "Electrical Inspectors protect against shock and fire (Earthing/Bonding)",
+              "Together they cover all physical risks to occupants"
             ],
             "expectedAnswer": [
-              "In the final stages, the Clerk of Works will check that the finishes (like paint and joinery) match the client's high standards. Building Control will inspect the structure to ensure it meets safety regulations (like fire escapes) so the building can legally be used. The DNO will visit to approve and connect the main electricity supply to the grid. Together, they ensure the building is high quality, legally safe, and powered up.",
-              "The Clerk of Works checks the quality of the work for the client. Building Control checks the safety of the building for the law. The DNO connects the power supply. All three are needed to sign off the project: one for the contract, one for the regulations, and one for the utilities."
+              "They cover different safety risks to ensure the whole building is habitable. Building Control ensures the structure and fire safety meet Building Regulations. Water inspectors ensure the plumbing does not contaminate the public supply via backflow. Electrical inspectors verify that earthing and bonding prevent electric shock. Together, they ensure the building is structurally sound, has safe water, and safe power."
             ],
-            "hint": "One checks beauty/quality, one checks safety/law, and one provides the power."
+            "hint": "Structure, Water, Power."
           }
         ]
       }
@@ -331,44 +323,45 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Foundation Check: Previous Concepts",
+        "title": "Foundation Check",
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "From your previous lesson on Site Roles: What is the collective term for the team (Project Manager, Site Agent) that runs the daily operations?",
+            "questionText": "Which role is primarily responsible for the overall daily coordination and leadership of the site management team?",
             "expectedAnswer": [
-              "site management team",
-              "management team",
-              "site management"
+              "Site Manager",
+              "Project Manager",
+              "Site Management"
             ],
-            "hint": "This is the group that visitors report to when they arrive.",
+            "hint": "Think of the person in charge of the site operations.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "From your previous lesson: What term describes mandatory rules set by parliament that everyone on site must follow (e.g., HASAWA)?",
+            "questionText": "What term is used to describe laws and legal requirements that must be followed on a site?",
             "expectedAnswer": [
-              "statutory legislation",
-              "legislation",
-              "statutes",
-              "statutory"
+              "Legislation",
+              "Statutory legislation",
+              "Regulations",
+              "Statutes"
             ],
-            "hint": "This is the 'Law' part of 'Statutory Authority'.",
+            "hint": "This refers to the legal framework governing site activities.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "From your previous lesson: Site Diaries and Induction Forms are examples of formal site ________.",
+            "questionText": "What is a common method used to share information or instructions between different roles on a technical site?",
             "expectedAnswer": [
-              "communication",
-              "communication methods",
-              "documentation"
+              "Communication",
+              "Verbal",
+              "Written",
+              "Email"
             ],
-            "hint": "The process of exchanging information.",
+            "hint": "Think about how site personnel exchange data or guidance.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check before starting Site Visitors and Inspectors (Reviews Unit 210-1A)"
+        "notes": "Foundation check before starting Site Visitors and Inspectors"
       }
     }
   ],
@@ -390,35 +383,36 @@
       "outOfScopeAC": [
         "AC1",
         "AC2",
-        "AC4"
+        "AC4",
+        "AC5"
       ]
     },
     "scope": {
-      "inScope": "Identification and purpose of key site visitors and regulatory inspectors including HSE, Water, DNO, and Building Control.",
-      "outOfScope": "Specific procedures for site induction, hosting visitors, or the technical methods used during inspections.",
-      "rationale": "The lesson focuses on professional role recognition and the regulatory landscape (AC3) rather than the site management team (AC1)."
+      "inScope": "Identification and purpose of key site visitors and regulatory inspectors including Building Control, Water, HSE, and Electrical Services.",
+      "outOfScope": "Step-by-step inspection procedures, technical testing protocols, or legal enforcement workflows.",
+      "rationale": "Level 2 students need to recognize who these individuals are and why they are on site before learning complex technical inspection procedures."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus on role identification and purpose of inspectors only; exclude inspection procedures."
+      "specificScope": "Focus on role identification and purpose only as per mustHaveTopics"
     },
     "misconceptions": [
       {
-        "misconception": "All site visitors have the power to stop the project if they see something they dislike.",
-        "correction": "Only specific individuals with Statutory Authority or delegated contractual power can legally halt work.",
+        "misconception": "Building Control inspectors are there to make the building look good.",
+        "correction": "They only ensure the building meets the legal minimum safety and performance standards.",
         "relatedAC": "AC3"
       },
       {
-        "misconception": "Building Control works for the contractor to help them finish the job.",
-        "correction": "Building Control is an independent regulatory body that ensures the work meets minimum legal standards.",
+        "misconception": "An HSE inspector can only visit if there has been an accident.",
+        "correction": "They have the power to perform spot-checks and routine inspections at any time.",
         "relatedAC": "AC3"
       },
       {
-        "misconception": "The Distribution Network Operator (DNO) is responsible for all wiring inside a building.",
-        "correction": "The Distribution Network Operator (DNO) is only responsible for the regional infrastructure and the point of supply connection.",
+        "misconception": "An Enforcement Notice is just a friendly piece of advice.",
+        "correction": "It is a legal order that carries penalties if not followed immediately.",
         "relatedAC": "AC3"
       }
     ]
