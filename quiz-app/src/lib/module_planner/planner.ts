@@ -1090,6 +1090,15 @@ interface LessonBlueprintDraftResult {
   ledgerDelta: LessonLedgerDelta;
 }
 
+interface LessonDraftExpectations {
+  lessonId: string;
+  unit: string;
+  lo: string;
+  topic: string;
+  acAnchors: string[];
+  level: string;
+}
+
 interface DuplicateLedgerOverlap {
   conceptOverlaps: string[];
   vocabOverlaps: string[];
@@ -1424,23 +1433,101 @@ function parseLessonLedgerDelta(value: unknown, blueprint: LessonBlueprint): Les
   };
 }
 
-function parseSingleLessonDraftResult(data: unknown, expectedLessonId: string): LessonBlueprintDraftResult | null {
+function tryParseJsonLoose(raw: string): unknown | null {
+  const trimmed = String(raw ?? '').trim();
+  if (!trimmed) return null;
+  const candidates = new Set<string>([trimmed]);
+
+  const firstObject = trimmed.indexOf('{');
+  const lastObject = trimmed.lastIndexOf('}');
+  if (firstObject >= 0 && lastObject > firstObject) {
+    candidates.add(trimmed.slice(firstObject, lastObject + 1));
+  }
+
+  const firstArray = trimmed.indexOf('[');
+  const lastArray = trimmed.lastIndexOf(']');
+  if (firstArray >= 0 && lastArray > firstArray) {
+    candidates.add(trimmed.slice(firstArray, lastArray + 1));
+  }
+
+  for (const candidate of candidates) {
+    const parsed = safeJsonParse<unknown>(preprocessToValidJson(candidate));
+    if (parsed.success && parsed.data) {
+      return parsed.data;
+    }
+  }
+  return null;
+}
+
+function coerceLessonBlueprintCandidate(value: unknown, expected: LessonDraftExpectations): LessonBlueprint | null {
+  if (validateLessonBlueprints([value])) {
+    return (value as LessonBlueprint[])[0];
+  }
+  if (!isRecord(value)) return null;
+
+  const masterBlueprintCandidate = isRecord(value.masterBlueprint)
+    ? value.masterBlueprint
+    : isRecord(value.master_blueprint)
+      ? value.master_blueprint
+      : isRecord(value.master)
+        ? value.master
+        : null;
+
+  const layoutCandidate =
+    toCleanString(value.layout) ??
+    (masterBlueprintCandidate && isRecord(masterBlueprintCandidate.identity)
+      ? toCleanString(masterBlueprintCandidate.identity.layout)
+      : null);
+  const layout = layoutCandidate === 'split-vis' || layoutCandidate === 'linear-flow' ? layoutCandidate : 'linear-flow';
+
+  const acAnchors = toStringArray(value.acAnchors ?? value.coversAcKeys ?? value.covers_ac_keys);
+  const mustHaveTopics = toStringArray(value.mustHaveTopics ?? value.must_have_topics);
+  const prerequisites = toStringArray(value.prerequisites);
+  const topic = toCleanString(value.topic ?? value.title) ?? expected.topic;
+
+  const candidate: LessonBlueprint = {
+    id: toCleanString(value.id) ?? expected.lessonId,
+    unit: toCleanString(value.unit) ?? expected.unit,
+    lo: normalizeLo(toCleanString(value.lo) ?? expected.lo),
+    acAnchors: acAnchors.length > 0 ? acAnchors : [...expected.acAnchors],
+    topic,
+    mustHaveTopics: mustHaveTopics.length > 0 ? mustHaveTopics : deriveMustHaveTopics([topic]),
+    level: toCleanString(value.level) ?? expected.level,
+    layout,
+    prerequisites,
+    masterBlueprint: (masterBlueprintCandidate as unknown as LessonBlueprint['masterBlueprint']) ?? undefined,
+  };
+
+  if (!validateLessonBlueprints([candidate])) return null;
+  return candidate;
+}
+
+function parseSingleLessonDraftResult(data: unknown, expected: LessonDraftExpectations): LessonBlueprintDraftResult | null {
   let blueprintCandidate: unknown = data;
   let ledgerDeltaCandidate: unknown = undefined;
+
+  if (Array.isArray(data)) {
+    blueprintCandidate =
+      data.find((item) => isRecord(item) && typeof item.id === 'string' && item.id === expected.lessonId) ?? data[0];
+  }
 
   if (isRecord(data)) {
     if (Array.isArray(data.blueprints)) {
       blueprintCandidate =
-        data.blueprints.find((item) => isRecord(item) && typeof item.id === 'string' && item.id === expectedLessonId) ??
+        data.blueprints.find((item) => isRecord(item) && typeof item.id === 'string' && item.id === expected.lessonId) ??
         data.blueprints[0];
     } else if (data.blueprint) {
       blueprintCandidate = data.blueprint;
+    } else if (Array.isArray(data.lessonBlueprints)) {
+      blueprintCandidate =
+        data.lessonBlueprints.find((item) => isRecord(item) && typeof item.id === 'string' && item.id === expected.lessonId) ??
+        data.lessonBlueprints[0];
     }
     ledgerDeltaCandidate = data.ledgerDelta ?? data.loLedgerDelta ?? undefined;
   }
 
-  if (!validateLessonBlueprints([blueprintCandidate])) return null;
-  const blueprint = (blueprintCandidate as LessonBlueprint[])[0];
+  const blueprint = coerceLessonBlueprintCandidate(blueprintCandidate, expected);
+  if (!blueprint) return null;
   const ledgerDelta = parseLessonLedgerDelta(ledgerDeltaCandidate, blueprint);
   return { blueprint, ledgerDelta };
 }
@@ -1465,93 +1552,131 @@ async function callM4LessonBlueprintDraftLLM(params: {
     return null;
   }
 
-  try {
-    const client = createLLMClient();
-    const model = client.getGenerativeModel({
-      model: modelName,
-      generationConfig: {
-        temperature: 0.1,
-        maxOutputTokens: 10000,
-        responseMimeType: 'application/json',
-      },
-      systemInstruction:
-        'You are Module Planner M4 LO Blueprint Drafter. Output strict JSON only. Build master-blueprint contracts without inventing AC anchors.',
-    });
+  const client = createLLMClient();
+  const model = client.getGenerativeModel({
+    model: modelName,
+    generationConfig: {
+      temperature: 0.1,
+      maxOutputTokens: 6000,
+      responseMimeType: 'application/json',
+    },
+    systemInstruction:
+      'You are Module Planner M4 LO Blueprint Drafter. Output strict JSON only. Build master-blueprint contracts without inventing AC anchors.',
+  });
 
-    const contextPayload = {
-      mode: params.repairErrors ? 'repair' : 'draft',
-      unit: params.request.unit,
-      lo: params.lo,
-      level: params.request.constraints.level,
-      audience: params.request.constraints.audience,
-      orderingPreference: params.request.orderingPreference,
-      canonicalCoverage: params.canonicalCoverage,
-      loPlan: {
-        lessonCount: params.loPlanLessons.length,
-        lessons: params.loPlanLessons.map((lesson) => ({
-          id: lesson.id,
-          title: lesson.title,
-          coversAcKeys: lesson.coversAcKeys,
-        })),
+  const contextPayload = {
+    mode: params.repairErrors ? 'repair' : 'draft',
+    unit: params.request.unit,
+    lo: params.lo,
+    level: params.request.constraints.level,
+    audience: params.request.constraints.audience,
+    orderingPreference: params.request.orderingPreference,
+    canonicalCoverage: params.canonicalCoverage,
+    loPlan: {
+      lessonCount: params.loPlanLessons.length,
+      lessons: params.loPlanLessons.map((lesson) => ({
+        id: lesson.id,
+        title: lesson.title,
+        coversAcKeys: lesson.coversAcKeys,
+      })),
+    },
+    loLedger: params.loLedger,
+    previousLessonSummary: params.previousLessonSummary ?? null,
+    previousDraft: params.previousDraft ?? null,
+    repairErrors: params.repairErrors ?? [],
+  };
+  const instructionPayload = {
+    task: 'Generate one MasterLessonBlueprint for the requested lesson only.',
+    lessonId: params.lesson.id,
+    lessonTitle: params.lesson.title,
+    coversAcKeys: params.lesson.coversAcKeys,
+    hardRules: [
+      'Return exactly one blueprint matching lessonId.',
+      'Blueprint acAnchors must exactly match coversAcKeys.',
+      'loLedger.alreadyTaughtConcepts are already covered in this LO; avoid re-teaching and use recap/reference instead.',
+      'You may not introduce NEW teaching that duplicates loLedger.alreadyTaughtConcepts.',
+      'loLedger.doNotTeach are explicit out-of-scope topics and must never be taught.',
+      'Recap is allowed only as Recap and max 4 bullets.',
+      'If content exists in loLedger.alreadyTaughtConcepts, reference earlier lessonId instead of re-teaching.',
+      'Do not repeat example types or question scenario styles already listed in loLedger unless explicitly necessary.',
+      'Each masterBlueprint must satisfy the fixed contract and include explicit outOfScope links to sibling lessons.',
+      'Output strict JSON only.',
+    ],
+    outputShape: {
+      blueprint: {
+        id: 'string',
+        unit: 'string',
+        lo: 'string',
+        acAnchors: ['string'],
+        topic: 'string',
+        mustHaveTopics: ['string'],
+        level: 'string',
+        layout: 'split-vis|linear-flow',
+        prerequisites: ['string'],
+        masterBlueprint: 'MasterLessonBlueprint object (fixed contract)',
       },
-      loLedger: params.loLedger,
-      previousLessonSummary: params.previousLessonSummary ?? null,
-      previousDraft: params.previousDraft ?? null,
-      repairErrors: params.repairErrors ?? [],
-    };
-    const instructionPayload = {
-      task: 'Generate one MasterLessonBlueprint for the requested lesson only.',
-      lessonId: params.lesson.id,
-      lessonTitle: params.lesson.title,
-      coversAcKeys: params.lesson.coversAcKeys,
-      hardRules: [
-        'Return exactly one blueprint matching lessonId.',
-        'Blueprint acAnchors must exactly match coversAcKeys.',
-        'loLedger.alreadyTaughtConcepts are already covered in this LO; avoid re-teaching and use recap/reference instead.',
-        'You may not introduce NEW teaching that duplicates loLedger.alreadyTaughtConcepts.',
-        'loLedger.doNotTeach are explicit out-of-scope topics and must never be taught.',
-        'Recap is allowed only as Recap and max 4 bullets.',
-        'If content exists in loLedger.alreadyTaughtConcepts, reference earlier lessonId instead of re-teaching.',
-        'Do not repeat example types or question scenario styles already listed in loLedger unless explicitly necessary.',
-        'Each masterBlueprint must satisfy the fixed contract and include explicit outOfScope links to sibling lessons.',
-        'Output strict JSON only.',
-      ],
-      outputShape: {
-        blueprint: {
-          id: 'string',
-          unit: 'string',
-          lo: 'string',
-          acAnchors: ['string'],
-          topic: 'string',
-          mustHaveTopics: ['string'],
-          level: 'string',
-          layout: 'split-vis|linear-flow',
-          prerequisites: ['string'],
-          masterBlueprint: 'MasterLessonBlueprint object (fixed contract)',
-        },
-        ledgerDelta: {
-          newTeachingConcepts: ['string'],
-          newVocab: ['string'],
-          outOfScopeTopics: ['string'],
-          examplesUsed: ['string'],
-          questionTypesUsed: ['string'],
-        },
+      ledgerDelta: {
+        newTeachingConcepts: ['string'],
+        newVocab: ['string'],
+        outOfScopeTopics: ['string'],
+        examplesUsed: ['string'],
+        questionTypesUsed: ['string'],
       },
-    };
+    },
+  };
 
-    const response = await model.generateContent({
-      contents: [
-        { role: 'user', parts: [{ text: JSON.stringify(contextPayload) }] },
-        { role: 'user', parts: [{ text: JSON.stringify(instructionPayload) }] },
-      ],
-    });
-    const raw = cleanCodeBlocks(response.response.text());
-    const parsed = safeJsonParse<unknown>(preprocessToValidJson(raw));
-    if (!parsed.success || !parsed.data) return null;
-    return parseSingleLessonDraftResult(parsed.data, params.lesson.id);
-  } catch {
-    return null;
+  const expected: LessonDraftExpectations = {
+    lessonId: params.lesson.id,
+    unit: params.request.unit,
+    lo: params.lo,
+    topic: params.lesson.title,
+    acAnchors: [...params.lesson.coversAcKeys],
+    level: params.request.constraints.level,
+  };
+
+  let lastRaw = '';
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    try {
+      const response = await model.generateContent({
+        contents: [
+          { role: 'user', parts: [{ text: JSON.stringify(contextPayload) }] },
+          { role: 'user', parts: [{ text: JSON.stringify(instructionPayload) }] },
+          ...(attempt > 0
+            ? [
+                {
+                  role: 'user' as const,
+                  parts: [{ text: 'Retry. Return strict JSON object only. Do not include markdown fences or commentary.' }],
+                },
+              ]
+            : []),
+        ],
+      });
+      const raw = cleanCodeBlocks(response.response.text());
+      lastRaw = raw;
+      const parsed = tryParseJsonLoose(raw);
+      if (!parsed) {
+        continue;
+      }
+      const draft = parseSingleLessonDraftResult(parsed, expected);
+      if (draft) {
+        return draft;
+      }
+    } catch (error) {
+      if (attempt >= 2) {
+        console.warn('[M4] LLM draft call failed', {
+          lessonId: params.lesson.id,
+          attempt: attempt + 1,
+          error: error instanceof Error ? error.message : 'Unknown error',
+        });
+      }
+    }
+    await new Promise((resolve) => setTimeout(resolve, 250 * (attempt + 1)));
   }
+  console.warn('[M4] LLM draft parse/shape validation failed', {
+    lessonId: params.lesson.id,
+    rawPreview: lastRaw.slice(0, 240),
+  });
+  return null;
 }
 
 async function runM4LessonDraftWithRepair(params: {

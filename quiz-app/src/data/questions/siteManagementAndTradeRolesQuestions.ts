@@ -9,38 +9,308 @@ import { TaggedQuestion } from './types';
 export const siteManagementAndTradeRolesQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What is the primary role of the Architect on a construction project?",
+    "question": "Which member of the site management team is primarily responsible for managing the project costs and calculating the quantities of materials required?",
     "options": [
-      "Creating the aesthetic design and layout of the building",
-      "Calculating the structural load of the floor joists",
-      "Managing the day-to-day tasks of the electrical team",
-      "Estimating the total cost of materials before work starts"
+      "Quantity Surveyor",
+      "Structural Engineer",
+      "Architect",
+      "Buyer"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Management and Trade Roles",
     "tags": [
       "terminology",
-      "conceptual"
+      "discrimination"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Architect is responsible for the design, appearance, and layout of the building, ensuring it meets the client's requirements and planning regulations."
+    "explanation": "The Quantity Surveyor (QS) is responsible for the financial management of the project, including material take-offs and cost control."
   },
   {
     "id": 4017,
-    "question": "Which member of the site management team is primarily responsible for managing costs and processing payments throughout the project's duration?",
+    "question": "Who is the professional responsible for ensuring that the building's frame, such as steel beams and concrete foundations, is strong enough to support the intended loads?",
     "options": [
+      "Structural Engineer",
+      "Building Services Engineer",
       "Quantity Surveyor",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "A Structural Engineer focuses on the integrity and stability of the building's structure and load-bearing elements."
+  },
+  {
+    "id": 4018,
+    "question": "An electrician needs to know who will be performing regular inspections on site to ensure the work meets the specific quality standards required by the client. This person is the:",
+    "options": [
+      "Clerk of Works",
       "Estimator",
       "Buyer",
+      "Contracts Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Clerk of Works (or Site Inspector) acts as the 'eyes and ears' for the client, checking that work is done to the correct specification and quality."
+  },
+  {
+    "id": 4019,
+    "question": "Which role involves the actual purchasing of materials and equipment from wholesalers to ensure they are delivered to the site when needed?",
+    "options": [
+      "Buyer",
+      "Quantity Surveyor",
+      "Estimator",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Buyer is responsible for sourcing and ordering the materials required for the project at the best possible price."
+  },
+  {
+    "id": 4020,
+    "question": "Before a project starts, who is responsible for calculating the total estimated cost of the work in order to submit a competitive tender (bid)?",
+    "options": [
+      "Estimator",
+      "Site Foreman",
+      "Clerk of Works",
+      "Apprentice"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "An Estimator calculates the likely costs of a project before it begins to help the company win the contract."
+  },
+  {
+    "id": 4021,
+    "question": "Which professional is responsible for the design and coordination of the mechanical and electrical (M&E) systems within a building?",
+    "options": [
+      "Building Services Engineer",
+      "Structural Engineer",
+      "Land Surveyor",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Building Services Engineers oversee the systems that make a building functional, including power, lighting, heating, and ventilation."
+  },
+  {
+    "id": 4022,
+    "question": "A manager who oversees the legal contracts, project timelines, and high-level communication between the client and the construction company is known as the:",
+    "options": [
+      "Contracts Manager",
+      "Site Labourer",
+      "Architect",
+      "Storeman"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Contracts Manager manages the legal and administrative aspects of one or more projects to ensure they meet contractual obligations."
+  },
+  {
+    "id": 4023,
+    "question": "Before construction begins, which professional is responsible for measuring the site and marking out the exact boundaries and levels for the building?",
+    "options": [
+      "Surveyor",
+      "Buyer",
+      "Quantity Surveyor",
+      "Building Services Engineer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "A Land Surveyor or Site Surveyor measures the land and sets out the positions for foundations and boundaries."
+  },
+  {
+    "id": 4024,
+    "question": "If an electrician has a question regarding the aesthetic design or the overall floor layout of the building, they would look at drawings produced by the:",
+    "options": [
+      "Architect",
+      "Structural Engineer",
+      "Estimator",
+      "Buyer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Architect is responsible for the visual design, spatial planning, and overall look of the building."
+  },
+  {
+    "id": 4025,
+    "question": "Which role has the overall responsibility for ensuring that a specific construction project is completed on time, within budget, and to the required safety standards?",
+    "options": [
+      "Project Manager",
+      "Electrician",
+      "Quantity Surveyor",
+      "Land Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "explanation"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Project Manager coordinates all aspects of the site to ensure the project meets its primary objectives of time, cost, and quality."
+  },
+  {
+    "id": 4026,
+    "question": "Which member of the site management team is primarily responsible for creating the aesthetic design and overall layout of a building project?",
+    "options": [
+      "Architect",
+      "Quantity Surveyor",
+      "Building Services Engineer",
+      "Buyer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Architect is responsible for the design, appearance, and spatial layout of the building."
+  },
+  {
+    "id": 4027,
+    "question": "Which professional is responsible for managing the project budget, calculating material quantities, and overseeing payments to contractors?",
+    "options": [
+      "Quantity Surveyor",
+      "Structural Engineer",
+      "Architect",
       "Clerk of Works"
     ],
     "correctAnswer": 0,
@@ -53,291 +323,48 @@ export const siteManagementAndTradeRolesQuestions: TaggedQuestion[] = [
     "category": "Site Management and Trade Roles",
     "tags": [
       "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the project, including valuations and variations, while the Estimator usually works on the initial bid."
-  },
-  {
-    "id": 4018,
-    "question": "An electrician needs to drill a large hole through a load-bearing steel beam. Who must they consult to ensure the building's stability is not compromised?",
-    "options": [
-      "Structural Engineer",
-      "Architect",
-      "Quantity Surveyor",
-      "Contracts Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "TOPOLOGY_CONFUSION",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Structural Engineer is responsible for the integrity of the building's framework and must approve any modifications to load-bearing elements."
-  },
-  {
-    "id": 4019,
-    "question": "What is the main responsibility of the Clerk of Works on a construction site?",
-    "options": [
-      "Monitoring the quality of workmanship and materials on behalf of the client",
-      "Designing the electrical circuit diagrams",
-      "Ordering the cable and containment for the site",
-      "Calculating the final profit for the electrical contractor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Clerk of Works acts as the 'eyes and ears' of the client, ensuring that the work is carried out to the specified quality and standards."
-  },
-  {
-    "id": 4020,
-    "question": "Which professional is responsible for the design and integration of mechanical and electrical systems, such as heating, ventilation, and lighting?",
-    "options": [
-      "Building Services Engineer",
-      "Structural Engineer",
-      "Land Surveyor",
-      "Buyer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Building Services Engineers specialise in the internal environment of the building, including electrical, plumbing, and HVAC systems."
-  },
-  {
-    "id": 4021,
-    "question": "A site supervisor notices that the stock of 2.5mm² twin and earth cable is running low. Which role is responsible for the procurement and ordering of these materials?",
-    "options": [
-      "Buyer",
-      "Estimator",
-      "Quantity Surveyor",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Buyer is responsible for sourcing and purchasing materials, plant, and equipment required for the project at the best possible price."
-  },
-  {
-    "id": 4022,
-    "question": "At which stage of a construction project does an Estimator typically perform their primary role?",
-    "options": [
-      "During the initial tender stage to calculate potential costs",
-      "During the final handover to the client",
-      "When the building is being demolished",
-      "Only when a health and safety incident occurs"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Estimator calculates the likely cost of a project before it begins to help the company submit a competitive and profitable bid or tender."
-  },
-  {
-    "id": 4023,
-    "question": "If there is a dispute regarding the legal terms of the agreement between the electrical contractor and the main client, who would typically handle the resolution?",
-    "options": [
-      "Contracts Manager",
-      "Building Services Engineer",
-      "Site Foreman",
-      "Land Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The Contracts Manager oversees the legal and administrative aspects of the contract, ensuring both parties meet their obligations."
-  },
-  {
-    "id": 4024,
-    "question": "Which role involves measuring the land and establishing the exact boundaries and levels for a new building site?",
-    "options": [
-      "Surveyor",
-      "Quantity Surveyor",
-      "Clerk of Works",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A Land Surveyor (or simply Surveyor in this context) uses specialist equipment to map the site levels and boundaries before construction starts."
-  },
-  {
-    "id": 4025,
-    "question": "Who has the overall responsibility for the planning, execution, and closing of a construction project to ensure it is finished on time and within budget?",
-    "options": [
-      "Project Manager",
-      "Buyer",
-      "Estimator",
-      "Apprentice Electrician"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Project Manager coordinates all aspects of the project, including the various trades, to ensure the project goals are met."
-  },
-  {
-    "id": 4026,
-    "question": "Which member of the site management team is primarily responsible for managing project costs, valuations, and ensuring the work stays within the budget?",
-    "options": [
-      "Quantity Surveyor",
-      "Architect",
-      "Estimator",
-      "Buyer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the construction project, including measuring the work and managing the budget."
-  },
-  {
-    "id": 4027,
-    "question": "What is the primary responsibility of the Architect within the construction design team?",
-    "options": [
-      "Creating the building design and detailed drawings",
-      "Calculating the structural loads of steel beams",
-      "Sourcing and ordering materials for the site",
-      "Managing day-to-day health and safety on site"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
       "conceptual"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Architect is responsible for the overall aesthetic and functional design of the building, providing the drawings that the trades follow."
+    "explanation": "The Quantity Surveyor manages all costs relating to building and civil engineering projects, from initial calculations to final figures."
   },
   {
     "id": 4028,
-    "question": "Which site management role acts as the client's representative to ensure that the quality of materials and workmanship meets the contract specifications?",
+    "question": "An electrical company is preparing a tender for a new office block. Which role involves calculating the likely costs of the work to ensure the bid is both competitive and profitable?",
+    "options": [
+      "Estimator",
+      "Contracts Manager",
+      "Site Manager",
+      "Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Estimator's role is to calculate how much a project is likely to cost before the work begins."
+  },
+  {
+    "id": 4029,
+    "question": "Which member of the management team acts as the client's 'eyes and ears' on site, specifically to ensure that the quality of workmanship and materials meet the required standards?",
     "options": [
       "Clerk of Works",
-      "Estimator",
       "Buyer",
+      "Quantity Surveyor",
       "Structural Engineer"
     ],
     "correctAnswer": 0,
@@ -349,49 +376,22 @@ export const siteManagementAndTradeRolesQuestions: TaggedQuestion[] = [
     "section": "Communication 2365 Level 2",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "terminology",
-      "discrimination"
+      "conceptual",
+      "terminology"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Clerk of Works (or Project Manager/Inspector) is specifically tasked with inspecting the site to ensure quality and compliance with the design."
-  },
-  {
-    "id": 4029,
-    "question": "A Building Services Engineer is responsible for the design and integration of which specific project elements?",
-    "options": [
-      "Mechanical and electrical systems like heating and lighting",
-      "The legal boundaries and land coordinates of the site",
-      "The load-bearing capacity of the building foundations",
-      "The initial costings used to win the contract"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Building Services Engineers focus on the internal environment of the building, including electrical, plumbing, and HVAC systems."
+    "explanation": "The Clerk of Works (or Project Manager) represents the interests of the client by ensuring that the quality of both materials and workmanship are in accordance with the drawings and specifications."
   },
   {
     "id": 4030,
-    "question": "An electrical contractor requires a large delivery of cable and containment for a new project. Which professional in the management team is responsible for negotiating with suppliers and purchasing these items?",
+    "question": "Who is responsible for the design of the load-bearing elements of a building, such as the foundations, steel beams, and concrete floors?",
     "options": [
-      "Buyer",
-      "Quantity Surveyor",
+      "Structural Engineer",
       "Architect",
+      "Building Services Engineer",
       "Estimator"
     ],
     "correctAnswer": 0,
@@ -403,980 +403,961 @@ export const siteManagementAndTradeRolesQuestions: TaggedQuestion[] = [
     "section": "Communication 2365 Level 2",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "terminology",
-      "application"
+      "discrimination",
+      "terminology"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
+    "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Buyer is responsible for sourcing materials at the best price and ensuring they are delivered to the site when needed."
+    "explanation": "The Structural Engineer ensures that buildings are safe and capable of resisting the loads to which they are subjected."
   },
   {
     "id": 4031,
-    "question": "What is the primary responsibility of the Architect during the pre-construction phase of a large commercial electrical installation?",
-    "options": [
-      "Creating the overall building design and ensuring it meets planning and building regulations",
-      "Managing the daily schedules of all sub-contractors on the construction site",
-      "Calculating the exact labor costs and material variations for the electrical tender",
-      "Inspecting the quality of electrical terminations to ensure they meet BS 7671"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "legislation"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Architect is responsible for the aesthetic and functional design of the building, ensuring it complies with local planning laws and building regulations before work begins."
-  },
-  {
-    "id": 4032,
-    "question": "An electrical contractor encounters unexpected rock while trenching for external lighting, which will significantly increase the labor time. Who should they notify to discuss the financial adjustments and 'variations' to the contract?",
+    "question": "During a large commercial installation, the electrical contractor needs to submit a monthly valuation of work completed to trigger a progress payment. Which member of the site management team is responsible for verifying these costs and work volumes?",
     "options": [
       "Quantity Surveyor",
-      "Structural Engineer",
-      "Buyer",
-      "Building Services Engineer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the project, including the valuation of variations (extra work or changes) to the original contract."
-  },
-  {
-    "id": 4033,
-    "question": "Which member of the site management team acts as the 'eyes and ears' of the client, focusing primarily on ensuring the quality of workmanship and materials matches the specification?",
-    "options": [
-      "Clerk of Works",
-      "Contracts Manager",
-      "Estimator",
-      "Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Clerk of Works (or Project Inspector) represents the client's interests by monitoring the site to ensure quality standards and specifications are strictly followed."
-  },
-  {
-    "id": 4034,
-    "question": "An electrician needs to drill through a reinforced concrete beam to install a tray system. Which professional MUST provide the technical approval and calculations for this modification?",
-    "options": [
-      "Structural Engineer",
-      "Architect",
-      "Project Manager",
-      "Quantity Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "A Structural Engineer is responsible for the load-bearing integrity of the building. Any modification to structural elements like beams or columns requires their approval."
-  },
-  {
-    "id": 4035,
-    "question": "During the initial bidding phase for a new school project, who is responsible for determining the likely cost of the electrical installation to produce a competitive tender?",
-    "options": [
       "Estimator",
       "Buyer",
-      "Clerk of Works",
-      "Structural Engineer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Estimator analyzes drawings and specifications to calculate the expected costs of materials, labor, and equipment to prepare a bid for the project."
-  },
-  {
-    "id": 4036,
-    "question": "Which professional is specifically tasked with coordinating the design and installation of mechanical, electrical, and plumbing (MEP) systems within a building?",
-    "options": [
-      "Building Services Engineer",
-      "Land Surveyor",
-      "Architect",
-      "Contracts Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Building Services Engineers focus on the 'internal environment' systems, ensuring that electrical, heating, and ventilation systems work together effectively."
-  },
-  {
-    "id": 4037,
-    "question": "An electrical firm is managing five different site locations simultaneously. Which role would typically handle the high-level legal contracts and resource planning across all these sites?",
-    "options": [
-      "Contracts Manager",
-      "Site Foreman",
-      "Estimator",
       "Clerk of Works"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "application",
-      "terminology"
+      "terminology",
+      "application"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
-    "explanation": "The Contracts Manager oversees multiple projects from an administrative and legal perspective, ensuring that the company's contractual obligations are met across all sites."
+    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the construction project, including valuations, variations, and final accounts."
   },
   {
-    "id": 4038,
-    "question": "A site supervisor realizes they will run out of 2.5mm² SWA cable by Wednesday. To ensure the correct quantity is sourced from a wholesaler and delivered on time, which department should they contact?",
+    "id": 4032,
+    "question": "A person is observed on-site checking that the electrical containment being installed exactly matches the quality and material specifications provided in the contract. They act as the 'eyes and ears' of the client to ensure high standards. What is this role?",
     "options": [
-      "Buyer",
-      "Quantity Surveyor",
+      "Clerk of Works",
       "Architect",
-      "Structural Engineer"
+      "Project Manager",
+      "Contracts Manager"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Buyer is responsible for procurement, which involves ordering materials from suppliers and ensuring they are delivered to the site when needed."
-  },
-  {
-    "id": 4039,
-    "question": "Before any construction begins, which professional is responsible for establishing the exact site boundaries and ground levels to ensure the building is positioned correctly?",
-    "options": [
-      "Land Surveyor",
-      "Quantity Surveyor",
-      "Contracts Manager",
-      "Buyer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "discrimination",
+      "terminology",
       "conceptual"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "A Land Surveyor (or simply Surveyor) uses specialized equipment to map the physical characteristics and boundaries of the land before and during construction."
+    "explanation": "The Clerk of Works (or Project Manager/Inspector) is primarily responsible for quality control and ensuring the work complies with the specifications."
   },
   {
-    "id": 4040,
-    "question": "Which individual has the ultimate day-to-day responsibility for coordinating all trades on a specific site to ensure the project meets its deadline and safety targets?",
+    "id": 4033,
+    "question": "An electrician discovers that a proposed cable tray route requires drilling several 50mm holes through a main load-bearing reinforced concrete beam. Who must provide written authorization for this modification?",
     "options": [
-      "Project Manager",
-      "Estimator",
-      "Quantity Surveyor",
-      "Building Services Engineer"
+      "Structural Engineer",
+      "Building Services Engineer",
+      "Architect",
+      "Surveyor"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "conceptual",
+      "application",
       "health-safety"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Project Manager coordinates the various trades, manages the schedule, and ensures the site operates safely and efficiently to meet the project's goals."
-  },
-  {
-    "id": 4041,
-    "question": "An electrician is concerned that a proposed cable route involves drilling through a primary load-bearing beam. Which member of the design team has the final authority to approve or reject this specific modification?",
-    "options": [
-      "Structural Engineer",
-      "Architect",
-      "Quantity Surveyor",
-      "Building Services Engineer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "application",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Structural Engineer is responsible for the integrity of the building's framework. Any modification to load-bearing elements must be approved by them to ensure safety and compliance."
-  },
-  {
-    "id": 4042,
-    "question": "During a project, the client requests additional socket outlets in a kitchen area. Which professional is responsible for calculating the additional costs and managing the financial variation to the contract?",
-    "options": [
-      "Quantity Surveyor",
-      "Estimator",
-      "Buyer",
-      "Contracts Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "calculation",
-      "application"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "While an Estimator calculates costs before a project begins, the Quantity Surveyor manages costs, valuations, and variations once the project is underway."
-  },
-  {
-    "id": 4043,
-    "question": "Which site management role is primarily described as the 'eyes and ears' of the client, ensuring that the quality of the electrical installation meets the specific standards defined in the contract?",
-    "options": [
-      "Clerk of Works",
-      "Project Manager",
-      "Site Foreman",
-      "Contracts Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Clerk of Works (or Inspector) is employed to represent the client's interests on site, specifically focusing on quality control and compliance with specifications."
-  },
-  {
-    "id": 4044,
-    "question": "An electrical contractor needs to coordinate the installation of cable trays so they do not clash with new air conditioning ductwork. Which specialist engineer should they consult to resolve this coordination issue?",
-    "options": [
-      "Building Services Engineer",
-      "Structural Engineer",
-      "Architect",
-      "Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "Building Services Engineers coordinate the 'mechanical and electrical' (M&E) aspects of a building, including HVAC, lighting, and power, to ensure systems work together."
+    "explanation": "The Structural Engineer is responsible for the integrity of the building's frame; any modification to load-bearing elements must be approved by them."
   },
   {
-    "id": 4045,
-    "question": "Before a tender is submitted for a large-scale housing project, who is responsible for analyzing the drawings to produce a detailed list of material and labor costs to form the initial bid?",
-    "options": [
-      "Estimator",
-      "Buyer",
-      "Quantity Surveyor",
-      "Project Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Estimator's primary role is at the pre-contract stage, calculating the expected costs of a project to help the company win the work."
-  },
-  {
-    "id": 4046,
-    "question": "A dispute has arisen between an electrical sub-contractor and the main contractor regarding the legal terms of the payment schedule. Which professional usually handles the administration and legalities of these agreements?",
-    "options": [
-      "Contracts Manager",
-      "Project Manager",
-      "Site Manager",
-      "Buyer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "application",
-      "legislation"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Contracts Managers oversee the legal and administrative side of construction projects, ensuring all parties adhere to the signed agreements."
-  },
-  {
-    "id": 4047,
-    "question": "The electrical site supervisor notices that the specified consumer units are out of stock nationwide. Which person in the management team is responsible for finding an equivalent alternative at the best price and ensuring it is delivered to site?",
+    "id": 4034,
+    "question": "The initial project budget was calculated six months ago. Due to a sudden increase in the price of PVC, which professional is responsible for negotiating with suppliers to source the specified conduit at the best possible price for the firm?",
     "options": [
       "Buyer",
       "Estimator",
       "Quantity Surveyor",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Buyer is responsible for procurement—sourcing materials, negotiating prices with wholesalers, and managing the supply chain for the project."
-  },
-  {
-    "id": 4048,
-    "question": "Which professional is responsible for the overall aesthetic design of a building and ensuring that the electrical layout does not interfere with the client's visual requirements?",
-    "options": [
-      "Architect",
-      "Structural Engineer",
-      "Building Services Engineer",
-      "Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Architect leads the design of the building's appearance and functionality, ensuring all technical services fit within the design vision."
-  },
-  {
-    "id": 4049,
-    "question": "During the initial phase of a large commercial site development, a professional is required to establish the exact boundaries and levels of the land. This person is the:",
-    "options": [
-      "Surveyor",
-      "Quantity Surveyor",
-      "Architect",
-      "Civil Engineer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "A Land Surveyor (or simply Surveyor) provides the precise measurements of the site's physical characteristics before design and construction begin."
-  },
-  {
-    "id": 4050,
-    "question": "If the electrical installation is falling behind schedule and risks delaying the flooring contractors, who is primarily responsible for re-organizing the trade sequence to keep the project on track?",
-    "options": [
-      "Project Manager",
-      "Contracts Manager",
-      "Quantity Surveyor",
-      "Architect"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Project Manager has overall responsibility for the site schedule, coordinating different trades and ensuring the project is completed on time."
-  },
-  {
-    "id": 4051,
-    "question": "An electrical contractor is reviewing the final costs of a completed installation against the original budget to account for variations. Which professional is primarily responsible for managing these ongoing financial valuations and variations during the construction phase?",
-    "options": [
-      "Quantity Surveyor",
-      "Estimator",
-      "Buyer",
       "Contracts Manager"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
       "terminology",
-      "application",
-      "calculation"
+      "discrimination"
     ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of the project once it has started, including valuing work completed and managing variations to the contract."
-  },
-  {
-    "id": 4052,
-    "question": "During a site visit, you encounter a professional whose primary role is to act as the 'eyes and ears' of the client, specifically inspecting the quality of the electrical installation to ensure it meets the specification. This role is known as the:",
-    "options": [
-      "Clerk of Works",
-      "Building Services Engineer",
-      "Quantity Surveyor",
-      "Structural Engineer"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
+    "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The Clerk of Works (or Project Manager in some contexts) is responsible for quality control and ensuring that the work carried out matches the design and quality standards set by the client."
+    "explanation": "The Buyer is responsible for the procurement of materials and negotiating prices with wholesalers and manufacturers."
   },
   {
-    "id": 4053,
-    "question": "An electrician is tasked with installing a heavy industrial distribution board onto a newly constructed internal wall. Before mounting the equipment, which professional should be consulted to ensure the wall can safely support the additional weight?",
+    "id": 4035,
+    "question": "Which professional is primarily concerned with the design and integration of the 'active' parts of a building, such as the electrical distribution, lighting, heating, and ventilation systems?",
     "options": [
+      "Building Services Engineer",
       "Structural Engineer",
       "Architect",
-      "Building Services Engineer",
       "Surveyor"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
       "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The Structural Engineer is responsible for the integrity of the building's structure and must be consulted regarding load-bearing capacities and structural modifications."
-  },
-  {
-    "id": 4054,
-    "question": "Which member of the site management team is specifically responsible for the detailed design and integration of the electrical, heating, and ventilation systems within a building?",
-    "options": [
-      "Building Services Engineer",
-      "Architect",
-      "Structural Engineer",
-      "Contracts Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210.LO1.AC1.1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Building Services Engineer focuses on the 'active' parts of the building, including electrical installations, mechanical systems, and plumbing."
-  },
-  {
-    "id": 4055,
-    "question": "A large electrical firm is preparing a bid for a new project. Which professional is responsible for calculating the initial costs of labor, materials, and overheads to produce a competitive tender before the contract is signed?",
-    "options": [
-      "Estimator",
-      "Buyer",
-      "Quantity Surveyor",
-      "Project Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "210.LO1.AC1.1",
+    "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The Estimator's role is primarily pre-contract, calculating the likely cost of the project to help the company submit a bid."
+    "explanation": "The Building Services Engineer (M&E Engineer) focuses on the technical systems that make a building functional, including electrical and mechanical services."
   },
   {
-    "id": 4056,
-    "question": "A legal dispute arises between the main contractor and an electrical subcontractor regarding a breach of the 'liquidated damages' clause due to project delays. Which professional is primarily responsible for interpreting the legal obligations and managing the resolution of this contractual conflict?",
+    "id": 4036,
+    "question": "A contractor is preparing a bid for a new housing development. They need someone to calculate the total length of 2.5mm² Twin and Earth cable required based on the floor plans to create an accurate initial price. Who performs this task?",
     "options": [
+      "Estimator",
+      "Buyer",
       "Contracts Manager",
-      "Project Manager",
-      "Quantity Surveyor",
       "Clerk of Works"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "terminology",
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Estimator calculates the likely costs of a project (materials, labor, and overheads) before the contract is awarded to help the company bid for work."
+  },
+  {
+    "id": 4037,
+    "question": "The overall aesthetic design, the layout of rooms, and the selection of external cladding materials are the primary responsibility of which role?",
+    "options": [
+      "Architect",
+      "Building Services Engineer",
+      "Structural Engineer",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Architect is responsible for the visual design, spatial planning, and overall appearance of the building."
+  },
+  {
+    "id": 4038,
+    "question": "An electrical firm has fallen behind schedule because the main contractor failed to provide site access on time. Which professional would handle the legal correspondence regarding 'extensions of time' and potential penalty clauses?",
+    "options": [
+      "Contracts Manager",
+      "Buyer",
+      "Clerk of Works",
+      "Estimator"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication",
+    "category": "Site Management and Trade Roles",
+    "tags": [
       "legislation",
       "application"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The Contracts Manager is responsible for the legal and administrative aspects of the building contract, including resolving disputes and ensuring all parties meet their legal obligations."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The Contracts Manager oversees the legal and administrative aspects of the contract, ensuring deadlines are met and disputes over delays are managed."
   },
   {
-    "id": 4057,
-    "question": "An electrical installer notes that while the installed conduit meets BS 7671 standards, it does not match the high-grade material specification requested by the client in the tender documents. Which professional acts as the client's representative to specifically ensure quality of materials and workmanship meets the contract specification?",
+    "id": 4039,
+    "question": "Before work begins on a greenfield site, a professional must mark out the precise position of the building and verify the land levels. Who is responsible for this measurement task?",
     "options": [
-      "Clerk of Works",
+      "Surveyor",
+      "Architect",
       "Building Services Engineer",
-      "Site Supervisor",
-      "Quantity Surveyor"
+      "Estimator"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "terminology",
-      "conceptual",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Clerk of Works (or Project Manager's representative) is the 'eyes and ears' of the client on site, specifically tasked with inspecting the quality of work and materials against the contract specifications."
-  },
-  {
-    "id": 4058,
-    "question": "During the construction phase of a commercial office block, the client requests an additional 20 floor boxes for data and power. Which professional is responsible for valuing this 'variation' and calculating the adjusted monthly progress payment to the electrical contractor?",
-    "options": [
-      "Quantity Surveyor",
-      "Estimator",
-      "Buyer",
-      "Project Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
       "discrimination",
-      "calculation"
+      "terminology"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "While an Estimator calculates costs before the project starts, the Quantity Surveyor manages the financial aspects during the project, including variations and progress payments."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Surveyor (specifically a Land or Building Surveyor) uses specialized equipment to determine site boundaries, levels, and positions."
   },
   {
-    "id": 4059,
-    "question": "In a complex industrial project using Building Information Modelling (BIM), a clash is detected between the main electrical cable tray and the HVAC ducting system. Which specialist is responsible for the integrated design and coordination of these active systems?",
+    "id": 4040,
+    "question": "During the installation of a complex HVAC control system, the electrician notices that the ducting and the cable tray are occupying the same space in the drawing. Who should coordinate the resolution of this clash?",
     "options": [
       "Building Services Engineer",
       "Structural Engineer",
-      "Architect",
-      "Surveyor"
+      "Surveyor",
+      "Buyer"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
-    "section": "Communication 2365 Level 2",
+    "section": "Communication",
     "category": "Site Management and Trade Roles",
     "tags": [
-      "terminology",
       "conceptual",
       "application"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Building Services Engineer is responsible for the design, installation, and maintenance of mechanical and electrical services (MEP), ensuring they are integrated within the building structure."
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Building Services Engineer coordinates the various mechanical and electrical services to ensure they fit and function together correctly."
   },
   {
-    "id": 4060,
-    "question": "A large electrical contracting firm needs to secure 5,000 metres of LSF (Low Smoke and Fume) cable at a fixed price to protect against market volatility. Which role within the management team is specifically responsible for negotiating with wholesalers and procuring these materials?",
+    "id": 4041,
+    "question": "Which site management professional is primarily responsible for managing the ongoing costs of a project and ensuring it stays within budget during the construction phase?",
+    "options": [
+      "Quantity Surveyor",
+      "Estimator",
+      "Buyer",
+      "Contracts Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Quantity Surveyor (QS) manages the financial aspects of a project once it has started, whereas an Estimator usually works on the initial tender costs before the project is won."
+  },
+  {
+    "id": 4042,
+    "question": "A 'Clerk of Works' is often employed on a large construction site. What is their primary function in relation to an electrical installation?",
+    "options": [
+      "To inspect the quality of workmanship and ensure materials meet the specification",
+      "To design the initial circuit layouts and cable calculations",
+      "To manage the project budget and pay the sub-contractors",
+      "To procure the materials and tools for the site staff"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Clerk of Works acts as the 'eyes and ears' of the client on site, focusing specifically on quality control and compliance with the design specification."
+  },
+  {
+    "id": 4043,
+    "question": "During an installation, an electrician discovers that a proposed cable tray route requires drilling through a main load-bearing concrete beam. Who must provide authorization before this work proceeds?",
+    "options": [
+      "Structural Engineer",
+      "Quantity Surveyor",
+      "Architect",
+      "Site Electrician"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "A Structural Engineer is responsible for the integrity of the building's frame; any modification to load-bearing elements must be approved by them to prevent structural failure."
+  },
+  {
+    "id": 4044,
+    "question": "Which professional is specifically responsible for the integrated design and coordination of mechanical, electrical, and plumbing (MEP) systems within a building?",
+    "options": [
+      "Building Services Engineer",
+      "Structural Engineer",
+      "Land Surveyor",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Building Services Engineers focus on the 'internal environment' of the building, ensuring the electrical, heating, and plumbing systems work together efficiently."
+  },
+  {
+    "id": 4045,
+    "question": "An electrical contractor realizes they are running low on 2.5mm² Twin and Earth cable halfway through a housing project. Which member of the management team should they contact to arrange for additional stock to be delivered?",
     "options": [
       "Buyer",
       "Estimator",
+      "Surveyor",
+      "Structural Engineer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Buyer is responsible for the procurement of materials and negotiating prices with wholesalers to ensure the site has the required supplies."
+  },
+  {
+    "id": 4046,
+    "question": "What is the primary responsibility of a Contracts Manager within a large electrical firm?",
+    "options": [
+      "Overseeing legal agreements and ensuring the project meets its overall delivery deadlines",
+      "Designing the lighting layout and decorative features of the building",
+      "Measuring the site boundaries and determining floor levels",
+      "Testing final circuits and signing off the Electrical Installation Certificate"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Contracts Managers handle the high-level management of the project, focusing on the legal, contractual, and scheduling obligations between the client and the contractor."
+  },
+  {
+    "id": 4047,
+    "question": "Before the foundations are poured for a new substation, a professional is required to mark out the exact boundaries and levels of the site. Which role performs this task?",
+    "options": [
+      "Surveyor",
+      "Quantity Surveyor",
+      "Estimator",
+      "Building Services Engineer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A Surveyor (specifically a Land Surveyor) uses specialized equipment to determine the precise position and height of features on a site."
+  },
+  {
+    "id": 4048,
+    "question": "When an electrical designer wants to ensure that the proposed high-end lighting fixtures match the visual theme and spatial layout of a new hotel lobby, which professional should they consult?",
+    "options": [
+      "Architect",
+      "Structural Engineer",
+      "Buyer",
+      "Contracts Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Architect is responsible for the overall aesthetic design and layout of the building, including how electrical fittings integrate with the interior design."
+  },
+  {
+    "id": 4049,
+    "question": "During the initial bidding process for a new hospital wing, who is responsible for calculating the likely cost of materials, labor, and equipment to produce a tender?",
+    "options": [
+      "Estimator",
+      "Quantity Surveyor",
+      "Clerk of Works",
+      "Project Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "An Estimator's role is specifically to price a job before work begins to help the company secure the contract."
+  },
+  {
+    "id": 4050,
+    "question": "There is a significant delay in the delivery of the main switchgear, which will impact the work of the plasterers and decorators. Who is responsible for coordinating the revised schedule across all trades?",
+    "options": [
+      "Project Manager",
+      "Buyer",
+      "Structural Engineer",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The Project Manager has the overall responsibility for the timeline and coordination of all different trades on site to ensure the project reaches completion."
+  },
+  {
+    "id": 4051,
+    "question": "During a large commercial installation, a design change requires additional containment to be installed. Which member of the site management team is responsible for calculating the financial value of this variation and managing the project costs?",
+    "options": [
+      "Quantity Surveyor",
+      "Estimator",
+      "Buyer",
+      "Building Services Engineer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "application",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "While an Estimator calculates costs before a project begins to win the tender, the Quantity Surveyor manages the costs and valuations once the project is underway, including any variations."
+  },
+  {
+    "id": 4052,
+    "question": "An electrician notices that the materials delivered to the site do not match the quality standards specified in the contract. Which person is specifically employed to act as the 'eyes and ears' of the client to ensure quality of workmanship and materials?",
+    "options": [
+      "Clerk of Works",
+      "Project Manager",
+      "Architect",
+      "Structural Engineer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Clerk of Works is responsible for inspecting the works on behalf of the client to ensure that the quality of materials and workmanship meet the specified standards."
+  },
+  {
+    "id": 4053,
+    "question": "Before a project starts, a professional is required to produce a detailed list of all materials and labour required from the architectural drawings to provide an initial tender price. This role is known as the:",
+    "options": [
+      "Estimator",
+      "Buyer",
       "Quantity Surveyor",
       "Contracts Manager"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Estimator uses the drawings and specifications to calculate the expected costs of a project in order to submit a bid or tender."
+  },
+  {
+    "id": 4054,
+    "question": "An electrical contractor needs to drill several large holes through a reinforced concrete floor to install busbar trunking. Which member of the design team must be consulted to ensure the building's integrity is not compromised?",
+    "options": [
+      "Structural Engineer",
+      "Building Services Engineer",
+      "Architect",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
       "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "A Structural Engineer is responsible for the load-bearing elements of a building. Any modifications to the structure, such as drilling through reinforced concrete, require their approval."
+  },
+  {
+    "id": 4055,
+    "question": "A dispute arises between the main contractor and the electrical sub-contractor regarding the legal terms of the work schedule and penalty clauses for delays. Who is primarily responsible for overseeing these legal and administrative agreements?",
+    "options": [
+      "Contracts Manager",
+      "Project Manager",
+      "Site Foreman",
+      "Buyer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "210.LO1.AC1.1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The Contracts Manager handles the legal and administrative side of the construction process, ensuring that all parties adhere to the terms of the signed contract."
+  },
+  {
+    "id": 4056,
+    "question": "During a large-scale commercial installation, the electrical contractor discovers that the specified cable containment cannot be installed due to unforeseen structural beams. Which professional is primarily responsible for redesigning the layout while ensuring the building's load-bearing integrity is not compromised?",
+    "options": [
+      "Structural Engineer",
+      "Building Services Engineer",
+      "Quantity Surveyor",
+      "Architect"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Management and Trade Roles",
     "tags": [
       "terminology",
       "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Buyer is responsible for the procurement of materials, equipment, and sub-contract services, often negotiating bulk discounts and ensuring timely delivery to site."
-  },
-  {
-    "id": 4061,
-    "question": "Before a tender is submitted for a new school project, a professional must analyze the drawings to determine the exact quantities of cable, accessories, and labour hours required to produce a competitive bid. This pre-contract role is performed by the:",
-    "options": [
-      "Estimator",
-      "Quantity Surveyor",
-      "Contracts Manager",
-      "Site Manager"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "discrimination",
-      "calculation"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Estimator's primary role is to calculate the anticipated costs of a project before it begins to help the company produce a tender or quote."
-  },
-  {
-    "id": 4062,
-    "question": "An electrical contractor needs to install a heavy transformer on the first floor of a renovated factory. Which professional must be consulted to verify that the floor slab can support the additional 'dead load' without structural failure?",
-    "options": [
-      "Structural Engineer",
-      "Architect",
-      "Building Services Engineer",
-      "Land Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "conceptual",
-      "health-safety"
+      "legislation"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "Structural Engineers are responsible for the integrity of the building's framework, including calculating loads and ensuring the structure remains safe and stable."
+    "explanation": "While a Building Services Engineer designs the electrical layout, any modification affecting the physical structure of the building must be approved or redesigned by the Structural Engineer to ensure safety."
   },
   {
-    "id": 4063,
-    "question": "On a large-scale construction site, several trades (plumbers, electricians, and carpenters) are falling behind schedule because they are working in the same area simultaneously. Who has the overall strategic responsibility for coordinating the master schedule and ensuring the project meets its completion date?",
+    "id": 4057,
+    "question": "An electrical firm is preparing a tender for a multi-million pound hospital refurbishment. Who within the site management team is responsible for calculating the initial probable costs of materials, labour, and equipment to ensure the bid is competitive yet profitable?",
     "options": [
-      "Project Manager",
-      "Clerk of Works",
-      "Contracts Manager",
-      "Quantity Surveyor"
+      "Estimator",
+      "Quantity Surveyor",
+      "Buyer",
+      "Contracts Manager"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Management and Trade Roles",
     "tags": [
       "terminology",
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "210-1A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Project Manager is responsible for the overall planning, coordination, and control of a project from inception to completion, focusing on time, cost, and quality."
-  },
-  {
-    "id": 4064,
-    "question": "A client wishes to change the building's facade from brick to a glass curtain wall system to improve the visual impact and natural lighting. Which professional is primarily responsible for the aesthetic design and the overall spatial layout of the building?",
-    "options": [
-      "Architect",
-      "Structural Engineer",
-      "Building Services Engineer",
-      "Quantity Surveyor"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Site Management and Trade Roles",
-    "tags": [
-      "terminology",
-      "discrimination",
       "conceptual"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "The Architect is the lead designer who focuses on the building's appearance, layout, and functionality, ensuring it meets the client's vision and planning requirements."
+    "explanation": "The Estimator's primary role is to calculate the costs before the project begins to help win the contract. The Quantity Surveyor manages these costs once the project is underway."
   },
   {
-    "id": 4065,
-    "question": "Prior to the installation of site-wide external lighting, a professional is required to map the exact topography of the land and identify existing underground utility boundaries. Which role performs this specific task?",
+    "id": 4058,
+    "question": "A site inspector is observed checking the depth of cable chases and the quality of the conduit installation against the original specification, acting specifically as the 'eyes and ears' of the client to ensure quality standards. This person is most likely the:",
     "options": [
-      "Surveyor",
-      "Estimator",
-      "Architect",
-      "Project Manager"
+      "Clerk of Works",
+      "Project Manager",
+      "Site Manager",
+      "Building Services Engineer"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Site Management and Trade Roles",
     "tags": [
       "terminology",
-      "application",
       "discrimination"
     ],
     "learningOutcomeId": "210-1A-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "A Surveyor (specifically a Land or Topographical Surveyor) is responsible for measuring and mapping the land, boundaries, and existing features before and during construction."
+    "explanation": "The Clerk of Works (or Project Monitor) is specifically tasked with inspecting the quality of workmanship and materials on site to ensure they meet the client's specifications."
+  },
+  {
+    "id": 4059,
+    "question": "A variation in the electrical design requires an additional 500 metres of LSF (Low Smoke and Fume) cable that was not in the original budget. Which professional will evaluate the financial impact of this change and negotiate the additional costs with the client?",
+    "options": [
+      "Quantity Surveyor",
+      "Buyer",
+      "Estimator",
+      "Contracts Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "The Quantity Surveyor (QS) is responsible for managing the financial aspects of the project during the construction phase, including variations and valuations."
+  },
+  {
+    "id": 4060,
+    "question": "Which member of the management team is primarily responsible for the legal administration of the project, ensuring that all work is completed within the agreed timeframe and that the terms of the building contract are strictly followed by all parties?",
+    "options": [
+      "Contracts Manager",
+      "Project Manager",
+      "Architect",
+      "Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Contracts Manager focuses on the legalities, deadlines, and the contractual obligations between the contractor and the client."
+  },
+  {
+    "id": 4061,
+    "question": "An electrical contractor needs to verify the exact site boundaries and finished floor levels before beginning the external lighting installation. Which professional should provide the precise topographical data required?",
+    "options": [
+      "Surveyor",
+      "Architect",
+      "Structural Engineer",
+      "Clerk of Works"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Surveyors are responsible for measuring the land, defining boundaries, and providing accurate levels for construction projects."
+  },
+  {
+    "id": 4062,
+    "question": "The integration of heating, ventilation, air conditioning (HVAC), and electrical power distribution into a unified building management system (BMS) is the primary design responsibility of the:",
+    "options": [
+      "Building Services Engineer",
+      "Architect",
+      "Structural Engineer",
+      "Site Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Building Services Engineer (M&E Engineer) focuses on the internal environment and the mechanical/electrical systems that make a building functional."
+  },
+  {
+    "id": 4063,
+    "question": "A project is falling behind schedule due to a delay in the delivery of main switchgear. Which professional is responsible for coordinating the different trades on site to adjust the workflow and minimise the impact on the overall completion date?",
+    "options": [
+      "Project Manager",
+      "Contracts Manager",
+      "Buyer",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "application"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Project Manager is responsible for the overall day-to-day management, coordination of trades, and ensuring the project stays on schedule."
+  },
+  {
+    "id": 4064,
+    "question": "During the procurement phase, the electrical wholesaler offers a bulk discount on LED luminaires that differs from the original quote used in the tender. Which role is responsible for identifying this saving and placing the actual purchase order?",
+    "options": [
+      "Buyer",
+      "Estimator",
+      "Quantity Surveyor",
+      "Project Manager"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Buyer is responsible for sourcing materials and equipment at the best possible prices and managing the actual purchasing process."
+  },
+  {
+    "id": 4065,
+    "question": "In a Design and Build contract, who is primarily responsible for the aesthetic appearance of the building and ensuring that the electrical fittings chosen do not conflict with the overall visual concept of the client?",
+    "options": [
+      "Architect",
+      "Building Services Engineer",
+      "Clerk of Works",
+      "Quantity Surveyor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Site Management and Trade Roles",
+    "tags": [
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-1A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "The Architect is responsible for the overall design, aesthetics, and layout of the building, ensuring all elements fit the visual and functional requirements."
   }
 ];
