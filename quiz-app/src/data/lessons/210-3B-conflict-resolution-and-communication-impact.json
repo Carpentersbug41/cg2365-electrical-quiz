@@ -6,9 +6,9 @@
   "unit": "Unit 210",
   "topic": "Conflict Resolution and Communication Impact",
   "learningOutcomes": [
-    "Identify common effects of poor communication within a technical work environment",
-    "Explain the consequences of communication failure between operatives, management, and customers",
-    "Describe the appropriate actions to resolve conflicts between different workplace stakeholders"
+    "Identify common effects of poor communication on an organization's efficiency and reputation",
+    "Explain how communication breakdowns impact relationships between different stakeholder groups",
+    "Describe appropriate actions to take when resolving conflicts with customers, co-workers, and management"
   ],
   "prerequisites": [
     "210-3A"
@@ -21,15 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify common effects of poor communication within a technical work environment",
+            "text": "Identify common effects of poor communication on an organization's efficiency and reputation",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain the consequences of communication failure between operatives, management, and customers",
+            "text": "Explain how communication breakdowns impact relationships between different stakeholder groups",
             "bloomLevel": "understand"
           },
           {
-            "text": "Describe the appropriate actions to resolve conflicts between different workplace stakeholders",
+            "text": "Describe appropriate actions to take when resolving conflicts with customers, co-workers, and management",
             "bloomLevel": "understand"
           }
         ]
@@ -42,28 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Communication Breakdown",
-            "definition": "A failure to exchange information accurately, resulting in operational errors, misunderstandings, or damaged professional relationships."
+            "term": "Stakeholder",
+            "definition": "A stakeholder is any individual or group with a direct interest in the outcome of a task or project, including customers, co-workers, and management."
           },
           {
-            "term": "Stakeholder",
-            "definition": "Any individual or group affected by a technical project or communication, including customers, management, and fellow operatives."
+            "term": "Communication Breakdown",
+            "definition": "A communication breakdown occurs when information is incorrectly transmitted or misinterpreted, leading to operational errors or damaged working relationships."
           },
           {
             "term": "Conflict Resolution",
-            "definition": "The formal or informal process of finding a solution to a disagreement between parties to maintain a productive work environment."
-          },
-          {
-            "term": "Active Listening",
-            "definition": "A communication technique used to confirm understanding and reduce conflict by focusing entirely on the speaker’s message and providing feedback."
+            "definition": "Conflict resolution is the formal or informal process of finding a mutually acceptable solution to a disagreement between two or more parties."
           },
           {
             "term": "Escalation",
-            "definition": "The formal process of referring a conflict or technical issue to a higher level of management when it cannot be resolved at the current level."
+            "definition": "Escalation is the process of reporting a conflict or issue to a higher level of authority when it cannot be resolved by the individuals directly involved."
           },
           {
             "term": "Mediation",
-            "definition": "A resolution method where a neutral third party assists those in dispute to reach a mutual agreement, rather than imposing a decision on them."
+            "definition": "Mediation is a resolution strategy where a neutral third party assists disputing individuals in reaching their own agreement, different from arbitration where the third party makes the final decision."
           }
         ]
       }
@@ -73,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Impacts of Communication Breakdown",
-        "content": "### In this lesson\nThis lesson explores how failures in exchanging information impact technical work environments. You will learn to identify the consequences of poor messaging across different levels of an organisation.\n\n*   Identify common effects of poor communication on project outcomes.\n*   Explain the consequences of communication failure between different stakeholders.\n*   Recognise the signs of a breakdown before it leads to operational failure.\n\n**What this is**\nA **Communication Breakdown** occurs when information is not exchanged accurately, leading to errors or misunderstandings. In a technical environment, every **Stakeholder**—from the customer to the site manager—relies on precise data to perform their role safely and effectively. When this flow stops or becomes distorted, it creates a ripple effect throughout the entire organisation.\n\n**Why it matters**\nPoor communication is rarely just about a single missed email; it typically leads to physical rework, financial loss, and safety hazards. For a technical professional, maintaining clear channels ensures that everyone is working from the same set of facts, which protects the reputation of the individual and the company.\n\n**Key facts / rules**\n*   Poor communication between operatives often results in duplicated work or skipped safety checks.\n*   Failures between operatives and management typically lead to missed deadlines and incorrect resource allocation.\n*   Inaccurate communication from a company to a customer often results in a loss of trust and potential legal or financial disputes.\n*   A **Communication Breakdown** can be verbal, written, or even digital (such as using outdated versions of technical drawings).\n*   The severity of a breakdown often increases the longer it remains uncorrected.\n*   Effective communication is a core professional competency, not just a \"soft skill.\"\n\n**How to recognise it**\nTo recognise a **Communication Breakdown**, look for a disconnect between instructions and physical output. For example, if a supervisor requests a specific task and the operative performs a different one, the link has failed. You can also spot it in the atmosphere of a workplace; high levels of frustration or frequent \"I didn't know\" excuses are common indicators. \n\nConsider a relay race: if the first runner reaches the hand-off point but the second runner isn't looking, the baton drops. In the same way, if a technical report is sent but never acknowledged, the information has \"dropped,\" and the next phase of work is at risk. \n\n**Micro-scenario:** Compare two teams: Team A reports a 10% delay immediately, allowing management to reschedule. Team B stays silent about a 10% delay until the deadline passes. Team B has experienced a **Communication Breakdown** that will cause 100% more disruption than Team A’s proactive report.\n\n**Common mistakes**\nLearners often confuse a **Communication Breakdown** with a simple technical error; a technical error is a mistake in the work itself, whereas a **Communication Breakdown** is the failure in the information exchange that allowed that mistake to occur or go unnoticed.\n\nMisconceptions (targeted):\n*   Misconception: Communication only fails when people are arguing. | Correction: Silence or lack of feedback is often the most dangerous form of breakdown. | AC: AC3.3\n*   Misconception: Only the person speaking is responsible for the breakdown. | Correction: Communication is a two-way process; the receiver is equally responsible for confirming they understand. | AC: AC3.3\n\n**Key Points**\n*   Breakdowns lead to rework, safety risks, and wasted materials.\n*   Every **Stakeholder** is affected by poor information flow.\n*   Consequences range from minor delays to total project failure.\n*   Recognising signs early prevents small errors from becoming major conflicts.\n\n**Quick recap**\nPoor communication in a technical setting is more than a misunderstanding; it is a failure of the operational system. By identifying the signs of a **Communication Breakdown** early—such as conflicting instructions or a lack of feedback—operatives and management can prevent the cascading consequences that affect every **Stakeholder** involved in the project.\n\n### Coming Up Next\nWe will examine the specific actions and formal procedures used to resolve these issues when they escalate into workplace conflicts."
+        "title": "Impact of Communication Failures",
+        "content": "### In this lesson\nYou will learn to identify the common effects of poor communication on an organization’s efficiency and reputation. This knowledge is applied whenever you interact with colleagues, supervisors, or clients to ensure project success. \n\n*   The link between clear messaging and operational efficiency. \n*   How internal friction affects external company reputation. \n*   Identifying signs of failing information flow between different levels of a project.\n\n**What this is**\nA **Communication Breakdown** occurs when information is incorrectly transmitted or misinterpreted, leading to operational errors or damaged working relationships. This is not merely a \"mistake,\" but a failure in the system used to share data, instructions, or feedback. Think of it like a blurred blueprint; even if the builder is skilled, the lack of clear visual information will result in a structure that does not match the original design. In a technical environment, this might manifest as a technician following an outdated version of a specification because the update was never shared.\n\n**Why it matters**\nPoor communication is rarely contained within a single conversation; it ripples across the entire organization. When an operative fails to update management, schedules slip. When management fails to provide clear instructions to operatives, resources are wasted on rework. Ultimately, if the company-to-customer link fails, the **Stakeholder** (the customer) loses trust, which directly damages the organization's reputation and future revenue.\n\n**Key facts / rules**\n*   Efficiency drops when tasks must be repeated due to unclear initial instructions.\n*   Safety risks increase when critical data is not communicated between operatives during shift changes.\n*   A **Stakeholder** includes anyone from a co-worker to a high-level manager or the end client.\n*   Reputational damage often stems from the gap between what was promised and what was delivered.\n*   Internal friction between operatives and management typically leads to lower morale and higher staff turnover.\n*   Information must be accurate, timely, and directed to the correct person to prevent a **Communication Breakdown**.\n\n**How to recognise it**\nTo identify a breakdown, look for discrepancies between the intended outcome and the actual result. You can recognise poor communication through \"lag indicators\" such as an increase in the number of help-desk queries or a higher-than-average rate of material waste. In a peer-to-peer setting, it is identified by confusion over who owns a specific task. For example, if two operatives both believe they are responsible for the same safety check, the resulting duplication of effort is a clear sign of poor coordination. Conversely, if a task is left entirely undone because both assumed the other was doing it, the breakdown is even more severe.\n\n*Micro-scenario: Consider two teams. Team A receives 5 precise bullet points for a task and completes it in 2 hours. Team B receives a vague verbal instruction and takes 6 hours because they spent 4 hours correcting errors. Team B has suffered a 200% loss in time efficiency due to poor communication.*\n\n**Common mistakes**\nLearners often confuse a **Communication Breakdown** with a lack of technical skill; a breakdown is a failure in the transmission of information, whereas a technical error is a failure in the execution of a task. \n\nMisconceptions (targeted):\n* Misconception: Communication only fails if someone lies. | Correction: Most breakdowns occur through accidental omission or vague language, not intentional deceit. | AC: 210.LO3.AC3.3\n* Misconception: Only the person speaking is responsible for the breakdown. | Correction: Communication is a two-way process; the listener is responsible for seeking clarification if the message is unclear. | AC: 210.LO3.AC3.3\n\n**Key Points**\n*   Failures in communication reduce organizational efficiency through rework and delays.\n*   Every **Stakeholder** is affected when information flow is interrupted.\n*   Reputation is built on consistent, clear communication with customers.\n*   Identifying breakdowns early prevents small errors from becoming project-wide failures.\n\n**Quick recap**\nCommunication failures lead to wasted time, increased costs, and damaged professional reputations. By identifying the signs of a **Communication Breakdown**—such as duplicated work or customer dissatisfaction—operatives can take steps to clarify information before it impacts the project's bottom line.\n\n### Coming Up Next\nWe will examine specific strategies for **Conflict Resolution** and how to manage disagreements when they arise between different groups in the workplace."
       }
     },
     {
@@ -82,65 +78,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Impacts of Communication Breakdown",
+        "title": "Check Your Understanding: Impact of Communication Failures",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C1-L1-A",
-            "questionText": "What are two common results of poor communication between operatives?",
+            "questionText": "What is the impact on organizational efficiency when tasks must be repeated because of unclear instructions?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "duplicated work or skipped safety checks",
-              "duplicated work",
-              "skipped safety checks",
-              "work duplication or safety errors"
+              "Efficiency drops",
+              "Efficiency decreases",
+              "Lowered efficiency"
             ],
-            "hint": "Think about what happens to physical tasks and safety protocols when information is missing."
+            "hint": "Consider how rework affects the overall speed and output of the organization."
           },
           {
             "id": "210-3B-C1-L1-B",
-            "questionText": "What typically occurs when there is a communication failure between operatives and management?",
+            "questionText": "According to the text, who is included in the definition of a Stakeholder?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "missed deadlines and incorrect resource allocation",
-              "missed deadlines",
-              "incorrect resource allocation",
-              "scheduling and resource errors"
+              "Anyone from co-workers to clients",
+              "Anyone involved",
+              "Co-workers to end clients"
             ],
-            "hint": "Consider the impact on project timing and the use of tools or staff."
+            "hint": "This term covers everyone from internal peers to the final recipient of the work."
           },
           {
             "id": "210-3B-C1-L1-C",
-            "questionText": "How is a communication breakdown defined in contrast to a simple technical error?",
+            "questionText": "How does a communication breakdown differ from a technical error?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "failure in the information exchange",
-              "information exchange failure",
-              "breakdown in information flow",
-              "failed exchange of data"
+              "Failure in transmission of information",
+              "Information transmission failure",
+              "Failure to share data"
             ],
-            "hint": "A technical error is a mistake in the work itself, but a breakdown involves the flow of data."
+            "hint": "One is a failure in the system used to share data, while the other is a failure in executing a task."
           },
           {
             "id": "210-3B-C1-L2",
-            "questionText": "Using your answers to Q1 (operative work), Q2 (management failures), and Q3 (information exchange), explain how these facts connect. Why must a professional identify the breakdown rather than just fixing the technical error?",
+            "questionText": "Using your answers to Q1 (efficiency drops), Q2 (stakeholders), and Q3 (breakdown vs technical error), explain how these facts connect. Why must an operative correctly identify a communication breakdown to protect organizational stakeholders?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Technical errors are often the physical result of a failure in information exchange",
-              "Operative and management failures both stem from inaccurate data flow",
-              "Fixing only the technical error ignores the root cause of duplicated work or missed deadlines",
-              "Identifying the breakdown prevents the ripple effect across different stakeholders"
+              "Misidentifying a breakdown as a technical error leads to solving the wrong problem",
+              "Uncorrected information failures cause repetitive tasks that lower efficiency",
+              "Efficiency losses and rework negatively affect every stakeholder from colleagues to clients",
+              "Correct identification ensures the information flow is fixed to prevent project-wide failure"
             ],
             "expectedAnswer": [
-              "If you only fix the technical error without addressing the failure in information exchange, the communication breakdown will continue to cause duplicated work and missed deadlines. We must identify the breakdown to stop the ripple effect across the whole organisation.",
-              "Technical errors are caused by the breakdown in information exchange between operatives and management. Because this breakdown leads to skipped safety checks and incorrect resource allocation, fixing the root cause is the only way to ensure project success."
+              "If an operative confuses a breakdown with a technical error, they won't fix the underlying information flow, meaning efficiency drops for everyone. This matters because every stakeholder, including the client, is affected when rework is required due to unclear instructions.",
+              "Correctly identifying a breakdown as a failure in transmission rather than skill is vital because it stops the cycle of repeated tasks. Why this matters is that maintaining efficiency protects the interests of all stakeholders, from the manager to the end client."
             ],
-            "hint": "Think about how the 'ripple effect' mentioned in the text links the source of the error to the physical outcome."
+            "hint": "Think about how misdiagnosing the cause of a problem leads to wasted effort that impacts everyone involved in the project."
           }
         ]
       }
@@ -150,8 +143,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Conflict Resolution Actions",
-        "content": "### In this lesson\nYou will learn the practical steps required to manage and resolve disagreements in the workplace. This involves choosing the right response based on the parties involved.\n\n*   Describe actions to resolve conflicts between customers and operatives.\n*   Identify the process for resolving disputes between co-workers and supervisors.\n*   Understand when to use **Escalation** or **Mediation** to settle a disagreement.\n\n**What this is**\n**Conflict Resolution** is the process of finding a solution to a disagreement to maintain a productive environment. It relies heavily on **Active Listening**, where you focus entirely on the other person's message to ensure you understand their perspective before responding. If a conflict cannot be settled locally, it may require **Escalation** to a higher authority or **Mediation** by a neutral third party.\n\n**Why it matters**\nUnresolved conflict creates a toxic work environment and slows down technical progress. By following a structured resolution process, you ensure that professional relationships remain intact and that the project continues to meet the needs of all **Stakeholders**.\n\n**Key facts / rules**\n*   **Active Listening** involves paraphrasing what the other person said to confirm your understanding.\n*   Conflicts with customers should be handled calmly, focusing on facts and agreed-upon service levels.\n*   Disagreements between co-workers are best resolved through direct, private discussion before involving management.\n*   **Escalation** is a formal procedure used when an issue is beyond an operative's authority or expertise.\n*   **Mediation** aims for a \"win-win\" outcome where both parties agree on the solution.\n*   Maintaining a professional tone is mandatory, regardless of the intensity of the disagreement.\n\n**How to do it**\nWhen a conflict arises, start with **Active Listening**. For example, if a customer is upset about a delay, say: \"I understand you are frustrated because the project is behind schedule; is that correct?\" This validates their concern without necessarily admitting fault. \n\nIf the conflict is between an operative and a supervisor, follow the chain of command. Attempt to resolve it one-on-one first. If no agreement is reached, move to **Escalation** by involving a senior manager. Think of **Conflict Resolution** like a pressure relief valve on a heating system: by addressing the \"pressure\" of the disagreement early through talk, you prevent a \"burst\" or total breakdown of the working relationship. \n\n**Micro-scenario:** An operative and a co-worker disagree on who should clean the site. If they ignore it, the site remains unsafe. If they use **Conflict Resolution** to split the task 50/50, the site becomes safe in 10 minutes. Compare the 10-minute fix to the hours of tension caused by ignoring the issue.\n\n**Common mistakes**\nLearners often confuse **Escalation** with \"tattling\"; **Escalation** is a professional tool for resolving complex issues, whereas \"tattling\" is an informal attempt to get someone in trouble.\n\nMisconceptions (targeted):\n*   Misconception: Resolution means winning the argument. | Correction: Resolution means finding a workable solution that allows the project to continue. | AC: AC3.4\n*   Misconception: You should always involve a manager immediately. | Correction: Most minor conflicts should be addressed directly between the parties involved first. | AC: AC3.4\n\n**Key Points**\n*   Use **Active Listening** as the first step in any resolution.\n*   Follow formal **Escalation** paths when local resolution fails.\n*   **Mediation** provides a neutral ground for difficult disputes.\n*   Professionalism must be maintained with all **Stakeholders**.\n\n**Quick recap**\nResolving conflict effectively requires a combination of empathy and procedure. By using **Active Listening** to understand the problem and applying the correct resolution actions—whether it is a direct talk, **Escalation**, or **Mediation**—you can ensure that workplace disagreements do not compromise technical standards or project timelines.\n\n### Coming Up Next\nIn the next module, we will look at how to document these interactions to ensure a permanent record of the agreed-upon solutions."
+        "title": "Conflict Resolution Strategies",
+        "content": "### In this lesson\nYou will learn to describe appropriate actions to take when resolving conflicts with customers, co-workers, and management. This is essential for maintaining a professional environment and ensuring that technical work continues without interruption.\n\n*   Distinguishing between informal resolution and formal escalation.\n*   The role of a neutral party in the resolution process.\n*   Choosing the correct strategy based on the level of the dispute.\n\n**What this is**\n**Conflict Resolution** is the formal or informal process of finding a mutually acceptable solution to a disagreement between two or more parties. In a technical setting, this might involve a dispute over tool usage, scheduling, or project specifications. It functions like a pressure relief valve in a pipe system; it provides a safe way to release tension before the system (the team) suffers a permanent failure. Without these strategies, minor disagreements can grow into major disruptions.\n\n**Why it matters**\nUnresolved conflict halts productivity. If an operative and a supervisor cannot agree on a method, the work stops. If a customer is unhappy and the conflict is not managed, the company may face legal action or lose a contract. Understanding when to use **Mediation** or when to trigger an **Escalation** ensures that disputes are handled at the lowest possible level of authority, saving time and preserving professional relationships.\n\n**Key facts / rules**\n*   Initial resolution should typically be attempted informally through direct discussion.\n*   **Mediation** involves a neutral third party helping the disputing parties reach their own agreement.\n*   **Escalation** is required when a conflict involves safety breaches or when direct resolution fails.\n*   Active listening is the foundation of all resolution strategies.\n*   Professionalism must be maintained regardless of the intensity of the disagreement.\n*   Agreements reached during resolution should be documented to prevent future recurrence.\n*   Consult company handbooks to verify current edition/version of formal grievance procedures.\n\n**How to recognise it**\nRecognising the correct resolution path requires analyzing the parties involved and the severity of the issue. For a minor disagreement between co-workers over a shared workspace, an informal chat is the most appropriate first step. However, if a customer is aggressive or making unreasonable demands, you must recognise that this requires immediate **Escalation** to a supervisor to protect both the operative and the company. You can identify the need for **Mediation** when two parties are at a stalemate; they both want a solution but cannot find common ground without an outside perspective. \n\n*Micro-scenario: An operative is 10 minutes late, causing a co-worker to miss their break. The co-worker must choose between a 2-minute calm conversation to adjust the schedule or a formal written complaint to the director. The former is the appropriate initial resolution action for this scale of conflict.*\n\n**Common mistakes**\nLearners often confuse **Mediation** with arbitration; in **Mediation**, the third party only assists the individuals in finding their own solution, whereas in arbitration, the third party makes the final, binding decision for them.\n\nMisconceptions (targeted):\n* Misconception: Escalation is a sign of personal failure. | Correction: Escalation is a professional tool used when an issue exceeds an individual's authority or resources. | AC: 210.LO3.AC3.4\n* Misconception: Conflict resolution means one person must \"lose\" for the other to \"win.\" | Correction: Effective resolution seeks a mutually acceptable outcome where both parties can continue working productively. | AC: 210.LO3.AC3.4\n\n**Key Points**\n*   **Conflict Resolution** aims for a mutually acceptable outcome for all parties.\n*   Informal discussion should always be the first step for minor peer-to-peer disputes.\n*   **Mediation** helps parties reach their own agreement with neutral assistance.\n*   **Escalation** is a necessary step for unresolved or high-risk conflicts.\n\n**Quick recap**\nManaging conflict effectively requires choosing the right tool for the job. Whether through direct talk, neutral **Mediation**, or formal **Escalation**, the goal is to resolve the disagreement and return to productive work. By acting professionally and following established procedures, you protect the interests of every **Stakeholder** involved.\n\n### Coming Up Next\nIn the next module, we will explore how these communication and resolution skills are integrated into broader project management and site safety protocols."
       }
     },
     {
@@ -159,152 +152,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Conflict Resolution Actions",
+        "title": "Check Your Understanding: Conflict Resolution Strategies",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C2-L1-A",
-            "questionText": "What action does Active Listening require to confirm you understand the other person?",
+            "questionText": "How should a resolution typically be attempted first for minor disputes?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "paraphrasing what the other person said",
-              "paraphrasing",
-              "repeating back their message",
-              "paraphrasing their words"
+              "Informally through direct discussion",
+              "Informal direct discussion",
+              "Direct discussion"
             ],
-            "hint": "This involves summarizing the other person's points in your own words."
+            "hint": "This is the most direct and lowest level of authority for handling disagreements."
           },
           {
             "id": "210-3B-C2-L1-B",
-            "questionText": "When is it appropriate to use a formal Escalation procedure?",
+            "questionText": "What is the role of the neutral third party in the process of Mediation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "issue is beyond authority or expertise",
-              "beyond an operative's authority",
-              "beyond expertise",
-              "outside their authority or knowledge"
+              "Helping parties reach their own agreement",
+              "Assisting mutual agreement",
+              "Helping parties agree"
             ],
-            "hint": "Look for the boundary where an operative no longer has the power or knowledge to solve the problem."
+            "hint": "The third party does not make the decision, but assists the individuals in finding their own solution."
           },
           {
             "id": "210-3B-C2-L1-C",
-            "questionText": "What is the primary goal of the Mediation process?",
+            "questionText": "When is the professional tool of Escalation specifically required?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "aims for a win-win outcome",
-              "win-win outcome",
-              "mutually agreed solution",
-              "both parties agree on solution"
+              "Exceeds individual's authority or resources",
+              "Beyond individual authority",
+              "Exceeds personal resources"
             ],
-            "hint": "This process focuses on an outcome where both parties are satisfied."
+            "hint": "This step is used when the issue is too large or risky for the individuals involved to handle alone."
           },
           {
             "id": "210-3B-C2-L2",
-            "questionText": "Using your answers to Q1 (Active Listening), Q2 (Escalation), and Q3 (Mediation), explain how these facts connect. How do we know when to move from local discussion to a more formal resolution process?",
+            "questionText": "Using your answers to Q1 (informal discussion), Q2 (mediation), and Q3 (escalation), explain how these facts connect. How do we know which resolution strategy is appropriate for a specific workplace conflict?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Active Listening is the first step used to reach a local agreement",
-              "If Active Listening fails to produce a win-win outcome, then more formal tools are needed",
-              "Escalation is required specifically when the issue moves beyond the individual's authority",
-              "Mediation and Escalation are secondary steps taken when direct communication cannot resolve the dispute"
+              "Resolution strategies progress from least to most formal based on the situation",
+              "Informal discussion is for minor peer issues within one's own control",
+              "Mediation is needed when parties are at a stalemate and need neutral help to agree",
+              "Escalation is the correct choice only when the conflict exceeds one's authority or poses high risks"
             ],
             "expectedAnswer": [
-              "We start with Active Listening to try and reach a win-win outcome through mediation or direct talk. If the issue is beyond our authority or expertise, we must then use the formal escalation procedure to move the conflict to a higher level.",
-              "Active listening is the tool used for local resolution, but if a win-win outcome cannot be reached or the problem exceeds our authority, we know it is time to use escalation. These steps ensure that professional relationships are maintained through a structured process."
+              "We know which strategy to use by assessing the scale and authority required for the conflict. We start with informal discussion for minor issues, move to mediation if a neutral party is needed for agreement, and use escalation if the problem exceeds our individual authority.",
+              "The choice of strategy depends on whether the parties can resolve it alone. If direct talk fails or the issue is too big for our authority, we must escalate; if we just need help reaching a mutual agreement, mediation is the right tool."
             ],
-            "hint": "Consider the order of events, starting with the simplest communication tool and moving to formal procedures."
-          }
-        ]
-      }
-    },
-    {
-      "id": "210-3B-worked-example",
-      "type": "worked-example",
-      "order": 6,
-      "content": {
-        "title": "Worked Example: Identifying and Resolving a Peer-to-Peer Breakdown",
-        "given": "An operative is observed using an outdated version of a technical drawing for a task. A co-worker notices the error before any physical work begins.",
-        "steps": [
-          {
-            "stepNumber": 1,
-            "description": "Identify context and constraints",
-            "formula": null,
-            "calculation": null,
-            "result": "Digital communication breakdown between co-workers involving outdated technical data."
-          },
-          {
-            "stepNumber": 2,
-            "description": "Select appropriate option",
-            "formula": null,
-            "calculation": null,
-            "result": "Initiate a direct, private discussion with the co-worker to correct the information."
-          },
-          {
-            "stepNumber": 3,
-            "description": "State purpose or result",
-            "formula": null,
-            "calculation": null,
-            "result": "Prevents physical rework and safety hazards by ensuring both stakeholders work from the same facts."
-          },
-          {
-            "stepNumber": 4,
-            "description": "State common wrong choice and why",
-            "formula": null,
-            "calculation": null,
-            "result": "Immediate escalation to management; minor conflicts should be addressed directly between the parties first."
-          }
-        ],
-        "notes": "Always verify the current edition or version of technical drawings before starting work to avoid this specific breakdown."
-      }
-    },
-    {
-      "id": "210-3B-guided",
-      "type": "guided-practice",
-      "order": 7,
-      "content": {
-        "title": "Guided Practice (We Do)",
-        "problem": "A customer is visibly angry because a project has been delayed by two days, and they were not informed by the site team. You need to address the situation professionally.",
-        "steps": [
-          {
-            "stepNumber": 1,
-            "prompt": "Identify the context and constraints of this situation.",
-            "expectedAnswer": [
-              "Communication breakdown between company and customer",
-              "Stakeholder conflict"
-            ],
-            "hint": "Consider who is involved and what failure in information flow has occurred."
-          },
-          {
-            "stepNumber": 2,
-            "prompt": "Select the appropriate communication technique to begin the resolution process.",
-            "expectedAnswer": [
-              "Active Listening",
-              "Paraphrasing"
-            ],
-            "hint": "Look for the technique that involves focusing entirely on the other person's message to confirm understanding."
-          },
-          {
-            "stepNumber": 3,
-            "prompt": "State the purpose or intended result of using this technique with the customer.",
-            "expectedAnswer": [
-              "Validates concerns and maintains trust",
-              "Ensures professional reputation"
-            ],
-            "hint": "Think about how validating a concern affects the professional relationship."
-          },
-          {
-            "stepNumber": 4,
-            "prompt": "State a common wrong choice in this scenario and explain why it is incorrect.",
-            "expectedAnswer": [
-              "Silence or lack of feedback",
-              "Ignoring the delay"
-            ],
-            "hint": "Recall which form of communication breakdown is described as most dangerous in the lesson."
+            "hint": "Consider how the level of authority and the ability of the parties to agree determines the choice between talking directly, using a mediator, or involving management."
           }
         ]
       }
@@ -318,54 +221,55 @@
         "questions": [
           {
             "id": "210-3B-P1",
-            "questionText": "In the lesson scenario, Team A reports a delay immediately while Team B stays silent. If Team A's report results in 15 minutes of rescheduling work for management, how many minutes of disruption does Team B cause if their silence results in a 100% increase in disruption?",
+            "questionText": "If a team spends 40 hours on a project, but 10 of those hours were spent correcting errors caused by vague instructions, what percentage of the total project time was wasted on rework?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "30"
+              "25",
+              "25.0"
             ],
-            "hint": "Calculate the original 15 minutes plus a 100% increase as described in the text."
+            "hint": "Divide the wasted hours by the total hours and multiply by 100 to find the percentage."
           },
           {
             "id": "210-3B-P2",
-            "questionText": "Explain why silence or a lack of feedback is often considered a more dangerous sign of a communication breakdown than an active argument.",
+            "questionText": "Why is an operative following an outdated specification classified as a communication breakdown rather than a technical error?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "harder to recognize",
-              "difficult to detect",
-              "harder to spot",
-              "remains uncorrected longer"
+              "failure in information flow",
+              "information transmission failure",
+              "transmission of information failure"
             ],
-            "hint": "Think about how easy it is to notice when information is not moving compared to when people are vocal."
+            "hint": "Consider whether the fault lies in the operative's physical skill or the data they were provided."
           },
           {
             "id": "210-3B-P3",
-            "questionText": "A logistics coordinator fails to update a driver about a road closure, leading the driver to arrive at the wrong location. Which specific vocabulary term describes this failure to exchange accurate information?",
+            "questionText": "Two department heads cannot agree on how to share a storage space. They invite a neutral supervisor to facilitate a meeting where the heads will eventually agree on a compromise themselves. Which resolution strategy is being used?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Communication Breakdown",
-              "communication breakdown"
+              "mediation",
+              "Mediation"
             ],
-            "hint": "This term refers to the failure of the information flow between stakeholders."
+            "hint": "This strategy involves a neutral third party helping others reach their own agreement."
           },
           {
             "id": "210-3B-P4",
-            "questionText": "Two workers disagree on a cleanup task. By using conflict resolution to split the work 50/50, they finish in 10 minutes. If they had failed to communicate and only one person ended up doing the work alone at the same speed, how many total minutes would the task have taken?",
-            "answerType": "numeric",
+            "questionText": "What must be true for a conflict resolution process to be categorized as escalation rather than an informal resolution?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "20"
+              "higher level of authority",
+              "higher authority involved",
+              "reporting to management"
             ],
-            "hint": "If two people working together take 10 minutes, calculate the time required for a single person to do all the work."
+            "hint": "Think about the level of the person the issue is being reported to."
           },
           {
             "id": "210-3B-P5",
-            "questionText": "According to the formal procedure for resolving disputes, what action should be taken if a direct, private discussion between co-workers fails to settle a conflict?",
-            "answerType": "short-text",
+            "questionText": "A project manager identifies that 12 out of 60 total stakeholders are dissatisfied due to poor communication regarding project updates. What percentage of the stakeholders are dissatisfied?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Escalation",
-              "escalate",
-              "formal escalation"
+              "20",
+              "20.0"
             ],
-            "hint": "This involves moving the issue to a higher level of authority or management."
+            "hint": "Divide the number of dissatisfied stakeholders by the total number of stakeholders."
           }
         ]
       }
@@ -381,42 +285,43 @@
         "questions": [
           {
             "id": "210-3B-INT-1",
-            "questionText": "Explain the relationship between the specific effects of a communication breakdown and the selection of a conflict resolution action. In your answer, include: (1) one common effect of poor communication on technical outcomes, (2) one specific resolution action such as escalation or mediation, and (3) the connection between the failure and the chosen response. Why must the resolution action be directly informed by the nature of the communication failure?",
+            "questionText": "Analyze the relationship between messaging clarity and the selection of dispute resolution methods within a professional hierarchy. In your answer, include: (1) how the link between clear messaging and operational efficiency prevents stakeholder friction, (2) the criteria for distinguishing between informal resolution and formal escalation, and (3) how information flow between project levels dictates the appropriate resolution strategy. Why does this relationship hold? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identifies a specific impact of communication breakdown on technical tasks (e.g., rework or delays).",
-              "Identifies a relevant conflict resolution action appropriate for the context.",
-              "Explains how the chosen action effectively addresses the specific failure identified.",
-              "Provides reasoning for why matching the action to the failure prevents further operational risk.",
-              "Demonstrates understanding of how stakeholder roles influence the choice of resolution."
+              "Identifies that clear messaging maintains operational efficiency by preventing misunderstandings.",
+              "Explains that stakeholder friction is a direct result of failing information flow.",
+              "Describes the criteria for choosing between informal and formal resolution strategies.",
+              "Connects the level of the dispute to the appropriate communication channel used for resolution.",
+              "Reasons that clear communication reduces the frequency of formal escalation by addressing friction at the source."
             ],
             "expectedAnswer": [
-              "A communication breakdown often leads to project delays, which requires a resolution action like escalation to management if deadlines are at risk. This relationship holds because management has the authority to reallocate resources to fix the delay, whereas peer mediation might not solve the resource issue. We know this is true because the resolution must address the root cause—the delay—to restore operational efficiency.",
-              "Poor communication can cause safety errors between operatives, requiring immediate mediation to clarify technical procedures. The resolution must be informed by the failure because if the conflict is based on a technical misunderstanding, mediation allows for the correction of information. Choosing an incorrect action, like ignoring the issue, would allow the technical risk to persist and potentially lead to injury."
+              "Clear messaging ensures that all stakeholders understand project requirements, which maintains operational efficiency and prevents the friction that leads to disputes. When communication fails, professionals must choose between informal resolution for minor peer issues or formal escalation for higher-level disputes. This relationship holds because proactive information flow identifies issues early, allowing for low-level resolution before formal intervention becomes a technical necessity.",
+              "Failing information flow between project levels creates operational bottlenecks and stakeholder friction that require specific resolution strategies. By distinguishing between informal resolution and formal escalation, a worker can address communication breakdowns at the most efficient level. This holds true because the severity of the communication failure determines the level of authority and the specific strategy required to restore professional workflow."
             ],
-            "hint": "Think about how the severity of a project delay might require a different response than a personal disagreement between two co-workers."
+            "hint": "Consider how the clarity of initial instructions affects the likelihood of needing a neutral party later."
           },
           {
             "id": "210-3B-INT-2",
-            "questionText": "Synthesise the process of managing a communication breakdown to ensure project success across an organisation. In your answer, include: (1) the potential impacts on technical project outcomes, (2) the consequences for different stakeholders including management and customers, (3) the specific actions used to resolve resulting conflicts, and (4) how identifying early signs of breakdown prevents total operational failure. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Evaluate how an organization’s internal communication health directly influences its external reputation and stakeholder stability through conflict management. In your answer, include: (1) the impact of internal communication failures on external reputation, (2) how friction between different stakeholder groups affects project outcomes, (3) the role of neutral parties in resolving high-level disputes, and (4) the process of choosing a strategy to restore a professional environment. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Links communication failure to negative technical project outcomes like increased costs or failure to meet specifications.",
-              "Explains the consequences for operatives (frustration/danger) and management (loss of oversight).",
-              "Explains the consequences for customers (loss of trust/contractual penalties).",
-              "Evaluates the use of escalation for high-risk or contractual disputes.",
-              "Evaluates the use of mediation for internal stakeholder disagreements.",
-              "Identifies early warning signs of communication breakdown such as missed updates or conflicting instructions.",
-              "Describes how timely intervention maintains operational continuity and prevents total failure.",
-              "Synthesises the relationship between stakeholder communication and overall technical delivery."
+              "Synthesizes internal communication flow with external organizational reputation.",
+              "Explains the impact of stakeholder friction on overall project efficiency.",
+              "Justifies the use of neutral parties in formal escalation processes.",
+              "Describes the selection of resolution strategies based on the parties involved (customers, co-workers, management).",
+              "Relates conflict resolution to the maintenance of a professional work environment.",
+              "Connects the restoration of technical work to successful dispute management.",
+              "Identifies signs of failing information flow as a precursor to organizational reputation damage.",
+              "Maintains technical precision in describing formal vs. informal resolution paths."
             ],
             "expectedAnswer": [
-              "Communication breakdowns lead to technical errors and project delays, resulting in lost revenue for management and dissatisfaction for customers. By identifying early signs like conflicting instructions, operatives can use mediation to resolve peer disputes or escalation to involve management before operational failure occurs. This integrated approach ensures that conflict resolution actions directly mitigate the specific risks posed to project outcomes.",
-              "• Poor communication results in technical rework and missed deadlines, which damages customer trust and increases management pressure on operatives.\n• Recognising signs like missed reporting allows for proactive mediation or escalation to settle disagreements before they halt production.\n• Implementing the correct resolution action ensures that all stakeholders are aligned, preventing the total operational failure that follows unaddressed communication breakdowns."
+              "Internal communication failures lead to stakeholder friction that eventually damages an organization’s external reputation and reduces operational efficiency. To mitigate this, professionals must select resolution strategies—ranging from informal peer discussions to formal neutral-party mediation—based on the severity of the conflict. By successfully resolving disputes with customers and management, the professional environment is restored, ensuring technical work continues without further reputational risk.",
+              "- Communication failures between project levels create internal friction that negatively impacts external stakeholder reputation.\n- Stakeholder relationships are preserved by choosing the correct resolution strategy, such as informal resolution for minor co-worker disputes.\n- High-level conflicts require formal escalation and the involvement of neutral parties to ensure a professional environment is maintained.\n- Effective conflict management restores operational efficiency by removing communication barriers that halt technical progress.",
+              "When information flow fails, the resulting friction between stakeholders compromises the organization's efficiency and its reputation with external clients. Resolving these conflicts requires a strategic choice between informal resolution and formal escalation, often involving neutral parties for complex management or customer disputes. This integrated approach ensures that the professional environment is stabilized and technical objectives are met despite initial communication breakdowns."
             ],
-            "hint": "Consider the full journey from the first sign of a misunderstanding to the final impact on the customer and how specific actions stop that progression."
+            "hint": "Think about the sequence from a communication breakdown to a reputational loss, and how resolution strategies act as a corrective measure."
           }
         ]
       }
@@ -430,37 +335,38 @@
         "questions": [
           {
             "id": "210-3B-SR-1",
-            "questionText": "What is the collective term for the different ways, such as verbal or written, that information is shared between people in a workplace?",
+            "questionText": "Identify two common methods used to share or exchange information within a workplace environment.",
             "expectedAnswer": [
-              "communication methods",
-              "communication method",
-              "communication"
+              "verbal",
+              "written",
+              "electronic",
+              "digital"
             ],
-            "hint": "Think about how you send or receive information on a job site.",
+            "hint": "Think about how information is sent or received between people.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-2",
-            "questionText": "Name one type of external person who may visit a work site to check on standards, progress, or safety.",
+            "questionText": "What documents outline the standard rules and procedures that employees must follow when dealing with customers?",
             "expectedAnswer": [
-              "inspectors",
-              "site visitors",
-              "visitors",
-              "customers"
+              "company policies",
+              "workplace procedures",
+              "policies",
+              "company procedures"
             ],
-            "hint": "Consider the different stakeholders who might monitor a technical environment.",
+            "hint": "These documents guide how you represent the organization.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-3",
-            "questionText": "What is the term for the formal written instructions and rules that a company uses to guide the behavior and actions of its staff?",
+            "questionText": "Name one type of external visitor who might come to a workplace to check for compliance with site rules.",
             "expectedAnswer": [
-              "company policies",
-              "workplace documentation",
-              "policies",
-              "procedures"
+              "inspectors",
+              "site visitors",
+              "auditors",
+              "regulators"
             ],
-            "hint": "These documents ensure everyone follows the same standards and legislation.",
+            "hint": "Refer to the previous lesson titles regarding site oversight.",
             "answerType": "short-text"
           }
         ],
@@ -477,7 +383,7 @@
     "updated": "2026-02-16",
     "version": "1.0",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, PROCEDURE",
+    "taskMode": "IDENTIFICATION, ANALYSIS",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO3",
@@ -492,32 +398,32 @@
       ]
     },
     "scope": {
-      "inScope": "The identification of communication impacts and the procedural actions required to resolve interpersonal conflicts in a professional setting.",
-      "outOfScope": "Legal employment dispute frameworks, disciplinary procedures, or technical reporting documentation.",
-      "rationale": "Focuses on the immediate interpersonal and organisational dynamics of communication rather than formal HR or legal processes."
+      "inScope": "Consequences of communication failure and behavioral actions for resolving workplace and customer conflicts.",
+      "outOfScope": "Technical documentation standards, formal legal mediation, or disciplinary HR procedures.",
+      "rationale": "Focuses on the interpersonal dynamics and organizational impact required for Level 2 vocational standards before moving to formal management processes."
     },
     "teachingConstraints": {
       "excludeHowTo": false,
       "purposeOnly": false,
       "identificationOnly": false,
       "noCalculations": true,
-      "specificScope": "Focus specifically on the impact on relationships and the immediate actions to mitigate conflict."
+      "specificScope": "Focus on interpersonal conflict resolution and organizational impact only."
     },
     "misconceptions": [
       {
-        "misconception": "Communication only fails when people are arguing.",
-        "correction": "Silence or lack of feedback is often the most dangerous form of breakdown.",
-        "relatedAC": "AC3.3"
+        "misconception": "Communication only fails if someone lies.",
+        "correction": "Most breakdowns occur through accidental omission or vague language, not intentional deceit.",
+        "relatedAC": "210.LO3.AC3.3"
       },
       {
-        "misconception": "Resolution means winning the argument.",
-        "correction": "Resolution means finding a workable solution that allows the project to continue.",
-        "relatedAC": "AC3.4"
+        "misconception": "Escalation is a sign of personal failure.",
+        "correction": "Escalation is a professional tool used when an issue exceeds an individual's authority or resources.",
+        "relatedAC": "210.LO3.AC3.4"
       },
       {
-        "misconception": "Only the person speaking is responsible for the breakdown.",
-        "correction": "Communication is a two-way process; the receiver is equally responsible for confirming they understand.",
-        "relatedAC": "AC3.3"
+        "misconception": "Conflict resolution means one person must \"lose\" for the other to \"win.\"",
+        "correction": "Effective resolution seeks a mutually acceptable outcome where both parties can continue working productively.",
+        "relatedAC": "210.LO3.AC3.4"
       }
     ]
   }

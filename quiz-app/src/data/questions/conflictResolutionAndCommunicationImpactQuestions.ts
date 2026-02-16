@@ -9,16 +9,16 @@ import { TaggedQuestion } from './types';
 export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What is the most appropriate first action for an electrical operative to take when a customer becomes angry about a delay?",
+    "question": "Which of the following is a common cause of conflict between a supervisor and an operative on a construction site?",
     "options": [
-      "Listen calmly to the customer's concerns",
-      "Explain that the delay is not their personal fault",
-      "Ignore the customer and continue working",
-      "Leave the site immediately without speaking"
+      "Unclear or contradictory work instructions",
+      "Receiving a pay rise for good performance",
+      "Using the correct personal protective equipment",
+      "Completing a task ahead of the scheduled deadline"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
+      "1": "OTHER",
       "2": "OTHER",
       "3": "OTHER"
     },
@@ -26,22 +26,22 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "category": "Conflict Resolution",
     "tags": [
       "terminology",
-      "explanation"
+      "conceptual"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Active listening and remaining calm is the standard first step in de-escalating customer conflict in a professional environment."
+    "explanation": "Unclear instructions are a major source of friction as they lead to mistakes, rework, and frustration between management and staff."
   },
   {
     "id": 4017,
-    "question": "Which of the following is a direct effect of poor communication on an electrical contracting organization?",
+    "question": "What is a likely long-term effect of poor communication between an electrical company and its customers?",
     "options": [
-      "Loss of reputation and future contracts",
-      "Increased profit margins",
-      "Improved site safety records",
-      "Reduced need for supervision"
+      "Loss of reputation and future business contracts",
+      "An increase in the company's annual profit margins",
+      "Improved morale among the site operatives",
+      "A reduction in the number of site safety hazards"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -52,239 +52,23 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
-      "terminology",
-      "conceptual"
+      "conceptual",
+      "discrimination"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Poor communication leads to errors and dissatisfaction, which ultimately damages a company's reputation and financial stability."
+    "explanation": "Poor communication leads to customer dissatisfaction, which damages the brand and results in fewer referrals and contracts."
   },
   {
     "id": 4018,
-    "question": "Two operatives are in conflict because they both need the same specialized test instrument at the same time. How should this be resolved?",
+    "question": "An operative is confronted by an angry customer regarding a delay in the work. What is the most professional first action to take?",
     "options": [
-      "Check the work schedule and coordinate usage",
-      "The more senior operative takes the tool",
-      "Both operatives stop work until a second tool is bought",
-      "The operatives should decide by a coin toss"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Cooperation and checking the planned schedule allows for efficient resource sharing without unnecessary conflict."
-  },
-  {
-    "id": 4019,
-    "question": "What is the primary role of a supervisor when a conflict occurs between two members of the installation team?",
-    "options": [
-      "To act as an impartial mediator to find a solution",
-      "To take the side of the more experienced worker",
-      "To discipline both workers immediately",
-      "To ignore the situation unless it stops work"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Supervisors should remain impartial and help facilitate a resolution that allows the team to continue working effectively."
-  },
-  {
-    "id": 4020,
-    "question": "Which communication failure is most likely to cause a conflict between management and site operatives?",
-    "options": [
-      "Providing unclear or contradictory instructions",
-      "Holding regular morning safety briefings",
-      "Using digital job sheets for all tasks",
-      "Providing too much detail in the site specifications"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Unclear instructions lead to mistakes and frustration, which are major sources of conflict between different levels of a company."
-  },
-  {
-    "id": 4021,
-    "question": "An operative is working in a domestic property and accidentally damages a piece of the customer's furniture. What should they do?",
-    "options": [
-      "Inform the customer and the supervisor immediately",
-      "Try to repair it quickly before the customer notices",
-      "Move the furniture to hide the damage",
-      "Say nothing and hope the customer doesn't notice"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Honesty and immediate communication are essential for maintaining professional trust and resolving liability issues."
-  },
-  {
-    "id": 4022,
-    "question": "How does poor communication between operatives on a construction site impact health and safety?",
-    "options": [
-      "It increases the risk of accidents and injuries",
-      "It has no impact as long as everyone wears PPE",
-      "It makes the site safer by making people more cautious",
-      "It only affects the speed of work, not safety"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "health-safety",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Effective communication is vital for safety, especially when coordinating tasks like circuit isolation or heavy lifting."
-  },
-  {
-    "id": 4023,
-    "question": "Which of these is a formal method used by an organization to deal with a serious unresolved conflict between an operative and their manager?",
-    "options": [
-      "Grievance procedure",
-      "A casual chat in the canteen",
-      "Ignoring the problem until it goes away",
-      "Posting about the issue on social media"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "A grievance procedure is the formal, legal framework within a company for handling employee complaints and conflicts."
-  },
-  {
-    "id": 4024,
-    "question": "An operative feels that their supervisor is consistently giving them the most difficult tasks compared to others. What is the best initial step?",
-    "options": [
-      "Request a private meeting with the supervisor to discuss it",
-      "Start doing the work slowly in protest",
-      "Complain to the other operatives during lunch",
-      "Refuse to do the work until it is changed"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Professional communication via a private meeting is the most effective way to address perceived unfairness before it escalates."
-  },
-  {
-    "id": 4025,
-    "question": "Why is 'active listening' considered an important skill for resolving conflicts with co-workers?",
-    "options": [
-      "It ensures you fully understand their perspective before responding",
-      "It allows you to think of a better argument while they talk",
-      "It proves to the supervisor that you are being quiet",
-      "It prevents the other person from finishing their point"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Active listening is about understanding the root cause of the conflict, which is necessary for finding a lasting solution."
-  },
-  {
-    "id": 4026,
-    "question": "What is the most appropriate first action for an operative to take when a customer complains about the quality of work?",
-    "options": [
-      "Listen to the customer's concerns without interrupting",
-      "Immediately blame the supervisor for the materials used",
-      "Tell the customer they are wrong and the work is fine",
-      "Walk off the site until the customer calms down"
+      "Listen calmly to the customer's concerns without interrupting",
+      "Tell the customer it is not your problem and walk away",
+      "Argue back to defend the company's reputation",
+      "Blame the delay on a co-worker to avoid personal conflict"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -295,24 +79,23 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "section": "Communication 2365 Level 2",
     "category": "Conflict Resolution",
     "tags": [
-      "explanation",
-      "terminology",
-      "health-safety"
+      "application",
+      "discrimination"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Active listening is the foundational step in conflict resolution, allowing the operative to understand the issue before attempting to solve it."
+    "explanation": "Active listening and remaining calm are key steps in de-escalating conflict and maintaining a professional image."
   },
   {
-    "id": 4027,
-    "question": "Which of these is a likely consequence of poor communication between an electrical operative and their supervisor?",
+    "id": 4019,
+    "question": "How can poor communication between two operatives working on the same circuit affect site safety?",
     "options": [
-      "Tasks being completed incorrectly or unsafely",
-      "An automatic increase in the company's profit margin",
-      "Improved morale among the installation team",
-      "A reduction in the number of site meetings required"
+      "It increases the risk of accidental electric shock",
+      "It ensures the circuit is isolated more quickly",
+      "It reduces the time needed for testing and commissioning",
+      "It makes the use of warning notices unnecessary"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -323,105 +106,50 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
-      "discrimination",
       "health-safety",
-      "terminology"
+      "conceptual"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Poor communication often leads to misunderstandings of technical requirements, which directly results in errors or safety hazards."
+    "explanation": "Failure to communicate clearly about circuit status (e.g., 'live' vs 'dead') is a leading cause of electrical accidents."
   },
   {
-    "id": 4028,
-    "question": "If a conflict between two co-workers cannot be resolved through informal discussion, what is the next standard step?",
+    "id": 4020,
+    "question": "Which of these is an example of internal communication within an electrical contracting firm?",
     "options": [
-      "Reporting the matter to the immediate supervisor",
-      "Posting the details of the argument on social media",
-      "Ignoring the co-worker for the rest of the contract",
-      "Contacting the client to ask for their opinion"
+      "An operative discussing a site plan with their supervisor",
+      "A company director sending a quote to a new client",
+      "A receptionist booking a service call for a homeowner",
+      "An electrician explaining a bill to a shop owner"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Internal conflicts that cannot be resolved between peers must be escalated to a supervisor to prevent impact on productivity and safety."
-  },
-  {
-    "id": 4029,
-    "question": "An operative realizes they will be 30 minutes late to a domestic customer's house. What is the most professional way to handle this?",
-    "options": [
-      "Contact the customer immediately to explain the delay",
-      "Wait until you arrive to explain why you are late",
-      "Hope the customer is not home so you can leave a card",
-      "Call the office and ask them to cancel the job"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Proactive communication manages customer expectations and maintains the professional reputation of the company."
-  },
-  {
-    "id": 4030,
-    "question": "How does poor communication from a company to its customers typically impact the business?",
-    "options": [
-      "It results in a loss of trust and future work",
-      "It makes the company appear more busy and successful",
-      "It reduces the amount of paperwork the operative does",
-      "It encourages customers to pay their invoices faster"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
       "discrimination",
-      "conceptual"
+      "terminology"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Reliability and clear communication are key to customer retention; failing in these areas damages the company's reputation and financial stability."
+    "explanation": "Internal communication occurs between members of the same organization, such as an operative and their supervisor."
   },
   {
-    "id": 4031,
-    "question": "Why is poor communication between co-workers on a construction site considered a significant health and safety risk?",
+    "id": 4021,
+    "question": "Two co-workers are in conflict because they both need the same piece of testing equipment at the same time. What is the best resolution?",
     "options": [
-      "It leads to misunderstandings regarding the isolation of circuits and safety procedures",
-      "It primarily results in the project exceeding the estimated material budget",
-      "It causes a breakdown in the social relationship between the site team members",
-      "It increases the amount of time taken for administrative record keeping"
+      "Agree on a shared schedule for using the equipment",
+      "Hide the equipment so the other person cannot find it",
+      "Stop working until a second piece of equipment is bought",
+      "Work on the same circuit simultaneously without telling the other"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -432,24 +160,240 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "section": "Communication 2365 Level 2",
     "category": "Conflict Resolution",
     "tags": [
-      "health-safety",
+      "application",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Cooperation and scheduling are professional ways to resolve resource conflicts without affecting productivity."
+  },
+  {
+    "id": 4022,
+    "question": "What is the most likely effect on staff morale when management fails to communicate changes in site working hours?",
+    "options": [
+      "Morale decreases and staff feel undervalued",
+      "Morale increases because of the surprise",
+      "Productivity doubles due to the excitement",
+      "Safety standards automatically improve"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
       "conceptual",
       "terminology"
     ],
     "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "In an electrical environment, poor communication between operatives often leads to safety failures, such as a circuit being re-energised while someone is still working on it."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Poor communication from management leads to a lack of trust and low morale among the workforce."
   },
   {
-    "id": 4032,
-    "question": "An operative is confronted by an angry customer regarding dust left in a hallway. Which communication style is most likely to resolve the conflict professionally?",
+    "id": 4023,
+    "question": "Which behavior is most likely to escalate a conflict between an operative and a supervisor?",
     "options": [
-      "Assertive: Acknowledging the concern and stating a clear timeframe for the cleanup",
-      "Aggressive: Reminding the customer that electrical work is naturally messy",
-      "Passive: Continuing with the work and ignoring the customer's comments",
-      "Submissive: Immediately stopping all work and leaving the site to avoid the argument"
+      "Using aggressive body language and shouting",
+      "Asking for clarification on a difficult task",
+      "Taking notes during a briefing session",
+      "Reporting a safety concern immediately"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Aggressive non-verbal and verbal communication triggers a defensive response and worsens the conflict."
+  },
+  {
+    "id": 4024,
+    "question": "An electrician realizes that a job will take two hours longer than quoted. To prevent conflict with the customer, they should:",
+    "options": [
+      "Inform the supervisor or customer as soon as possible",
+      "Rush the work and skip the final safety tests",
+      "Leave the site exactly on time without finishing",
+      "Wait until the customer asks why they are still there"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Proactive communication about delays helps manage expectations and maintains professional trust."
+  },
+  {
+    "id": 4025,
+    "question": "What is the primary benefit of a supervisor providing a clear 'toolbox talk' at the start of a shift?",
+    "options": [
+      "It ensures all operatives understand their tasks and safety risks",
+      "It provides a way to avoid paying the operatives for that time",
+      "It replaces the need for any written risk assessments",
+      "It allows the supervisor to blame operatives for mistakes"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Clear verbal briefings ensure everyone is on the same page regarding work requirements and safety protocols."
+  },
+  {
+    "id": 4026,
+    "question": "What is the most appropriate first action for an electrical operative to take when a customer becomes angry about a delay?",
+    "options": [
+      "Listen calmly to the customer's concerns and empathise",
+      "Explain that delays are not the operative's fault and walk away",
+      "Immediately offer a large financial discount to settle the matter",
+      "Tell the customer they are being unreasonable and continue working"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "terminology",
+      "discrimination",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Active listening and remaining calm is the professional first step in de-escalating conflict with a customer."
+  },
+  {
+    "id": 4027,
+    "question": "Which of the following is a common result of poor communication between an operative and their supervisor?",
+    "options": [
+      "Increased likelihood of errors and safety risks",
+      "Improved workplace efficiency and speed",
+      "Higher levels of trust within the team",
+      "Reduced need for site documentation"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Poor communication often leads to misunderstandings, which directly increases the risk of technical errors and safety hazards."
+  },
+  {
+    "id": 4028,
+    "question": "An operative is asked by a co-worker to use a piece of faulty equipment. How should the operative handle this conflict professionally?",
+    "options": [
+      "Refuse and explain the safety risks involved",
+      "Use the equipment anyway to avoid an argument",
+      "Shout at the co-worker until they take the equipment back",
+      "Wait until the co-worker leaves and then hide the equipment"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Safety should never be compromised; a professional must refuse unsafe work and communicate the specific reason why."
+  },
+  {
+    "id": 4029,
+    "question": "What is the primary effect on a company when there is poor communication with its customers?",
+    "options": [
+      "Damage to the company's reputation and loss of work",
+      "An increase in the number of successful referrals",
+      "A significant reduction in overhead costs",
+      "Better management of site resources"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Customers who feel poorly informed or ignored are unlikely to use the company again, leading to a damaged reputation."
+  },
+  {
+    "id": 4030,
+    "question": "When a disagreement occurs between two operatives regarding a task, what is the best way to resolve it?",
+    "options": [
+      "Discuss the technical requirements and reach a compromise",
+      "Decide based on who has worked for the company longest",
+      "Ignore each other for the rest of the shift",
+      "Let the person who shouts the loudest decide"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -463,20 +407,160 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Professional conflict resolution relies on factual discussion of the task requirements to find a safe and effective way forward."
+  },
+  {
+    "id": 4031,
+    "question": "What is the most likely organizational outcome if an electrical operative consistently fails to report site delays to their supervisor?",
+    "options": [
+      "Decreased customer confidence and potential loss of future contracts",
+      "Increased profit margins due to less time spent on administrative reporting",
+      "Improved team morale as operatives are given more autonomy on site",
+      "Reduced need for project management software and overhead costs"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "terminology",
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Poor communication regarding delays prevents the company from managing customer expectations, leading to a loss of trust and potential commercial damage."
+  },
+  {
+    "id": 4032,
+    "question": "Which scenario specifically describes a conflict between an operative and a customer rather than an internal staff dispute?",
+    "options": [
+      "An electrician disagrees with a homeowner about the aesthetic placement of socket outlets",
+      "A supervisor reprimands a junior operative for failing to wear correct PPE on site",
+      "Two colleagues argue over the shared use of a calibrated multi-function tester",
+      "A project manager changes the company's overtime policy without consulting the staff"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "explanation"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Assertive communication involves being respectful but firm, addressing the problem directly without being hostile or dismissive."
+    "explanation": "Conflict with a customer involves an external stakeholder, such as a homeowner, whereas the other options describe internal organizational conflicts."
   },
   {
     "id": 4033,
-    "question": "A supervisor gives a verbal instruction to install a socket in a location that contradicts the official site plans. What is the best multi-step action for the operative?",
+    "question": "An operative is faced with an aggressive customer who is unhappy with the dust created during wall chasing. What is the most professional first step to resolve this conflict?",
     "options": [
-      "Stop work, point out the discrepancy to the supervisor, and ask for a written confirmation",
-      "Follow the verbal instruction immediately as the supervisor is the senior authority",
-      "Ignore the supervisor and follow the plans to ensure the installation is technically correct",
-      "Complete the work as instructed and then file a formal grievance with the site manager"
+      "Listen to the customer's concerns and explain the planned cleanup procedure",
+      "Immediately leave the site and instruct the office to cancel the contract",
+      "Argue that dust is an inevitable part of electrical work and should be expected",
+      "Refuse to speak and tell the customer they must only communicate with the supervisor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "application",
+      "health-safety",
+      "explanation"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Active listening and providing a clear explanation of the resolution (the cleanup) is the standard professional approach to de-escalating customer conflict."
+  },
+  {
+    "id": 4034,
+    "question": "How does poor communication between an electrical operative and management typically affect the financial 'bottom line' of a contracting company?",
+    "options": [
+      "It leads to wasted materials and unnecessary rework, increasing overall costs",
+      "It reduces the tax liability of the business by showing lower productivity",
+      "It increases the speed of installation as less time is spent in meetings",
+      "It has no measurable impact as long as the physical installation meets BS 7671"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "Inaccurate communication often results in the wrong materials being used or tasks being performed incorrectly, necessitating expensive rework."
+  },
+  {
+    "id": 4035,
+    "question": "Which method is the most appropriate for a company to communicate a formal change in health and safety policy to its site operatives?",
+    "options": [
+      "A formal written toolbox talk with a signed attendance and understanding sheet",
+      "A casual mention during a morning tea break while the team is gathered",
+      "A brief text message sent to the most senior operative currently on each site",
+      "Posting a general update notice on the company’s private social media page"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "discrimination",
+      "health-safety",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Formal changes, especially regarding safety and legislation, require a traceable and documented communication method like a signed toolbox talk."
+  },
+  {
+    "id": 4036,
+    "question": "Two electricians are working on a site. One consistently leaves tools in a walkway, creating a hazard. The other has asked them to move them twice. What is the correct next step?",
+    "options": [
+      "Formally report the recurring safety hazard to the site supervisor",
+      "Move the tools to a different floor to teach the colleague a lesson",
+      "Ignore the hazard to avoid damaging the working relationship with the colleague",
+      "Wait until the end of the project to mention the issue in the final report"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -488,22 +572,163 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "category": "Conflict Resolution",
     "tags": [
       "application",
-      "health-safety"
+      "health-safety",
+      "explanation"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "To prevent conflict and errors, discrepancies between verbal orders and plans must be clarified and documented to protect all parties."
+    "explanation": "If informal resolution fails, health and safety hazards must be escalated to a supervisor to ensure site safety and proper conflict management."
   },
   {
-    "id": 4034,
-    "question": "What is a major long-term effect on an electrical contracting organisation if internal conflicts between management and operatives are left unresolved?",
+    "id": 4037,
+    "question": "In the context of 'Company to Customer' relations, what is the primary professional role of the operative while working in a client's home?",
     "options": [
-      "High staff turnover and a decrease in overall productivity",
-      "An increase in the technical skill level of the remaining workforce",
-      "A reduction in the number of health and safety audits required on site",
-      "Improved profit margins due to reduced spending on staff training"
+      "To act as a professional and competent representative of the company",
+      "To negotiate the final pricing and discounts for the installation work",
+      "To provide the customer with personal opinions on the company's management",
+      "To remain silent and avoid all interaction with the customer at all times"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "explanation"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The operative is the 'face' of the company; their behavior and communication directly shape the customer's perception of the business."
+  },
+  {
+    "id": 4038,
+    "question": "Which of the following represents a 'win-win' approach to resolving a dispute between a supervisor and an operative regarding urgent overtime?",
+    "options": [
+      "Negotiating a flexible schedule that meets the deadline while respecting personal commitments",
+      "The supervisor demanding the operative stays late under the threat of disciplinary action",
+      "The operative refusing to work any extra hours regardless of the project's critical status",
+      "The supervisor hiring an external contractor and deducting the cost from the operative's pay"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "discrimination",
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "A 'win-win' resolution seeks to satisfy the needs of both parties through negotiation and compromise rather than using authority or avoidance."
+  },
+  {
+    "id": 4039,
+    "question": "A trainee misinterprets a verbal instruction and installs the wrong size cable for a circuit. What is the immediate organizational effect of this communication failure?",
+    "options": [
+      "Reduced productivity and increased material waste to correct the error",
+      "Improved learning outcomes that outweigh the cost of the materials used",
+      "Increased profit for the company by using smaller, cheaper cable sizes",
+      "Enhanced reputation for the company due to the trainee's initiative"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "application",
+      "explanation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Communication errors lead to physical mistakes that require time and money to fix, directly reducing the efficiency and productivity of the organization."
+  },
+  {
+    "id": 4040,
+    "question": "What is a common root cause of conflict between management and operatives within a large electrical contracting firm?",
+    "options": [
+      "A lack of clarity regarding specific job roles and daily expectations",
+      "Providing too much detailed information in written work orders",
+      "Setting realistic project deadlines that allow for thorough testing",
+      "Ensuring that all tools and PPE provided are in good working order"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Ambiguity in roles and expectations often leads to frustration, missed tasks, and blame, which are primary triggers for workplace conflict."
+  },
+  {
+    "id": 4041,
+    "question": "An electrical operative is confronted by an angry customer regarding a delay in finishing a rewiring project. Which action best demonstrates professional conflict resolution?",
+    "options": [
+      "Listen actively to the customer's concerns and explain the revised timeline clearly",
+      "Inform the customer that delays are normal in construction and continue working",
+      "Blame the supervisor for not ordering the materials on time to shift responsibility",
+      "Avoid the customer and wait for the site manager to arrive to handle the situation"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "explanation",
+      "application",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Active listening and clear communication are primary steps in de-escalating conflict and maintaining professional customer relations."
+  },
+  {
+    "id": 4042,
+    "question": "What is a likely long-term effect on an electrical contracting organisation if communication between operatives and management consistently fails?",
+    "options": [
+      "Reduced profitability due to excessive rework and wasted materials",
+      "Increased employee morale as operatives work without supervision",
+      "Higher customer satisfaction due to less administrative interference",
+      "Improved safety records as operatives rely only on their own judgement"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -517,47 +742,20 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
       "conceptual",
       "legislation"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "Persistent conflict erodes morale, leading to experienced staff leaving the company and projects taking longer to complete."
+    "explanation": "Poor communication leads to errors, misunderstandings of specifications, and ultimately financial loss through rework."
   },
   {
-    "id": 4035,
-    "question": "When resolving a dispute between two co-workers, which action demonstrates 'active listening'?",
+    "id": 4043,
+    "question": "A supervisor gives an operative a verbal instruction that contradicts the written site drawings. To avoid conflict and ensure safety, what should the operative do?",
     "options": [
-      "Summarising the other person's points to ensure they have been understood correctly",
-      "Waiting for a pause in the conversation to explain why they are wrong",
-      "Taking detailed notes to use as evidence during a future disciplinary hearing",
-      "Nodding and agreeing with everything said to end the conflict as quickly as possible"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Active listening involves processing the information and providing feedback, such as paraphrasing, to confirm understanding."
-  },
-  {
-    "id": 4036,
-    "question": "An electrician is unable to start second-fixing because the plasterer is behind schedule. The customer blames the electrician for the delay. How should this conflict be managed?",
-    "options": [
-      "Explain the technical dependency on the plastering work and provide a revised schedule",
-      "Advise the customer to contact the plasterer directly to resolve the dispute",
-      "Work over the wet plaster to show the customer that you are making an effort",
-      "Stop communication with the customer until the plastering is fully completed"
+      "Politely point out the discrepancy and ask for written clarification",
+      "Follow the supervisor's verbal instruction immediately to show respect",
+      "Follow the drawings and ignore the supervisor to ensure the install is correct",
+      "Report the supervisor to the health and safety executive immediately"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -571,20 +769,158 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Seeking clarification on conflicting information prevents installation errors and resolves potential conflict before it starts."
+  },
+  {
+    "id": 4044,
+    "question": "An AC sine wave has a measured RMS voltage of 230 V. What is the approximate peak voltage (Vpk) of this supply?",
+    "options": [
+      "325 V",
+      "162 V",
+      "460 V",
+      "230 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "calculation",
+      "rms-peak",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "Clear, factual communication regarding the sequence of trades helps manage customer expectations and defuse misplaced blame."
+    "explanation": "Peak voltage is calculated by multiplying the RMS value by the square root of 2 (approx 1.414). 230V * 1.414 = 325.22V."
   },
   {
-    "id": 4037,
-    "question": "What is the primary purpose of a formal company complaints procedure in maintaining customer relations?",
+    "id": 4045,
+    "question": "The standard frequency of the UK mains electricity supply is 50 Hz. What does this value represent?",
     "options": [
-      "To provide a transparent and consistent framework for resolving disputes",
-      "To protect the company's operatives from ever having to speak to customers",
-      "To ensure that the customer is always proven wrong in a legal dispute",
-      "To automate the process of issuing refunds without investigating the cause"
+      "The number of complete cycles the waveform completes every second",
+      "The time taken for the voltage to reach its maximum peak value",
+      "The speed at which electrons travel through the copper conductors",
+      "The average voltage level maintained over a one-minute period"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_TIME",
+      "2": "OTHER",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "conceptual",
+      "frequency",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Frequency (Hertz) is defined as the number of cycles per second in an alternating current waveform."
+  },
+  {
+    "id": 4046,
+    "question": "A transformer is used to step down voltage from 230 V to 110 V for site tools. Which principle allows this transfer of energy between the two coils?",
+    "options": [
+      "Mutual induction via a varying magnetic field",
+      "Direct electrical connection between the primary and secondary",
+      "Electrostatic discharge across the insulating barrier",
+      "Self-induction within a single continuous winding"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "conceptual",
+      "transformers",
+      "electromagnetic-induction"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Transformers operate on the principle of mutual induction, where a changing magnetic field in the primary coil induces a voltage in the secondary coil."
+  },
+  {
+    "id": 4047,
+    "question": "If an alternating current supply has a frequency of 50 Hz, what is the time period (T) for one complete cycle?",
+    "options": [
+      "0.02 seconds",
+      "50 seconds",
+      "0.20 seconds",
+      "0.01 seconds"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_TIME",
+      "2": "ROUNDING_ERROR",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "calculation",
+      "frequency"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The time period T is the reciprocal of the frequency (1/f). 1 / 50 = 0.02 seconds (or 20ms)."
+  },
+  {
+    "id": 4048,
+    "question": "Which of the following is a primary difference between Alternating Current (AC) and Direct Current (DC)?",
+    "options": [
+      "AC periodically reverses direction while DC flows in one direction",
+      "AC is only used for low voltage while DC is used for high voltage",
+      "DC can be easily stepped up or down using a standard transformer",
+      "AC maintains a constant magnitude while DC varies sinusoidally"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "CONFUSED_TRANSFORMER_WITH_AC_DC",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "discrimination",
+      "ac-dc"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "AC changes direction and magnitude over time, whereas DC flows consistently in a single direction."
+  },
+  {
+    "id": 4049,
+    "question": "Two operatives disagree on the best route to run a conduit. What is the most effective way to resolve this conflict without affecting the project schedule?",
+    "options": [
+      "Review the site specification and consult the supervisor for a final decision",
+      "Each operative installs half the conduit using their own preferred method",
+      "Stop work immediately until the client can be reached for their opinion",
+      "The senior operative should ignore the junior's input to save time"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -593,25 +929,53 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
+    "category": "Conflict Resolution",
     "tags": [
-      "conceptual",
-      "terminology"
+      "application",
+      "communication"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
     "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A formal procedure ensures that all complaints are handled fairly, which can help maintain the company's reputation even when errors occur."
+    "estimatedTime": 75,
+    "explanation": "Using technical documentation (specifications) and established hierarchy (supervisor) provides an objective resolution to technical disagreements."
   },
   {
-    "id": 4038,
-    "question": "Which of these scenarios is an example of conflict arising from 'role ambiguity' between a supervisor and an operative?",
+    "id": 4050,
+    "question": "In a pure sinusoidal AC waveform, the peak-to-peak voltage is measured at 650 V. What is the RMS voltage of this supply?",
     "options": [
-      "An operative is reprimanded for not completing a task they didn't know was theirs",
-      "A supervisor refuses to allow an operative to take a scheduled lunch break",
-      "An operative is caught using a mobile phone while working on a ladder",
-      "A supervisor provides the wrong type of cable for a specific installation"
+      "230 V",
+      "325 V",
+      "460 V",
+      "919 V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "RECIPROCAL_ERROR"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "calculation",
+      "rms-peak",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 120,
+    "explanation": "First, find Peak Voltage: 650V / 2 = 325V. Then find RMS: 325V / 1.414 = approx 230V."
+  },
+  {
+    "id": 4051,
+    "question": "An operative is instructed by a supervisor to complete a task that contradicts the site safety plan. What is the most professional first step to resolve this conflict according to industry standards?",
+    "options": [
+      "Calmly discuss the specific safety concerns with the supervisor to reach a safe solution",
+      "Refuse to carry out the work and leave the site immediately without further discussion",
+      "Perform the task as instructed and report the safety breach to the HSE after the shift",
+      "Ask a fellow operative to perform the task instead to avoid a direct confrontation"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -622,50 +986,24 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
     "section": "Communication 2365 Level 2",
     "category": "Conflict Resolution",
     "tags": [
-      "discrimination",
-      "conceptual"
+      "health-safety",
+      "explanation",
+      "legislation"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210.LO3.AC3.3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
-    "explanation": "Role ambiguity occurs when there is a lack of clarity regarding duties and responsibilities, leading to friction when tasks are missed."
+    "explanation": "Professional conflict resolution requires open, calm communication. Discussing the safety concern directly allows for the supervisor to clarify or correct the instruction while maintaining safety and professional relationships."
   },
   {
-    "id": 4039,
-    "question": "Two electricians disagree on the most efficient route for a conduit run. What is the most productive way to reach a resolution?",
+    "id": 4052,
+    "question": "Which of the following represents a direct organizational effect of poor communication between electrical operatives and site management?",
     "options": [
-      "Discuss the technical benefits and drawbacks of both routes against the site specification",
-      "Each electrician installs half of the run using their own preferred method",
-      "The more senior electrician makes the decision without explaining their reasoning",
-      "They should stop work and wait for the site manager to make the final decision"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-3B-LO3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "Technical discussion based on facts and specifications is the most professional way to resolve co-worker disagreements on site."
-  },
-  {
-    "id": 4040,
-    "question": "How does poor communication between a company's office staff and site operatives typically impact a project's outcome?",
-    "options": [
-      "It leads to delays caused by the delivery of incorrect materials or tools",
-      "It results in an automatic increase in the quality of the final installation",
-      "It reduces the need for operatives to fill out daily site work logs",
-      "It simplifies the process of claiming for additional work variations"
+      "Increased project costs due to remedial work and wasted materials",
+      "An individual operative experiencing personal stress after a shift",
+      "A minor delay in the delivery of an operative's personal hand tools",
+      "The occurrence of bad weather preventing outdoor cable pulling"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -679,407 +1017,241 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "210-3B-LO3",
+    "learningOutcomeId": "210.LO3.AC3.4",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "When the office and the site are not aligned, resources are often mismanaged, leading to wasted time and increased project costs."
+    "explanation": "Poor communication often leads to technical errors or misunderstandings of the specification, resulting in expensive remedial work and material waste, which directly impacts the organization's profitability."
   },
   {
-    "id": 4041,
-    "question": "A customer is angry because an electrician arrived two hours late to a domestic call-out without notification. What is the most appropriate initial action to resolve this conflict?",
+    "id": 4053,
+    "question": "An electrician arrives late to a domestic property due to unexpected traffic. The customer is visibly angry. How should the electrician handle this to maintain a professional company-to-customer relationship?",
     "options": [
-      "Apologise for the delay and actively listen to the customer's concerns before explaining the situation",
-      "Immediately begin testing the AC supply to show that you are working hard",
-      "Explain that the supervisor is solely responsible for scheduling and the delay is not your fault",
-      "Argue that the customer should be grateful as the RMS voltage in the area is currently stable"
+      "Listen to the customer's concerns, apologize for the delay, and provide a revised plan for the day",
+      "Explain that traffic is outside of their control and suggest the customer should be more understanding",
+      "Ignore the customer's complaints and immediately begin work to make up for the lost time",
+      "Tell the customer they must call the main office to discuss any complaints regarding the schedule"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
       "2": "OTHER",
-      "3": "CONFUSED_RMS_WITH_PEAK"
+      "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Conflict Resolution",
     "tags": [
-      "terminology",
       "application",
-      "health-safety"
+      "terminology"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210.LO3.AC3.3",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Effective conflict resolution starts with an apology and active listening to validate the customer's feelings, which helps de-escalate the situation."
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Active listening and offering a solution (the revised plan) validates the customer's frustration while refocusing the situation on the professional completion of the job."
   },
   {
-    "id": 4042,
-    "question": "Which of the following is a direct negative effect of poor communication between an electrical operative and their supervisor on a construction site?",
+    "id": 4054,
+    "question": "Two operatives disagree on the most efficient route for a new conduit run. What is the most effective way to resolve this peer-to-peer conflict without escalating to management?",
     "options": [
-      "Increased risk of installation errors and wasted materials",
-      "A decrease in the standard frequency of the UK mains supply",
-      "An automatic increase in the transformation ratio of site transformers",
-      "The conversion of AC waveforms into DC waveforms within the cables"
+      "Review the site drawings and specifications together to identify the most compliant route",
+      "Allow the more senior operative to decide the route regardless of the technical merits",
+      "Stop work on that section of the installation until a supervisor provides a definitive answer",
+      "Each operative installs half of the run using their own preferred method"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "CONFUSED_TRANSFORMER_WITH_AC_DC",
-      "3": "CONFUSED_AC_WITH_DC"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "Using objective evidence, such as site drawings or the BS 7671 regulations, removes personal bias from the conflict and ensures the outcome is technically sound."
+  },
+  {
+    "id": 4055,
+    "question": "A major change to the electrical circuit design is required which will increase the cost of the project. What is the most appropriate way for the company to communicate this to the customer to prevent conflict?",
+    "options": [
+      "Issue a formal written variation order detailing the changes and costs for the customer to approve",
+      "Inform the customer verbally during a tea break and proceed with the work immediately",
+      "Complete the extra work and add the additional costs to the final invoice at the end of the project",
+      "Ask the site operative to explain the price increase to the customer while they are working"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
-      "explanation",
-      "conceptual"
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 80,
+    "explanation": "Formal written communication (a variation order) ensures both parties have a clear record of the agreement, which is essential for preventing financial disputes and maintaining trust."
+  },
+  {
+    "id": 4056,
+    "question": "An operative reports a circuit fault to their supervisor, stating the 'peak voltage' is 230V on a standard UK mains circuit. The supervisor identifies this as an error. What is the likely technical misconception causing this potential conflict?",
+    "options": [
+      "The operative is confusing the RMS value with the Peak value",
+      "The operative has confused AC frequency with voltage magnitude",
+      "The operative is using a DC voltmeter on an AC circuit",
+      "The operative has failed to account for the transformer turns ratio"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_AC_WITH_DC",
+      "3": "CONFUSED_TRANSFORMER_WITH_AC_DC"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "rms-peak",
+      "terminology",
+      "sine-wave"
     ],
     "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Poor communication leads to misunderstandings of instructions, resulting in errors, rework, and financial loss for the organisation."
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "In the UK, 230V is the RMS (Root Mean Square) value. The peak voltage is actually approximately 325V (230 x 1.414). Reporting 230V as 'peak' demonstrates a fundamental misunderstanding of AC waveforms."
   },
   {
-    "id": 4043,
-    "question": "An operative is unsure if a circuit requires an AC or DC isolator but proceeds without asking for clarification. This lack of communication is most likely to result in:",
+    "id": 4057,
+    "question": "A customer is angry because their imported 60Hz equipment is overheating on a UK 50Hz supply. Which communication approach best resolves this conflict while demonstrating technical competence?",
     "options": [
-      "A breach of safety regulations and potential equipment failure",
-      "A change in the peak-to-peak voltage of the incoming supply",
-      "The circuit automatically adjusting its frequency to match the component",
-      "An increase in the total resistance calculated using the parallel rule"
+      "Explain that the lower frequency increases inductive reactance in motors, leading to higher current and heat",
+      "Inform the customer that UK voltage is too high for any foreign equipment regardless of frequency",
+      "State that the RMS value of UK mains is inherently unstable compared to 60Hz systems",
+      "Suggest that the equipment is faulty and the 10Hz difference is negligible for operation"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_RMS_WITH_PEAK",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "frequency",
+      "ac-dc",
+      "application"
+    ],
+    "learningOutcomeId": "210-3B-LO2",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Frequency directly affects inductive reactance (XL = 2πfL). Lowering the frequency from 60Hz to 50Hz reduces reactance, which increases current flow in windings, causing overheating. Explaining this technical reality helps manage customer expectations."
+  },
+  {
+    "id": 4058,
+    "question": "During a site meeting, a supervisor and an operative disagree on why a transformer cannot step up a DC battery voltage. What is the most accurate way to resolve this technical dispute?",
+    "options": [
+      "Clarify that transformers require a changing magnetic field produced by AC to induce a secondary voltage",
+      "Explain that DC voltage is too low to overcome the primary winding resistance",
+      "State that the RMS value of a battery is zero, making calculation impossible",
+      "Argue that the transformer would work if the frequency was increased to 50Hz DC"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_DC_SOURCES",
+      "2": "CONFUSED_RMS_WITH_PEAK",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Conflict Resolution",
+    "tags": [
+      "transformers",
+      "ac-dc",
+      "electromagnetic-induction"
+    ],
+    "learningOutcomeId": "210-3B-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Transformers rely on Faraday's Law of Induction. Since DC provides a constant magnetic flux, no voltage is induced in the secondary winding. This is a common point of confusion between operatives."
+  },
+  {
+    "id": 4059,
+    "question": "Poor communication between a management team and site operatives regarding the 'Peak-to-Peak' voltage requirements of a new sensitive electronic installation results in the wrong cable insulation being specified. What is the calculated Peak-to-Peak voltage for a 230V RMS supply that should have been communicated?",
+    "options": [
+      "650V",
+      "325V",
+      "460V",
+      "230V"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_RMS_WITH_PEAK",
-      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "3": "USED_PARALLEL_RULE"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "ac-dc",
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Failing to communicate or clarify technical specifications like AC/DC requirements is a safety risk and a primary cause of technical conflict."
-  },
-  {
-    "id": 4044,
-    "question": "When dealing with a conflict between two co-workers regarding the use of shared testing equipment, what is the best role for a supervisor to take?",
-    "options": [
-      "Act as a neutral mediator to help both parties reach a fair agreement",
-      "Confiscate the equipment and tell them to use DC calculations instead",
-      "Side with the senior operative regardless of the circumstances",
-      "Instruct both operatives to ignore the conflict and work in parallel"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_AC_WITH_DC",
-      "2": "OTHER",
-      "3": "USED_PARALLEL_RULE"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A supervisor should mediate to ensure a fair resolution that maintains team morale and project progress."
-  },
-  {
-    "id": 4045,
-    "question": "A customer complains that a newly installed transformer is making a loud humming noise. The operative knows this is normal for high-power AC induction but the customer is worried. How should the operative handle this?",
-    "options": [
-      "Explain the technical reason simply without using overly complex jargon",
-      "Tell the customer they are wrong because the frequency is exactly 50Hz",
-      "Ignore the customer as they do not understand electromagnetic induction",
-      "Replace the transformer with a DC battery bank to stop the noise"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "CONFUSED_TRANSFORMER_WITH_AC_DC"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "transformers",
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Effective communication involves translating technical concepts (like AC induction hum) into terms the customer can understand to provide reassurance."
-  },
-  {
-    "id": 4046,
-    "question": "Which of these scenarios best illustrates a conflict caused by 'silo' working (lack of communication between departments)?",
-    "options": [
-      "The design team specifies a DC system while the procurement team buys AC components",
-      "An operative uses the wrong formula to calculate the RMS value of a sine wave",
-      "A transformer fails because the secondary windings have a short circuit",
-      "The frequency of the generator is adjusted to match the grid voltage"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "OTHER",
-      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "ac-dc",
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 75,
-    "explanation": "Silo working occurs when departments do not share information, leading to incompatible specifications and project delays."
-  },
-  {
-    "id": 4047,
-    "question": "In the UK, why is it important for an operative to communicate clearly with a customer about the 'mains' voltage characteristics?",
-    "options": [
-      "To ensure the customer understands why certain appliances may not be compatible",
-      "To explain why the frequency changes from 50Hz to 60Hz during peak times",
-      "To convince the customer that DC is safer for domestic lighting circuits",
-      "To justify why the peak voltage is always lower than the RMS voltage"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "CONFUSED_AC_WITH_DC",
-      "3": "CONFUSED_RMS_WITH_PEAK"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "rms-peak",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Clear communication about supply characteristics ensures safety and prevents the customer from using incompatible or dangerous equipment."
-  },
-  {
-    "id": 4048,
-    "question": "An electrician disagrees with a supervisor's instruction to use a specific cable type that the electrician believes is undersized. What is the most professional way to handle this conflict?",
-    "options": [
-      "Respectfully present the technical calculations and regulations to the supervisor",
-      "Follow the instruction but calculate the resistance using the series rule",
-      "Complain to the customer that the supervisor does not understand AC theory",
-      "Install the cable but intentionally leave the earthing disconnected"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "USED_SERIES_RULE",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 80,
-    "explanation": "Professionalism requires using evidence-based arguments (like BS 7671 regulations) to resolve technical disagreements with management."
-  },
-  {
-    "id": 4049,
-    "question": "Which term describes a communication style that is likely to escalate a conflict between an operative and a customer?",
-    "options": [
-      "Aggressive",
-      "Assertive",
-      "Passive",
-      "Empathetic"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Aggressive communication (blaming, shouting, or being dismissive) typically escalates conflict, whereas assertive communication seeks a firm but fair resolution."
-  },
-  {
-    "id": 4050,
-    "question": "Poor communication regarding the 'scope of works' in a contract often leads to which type of conflict?",
-    "options": [
-      "Financial disputes between the company and the customer over 'extra' costs",
-      "Technical errors in the calculation of the frequency of a sine wave",
-      "A failure of the mutual induction process in a standard transformer",
-      "The conversion of a series circuit into a parallel circuit without notice"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "discrimination",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "If the 'scope of works' is not clearly communicated and agreed upon, customers often expect more work than quoted, leading to financial and relationship conflicts."
-  },
-  {
-    "id": 4051,
-    "question": "A supervisor instructs an operative to install a DC-rated switch in a high-current AC circuit. The operative knows this is a safety risk. What is the most professional way to resolve this conflict?",
-    "options": [
-      "Politely raise the technical concern with the supervisor and refer to the component's data sheet",
-      "Follow the instruction to avoid an argument, as the supervisor is ultimately responsible",
-      "Assume the supervisor is correct and that the AC supply will naturally behave like DC",
-      "Modify the circuit frequency to 0Hz so that the DC switch becomes compatible"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_AC_WITH_DC",
-      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "ac-dc",
-      "terminology",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Professional conflict resolution in an electrical context requires using factual evidence (data sheets) to address safety concerns without being confrontational."
-  },
-  {
-    "id": 4052,
-    "question": "An electrician fails to explain to a customer why a newly installed transformer is making a slight humming noise. What is the most likely effect of this poor communication on the organisation?",
-    "options": [
-      "Loss of customer trust and a potential refusal to pay for the installation",
-      "The transformer will automatically switch its primary and secondary windings",
-      "The RMS voltage will increase to match the peak voltage of the supply",
-      "The customer's electricity meter will begin to measure DC instead of AC"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TRANSFORMER_WITH_AC_DC",
-      "2": "CONFUSED_RMS_WITH_PEAK",
-      "3": "CONFUSED_AC_WITH_DC"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "transformers",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Poor communication regarding normal technical operations (like transformer hum) leads to customer anxiety and damages the company's reputation."
-  },
-  {
-    "id": 4053,
-    "question": "An operative is told to verify a 230V RMS supply but uses a peak-reading instrument and reports 325V as a fault. Which of the following is a direct consequence of this communication failure?",
-    "options": [
-      "Unnecessary downtime and wasted labour costs while investigating a non-existent fault",
-      "The supply frequency will automatically double to compensate for the higher reading",
-      "The circuit will spontaneously convert from a series to a parallel topology",
-      "The RMS value of the circuit will increase to 325V to match the report"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_RMS_WITH_PEAK"
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "WRONG_UNITS"
     },
     "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
       "rms-peak",
       "calculation",
-      "application"
+      "sine-wave"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Misunderstanding the difference between RMS and Peak values (approx 1.414 ratio) leads to incorrect reporting, which wastes company time and resources."
+    "difficulty": 5,
+    "estimatedTime": 180,
+    "explanation": "Peak voltage = RMS x 1.414 (230 x 1.414 ≈ 325V). Peak-to-Peak is double the peak value (325V x 2 = 650V). Failing to communicate this can lead to insulation breakdown in sensitive equipment."
   },
   {
-    "id": 4054,
-    "question": "When two operatives are measuring a sine-wave on an oscilloscope, one uses the term 'period' while the other uses 'frequency'. Why is this lack of standardized terminology a problem for the organization?",
+    "id": 4060,
+    "question": "Two co-workers are arguing about the direction of current flow in an AC circuit. One claims it flows from positive to negative, while the other claims it constantly reverses. Which statement identifies the 'Conflict Resolution' through technical fact?",
     "options": [
-      "It increases the risk of errors in data logging and subsequent installation mistakes",
-      "It causes the Peak-to-Peak voltage to drop to zero due to phase cancellation",
-      "It forces the AC generator to switch from using slip rings to a commutator",
-      "It causes the RMS voltage to become higher than the Peak voltage"
+      "In an AC circuit, the polarity reverses every half-cycle (every 10ms in the UK)",
+      "Current always flows from the transformer star point to the load in a straight line",
+      "The direction of current is fixed by the RMS value of the supply",
+      "AC current only moves during the peak of the sine wave"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_AC_DC_GENERATOR_PARTS",
-      "3": "CONFUSED_RMS_WITH_PEAK"
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "CONFUSED_RMS_WITH_PEAK",
+      "3": "CONFUSED_FREQUENCY_WITH_CURRENT"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
+    "category": "Conflict Resolution",
     "tags": [
+      "ac-dc",
       "sine-wave",
-      "conceptual",
-      "terminology"
+      "frequency"
     ],
     "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Standardized terminology (like Hertz vs Seconds) ensures that technical data is recorded accurately between team members, preventing costly errors."
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "At 50Hz, a full cycle is 20ms. The polarity reverses every half-cycle (10ms). Understanding this is critical for distinguishing AC from DC behavior."
   },
   {
-    "id": 4055,
-    "question": "A customer is complaining that the 50Hz UK mains frequency is interfering with their sensitive audio equipment. Which action demonstrates effective conflict resolution by the operative?",
+    "id": 4061,
+    "question": "A company fails to inform a customer that a transformer installation will produce a 'humming' noise. The customer demands a refund. Which technical explanation of 'Magnetostriction' should have been communicated to prevent this conflict?",
     "options": [
-      "Explain the standard UK supply characteristics and suggest appropriate filtering solutions",
-      "Tell the customer they will contact the National Grid to change the frequency to 60Hz",
-      "Inform the customer that frequency is irrelevant as long as the voltage is 230V",
-      "Advise the customer to switch their equipment to a DC battery to increase the frequency"
+      "The iron core changes shape slightly due to the alternating magnetic field 100 times per second",
+      "The secondary windings are vibrating because the RMS voltage is too high for the load",
+      "The frequency of the UK mains causes the copper molecules to expand and contract",
+      "The air around the transformer is being ionized by the 50Hz peak voltage"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -1088,289 +1260,128 @@ export const conflictResolutionAndCommunicationImpactQuestions: TaggedQuestion[]
       "3": "CONFUSED_AC_WITH_DC"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "frequency",
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Providing technical explanations about the fixed nature of the UK grid (50Hz) while offering practical solutions (filters) resolves conflict professionally."
-  },
-  {
-    "id": 4056,
-    "question": "A customer is angry because an electrician has isolated the mains supply during a peak business hour to perform essential dead testing. Which action represents the most professional synthesis of conflict resolution and technical responsibility?",
-    "options": [
-      "Acknowledge the customer's frustration, explain the specific safety necessity of dead testing, and negotiate a phased restoration if possible",
-      "Ignore the customer's complaints and continue working to ensure the job is finished as quickly as possible",
-      "Immediately re-energize the circuit to satisfy the customer's business needs and perform live testing instead",
-      "Tell the customer that they are breaching the contract by interfering with the agreed work schedule"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "HEALTH_SAFETY_RISK",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "application",
-      "health-safety",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Professionalism requires balancing technical safety (dead testing) with customer service through clear communication and negotiation."
-  },
-  {
-    "id": 4057,
-    "question": "Which of the following best describes the long-term organizational effect of consistent 'siloed' communication between site operatives and management?",
-    "options": [
-      "Decreased profitability due to repetitive rework and the failure to identify systemic safety hazards",
-      "Increased operative autonomy as management stops interfering with daily site activities",
-      "Improved project speed because fewer meetings are required to discuss technical details",
-      "Higher customer satisfaction as operatives make on-the-spot decisions without management delay"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
-      "conceptual",
-      "explanation"
+      "transformers",
+      "magnetism",
+      "frequency"
     ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Siloed communication leads to a lack of shared information, resulting in errors that require costly rework and hide safety risks."
-  },
-  {
-    "id": 4058,
-    "question": "In a conflict between two co-workers regarding the shared use of a Multi-Function Tester (MFT), which approach identifies a 'Collaborative' resolution strategy?",
-    "options": [
-      "Developing a shared digital calendar to coordinate testing phases for both operatives' circuits",
-      "One operative taking the MFT first every morning to ensure their own work is never delayed",
-      "Both operatives refusing to use the shared tool and insisting the company buys a second one immediately",
-      "Reporting the other operative to the supervisor for 'hogging' equipment to force a management decision"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Collaboration involves finding a win-win solution that addresses the needs of both parties through coordination."
-  },
-  {
-    "id": 4059,
-    "question": "An operative believes a circuit should be tested for DC injection, while the supervisor insists on standard AC impedance testing. If the operative feels this is a safety issue, what is the correct professional escalation?",
-    "options": [
-      "Respectfully request a technical review based on BS 7671 requirements with the supervisor or the Qualifying Supervisor",
-      "Perform the test the supervisor's way but refuse to sign the test results to avoid personal liability",
-      "Follow the supervisor's instruction without question to maintain workplace hierarchy and avoid conflict",
-      "Complain to the client that the supervisor is asking for unsafe work to be performed"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "application",
-      "legislation",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO3",
     "answerType": "mcq",
     "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Technical conflicts should be resolved using objective standards (BS 7671) and through established internal technical hierarchies."
-  },
-  {
-    "id": 4060,
-    "question": "What is the primary conceptual difference between 'Assertive' and 'Aggressive' communication when an operative is resolving a conflict with a supervisor?",
-    "options": [
-      "Assertive communication states needs clearly while respecting the supervisor's position; aggressive communication uses intimidation",
-      "Assertive communication is when the operative wins the argument; aggressive communication is when both lose",
-      "Aggressive communication is necessary to be heard on a loud construction site; assertive communication is for offices",
-      "Assertive communication involves using technical jargon to confuse the other party into agreeing"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Assertiveness is a balanced communication style that respects both the self and the other party, unlike aggression."
-  },
-  {
-    "id": 4061,
-    "question": "A project is delayed because the electrical contractor failed to communicate a change in cable containment to the dry-lining team. Which term best classifies this communication failure?",
-    "options": [
-      "Inter-trade coordination breakdown",
-      "Internal management dispute",
-      "Customer-contractor conflict",
-      "Technical specification error"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Communication Impact",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Failures between different groups of workers on a site are classified as coordination breakdowns between trades."
+    "estimatedTime": 150,
+    "explanation": "Magnetostriction causes the core to vibrate at twice the supply frequency (100Hz for a 50Hz supply) as the magnetic field reaches a peak twice per cycle. Managing this expectation is part of professional communication."
   },
   {
     "id": 4062,
-    "question": "How does the 'Active Listening' technique specifically aid in de-escalating a conflict between an operative and a dissatisfied customer?",
+    "question": "An operative is using a multimeter and reads 0V on a DC setting when checking a live UK mains socket. They tell their co-worker the socket is dead. Why is this communication error dangerous?",
     "options": [
-      "It demonstrates empathy and ensures the operative fully understands the customer's specific concerns before proposing a solution",
-      "It allows the operative to stay silent until the customer stops talking, making the interaction end faster",
-      "It provides the operative with time to think of a reason why the fault is the customer's responsibility",
-      "It ensures that the operative agrees with everything the customer says to avoid further argument"
+      "A DC meter ignores the alternating nature of AC, giving a false 'safe' reading",
+      "The DC meter will blow the fuse of the entire distribution board immediately",
+      "DC meters only measure the peak voltage, which is too fast for the operative to see",
+      "The frequency of 50Hz is too low for a DC meter to register any potential"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Conflict Resolution",
-    "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "210-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Active listening involves feedback and validation, which de-escalates emotions and clarifies the root cause of the conflict."
-  },
-  {
-    "id": 4063,
-    "question": "A customer insists on an electrical installation that the operative knows will not meet the requirements for 230V AC RMS voltage drop. What is the most effective way to communicate this to avoid a 'Win-Lose' conflict?",
-    "options": [
-      "Present the calculated voltage drop results alongside the BS 7671 limits and offer alternative cable sizes to meet the goal",
-      "Tell the customer the installation is impossible and refuse to discuss the matter further",
-      "Perform the installation as requested but include a disclaimer on the invoice that the customer insisted",
-      "Charge the customer double the price to account for the extra time spent arguing about the technicalities"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "HEALTH_SAFETY_RISK",
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "CONFUSED_AC_DC_SOURCES",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Conflict Resolution",
     "tags": [
-      "application",
-      "legislation",
-      "explanation"
+      "ac-dc",
+      "health-safety",
+      "units"
     ],
     "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "Using objective data (calculations and regulations) helps remove personal bias from the conflict and focuses on professional solutions."
+    "explanation": "A DC voltmeter averages the signal. Since AC is symmetrical about zero, the average is 0V. This leads to a life-threatening communication error if the operative believes the circuit is isolated."
   },
   {
-    "id": 4064,
-    "question": "Which of the following is a direct consequence of poor communication between a company's management and its operatives regarding Health and Safety updates?",
+    "id": 4063,
+    "question": "What is the primary effect on an organization's reputation if operatives consistently fail to explain the difference between 'Power' (kW) and 'Energy' (kWh) to industrial customers using large AC motors?",
     "options": [
-      "Increased legal liability for the company and a higher risk of workplace accidents",
-      "A reduction in the number of tools required on site, saving the company money",
-      "Improved morale as operatives feel less burdened by complex safety paperwork",
-      "An increase in the frequency of AC supply to the site, improving power tool efficiency"
+      "Loss of trust due to unexpected high electricity bills despite correct power ratings",
+      "Increased risk of the transformer overheating due to frequency fluctuations",
+      "The customer will assume the RMS voltage is being throttled by the company",
+      "Operatives will be unable to calculate the peak current required for the motors"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_RMS_WITH_PEAK",
       "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
     },
     "section": "Communication 2365 Level 2",
     "category": "Communication Impact",
     "tags": [
-      "conceptual",
-      "health-safety"
+      "power",
+      "energy",
+      "terminology"
     ],
-    "learningOutcomeId": "210-3B-LO1",
+    "learningOutcomeId": "210-3B-LO2",
     "answerType": "mcq",
-    "difficulty": 4,
+    "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "Failure to communicate safety updates leaves operatives at risk and management legally exposed under the Health and Safety at Work Act."
+    "explanation": "Power is the rate of doing work, while Energy is power over time. If a customer is told a motor is 10kW but not how many kWh it will use, they may be shocked by the bill, leading to a breakdown in the company-customer relationship."
   },
   {
-    "id": 4065,
-    "question": "During a conflict regarding a missed deadline, a supervisor uses 'Aggressive' non-verbal communication. Which of these is an example of that behavior?",
+    "id": 4064,
+    "question": "A supervisor instructs an operative to install a bridge rectifier to convert a 24V AC transformer output for a DC control circuit. The operative installs it but the circuit fails because they didn't account for the voltage drop. How should this conflict be handled?",
     "options": [
-      "Invading the operative's personal space and using pointing gestures while speaking",
-      "Maintaining a relaxed posture and making consistent eye contact",
-      "Taking notes while the operative explains the reasons for the delay",
-      "Sitting down at the same level as the operative to discuss the timeline"
+      "Collaborative review of the circuit diagram to identify where the 1.4V drop occurs across the diodes",
+      "The supervisor should demand the operative pays for the replacement DC components",
+      "The operative should blame the manufacturer for not providing a 25.4V transformer",
+      "The company should inform the customer that AC to DC conversion is naturally unreliable"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
+      "1": "CONFUSED_TRANSFORMER_WITH_AC_DC",
+      "2": "SIGN_ERROR",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Conflict Resolution",
     "tags": [
-      "discrimination",
-      "terminology"
+      "ac-dc",
+      "conversion",
+      "application"
     ],
     "learningOutcomeId": "210-3B-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "Conflict resolution in a technical setting is best handled by identifying the 'root cause' (the diode voltage drop) using technical evidence, which fosters a learning environment rather than a blaming one."
+  },
+  {
+    "id": 4065,
+    "question": "Which of the following describes a 'Discrimination' error in communication between a company and a customer regarding UK mains supply characteristics?",
+    "options": [
+      "Stating the supply is 230V DC at a frequency of 50Hz",
+      "Stating the supply is 230V RMS with a peak of 325V",
+      "Stating the supply period is 0.02 seconds (20ms)",
+      "Stating the supply frequency is maintained at 50Hz +/- 1%"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_AC_WITH_DC",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Communication Impact",
+    "tags": [
+      "ac-dc",
+      "frequency",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-3B-LO2",
+    "answerType": "mcq",
+    "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "Aggressive non-verbal communication includes physical intimidation, such as invading personal space or using accusatory gestures."
+    "explanation": "The UK mains is AC (Alternating Current). Describing it as 'DC with a frequency' is a fundamental contradiction and a significant communication error that would damage professional credibility."
   }
 ];
