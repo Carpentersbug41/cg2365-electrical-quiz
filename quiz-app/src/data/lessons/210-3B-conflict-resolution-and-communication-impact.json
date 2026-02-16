@@ -1,14 +1,14 @@
 {
   "id": "210-3B",
-  "title": "210.3B — Communication Methods and Specific Needs",
-  "description": "Learn to identify suitable communication methods for workplace tasks and adapt communication for people with specific needs.",
+  "title": "210.3B — Communication Methods and Inclusive Practice",
+  "description": "Learn to identify suitable communication methods and adapt information for people with specific needs in building services.",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Communication Methods and Specific Needs",
+  "topic": "Communication Methods and Inclusive Practice",
   "learningOutcomes": [
-    "Identify suitable communication methods for different professional situations (AC1).",
-    "Define effective communication adjustments for people with specific needs (AC2).",
-    "Select the appropriate method to ensure accuracy, safety, and understanding."
+    "Identify suitable communication methods for routine and emergency workplace situations",
+    "Define effective communication methods for people with specific needs or disabilities",
+    "Explain the importance of checking understanding to prevent operational errors"
   ],
   "prerequisites": [
     "210-3A"
@@ -21,15 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify suitable communication methods for different professional situations.",
+            "text": "Identify suitable communication methods for routine and emergency workplace situations",
             "bloomLevel": "remember"
           },
           {
-            "text": "Define effective communication adjustments for people with specific needs.",
+            "text": "Define effective communication methods for people with specific needs or disabilities",
             "bloomLevel": "understand"
           },
           {
-            "text": "Select the appropriate method to ensure accuracy, safety, and understanding.",
+            "text": "Explain the importance of checking understanding to prevent operational errors",
             "bloomLevel": "apply"
           }
         ]
@@ -42,24 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Verbal Communication",
-            "definition": "The use of spoken words to exchange information, such as face-to-face conversations, telephone calls, or toolbox talks."
-          },
-          {
-            "term": "Written Communication",
-            "definition": "The use of text or symbols recorded on paper or digital devices, providing a permanent record (e.g., emails, job sheets, site diaries)."
-          },
-          {
-            "term": "Non-verbal Communication",
-            "definition": "Exchanging information without words, using body language, hand signals, or gestures, often used when noise prevents speaking."
-          },
-          {
-            "term": "Specific Needs",
-            "definition": "Individual requirements due to disabilities (e.g., hearing or visual impairment) or language barriers that require communication to be adapted."
+            "term": "Communication Method",
+            "definition": "The specific channel used to transfer information, such as face-to-face speech, email, telephone, or visual signals."
           },
           {
             "term": "Visual Aid",
-            "definition": "An image, diagram, or sign used to support understanding, especially helpful for language barriers or technical explanations."
+            "definition": "An image, diagram, chart, or sign used to explain information clearly without relying solely on written or spoken words."
+          },
+          {
+            "term": "Jargon",
+            "definition": "Technical terminology specific to a trade or industry that may not be understood by clients or workers from other fields."
+          },
+          {
+            "term": "Barrier",
+            "definition": "Any factor that prevents a message from being received or understood, such as background noise, language differences, or physical disability."
+          },
+          {
+            "term": "Toolbox Talk",
+            "definition": "A short, informal safety briefing given to a team at the start of a shift to discuss specific hazards and instructions."
           }
         ]
       }
@@ -69,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Identifying Suitable Communication Methods",
-        "content": "### In this lesson\nThis lesson covers how to choose the right tool for the job when communicating. Just as you wouldn't use a hammer to turn a screw, you shouldn't use a casual chat to record a legal contract.\n\n*   Identify **Verbal**, **Written**, and **Non-verbal** methods.\n*   Understand when to use each method based on the situation.\n*   Recognise the importance of written records for liability.\n\n**What this is**\nCommunication methods are the \"channels\" we use to transfer information. \n1.  **Verbal:** Speaking (Phone, Toolbox Talk, Meeting). Fast and allows immediate feedback.\n2.  **Written:** Text (Email, Site Diary, Accident Book, Job Sheet). Permanent and provides legal proof.\n3.  **Non-verbal:** Visuals (Hand Signals, Body Language, Safety Signs). Universal and works in noisy environments.\n\n**Why it matters**\nChoosing the wrong method leads to errors. If you only *tell* a client about a cost increase (Verbal) but don't write it down, you have no proof when they refuse to pay. If you try to *email* a warning to a crane operator during a lift, it will be too late; you must use **Hand Signals** (Non-verbal).\n\n**Key facts / rules**\n*   **Written Communication** is required for formal records, variations, and accident reporting because it creates a permanent audit trail.\n*   **Verbal Communication** is best for quick instructions, team coordination, and checking immediate understanding.\n*   **Non-verbal Communication** (like Banksman signals) is essential on noisy sites where voices cannot be heard.\n*   **Visual Aids** (drawings/plans) are used to explain complex technical layouts.\n\n**How to recognise it**\nThink of communication like traffic control:\n*   **Verbal** is like a police officer directing traffic—flexible and immediate.\n*   **Written** is like the painted lines on the road—permanent and legally binding.\n*   **Non-verbal** is like the traffic lights—visual signals that everyone understands without words.\n\n**Micro-scenario:** \nYou are on a noisy construction site. A crane is lifting a load. The operator cannot hear you. You use standard **Hand Signals** to direct them left or right. Later, you need to order more cement. You send an **Email** so there is a record of exactly how much was ordered and when.\n\n**Common mistakes**\nLearners often think verbal is always best because it is fast. \n*   Misconception: \"I told him, so that's enough.\" | Correction: In professional settings, \"if it isn't written down, it didn't happen.\" | AC: 210.LO3.AC1\n*   Misconception: \"Hand signals are just informal waving.\" | Correction: Site signals are a formal, standardized language for safety. | AC: 210.LO3.AC1\n\n**Key Points**\n*   Use **Written** for proof/records.\n*   Use **Verbal** for speed/dialogue.\n*   Use **Non-verbal** for safety/noise.\n\n### Coming Up Next\nNow that we can identify the methods, we will learn how to adapt them for people with specific needs, such as disabilities or language barriers."
+        "title": "Choosing the Right Communication Method",
+        "content": "### In this lesson\nYou will learn how to select the best tool for sending a message. Just as you choose a specific screwdriver for a specific screw, you must choose the right **communication method** for the situation to ensure the message is received and understood.\n\n**What this is**\nA **communication method** is the channel used to transfer information. There are three main categories:\n1. **Verbal**: Speaking face-to-face, by telephone, or two-way radio.\n2. **Written**: Emails, site diaries, job sheets, accident books, and formal letters.\n3. **Visual**: Safety signs, blueprints, diagrams, and hand signals.\n\n**Why it matters**\nUsing the wrong method causes errors and safety risks. If you only *tell* a client about a cost increase (Verbal), there is no proof later if they dispute it. If you *email* a warning about a falling object, the person won't see it in time to move. You must match the speed and permanence of the method to the task.\n\n**Key facts / rules**\n* **Urgent / Safety** -> Use **Verbal** (for speed) + **Visual** (for attention). Example: Shouting \"Stop!\" and using a hand signal.\n* **Legal / Financial** -> Use **Written** (for a permanent record). Example: A variation order signed by the client.\n* **Complex Instructions** -> Use **Written** (to check details) + **Visual** (diagrams). Example: A wiring diagram.\n* **General Updates** -> **Toolbox Talk** (Verbal group discussion).\n\n**How to do it**\nBefore communicating, ask three questions:\n1. \"Do I need proof later?\" If yes, use a **Written** method.\n2. \"Is it an emergency?\" If yes, use a **Verbal** or **Visual** signal immediately.\n3. \"Is it complicated?\" If yes, use a **Visual Aid** (diagram) to support your explanation.\n\n**Micro-scenario**\nYou discover a damaged cable on site. \n1. Immediate Action: You warn your colleague verbally and put up a warning sign (**Visual**).\n2. Follow-up: You record the damage in the site maintenance log (**Written**) so the repair is scheduled.\n\n**Common mistakes**\n* Relying on memory (Verbal) for important measurements. Always write numbers down.\n* Using text messages for formal contracts. Use official email or letters for professional agreements."
       }
     },
     {
@@ -84,62 +84,55 @@
         "questions": [
           {
             "id": "210-3B-C1-L1-A",
-            "questionText": "Which communication method provides a permanent record suitable for legal proof?",
+            "questionText": "Which category of communication is best for creating a permanent legal record of an agreement?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "written communication",
-              "written",
-              "email",
-              "site diary",
-              "job sheet"
+              "Written",
+              "Written communication",
+              "Writing"
             ],
-            "hint": "Think about which method leaves a physical or digital trace that can be checked later."
+            "hint": "Think about emails, letters, and contracts that can be kept as proof."
           },
           {
             "id": "210-3B-C1-L1-B",
-            "questionText": "What is the most appropriate method to communicate with a crane operator on a noisy site?",
+            "questionText": "Which category of communication is most appropriate for an immediate emergency warning?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "non-verbal",
-              "hand signals",
-              "signals",
-              "gestures",
-              "visual signals"
+              "Verbal",
+              "Visual",
+              "Verbal and Visual",
+              "Face to face"
             ],
-            "hint": "When you cannot be heard, you must use visual signs."
+            "hint": "Think about methods that are fast and grab attention instantly."
           },
           {
             "id": "210-3B-C1-L1-C",
-            "questionText": "What is the main advantage of verbal communication like a toolbox talk?",
+            "questionText": "What is the specific term for a short, informal safety briefing given to a team before work begins?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "immediate feedback",
-              "speed",
-              "fast",
-              "quick",
-              "allows questions"
+              "Toolbox talk",
+              "Toolbox briefing"
             ],
-            "hint": "Think about how quickly you can get a reply compared to an email."
+            "hint": "It is named after the box where tools are kept."
           },
           {
             "id": "210-3B-C1-L2",
-            "questionText": "Using your answers to Q1 (written/proof) and Q2 (signals/noise), explain why a site manager uses a site diary for accidents but hand signals for lifting. Why can't they swap these methods?",
+            "questionText": "Using your answers to Q1 (Written) and Q2 (Verbal/Visual), explain why a site supervisor might use BOTH methods for a single hazard. For example, why warn verbally about a hole and then also write it in the site diary?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Site diaries are written to provide permanent legal evidence of accidents.",
-              "Hand signals are visual/non-verbal to overcome noise during lifting.",
-              "Swapping them fails: You cannot signal a legal record for later use.",
-              "Swapping them fails: You cannot write a note to a crane operator mid-lift safely."
+              "Verbal communication provides immediate safety awareness.",
+              "Written communication provides a permanent record for maintenance and legal compliance.",
+              "Using both ensures immediate protection and long-term resolution."
             ],
             "expectedAnswer": [
-              "A site manager uses a site diary for accidents because it creates a permanent written record for legal proof, which hand signals cannot do. They use hand signals for lifting because the site is too noisy for speech and writing is too slow for immediate safety directions. You cannot swap them because signals leave no record and writing is unsafe during a live lift.",
-              "The diary provides the necessary written evidence for the accident. The hand signals provide the necessary immediate visual communication for the noise. Swapping them would mean no legal record for the accident and unsafe delays for the lift."
+              "The supervisor uses verbal communication to ensure immediate safety so no one falls in the hole right now. They then use written communication to create a permanent record so the hazard is officially logged and repaired. This combination covers both speed and accountability.",
+              "Verbal warnings are fast for immediate safety, while written logs provide proof and ensure the repair isn't forgotten. Using both methods protects the team now and ensures the job is tracked for the future."
             ],
-            "hint": "Consider the 'purpose' of each task: one needs evidence later, the other needs immediate safety now."
+            "hint": "Consider the difference between 'keeping someone safe now' and 'getting it fixed later'."
           }
         ]
       }
@@ -149,8 +142,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Adapting for Specific Needs",
-        "content": "### In this lesson\nThis lesson explains how to adjust your communication method when the receiver has **Specific Needs**, such as a disability or language barrier. \n\n*   Define methods for people with **Hearing Impairment**.\n*   Define methods for people with **Visual Impairment**.\n*   Define methods for **Language Barriers** and **Learning Difficulties**.\n\n**What this is**\nCommunication only works if the message is received and understood. If the receiver has a specific need, the sender must adapt the method. This is like using a travel adapter for a plug; the electricity (information) is the same, but the connection (method) changes to fit the socket.\n\n**Why it matters**\nFailing to adapt is not just rude; it is ineffective and often illegal (discrimination). If you shout at a client who relies on lip-reading, they still won't understand you. If you give a text-heavy manual to someone with dyslexia or a language barrier, the safety instructions will be ignored.\n\n**Key facts / rules**\n1.  **Hearing Impairment:**\n    *   Face the person directly so they can lip-read.\n    *   Ensure good lighting on your face.\n    *   Use **Written** notes or text messages to confirm details.\n    *   Use **Sign Language** interpreters for formal meetings.\n2.  **Visual Impairment:**\n    *   Use clear **Verbal** descriptions of the environment.\n    *   Provide documents in **Large Print** or Braille.\n    *   Ensure good contrast on signs.\n3.  **Language Barriers:**\n    *   Use **Visual Aids** (diagrams, pictures).\n    *   Use translation apps or interpreters.\n    *   Use simple, standard English without slang.\n4.  **Learning Difficulties:**\n    *   Break information into small chunks.\n    *   Use pictures and demonstrations.\n    *   Check understanding frequently.\n\n**How to do it**\nWhen you meet someone with a specific need, ask them: \"What is the best way for us to communicate?\" \n\n**Micro-scenario:** \nYou are explaining a heating timer to a customer who does not speak English well. \n*   *Bad:* Speaking louder (does not help translation).\n*   *Good:* You draw a **diagram** (Visual Aid) of the timer settings and demonstrate the action physically. You use a translation app for key words like \"On\" and \"Off\".\n\n**Common mistakes**\n*   Misconception: \"Shouting helps people understand.\" | Correction: Shouting distorts lip movements and can seem aggressive; use clear enunciation or writing instead. | AC: 210.LO3.AC2\n*   Misconception: \"Visual aids are childish.\" | Correction: Diagrams are often the most precise way to overcome language or technical knowledge gaps. | AC: 210.LO3.AC2\n\n**Key Points**\n*   **Hearing:** Use Light, Lip-reading, Writing.\n*   **Visual:** Use Verbal description, Large print.\n*   **Language:** Use Diagrams, Translation.\n*   **General:** Always check for understanding.\n\n### Coming Up Next\nWe have covered the methods and how to adapt them. Next, we will practice applying these choices to specific workplace scenarios."
+        "title": "Communicating with People with Specific Needs",
+        "content": "### In this lesson\nYou will learn how to adapt your communication so everyone understands, regardless of language, disability, or background. This ensures **inclusive practice** and prevents accidents caused by misunderstanding.\n\n**What this is**\nCommunication is a two-way process. If the receiver cannot understand the message due to a **barrier**, the communication has failed. You must adapt your method to cross that barrier. Common specific needs include language differences, hearing or visual impairments, and learning difficulties.\n\n**Why it matters**\nIf a worker does not understand a safety instruction because they don't speak English, or because they couldn't hear you over the noise, they are at high risk of injury. Adapting your method ensures that every person on site is safe and informed.\n\n**Key facts / rules**\n* **Non-English Speakers**: Use **Visual Aids** (pictures/diagrams), translation apps, and simple English. Avoid **jargon** (slang words).\n* **Hearing Impairment**: Face the person directly so they can read lips, speak clearly without shouting, use hand signals, or write instructions down.\n* **Visual Impairment**: Verbalize descriptions clearly (e.g., \"The ladder is two meters to your left\"), use high-contrast signs, and ensure good lighting.\n* **Learning Difficulties**: Break information into small chunks. Ask the person to repeat the instruction back to you to verify understanding.\n\n**How to do it**\nThink of communication like a \"Universal Power Adapter\".\n* If they cannot hear -> Use their eyes (Write it, Sign it, Draw it).\n* If they cannot see -> Use their ears (Speak clearly, Describe details).\n* If they do not know the language -> Use universal symbols (**Visual Aids**).\n\n**Micro-scenario**\nYou need to explain a boiler fault to a client who speaks very little English. Instead of using technical **jargon** like \"heat exchanger fracture\", you draw a simple diagram (**Visual Aid**) showing water leaking from a pipe and use a translation app to say \"Broken pipe\". You then ask them to point to the diagram to confirm they understand.\n\n**Common mistakes**\n* Shouting at someone who does not speak the language. Volume does not help translation.\n* Assuming a nod means \"Yes\". People often nod to be polite even if they don't understand. Always check by asking them to show or tell you what they need to do."
       }
     },
     {
@@ -158,67 +151,154 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Specific Needs",
+        "title": "Check Your Understanding: Inclusive Communication",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C2-L1-A",
-            "questionText": "What is a suitable adjustment when communicating with someone who has a hearing impairment?",
+            "questionText": "What is an effective communication method to use for a client who does not speak English?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "face them directly",
-              "write it down",
-              "use written notes",
-              "good lighting",
-              "lip reading"
+              "Visual aids",
+              "Pictures",
+              "Diagrams",
+              "Translation app"
             ],
-            "hint": "Think about what helps them see your words or read the message."
+            "hint": "Think of methods that do not rely on spoken words."
           },
           {
             "id": "210-3B-C2-L1-B",
-            "questionText": "Which type of aid is most effective for overcoming a language barrier?",
+            "questionText": "When speaking to someone with a hearing impairment, why should you face them directly?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "visual aids",
-              "diagrams",
-              "pictures",
-              "translation app",
-              "demonstration"
+              "Lip reading",
+              "Read lips",
+              "So they can see your face"
             ],
-            "hint": "If words don't work, what can you look at to understand?"
+            "hint": "This helps them see the shape of your mouth as you speak."
           },
           {
             "id": "210-3B-C2-L1-C",
-            "questionText": "What should you provide for a client with a visual impairment regarding documents?",
+            "questionText": "What should you avoid using when explaining technical issues to a non-technical person?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "large print",
-              "braille",
-              "audio format",
-              "digital text"
+              "Jargon",
+              "Slang",
+              "Technical terms"
             ],
-            "hint": "How can you make text easier to see or accessible without sight?"
+            "hint": "This refers to specialized industry words that outsiders may not know."
           },
           {
             "id": "210-3B-C2-L2",
-            "questionText": "Using your answers to Q1 (hearing) and Q2 (language), explain why 'shouting' is a poor strategy for both groups. What is the shared principle of effective adaptation here?",
+            "questionText": "Why is 'nodding' not a reliable sign that a person with learning difficulties has understood an instruction, and what should you do instead?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Shouting does not translate language.",
-              "Shouting distorts lip movements making lip-reading harder.",
-              "The shared principle is clarity and switching channels (to visual/written), not just increasing volume.",
-              "Effective adaptation requires changing the method to suit the receiver's capability."
+              "Nodding can be a polite gesture rather than confirmation of understanding.",
+              "The correct action is to ask them to repeat the instruction back or demonstrate the task.",
+              "This verifies that the information was actually processed and understood."
             ],
             "expectedAnswer": [
-              "Shouting is poor because it does not help translate a foreign language, and for hearing impairments, it distorts your face making lip-reading difficult. The shared principle is that we must change the method (like using visuals or writing) rather than just increasing the volume.",
-              "Volume doesn't fix understanding. For language barriers, we need visuals. For hearing loss, we need clear visibility or writing. Shouting fails both because it doesn't address the actual barrier."
+              "Nodding is often just politeness or hiding confusion. To be sure they understand, you should ask them to repeat the instruction back to you in their own words or show you what they are going to do.",
+              "People might nod even if they are confused. You must verify understanding by asking open questions or asking for a demonstration of the task."
             ],
-            "hint": "Think about the 'adapter' analogy. Does forcing the plug harder (shouting) make it fit, or do you need a different tool?"
+            "hint": "Think about how you would prove someone knows what to do without just taking their word for it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-3B-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Selecting a Method for a Variation Order",
+        "given": "You are an electrician on site. The client asks for two extra sockets that were not in the original contract. You need to agree to this work.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the goal and requirements",
+            "formula": null,
+            "calculation": null,
+            "result": "The goal is to agree on extra work and cost. The requirement is a permanent legal record to prevent payment disputes later."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select the appropriate communication method",
+            "formula": null,
+            "calculation": null,
+            "result": "A written method is required. A verbal agreement is not sufficient for financial changes. A 'Variation Order' or formal email is best."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Verify the outcome",
+            "formula": null,
+            "calculation": null,
+            "result": "The client signs the written Variation Order. Both parties now have proof of the change."
+          },
+          {
+            "stepNumber": 4,
+            "description": "State common wrong choice and why",
+            "formula": null,
+            "calculation": null,
+            "result": "A common mistake is just saying 'Okay' (Verbal). This is wrong because if the client later refuses to pay, there is no proof of the agreement."
+          }
+        ],
+        "notes": "Always use written methods for money, contracts, and scope changes."
+      }
+    },
+    {
+      "id": "210-3B-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "You need to warn a colleague who is operating a noisy drill that a vehicle is reversing towards them. They are wearing ear defenders and cannot hear you shout.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Identify the barrier to communication in this scenario.",
+            "expectedAnswer": [
+              "Noise",
+              "Ear defenders",
+              "Cannot hear"
+            ],
+            "hint": "What is stopping your voice from reaching them?"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Select the most effective communication method to use immediately.",
+            "expectedAnswer": [
+              "Visual signal",
+              "Hand signal",
+              "Wave",
+              "Visual"
+            ],
+            "hint": "If they can't use their ears, which sense must you appeal to?"
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Explain why sending a text message would be the wrong choice here.",
+            "expectedAnswer": [
+              "Too slow",
+              "They might not see it",
+              "Not immediate"
+            ],
+            "hint": "Consider the speed required for an emergency warning."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "State the result of using the correct visual method.",
+            "expectedAnswer": [
+              "Safety",
+              "Accident prevented",
+              "They move out of the way"
+            ],
+            "hint": "What is the positive outcome of the warning?"
           }
         ]
       }
@@ -232,58 +312,55 @@
         "questions": [
           {
             "id": "210-3B-P1",
-            "questionText": "A written job sheet takes 5 minutes to complete. If you complete 6 job sheets in a day, how many total minutes are spent on written communication?",
+            "questionText": "A construction site has 40 operatives. 10% of them have a hearing impairment and require vibrating pagers for fire alarms. How many pagers must be provided?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "30"
+              "4"
             ],
-            "hint": "Multiply the time per sheet by the number of sheets."
+            "hint": "Calculate 10% of 40."
           },
           {
             "id": "210-3B-P2",
-            "questionText": "You need to warn a colleague of a falling object immediately, but it is too noisy to shout. What method do you use?",
+            "questionText": "What category of communication is a 'No Entry' sign?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "hand signals",
-              "visual signals",
-              "non-verbal",
-              "gestures"
+              "Visual",
+              "Visual aid",
+              "Visual communication"
             ],
-            "hint": "Immediate safety warning without sound."
+            "hint": "It uses an image or symbol rather than just text or speech."
           },
           {
             "id": "210-3B-P3",
-            "questionText": "A customer claims you quoted £100, but you actually quoted £150. Which communication method would have prevented this dispute by providing proof?",
+            "questionText": "When explaining a technical problem to a customer who is not in the trade, what type of language should you avoid?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "written",
-              "email",
-              "written quote",
-              "paperwork"
+              "Jargon",
+              "Technical jargon",
+              "Slang"
             ],
-            "hint": "The method that creates a permanent legal record."
+            "hint": "Avoid using words that only other tradespeople would understand."
           },
           {
             "id": "210-3B-P4",
-            "questionText": "You are giving a safety briefing to a worker with limited English. Besides speaking simply, what can you show them to ensure they understand the hazard zones?",
+            "questionText": "If a colleague has dyslexia (difficulty reading), what is a better way to give them instructions than a long written manual?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "diagrams",
-              "pictures",
-              "visual aids",
-              "drawings",
-              "signs"
+              "Verbal",
+              "Video",
+              "Demonstration",
+              "Diagrams"
             ],
-            "hint": "A picture is worth a thousand words."
+            "hint": "Think of a method that does not rely on reading large blocks of text."
           },
           {
             "id": "210-3B-P5",
-            "questionText": "A toolbox talk involves 1 supervisor and 4 operatives. If the talk lasts 15 minutes, how many total person-minutes are consumed by this verbal communication?",
+            "questionText": "You have 30 minutes to brief 3 separate teams on safety. If you spend 5 minutes preparing visual aids and 5 minutes briefing each team, how many minutes are left unused?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "75"
+              "10"
             ],
-            "hint": "Total people (1+4) multiplied by the duration."
+            "hint": "Subtract the preparation time and the total briefing time (3 teams x 5 mins) from the 30 minutes."
           }
         ]
       }
@@ -299,38 +376,36 @@
         "questions": [
           {
             "id": "210-3B-INT-1",
-            "questionText": "Scenario: You are explaining a complex boiler fault to an elderly customer who has significant hearing loss. Analyze why a standard verbal explanation might fail and propose a combined strategy. In your answer, include: (1) The barrier to the standard method, (2) Two specific adaptations you would use, and (3) Why checking understanding is critical here.",
+            "questionText": "Explain why written communication is essential for a variation order (cost change) but inappropriate for a fire alarm warning. In your answer, include: (1) the purpose of each situation, (2) the key feature of written vs. visual/audio methods, and (3) why swapping them would fail. (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Barrier: The customer cannot hear technical details clearly, leading to misunderstanding.",
-              "Adaptation 1: Face the customer directly in good light for lip-reading.",
-              "Adaptation 2: Write down the key points or costs (Written method) or use a diagram.",
-              "Reasoning: Checking understanding ensures the message was received despite the sensory deficit.",
-              "Demonstrates linking a specific need (hearing) to a method choice (written/visual)."
+              "Variation orders require permanent proof (written) for legal/financial reasons.",
+              "Fire alarms require immediate speed (audio/visual) for safety.",
+              "Swapping them fails because writing is too slow for fire, and alarms provide no detail for contracts."
             ],
             "expectedAnswer": [
-              "A standard verbal explanation might fail because the customer cannot hear the technical details clearly. To fix this, I would face the customer directly in good light so they can lip-read, and I would also write down the fault details and cost on paper. Checking understanding is critical to ensure they actually agreed to the work and didn't just nod out of politeness.",
-              "The barrier is hearing loss. I would use written notes and diagrams to support my speech. I would also ensure I am facing them. Checking understanding prevents disputes later if they didn't hear the price correctly."
+              "Written communication is essential for a variation order because it provides a permanent legal record of the agreed cost, whereas a fire alarm requires immediate speed to save lives. Written methods are too slow for emergencies, and audio alarms provide no specific details for contracts. Swapping them would result in legal disputes due to lack of proof and potential injury due to delayed warnings.",
+              "A variation order needs to be written to prove the agreement later, while a fire alarm needs to be a loud sound to warn everyone instantly. Writing down a fire warning is too slow, and making a noise for a contract doesn't record the details. Each method must match the need for either permanence or speed."
             ],
-            "hint": "Combine 'Verbal' best practices (facing them) with a 'Written' backup."
+            "hint": "Compare 'proof for later' vs 'speed for now'."
           },
           {
             "id": "210-3B-INT-2",
-            "questionText": "Evaluate the relationship between legal liability and communication methods. Why is 'Written Communication' considered superior for contracts but 'Non-verbal' superior for immediate crane safety? Answer in 3-4 sentences, explaining the specific property (e.g., permanence vs. speed) that makes each method correct for its context.",
+            "questionText": "Develop a communication strategy for a site induction where the group includes people with low literacy and non-English speakers. In your answer, include: (1) two specific methods you would use, (2) how you would verify understanding, and (3) why standard written handouts alone would be unsafe. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Written communication has the property of permanence/traceability, required for contracts/liability.",
-              "Non-verbal communication has the property of visibility/immediacy, required for noisy safety situations.",
-              "Using the wrong property causes failure (e.g., writing takes too long for safety; signals leave no proof for contracts).",
-              "Synthesizes the trade-off between speed/visibility and evidence/detail."
+              "Use visual aids (diagrams/videos) and demonstration.",
+              "Use a translator or translation app if needed.",
+              "Verify by asking them to demonstrate or repeat back (not just nod).",
+              "Written handouts are unsafe because they cannot be read by this specific audience."
             ],
             "expectedAnswer": [
-              "Written communication is superior for contracts because its main property is permanence; it creates a lasting record that proves exactly what was agreed for legal liability. Non-verbal communication is superior for crane safety because its main property is visual immediacy; it cuts through site noise instantly to prevent accidents. You cannot use writing for the crane because it is too slow, and you cannot use signals for contracts because they leave no evidence.",
-              "Contracts require proof, so we use written methods because they are permanent. Safety requires speed and visibility in noise, so we use non-verbal signals. The context dictates the method: one needs evidence, the other needs immediate reaction."
+              "For this group, I would use visual aids like safety videos and diagrams, along with practical demonstrations of the hazards. To verify understanding, I would ask individuals to demonstrate the safety action (like putting on PPE) rather than just asking 'do you understand?'. Standard written handouts would be unsafe because low literacy and language barriers mean the key safety information would be missed.",
+              "• Use visual methods such as diagrams, symbols, and demonstrations instead of text.\n• Verify understanding by asking workers to demonstrate the task back to you.\n• Written handouts alone are unsafe because the workers cannot read the instructions, leaving them unaware of site dangers."
             ],
-            "hint": "Focus on the words 'Permanent Record' vs 'Immediate Visibility'."
+            "hint": "Focus on replacing text with images and actions, and proving they understood."
           }
         ]
       }
@@ -344,41 +419,36 @@
         "questions": [
           {
             "id": "210-3B-SR-1",
-            "questionText": "Who is the 'Sender' in the communication cycle?",
+            "questionText": "What term describes the people or groups (like clients and colleagues) involved in a project?",
             "expectedAnswer": [
-              "the person giving information",
-              "person speaking",
-              "source of information"
+              "Stakeholders",
+              "Stakeholder"
             ],
-            "hint": "The person who starts the message.",
+            "hint": "It refers to anyone who holds an interest in the work.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-2",
-            "questionText": "What is 'Feedback' in communication?",
+            "questionText": "What is the general name for the process of exchanging information between people?",
             "expectedAnswer": [
-              "confirmation",
-              "reply",
-              "response",
-              "checking understanding"
+              "Communication"
             ],
-            "hint": "How you know the message was understood.",
+            "hint": "It involves a sender, a message, and a receiver.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-3",
-            "questionText": "What is 'Noise' in the context of communication barriers?",
+            "questionText": "Which type of document sets out the specific rules for a workplace?",
             "expectedAnswer": [
-              "interference",
-              "distraction",
-              "background sound",
-              "barrier"
+              "Policy",
+              "Company policy",
+              "Site rules"
             ],
-            "hint": "Anything that distorts or blocks the message.",
+            "hint": "These are the official guidelines everyone must follow.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Review of Communication Cycle (Lesson 3A) before progressing."
+        "notes": "Review of basic communication concepts."
       }
     }
   ],
@@ -389,7 +459,7 @@
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
-    "version": "1.1",
+    "version": "1.0",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PROCEDURE",
     "syllabusAnchors": {
@@ -406,32 +476,32 @@
       ]
     },
     "scope": {
-      "inScope": "Identification of verbal, written, and non-verbal communication methods. Adaptation of methods for hearing, visual, and language needs.",
-      "outOfScope": "Conflict resolution strategies (AC3), Effects of poor communication (AC4), Technical report writing standards.",
-      "rationale": "The lesson focuses on the selection of methods and inclusivity tools as required by AC1 and AC2."
+      "inScope": "Selection of communication methods (verbal, written, visual) and adaptation for specific needs (language, disability).",
+      "outOfScope": "Conflict resolution, negotiation strategies, formal contract law.",
+      "rationale": "Level 2 focuses on selecting the right tool for the message and ensuring inclusivity."
     },
     "teachingConstraints": {
       "excludeHowTo": false,
       "purposeOnly": false,
       "identificationOnly": false,
       "noCalculations": false,
-      "specificScope": "Focus on method selection and specific need adaptation."
+      "specificScope": "Focus on practical selection of methods and specific adaptations for barriers."
     },
     "misconceptions": [
       {
-        "misconception": "Verbal communication is always sufficient because it is fast.",
-        "correction": "Written communication is required for liability, contracts, and formal records regardless of speed.",
-        "relatedAC": "210.LO3.AC1"
+        "misconception": "Written communication is always better.",
+        "correction": "Written is best for proof, but too slow for emergencies. The method must match the need.",
+        "relatedAC": "AC1"
       },
       {
-        "misconception": "Shouting helps people with language barriers or hearing loss understand better.",
-        "correction": "Shouting often distorts lip-reading and does not translate language; visual aids or writing are effective adaptations.",
-        "relatedAC": "210.LO3.AC2"
+        "misconception": "Shouting helps people understand if they don't speak the language.",
+        "correction": "Volume does not help translation; use visual aids or simple words instead.",
+        "relatedAC": "AC2"
       },
       {
-        "misconception": "Hand signals are informal and optional.",
-        "correction": "Standardized hand signals are a formal, mandatory safety communication method in noisy environments.",
-        "relatedAC": "210.LO3.AC1"
+        "misconception": "Nodding always means agreement.",
+        "correction": "Nodding can be polite; verify understanding by asking for a demonstration.",
+        "relatedAC": "AC2"
       }
     ]
   }
