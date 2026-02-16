@@ -1,14 +1,14 @@
 {
   "id": "210-1B",
-  "title": "210.1B — Site Visitors and Inspectors",
-  "description": "Learn about Site Visitors and Inspectors in Communication 2365 Level 2",
+  "title": "210.1B — Site Management and Reporting Roles",
+  "description": "Learn about the hierarchy of a construction team, including the roles of the site management team and reporting lines.",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Site Visitors and Inspectors",
+  "topic": "Construction team members and roles",
   "learningOutcomes": [
-    "State the primary purpose of site visitors and inspectors in a technical environment",
-    "Describe the specific responsibilities of Building Control, Water, HSE, and Electrical inspectors",
-    "Identify the appropriate inspector required for specific site compliance scenarios"
+    "Identify key roles of the site management team (AC1.1)",
+    "Identify key roles of individuals reporting to site management (AC1.2)",
+    "Explain the difference between strategic off-site management and operational on-site management"
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "State the primary purpose of site visitors and inspectors in a technical environment",
+            "text": "Identify key roles of the site management team (e.g., Contracts Manager, Project Manager)",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the specific responsibilities of Building Control, Water, HSE, and Electrical inspectors",
+            "text": "Identify key roles of individuals reporting to site management (e.g., Site Foreman, Quantity Surveyor)",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the reporting lines and chain of command on a technical site",
             "bloomLevel": "understand"
-          },
-          {
-            "text": "Identify the appropriate inspector required for specific site compliance scenarios",
-            "bloomLevel": "remember"
           }
         ]
       }
@@ -42,28 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Compliance",
-            "definition": "Meeting strict legal laws and national standards, not just following optional advice or internal site rules. (Example: Stopping at a red light is compliance; choosing a route is a preference.)"
+            "term": "Contracts Manager",
+            "definition": "A senior manager who oversees multiple projects at a strategic level, focusing on client contracts, budgets, and schedules rather than daily site presence."
           },
           {
-            "term": "Statutory Inspection",
-            "definition": "A mandatory check by an external government-approved official to ensure the law is being followed. (Example: A health inspector visiting a restaurant.)"
+            "term": "Project Manager (PM)",
+            "definition": "The senior leader permanently based on a specific site, responsible for the day-to-day delivery, safety, and logistics of that single project."
           },
           {
-            "term": "Building Control",
-            "definition": "The official process of checking that a building's structure, fire safety, and insulation meet national codes. (Example: Like a car's annual MOT test.)"
+            "term": "Site Foreman",
+            "definition": "A supervisor who directs the hands-on work of trade gangs, acting as the link between the management team and the operatives."
           },
           {
-            "term": "Health and Safety Executive (HSE)",
-            "definition": "The national government body with the power to enforce workplace safety laws and prosecute companies for danger. (Example: The 'police' for workplace safety.)"
+            "term": "Quantity Surveyor (QS)",
+            "definition": "A professional responsible for managing costs, material orders, and financial contracts, ensuring the project stays within budget."
           },
           {
-            "term": "Enforcement Notice",
-            "definition": "A legal order issued by an inspector that forces work to stop or be fixed immediately. (Example: A 'Stop Work' order from a judge.)"
-          },
-          {
-            "term": "Remedial Action",
-            "definition": "Mandatory work required to fix a legal failure identified by an inspector. (Example: Fixing a broken brake light to pass inspection.)"
+            "term": "Chain of Command",
+            "definition": "The formal line of authority through which instructions pass down (from manager to worker) and information passes up (from worker to manager)."
           }
         ]
       }
@@ -73,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Roles of Site Visitors",
-        "content": "### In this lesson\nYou will learn to identify the different people who visit a site and understand their powers. This is vital for keeping the site legal and safe.\n\n*   The difference between a **General Visitor** (guest) and a **Statutory Inspector** (enforcer).\n*   What **Compliance** means in the real world.\n*   Why you must check credentials before letting someone on site.\n\n**What this is**\nImagine you are working on a busy construction site. Two people arrive at the gate. One is the client, who wants to see if the kitchen layout looks nice. The other is a government official checking if the fire exits are legal. Both are visitors, but they have very different roles.\n\n*   **General Visitors:** Clients, architects, or suppliers. They are there to observe, plan, or deliver. They have no legal power to stop you working.\n*   **Statutory Inspectors:** Officials from external bodies (like the Council or HSE). They are there to ensure **Compliance**. **Compliance** means strictly following the law. If you don't meet the standards, these inspectors can legally punish the site.\n\n**Why it matters**\nIf you treat a Statutory Inspector like a casual guest, you might accidentally break the law. A **Statutory Inspection** is a formal, legal exam. It's not a chat; it's a test. Knowing the difference ensures you give the inspector the right access and documentation immediately.\n\n**Key facts / rules**\n*   **Sign-In:** *Everyone* (no exceptions) must sign in at the site office. This is your first line of defense to check who they are.\n*   **Induction:** All visitors must be briefed on safety hazards (e.g., \"Don't walk there, we are lifting steel\").\n*   **Authority:** A client can *ask* you to change a wall color. An inspector can *order* you to rebuild the wall if it's unsafe.\n*   **PPE:** Visitors must wear the same safety gear (helmets, boots) as workers.\n\n**How to recognise it**\nThink of a professional kitchen. \n*   A **Food Blogger** (General Visitor) comes in to taste the food and look at the plating. They care about *quality* and *preference*.\n*   A **Health Inspector** (Statutory Inspector) comes in to check the fridge temperature and rat traps. They care about *safety* and *law*.\n\n**Scenario:**\nA site has 10 visitors in a week. \n*   9 are potential buyers measuring rooms for curtains (General Visitors).\n*   1 is from the Local Authority checking the foundation depth (Statutory Inspector).\nOnly the 10th visitor is a matter of legal **Compliance**.\n\n**Common mistakes**\n*   *Mistake:* Thinking a \"Quality Check\" by your boss is the same as a \"Statutory Inspection.\"\n*   *Correction:* Your boss checks if the work looks good (Quality). The Inspector checks if the work is legal (Statutory).\n\n**Misconceptions**\n*   **Misconception:** All visitors can stop work if they don't like it.\n*   **Correction:** Only specific inspectors (like HSE) have the legal power to stop work via formal notices. A client can only ask the manager.\n*   **Misconception:** A verbal warning from a visitor is legally binding.\n*   **Correction:** Legal instructions come in written **Enforcement Notices**. Verbal advice is just advice."
+        "title": "The Site Management Team",
+        "content": "### In this lesson\nThis lesson covers the structure of a construction site team. You will learn who is in charge, who handles the money, and who you should talk to if you have a problem.\n\n*   Identify the **Contracts Manager** and **Project Manager**.\n*   Understand the difference between strategic (off-site) and operational (on-site) roles.\n*   Learn why the \"boss\" isn't always the person you see every day.\n\n**What this is**\nThe site management team is the group of professionals responsible for planning and running the project. This is split into two levels: **Strategic** (High-level planning) and **Operational** (Day-to-day running).\n\n1.  **Contracts Manager (Strategic/Off-site)**: This person is like the \"Regional Manager\" of a retail chain. They look after 3 or 4 different sites at once. They visit your site occasionally (e.g., once a week) to check if the project is making money and keeping the client happy. They do not manage the daily work.\n2.  **Project Manager (PM) (Operational/On-site)**: This person is like the \"Store Manager\". They are on your site every single day. They hold the keys, run the morning briefings, and are legally responsible for site safety and progress. If the crane is late or the site is messy, it is the PM's problem.\n\n**Why it matters**\nKnowing who does what prevents confusion. If you have a question about the daily work schedule, asking the visiting Contracts Manager is wrong—they won't know the details. You need the Project Manager. Conversely, if there is a major issue with the client's contract, the Project Manager will escalate it to the Contracts Manager.\n\n**Key facts / rules**\n*   **Contracts Manager**: Multi-site responsibility, focuses on budget and client relations.\n*   **Project Manager**: Single-site responsibility, focuses on safety, logistics, and hitting deadlines.\n*   **Site Agent**: On very large sites, a Site Agent supports the PM by managing specific sections of the work.\n\n**Micro-Scenario**\nImagine a football club. The **Contracts Manager** is the Club Owner/Board—they set the budget and hire the staff but don't play the game. The **Project Manager** is the Head Coach—they are on the sideline every match (day), making decisions to win that specific game.\n\n**Common mistakes**\nLearners often think the Contracts Manager is \"below\" the Project Manager because they aren't on site. In reality, the Contracts Manager is usually senior to the PM and manages the PM's performance.\n\nMisconceptions (targeted):\n*   Misconception: The Project Manager does the physical work. | Correction: The PM manages people and processes; they rarely use tools themselves. | AC: AC1.1\n*   Misconception: You can report problems to anyone in a suit. | Correction: You must follow the chain of command to ensure the right person gets the information. | AC: AC1.2"
       }
     },
     {
@@ -82,65 +78,61 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Roles of Site Visitors",
+        "title": "Check Your Understanding: Management Roles",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "What is the term for meeting strict legal requirements and laws, rather than just following internal site preferences?",
+            "questionText": "Which management role is typically responsible for overseeing multiple projects at once and focuses on client contracts?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Compliance",
-              "Legal compliance",
-              "Regulatory compliance"
+              "Contracts Manager",
+              "Contracts mgr",
+              "Contract Manager"
             ],
-            "hint": "It starts with C. It means doing exactly what the law says."
+            "hint": "Think of the person who visits occasionally and deals with the business side."
           },
           {
             "id": "210-1B-C1-L1-B",
-            "questionText": "Where is the very first place any visitor must go when they arrive at a site to be identified?",
+            "questionText": "Which manager is permanently based on a single site and is responsible for daily safety and delivery?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Site office",
-              "The site office",
-              "Main site office",
-              "Security office",
-              "Reception"
+              "Project Manager",
+              "PM",
+              "Site Project Manager"
             ],
-            "hint": "They need to sign the register here before entering the work area."
+            "hint": "This person is the daily leader on the site, often called the 'Captain of the ship'."
           },
           {
             "id": "210-1B-C1-L1-C",
-            "questionText": "Who performs a Statutory Inspection: someone from your own company or someone from an external government body?",
+            "questionText": "Is the Project Manager's role primarily 'strategic' (off-site planning) or 'operational' (on-site running)?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "External government body",
-              "External body",
-              "External authority",
-              "Government body",
-              "External"
+              "Operational",
+              "Operational role",
+              "On-site running"
             ],
-            "hint": "Think of the Health Inspector example—do they work for the restaurant or the government?"
+            "hint": "They deal with the day-to-day operations of the site."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Why is it dangerous to treat a Statutory Inspector like a general visitor? Use the concepts of 'Legal Power' and 'Compliance' in your answer.",
+            "questionText": "Explain why a large construction company needs both a Contracts Manager and a Project Manager. Why can't one person do both roles?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Statutory Inspectors have legal power to enforce laws (Compliance), unlike general visitors.",
-              "Treating them casually might lead to failing a legal check.",
-              "They need specific access to prove the site is safe and legal."
+              "The Project Manager needs to be on-site daily to manage safety and logistics.",
+              "The Contracts Manager needs to oversee the business aspects of multiple sites.",
+              "One person cannot physically be in multiple places at once nor handle the workload of daily site running plus high-level client negotiation."
             ],
             "expectedAnswer": [
-              "A Statutory Inspector has the legal power to enforce Compliance and even stop work, whereas a general visitor does not. Treating them casually could lead to legal penalties or the site being shut down if they cannot verify that laws are being followed.",
-              "Because the Inspector is there to check legal Compliance, they have the power to issue fines or notices. A general visitor implies no legal risk, so confusing them could lead to serious consequences for the site management."
+              "A Project Manager is needed on-site every day to ensure safety and progress, while a Contracts Manager looks after the budgets and contracts for multiple sites. One person cannot do both because they cannot be on a specific site full-time while also travelling to manage other projects and clients.",
+              "The roles are split because the Project Manager focuses on the physical build and safety of one site, while the Contracts Manager focuses on the financial success of several sites. Doing both would be too much work and physically impossible."
             ],
-            "hint": "Think about what an inspector can do to the site (shut it down) that a client cannot."
+            "hint": "Consider the physical location requirements: one needs to be everywhere, the other needs to be right here."
           }
         ]
       }
@@ -150,8 +142,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Regulatory Inspectors",
-        "content": "### In this lesson\nYou will learn which specific inspector handles which part of the site (Structure, Safety, Water, Electricity) and what happens if you fail an inspection.\n\n**What this is**\nDifferent inspectors act like different specialized referees. They don't overlap.\n\n1.  **Building Control:** Checks the **product** (the building). Is the foundation deep enough? Is the insulation thick enough? Is it fire-safe?\n2.  **HSE (Health & Safety Executive):** Checks the **process** (the people). Are workers wearing hard hats? Is the trench supported so it won't collapse on someone?\n3.  **Water & Electrical Inspectors:** Check the **utilities**. Is the wiring safe? Is the drinking water pipe separate from the sewage pipe?\n\n**The Consequences**\nIf an inspector sees something illegal, they don't just complain. They issue an **Enforcement Notice**. This is a legal document that says: \"Fix this now, or we prosecute you.\" \n\nThe work you do to fix the problem is called **Remedial Action**. This isn't normal maintenance; it is emergency repair work to avoid breaking the law.\n\n**How to recognise it**\n*   **Scenario A:** You are digging a trench. \n    *   If the **HSE** visits, they look at the *shoring* (is it safe for the digger?).\n    *   If **Building Control** visits, they look at the *soil* (is it strong enough to hold the building?).\n*   **Scenario B:** You install a toilet.\n    *   A **Water Inspector** checks you haven't connected the waste pipe to the drinking water supply.\n\n**Analogy**\nThink of a car:\n*   **Building Control** is the MOT tester. They check if the car is built correctly and roadworthy.\n*   **HSE** is the Traffic Police. They check if you are driving safely and wearing your seatbelt.\n\n**Common mistakes**\n*   *Mistake:* Thinking Building Control checks the paint finish.\n*   *Correction:* Building Control only cares about safety and regulations (e.g., fire spread), not aesthetics.\n*   *Mistake:* Thinking Remedial Action is optional.\n*   *Correction:* Remedial Action is mandatory. If you ignore it, you can go to court."
+        "title": "Reporting Lines and Supervision",
+        "content": "### In this lesson\nYou will learn about the people who report to the site management team. These are the individuals who bridge the gap between the managers and the trade operatives.\n\n*   Identify the role of the **Site Foreman** and **Quantity Surveyor (QS)**.\n*   Understand the **Chain of Command**.\n*   Learn who to report to for materials, safety, or daily tasks.\n\n**What this is**\nThe Project Manager cannot speak to every single worker individually. Instead, they use a **Chain of Command**. This is a structure where instructions flow down and information flows up.\n\n1.  **Site Foreman / Supervisor**: This is the direct supervisor of the workforce. If you are a plumber or electrician, the Foreman is your boss. They assign your daily tasks, check you are wearing PPE, and solve immediate problems. They report to the Project Manager.\n2.  **Quantity Surveyor (QS)**: The \"Accountant\" of the site. They count materials (quantities) and manage payments. If you need to order 10,000 bricks, the QS checks if it's in the budget. They report to the PM regarding site costs but often have a line to the Commercial team.\n3.  **Ganger**: On larger sites, a \"gang\" of workers (e.g., bricklayers) has a lead hand called a Ganger. The Ganger reports to the Foreman.\n\n**Why it matters**\nFollowing the chain of command is critical for safety and order. If you have a safety concern, you tell your Foreman immediately. If you bypass them and go straight to the Contracts Manager, the immediate hazard might not get fixed quickly, and you undermine the site team's authority.\n\n**Key facts / rules**\n*   **Operative reports to -> Foreman/Ganger**.\n*   **Foreman reports to -> Project Manager**.\n*   **Project Manager reports to -> Contracts Manager**.\n*   **Quantity Surveyor** handles costs, measurements, and payments.\n*   **Admin/Site Secretary** handles paperwork, inductions, and filing.\n\n**Scenario**\nYou are a carpenter. You notice you are running out of timber. You do not call the timber yard yourself, and you do not call the Project Manager. You tell your **Foreman**. The Foreman confirms the need and asks the **Quantity Surveyor** or **Site Agent** to place the order. This ensures the correct amount is ordered and paid for correctly.\n\n**Common mistakes**\nConfusing the **Foreman** with the **Project Manager**. The Foreman is usually outside with the team all day, directing work. The PM is often in the office planning the next week's work and managing legal duties."
       }
     },
     {
@@ -159,61 +151,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Regulatory Inspectors",
+        "title": "Check Your Understanding: Reporting Lines",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "Which inspector specifically checks that the building's structure and fire safety meet national regulations?",
+            "questionText": "Who does a trade operative (e.g., electrician, bricklayer) typically report to directly for daily tasks?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Building Control",
-              "Building control officer",
-              "Building control inspector"
+              "Site Foreman",
+              "Foreman",
+              "Supervisor",
+              "Ganger"
             ],
-            "hint": "They act like the MOT tester for the building itself."
+            "hint": "This is the person who directly supervises the workforce."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "If an inspector finds a serious legal breach, what formal document do they issue to force the site to stop or fix the work?",
+            "questionText": "Which role is responsible for managing costs, measuring materials, and handling payments?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Enforcement Notice",
-              "An Enforcement Notice",
-              "Enforcement notices"
+              "Quantity Surveyor",
+              "QS",
+              "The QS"
             ],
-            "hint": "It is a legal order, not just a letter."
+            "hint": "Think of the 'accountant' of the construction site."
           },
           {
             "id": "210-1B-C2-L1-C",
-            "questionText": "What do we call the mandatory work required to fix a fault identified by an inspector?",
+            "questionText": "What is the term for the formal line of authority where instructions flow down from manager to worker?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Remedial Action",
-              "Remedial work",
-              "Remedial actions"
+              "Chain of Command",
+              "The chain of command",
+              "Reporting line"
             ],
-            "hint": "This is work done to remedy (fix) a legal failure."
+            "hint": "It starts with 'Chain of...'."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "A site manager receives an Enforcement Notice from the HSE. What does this tell you about the safety on site, and what must happen next?",
+            "questionText": "Why is it important to follow the chain of command when reporting a non-emergency issue, rather than going straight to the Project Manager?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "It means there was a serious safety breach (process/people).",
-              "The site must perform Remedial Action immediately.",
-              "Work might have to stop until the issue is fixed."
+              "The Project Manager focuses on the whole site and may be too busy for minor issues.",
+              "The Foreman is best placed to solve immediate daily problems quickly.",
+              "Bypassing the chain undermines the Foreman's authority and causes confusion."
             ],
             "expectedAnswer": [
-              "It tells us that the site failed a safety inspection and people were likely at risk. The site must now perform Remedial Action to fix the safety breach immediately, or they could face prosecution.",
-              "An Enforcement Notice from the HSE means a legal safety standard was broken. The site must stop the unsafe activity and complete Remedial Action before work can continue normally."
+              "Following the chain of command ensures that issues are handled by the person most able to fix them quickly, like the Foreman. If everyone went straight to the Project Manager, the PM would be overwhelmed and unable to manage the overall site safety and progress.",
+              "It keeps communication organized. The Foreman handles daily tasks and minor issues, allowing the Project Manager to focus on major site responsibilities. Skipping the Foreman can lead to delays and confusion."
             ],
-            "hint": "Connect the 'HSE' (safety police) to the 'Enforcement Notice' (ticket) and what you must do to clear it."
+            "hint": "Think about efficiency—what would happen if 50 workers all tried to talk to the Project Manager at the same time?"
           }
         ]
       }
@@ -227,58 +220,52 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "A site log shows 12 visitors: 7 are potential buyers, 3 are interior designers, 1 is a Building Control officer, and 1 is an HSE inspector. How many of these are performing a Statutory Inspection?",
-            "answerType": "numeric",
-            "expectedAnswer": [
-              "2"
-            ],
-            "hint": "Count only the government/legal officials (Building Control + HSE). Buyers and designers are general visitors."
-          },
-          {
-            "id": "210-1B-P2",
-            "questionText": "If a visitor issues a formal Enforcement Notice, what does this prove has happened on site?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "legal breach",
-              "a legal breach",
-              "breach of regulations",
-              "regulatory breach",
-              "law broken"
-            ],
-            "hint": "They only issue this document if a law or regulation has been broken."
-          },
-          {
-            "id": "210-1B-P3",
-            "questionText": "A technician is installing a specialized ventilation system to protect staff from hazardous fumes. Which regulatory body inspects this to ensure the *workers* are safe?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "HSE",
-              "Health and Safety Executive",
-              "The HSE"
-            ],
-            "hint": "Think of the 'police' for worker safety and welfare."
-          },
-          {
-            "id": "210-1B-P4",
-            "questionText": "An inspector finds 4 structural safety violations (illegal) and 6 walls painted the wrong shade of blue (ugly). How many items require mandatory Remedial Action?",
+            "questionText": "A Contracts Manager oversees 4 different construction sites. Each site has exactly 1 Project Manager. How many Project Managers report to this Contracts Manager?",
             "answerType": "numeric",
             "expectedAnswer": [
               "4"
             ],
-            "hint": "Remedial Action is for legal compliance only, not aesthetic preference."
+            "hint": "One PM per site."
+          },
+          {
+            "id": "210-1B-P2",
+            "questionText": "You are working on site and need to check if the correct amount of pipe has been delivered for the budget. Which specific role should you consult?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Quantity Surveyor",
+              "QS"
+            ],
+            "hint": "This person manages the quantities and costs."
+          },
+          {
+            "id": "210-1B-P3",
+            "questionText": "A visitor arrives in a suit. They do not work on site daily but are asking the Project Manager about the overall profit margin of the project. Who is this most likely to be?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Contracts Manager",
+              "Commercial Manager"
+            ],
+            "hint": "The senior manager responsible for the business/contract side."
+          },
+          {
+            "id": "210-1B-P4",
+            "questionText": "A Site Foreman supervises 3 separate gangs. Each gang consists of 5 operatives. How many total operatives are under the Foreman's supervision?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "15"
+            ],
+            "hint": "Multiply the number of gangs by the number of workers in each gang."
           },
           {
             "id": "210-1B-P5",
-            "questionText": "Why can't the Site Manager just sign off the building regulations themselves? Why do we need Building Control?",
+            "questionText": "Who has the ultimate legal responsibility for health and safety on a specific site on a day-to-day basis?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "independent verification",
-              "external authority",
-              "legal requirement",
-              "impartial check",
-              "statutory requirement"
+              "Project Manager",
+              "PM",
+              "Site Manager"
             ],
-            "hint": "Think about marking your own homework. We need an external, independent check."
+            "hint": "The person in charge of the site daily."
           }
         ]
       }
@@ -294,37 +281,37 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "Compare the roles of the HSE and Building Control. If a wall collapses and injures a worker, which body investigates the accident (the injury) and which body investigates the wall design (the structure)? Why are they different?",
+            "questionText": "Describe the relationship between the Contracts Manager, Project Manager, and Site Foreman. How does an instruction about a budget cut flow down this chain? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "HSE investigates the accident/injury because they cover worker safety/welfare.",
-              "Building Control investigates the wall design because they cover structural regulations.",
-              "They are different because one protects people (HSE) and the other validates the building product (Building Control)."
+              "Contracts Manager decides the budget cut (Strategic).",
+              "Communicates it to the Project Manager (Operational lead).",
+              "PM instructs the Foreman to reduce waste or hours (Direct supervision).",
+              "Foreman ensures operatives follow the new rule."
             ],
             "expectedAnswer": [
-              "The HSE investigates the accident because their role is to protect the welfare of the worker and ensure safe working practices. Building Control investigates the wall design to see if it met structural regulations. They are different because HSE focuses on the 'process' and people, while Building Control focuses on the 'product' and physical standards.",
-              "HSE handles the injury investigation (safety of people). Building Control handles the structural failure investigation (compliance of the building). They are distinct because one enforces safety laws at work, while the other enforces construction standards."
+              "The Contracts Manager decides on the budget cut and informs the Project Manager. The Project Manager then plans how to save money on site and instructs the Site Foreman to carry out these changes with the workforce. This ensures the strategic decision is turned into practical action on the ground.",
+              "The instruction flows from the top down: The Contracts Manager sets the new budget limit, the Project Manager decides what work to adjust, and the Site Foreman tells the workers what to do differently. Each role translates the instruction for the level below them."
             ],
-            "hint": "HSE = People/Safety. Building Control = Structure/Regulations."
+            "hint": "Start at the top (Strategic) and move down to the bottom (Workforce)."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "Explain the journey of a 'failed' inspection. Start with the Inspector finding a fault, and end with the site being compliant again. Use the terms: Enforcement Notice, Remedial Action, and Compliance.",
+            "questionText": "Imagine a scenario where a Site Foreman is absent. Why might this cause problems for both the Project Manager and the Operatives? Explain the impact on the 'Chain of Command'.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Inspector identifies fault.",
-              "Issues Enforcement Notice.",
-              "Site performs Remedial Action.",
-              "Inspector re-checks.",
-              "Site achieves Compliance."
+              "Missing link in the chain.",
+              "PM becomes overwhelmed with minor questions from operatives.",
+              "Operatives lack direction and supervision.",
+              "Safety checks might be missed."
             ],
             "expectedAnswer": [
-              "First, the Inspector identifies a breach of regulations. Second, they issue an Enforcement Notice which legally orders the site to fix it. Third, the site team performs Remedial Action to correct the fault. Finally, the inspector re-checks the work, and if it passes, the site achieves Compliance.",
-              "1. Breach found. 2. Enforcement Notice issued. 3. Remedial Action taken. 4. Work re-inspected. 5. Compliance achieved."
+              "Without the Foreman, the link between management and workers is broken. The Operatives would not have anyone to assign daily tasks or check their work, and the Project Manager would be overwhelmed by minor questions that the Foreman usually handles. This disrupts the chain of command and reduces efficiency and safety.",
+              "The Foreman acts as the bridge; without them, the Project Manager has to step down to supervise directly, distracting them from their own duties. Meanwhile, operatives might lack clear instruction or safety supervision, leading to mistakes."
             ],
-            "hint": "Step 1: The bad news (Notice). Step 2: The fix (Action). Step 3: The result (Compliance)."
+            "hint": "Think about the gap left in the middle of the hierarchy."
           }
         ]
       }
@@ -334,95 +321,90 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Review: Site Management (Previous Lesson)",
+        "title": "Foundation Check",
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "From the previous lesson: Which specific team is responsible for the overall daily coordination and safety of the entire site?",
+            "questionText": "What term is used to describe legislation that is mandatory and required by law?",
             "expectedAnswer": [
-              "Site management team",
-              "Management team",
-              "Site management"
+              "Statutory",
+              "Statutory legislation",
+              "Statute"
             ],
-            "hint": "They are the main leaders on site who everyone reports to.",
+            "hint": "It is a type of legislation identified in your previous lesson.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "From the previous lesson: What do we call the government laws (like the Health and Safety at Work Act) that a site MUST follow?",
+            "questionText": "Which group is responsible for the day-to-day coordination and oversight of roles on a technical site?",
             "expectedAnswer": [
-              "Statutory legislation",
-              "Legislation",
-              "Statutes",
-              "Regulations"
+              "Site management team",
+              "Site management",
+              "Management team"
             ],
-            "hint": "A formal word for laws passed by parliament.",
+            "hint": "Think of the team that manages the trade roles.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "From the previous lesson: Toolbox talks and induction briefings are examples of what site process?",
+            "questionText": "What is the general term for the various ways information is shared and exchanged between people on a site?",
             "expectedAnswer": [
+              "Communication methods",
               "Communication",
-              "Site communication",
-              "Communication methods"
+              "Methods of communication"
             ],
-            "hint": "The exchange of information between management and workers.",
+            "hint": "This includes verbal, written, or electronic exchange.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Review of Unit 210-1A (Site Management) to consolidate prerequisites."
+        "notes": "Foundation check before starting Site Management Roles"
       }
     }
   ],
   "targetAssessmentCriteria": [
-    "AC3"
+    "AC1",
+    "AC2"
   ],
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO1",
       "coveredAC": [
-        "AC3"
+        "AC1",
+        "AC2"
       ],
       "outOfScopeAC": [
-        "AC1",
-        "AC2",
+        "AC3",
         "AC4"
       ]
     },
     "scope": {
-      "inScope": "Identification and purpose of key site inspectors and visitors (AC3).",
-      "outOfScope": "Technical inspection procedures, enforcement protocols, and booking/scheduling workflows.",
-      "rationale": "Focuses on the foundational identification of visitor roles (AC3) distinct from management roles (AC1/AC2)."
+      "inScope": "Identification of site management roles (Contracts Manager, Project Manager) and reporting lines (Foreman, QS).",
+      "outOfScope": "Specific duties of site visitors (AC3) or detailed contract law.",
+      "rationale": "Focusing on the management hierarchy ensures learners understand who to report to before learning about external visitors."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
-      "noCalculations": true,
-      "specificScope": "Focus on role identification and purpose rather than inspection procedures"
+      "noCalculations": false,
+      "specificScope": "Focus on internal site hierarchy"
     },
     "misconceptions": [
       {
-        "misconception": "All site visitors have the same authority to stop work.",
-        "correction": "Only specific inspectors, such as those from the HSE, have the legal power to stop work via formal notices.",
-        "relatedAC": "AC3"
+        "misconception": "The Project Manager does the physical work.",
+        "correction": "The PM manages people and processes; they rarely use tools themselves.",
+        "relatedAC": "AC1"
       },
       {
-        "misconception": "Building Control is responsible for the quality of the paint finish.",
-        "correction": "Building Control focuses on safety and regulation Compliance, not cosmetic quality.",
-        "relatedAC": "AC3"
-      },
-      {
-        "misconception": "Remedial Action is just standard maintenance.",
-        "correction": "Remedial Action is specifically required to fix a legal non-compliance identified by an inspector.",
-        "relatedAC": "AC3"
+        "misconception": "You can report problems to anyone in a suit.",
+        "correction": "You must follow the chain of command to ensure the right person gets the information.",
+        "relatedAC": "AC2"
       }
     ]
   }
