@@ -1,14 +1,14 @@
 {
   "id": "210-1B",
-  "title": "210.1B — Site Management and Reporting Roles",
-  "description": "Learn about the hierarchy of a construction team, including the roles of the site management team and reporting lines.",
+  "title": "210.1B — Site Visitors and Inspectors",
+  "description": "Learn about Site Visitors and Inspectors in Communication 2365 Level 2",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Construction team members and roles",
+  "topic": "Site Visitors and Inspectors",
   "learningOutcomes": [
-    "Identify key roles of the site management team (AC1.1)",
-    "Identify key roles of individuals reporting to site management (AC1.2)",
-    "Explain the difference between strategic off-site management and operational on-site management"
+    "Identify common types of site visitors and their primary reasons for being on-site",
+    "Describe the specific roles and responsibilities of different regulatory inspectors",
+    "Distinguish between the remits of health and safety inspectors versus utility-specific inspectors"
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify key roles of the site management team (e.g., Contracts Manager, Project Manager)",
+            "text": "Identify common types of site visitors and their primary reasons for being on-site",
             "bloomLevel": "remember"
           },
           {
-            "text": "Identify key roles of individuals reporting to site management (e.g., Site Foreman, Quantity Surveyor)",
-            "bloomLevel": "remember"
-          },
-          {
-            "text": "Explain the reporting lines and chain of command on a technical site",
+            "text": "Describe the specific roles and responsibilities of different regulatory inspectors",
             "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between the remits of health and safety inspectors versus utility-specific inspectors",
+            "bloomLevel": "apply"
           }
         ]
       }
@@ -42,24 +42,29 @@
       "content": {
         "terms": [
           {
-            "term": "Contracts Manager",
-            "definition": "A senior manager who oversees multiple projects at a strategic level, focusing on client contracts, budgets, and schedules rather than daily site presence."
+            "term": "Statutory Inspector",
+            "definition": "An official with legal power to enter a site to enforce regulations, unlike a general visitor who needs permission.",
+            "anchor": "Example: An HSE inspector showing a warrant card to enter a locked plant room without an appointment."
           },
           {
-            "term": "Project Manager (PM)",
-            "definition": "The senior leader permanently based on a specific site, responsible for the day-to-day delivery, safety, and logistics of that single project."
+            "term": "Remit",
+            "definition": "The specific legal boundary of an inspector's authority, defining exactly what they can and cannot enforce.",
+            "anchor": "Example: A water inspector can check the main stopcock but cannot fine an electrician for not wearing a hard hat."
           },
           {
-            "term": "Site Foreman",
-            "definition": "A supervisor who directs the hands-on work of trade gangs, acting as the link between the management team and the operatives."
+            "term": "Building Control Officer",
+            "definition": "A regulator who ensures the permanent structure and systems meet national building regulations (e.g., fire safety, structural load).",
+            "anchor": "Example: An officer measuring the depth of thermal insulation to ensure it meets Part L requirements."
           },
           {
-            "term": "Quantity Surveyor (QS)",
-            "definition": "A professional responsible for managing costs, material orders, and financial contracts, ensuring the project stays within budget."
+            "term": "Health and Safety Executive (HSE) Inspector",
+            "definition": "A statutory officer who enforces laws regarding the safety and welfare of the workforce during construction.",
+            "anchor": "Example: An inspector issuing a Prohibition Notice because a trench lacks proper shoring support."
           },
           {
-            "term": "Chain of Command",
-            "definition": "The formal line of authority through which instructions pass down (from manager to worker) and information passes up (from worker to manager)."
+            "term": "Utility Inspector",
+            "definition": "A specialist who verifies that a specific service connection (gas, water, electric) is safe before connecting it to the public network.",
+            "anchor": "Example: An electrical engineer sealing the main intake fuse after verifying the meter tails are correct."
           }
         ]
       }
@@ -69,8 +74,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "The Site Management Team",
-        "content": "### In this lesson\nThis lesson covers the structure of a construction site team. You will learn who is in charge, who handles the money, and who you should talk to if you have a problem.\n\n*   Identify the **Contracts Manager** and **Project Manager**.\n*   Understand the difference between strategic (off-site) and operational (on-site) roles.\n*   Learn why the \"boss\" isn't always the person you see every day.\n\n**What this is**\nThe site management team is the group of professionals responsible for planning and running the project. This is split into two levels: **Strategic** (High-level planning) and **Operational** (Day-to-day running).\n\n1.  **Contracts Manager (Strategic/Off-site)**: This person is like the \"Regional Manager\" of a retail chain. They look after 3 or 4 different sites at once. They visit your site occasionally (e.g., once a week) to check if the project is making money and keeping the client happy. They do not manage the daily work.\n2.  **Project Manager (PM) (Operational/On-site)**: This person is like the \"Store Manager\". They are on your site every single day. They hold the keys, run the morning briefings, and are legally responsible for site safety and progress. If the crane is late or the site is messy, it is the PM's problem.\n\n**Why it matters**\nKnowing who does what prevents confusion. If you have a question about the daily work schedule, asking the visiting Contracts Manager is wrong—they won't know the details. You need the Project Manager. Conversely, if there is a major issue with the client's contract, the Project Manager will escalate it to the Contracts Manager.\n\n**Key facts / rules**\n*   **Contracts Manager**: Multi-site responsibility, focuses on budget and client relations.\n*   **Project Manager**: Single-site responsibility, focuses on safety, logistics, and hitting deadlines.\n*   **Site Agent**: On very large sites, a Site Agent supports the PM by managing specific sections of the work.\n\n**Micro-Scenario**\nImagine a football club. The **Contracts Manager** is the Club Owner/Board—they set the budget and hire the staff but don't play the game. The **Project Manager** is the Head Coach—they are on the sideline every match (day), making decisions to win that specific game.\n\n**Common mistakes**\nLearners often think the Contracts Manager is \"below\" the Project Manager because they aren't on site. In reality, the Contracts Manager is usually senior to the PM and manages the PM's performance.\n\nMisconceptions (targeted):\n*   Misconception: The Project Manager does the physical work. | Correction: The PM manages people and processes; they rarely use tools themselves. | AC: AC1.1\n*   Misconception: You can report problems to anyone in a suit. | Correction: You must follow the chain of command to ensure the right person gets the information. | AC: AC1.2"
+        "title": "Roles of Site Visitors",
+        "content": "### In this lesson\nYou will learn to identify the people entering a site and why they are there. This distinction is critical because some visitors (like clients) need permission to enter, while others (like statutory inspectors) have a legal right to enter.\n\n*   General Visitors vs. Statutory Inspectors.\n*   Logistics and Management roles.\n*   Legal Rights of Entry.\n\n**What this is**\nA **Site Visitor** is anyone not part of the permanent installation workforce. They fall into two main categories:\n1.  **General Visitors**: People who are invited or have business on-site (e.g., clients, architects, delivery drivers). They must have permission to enter.\n2.  **Statutory Inspectors**: Officials with legal authority (e.g., HSE, Building Control). They have a 'Right of Entry' and can access the site to enforce laws, often without an appointment.\n\n**Why it matters**\nSite security depends on knowing who has the right to be there. You can stop a delivery driver if they don't have the right paperwork, but you cannot legally stop an HSE inspector who shows their warrant card. Misidentifying an inspector can lead to legal penalties.\n\n**Key facts / rules**\n*   **Clients**: Visit to check progress against the contract (e.g., \"Is the lighting installed on schedule?\").\n*   **Architects/Designers**: Visit to verify technical compliance (e.g., \"Are the cable trays routed as per the drawing?\").\n*   **Logistics/Delivery**: Visit briefly to drop off materials (e.g., delivering a pallet of distribution boards).\n*   **Statutory Inspectors**: Visit to enforce the law. They do **not** need an invitation.\n\n**When to choose it**\nUse this distinction when someone arrives at the site gate. \n*   If a van arrives with **switchgear components**, they are a logistics visitor—direct them to the loading bay.\n*   If a person arrives with a **warrant card** to check trench safety, they are a statutory inspector—grant access immediately and notify management.\n\n**Common mistakes**\nLearners often think all inspectors are the same. A **Client Inspector** (checking quality) has no legal power to fine you, whereas a **Statutory Inspector** (enforcing law) does.\n\nMisconceptions (targeted):\n*   Misconception: All visitors have the right to walk anywhere on a site independently. | Correction: Most visitors must be escorted. Only Statutory Inspectors have broad rights to access hazardous areas for investigation. | AC: AC3\n*   Misconception: Delivery drivers are part of the workforce. | Correction: They are visitors because they do not perform installation work. | AC: AC3\n\n**Key Points**\n*   General visitors (clients, delivery) need permission.\n*   Statutory inspectors (HSE, Building Control) have legal power.\n*   Always verify the identity of anyone entering the site."
       }
     },
     {
@@ -78,61 +83,63 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Management Roles",
+        "title": "Check Your Understanding: Roles of Site Visitors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "Which management role is typically responsible for overseeing multiple projects at once and focuses on client contracts?",
+            "questionText": "What is the primary reason a client visits a technical site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Contracts Manager",
-              "Contracts mgr",
-              "Contract Manager"
+              "monitor progress against a contract",
+              "check progress",
+              "monitor timeline",
+              "verify completion"
             ],
-            "hint": "Think of the person who visits occasionally and deals with the business side."
+            "hint": "They are paying for the work and want to see if it is on schedule."
           },
           {
             "id": "210-1B-C1-L1-B",
-            "questionText": "Which manager is permanently based on a single site and is responsible for daily safety and delivery?",
+            "questionText": "For what purpose do delivery personnel briefly enter a site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Project Manager",
-              "PM",
-              "Site Project Manager"
+              "provide materials or equipment",
+              "deliver materials",
+              "drop off goods",
+              "logistics"
             ],
-            "hint": "This person is the daily leader on the site, often called the 'Captain of the ship'."
+            "hint": "They bring items like cable drums or switchgear but do not install them."
           },
           {
             "id": "210-1B-C1-L1-C",
-            "questionText": "Is the Project Manager's role primarily 'strategic' (off-site planning) or 'operational' (on-site running)?",
+            "questionText": "What specific right does a Statutory Inspector have regarding site entry that a general visitor does not?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Operational",
-              "Operational role",
-              "On-site running"
+              "enter at any reasonable time",
+              "legal right to enter",
+              "enter without appointment",
+              "statutory right of entry"
             ],
-            "hint": "They deal with the day-to-day operations of the site."
+            "hint": "They do not need to ask for permission if they are enforcing the law."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Explain why a large construction company needs both a Contracts Manager and a Project Manager. Why can't one person do both roles?",
+            "questionText": "Compare a delivery driver delivering a transformer and an HSE inspector checking the crane used to lift it. How do their rights to enter the site differ?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The Project Manager needs to be on-site daily to manage safety and logistics.",
-              "The Contracts Manager needs to oversee the business aspects of multiple sites.",
-              "One person cannot physically be in multiple places at once nor handle the workload of daily site running plus high-level client negotiation."
+              "Delivery driver is a general visitor requiring permission/invitation.",
+              "HSE inspector is a statutory official with legal right of entry.",
+              "Driver can be turned away; Inspector cannot be legally refused reasonable entry."
             ],
             "expectedAnswer": [
-              "A Project Manager is needed on-site every day to ensure safety and progress, while a Contracts Manager looks after the budgets and contracts for multiple sites. One person cannot do both because they cannot be on a specific site full-time while also travelling to manage other projects and clients.",
-              "The roles are split because the Project Manager focuses on the physical build and safety of one site, while the Contracts Manager focuses on the financial success of several sites. Doing both would be too much work and physically impossible."
+              "The delivery driver is a general visitor who needs permission to enter; they can be turned away if the site is not ready. The HSE inspector is a statutory official who has a legal right to enter to check safety; they cannot be refused entry without legal consequences."
             ],
-            "hint": "Consider the physical location requirements: one needs to be everywhere, the other needs to be right here."
+            "hint": "One is there for a commercial transaction, the other is there to enforce the law."
           }
         ]
       }
@@ -142,8 +149,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Reporting Lines and Supervision",
-        "content": "### In this lesson\nYou will learn about the people who report to the site management team. These are the individuals who bridge the gap between the managers and the trade operatives.\n\n*   Identify the role of the **Site Foreman** and **Quantity Surveyor (QS)**.\n*   Understand the **Chain of Command**.\n*   Learn who to report to for materials, safety, or daily tasks.\n\n**What this is**\nThe Project Manager cannot speak to every single worker individually. Instead, they use a **Chain of Command**. This is a structure where instructions flow down and information flows up.\n\n1.  **Site Foreman / Supervisor**: This is the direct supervisor of the workforce. If you are a plumber or electrician, the Foreman is your boss. They assign your daily tasks, check you are wearing PPE, and solve immediate problems. They report to the Project Manager.\n2.  **Quantity Surveyor (QS)**: The \"Accountant\" of the site. They count materials (quantities) and manage payments. If you need to order 10,000 bricks, the QS checks if it's in the budget. They report to the PM regarding site costs but often have a line to the Commercial team.\n3.  **Ganger**: On larger sites, a \"gang\" of workers (e.g., bricklayers) has a lead hand called a Ganger. The Ganger reports to the Foreman.\n\n**Why it matters**\nFollowing the chain of command is critical for safety and order. If you have a safety concern, you tell your Foreman immediately. If you bypass them and go straight to the Contracts Manager, the immediate hazard might not get fixed quickly, and you undermine the site team's authority.\n\n**Key facts / rules**\n*   **Operative reports to -> Foreman/Ganger**.\n*   **Foreman reports to -> Project Manager**.\n*   **Project Manager reports to -> Contracts Manager**.\n*   **Quantity Surveyor** handles costs, measurements, and payments.\n*   **Admin/Site Secretary** handles paperwork, inductions, and filing.\n\n**Scenario**\nYou are a carpenter. You notice you are running out of timber. You do not call the timber yard yourself, and you do not call the Project Manager. You tell your **Foreman**. The Foreman confirms the need and asks the **Quantity Surveyor** or **Site Agent** to place the order. This ensures the correct amount is ordered and paid for correctly.\n\n**Common mistakes**\nConfusing the **Foreman** with the **Project Manager**. The Foreman is usually outside with the team all day, directing work. The PM is often in the office planning the next week's work and managing legal duties."
+        "title": "Specialist Regulatory Inspectors",
+        "content": "### In this lesson\nYou will learn to distinguish between the three main types of regulatory inspectors: Building Control, HSE, and Utility Inspectors. Each has a different **Remit** (scope of power).\n\n*   Building Control vs. HSE vs. Utility.\n*   Understanding 'Remit'.\n*   Who checks the structure vs. who checks the worker.\n\n**What this is**\nInspectors are not all the same. Their **Remit** defines what they are allowed to inspect and enforce.\n\n1.  **Building Control Officer**: Cares about the **Building**. They check if the permanent installation meets regulations (e.g., \"Is this fire stopping thick enough?\" or \"Does this beam support the load?\").\n2.  **HSE Inspector**: Cares about the **People/Workforce**. They check if the work is being done safely (e.g., \"Are those workers wearing hard hats?\" or \"Is that scaffolding safe?\").\n3.  **Utility Inspector**: Cares about the **Network**. They check specific connections before they go live (e.g., \"Is the main earthing conductor sized correctly before we connect the meter?\").\n\n**Why it matters**\nIf you call the wrong inspector, you waste time. If you have a dangerous trench, you report it to the HSE, not Building Control. If you need your electricity meter connected, you need a Utility Inspector, not the HSE.\n\n**Key facts / rules**\n*   **Building Control**: Checks compliance with Building Regulations (Part P, Part L, etc.). Focus: The finished product.\n*   **HSE**: Checks compliance with Health & Safety at Work Act. Focus: The working process.\n*   **Utility**: Checks compliance with network standards (ESQCR, Water Regs). Focus: The connection point.\n\n**When to choose it**\nImagine a scenario: An electrician is installing a fuse board while standing on a wobbly chair.\n*   **Building Control** looks at the fuse board: \"Is it installed at the correct height? Yes. Pass.\"\n*   **HSE** looks at the wobbly chair: \"Is the worker safe? No. Fail.\"\n\n**Common mistakes**\nConfusing Building Control with HSE. Remember: Building Control checks the *thing* you built; HSE checks *how* you are building it.\n\nMisconceptions (targeted):\n*   Misconception: A Utility Inspector can shut down a site for general safety violations. | Correction: Their remit is limited to their specific service (e.g., the gas pipe). They cannot fine you for a messy site unless it affects their pipe. | AC: AC3\n*   Misconception: Building Control checks if the finish looks nice. | Correction: They check for technical compliance (safety, efficiency), not aesthetics. | AC: AC3\n\n**Key Points**\n*   **Remit** = The limit of authority.\n*   HSE = Safety of people.\n*   Building Control = Compliance of structure.\n*   Utility = Integrity of network connection."
       }
     },
     {
@@ -151,62 +158,63 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Reporting Lines",
+        "title": "Check Your Understanding: Specialist Regulatory Inspectors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "Who does a trade operative (e.g., electrician, bricklayer) typically report to directly for daily tasks?",
+            "questionText": "What is the main responsibility of a Building Control Officer?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Site Foreman",
-              "Foreman",
-              "Supervisor",
-              "Ganger"
+              "comply with national building standards",
+              "ensure building standards compliance",
+              "verify building regulations",
+              "check structural compliance"
             ],
-            "hint": "This is the person who directly supervises the workforce."
+            "hint": "They focus on the permanent structure and whether it meets legislation like Part P or Part B."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "Which role is responsible for managing costs, measuring materials, and handling payments?",
+            "questionText": "What is the primary function of an HSE Inspector when visiting a site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Quantity Surveyor",
-              "QS",
-              "The QS"
+              "enforce health and safety compliance",
+              "investigate safety of workers",
+              "enforce welfare legislation",
+              "workforce safety"
             ],
-            "hint": "Think of the 'accountant' of the construction site."
+            "hint": "They are concerned with the welfare of the people working, not the building itself."
           },
           {
             "id": "210-1B-C2-L1-C",
-            "questionText": "What is the term for the formal line of authority where instructions flow down from manager to worker?",
+            "questionText": "What defines the limit of a Utility Inspector's authority on a site?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Chain of Command",
-              "The chain of command",
-              "Reporting line"
+              "compliance of their specific service",
+              "specific service remit",
+              "technical compliance of service",
+              "network connection standards"
             ],
-            "hint": "It starts with 'Chain of...'."
+            "hint": "Their power stops at the boundary of their specific network (e.g., water or gas)."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "Why is it important to follow the chain of command when reporting a non-emergency issue, rather than going straight to the Project Manager?",
+            "questionText": "An electrician is installing a new distribution board. The board is technically perfect, but the electrician is not wearing safety boots. Which inspector would have an issue with this, and which would not? Explain why based on 'remit'.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The Project Manager focuses on the whole site and may be too busy for minor issues.",
-              "The Foreman is best placed to solve immediate daily problems quickly.",
-              "Bypassing the chain undermines the Foreman's authority and causes confusion."
+              "HSE inspector would have an issue because their remit is worker safety (PPE).",
+              "Building Control would not have an issue because their remit is the technical standard of the installation.",
+              "The remit distinguishes between the process (safety) and the product (compliance)."
             ],
             "expectedAnswer": [
-              "Following the chain of command ensures that issues are handled by the person most able to fix them quickly, like the Foreman. If everyone went straight to the Project Manager, the PM would be overwhelmed and unable to manage the overall site safety and progress.",
-              "It keeps communication organized. The Foreman handles daily tasks and minor issues, allowing the Project Manager to focus on major site responsibilities. Skipping the Foreman can lead to delays and confusion."
+              "The HSE inspector would have an issue because their remit covers worker safety and PPE. The Building Control Officer would not have an issue because their remit covers the technical compliance of the installation itself, which is perfect in this scenario."
             ],
-            "hint": "Think about efficiency—what would happen if 50 workers all tried to talk to the Project Manager at the same time?"
+            "hint": "One checks the worker's safety, the other checks the installation's quality."
           }
         ]
       }
@@ -220,52 +228,58 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "A Contracts Manager oversees 4 different construction sites. Each site has exactly 1 Project Manager. How many Project Managers report to this Contracts Manager?",
+            "questionText": "A site log shows three people arrived today: a driver delivering cable tray, an architect checking the lighting layout, and an HSE officer investigating a fall. How many of these individuals are classified as Statutory Inspectors?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "4"
+              "1"
             ],
-            "hint": "One PM per site."
+            "hint": "Only the individual with legal authority to enforce legislation (HSE) counts. The others are general visitors."
           },
           {
             "id": "210-1B-P2",
-            "questionText": "You are working on site and need to check if the correct amount of pipe has been delivered for the budget. Which specific role should you consult?",
+            "questionText": "What must be true about an individual's role for them to be classified as a 'visitor' rather than a member of the workforce?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Quantity Surveyor",
-              "QS"
+              "not permanent staff",
+              "not part of workforce",
+              "non-permanent staff",
+              "not part of the core team"
             ],
-            "hint": "This person manages the quantities and costs."
+            "hint": "Think about whether they are employed to do the daily installation work or just visiting."
           },
           {
             "id": "210-1B-P3",
-            "questionText": "A visitor arrives in a suit. They do not work on site daily but are asking the Project Manager about the overall profit margin of the project. Who is this most likely to be?",
+            "questionText": "A Water Board inspector notices a trip hazard in the electrical switchroom. Why can they not issue a fine for this specific hazard?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Contracts Manager",
-              "Commercial Manager"
+              "outside their remit",
+              "beyond their remit",
+              "not their remit",
+              "outside their authority"
             ],
-            "hint": "The senior manager responsible for the business/contract side."
+            "hint": "Their legal power is limited to the water network, not general site safety."
           },
           {
             "id": "210-1B-P4",
-            "questionText": "A Site Foreman supervises 3 separate gangs. Each gang consists of 5 operatives. How many total operatives are under the Foreman's supervision?",
-            "answerType": "numeric",
+            "questionText": "A specialist arrives to test the seal on a new gas main before it is connected to the street supply. Which specific type of inspector is this?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "15"
+              "Utility Inspector",
+              "Utility",
+              "Gas Inspector"
             ],
-            "hint": "Multiply the number of gangs by the number of workers in each gang."
+            "hint": "They are verifying a specific service connection to a public network."
           },
           {
             "id": "210-1B-P5",
-            "questionText": "Who has the ultimate legal responsibility for health and safety on a specific site on a day-to-day basis?",
+            "questionText": "A project manager needs to sign off that the fire-rated plasterboard used in a corridor meets Part B regulations. Which official verifies this?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Project Manager",
-              "PM",
-              "Site Manager"
+              "Building Control Officer",
+              "Building Control",
+              "Building Inspector"
             ],
-            "hint": "The person in charge of the site daily."
+            "hint": "This official focuses on the building's compliance with national regulations."
           }
         ]
       }
@@ -281,37 +295,35 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "Describe the relationship between the Contracts Manager, Project Manager, and Site Foreman. How does an instruction about a budget cut flow down this chain? (2-3 sentences)",
+            "questionText": "Explain the difference between a 'General Visitor' and a 'Statutory Inspector' in terms of access rights. Why is it important for a site supervisor to understand the specific 'remit' of an inspector like a Utility Engineer vs an HSE Officer? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Contracts Manager decides the budget cut (Strategic).",
-              "Communicates it to the Project Manager (Operational lead).",
-              "PM instructs the Foreman to reduce waste or hours (Direct supervision).",
-              "Foreman ensures operatives follow the new rule."
+              "General visitors need permission; Statutory inspectors have a legal right of entry.",
+              "Remit defines the boundary of authority (e.g., specific service vs general safety).",
+              "Understanding remit prevents unauthorized access to unrelated areas and ensures the right person deals with the right issue."
             ],
             "expectedAnswer": [
-              "The Contracts Manager decides on the budget cut and informs the Project Manager. The Project Manager then plans how to save money on site and instructs the Site Foreman to carry out these changes with the workforce. This ensures the strategic decision is turned into practical action on the ground.",
-              "The instruction flows from the top down: The Contracts Manager sets the new budget limit, the Project Manager decides what work to adjust, and the Site Foreman tells the workers what to do differently. Each role translates the instruction for the level below them."
+              "General visitors require permission to enter, whereas Statutory Inspectors have a legal right of entry to enforce laws. It is important to understand the remit because a Utility Engineer only has authority over their specific service (like power or water), while an HSE Officer has authority over general workforce safety. Knowing this ensures the supervisor grants the correct level of access and directs the inspector to the relevant area."
             ],
-            "hint": "Start at the top (Strategic) and move down to the bottom (Workforce)."
+            "hint": "Think about who needs an invitation and who has a warrant, and what specific part of the site they are allowed to control."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "Imagine a scenario where a Site Foreman is absent. Why might this cause problems for both the Project Manager and the Operatives? Explain the impact on the 'Chain of Command'.",
+            "questionText": "You are the Site Manager. A Building Control Officer arrives to check the steel framework, and an HSE Inspector arrives to check scaffolding safety. Propose a brief protocol for handling both arrivals to ensure compliance and security.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Missing link in the chain.",
-              "PM becomes overwhelmed with minor questions from operatives.",
-              "Operatives lack direction and supervision.",
-              "Safety checks might be missed."
+              "Verify identities/warrant cards immediately.",
+              "Grant access based on legal right (Statutory).",
+              "Direct Building Control to the structural area (steelwork).",
+              "Direct HSE to the working area (scaffolding).",
+              "Ensure both are inducted/escorted as per site safety rules (even if they have right of entry, safety is paramount)."
             ],
             "expectedAnswer": [
-              "Without the Foreman, the link between management and workers is broken. The Operatives would not have anyone to assign daily tasks or check their work, and the Project Manager would be overwhelmed by minor questions that the Foreman usually handles. This disrupts the chain of command and reduces efficiency and safety.",
-              "The Foreman acts as the bridge; without them, the Project Manager has to step down to supervise directly, distracting them from their own duties. Meanwhile, operatives might lack clear instruction or safety supervision, leading to mistakes."
+              "1. Verify the identity and warrant cards of both inspectors immediately.\n2. Grant access as both are Statutory Inspectors with legal rights of entry.\n3. Direct the Building Control Officer to the structural steelwork area to inspect the permanent works.\n4. Direct the HSE Inspector to the scaffolding area to inspect the safety of the working conditions.\n5. Ensure both are accompanied to ensure site safety protocols are maintained."
             ],
-            "hint": "Think about the gap left in the middle of the hierarchy."
+            "hint": "Address verification, access granting, and directing them to their specific areas of interest."
           }
         ]
       }
@@ -325,45 +337,44 @@
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "What term is used to describe legislation that is mandatory and required by law?",
+            "questionText": "Which group is responsible for the overall daily supervision and management of a technical site?",
             "expectedAnswer": [
-              "Statutory",
-              "Statutory legislation",
-              "Statute"
+              "site management",
+              "site management team",
+              "management"
             ],
-            "hint": "It is a type of legislation identified in your previous lesson.",
+            "hint": "Think about the team that oversees all roles and operations on site.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "Which group is responsible for the day-to-day coordination and oversight of roles on a technical site?",
+            "questionText": "What term is used for the formal laws and mandatory rules that a site must follow?",
             "expectedAnswer": [
-              "Site management team",
-              "Site management",
-              "Management team"
+              "statutory legislation",
+              "legislation",
+              "statutes"
             ],
-            "hint": "Think of the team that manages the trade roles.",
+            "hint": "This refers to the legal requirements (Acts and Regulations).",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "What is the general term for the various ways information is shared and exchanged between people on a site?",
+            "questionText": "What is the term for the different ways that information and instructions are shared between people on a site?",
             "expectedAnswer": [
-              "Communication methods",
-              "Communication",
-              "Methods of communication"
+              "communication methods",
+              "communication",
+              "methods of communication"
             ],
-            "hint": "This includes verbal, written, or electronic exchange.",
+            "hint": "This relates to how teams exchange information effectively (e.g., radios, email, verbal).",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check before starting Site Management Roles"
+        "notes": "Foundation check regarding Site Management (AC1/AC2) before continuing with Visitors."
       }
     }
   ],
   "targetAssessmentCriteria": [
-    "AC1",
-    "AC2"
+    "AC3"
   ],
   "metadata": {
     "created": "2026-02-16",
@@ -375,36 +386,42 @@
       "unit": "210",
       "learningOutcome": "LO1",
       "coveredAC": [
-        "AC1",
-        "AC2"
+        "AC3"
       ],
       "outOfScopeAC": [
-        "AC3",
-        "AC4"
+        "AC1",
+        "AC2",
+        "AC4",
+        "AC5"
       ]
     },
     "scope": {
-      "inScope": "Identification of site management roles (Contracts Manager, Project Manager) and reporting lines (Foreman, QS).",
-      "outOfScope": "Specific duties of site visitors (AC3) or detailed contract law.",
-      "rationale": "Focusing on the management hierarchy ensures learners understand who to report to before learning about external visitors."
+      "inScope": "Identification and purpose of key site visitors and specific regulatory inspectors (Building Control, HSE, Utility).",
+      "outOfScope": "Communication methods with visitors, legal enforcement procedures, or site induction protocols.",
+      "rationale": "Focusing on role recognition establishes the necessary context before students learn how to interact with or report to these individuals."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
-      "noCalculations": false,
-      "specificScope": "Focus on internal site hierarchy"
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on identifying roles and functions of inspectors listed in the must-have topics."
     },
     "misconceptions": [
       {
-        "misconception": "The Project Manager does the physical work.",
-        "correction": "The PM manages people and processes; they rarely use tools themselves.",
-        "relatedAC": "AC1"
+        "misconception": "All visitors have the right to walk anywhere on a site independently.",
+        "correction": "Most visitors must be escorted and are restricted to specific areas for safety reasons.",
+        "relatedAC": "AC3"
       },
       {
-        "misconception": "You can report problems to anyone in a suit.",
-        "correction": "You must follow the chain of command to ensure the right person gets the information.",
-        "relatedAC": "AC2"
+        "misconception": "A delivery driver is considered part of the site workforce.",
+        "correction": "Delivery drivers are classified as visitors because they do not perform technical installation work on the site.",
+        "relatedAC": "AC3"
+      },
+      {
+        "misconception": "A Utility Inspector can shut down a site for general safety violations.",
+        "correction": "A Utility Inspector’s remit is usually limited to the safety and technical compliance of their specific service (e.g., water or gas).",
+        "relatedAC": "AC3"
       }
     ]
   }
