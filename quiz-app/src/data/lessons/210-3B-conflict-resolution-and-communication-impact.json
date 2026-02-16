@@ -1,14 +1,15 @@
 {
   "id": "210-3B",
   "title": "210.3B — Conflict Resolution and Communication Impact",
-  "description": "Learn about Conflict Resolution and Communication Impact in Communication 2365 Level 2",
+  "description": "Learn about Conflict Resolution and Communication Impact in Building Services Engineering.",
   "layout": "linear-flow",
   "unit": "Unit 210",
   "topic": "Conflict Resolution and Communication Impact",
   "learningOutcomes": [
-    "Identify the negative effects of poor communication on internal and external organizational relationships.",
-    "Explain how communication breakdowns between operatives and management influence workplace culture.",
-    "Describe the appropriate professional actions to take when resolving conflicts with customers, co-workers, and supervisors."
+    "Identify common causes of conflict between stakeholders in a technical environment",
+    "Describe appropriate actions to resolve conflicts between operatives, supervisors, and customers (AC 3.3)",
+    "Explain the negative effects of poor communication on organizational efficiency and reputation (AC 3.4)",
+    "Select the correct communication approach to prevent escalation in a workplace scenario"
   ],
   "prerequisites": [
     "210-3A"
@@ -21,16 +22,20 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the negative effects of poor communication on internal and external organizational relationships.",
+            "text": "Identify common causes of conflict between stakeholders in a technical environment",
             "bloomLevel": "remember"
           },
           {
-            "text": "Explain how communication breakdowns between operatives and management influence workplace culture.",
+            "text": "Describe appropriate actions to resolve conflicts between operatives, supervisors, and customers (AC 3.3)",
             "bloomLevel": "understand"
           },
           {
-            "text": "Describe the appropriate professional actions to take when resolving conflicts with customers, co-workers, and supervisors.",
+            "text": "Explain the negative effects of poor communication on organizational efficiency and reputation (AC 3.4)",
             "bloomLevel": "understand"
+          },
+          {
+            "text": "Select the correct communication approach to prevent escalation in a workplace scenario",
+            "bloomLevel": "apply"
           }
         ]
       }
@@ -43,48 +48,25 @@
         "terms": [
           {
             "term": "Stakeholder",
-            "definition": "Any individual or group, such as a customer, manager, or colleague, who has a direct interest in or is affected by the communication and actions within a technical project."
+            "definition": "Any person or group who cares about the project, such as the client, the site manager, or other tradespeople."
           },
           {
-            "term": "Communication Breakdown",
-            "definition": "A failure to exchange information effectively between parties, resulting in operational errors (wrong actions) rather than just a simple lack of data."
-          },
-          {
-            "term": "Workplace Culture",
-            "definition": "The collective values and communication habits of an organization that determine how professional relationships are managed and how conflicts are approached."
+            "term": "Active Listening",
+            "definition": "A technique where you focus on the speaker and repeat their message back to them to prove you understood it correctly."
           },
           {
             "term": "Conflict Resolution",
-            "definition": "The professional process of settling disagreements to restore productivity, which focuses on finding a solution rather than winning an argument."
+            "definition": "The professional process of settling a disagreement so that work can continue safely and correctly."
           },
           {
             "term": "Escalation",
-            "definition": "The formal procedure of referring a dispute to a higher authority (like a supervisor), used only when a direct resolution cannot be achieved or safety is at risk."
+            "definition": "When a dispute gets more serious or is passed up to a higher manager because it cannot be solved by the people involved."
           },
           {
-            "term": "Organizational Reputation",
-            "definition": "The public image of a company's professionalism and reliability, which is directly impacted by how effectively staff communicate with customers and internal teams."
+            "term": "Organizational Impact",
+            "definition": "The negative effect that bad communication has on a company's money, time (efficiency), and good name (reputation)."
           }
         ]
-      }
-    },
-    {
-      "id": "210-3B-diagram",
-      "type": "diagram",
-      "order": 3,
-      "content": {
-        "title": "Conflict Resolution and Communication Impact Diagram",
-        "description": "Visual representation of Conflict Resolution and Communication Impact",
-        "videoUrl": "",
-        "diagramType": "concept",
-        "elementIds": [
-          "internal-stakeholder",
-          "external-stakeholder",
-          "communication-channel",
-          "feedback-loop",
-          "resolution-pathway"
-        ],
-        "placeholderText": "A flow diagram showing an internal-stakeholder (like an operative) connected to an external-stakeholder (customer) via a communication-channel. A feedback-loop should wrap around these two to show continuous information exchange. A separate branch should show a resolution-pathway leading away from a 'conflict' node back into the main communication-channel to represent the restoration of productivity."
       }
     },
     {
@@ -92,8 +74,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Organizational Impact of Communication",
-        "content": "### In this lesson\nYou will learn to identify how communication quality influences the success and stability of a technical organization. This applies to every interaction between team members, supervisors, and external clients. \n\n*   The link between internal clarity and external reputation.\n*   How communication breakdowns degrade workplace culture.\n*   The specific effects of poor information flow on project stakeholders.\n\n**What this is**\nIn a technical environment, communication is the mechanism that aligns different people toward a single goal. Every **Stakeholder**—whether they are a client paying for a service or a manager overseeing a site—relies on accurate data to make decisions. When this flow is interrupted, we experience a **Communication Breakdown**. This is not just a missing email; it is a systemic failure where the wrong actions are taken because the right information didn't reach the right person. This directly influences the **Workplace Culture**, which is the collective atmosphere and set of habits that dictate how a team works together. If people stop sharing information, the culture becomes one of suspicion rather than collaboration. Eventually, these internal issues leak out, damaging the **Organizational Reputation**, which is the level of trust the public and clients have in the company’s ability to deliver professional results.\n\n**Why it matters**\nPoor communication is rarely contained within one department. If an operative fails to inform a supervisor of a delay, the supervisor cannot update the customer. This leads to a loss of trust from external **Stakeholders**. Internally, a recurring **Communication Breakdown** creates a toxic **Workplace Culture** where staff feel unsupported or blamed for errors they didn't cause. This reduces productivity and increases staff turnover. Maintaining a high **Organizational Reputation** is essential for securing future contracts; a single poorly managed interaction can lead to a lasting negative image that is difficult to correct.\n\n**Key facts / rules**\n*   Communication must be bidirectional (upward to management and downward to operatives).\n*   External stakeholders judge an entire company based on the communication of a single operative.\n*   Workplace culture is built on consistent, transparent information sharing.\n*   A breakdown in communication often leads to physical operational errors or safety risks, not just administrative ones.\n*   Management relies on operatives for accurate site data to manage resources effectively.\n*   The reputation of an organization is a commercial asset that must be protected by every employee.\n\n**How to recognise it**\nYou can recognise a **Communication Breakdown** by looking for \"symptoms\" in the workflow. For example, if two different teams arrive to perform the same task, or if a project is missing a component that everyone assumed someone else had ordered, a breakdown has occurred. You can identify the impact on **Workplace Culture** by observing how team members interact; a healthy culture involves open questioning, whereas a damaged one involves \"siloed\" working where information is hoarded. In the provided diagram, you can see how the communication-channel acts as the bridge between the internal-stakeholder and the external-stakeholder; if this bridge is fractured, the feedback-loop fails. \n\n**Concrete Anchor:** Think of communication as the nervous system of a human body. If the nerves (communication channels) in the hand are damaged, the brain (management) won't know the hand is touching a hot stove. The injury that follows is an operational error caused by a lack of internal signalling.\n\n**Micro-scenario:** Consider a project where an operative reports a 10% deviation in material quality immediately versus a project where the deviation is hidden until completion. In the first case, the **Organizational Reputation** is saved through honesty; in the second, the company faces a total rebuild and a lost client.\n\n**Common mistakes**\nLearners often confuse a **Communication Breakdown** with a simple lack of data; a breakdown is specifically a failure in the *exchange* process where information exists but does not reach the necessary **Stakeholder**, causing an operational error.\n\nMisconceptions (targeted):\n*   Misconception: Communication only affects the people talking. | Correction: Poor communication ripples outward, eventually impacting the **Organizational Reputation** and external clients. | AC: AC4\n*   Misconception: Management is solely responsible for workplace culture. | Correction: **Workplace Culture** is shaped by the communication habits of every operative and supervisor combined. | AC: AC4\n\n**Key Points**\n*   Effective communication protects the company's public image.\n*   Internal breakdowns lead to external failures.\n*   Every employee is a representative of the organization's reputation.\n*   Culture is built on the transparency of information exchange.\n\n**Quick recap**\nPoor communication triggers a chain reaction. It starts as a **Communication Breakdown** between internal staff, which sours the **Workplace Culture**, and eventually results in a damaged **Organizational Reputation** when external **Stakeholders** receive poor service or incorrect information.\n\n### Coming Up Next\nNow that we understand the impact of communication, we will look at the specific professional actions required to resolve conflicts when they arise."
+        "title": "Handling Workplace Conflicts (AC 3.3)",
+        "content": "### In this lesson\nYou will learn how to handle disagreements on a job site professionally. This covers AC 3.3: Actions to deal with conflicts.\n\n**What is Conflict Resolution?**\n**Conflict Resolution** is the act of settling a dispute so that work can proceed. On a construction site, conflicts often happen when two trades need the same space (e.g., a plumber and an electrician both need a wall cavity) or when instructions are unclear.\n\nThink of a conflict like a **tripped circuit breaker**. The flow of work stops. You cannot just force the breaker back up (argue louder); you must find the fault (the root cause) and fix it safely so power (work) can flow again.\n\n**Actions to Resolve Conflict**\nThe action you take depends on who the conflict is with:\n\n1.  **With Co-workers (Other Trades):**\n    *   **Action:** Talk privately and calmly. Use **Active Listening** to understand their schedule.\n    *   *Example:* An electrician and a plasterer both want to work in the hallway. Instead of arguing, they agree that the electrician will run cables first, and the plasterer will follow in 30 minutes.\n\n2.  **With Supervisors:**\n    *   **Action:** Ask for clarification if instructions are confusing. Focus on regulations and safety, not personal opinion.\n    *   *Example:* A supervisor asks you to cut a beam. You explain that cutting it violates building regulations. You resolve this by showing the regulation, not by getting angry.\n\n3.  **With Customers:**\n    *   **Action:** Listen to their concern without interrupting. Apologize for any misunderstanding, then explain the technical reasons simply.\n    *   *Example:* A customer is angry about dust. You listen, apologize, and explain that chasing walls creates dust, but you will clean it up immediately after the task.\n\n**Preventing Escalation**\n**Escalation** happens when a small problem becomes a big argument or involves senior management. You want to prevent this. The best tool is **Active Listening**: looking at the speaker, nodding, and saying, \"So, what you are saying is...\" to confirm you understand. This lowers the temperature of the conversation.\n\n**Key Actions Summary**\n*   **Identify the cause:** Is it lack of space, unclear instructions, or a personality clash?\n*   **Use Active Listening:** Prove you are listening, don't just wait for your turn to speak.\n*   **Focus on facts:** Discuss the work/regulations, not the person.\n*   **Solve locally:** Try to fix it with the person before calling a manager (Escalation)."
       }
     },
     {
@@ -101,60 +83,65 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Organizational Impact of Communication",
+        "title": "Check Your Understanding: Conflict Actions",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C1-L1-A",
-            "questionText": "What acts as the bridge between internal and external stakeholders in the provided diagram?",
+            "questionText": "What is the primary communication tool used to de-escalate a heated situation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "communication-channel",
-              "communication channel"
+              "Active Listening",
+              "active listening",
+              "listening actively"
             ],
-            "hint": "Look for the specific component that connects the two types of stakeholders in the diagram text."
+            "hint": "This involves repeating back what the other person said to show you understood."
           },
           {
             "id": "210-3B-C1-L1-B",
-            "questionText": "What is required to build a workplace culture?",
+            "questionText": "If you have a disagreement with a customer, what is the appropriate professional action?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "consistent transparent information sharing",
-              "transparent information sharing",
-              "information sharing"
+              "listen and explain calmly",
+              "active listening",
+              "calm explanation",
+              "listen without interrupting",
+              "listen and explain"
             ],
-            "hint": "Culture is built on how information is handled between team members."
+            "hint": "You should hear their concerns first, then explain the technical reasons without arguing."
           },
           {
             "id": "210-3B-C1-L1-C",
-            "questionText": "Every employee must protect the organization's reputation because it is what type of asset?",
+            "questionText": "What does 'Escalation' mean in a conflict context?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "commercial asset",
-              "commercial"
+              "moving the dispute to a higher authority",
+              "involving management",
+              "increasing the intensity",
+              "passing it to a supervisor"
             ],
-            "hint": "Consider the financial and business value of how the company is seen by the public."
+            "hint": "This happens when you cannot solve the problem yourself and need a manager."
           },
           {
             "id": "210-3B-C1-L2",
-            "questionText": "Using your answers to Q1 (communication-channels), Q2 (workplace culture), and Q3 (commercial assets), explain how these facts connect. Why does the flow of information impact the company's commercial success?",
+            "questionText": "Why is it important to identify the root cause (e.g., unclear instructions) before trying to resolve a conflict?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Communication channels bridge the gap between internal staff and external clients",
-              "The effectiveness of these channels depends on a culture of transparent information sharing",
-              "Failures in internal culture lead to external reputational damage",
-              "Protecting the reputation as a commercial asset requires healthy internal communication habits"
+              "Allows you to choose the right solution (e.g., asking for clarification vs. negotiating space)",
+              "Prevents the argument from becoming personal",
+              "Helps resolve the issue quickly without needing escalation",
+              "Ensures the technical work can continue safely"
             ],
             "expectedAnswer": [
-              "Communication channels bridge the gap between internal and external stakeholders, relying on a culture of transparent information sharing to work correctly; if this internal culture fails, the organization's reputation as a commercial asset is damaged.",
-              "The flow of information impacts success because communication channels act as a bridge to clients; this bridge is supported by a workplace culture of sharing, which ultimately protects the company's reputation and commercial value."
+              "Identifying the root cause allows you to fix the actual problem rather than just arguing. For example, if the cause is unclear instructions, the fix is to ask the supervisor for clarity. If you don't know the cause, you cannot solve the conflict effectively, which might lead to unnecessary escalation.",
+              "Knowing the cause helps you choose the right action. If the conflict is about space, you negotiate a schedule. If it is about safety, you check the regulations. This keeps the focus on the work and prevents the dispute from getting personal."
             ],
-            "hint": "Think about how the internal habits of a team eventually show up in the service provided to external clients."
+            "hint": "Think about the 'circuit breaker' analogy: you need to find the fault to reset the power."
           }
         ]
       }
@@ -164,8 +151,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Conflict Resolution Actions",
-        "content": "### In this lesson\nYou will learn the professional procedures for managing and settling disputes in a technical workplace. This ensures that disagreements do not hinder productivity or damage professional relationships.\n\n*   The steps of the **Conflict Resolution** process.\n*   When and how to use the **Escalation** procedure.\n*   Specific actions for dealing with **Customers** versus co-workers.\n\n**What this is**\n**Conflict Resolution** is a structured, professional approach to settling disagreements. In a technical environment, conflicts often arise over resource allocation, technical methods, or scheduling. Instead of letting these grow into personal arguments, a professional uses specific actions to find a middle ground. If a dispute cannot be settled between the people involved, the process of **Escalation** is used. This is a formal step where the matter is moved to a higher level of authority, such as a senior manager or a specialized department. This is not a sign of weakness; it is a procedural tool to ensure that a project continues to move forward without compromising the **Workplace Culture** or safety standards.\n\n**Why it matters**\nUnresolved conflict acts like friction in a machine; it creates heat and eventually causes a breakdown. If an operative and a supervisor cannot agree on a procedure, the work may stop or be performed unsafely. By following a set **Conflict Resolution** process, you ensure that the focus remains on the \"problem\" rather than the \"person.\" This protects the **Organizational Reputation** because it shows clients that the team is professional enough to handle internal differences efficiently.\n\n**Key facts / rules**\n*   Remain calm and objective; avoid emotional language during a dispute.\n*   Listen actively to the other **Stakeholder** to understand their perspective fully.\n*   Identify the root cause of the conflict (e.g., a resource shortage or a misunderstanding of instructions).\n*   Seek a \"win-win\" solution where both parties can move forward productively.\n*   Use **Escalation** only after direct resolution attempts have been exhausted or if the issue is a safety breach.\n*   **Customer Rule:** Never argue with a customer. Listen, acknowledge, and escalate immediately if unresolved.\n\n**How to do it**\nTo perform effective **Conflict Resolution**, follow these steps:\n\n1.  **Peer-to-Peer:** First, invite the other party to a private space to discuss the issue, which prevents public embarrassment. Second, state the facts of the situation clearly without laying blame. Third, ask for their input and listen without interrupting. Fourth, propose a compromise that meets the technical requirements of the job.\n2.  **Customer Conflicts:** If the conflict involves a **Customer**, do not attempt to \"win\" or debate technicalities on site. Listen to their concern, apologize for the inconvenience (without admitting liability if unsure), and **Escalate** the matter to your supervisor immediately. Your role is to represent the company, not to fight a legal battle.\n3.  **Escalation:** If a co-worker remains aggressive or the issue involves a violation of company policy, you must follow the **Escalation** procedure. This involves informing the other person that you are referring the matter to a supervisor and then providing a factual summary of the dispute to that higher authority.\n\n**Concrete Anchor:** Conflict resolution is like a pressure relief valve in a boiler system. When the \"pressure\" of a disagreement gets too high, the resolution process (or escalation) provides a safe way to vent that energy before the entire system (the project) suffers a catastrophic failure.\n\n**Micro-scenario:** If two co-workers both need the same specialized testing kit for 1 hour, **Conflict Resolution** involves them splitting the morning shift. If a customer screams about the testing kit delaying their lunch, the operative does not argue but calls the supervisor to handle the client interaction.\n\n**Common mistakes**\nLearners often confuse **Escalation** with \"tattling\" or avoiding responsibility; **Escalation** is actually a formal professional necessity when a resolution cannot be reached at the current level, whereas avoiding responsibility is simply ignoring the problem.\n\nMisconceptions (targeted):\n*   Misconception: The goal of conflict resolution is to prove you are right. | Correction: The goal of **Conflict Resolution** is to restore productivity and professional cooperation. | AC: AC3\n*   Misconception: You should always handle every conflict yourself. | Correction: Some conflicts, especially those involving safety or **Customers**, must undergo immediate **Escalation**. | AC: AC3\n\n**Key Points**\n*   Focus on the solution, not the blame.\n*   Active listening is the foundation of resolving disputes.\n*   Escalation is a formal tool for unresolved or serious issues.\n*   Professionalism with customers means de-escalating and referring to management.\n\n**Quick recap**\nProfessional **Conflict Resolution** involves staying calm, identifying the root cause of a dispute, and seeking a compromise. When a direct solution isn't possible—or when a **Customer** is involved—the **Escalation** procedure ensures that a higher authority can provide a final decision, keeping the project on track and protecting the organization.\n\n### Coming Up Next\nIn the next module, we will explore how these communication and resolution skills are applied specifically when dealing with site safety and reporting procedures."
+        "title": "The Effects of Poor Communication (AC 3.4)",
+        "content": "### In this lesson\nYou will learn how bad communication hurts the entire company. This covers AC 3.4: Effects of poor communication on an organisation.\n\n**What is Organizational Impact?**\nWhen communication fails, it doesn't just annoy people; it costs the business money and future work. We call this **Organizational Impact**.\n\nImagine a **slow leak in a pipe**. At first, it's just a few drops (a small misunderstanding). But if ignored, it brings down the ceiling (costs the company thousands). Poor communication is that leak.\n\n**Three Main Effects**\n\n1.  **Efficiency (Time & Effort)**\n    *   *Definition:* How smoothly the work flows.\n    *   *The Effect:* If instructions are unclear, work has to be stopped or done twice (**re-work**). Operatives might stand around waiting for materials that were never ordered.\n    *   *Example:* A heating engineer isn't told the gas meter location has changed. They pipe to the wrong wall and have to rip it out and start again. This wastes hours.\n\n2.  **Financial Costs (Money)**\n    *   *Definition:* The actual cash lost by the business.\n    *   *The Effect:* Wasted materials, paying wages for re-work, and penalties for finishing late.\n    *   *Example:* A supervisor orders \"100m of cable\" but doesn't specify the type. The wrong cable arrives. The company pays for delivery, return fees, and the correct cable. Profit is lost.\n\n3.  **Reputation (Trust)**\n    *   *Definition:* What customers and the public think of the company.\n    *   *The Effect:* If a company communicates poorly (rude staff, missed appointments, confusing bills), customers lose trust. They leave bad reviews and don't hire the company again.\n    *   *Example:* A plumber is late but doesn't call the customer. The customer thinks the company is unreliable and tells their neighbors not to use them.\n\n**Summary of Effects**\n*   **Internal:** Low morale, wasted time (efficiency), wasted money (financial).\n*   **External:** Unhappy customers, bad reviews, loss of future contracts (reputation)."
       }
     },
     {
@@ -173,60 +160,68 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Conflict Resolution Actions",
+        "title": "Check Your Understanding: Organizational Impact",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-3B-C2-L1-A",
-            "questionText": "Under what two conditions should the escalation procedure be used?",
+            "questionText": "What happens to 'Efficiency' when work has to be redone due to poor instructions?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "exhausted attempts or safety breach",
-              "failed resolution or safety issue",
-              "after direct resolution attempts",
-              "customer conflict"
+              "it decreases",
+              "efficiency drops",
+              "it is reduced",
+              "wasted time",
+              "efficiency is lost"
             ],
-            "hint": "Escalation is a formal step used only when direct methods fail, a safety risk is present, or a client is involved."
+            "hint": "Think about whether the work is happening smoothly or if time is being wasted."
           },
           {
             "id": "210-3B-C2-L1-B",
-            "questionText": "What is identified as the foundation for resolving disputes?",
+            "questionText": "How does inconsistent or rude communication affect a company's 'Reputation'?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "active listening"
+              "damages it",
+              "loss of trust",
+              "bad reviews",
+              "reputation is damaged",
+              "loss of future work"
             ],
-            "hint": "This involves fully understanding the other stakeholder's perspective before acting."
+            "hint": "Consider what the customer will tell their friends or write in a review."
           },
           {
             "id": "210-3B-C2-L1-C",
-            "questionText": "According to the diagram, what does the resolution-pathway bypass to reach a functional outcome?",
+            "questionText": "Give one example of a direct 'Financial Cost' caused by poor communication.",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "personal emotion",
-              "emotion"
+              "cost of re-work",
+              "wasted materials",
+              "paying for wrong materials",
+              "late penalties",
+              "wasted wages"
             ],
-            "hint": "The pathway is designed to avoid subjective feelings in favor of technical results."
+            "hint": "Think about something the company has to pay for because of a mistake."
           },
           {
             "id": "210-3B-C2-L2",
-            "questionText": "Using your answers to Q1 (escalation criteria), Q2 (active listening), and Q3 (resolution-pathway), explain how these facts connect. How do we know this connection is valid?",
+            "questionText": "Why does a communication failure between just two people (e.g., an apprentice and a supervisor) affect the whole organization?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Active listening is the first step in the resolution-pathway to settle disputes directly",
-              "Escalation serves as a procedural backup when direct listening cannot resolve the issue or safety is compromised",
-              "Both tools ensure the pathway bypasses personal emotion to maintain organizational functionality",
-              "The validity is shown by the project continuing to move forward despite internal disagreements"
+              "It can lead to financial loss (materials/labor) which affects company profit",
+              "It can cause delays that affect other trades or the project deadline",
+              "It can damage the company's reputation if the customer notices the error",
+              "It reduces overall efficiency"
             ],
             "expectedAnswer": [
-              "Active listening is used first to resolve disputes directly, but if this fails or a safety breach occurs, the escalation procedure is triggered; both actions follow a resolution-pathway that bypasses emotion to reach a functional outcome for the project.",
-              "We know the connection is valid because active listening and escalation are both professional tools on a resolution-pathway; they ensure that personal emotions do not stop a project from reaching a functional conclusion."
+              "Even a small failure between two people can have a ripple effect. If an apprentice installs a sink wrong because the supervisor didn't explain it clearly, the company pays for the extra time and materials (financial impact). If this delays the project, the customer gets unhappy (reputation impact), hurting the whole business.",
+              "The impact spreads beyond the two people because the company pays the bill for any mistakes. Wasted time reduces efficiency for the whole team, and if the mistake upsets the client, the company's reputation suffers, which affects everyone's job security."
             ],
-            "hint": "Consider how following a structured process prevents a disagreement from becoming a personal argument."
+            "hint": "Connect the small mistake to the 'big picture' of money and customer trust."
           }
         ]
       }
@@ -240,58 +235,56 @@
         "questions": [
           {
             "id": "210-3B-P1",
-            "questionText": "In the peer-to-peer conflict resolution process described, how many distinct steps are recommended (from inviting them to a private space to proposing a compromise)?",
-            "answerType": "numeric",
+            "questionText": "When resolving a conflict, why should you focus on technical facts (like regulations) rather than personal feelings?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "4"
+              "to reach a professional agreement",
+              "keep it professional",
+              "avoid arguments",
+              "remove emotion",
+              "solve the problem objectively"
             ],
-            "hint": "Count the steps listed in the 'How to do it' section for Peer-to-Peer resolution."
+            "hint": "Focusing on facts helps you find a solution without making the other person angry."
           },
           {
             "id": "210-3B-P2",
-            "questionText": "Explain why a communication breakdown is different from a simple lack of information or data.",
-            "answerType": "short-text",
+            "questionText": "A project involves 8 distinct stakeholders. If a communication failure occurs between two of them, how many stakeholders are ultimately affected by the resulting organizational impact?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Failure in the exchange process",
-              "Information exists but is not shared",
-              "Exchange process failure",
-              "Results in operational errors",
-              "Causes operational error",
-              "Systemic failure"
+              "8"
             ],
-            "hint": "Think about whether the information already exists and what the specific result of the failure is (e.g., an error in action)."
+            "hint": "Remember the rule: Organizational Impact affects the whole project/company, not just the people arguing."
           },
           {
             "id": "210-3B-P3",
-            "questionText": "A team lead notices that staff members have stopped sharing technical updates because they fear being blamed for errors. What specific organizational element has been degraded in this scenario?",
+            "questionText": "What term describes the process of moving a dispute to a higher level of authority (like a manager) because it cannot be solved on site?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Workplace culture",
-              "The workplace culture",
-              "Culture"
+              "Escalation",
+              "escalating",
+              "escalate"
             ],
-            "hint": "This refers to the collective atmosphere and habits that dictate how a team works together."
+            "hint": "This is what happens when you 'go up the ladder' to solve a problem."
           },
           {
             "id": "210-3B-P4",
-            "questionText": "What must be true if a conflict between two operatives is moved to the escalation stage?",
+            "questionText": "On a renovation site, a heating engineer and a carpenter disagree on who works in the bathroom first. The engineer repeats back the carpenter's timeline to confirm they have fully understood the constraint. What specific communication tool is being used?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Direct resolution failed",
-              "Direct resolution was exhausted",
-              "Safety was breached",
-              "Safety breach occurred"
+              "Active Listening",
+              "active listening"
             ],
-            "hint": "Consider when it is appropriate to involve a higher authority according to professional procedures."
+            "hint": "This is a structured technique used to prevent misunderstandings by confirming the message."
           },
           {
             "id": "210-3B-P5",
-            "questionText": "Two teams are in conflict over a shared piece of equipment. Team A needs it for 5 hours and Team B needs it for 3 hours. If they use conflict resolution to split one 8-hour shift based on these exact needs, how many hours is the equipment allocated to Team B?",
+            "questionText": "A team spends 6 hours re-doing a wiring task because the original cable specifications were communicated poorly. If the task was supposed to take 10 hours in total, how many hours were lost to operational inefficiency?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "3"
+              "6",
+              "6.0"
             ],
-            "hint": "Identify the specific requirement for Team B mentioned in the scenario."
+            "hint": "Enter the number of hours that were wasted doing the work again."
           }
         ]
       }
@@ -307,41 +300,36 @@
         "questions": [
           {
             "id": "210-3B-INT-1",
-            "questionText": "Explain the connection between internal information flow and an organization's external standing. In your answer, include: (1) a specific communication breakdown between operatives and management, (2) the resulting impact on workplace culture, and (3) the subsequent effect on external stakeholder relationships. Why does this relationship hold? (2-3 sentences)",
+            "questionText": "Explain how a specific workplace conflict (e.g., between an electrician and a client) can lead to financial loss if not resolved. In your answer: (1) Identify a cause of conflict, (2) Describe the communication failure, and (3) Explain the financial impact on the company. (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identifies a specific breakdown between management and operatives (e.g., unclear task instructions)",
-              "Explains how the breakdown erodes workplace culture (e.g., decreased morale or loss of trust)",
-              "Links internal cultural issues to external reputation or stakeholder dissatisfaction",
-              "Provides reasoning for why internal clarity precedes external success",
-              "Uses technical terminology appropriate for a vocational environment"
+              "Cause: e.g., Misunderstanding scope of work or cost",
+              "Failure: Lack of clear explanation or written confirmation",
+              "Financial Impact: Unpaid invoices, cost of rework, or legal fees",
+              "Connection: Links the verbal disagreement to actual money lost"
             ],
             "expectedAnswer": [
-              "When management fails to provide clear project briefs to operatives, it creates a workplace culture of confusion and resentment, which eventually leads to errors in the final delivery to the customer. This relationship holds because the quality of external service is a direct output of the internal operational alignment; without internal clarity, the organization cannot maintain a professional reputation. If the workforce is not informed, they cannot meet the standards expected by external stakeholders.",
-              "A breakdown in communication regarding safety protocols can lead to a culture of negligence among operatives, which negatively impacts the organization's reputation for reliability with external partners. This holds true because an organization's external brand is built upon the consistency and integrity of its internal processes. Therefore, any internal failure in information flow will inevitably manifest as a failure in external service delivery."
+              "A conflict might start because a client thinks a specific light fitting was included in the price, but the electrician didn't document it (communication failure). If this isn't resolved calmly, the client might refuse to pay the final invoice. This causes a direct financial loss to the company because they cannot recover the cost of materials and labor.",
+              "If an electrician installs sockets in the wrong place due to unclear instructions from the client (cause), the communication failure is not checking before starting. The financial impact is the cost of materials and labor to move the sockets. This reduces the profit on the job."
             ],
-            "hint": "Think about how the atmosphere inside a workshop or office eventually affects the person paying for the service."
+            "hint": "Think about a time when a misunderstanding about 'what was agreed' led to someone losing money."
           },
           {
             "id": "210-3B-INT-2",
-            "questionText": "Develop a comprehensive overview of how professional procedures mitigate the risks of organizational failure. In your answer, include: (1) the link between information flow and organizational success, (2) the role of professional conflict resolution in preserving workplace culture, (3) the necessity of escalation procedures with different stakeholders (including customers), and (4) how these elements combine to protect the organization's reputation. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "You are a site supervisor. An operative is arguing with a customer about a delay. Describe the process you would use to manage this. Include: (1) The immediate action to stop the argument, (2) The communication method to solve the issue, and (3) How this prevents damage to the company's reputation.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Explains the impact of information flow on overall project success",
-              "Describes how conflict resolution prevents productivity loss within the team",
-              "Identifies the specific purpose of escalation procedures in a professional hierarchy",
-              "Mentions the specific approach for customer conflicts (escalate, do not argue)",
-              "Synthesizes how resolution actions mitigate the negative effects of communication breakdowns",
-              "Connects internal stability to the preservation of professional boundaries",
-              "Demonstrates how proactive communication protects organizational reputation"
+              "Immediate action: Intervene calmly, separate parties if needed, de-escalate",
+              "Method: Active listening, apologizing for frustration, explaining facts",
+              "Reputation link: Professional handling preserves trust and prevents bad reviews"
             ],
             "expectedAnswer": [
-              "Clear information flow ensures all levels of an organization are aligned toward project success, while professional conflict resolution prevents disputes from poisoning the workplace culture. By utilizing formal escalation procedures, operatives can address grievances without overstepping professional boundaries, especially with customers where escalation prevents damaging arguments. Together, these practices create a stable environment that protects the organization’s reputation by ensuring that internal friction does not disrupt external delivery. This integrated approach transforms communication from a potential point of failure into a foundational asset for the business.",
-              "• Robust information flow between management and operatives provides the clarity needed for organizational success and high-quality output.\n• Professional conflict resolution and escalation procedures protect workplace culture by providing a structured way to settle disputes with co-workers and supervisors.\n• For customers, strict escalation protocols ensure complaints are handled by management to preserve the company image.\n• These elements synthesize to form a resilient organizational reputation built on reliability and professional conduct."
+              "First, I would step in calmly to stop the argument and move the conversation away from the public area (immediate action). I would use active listening to hear the customer's complaint and apologize for the frustration without admitting liability immediately (method). This prevents the customer from leaving a bad review or telling others the company is unprofessional, thus protecting our reputation.",
+              "I would de-escalate by asking the operative to return to work and speaking to the customer privately. Using a calm tone and active listening, I would find out the root cause of the delay complaint. Solving this professionally ensures the customer feels valued, which protects the company's reputation for good service."
             ],
-            "hint": "Consider how following a set process for both sharing information and solving problems keeps the business running smoothly even during a dispute."
+            "hint": "Step 1: Stop the heat. Step 2: Listen and fix. Step 3: Why does this help the business?"
           }
         ]
       }
@@ -355,35 +343,37 @@
         "questions": [
           {
             "id": "210-3B-SR-1",
-            "questionText": "Name two common methods used to communicate information in a professional workplace.",
+            "questionText": "Which workplace term describes the various ways information is exchanged, such as verbal, written, or digital?",
             "expectedAnswer": [
-              "verbal and written",
-              "written and verbal",
-              "speaking and writing"
+              "Communication methods",
+              "Communication",
+              "Methods of communication"
             ],
-            "hint": "Think about how you talk or send messages to others.",
+            "hint": "Think about the different tools (like email, phone, face-to-face) used to share info.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-2",
-            "questionText": "What internal documents provide the rules for how staff should behave and interact with others?",
+            "questionText": "What do we call the set of rules an organization provides to guide professional behavior and safety?",
             "expectedAnswer": [
-              "company policies",
-              "workplace procedures",
-              "codes of conduct"
+              "Company policies",
+              "Policies",
+              "Procedures",
+              "Workplace policies"
             ],
-            "hint": "These are the official guidelines set by an employer.",
+            "hint": "These are the written rules you must follow at work.",
             "answerType": "short-text"
           },
           {
             "id": "210-3B-SR-3",
-            "questionText": "Besides colleagues, name one type of person who might visit a work site to monitor standards or safety.",
+            "questionText": "What is the general term for formal papers like timesheets, site diaries, and variation orders?",
             "expectedAnswer": [
-              "inspector",
-              "site visitor",
-              "auditor"
+              "Workplace documentation",
+              "Documentation",
+              "Records",
+              "Site docs"
             ],
-            "hint": "Think about external individuals who check if regulations are being followed.",
+            "hint": "The collective name for all the forms and logs used on a site.",
             "answerType": "short-text"
           }
         ],
@@ -392,55 +382,54 @@
     }
   ],
   "targetAssessmentCriteria": [
-    "AC3",
-    "AC4"
+    "AC 3.3",
+    "AC 3.4"
   ],
   "metadata": {
     "created": "2026-02-16",
     "updated": "2026-02-16",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, PROCEDURE",
+    "taskMode": "IDENTIFICATION, IMPACT_ANALYSIS",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO3",
       "coveredAC": [
-        "AC3",
-        "AC4"
+        "AC 3.3",
+        "AC 3.4"
       ],
       "outOfScopeAC": [
-        "AC1",
-        "AC2",
-        "AC5"
+        "AC 3.1",
+        "AC 3.2"
       ]
     },
     "scope": {
-      "inScope": "The identification of organizational impacts resulting from poor communication and the professional actions needed to resolve interpersonal conflicts, including customer interactions.",
-      "outOfScope": "Specific communication technologies, formal legal grievance procedures, or technical documentation standards.",
-      "rationale": "Focusing on the behavioral and organizational consequences of communication aligns with Level 2 professionalism requirements without straying into management-level legalities."
+      "inScope": "Actions to resolve conflicts (AC 3.3) and the effects of poor communication on an organisation (AC 3.4).",
+      "outOfScope": "Detailed legal mediation procedures, employment tribunals, and specific technical documentation standards (covered in other units).",
+      "rationale": "This lesson focuses on the behavioral aspects of conflict and the business impact of communication failures, aligned with AC 3.3 and 3.4."
     },
     "teachingConstraints": {
       "excludeHowTo": false,
       "purposeOnly": false,
       "identificationOnly": false,
       "noCalculations": true,
-      "specificScope": "Focus specifically on the interpersonal dynamics between operatives, customers, and supervisors as defined in the requirements."
+      "specificScope": "Focus on interactions between operatives, supervisors, and customers in a Building Services Engineering context."
     },
     "misconceptions": [
       {
-        "misconception": "Communication only affects the people talking.",
-        "correction": "Poor communication ripples outward, eventually impacting the Organizational Reputation and external clients.",
-        "relatedAC": "AC4"
+        "misconception": "Conflict resolution means winning an argument.",
+        "correction": "It means finding a professional agreement that allows work to continue safely.",
+        "relatedAC": "AC 3.3"
       },
       {
-        "misconception": "Management is solely responsible for workplace culture.",
-        "correction": "Workplace Culture is shaped by the communication habits of every operative and supervisor combined.",
-        "relatedAC": "AC4"
+        "misconception": "Communication failures only affect the people involved in the argument.",
+        "correction": "Poor communication has a wider Organizational Impact that affects company profits and reputation.",
+        "relatedAC": "AC 3.4"
       },
       {
-        "misconception": "The goal of conflict resolution is to prove you are right.",
-        "correction": "The goal of Conflict Resolution is to restore productivity and professional cooperation.",
-        "relatedAC": "AC3"
+        "misconception": "You should always involve a manager immediately when a customer is unhappy.",
+        "correction": "Initial resolution should be attempted by the operative through active listening before escalating.",
+        "relatedAC": "AC 3.3"
       }
     ]
   }
