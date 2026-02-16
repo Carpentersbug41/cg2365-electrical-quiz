@@ -1,6 +1,9 @@
 import {
   CoverageTargets,
   LessonBlueprint,
+  LessonLedgerMetadata,
+  LoLedgerArtifact,
+  M4BlueprintArtifact,
   MinimalLessonPlan,
   ModulePlanRequest,
   UnitStructure,
@@ -31,6 +34,73 @@ function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === 'string');
 }
 
+function isRangeValue(value: unknown): boolean {
+  return value === null || typeof value === 'string' || isStringArray(value);
+}
+
+function validateLoLedgerArtifact(value: unknown): value is LoLedgerArtifact {
+  if (!isPlainObject(value)) return false;
+  if (assertKeys(value, ['lo', 'ledger'], 'LoLedgerArtifact')) return false;
+  if (typeof value.lo !== 'string') return false;
+  if (!isPlainObject(value.ledger)) return false;
+  const legacyKeysOk =
+    !assertKeys(
+      value.ledger,
+      ['taughtConcepts', 'taughtVocab', 'examplesUsed', 'questionTypesUsed', 'doNotTeach', 'lastUpdatedAt', 'sourceLessonIds'],
+      'LoLedgerArtifact.ledger'
+    );
+  const extendedKeysOk =
+    !assertKeys(
+      value.ledger,
+      [
+        'alreadyTaughtConcepts',
+        'taughtConcepts',
+        'taughtVocab',
+        'examplesUsed',
+        'questionTypesUsed',
+        'doNotTeach',
+        'lastUpdatedAt',
+        'sourceLessonIds',
+      ],
+      'LoLedgerArtifact.ledger'
+    );
+  if (!legacyKeysOk && !extendedKeysOk) {
+    return false;
+  }
+  return (
+    (value.ledger.alreadyTaughtConcepts === undefined || isStringArray(value.ledger.alreadyTaughtConcepts)) &&
+    isStringArray(value.ledger.taughtConcepts) &&
+    isStringArray(value.ledger.taughtVocab) &&
+    isStringArray(value.ledger.examplesUsed) &&
+    isStringArray(value.ledger.questionTypesUsed) &&
+    isStringArray(value.ledger.doNotTeach) &&
+    typeof value.ledger.lastUpdatedAt === 'string' &&
+    isStringArray(value.ledger.sourceLessonIds)
+  );
+}
+
+function validateLessonLedgerMetadata(value: unknown): value is LessonLedgerMetadata {
+  if (!isPlainObject(value)) return false;
+  if (
+    assertKeys(
+      value,
+      ['lessonId', 'lo', 'newTeachingConcepts', 'newVocab', 'outOfScopeTopics', 'examplesUsed', 'questionTypesUsed'],
+      'LessonLedgerMetadata'
+    )
+  ) {
+    return false;
+  }
+  return (
+    typeof value.lessonId === 'string' &&
+    typeof value.lo === 'string' &&
+    isStringArray(value.newTeachingConcepts) &&
+    isStringArray(value.newVocab) &&
+    isStringArray(value.outOfScopeTopics) &&
+    isStringArray(value.examplesUsed) &&
+    isStringArray(value.questionTypesUsed)
+  );
+}
+
 export function validateModulePlanRequest(value: unknown): value is ModulePlanRequest {
   if (!isPlainObject(value)) return false;
   if (assertKeys(value, ['syllabusVersionId', 'unit', 'selectedLos', 'constraints', 'orderingPreference', 'notes'], 'ModulePlanRequest')) {
@@ -46,7 +116,7 @@ export function validateModulePlanRequest(value: unknown): value is ModulePlanRe
   if (
     assertKeys(
       constraints,
-      ['minimiseLessons', 'defaultMaxLessonsPerLO', 'maxLessonsOverrides', 'level', 'audience'],
+      ['minimiseLessons', 'defaultMaxLessonsPerLO', 'maxAcsPerLesson', 'preferredAcsPerLesson', 'maxLessonsOverrides', 'level', 'audience'],
       'ModulePlanRequest.constraints'
     )
   ) {
@@ -54,6 +124,8 @@ export function validateModulePlanRequest(value: unknown): value is ModulePlanRe
   }
   if (typeof constraints.minimiseLessons !== 'boolean') return false;
   if (typeof constraints.defaultMaxLessonsPerLO !== 'number') return false;
+  if (typeof constraints.maxAcsPerLesson !== 'number') return false;
+  if (typeof constraints.preferredAcsPerLesson !== 'number') return false;
   if (!isPlainObject(constraints.maxLessonsOverrides)) return false;
   if (typeof constraints.level !== 'string') return false;
   if (typeof constraints.audience !== 'string') return false;
@@ -93,7 +165,7 @@ export function validateCoverageTargets(value: unknown): value is CoverageTarget
       ) {
         return false;
       }
-      const validRange = target.range === null || typeof target.range === 'string';
+      const validRange = isRangeValue(target.range);
       return (
         typeof target.acKey === 'string' &&
         typeof target.acText === 'string' &&
@@ -164,6 +236,43 @@ export function validateLessonBlueprints(value: unknown): value is LessonBluepri
         isPlainObject(item.masterBlueprint)
       );
   });
+}
+
+export function validateM4BlueprintArtifact(value: unknown): value is M4BlueprintArtifact {
+  if (!isPlainObject(value)) return false;
+  const legacyKeysOk = !assertKeys(value, ['unit', 'generatedAt', 'blueprints', 'loBlueprintSets'], 'M4BlueprintArtifact');
+  const extendedKeysOk = !assertKeys(
+    value,
+    ['unit', 'generatedAt', 'blueprints', 'loBlueprintSets', 'loLedgers', 'lessonLedgerMetadata'],
+    'M4BlueprintArtifact'
+  );
+  if (!legacyKeysOk && !extendedKeysOk) {
+    return false;
+  }
+  if (typeof value.unit !== 'string') return false;
+  if (typeof value.generatedAt !== 'string') return false;
+  if (!validateLessonBlueprints(value.blueprints)) return false;
+  if (!Array.isArray(value.loBlueprintSets)) return false;
+
+  const loSetsValid = value.loBlueprintSets.every((set, index) => {
+    if (!isPlainObject(set)) return false;
+    if (assertKeys(set, ['lo', 'generatedBy', 'blueprints'], `M4BlueprintArtifact.loBlueprintSets[${index}]`)) {
+      return false;
+    }
+    if (typeof set.lo !== 'string') return false;
+    if (set.generatedBy !== 'llm' && set.generatedBy !== 'fallback') return false;
+    return validateLessonBlueprints(set.blueprints);
+  });
+  if (!loSetsValid) return false;
+  if (value.loLedgers !== undefined) {
+    if (!Array.isArray(value.loLedgers)) return false;
+    if (!value.loLedgers.every((entry) => validateLoLedgerArtifact(entry))) return false;
+  }
+  if (value.lessonLedgerMetadata !== undefined) {
+    if (!Array.isArray(value.lessonLedgerMetadata)) return false;
+    if (!value.lessonLedgerMetadata.every((entry) => validateLessonLedgerMetadata(entry))) return false;
+  }
+  return true;
 }
 
 export function validateValidationResult(value: unknown): value is ValidationResult {

@@ -4,6 +4,7 @@
  */
 
 import { Phase8_SpacedReview, SpacedReviewInput, SpacedReviewOutput } from '../phases/Phase8_SpacedReview';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 describe('Phase 8: Foundation Check', () => {
   let phase8: Phase8_SpacedReview;
@@ -39,7 +40,6 @@ describe('Phase 8: Foundation Check', () => {
         prerequisiteAnchors: 'Some anchors'
       };
 
-      // @ts-expect-error - Old format should not be accepted
       expect(() => phase8.getPrompts(oldFormat)).toBeDefined();
     });
   });
@@ -347,7 +347,6 @@ describe('Phase 8: Foundation Check', () => {
       // Old fields should not exist in type
       // @ts-expect-error - prerequisites field should not exist
       expect(newInput.prerequisites).toBeUndefined();
-      // @ts-expect-error - prerequisiteAnchors field should not exist
       expect(newInput.prerequisiteAnchors).toBeUndefined();
     });
 

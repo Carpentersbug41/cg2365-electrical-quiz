@@ -5,7 +5,7 @@
  * Phase 10: Score → Phase 11: Suggest → Phase 12: Implement → Phase 13: Rescore
  */
 
-import { describe, test, expect } from '@jest/globals';
+import { describe, test, expect } from 'vitest';
 import { Phase10_Score } from '../phases/Phase10_Score';
 import { Phase11_Suggest } from '../phases/Phase11_Suggest';
 import { Phase12_Implement } from '../phases/Phase12_Implement';
@@ -141,7 +141,9 @@ const createTestLesson = (): Lesson => ({
   description: 'Introduction to magnetism and magnetic fields',
   unit: '202',
   topic: 'Magnetism',
-  layout: 'standard',
+  layout: 'linear-flow',
+  learningOutcomes: ['Define magnetic flux', 'Explain flux density'],
+  prerequisites: [],
   blocks: [
     {
       id: '202-5A-1',
@@ -183,11 +185,10 @@ const createTestLesson = (): Lesson => ({
     }
   ],
   metadata: {
-    version: 1,
-    createdAt: new Date().toISOString(),
-    lastModified: new Date().toISOString(),
-    estimatedDuration: 10,
-    difficulty: 'beginner'
+    version: '1.0',
+    created: new Date().toISOString(),
+    updated: new Date().toISOString(),
+    author: 'Test Suite'
   }
 });
 

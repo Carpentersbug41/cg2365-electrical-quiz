@@ -10,6 +10,17 @@ export async function POST(request: NextRequest, context: Params) {
   const denied = guardModulePlannerAccess(request);
   if (denied) return denied;
 
+  if (process.env.MODULE_PLANNER_BULK_M6_ENABLED !== 'true') {
+    return NextResponse.json(
+      {
+        success: false,
+        code: 'FORBIDDEN',
+        message: 'Bulk M6 generation is disabled. Use per-lesson Generate now from the planning matrix.',
+      },
+      { status: 403 }
+    );
+  }
+
   try {
     const { id } = await context.params;
     const body = (await request.json().catch(() => ({}))) as { replayFromArtifacts?: boolean };

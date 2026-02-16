@@ -61,6 +61,7 @@ import { toolsMeasuringMarkingOutForWiringSystemsQuestions } from './questions/t
 import { q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions } from './questions/1IdentifyKeyRolesOfTheSiteManagementTeamQuestions';
 import { q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions } from './questions/1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions';
 import { q1IdentifySuitableCommunicationMethodsQuestions } from './questions/1IdentifySuitableCommunicationMethodsQuestions';
+import { siteManagementAndTradeRolesQuestions } from './questions/siteManagementAndTradeRolesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -115,6 +116,7 @@ export const questions: Question[] = [
   ...q1IdentifyKeyRolesOfTheSiteManagementTeamQuestions,
   ...q1IdentifyTypesOfStatutoryLegislationAndGuidanceInfoQuestions,
   ...q1IdentifySuitableCommunicationMethodsQuestions,
+  ...siteManagementAndTradeRolesQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

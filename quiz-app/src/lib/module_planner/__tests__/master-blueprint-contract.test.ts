@@ -33,6 +33,8 @@ describe('master lesson blueprint contract', () => {
     expect(practice?.order).toBe(8);
     expect(integrative?.order).toBe(9.5);
     expect(spaced?.order).toBe(10);
+    expect(blueprint.idConventions.lessonIdPattern).toBe('^210-210-1A1$');
+    expect(blueprint.anchors.examIntent[0]).toMatch(/^Remember:\s+/);
   });
 
   it('accepts lesson output that follows required blueprint blocks', () => {
@@ -81,4 +83,3 @@ describe('master lesson blueprint contract', () => {
     expect(validateLessonAgainstMasterLessonBlueprint(lesson, blueprint)).toEqual([]);
   });
 });
-

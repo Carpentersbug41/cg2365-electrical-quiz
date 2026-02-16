@@ -1,31 +1,30 @@
-# Module Planner v6 - Technical Documentation
+# Module Planner vNext - Technical Documentation
 
-Last verified: 2026-02-14
+Last verified: 2026-02-16
 Primary UI route: `/admin/module`
 Primary API routes: `/api/admin/module/*`
 Library root: `src/lib/module_planner/*`
 
-This document is the deep technical reference for Module Planner v6 and its integration with the existing lesson generation code.
+This is the deep technical reference for current Module Planner runtime behavior.
 
 ---
 
-## 1. System Architecture
+## 1. Architecture
 
 Execution path:
-
-1. Browser UI (`src/app/admin/module/page.tsx`)
-2. Module API routes (`src/app/api/admin/module/*`)
-3. Planner core (`src/lib/module_planner/planner.ts`)
-4. Planner persistence (`src/lib/module_planner/db.ts`)
-5. Existing lesson generation adapter (`src/lib/module_planner/adapter.ts`)
-6. Existing generator API (`/api/lesson-generator`)
-7. Existing prompt pipelines (`lessonPromptBuilder`, `quizPromptBuilder`, phase prompt builders)
+1. browser UI (`src/app/admin/module/page.tsx`)
+2. module API routes (`src/app/api/admin/module/*`)
+3. planner core (`src/lib/module_planner/planner.ts`)
+4. planner persistence (`src/lib/module_planner/db.ts`)
+5. lesson-generator adapter (`src/lib/module_planner/adapter.ts`)
+6. existing generator API (`/api/lesson-generator`)
 
 Feature gate:
+- `MODULE_PLANNER_ENABLED=true`
 
-- `MODULE_PLANNER_ENABLED=true` required.
-- Guard lives in `src/lib/module_planner/featureFlag.ts`.
-- API guard wrapper lives in `src/app/api/admin/module/_utils.ts`.
+Optional auth gate:
+- `MODULE_PLANNER_ADMIN_TOKEN`
+- accepted in header `x-module-admin-token` or bearer token
 
 ---
 
@@ -48,6 +47,7 @@ API:
 - `src/app/api/admin/module/_utils.ts`
 - `src/app/api/admin/module/runs/route.ts`
 - `src/app/api/admin/module/runs/[id]/route.ts`
+- `src/app/api/admin/module/syllabus/populate/route.ts`
 - `src/app/api/admin/module/[id]/m0-distill/route.ts`
 - `src/app/api/admin/module/[id]/m1-analyze/route.ts`
 - `src/app/api/admin/module/[id]/m2-coverage/route.ts`
@@ -55,285 +55,235 @@ API:
 - `src/app/api/admin/module/[id]/m4-blueprints/route.ts`
 - `src/app/api/admin/module/[id]/m5-validate/route.ts`
 - `src/app/api/admin/module/[id]/m6-generate/route.ts`
+- `src/app/api/admin/module/[id]/lessons/[blueprintId]/generate/route.ts`
+
+Syllabus upload route:
+- `src/app/api/syllabus/upload/route.ts`
 
 UI:
 - `src/app/admin/module/page.tsx`
 
 ---
 
-## 3. Configuration and Runtime Flags
+## 3. Configuration
 
 Environment variables:
-
 - `MODULE_PLANNER_ENABLED`
-  - true-only check (`raw.toLowerCase() === 'true'`)
-- `MODULE_PLANNER_CONCURRENCY`
-  - parsed int, clamped to `1..2`
-- `MODULE_PLANNER_DB_PATH`
-  - optional file path override for planner DB json
-- `MODULE_PLANNER_BASE_URL`
-  - optional base URL override for adapter
-- `NEXT_PUBLIC_APP_URL`
-  - fallback adapter base URL
+- `MODULE_PLANNER_ADMIN_TOKEN` (optional)
+- `MODULE_PLANNER_CONCURRENCY` (clamped `1..2`)
+- `MODULE_PLANNER_BASE_URL` (optional adapter target override)
+- `NEXT_PUBLIC_APP_URL` (adapter fallback)
+- `MODULE_PLANNER_BULK_M6_ENABLED` (bulk M6 route gate)
+- `MODULE_PLANNER_DB_MODE=memory` (optional memory DB mode)
 
-Constants (`src/lib/module_planner/constants.ts`):
+Supabase requirements for non-memory mode:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
 
+Planner constants (`src/lib/module_planner/constants.ts`):
 - `MAX_ACS_PER_LESSON = 4`
 - `DEFAULT_MAX_LESSONS_PER_LO = 2`
+- `DEFAULT_MAX_ACS_PER_LESSON = 12`
+- `DEFAULT_PREFERRED_ACS_PER_LESSON = 12`
+- `DEFAULT_MINIMISE_LESSONS = false`
 - `DEFAULT_LEVEL = 'Level 2'`
 - `DEFAULT_AUDIENCE = 'beginner'`
 - `DEFAULT_ORDERING_PREFERENCE = 'foundation-first'`
-- `DEFAULT_MINIMISE_LESSONS = true`
 
 ---
 
 ## 4. Persistence Layer
 
-Storage implementation:
+Implementation (`src/lib/module_planner/db.ts`):
+- Supabase-first persistence
+- in-memory fallback in tests or `MODULE_PLANNER_DB_MODE=memory`
 
-- File-backed JSON DB in `src/lib/module_planner/db.ts`
-- Default file: `.module_planner/module_planner_db.json`
-- Logical tables implemented as arrays:
-  - `module_runs`
-  - `module_run_artifacts`
-  - `module_run_lessons`
+SQL schema migrations:
+- `supabase/migrations/202602140001_module_planner_vnext.sql`
+- `supabase/migrations/202602140002_module_planner_ingestions.sql`
 
-Logical schema:
+Primary tables:
+- `module_runs`
+- `module_run_artifacts`
+- `generated_lessons`
+- `syllabus_versions`
+- `syllabus_ingestions`
+- `syllabus_chunks`
+- `syllabus_structure`
 
-`module_runs`:
-- `id: string`
-- `created_at: string`
-- `unit: string`
-- `status: string`
-- `chat_transcript: string`
-- `request_json: ModulePlanRequest | null`
-- `request_hash: string | null`
-
-`module_run_artifacts`:
-- `id: string`
-- `module_run_id: string`
-- `stage: 'M0'|'M1'|'M2'|'M3'|'M4'|'M5'|'M6'`
-- `artifact_json: unknown`
-- `retrieved_chunk_ids: string[]`
-- `retrieved_chunk_text: string`
-- `created_at: string`
-
-`module_run_lessons`:
-- `id: string`
-- `module_run_id: string`
-- `blueprint_id: string`
-- `lesson_id: string`
-- `status: 'pending'|'success'|'failed'`
-- `error: string | null`
-
-Upsert keys:
-- Artifacts: `(module_run_id, stage)`
-- Run lessons: `(module_run_id, blueprint_id)`
+Upsert conflict keys:
+- artifacts: `(run_id, stage)`
+- generated lessons: `(run_id, blueprint_id)`
+- syllabus structure: `(syllabus_version_id, unit)`
 
 ---
 
-## 5. Type Contracts (Field-Level)
+## 5. Type Contracts
 
-From `src/lib/module_planner/types.ts`.
+Important request types (`src/lib/module_planner/types.ts`):
+
+`ModuleConstraints`:
+- `minimiseLessons`
+- `defaultMaxLessonsPerLO`
+- `maxAcsPerLesson`
+- `preferredAcsPerLesson`
+- `maxLessonsOverrides`
+- `level`
+- `audience`
 
 `ModulePlanRequest`:
-- `unit: string`
-- `selectedLos: string[]`
-- `constraints: { minimiseLessons, defaultMaxLessonsPerLO, maxLessonsOverrides, level, audience }`
-- `orderingPreference: 'foundation-first'|'lo-order'`
-- `notes: string`
-
-`UnitStructure`:
-- `unit: string`
-- `unitTitle: string`
-- `los: [{ lo, title, sourceChunkIds[] }]`
-
-`CoverageTargets`:
-- `unit: string`
-- `los: [{ lo, coverageTargets: [{ acKey, acText, range, sourceChunkIds[] }] }]`
-
-`MinimalLessonPlan`:
-- `unit: string`
-- `los: [{ lo, lessonCount, lessons: [{ topicCode, title, coversAcKeys[], whySplit }] }]`
+- `syllabusVersionId`
+- `unit`
+- `selectedLos`
+- `constraints`
+- `orderingPreference`
+- `notes`
 
 `LessonBlueprint`:
-- `id: string`
-- `unit: string`
-- `lo: string`
-- `acAnchors: string[]`
-- `topic: string`
-- `mustHaveTopics: string[]`
-- `level: string`
-- `layout: 'split-vis'|'linear-flow'`
-- `prerequisites: string[]`
-- `masterBlueprint?: MasterLessonBlueprint`
+- `id`, `unit`, `lo`, `acAnchors`, `topic`
+- `mustHaveTopics`, `level`, `layout`, `prerequisites`
+- `masterBlueprint`
 
-`MasterLessonBlueprint` (high level):
-- `identity`
-- `anchors`
-- `scopeControl`
-- `lessonOutcomes`
-- `blockPlan` (explicit required blocks/order/check-after-explanation mapping)
-- `checksSpec`
-- `practiceSpec`
-- `misconceptions`
-- `safetyRigRules`
-- `masteryGate`
-- `idConventions`
+`M4BlueprintArtifact` includes:
+- `blueprints`
+- `loBlueprintSets`
+- optional `loLedgers`
+- optional `lessonLedgerMetadata`
 
-`ValidationResult`:
-- `valid: boolean`
-- `issues: ValidationIssue[]`
-
-Validation issue codes:
-- `MISSING_AC`
-- `DUPLICATE_AC_ASSIGNMENT`
-- `DUPLICATE_LESSON`
-- `OVERLAP_HIGH`
-- `TOO_BROAD_SCOPE`
-- `EXCEEDS_MAX_LESSONS`
-- `RAG_EMPTY`
-- `RAG_GROUNDEDNESS_FAIL`
-- `JSON_SCHEMA_FAIL`
-- `BLUEPRINT_MISSING_SECTION`
-- `BLUEPRINT_BLOCK_ORDER_INVALID`
-- `BLUEPRINT_ID_PATTERN_INVALID`
-- `BLUEPRINT_ANCHOR_MISMATCH`
-- `BLUEPRINT_GENERATION_MISMATCH`
+`ValidationIssueCode` includes newer codes:
+- `UNKNOWN_AC_KEY`
+- `EXCEEDS_MAX_ACS_PER_LESSON`
+- `EXCEEDS_PREFERRED_ACS_PER_LESSON`
+- `DUPLICATES_PRIOR_LO_CONTENT`
+- plus prior coverage/contract codes
 
 ---
 
 ## 6. Schema Validation Layer
 
-`src/lib/module_planner/schemas.ts` enforces strict key shape for each stage output.
+`src/lib/module_planner/schemas.ts` enforces strict shape:
+- missing key -> fail
+- extra key -> fail
+- wrong type -> fail
 
-Behavior:
-- Missing key -> validation fail
-- Extra key -> validation fail
-- Wrong type -> validation fail
-
-This is done with `assertKeys()` and per-contract validators.
+Validated contracts:
+- `ModulePlanRequest`
+- `UnitStructure`
+- `CoverageTargets`
+- `MinimalLessonPlan`
+- `LessonBlueprint[]`
+- `M4BlueprintArtifact`
+- `ValidationResult`
 
 ---
 
-## 7. Determinism and Replay
+## 7. Syllabus Ingestion and Canonical Structure
+
+Core file: `src/lib/module_planner/syllabus.ts`
+
+Functions include:
+- text extraction from PDF/DOCX/TXT
+- text cleanup and deterministic chunking
+- canonical unit/LO/AC structure extraction
+- range parsing
+- version/chunk/structure access helpers
+
+Upload route behavior (`/api/syllabus/upload`):
+- stores `syllabus_versions`
+- stores deterministic `syllabus_chunks`
+- extracts canonical structures into `syllabus_structure`
+- optional LLM normalizer fallback when parser confidence is low
+
+Populate route behavior (`/api/admin/module/syllabus/populate`):
+- creates ingestion record
+- seeds default version from legacy chunks only if no versions exist
+
+Legacy `src/lib/syllabus/chunks.json` is now bootstrap input, not planner truth layer.
+
+---
+
+## 8. Determinism and Replay
 
 Hashing:
-- `stableHash()` in `src/lib/module_planner/stableHash.ts`
-- deterministic JSON-like serialization with sorted object keys
-- hash algorithm: SHA-256
+- `stableHash()` with deterministic key ordering (SHA-256)
 
-Inputs to `request_hash` in `planner.ts`:
-- normalized `chatTranscript`
+`request_hash` inputs include:
+- normalized chat transcript
 - full `ModulePlanRequest`
-- config constants (`maxAcsPerLesson`, ordering, lesson caps)
+- selected syllabus version + content hash
+- key planning config values
 
 Replay behavior:
-- `stageReplay()` looks up artifact by `(request_hash, stage)` using `findArtifactByRequestHash`
-- if artifact belongs to another run, copied into current run
-- run status advanced to stage completion without recompute
+- per-stage lookup by `(request_hash, stage)`
+- replayed artifact can be copied from another run
+- M1 chunk payload (`retrieved_chunk_ids`, `retrieved_chunk_text`) is persisted and reused
 
-RAG replay constraints:
-- M1 stores `retrieved_chunk_ids` and serialized `retrieved_chunk_text`
-- M2 reuses M1 stored payload before falling back to id lookup
-- helpers:
-  - `ensureM1RagChunkReuse(runId)`
-  - `ensureM2UsesStoredChunks(runId)`
-
----
-
-## 8. Syllabus Retrieval and Parsing
-
-`src/lib/module_planner/syllabus.ts` uses local chunk data:
-- import: `@/lib/syllabus/chunks.json`
-
-Core functions:
-- `getUnitChunks(unit)`
-- `getUnitLos(unit)`
-- `normalizeLo(lo)`
-- `parseAssessmentCriteriaFromContent(content)`
-- `parseRangeFromContent(content)`
-
-AC parsing logic:
-- enters after `**Assessment criteria**` or `**AC**`
-- stops at `**Range` section
-- captures numbered items and bullet continuations
-
-Range parsing logic:
-- enters at `**Range` line
-- consumes bullet/line content until section break
+Helpers:
+- `ensureM1RagChunkReuse(runId)`
+- `ensureM2UsesStoredChunks(runId)`
 
 ---
 
 ## 9. Stage Engine (M0-M6)
 
-Implemented in `src/lib/module_planner/planner.ts`.
+### M0 Distill (`runM0Distill`)
 
-M0 `runM0Distill`:
-- normalizes transcript/unit
-- resolves selected LOs
-- sanitizes constraints defaults
-- builds/stores `ModulePlanRequest`
-- computes/stores `request_hash`
+- requires `unit` + `syllabusVersionId`
+- validates version exists
+- resolves selected LOs (explicit, inferred from transcript, or all for unit)
+- normalizes constraints
+- stores request JSON + request hash
 
-M1 `runM1Analyze`:
-- loads selected unit chunks
-- validates selected LOs grounded in chunks
-- outputs unit LO structure
-- persists retrieved chunk IDs/text
+### M1 Analyze (`runM1Analyze`)
 
-M2 `runM2Coverage`:
-- loads M1 artifact + replayed chunk payload
-- extracts ACs per LO
-- canonical key: `{unit}.LO{n}.AC{n}.{index}`
-- validates groundedness and non-empty coverage
+- reads canonical structure for version+unit
+- validates selected LOs exist in structure
+- outputs LO/title list with source chunk IDs
+- stores retrieved chunk payload for replay
 
-M3 `runM3Plan`:
-- partitions ACs by cap `MAX_ACS_PER_LESSON`
-- enforces per-LO max lessons
-- deterministic topic code generation (`5A`, `5B`, ...)
-- validates no duplication/omission
+### M2 Coverage (`runM2Coverage`)
 
-M4 `runM4Blueprints`:
-- builds deterministic blueprint IDs: `${unit}-${topicCode}${counter}`
-- derives `mustHaveTopics` from AC texts
-- picks layout via keyword heuristic
-- sets prerequisites chain when `foundation-first`
-- constructs `masterBlueprint` contract via `buildMasterLessonBlueprint()`
+- maps selected LOs to canonical AC targets from structure
+- reuses M1 chunk payload metadata
 
-M5 `runM5Validate`:
-- cross-stage coverage checks
-- duplicate/overlap checks
-- cap checks
-- scope checks for `acAnchors` and `mustHaveTopics`
-- validates `masterBlueprint` contract with actionable errors:
-  - required sections
-  - block order/check placement
-  - ID convention consistency
-  - anchor parity with `blueprint.acAnchors`
+### M3 Plan (`runM3Plan`)
 
-M6 `runM6Generate`:
+- LLM planner (`callM3PlannerLLM`) only
+- strict JSON contract for `MinimalLessonPlan`
+- one automatic repair pass if first pass has blocking issues
+- no deterministic fallback plan generation
+
+### M4 Blueprints (`runM4Blueprints`)
+
+- converts M3 plan into ordered blueprint IDs (e.g., `202-5A`, `202-5B`)
+- builds `masterBlueprint` contracts
+- uses LLM draft path with deterministic fallback per lesson
+- stores extended artifact metadata (LO sets, ledgers)
+
+### M5 Validate (`runM5Validate`)
+
+- validates M2/M3/M4 consistency
+- validates `masterBlueprint` contract per lesson
+- validates LO ledger progression for duplicate prior content
+- outputs `ValidationResult { valid, issues }`
+
+### M6 Generate
+
+Per-lesson function (`runM6GenerateLesson`):
 - requires `M5.valid=true`
-- runs queue with concurrency `1..2`
-- calls adapter only
-- persists per-blueprint run lesson status
-- builds generation summary artifact
-- passes `masterLessonBlueprint` into `/api/lesson-generator`
+- generates one blueprint through adapter
+- upserts generated lesson row + M6 summary artifact
 
-Status transitions:
-- `created`
-- `m0-complete` ... `m6-complete`
-- `m6-running`
-- `failed`
+Bulk function (`runM6Generate`):
+- queue generation with concurrency `1..2`
+- updates run status `m6-running` and potentially `failed`
+- route gated by `MODULE_PLANNER_BULK_M6_ENABLED=true`
 
 ---
 
-## 10. API Surface (Module Planner)
+## 10. API Contracts
 
-Guard and error serializer:
-- `src/app/api/admin/module/_utils.ts`
-
-Common success response:
+Common success shape:
 ```json
 {
   "success": true,
@@ -343,7 +293,7 @@ Common success response:
 }
 ```
 
-Common error response:
+Common error shape:
 ```json
 {
   "success": false,
@@ -354,199 +304,86 @@ Common error response:
 }
 ```
 
-Endpoints:
-- `GET /api/admin/module/runs`
-- `POST /api/admin/module/runs`
-- `GET /api/admin/module/runs/:id`
+### Runs API
+
+`GET /api/admin/module/runs`
+- resolves version, unit, LOs, unit truth structure
+- returns syllabus versions + latest ingestion
+
+`POST /api/admin/module/runs`
+- requires `syllabusVersionId` and `unit`
+- creates run shell with `chatTranscript`
+
+`GET /api/admin/module/runs/:id`
+- returns run summary + replayable stage map
+
+### Stage APIs
+
 - `POST /api/admin/module/:id/m0-distill`
 - `POST /api/admin/module/:id/m1-analyze`
 - `POST /api/admin/module/:id/m2-coverage`
 - `POST /api/admin/module/:id/m3-plan`
 - `POST /api/admin/module/:id/m4-blueprints`
 - `POST /api/admin/module/:id/m5-validate`
+
+### Generation APIs
+
+Per lesson:
+- `POST /api/admin/module/:id/lessons/:blueprintId/generate`
+
+Bulk (gated):
 - `POST /api/admin/module/:id/m6-generate`
 
-M0 payload shape (as sent by UI):
-```json
-{
-  "replayFromArtifacts": true,
-  "unit": "202",
-  "selectedLos": ["LO1", "LO5"],
-  "constraints": {
-    "minimiseLessons": true,
-    "defaultMaxLessonsPerLO": 2,
-    "maxLessonsOverrides": {},
-    "level": "Level 2",
-    "audience": "beginner"
-  },
-  "orderingPreference": "foundation-first",
-  "notes": "...",
-  "chatTranscript": "..."
-}
-```
+Syllabus ingestion:
+- `POST /api/admin/module/syllabus/populate`
+- `POST /api/syllabus/upload`
+- `GET /api/syllabus/upload`
 
 ---
 
-## 11. UI Technical Wiring
+## 11. Adapter Integration
 
-`src/app/admin/module/page.tsx`.
+File: `src/lib/module_planner/adapter.ts`
 
-Key technical behaviors:
-- Bootstrap: `GET /api/admin/module/runs`
-- Create run: `POST /api/admin/module/runs`
-- Stage execution: `POST /api/admin/module/${runId}/${stageRoute}`
-- Summary refresh: `GET /api/admin/module/runs/${runId}`
-- Replay toggle maps to `replayFromArtifacts`
-- `AbortController` aborts previous in-flight client call
+Blueprint maps to `/api/lesson-generator` payload with:
+- `unit`, `lessonId`, `topic`, `section`
+- `layout`, `prerequisites`
+- `mustHaveTopics` (semicolon-separated)
+- `additionalInstructions` (includes AC anchors + blueprint compliance directive)
+- `masterLessonBlueprint`
 
-Stage route mapping:
-- `M0 -> m0-distill`
-- `M1 -> m1-analyze`
-- `M2 -> m2-coverage`
-- `M3 -> m3-plan`
-- `M4 -> m4-blueprints`
-- `M5 -> m5-validate`
-- `M6 -> m6-generate`
-
----
-
-## 12. Adapter Integration with Existing Generator
-
-Adapter: `src/lib/module_planner/adapter.ts`
-
-Blueprint -> existing lesson request mapping:
-- `unit` (number)
-- `lessonId` (blueprint ID minus `${unit}-` prefix)
-- `topic`
-- `section` (mapped by unit)
-- `layout`
-- `prerequisites`
-- `mustHaveTopics` (semicolon-joined)
-- `additionalInstructions` (`AC Anchors: ... Follow masterLessonBlueprint exactly...`)
-- `masterLessonBlueprint` (verbatim contract)
-
-Snippet:
-```ts
-return {
-  unit: Number.parseInt(blueprint.unit, 10),
-  lessonId,
-  topic: blueprint.topic,
-  section: SECTION_BY_UNIT[blueprint.unit] ?? `Unit ${blueprint.unit}`,
-  layout: blueprint.layout,
-  prerequisites: blueprint.prerequisites,
-  mustHaveTopics: blueprint.mustHaveTopics.join('; '),
-  additionalInstructions: blueprint.acAnchors.length > 0
-    ? `AC Anchors: ${blueprint.acAnchors.join(', ')}. Follow masterLessonBlueprint exactly; do not invent block structure.`
-    : 'Follow masterLessonBlueprint exactly; do not invent block structure.',
-  masterLessonBlueprint: blueprint.masterBlueprint,
-};
-```
-
-Adapter call target:
-- `POST ${baseUrl}/api/lesson-generator`
-
-Base URL resolution precedence:
-1. explicit `options.apiBaseUrl`
+Base URL resolution:
+1. explicit option
 2. `MODULE_PLANNER_BASE_URL`
 3. `NEXT_PUBLIC_APP_URL`
 4. `http://localhost:3000`
 
 ---
 
-## 13. Prompt Inventory (All Relevant Prompt Paths)
+## 12. Prompt and LLM Inventory
 
-## 13.1 Module Planner stage prompts
+Module planner LLM usage:
+- M3 planning (`callM3PlannerLLM`)
+- M4 lesson draft generation (with deterministic fallback)
 
-Current implementation status:
-- Module planner M0-M6 does not execute dedicated LLM prompts.
-- It uses deterministic code paths (parsing + transforms) in `planner.ts` and `syllabus.ts`.
-
-## 13.2 Existing lesson-generation prompts (invoked at M6)
-
-When M6 calls `/api/lesson-generator`, prompt-driven generation occurs in existing pipeline.
-
-Primary prompt builders:
-- `src/lib/generation/lessonPromptBuilder.ts`
-- `src/lib/generation/quizPromptBuilder.ts`
-
-Phase prompt builders (sequential and scoring/refinement paths):
-- `src/lib/generation/phases/Phase1_Planning.ts`
-- `src/lib/generation/phases/Phase2_Vocabulary.ts`
-- `src/lib/generation/phases/Phase3_Explanation.ts`
-- `src/lib/generation/phases/Phase4_UnderstandingChecks.ts`
-- `src/lib/generation/phases/Phase5_WorkedExample.ts`
-- `src/lib/generation/phases/Phase6_Practice.ts`
-- `src/lib/generation/phases/Phase7_Integration.ts`
-- `src/lib/generation/phases/Phase8_SpacedReview.ts`
-- `src/lib/generation/phases/Phase10_Score.ts`
-- `src/lib/generation/phases/Phase12_Refine.ts`
-
-Common prompt API for phases:
-- `src/lib/generation/phases/PhasePromptBuilder.ts`
-- methods: `buildSystemPrompt`, `buildUserPrompt`, `getPrompts`
-
-### Phase 10 score prompt excerpt
-
-```ts
-prompt += `ADDITIONAL CONTEXT FROM USER:\n${additionalInstructions.trim()}\n\n`;
-prompt += `ASSISTANT ACKNOWLEDGMENT: I will consider this context when scoring and identifying issues.\n\n`;
-```
-
-### Phase 12 refine prompt excerpt
-
-```ts
-prompt += `ADDITIONAL CONTEXT FROM USER:\n${additionalInstructions.trim()}\n\n`;
-prompt += `ASSISTANT ACKNOWLEDGMENT: I will consider this context when refining the lesson.\n\n`;
-```
-
-### Message structuring in file generator
-
-`src/lib/generation/fileGenerator.ts` `buildMessageArray()` parses this pattern:
-- `ADDITIONAL CONTEXT FROM USER:`
-- `ASSISTANT ACKNOWLEDGMENT:`
-- main prompt
-
-and emits multi-turn message objects to the LLM wrapper.
-
-## 13.3 Generator-side blueprint enforcement
-
-`/api/lesson-generator` now performs:
-- pre-generation contract validation (`validateMasterLessonBlueprintContract`)
-- post-generation lesson-vs-blueprint validation (`validateLessonAgainstMasterLessonBlueprint`)
-
-If either fails, API returns `400` and generation is blocked.
+Lesson generation prompts still happen downstream in `/api/lesson-generator` and phase prompt files under `src/lib/generation/phases/*`.
 
 ---
 
-## 14. Cross-Code Integration Points
+## 13. Tests
 
-- Module planner generation output ends in standard lesson files through existing generator.
-- Existing `/api/lesson-generator` writes generation score metadata:
-  - `metadata.generationScore`
-  - `metadata.generationScoreDetails`
-
-This is outside module planner itself but directly affects M6 produced lessons.
-
----
-
-## 15. Technical Constraints and Known Deviations
-
-Implemented behavior vs requested directive:
-- UI route is `/admin/module` (not a tab inside `/admin/generate`).
-- DB uses file-backed store, not SQL migrations.
-- M1/M2 are parser-driven, not LLM prompt-driven.
-- M6 failure error code currently mapped as `JSON_SCHEMA_FAIL` in wrapper path.
-
----
-
-## 16. Testing Artifacts
-
-Module planner tests:
-- `src/lib/module_planner/__tests__/planner.stages.test.ts`
-- `src/lib/module_planner/__tests__/feature-flag.test.ts`
-- `src/lib/module_planner/__tests__/lesson-ui-smoke.test.ts`
-- `src/lib/module_planner/__tests__/lesson-mode-golden.test.ts`
-- `src/lib/module_planner/__tests__/__snapshots__/lesson-mode-golden.test.ts.snap`
+Planner-related tests (`src/lib/module_planner/__tests__`):
+- `feature-flag.test.ts`
+- `hashing.test.ts`
+- `planner.stages.test.ts`
+- `planner.compliance-gaps.test.ts`
+- `populate-workflow.test.ts`
+- `syllabus-ingestion.test.ts`
+- `syllabus.range.test.ts`
+- `master-blueprint-contract.test.ts`
+- `lesson-ui-smoke.test.ts`
+- `lesson-mode-golden.test.ts`
+- `failure-path.test.ts`
 
 ---
 

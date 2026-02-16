@@ -524,6 +524,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-210-3A1'),
     available: true,
     order: 3,
+  },
+  {
+    id: '210-1A',
+    title: 'Site Management and Trade Roles',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: 'Site Management and Trade Roles',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-1A'),
+    available: true,
+    order: 4,
   },];
 
 /**

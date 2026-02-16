@@ -16,11 +16,10 @@ const testLessonBefore: Lesson = {
   topic: 'Testing',
   title: 'Test Lesson',
   description: 'A test lesson',
-  layout: 'standard',
-  estimatedMinutes: 30,
-  difficulty: 'beginner',
+  layout: 'linear-flow',
+  prerequisites: [],
   learningOutcomes: [
-    { text: 'Learn testing', bloomLevel: 'Remember' }
+    'Learn testing'
   ],
   blocks: [
     {
@@ -60,9 +59,10 @@ const testLessonBefore: Lesson = {
     }
   ],
   metadata: {
-    generatedAt: '2026-02-07T00:00:00Z',
+    created: '2026-02-07T00:00:00Z',
+    updated: '2026-02-07T00:00:00Z',
     version: '1.0',
-    tags: ['test']
+    author: 'Test Framework'
   }
 };
 
@@ -82,7 +82,7 @@ const testLessonAfter: Lesson = {
       content: {
         questions: [
           {
-            ...testLessonBefore.blocks[2].content.questions[0],
+            ...((testLessonBefore.blocks[2].content as { questions: Array<Record<string, unknown>> }).questions[0] as Record<string, unknown>),
             hint: 'Think about quality and verification'  // Changed
           }
         ]
@@ -215,7 +215,7 @@ function testScoreStability() {
     };
     
     console.log('Running stability check with mock scorer...');
-    runStabilityCheck(testLessonBefore, mockScorer, 3).then(result => {
+    runStabilityCheck(testLessonBefore, mockScorer, 3).then((result: any) => {
       console.log(`Stability check complete: ${result.runs.length} runs`);
       console.log(`  Range: ${result.analysis.min} - ${result.analysis.max}`);
       console.log(`  Variance: ${result.analysis.variance}`);
@@ -226,7 +226,7 @@ function testScoreStability() {
       } else {
         console.log('❌ Test FAILED: Expected 3 runs');
       }
-    }).catch(error => {
+    }).catch((error: any) => {
       console.log('❌ Test FAILED:', error);
     });
   } catch (error) {

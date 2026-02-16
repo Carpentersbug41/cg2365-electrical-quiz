@@ -3,6 +3,7 @@ import {
   buildDeterministicChunks,
   cleanExtractedText,
   extractCanonicalStructureFromText,
+  parseAssessmentCriteriaEntriesFromContent,
   validateCanonicalStructure,
 } from '@/lib/module_planner/syllabus';
 
@@ -58,10 +59,33 @@ describe('syllabus ingestion utilities', () => {
     expect(confidence).toBeGreaterThan(0);
     expect(structures.length).toBe(1);
     expect(structures[0].unit).toBe('210');
+    expect(structures[0].unitTitle).toBe('Communication');
     expect(structures[0].los.length).toBe(2);
     expect(structures[0].los[0].acs.length).toBe(2);
 
     const errors = validateCanonicalStructure(structures[0]);
     expect(errors).toEqual([]);
+  });
+
+  it('parses AC entries by AC number and keeps bullets attached to parent AC text', () => {
+    const content = [
+      '## LO1',
+      '**AC**',
+      '1.1 Identify key roles of the site management team:',
+      '- architect',
+      '- project manager',
+      '1.2 Identify key roles of individuals reporting to site management:',
+      '- subcontractors',
+      '1.3 Identify key roles of site visitors:',
+      '- HSE inspector',
+      '---',
+    ].join('\n');
+
+    const entries = parseAssessmentCriteriaEntriesFromContent(content);
+    expect(entries.map((entry) => entry.acNumber)).toEqual(['1.1', '1.2', '1.3']);
+    expect(entries).toHaveLength(3);
+    expect(entries[0].text).toContain('Identify key roles of the site management team:');
+    expect(entries[0].text).toContain('architect');
+    expect(entries[2].text).toContain('HSE inspector');
   });
 });

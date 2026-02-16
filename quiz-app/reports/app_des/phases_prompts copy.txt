@@ -1,6 +1,6 @@
 # Sequential Generation Phase Prompts - Current Contracts
 
-Last verified: 2026-02-13
+Last verified: 2026-02-16
 Status: Current implementation reference
 Scope: Active prompt contracts in `src/lib/generation/phases`
 
@@ -8,7 +8,7 @@ Scope: Active prompt contracts in `src/lib/generation/phases`
 
 ## 1. Source of Truth
 
-Prompt text source of truth is code:
+Prompt text source of truth:
 - `src/lib/generation/phases/Phase1_Planning.ts`
 - `src/lib/generation/phases/Phase2_Vocabulary.ts`
 - `src/lib/generation/phases/Phase3_Explanation.ts`
@@ -20,13 +20,11 @@ Prompt text source of truth is code:
 - `src/lib/generation/phases/Phase10_Score.ts`
 - `src/lib/generation/phases/Phase12_Refine.ts`
 
-Runtime flow/decision source of truth (non-prompt):
+Runtime orchestration truth:
 - `src/lib/generation/SequentialLessonGenerator.ts`
 - `src/lib/generation/phases/Phase9_Assembler.ts`
 - `src/lib/generation/phases/Phase13_Rescore.ts`
 - `src/lib/generation/config.ts`
-
-This document describes the implemented contracts and critical rules.
 
 ---
 
@@ -34,309 +32,146 @@ This document describes the implemented contracts and critical rules.
 
 Shared base: `PhasePromptBuilder`
 
-All prompt-driven phases use shared JSON output instructions:
-- valid RFC 8259 JSON only
+Cross-phase JSON requirements:
+- valid JSON only
 - no markdown wrappers
 - no comments
-- double-quoted property names
+- double-quoted keys
 - no trailing commas
-- return JSON only
 
-Cross-phase design direction (current prompts):
-- domain-agnostic language is repeatedly mandated
-- transferable pedagogy across technical subjects
-- beginner clarity and teaching-before-testing sequencing
-
----
-
-## 3. Phase 1 - Planning
-
-File: `Phase1_Planning.ts`
-
-Purpose:
-- determine lesson structure and scope control before content generation
-
-Critical outputs:
-- `layout`, `needsDiagram`, `explanationSections`
-- `needsWorkedExample`
-- `learningOutcomes`
-- `taskMode` (authoritative for downstream phases)
-- `syllabusAnchors` (`unit`, `learningOutcome`, `coveredAC`, `outOfScopeAC`)
-- `scope` (`inScope`, `outOfScope`, `rationale`)
-- `teachingConstraints` (purpose-only, identification-only, no-calculations, etc.)
-
-Prompt rules emphasized:
-- parse scope constraints from `mustHaveTopics`
-- compute `taskMode` as single source of truth
-- AC label format must be `AC1`, `AC2`, etc.
-- `coveredAC` and `outOfScopeAC` must not overlap
+Cross-phase pedagogy direction:
+- domain-agnostic language
+- transferable technical pedagogy
+- beginner clarity with teaching-before-testing
 
 ---
 
-## 4. Phase 2 - Vocabulary
+## 3. Phase Contracts (Summary)
 
-File: `Phase2_Vocabulary.ts`
+### Phase 1 - Planning (`Phase1_Planning.ts`)
 
-Purpose:
-- generate essential terminology for consistent downstream wording
+Core outputs:
+- layout and diagram need
+- explanation section planning
+- worked-example requirement
+- learning outcomes
+- `taskMode` (single source of truth for downstream restrictions)
+- syllabus anchor/scope metadata
+- teaching constraints
 
-Expected output:
-- `terms`: array of 4-6 `{ term, definition }`
+### Phase 2 - Vocabulary (`Phase2_Vocabulary.ts`)
 
-Prompt rules emphasized:
-- one-sentence definitions
-- practical clarity over academic verbosity
-- boundary clauses for commonly confused terms when relevant
-- foundational-to-advanced ordering
+Core output:
+- 4-6 terms with concise definitions
 
----
+### Phase 3 - Explanation (`Phase3_Explanation.ts`)
 
-## 5. Phase 3 - Explanation
+Core outputs:
+- explanation blocks
+- optional diagram elements
+- misconception targets
 
-File: `Phase3_Explanation.ts`
+Notable constraints:
+- fixed structured explanation style
+- concrete anchors after formal concepts
+- micro-scenarios for measurable/comparative concepts
 
-Purpose:
-- generate main teaching explanations
-- optionally emit diagram metadata and misconception targets
+### Phase 4 - Understanding Checks (`Phase4_UnderstandingChecks.ts`)
 
-Expected output:
-- `explanations[]` blocks
-- optional `diagramElements`
-- `misconceptions[]` (top-level structured misconception targets)
+Core output:
+- one conceptual check block per explanation
+- 4 questions each (Q1-Q3 recall/short-text, Q4 connection/long-text)
 
-Critical prompt constraints:
-- each explanation block target length: 400-600 words
-- fixed 9-part structure with mandatory headings/order
-- required heading: `Key facts / rules`
-- task-mode-specific section-5 heading logic
-- concrete anchor rule after formal concept definition
-- micro-scenario requirement for measurable/quantitative concepts
-- structured misconception bullets inside `Common mistakes`
-- top-level JSON `misconceptions` must mirror targeted items
-- if diagram required: kebab-case diagram element IDs
-- no invented standards/table numeric values unless explicitly provided
+### Phase 5 - Worked Example (`Phase5_WorkedExample.ts`)
 
----
+Core output:
+- `workedExample` + `guidedPractice`, or both null when not required
 
-## 6. Phase 4 - Understanding Checks
+Notable constraints:
+- mirrored step structure between worked and guided forms
+- task-mode gating for wording and operation language
 
-File: `Phase4_UnderstandingChecks.ts`
+### Phase 6 - Practice (`Phase6_Practice.ts`)
 
-Purpose:
-- generate formative checks immediately after each explanation
+Core output:
+- independent practice block (order 8), 3-5 mixed questions
 
-Expected output:
-- one check block per explanation
-- each check has 4 questions:
-  - Q1-Q3: recall, short-text
-  - Q4: connection/early reasoning, long-text
+Notable constraints:
+- includes transfer and early reasoning
+- numeric expected answers must be numeric-only values
 
-Critical prompt constraints:
-- anchor-fact method (3 anchor facts per explanation)
-- Q4 must connect Q1-Q3 facts explicitly
-- early reasoning stem required in Q4
-- `expectedAnswer` always array
-- L1 recall answers: concise canonical + tight variants
-- L2 long-text requires `keyPoints` + sample `expectedAnswer`
-- no untaught new terms
-- purpose-only/identification task modes prohibit procedural wording
+### Phase 7 - Integration (`Phase7_Integration.ts`)
 
----
-
-## 7. Phase 5 - Worked Example + Guided Practice
-
-File: `Phase5_WorkedExample.ts`
-
-Purpose:
-- generate `I do` and `We do` scaffold when needed
-
-Expected output:
-- `workedExample` and `guidedPractice`
-- or both `null` when not required
-
-Critical prompt constraints:
-- task-mode-dependent format selection
-- strict mirroring contract:
-  - same step count
-  - same step numbering
-  - same decision flow
-- purpose-only/identification tasks use selection/recognition format
-- procedural operation language banned in purpose-only/identification modes
-- `expectedAnswer` must be arrays with canonical-first variants
-- no invented standard/table numeric values
-
----
-
-## 8. Phase 6 - Practice
-
-File: `Phase6_Practice.ts`
-
-Purpose:
-- generate independent practice block (`You do`)
-
-Expected output:
-- practice block at order 8
-- 3-5 mixed questions
-
-Current question schema in this phase:
-- `answerType`: `numeric` or `short-text`
-- `expectedAnswer`: array
-- optional units/context in hint
-
-Critical prompt constraints:
-- include transfer question (novel context)
-- include at least one early reasoning question
-- numeric answers: numbers only in `expectedAnswer`
-- short-text variants: tight normalization, not broad paraphrase
-- purpose-only mode prohibits procedural testing
-
----
-
-## 9. Phase 7 - Integration
-
-File: `Phase7_Integration.ts`
-
-Purpose:
-- generate synthesis block (`Putting It All Together`)
-
-Expected output:
+Core output:
 - integrative block at order 9.5
-- exactly 2 long-text questions:
-  - INT-1: connection
-  - INT-2: synthesis
+- exactly 2 long-text questions (connection + synthesis)
 
-Critical prompt constraints:
-- both questions must be `answerType: long-text`
-- structured answer-inclusion prompts required
-- INT-2 must end with exact instruction:
-  - `Answer in 3-4 sentences OR concise bullet points.`
-- `keyPoints` required:
-  - INT-1: 4-6
-  - INT-2: 6-10
-- expected answers are example comprehensive responses
+### Phase 8 - Spaced Review (`Phase8_SpacedReview.ts`)
 
----
-
-## 10. Phase 8 - Spaced Review (Foundation Check)
-
-File: `Phase8_SpacedReview.ts`
-
-Purpose:
-- generate prerequisite foundation check before lesson start
-
-Expected output:
+Core output:
 - spaced-review block at order 10
-- exactly 3 questions
+- exactly 3 short-text prerequisite questions
 
-Critical prompt constraints:
-- all questions `answerType: short-text`
-- each `expectedAnswer` is an array (2-4 variants)
-- must test prerequisite knowledge, not new lesson content
-- if prerequisite/foundation anchors are provided, questions must stay inside those anchors
-- explicit ban on injecting random out-of-context technical facts or values
-
-Runtime enforcement in `SequentialLessonGenerator`:
-- strict `questions.length === 3` validation
+Runtime enforcement in generator:
+- strict `questions.length === 3`
 - one retry if wrong count
-- deterministic fallback generator if phase output still invalid
-- fallback also enforces exactly 3 short-text questions
+- deterministic fallback generator if still invalid
+
+### Phase 9 - Assembler (`Phase9_Assembler.ts`)
+
+Core behavior:
+- assembles final lesson with fixed order contract
+- requires key orders including `9.5` integrative and `10` spaced-review last
+- projects planning metadata (`taskMode`, anchors/scope, constraints)
 
 ---
 
-## 11. Phase 9 - Assembler Contract
+## 4. Phase 10-13 Refinement Contracts
 
-File: `Phase9_Assembler.ts`
-
-Purpose:
-- compose all phase outputs into final lesson JSON
-
-Critical order contract (enforced):
-- 1 outcomes
-- 2 vocab
-- 3 diagram (optional)
-- 4 explanation-1
-- 4.5 check-1
-- 5 explanation-2 (optional)
-- 5.5 check-2 (optional)
-- 6 worked-example (optional)
-- 7 guided-practice (optional)
-- 8 practice
-- 9.5 integrative
-- 10 spaced-review (must be last)
-
-Additional assembly behavior:
-- block order uniqueness and monotonic increase validated
-- planning metadata projected into lesson metadata:
-  - `taskMode`
-  - `syllabusAnchors`
-  - `scope`
-  - `teachingConstraints`
-- misconceptions from Phase 3 are added to metadata when present
-
----
-
-## 12. Phase 10-13 (Scoring and Refinement)
-
-### Active runtime flow
+### Active path
 
 In `SequentialLessonGenerator`:
-1. Phase 10 score (`Phase10_Score`)
-2. if score is below refinement threshold (`scoreThreshold` in `config.ts`, default `95`), run Phase 12 refine (`Phase12_Refine`)
-3. Phase 13 rescore/compare (`Phase13_Rescore`)
-4. keep best lesson (candidate only if improved or tied with fewer issues)
+1. Phase 10 score
+2. if below threshold (config default `95`), Phase 12 refine
+3. Phase 13 rescore/compare
+4. keep best lesson by policy
 
-### Phase 10 prompt behavior
+### Phase 10 (`Phase10_Score.ts`)
 
-File: `Phase10_Score.ts`
+- LLM-backed rubric scoring
+- requires structured output with `0-10` issues
+- parser rejects `>10` issues
 
-Current scorer focus:
-- beginner clarity
-- teaching-before-testing
-- marking robustness
-- alignment to LO/AC scope
-- question quality
+### Phase 12 (`Phase12_Refine.ts`)
 
-Prompt expects:
-- 0-10 issues max
-- structured issue fields including `jsonPointers` and rationale
-- domain-agnostic pedagogy checks
+- outputs complete refined lesson JSON
+- validates structural invariants (ids/types/orders/answerTypes)
 
-### Phase 12 refine prompt behavior
+### Phase 13 (`Phase13_Rescore.ts`)
 
-File: `Phase12_Refine.ts`
+Acceptance policy:
+- accept if total score improves
+- also accept tie with fewer issues
+- else keep original
 
-Current model task:
-- output complete refined lesson JSON (full object)
-- preserve structure signature invariants (ids/types/orders/answerTypes)
-- improve pedagogy without structure drift
-
-### Phase 13 compare behavior
-
-File: `Phase13_Rescore.ts`
-
-Decision policy currently implemented:
-- accept candidate if total score improves
-- also accept tie if issue count decreases
-- otherwise keep original
-
-`threshold` parameter is still present for compatibility but acceptance logic is comparison-based, not "must cross threshold".
+`threshold` parameter is compatibility-only and not an acceptance gate.
 
 ---
 
-## 13. Legacy Phase Files (Not Active Runtime)
+## 5. Legacy Files Not On Active Runtime Path
 
-Files still present:
+Still present in repo:
 - `Phase11_Suggest.ts`
 - `Phase12_Implement.ts`
 
-They are legacy patch-era modules and not called by the active runtime path in `SequentialLessonGenerator`, which now uses `Phase12_Refine` + `Phase13_Rescore`.
+These are legacy patch-era modules and are not called by active runtime refinement orchestration.
 
 ---
 
-## 14. Important Drift Note
+## 6. Current Drift Notes
 
-Some non-runtime comments/types/tests still reference patch terminology and old phase labels. Use runtime imports/calls as architecture truth, not legacy naming.
+- Some logs/comments/config text still use patch-era language and fields like `patchesApplied`.
+- Validation service currently still warns for 4 spaced-review questions in one path, while Phase 8 generation contract enforces 3.
 
----
+Use runtime imports and call paths as architecture truth.
 
-This document replaces earlier "verbatim old prompt" references that no longer matched the current phase contracts.

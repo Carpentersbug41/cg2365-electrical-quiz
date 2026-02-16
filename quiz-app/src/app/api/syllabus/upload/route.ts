@@ -112,10 +112,12 @@ async function tryNormaliseStructureWithLlm(cleanedText: string): Promise<Canoni
             {
               loNumber: 'string',
               title: 'string',
+              range: ['string'],
               acs: [
                 {
                   acNumber: 'string',
                   text: 'string',
+                  range: ['string'],
                 },
               ],
             },
@@ -137,28 +139,42 @@ async function tryNormaliseStructureWithLlm(cleanedText: string): Promise<Canoni
 
   const normalized: CanonicalUnitStructure[] = parsed.data.structures
     .map((entry) => {
+      const normalizeRangeList = (value: unknown): string[] => {
+        if (Array.isArray(value)) {
+          return value.map((item) => String(item).trim()).filter((item) => item.length > 0);
+        }
+        if (typeof value === 'string') {
+          const trimmed = value.trim();
+          return trimmed.length > 0 ? [trimmed] : [];
+        }
+        return [];
+      };
       const unit = String(entry.unit ?? '').trim();
       const losRaw = Array.isArray(entry.los) ? entry.los : [];
-      const los = losRaw.map((loEntry) => {
-        const loObj = loEntry as Record<string, unknown>;
-        const loNumber = String(loObj.loNumber ?? '').trim();
-        const acsRaw = Array.isArray(loObj.acs) ? loObj.acs : [];
-        const acs = acsRaw.map((acEntry) => {
-          const acObj = acEntry as Record<string, unknown>;
-          const acNumber = String(acObj.acNumber ?? '').trim();
-          const text = String(acObj.text ?? '').trim();
+        const los = losRaw.map((loEntry) => {
+          const loObj = loEntry as Record<string, unknown>;
+          const loNumber = String(loObj.loNumber ?? '').trim();
+          const loRange = normalizeRangeList(loObj.range);
+          const acsRaw = Array.isArray(loObj.acs) ? loObj.acs : [];
+          const acs = acsRaw.map((acEntry) => {
+            const acObj = acEntry as Record<string, unknown>;
+            const acNumber = String(acObj.acNumber ?? '').trim();
+            const text = String(acObj.text ?? '').trim();
+            const acRange = normalizeRangeList(acObj.range);
+            return {
+              acNumber,
+              text,
+              acKey: `${unit}.LO${loNumber}.AC${acNumber}`,
+              range: acRange.length > 0 ? acRange : undefined,
+            };
+          });
           return {
-            acNumber,
-            text,
-            acKey: `${unit}.LO${loNumber}.AC${acNumber}`,
+            loNumber,
+            title: String(loObj.title ?? '').trim() || undefined,
+            acs,
+            range: loRange.length > 0 ? loRange : undefined,
           };
         });
-        return {
-          loNumber,
-          title: String(loObj.title ?? '').trim() || undefined,
-          acs,
-        };
-      });
       return { unit, los };
     })
     .filter((unit) => unit.unit.length > 0 && unit.los.length > 0);

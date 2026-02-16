@@ -1,10 +1,11 @@
 import {
   DEFAULT_AUDIENCE,
   DEFAULT_LEVEL,
+  DEFAULT_MAX_ACS_PER_LESSON,
   DEFAULT_MAX_LESSONS_PER_LO,
   DEFAULT_MINIMISE_LESSONS,
   DEFAULT_ORDERING_PREFERENCE,
-  MAX_ACS_PER_LESSON,
+  DEFAULT_PREFERRED_ACS_PER_LESSON,
   getModulePlannerConcurrency,
 } from './constants';
 import {
@@ -30,7 +31,7 @@ import {
   getLoNumber,
   getUnitLos,
   normalizeLo,
-  parseRangeFromContent,
+  parseAssessmentCriteriaEntriesFromContent,
   serializeRetrievedChunkRecords,
   toRetrievedChunkRecords,
 } from './syllabus';
@@ -38,6 +39,7 @@ import { buildMasterLessonBlueprint, validateMasterLessonBlueprintContract } fro
 import {
   validateCoverageTargets,
   validateLessonBlueprints,
+  validateM4BlueprintArtifact,
   validateMinimalLessonPlan,
   validateModulePlanRequest,
   validateUnitStructure,
@@ -50,6 +52,11 @@ import {
   DistillInput,
   GenerateSummary,
   LessonBlueprint,
+  LessonLedgerMetadata,
+  LoBlueprintSetArtifact,
+  LoLedger,
+  LoLedgerArtifact,
+  M4BlueprintArtifact,
   MinimalLessonPlan,
   ModuleConstraints,
   ModulePlanRequest,
@@ -58,16 +65,19 @@ import {
   ModuleRunSummary,
   ModuleStage,
   OrderingPreference,
+  RetrievedChunkRecord,
   StageExecutionResult,
   StageReplayOptions,
   UnitStructure,
   ValidationIssue,
   ValidationResult,
 } from './types';
-import { generateLessonFromBlueprint } from './adapter';
+import { BlueprintGenerationResult, generateLessonFromBlueprint } from './adapter';
 import { createLLMClient } from '@/lib/llm/client';
 import { getGeminiApiKey, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { cleanCodeBlocks, preprocessToValidJson, safeJsonParse } from '@/lib/generation/utils';
+import fs from 'fs';
+import path from 'path';
 
 type ValidationFn<T> = (value: unknown) => value is T;
 
@@ -134,9 +144,27 @@ function sanitizeConstraints(input?: Partial<ModuleConstraints>): ModuleConstrai
     }
   }
   const defaultMax = Number.parseInt(String(input?.defaultMaxLessonsPerLO ?? DEFAULT_MAX_LESSONS_PER_LO), 10);
+  const maxAcsPerLessonRaw = Number.parseInt(
+    String(input?.maxAcsPerLesson ?? DEFAULT_MAX_ACS_PER_LESSON),
+    10
+  );
+  const preferredAcsPerLessonRaw = Number.parseInt(
+    String(input?.preferredAcsPerLesson ?? DEFAULT_PREFERRED_ACS_PER_LESSON),
+    10
+  );
+  const maxAcsPerLesson =
+    Number.isNaN(maxAcsPerLessonRaw) || maxAcsPerLessonRaw <= 0
+      ? DEFAULT_MAX_ACS_PER_LESSON
+      : maxAcsPerLessonRaw;
+  const preferredAcsPerLesson =
+    Number.isNaN(preferredAcsPerLessonRaw) || preferredAcsPerLessonRaw <= 0
+      ? DEFAULT_PREFERRED_ACS_PER_LESSON
+      : preferredAcsPerLessonRaw;
   return {
     minimiseLessons: input?.minimiseLessons ?? DEFAULT_MINIMISE_LESSONS,
     defaultMaxLessonsPerLO: Number.isNaN(defaultMax) || defaultMax <= 0 ? DEFAULT_MAX_LESSONS_PER_LO : defaultMax,
+    maxAcsPerLesson,
+    preferredAcsPerLesson,
     maxLessonsOverrides: overrides,
     level: typeof input?.level === 'string' && input.level.trim().length > 0 ? input.level.trim() : DEFAULT_LEVEL,
     audience:
@@ -177,7 +205,8 @@ function buildRequestHash(chatTranscript: string, request: ModulePlanRequest, co
       contentHash,
     },
     config: {
-      maxAcsPerLesson: MAX_ACS_PER_LESSON,
+      maxAcsPerLesson: request.constraints.maxAcsPerLesson,
+      preferredAcsPerLesson: request.constraints.preferredAcsPerLesson,
       ordering: request.orderingPreference,
       defaultMaxLessonsPerLO: request.constraints.defaultMaxLessonsPerLO,
       maxLessonsOverrides: request.constraints.maxLessonsOverrides,
@@ -221,37 +250,411 @@ function alphaIndex(index: number): string {
   return `${alphabet[first]}${alphabet[second]}`;
 }
 
-function chunkArray<T>(items: T[], size: number): T[][] {
-  const output: T[][] = [];
-  for (let i = 0; i < items.length; i += size) {
-    output.push(items.slice(i, i + size));
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+const AC_COMMAND_VERBS = new Set([
+  'identify',
+  'state',
+  'define',
+  'describe',
+  'explain',
+  'apply',
+  'list',
+  'outline',
+  'demonstrate',
+  'recognise',
+  'recognize',
+  'select',
+  'calculate',
+  'summarise',
+  'summarize',
+  'name',
+]);
+
+function normalizeCurriculumPhrase(value: string): string {
+  return value
+    .replace(/\s+/g, ' ')
+    .replace(/^\d+(?:\.\d+)?\s*/, '')
+    .replace(/^[-:;,.()\s]+/, '')
+    .trim();
+}
+
+function stripCommandVerb(value: string): string {
+  const cleaned = normalizeCurriculumPhrase(value);
+  if (!cleaned) return '';
+  const tokens = cleaned.split(' ').filter((token) => token.length > 0);
+  if (tokens.length <= 1) return cleaned;
+  return AC_COMMAND_VERBS.has(tokens[0].toLowerCase()) ? tokens.slice(1).join(' ') : cleaned;
+}
+
+function cleanConceptPhrase(value: string): string {
+  return stripCommandVerb(value)
+    .replace(/\s+/g, ' ')
+    .replace(/^[^A-Za-z0-9]+/, '')
+    .replace(/[:;,.]+$/, '')
+    .trim();
+}
+
+function normalizeTopicCode(topicCode: string, unit: string, loHint?: string): string {
+  const trimmed = String(topicCode ?? '').trim();
+  if (!trimmed) return trimmed;
+  let normalized = trimmed.replace(/\s+/g, '');
+  normalized = normalized.replace(new RegExp(`^${escapeRegExp(unit)}[-_.]?`, 'i'), '');
+  normalized = normalized.replace(/^topic[-_.]?/i, '');
+
+  if (/^\d+[A-Z]{1,2}$/i.test(normalized)) {
+    return normalized.toUpperCase();
   }
-  return output;
+
+  const loFromHint = loHint ? String(getLoNumber(loHint)) : null;
+  const loFromCode = normalized.match(/LO(\d+)/i)?.[1] ?? null;
+  const loNumber = loFromHint ?? loFromCode;
+  const lessonOrdinalMatch =
+    normalized.match(/(?:^|[._-])L(?:ESSON)?(\d+)$/i) ??
+    normalized.match(/LESSON(\d+)$/i);
+
+  if (loNumber && lessonOrdinalMatch) {
+    const ordinal = Number.parseInt(lessonOrdinalMatch[1], 10);
+    if (!Number.isNaN(ordinal) && ordinal > 0) {
+      return `${loNumber}${alphaIndex(ordinal - 1)}`;
+    }
+  }
+
+  if (loNumber) {
+    const letterSuffix = normalized.match(/(?:^|[._-])([A-Z]{1,2})$/i)?.[1] ?? null;
+    if (letterSuffix) return `${loNumber}${letterSuffix.toUpperCase()}`;
+  }
+
+  return normalized;
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
 }
 
 function unique<T>(items: T[]): T[] {
   return Array.from(new Set(items));
 }
 
+function toRangeList(value: string[] | string | null | undefined): string[] {
+  if (Array.isArray(value)) {
+    return value.map((item) => item.trim()).filter((item) => item.length > 0);
+  }
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+    return trimmed.length > 0 ? [trimmed] : [];
+  }
+  return [];
+}
+
+function looksLikeLoHeading(value: string): boolean {
+  const normalized = value.trim();
+  return /^LO\s*\d+\b/i.test(normalized) || /^Learning Outcome\s*\d*/i.test(normalized);
+}
+
+function pickMostFrequent(values: string[]): string | null {
+  if (values.length === 0) return null;
+  const counts = new Map<string, number>();
+  for (const value of values) {
+    counts.set(value, (counts.get(value) ?? 0) + 1);
+  }
+  let bestValue: string | null = null;
+  let bestCount = -1;
+  for (const [value, count] of counts.entries()) {
+    if (count > bestCount) {
+      bestValue = value;
+      bestCount = count;
+    }
+  }
+  return bestValue;
+}
+
+function normalizeCoverageAcText(acNumber: string, acText: string): string {
+  const text = String(acText ?? '').trim();
+  if (!text) return text;
+  const suffix = String(acNumber ?? '').split('.').pop()?.trim();
+  if (!suffix) return text;
+  const prefixed = new RegExp(`^${escapeRegExp(suffix)}\\s+`);
+  return text
+    .replace(prefixed, '')
+    .replace(/\s*[:;]+$/, '')
+    .trim();
+}
+
+function normalizeAcNumberToken(value: string): string {
+  return String(value ?? '').replace(/^AC\s*/i, '').trim();
+}
+
+function isLikelyTruncatedAcText(value: string): boolean {
+  const text = String(value ?? '').trim();
+  if (!text) return true;
+  if (/[:;]$/.test(text)) return true;
+  return /\b(with|between|for|to|from|of|in|on|at|into|onto|about|against|among|across|via)$/i.test(text);
+}
+
+function enrichCoverageAcTextFromRecords(params: {
+  acNumber: string;
+  acText: string;
+  loRecords: RetrievedChunkRecord[];
+}): string {
+  const normalizedBase = normalizeCoverageAcText(params.acNumber, params.acText);
+  const targetAcNumber = normalizeAcNumberToken(params.acNumber);
+  let best = normalizedBase;
+
+  for (const record of params.loRecords) {
+    const entries = parseAssessmentCriteriaEntriesFromContent(record.content);
+    for (const entry of entries) {
+      if (normalizeAcNumberToken(entry.acNumber) !== targetAcNumber) continue;
+      const candidate = normalizeCoverageAcText(params.acNumber, entry.text);
+      if (!candidate) continue;
+      if (!best) {
+        best = candidate;
+        continue;
+      }
+      const preferCandidate =
+        (isLikelyTruncatedAcText(best) && !isLikelyTruncatedAcText(candidate)) ||
+        candidate.length > best.length + 8;
+      if (preferCandidate) {
+        best = candidate;
+      }
+    }
+  }
+
+  return best;
+}
+
+function formatPlanIssuesForError(issues: ValidationIssue[]): string {
+  const summarized = issues.slice(0, 12).map((issue, index) => {
+    const acKey = issue.meta?.acKey ? ` ac=${issue.meta.acKey}` : '';
+    const lessonTitle = issue.meta?.lessonTitle ? ` lesson="${issue.meta.lessonTitle}"` : '';
+    const lo = issue.meta?.lo ? ` lo=${issue.meta.lo}` : '';
+    return `${index + 1}. [${issue.severity}] ${issue.code}${lo}${acKey}${lessonTitle} - ${issue.message}`;
+  });
+  const suffix = issues.length > summarized.length ? ` | +${issues.length - summarized.length} more` : '';
+  return `${summarized.join(' | ')}${suffix}`;
+}
+
+function hasBlockingPlanIssues(issues: ValidationIssue[]): boolean {
+  return issues.some((issue) => issue.severity === 'error');
+}
+
+type M3LlmFailureReason =
+  | 'OK'
+  | 'NO_API_KEY'
+  | 'NO_MODEL'
+  | 'LLM_EXCEPTION'
+  | 'EMPTY_RESPONSE'
+  | 'JSON_PARSE_FAIL'
+  | 'JSON_SCHEMA_FAIL';
+
+interface M3LlmDiagnostics {
+  failureReason: M3LlmFailureReason;
+  model: string | null;
+  finishReason: string | null;
+  responseChars: number;
+  parseError: string | null;
+  schemaValid: boolean | null;
+  shapeCoerced: boolean | null;
+  errorMessage: string | null;
+  rawPreview: string | null;
+}
+
+interface M3LlmAttempt {
+  plan: MinimalLessonPlan | null;
+  diagnostics: M3LlmDiagnostics;
+}
+
+function truncateText(value: string, maxChars: number): string {
+  if (value.length <= maxChars) return value;
+  return `${value.slice(0, Math.max(0, maxChars - 3))}...`;
+}
+
+function formatM3DiagnosticsForMessage(diagnostics: M3LlmDiagnostics): string {
+  const parts = [`reason=${diagnostics.failureReason}`];
+  if (diagnostics.finishReason) parts.push(`finishReason=${diagnostics.finishReason}`);
+  if (diagnostics.responseChars > 0) parts.push(`responseChars=${diagnostics.responseChars}`);
+  if (diagnostics.parseError) parts.push(`parseError=${truncateText(diagnostics.parseError, 180)}`);
+  if (diagnostics.errorMessage) parts.push(`error=${truncateText(diagnostics.errorMessage, 180)}`);
+  return parts.join(', ');
+}
+
+function toM3DiagnosticsMeta(
+  diagnostics: M3LlmDiagnostics
+): Record<string, string | number | boolean | null> {
+  return {
+    llmFailureReason: diagnostics.failureReason,
+    llmModel: diagnostics.model,
+    llmFinishReason: diagnostics.finishReason,
+    llmResponseChars: diagnostics.responseChars,
+    llmParseError: diagnostics.parseError ? truncateText(diagnostics.parseError, 500) : null,
+    llmSchemaValid: diagnostics.schemaValid,
+    llmShapeCoerced: diagnostics.shapeCoerced,
+    llmErrorMessage: diagnostics.errorMessage ? truncateText(diagnostics.errorMessage, 500) : null,
+    llmRawPreview: diagnostics.rawPreview ? truncateText(diagnostics.rawPreview, 500) : null,
+  };
+}
+
+function toCleanString(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const trimmed = value.trim();
+  return trimmed.length > 0 ? trimmed : null;
+}
+
+function toStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return unique(
+    value
+      .map((item) => toCleanString(item))
+      .filter((item): item is string => Boolean(item))
+  );
+}
+
+function normalizePlanTopicCodes(plan: MinimalLessonPlan, request: ModulePlanRequest): MinimalLessonPlan {
+  return {
+    unit: plan.unit,
+    los: plan.los.map((loGroup) => {
+      const lo = normalizeLo(loGroup.lo);
+      const lessons = loGroup.lessons.map((lesson, index) => {
+        const fallbackTopicCode = `${String(getLoNumber(lo))}${alphaIndex(index)}`;
+        const normalizedTopicCode = normalizeTopicCode(lesson.topicCode, request.unit, lo);
+        return {
+          ...lesson,
+          topicCode: normalizedTopicCode || fallbackTopicCode,
+        };
+      });
+      return {
+        lo,
+        lessonCount: lessons.length,
+        lessons,
+      };
+    }),
+  };
+}
+
+function coerceMinimalLessonPlanShape(value: unknown, request: ModulePlanRequest): MinimalLessonPlan | null {
+  const root = Array.isArray(value)
+    ? { unit: request.unit, los: value }
+    : isRecord(value)
+      ? {
+          unit: toCleanString(value.unit) ?? request.unit,
+          los: Array.isArray(value.los)
+            ? value.los
+            : Array.isArray(value.plan)
+              ? value.plan
+              : Array.isArray(value.lessonPlan)
+                ? value.lessonPlan
+                : [],
+        }
+      : null;
+
+  if (!root || root.los.length === 0) return null;
+
+  const requestedLoOrder = request.selectedLos.map((lo) => normalizeLo(lo));
+  const requestedLoSet = new Set(requestedLoOrder);
+  const loOrder = new Map(requestedLoOrder.map((lo, idx) => [lo, idx]));
+
+  const normalizedLos: MinimalLessonPlan['los'] = [];
+
+  for (const loEntry of root.los) {
+    if (!isRecord(loEntry)) continue;
+
+    const rawLoTag =
+      toCleanString(loEntry.lo) ??
+      toCleanString(loEntry.learningOutcome) ??
+      (toCleanString(loEntry.loNumber) ? `LO${toCleanString(loEntry.loNumber)}` : null);
+    if (!rawLoTag) continue;
+
+    const lo = normalizeLo(rawLoTag);
+    if (!requestedLoSet.has(lo)) continue;
+
+    const lessonRows = Array.isArray(loEntry.lessons)
+      ? loEntry.lessons
+      : Array.isArray(loEntry.lessonPlan)
+        ? loEntry.lessonPlan
+        : Array.isArray(loEntry.items)
+          ? loEntry.items
+          : [];
+
+    const normalizedLessons: MinimalLessonPlan['los'][number]['lessons'] = [];
+
+    for (let lessonIndex = 0; lessonIndex < lessonRows.length; lessonIndex += 1) {
+      const lesson = lessonRows[lessonIndex];
+      if (!isRecord(lesson)) continue;
+
+      const coversAcKeys = toStringArray(
+        lesson.coversAcKeys ??
+          lesson.acKeys ??
+          lesson.assessmentCriteriaKeys ??
+          lesson.coverageKeys
+      );
+      if (coversAcKeys.length === 0) continue;
+
+      const fallbackTopicCode = `${String(getLoNumber(lo))}${alphaIndex(lessonIndex)}`;
+      const topicCodeRaw =
+        toCleanString(lesson.topicCode) ??
+        toCleanString(lesson.code) ??
+        toCleanString(lesson.lessonCode) ??
+        toCleanString(lesson.topic) ??
+        fallbackTopicCode;
+      const topicCode = normalizeTopicCode(topicCodeRaw, request.unit, lo) || fallbackTopicCode;
+
+      const title =
+        toCleanString(lesson.title) ??
+        toCleanString(lesson.topic) ??
+        toCleanString(lesson.name) ??
+        `${lo} Lesson ${lessonIndex + 1}`;
+
+      normalizedLessons.push({
+        topicCode,
+        title,
+        coversAcKeys,
+        whySplit: toCleanString(lesson.whySplit),
+      });
+    }
+
+    if (normalizedLessons.length === 0) continue;
+    normalizedLos.push({
+      lo,
+      lessonCount: normalizedLessons.length,
+      lessons: normalizedLessons,
+    });
+  }
+
+  if (normalizedLos.length === 0) return null;
+  normalizedLos.sort((a, b) => (loOrder.get(a.lo) ?? Number.MAX_SAFE_INTEGER) - (loOrder.get(b.lo) ?? Number.MAX_SAFE_INTEGER));
+
+  return {
+    unit: root.unit,
+    los: normalizedLos,
+  };
+}
+
 function deriveMustHaveTopics(acTexts: string[]): string[] {
   const topics: string[] = [];
   for (const text of acTexts) {
-    const normalized = text.replace(/\s+/g, ' ').trim();
+    const normalized = normalizeCurriculumPhrase(text);
     if (!normalized) continue;
     const splitByColon = normalized.split(':').map((part) => part.trim()).filter(Boolean);
-    if (splitByColon.length > 1) {
-      topics.push(splitByColon[0]);
-      topics.push(splitByColon[1]);
-    } else {
-      topics.push(normalized);
+    if (splitByColon.length > 0) {
+      topics.push(cleanConceptPhrase(splitByColon[0]));
+      if (splitByColon.length > 1) {
+        const enumerated = splitByColon
+          .slice(1)
+          .flatMap((part) => part.split(';'))
+          .map((part) => cleanConceptPhrase(part))
+          .filter((part) => part.length > 0);
+        topics.push(...enumerated);
+      }
     }
   }
   return unique(
     topics
-      .map((topic) => topic.replace(/^[A-Za-z]+\s+/u, '').trim())
+      .map((topic) => topic.replace(/^and\s+/i, '').trim())
       .map((topic) => (topic.length > 90 ? `${topic.slice(0, 87).trim()}...` : topic))
       .filter((topic) => topic.length > 0)
-  ).slice(0, 6);
+  ).slice(0, 10);
 }
 
 function chooseLayout(topic: string, acTexts: string[]): 'split-vis' | 'linear-flow' {
@@ -296,8 +699,44 @@ function toMinimalLessonPlanValidator(value: unknown): value is MinimalLessonPla
   return validateMinimalLessonPlan(value);
 }
 
-function toBlueprintsValidator(value: unknown): value is LessonBlueprint[] {
-  return validateLessonBlueprints(value);
+type M4StoredArtifact = LessonBlueprint[] | M4BlueprintArtifact;
+
+interface PlannedLessonForM4 {
+  lo: string;
+  topicCode: string;
+  id: string;
+  title: string;
+  coversAcKeys: string[];
+}
+
+interface PlannedLoGroupForM4 {
+  lo: string;
+  lessons: PlannedLessonForM4[];
+}
+
+function toM4StoredArtifactValidator(value: unknown): value is M4StoredArtifact {
+  return validateLessonBlueprints(value) || validateM4BlueprintArtifact(value);
+}
+
+function getBlueprintsFromM4StoredArtifact(value: M4StoredArtifact): LessonBlueprint[] {
+  return Array.isArray(value) ? value : value.blueprints;
+}
+
+function buildM4StoredArtifact(
+  unit: string,
+  blueprints: LessonBlueprint[],
+  loBlueprintSets: LoBlueprintSetArtifact[],
+  loLedgers: LoLedgerArtifact[],
+  lessonLedgerMetadata: LessonLedgerMetadata[]
+): M4BlueprintArtifact {
+  return {
+    unit,
+    generatedAt: new Date().toISOString(),
+    blueprints,
+    loBlueprintSets,
+    loLedgers,
+    lessonLedgerMetadata,
+  };
 }
 
 function toValidationResultValidator(value: unknown): value is ValidationResult {
@@ -361,39 +800,41 @@ function getPlanValidationIssues(m2: CoverageTargets, m3: MinimalLessonPlan, con
         meta: { lo, lessonCount: loPlan.lessonCount, cap },
       });
     }
+
+    for (const lesson of loPlan.lessons) {
+      const lessonAcCount = lesson.coversAcKeys.length;
+      if (lessonAcCount > constraints.maxAcsPerLesson) {
+        issues.push({
+          stage: 'M3',
+          severity: 'error',
+          code: 'EXCEEDS_MAX_ACS_PER_LESSON',
+          message: 'Lesson AC count exceeds configured ceiling.',
+          meta: {
+            lo,
+            lessonTitle: lesson.title,
+            lessonAcCount,
+            maxAcsPerLesson: constraints.maxAcsPerLesson,
+          },
+        });
+      }
+      if (lessonAcCount > constraints.preferredAcsPerLesson) {
+        issues.push({
+          stage: 'M3',
+          severity: 'warn',
+          code: 'EXCEEDS_PREFERRED_ACS_PER_LESSON',
+          message: 'Lesson AC count exceeds preferred target.',
+          meta: {
+            lo,
+            lessonTitle: lesson.title,
+            lessonAcCount,
+            preferredAcsPerLesson: constraints.preferredAcsPerLesson,
+          },
+        });
+      }
+    }
   }
 
   return issues;
-}
-
-function buildDeterministicFallbackPlan(m2: CoverageTargets, request: ModulePlanRequest): MinimalLessonPlan {
-  return {
-    unit: m2.unit,
-    los: m2.los.map((loGroup) => {
-      const loTag = normalizeLo(loGroup.lo);
-      const loNumber = getLoNumber(loTag);
-      const grouped = chunkArray(loGroup.coverageTargets.map((t) => t.acKey), MAX_ACS_PER_LESSON);
-      const cap = getMaxLessonsForLo(request.constraints, loTag);
-      if (grouped.length > cap) {
-        throw new ModulePlannerError('M3', 'EXCEEDS_MAX_LESSONS', 'Fallback plan exceeds lesson cap.', 400, {
-          lo: loTag,
-          required: grouped.length,
-          cap,
-        });
-      }
-
-      return {
-        lo: loTag,
-        lessonCount: grouped.length,
-        lessons: grouped.map((keys, i) => ({
-          topicCode: `${request.unit}-${loNumber}${alphaIndex(i)}`,
-          title: loGroup.coverageTargets[Math.min(i, loGroup.coverageTargets.length - 1)]?.acText ?? `${loTag} Lesson ${i + 1}`,
-          coversAcKeys: keys,
-          whySplit: grouped.length > 1 ? 'Split to keep lesson scope manageable and deterministic.' : null,
-        })),
-      };
-    }),
-  };
 }
 
 async function callM3PlannerLLM(params: {
@@ -402,27 +843,55 @@ async function callM3PlannerLLM(params: {
   evidenceByLo: Record<string, string[]>;
   repairErrors?: ValidationIssue[];
   previousPlan?: MinimalLessonPlan;
-}): Promise<MinimalLessonPlan | null> {
-  if (!getGeminiApiKey()) return null;
+}): Promise<M3LlmAttempt> {
+  if (!getGeminiApiKey()) {
+    return {
+      plan: null,
+      diagnostics: {
+        failureReason: 'NO_API_KEY',
+        model: null,
+        finishReason: null,
+        responseChars: 0,
+        parseError: null,
+        schemaValid: null,
+        shapeCoerced: null,
+        errorMessage: null,
+        rawPreview: null,
+      },
+    };
+  }
 
   let modelName: string;
   try {
     modelName = getGeminiModelWithDefault();
-  } catch {
-    return null;
+  } catch (error) {
+    return {
+      plan: null,
+      diagnostics: {
+        failureReason: 'NO_MODEL',
+        model: null,
+        finishReason: null,
+        responseChars: 0,
+        parseError: null,
+        schemaValid: null,
+        shapeCoerced: null,
+        errorMessage: error instanceof Error ? error.message : 'GEMINI_MODEL is unavailable',
+        rawPreview: null,
+      },
+    };
   }
 
-  const client = createLLMClient();
-  const model = client.getGenerativeModel({
+  const diagnostics: M3LlmDiagnostics = {
+    failureReason: 'LLM_EXCEPTION',
     model: modelName,
-    generationConfig: {
-      temperature: 0.1,
-      maxOutputTokens: 6000,
-      responseMimeType: 'application/json',
-    },
-    systemInstruction:
-      'You are Module Planner M3. You may only group and title lessons from canonical acKeys. Never invent or rename curriculum keys.',
-  });
+    finishReason: null,
+    responseChars: 0,
+    parseError: null,
+    schemaValid: null,
+    shapeCoerced: null,
+    errorMessage: null,
+    rawPreview: null,
+  };
 
   const prompt = {
     mode: params.repairErrors ? 'repair' : 'plan',
@@ -438,16 +907,75 @@ async function callM3PlannerLLM(params: {
       'Use only canonical acKeys in coversAcKeys.',
       'Each canonical AC key must appear exactly once for each LO.',
       'lessonCount must equal lessons.length for each LO.',
+      `No lesson may contain more than ${params.request.constraints.maxAcsPerLesson} AC keys.`,
+      `Prefer around ${params.request.constraints.preferredAcsPerLesson} AC keys per lesson when possible.`,
+      'Top-level JSON must be object: {"unit":"string","los":[...]} (not an array).',
+      'Each lesson must include keys: topicCode, title, coversAcKeys, whySplit.',
       'Output strict JSON only.',
     ],
   };
 
-  const response = await model.generateContent(JSON.stringify(prompt));
-  const raw = cleanCodeBlocks(response.response.text());
-  const parsed = safeJsonParse<MinimalLessonPlan>(preprocessToValidJson(raw));
-  if (!parsed.success || !parsed.data) return null;
-  if (!validateMinimalLessonPlan(parsed.data)) return null;
-  return parsed.data;
+  try {
+    const client = createLLMClient();
+    const model = client.getGenerativeModel({
+      model: modelName,
+      generationConfig: {
+        temperature: 0.1,
+        maxOutputTokens: 6000,
+        responseMimeType: 'application/json',
+      },
+      systemInstruction:
+        'You are Module Planner M3. You may only group and title lessons from canonical acKeys. Never invent or rename curriculum keys.',
+    });
+
+    const response = await model.generateContent(JSON.stringify(prompt));
+    diagnostics.finishReason = response.response.candidates?.[0]?.finishReason ?? null;
+    const rawText = response.response.text();
+    diagnostics.responseChars = rawText.length;
+    diagnostics.rawPreview = rawText.trim().length > 0 ? rawText.replace(/\s+/g, ' ').trim().slice(0, 500) : null;
+
+    const raw = cleanCodeBlocks(rawText);
+    if (raw.trim().length === 0) {
+      diagnostics.failureReason = 'EMPTY_RESPONSE';
+      return { plan: null, diagnostics };
+    }
+
+    const parsed = safeJsonParse<unknown>(preprocessToValidJson(raw));
+    if (!parsed.success || !parsed.data) {
+      diagnostics.failureReason = 'JSON_PARSE_FAIL';
+      diagnostics.parseError = parsed.error ?? 'Unable to parse Gemini response as JSON.';
+      return { plan: null, diagnostics };
+    }
+    let finalPlan: MinimalLessonPlan | null = null;
+    if (validateMinimalLessonPlan(parsed.data)) {
+      finalPlan = parsed.data;
+      diagnostics.shapeCoerced = false;
+    } else {
+      finalPlan = coerceMinimalLessonPlanShape(parsed.data, params.request);
+      diagnostics.shapeCoerced = finalPlan ? true : false;
+    }
+
+    if (!finalPlan || !validateMinimalLessonPlan(finalPlan)) {
+      diagnostics.failureReason = 'JSON_SCHEMA_FAIL';
+      diagnostics.schemaValid = false;
+      return { plan: null, diagnostics };
+    }
+
+    const normalizedPlan = normalizePlanTopicCodes(finalPlan, params.request);
+    if (!validateMinimalLessonPlan(normalizedPlan)) {
+      diagnostics.failureReason = 'JSON_SCHEMA_FAIL';
+      diagnostics.schemaValid = false;
+      return { plan: null, diagnostics };
+    }
+
+    diagnostics.failureReason = 'OK';
+    diagnostics.schemaValid = true;
+    return { plan: normalizedPlan, diagnostics };
+  } catch (error) {
+    diagnostics.failureReason = 'LLM_EXCEPTION';
+    diagnostics.errorMessage = error instanceof Error ? error.message : 'Unknown Gemini exception';
+    return { plan: null, diagnostics };
+  }
 }
 
 async function runM3WithRepair(request: ModulePlanRequest, m2: CoverageTargets): Promise<MinimalLessonPlan> {
@@ -457,35 +985,624 @@ async function runM3WithRepair(request: ModulePlanRequest, m2: CoverageTargets):
     evidenceByLo[normalizeLo(lo)] = loChunks.map((chunk) => chunk.text.slice(0, 1200));
   }
 
-  const initialPlan =
-    (await callM3PlannerLLM({
-      request,
-      coverage: m2,
-      evidenceByLo,
-    })) ?? buildDeterministicFallbackPlan(m2, request);
+  const initialAttempt = await callM3PlannerLLM({
+    request,
+    coverage: m2,
+    evidenceByLo,
+  });
+  const initialPlan = initialAttempt.plan;
+  if (!initialPlan) {
+    console.warn('[M3] Initial Gemini planning attempt unusable', initialAttempt.diagnostics);
+    throw new ModulePlannerError(
+      'M3',
+      'JSON_SCHEMA_FAIL',
+      `Planning failed: Gemini response unusable (${formatM3DiagnosticsForMessage(initialAttempt.diagnostics)}).`,
+      503,
+      toM3DiagnosticsMeta(initialAttempt.diagnostics)
+    );
+  }
 
   const initialIssues = getPlanValidationIssues(m2, initialPlan, request.constraints);
-  if (initialIssues.length === 0) return initialPlan;
+  if (!hasBlockingPlanIssues(initialIssues)) return initialPlan;
 
-  const repairedPlan = await callM3PlannerLLM({
+  const repairAttempt = await callM3PlannerLLM({
     request,
     coverage: m2,
     evidenceByLo,
     repairErrors: initialIssues,
     previousPlan: initialPlan,
   });
+  const repairedPlan = repairAttempt.plan;
   if (!repairedPlan) {
-    throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 plan invalid and repair failed to return valid JSON.', 400);
+    console.warn('[M3] Gemini repair attempt unusable', repairAttempt.diagnostics);
+    throw new ModulePlannerError(
+      'M3',
+      'JSON_SCHEMA_FAIL',
+      `M3 plan invalid and repair attempt was unusable (${formatM3DiagnosticsForMessage(repairAttempt.diagnostics)}).`,
+      400,
+      toM3DiagnosticsMeta(repairAttempt.diagnostics)
+    );
   }
 
   const repairedIssues = getPlanValidationIssues(m2, repairedPlan, request.constraints);
-  if (repairedIssues.length > 0) {
-    throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 plan remained invalid after one repair attempt.', 400, {
-      errors: repairedIssues.map((issue) => issue.message).join(' | '),
-    });
+  if (hasBlockingPlanIssues(repairedIssues)) {
+    throw new ModulePlannerError(
+      'M3',
+      'JSON_SCHEMA_FAIL',
+      `M3 plan invalid after single repair attempt. ${formatPlanIssuesForError(repairedIssues)}`,
+      400,
+      {
+        issueCount: repairedIssues.length,
+        issues: JSON.stringify(repairedIssues),
+      }
+    );
+  }
+  return repairedPlan;
+}
+
+function buildPlannedLoGroupsForM4(m3: MinimalLessonPlan, request: ModulePlanRequest): PlannedLoGroupForM4[] {
+  const groups = m3.los.map((loGroup) => {
+    const lo = normalizeLo(loGroup.lo);
+    const lessons = loGroup.lessons.map((lesson) => ({
+      topicCode: normalizeTopicCode(lesson.topicCode, request.unit, lo),
+      title: lesson.title,
+      coversAcKeys: [...lesson.coversAcKeys],
+    }));
+    if (request.orderingPreference === 'foundation-first') {
+      lessons.sort((a, b) => a.topicCode.localeCompare(b.topicCode));
+    }
+    const loNumber = getLoNumber(lo);
+    return {
+      lo,
+      lessons: lessons.map((lesson, idx) => ({
+        lo,
+        topicCode: lesson.topicCode,
+        id: `${request.unit}-${loNumber}${alphaIndex(idx)}`,
+        title: lesson.title,
+        coversAcKeys: lesson.coversAcKeys,
+      })),
+    };
+  });
+
+  if (request.orderingPreference === 'foundation-first') {
+    groups.sort((a, b) => compareLoTag(a.lo, b.lo));
+  }
+  return groups;
+}
+
+function sameStringSet(left: string[], right: string[]): boolean {
+  if (left.length !== right.length) return false;
+  const leftSorted = [...left].sort();
+  const rightSorted = [...right].sort();
+  return leftSorted.every((value, idx) => value === rightSorted[idx]);
+}
+
+interface LessonLedgerDelta {
+  newTeachingConcepts: string[];
+  newVocab: string[];
+  outOfScopeTopics: string[];
+  examplesUsed: string[];
+  questionTypesUsed: string[];
+}
+
+interface LessonBlueprintDraftResult {
+  blueprint: LessonBlueprint;
+  ledgerDelta: LessonLedgerDelta;
+}
+
+interface DuplicateLedgerOverlap {
+  conceptOverlaps: string[];
+  vocabOverlaps: string[];
+}
+
+interface PreviousBlueprintSummary {
+  lessonId: string;
+  topic: string;
+  acAnchors: string[];
+  newTeachingConcepts: string[];
+  newVocab: string[];
+  examplesUsed: string[];
+  questionTypesUsed: string[];
+}
+
+function normalizeLedgerItem(value: string): string {
+  return value.toLowerCase().replace(/\s+/g, ' ').trim();
+}
+
+function sanitizeLedgerList(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  const items = value
+    .map((item) => (typeof item === 'string' ? item.trim() : ''))
+    .filter((item) => item.length > 0);
+  const seen = new Set<string>();
+  const deduped: string[] = [];
+  for (const item of items) {
+    const normalized = normalizeLedgerItem(item);
+    if (seen.has(normalized)) continue;
+    seen.add(normalized);
+    deduped.push(item);
+  }
+  return deduped;
+}
+
+function toConceptLedgerItems(values: string[]): string[] {
+  return unique(
+    values
+      .map((value) => cleanConceptPhrase(value))
+      .filter((value) => value.length > 0 && value.length <= 100)
+  ).slice(0, 30);
+}
+
+function toVocabLedgerItems(values: string[]): string[] {
+  const candidates = values
+    .flatMap((value) =>
+      cleanConceptPhrase(value)
+        .split(/[,;|]/)
+        .map((item) => item.trim())
+        .filter((item) => item.length > 0)
+    )
+    .map((item) => item.replace(/[().]/g, ' ').replace(/\s+/g, ' ').trim())
+    .filter((item) => item.length > 0);
+
+  return unique(
+    candidates.filter((item) => {
+      const wordCount = item.split(' ').length;
+      return item.length <= 48 && wordCount <= 5;
+    })
+  ).slice(0, 20);
+}
+
+function mergeUniqueLedgerItems(existing: string[], incoming: string[]): string[] {
+  const seen = new Set(existing.map((item) => normalizeLedgerItem(item)));
+  const merged = [...existing];
+  for (const item of incoming) {
+    const normalized = normalizeLedgerItem(item);
+    if (!normalized || seen.has(normalized)) continue;
+    seen.add(normalized);
+    merged.push(item);
+  }
+  return merged;
+}
+
+function getLedgerOverlap(candidate: string[], existing: string[]): string[] {
+  const existingNormalized = new Set(existing.map((item) => normalizeLedgerItem(item)));
+  const overlaps: string[] = [];
+  const seen = new Set<string>();
+  for (const item of candidate) {
+    const normalized = normalizeLedgerItem(item);
+    if (!normalized || !existingNormalized.has(normalized) || seen.has(normalized)) continue;
+    seen.add(normalized);
+    overlaps.push(item);
+  }
+  return overlaps;
+}
+
+function createEmptyLoLedger(): LoLedger {
+  return {
+    alreadyTaughtConcepts: [],
+    taughtConcepts: [],
+    taughtVocab: [],
+    examplesUsed: [],
+    questionTypesUsed: [],
+    doNotTeach: [],
+    lastUpdatedAt: new Date(0).toISOString(),
+    sourceLessonIds: [],
+  };
+}
+
+function deriveQuestionTypesFromBlueprint(blueprint: LessonBlueprint): string[] {
+  const fromPracticeCounts = Object.entries(blueprint.masterBlueprint?.practiceSpec?.practiceCounts ?? {})
+    .filter(([, count]) => typeof count === 'number' && count > 0)
+    .map(([type]) => type);
+  const understandingChecks = (blueprint.masterBlueprint?.checksSpec?.understandingChecks ?? []).length > 0 ? ['understanding-check'] : [];
+  const integrative = blueprint.masterBlueprint?.checksSpec?.integrative ? ['integrative'] : [];
+  return unique([...fromPracticeCounts, ...understandingChecks, ...integrative]);
+}
+
+function buildLedgerDeltaFromBlueprint(blueprint: LessonBlueprint): LessonLedgerDelta {
+  const conceptSeeds = [
+    ...sanitizeLedgerList(blueprint.masterBlueprint?.scopeControl?.inScope),
+    ...sanitizeLedgerList(blueprint.mustHaveTopics),
+    ...sanitizeLedgerList(blueprint.masterBlueprint?.anchors?.assessmentCriteria),
+  ];
+  const newTeachingConcepts = toConceptLedgerItems(conceptSeeds);
+  const vocabSeeds = [
+    ...sanitizeLedgerList(blueprint.masterBlueprint?.anchors?.rangeItems),
+    ...newTeachingConcepts,
+  ];
+  const newVocab = toVocabLedgerItems(vocabSeeds);
+  const outOfScopeTopics = toConceptLedgerItems(
+    (blueprint.masterBlueprint?.scopeControl?.outOfScope ?? [])
+      .filter((item) => item?.taughtInLessonId == null)
+      .map((item) => item.topic)
+  );
+  const examplesUsed = unique(
+    (blueprint.masterBlueprint?.blockPlan?.entries ?? [])
+      .filter((entry) => entry.type === 'worked-example' || entry.type === 'guided-practice')
+      .map((entry) => entry.label)
+  );
+  const questionTypesUsed = deriveQuestionTypesFromBlueprint(blueprint);
+  return {
+    newTeachingConcepts,
+    newVocab,
+    outOfScopeTopics,
+    examplesUsed,
+    questionTypesUsed,
+  };
+}
+
+function toLessonLedgerMetadata(blueprint: LessonBlueprint, ledgerDelta: LessonLedgerDelta): LessonLedgerMetadata {
+  return {
+    lessonId: blueprint.id,
+    lo: normalizeLo(blueprint.lo),
+    newTeachingConcepts: toConceptLedgerItems(sanitizeLedgerList(ledgerDelta.newTeachingConcepts)),
+    newVocab: toVocabLedgerItems(sanitizeLedgerList(ledgerDelta.newVocab)),
+    outOfScopeTopics: toConceptLedgerItems(sanitizeLedgerList(ledgerDelta.outOfScopeTopics)),
+    examplesUsed: sanitizeLedgerList(ledgerDelta.examplesUsed),
+    questionTypesUsed: sanitizeLedgerList(ledgerDelta.questionTypesUsed),
+  };
+}
+
+function applyLessonDeltaToLoLedger(ledger: LoLedger, metadata: LessonLedgerMetadata): LoLedger {
+  const taughtConcepts = mergeUniqueLedgerItems(ledger.taughtConcepts, metadata.newTeachingConcepts);
+  const taughtVocab = mergeUniqueLedgerItems(ledger.taughtVocab, metadata.newVocab);
+  const doNotTeach = mergeUniqueLedgerItems(ledger.doNotTeach, metadata.outOfScopeTopics);
+  return {
+    alreadyTaughtConcepts: taughtConcepts,
+    taughtConcepts,
+    taughtVocab,
+    examplesUsed: mergeUniqueLedgerItems(ledger.examplesUsed, metadata.examplesUsed),
+    questionTypesUsed: mergeUniqueLedgerItems(ledger.questionTypesUsed, metadata.questionTypesUsed),
+    doNotTeach,
+    lastUpdatedAt: new Date().toISOString(),
+    sourceLessonIds: mergeUniqueLedgerItems(ledger.sourceLessonIds, [metadata.lessonId]),
+  };
+}
+
+function summarizePreviousBlueprint(
+  blueprint: LessonBlueprint,
+  metadata: LessonLedgerMetadata
+): PreviousBlueprintSummary {
+  return {
+    lessonId: blueprint.id,
+    topic: blueprint.topic,
+    acAnchors: [...blueprint.acAnchors],
+    newTeachingConcepts: [...metadata.newTeachingConcepts],
+    newVocab: [...metadata.newVocab],
+    examplesUsed: [...metadata.examplesUsed],
+    questionTypesUsed: [...metadata.questionTypesUsed],
+  };
+}
+
+function withBlueprintPrerequisites(blueprint: LessonBlueprint, prerequisites: string[]): LessonBlueprint {
+  if (!blueprint.masterBlueprint) {
+    return {
+      ...blueprint,
+      prerequisites,
+    };
+  }
+  return {
+    ...blueprint,
+    prerequisites,
+    masterBlueprint: {
+      ...blueprint.masterBlueprint,
+      identity: {
+        ...blueprint.masterBlueprint.identity,
+        prerequisites,
+      },
+    },
+  };
+}
+
+function buildDeterministicBlueprintForPlannedLesson(params: {
+  request: ModulePlanRequest;
+  lesson: PlannedLessonForM4;
+  allPlannedLessons: PlannedLessonForM4[];
+  acTextByKey: Map<string, string>;
+  rangeByAcKey: Map<string, string[]>;
+}): LessonBlueprint {
+  const acTexts = params.lesson.coversAcKeys
+    .map((key) => params.acTextByKey.get(key) ?? '')
+    .filter((text) => text.length > 0);
+  const mustHaveTopics = deriveMustHaveTopics(acTexts);
+  const outOfScope = params.allPlannedLessons
+    .filter((planned) => planned.lo === params.lesson.lo && planned.id !== params.lesson.id)
+    .map((planned) => ({ topic: planned.title, taughtInLessonId: planned.id }));
+  const rangeItems = params.lesson.coversAcKeys
+    .flatMap((acKey) => params.rangeByAcKey.get(acKey) ?? [])
+    .filter((item) => item.trim().length > 0);
+
+  const masterBlueprint = buildMasterLessonBlueprint({
+    lessonId: params.lesson.id,
+    unit: params.request.unit,
+    lo: params.lesson.lo,
+    topic: params.lesson.title,
+    layout: chooseLayout(params.lesson.title, acTexts),
+    audience: params.request.constraints.audience,
+    prerequisites: [],
+    acAnchors: [...params.lesson.coversAcKeys],
+    acTexts,
+    rangeItems,
+    inScopeTopics: mustHaveTopics.length > 0 ? mustHaveTopics : acTexts,
+    outOfScopeTopics: outOfScope,
+  });
+
+  return {
+    id: params.lesson.id,
+    unit: params.request.unit,
+    lo: params.lesson.lo,
+    acAnchors: [...params.lesson.coversAcKeys],
+    topic: params.lesson.title,
+    mustHaveTopics,
+    level: params.request.constraints.level,
+    layout: masterBlueprint.identity.layout,
+    prerequisites: masterBlueprint.identity.prerequisites,
+    masterBlueprint,
+  };
+}
+
+function validateLessonDraftBlueprintAgainstPlan(params: {
+  request: ModulePlanRequest;
+  lo: string;
+  plannedLesson: PlannedLessonForM4;
+  candidateBlueprint: LessonBlueprint;
+}): string[] {
+  const errors: string[] = [];
+  const blueprint = params.candidateBlueprint;
+  const plannedLesson = params.plannedLesson;
+  if (blueprint.id !== plannedLesson.id) {
+    errors.push(`blueprint id mismatch (expected ${plannedLesson.id})`);
+  }
+  if (blueprint.unit !== params.request.unit) {
+    errors.push(`unit mismatch for ${blueprint.id} (expected ${params.request.unit})`);
+  }
+  if (normalizeLo(blueprint.lo) !== params.lo) {
+    errors.push(`LO mismatch for ${blueprint.id} (expected ${params.lo})`);
+  }
+  if (blueprint.topic !== plannedLesson.title) {
+    errors.push(`topic mismatch for ${blueprint.id} (expected "${plannedLesson.title}")`);
+  }
+  if (!sameStringSet(blueprint.acAnchors, plannedLesson.coversAcKeys)) {
+    errors.push(`acAnchors mismatch for ${blueprint.id}`);
+  }
+  if (!blueprint.masterBlueprint) {
+    errors.push(`masterBlueprint missing for ${blueprint.id}`);
+    return errors;
+  }
+  const contractErrors = validateMasterLessonBlueprintContract(blueprint.masterBlueprint, blueprint.id);
+  for (const contractError of contractErrors) {
+    errors.push(`${blueprint.id}: ${contractError}`);
+  }
+  if (!sameStringSet(blueprint.masterBlueprint.anchors.acAnchors ?? [], plannedLesson.coversAcKeys)) {
+    errors.push(`masterBlueprint.anchors.acAnchors mismatch for ${blueprint.id}`);
+  }
+  return errors;
+}
+
+function getDuplicateLedgerOverlap(metadata: LessonLedgerMetadata, loLedger: LoLedger): DuplicateLedgerOverlap {
+  return {
+    conceptOverlaps: getLedgerOverlap(metadata.newTeachingConcepts, loLedger.taughtConcepts),
+    vocabOverlaps: getLedgerOverlap(metadata.newVocab, loLedger.taughtVocab),
+  };
+}
+
+function buildDuplicateLedgerErrors(metadata: LessonLedgerMetadata, loLedger: LoLedger): string[] {
+  const overlap = getDuplicateLedgerOverlap(metadata, loLedger);
+  const errors: string[] = [];
+  if (overlap.conceptOverlaps.length > 0) {
+    errors.push(
+      `DUPLICATES_PRIOR_LO_CONTENT concepts for ${metadata.lessonId}: ${overlap.conceptOverlaps.join(', ')} (ledger has ${loLedger.sourceLessonIds.join(', ') || 'none'})`
+    );
+  }
+  if (overlap.vocabOverlaps.length > 0) {
+    errors.push(
+      `DUPLICATES_PRIOR_LO_CONTENT vocab for ${metadata.lessonId}: ${overlap.vocabOverlaps.join(', ')} (ledger has ${loLedger.sourceLessonIds.join(', ') || 'none'})`
+    );
+  }
+  return errors;
+}
+
+function stripDuplicateLedgerItems(metadata: LessonLedgerMetadata, loLedger: LoLedger): LessonLedgerMetadata {
+  const conceptOverlap = new Set(getLedgerOverlap(metadata.newTeachingConcepts, loLedger.taughtConcepts).map(normalizeLedgerItem));
+  const vocabOverlap = new Set(getLedgerOverlap(metadata.newVocab, loLedger.taughtVocab).map(normalizeLedgerItem));
+  return {
+    ...metadata,
+    newTeachingConcepts: metadata.newTeachingConcepts.filter((item) => !conceptOverlap.has(normalizeLedgerItem(item))),
+    newVocab: metadata.newVocab.filter((item) => !vocabOverlap.has(normalizeLedgerItem(item))),
+  };
+}
+
+function parseLessonLedgerDelta(value: unknown, blueprint: LessonBlueprint): LessonLedgerDelta {
+  const fallback = buildLedgerDeltaFromBlueprint(blueprint);
+  if (!isRecord(value)) return fallback;
+  return {
+    newTeachingConcepts: sanitizeLedgerList(value.newTeachingConcepts ?? fallback.newTeachingConcepts),
+    newVocab: sanitizeLedgerList(value.newVocab ?? fallback.newVocab),
+    outOfScopeTopics: sanitizeLedgerList(value.outOfScopeTopics ?? value.doNotTeach ?? fallback.outOfScopeTopics),
+    examplesUsed: sanitizeLedgerList(value.examplesUsed ?? fallback.examplesUsed),
+    questionTypesUsed: sanitizeLedgerList(value.questionTypesUsed ?? fallback.questionTypesUsed),
+  };
+}
+
+function parseSingleLessonDraftResult(data: unknown, expectedLessonId: string): LessonBlueprintDraftResult | null {
+  let blueprintCandidate: unknown = data;
+  let ledgerDeltaCandidate: unknown = undefined;
+
+  if (isRecord(data)) {
+    if (Array.isArray(data.blueprints)) {
+      blueprintCandidate =
+        data.blueprints.find((item) => isRecord(item) && typeof item.id === 'string' && item.id === expectedLessonId) ??
+        data.blueprints[0];
+    } else if (data.blueprint) {
+      blueprintCandidate = data.blueprint;
+    }
+    ledgerDeltaCandidate = data.ledgerDelta ?? data.loLedgerDelta ?? undefined;
   }
 
-  return repairedPlan;
+  if (!validateLessonBlueprints([blueprintCandidate])) return null;
+  const blueprint = (blueprintCandidate as LessonBlueprint[])[0];
+  const ledgerDelta = parseLessonLedgerDelta(ledgerDeltaCandidate, blueprint);
+  return { blueprint, ledgerDelta };
+}
+
+async function callM4LessonBlueprintDraftLLM(params: {
+  request: ModulePlanRequest;
+  lo: string;
+  canonicalCoverage: CoverageTarget[];
+  loPlanLessons: PlannedLessonForM4[];
+  lesson: PlannedLessonForM4;
+  loLedger: LoLedger;
+  previousLessonSummary?: PreviousBlueprintSummary;
+  repairErrors?: string[];
+  previousDraft?: LessonBlueprintDraftResult;
+}): Promise<LessonBlueprintDraftResult | null> {
+  if (!getGeminiApiKey()) return null;
+
+  let modelName: string;
+  try {
+    modelName = getGeminiModelWithDefault();
+  } catch {
+    return null;
+  }
+
+  try {
+    const client = createLLMClient();
+    const model = client.getGenerativeModel({
+      model: modelName,
+      generationConfig: {
+        temperature: 0.1,
+        maxOutputTokens: 10000,
+        responseMimeType: 'application/json',
+      },
+      systemInstruction:
+        'You are Module Planner M4 LO Blueprint Drafter. Output strict JSON only. Build master-blueprint contracts without inventing AC anchors.',
+    });
+
+    const contextPayload = {
+      mode: params.repairErrors ? 'repair' : 'draft',
+      unit: params.request.unit,
+      lo: params.lo,
+      level: params.request.constraints.level,
+      audience: params.request.constraints.audience,
+      orderingPreference: params.request.orderingPreference,
+      canonicalCoverage: params.canonicalCoverage,
+      loPlan: {
+        lessonCount: params.loPlanLessons.length,
+        lessons: params.loPlanLessons.map((lesson) => ({
+          id: lesson.id,
+          title: lesson.title,
+          coversAcKeys: lesson.coversAcKeys,
+        })),
+      },
+      loLedger: params.loLedger,
+      previousLessonSummary: params.previousLessonSummary ?? null,
+      previousDraft: params.previousDraft ?? null,
+      repairErrors: params.repairErrors ?? [],
+    };
+    const instructionPayload = {
+      task: 'Generate one MasterLessonBlueprint for the requested lesson only.',
+      lessonId: params.lesson.id,
+      lessonTitle: params.lesson.title,
+      coversAcKeys: params.lesson.coversAcKeys,
+      hardRules: [
+        'Return exactly one blueprint matching lessonId.',
+        'Blueprint acAnchors must exactly match coversAcKeys.',
+        'loLedger.alreadyTaughtConcepts are already covered in this LO; avoid re-teaching and use recap/reference instead.',
+        'You may not introduce NEW teaching that duplicates loLedger.alreadyTaughtConcepts.',
+        'loLedger.doNotTeach are explicit out-of-scope topics and must never be taught.',
+        'Recap is allowed only as Recap and max 4 bullets.',
+        'If content exists in loLedger.alreadyTaughtConcepts, reference earlier lessonId instead of re-teaching.',
+        'Do not repeat example types or question scenario styles already listed in loLedger unless explicitly necessary.',
+        'Each masterBlueprint must satisfy the fixed contract and include explicit outOfScope links to sibling lessons.',
+        'Output strict JSON only.',
+      ],
+      outputShape: {
+        blueprint: {
+          id: 'string',
+          unit: 'string',
+          lo: 'string',
+          acAnchors: ['string'],
+          topic: 'string',
+          mustHaveTopics: ['string'],
+          level: 'string',
+          layout: 'split-vis|linear-flow',
+          prerequisites: ['string'],
+          masterBlueprint: 'MasterLessonBlueprint object (fixed contract)',
+        },
+        ledgerDelta: {
+          newTeachingConcepts: ['string'],
+          newVocab: ['string'],
+          outOfScopeTopics: ['string'],
+          examplesUsed: ['string'],
+          questionTypesUsed: ['string'],
+        },
+      },
+    };
+
+    const response = await model.generateContent({
+      contents: [
+        { role: 'user', parts: [{ text: JSON.stringify(contextPayload) }] },
+        { role: 'user', parts: [{ text: JSON.stringify(instructionPayload) }] },
+      ],
+    });
+    const raw = cleanCodeBlocks(response.response.text());
+    const parsed = safeJsonParse<unknown>(preprocessToValidJson(raw));
+    if (!parsed.success || !parsed.data) return null;
+    return parseSingleLessonDraftResult(parsed.data, params.lesson.id);
+  } catch {
+    return null;
+  }
+}
+
+async function runM4LessonDraftWithRepair(params: {
+  request: ModulePlanRequest;
+  lo: string;
+  canonicalCoverage: CoverageTarget[];
+  loPlanLessons: PlannedLessonForM4[];
+  lesson: PlannedLessonForM4;
+  loLedger: LoLedger;
+  previousLessonSummary?: PreviousBlueprintSummary;
+}): Promise<LessonBlueprintDraftResult | null> {
+  const initial = await callM4LessonBlueprintDraftLLM({
+    request: params.request,
+    lo: params.lo,
+    canonicalCoverage: params.canonicalCoverage,
+    loPlanLessons: params.loPlanLessons,
+    lesson: params.lesson,
+    loLedger: params.loLedger,
+    previousLessonSummary: params.previousLessonSummary,
+  });
+  if (!initial) return null;
+
+  const initialErrors = validateLessonDraftBlueprintAgainstPlan({
+    request: params.request,
+    lo: params.lo,
+    plannedLesson: params.lesson,
+    candidateBlueprint: initial.blueprint,
+  });
+  if (initialErrors.length === 0) return initial;
+
+  const repaired = await callM4LessonBlueprintDraftLLM({
+    request: params.request,
+    lo: params.lo,
+    canonicalCoverage: params.canonicalCoverage,
+    loPlanLessons: params.loPlanLessons,
+    lesson: params.lesson,
+    loLedger: params.loLedger,
+    previousLessonSummary: params.previousLessonSummary,
+    repairErrors: initialErrors.slice(0, 30),
+    previousDraft: initial,
+  });
+  if (!repaired) return null;
+
+  const repairedErrors = validateLessonDraftBlueprintAgainstPlan({
+    request: params.request,
+    lo: params.lo,
+    plannedLesson: params.lesson,
+    candidateBlueprint: repaired.blueprint,
+  });
+  if (repairedErrors.length > 0) return null;
+  return repaired;
 }
 
 function pushIssue(issues: ValidationIssue[], issue: ValidationIssue): void {
@@ -543,6 +1660,50 @@ function validateM4AgainstM3AndM2(
     }
   }
 }
+
+function validateLoLedgerProgression(issues: ValidationIssue[], blueprints: LessonBlueprint[], metadata: LessonLedgerMetadata[]): void {
+  const metadataByLessonId = new Map(metadata.map((entry) => [entry.lessonId, entry]));
+  const loLedgers = new Map<string, LoLedger>();
+  for (const blueprint of blueprints) {
+    const lo = normalizeLo(blueprint.lo);
+    const lessonMetadata = metadataByLessonId.get(blueprint.id);
+    if (!lessonMetadata) continue;
+    const ledger = loLedgers.get(lo) ?? createEmptyLoLedger();
+    const overlap = getDuplicateLedgerOverlap(lessonMetadata, ledger);
+    if (overlap.conceptOverlaps.length > 0 || overlap.vocabOverlaps.length > 0) {
+      pushIssue(issues, {
+        stage: 'M5',
+        severity: 'error',
+        code: 'DUPLICATES_PRIOR_LO_CONTENT',
+        message: 'Lesson introduces LO content already taught in earlier LO lesson.',
+        meta: {
+          blueprintId: blueprint.id,
+          lo,
+          conceptOverlaps: overlap.conceptOverlaps.join(', ') || null,
+          vocabOverlaps: overlap.vocabOverlaps.join(', ') || null,
+        },
+      });
+    }
+    loLedgers.set(lo, applyLessonDeltaToLoLedger(ledger, lessonMetadata));
+  }
+}
+
+function validateM4FallbackUsage(issues: ValidationIssue[], loBlueprintSets: LoBlueprintSetArtifact[]): void {
+  for (const set of loBlueprintSets) {
+    if (set.generatedBy !== 'fallback') continue;
+    pushIssue(issues, {
+      stage: 'M4',
+      severity: 'warn',
+      code: 'BLUEPRINT_GENERATION_MISMATCH',
+      message: 'LO blueprint generation used deterministic fallback instead of primary LLM drafting.',
+      meta: {
+        lo: set.lo,
+        lessonCount: set.blueprints.length,
+      },
+    });
+  }
+}
+
 export async function createPlannerRun(input: {
   syllabusVersionId: string;
   unit: string;
@@ -684,16 +1845,74 @@ export async function runM1Analyze(
   }
 
   const selectedLos = await resolveSelectedLos(request.syllabusVersionId, request.unit, request.selectedLos);
+  const chunksByLo = new Map<string, Awaited<ReturnType<typeof getChunksForUnitLO>>>();
+  const missingLos: string[] = [];
+  const chunkIds: string[] = [];
+  const records = [];
+
+  for (const lo of selectedLos) {
+    const chunks = await getChunksForUnitLO(request.syllabusVersionId, request.unit, lo, 3);
+    if (chunks.length === 0) {
+      missingLos.push(lo);
+      continue;
+    }
+    chunksByLo.set(lo, chunks);
+    chunkIds.push(...chunks.map((chunk) => chunk.id));
+    records.push(...toRetrievedChunkRecords(chunks));
+  }
+
+  if (missingLos.length > 0) {
+    throw new ModulePlannerError(
+      'M1',
+      'RAG_EMPTY',
+      `M1 retrieval returned no chunks for selected LOs: ${missingLos.join(', ')}`,
+      400,
+      {
+        missingLos: missingLos.join(', '),
+        selectedLos: selectedLos.join(', '),
+      }
+    );
+  }
+
+  const fallbackUnitTitle = `Unit ${request.unit}`;
+  const structureUnitTitle = String(structure.structure_json.unitTitle ?? '').trim();
+  const loTitles = selectedLos
+    .map((lo) => {
+      const loNumber = String(getLoNumber(lo));
+      return String(structure.structure_json.los.find((entry) => entry.loNumber === loNumber)?.title ?? '').trim().toLowerCase();
+    })
+    .filter((title) => title.length > 0);
+  const recordTitles = records
+    .map((record) => String(record.unitTitle ?? '').trim())
+    .filter((title) => title.length > 0);
+  const strongCandidates = recordTitles.filter(
+    (title) =>
+      title.toLowerCase() !== fallbackUnitTitle.toLowerCase() &&
+      !looksLikeLoHeading(title) &&
+      !loTitles.includes(title.toLowerCase())
+  );
+  const neutralCandidates = recordTitles.filter((title) => !looksLikeLoHeading(title));
+  const hasExplicitStructureUnitTitle =
+    structureUnitTitle.length > 0 &&
+    !looksLikeLoHeading(structureUnitTitle) &&
+    !loTitles.includes(structureUnitTitle.toLowerCase());
+  const preferredUnitTitle =
+    (hasExplicitStructureUnitTitle ? structureUnitTitle : null) ??
+    pickMostFrequent(strongCandidates) ??
+    pickMostFrequent(neutralCandidates) ??
+    pickMostFrequent(recordTitles) ??
+    fallbackUnitTitle;
+
   const output: UnitStructure = {
     unit: request.unit,
-    unitTitle: `Unit ${request.unit}`,
+    unitTitle: preferredUnitTitle,
     los: selectedLos.map((lo) => {
       const loNumber = String(getLoNumber(lo));
       const loStruct = structure.structure_json.los.find((entry) => entry.loNumber === loNumber);
       return {
         lo,
         title: loStruct?.title ?? lo,
-        sourceChunkIds: [],
+        sourceChunkIds: unique((chunksByLo.get(lo) ?? []).map((chunk) => chunk.id)),
       };
     }),
   };
@@ -702,13 +1921,6 @@ export async function runM1Analyze(
     throw new ModulePlannerError('M1', 'JSON_SCHEMA_FAIL', 'M1 output failed schema validation.', 400);
   }
 
-  const chunkIds: string[] = [];
-  const records = [];
-  for (const lo of selectedLos) {
-    const chunks = await getChunksForUnitLO(request.syllabusVersionId, request.unit, lo, 3);
-    chunkIds.push(...chunks.map((chunk) => chunk.id));
-    records.push(...toRetrievedChunkRecords(chunks));
-  }
   await upsertArtifactAndStatus(runId, 'M1', output, {
     retrievedChunkIds: unique(chunkIds),
     retrievedChunkText: serializeRetrievedChunkRecords(records),
@@ -741,14 +1953,16 @@ export async function runM2Coverage(
       if (!loStruct) {
         throw new ModulePlannerError('M2', 'RAG_GROUNDEDNESS_FAIL', 'Selected LO missing from truth structure.', 400, { lo });
       }
-      const sourceChunkIds = records
-        .filter((record) => normalizeLo(record.learningOutcome) === lo)
-        .map((record) => record.id);
-      const sampleChunk = records.find((record) => normalizeLo(record.learningOutcome) === lo);
+      const loRecords = records.filter((record) => normalizeLo(record.learningOutcome) === lo);
+      const sourceChunkIds = loRecords.map((record) => record.id);
       const coverageTargets: CoverageTarget[] = loStruct.acs.map((ac) => ({
         acKey: ac.acKey,
-        acText: ac.text ?? ac.acKey,
-        range: sampleChunk ? parseRangeFromContent(sampleChunk.content) : null,
+        acText: enrichCoverageAcTextFromRecords({
+          acNumber: ac.acNumber,
+          acText: ac.text ?? ac.acKey,
+          loRecords,
+        }),
+        range: ac.range ?? loStruct.range ?? null,
         sourceChunkIds: unique(sourceChunkIds),
       }));
       return { lo, coverageTargets };
@@ -779,12 +1993,6 @@ export async function runM3Plan(
   if (!validateMinimalLessonPlan(output)) {
     throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 output failed schema validation.', 400);
   }
-  const issues = getPlanValidationIssues(m2, output, request.constraints);
-  if (issues.some((issue) => issue.severity === 'error')) {
-    throw new ModulePlannerError('M3', 'JSON_SCHEMA_FAIL', 'M3 deterministic validation failed.', 400, {
-      errors: issues.map((issue) => issue.message).join(' | '),
-    });
-  }
   await upsertArtifactAndStatus(runId, 'M3', output);
   return { stage: 'M3', replayed: false, artifact: output };
 }
@@ -795,102 +2003,126 @@ export async function runM4Blueprints(
 ): Promise<StageExecutionResult<LessonBlueprint[]>> {
   const run = await requireRun(runId);
   const request = requireRequest(run);
-  const replayed = await stageReplay(run, 'M4', options, toBlueprintsValidator);
-  if (replayed) return { stage: 'M4', replayed: true, artifact: replayed };
+  const replayed = await stageReplay(run, 'M4', options, toM4StoredArtifactValidator);
+  if (replayed) {
+    return { stage: 'M4', replayed: true, artifact: getBlueprintsFromM4StoredArtifact(replayed) };
+  }
 
   const m2 = await getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
   const m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
 
   const acTextByKey = new Map<string, string>();
-  m2.los.forEach((lo) => lo.coverageTargets.forEach((target) => acTextByKey.set(target.acKey, target.acText)));
+  const rangeByAcKey = new Map<string, string[]>();
+  const coverageByLo = new Map<string, CoverageTarget[]>();
+  m2.los.forEach((lo) => {
+    const normalizedLo = normalizeLo(lo.lo);
+    coverageByLo.set(normalizedLo, lo.coverageTargets);
+    lo.coverageTargets.forEach((target) => {
+      acTextByKey.set(target.acKey, target.acText);
+      rangeByAcKey.set(target.acKey, toRangeList(target.range));
+    });
+  });
 
-  const planningRows = m3.los
-    .flatMap((lo) =>
-      lo.lessons.map((lesson) => ({
-        lo: normalizeLo(lo.lo),
-        topicCode: lesson.topicCode,
-        title: lesson.title,
-        coversAcKeys: lesson.coversAcKeys,
-      }))
-    )
-    .sort((a, b) => {
-      if (request.orderingPreference === 'foundation-first') {
-        const loDiff = compareLoTag(a.lo, b.lo);
-        if (loDiff !== 0) return loDiff;
-        return a.topicCode.localeCompare(b.topicCode);
+  const plannedLoGroups = buildPlannedLoGroupsForM4(m3, request);
+  const allPlannedLessons = plannedLoGroups.flatMap((group) => group.lessons);
+  const loBlueprintSets: LoBlueprintSetArtifact[] = [];
+  const loLedgers: LoLedgerArtifact[] = [];
+  const lessonLedgerMetadata: LessonLedgerMetadata[] = [];
+
+  for (const loGroup of plannedLoGroups) {
+    const canonicalCoverage = coverageByLo.get(loGroup.lo) ?? [];
+    const generatedBlueprints: LessonBlueprint[] = [];
+    let loLedger = createEmptyLoLedger();
+    let previousLessonSummary: PreviousBlueprintSummary | undefined;
+    let usedFallback = false;
+
+    for (const lesson of loGroup.lessons) {
+      const llmDraft = await runM4LessonDraftWithRepair({
+        request,
+        lo: loGroup.lo,
+        canonicalCoverage,
+        loPlanLessons: loGroup.lessons,
+        lesson,
+        loLedger,
+        previousLessonSummary,
+      });
+
+      let blueprint: LessonBlueprint;
+      let metadata: LessonLedgerMetadata;
+
+      if (llmDraft) {
+        blueprint = llmDraft.blueprint;
+        metadata = stripDuplicateLedgerItems(toLessonLedgerMetadata(blueprint, llmDraft.ledgerDelta), loLedger);
+      } else {
+        usedFallback = true;
+        blueprint = buildDeterministicBlueprintForPlannedLesson({
+          request,
+          lesson,
+          allPlannedLessons,
+          acTextByKey,
+          rangeByAcKey,
+        });
+        metadata = stripDuplicateLedgerItems(toLessonLedgerMetadata(blueprint, buildLedgerDeltaFromBlueprint(blueprint)), loLedger);
       }
-      return 0;
+
+      generatedBlueprints.push(blueprint);
+      lessonLedgerMetadata.push(metadata);
+      loLedger = applyLessonDeltaToLoLedger(loLedger, metadata);
+      previousLessonSummary = summarizePreviousBlueprint(blueprint, metadata);
+    }
+
+    loBlueprintSets.push({
+      lo: loGroup.lo,
+      generatedBy: usedFallback ? 'fallback' : 'llm',
+      blueprints: generatedBlueprints,
     });
-
-  const topicCodeCounter = new Map<string, number>();
-  const blueprints: LessonBlueprint[] = [];
-  const allPlannedLessons = m3.los.flatMap((lo) =>
-    lo.lessons.map((lesson) => ({
-      lo: normalizeLo(lo.lo),
-      topicCode: lesson.topicCode,
-      lessonId: `${request.unit}-${lesson.topicCode}`,
-      title: lesson.title,
-      coversAcKeys: lesson.coversAcKeys,
-    }))
-  );
-
-  for (const row of planningRows) {
-    const loNumber = getLoNumber(row.lo);
-    const current = (topicCodeCounter.get(row.topicCode) ?? 0) + 1;
-    topicCodeCounter.set(row.topicCode, current);
-    const id = `${request.unit}-${row.topicCode}${current}`;
-    const acTexts = row.coversAcKeys.map((key) => acTextByKey.get(key) ?? '').filter((text) => text.length > 0);
-    const mustHaveTopics = deriveMustHaveTopics(acTexts);
-    const outOfScope = allPlannedLessons
-      .filter((planned) => planned.lo === row.lo && planned.topicCode !== row.topicCode)
-      .map((planned) => ({ topic: planned.title, taughtInLessonId: planned.lessonId }));
-    const rangeItems = row.coversAcKeys
-      .map((acKey) => {
-        for (const loGroup of m2.los) {
-          const target = loGroup.coverageTargets.find((item) => item.acKey === acKey);
-          if (target) return target.range ?? '';
-        }
-        return '';
-      })
-      .filter((item) => item.trim().length > 0);
-
-    const masterBlueprint = buildMasterLessonBlueprint({
-      lessonId: id,
-      unit: request.unit,
-      lo: `LO${loNumber}`,
-      topic: row.title,
-      layout: chooseLayout(row.title, acTexts),
-      audience: request.constraints.audience,
-      prerequisites:
-        request.orderingPreference === 'foundation-first' && blueprints.length > 0
-          ? [blueprints[blueprints.length - 1].id]
-          : [],
-      acAnchors: [...row.coversAcKeys],
-      acTexts,
-      rangeItems,
-      inScopeTopics: mustHaveTopics.length > 0 ? mustHaveTopics : acTexts,
-      outOfScopeTopics: outOfScope,
-    });
-
-    blueprints.push({
-      id,
-      unit: request.unit,
-      lo: `LO${loNumber}`,
-      acAnchors: [...row.coversAcKeys],
-      topic: row.title,
-      mustHaveTopics,
-      level: request.constraints.level,
-      layout: masterBlueprint.identity.layout,
-      prerequisites: masterBlueprint.identity.prerequisites,
-      masterBlueprint,
-    });
+    loLedgers.push({ lo: loGroup.lo, ledger: loLedger });
   }
+
+  const blueprintById = new Map(loBlueprintSets.flatMap((set) => set.blueprints).map((blueprint) => [blueprint.id, blueprint]));
+  const orderedBlueprints: LessonBlueprint[] = [];
+  for (const lesson of allPlannedLessons) {
+    const blueprint = blueprintById.get(lesson.id);
+    if (blueprint) {
+      orderedBlueprints.push(blueprint);
+      continue;
+    }
+    orderedBlueprints.push(
+      buildDeterministicBlueprintForPlannedLesson({
+        request,
+        lesson,
+        allPlannedLessons,
+        acTextByKey,
+        rangeByAcKey,
+      })
+    );
+  }
+
+  const blueprints = orderedBlueprints.map((blueprint, index) => {
+    const prerequisites =
+      request.orderingPreference === 'foundation-first' && index > 0 ? [orderedBlueprints[index - 1].id] : [];
+    return withBlueprintPrerequisites(blueprint, prerequisites);
+  });
+
+  const sequencedById = new Map(blueprints.map((blueprint) => [blueprint.id, blueprint]));
+  const finalizedLoSets: LoBlueprintSetArtifact[] = loBlueprintSets.map((set) => ({
+    ...set,
+    blueprints: set.blueprints
+      .map((blueprint) => sequencedById.get(blueprint.id))
+      .filter((item): item is LessonBlueprint => Boolean(item)),
+  }));
 
   if (!validateLessonBlueprints(blueprints)) {
     throw new ModulePlannerError('M4', 'JSON_SCHEMA_FAIL', 'M4 output failed schema validation.', 400);
   }
+  const storedArtifact = buildM4StoredArtifact(request.unit, blueprints, finalizedLoSets, loLedgers, lessonLedgerMetadata);
+  if (!validateM4BlueprintArtifact(storedArtifact)) {
+    throw new ModulePlannerError('M4', 'JSON_SCHEMA_FAIL', 'M4 stored artifact failed schema validation.', 400);
+  }
 
-  await upsertArtifactAndStatus(runId, 'M4', blueprints);
+  await upsertArtifactAndStatus(runId, 'M4', storedArtifact, {
+    retrievedChunkIds: plannedLoGroups.map((group) => group.lo),
+  });
   return { stage: 'M4', replayed: false, artifact: blueprints };
 }
 
@@ -904,31 +2136,21 @@ export async function runM5Validate(
   if (replayed) return { stage: 'M5', replayed: true, artifact: replayed };
 
   const m2 = await getTypedStageArtifact(runId, 'M2', toCoverageTargetsValidator);
-  let m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
-  let m4 = await getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
+  const m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
+  const m4Stored = await getTypedStageArtifact(runId, 'M4', toM4StoredArtifactValidator);
+  const m4 = getBlueprintsFromM4StoredArtifact(m4Stored);
+  const m4LessonLedgerMetadata = Array.isArray(m4Stored) ? [] : m4Stored.lessonLedgerMetadata ?? [];
 
-  let issues: ValidationIssue[] = [];
+  const issues: ValidationIssue[] = [];
   issues.push(...getPlanValidationIssues(m2, m3, request.constraints));
 
-  // Single automatic repair loop: re-run M3 (with its internal one-pass repair) and rebuild M4 once.
-  if (issues.some((issue) => issue.severity === 'error')) {
-    try {
-      await runM3Plan(runId, { replayFromArtifacts: false });
-      await runM4Blueprints(runId, { replayFromArtifacts: false });
-      m3 = await getTypedStageArtifact(runId, 'M3', toMinimalLessonPlanValidator);
-      m4 = await getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
-      issues = getPlanValidationIssues(m2, m3, request.constraints);
-    } catch (repairError) {
-      issues.push({
-        stage: 'M5',
-        severity: 'error',
-        code: 'JSON_SCHEMA_FAIL',
-        message: repairError instanceof Error ? repairError.message : 'Automatic repair failed.',
-      });
-    }
-  }
-
   validateM4AgainstM3AndM2(issues, m2, m3, m4);
+  if (m4LessonLedgerMetadata.length > 0) {
+    validateLoLedgerProgression(issues, m4, m4LessonLedgerMetadata);
+  }
+  if (!Array.isArray(m4Stored)) {
+    validateM4FallbackUsage(issues, m4Stored.loBlueprintSets ?? []);
+  }
 
   m4.forEach((blueprint) => {
     if (!blueprint.masterBlueprint) {
@@ -1003,7 +2225,7 @@ async function runBlueprintGenerationQueue(
           lessonId: result.lessonId,
           status: 'success',
           error: null,
-          lessonJson: result.response,
+          lessonJson: buildPersistedLessonPayload(result),
         });
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown generation failure';
@@ -1022,6 +2244,97 @@ async function runBlueprintGenerationQueue(
   const workers = Array.from({ length: Math.max(1, concurrency) }, () => worker());
   await Promise.all(workers);
   if (abortError) throw abortError;
+}
+
+function readGeneratedLessonJson(lessonFile?: string): unknown | null {
+  if (!lessonFile) return null;
+  try {
+    const safeFile = path.basename(lessonFile);
+    const lessonPath = path.join(process.cwd(), 'src', 'data', 'lessons', safeFile);
+    if (!fs.existsSync(lessonPath)) return null;
+    const raw = fs.readFileSync(lessonPath, 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function buildPersistedLessonPayload(result: {
+  response: BlueprintGenerationResult['response'];
+  lessonId: string;
+}): Record<string, unknown> {
+  const lessonFile = result.response.lessonFile ?? null;
+  return {
+    lessonId: result.lessonId,
+    lessonFile,
+    generatedAt: new Date().toISOString(),
+    generatorResponse: result.response,
+    generatedLesson: readGeneratedLessonJson(result.response.lessonFile),
+  };
+}
+
+export async function runM6GenerateLesson(
+  runId: string,
+  blueprintId: string,
+  options: { apiBaseUrl: string }
+): Promise<{ lessonId: string; status: 'generated' | 'failed'; error: string | null }> {
+  await requireRun(runId);
+  const validation = await getTypedStageArtifact(runId, 'M5', toValidationResultValidator);
+  if (!validation.valid) {
+    throw new ModulePlannerError('M6', 'JSON_SCHEMA_FAIL', 'M5 validation failed. Generation cannot proceed.', 400);
+  }
+
+  const m4Stored = await getTypedStageArtifact(runId, 'M4', toM4StoredArtifactValidator);
+  const blueprints = getBlueprintsFromM4StoredArtifact(m4Stored);
+  const blueprint = blueprints.find((item) => item.id === blueprintId);
+  if (!blueprint) {
+    throw new ModulePlannerError('M6', 'JSON_SCHEMA_FAIL', `Blueprint not found: ${blueprintId}`, 404);
+  }
+
+  await upsertRunLesson({
+    runId,
+    blueprintId: blueprint.id,
+    lessonId: blueprint.id,
+    status: 'pending',
+    error: null,
+  });
+
+  try {
+    const result = await generateLessonFromBlueprint(blueprint, { apiBaseUrl: options.apiBaseUrl });
+    await upsertRunLesson({
+      runId,
+      blueprintId: blueprint.id,
+      lessonId: result.lessonId,
+      status: 'success',
+      error: null,
+      lessonJson: buildPersistedLessonPayload(result),
+    });
+    const lessons = await listRunLessons(runId);
+    const summary: GenerateSummary = {
+      generated: lessons.filter((row) => row.status === 'success').length,
+      failed: lessons.filter((row) => row.status === 'failed').length,
+      lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
+    };
+    await upsertArtifactAndStatus(runId, 'M6', summary);
+    return { lessonId: result.lessonId, status: 'generated', error: null };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : 'Unknown generation failure';
+    await upsertRunLesson({
+      runId,
+      blueprintId: blueprint.id,
+      lessonId: blueprint.id,
+      status: 'failed',
+      error: message,
+    });
+    const lessons = await listRunLessons(runId);
+    const summary: GenerateSummary = {
+      generated: lessons.filter((row) => row.status === 'success').length,
+      failed: lessons.filter((row) => row.status === 'failed').length,
+      lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
+    };
+    await upsertArtifactAndStatus(runId, 'M6', summary);
+    return { lessonId: blueprint.id, status: 'failed', error: message };
+  }
 }
 
 export async function runM6Generate(
@@ -1045,7 +2358,8 @@ export async function runM6Generate(
   if (!validation.valid) {
     throw new ModulePlannerError('M6', 'JSON_SCHEMA_FAIL', 'M5 validation failed. Generation cannot proceed.', 400);
   }
-  const blueprints = await getTypedStageArtifact(runId, 'M4', toBlueprintsValidator);
+  const m4Stored = await getTypedStageArtifact(runId, 'M4', toM4StoredArtifactValidator);
+  const blueprints = getBlueprintsFromM4StoredArtifact(m4Stored);
 
   await updateModuleRun(runId, { status: 'm6-running' });
   try {

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createPlannerRun, listModulePlannerUnitLos, listModulePlannerUnits } from '@/lib/module_planner';
 import { guardModulePlannerAccess, toErrorResponse } from '../_utils';
 import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
-import { getLatestSyllabusIngestion } from '@/lib/module_planner/db';
+import { getLatestSyllabusIngestion, getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 
 export async function GET(request: NextRequest) {
   const denied = guardModulePlannerAccess(request);
@@ -22,12 +22,17 @@ export async function GET(request: NextRequest) {
     const unitLos = selectedVersionId && resolvedUnit
       ? await listModulePlannerUnitLos(selectedVersionId, resolvedUnit)
       : [];
+    const structure =
+      selectedVersionId && resolvedUnit
+        ? await getSyllabusStructureByVersionAndUnit(selectedVersionId, resolvedUnit)
+        : null;
     const latestIngestion = await getLatestSyllabusIngestion();
 
     return NextResponse.json({
       success: true,
       units,
       unitLos,
+      unitStructure: structure?.structure_json ?? null,
       resolvedUnit,
       syllabusVersions: versions,
       defaultSyllabusVersionId: selectedVersionId,

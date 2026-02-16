@@ -26,6 +26,32 @@ function unique(items: string[]): string[] {
   return Array.from(new Set(items.filter((item) => item && item.trim().length > 0)));
 }
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function normalizeAcStatement(value: string): string {
+  return value.replace(/\s+/g, ' ').replace(/^\d+(?:\.\d+)?\s*/, '').trim();
+}
+
+function deriveExamIntentLabel(acText: string): 'Remember' | 'Understand' | 'Apply' {
+  const statement = normalizeAcStatement(acText);
+  const verb = statement.split(/\s+/)[0]?.toLowerCase() ?? '';
+  const rememberVerbs = new Set(['identify', 'state', 'define', 'list', 'name', 'recognise', 'recognize']);
+  const understandVerbs = new Set(['explain', 'describe', 'summarise', 'summarize', 'outline']);
+  const applyVerbs = new Set(['apply', 'calculate', 'demonstrate', 'use', 'select', 'solve', 'perform']);
+  if (rememberVerbs.has(verb)) return 'Remember';
+  if (understandVerbs.has(verb)) return 'Understand';
+  if (applyVerbs.has(verb)) return 'Apply';
+  return 'Apply';
+}
+
+function deriveExamIntent(acTexts: string[]): string[] {
+  return unique(acTexts)
+    .slice(0, 6)
+    .map((text) => `${deriveExamIntentLabel(text)}: ${normalizeAcStatement(text)}`);
+}
+
 function isSafetyRelevant(unit: string, corpus: string): boolean {
   if (unit === '204') return true;
   const hints = ['wiring', 'isolate', 'prove dead', 'live work', 'terminal', 'conductor', 'safety'];
@@ -160,7 +186,7 @@ export function buildMasterLessonBlueprint(input: BuildMasterBlueprintInput): Ma
       learningOutcomes: [input.lo],
       assessmentCriteria: unique(input.acTexts),
       rangeItems: unique(input.rangeItems),
-      examIntent: unique(input.acTexts).slice(0, 3).map((text) => `Apply: ${text}`),
+      examIntent: deriveExamIntent(input.acTexts),
       acAnchors: input.acAnchors,
     },
     scopeControl: {
@@ -257,7 +283,7 @@ export function buildMasterLessonBlueprint(input: BuildMasterBlueprintInput): Ma
       passCriteria: ['>=80% across lesson checks', 'Integrative question 1 correct'],
     },
     idConventions: {
-      lessonIdPattern: '^UNIT-TOPICCODE$',
+      lessonIdPattern: `^${escapeRegExp(input.lessonId)}$`,
       blockIdPattern: `${input.lessonId}-[block-key]`,
       questionIdPattern: `${input.lessonId}-C{n}-L{1|2}(-{A|B|C})?`,
       integrativeIdPattern: `${input.lessonId}-INT-{n}`,

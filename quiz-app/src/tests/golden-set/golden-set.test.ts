@@ -5,6 +5,7 @@
  */
 
 import { describe, it, expect, beforeAll } from 'vitest';
+import type { NextRequest } from 'next/server';
 import { POST as tutorHandler } from '@/app/api/tutor/route';
 import { GOLDEN_SCENARIOS, INVARIANTS } from './scenarios';
 import { createLessonContext } from '@/lib/tutor/groundingService';
@@ -13,14 +14,14 @@ import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
 import { Lesson } from '@/data/lessons/types';
 
 // Helper to create a mock request
-function createMockRequest(body: Record<string, unknown>): Request {
+function createMockRequest(body: Record<string, unknown>): NextRequest {
   return new Request('http://localhost:3000/api/tutor', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  });
+  }) as unknown as NextRequest;
 }
 
 // Helper to check if response is substantive

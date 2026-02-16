@@ -75,6 +75,8 @@ describe('request hashing', () => {
       constraints: {
         minimiseLessons: true,
         defaultMaxLessonsPerLO: 2,
+        maxAcsPerLesson: 12,
+        preferredAcsPerLesson: 12,
         maxLessonsOverrides: {},
         level: 'Level 2',
         audience: 'beginner',
@@ -91,6 +93,8 @@ describe('request hashing', () => {
       constraints: {
         minimiseLessons: true,
         defaultMaxLessonsPerLO: 2,
+        maxAcsPerLesson: 12,
+        preferredAcsPerLesson: 12,
         maxLessonsOverrides: {},
         level: 'Level 2',
         audience: 'beginner',

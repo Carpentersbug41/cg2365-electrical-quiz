@@ -9,6 +9,58 @@ vi.mock('@/lib/module_planner/adapter', () => {
   };
 });
 
+vi.mock('@/lib/config/geminiConfig', () => {
+  return {
+    getGeminiApiKey: vi.fn(() => 'test-key'),
+    getGeminiModelWithDefault: vi.fn(() => 'gemini-test'),
+  };
+});
+
+vi.mock('@/lib/llm/client', () => {
+  return {
+    createLLMClient: vi.fn(() => ({
+      getGenerativeModel: () => ({
+        generateContent: async (prompt: string) => {
+          const parsed = JSON.parse(prompt);
+          const coverage = parsed.canonicalCoverage as {
+            unit: string;
+            los: Array<{ lo: string; coverageTargets: Array<{ acKey: string; acText: string }> }>;
+          };
+          const maxAcsPerLesson = Number(parsed?.constraints?.maxAcsPerLesson ?? 12);
+          const output = {
+            unit: coverage.unit,
+            los: coverage.los.map((loGroup) => ({
+              lo: loGroup.lo,
+              lessonCount: Math.max(1, Math.ceil(loGroup.coverageTargets.length / Math.max(1, maxAcsPerLesson))),
+              lessons: Array.from(
+                { length: Math.max(1, Math.ceil(loGroup.coverageTargets.length / Math.max(1, maxAcsPerLesson))) },
+                (_, idx) => {
+                  const start = idx * Math.max(1, maxAcsPerLesson);
+                  const end = start + Math.max(1, maxAcsPerLesson);
+                  const chunk = loGroup.coverageTargets.slice(start, end);
+                  const letter = String.fromCharCode(65 + idx);
+                  return {
+                    topicCode: `${loGroup.lo.replace(/^LO/i, '')}${letter}`,
+                    title: chunk[0]?.acText ?? `${loGroup.lo} Lesson ${idx + 1}`,
+                    coversAcKeys: chunk.map((target) => target.acKey),
+                    whySplit: idx > 0 ? 'Split by test constraint' : null,
+                  };
+                }
+              ),
+            })),
+          };
+
+          return {
+            response: {
+              text: () => JSON.stringify(output),
+            },
+          };
+        },
+      }),
+    })),
+  };
+});
+
 import {
   createPlannerRun,
   ensureM2UsesStoredChunks,
@@ -49,6 +101,8 @@ describe('module planner stages', () => {
         constraints: {
           minimiseLessons: true,
           defaultMaxLessonsPerLO: 2,
+          maxAcsPerLesson: 12,
+          preferredAcsPerLesson: 12,
           maxLessonsOverrides: { LO1: 3 },
           level: 'Level 2',
           audience: 'beginner',
@@ -70,6 +124,20 @@ describe('module planner stages', () => {
     expect(m3a.artifact.unit).toBe('202');
     expect(Array.isArray(m4a.artifact)).toBe(true);
     expect(m5a.artifact.valid).toBe(true);
+    const summaryA = await getPlannerRunSummary(runA.id);
+    const storedM4 = summaryA.artifacts.find((artifact) => artifact.stage === 'M4')?.artifact_json as
+      | {
+          blueprints?: unknown[];
+          loBlueprintSets?: Array<{ lo: string; generatedBy: string; blueprints: unknown[] }>;
+          loLedgers?: Array<{ lo: string; ledger: unknown }>;
+          lessonLedgerMetadata?: Array<{ lessonId: string; lo: string }>;
+        }
+      | undefined;
+    expect(Array.isArray(storedM4?.blueprints)).toBe(true);
+    expect(Array.isArray(storedM4?.loBlueprintSets)).toBe(true);
+    expect(storedM4?.loBlueprintSets?.every((set) => Array.isArray(set.blueprints))).toBe(true);
+    expect(Array.isArray(storedM4?.loLedgers)).toBe(true);
+    expect(Array.isArray(storedM4?.lessonLedgerMetadata)).toBe(true);
     await ensureM2UsesStoredChunks(runA.id);
 
     const runB = await createPlannerRun({
@@ -87,6 +155,8 @@ describe('module planner stages', () => {
         constraints: {
           minimiseLessons: true,
           defaultMaxLessonsPerLO: 2,
+          maxAcsPerLesson: 12,
+          preferredAcsPerLesson: 12,
           maxLessonsOverrides: { LO1: 3 },
           level: 'Level 2',
           audience: 'beginner',
@@ -135,6 +205,8 @@ describe('module planner stages', () => {
         constraints: {
           minimiseLessons: true,
           defaultMaxLessonsPerLO: 2,
+          maxAcsPerLesson: 12,
+          preferredAcsPerLesson: 12,
           maxLessonsOverrides: {},
           level: 'Level 2',
           audience: 'beginner',

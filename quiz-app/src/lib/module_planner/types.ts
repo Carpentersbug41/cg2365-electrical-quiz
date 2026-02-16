@@ -5,6 +5,8 @@ export type OrderingPreference = 'foundation-first' | 'lo-order';
 export interface ModuleConstraints {
   minimiseLessons: boolean;
   defaultMaxLessonsPerLO: number;
+  maxAcsPerLesson: number;
+  preferredAcsPerLesson: number;
   maxLessonsOverrides: Record<string, number>;
   level: string;
   audience: string;
@@ -34,7 +36,7 @@ export interface UnitStructure {
 export interface CoverageTarget {
   acKey: string;
   acText: string;
-  range: string | null;
+  range: string[] | string | null;
   sourceChunkIds: string[];
 }
 
@@ -77,6 +79,49 @@ export interface LessonBlueprint {
   layout: 'split-vis' | 'linear-flow';
   prerequisites: string[];
   masterBlueprint?: MasterLessonBlueprint;
+}
+
+export interface LoBlueprintSetArtifact {
+  lo: string;
+  generatedBy: 'llm' | 'fallback';
+  blueprints: LessonBlueprint[];
+}
+
+export interface LoLedger {
+  // Already covered in this LO; used to avoid duplicate teaching in later lessons.
+  alreadyTaughtConcepts?: string[];
+  taughtConcepts: string[];
+  taughtVocab: string[];
+  examplesUsed: string[];
+  questionTypesUsed: string[];
+  // Explicit out-of-scope topics that should not be taught in this LO sequence.
+  doNotTeach: string[];
+  lastUpdatedAt: string;
+  sourceLessonIds: string[];
+}
+
+export interface LoLedgerArtifact {
+  lo: string;
+  ledger: LoLedger;
+}
+
+export interface LessonLedgerMetadata {
+  lessonId: string;
+  lo: string;
+  newTeachingConcepts: string[];
+  newVocab: string[];
+  outOfScopeTopics: string[];
+  examplesUsed: string[];
+  questionTypesUsed: string[];
+}
+
+export interface M4BlueprintArtifact {
+  unit: string;
+  generatedAt: string;
+  blueprints: LessonBlueprint[];
+  loBlueprintSets: LoBlueprintSetArtifact[];
+  loLedgers?: LoLedgerArtifact[];
+  lessonLedgerMetadata?: LessonLedgerMetadata[];
 }
 
 export type BloomTag = 'remember' | 'understand' | 'apply';
@@ -181,6 +226,8 @@ export type ValidationIssueCode =
   | 'MISSING_AC'
   | 'DUPLICATE_AC_ASSIGNMENT'
   | 'UNKNOWN_AC_KEY'
+  | 'EXCEEDS_MAX_ACS_PER_LESSON'
+  | 'EXCEEDS_PREFERRED_ACS_PER_LESSON'
   | 'DUPLICATE_LESSON'
   | 'OVERLAP_HIGH'
   | 'TOO_BROAD_SCOPE'
@@ -192,7 +239,8 @@ export type ValidationIssueCode =
   | 'BLUEPRINT_BLOCK_ORDER_INVALID'
   | 'BLUEPRINT_ID_PATTERN_INVALID'
   | 'BLUEPRINT_ANCHOR_MISMATCH'
-  | 'BLUEPRINT_GENERATION_MISMATCH';
+  | 'BLUEPRINT_GENERATION_MISMATCH'
+  | 'DUPLICATES_PRIOR_LO_CONTENT';
 
 export interface ValidationIssue {
   stage: ModuleStage;
@@ -330,16 +378,19 @@ export interface CanonicalAc {
   acNumber: string;
   text?: string;
   acKey: string;
+  range?: string[] | string;
 }
 
 export interface CanonicalLo {
   loNumber: string;
   title?: string;
   acs: CanonicalAc[];
+  range?: string[];
 }
 
 export interface CanonicalUnitStructure {
   unit: string;
+  unitTitle?: string;
   los: CanonicalLo[];
   range?: string[];
 }

@@ -1,9 +1,11 @@
 export const MAX_ACS_PER_LESSON = 4;
 export const DEFAULT_MAX_LESSONS_PER_LO = 2;
+export const DEFAULT_MAX_ACS_PER_LESSON = 12;
+export const DEFAULT_PREFERRED_ACS_PER_LESSON = 12;
 export const DEFAULT_LEVEL = 'Level 2';
 export const DEFAULT_AUDIENCE = 'beginner';
 export const DEFAULT_ORDERING_PREFERENCE = 'foundation-first';
-export const DEFAULT_MINIMISE_LESSONS = true;
+export const DEFAULT_MINIMISE_LESSONS = false;
 
 const MIN_CONCURRENCY = 1;
 const MAX_CONCURRENCY = 2;

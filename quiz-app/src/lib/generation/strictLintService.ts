@@ -74,6 +74,16 @@ export interface StrictLintResult {
 }
 
 export class StrictLintService {
+  private getQuestions(content: Record<string, unknown>): Record<string, unknown>[] {
+    const rawQuestions = content.questions;
+    if (!Array.isArray(rawQuestions)) return [];
+    return rawQuestions.filter((q): q is Record<string, unknown> => typeof q === 'object' && q !== null);
+  }
+
+  private getBlockMode(content: Record<string, unknown>): string | undefined {
+    return typeof content.mode === 'string' ? content.mode : undefined;
+  }
+
   /**
    * Run strict lint validation on a lesson
    * Returns hard failures that must be fixed for 95+ scores
@@ -259,7 +269,7 @@ export class StrictLintService {
       }
 
       // Check question IDs
-      const questions = block.content.questions;
+      const questions = this.getQuestions(block.content);
       if (Array.isArray(questions)) {
         for (let qIdx = 0; qIdx < questions.length; qIdx++) {
           const question = questions[qIdx];
@@ -274,21 +284,30 @@ export class StrictLintService {
             });
             continue;
           }
+          const questionId = String(question.id);
 
           // Check uniqueness
-          if (questionIds.has(question.id)) {
+          if (questionIds.has(questionId)) {
             failures.push({
               code: 'ID_DUPLICATE_QUESTION',
               severity: 'critical',
-              message: `Duplicate question ID: ${question.id}`,
+              message: `Duplicate question ID: ${questionId}`,
               path: `blocks[${blockIdx}].content.questions[${qIdx}].id`,
               suggestedFix: 'Increment question number to make unique',
             });
           }
-          questionIds.add(question.id);
+          questionIds.add(questionId);
 
           // Validate pattern based on block type
-          this.validateQuestionIdPattern(question, block.type, block.content.mode, lessonId, failures, blockIdx, qIdx);
+          this.validateQuestionIdPattern(
+            question as { id?: string },
+            block.type,
+            this.getBlockMode(block.content),
+            lessonId,
+            failures,
+            blockIdx,
+            qIdx
+          );
         }
       }
     }
@@ -477,7 +496,7 @@ export class StrictLintService {
 
       // Understanding check validation
       if (block.type === 'practice' && block.content.mode === 'conceptual') {
-        const questions = block.content.questions || [];
+        const questions = this.getQuestions(block.content);
         
         // Must have exactly 4 questions
         if (questions.length !== 4) {
@@ -508,7 +527,7 @@ export class StrictLintService {
 
       // Integrative validation
       if (block.type === 'practice' && block.content.mode === 'integrative') {
-        const questions = block.content.questions || [];
+        const questions = this.getQuestions(block.content);
         
         // Must have exactly 2 questions
         if (questions.length !== 2) {
@@ -538,7 +557,7 @@ export class StrictLintService {
 
       // Spaced review validation
       if (block.type === 'spaced-review') {
-        const questions = block.content.questions || [];
+        const questions = this.getQuestions(block.content);
         
         // Should have exactly 4 questions
         if (questions.length !== 4) {
@@ -562,7 +581,7 @@ export class StrictLintService {
 
     for (let blockIdx = 0; blockIdx < lesson.blocks.length; blockIdx++) {
       const block = lesson.blocks[blockIdx];
-      const questions = block.content.questions;
+      const questions = this.getQuestions(block.content);
 
       if (Array.isArray(questions)) {
         for (let qIdx = 0; qIdx < questions.length; qIdx++) {
@@ -587,7 +606,7 @@ export class StrictLintService {
           }
 
           // Validate answerType enum
-          if (question.answerType) {
+          if (typeof question.answerType === 'string') {
             const validTypes = ['numeric', 'short-text', 'mcq', 'true-false'];
             if (!validTypes.includes(question.answerType)) {
               failures.push({

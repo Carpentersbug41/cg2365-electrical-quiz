@@ -242,12 +242,15 @@ export class Phase9_Assembler {
     // Validate order contract compliance
     this.validateOrderContract(blocks);
 
+    // Current lesson contract supports only split-vis and linear-flow layouts.
+    const lessonLayout: Lesson['layout'] = plan.layout === 'split-vis' ? 'split-vis' : 'linear-flow';
+
     // Build complete lesson
     const lesson: Lesson = {
       id: lessonId,
       title,
       description,
-      layout: plan.layout,
+      layout: lessonLayout,
       unit,
       topic,
       learningOutcomes: plan.learningOutcomes,

@@ -8,14 +8,14 @@
 
 import { Lesson } from '../types';
 import { Phase11Suggestions, PatchOperation } from './Phase11_Suggest';
-import { validateCandidate } from './Phase10_Validators';
+import { validateCandidate, DetailedValidationResult } from './Phase10_Validators';
 import { safeJsonParse } from '../utils';
 import { debugLogger } from '../debugLogger';
 
 export interface Phase12Result {
   success: boolean;
   candidateLesson?: Lesson;
-  validationResult?: any;
+  validationResult?: DetailedValidationResult;
   error?: string;
   patchesApplied?: number;
   patchesSkipped?: number;
@@ -148,7 +148,7 @@ export class Phase12_Implement {
     // Verbose: Log validation details
     if (debugLogger.isEnabled()) {
       console.log('\nStructure Validation:');
-      console.log(`  ${validationResult.passed ? '✅' : '❌'} Overall: ${validationResult.passed ? 'PASSED' : 'FAILED'}`);
+      console.log(`  ${validationResult.valid ? '✅' : '❌'} Overall: ${validationResult.valid ? 'PASSED' : 'FAILED'}`);
       console.log(`  ✅ Block count: ${originalLesson.blocks.length} = ${candidateLesson.blocks.length}`);
       
       if (validationResult.errors && validationResult.errors.length > 0) {
@@ -158,11 +158,9 @@ export class Phase12_Implement {
         });
       }
       
-      if (validationResult.details) {
-        console.log('\n  Validation Details:');
-        for (const [key, value] of Object.entries(validationResult.details)) {
-          console.log(`    - ${key}: ${value}`);
-        }
+      console.log('\n  Validation Details:');
+      for (const [key, value] of Object.entries(validationResult.validators)) {
+        console.log(`    - ${key}: ${value.passed ? 'PASSED' : 'FAILED'} (${value.errors.length} errors, ${value.warnings.length} warnings)`);
       }
     }
     
@@ -182,7 +180,7 @@ export class Phase12_Implement {
       };
     }
     
-    if (!validationResult.passed) {
+    if (!validationResult.valid) {
       console.error(`❌ [Phase12_Implement] Validation failed:`);
       validationResult.errors.forEach((err: string) => {
         console.error(`   - ${err}`);

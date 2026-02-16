@@ -243,12 +243,29 @@ export function buildDeterministicChunks(cleanedText: string): Array<{ text: str
   const maxChars = 7000;
   const overlapChars = 700;
 
-  for (const block of blocks) {
+  for (let blockIndex = 0; blockIndex < blocks.length; blockIndex += 1) {
+    const block = blocks[blockIndex];
     const headingPath = block.heading ? [block.heading] : [];
     const unitGuessMatch = block.text.match(/\bUnit\s*(\d+)\b/i);
     const loGuessMatch = block.text.match(/\bLO\s*(\d+)\b/i);
     const unitGuess = unitGuessMatch ? unitGuessMatch[1] : null;
-    const loGuess = loGuessMatch ? `LO${loGuessMatch[1]}` : null;
+    let loGuess = loGuessMatch ? `LO${loGuessMatch[1]}` : null;
+
+    // If a unit-only intro block appears before the first LO block, inherit the nearest
+    // following LO within the same unit so anchor metadata stays useful and deterministic.
+    if (!loGuess && unitGuess) {
+      for (let nextIndex = blockIndex + 1; nextIndex < blocks.length; nextIndex += 1) {
+        const nextBlock = blocks[nextIndex];
+        const nextUnitMatch = nextBlock.text.match(/\bUnit\s*(\d+)\b/i);
+        const nextUnitGuess = nextUnitMatch ? nextUnitMatch[1] : null;
+        if (nextUnitGuess && nextUnitGuess !== unitGuess) break;
+        const nextLoMatch = nextBlock.text.match(/\bLO\s*(\d+)\b/i);
+        if (nextLoMatch) {
+          loGuess = `LO${nextLoMatch[1]}`;
+          break;
+        }
+      }
+    }
 
     if (block.text.length <= maxChars) {
       chunks.push({
@@ -297,8 +314,59 @@ function parseAcLine(line: string): string | null {
   return null;
 }
 
+function parseRangeItemsFromLine(line: string): string[] {
+  const cleaned = line
+    .replace(/^\*\*?\s*/g, '')
+    .replace(/^Range\s*:?/i, '')
+    .replace(/^[-•]\s*/, '')
+    .trim();
+  if (!cleaned) return [];
+  const byPrimaryDelimiter = cleaned.split(/[;|]/).map((item) => normalizeWhitespace(item)).filter(Boolean);
+  const source = byPrimaryDelimiter.length > 1 ? byPrimaryDelimiter : [cleaned];
+  const expanded = source.flatMap((item) => {
+    if (item.includes(',') && !item.match(/\b(e\.g\.|i\.e\.)\b/i)) {
+      return item.split(',').map((part) => normalizeWhitespace(part)).filter(Boolean);
+    }
+    return [item];
+  });
+  return Array.from(new Set(expanded)).filter((item) => item.length > 0);
+}
+
+function normalizeAcNumberToken(value: string): string {
+  return value.replace(/^AC\s*/i, '').trim();
+}
+
+function appendLoRange(lo: CanonicalLo, items: string[]): void {
+  if (items.length === 0) return;
+  lo.range = Array.from(new Set([...(Array.isArray(lo.range) ? lo.range : []), ...items]));
+}
+
+function appendAcRange(ac: CanonicalAc, items: string[]): void {
+  if (items.length === 0) return;
+  const existing = Array.isArray(ac.range)
+    ? ac.range
+    : typeof ac.range === 'string'
+      ? parseRangeItemsFromLine(ac.range)
+      : [];
+  ac.range = Array.from(new Set([...existing, ...items]));
+}
+
+function getAcRangeTargetFromLine(lo: CanonicalLo, line: string): CanonicalAc | null {
+  const explicit = line.match(/\b(?:AC|Assessment\s+Criterion)\s*(\d+(?:\.\d+)?)\b/i);
+  if (!explicit) return null;
+  const token = normalizeAcNumberToken(explicit[1]);
+  return lo.acs.find((ac) => normalizeAcNumberToken(ac.acNumber) === token) ?? null;
+}
+
 function acKey(unit: string, loNumber: string, acNumber: string): string {
   return `${unit}.LO${loNumber}.AC${acNumber}`;
+}
+
+function extractUnitTitleFromHeadingLine(line: string): string | undefined {
+  const cleaned = String(line ?? '').trim();
+  if (!cleaned) return undefined;
+  const stripped = cleaned.replace(/^Unit\s*\d+\b[:\-\s]*/i, '').trim();
+  return stripped.length > 0 ? normalizeWhitespace(stripped) : undefined;
 }
 
 export function extractCanonicalStructureFromText(cleanedText: string): {
@@ -310,15 +378,29 @@ export function extractCanonicalStructureFromText(cleanedText: string): {
 
   let currentUnit = '';
   let currentLo: CanonicalLo | null = null;
+  let currentAc: CanonicalAc | null = null;
+  let inRangeSection = false;
+  let activeRangeTarget: { type: 'lo' } | { type: 'ac'; ac: CanonicalAc } | null = null;
+  let previousLineKind: 'unit' | 'lo' | 'ac' | 'range' | 'other' = 'other';
 
   for (const line of lines) {
     const unitMatch = line.match(/^Unit\s*(\d+)\b/i);
     if (unitMatch) {
       currentUnit = unitMatch[1];
+      const parsedUnitTitle = extractUnitTitleFromHeadingLine(line);
       if (!unitMap.has(currentUnit)) {
-        unitMap.set(currentUnit, { unit: currentUnit, los: [] });
+        unitMap.set(currentUnit, { unit: currentUnit, unitTitle: parsedUnitTitle, los: [] });
+      } else if (parsedUnitTitle) {
+        const existing = unitMap.get(currentUnit);
+        if (existing && !existing.unitTitle) {
+          existing.unitTitle = parsedUnitTitle;
+        }
       }
       currentLo = null;
+      currentAc = null;
+      inRangeSection = false;
+      activeRangeTarget = null;
+      previousLineKind = 'unit';
       continue;
     }
 
@@ -333,21 +415,77 @@ export function extractCanonicalStructureFromText(cleanedText: string): {
       };
       unitMap.get(currentUnit)?.los.push(lo);
       currentLo = lo;
+      currentAc = null;
+      inRangeSection = false;
+      activeRangeTarget = null;
+      previousLineKind = 'lo';
       continue;
     }
 
     if (!currentUnit || !currentLo) continue;
+    if (/^\*{0,2}\s*Range\b/i.test(line)) {
+      inRangeSection = true;
+      const explicitAcTarget = getAcRangeTargetFromLine(currentLo, line);
+      if (explicitAcTarget) {
+        activeRangeTarget = { type: 'ac', ac: explicitAcTarget };
+      } else if (currentAc && (previousLineKind === 'ac' || currentLo.acs.length === 1)) {
+        // Range lines immediately after an AC typically belong to that AC.
+        activeRangeTarget = { type: 'ac', ac: currentAc };
+      } else {
+        activeRangeTarget = { type: 'lo' };
+      }
+      const inlineItems = parseRangeItemsFromLine(line);
+      if (inlineItems.length > 0) {
+        if (activeRangeTarget.type === 'ac') {
+          appendAcRange(activeRangeTarget.ac, inlineItems);
+        } else {
+          appendLoRange(currentLo, inlineItems);
+        }
+      }
+      previousLineKind = 'range';
+      continue;
+    }
+
+    if (inRangeSection) {
+      if (
+        /^(Unit\s*\d+|LO\s*\d+|Learning Outcome\s*\d+)/i.test(line) ||
+        /^-{3,}$/.test(line) ||
+        /^\*\*[^*]+\*\*/.test(line) ||
+        parseAcLine(line) !== null
+      ) {
+        inRangeSection = false;
+        activeRangeTarget = null;
+      } else {
+        const rangeItems = parseRangeItemsFromLine(line);
+        if (rangeItems.length > 0) {
+          if (activeRangeTarget?.type === 'ac') {
+            appendAcRange(activeRangeTarget.ac, rangeItems);
+          } else {
+            appendLoRange(currentLo, rangeItems);
+          }
+          previousLineKind = 'range';
+          continue;
+        }
+      }
+    }
+
     const parsedAc = parseAcLine(line);
-    if (!parsedAc) continue;
+    if (!parsedAc) {
+      previousLineKind = 'other';
+      continue;
+    }
 
     const acNumberMatch = line.match(/^((?:AC\s*)?\d+(?:\.\d+)?)/i);
     const acNumber = acNumberMatch ? acNumberMatch[1].replace(/^AC\s*/i, '') : `${currentLo.acs.length + 1}`;
 
-    currentLo.acs.push({
+    const ac: CanonicalAc = {
       acNumber,
       text: parsedAc,
       acKey: acKey(currentUnit, currentLo.loNumber, acNumber),
-    });
+    };
+    currentLo.acs.push(ac);
+    currentAc = ac;
+    previousLineKind = 'ac';
   }
 
   const structures = Array.from(unitMap.values()).sort((a, b) => Number(a.unit) - Number(b.unit));
@@ -385,8 +523,14 @@ export function validateCanonicalStructure(structure: CanonicalUnitStructure): s
 }
 
 export function parseAssessmentCriteriaFromContent(content: string): string[] {
+  return parseAssessmentCriteriaEntriesFromContent(content).map((entry) => entry.text);
+}
+
+export function parseAssessmentCriteriaEntriesFromContent(
+  content: string
+): Array<{ acNumber: string; text: string }> {
   const lines = content.split(/\r?\n/);
-  const criteria: string[] = [];
+  const criteria: Array<{ acNumber: string; text: string }> = [];
   let inAcBlock = false;
 
   for (const rawLine of lines) {
@@ -398,21 +542,24 @@ export function parseAssessmentCriteriaFromContent(content: string): string[] {
       continue;
     }
 
-    if (inAcBlock && /^\*\*Range/i.test(line)) {
+    if (inAcBlock && (/^\*\*Range/i.test(line) || /^---+$/.test(line))) {
       break;
     }
 
     if (!inAcBlock) continue;
 
-    const numbered = line.match(/^\d+(?:\.\d+)?\.\s*(.+)$/);
+    const numbered = line.match(/^(\d+(?:\.\d+)?)\.?\s+(.+)$/);
     if (numbered) {
-      criteria.push(normalizeWhitespace(numbered[1]));
+      criteria.push({
+        acNumber: numbered[1],
+        text: normalizeWhitespace(numbered[2]),
+      });
       continue;
     }
 
     const bullet = line.match(/^-\s+(.+)$/);
     if (bullet && criteria.length > 0) {
-      criteria[criteria.length - 1] = `${criteria[criteria.length - 1]} ${normalizeWhitespace(bullet[1])}`;
+      criteria[criteria.length - 1].text = `${criteria[criteria.length - 1].text} ${normalizeWhitespace(bullet[1])}`;
     }
   }
 
@@ -461,10 +608,14 @@ export function toRetrievedChunkRecords(source: SyllabusChunkRow[]): RetrievedCh
     const loGuess = chunk.anchor_json.loGuess ?? 'LO0';
     const learningOutcome = normalizeLo(loGuess);
     const loTitleLine = chunk.text.split('\n').find((line) => /^(LO|Learning Outcome)\s*\d+/i.test(line));
+    const headingUnitTitle = Array.isArray(chunk.anchor_json.headingPath)
+      ? String(chunk.anchor_json.headingPath[0] ?? '').trim()
+      : '';
+    const fallbackUnitTitle = `Unit ${chunk.anchor_json.unitGuess ?? ''}`.trim();
     return {
       id: chunk.id,
       unit: chunk.anchor_json.unitGuess ?? '000',
-      unitTitle: `Unit ${chunk.anchor_json.unitGuess ?? ''}`.trim(),
+      unitTitle: headingUnitTitle.length > 0 ? headingUnitTitle : fallbackUnitTitle,
       learningOutcome,
       loTitle: loTitleLine ?? learningOutcome,
       assessmentCriteria: parseAssessmentCriteriaFromContent(chunk.text),
@@ -596,17 +747,44 @@ export async function seedLegacyChunksAsDefaultVersionIfNeeded(): Promise<string
     const unit = chunk.unit;
     const loNumber = String(getLoNumber(chunk.learningOutcome));
     if (!byUnit.has(unit)) {
-      byUnit.set(unit, { unit, los: [] });
+      byUnit.set(unit, { unit, unitTitle: normalizeWhitespace(String(chunk.unitTitle ?? '')), los: [] });
+    } else {
+      const existing = byUnit.get(unit);
+      if (existing && !existing.unitTitle) {
+        const title = normalizeWhitespace(String(chunk.unitTitle ?? ''));
+        if (title.length > 0) {
+          existing.unitTitle = title;
+        }
+      }
     }
-    const acs: CanonicalAc[] = (chunk.assessmentCriteria ?? []).map((text, i) => ({
-      acNumber: `${loNumber}.${i + 1}`,
-      text,
-      acKey: `${unit}.LO${loNumber}.AC${loNumber}.${i + 1}`,
-    }));
+    const parsedAcEntries = parseAssessmentCriteriaEntriesFromContent(chunk.content);
+    const acs: CanonicalAc[] =
+      parsedAcEntries.length > 0
+        ? parsedAcEntries.map((entry) => ({
+            acNumber: normalizeAcNumberToken(entry.acNumber),
+            text: entry.text,
+            acKey: `${unit}.LO${loNumber}.AC${normalizeAcNumberToken(entry.acNumber)}`,
+          }))
+        : (chunk.assessmentCriteria ?? []).map((text, i) => {
+            const raw = normalizeWhitespace(String(text ?? ''));
+            const legacyPrefix = new RegExp(`^${i + 1}\\s+`);
+            const normalizedText = raw.replace(legacyPrefix, '').trim();
+            const acNumber = `${loNumber}.${i + 1}`;
+            return {
+              acNumber,
+              text: normalizedText,
+              acKey: `${unit}.LO${loNumber}.AC${acNumber}`,
+            };
+          });
+    const parsedRange = parseRangeFromContent(chunk.content);
+    const rangeItems = parsedRange
+      ? parsedRange.split('|').map((item) => normalizeWhitespace(item)).filter(Boolean)
+      : [];
     byUnit.get(unit)?.los.push({
       loNumber,
       title: chunk.loTitle,
       acs,
+      range: rangeItems.length > 0 ? rangeItems : undefined,
     });
   }
 

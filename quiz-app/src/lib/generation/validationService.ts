@@ -28,7 +28,7 @@ import { WorkedExampleBlockContent, GuidedPracticeBlockContent } from '@/data/le
 import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, BLOOM_LEVELS, COGNITIVE_LEVELS, BLOCK_ORDER } from './constants';
 
 export interface QuestionDebugInfo {
-  questionId: number;
+  questionId: string | number;
   issue: string;
   questionText?: string;
   optionsCount?: number;
@@ -51,11 +51,11 @@ export class ValidationService {
     if (lesson.blocks) {
       this.normalizeLessonQuestionFields(lesson.blocks);
       for (const block of lesson.blocks) {
-        if (block.type === 'practice' && block.content.questions) {
-          this.normalizeExpectedAnswers(block.content.questions);
-        }
-        if (block.type === 'spaced-review' && block.content.questions) {
-          this.normalizeExpectedAnswers(block.content.questions);
+        const questions = Array.isArray(block.content.questions)
+          ? (block.content.questions as Record<string, unknown>[])
+          : undefined;
+        if ((block.type === 'practice' || block.type === 'spaced-review') && questions) {
+          this.normalizeExpectedAnswers(questions);
         }
       }
     }

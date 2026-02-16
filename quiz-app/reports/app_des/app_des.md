@@ -1,6 +1,6 @@
 # C&G 2365 Quiz App - Current Implementation Documentation
 
-Last verified: 2026-02-14
+Last verified: 2026-02-16
 Status: Active implementation reference
 Scope: Current code behavior only (not roadmap)
 
@@ -14,7 +14,7 @@ This app is a Next.js learning platform for C&G 2365 content with:
 - learner progress and mastery tracking
 - AI lesson and quiz generation pipelines
 - admin microbreak game generation and insertion
-- module-level planning/generation via Module Planner v6
+- module-level planning/generation via Module Planner vNext
 - optional Supabase auth + server-side progress APIs
 
 This document reflects the code currently in `src/`.
@@ -32,7 +32,7 @@ From `package.json`:
   - `@google/generative-ai ^0.24.1`
   - `@google-cloud/vertexai ^1.4.0`
 - Auth/storage:
-  - `@supabase/supabase-js`
+  - `@supabase/supabase-js ^2.49.1`
 - UI/utilities:
   - `canvas-confetti`
   - `lucide-react`
@@ -69,13 +69,15 @@ Implemented `route.ts` endpoints:
 - `/api/admin/generate-games`
 - `/api/admin/module/runs`
 - `/api/admin/module/runs/:id`
+- `/api/admin/module/syllabus/populate`
 - `/api/admin/module/:id/m0-distill`
 - `/api/admin/module/:id/m1-analyze`
 - `/api/admin/module/:id/m2-coverage`
 - `/api/admin/module/:id/m3-plan`
 - `/api/admin/module/:id/m4-blueprints`
 - `/api/admin/module/:id/m5-validate`
-- `/api/admin/module/:id/m6-generate`
+- `/api/admin/module/:id/m6-generate` (bulk mode, gated)
+- `/api/admin/module/:id/lessons/:blueprintId/generate`
 - `/api/syllabus/upload`
 - `/api/v1/attempts`
 - `/api/v1/progress/lesson-start`
@@ -85,7 +87,7 @@ Implemented `route.ts` endpoints:
 - `/api/lessons`
 - `/api/lessons-status`
 - `/api/delete-lesson`
-- `/api/improve-lesson` (currently disabled, returns HTTP 501)
+- `/api/improve-lesson` (disabled, returns HTTP 501)
 - `/api/tutor`
 - `/api/chat`
 - `/api/marking`
@@ -99,52 +101,37 @@ Implemented `route.ts` endpoints:
 ## 4. Content Corpus
 
 Current local corpus in repo:
-- Lesson JSON files in `src/data/lessons`: 41
-- Quiz/question source files (`*Questions.ts`) in `src/data/questions`: 46
-- Available lesson index entries (`available: true`) in `src/data/lessons/lessonIndex.ts`: 40
+- Lesson JSON files in `src/data/lessons`: 44
+- Quiz/question source files (`*Questions.ts`) in `src/data/questions`: 49
+- Available lesson index entries (`available: true`) in `src/data/lessons/lessonIndex.ts`: 43
 
 ---
 
-## 5. Learning Experience Runtime
+## 5. Learning Runtime
 
 ### Lesson index (`/learn`)
 
 - The page imports lesson JSON files statically and builds `RAW_LESSONS`.
-- Duplicate lesson IDs are removed at runtime in development with warning logs.
-- Lessons are sorted by natural lesson ID order.
-- Lessons are grouped by unit sections (201-204) in the UI.
-- Review dashboard is shown at top (`ReviewDashboard`).
-- Lesson card state badges are driven by quiz progress:
-  - `masteryAchieved`
-  - `masteryPending`
+- Duplicate lesson IDs are removed at runtime with dedupe logic.
+- Lessons are naturally sorted by parsed lesson ID (unit, lesson number, suffix).
+- Unit cards currently render for 201, 202, 203, 204, and 210 when data exists.
+- `ReviewDashboard` is shown above lesson cards.
+- Lesson badges and CTA state are driven by quiz mastery progress.
 
 ### Dynamic lesson page (`/learn/[lessonId]`)
 
 - Lesson registry is static in `src/app/learn/[lessonId]/page.tsx`.
-- Layout selection currently maps as:
+- Layout mapping:
   - `split-vis` -> `LayoutA`
   - all other layout values -> `LayoutB`
-- `LayoutC` exists in code but is not selected by this route.
-- If `lesson.diagnostic?.enabled` is true, lesson content is wrapped in `DiagnosticGate`.
+- If `lesson.diagnostic?.enabled` is true, content is wrapped in `DiagnosticGate`.
 
 ### Diagnostic gate behavior
 
-Diagnostic is a soft gate, not a hard lock:
-- Diagnostic questions come from cumulative question service with:
-  - `getCumulativeQuestions(lessonId, 10, 0.0)`
-  - effectively 10 questions from previous lessons in the same unit
-- Pass threshold comes from lesson diagnostic config (`diagnostic.passThreshold`).
-- Pass is stored in localStorage key pattern: `diagnostic-pass-{lessonId}`.
-- If learner fails, they can still proceed via "proceed anyway" path.
-
-### Layout behavior
-
-`LayoutA` and `LayoutB`:
-- render block streams by `block.type`
-- support `microbreak` block rendering through `MicrobreakBlock`
-- include tutor panel integration
-- include cumulative quiz CTA (`?mode=cumulative`)
-- surface mastery state with `MasteryGate`
+- Diagnostic is a soft gate, not a hard lock.
+- Uses `getDiagnosticQuestions(lessonId)` and pass threshold from lesson config.
+- Pass state is persisted and checked through diagnostic service helpers.
+- On fail, learner can still proceed via "proceed anyway".
 
 ### Quiz behavior
 
@@ -155,58 +142,50 @@ Lesson quiz page (`/learn/[lessonId]/quiz`) configures `Quiz` with:
 - `context="lesson"`
 
 `Quiz` component behavior includes:
-- randomized question selection count (user chooses from allowed counts)
+- randomized question count selection
 - option shuffling per question
 - confidence capture per answer
 - immediate correctness feedback mode
 - misconception surfacing when mappings exist
-- typed retry section (`TypedRetrySection`) for wrong answers
+- typed retry section for wrong answers
 - per-question attempt writes to IndexedDB (`saveAttempt`)
 - needs-review priority updates in IndexedDB (`updateNeedsReview`)
+- optional authenticated attempt/progress writes via `/api/v1/*`
 
 ---
 
 ## 6. Progress and Mastery
 
-Progress is client-side and local-first, with optional server-side auth progress.
+Progress is local-first, with optional server-side auth progress.
 
-### Local storage
+### Local progress
 
-- Main progress storage key: `cg2365-learning-progress`
+- Main local key: `cg2365-learning-progress`
 - Service: `src/lib/progress/progressService.ts`
 - Migration/version support via `migrationService`
+- IndexedDB database: `quizTracking` with `attempts` and `needsReview` stores
 
 ### Mastery model
 
-For quizzes and lessons, mastery is delayed:
 - First successful pass sets `masteryPending = true`
 - Review/retest is scheduled (`nextReviewAt`)
 - Later pass confirms `masteryAchieved = true`
 - Failure during pending window resets pending mastery
-
-### Additional local stores
-
-- IndexedDB database: `quizTracking`
-  - store: `attempts`
-  - store: `needsReview`
-- Microbreak telemetry localStorage key: `microbreak-telemetry`
 
 ### Optional server-side auth progress (`AUTH_PROGRESS_ENABLED=true`)
 
 Protected endpoints under `/api/v1/*` support:
 - attempt logging (`/api/v1/attempts`)
 - lesson start/complete progress (`/api/v1/progress/*`)
-- review queue (`/api/v1/review/wrong-items`)
-
-Full operator usage is documented in `reports/app_des/sign_in.md`.
+- wrong-item review queue (`/api/v1/review/wrong-items`)
 
 ---
 
-## 7. Microbreak System (Runtime)
+## 7. Microbreak System
 
 ### Block model
 
-`microbreak` is a first-class block type in lesson schema.
+`microbreak` is a first-class lesson block type.
 
 Supported game types:
 - `matching`
@@ -215,62 +194,34 @@ Supported game types:
 - `tap-label`
 - `quick-win`
 
-### Rendering
+### Runtime
 
 `MicrobreakBlock` routes to game/rest components by `content.breakType` and `content.gameType`.
 
-### Telemetry
-
-On complete/skip, telemetry logs:
-- lesson id
-- break id/type
-- optional game type
-- timestamps
-- optional score/accuracy
-
-### Celebration/audio
-
-`celebrationEffects.ts` currently uses:
-- success: `/sounds/correct.mp3`
-- failure: `/sounds/wrong.mp3`
-- click: `/sounds/click.mp3`
-
-Confetti/celebration variants implemented: 10.
+Telemetry (local storage key `microbreak-telemetry`) records lesson/break identifiers, type, timestamps, and optional score/accuracy fields.
 
 ---
 
-## 8. Generation Pipeline
+## 8. Lesson Generation Pipeline
 
-## 8.1 Lesson generation API
+### `/api/lesson-generator`
 
-Endpoint: `/api/lesson-generator`
+High-level flow:
+1. Validate environment
+2. Apply rate limit (`5` requests/hour per identifier)
+3. Generate lesson (`FileGenerator` + `SequentialLessonGenerator`)
+4. Validate lesson (`ValidationService`)
+5. Generate quiz (target 50 questions)
+6. Validate quiz
+7. Write files
+8. Integrate index/registry files
+9. Optional git commit/push
 
-High-level server flow:
-1. Environment validation
-2. Rate limit check (global in-memory limiter)
-3. Lesson generation via `FileGenerator`
-4. Lesson validation
-5. Quiz generation (50 questions target)
-6. Quiz validation
-7. File writes
-8. Integration updates (`FileIntegrator`)
-9. Optional git commit/push (`GitService`)
-
-Rate limit config:
-- `5` requests per hour per identifier (IP/header fallback)
-
-Integration updates include key files such as:
-- `src/data/questions/index.ts`
-- `src/data/questions.ts`
-- `src/data/lessons/lessonIndex.ts`
-- `src/app/learn/[lessonId]/page.tsx`
-- `src/app/learn/page.tsx`
-
-## 8.2 Sequential lesson generation internals
+### Sequential pipeline internals
 
 Core orchestrator: `SequentialLessonGenerator`
 
-Content phases:
+Generation phases:
 1. Planning
 2. Vocabulary
 3. Explanation
@@ -281,87 +232,71 @@ Content phases:
 8. Spaced review
 9. Assembly
 
-Refinement/scoring phases:
-- Phase 10: score
-- Phase 12: refine full lesson JSON (`Phase12_Refine`)
-- Phase 13: rescore and choose best
+Refinement/scoring path:
+- Phase 10: score (`Phase10_Score`)
+- Phase 12: full-lesson refine (`Phase12_Refine`)
+- Phase 13: rescore/compare (`Phase13_Rescore`)
 
-Current acceptance behavior is best-of comparison:
-- keep candidate if score improves (or ties with fewer issues)
-- else keep original
+Current acceptance behavior:
+- accept candidate if total score improves
+- also accept tie when candidate has fewer issues
+- otherwise keep original
 
-Important: runtime still contains legacy patch-era naming in metadata/log fields (for compatibility), even though active path is full-JSON refine/rescore.
+Blueprint enforcement now exists in `/api/lesson-generator`:
+- pre-generation contract validation for `masterLessonBlueprint`
+- post-generation lesson-vs-blueprint validation
+- returns HTTP 400 on contract violations
 
-## 8.3 Improve endpoint status
+### Improve endpoint status
 
-`/api/improve-lesson` is disabled and returns HTTP 501 with explicit message.
-
-The `/generate` UI still includes improve controls that call this endpoint, but backend currently rejects requests.
+`/api/improve-lesson` remains disabled and returns HTTP 501.
 
 ---
 
 ## 9. Module Planner vNext (`/admin/module`)
 
-Module Planner is additive and isolated from lesson pipeline internals.
+Module planner is syllabus-versioned and DB-backed.
 
-### Operator flow
+### Operator flow (default UI path)
 
 1. Open `/admin/module`
-2. If disabled banner appears, set `MODULE_PLANNER_ENABLED=true`
-3. Provide admin token if `MODULE_PLANNER_ADMIN_TOKEN` is configured
-4. Upload syllabus file (`PDF`, `DOCX`, `TXT`) or select existing syllabus version
-5. Choose `Unit`
-6. Optional `Selected LOs` as comma list (example: `LO1, LO5`)
-7. Enter `Chat Transcript` (planning intent text)
+2. Supply admin token if `MODULE_PLANNER_ADMIN_TOKEN` is configured
+3. Populate legacy syllabus or upload new syllabus (`PDF`, `DOCX`, `TXT`)
+4. Select `Syllabus Version`
+5. Select `Unit`
+6. Optional manual LO override (otherwise unit-default LOs)
+7. Enter `Chat Transcript`
 8. Optional `Notes`
 9. Set constraints:
 - `Max lessons / LO`
+- `Max ACs/Lesson (hard)`
+- `Preferred ACs/Lesson (soft)`
 - `Ordering` (`foundation-first` or `lo-order`)
 - `Level`
 - `Audience`
 10. Click `Create Run`
-11. Run stages in order:
-- Distill
-- Analyze
-- Extract Coverage
-- Plan
-- Build Blueprints
-- Validate
-- Generate
-12. Review per-stage JSON cards and final Run Summary
+11. Run planning stages (`M0`..`M5`) via buttons or "Plan lessons (M0-M5)"
+12. Generate lessons from matrix using per-blueprint `Generate now`
 
-### Interface details
+### Key runtime details
 
-- Upload response includes `syllabusVersionId`, content hash, and chunk count
-- `Create Run` requires `syllabusVersionId`
-- `Replay-from-artifacts` checkbox enables deterministic replay by `request_hash`
-- Stage button `*` means replay artifact exists for that stage/hash
-- `Stop` cancels the current browser request only (does not force-cancel server work)
-- Run summary now includes chunk diagnostics (chunk IDs/page ranges from retrieved payload)
-- Top right `Lesson` button links back to `/generate`
-
-### Prompts/instructions involved
-
-- Upload/ingestion pipeline is deterministic-first:
-  - extract text
-  - clean text
-  - deterministic chunking
-  - deterministic Unit/LO/AC structure extraction
-  - optional low-confidence LLM normalizer fallback (strictly validated)
-- M3 planning is LLM-assisted:
-  - LLM may only group/title lessons over canonical `acKeys`
-  - it may not invent/rename curriculum keys
-- M5 deterministic validation blocks M6 on failure
-- M5 includes a single automatic repair loop (re-run M3 + M4 once)
-- User-entered `Chat Transcript` and `Notes` remain planning input context for M0/M3
+- `syllabusVersionId` is required in create/distill flow.
+- Request hash includes normalized transcript, request payload, and syllabus content hash.
+- Replay reuses artifacts by `(request_hash, stage)`.
+- M3 planning is LLM-driven with one automatic repair attempt.
+- No deterministic auto-plan fallback exists when M3 LLM fails.
+- M4 stores extended artifact metadata (`loBlueprintSets`, LO ledgers, lesson ledger deltas).
+- M5 includes duplicate-prior-LO-content checks.
+- M6 bulk endpoint exists but is disabled unless `MODULE_PLANNER_BULK_M6_ENABLED=true`.
+- Default generation flow is per-lesson: `/api/admin/module/:id/lessons/:blueprintId/generate`.
 
 ### Persistence/runtime
 
-- Planner and syllabus persistence are SQL-backed (Supabase tables), with test-memory fallback
-- Request hash includes syllabus version/content hash
-- Runtime planner flow no longer depends on `src/lib/syllabus/chunks.json` for planning (legacy chunks are used only for bootstrap seeding)
+- Supabase tables are primary persistence (`module_runs`, `module_run_artifacts`, `generated_lessons`, `syllabus_*`).
+- In tests (or `MODULE_PLANNER_DB_MODE=memory`), an in-memory fallback store is used.
+- Legacy `src/lib/syllabus/chunks.json` is now bootstrap-only (populate seed), not the primary planner truth source.
 
-Detailed endpoint/payload examples and stage contracts are in `reports/app_des/module_planner.md`.
+Detailed contracts are in `reports/app_des/module_planner.md` and `reports/app_des/module_planner_technical_doc.md`.
 
 ---
 
@@ -372,7 +307,7 @@ Detailed endpoint/payload examples and stage contracts are in `reports/app_des/m
 - Magic-link email sign-in via Supabase (`signInWithOtp`)
 - Shows signed-in email state
 - Supports sign-out
-- Redirect target for successful auth is `/auth/callback?next=/learn`
+- Redirect target is `/auth/callback?next=/learn`
 
 ### Callback UI (`/auth/callback`)
 
@@ -380,12 +315,7 @@ Detailed endpoint/payload examples and stage contracts are in `reports/app_des/m
 - Validates safe redirect (`next` must start with `/`)
 - Redirects to `/learn` by default
 
-### Prompts/instructions involved
-
-- No LLM prompts are used in sign-in/auth flows.
-- These are direct Supabase auth/session flows.
-
-Full setup, request formats, and troubleshooting are in `reports/app_des/sign_in.md`.
+No LLM prompts are used in sign-in/auth flows.
 
 ---
 
@@ -397,29 +327,21 @@ Provider options:
 - Google AI Studio
 - Vertex AI
 
-Behavior:
-- `createLLMClientWithFallback()` tries Vertex when configured
-- falls back to Google AI Studio on init failure
+`createLLMClientWithFallback()` attempts Vertex when configured and falls back to AI Studio on init failure.
 
-This abstraction is used by multiple APIs/services including:
-- tutor/chat routes
-- marking
-- scoring
-- generation internals
+Used across tutor/chat/marking/generation pipelines.
 
 ---
 
-## 12. Known Drift / Technical Debt (Observed)
+## 12. Known Drift / Technical Debt
 
-The current runtime works, but naming/history drift exists:
-- Legacy patch-oriented phase files remain on disk:
-  - `Phase11_Suggest.ts`
-  - `Phase12_Implement.ts`
-- Legacy patch-oriented tests still exist in `src/lib/generation/__tests__/phase10-13-pipeline.test.ts`
-- Runtime types/comments/logs still use fields like `patchesApplied` and patch-oriented wording.
-- Some config comments still reference the old Phase 11/12 patch flow.
+Runtime architecture for refinement is full-JSON (`Phase12_Refine`), but legacy patch-era residue remains:
+- Legacy files still present (`Phase11_Suggest.ts`, `Phase12_Implement.ts`)
+- Compatibility naming remains (`patchesApplied`, `-rejected-patches.json`)
+- Some comments/log text still reference old patch pipeline language
+- Some score-threshold log strings in generator are stale vs config values
 
-This drift is documentation-relevant and should be treated as compatibility residue, not active runtime architecture.
+Treat runtime imports/call paths as source of truth.
 
 ---
 
@@ -430,30 +352,18 @@ Core learning pages:
 - `src/app/learn/[lessonId]/page.tsx`
 - `src/app/learn/[lessonId]/quiz/page.tsx`
 
-Layout/rendering:
-- `src/components/learning/layouts/LayoutA.tsx`
-- `src/components/learning/layouts/LayoutB.tsx`
-- `src/components/learning/layouts/LayoutC.tsx`
-- `src/components/learning/DiagnosticGate.tsx`
-- `src/components/Quiz.tsx`
-
-Progress and storage:
-- `src/lib/progress/progressService.ts`
-- `src/lib/progress/migrationService.ts`
-- `src/lib/storage/indexedDBService.ts`
-
 Generation:
 - `src/app/api/lesson-generator/route.ts`
 - `src/lib/generation/fileGenerator.ts`
 - `src/lib/generation/SequentialLessonGenerator.ts`
 - `src/lib/generation/phases/*`
-- `src/lib/generation/fileIntegrator.ts`
 
 Module planner:
 - `src/app/admin/module/page.tsx`
 - `src/app/api/admin/module/*`
 - `src/lib/module_planner/*`
-- `reports/app_des/module_planner.md`
+- `supabase/migrations/202602140001_module_planner_vnext.sql`
+- `supabase/migrations/202602140002_module_planner_ingestions.sql`
 
 Auth + server progress:
 - `src/app/auth/sign-in/page.tsx`
@@ -461,15 +371,13 @@ Auth + server progress:
 - `src/app/api/v1/*`
 - `src/lib/supabase/*`
 - `src/lib/authProgress/*`
-- `reports/app_des/sign_in.md`
 
 Admin microbreak generation:
 - `src/app/admin/generate-games/page.tsx`
-- `src/components/admin/GameGeneratorForm.tsx`
 - `src/app/api/admin/generate-games/route.ts`
 - `src/lib/generation/gameGenerator.ts`
 - `src/components/learning/microbreaks/MicrobreakBlock.tsx`
 
 ---
 
-This document supersedes older architecture descriptions that referenced now-disabled improve API behavior or patch-based active runtime flow.
+This document supersedes older descriptions that treated module planner as file-DB only or M6-bulk-first.

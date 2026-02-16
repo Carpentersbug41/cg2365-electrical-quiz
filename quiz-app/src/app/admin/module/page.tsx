@@ -33,6 +33,8 @@ interface RunSummary {
     lesson_id: string;
     status: string;
     error: string | null;
+    lesson_json?: unknown | null;
+    created_at?: string;
   }>;
   replayable: Record<StageKey, boolean>;
 }
@@ -43,6 +45,22 @@ interface StageResult {
   replayed: boolean;
   artifact: unknown;
   message?: string;
+}
+
+interface CanonicalUnitStructure {
+  unit: string;
+  range?: string[];
+  los: Array<{
+    loNumber: string;
+    title?: string;
+    acs: Array<{
+      acNumber: string;
+      text?: string;
+      acKey: string;
+      range?: string[];
+    }>;
+    range?: string[];
+  }>;
 }
 
 type PopulateState = 'IDLE' | 'RUNNING' | 'READY' | 'FAILED';
@@ -79,8 +97,10 @@ export default function ModulePlannerPage() {
   const [runId, setRunId] = useState('');
   const [runSummary, setRunSummary] = useState<RunSummary | null>(null);
   const [stageResults, setStageResults] = useState<Partial<Record<StageKey, StageResult>>>({});
-  const [replayFromArtifacts, setReplayFromArtifacts] = useState(true);
-  const [defaultMaxLessons, setDefaultMaxLessons] = useState(2);
+  const [replayFromArtifacts, setReplayFromArtifacts] = useState(false);
+  const [defaultMaxLessons, setDefaultMaxLessons] = useState(9);
+  const [maxAcsPerLesson, setMaxAcsPerLesson] = useState(4);
+  const [preferredAcsPerLesson, setPreferredAcsPerLesson] = useState(2);
   const [level, setLevel] = useState('Level 2');
   const [audience, setAudience] = useState('beginner');
   const [orderingPreference, setOrderingPreference] = useState<'foundation-first' | 'lo-order'>('foundation-first');
@@ -94,6 +114,12 @@ export default function ModulePlannerPage() {
   const [populateState, setPopulateState] = useState<PopulateState>('IDLE');
   const [activeStage, setActiveStage] = useState<StageKey | null>(null);
   const [activeTaskLabel, setActiveTaskLabel] = useState<string | null>(null);
+  const [generatingBlueprintId, setGeneratingBlueprintId] = useState<string | null>(null);
+  const [unitStructure, setUnitStructure] = useState<CanonicalUnitStructure | null>(null);
+  const [viewLessonPayload, setViewLessonPayload] = useState<{
+    title: string;
+    payload: unknown;
+  } | null>(null);
 
   const abortRef = useRef<AbortController | null>(null);
 
@@ -184,10 +210,12 @@ export default function ModulePlannerPage() {
     const nextUnits = Array.isArray(data.units) ? data.units.map((value) => String(value)) : [];
     const resolvedUnit = String(data.resolvedUnit ?? preferredUnit ?? nextUnits[0] ?? '');
     const los = Array.isArray(data.unitLos) ? data.unitLos.map((value) => String(value)) : [];
+    const structure = (data.unitStructure ?? null) as CanonicalUnitStructure | null;
 
     setUnits(nextUnits);
     setUnit(resolvedUnit);
     setUnitLos(los);
+    setUnitStructure(structure);
   }, [callApi]);
 
   const loadBootstrap = useCallback(async () => {
@@ -243,7 +271,6 @@ export default function ModulePlannerPage() {
       const data = await callApi(`/api/admin/module/runs/${id}`);
       const summary = data as unknown as RunSummary;
       setRunSummary(summary);
-      if (summary.run.request_hash) setReplayFromArtifacts(true);
       const nextResults: Partial<Record<StageKey, StageResult>> = {};
       summary.artifacts.forEach((artifact) => {
         nextResults[artifact.stage] = {
@@ -419,8 +446,10 @@ export default function ModulePlannerPage() {
               unit,
               selectedLos,
               constraints: {
-                minimiseLessons: true,
+                minimiseLessons: false,
                 defaultMaxLessonsPerLO: defaultMaxLessons,
+                maxAcsPerLesson,
+                preferredAcsPerLesson,
                 maxLessonsOverrides: {},
                 level,
                 audience,
@@ -444,7 +473,77 @@ export default function ModulePlannerPage() {
     }
   };
 
-  const stageOrder: StageKey[] = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6'];
+  const runPlanningFlow = async () => {
+    if (!runId) {
+      setError('Create a run before planning.');
+      return;
+    }
+    setLoading(true);
+    setActiveTaskLabel('Planning lessons (M0-M5)');
+    setError(null);
+    setInfo(null);
+    try {
+      const planningStages: StageKey[] = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5'];
+      for (const stage of planningStages) {
+        setActiveStage(stage);
+        const endpoint = STAGE_ROUTE[stage];
+        const basePayload = { replayFromArtifacts };
+        const payload =
+          stage === 'M0'
+            ? {
+                ...basePayload,
+                syllabusVersionId,
+                unit,
+                selectedLos,
+                constraints: {
+                  minimiseLessons: false,
+                  defaultMaxLessonsPerLO: defaultMaxLessons,
+                  maxAcsPerLesson,
+                  preferredAcsPerLesson,
+                  maxLessonsOverrides: {},
+                  level,
+                  audience,
+                },
+                orderingPreference,
+                notes,
+                chatTranscript,
+              }
+            : basePayload;
+        const data = (await callApi(`/api/admin/module/${runId}/${endpoint}`, payload)) as unknown as StageResult;
+        setStageResults((prev) => ({ ...prev, [stage]: data }));
+      }
+      await loadRunSummary(runId);
+      setInfo('Planning complete. Review the lesson matrix, then generate lessons individually.');
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed during planning flow');
+    } finally {
+      setLoading(false);
+      setActiveStage(null);
+      setActiveTaskLabel(null);
+    }
+  };
+
+  const handleGenerateLesson = async (blueprintId: string) => {
+    if (!runId) {
+      setError('Create a run first.');
+      return;
+    }
+    setGeneratingBlueprintId(blueprintId);
+    setError(null);
+    setInfo(null);
+    try {
+      const data = await callApi(`/api/admin/module/${runId}/lessons/${encodeURIComponent(blueprintId)}/generate`, {});
+      await loadRunSummary(runId);
+      setInfo(`Generated ${String(data.lessonId ?? blueprintId)}.`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : `Failed to generate ${blueprintId}`);
+      await loadRunSummary(runId);
+    } finally {
+      setGeneratingBlueprintId(null);
+    }
+  };
+
+  const stageOrder: StageKey[] = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5'];
 
   return (
     <main className="min-h-screen bg-slate-100 p-6 text-slate-900">
@@ -550,7 +649,7 @@ export default function ModulePlannerPage() {
               </label>
               <div className="grid grid-cols-2 gap-2">
                 <label className="block text-sm font-medium">Max lessons/LO
-                  <input type="number" min={1} className="mt-1 w-full rounded border border-slate-300 px-2 py-2" value={defaultMaxLessons} onChange={(e) => setDefaultMaxLessons(Number.parseInt(e.target.value || '2', 10))} />
+                  <input type="number" min={1} className="mt-1 w-full rounded border border-slate-300 px-2 py-2" value={defaultMaxLessons} onChange={(e) => setDefaultMaxLessons(Number.parseInt(e.target.value || '9', 10))} />
                 </label>
                 <label className="block text-sm font-medium">Ordering
                   <select className="mt-1 w-full rounded border border-slate-300 px-2 py-2" value={orderingPreference} onChange={(e) => setOrderingPreference(e.target.value as 'foundation-first' | 'lo-order')}>
@@ -560,14 +659,64 @@ export default function ModulePlannerPage() {
                 </label>
               </div>
               <div className="grid grid-cols-2 gap-2">
+                <label className="block text-sm font-medium">Max ACs/Lesson (hard)
+                  <input type="number" min={1} className="mt-1 w-full rounded border border-slate-300 px-2 py-2" value={maxAcsPerLesson} onChange={(e) => setMaxAcsPerLesson(Number.parseInt(e.target.value || '4', 10))} />
+                </label>
+                <label className="block text-sm font-medium">Preferred ACs/Lesson (soft)
+                  <input type="number" min={1} className="mt-1 w-full rounded border border-slate-300 px-2 py-2" value={preferredAcsPerLesson} onChange={(e) => setPreferredAcsPerLesson(Number.parseInt(e.target.value || '2', 10))} />
+                </label>
+              </div>
+              <div className="grid grid-cols-2 gap-2">
                 <input className="rounded border border-slate-300 px-2 py-2" value={level} onChange={(e) => setLevel(e.target.value)} placeholder="Level" />
                 <input className="rounded border border-slate-300 px-2 py-2" value={audience} onChange={(e) => setAudience(e.target.value)} placeholder="Audience" />
               </div>
               <label className="inline-flex items-center gap-2 text-sm"><input type="checkbox" checked={replayFromArtifacts} onChange={(e) => setReplayFromArtifacts(e.target.checked)} />Replay-from-artifacts</label>
               <div className="flex flex-wrap gap-2 pt-2">
                 <button onClick={() => void handleCreateRun()} disabled={loading || !syllabusVersionId || !unit} className="rounded bg-slate-900 px-3 py-2 text-sm font-medium text-white disabled:opacity-60">Create Run</button>
+                <button onClick={() => void runPlanningFlow()} disabled={loading || !runId} className="rounded border border-slate-300 px-3 py-2 text-sm disabled:opacity-60">Plan lessons (M0-M5)</button>
                 {runId && <span className="self-center text-xs text-slate-600">Run: {runId}</span>}
               </div>
+            </div>
+          </section>
+        )}
+
+        {unitStructure && (
+          <section className="rounded-lg bg-white p-4 shadow-sm">
+            <h2 className="mb-2 text-lg font-semibold">Truth Layer: Unit {unitStructure.unit}</h2>
+            {Array.isArray(unitStructure.range) && unitStructure.range.length > 0 && (
+              <div className="mb-3 rounded border border-slate-200 bg-slate-50 p-3 text-xs text-slate-700">
+                <p className="font-medium">Range</p>
+                <ul className="mt-1 space-y-1">
+                  {unitStructure.range.map((item, idx) => (
+                    <li key={`${item}-${idx}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className="space-y-3">
+              {unitStructure.los.map((lo) => (
+                <div key={lo.loNumber} className="rounded border border-slate-200 p-3">
+                  <p className="text-sm font-medium">LO{lo.loNumber}{lo.title ? ` - ${lo.title}` : ''}</p>
+                  {Array.isArray(lo.range) && lo.range.length > 0 && (
+                    <div className="mt-2 rounded border border-slate-100 bg-slate-50 p-2 text-xs text-slate-700">
+                      <p className="font-medium">Range</p>
+                      <ul className="mt-1 space-y-1">
+                        {lo.range.map((item, idx) => (
+                          <li key={`${item}-${idx}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  <ul className="mt-2 space-y-1 text-xs text-slate-700">
+                    {lo.acs.map((ac) => (
+                      <li key={ac.acKey}>
+                        <span className="font-semibold">{ac.acKey}</span>: {ac.text ?? ''}
+                        {Array.isArray(ac.range) && ac.range.length > 0 ? ` (Range: ${ac.range.join(', ')})` : ''}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </section>
         )}
@@ -645,6 +794,134 @@ export default function ModulePlannerPage() {
                 </ul>
               </div>
             )}
+          </section>
+        )}
+
+        {runSummary && (
+          <section className="rounded-lg bg-white p-4 shadow-sm">
+            <h2 className="mb-3 text-lg font-semibold">Lesson Plan Matrix</h2>
+            {(() => {
+              const m2 = runSummary.artifacts.find((a) => a.stage === 'M2')?.artifact_json as
+                | { los?: Array<{ lo: string; coverageTargets: Array<{ acKey: string; acText: string }> }> }
+                | undefined;
+              const m4Raw = runSummary.artifacts.find((a) => a.stage === 'M4')?.artifact_json as
+                | Array<{ id: string; lo: string; topic: string; acAnchors: string[] }>
+                | { blueprints?: Array<{ id: string; lo: string; topic: string; acAnchors: string[] }> }
+                | undefined;
+              const m4 = Array.isArray(m4Raw)
+                ? m4Raw
+                : Array.isArray(m4Raw?.blueprints)
+                  ? m4Raw.blueprints
+                  : [];
+              const acByKey = new Map<string, string>();
+              m2?.los?.forEach((lo) => lo.coverageTargets?.forEach((ac) => acByKey.set(ac.acKey, ac.acText)));
+              const lessonByBlueprint = new Map(
+                runSummary.lessons.map((row) => [row.blueprint_id, row] as const)
+              );
+
+              if (m4.length === 0) {
+                return <p className="text-sm text-slate-600">No planned lessons yet. Run planning through M4/M5 first.</p>;
+              }
+
+              const byLo = new Map<string, Array<{ id: string; lo: string; topic: string; acAnchors: string[] }>>();
+              m4.forEach((bp) => {
+                const arr = byLo.get(bp.lo) ?? [];
+                arr.push(bp);
+                byLo.set(bp.lo, arr);
+              });
+
+              return (
+                <div className="space-y-4">
+                  {Array.from(byLo.entries())
+                    .sort((a, b) => a[0].localeCompare(b[0], undefined, { numeric: true }))
+                    .map(([lo, lessons]) => (
+                      <div key={lo} className="rounded border border-slate-300 p-3">
+                        <h3 className="text-sm font-semibold">{lo} ({lessons.length} lesson{lessons.length === 1 ? '' : 's'})</h3>
+                        <div className="mt-3 space-y-3">
+                          {lessons.map((bp) => {
+                            const row = lessonByBlueprint.get(bp.id);
+                            const state = row?.status === 'success' ? 'generated' : row?.status === 'failed' ? 'failed' : row?.status === 'pending' ? 'generating' : 'planned';
+                            return (
+                              <div key={bp.id} className="rounded border border-slate-200 p-3">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                  <div>
+                                    <p className="text-sm font-semibold">{bp.id}</p>
+                                    <p className="text-xs text-slate-600">{bp.topic}</p>
+                                  </div>
+                                  <div className="flex items-center gap-2">
+                                    <span className="rounded bg-slate-100 px-2 py-1 text-xs">{state}</span>
+                                    {state === 'generated' ? (
+                                      <button
+                                        onClick={() =>
+                                          setViewLessonPayload({
+                                            title: bp.id,
+                                            payload: row?.lesson_json ?? { message: 'No persisted lesson payload found.' },
+                                          })
+                                        }
+                                        className="rounded border border-slate-300 px-2 py-1 text-xs"
+                                      >
+                                        View
+                                      </button>
+                                    ) : state === 'generating' ? (
+                                      <button
+                                        disabled
+                                        className="rounded border border-slate-300 px-2 py-1 text-xs text-slate-500"
+                                      >
+                                        Generating...
+                                      </button>
+                                    ) : (
+                                      <button
+                                        onClick={() => void handleGenerateLesson(bp.id)}
+                                        disabled={Boolean(generatingBlueprintId)}
+                                        className="rounded bg-slate-900 px-2 py-1 text-xs text-white disabled:opacity-60"
+                                      >
+                                        {generatingBlueprintId === bp.id ? 'Generating...' : 'Generate now'}
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                                <div className="mt-2 text-xs text-slate-700">
+                                  <p className="font-medium">Covered ACs</p>
+                                  <ul className="mt-1 space-y-1">
+                                    {bp.acAnchors.map((ac) => (
+                                      <li key={ac}>
+                                        <span className="font-semibold">{ac}</span>
+                                        {acByKey.get(ac) ? ` - ${acByKey.get(ac)}` : ''}
+                                      </li>
+                                    ))}
+                                  </ul>
+                                  {row?.error ? <p className="mt-2 text-rose-700">Error: {row.error}</p> : null}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              );
+            })()}
+          </section>
+        )}
+
+        {viewLessonPayload && (
+          <section className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
+            <div className="max-h-[85vh] w-full max-w-4xl overflow-hidden rounded-lg bg-white shadow-xl">
+              <div className="flex items-center justify-between border-b border-slate-200 p-3">
+                <h3 className="text-sm font-semibold">Generated Lesson View: {viewLessonPayload.title}</h3>
+                <button
+                  onClick={() => setViewLessonPayload(null)}
+                  className="rounded border border-slate-300 px-2 py-1 text-xs"
+                >
+                  Close
+                </button>
+              </div>
+              <div className="max-h-[75vh] overflow-auto p-3">
+                <pre className="rounded bg-slate-900 p-3 text-xs text-slate-100">
+                  {JSON.stringify(viewLessonPayload.payload, null, 2)}
+                </pre>
+              </div>
+            </div>
           </section>
         )}
       </div>

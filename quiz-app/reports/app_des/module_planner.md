@@ -1,318 +1,228 @@
-# Module Planner v6 - Operator Guide and Interface Reference
+# Module Planner vNext - Operator Guide and Interface Reference
 
-Last verified: 2026-02-14
+Last verified: 2026-02-16
 Route: `/admin/module`
 API base: `/api/admin/module/*`
 
-This document explains exactly how to use Module Planner v6 as implemented, including UI controls, stage behavior, payloads, and what prompts/instructions are actually used.
+This guide explains how to run the current Module Planner implementation from the admin UI.
 
 ---
 
 ## 1. What It Is
 
-Module Planner v6 is a staged module-generation workflow that creates lesson blueprints and then calls the existing lesson generator.
+Module Planner is a syllabus-versioned pipeline that:
+1. distills run request inputs (`M0`)
+2. analyzes canonical unit/LO structure (`M1`)
+3. extracts canonical AC coverage (`M2`)
+4. creates lesson plan proposals (`M3`)
+5. builds lesson blueprints (`M4`)
+6. validates blueprint and coverage contracts (`M5`)
+7. generates lessons from selected blueprints (per-lesson M6)
 
-Stages:
-- `M0` Distill
-- `M1` Analyze
-- `M2` Extract Coverage
-- `M3` Plan
-- `M4` Build Blueprints (now includes strict `masterBlueprint` contract)
-- `M5` Validate (now enforces blueprint contract compliance)
-- `M6` Generate (now blocks if lesson output violates blueprint contract)
+Feature gate:
+- `MODULE_PLANNER_ENABLED=true`
 
-Feature flag:
-- `MODULE_PLANNER_ENABLED=true` is required
+Optional admin gate:
+- `MODULE_PLANNER_ADMIN_TOKEN` (sent as `x-module-admin-token` or `Authorization: Bearer ...`)
 
-If disabled, endpoints return:
-```json
-{
-  "success": false,
-  "code": "MODULE_PLANNER_DISABLED",
-  "message": "Module planner is disabled by MODULE_PLANNER_ENABLED."
-}
+---
+
+## 2. Setup
+
+Required for planner APIs/UI:
+- `MODULE_PLANNER_ENABLED=true`
+
+Required for DB-backed planner persistence:
+- `NEXT_PUBLIC_SUPABASE_URL=...`
+- `SUPABASE_SERVICE_ROLE_KEY=...`
+
+Required DB migrations:
+- `supabase/migrations/202602140001_module_planner_vnext.sql`
+- `supabase/migrations/202602140002_module_planner_ingestions.sql`
+
+Run app:
+```powershell
+npm run dev
 ```
 
 ---
 
-## 2. Exact UI Walkthrough (`/admin/module`)
+## 3. UI Walkthrough (`/admin/module`)
 
-## 2.1 Header
+### Header and navigation
 
-- Title: `Module Planner v6`
+- Title: `Module Planner vNext`
 - Right button `Lesson` links to `/generate`
 
-## 2.2 Run Setup Fields
+### Syllabus controls
 
-Left column:
+- `Populate syllabus`
+  - seeds a default syllabus version from legacy chunks when no versions exist
+  - tracks ingestion state (`RUNNING`, `READY`, `FAILED`)
+- `Upload syllabus`
+  - accepts `PDF`, `DOCX`, `TXT`
+  - creates new syllabus version + chunks + unit structures
+- `Syllabus version` selector
+  - switches planner context to selected version
+
+### Run setup
+
+Inputs:
 - `Unit`
-  - dropdown from `GET /api/admin/module/runs`
-- `Selected LOs (comma-separated)`
-  - example: `LO1, LO5`
-  - blank means planner resolves defaults from unit
+- `Selected LOs` (default from selected unit)
+- `Manual LO override` (optional)
 - `Chat Transcript`
-  - free text intent for the run
-
-Right column:
 - `Notes`
-  - additional planning note text
-- `Max lessons / LO`
-  - numeric lesson cap used by M3
-- `Ordering`
-  - `foundation-first` or `lo-order`
+- `Max lessons/LO`
+- `Max ACs/Lesson (hard)`
+- `Preferred ACs/Lesson (soft)`
+- `Ordering` (`foundation-first` or `lo-order`)
 - `Level`
-  - default `Level 2`
 - `Audience`
-  - default `beginner`
 - `Replay-from-artifacts`
-  - if checked, stages reuse existing artifacts for matching `request_hash`
 
 Buttons:
 - `Create Run`
-- `Stop` (aborts current browser request only)
+- `Plan lessons (M0-M5)`
+- stage buttons for `M0`..`M5`
+- `Refresh Run Summary`
 
-## 2.3 Stages Section
+### Results panels
 
-Stage buttons:
-- `Distill`
-- `Analyze`
-- `Extract Coverage`
-- `Plan`
-- `Build Blueprints`
-- `Validate`
-- `Generate`
-
-Button suffix:
-- `*` means replay artifact exists for this stage/hash
-
-## 2.4 Output Panels
-
-- One JSON panel per stage showing latest artifact
-- Run summary JSON panel shows:
-  - run status
-  - stored artifacts
-  - generated lessons rows
+- per-stage artifact panels (`M0`..`M5`)
+- truth-layer panel for selected unit (LOs/ACs/range)
+- run summary JSON
+- chunk diagnostics (stage/chunk/page ranges)
+- lesson plan matrix with per-blueprint `Generate now`
+- generated lesson payload modal (`View`)
 
 ---
 
-## 3. How to Run It (Step-by-Step)
+## 4. Stage Execution Behavior
 
-1. Set env flag and run app.
-```powershell
-$env:MODULE_PLANNER_ENABLED="true"
-npm run dev
-```
-2. Open `http://localhost:3000/admin/module`.
-3. Fill fields:
-- Unit: `202`
-- Selected LOs: `LO1, LO5` (optional)
-- Chat Transcript: see example below
-- Notes: optional
-- Max lessons/LO: `2` (or desired)
-- Ordering: `foundation-first`
-4. Click `Create Run`.
-5. Execute stages in order (`M0` -> `M6`).
-6. Check `M5` output (`valid: true`) before generating.
-7. Click `Generate`.
-8. Inspect Run Summary for lesson generation success/failure rows.
+### M0 Distill
 
----
+Creates `ModulePlanRequest` with:
+- `syllabusVersionId`
+- selected `unit`
+- resolved `selectedLos`
+- normalized constraints
+- ordering preference
+- notes
 
-## 4. What to Type (Prompt/Input Examples)
+Important behaviors:
+- `syllabusVersionId` is required
+- selected LOs can be inferred from transcript (`LO1`, `LO5`, etc.) when explicit input is empty
+- request hash includes syllabus content hash + request + transcript
 
-These are the user inputs currently used by the interface.
+### M1 Analyze
 
-## 4.1 Chat Transcript examples
+- reads canonical unit structure from selected syllabus version
+- validates selected LOs are present
+- stores retrieved chunk IDs + serialized chunk text payload for replay determinism
 
-Example A:
-```text
-Plan Unit 202 focusing on LO1 and LO5. Keep lessons concise and beginner-friendly. Start with foundation maths before magnetism.
-```
+### M2 Coverage
 
-Example B:
-```text
-Create minimal coverage for Unit 203 LO1 and LO2 with no more than 2 lessons per LO. Prioritise practical installation sequence.
-```
+- maps each selected LO to canonical AC targets (`acKey`, `acText`, range)
+- reuses M1 stored chunk payload for deterministic grounding metadata
 
-## 4.2 Notes examples
+### M3 Plan
 
-```text
-Keep language simple. Avoid unnecessary lesson splits.
-```
+- LLM-driven planner (no deterministic auto-plan fallback)
+- one automatic repair pass if first plan has blocking issues
+- fails with schema/validation error if repair also fails
 
-```text
-Bias toward split-vis when electrical diagrams/waveforms are central.
-```
+### M4 Build Blueprints
 
-Important:
-- Chat Transcript and Notes are planning inputs.
-- They are not currently passed as open-ended LLM prompts in the module planner pipeline.
+- generates ordered lesson blueprints by LO
+- includes `masterBlueprint` contract payload
+- stores extended artifact fields:
+  - `blueprints`
+  - `loBlueprintSets`
+  - `loLedgers`
+  - `lessonLedgerMetadata`
 
----
+### M5 Validate
 
-## 5. Prompts/Instructions Involved (Exact Runtime Behavior)
-
-Current module planner implementation is deterministic parser/planner logic.
-
-What this means:
-- No dedicated M0-M6 LLM prompt templates are executed in this module path.
-- Input text (`chatTranscript`, `notes`) is used to shape request/config.
-- M1/M2 read from local syllabus chunks (`@/lib/syllabus/chunks.json`) and parse LO/AC content.
-
-Where instruction logic exists:
-- Distill logic and defaults: `src/lib/module_planner/planner.ts`
-- Syllabus parsing rules: `src/lib/module_planner/syllabus.ts`
-
-Generator prompt note:
-- At M6, module planner calls existing `/api/lesson-generator` through adapter.
-- Prompting inside the existing lesson generator remains in the legacy generation pipeline, not module planner stages.
+- validates M2/M3/M4 coherence and contract compliance
+- checks include:
+  - missing/duplicate/unknown AC assignment
+  - lesson and overlap constraints
+  - blueprint contract sections/order/ID/anchor alignment
+  - duplicate prior LO teaching content (ledger-based)
 
 ---
 
-## 6. API Contracts (Used by UI)
+## 5. Generation (M6)
 
-## 6.1 Create/list runs
+Default operator path is per-lesson generation from the matrix:
+- `POST /api/admin/module/:runId/lessons/:blueprintId/generate`
 
-`GET /api/admin/module/runs`
-- returns available units
+Behavior:
+- requires `M5.valid=true`
+- stores row in `generated_lessons`
+- updates M6 summary artifact (`generated`, `failed`, `lessonIds`)
+- persists lesson payload metadata, including generated lesson JSON when available
 
-`POST /api/admin/module/runs`
-```json
-{
-  "unit": "202",
-  "chatTranscript": "Plan LO1 and LO5 with concise coverage"
-}
-```
-
-## 6.2 Get run summary
-
-`GET /api/admin/module/runs/:id`
-- returns run, artifacts, lessons, replayable map
-
-## 6.3 Stage execution
-
-All stage endpoints accept:
-```json
-{ "replayFromArtifacts": true }
-```
-
-M0 accepts additional distill payload:
-```json
-{
-  "replayFromArtifacts": true,
-  "unit": "202",
-  "selectedLos": ["LO1", "LO5"],
-  "constraints": {
-    "minimiseLessons": true,
-    "defaultMaxLessonsPerLO": 2,
-    "maxLessonsOverrides": {},
-    "level": "Level 2",
-    "audience": "beginner"
-  },
-  "orderingPreference": "foundation-first",
-  "notes": "Keep concise",
-  "chatTranscript": "Plan LO1 and LO5"
-}
-```
-
-Stage endpoints:
-- `POST /api/admin/module/:id/m0-distill`
-- `POST /api/admin/module/:id/m1-analyze`
-- `POST /api/admin/module/:id/m2-coverage`
-- `POST /api/admin/module/:id/m3-plan`
-- `POST /api/admin/module/:id/m4-blueprints`
-- `POST /api/admin/module/:id/m5-validate`
-- `POST /api/admin/module/:id/m6-generate`
-
-Generator payload from M6 to `/api/lesson-generator` now includes:
-- `masterLessonBlueprint` (hard contract consumed by generator API)
-
-Success shape:
-```json
-{
-  "success": true,
-  "stage": "M3",
-  "replayed": false,
-  "artifact": {}
-}
-```
-
-Error shape:
-```json
-{
-  "success": false,
-  "stage": "M3",
-  "code": "MISSING_AC",
-  "message": "...",
-  "meta": {}
-}
-```
+Bulk M6 endpoint:
+- `POST /api/admin/module/:runId/m6-generate`
+- disabled unless `MODULE_PLANNER_BULK_M6_ENABLED=true`
+- returns 403 with explicit message when disabled
 
 ---
 
-## 7. Stage Outputs You Should Expect
+## 6. Replay and Determinism
 
-- `M0`: `ModulePlanRequest`
-- `M1`: unit LO structure with `sourceChunkIds`
-- `M2`: canonical AC keys per LO
-- `M3`: minimal lesson plan with topic codes (`5A`, `5B`)
-- `M4`: `LessonBlueprint[]` with deterministic IDs like `202-5A1` and a populated `masterBlueprint` object per lesson
-- `M5`: validation (`valid` + `issues`) including blueprint section/order/ID/anchor checks
-- `M6`: generation summary (`generated`, `failed`, `lessonIds`) after enforcing blueprint contract at `/api/lesson-generator`
+- `Replay-from-artifacts` uses `request_hash` + stage lookup
+- if artifact belongs to another run, it is copied into current run
+- M1 retrieved chunk payload is persisted and reused in M2
 
-If `M5.valid` is false, do not run `M6`.
+Keep transcript + constraints + syllabus version constant for reproducible outputs.
 
 ---
 
-## 8. Replay and Determinism
+## 7. Syllabus Ingestion Details
 
-- A stable `request_hash` is computed from transcript + request + constants.
-- With replay ON and matching hash, stage artifact is reused.
-- `M1` chunk IDs/text are persisted and reused for deterministic `M2` behavior.
+### Populate flow
 
-Operator guidance:
-- Keep transcript and constraints unchanged if you want exact repeat output.
-- Change any of those and you may get a different hash and a fresh run path.
+Endpoint: `POST /api/admin/module/syllabus/populate`
+- creates ingestion row (`source=legacy-seed`)
+- seeds legacy chunks only when no syllabus versions exist
+- marks ingestion state `READY` or `FAILED`
 
----
+### Upload flow
 
-## 9. Failure Handling and Practical Troubleshooting
-
-Common causes:
-- Missing flag -> `MODULE_PLANNER_DISABLED`
-- Bad unit/LO -> `RAG_EMPTY` or `RAG_GROUNDEDNESS_FAIL`
-- Over-tight lesson cap -> `EXCEEDS_MAX_LESSONS`
-- Coverage mismatch -> `MISSING_AC`, `DUPLICATE_AC_ASSIGNMENT`
-- Blueprint contract mismatch -> `BLUEPRINT_MISSING_SECTION`, `BLUEPRINT_BLOCK_ORDER_INVALID`, `BLUEPRINT_ID_PATTERN_INVALID`, `BLUEPRINT_ANCHOR_MISMATCH`
-- Generation failure in M6 -> run status can become `failed`
-
-Quick checks:
-1. Confirm `MODULE_PLANNER_ENABLED=true`.
-2. Use valid unit and LO tags (`LO1`, `LO2`, ...).
-3. Increase `Max lessons / LO` if M3 fails cap checks.
-4. Re-run stage with replay disabled if artifact seems stale.
-5. If M5 fails blueprint checks, inspect `M4` artifact `masterBlueprint` and fix missing/invalid sections before M6.
+Endpoint: `POST /api/syllabus/upload`
+- accepts multipart `file`
+- extracts and cleans text
+- deterministic chunking
+- canonical structure extraction
+- optional LLM normalizer fallback when parser confidence is low
+- writes version metadata (`chunkCount`, `loCount`, `acCount`, etc.)
 
 ---
 
-## 10. Current Implementation Notes
+## 8. Common Errors and Checks
 
-- Route is `/admin/module` (not tabbed into `/admin/generate`).
-- Persistence is file-backed logical tables under `.module_planner/module_planner_db.json` by default.
-- `Stop` button aborts client fetch only.
+- `MODULE_PLANNER_DISABLED` -> enable `MODULE_PLANNER_ENABLED=true`
+- `UNAUTHORIZED` -> send valid admin token if configured
+- `JSON_SCHEMA_FAIL` in M0 -> missing/unknown `syllabusVersionId` or malformed payload
+- `RAG_EMPTY` / `RAG_GROUNDEDNESS_FAIL` -> invalid unit/LO for selected syllabus version
+- M3 failure -> LLM unavailable/invalid JSON or unresolved blocking issues after single repair
+- M5 invalid -> inspect validation issues before any generation
+- bulk M6 403 -> use per-lesson `Generate now` or enable bulk env flag
 
 ---
 
-## 11. Key Source Files
+## 9. Key Source Files
 
 - UI: `src/app/admin/module/page.tsx`
-- Stage engine: `src/lib/module_planner/planner.ts`
-- Master blueprint contract builder/validators: `src/lib/module_planner/masterLessonBlueprint.ts`
-- Schemas: `src/lib/module_planner/schemas.ts`
-- Types: `src/lib/module_planner/types.ts`
-- Syllabus parsing: `src/lib/module_planner/syllabus.ts`
-- Adapter: `src/lib/module_planner/adapter.ts`
-- API routes: `src/app/api/admin/module/*`
+- Routes: `src/app/api/admin/module/*`
+- Per-lesson generation route: `src/app/api/admin/module/[id]/lessons/[blueprintId]/generate/route.ts`
+- Planner core: `src/lib/module_planner/planner.ts`
+- Syllabus ingestion/parsing: `src/lib/module_planner/syllabus.ts`
+- Persistence: `src/lib/module_planner/db.ts`
+- Adapter to `/api/lesson-generator`: `src/lib/module_planner/adapter.ts`
 
 ---
 

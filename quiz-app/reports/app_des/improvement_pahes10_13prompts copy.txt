@@ -1,49 +1,48 @@
 # Phases 10-13: Lesson Improvement Contracts (Current Implementation)
 
-**Version**: 2.0  
-**Last verified against code**: 2026-02-13  
-**Scope**: `Phase10_Score`, `Phase12_Refine`, `Phase13_Rescore`, and orchestration in `SequentialLessonGenerator`
+Version: 2.1
+Last verified against code: 2026-02-16
+Scope: `Phase10_Score`, `Phase12_Refine`, `Phase13_Rescore`, and orchestration in `SequentialLessonGenerator`
 
 ---
 
-## 1) What This Pipeline Does
+## 1. What This Pipeline Does
 
-Phases 10-13 are post-generation quality control:
+Current post-generation quality path is:
+1. Phase 10 (`Phase10_Score`) scores pedagogical quality and reports issues.
+2. Phase 12 (`Phase12_Refine`) returns a complete refined lesson JSON candidate.
+3. Phase 13 (`Phase13_Rescore`) rescoring + accept/reject decision.
 
-1. **Phase 10 (`Phase10_Score`)** scores pedagogical quality and returns issues.
-2. **Phase 12 (`Phase12_Refine`)** produces a full refined lesson JSON.
-3. **Phase 13 (`Phase13_Rescore`)** rescoring + accept/reject decision.
-
-This runs only when the initial Phase 10 score is below refinement threshold.
+This path runs only when initial score is below threshold.
 
 ---
 
-## 2) Runtime Trigger Rules
+## 2. Runtime Trigger Rules
 
 Primary threshold source:
 - `src/lib/generation/config.ts`
 - `GENERATION_CONFIG.refinement.scoreThreshold = 95`
 
 Activation rule:
-- Refinement path runs when `initialScore.total < 95`
-- If score is `>= 95`, refinement is skipped
+- refinement path runs when `initialScore.total < 95`
+- if score is `>= 95`, refine path is skipped
 
-Notes:
-- `Phase13_Rescore` has a `threshold` parameter for compatibility/logging, but final acceptance is comparison-based.
+Compatibility note:
+- generator currently passes `96` as the Phase 13 `threshold` argument, but Phase 13 acceptance is comparison-based and does not require crossing that threshold.
 
 ---
 
-## 3) Phase 10 (Pedagogical Scoring)
+## 3. Phase 10 (Pedagogical Scoring)
 
 Code:
 - `src/lib/generation/phases/Phase10_Score.ts`
 
-### 3.1 Inputs
-- Lesson JSON
-- Optional additional instructions
-- RAG syllabus context (if available via `retrieveSyllabusContext`)
+### Inputs
+- full lesson JSON
+- optional additional instructions
+- syllabus context from `retrieveSyllabusContext(...)` when available
 
-### 3.2 Scoring Rubric
+### Rubric
 - Beginner Clarity: /30
 - Teaching-Before-Testing: /25
 - Marking Robustness: /20
@@ -51,103 +50,94 @@ Code:
 - Question Quality: /10
 - Total: /100
 
-### 3.3 Issue Contract (Important)
+### Issue contract
 - `issues` is required
-- **Allowed count: 0-10**
-- If fewer than 10 real issues exist, scorer must return fewer
-- Hard parse check rejects `issues.length > 10`
+- allowed count is `0-10`
+- parser rejects `issues.length > 10`
 
-### 3.4 LLM/Model Behavior
-- Phase 10 uses LLM scoring
-- Model comes from `getPhase10Model()` (`@/lib/config/geminiConfig`)
-
-### 3.5 Output Shape
+### Output shape
 - `total`
 - `grade`
-- `syllabus` object
-- `breakdown` object
+- `syllabus`
+- `breakdown`
 - `issues[]`
 - optional `overallAssessment`
 
 ---
 
-## 4) Phase 12 (Full-Lesson Refinement)
+## 4. Phase 12 (Full-Lesson Refinement)
 
 Code:
 - `src/lib/generation/phases/Phase12_Refine.ts`
 
-### 4.1 Purpose
-- Generate a complete refined lesson object (not JSON patches)
-- Improve pedagogical quality based on Phase 10 issues
-- Preserve structural invariants required by the app
+Purpose:
+- produce complete refined lesson JSON (not patches)
+- fix Phase 10 issues
+- preserve structure invariants
 
-### 4.2 Contract Summary
-- Input includes original lesson + Phase 10 score/issues + syllabus context
-- Output is full lesson JSON candidate
-- Internal validation guards against invalid structure drift
+Hard structural validation checks include:
+- block count unchanged
+- block ids unchanged
+- block types unchanged
+- block order values unchanged
+- question `answerType` values unchanged
+
+If validation fails, Phase 12 returns failure and the original lesson is kept.
 
 ---
 
-## 5) Phase 13 (Rescore and Decision)
+## 5. Phase 13 (Rescore and Decision)
 
 Code:
 - `src/lib/generation/phases/Phase13_Rescore.ts`
 
-### 5.1 What It Actually Does
-- Re-scores candidate lesson by calling `Phase10_Score.scoreLesson(...)`
-- Compares candidate vs original
-- Returns accepted/rejected decision + reason + final lesson
+Behavior:
+- re-scores candidate by calling `Phase10_Score.scoreLesson(...)`
+- compares candidate vs original
+- returns accepted/rejected decision + reason + final lesson
 
-### 5.2 Acceptance Policy (Current)
+Acceptance policy:
+- accept if `candidateScore.total > originalScore.total`
+- also accept if scores tie and candidate has fewer issues
+- otherwise reject candidate and keep original
 
-Candidate is accepted if either:
-- `candidateScore.total > originalScore.total`, or
-- `candidateScore.total === originalScore.total` **and** candidate has fewer issues
-
-Otherwise candidate is rejected and original is kept.
-
-This is implemented via:
-- `improves`
-- `fewerIssuesAtSameScore`
-- `accepted = improves || fewerIssuesAtSameScore`
-
-### 5.3 Important Clarification
-- Phase 13 is **not** LLM-free. It performs an LLM-backed rescore through Phase 10 scorer.
+Important clarification:
+- Phase 13 is not LLM-free; it invokes Phase 10 scorer for candidate rescoring.
 
 ---
 
-## 6) End-to-End Flow in Generator
+## 6. Orchestration in `SequentialLessonGenerator`
 
-Orchestration code:
-- `src/lib/generation/SequentialLessonGenerator.ts`
+Runtime flow:
+1. build lesson (Phases 1-9)
+2. normalize schema
+3. run Phase 10
+4. if below threshold, run Phase 12
+5. run Phase 13 compare
+6. keep best lesson according to acceptance policy
 
-Flow:
-1. Build lesson (Phases 1-9)
-2. Normalize schema
-3. Run Phase 10 scoring
-4. If below threshold, run Phase 12 refine
-5. Run Phase 13 rescore/compare
-6. Keep best lesson according to acceptance policy
+Returned metadata still uses compatibility naming such as `patchesApplied` (count only).
 
 ---
 
-## 7) Legacy vs Active
+## 7. Legacy vs Active
 
 Active runtime path:
 - Phase 10 score
 - Phase 12 refine
-- Phase 13 rescore
+- Phase 13 rescore/compare
 
-Legacy patch-era modules may still exist in repo naming/comments but are not the active path for this pipeline contract.
+Legacy files still present but not on active runtime path:
+- `Phase11_Suggest.ts`
+- `Phase12_Implement.ts`
 
 ---
 
-## 8) Corrections Applied in This Doc Revision
+## 8. Corrections Maintained in This Revision
 
-This document fixes prior inaccuracies:
-- Replaced "exactly 10 issues" with correct **0-10 issues**
-- Replaced "accept only if score increases" with correct tie-break rule (same score + fewer issues accepted)
-- Replaced threshold `97` with current config default `95`
-- Replaced "Phase 13 has no LLM calls" with actual behavior (Phase 13 rescoring invokes Phase 10 scorer)
-- Removed encoding artifacts and stale examples
+This document keeps these corrected facts:
+- issues are `0-10`, not exactly 10
+- tie with fewer issues can be accepted
+- threshold source is config default `95`
+- Phase 13 performs LLM-backed rescoring through Phase 10
 
