@@ -339,7 +339,7 @@ export async function upsertRunLesson(input: {
   runId: string;
   blueprintId: string;
   lessonId: string;
-  status: 'pending' | 'success' | 'failed';
+  status: 'planned' | 'pending' | 'success' | 'failed';
   error?: string | null;
   lessonJson?: unknown | null;
 }): Promise<ModuleRunLessonRow> {

@@ -551,7 +551,7 @@ export default function ModulePlannerPage() {
         <header className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm">
           <div>
             <h1 className="text-2xl font-semibold">Module Planner vNext</h1>
-            <p className="text-sm text-slate-600">Syllabus-versioned module generation pipeline (M0-M6)</p>
+            <p className="text-sm text-slate-600">Syllabus-versioned module planner pipeline (M0-M5) with manual per-lesson generation</p>
           </div>
           <div className="flex items-center gap-2">
             <Link href="/generate" className="rounded border border-slate-300 px-3 py-2 text-sm">Lesson</Link>
@@ -875,7 +875,7 @@ export default function ModulePlannerPage() {
                                         disabled={Boolean(generatingBlueprintId)}
                                         className="rounded bg-slate-900 px-2 py-1 text-xs text-white disabled:opacity-60"
                                       >
-                                        {generatingBlueprintId === bp.id ? 'Generating...' : 'Generate now'}
+                                        {generatingBlueprintId === bp.id ? 'Generating...' : 'Generate Lesson'}
                                       </button>
                                     )}
                                   </div>

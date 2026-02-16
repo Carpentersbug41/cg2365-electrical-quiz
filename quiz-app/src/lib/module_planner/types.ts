@@ -286,7 +286,7 @@ export interface ModuleRunLessonRow {
   run_id: string;
   blueprint_id: string;
   lesson_id: string;
-  status: 'pending' | 'success' | 'failed';
+  status: 'planned' | 'pending' | 'success' | 'failed';
   error: string | null;
   lesson_json?: unknown | null;
   created_at?: string;

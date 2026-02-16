@@ -2245,6 +2245,17 @@ export async function runM4Blueprints(
     throw new ModulePlannerError('M4', 'JSON_SCHEMA_FAIL', 'M4 stored artifact failed schema validation.', 400);
   }
 
+  for (const blueprint of blueprints) {
+    await upsertRunLesson({
+      runId,
+      blueprintId: blueprint.id,
+      lessonId: blueprint.id,
+      status: 'planned',
+      error: null,
+      lessonJson: null,
+    });
+  }
+
   await upsertArtifactAndStatus(runId, 'M4', storedArtifact, {
     retrievedChunkIds: plannedLoGroups.map((group) => group.lo),
   });

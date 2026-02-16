@@ -138,6 +138,8 @@ describe('module planner stages', () => {
     expect(storedM4?.loBlueprintSets?.every((set) => Array.isArray(set.blueprints))).toBe(true);
     expect(Array.isArray(storedM4?.loLedgers)).toBe(true);
     expect(Array.isArray(storedM4?.lessonLedgerMetadata)).toBe(true);
+    expect(summaryA.lessons.length).toBeGreaterThan(0);
+    expect(summaryA.lessons.every((row) => row.status === 'planned')).toBe(true);
     await ensureM2UsesStoredChunks(runA.id);
 
     const runB = await createPlannerRun({
