@@ -579,6 +579,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-3A'),
     available: true,
     order: 8,
+  },
+  {
+    id: '210-3B',
+    title: 'Conflict Resolution and Communication Impact',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: 'Conflict Resolution and Communication Impact',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-3B'),
+    available: true,
+    order: 9,
   },];
 
 /**

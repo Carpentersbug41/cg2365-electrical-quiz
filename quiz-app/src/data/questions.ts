@@ -66,6 +66,7 @@ import { siteVisitorsAndInspectorsQuestions } from './questions/siteVisitorsAndI
 import { legislationAndWorkplaceDocumentationQuestions } from './questions/legislationAndWorkplaceDocumentationQuestions';
 import { customerInformationAndCompanyPoliciesQuestions } from './questions/customerInformationAndCompanyPoliciesQuestions';
 import { communicationMethodsAndDiversityQuestions } from './questions/communicationMethodsAndDiversityQuestions';
+import { conflictResolutionAndCommunicationImpactQuestions } from './questions/conflictResolutionAndCommunicationImpactQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -125,6 +126,7 @@ export const questions: Question[] = [
   ...legislationAndWorkplaceDocumentationQuestions,
   ...customerInformationAndCompanyPoliciesQuestions,
   ...communicationMethodsAndDiversityQuestions,
+  ...conflictResolutionAndCommunicationImpactQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes
