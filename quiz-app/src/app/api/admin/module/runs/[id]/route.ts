@@ -12,11 +12,18 @@ export async function GET(_request: NextRequest, context: Params) {
 
   try {
     const { id } = await context.params;
-    const summary = await getPlannerRunSummary(id);
+    const runId = id.trim();
+    if (!runId) {
+      return NextResponse.json(
+        { success: false, code: 'JSON_SCHEMA_FAIL', message: 'Run id is required' },
+        { status: 400 }
+      );
+    }
+    const summary = await getPlannerRunSummary(runId);
     return NextResponse.json({
       success: true,
       ...summary,
-      replayable: await getReplayableArtifacts(id),
+      replayable: await getReplayableArtifacts(runId),
     });
   } catch (error) {
     return toErrorResponse(error);
@@ -29,8 +36,15 @@ export async function DELETE(_request: NextRequest, context: Params) {
 
   try {
     const { id } = await context.params;
-    await deletePlannerRun(id);
-    return NextResponse.json({ success: true, deletedRunId: id });
+    const runId = id.trim();
+    if (!runId) {
+      return NextResponse.json(
+        { success: false, code: 'JSON_SCHEMA_FAIL', message: 'Run id is required' },
+        { status: 400 }
+      );
+    }
+    await deletePlannerRun(runId);
+    return NextResponse.json({ success: true, deletedRunId: runId });
   } catch (error) {
     return toErrorResponse(error);
   }

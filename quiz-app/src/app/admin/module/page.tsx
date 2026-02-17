@@ -476,11 +476,21 @@ export default function ModulePlannerPage() {
     setError(null);
     setInfo(null);
     try {
-      setRunId(id);
-      await loadRunSummary(id);
-      setInfo(`Loaded run ${id}.`);
+      const runIdValue = id.trim();
+      setRunId(runIdValue);
+      await loadRunSummary(runIdValue);
+      setInfo(`Loaded run ${runIdValue}.`);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to load run');
+      const message = e instanceof Error ? e.message : 'Failed to load run';
+      if (message.includes('Run not found')) {
+        setRunId('');
+        setRunSummary(null);
+        setStageResults({});
+        await loadBootstrap();
+        setError(`Run ${id} no longer exists. Refreshed recent runs.`);
+      } else {
+        setError(message);
+      }
     } finally {
       setLoading(false);
       setActiveTaskLabel(null);

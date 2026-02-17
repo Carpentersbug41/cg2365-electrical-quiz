@@ -1,0 +1,434 @@
+{
+  "id": "210-2A",
+  "title": "210.2A — Legislation and Workplace Documentation",
+  "description": "Learn about Legislation and Workplace Documentation in Communication 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 210",
+  "topic": "Legislation and Workplace Documentation",
+  "learningOutcomes": [
+    "Identify key statutory legislation and guidance info relevant to technical work environments",
+    "Describe the purpose of British Standards and industry codes of practice",
+    "Explain the role of manufacturer guidance and workplace documentation in ensuring safe and correct work"
+  ],
+  "prerequisites": [
+    "210-1B"
+  ],
+  "blocks": [
+    {
+      "id": "210-2A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify key statutory legislation and guidance info relevant to technical work environments",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the purpose of British Standards and industry codes of practice",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the role of manufacturer guidance and workplace documentation in ensuring safe and correct work",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Statutory Legislation",
+            "definition": "Mandatory legal requirements passed by an act of parliament that carry the force of law, not just optional guidelines."
+          },
+          {
+            "term": "Technical Standards",
+            "definition": "Published documents, such as British Standards, that establish the minimum specifications for safety, quality, and performance to ensure consistency across an industry."
+          },
+          {
+            "term": "Codes of Practice",
+            "definition": "Practical sets of industry-approved procedures that demonstrate how to achieve compliance with statutory legislation, different from laws because they focus on 'how' to perform work safely."
+          },
+          {
+            "term": "Manufacturer Instructions",
+            "definition": "Technical documents provided by equipment producers that specify the correct methods for installation, operation, and maintenance to ensure safety and warranty validity."
+          },
+          {
+            "term": "Workplace Documentation",
+            "definition": "Internal records such as job specifications, risk assessments, and permits to work that are used to communicate site-specific requirements and evidence compliance with safety standards."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Statutory Legislation and Technical Standards",
+        "content": "### In this lesson\nIn this lesson, you will learn to identify the different layers of rules that govern technical work. You will understand how high-level laws interact with industry-specific guidance to create a safe working environment. \n\n*   Identify key **Statutory Legislation** including Health & Safety and Data Protection.\n*   Describe the purpose of **Technical Standards** in maintaining quality.\n*   Distinguish between mandatory laws and industry **Codes of Practice**.\n\n**What this is**\nIn any technical field, there is a hierarchy of authority. At the top is **Statutory Legislation**, which refers to mandatory legal requirements passed by an act of parliament. These are not suggestions; they carry the force of law, and failing to follow them can lead to prosecution. Beneath these laws are **Technical Standards**, such as British Standards (BS), which provide the specific benchmarks for safety and quality. Finally, **Codes of Practice** act as industry-approved practical guides that show you exactly how to meet the high-level legal requirements in your daily tasks.\n\n**Why it matters**\nUnderstanding this hierarchy ensures you are legally compliant and working to a high professional standard. Legislation like the Health and Safety at Work Act protects your physical wellbeing, while the Data Protection Act ensures the privacy of client information. Following **Technical Standards** ensures that the work you do is compatible with other systems and safe for public use. Without these rules, every company would have different safety levels, leading to confusion and increased risk of accidents.\n\n**Key facts / rules**\n*   **Statutory Legislation** must always be followed; it is a legal obligation.\n*   Health and Safety legislation covers the duty of care for both employers and employees.\n*   Equal opportunities and employment legislation ensure fair treatment and prevent discrimination.\n*   Data protection laws control how personal information is stored and used.\n*   **Technical Standards** provide the minimum specifications for performance and safety.\n*   **Codes of Practice** offer a \"preferred method\" for achieving safety, though they are not laws themselves.\n\n**How to recognise it**\nYou can recognise **Statutory Legislation** because it is usually titled as an \"Act\" (e.g., The Equality Act). These documents use firm language like \"must\" and \"shall.\" **Technical Standards** are easily identified by a prefix, typically \"BS\" for British Standards, followed by a specific number. You can recognise **Codes of Practice** because they are often published by industry bodies or regulators and contain detailed step-by-step guidance on methods of work rather than just broad legal principles.\n\nConcrete Anchor: Think of a national speed limit. The limit itself is like **Statutory Legislation**—it is the law. The design of the car's brakes to meet certain safety tests is like a **Technical Standard**. The advice in the Highway Code on how to drive safely in the rain is like a **Code of Practice**.\n\nMicro-scenario: Imagine a worker is told a task is \"standard practice\" but it contradicts an Act of Parliament. If the worker follows the practice but breaks the **Statutory Legislation**, they are still legally liable because the law sits higher in the hierarchy than industry habit.\n\n**Common mistakes**\nLearners often confuse **Statutory Legislation** with **Technical Standards**; **Statutory Legislation** is a mandatory law passed by parliament, whereas **Technical Standards** are published documents that set specific quality and safety benchmarks. \n\nMisconceptions (targeted):\n*   Misconception: British Standards are optional suggestions for when you have extra time. | Correction: While they are standards, they are often used as the benchmark in court to prove a worker was competent and safe. | AC: AC2.1\n*   Misconception: Only the employer is responsible for Health and Safety legislation. | Correction: Statutory law places a \"duty of care\" on the individual employee to act safely as well. | AC: AC2.1\n\n**Key Points**\n*   Legislation is mandatory and carries legal consequences.\n*   British Standards ensure industry-wide consistency and safety.\n*   Codes of Practice bridge the gap between law and physical work.\n*   Data protection and equality are just as legally binding as safety laws.\n\n**Quick recap**\nTechnical work is governed by a clear structure. Laws (legislation) set the mandatory requirements for safety, fairness, and privacy. Standards provide the technical specifications to ensure quality, and codes of practice offer the practical methods to achieve those legal and technical goals.\n\n### Coming Up Next\nNow that we have covered the high-level legal framework, we will look at the specific documents you will use on a daily basis: manufacturer guides and internal workplace records."
+      }
+    },
+    {
+      "id": "210-2A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Statutory Legislation and Technical Standards",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-2A-C1-L1-A",
+            "questionText": "What is the legal status of Statutory Legislation in technical work?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "legal obligation",
+              "a legal obligation",
+              "it is a legal obligation",
+              "mandatory legal obligation"
+            ],
+            "hint": "Think about whether these rules are optional or mandatory by law."
+          },
+          {
+            "id": "210-2A-C1-L1-B",
+            "questionText": "What do Technical Standards provide for industry performance and safety?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "minimum specifications",
+              "the minimum specifications",
+              "minimum safety specifications",
+              "performance and safety specifications"
+            ],
+            "hint": "These documents act as benchmarks for quality."
+          },
+          {
+            "id": "210-2A-C1-L1-C",
+            "questionText": "How do Codes of Practice differ from statutory laws?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "not laws themselves",
+              "not laws",
+              "they are not laws",
+              "not mandatory laws"
+            ],
+            "hint": "Consider if these practical guides carry the same legal force as an Act of Parliament."
+          },
+          {
+            "id": "210-2A-C1-L2",
+            "questionText": "Using your answers to Q1 (legal obligation), Q2 (minimum specifications), and Q3 (not laws themselves), explain how these layers work together. Why must a worker distinguish between a law and a code of practice?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Legislation sets the mandatory legal requirement that must be met",
+              "Technical standards define the specific quality and safety benchmarks required",
+              "Codes of practice provide the preferred method to achieve the legal obligations",
+              "Workers must distinguish them because failing to follow the law leads to prosecution while codes are practical guides"
+            ],
+            "expectedAnswer": [
+              "Statutory legislation is a legal obligation that sets the high-level rules, while technical standards provide the minimum specifications to meet those rules. Codes of practice are used because they offer a preferred method for achieving safety, even though they are not laws themselves. This matters because following a code helps prove you are meeting your mandatory legal duties.",
+              "A worker needs to know that legislation must always be followed as a legal obligation, whereas codes of practice are just preferred methods and not laws themselves. Technical standards support both by providing minimum specifications for safety. This relationship ensures that practical work meets legal requirements through recognized industry benchmarks."
+            ],
+            "hint": "Relate the mandatory nature of laws to the practical guidance found in codes and the quality benchmarks in standards."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Workplace Documentation and Manufacturer Guidance",
+        "content": "### In this lesson\nThis lesson focuses on the practical documents used to guide specific tasks and record work progress. You will learn how to use these documents to ensure tasks are completed correctly and safely.\n\n*   Explain the role of **Manufacturer Instructions** in installation and maintenance.\n*   Identify the purpose of internal **Workplace Documentation** like risk assessments.\n*   Understand how documentation provides evidence of compliance and safety.\n\n**What this is**\nEvery piece of equipment and every job site comes with its own set of specific information. **Manufacturer Instructions** are technical documents provided by equipment producers that specify the exact methods for installation, operation, and maintenance. These ensure the equipment works as intended and the warranty remains valid. **Workplace Documentation** refers to internal records created by your employer, such as job specifications, risk assessments, and permits to work. These documents communicate site-specific requirements and provide evidence that safety procedures were followed.\n\n**Why it matters**\nUsing the correct documentation is essential for safety and accountability. If you ignore **Manufacturer Instructions**, you might install a component incorrectly, leading to failure or fire. Internal **Workplace Documentation** acts as a communication tool; for example, a \"Permit to Work\" ensures that everyone on site knows a specific high-risk task is happening. Furthermore, these documents serve as a legal paper trail. If an incident occurs, these records prove that the work was planned safely and performed according to the producer's requirements.\n\n**Key facts / rules**\n*   **Manufacturer Instructions** must be followed to maintain the equipment's warranty and safety rating.\n*   Installation guides specify how to correctly set up new equipment.\n*   Service and maintenance instructions outline the schedule for keeping equipment safe over time.\n*   Risk assessments identify hazards and the steps taken to reduce them.\n*   Job specifications describe the exact scope and requirements of the task.\n*   Internal documentation provides a record of who did the work and when it was completed.\n\n**When to choose it**\nYou should choose to consult **Manufacturer Instructions** whenever you are handling a specific piece of hardware for the first time or performing a service. You should refer to **Workplace Documentation**, like a risk assessment, before starting any task on a new site to understand local hazards. Choose a Permit to Work system when the task involves high-risk activities (like working at height) that require formal authorisation and coordination with others.\n\nConcrete Anchor: Imagine you are assembling a complicated piece of flat-pack furniture. The booklet showing you where the screws go is the **Manufacturer Instructions**. The receipt you keep to prove you bought it and the safety warning your landlord gives you about not blocking the fire exit with it are the **Workplace Documentation**.\n\nMicro-scenario: A technician has a general manual for a pump but the site manager provides a specific \"Permit to Work\" for that day. The technician must follow the manual for the mechanical steps, but they cannot start until the site-specific permit is signed, as the permit addresses the immediate environment's safety.\n\n**Common mistakes**\nLearners often confuse **Manufacturer Instructions** with **Workplace Documentation**; **Manufacturer Instructions** are produced by the equipment maker for a specific product, whereas **Workplace Documentation** is produced by the employer for a specific site or job. \n\nMisconceptions (targeted):\n*   Misconception: Manufacturer guides are only for beginners. | Correction: Even experienced workers must consult them because different models of the same equipment often have different torque settings or maintenance requirements. | AC: AC2.2\n*   Misconception: Risk assessments are just \"paperwork\" and don't affect the work. | Correction: They are active safety documents that dictate the specific tools and methods you are allowed to use on a job. | AC: AC2.2\n\n**Key Points**\n*   Manufacturer guides ensure equipment is installed and maintained safely.\n*   Internal documents communicate site-specific risks and job requirements.\n*   Documentation provides a vital legal record of work performed.\n*   Always verify you are using the current edition or version of any manual.\n\n**Quick recap**\nWhile legislation provides the legal framework, **Manufacturer Instructions** and **Workplace Documentation** provide the specific details needed to do a job safely and correctly. These documents ensure that equipment is treated right and that the worker is protected from site-specific hazards.\n\n### Coming Up Next\nNow that you understand the types of documentation, we will look at how to communicate clearly within a team to ensure these rules are followed on every project."
+      }
+    },
+    {
+      "id": "210-2A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Workplace Documentation and Manufacturer Guidance",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-2A-C2-L1-A",
+            "questionText": "Why must Manufacturer Instructions be followed regarding the equipment's status?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "maintain the equipments warranty",
+              "maintain the warranty",
+              "keep the warranty valid",
+              "protect the warranty"
+            ],
+            "hint": "Consider what happens to the producer's guarantee if the instructions are ignored."
+          },
+          {
+            "id": "210-2A-C2-L1-B",
+            "questionText": "What is the specific purpose of a risk assessment in the workplace?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "identify hazards",
+              "identify hazards and steps",
+              "hazard identification",
+              "identify hazards and reduce them"
+            ],
+            "hint": "Focus on what these documents find and what they aim to reduce."
+          },
+          {
+            "id": "210-2A-C2-L1-C",
+            "questionText": "What is the primary difference between the source of Manufacturer Instructions and Workplace Documentation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "produced by the employer",
+              "produced by the maker",
+              "the employer produces workplace documentation",
+              "employer versus maker"
+            ],
+            "hint": "Identify who creates the internal documents compared to who creates the equipment guides."
+          },
+          {
+            "id": "210-2A-C2-L2",
+            "questionText": "Using your answers to Q1 (warranty maintenance), Q2 (hazard identification), and Q3 (document sources), explain how these documents ensure a safe installation. How do we know which document to consult for site-specific hazards versus equipment-specific settings?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Manufacturer instructions provide the specific settings needed to keep the warranty and safety rating valid",
+              "Workplace documentation created by the employer identifies site-specific hazards",
+              "The source of the document tells the worker its scope (equipment maker for hardware vs employer for the site)",
+              "Safe installation requires combining the maker's technical steps with the employer's safety controls"
+            ],
+            "expectedAnswer": [
+              "We know to look at manufacturer instructions for equipment settings because they are produced by the maker to maintain the warranty. In contrast, we consult workplace documentation for site hazards because it is produced by the employer. Both are needed because the risk assessment identifies hazards on site, while the instructions ensure the hardware is installed to its safety rating.",
+              "To ensure a safe installation, a worker follows manufacturer instructions to maintain the equipment's warranty and safety rating. They also use workplace documentation like risk assessments to identify hazards specific to that job site. We distinguish them by their source; the maker provides hardware details while the employer provides site-specific safety records."
+            ],
+            "hint": "Think about how the maker's rules for the machine interact with the employer's rules for the site environment."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "210-2A-P1",
+            "questionText": "A document is identified by the prefix 'BS' followed by a series of numbers. What category of rule does this document represent?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Technical Standard",
+              "Technical Standards",
+              "British Standard",
+              "British Standards"
+            ],
+            "hint": "These documents establish the minimum specifications for safety and quality."
+          },
+          {
+            "id": "210-2A-P2",
+            "questionText": "Explain why a worker cannot ignore Statutory Legislation even if their company's established 'standard practice' suggests a different method.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "legal obligation",
+              "mandatory law",
+              "it is the law",
+              "force of law"
+            ],
+            "hint": "Consider the hierarchy of authority and the legal consequences of an Act of Parliament."
+          },
+          {
+            "id": "210-2A-P3",
+            "questionText": "In the hierarchy of technical rules, if we rank them from 1 (Highest Authority) to 3 (Lowest Authority), what rank is assigned to Statutory Legislation?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1"
+            ],
+            "hint": "Acts of Parliament sit at the very top of the hierarchy."
+          },
+          {
+            "id": "210-2A-P4",
+            "questionText": "A technician is installing a specialized cooling unit. They need to find the exact torque settings for the bolts to ensure the warranty remains valid. Which specific document type must they consult?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Manufacturer Instructions",
+              "Manufacturer Instruction",
+              "Manufacturer Manual",
+              "Manufacturer Guide"
+            ],
+            "hint": "This document is produced by the equipment maker to ensure correct setup and maintenance."
+          },
+          {
+            "id": "210-2A-P5",
+            "questionText": "A team is reviewing a folder containing: a Permit to Work, a Job Specification, a British Standard, a Risk Assessment, and a Data Protection Act. How many of these are classified as 'Workplace Documentation' created by the employer for that specific site?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count only the internal records used to communicate site-specific requirements or evidence of safety."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "210-2A-INT-1",
+            "questionText": "Explain the relationship between statutory legislation and industry codes of practice within a technical environment. In your answer, include: (1) the mandatory nature of statutory legislation, (2) the role of industry codes of practice in providing practical guidance, and (3) how these two layers work together to ensure safety. Why must a technician treat industry codes as the benchmark for meeting legal obligations? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Statutory legislation is legally binding and sets the high-level mandatory requirements for the workplace.",
+              "Industry codes of practice provide the specific, practical methods used to achieve the standards required by law.",
+              "The relationship ensures that broad legal duties are translated into actionable technical steps.",
+              "Technicians use codes of practice as a benchmark because following them is often seen as evidence of meeting statutory duties.",
+              "Failure to follow codes of practice can be used as evidence of non-compliance with the overarching law."
+            ],
+            "expectedAnswer": [
+              "Statutory legislation provides the mandatory legal framework that all technical work must follow, while industry codes of practice offer the practical 'how-to' guidance for meeting those laws. This relationship exists because laws are often broad, so codes of practice serve as the technical benchmark to prove a technician is working safely and legally. We know this must be true because adhering to industry standards is the primary way to demonstrate due diligence under health and safety legislation.",
+              "Legislation acts as a compulsory set of rules, whereas industry codes of practice provide the specific technical details required to implement those rules correctly. These work together to ensure that technical tasks are performed to a consistent and safe standard across the industry. This relationship holds because the law sets the objective, and the codes provide the proven technical route to achieve it safely."
+            ],
+            "hint": "Think about the difference between a high-level law and the specific technical instructions used to follow that law."
+          },
+          {
+            "id": "210-2A-INT-2",
+            "questionText": "Analyze how multiple layers of documentation ensure a safe and compliant technical installation. In your answer, include: (1) the influence of statutory legislation, (2) the purpose of British Standards, (3) the necessity of manufacturer guidance, and (4) the role of internal workplace documentation like risk assessments. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Statutory legislation establishes the non-negotiable legal safety and data protection parameters.",
+              "British Standards provide industry-wide quality benchmarks and technical specifications for components.",
+              "Manufacturer guidance ensures the specific equipment is installed and maintained according to its design limits.",
+              "Workplace documentation (e.g., risk assessments) adapts general rules to the specific hazards of the local site.",
+              "Integration of these documents creates a comprehensive safety management system for the technician.",
+              "Manufacturer instructions prevent equipment failure, while legislation prevents legal liability.",
+              "Workplace records provide an audit trail to prove that all standards and laws were followed.",
+              "The combined use of these documents minimizes risk and ensures technical precision throughout the task."
+            ],
+            "expectedAnswer": [
+              "A safe installation is achieved when statutory legislation sets the legal safety requirements, which are then supported by British Standards for technical quality and manufacturer guidance for specific equipment handling. These are further localized by workplace documentation, such as risk assessments, which identify site-specific hazards. By integrating all four layers, a technician ensures the work is legally compliant, technically sound, and safely executed for that specific environment.",
+              "• Statutory legislation provides the mandatory legal framework for safety and compliance.\n• British Standards and manufacturer guidance ensure technical quality and correct equipment usage.\n• Workplace documentation like risk assessments applies these standards to the specific task and site.\n• Together, these documents provide a complete system for managing risk and ensuring high-quality technical outcomes."
+            ],
+            "hint": "Consider how each document type moves from general legal rules to specific technical actions on a job site."
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "210-2A-SR-1",
+            "questionText": "What term describes the specific location or setting where technical tasks and professional work are carried out?",
+            "expectedAnswer": [
+              "workplace",
+              "work environment",
+              "technical environment"
+            ],
+            "hint": "This term appears in the lesson title.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-2A-SR-2",
+            "questionText": "What general term is used for written records, manuals, or files used to provide information in a work setting?",
+            "expectedAnswer": [
+              "documentation",
+              "documents",
+              "records"
+            ],
+            "hint": "This term is the second part of the lesson title.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "210-2A-SR-3",
+            "questionText": "What is the term for the company or entity that produces the tools or equipment used in a technical environment?",
+            "expectedAnswer": [
+              "manufacturer",
+              "maker",
+              "producer"
+            ],
+            "hint": "This entity provides the guidance mentioned in the learning outcomes.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Legislation and Workplace Documentation"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-17",
+    "updated": "2026-02-17",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "210",
+      "learningOutcome": "LO2",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of legal frameworks, technical standards, and the purpose of manufacturer-provided documentation.",
+      "outOfScope": "The procedural application of legislation or the drafting of workplace documents and reports.",
+      "rationale": "Level 2 learners must first understand the regulatory landscape and the intent of documentation before engaging in practical administrative or compliance tasks."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on types and purpose of information as per the mustHaveTopics, excluding procedural implementation."
+    },
+    "misconceptions": [
+      {
+        "misconception": "British Standards are optional suggestions for when you have extra time.",
+        "correction": "While they are standards, they are often used as the benchmark in court to prove a worker was competent and safe.",
+        "relatedAC": "AC2.1"
+      },
+      {
+        "misconception": "Manufacturer guides are only for beginners.",
+        "correction": "Even experienced workers must consult them because different models of the same equipment often have different torque settings or maintenance requirements.",
+        "relatedAC": "AC2.2"
+      },
+      {
+        "misconception": "Only the employer is responsible for Health and Safety legislation.",
+        "correction": "Statutory law places a 'duty of care' on the individual employee to act safely as well.",
+        "relatedAC": "AC2.1"
+      }
+    ]
+  }
+}

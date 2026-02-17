@@ -3,18 +3,18 @@ import { TaggedQuestion } from './types';
 /**
  * Legislation and Workplace Documentation Question Bank
  * Aligned with lesson 210-2A learning outcomes
- * Generated: 2026-02-16
+ * Generated: 2026-02-17
  */
 
 export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "Which of the following is an example of statutory legislation that must be followed by law?",
+    "question": "What is the primary characteristic of 'Statutory Legislation' in the UK electrical industry?",
     "options": [
-      "The Electricity at Work Regulations 1989",
-      "BS 7671 Requirements for Electrical Installations",
-      "The IET On-Site Guide",
-      "A manufacturer's sales brochure"
+      "It is a legal requirement that must be followed by law",
+      "It is a set of optional suggestions for best practice",
+      "It is only applicable to self-employed contractors",
+      "It is a guide written by tool manufacturers"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -29,128 +29,129 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
       "health-safety",
       "terminology"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Statutory legislation, such as the Electricity at Work Regulations, is the law. BS 7671 and the On-Site Guide are non-statutory guidance, though they are often used to help comply with the law."
+    "explanation": "Statutory legislation, such as the Health and Safety at Work Act, consists of laws passed by Parliament that are mandatory and must be obeyed."
   },
   {
     "id": 4017,
-    "question": "What is the primary purpose of the Data Protection Act?",
+    "question": "Which of the following documents is considered 'Non-Statutory'?",
     "options": [
-      "To ensure personal information is handled legally and securely",
-      "To prevent employees from sharing company trade secrets",
-      "To allow the public access to all private business records",
-      "To ensure all electrical drawings are kept in a locked safe"
+      "The IET On-Site Guide",
+      "The Electricity at Work Regulations",
+      "The Health and Safety at Work Act",
+      "The Management of Health and Safety at Work Regulations"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
       "legislation",
-      "terminology"
+      "terminology",
+      "discrimination"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Data Protection Act (and GDPR) regulates how personal data is processed, stored, and protected to ensure privacy for individuals."
+    "explanation": "The On-Site Guide is a non-statutory guidance document. The others are statutory regulations or acts that carry the force of law."
   },
   {
     "id": 4018,
-    "question": "Which piece of legislation acts as the main 'umbrella' act for workplace safety in the UK?",
+    "question": "An electrician is installing a specific brand of smart heating controls. Which document provides the exact wiring terminal configurations for that device?",
     "options": [
-      "Health and Safety at Work Act 1974",
-      "The Provision and Use of Work Equipment Regulations",
-      "The Personal Protective Equipment Regulations",
-      "The Manual Handling Operations Regulations"
+      "Manufacturer's installation instructions",
+      "The Data Protection Act",
+      "The Equality Act",
+      "The Health and Safety at Work Act"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
-      "legislation",
-      "health-safety"
+      "application",
+      "terminology"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Health and Safety at Work Act 1974 is the primary piece of legislation that sets out the general duties of employers and employees."
+    "explanation": "Manufacturer's instructions provide the specific technical details required to correctly install and connect their specific equipment."
   },
   {
     "id": 4019,
-    "question": "What is the main purpose of the British Standard BS 7671?",
+    "question": "What is the main purpose of the Data Protection Act in a business environment?",
     "options": [
-      "To provide the national standard for electrical installations",
-      "To set the national minimum wage for electrical apprentices",
-      "To provide specific repair instructions for a washing machine",
-      "To list the contact details of every qualified electrician"
+      "To regulate how personal information is stored and used",
+      "To ensure all electrical tools are PAT tested",
+      "To provide guidelines on circuit protection",
+      "To protect the physical security of the building"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
       "legislation",
-      "terminology"
+      "conceptual"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "BS 7671 (The Wiring Regulations) is the British Standard that sets the requirements for safe electrical installation design and testing."
+    "explanation": "The Data Protection Act (and GDPR) governs the legal requirements for handling, storing, and processing personal data of employees and customers."
   },
   {
     "id": 4020,
-    "question": "When installing a specific piece of electrical equipment, which documentation should be followed for mounting height and ventilation requirements?",
+    "question": "Which piece of legislation is designed to prevent discrimination against employees based on protected characteristics like age or disability?",
     "options": [
-      "Manufacturer's instructions",
-      "The site manager's verbal diary",
-      "An old textbook from 1990",
-      "A colleague's personal preference"
+      "The Equality Act",
+      "The Electricity at Work Regulations",
+      "The Provision and Use of Work Equipment Regulations",
+      "The Building Regulations"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Documentation",
+    "category": "Legislation",
     "tags": [
-      "application",
-      "terminology"
+      "legislation",
+      "discrimination"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Manufacturer's instructions provide specific safety and performance data that must be followed to ensure equipment works correctly and warranties remain valid."
+    "explanation": "The Equality Act brings together various anti-discrimination laws into a single act to ensure fair treatment in the workplace."
   },
   {
     "id": 4021,
-    "question": "Which act protects employees from being treated unfairly because of protected characteristics such as disability or age?",
+    "question": "A site supervisor requires the electrical installation to comply with the British Standard for electrical installations. Which document should be followed?",
     "options": [
-      "Equality Act 2010",
-      "Employment Rights Act 1996",
-      "Health and Safety at Work Act 1974",
-      "Data Protection Act 2018"
+      "BS 7671",
+      "The Employment Rights Act",
+      "The Data Protection Act",
+      "Manufacturer's user instructions"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -161,212 +162,244 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
-      "legislation",
+      "application",
       "terminology"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The Equality Act 2010 legally protects people from discrimination in the workplace and in wider society."
+    "explanation": "BS 7671 (The IET Wiring Regulations) is the British Standard that sets the requirements for electrical installations in the UK."
   },
   {
     "id": 4022,
-    "question": "An electrician is given a document that outlines the specific hazards on a job site and the steps taken to minimize them. What is this document?",
+    "question": "What is the primary purpose of a 'Code of Practice' in the construction industry?",
     "options": [
-      "Risk Assessment",
-      "Delivery Note",
-      "Time Sheet",
-      "Purchase Order"
+      "To provide practical guidance on how to meet legal requirements",
+      "To list the prices of various electrical components",
+      "To serve as a contract between a builder and a homeowner",
+      "To provide a history of electrical engineering"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Documentation",
+    "category": "Legislation",
     "tags": [
-      "health-safety",
-      "application"
+      "conceptual",
+      "legislation"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
-    "difficulty": 2,
+    "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A Risk Assessment identifies hazards and outlines the control measures required to work safely."
+    "explanation": "Codes of Practice offer practical advice and methods to achieve the safety standards required by statutory legislation."
   },
   {
     "id": 4023,
-    "question": "What is the legal status of an Approved Code of Practice (ACOP)?",
+    "question": "When performing routine maintenance on a fire alarm system, which document is most essential for identifying specific service intervals?",
     "options": [
-      "It has special legal status and can be used as evidence in court",
-      "It is a voluntary suggestion that can be ignored without reason",
-      "It is a document that only applies to the general public, not workers",
-      "It is a summary of the latest electrical tool prices"
+      "Manufacturer's service and maintenance guidance",
+      "The Equality Act",
+      "The Data Protection Act",
+      "The Employment Rights Act"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
-      "legislation",
+      "application",
       "terminology"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "While an ACOP is not 'the law' itself, it has special legal status. If you are prosecuted for a breach of health and safety law, failure to follow an ACOP can be used as evidence against you."
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Manufacturer's maintenance guidance specifies how often and in what way equipment should be serviced to remain safe and functional."
   },
   {
     "id": 4024,
-    "question": "Which workplace document provides a legal record of the hours an employee has worked?",
+    "question": "Which of these is a 'Statutory' regulation specifically concerning electrical safety in the workplace?",
     "options": [
-      "Timesheet",
-      "Method Statement",
-      "Job Specification",
-      "Variation Order"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Documentation",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 30,
-    "explanation": "Timesheets are used to record the duration of work for payroll and project management purposes."
-  },
-  {
-    "id": 4025,
-    "question": "Why is it important for an electrician to provide the 'User Instructions' to the customer after a new installation?",
-    "options": [
-      "To ensure the customer can operate the system safely and correctly",
-      "To prove that the electrician has finished the job",
-      "To provide the customer with something to read in their spare time",
-      "Because the electrician is legally required to throw them away"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Documentation",
-    "tags": [
-      "application",
-      "explanation"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Providing user instructions is essential for the safe and efficient operation of the installation by the end user."
-  },
-  {
-    "id": 4026,
-    "question": "Which piece of legislation specifically regulates how an electrical firm must handle and store their customers' private address and bank details?",
-    "options": [
-      "Data Protection Act",
-      "Equality Act",
-      "Health and Safety at Work Act",
-      "Employment Rights Act"
+      "The Electricity at Work Regulations",
+      "The IET Wiring Regulations (BS 7671)",
+      "The IET On-Site Guide",
+      "Manufacturer's catalogue"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
       "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Data Protection Act controls how personal information is used by organisations, businesses, or the government."
-  },
-  {
-    "id": 4027,
-    "question": "What type of document provides specific technical information on how to correctly install and maintain a specific piece of electrical equipment?",
-    "options": [
-      "Manufacturer’s instructions",
-      "The Health and Safety at Work Act",
-      "An invoice",
-      "A site visitor log"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "terminology",
+      "discrimination",
       "health-safety"
     ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Manufacturer's instructions provide the specific details required to install, commission, and maintain their specific products safely."
-  },
-  {
-    "id": 4028,
-    "question": "Which of the following is a 'Statutory' document, meaning it is a law that must be followed?",
-    "options": [
-      "Electricity at Work Regulations",
-      "BS 7671 (The IET Wiring Regulations)",
-      "The On-Site Guide",
-      "A manufacturer's sales brochure"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
-    "explanation": "The Electricity at Work Regulations are statutory (law). BS 7671 is a non-statutory British Standard, though it is used to demonstrate compliance with the law."
+    "explanation": "The Electricity at Work Regulations (EAWR) 1989 is a statutory document. BS 7671 is a non-statutory British Standard, though it is often used to demonstrate compliance with the EAWR."
+  },
+  {
+    "id": 4025,
+    "question": "What is the purpose of the Employment Rights Act?",
+    "options": [
+      "To set out the rights and duties of employers and employees",
+      "To define the maximum voltage allowed in a domestic dwelling",
+      "To regulate the use of CCTV in public spaces",
+      "To provide instructions on how to wire a three-phase motor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The Employment Rights Act covers the legal aspects of the relationship between employer and employee, including contracts, pay, and termination."
+  },
+  {
+    "id": 4026,
+    "question": "Which of the following is an example of statutory legislation that electrical contractors must comply with by law?",
+    "options": [
+      "Health and Safety at Work Act",
+      "IET Wiring Regulations (BS 7671)",
+      "The On-Site Guide",
+      "Manufacturer installation manuals"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Statutory legislation, such as the Health and Safety at Work Act, is legally binding. While BS 7671 is the standard for electrical installations, it is non-statutory guidance, though it is often used in court to prove compliance with statutory requirements."
+  },
+  {
+    "id": 4027,
+    "question": "An electrician is installing a new programmable thermostat. Where would they find the specific wiring requirements and terminal functions for that specific device?",
+    "options": [
+      "Manufacturer instructions",
+      "The Electricity at Work Regulations",
+      "The Data Protection Act",
+      "British Standards BS 7671"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Workplace Documentation",
+    "tags": [
+      "terminology",
+      "application",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Manufacturer instructions provide specific technical details for individual products that general regulations and standards do not cover."
+  },
+  {
+    "id": 4028,
+    "question": "What is the standard frequency of the AC mains electricity supply in the United Kingdom?",
+    "options": [
+      "50 Hz",
+      "60 Hz",
+      "230 Hz",
+      "400 Hz"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Principles",
+    "tags": [
+      "ac-dc",
+      "frequency",
+      "units"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.1",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 30,
+    "explanation": "The UK national grid operates at a standard frequency of 50 Hertz (Hz). 230 is the nominal voltage, not the frequency."
   },
   {
     "id": 4029,
-    "question": "An apprentice believes they are being treated unfairly by their employer due to their age. Which legislation is designed to protect them from this?",
+    "question": "In an alternating current (AC) sine wave, the 'Root Mean Square' (RMS) value is used to describe which of the following?",
     "options": [
-      "Equality Act",
-      "Management of Health and Safety at Work Regulations",
+      "The effective DC-equivalent value of the voltage",
+      "The maximum height of the waveform",
+      "The distance between two positive peaks",
+      "The number of cycles occurring in one second"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Principles",
+    "tags": [
+      "rms-peak",
+      "sine-wave",
+      "terminology"
+    ],
+    "learningOutcomeId": "210.LO2.AC2.2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The RMS value of an AC supply is the value that produces the same heating effect as a DC supply of the same numerical value."
+  },
+  {
+    "id": 4030,
+    "question": "Which piece of legislation requires an electrical company to keep an employee's bank details and address secure and private?",
+    "options": [
       "Data Protection Act",
-      "Provision and Use of Work Equipment Regulations"
+      "Equal Opportunities Act",
+      "Electricity at Work Regulations",
+      "Management of Health and Safety at Work Regulations"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -378,44 +411,18 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "category": "Legislation",
     "tags": [
       "legislation",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "The Equality Act protects people from discrimination in the workplace based on protected characteristics, including age."
-  },
-  {
-    "id": 4030,
-    "question": "What is the primary purpose of a 'Job Description' in workplace documentation?",
-    "options": [
-      "To outline the duties and responsibilities of a specific role",
-      "To provide the electrical test results for a circuit",
-      "To list the materials used on a construction site",
-      "To explain how to use a fire extinguisher"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
       "terminology",
-      "application"
+      "conceptual"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "A job description defines the tasks, duties, and responsibilities expected of an employee in their role."
+    "explanation": "The Data Protection Act controls how personal information is used by organisations, businesses or the government."
   },
   {
     "id": 4031,
-    "question": "Which of the following documents is classified as a statutory instrument, meaning it is a legal requirement that must be followed?",
+    "question": "Which of the following documents is classified as statutory legislation, meaning compliance is a legal requirement?",
     "options": [
       "The Electricity at Work Regulations 1989",
       "BS 7671 Requirements for Electrical Installations",
@@ -432,23 +439,23 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "category": "Legislation",
     "tags": [
       "legislation",
-      "terminology",
-      "health-safety"
+      "health-safety",
+      "terminology"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The Electricity at Work Regulations 1989 is statutory legislation. BS 7671 and the On-Site Guide are non-statutory, though they are used to demonstrate compliance with the law."
+    "explanation": "The Electricity at Work Regulations 1989 is a Statutory Instrument, making it law. BS 7671 and the On-Site Guide are non-statutory codes of practice."
   },
   {
     "id": 4032,
-    "question": "An electrical contractor stores client names, addresses, and bank details on a company laptop. Under the Data Protection Act (GDPR), what is a primary responsibility of the contractor?",
+    "question": "An electrical contractor is storing client names and bank details on a company laptop. Which piece of legislation primarily dictates how this information must be handled?",
     "options": [
-      "Ensuring the data is kept secure and used only for the purpose it was collected",
-      "Providing the data to other local tradespeople to help them find work",
-      "Deleting all records immediately after the invoice is paid to avoid storage costs",
-      "Posting a list of all current clients on the company website for transparency"
+      "Data Protection Act",
+      "Equal Opportunities Act",
+      "Health and Safety at Work Act",
+      "Employment Rights Act"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -465,302 +472,50 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "GDPR requires that personal data is processed securely and only for specific, lawful purposes. Sharing without consent or public disclosure is a breach."
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Data Protection Act (and GDPR) regulates how personal information is collected, stored, and used by organisations."
   },
   {
     "id": 4033,
-    "question": "Which statement best describes the legal status of BS 7671 (The IET Wiring Regulations)?",
+    "question": "While BS 7671 is a non-statutory document, why is it considered vital for an electrician to follow it during an installation?",
     "options": [
-      "It is non-statutory but may be used in court to prove compliance with statutory regulations",
-      "It is a statutory document that is passed directly by the UK Parliament",
-      "It is an optional set of guidelines that has no relevance in legal proceedings",
-      "It is only applicable to industrial installations and does not cover domestic work"
+      "It is used in court to demonstrate compliance with statutory regulations",
+      "It is a criminal offence to ignore any specific page of the guide",
+      "It contains the exact pricing for all electrical components",
+      "It replaces the need for the Health and Safety at Work Act"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "BS 7671 is non-statutory, but following it is the standard way to demonstrate that you have met the requirements of statutory laws like the Electricity at Work Regulations."
-  },
-  {
-    "id": 4034,
-    "question": "Under the Health and Safety at Work Act 1974, what is a specific legal duty of an employee working on a construction site?",
-    "options": [
-      "To take reasonable care for the health and safety of themselves and others",
-      "To provide and pay for all their own specialist safety equipment and PPE",
-      "To write the company’s health and safety policy and risk assessments",
-      "To ensure that all other contractors on site have valid insurance"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "health-safety",
-      "legislation",
-      "application"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Employees have a legal duty to cooperate with their employer and take care of their own safety and that of their colleagues."
-  },
-  {
-    "id": 4035,
-    "question": "An electrician is installing a specific type of AC motor controller. Why is it critical to follow the manufacturer’s installation instructions rather than just using general knowledge?",
-    "options": [
-      "To ensure the equipment operates safely and the warranty remains valid",
-      "Because manufacturer instructions always override the statutory regulations",
-      "Because manufacturer instructions are the only way to determine the voltage",
-      "To avoid having to perform any testing or commissioning on the circuit"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "application",
-      "terminology",
-      "ac-dc"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Manufacturer instructions provide specific safety and technical data for that piece of equipment; ignoring them can lead to failure and voids the warranty."
-  },
-  {
-    "id": 4036,
-    "question": "Which scenario would be considered a breach of Equal Opportunities legislation in an electrical contracting firm?",
-    "options": [
-      "Refusing to promote a qualified electrician solely because of their age",
-      "Hiring an apprentice who lives closer to the main office than other candidates",
-      "Requiring all site workers to wear high-visibility clothing for safety",
-      "Paying a more experienced electrician a higher wage than a newly qualified one"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "HEALTH_SAFETY",
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation",
     "tags": [
       "legislation",
-      "discrimination",
+      "explanation",
       "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Age is a protected characteristic. Discriminating against someone for promotion based on age is a breach of the Equality Act."
-  },
-  {
-    "id": 4037,
-    "question": "The Employment Rights Act requires an employer to provide a 'written statement of employment particulars'. What is the purpose of this document?",
-    "options": [
-      "To outline the terms and conditions of the job, such as pay and hours",
-      "To provide a list of all tools the employee is allowed to borrow",
-      "To explain the technical wiring diagrams for the current project",
-      "To record the daily attendance and start times of the employee"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "This document (often the contract) details the legal agreement between employer and employee regarding pay, hours, and holiday."
-  },
-  {
-    "id": 4038,
-    "question": "What is the primary difference between an 'Act of Parliament' and an 'Approved Code of Practice' (ACOP)?",
-    "options": [
-      "An Act is the law itself; an ACOP provides practical guidance on how to follow the law",
-      "An Act is optional for small businesses; an ACOP is mandatory for everyone",
-      "An Act only applies to DC circuits; an ACOP only applies to AC circuits",
-      "An Act is written by manufacturers; an ACOP is written by the government"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_AC_DC_SOURCES",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "terminology",
-      "discrimination"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "Acts are high-level legislation. ACOPs give specific, practical methods to achieve the safety standards required by those Acts."
+    "explanation": "Although non-statutory, BS 7671 is the standard for the UK. Following it is the primary way to prove in a court of law that you have met the requirements of the Electricity at Work Regulations."
   },
   {
-    "id": 4039,
-    "question": "Upon completion of a new domestic heating control system, which document must be handed to the user to satisfy manufacturer and safety guidance?",
+    "id": 4034,
+    "question": "An electrician is installing a new manufacturer-specific smart dimmer switch. If the manufacturer's instructions contradict a general rule in a non-statutory guide, what is the best course of action?",
     "options": [
-      "The User Instructions and operating manual",
-      "The electrician's time sheets for the project",
-      "The wholesale invoices for the materials used",
-      "A copy of the Health and Safety at Work Act"
+      "Follow the manufacturer's instructions to ensure safety and warranty validity",
+      "Always follow the On-Site Guide as it overrules manufacturer data",
+      "Ignore the instructions and use standard wiring practices for a normal switch",
+      "Contact the local council to ask for a specific building derogation"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "OTHER",
-      "2": "OTHER",
-      "3": "LEGISLATION"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "application",
-      "terminology",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Users must be provided with instructions on how to operate the system safely and efficiently as part of the handover process."
-  },
-  {
-    "id": 4040,
-    "question": "In workplace documentation, what is the main purpose of a 'Job Specification'?",
-    "options": [
-      "To provide a detailed description of the work to be carried out and the materials required",
-      "To list the names and contact details of all other trades on the site",
-      "To act as a legal contract between the electrician and the wholesaler",
-      "To provide the emergency contact details for the local hospital"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "conceptual",
-      "terminology",
-      "application"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Job Specification defines exactly what is being installed, where, and to what standard, ensuring both parties agree on the scope."
-  },
-  {
-    "id": 4041,
-    "question": "Which of the following is classified as a statutory document that an electrician must legally comply with while working on a construction site?",
-    "options": [
-      "The Electricity at Work Regulations 1989",
-      "BS 7671: Requirements for Electrical Installations",
-      "The IET On-Site Guide",
-      "Manufacturer's installation instructions"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "health-safety",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Electricity at Work Regulations 1989 is an 'Act of Parliament' (statutory), whereas BS 7671 and the On-Site Guide are non-statutory guidance documents, though they are often used to prove compliance with the law."
-  },
-  {
-    "id": 4042,
-    "question": "An electrician is installing a new AC distribution board. Which document provides the non-statutory requirements for the design and testing of this installation to ensure safety?",
-    "options": [
-      "BS 7671",
-      "The Health and Safety at Work Act 1974",
-      "The Management of Health and Safety at Work Regulations",
-      "The Construction (Design and Management) Regulations"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "units",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "BS 7671 (The Wiring Regulations) is the main non-statutory document for electrical installation design and testing in the UK."
-  },
-  {
-    "id": 4043,
-    "question": "While installing a specific manufacturer's AC-to-DC power converter, the electrician notices the manufacturer's torque settings for terminals differ from the general guidance in BS 7671. Which instruction should take priority?",
-    "options": [
-      "The manufacturer's instructions",
-      "The IET On-Site Guide",
-      "The electrician's personal preference",
-      "The oldest version of BS 7671"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
       "3": "OTHER"
     },
@@ -778,204 +533,13 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "explanation": "Regulation 134.1.1 of BS 7671 states that electrical equipment shall be installed in accordance with the instructions provided by the manufacturer."
   },
   {
-    "id": 4044,
-    "question": "The UK mains supply is standardized at 230V AC with a frequency of 50Hz. Which piece of legislation requires that electrical systems are maintained to prevent danger during the use of this supply?",
+    "id": 4035,
+    "question": "Which of the following describes a 'Code of Practice' in the context of the electrical industry?",
     "options": [
-      "The Electricity at Work Regulations 1989",
-      "The Data Protection Act 2018",
-      "The Equality Act 2010",
-      "The Employment Rights Act 1996"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "ac-dc",
-      "legislation",
-      "frequency"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Electricity at Work Regulations 1989 is the primary statutory legislation governing the safe use and maintenance of electrical systems, including AC mains."
-  },
-  {
-    "id": 4045,
-    "question": "An electrical contractor stores client addresses and bank details on a laptop. Which legislation dictates how this personal information must be protected and processed?",
-    "options": [
-      "Data Protection Act (GDPR)",
-      "Health and Safety at Work Act",
-      "Equality Act",
-      "Control of Substances Hazardous to Health (COSHH)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "The Data Protection Act (incorporating GDPR) regulates how personal data is handled by businesses and individuals."
-  },
-  {
-    "id": 4046,
-    "question": "A junior electrician feels they are being treated unfairly by a supervisor because of their religious beliefs. Which legislation protects the employee from this type of discrimination in the workplace?",
-    "options": [
-      "The Equality Act 2010",
-      "The Health and Safety at Work Act 1974",
-      "The Reporting of Injuries, Diseases and Dangerous Occurrences Regulations",
-      "The Provision and Use of Work Equipment Regulations"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Equality Act 2010 provides legal protection against discrimination in the workplace based on protected characteristics such as religion, age, or gender."
-  },
-  {
-    "id": 4047,
-    "question": "Under Section 7 of the Health and Safety at Work Act 1974, what is the legal 'duty of care' required of an employee?",
-    "options": [
-      "To take reasonable care for the health and safety of themselves and others",
-      "To provide all personal protective equipment (PPE) for the site",
-      "To write the company health and safety policy",
-      "To ensure the main AC supply is disconnected at the substation"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "Section 7 requires employees to take reasonable care of themselves and others who may be affected by their acts or omissions at work."
-  },
-  {
-    "id": 4048,
-    "question": "Which workplace document is typically used to record the results of an initial verification on a new AC lighting circuit to prove it meets BS 7671 standards?",
-    "options": [
-      "Electrical Installation Certificate",
-      "Delivery Note",
-      "Time Sheet",
-      "Purchase Order"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The Electrical Installation Certificate (EIC) is the formal document used to record that a new installation complies with BS 7671."
-  },
-  {
-    "id": 4049,
-    "question": "A site supervisor provides a 'Method Statement' for the installation of a large step-down transformer. What is the primary purpose of this document?",
-    "options": [
-      "To describe step-by-step how to carry out the task safely",
-      "To list the hourly rates of the electricians",
-      "To provide the electrical circuit diagrams for the transformer",
-      "To prove the transformer was purchased from a local wholesaler"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "application",
-      "health-safety"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "A Method Statement is a safety document that describes the specific sequence of work to ensure hazards are managed."
-  },
-  {
-    "id": 4050,
-    "question": "An electrician suffers a major injury due to an electric shock from a faulty AC motor. Under which statutory regulation must this incident be reported to the Health and Safety Executive (HSE)?",
-    "options": [
-      "RIDDOR",
-      "COSHH",
-      "PUWER",
-      "DSEAR"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "health-safety",
-      "terminology"
-    ],
-    "learningOutcomeId": "210-2A-LO2",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "RIDDOR (Reporting of Injuries, Diseases and Dangerous Occurrences Regulations) is the statutory requirement for reporting serious workplace accidents."
-  },
-  {
-    "id": 4051,
-    "question": "Which of the following documents is classified as statutory legislation, meaning it is a mandatory requirement by law for all electrical work in the UK?",
-    "options": [
-      "The Electricity at Work Regulations 1989",
-      "BS 7671 Requirements for Electrical Installations",
-      "The IET On-Site Guide",
-      "The Electrician's Guide to the Building Regulations"
+      "A document providing practical guidance on how to comply with the law",
+      "A legally binding Act of Parliament that carries prison sentences",
+      "A list of employees and their specific hourly pay rates",
+      "A technical drawing showing the layout of a consumer unit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -984,7 +548,175 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
       "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Legislation and Workplace Documentation",
+    "category": "Legislation",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Codes of Practice (like the IET On-Site Guide) offer practical ways to achieve the safety standards required by statutory legislation."
+  },
+  {
+    "id": 4036,
+    "question": "Under the Health and Safety at Work Act, which group of people has a legal duty to ensure the workplace is safe?",
+    "options": [
+      "Employers, employees, and the self-employed",
+      "Only the business owner or employer",
+      "Only the Health and Safety Executive (HSE) inspectors",
+      "Only the local building control officer"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "HASAWA 1974 places duties on everyone in the workplace to maintain safety, including the duty of employees to take care of themselves and others."
+  },
+  {
+    "id": 4037,
+    "question": "What is the primary purpose of a 'Method Statement' on a construction site?",
+    "options": [
+      "To outline the step-by-step procedure to complete a task safely",
+      "To record the total number of hours worked by the apprentice",
+      "To list the cost of all materials used on the project",
+      "To provide a technical circuit diagram for a motor starter"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Workplace Documentation",
+    "tags": [
+      "application",
+      "health-safety",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A method statement is a document that details exactly how a process will be carried out safely, often following a risk assessment."
+  },
+  {
+    "id": 4038,
+    "question": "A junior electrician is refused a promotion specifically because of their religious beliefs. Which legislation is the employer violating?",
+    "options": [
+      "Equality Act",
+      "Management of Health and Safety at Work Regulations",
+      "Electricity at Work Regulations",
+      "Construction (Design and Management) Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "The Equality Act 2010 protects individuals from discrimination in the workplace based on protected characteristics, including religion."
+  },
+  {
+    "id": 4039,
+    "question": "Which workplace document would an electrician use to record that the scope of work has changed from the original contract, such as adding extra sockets?",
+    "options": [
+      "Variation Order",
+      "Delivery Note",
+      "Purchase Order",
+      "Time Sheet"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Workplace Documentation",
+    "tags": [
+      "application",
+      "terminology",
+      "units"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A Variation Order (or Change Order) is used to document and authorize changes to the originally agreed scope of work."
+  },
+  {
+    "id": 4040,
+    "question": "When installing a new consumer unit, which document must be provided to the user to comply with manufacturer and regulatory guidance?",
+    "options": [
+      "User instructions and the Electrical Installation Certificate",
+      "A copy of the electrician's public liability insurance",
+      "The original purchase receipt for the circuit breakers",
+      "A blank copy of a risk assessment for the user to fill in"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Workplace Documentation",
+    "tags": [
+      "application",
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Upon completion of work, the user must receive the appropriate certification (EIC) and the manufacturer's user instructions for the equipment installed."
+  },
+  {
+    "id": 4041,
+    "question": "An electrician is installing a new consumer unit. Which of the following is a statutory document that they must comply with by law?",
+    "options": [
+      "The Electricity at Work Regulations 1989",
+      "BS 7671: Requirements for Electrical Installations",
+      "The IET On-Site Guide",
+      "The Electrician's Guide to the Building Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
     "tags": [
       "legislation",
       "health-safety",
@@ -994,25 +726,53 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The Electricity at Work Regulations 1989 is statutory legislation (law). BS 7671 is non-statutory, although it is often used in court to demonstrate compliance with the law."
+    "explanation": "Statutory legislation is law passed by Parliament. The Electricity at Work Regulations 1989 is a statutory instrument. BS 7671 is non-statutory, although it is often used to demonstrate compliance with the law."
   },
   {
-    "id": 4052,
-    "question": "An electrical contractor is storing the bank details and home addresses of their sub-contractors on a shared office computer. Which legislation dictates how this information must be protected and processed?",
+    "id": 4042,
+    "question": "A contracting firm refuses to promote an electrician solely because of their religious beliefs. Which piece of legislation is being breached in this scenario?",
     "options": [
-      "Data Protection Act 2018 (GDPR)",
-      "The Equality Act 2010",
-      "The Health and Safety at Work Act 1974",
-      "The Employment Rights Act 1996"
+      "Equality Act 2010",
+      "Data Protection Act 2018",
+      "Health and Safety at Work Act 1974",
+      "Employment Rights Act 1996"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Legislation and Workplace Documentation",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Equality Act 2010 protects individuals from discrimination in the workplace based on protected characteristics, including religion or belief."
+  },
+  {
+    "id": 4043,
+    "question": "An electrician stores a customer's home address and phone number on an unencrypted personal mobile phone. Which legislation governs how this information must be handled?",
+    "options": [
+      "General Data Protection Regulation (GDPR)",
+      "The Management of Health and Safety at Work Regulations",
+      "The Freedom of Information Act",
+      "The Human Rights Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Documentation",
     "tags": [
       "legislation",
       "units",
@@ -1022,78 +782,218 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The Data Protection Act 2018 (incorporating GDPR) regulates how personal information is used by organisations, businesses, or the government."
+    "explanation": "GDPR (and the Data Protection Act 2018) sets out the rules for how personal data must be processed, stored, and protected by businesses and individuals."
   },
   {
-    "id": 4053,
-    "question": "When installing a complex programmable room thermostat, the electrician notices the manufacturer's instructions specify a maximum torque for the terminals that is lower than the general guidance in the On-Site Guide. How should the electrician proceed?",
+    "id": 4044,
+    "question": "When installing a specific manufacturer's electric shower, the instructions state a maximum fuse size of 32A, but the electrician's general calculation suggests 40A. What is the correct course of action?",
     "options": [
-      "Follow the manufacturer's specific instructions for that device",
-      "Always follow the On-Site Guide as it is the industry standard",
-      "Tighten the terminals as hard as possible to ensure a good connection",
-      "Average the two values to ensure a safe middle ground"
+      "Follow the manufacturer's instructions to maintain the warranty and safety",
+      "Install the 40A fuse as BS 7671 calculations always take priority",
+      "Install a 45A fuse to ensure the shower never trips",
+      "Ignore the instructions as they are only guidance and not statutory"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CALCULATION_ERROR"
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Legislation and Workplace Documentation",
+    "category": "Manufacturer Guidance",
     "tags": [
       "application",
-      "terminology",
-      "calculation"
+      "legislation",
+      "units"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "Manufacturer instructions are specific to the equipment and must be followed to ensure the warranty is valid and the equipment functions safely as designed."
+    "explanation": "Regulation 134.1.1 of BS 7671 requires that electrical equipment be installed in accordance with the instructions provided by the manufacturer."
   },
   {
-    "id": 4054,
-    "question": "A junior electrician feels they are being passed over for promotion specifically because of their religious beliefs. Which piece of legislation provides the legal framework to challenge this treatment?",
+    "id": 4045,
+    "question": "A standard UK mains supply is rated at 230V AC. What does this 230V value represent in terms of the alternating waveform?",
     "options": [
-      "The Equality Act 2010",
-      "The Human Rights Act 1998",
-      "The Management of Health and Safety at Work Regulations",
-      "The Provision and Use of Work Equipment Regulations (PUWER)"
+      "The Root Mean Square (RMS) value",
+      "The Peak-to-Peak voltage value",
+      "The Maximum Peak voltage value",
+      "The Average voltage over one full cycle"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_RMS_WITH_PEAK",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Legislation and Workplace Documentation",
+    "category": "AC Fundamentals",
     "tags": [
-      "legislation",
-      "terminology",
-      "application"
+      "ac-dc",
+      "sine-wave",
+      "rms-peak"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 75,
+    "explanation": "The nominal voltage of 230V in the UK is the RMS value, which is the equivalent DC voltage that would provide the same power output."
+  },
+  {
+    "id": 4046,
+    "question": "If a sine wave has a frequency of 50 Hz, what is the time period (T) required for the waveform to complete one full cycle?",
+    "options": [
+      "0.02 seconds",
+      "0.2 seconds",
+      "20 seconds",
+      "0.002 seconds"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "MULTIPLIED_INSTEAD",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Fundamentals",
+    "tags": [
+      "calculation",
+      "frequency",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The formula for the period is T = 1/f. Therefore, 1 / 50 = 0.02 seconds."
+  },
+  {
+    "id": 4047,
+    "question": "Why is a transformer unable to change the voltage of a steady Direct Current (DC) supply?",
+    "options": [
+      "A steady DC supply does not create the changing magnetic field required for induction",
+      "DC current is too weak to pass through the primary windings of a transformer",
+      "The iron core of a transformer only reacts to positive voltages",
+      "DC voltage has no frequency, which causes the transformer to overheat and explode immediately"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TRANSFORMER_WITH_AC_DC",
+      "2": "CONFUSED_TRANSFORMER_WITH_AC_DC",
+      "3": "CONFUSED_AC_WITH_DC"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Transformers",
+    "tags": [
+      "conceptual",
+      "transformers",
+      "electromagnetic-induction"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Transformers rely on Faraday's Law of Induction. A changing current (AC) creates a changing magnetic field, which induces a voltage. Steady DC creates a static magnetic field, so no voltage is induced in the secondary coil."
+  },
+  {
+    "id": 4048,
+    "question": "Which workplace document provides a step-by-step sequence of how a specific task will be carried out safely?",
+    "options": [
+      "Method Statement",
+      "Risk Assessment",
+      "Permit to Work",
+      "Schedule of Test Results"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Documentation",
+    "tags": [
+      "application",
+      "health-safety",
+      "terminology"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "The Equality Act 2010 protects individuals from discrimination in the workplace based on protected characteristics, including religion or belief."
+    "explanation": "A Method Statement describes the specific 'method' or sequence of work to ensure it is done safely, whereas a Risk Assessment identifies hazards."
   },
   {
-    "id": 4055,
-    "question": "What is the primary legal purpose of an 'Approved Code of Practice' (ACOP) in the electrical industry?",
+    "id": 4049,
+    "question": "Under Section 7 of the Health and Safety at Work Act 1974, what is a specific legal duty of an employee?",
     "options": [
-      "To provide practical guidance on how to comply with statutory regulations",
-      "To provide a list of prices for electrical components",
-      "To act as a replacement for the Health and Safety at Work Act",
-      "To provide a training manual for apprentice electricians"
+      "To take reasonable care for the health and safety of themselves and others",
+      "To provide all necessary Personal Protective Equipment (PPE) free of charge",
+      "To produce a written health and safety policy for the company",
+      "To ensure the workplace temperature is maintained at a minimum of 16 degrees Celsius"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "discrimination"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Section 7 places duties on employees to take care of themselves and others who may be affected by their acts or omissions at work."
+  },
+  {
+    "id": 4050,
+    "question": "An oscilloscope shows an AC waveform with a peak voltage (Vpk) of 325V. What is the approximate RMS voltage that an electrician would measure with a standard multimeter?",
+    "options": [
+      "230V",
+      "460V",
+      "162V",
+      "650V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
+      "3": "CONFUSED_RMS_WITH_PEAK"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Fundamentals",
+    "tags": [
+      "calculation",
+      "rms-peak",
+      "sine-wave"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "RMS = Peak × 0.707. Therefore, 325V × 0.707 ≈ 230V. This is the standard relationship for UK mains voltage."
+  },
+  {
+    "id": 4051,
+    "question": "Which of the following is classified as a non-statutory document, providing a code of practice for the electrical industry rather than being a direct law?",
+    "options": [
+      "BS 7671 Requirements for Electrical Installations",
+      "The Electricity at Work Regulations 1989",
+      "The Health and Safety at Work Act 1974",
+      "The Management of Health and Safety at Work Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Communication 2365 Level 2",
     "category": "Legislation and Workplace Documentation",
@@ -1102,136 +1002,164 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "210-2A-LO1",
+    "learningOutcomeId": "210-2A-LO2",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "ACOPs have a special legal status; if you are prosecuted for a breach of health and safety law and it is proved you did not follow the relevant provisions of the ACOP, a court can find you at fault unless you can show you complied with the law in some other way."
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "BS 7671 is a non-statutory British Standard. While it is used to demonstrate compliance with the law (statutory regulations like the EWR 1989), the document itself is a code of practice, not an Act of Parliament."
   },
   {
-    "id": 4056,
-    "question": "An electrical contractor is reviewing their legal obligations regarding the storage of client installation certificates on a cloud-based server. Which statutory legislation primarily dictates how this digital information must be managed and secured?",
+    "id": 4052,
+    "question": "An electrician is installing a high-efficiency heat pump. If the manufacturer's specific installation instructions differ from the general guidance in a textbook, what action should be taken?",
     "options": [
-      "Data Protection Act",
-      "Health and Safety at Work Act",
-      "Electricity at Work Regulations",
-      "The Equality Act"
+      "Follow the manufacturer's instructions to ensure warranty and safety compliance",
+      "Follow the textbook as it represents general industry theory",
+      "Average the two sets of data to find a middle ground for installation",
+      "Ignore both and follow the verbal advice of a senior colleague"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
     },
     "section": "Communication 2365 Level 2",
-    "category": "Legislation",
+    "category": "Legislation and Workplace Documentation",
+    "tags": [
+      "application",
+      "terminology",
+      "legislation"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Manufacturer's instructions take precedence for specific equipment. Following them ensures the equipment operates safely, performs as intended, and maintains the validity of the manufacturer's warranty."
+  },
+  {
+    "id": 4053,
+    "question": "Under the Data Protection Act 2018, which of the following is a legal requirement for an electrical contractor holding customer information?",
+    "options": [
+      "Information must be kept secure and only used for the specified purpose",
+      "All customer data must be published on the company website for transparency",
+      "Customer addresses must be shared with all local wholesalers for marketing",
+      "Data must be deleted immediately after a verbal quote is given"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation and Workplace Documentation",
     "tags": [
       "legislation",
-      "terminology",
+      "conceptual",
       "health-safety"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
-    "difficulty": 4,
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The Data Protection Act (and GDPR) requires that personal data is processed lawfully, transparently, and securely, and is only used for the specific purposes for which it was collected."
+  },
+  {
+    "id": 4054,
+    "question": "Which workplace document is designed to provide a step-by-step safe system of work for a specific high-risk task, such as working at height on a construction site?",
+    "options": [
+      "Method Statement",
+      "Equality Policy",
+      "Schedule of Rates",
+      "Delivery Note"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation and Workplace Documentation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A Method Statement is a document that details the way a work task or process is to be completed. It should outline the hazards involved and include a step-by-step guide on how to do the job safely."
+  },
+  {
+    "id": 4055,
+    "question": "Which statutory regulation places a direct legal duty on both employers and employees to ensure the safety of themselves and others while at work?",
+    "options": [
+      "Health and Safety at Work Act 1974",
+      "BS 7671 Requirements for Electrical Installations",
+      "The IET On-Site Guide",
+      "The Equal Opportunities Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation and Workplace Documentation",
+    "tags": [
+      "legislation",
+      "discrimination",
+      "health-safety"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "The Health and Safety at Work Act 1974 is the primary piece of legislation covering occupational health and safety in Great Britain. It outlines general duties for employers, employees, and the self-employed."
+  },
+  {
+    "id": 4056,
+    "question": "In the UK, the supply of electricity to a consumer is governed by the Electricity Safety, Quality and Continuity Regulations (ESQCR). Which of the following is a statutory requirement regarding the AC supply frequency mandated by these regulations?",
+    "options": [
+      "The frequency must be maintained at 50Hz with a tolerance of +/- 1%",
+      "The frequency must be maintained at 50Hz with a tolerance of +/- 10%",
+      "The frequency must be kept at exactly 60Hz for industrial compliance",
+      "The frequency is non-statutory and is determined by BS 7671"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "ROUNDING_ERROR",
+      "2": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "frequency",
+      "ac-dc"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "The Data Protection Act (and GDPR) governs the protection and management of personal data stored digitally or in structured filing systems."
+    "explanation": "The ESQCR is a statutory instrument that mandates the UK mains frequency be 50Hz with a permissible variation of 1% (between 49.5Hz and 50.5Hz)."
   },
   {
     "id": 4057,
-    "question": "During a complex industrial installation of a three-phase AC transformer, a conflict arises between the requirements of BS 7671 and the manufacturer's specific installation instructions. According to Regulation 134.1.1, how should the installer proceed?",
+    "question": "An electrical contractor stores digital copies of EICRs (Electrical Installation Condition Reports) containing client names, addresses, and technical data. Which legislation dictates how this information must be protected and for how long it can be stored?",
     "options": [
-      "The manufacturer's instructions must be followed as they are specific to the equipment",
-      "BS 7671 always takes precedence as it is the national standard",
-      "The installer should choose the least expensive method",
-      "The local Distribution Network Operator (DNO) must be consulted for a decision"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Manufacturer Guidance",
-    "tags": [
-      "legislation",
-      "transformers",
-      "application"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "BS 7671 Regulation 134.1.1 states that electrical equipment shall be installed in accordance with the instructions provided by the manufacturer."
-  },
-  {
-    "id": 4058,
-    "question": "Which of the following documents is considered 'Statutory' in the UK, meaning failure to comply is a criminal offence?",
-    "options": [
+      "The Data Protection Act (GDPR)",
       "The Electricity at Work Regulations 1989",
-      "BS 7671 Requirements for Electrical Installations",
-      "The On-Site Guide",
-      "The IET Code of Practice for In-service Inspection and Testing"
+      "The Health and Safety at Work Act 1974",
+      "The Provision and Use of Work Equipment Regulations"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Electricity at Work Regulations (EAWR) 1989 is statutory legislation. BS 7671 and IET Codes of Practice are non-statutory guidance, though they are often used to prove compliance with statutory laws."
-  },
-  {
-    "id": 4059,
-    "question": "An electrician is asked to install a new AC motor circuit but finds the site's 'As-Built' drawings are outdated and do not show the existing frequency inverter connections. What is the primary purpose of updating these workplace documents after the work is complete?",
-    "options": [
-      "To ensure future maintenance can be carried out safely and efficiently",
-      "To prove to the client that the work took the full amount of hours billed",
-      "To satisfy the requirements of the Data Protection Act",
-      "To ensure the motor runs at the correct RPM"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "application",
-      "terminology",
-      "calculation"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Accurate workplace documentation like 'As-Built' drawings are essential for the safety of future operatives and the efficient maintenance of the system."
-  },
-  {
-    "id": 4060,
-    "question": "A small electrical firm is hiring a new apprentice. Under the Equality Act, which of the following actions is a 'statutory duty' for the employer during the recruitment process?",
-    "options": [
-      "Making reasonable adjustments for a candidate with a physical disability",
-      "Ensuring all candidates have a Level 3 qualification regardless of the role",
-      "Providing the candidate with a copy of the Health and Safety at Work Act",
-      "Paying the candidate a higher wage based on their age"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
       "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
@@ -1239,151 +1167,234 @@ export const legislationAndWorkplaceDocumentationQuestions: TaggedQuestion[] = [
     "category": "Legislation",
     "tags": [
       "legislation",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "The Equality Act requires employers to make reasonable adjustments to ensure that workers with disabilities are not at a substantial disadvantage."
-  },
-  {
-    "id": 4061,
-    "question": "When interpreting a complex sine wave waveform on an oscilloscope during a service visit, the technician refers to the 'Service and Maintenance Instructions'. Which category of information does this document fall under?",
-    "options": [
-      "Manufacturer Guidance",
-      "Statutory Legislation",
-      "British Standards",
-      "Employment Law"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Manufacturer Guidance",
-    "tags": [
-      "sine-wave",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Service and maintenance instructions provided by the equipment creator are categorized as Manufacturer Guidance."
-  },
-  {
-    "id": 4062,
-    "question": "An operative is required to work on a 400V AC distribution board. The Risk Assessment and Method Statement (RAMS) specifies 'Dead Working' only. If the operative decides to work live to save time, which statutory regulation are they primarily breaching?",
-    "options": [
-      "Electricity at Work Regulations Regulation 14",
-      "The Data Protection Act Section 5",
-      "The Equality Act Section 20",
-      "BS 7671 Part 6"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "legislation",
-      "health-safety",
-      "application"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "Regulation 14 of the EAWR 1989 specifically covers the conditions under which live working is permitted (or prohibited)."
-  },
-  {
-    "id": 4063,
-    "question": "A technician needs to calculate the RMS voltage of a supply to ensure it matches the nameplate on a sensitive medical transformer. Where would they find the 'Technical Specification' for the permissible voltage tolerances in the UK?",
-    "options": [
-      "Electricity Safety, Quality and Continuity Regulations (ESQCR)",
-      "The Health and Safety at Work Act",
-      "The Employment Rights Act",
-      "The Data Protection Act"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Legislation",
-    "tags": [
-      "rms-peak",
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "The ESQCR sets the statutory limits for voltage and frequency tolerances for the UK public electricity supply."
-  },
-  {
-    "id": 4064,
-    "question": "Which workplace document is specifically designed to provide a step-by-step safe sequence of work for a high-risk task, such as installing heavy AC switchgear at height?",
-    "options": [
-      "Method Statement",
-      "Time Sheet",
-      "Job Specification",
-      "Variation Order"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "health-safety",
-      "application",
-      "conceptual"
-    ],
-    "learningOutcomeId": "210-2A-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "A Method Statement outlines the specific sequence of steps required to complete a task safely, often derived from a Risk Assessment (forming RAMS)."
-  },
-  {
-    "id": 4065,
-    "question": "In the context of electrical contracting, what is the primary purpose of a 'Purchase Order' within the flow of workplace information?",
-    "options": [
-      "To formally authorize the procurement of specific materials or services",
-      "To record the results of an insulation resistance test",
-      "To provide the user with instructions on how to operate a transformer",
-      "To satisfy the requirements of the Equality Act"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Communication 2365 Level 2",
-    "category": "Workplace Documentation",
-    "tags": [
-      "conceptual",
       "terminology"
     ],
     "learningOutcomeId": "210-2A-LO1",
     "answerType": "mcq",
     "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Personal data, including client contact details on certificates, is governed by the Data Protection Act and GDPR, requiring secure storage and purpose-limited retention."
+  },
+  {
+    "id": 4058,
+    "question": "While BS 7671 (The IET Wiring Regulations) is a non-statutory document, what is its primary legal function when an electrician is prosecuted under the Electricity at Work Regulations 1989?",
+    "options": [
+      "It is used in court to demonstrate that compliance with BS 7671 likely satisfies statutory safety duties",
+      "It acts as a mandatory sentencing guideline for the judge to issue fines",
+      "It serves as the primary Act of Parliament that defines criminal negligence",
+      "It has no legal standing and cannot be mentioned during a court case"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "explanation"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
     "estimatedTime": 120,
-    "explanation": "A Purchase Order (PO) is a legally binding document used to authorize and track the ordering of goods or services from a supplier."
+    "explanation": "BS 7671 is non-statutory but is 'admissible' in evidence in court to show that a person has complied with the statutory Electricity at Work Regulations."
+  },
+  {
+    "id": 4059,
+    "question": "An electrician is installing a solar PV AC inverter. The manufacturer’s instructions state the unit must be installed with 200mm clearance for cooling, but the installer ignores this to fit it in a tight cupboard. Which regulation is breached by failing to follow manufacturer instructions?",
+    "options": [
+      "BS 7671 Regulation 134.1.1",
+      "The Equal Opportunities Act 2010",
+      "The Employment Rights Act 1996",
+      "The Data Protection Act 2018"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "application",
+      "legislation",
+      "ac-dc"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Regulation 134.1.1 of BS 7671 specifically requires that electrical equipment be installed in accordance with the instructions provided by the manufacturer."
+  },
+  {
+    "id": 4060,
+    "question": "Under Section 7 of the Health and Safety at Work Act 1974, which of the following is a legal duty placed specifically upon the individual employee rather than the employer?",
+    "options": [
+      "To cooperate with the employer so far as is necessary to enable safety duties to be performed",
+      "To provide all necessary PPE at no cost to the other staff members",
+      "To carry out a written risk assessment for the entire construction site",
+      "To ensure the company has valid public liability insurance for AC installations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "health-safety",
+      "legislation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "Section 7 of HASWA requires employees to take care of themselves and others and to cooperate with their employer regarding health and safety matters."
+  },
+  {
+    "id": 4061,
+    "question": "A contracting firm refuses to promote a highly skilled electrician because they require flexible working hours to care for a disabled family member. Which legislation primarily protects the employee in this scenario?",
+    "options": [
+      "The Equality Act 2010",
+      "The Health and Safety at Work Act 1974",
+      "The Electricity at Work Regulations 1989",
+      "The Management of Health and Safety at Work Regulations"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "terminology"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "The Equality Act 2010 protects individuals from discrimination, including 'discrimination by association' (e.g., caring for a disabled person) and ensures equal opportunities in the workplace."
+  },
+  {
+    "id": 4062,
+    "question": "In workplace documentation, what is the specific purpose of a 'Risk Assessment' compared to a 'Method Statement'?",
+    "options": [
+      "The Risk Assessment identifies hazards and control measures, while the Method Statement describes the safe sequence of work",
+      "The Risk Assessment is for the client, while the Method Statement is only for the local authority",
+      "The Risk Assessment is a statutory requirement, while the Method Statement is always optional under law",
+      "The Risk Assessment calculates the cost of materials, while the Method Statement lists the staff names"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Documentation",
+    "tags": [
+      "health-safety",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Risk Assessments identify what could go wrong and how to stop it; Method Statements explain the specific steps to be taken to complete the job safely."
+  },
+  {
+    "id": 4063,
+    "question": "An AC motor is rated at 230V RMS. To comply with the Provision and Use of Work Equipment Regulations (PUWER) regarding safety insulation, the insulation must actually withstand the peak voltage of the sine wave. What is this peak voltage?",
+    "options": [
+      "325V",
+      "230V",
+      "400V",
+      "162V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_RMS_WITH_PEAK",
+      "2": "CONFUSED_I_V_R",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "AC Theory",
+    "tags": [
+      "rms-peak",
+      "sine-wave",
+      "calculation"
+    ],
+    "learningOutcomeId": "210-2A-LO2",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 120,
+    "explanation": "Peak voltage = RMS x 1.414. Therefore, 230V x 1.414 ≈ 325V. Equipment maintenance and insulation checks under PUWER must account for the full voltage stress."
+  },
+  {
+    "id": 4064,
+    "question": "An electrician is hospitalized after receiving a severe electric shock from a 400V AC three-phase supply. Under which statutory regulation must this incident be formally reported to the Health and Safety Executive (HSE)?",
+    "options": [
+      "RIDDOR 2013",
+      "COSHH 2002",
+      "The Building Regulations Part P",
+      "The Electricity at Work Regulations 1989"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "legislation",
+      "health-safety",
+      "application"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "RIDDOR (Reporting of Injuries, Diseases and Dangerous Occurrences Regulations) requires the reporting of specific work-related accidents, including serious electrical shocks."
+  },
+  {
+    "id": 4065,
+    "question": "A technician is using a step-down transformer (230V to 110V) to power a drill on a construction site. Which regulation requires that this transformer is regularly inspected and maintained to ensure the safety of the user?",
+    "options": [
+      "PUWER 1998",
+      "The Data Protection Act",
+      "The Equal Opportunities Act",
+      "The British Standards Institution Act"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Communication 2365 Level 2",
+    "category": "Legislation",
+    "tags": [
+      "transformers",
+      "legislation",
+      "application"
+    ],
+    "learningOutcomeId": "210-2A-LO1",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "The Provision and Use of Work Equipment Regulations (PUWER) requires that all work equipment (including transformers and drills) is suitable for use and maintained in a safe condition."
   }
 ];

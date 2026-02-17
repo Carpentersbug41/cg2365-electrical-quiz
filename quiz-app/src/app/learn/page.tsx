@@ -49,6 +49,7 @@ import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolatio
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.json';
 import lesson210_1B from '@/data/lessons/210-1B-site-visitors-and-inspectors.json';
+import lesson210_2A from '@/data/lessons/210-2A-legislation-and-workplace-documentation.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -92,6 +93,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson210_2A,
   lesson210_1B,
   lesson210_1A, lesson210_1A,
   lesson210_1A,

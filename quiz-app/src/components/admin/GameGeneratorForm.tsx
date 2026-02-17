@@ -18,6 +18,7 @@ interface LessonOption {
   hasExplanations: boolean;
   explanationCount: number;
   totalBlocks: number;
+  availableMicrobreakSlots: number;
 }
 
 type GameType =
@@ -44,7 +45,6 @@ export default function GameGeneratorForm() {
   const [loadingLessons, setLoadingLessons] = useState(true);
   const [selectedLessonFilename, setSelectedLessonFilename] = useState<string | null>(null);
   const [selectedGameTypes, setSelectedGameTypes] = useState<Set<GameType>>(new Set(['matching', 'sorting']));
-  const [gameCount, setGameCount] = useState(2);
   const [status, setStatus] = useState<GenerationStatus>('idle');
   const [generatedGames, setGeneratedGames] = useState<Array<{
     id: string;
@@ -56,7 +56,6 @@ export default function GameGeneratorForm() {
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [debugInfo, setDebugInfo] = useState<string | null>(null);
 
-  // Load lessons on mount
   useEffect(() => {
     fetchLessons();
   }, []);
@@ -75,6 +74,7 @@ export default function GameGeneratorForm() {
   };
 
   const selectedLesson = lessons.find(l => l.filename === selectedLessonFilename);
+  const estimatedGenerationCount = selectedLesson?.availableMicrobreakSlots || 0;
 
   const toggleGameType = (gameType: GameType) => {
     const newTypes = new Set(selectedGameTypes);
@@ -97,12 +97,6 @@ export default function GameGeneratorForm() {
       return;
     }
 
-    console.log('=== Game Generation Request ===');
-    console.log('Selected Lesson:', selectedLesson);
-    console.log('Game Types:', Array.from(selectedGameTypes));
-    console.log('Count per type:', gameCount);
-    console.log('Total games to generate:', gameCount * selectedGameTypes.size);
-
     setStatus('generating');
     setErrorMessage(null);
     setSuccessMessage(null);
@@ -112,11 +106,8 @@ export default function GameGeneratorForm() {
       const requestBody = {
         filename: selectedLesson.filename,
         gameTypes: Array.from(selectedGameTypes),
-        count: gameCount,
         mode: 'preview'
       };
-
-      console.log('Request body:', requestBody);
 
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
@@ -126,24 +117,12 @@ export default function GameGeneratorForm() {
 
       const data = await response.json();
 
-      console.log('Response status:', response.status);
-      console.log('Response data:', data);
-
       if (!response.ok) {
-        console.error('API Error Response:', {
-          status: response.status,
-          statusText: response.statusText,
-          data
-        });
-        console.error('Request sent:', requestBody);
-        
-        // Build detailed error message
         let errorMsg = data.error || 'Generation failed';
         if (data.details) errorMsg += `\n\nDetails: ${data.details}`;
         if (data.errorType) errorMsg += `\n\nError Type: ${data.errorType}`;
         if (data.stack) errorMsg += `\n\nStack:\n${data.stack}`;
-        
-        // Store debug info separately
+
         const debugData = {
           request: requestBody,
           response: {
@@ -153,13 +132,13 @@ export default function GameGeneratorForm() {
           }
         };
         setDebugInfo(JSON.stringify(debugData, null, 2));
-        
+
         throw new Error(errorMsg);
       }
 
       setGeneratedGames(data.games);
       setStatus('preview');
-      setSuccessMessage(`Generated ${data.games.length} game${data.games.length > 1 ? 's' : ''}!`);
+      setSuccessMessage(`Generated ${data.games.length} game${data.games.length > 1 ? 's' : ''} from ${data.slotCount ?? data.games.length} slot${(data.slotCount ?? data.games.length) > 1 ? 's' : ''}.`);
     } catch (error) {
       console.error('Generation error caught:', error);
       setStatus('error');
@@ -175,10 +154,6 @@ export default function GameGeneratorForm() {
       return;
     }
 
-    console.log('=== Save Games Request ===');
-    console.log('Selected Lesson:', selectedLesson);
-    console.log('Games to save:', generatedGames.length);
-
     setStatus('saving');
     setErrorMessage(null);
     setSuccessMessage(null);
@@ -188,11 +163,8 @@ export default function GameGeneratorForm() {
       const requestBody = {
         filename: selectedLesson.filename,
         gameTypes: Array.from(selectedGameTypes),
-        count: gameCount,
         mode: 'save'
       };
-
-      console.log('Request body:', requestBody);
 
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
@@ -202,24 +174,12 @@ export default function GameGeneratorForm() {
 
       const data = await response.json();
 
-      console.log('Response status:', response.status);
-      console.log('Response data:', data);
-
       if (!response.ok) {
-        console.error('API Error Response:', {
-          status: response.status,
-          statusText: response.statusText,
-          data
-        });
-        console.error('Request sent:', requestBody);
-        
-        // Build detailed error message
         let errorMsg = data.error || 'Save failed';
         if (data.details) errorMsg += `\n\nDetails: ${data.details}`;
         if (data.errorType) errorMsg += `\n\nError Type: ${data.errorType}`;
         if (data.stack) errorMsg += `\n\nStack:\n${data.stack}`;
-        
-        // Store debug info separately
+
         const debugData = {
           request: requestBody,
           response: {
@@ -229,17 +189,15 @@ export default function GameGeneratorForm() {
           }
         };
         setDebugInfo(JSON.stringify(debugData, null, 2));
-        
+
         throw new Error(errorMsg);
       }
 
       setStatus('success');
       setSuccessMessage(`Successfully saved ${data.gamesAdded} game${data.gamesAdded > 1 ? 's' : ''} to ${data.lessonPath}`);
-      
-      // Reload lessons to update microbreak counts
+
       fetchLessons();
-      
-      // Clear preview after successful save
+
       setTimeout(() => {
         setGeneratedGames([]);
         setStatus('idle');
@@ -274,13 +232,12 @@ export default function GameGeneratorForm() {
 
   return (
     <div className="space-y-6">
-      {/* Lesson Selection */}
       <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-slate-700">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>📚</span>
+          <span>??</span>
           Lesson Selection
         </h2>
-        
+
         {loadingLessons ? (
           <div className="flex items-center justify-center py-8">
             <Loader2 className="w-6 h-6 animate-spin text-indigo-600 dark:text-indigo-400" />
@@ -299,7 +256,7 @@ export default function GameGeneratorForm() {
           <div className="mt-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border border-indigo-200 dark:border-indigo-800">
             <h3 className="font-semibold text-indigo-900 dark:text-indigo-100 mb-2">{selectedLesson.title}</h3>
             <p className="text-sm text-indigo-700 dark:text-indigo-300 mb-3">{selectedLesson.description}</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
               <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
                 <div className="text-gray-600 dark:text-slate-400">Total Blocks</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.totalBlocks}</div>
@@ -316,23 +273,25 @@ export default function GameGeneratorForm() {
                 <div className="text-gray-600 dark:text-slate-400">Existing Games</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.microbreakCount}</div>
               </div>
+              <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
+                <div className="text-gray-600 dark:text-slate-400">Microbreak Slots</div>
+                <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.availableMicrobreakSlots}</div>
+              </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* Game Configuration */}
       <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-slate-700">
         <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>🎮</span>
+          <span>??</span>
           Game Configuration
         </h2>
 
         <div className="space-y-4">
-          {/* Game Type Selection */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300 mb-3">
-              Select Game Types
+              Select Game Types (Whitelist Pool)
             </label>
             <div className="space-y-2">
               {gameTypeOptions.map(option => (
@@ -360,39 +319,24 @@ export default function GameGeneratorForm() {
             </div>
           </div>
 
-          {/* Game Count */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300 mb-2">
-              How many of EACH game type?
-            </label>
-            <select
-              value={gameCount}
-              onChange={(e) => setGameCount(Number(e.target.value))}
-              disabled={isGenerating}
-              className="w-full px-4 py-2 rounded-lg border-2 border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:border-indigo-500 dark:focus:border-indigo-400 focus:outline-none disabled:opacity-50"
-            >
-              {[1, 2].map(n => (
-                <option key={n} value={n}>
-                  {n} game{n > 1 ? 's' : ''} of each type
-                </option>
-              ))}
-            </select>
-            {selectedGameTypes.size > 0 && (
-              <p className="mt-2 text-sm text-gray-600 dark:text-slate-400">
-                Will generate <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                  {gameCount * selectedGameTypes.size} total game{gameCount * selectedGameTypes.size > 1 ? 's' : ''}
-                </span> ({gameCount} × {selectedGameTypes.size} type{selectedGameTypes.size > 1 ? 's' : ''})
-              </p>
-            )}
+          <div className="rounded-lg border border-indigo-200 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 p-4 text-sm">
+            <p className="text-gray-700 dark:text-slate-300">
+              This lesson has <span className="font-semibold text-indigo-700 dark:text-indigo-300">{estimatedGenerationCount}</span> microbreak slot{estimatedGenerationCount !== 1 ? 's' : ''}.
+            </p>
+            <p className="text-gray-700 dark:text-slate-300 mt-1">
+              Will generate <span className="font-semibold text-indigo-700 dark:text-indigo-300">{estimatedGenerationCount}</span> game{estimatedGenerationCount !== 1 ? 's' : ''}.
+            </p>
+            <p className="text-gray-600 dark:text-slate-400 mt-2">
+              Selected game types are a whitelist pool. The planner chooses eligible types per slot; it does not guarantee one game per type.
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Action Buttons */}
       <div className="flex gap-3">
         <button
           onClick={handleGeneratePreview}
-          disabled={!selectedLessonFilename || selectedGameTypes.size === 0 || isGenerating}
+          disabled={!selectedLessonFilename || selectedGameTypes.size === 0 || estimatedGenerationCount === 0 || isGenerating}
           className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
         >
           {status === 'generating' ? (
@@ -429,7 +373,6 @@ export default function GameGeneratorForm() {
         )}
       </div>
 
-      {/* Messages */}
       {errorMessage && (
         <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-4 flex items-start gap-3">
           <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
@@ -441,7 +384,7 @@ export default function GameGeneratorForm() {
             {debugInfo && (
               <details className="mt-3">
                 <summary className="cursor-pointer text-sm font-semibold text-red-700 dark:text-red-300 hover:text-red-900 dark:hover:text-red-100">
-                  🐛 Debug Information (click to expand)
+                  Debug Information (click to expand)
                 </summary>
                 <pre className="mt-2 text-xs bg-red-100 dark:bg-red-950 p-3 rounded overflow-x-auto border border-red-300 dark:border-red-800">
 {debugInfo}
@@ -468,14 +411,13 @@ export default function GameGeneratorForm() {
           <div>
             <div className="font-semibold text-amber-900 dark:text-amber-100">Limited Content</div>
             <div className="text-sm text-amber-800 dark:text-amber-200">
-              This lesson has only {selectedLesson.vocabTermCount} vocab term{selectedLesson.vocabTermCount !== 1 ? 's' : ''}. 
+              This lesson has only {selectedLesson.vocabTermCount} vocab term{selectedLesson.vocabTermCount !== 1 ? 's' : ''}.
               Game generation may produce limited or repetitive content. Consider lessons with more vocabulary for better results.
             </div>
           </div>
         </div>
       )}
 
-      {/* Preview Section */}
       {hasPreview && generatedGames.length > 0 && (
         <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-slate-700">
           <GamePreview games={generatedGames} />

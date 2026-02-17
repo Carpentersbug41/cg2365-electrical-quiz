@@ -1862,6 +1862,7 @@ export async function createPlannerRun(input: {
 }
 
 export async function getPlannerRunSummary(runId: string): Promise<ModuleRunSummary> {
+  await reconcileRunLessonsFromDisk(runId);
   const summary = await getRunSummary(runId);
   if (!summary) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Run not found: ${runId}`, 404);
@@ -2367,6 +2368,18 @@ async function runBlueprintGenerationQueue(
         });
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown generation failure';
+        const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
+        if (recoveredLessonFile) {
+          await upsertRunLesson({
+            runId,
+            blueprintId: blueprint.id,
+            lessonId: blueprint.id,
+            status: 'success',
+            error: null,
+            lessonJson: buildRecoveredLessonPayload(blueprint.id, recoveredLessonFile),
+          });
+          continue;
+        }
         await upsertRunLesson({
           runId,
           blueprintId: blueprint.id,
@@ -2394,6 +2407,73 @@ function readGeneratedLessonJson(lessonFile?: string): unknown | null {
     return JSON.parse(raw);
   } catch {
     return null;
+  }
+}
+
+function findGeneratedLessonFilenameForBlueprint(blueprintId: string): string | null {
+  try {
+    const normalizedBlueprintId = blueprintId.trim().toLowerCase();
+    if (!normalizedBlueprintId) return null;
+    const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
+    if (!fs.existsSync(lessonsDir)) return null;
+
+    const candidates = fs
+      .readdirSync(lessonsDir)
+      .filter((file) => file.toLowerCase().endsWith('.json'))
+      .filter((file) => {
+        const lower = file.toLowerCase();
+        if (!lower.startsWith(`${normalizedBlueprintId}-`) && lower !== `${normalizedBlueprintId}.json`) {
+          return false;
+        }
+        if (lower.endsWith('-original.json') || lower.endsWith('-rejected-patches.json')) {
+          return false;
+        }
+        return true;
+      });
+    if (candidates.length === 0) return null;
+
+    candidates.sort((a, b) => {
+      const aPath = path.join(lessonsDir, a);
+      const bPath = path.join(lessonsDir, b);
+      const aMtime = fs.statSync(aPath).mtimeMs;
+      const bMtime = fs.statSync(bPath).mtimeMs;
+      return bMtime - aMtime;
+    });
+    return candidates[0];
+  } catch {
+    return null;
+  }
+}
+
+function buildRecoveredLessonPayload(blueprintId: string, lessonFile: string): Record<string, unknown> {
+  return {
+    lessonId: blueprintId,
+    lessonFile,
+    generatedAt: new Date().toISOString(),
+    recoveredFromDisk: true,
+    generatorResponse: {
+      success: true,
+      lessonFile,
+      warnings: ['Recovered existing lesson file after generator request failure.'],
+    },
+    generatedLesson: readGeneratedLessonJson(lessonFile),
+  };
+}
+
+async function reconcileRunLessonsFromDisk(runId: string): Promise<void> {
+  const lessonRows = await listRunLessons(runId);
+  for (const row of lessonRows) {
+    if (row.status === 'success') continue;
+    const lessonFile = findGeneratedLessonFilenameForBlueprint(row.blueprint_id);
+    if (!lessonFile) continue;
+    await upsertRunLesson({
+      runId,
+      blueprintId: row.blueprint_id,
+      lessonId: row.blueprint_id,
+      status: 'success',
+      error: null,
+      lessonJson: buildRecoveredLessonPayload(row.blueprint_id, lessonFile),
+    });
   }
 }
 
@@ -2457,6 +2537,25 @@ export async function runM6GenerateLesson(
     return { lessonId: result.lessonId, status: 'generated', error: null };
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unknown generation failure';
+    const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
+    if (recoveredLessonFile) {
+      await upsertRunLesson({
+        runId,
+        blueprintId: blueprint.id,
+        lessonId: blueprint.id,
+        status: 'success',
+        error: null,
+        lessonJson: buildRecoveredLessonPayload(blueprint.id, recoveredLessonFile),
+      });
+      const lessons = await listRunLessons(runId);
+      const summary: GenerateSummary = {
+        generated: lessons.filter((row) => row.status === 'success').length,
+        failed: lessons.filter((row) => row.status === 'failed').length,
+        lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
+      };
+      await upsertArtifactAndStatus(runId, 'M6', summary);
+      return { lessonId: blueprint.id, status: 'generated', error: null };
+    }
     await upsertRunLesson({
       runId,
       blueprintId: blueprint.id,
