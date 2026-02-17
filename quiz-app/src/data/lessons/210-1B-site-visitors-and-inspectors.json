@@ -1,14 +1,14 @@
 {
   "id": "210-1B",
-  "title": "210.1B — Construction Team Roles and Visitors",
-  "description": "Learn the roles of the Site Management Team, reporting lines, and the distinction between statutory and non-statutory visitors.",
+  "title": "210.1B — Site Visitors and Inspectors",
+  "description": "Learn about the key regulatory roles that visit construction sites, including Building Control, HSE, and Utility Inspectors.",
   "layout": "linear-flow",
   "unit": "Unit 210",
-  "topic": "Construction team members and roles",
+  "topic": "Site Visitors and Inspectors",
   "learningOutcomes": [
-    "Identify key roles of the site management team including Contracts Manager and Site Agent.",
-    "Identify key roles of individuals reporting to site management such as the Quantity Surveyor and Foreman.",
-    "Identify key roles of site visitors and distinguish statutory inspectors from professional visitors."
+    "Identify the key types of regulatory inspectors and site visitors encountered in a technical environment.",
+    "Describe the specific purpose and area of authority for Building Control, Water, HSE, and Electrical inspectors.",
+    "Explain why different site visitors require specific access and information to fulfill their roles."
   ],
   "prerequisites": [
     "210-1A"
@@ -21,16 +21,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify key roles of the site management team including Contracts Manager and Site Agent.",
+            "text": "Identify the key types of regulatory inspectors and site visitors encountered in a technical environment.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Identify key roles of individuals reporting to site management such as the Quantity Surveyor and Foreman.",
+            "text": "Describe the specific purpose and area of authority for Building Control, Water, HSE, and Electrical inspectors.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Identify key roles of site visitors and distinguish statutory inspectors from professional visitors.",
-            "bloomLevel": "apply"
+            "text": "Explain why different site visitors require specific access and information to fulfill their roles.",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -42,24 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Contracts Manager",
-            "definition": "A senior manager responsible for overseeing multiple construction projects and site teams simultaneously, ensuring they stay within budget and contract terms."
-          },
-          {
-            "term": "Site Agent",
-            "definition": "The person responsible for the day-to-day running of a specific site, managing safety, schedules, and the workforce (also called Site Manager or Project Manager)."
-          },
-          {
-            "term": "Quantity Surveyor (QS)",
-            "definition": "A financial professional who manages project costs, contracts, and payments to ensure the project remains profitable and within budget."
-          },
-          {
-            "term": "Clerk of Works",
-            "definition": "An independent inspector appointed by the client to monitor the quality of work and ensure it matches the specifications and drawings."
-          },
-          {
             "term": "Statutory Inspector",
-            "definition": "An official with legal authority (e.g., from the HSE or Building Control) to enter a site to enforce laws and regulations."
+            "definition": "An official with legal power to enforce national laws on a site (e.g., Building Control). They do not work for the client."
+          },
+          {
+            "term": "Building Control",
+            "definition": "A government body that inspects buildings to ensure they are structurally safe, fire-resistant, and energy efficient."
+          },
+          {
+            "term": "HSE (Health and Safety Executive)",
+            "definition": "The national authority that enforces safety laws to protect people from accidents and ill health at work."
+          },
+          {
+            "term": "Utility Inspector",
+            "definition": "A representative from a water, gas, or electric company who checks that new connections to their public network are safe."
+          },
+          {
+            "term": "Compliance",
+            "definition": "The act of following all rules, regulations, and standards. If work is 'compliant', it is legal and safe."
           }
         ]
       }
@@ -69,8 +69,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "The Site Management Team and Reporting Lines",
-        "content": "### In this lesson\nYou will learn the hierarchy of a construction site, from the managers who plan the work to the supervisors who oversee the gangs. You will also learn who handles the money and who checks the quality.\n\n*   Differentiate between a **Contracts Manager** and a **Site Agent**.\n*   Understand the role of the **Quantity Surveyor (QS)**.\n*   Identify the supervision duties of a **Foreman**.\n\n**What this is**\nA construction site relies on a clear Chain of Command to function safely and efficiently. This hierarchy ensures everyone knows who to report to.\n\n**The Hierarchy (Visual Anchor)**\n1.  **Contracts Manager (Strategic/Off-site):** Sits at the top of the project view. They manage *multiple* sites, deal with the client's contract, and visit occasionally to check progress.\n2.  **Site Agent / Site Manager (Operational/On-site):** The \"Captain of the Ship.\" They are on *one* specific site every day, responsible for safety, logistics, and ensuring the work gets done on time.\n3.  **Foreman / Ganger (Supervisory/Task-based):** Reports to the Site Agent. They supervise a specific trade group (or \"gang\") of operatives, such as the bricklayers or electricians.\n\n**Specialist Reporting Roles**\n*   **Quantity Surveyor (QS):** Focusing on finance. They calculate material costs, pay subcontractors, and manage the budget. They report on financial health.\n*   **Clerk of Works:** Focusing on quality. Uniquely, they often report directly to the **Client** (not the builder), acting as the client's \"eyes\" to ensure the building is built correctly to the drawings.\n\n**Why it matters**\nKnowing the difference between these roles prevents confusion. If you have a query about your pay or a material order, you might speak to the **QS**. If you have a safety concern about a trench, you speak to the **Foreman** or **Site Agent**. If you see someone inspecting the quality of the brickwork who isn't part of your team, it is likely the **Clerk of Works** protecting the client's interest.\n\n**Micro-scenario:** \nA project is running late. The **Foreman** pushes the gang to work faster. The **Site Agent** reorganizes the schedule to recover lost time. The **Contracts Manager** visits to explain the delay to the client. Meanwhile, the **Quantity Surveyor** calculates the cost of the overtime wages.\n\n**Key facts**\n*   **Contracts Manager** = Multiple sites, strategic view.\n*   **Site Agent** = Single site, day-to-day control.\n*   **Foreman** = Direct supervision of workers.\n*   **Clerk of Works** = Quality inspection for the Client.\n\n**Common mistakes**\nLearners often confuse the **Clerk of Works** with a **Site Manager**. Remember: The Site Manager runs the build; the Clerk of Works *checks* the build for the client."
+        "title": "Statutory and Utility Inspectors",
+        "content": "### The Referee on the Site\nImagine a football match. The **Site Manager** is like the team coach—they direct the players (the construction team) and organize the game plan. A **Statutory Inspector** is like the **Referee**. They don't play for either team, and they don't care who wins; their only job is to ensure the rules (laws) are followed. If a rule is broken, they have the power to stop the game.\n\n### 1. Statutory Inspectors (The Law Enforcers)\nA **Statutory Inspector** is someone with legal authority to enter a site and check work against national laws. They are independent—they do not work for the site owner or the contractor.\n\n*   **Building Control:** This is the most common statutory body. They focus on the **building itself**. They check things like foundations, fire exits, and insulation to ensure the building is safe to live in. They must visit at key stages, such as \"first-fix\" (before walls are closed up), to see pipes and wires that will later be hidden.\n\n### 2. Utility Inspectors (The Network Guardians)\nConstruction sites need to connect to public networks for water, electricity, and gas. A **Utility Inspector** works for the service provider (like the Water Board or Electric Company).\n\n*   **Focus:** They check the **connection point** between the private site and the public street.\n*   **Why?** If you install a dirty pipe, it could contaminate the whole town's water supply. The Utility Inspector ensures your work doesn't damage their public network.\n\n### Interaction with the Team\nWhile these inspectors visit the site, they usually report their findings to the **Site Management Team** (AC1.1). However, they inspect the work done by the **subcontractors and tradespeople** (AC1.2). For example, a Building Control officer will look at a bricklayer's wall, but if it is wrong, they will tell the Site Manager to get it fixed."
       }
     },
     {
@@ -78,60 +78,64 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Management Roles",
+        "title": "Check Your Understanding: Statutory and Utility Inspectors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C1-L1-A",
-            "questionText": "Which manager is typically responsible for overseeing multiple projects and site managers simultaneously?",
+            "questionText": "Which type of visitor has the legal power to enforce national regulations, similar to a referee in a game?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Contracts Manager",
-              "Contract Manager"
+              "Statutory Inspector",
+              "Statutory Inspectors",
+              "A Statutory Inspector"
             ],
-            "hint": "This role is strategic and off-site, dealing with the business side of several projects."
+            "hint": "This person's duty is to the law, not the project owner."
           },
           {
             "id": "210-1B-C1-L1-B",
-            "questionText": "Who is the specific financial professional responsible for managing project costs and contracts?",
+            "questionText": "What does Building Control primarily check during a site visit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Quantity Surveyor",
-              "QS",
-              "The Quantity Surveyor"
+              "safety and energy standards",
+              "structural safety",
+              "minimum standards",
+              "compliance with building regulations"
             ],
-            "hint": "They count materials and manage the money."
+            "hint": "They focus on the physical building structure and safety systems like fire exits."
           },
           {
             "id": "210-1B-C1-L1-C",
-            "questionText": "Which role acts as the independent quality inspector reporting directly to the client?",
+            "questionText": "What specific part of an installation is a Utility Inspector most concerned with?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Clerk of Works",
-              "The Clerk of Works"
+              "connection point",
+              "connection to public network",
+              "public network connection",
+              "point of connection"
             ],
-            "hint": "They are the 'eyes' of the client, checking work against drawings."
+            "hint": "They want to make sure the private site does not damage the public supply."
           },
           {
             "id": "210-1B-C1-L2",
-            "questionText": "Explain the difference in responsibility between a Contracts Manager and a Site Agent. How does their scope of control differ?",
+            "questionText": "Why is it important for a Statutory Inspector to visit a site during the 'first-fix' stage?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Contracts Manager oversees multiple sites/projects.",
-              "Site Agent manages a single site day-to-day.",
-              "Contracts Manager is strategic/client-facing; Site Agent is operational/safety-facing.",
-              "Scope: Contracts Manager = Business/Portfolio; Site Agent = Site Operations."
+              "First-fix involves internal work like pipes and cables",
+              "Once walls are plastered, this work is hidden",
+              "Inspectors cannot verify safety if they cannot see the work",
+              "Visiting early prevents having to tear down walls later"
             ],
             "expectedAnswer": [
-              "The Contracts Manager is responsible for multiple projects at a strategic level, handling client contracts and budgets across several sites. In contrast, the Site Agent is responsible for the day-to-day operations, safety, and logistics of one specific site. While the Contracts Manager visits occasionally, the Site Agent is permanently on-site to direct the work.",
-              "A Contracts Manager oversees the business aspects of many sites, whereas a Site Agent controls the practical work on a single site."
+              "Inspectors must visit during the first-fix stage because this is when internal components like pipes, wires, and structural beams are still visible. Once the walls and floors are finished, this work is hidden. If they don't check it now, they cannot guarantee it is safe without tearing the building apart later.",
+              "They need to see the work before it is covered up. First-fix is when the core systems are installed but not yet hidden by plaster or flooring, allowing the inspector to verify they meet regulations."
             ],
-            "hint": "Think about 'Many Sites vs. One Site' and 'Strategy vs. Daily Operations'."
+            "hint": "Think about what happens to pipes and wires after the walls are plastered and painted."
           }
         ]
       }
@@ -141,8 +145,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Site Visitors: Statutory and Non-Statutory",
-        "content": "### In this lesson\nYou will learn to categorize people who visit the site but are not part of the permanent team. We distinguish them by their **power**: some have the legal right to stop work, while others are guests.\n\n*   Identify **Statutory Inspectors** (HSE, Building Control).\n*   Identify **Professional Visitors** (Architects, Engineers).\n*   Understand the authority differences.\n\n**What this is**\nNot everyone on site reports to the Site Agent. Visitors fall into two main groups based on their authority.\n\n**1. Statutory Inspectors (The Enforcers)**\nThese visitors represent a **Regulatory Body** and have legal powers defined by UK law.\n*   **Health and Safety Executive (HSE):** Focuses on *people's safety*. They can enter any workplace at any reasonable time without an appointment. If they see danger, they can issue a **Prohibition Notice** to stop work immediately.\n*   **Building Control:** Focuses on the *building's compliance*. They check structures, fire safety, and drainage against Building Regulations. They usually visit at specific stages (e.g., before foundations are poured).\n\n**2. Non-Statutory Visitors (The Guests)**\nThese visitors are there for business reasons but do not have legal enforcement powers.\n*   **Professional Visitors:** Architects, Structural Engineers, Client Representatives. They inspect progress or resolve technical queries. They must follow site rules and be inducted.\n*   **Transient Visitors:** Delivery drivers, couriers. They are on site briefly and usually require an escort or restriction to specific zones.\n\n**Why it matters**\nSite management must treat these groups differently. An **HSE Inspector** has the right to demand documents and interview staff immediately. An **Architect** is an invited guest who must wait for an induction and permission to enter the work zone. Confusing the two can lead to legal trouble or safety breaches.\n\n**Micro-scenario:** \nTwo people arrive at the gate. \n*   Person A shows a warrant card from the HSE. The Site Agent must grant them entry immediately to inspect a scaffold.\n*   Person B is the Client wishing to see the new kitchen. The Site Agent asks them to wait for a safety briefing and PPE before entering.\n\n**Key distinction**\n*   **Statutory:** Legal power, Right of Entry, Enforcement (HSE, Building Control).\n*   **Non-Statutory:** Invited, Contractual, Must follow site rules (Architect, Client, Delivery)."
+        "title": "Safety and Technical Inspectors",
+        "content": "### Protecting People and Systems\nWhile Building Control looks at the *building*, other inspectors look at the *people* and the *specialized systems*.\n\n### 1. The HSE (Health and Safety Executive)\nThe **HSE** is a government agency focused entirely on **workplace safety**. They don't check if the wall is straight; they check if the bricklayer is safe while building it.\n\n*   **Power:** The HSE has the legal right to enter **any** workplace at **any reasonable time** without an appointment. They do not need permission.\n*   **Action:** If they see something dangerous (like a deep trench with no guardrail), they can issue a **Prohibition Notice**. This is a legal order that stops the work immediately until it is fixed.\n*   **Documents:** They will ask to see **Risk Assessments** and training records to prove workers know how to work safely.\n\n### 2. Technical Service Inspectors (Specialists)\nThese are experts in one specific trade, such as **Electrical** or **Gas**.\n\n*   **Role:** They verify complex technical details that general inspectors might miss. For example, an Electrical Inspector checks **earthing** and **circuit protection**.\n*   **Why?** A wiring fault might not cause a problem today, but could cause a fire in 5 years. These inspectors use test meters to find invisible faults.\n*   **Documents:** They need to see **test certificates** and **design drawings** to confirm the system matches the plan.\n\n### Comparison\n*   **HSE Inspector:** Looks at the *process* (Is the worker wearing a helmet? Is the ladder safe?).\n*   **Technical Inspector:** Looks at the *product* (Is the wire thick enough? Is the gas pressure correct?)."
       }
     },
     {
@@ -150,61 +154,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Site Visitors",
+        "title": "Check Your Understanding: Safety and Technical Inspectors",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1B-C2-L1-A",
-            "questionText": "Which organization has the legal power to enter a site without an appointment to inspect safety?",
+            "questionText": "Which organization has the power to enter a site without an appointment to check for safety hazards?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Health and Safety Executive",
               "HSE",
-              "the HSE"
+              "Health and Safety Executive",
+              "The HSE"
             ],
-            "hint": "They are the national regulator for workplace health and safety."
+            "hint": "They protect people at work and can visit any time."
           },
           {
             "id": "210-1B-C2-L1-B",
-            "questionText": "What is the primary focus of a Building Control officer?",
+            "questionText": "What is the name of the legal order an HSE inspector can issue to stop dangerous work immediately?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "building regulations",
-              "compliance with building regulations",
-              "structural compliance"
+              "Prohibition Notice",
+              "Prohibition order",
+              "Stop notice"
             ],
-            "hint": "They check that the physical building meets national standards (e.g., fire safety, foundations)."
+            "hint": "It prohibits (bans) the activity from continuing."
           },
           {
             "id": "210-1B-C2-L1-C",
-            "questionText": "Does a professional visitor, like an Architect, have the legal power to issue a Prohibition Notice to stop work?",
+            "questionText": "What does an Electrical Inspector typically check that is not visible to the naked eye?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "No",
-              "no"
+              "earthing",
+              "circuit protection",
+              "insulation resistance",
+              "technical safety features"
             ],
-            "hint": "Only statutory inspectors representing a regulatory body have this specific legal power."
+            "hint": "Think about the safety features inside the wires and consumer unit."
           },
           {
             "id": "210-1B-C2-L2",
-            "questionText": "Compare the authority of an HSE Inspector with that of a Client visiting the site. Who has the legal right of entry and why?",
+            "questionText": "Explain the difference between what an HSE inspector looks for versus what a Technical Inspector looks for.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "HSE Inspector has statutory (legal) right of entry.",
-              "Client is a non-statutory visitor (guest/owner) and must follow site access rules.",
-              "HSE authority comes from legislation (Health & Safety at Work Act).",
-              "Client authority is contractual/ownership but subject to safety rules."
+              "HSE looks at the safety of the working process (people, PPE, hazards)",
+              "Technical Inspectors look at the quality/safety of the installed system (wires, pipes)",
+              "HSE prevents immediate accidents; Technical prevents future system failures"
             ],
             "expectedAnswer": [
-              "The HSE Inspector has a statutory legal right to enter the site at any reasonable time to enforce safety laws. The Client, although they own the project, is considered a non-statutory visitor regarding safety and must follow site access rules and inductions. The HSE can enforce laws; the Client cannot.",
-              "An HSE Inspector has legal authority from the government to enter and inspect. A Client is a guest on the working site and does not have statutory enforcement powers."
+              "The HSE inspector focuses on the safety of the people and the process, checking things like PPE, scaffolding, and immediate hazards. A Technical Inspector focuses on the specialized system being installed, checking things like wiring or gas pressure to ensure the equipment works safely.",
+              "HSE checks if the workers are safe while doing the job. Technical inspectors check if the job itself (the installation) meets technical standards."
             ],
-            "hint": "One has a badge from the government; the other has a contract with the builder."
+            "hint": "One protects the worker during the job; the other protects the building/user after the job."
           }
         ]
       }
@@ -218,53 +223,56 @@
         "questions": [
           {
             "id": "210-1B-P1",
-            "questionText": "Who is the on-site manager responsible for the day-to-day running of the project, including safety and logistics?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "Site Agent",
-              "Site Manager",
-              "Project Manager"
-            ],
-            "hint": "They are the 'Captain' of the site, present every day."
-          },
-          {
-            "id": "210-1B-P2",
-            "questionText": "A site requires 1 Foreman for every 8 operatives to ensure safe supervision. If there are 32 operatives working on the site, how many Foremen are required?",
-            "answerType": "numeric",
-            "expectedAnswer": [
-              "4"
-            ],
-            "hint": "Divide the total operatives by the number allowed per foreman."
-          },
-          {
-            "id": "210-1B-P3",
-            "questionText": "Which specific statutory inspector would you call to inspect the depth and reinforcement of a foundation trench before concrete is poured?",
+            "questionText": "Which regulatory body is responsible for ensuring that the physical structure of a building meets national regulations (like fire safety and insulation)?",
             "answerType": "short-text",
             "expectedAnswer": [
               "Building Control",
-              "Building Control Officer",
-              "Building Inspector"
+              "Building Control Department",
+              "Local Building Control"
             ],
-            "hint": "They check compliance with building regulations and structural standards."
+            "hint": "This is the statutory body for building standards."
+          },
+          {
+            "id": "210-1B-P2",
+            "questionText": "Why must a Statutory Inspector be invited to see drainage pipes *before* the trench is filled with soil?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "work is hidden",
+              "cannot see the pipes",
+              "verify compliance before covering",
+              "access is restricted"
+            ],
+            "hint": "Once the soil is back, the inspector cannot check if the pipes are laid correctly."
+          },
+          {
+            "id": "210-1B-P3",
+            "questionText": "A Site Manager is dealing with three visitors: 1) A Water Board official checking the main pipe connection, 2) An HSE officer checking ladder safety, 3) A client architect checking paint colors. How many of these are 'Utility Inspectors'?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1"
+            ],
+            "hint": "Only the one representing a public service provider (water/gas/electric) counts."
           },
           {
             "id": "210-1B-P4",
-            "questionText": "Which financial role tracks material costs and manages payments to subcontractors?",
+            "questionText": "If an HSE inspector sees a worker on a roof without a harness, they can issue a 'Prohibition Notice'. What does this notice do?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Quantity Surveyor",
-              "QS"
+              "Stops work",
+              "Stops the activity",
+              "Halts work immediately",
+              "Bans the work"
             ],
-            "hint": "This person deals with the budget and contracts."
+            "hint": "It forces the dangerous activity to cease immediately."
           },
           {
             "id": "210-1B-P5",
-            "questionText": "Which independent role inspects the quality of work on behalf of the client to ensure it meets specifications?",
-            "answerType": "short-text",
+            "questionText": "How many of the following documents are relevant for an Electrical Inspector checking a new system: 1) Circuit diagrams, 2) Test results, 3) Lunch menu, 4) Earthing records?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Clerk of Works"
+              "3"
             ],
-            "hint": "They are the client's eyes on site, checking quality."
+            "hint": "Count the technical documents related to the electrical installation."
           }
         ]
       }
@@ -280,38 +288,37 @@
         "questions": [
           {
             "id": "210-1B-INT-1",
-            "questionText": "A project is behind schedule and over budget. An accident occurs involving a fall from height. Explain the roles of the Site Agent, Quantity Surveyor, and HSE Inspector in this scenario. Who deals with the schedule, who deals with the costs, and who investigates the accident? (2-3 sentences)",
+            "questionText": "Explain why a Site Manager must cooperate with both Building Control AND the HSE, even though they look at different things. What would happen if the site satisfied Building Control but ignored the HSE?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Site Agent manages the schedule and site safety response.",
-              "Quantity Surveyor manages the costs/budget implications.",
-              "HSE Inspector investigates the accident and legal compliance.",
-              "Clear distinction between operational, financial, and regulatory roles."
+              "Building Control ensures the final building is legal/safe",
+              "HSE ensures the workers are safe during construction",
+              "Ignoring HSE could lead to accidents, fines, or site closure (Prohibition Notice)",
+              "A compliant building is useless if the site is shut down for safety breaches"
             ],
             "expectedAnswer": [
-              "The Site Agent is responsible for managing the schedule recovery and the immediate safety response on site. The Quantity Surveyor will assess the financial impact of the delay and the costs. The HSE Inspector will enter the site to investigate the cause of the accident and ensure safety laws were followed.",
-              "The Site Agent handles the day-to-day operations and schedule. The QS handles the budget and cost overruns. The HSE Inspector investigates the legal safety breach."
+              "The Site Manager must cooperate with both because they cover different legal requirements. Building Control ensures the final building is safe to occupy, while the HSE ensures the construction process is safe for workers. If the manager ignored the HSE, the site could be shut down via a Prohibition Notice or face heavy fines for accidents, even if the building structure itself was perfect.",
+              "Cooperation with both is mandatory. Building Control certifies the product, but HSE regulates the process. Ignoring the HSE puts workers at risk and invites legal action that could stop the project entirely, regardless of building quality."
             ],
-            "hint": "Match the role to the problem: Schedule -> Manager, Cost -> QS, Accident -> HSE."
+            "hint": "One checks the destination (the finished building), the other checks the journey (the work process)."
           },
           {
             "id": "210-1B-INT-2",
-            "questionText": "Explain the chain of command and authority on a site involving a Contracts Manager, Site Agent, and Statutory Inspector. How does the Statutory Inspector's authority differ from the Contracts Manager's authority over the Site Agent? (3-4 sentences)",
+            "questionText": "Describe the complete 'Compliance' picture for a new bathroom installation. How do the Plumber (Trade), Site Manager (Management), and Water Inspector (Visitor) work together to ensure the job is legal?",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Contracts Manager has employment/contractual authority over Site Agent.",
-              "Statutory Inspector has legal/regulatory authority over the entire site.",
-              "Inspector can override managers on safety issues.",
-              "Chain of command: Contracts Manager -> Site Agent -> Foreman.",
-              "External authority: Inspector -> Site."
+              "Plumber (Trade/AC1.2): Installs the work to standard",
+              "Site Manager (AC1.1): Coordinates the work and calls the inspector",
+              "Water Inspector (Visitor/AC1.3): Verifies the connection to the public network",
+              "All three must align for the work to be signed off as compliant"
             ],
             "expectedAnswer": [
-              "The Contracts Manager has employment authority over the Site Agent, directing them on business and strategic goals. However, the Statutory Inspector holds legal authority that supersedes both managers regarding safety or compliance; they can stop work even if the managers want to continue. While the Site Agent reports to the Contracts Manager for the job, they must obey the Statutory Inspector for the law.",
-              "The Contracts Manager directs the Site Agent based on the company's business needs. The Statutory Inspector directs the site based on national laws. The Inspector's authority is superior in safety matters, meaning they can shut down the site regardless of the Contracts Manager's instructions."
+              "The Plumber (Trade) installs the bathroom pipes according to technical standards. The Site Manager (Management) oversees the schedule and calls the Water Inspector when the work is ready to be checked. The Water Inspector (Visitor) then visits to verify the connection to the public network is safe. Compliance is achieved when the physical work (Plumber), the coordination (Manager), and the external verification (Inspector) all align to sign off the project.",
+              "1. The Plumber installs the system.\n2. The Site Manager checks it internally and invites the Inspector.\n3. The Water Inspector verifies it meets public network rules.\nTogether, they ensure the installation is safe, legal, and ready for use."
             ],
-            "hint": "One gives orders because they are the boss; the other gives orders because they enforce the law."
+            "hint": "Think about the chain of responsibility: Do the work -> Check the work -> Certify the work."
           }
         ]
       }
@@ -325,45 +332,44 @@
         "questions": [
           {
             "id": "210-1B-SR-1",
-            "questionText": "What is the general term for the location where construction work takes place?",
+            "questionText": "What is the general term for the skilled workers (like electricians or plumbers) who report to the site management?",
             "expectedAnswer": [
-              "site",
-              "construction site",
-              "workplace"
+              "trades",
+              "skilled trades",
+              "operatives",
+              "subcontractors"
             ],
-            "hint": "It is the physical area controlled by the contractor.",
+            "hint": "These are the individuals who physically install the systems.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-2",
-            "questionText": "What do the initials HSE stand for?",
+            "questionText": "Who is the person primarily responsible for running the daily operations on a construction site?",
             "expectedAnswer": [
-              "Health and Safety Executive",
-              "Health & Safety Executive"
+              "site manager",
+              "site agent",
+              "manager"
             ],
-            "hint": "The national regulator for workplace safety.",
+            "hint": "They are the 'captain' of the site team.",
             "answerType": "short-text"
           },
           {
             "id": "210-1B-SR-3",
-            "questionText": "What is the primary document used to track who enters and leaves the site?",
+            "questionText": "What term describes the set of national laws that all construction work must follow?",
             "expectedAnswer": [
-              "site register",
-              "visitor log",
-              "signing in book",
-              "register"
+              "regulations",
+              "building regulations",
+              "legislation"
             ],
-            "hint": "You must sign this when you arrive and leave.",
+            "hint": "These are the rules enforced by statutory inspectors.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check on site basics."
+        "notes": "Review of AC1.1 and AC1.2 concepts before proceeding to advanced communication."
       }
     }
   ],
   "targetAssessmentCriteria": [
-    "AC1.1",
-    "AC1.2",
     "AC1.3"
   ],
   "metadata": {
@@ -371,46 +377,44 @@
     "updated": "2026-02-17",
     "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, DIFFERENTIATION",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
       "unit": "210",
       "learningOutcome": "LO1",
       "coveredAC": [
-        "AC1.1",
-        "AC1.2",
         "AC1.3"
       ],
       "outOfScopeAC": [
-        "AC1.4",
-        "AC1.5"
+        "AC1.1",
+        "AC1.2"
       ]
     },
     "scope": {
-      "inScope": "Roles of the site management team, reporting lines, and categorization of site visitors/inspectors.",
-      "outOfScope": "Detailed inspection procedures, specific building regulations codes, or communication protocols.",
-      "rationale": "The lesson covers the full hierarchy of site personnel (Management, Reporting, Visitors) as required by LO1."
+      "inScope": "Identification of site inspectors (Building Control, HSE, Utility) and their interaction with the site team.",
+      "outOfScope": "Detailed inspection procedures, specific testing values, or completing inspection forms.",
+      "rationale": "The lesson focuses on identifying external regulatory roles (AC1.3) and understanding their authority."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
-      "noCalculations": false,
-      "specificScope": "Focus on the 'who' and 'why' of the roles."
+      "noCalculations": true,
+      "specificScope": "Key roles of inspectors only"
     },
     "misconceptions": [
       {
-        "misconception": "The Site Agent and Contracts Manager are the same role.",
-        "correction": "The Site Agent manages one site daily; the Contracts Manager oversees multiple sites strategically.",
-        "relatedAC": "AC1.1"
+        "misconception": "A Utility Inspector works for the building contractor.",
+        "correction": "A Utility Inspector represents the service provider (e.g., water or energy company) to protect the public network.",
+        "relatedAC": "AC1.3"
       },
       {
-        "misconception": "The Clerk of Works works for the construction company.",
-        "correction": "The Clerk of Works is appointed by the Client to independently check quality.",
-        "relatedAC": "AC1.2"
+        "misconception": "The HSE only visits large construction sites.",
+        "correction": "The HSE has authority over any workplace, regardless of size, to enforce safety standards.",
+        "relatedAC": "AC1.3"
       },
       {
-        "misconception": "All visitors have the same right of entry.",
-        "correction": "Statutory inspectors (HSE) have legal right of entry; professional visitors (Architects) are invited guests.",
+        "misconception": "Building Control and the Site Manager are the same thing.",
+        "correction": "The Site Manager runs the project; Building Control is an external body that checks legal compliance.",
         "relatedAC": "AC1.3"
       }
     ]
