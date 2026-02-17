@@ -1,14 +1,14 @@
 {
   "id": "210-2A",
   "title": "210.2A — Legislation and Workplace Documentation",
-  "description": "Learn about Legislation and Workplace Documentation in Communication 2365 Level 2",
+  "description": "Learn about Legislation, Workplace Documentation, and Customer Information in Building Services",
   "layout": "linear-flow",
   "unit": "Unit 210",
   "topic": "Legislation and Workplace Documentation",
   "learningOutcomes": [
-    "Identify the primary types of statutory legislation and guidance information relevant to the technical workplace.",
-    "Describe the purpose and function of various forms of workplace information and documentation.",
-    "Distinguish between regulations, British Standards, codes of practice, and manufacturer guidance."
+    "Identify the primary types of statutory legislation and guidance information relevant to the workplace.",
+    "Describe the purpose of manufacturer guidance including installation, maintenance, and user instructions.",
+    "Identify the purpose of customer information including job sheets and handover documentation."
   ],
   "prerequisites": [
     "210-1B"
@@ -21,15 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the primary types of statutory legislation and guidance information relevant to the technical workplace.",
+            "text": "Identify the primary types of statutory legislation and guidance information relevant to the workplace.",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the purpose and function of various forms of workplace information and documentation.",
+            "text": "Describe the purpose of manufacturer guidance including installation, maintenance, and user instructions.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Distinguish between regulations, British Standards, codes of practice, and manufacturer guidance.",
+            "text": "Identify the purpose of customer information including job sheets and handover documentation.",
             "bloomLevel": "apply"
           }
         ]
@@ -42,28 +42,28 @@
       "content": {
         "terms": [
           {
-            "term": "Statutory Legislation",
-            "definition": "Acts of Parliament that are mandatory legal requirements, not optional guidelines."
-          },
-          {
-            "term": "Regulation",
-            "definition": "A mandatory rule issued under an Act of Parliament that provides specific legal requirements for technical activities, different from a general Act because of its narrow focus."
+            "term": "Statutory Regulation",
+            "definition": "A mandatory legal requirement established by an Act of Parliament that must be followed by law (e.g., Health & Safety at Work Act)."
           },
           {
             "term": "British Standards",
-            "definition": "Technical specifications that provide a consistent level of quality and safety for products and services, acting as recommendations rather than direct laws unless cited by a Regulation."
-          },
-          {
-            "term": "Approved Code of Practice (ACoP)",
-            "definition": "A document that provides practical guidance on how to meet legal duties, where following it is proof of compliance but alternative methods are permitted if they provide equal safety."
+            "definition": "Published technical specifications that provide quality benchmarks for products and services (e.g., BS 7671)."
           },
           {
             "term": "Manufacturer Guidance",
-            "definition": "Specific technical instructions for the installation and maintenance of equipment that must be followed to ensure safety and preserve warranties."
+            "definition": "Product-specific documentation containing precise data (e.g., torque settings, dimensions) for safe installation and maintenance."
           },
           {
-            "term": "Method Statement",
-            "definition": "A workplace document that outlines the step-by-step procedure for completing a task safely, different from a risk assessment because it focuses on the sequence of work."
+            "term": "Job Sheet",
+            "definition": "A workplace document recording specific work details, time spent, and parts used, often requiring a customer signature."
+          },
+          {
+            "term": "Handover Certificate",
+            "definition": "A formal document given to the customer upon completion, confirming the system is safe and explaining how to use it."
+          },
+          {
+            "term": "Code of Practice",
+            "definition": "A set of practical rules or methods that guide industry professionals on how to comply with legal regulations."
           }
         ]
       }
@@ -73,8 +73,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Statutory Legislation and Regulatory Frameworks",
-        "content": "### In this lesson\nIn this lesson, you will learn to identify the primary types of statutory legislation and guidance information relevant to the technical workplace. This knowledge ensures you understand which rules are mandatory and which provide technical recommendations during your daily activities. \n\n* The difference between mandatory law and technical recommendations.\n* The hierarchy of legal documents from Acts to Standards.\n* How to identify health & safety, data protection, and equality legislation.\n\n**What this is**\nThe technical workplace is governed by a framework of rules designed to protect people, data, and rights. At the top of this hierarchy is **Statutory Legislation**, which consists of Acts of Parliament. These are mandatory legal requirements that everyone must follow; they are not optional guidelines. Underneath these Acts are **Regulations**, which are narrower, mandatory rules issued under an Act that focus on specific technical activities. To support these, we use **British Standards** and **Approved Codes of Practice (ACoP)**.\n\n**Why it matters**\nUnderstanding these frameworks is vital because failing to comply with **Statutory Legislation** or **Regulations** can lead to legal prosecution, fines, or imprisonment. In contrast, **British Standards** provide a consistent level of quality and safety, ensuring that different products or systems can work together effectively across the industry. Knowing the difference allows a professional to prioritize mandatory legal duties while maintaining industry-recognized quality levels.\n\n**Key facts / rules**\n* **Statutory Legislation** includes broad laws like Health & Safety, Data Protection, Equal Opportunities, and Employment.\n* A **Regulation** is a mandatory rule that provides specific legal requirements for technical tasks.\n* **British Standards** are technical specifications that serve as recommendations unless a **Regulation** specifically names them as a requirement.\n* An **Approved Code of Practice (ACoP)** provides practical guidance on how to meet legal duties.\n* Following an **ACoP** is considered proof of compliance in a court of law.\n* Technical workplaces must also adhere to employment legislation to ensure fair treatment and equality.\n\n**How to recognise it**\nTo distinguish between these documents, look at their legal weight and source. You can recognise **Statutory Legislation** because it is an \"Act\" (e.g., the Health and Safety at Work Act). It sets broad duties for employers and employees. You can recognise a **Regulation** because it is a \"Statutory Instrument\" that focuses on a specific hazard or activity. **British Standards** are easily identified by their \"BS\" prefix followed by a number. An **Approved Code of Practice (ACoP)** is typically published by a national regulator to explain how to achieve the safety required by a specific **Regulation**.\n\n*Concrete Anchor:* Think of **Statutory Legislation** as the \"Speed Limit\" signs on a road (mandatory laws). **British Standards** are like the \"Recommended Tire Pressure\" for your vehicle; following them ensures the best performance and safety, but you won't be arrested just for having slightly different tires unless it causes a dangerous failure.\n\n*Micro-scenario:* Consider two documents: Document A says \"All workers must be protected from falls,\" while Document B says \"Guardrails should be 1100mm high.\" Document A is likely part of **Statutory Legislation**, whereas Document B is a technical specification found in a **British Standard**.\n\n**Common mistakes**\nLearners often confuse a **Regulation** with a **British Standard**; a **Regulation** is a mandatory legal requirement, whereas a **British Standard** is a technical recommendation for quality and safety. \n\nMisconceptions (targeted):\n* Misconception: British Standards are always mandatory laws. | Correction: They are recommendations for consistency and safety unless a specific Regulation cites them. | AC: 210.LO2.AC2.2\n* Misconception: You must follow an ACoP exactly to be legal. | Correction: You can use alternative methods if they provide equal or better safety, but the ACoP is the \"gold standard\" for proof of compliance. | AC: 210.LO2.AC2.2\n\n**Key Points**\n* Acts of Parliament are the highest form of **Statutory Legislation**.\n* **Regulations** provide specific, mandatory technical rules.\n* **British Standards** ensure quality and consistency across products.\n* **Approved Codes of Practice (ACoP)** offer a preferred way to comply with the law.\n\n**Quick recap**\nThe technical industry relies on a clear hierarchy of information. Mandatory laws come from **Statutory Legislation** and **Regulations**, while technical guidance and quality benchmarks are provided by **British Standards** and **Approved Codes of Practice (ACoP)**. Knowing which is which helps you stay safe and legally compliant.\n\n### Coming Up Next\nNext, we will look at more specific workplace documents and how **Manufacturer Guidance** dictates the way we install and maintain equipment."
+        "title": "Statutory Legislation and Regulations",
+        "content": "### In this lesson\nIn this lesson, you will learn to identify the mandatory legal frameworks that govern every technical workplace. You will understand how these laws apply to your daily activities and how they differ from non-mandatory guidance.\n\n*   Identify the primary types of **Statutory Regulation**.\n*   Understand the legal requirements of **Data Protection** and **Equal Opportunities**.\n*   Differentiate between mandatory laws and advisory documentation.\n\n**What this is**\nIn a technical environment, a **Statutory Regulation** is a mandatory legal requirement established by an Act of Parliament. Unlike a suggestion, these must be followed by law. They form the foundation of workplace safety and fairness. Common examples include Health and Safety legislation and **Data Protection** laws.\n\n**Why it matters**\nCompliance is non-negotiable. Failure to adhere can lead to fines, prosecution, or business closure. For instance, **Data Protection** (GDPR) ensures that customer names and addresses are not shared without permission. If a technician leaves a customer list on a public counter, they break this law. Similarly, **Equal Opportunities** legislation ensures fair treatment for all staff regardless of personal characteristics.\n\n**Key facts / rules**\n*   A **Statutory Regulation** is legally binding (the law).\n*   **Data Protection** laws govern the privacy of personal information.\n*   **Equal Opportunities** prevents discrimination in the workplace.\n*   Ignorance of a regulation is not a valid legal defense.\n\n**When to choose it**\nYou must refer to **Statutory Regulation** to define the absolute minimum legal requirements. For example, if a site manager asks you to skip a safety check to save time, you must refuse because the regulation (law) overrides their instruction.\n\n**Analogy: The Red Light**\nThink of a **Statutory Regulation** like a red traffic light. It is a mandatory rule you must stop for to prevent harm. In contrast, a yellow advisory sign suggesting \"Max Speed 30\" on a curve is like a **Code of Practice**—it is strong advice for safety, but the red light is the absolute law.\n\n**Micro-Scenario**\nA supervisor stores employee medical records in an unlocked filing cabinet. This violates **Data Protection** regulations because sensitive personal data is accessible to unauthorized people. To fix this, the records must be moved to a secure, locked location to comply with the law."
       }
     },
     {
@@ -82,62 +82,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Statutory Legislation and Regulatory Frameworks",
+        "title": "Check Your Understanding: Statutory Legislation",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-2A-C1-L1-A",
-            "questionText": "Which type of mandatory legal requirements consists of Acts of Parliament?",
+            "questionText": "What is the term for a mandatory legal requirement established by an Act of Parliament?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Statutory Legislation",
-              "Acts of Parliament",
-              "Statutory law"
+              "Statutory Regulation",
+              "Statutory Regulations",
+              "Statutory legislation"
             ],
-            "hint": "These are the highest form of mandatory rules in the technical workplace."
+            "hint": "This term refers to the highest level of mandatory law in the workplace."
           },
           {
             "id": "210-2A-C1-L1-B",
-            "questionText": "Under what condition do British Standards serve as a mandatory requirement rather than just a recommendation?",
+            "questionText": "Which specific legislation governs how personal customer information is collected and stored?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "unless a Regulation specifically names them",
-              "when named by a Regulation",
-              "if a Regulation names them"
+              "Data Protection",
+              "Data Protection Act",
+              "GDPR"
             ],
-            "hint": "Look for the specific trigger that changes a technical specification into a legal requirement."
+            "hint": "This legal framework protects sensitive information about people."
           },
           {
             "id": "210-2A-C1-L1-C",
-            "questionText": "What is the legal status of following an Approved Code of Practice (ACoP) if a case goes to a court of law?",
+            "questionText": "In contrast to a Statutory Regulation, what is the legal status of a Code of Practice?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "proof of compliance",
-              "considered proof of compliance",
-              "legal proof of compliance"
+              "advisory",
+              "not mandatory",
+              "non-mandatory"
             ],
-            "hint": "Consider how this document is used to show you have met your legal duties."
+            "hint": "Think about whether these documents are legally required or just helpful suggestions."
           },
           {
             "id": "210-2A-C1-L2",
-            "questionText": "Using your answers to Q1 (Statutory Legislation), Q2 (British Standards), and Q3 (ACoP), explain how these facts connect. Why does this relationship matter for a technical professional?",
+            "questionText": "A supervisor leaves a list of customer home addresses on a public coffee table. Using your knowledge of Statutory Regulations, explain why this is a legal issue and not just bad practice.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Statutory Legislation sets the overarching mandatory legal duties",
-              "British Standards provide the specific technical quality benchmarks to meet those duties",
-              "Following an ACoP links technical work to legal proof of compliance",
-              "Professionals must distinguish between mandatory laws and technical recommendations to prioritize safety"
+              "Data Protection is a Statutory Regulation (mandatory law)",
+              "Leaving personal data public violates this law",
+              "It is not just a mistake; it is a punishable legal breach",
+              "The supervisor risks fines or prosecution for the company"
             ],
             "expectedAnswer": [
-              "Statutory Legislation creates mandatory duties while British Standards provide the technical details; following an ACoP is the way to connect these by providing proof of compliance in court. This matters because it allows a professional to meet legal requirements through recognized technical methods.",
-              "Technical professionals use British Standards to reach high quality levels, but must recognize that Statutory Legislation is the mandatory law. By following an ACoP, they ensure their technical work provides legal proof of compliance if their actions are ever questioned in court."
+              "This is a legal issue because Data Protection is a Statutory Regulation, meaning it is a mandatory law passed by Parliament. Leaving personal addresses public breaches this law, risking fines and prosecution, whereas 'bad practice' might just be messy but not illegal.",
+              "Because protecting personal data is a statutory requirement under Data Protection laws, failing to secure the addresses is a violation of the law, not just a procedural error."
             ],
-            "hint": "Think about how technical quality and legal duty work together to protect a worker in court."
+            "hint": "Focus on the difference between breaking a company rule and breaking a national law."
           }
         ]
       }
@@ -147,8 +147,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Workplace Information and Manufacturer Guidance",
-        "content": "### In this lesson\nIn this lesson, you will describe the purpose and function of various forms of workplace information and documentation. This helps you understand how specific instructions from manufacturers and site-specific plans ensure tasks are completed safely and correctly.\n\n* The purpose of installation, maintenance, and user instructions.\n* How to identify and use a **Method Statement**.\n* The role of **Manufacturer Guidance** in preserving equipment warranties and safety.\n\n**What this is**\nWorkplace information consists of various documents that guide the day-to-day operations of a technical professional. A key part of this is **Manufacturer Guidance**, which includes specific technical instructions for equipment. This guidance is usually split into three areas: installation instructions, service/maintenance instructions, and user instructions. Additionally, site-specific documents like the **Method Statement** outline how a task will be performed in a particular environment.\n\n**Why it matters**\nProperly identifying the purpose of workplace information ensures that equipment is installed safely and functions as intended. Following **Manufacturer Guidance** is essential not just for safety, but also to ensure that equipment warranties remain valid. Similarly, a **Method Statement** provides a clear sequence of work, reducing the risk of accidents by ensuring everyone knows the exact steps to follow before they begin the work.\n\n**Key facts / rules**\n* **Manufacturer Guidance** for installation specifies how to correctly set up equipment.\n* Service and maintenance instructions explain how to keep equipment in safe working order over time.\n* User instructions are designed to help the end-user operate the equipment safely and efficiently.\n* A **Method Statement** is a workplace document that outlines the step-by-step procedure for a task.\n* Following **Manufacturer Guidance** is often a requirement of the warranty and safety regulations.\n* Workplace documentation provides a record of what was done, by whom, and how.\n\n**When to choose it**\nYou should choose to consult **Manufacturer Guidance** whenever you are installing, repairing, or explaining a piece of equipment to a client. Use the installation section during the initial build, the maintenance section for scheduled check-ups, and the user instructions for the final handover. You choose to follow a **Method Statement** when you need to know the specific sequence of actions for a complex or high-risk task on-site, ensuring that safety controls are applied in the right order.\n\n*Concrete Anchor:* **Manufacturer Guidance** is like the \"Assembly Guide\" for a complex Lego set or a piece of flat-pack furniture. If you skip a step or use the wrong screw, the whole structure might fail later, even if it looks okay at first.\n\n*Micro-scenario:* A technician has two documents for a pump: Document X describes how to change the internal seals every 12 months, and Document Y lists the sequence for shutting down the power and isolating the pipes before starting work. Document X is **Manufacturer Guidance** (maintenance), while Document Y is a **Method Statement**.\n\n**Common mistakes**\nLearners often confuse a **Method Statement** with a risk assessment; a **Method Statement** focuses on the step-by-step sequence of work, whereas a risk assessment focuses on identifying hazards and controls. \n\nMisconceptions (targeted):\n* Misconception: Manufacturer instructions are just suggestions. | Correction: They are mandatory for safety and to preserve the equipment warranty. | AC: 210.LO2.AC2.1\n* Misconception: A Method Statement is only for the boss to read. | Correction: It is a functional document for the person doing the work to ensure they follow the correct safety sequence. | AC: 210.LO2.AC2.1\n\n**Key Points**\n* **Manufacturer Guidance** covers installation, maintenance, and operation.\n* A **Method Statement** provides the safe sequence for completing a task.\n* Workplace documentation ensures consistency and safety across different sites.\n* Following specific instructions is vital for maintaining warranties and legal compliance.\n\n**Quick recap**\nWorkplace documentation and **Manufacturer Guidance** provide the specific details needed to perform technical work safely. While **Statutory Legislation** sets the high-level rules, these documents provide the \"how-to\" for specific tasks and equipment, ensuring that every job is done to a high standard.\n\n### Coming Up Next\nIn the next module, we will explore how to use these documents to identify hazards and implement safety controls on a live site."
+        "title": "Guidance, Manufacturer Data, and Customer Documentation",
+        "content": "### In this lesson\nYou will explore technical guidance and customer-facing documentation. You will learn why specific numbers in manufacturer manuals matter and how to record your work for the client.\n\n**1. Technical Guidance (The 'How-To')**\nWhile laws tell you *what* to do (be safe), guidance tells you *how*. \n*   **British Standards** are technical benchmarks ensuring quality (e.g., wiring standards).\n*   **Codes of Practice** provide practical methods to meet the law.\n\n**2. Manufacturer Guidance (The Specifics)**\nThis is the most critical document for equipment. Unlike general standards, **Manufacturer Guidance** contains specific **quantitative data** for that unique model.\n*   *Example:* A general standard says \"tighten bolts securely.\" The **Manufacturer Guidance** says \"tighten to **12 Nm** torque.\"\n*   *Why it matters:* If you guess and tighten to 15 Nm, you might crack the casing. If you tighten to 8 Nm, it might leak. You must follow the specific number to maintain the warranty and safety.\n\n**3. Customer Information (The Proof)**\nCommunicating with the customer is part of the job. You use specific documents to record what was done:\n*   **Job Sheet:** A record of the work. It lists the **time spent** (e.g., \"Start: 09:00, Finish: 11:30\") and **parts used**. The customer signs this to agree the work was done.\n*   **Handover Certificate:** Given to the customer when the job is finished. It confirms the system is safe, explains how to use it, and often starts the warranty period.\n\n**Scenario: The Boiler Install**\nA technician installs a new boiler. \n1.  They follow **Statutory Regulations** (Gas Safety) to ensure it is legal.\n2.  They read the **Manufacturer Guidance** to set the pump pressure to exactly **1.5 bar** (a specific quantity).\n3.  They fill out a **Job Sheet** recording \"Installation: 4 hours\" and get the customer to sign.\n4.  Finally, they issue a **Handover Certificate** to the customer to prove the boiler is safe to use.\n\n**Common Mistakes**\n*   Confusing a **Job Sheet** (record of work) with a **Quotation** (price offer before work).\n*   Thinking \"hand-tight\" is acceptable when the manufacturer specifies a torque value (e.g., **5 Nm**)."
       }
     },
     {
@@ -156,62 +156,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Workplace Information and Manufacturer Guidance",
+        "title": "Check Your Understanding: Guidance and Customer Docs",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-2A-C2-L1-A",
-            "questionText": "Which specific part of Manufacturer Guidance specifies how to correctly set up equipment?",
+            "questionText": "Which document provides a general quality benchmark for products across an entire industry?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "installation instructions",
-              "installation",
-              "manufacturer installation instructions"
+              "British Standards",
+              "British Standard",
+              "BS"
             ],
-            "hint": "This document is used during the initial build phase of a project."
+            "hint": "These are published technical specifications used to ensure consistency."
           },
           {
             "id": "210-2A-C2-L1-B",
-            "questionText": "Which workplace document outlines the step-by-step procedure for a specific task?",
+            "questionText": "Which document contains specific quantitative data (like '12 Nm torque') that must be followed for a specific product?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Method Statement",
-              "A Method Statement",
-              "Method Statements"
+              "Manufacturer Guidance",
+              "Manufacturer instructions",
+              "Manufacturer manual"
             ],
-            "hint": "This document ensures everyone knows the exact sequence of work before they begin."
+            "hint": "This information comes directly from the producer of the equipment."
           },
           {
             "id": "210-2A-C2-L1-C",
-            "questionText": "Besides meeting safety regulations, why is it often a requirement to follow Manufacturer Guidance?",
+            "questionText": "What document is used to record the exact time spent and parts used, which the customer then signs?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "requirement of the warranty",
-              "to preserve the warranty",
-              "warranty compliance"
+              "Job Sheet",
+              "Time sheet",
+              "Work record"
             ],
-            "hint": "Think about what might be voided if the specific instructions are ignored."
+            "hint": "This is proof that the work was done so the company can bill the customer."
           },
           {
             "id": "210-2A-C2-L2",
-            "questionText": "Using your answers to Q1 (installation instructions), Q2 (Method Statement), and Q3 (warranties), explain how these facts connect. How do we know these documents are more than just suggestions?",
+            "questionText": "A technician installs a valve. The British Standard suggests 'firmly tightening' connections, but the Manufacturer Guidance specifies 'tighten to 4 Nm'. Explain why the technician must follow the Manufacturer Guidance value.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Installation instructions provide the technical details for correct setup",
-              "The Method Statement ensures those instructions are applied in a safe sequence on site",
-              "Following both is mandatory to maintain equipment warranties and meet safety regulations",
-              "Failure to use these documents correctly results in unsafe work and financial loss through voided warranties"
+              "Manufacturer Guidance provides specific quantitative data unique to that product",
+              "British Standards are general benchmarks, not product-specific",
+              "4 Nm is a precise limit; exceeding it could damage the product",
+              "Following the manufacturer ensures warranty and safety"
             ],
             "expectedAnswer": [
-              "We know these are mandatory because following installation instructions and the site Method Statement is required to maintain equipment warranties and safety. The Method Statement provides the safe sequence while the instructions ensure the equipment itself is set up correctly.",
-              "Installation instructions and Method Statements work together to ensure a task is done right and in the correct order. This connection is valid because failing to follow them would void the warranty and break safety regulations."
+              "The technician must follow the Manufacturer Guidance because it provides the specific quantitative setting (4 Nm) designed for that exact product. The British Standard is only a general guide. Using the specific torque ensures the valve seals correctly without being damaged, preserving the warranty and safety.",
+              "Manufacturer instructions override general standards for specific settings because they account for the unique materials and design of the product. 4 Nm is a tested safe limit."
             ],
-            "hint": "Consider the consequences of skipping a step in a sequence or ignoring an assembly guide."
+            "hint": "Think about the difference between a general rule and a specific instruction for a specific machine."
           }
         ]
       }
@@ -225,54 +225,54 @@
         "questions": [
           {
             "id": "210-2A-P1",
-            "questionText": "A technician is reviewing a technical document titled 'BS 5489'. Based on the prefix, what category of document is this?",
+            "questionText": "Which type of documentation provides the specific technical settings (e.g., 'Set dial to 3') required to maintain equipment warranties?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "British Standard",
-              "British Standards",
-              "BS"
+              "Manufacturer Guidance",
+              "Manufacturer's Guidance",
+              "Manufacturer Instructions"
             ],
-            "hint": "Look for the meaning of the two-letter prefix found at the start of technical specifications."
+            "hint": "This document is produced by the equipment creator and contains specific settings."
           },
           {
             "id": "210-2A-P2",
-            "questionText": "What must be true about an alternative working method if a technician chooses to use it instead of following an Approved Code of Practice (ACoP)?",
+            "questionText": "Why is a Statutory Regulation considered the highest level of authority regarding workplace conduct?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "equal safety",
-              "better safety",
-              "equivalent safety"
+              "It is mandatory",
+              "It is the law",
+              "It is legally binding"
             ],
-            "hint": "An ACoP is the 'gold standard', so any other method must meet or exceed its level of protection."
+            "hint": "Think about the legal status of these documents compared to advisory guides."
           },
           {
             "id": "210-2A-P3",
-            "questionText": "A technician is given a list containing one Act of Parliament, one Regulation, and one British Standard. How many of these documents are strictly mandatory legal requirements?",
+            "questionText": "A manager reviews four documents: a British Standard, a Code of Practice, the Data Protection Act, and the Health & Safety at Work Act. How many of these are Statutory Regulations?",
             "answerType": "numeric",
             "expectedAnswer": [
               "2"
             ],
-            "hint": "Count only the documents that fall under Statutory Legislation or mandatory rules."
+            "hint": "Count only the documents that are mandatory acts of law."
           },
           {
             "id": "210-2A-P4",
-            "questionText": "A new piece of legislation is introduced called the 'Data Protection Act'. Based on its title, is this document a technical recommendation or a mandatory law?",
+            "questionText": "After completing a boiler installation, the technician gives the customer a document confirming the system is safe to use and explaining its operation. What is this document called?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "mandatory law",
-              "mandatory",
-              "legal requirement"
+              "Handover Certificate",
+              "Handover pack",
+              "Handover documentation"
             ],
-            "hint": "Think about the legal weight assigned to any document that is classified as an 'Act'."
+            "hint": "This document 'hands over' the responsibility and confirms completion."
           },
           {
             "id": "210-2A-P5",
-            "questionText": "A technician is looking at a 'Method Statement' and a 'Risk Assessment'. How many of these specific documents are designed to provide the step-by-step sequence of work?",
+            "questionText": "An organization has three documents: A 'Job Sheet' for recording hours, a 'Code of Practice' for safety methods, and a 'British Standard' for quality. How many of these are legally mandatory Statutory Regulations?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "1"
+              "0"
             ],
-            "hint": "Identify the document that focuses on the order of actions rather than just identifying hazards."
+            "hint": "Are any of these Acts of Parliament, or are they just business/technical documents?"
           }
         ]
       }
@@ -288,41 +288,37 @@
         "questions": [
           {
             "id": "210-2A-INT-1",
-            "questionText": "Explain the relationship between statutory legislation and manufacturer guidance when performing technical tasks. In your answer, include: (1) the mandatory nature of statutory legislation, (2) the specific function of manufacturer guidance, (3) how these two types of information relate to one another during a task. Why does this relationship hold? (2-3 sentences)",
+            "questionText": "Explain how a technician uses Statutory Regulations, Manufacturer Guidance, and a Job Sheet together during a single task. Describe the distinct role of each document type in ensuring the job is legal, technically correct, and recorded. (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identifies statutory legislation as a mandatory legal requirement",
-              "Describes manufacturer guidance as technical instructions for specific equipment",
-              "Explains that following guidance is often the means of achieving legal compliance",
-              "Recognizes that legislation provides the framework while guidance provides the application",
-              "Reasons that both are necessary to ensure both legal safety and technical accuracy"
+              "Statutory Regulations ensure the work environment and methods are legally safe.",
+              "Manufacturer Guidance ensures the specific equipment is installed correctly (e.g., correct torque/settings).",
+              "The Job Sheet provides the written proof of what was done and the time taken for the customer.",
+              "All three are needed: one for law, one for function, one for business record."
             ],
             "expectedAnswer": [
-              "Statutory legislation sets the mandatory legal standards for safety, while manufacturer guidance provides the specific technical steps required to operate equipment within those legal parameters. These relate because following manufacturer instructions is typically the primary way a technician demonstrates they are meeting their legal duty of care. This relationship holds because the law defines the safety outcome required, whereas the manufacturer provides the technical methodology to achieve it safely.",
-              "Legislation acts as the overarching legal requirement that must be obeyed, whereas manufacturer guidance offers the precise technical data needed to maintain equipment safety and warranties. They are connected because a failure to follow specific manufacturer guidance often results in a breach of broader statutory health and safety laws. This relationship exists because legal compliance in a technical setting is dependent on following the specific safety procedures designed for the tools being used."
+              "The technician follows Statutory Regulations to ensure the overall safety and legality of the work environment. They then use Manufacturer Guidance to apply specific settings (like torque or pressure) so the equipment works correctly. Finally, they complete a Job Sheet to record the hours and parts used, providing proof of work for the customer.",
+              "Regulations provide the mandatory safety rules, Manufacturer Guidance provides the technical 'how-to' for the specific product, and the Job Sheet records the completion of the task for billing and records."
             ],
-            "hint": "Think about the difference between a high-level law and a specific instruction manual for a piece of machinery."
+            "hint": "Think about the timeline: Safety (Law) -> Installation (Manual) -> Completion (Paperwork)."
           },
           {
             "id": "210-2A-INT-2",
-            "questionText": "Evaluate how the hierarchy of regulatory frameworks, technical standards, and workplace-specific documentation integrates to ensure safe operations. In your answer, include: (1) the role of primary legislation/Acts, (2) the function of non-statutory codes of practice or standards, (3) the application of site-specific documentation like method statements, (4) how these layers work together to ensure compliance. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Evaluate the importance of using the correct document for the correct purpose. Why would it be dangerous to use a general Code of Practice to determine the specific pressure setting for a boiler, and why is a Job Sheet not sufficient as a Handover Certificate?",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Defines primary legislation/Acts as the mandatory legal foundation",
-              "Explains that Standards and Codes of Practice provide the technical 'how-to' for compliance",
-              "Describes Method Statements as the site-specific application of safety rules",
-              "Synthesizes how the hierarchy moves from general law to specific task instructions",
-              "Identifies that integration ensures no gaps between legal duty and physical action",
-              "Notes that site-specific documents must align with both standards and the law",
-              "Highlights that this multi-layered approach provides a defensible audit trail for safety"
+              "Code of Practice is too general; it lacks the specific quantitative data (pressure) of Manufacturer Guidance.",
+              "Using general data for specific settings can cause equipment failure.",
+              "A Job Sheet only records time/parts; it does not certify safety or explain usage like a Handover Certificate.",
+              "Misusing documents leads to technical risk (failure) and legal risk (lack of proper handover)."
             ],
             "expectedAnswer": [
-              "Primary legislation sets out the mandatory legal duties, while technical standards and codes of practice provide the benchmark methods for meeting those duties. Method statements then translate these requirements into specific, actionable steps for a particular site or task. Together, these layers ensure that every technical activity is grounded in law, guided by industry best practices, and adapted for local site hazards. This integrated approach ensures that compliance is maintained from the highest legal level down to the individual technician's daily actions.",
-              "• Statutory Acts provide the overarching legal framework and mandatory requirements for workplace safety.\n• British Standards and codes of practice offer the specific technical guidance needed to achieve those legal standards.\n• Workplace documentation, such as method statements, applies these rules to specific site conditions and tasks.\n• This integration ensures that localized work instructions are always aligned with national technical standards and mandatory legal obligations."
+              "Using a general Code of Practice for a specific pressure setting is dangerous because it lacks the precise quantitative data found in Manufacturer Guidance, which could lead to equipment failure. A Job Sheet is not sufficient as a Handover Certificate because it only records time and materials, whereas a Handover Certificate formally confirms safety and instructs the customer on usage, which is a key legal duty.",
+              "You must use Manufacturer Guidance for settings because only the manufacturer knows the exact safe limits for their product. Similarly, a Job Sheet is just a receipt of work, while a Handover Certificate is a formal declaration of safety and warranty."
             ],
-            "hint": "Consider how a general law becomes a specific set of steps for a technician on a construction site."
+            "hint": "Consider the level of detail in a general code vs. a manual, and the difference between a receipt and a safety guarantee."
           }
         ]
       }
@@ -336,35 +332,35 @@
         "questions": [
           {
             "id": "210-2A-SR-1",
-            "questionText": "Who is the person typically responsible for the overall day-to-day management and coordination of a technical site?",
+            "questionText": "Who is the primary person responsible for overseeing safety and daily operations on a work site?",
             "expectedAnswer": [
-              "Site manager",
-              "Manager",
-              "Site supervisor"
+              "site manager",
+              "supervisor",
+              "site supervisor"
             ],
-            "hint": "Think about the person in charge of site operations.",
+            "hint": "Think of the person in charge of coordinating site activities.",
             "answerType": "short-text"
           },
           {
             "id": "210-2A-SR-2",
-            "questionText": "What is the general term for individuals who enter a site to conduct checks or view progress but do not work there permanently?",
+            "questionText": "What is the main purpose of an official inspector when they conduct a visit to a workplace?",
             "expectedAnswer": [
-              "Site visitors",
-              "Visitors",
-              "Inspectors"
+              "check compliance",
+              "safety inspection",
+              "audit"
             ],
-            "hint": "This includes clients and regulatory officials.",
+            "hint": "They visit to ensure that rules and safety standards are being followed.",
             "answerType": "short-text"
           },
           {
             "id": "210-2A-SR-3",
-            "questionText": "Which term refers to the specific professional job or craft that a worker is qualified to perform on a site?",
+            "questionText": "What term describes the specific duties and professional responsibilities assigned to different workers on a site?",
             "expectedAnswer": [
-              "Trade role",
-              "Trade",
-              "Occupation"
+              "trade roles",
+              "job roles",
+              "work roles"
             ],
-            "hint": "Examples include electricians, plumbers, or carpenters.",
+            "hint": "This relates to the specific functions performed by different members of the workforce.",
             "answerType": "short-text"
           }
         ],
@@ -373,51 +369,57 @@
     }
   ],
   "targetAssessmentCriteria": [
-    "AC1",
-    "AC2",
-    "AC3"
+    "AC 2.1",
+    "AC 2.2",
+    "AC 2.3",
+    "AC 2.4"
   ],
   "metadata": {
     "created": "2026-02-17",
     "updated": "2026-02-17",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
-      "unit": "210",
+      "unit": "Unit 210",
       "learningOutcome": "LO2",
       "coveredAC": [
-        "AC1",
-        "AC2",
-        "AC3"
+        "AC 2.1",
+        "AC 2.2",
+        "AC 2.3",
+        "AC 2.4"
       ],
       "outOfScopeAC": [
-        "AC4",
-        "AC5"
+        "AC 2.5"
       ]
     },
     "scope": {
-      "inScope": "Identification and purpose of statutory legislation, industry regulations, standards, and manufacturer documentation.",
-      "outOfScope": "Detailed legal interpretation, physical document management procedures, or technical application of specific British Standards.",
-      "rationale": "The lesson focuses on the awareness and classification of documentation types rather than the implementation of the procedures contained within them."
+      "inScope": "Identification and purpose of statutory laws, guidance documents, manufacturer technical information, and customer documentation (Job Sheets, Handover).",
+      "outOfScope": "Specific procedural steps for legal compliance or the practical application of technical maintenance tasks.",
+      "rationale": "Level 2 foundational knowledge requires learners to recognize documentation types before they are expected to apply them in practical scenarios."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus on purpose and identification of documentation types as listed in mustHaveTopics"
+      "specificScope": "Focus on types of documentation and their intended use cases rather than content mastery of specific laws."
     },
     "misconceptions": [
       {
-        "misconception": "British Standards are always mandatory laws.",
-        "correction": "They are recommendations for consistency and safety unless a specific Regulation cites them.",
-        "relatedAC": "210.LO2.AC2.2"
+        "misconception": "All workplace documents are legally mandatory.",
+        "correction": "Only a Statutory Regulation is mandatory by law; other documents like a Code of Practice or British Standards are advisory or technical benchmarks.",
+        "relatedAC": "AC 2.1"
       },
       {
-        "misconception": "Manufacturer instructions are just suggestions.",
-        "correction": "They are mandatory for safety and to preserve the equipment warranty.",
-        "relatedAC": "210.LO2.AC2.1"
+        "misconception": "Manufacturer Guidance is just a suggestion that can be ignored if you are experienced.",
+        "correction": "Manufacturer Guidance contains critical quantitative data (e.g., torque settings) unique to that product that must be followed for safety.",
+        "relatedAC": "AC 2.2"
+      },
+      {
+        "misconception": "A Job Sheet is the same as a Handover Certificate.",
+        "correction": "A Job Sheet records time and parts for billing; a Handover Certificate confirms safety and completion to the customer.",
+        "relatedAC": "AC 2.3"
       }
     ]
   }
