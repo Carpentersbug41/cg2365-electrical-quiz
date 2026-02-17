@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 
 type StageKey = 'M0' | 'M1' | 'M2' | 'M3' | 'M4' | 'M5' | 'M6';
@@ -93,6 +93,10 @@ const STAGE_LABEL: Record<StageKey, string> = {
   M6: 'Generate',
 };
 
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export default function ModulePlannerPage() {
   const [enabled, setEnabled] = useState<boolean | null>(null);
   const [units, setUnits] = useState<string[]>([]);
@@ -116,6 +120,7 @@ export default function ModulePlannerPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
+  const [retryNotice, setRetryNotice] = useState<string | null>(null);
   const [adminToken, setAdminToken] = useState('');
   const [syllabusVersions, setSyllabusVersions] = useState<SyllabusVersion[]>([]);
   const [syllabusVersionId, setSyllabusVersionId] = useState('');
@@ -130,8 +135,6 @@ export default function ModulePlannerPage() {
     title: string;
     payload: unknown;
   } | null>(null);
-
-  const abortRef = useRef<AbortController | null>(null);
 
   const selectedLos = useMemo(
     () => {
@@ -183,42 +186,59 @@ export default function ModulePlannerPage() {
 
   const callApi = useCallback(
     async (url: string, body?: unknown, isFormData = false, method?: 'GET' | 'POST' | 'DELETE') => {
-      if (abortRef.current) {
-        abortRef.current.abort();
-      }
-      const controller = new AbortController();
-      abortRef.current = controller;
       const requestMethod = method ?? (body ? 'POST' : 'GET');
+      const maxAttempts = requestMethod === 'GET' ? 3 : 1;
+      let lastError: Error | null = null;
+      setRetryNotice(null);
 
-      let response: Response;
-      try {
-        response = await fetch(url, {
-          method: requestMethod,
-          cache: 'no-store',
-          headers: body ? (isFormData ? buildHeaders() : buildHeaders('application/json')) : buildHeaders(),
-          body: body ? (isFormData ? (body as FormData) : JSON.stringify(body)) : undefined,
-          signal: controller.signal,
-        });
-      } catch (error) {
-        if (error instanceof Error && error.name === 'AbortError') {
-          throw new Error('Request was cancelled');
+      for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+        let response: Response;
+        try {
+          response = await fetch(url, {
+            method: requestMethod,
+            cache: 'no-store',
+            headers: body ? (isFormData ? buildHeaders() : buildHeaders('application/json')) : buildHeaders(),
+            body: body ? (isFormData ? (body as FormData) : JSON.stringify(body)) : undefined,
+          });
+        } catch (error) {
+          const message = error instanceof Error ? error.message : 'Unknown network failure';
+          lastError = new Error(`Network error while calling API: ${message}`);
+          if (attempt < maxAttempts) {
+            setRetryNotice(`Retrying request (${attempt + 1}/${maxAttempts}): ${url}`);
+            await sleep(250 * attempt);
+            continue;
+          }
+          setRetryNotice(null);
+          throw lastError;
         }
-        throw new Error('Network error while calling API');
-      }
 
-      const contentType = response.headers.get('content-type') ?? '';
-      const payload = contentType.includes('application/json')
-        ? await response.json()
-        : { message: await response.text() };
-      const data = (payload && typeof payload === 'object' ? payload : {}) as Record<string, unknown>;
-      if (!response.ok || data.success === false) {
-        const message =
-          (typeof data.message === 'string' && data.message) ||
-          (typeof data.error === 'string' && data.error) ||
-          `Request failed (${response.status})`;
-        throw new Error(message);
+        const contentType = response.headers.get('content-type') ?? '';
+        const payload = contentType.includes('application/json')
+          ? await response.json()
+          : { message: await response.text() };
+        const data = (payload && typeof payload === 'object' ? payload : {}) as Record<string, unknown>;
+        if (!response.ok || data.success === false) {
+          const message =
+            (typeof data.message === 'string' && data.message) ||
+            (typeof data.error === 'string' && data.error) ||
+            `Request failed (${response.status})`;
+
+          const isTransient =
+            requestMethod === 'GET' &&
+            (response.status >= 500 || response.status === 429 || message.toLowerCase().includes('network'));
+          if (isTransient && attempt < maxAttempts) {
+            setRetryNotice(`Retrying request (${attempt + 1}/${maxAttempts}): ${url}`);
+            await sleep(300 * attempt);
+            continue;
+          }
+          setRetryNotice(null);
+          throw new Error(message);
+        }
+        setRetryNotice(null);
+        return data;
       }
-      return data;
+      setRetryNotice(null);
+      throw lastError ?? new Error('Request failed unexpectedly');
     },
     [buildHeaders]
   );
@@ -912,6 +932,11 @@ export default function ModulePlannerPage() {
           </div>
         </section>
 
+        {retryNotice && (
+          <section className="rounded border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">
+            {retryNotice}
+          </section>
+        )}
         {error && <section className="rounded border border-rose-300 bg-rose-50 p-3 text-sm text-rose-700">{error}</section>}
         {info && <section className="rounded border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-700">{info}</section>}
 
