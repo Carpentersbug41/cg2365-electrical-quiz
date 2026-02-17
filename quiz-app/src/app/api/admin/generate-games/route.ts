@@ -137,7 +137,23 @@ export async function POST(request: Request) {
       const totalGames = (count || 1) * gameTypes.length;
       
       const games = await generateMicrobreaksForLesson(lesson, {
-        gameTypes: gameTypes as Array<'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win'>,
+        gameTypes: gameTypes as Array<
+          | 'matching'
+          | 'sorting'
+          | 'spot-error'
+          | 'tap-label'
+          | 'quick-win'
+          | 'sequencing'
+          | 'fill-gap'
+          | 'is-correct-why'
+          | 'diagnosis-ranked'
+          | 'classify-two-bins'
+          | 'scenario-match'
+          | 'formula-build'
+          | 'tap-the-line'
+          | 'tap-the-word'
+          | 'elimination'
+        >,
         count: totalGames
       });
       

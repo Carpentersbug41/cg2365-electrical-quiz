@@ -1,6 +1,6 @@
 # C&G 2365 Quiz App - Current Implementation Documentation
 
-Last verified: 2026-02-16
+Last verified: 2026-02-17
 Status: Active implementation reference
 Scope: Current code behavior only (not roadmap)
 
@@ -14,7 +14,7 @@ This app is a Next.js learning platform for C&G 2365 content with:
 - learner progress and mastery tracking
 - AI lesson and quiz generation pipelines
 - admin microbreak game generation and insertion
-- module-level planning/generation via Module Planner vNext
+- module-level planning (M0-M5) + per-lesson generation controls via Module Planner vNext
 - optional Supabase auth + server-side progress APIs
 
 This document reflects the code currently in `src/`.
@@ -76,7 +76,7 @@ Implemented `route.ts` endpoints:
 - `/api/admin/module/:id/m3-plan`
 - `/api/admin/module/:id/m4-blueprints`
 - `/api/admin/module/:id/m5-validate`
-- `/api/admin/module/:id/m6-generate` (bulk mode, gated)
+- `/api/admin/module/:id/m6-generate` (bulk mode, disabled: returns 403)
 - `/api/admin/module/:id/lessons/:blueprintId/generate`
 - `/api/syllabus/upload`
 - `/api/v1/attempts`
@@ -276,7 +276,8 @@ Module planner is syllabus-versioned and DB-backed.
 - `Audience`
 10. Click `Create Run`
 11. Run planning stages (`M0`..`M5`) via buttons or "Plan lessons (M0-M5)"
-12. Generate lessons from matrix using per-blueprint `Generate now`
+12. Review/operate from Runs panel (open prior runs, delete entire run)
+13. Generate lessons from matrix using per-blueprint `Generate Lesson`
 
 ### Key runtime details
 
@@ -287,8 +288,10 @@ Module planner is syllabus-versioned and DB-backed.
 - No deterministic auto-plan fallback exists when M3 LLM fails.
 - M4 stores extended artifact metadata (`loBlueprintSets`, LO ledgers, lesson ledger deltas).
 - M5 includes duplicate-prior-LO-content checks.
-- M6 bulk endpoint exists but is disabled unless `MODULE_PLANNER_BULK_M6_ENABLED=true`.
+- M6 bulk endpoint returns 403 (bulk generation disabled in route).
 - Default generation flow is per-lesson: `/api/admin/module/:id/lessons/:blueprintId/generate`.
+- M4 persists one `generated_lessons` row per blueprint with `status='planned'`.
+- Runs panel in `/admin/module` lists previous runs (Run ID, unit, created_at, status) with open/delete actions.
 
 ### Persistence/runtime
 

@@ -34,6 +34,16 @@ export default function GamePreview({ games }: GamePreviewProps) {
       case 'spot-error': return 'Spot the Error';
       case 'tap-label': return 'Tap to Label';
       case 'quick-win': return 'Quick Win Sprint';
+      case 'sequencing': return 'Sequencing';
+      case 'fill-gap': return 'Fill Gap';
+      case 'is-correct-why': return 'Is Correct + Why';
+      case 'diagnosis-ranked': return 'Diagnosis Ranked';
+      case 'classify-two-bins': return 'Classify Two Bins';
+      case 'scenario-match': return 'Scenario Match';
+      case 'formula-build': return 'Formula Build';
+      case 'tap-the-line': return 'Tap The Line';
+      case 'tap-the-word': return 'Tap The Word';
+      case 'elimination': return 'Elimination';
       default: return 'Game';
     }
   };
@@ -46,6 +56,16 @@ export default function GamePreview({ games }: GamePreviewProps) {
       case 'spot-error': return 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700';
       case 'tap-label': return 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700';
       case 'quick-win': return 'bg-pink-100 dark:bg-pink-900/30 text-pink-800 dark:text-pink-300 border-pink-300 dark:border-pink-700';
+      case 'sequencing': return 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 border-cyan-300 dark:border-cyan-700';
+      case 'fill-gap': return 'bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 border-teal-300 dark:border-teal-700';
+      case 'is-correct-why': return 'bg-lime-100 dark:bg-lime-900/30 text-lime-800 dark:text-lime-300 border-lime-300 dark:border-lime-700';
+      case 'diagnosis-ranked': return 'bg-orange-100 dark:bg-orange-900/30 text-orange-800 dark:text-orange-300 border-orange-300 dark:border-orange-700';
+      case 'classify-two-bins': return 'bg-violet-100 dark:bg-violet-900/30 text-violet-800 dark:text-violet-300 border-violet-300 dark:border-violet-700';
+      case 'scenario-match': return 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300 border-sky-300 dark:border-sky-700';
+      case 'formula-build': return 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700';
+      case 'tap-the-line': return 'bg-fuchsia-100 dark:bg-fuchsia-900/30 text-fuchsia-800 dark:text-fuchsia-300 border-fuchsia-300 dark:border-fuchsia-700';
+      case 'tap-the-word': return 'bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300 border-rose-300 dark:border-rose-700';
+      case 'elimination': return 'bg-stone-100 dark:bg-stone-900/30 text-stone-800 dark:text-stone-300 border-stone-300 dark:border-stone-700';
       default: return 'bg-gray-100 dark:bg-slate-700 text-gray-800 dark:text-slate-300 border-gray-300 dark:border-slate-600';
     }
   };
@@ -159,6 +179,94 @@ export default function GamePreview({ games }: GamePreviewProps) {
                 </div>
               ))}
             </div>
+          </div>
+        );
+
+      case 'sequencing':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="text-gray-600 dark:text-slate-400">Steps: {content.steps.length}</p>
+            {content.steps.map((step, idx) => (
+              <div key={`${step}-${idx}`} className="rounded bg-cyan-50 dark:bg-cyan-900/20 p-2">{step}</div>
+            ))}
+          </div>
+        );
+
+      case 'fill-gap':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="rounded bg-teal-50 p-2 dark:bg-teal-900/20">{content.textTemplate}</p>
+            <p className="text-gray-600 dark:text-slate-400">Gaps: {content.gaps.length}</p>
+          </div>
+        );
+
+      case 'is-correct-why':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="rounded bg-lime-50 p-2 dark:bg-lime-900/20">{content.statement}</p>
+            {content.reasons.map((r, idx) => <div key={`${r}-${idx}`} className="rounded border p-2">{r}</div>)}
+          </div>
+        );
+
+      case 'diagnosis-ranked':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="rounded bg-orange-50 p-2 dark:bg-orange-900/20">{content.scenario}</p>
+            <p className="text-gray-600 dark:text-slate-400">Options: {content.options.length}</p>
+          </div>
+        );
+
+      case 'classify-two-bins':
+        return (
+          <div className="space-y-1 text-sm">
+            <p>{content.leftLabel} | {content.rightLabel}</p>
+            <p className="text-gray-600 dark:text-slate-400">Items: {content.items.length}</p>
+          </div>
+        );
+
+      case 'scenario-match':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="text-gray-600 dark:text-slate-400">Pairs: {content.pairs.length}</p>
+            {content.pairs.map((p, idx) => (
+              <div key={`${p.scenario}-${idx}`} className="rounded border p-2">
+                <div>{p.scenario}</div>
+                <div className="text-xs text-gray-600 dark:text-slate-400">→ {p.answer}</div>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'formula-build':
+        return (
+          <div className="space-y-1 text-sm">
+            <p>Tokens: {content.tokens.join(' ')}</p>
+            <p className="text-xs text-gray-600 dark:text-slate-400">Answer: {content.correctSequence.join(' ')}</p>
+          </div>
+        );
+
+      case 'tap-the-line':
+        return (
+          <div className="space-y-1 text-sm">
+            {content.lines.map((line, idx) => (
+              <div key={`${line}-${idx}`} className="rounded border p-2">{line}</div>
+            ))}
+          </div>
+        );
+
+      case 'tap-the-word':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="rounded border p-2">{content.sentence}</p>
+            <p>Options: {content.options.join(', ')}</p>
+          </div>
+        );
+
+      case 'elimination':
+        return (
+          <div className="space-y-1 text-sm">
+            <p className="rounded border p-2">{content.question}</p>
+            <p className="text-gray-600 dark:text-slate-400">Options: {content.options.length}</p>
           </div>
         );
 

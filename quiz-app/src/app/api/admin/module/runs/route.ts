@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createPlannerRun, listModulePlannerUnitLos, listModulePlannerUnits } from '@/lib/module_planner';
+import { createPlannerRun, listModulePlannerRuns, listModulePlannerUnitLos, listModulePlannerUnits } from '@/lib/module_planner';
 import { guardModulePlannerAccess, toErrorResponse } from '../_utils';
 import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 import { getLatestSyllabusIngestion, getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
         ? await getSyllabusStructureByVersionAndUnit(selectedVersionId, resolvedUnit)
         : null;
     const latestIngestion = await getLatestSyllabusIngestion();
+    const recentRuns = await listModulePlannerRuns(100);
 
     return NextResponse.json({
       success: true,
@@ -37,6 +38,13 @@ export async function GET(request: NextRequest) {
       syllabusVersions: versions,
       defaultSyllabusVersionId: selectedVersionId,
       latestIngestion,
+      recentRuns: recentRuns.map((run) => ({
+        id: run.id,
+        unit: run.unit,
+        status: run.status,
+        created_at: run.created_at,
+        syllabus_version_id: run.syllabus_version_id,
+      })),
     });
   } catch (error) {
     return toErrorResponse(error);

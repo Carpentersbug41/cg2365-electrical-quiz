@@ -1,8 +1,12 @@
 # Phases 10-13: Lesson Improvement Contracts (Current Implementation)
 
 Version: 2.1
-Last verified against code: 2026-02-16
+Last verified against code: 2026-02-17
 Scope: `Phase10_Score`, `Phase12_Refine`, `Phase13_Rescore`, and orchestration in `SequentialLessonGenerator`
+
+Note (2026-02-17 sync):
+- Module Planner now stops at M5 for planning and uses explicit per-lesson generation actions.
+- No change to Phase 10-13 lesson generator contracts documented here.
 
 ---
 

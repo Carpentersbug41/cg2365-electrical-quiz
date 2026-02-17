@@ -1,11 +1,15 @@
 # Sign-In, Auth Progress, and Review APIs - Operator Guide
 
-Last verified: 2026-02-16
+Last verified: 2026-02-17
 Primary routes:
 - UI: `/auth/sign-in`, `/auth/callback`
 - APIs: `/api/v1/*`
 
 This guide explains how to use sign-in and auth-backed progress/review tracking.
+
+Note (2026-02-17 sync):
+- Module Planner docs were updated for planner-only M0-M5, run history, and delete-run behavior.
+- This sign-in operator guide remains functionally unchanged.
 
 ---
 

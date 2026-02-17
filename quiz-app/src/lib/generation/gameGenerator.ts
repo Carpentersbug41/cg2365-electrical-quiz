@@ -15,7 +15,23 @@ CRITICAL RULES:
 Your goal is to create quick, low-effort engagement activities that reduce cognitive fatigue while reinforcing key concepts.`;
 
 interface GameGenerationOptions {
-  gameTypes?: Array<'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win'>;
+  gameTypes?: Array<
+    | 'matching'
+    | 'sorting'
+    | 'spot-error'
+    | 'tap-label'
+    | 'quick-win'
+    | 'sequencing'
+    | 'fill-gap'
+    | 'is-correct-why'
+    | 'diagnosis-ranked'
+    | 'classify-two-bins'
+    | 'scenario-match'
+    | 'formula-build'
+    | 'tap-the-line'
+    | 'tap-the-word'
+    | 'elimination'
+  >;
   insertAfterBlocks?: string[]; // Block IDs to insert after
   count?: number;
 }
@@ -232,6 +248,36 @@ For SPOT-ERROR games:
 For QUICK-WIN games:
 - Create 5-7 very easy recall questions from the vocab
 - Format: { "breakType": "game", "gameType": "quick-win", "duration": 90, "questions": [{"question": "...", "answer": "..."}, ...] }
+
+For SEQUENCING games:
+- Format: { "breakType": "game", "gameType": "sequencing", "prompt": "...", "steps": ["..."], "correctOrder": ["..."], "timerSeconds": 20 }
+
+For FILL-GAP games:
+- Format: { "breakType": "game", "gameType": "fill-gap", "prompt": "...", "textTemplate": "...", "gaps": [{"id":"g1","options":["..."],"correctOptionIndex":0}] }
+
+For IS-CORRECT-WHY games:
+- Format: { "breakType": "game", "gameType": "is-correct-why", "statement": "...", "isCorrect": true, "reasons": ["...","...","..."], "correctReasonIndex": 0 }
+
+For DIAGNOSIS-RANKED games:
+- Format: { "breakType": "game", "gameType": "diagnosis-ranked", "scenario": "...", "options": ["..."], "correctRankedIndices": [0,1] }
+
+For CLASSIFY-TWO-BINS games:
+- Format: { "breakType": "game", "gameType": "classify-two-bins", "leftLabel": "...", "rightLabel": "...", "items": [{"text":"...","correctBin":"left"}] }
+
+For SCENARIO-MATCH games:
+- Format: { "breakType": "game", "gameType": "scenario-match", "pairs": [{"scenario":"...","answer":"..."}], "distractors": ["..."] }
+
+For FORMULA-BUILD games:
+- Format: { "breakType": "game", "gameType": "formula-build", "tokens": ["V","=","I","R"], "correctSequence": ["V","=","I","R"], "timerSeconds": 25 }
+
+For TAP-THE-LINE games:
+- Format: { "breakType": "game", "gameType": "tap-the-line", "lines": ["..."], "correctLineIndex": 0 }
+
+For TAP-THE-WORD games:
+- Format: { "breakType": "game", "gameType": "tap-the-word", "sentence": "...", "options": ["..."], "correctOptionIndex": 0 }
+
+For ELIMINATION games:
+- Format: { "breakType": "game", "gameType": "elimination", "question": "...", "options": ["..."], "correctIndex": 0, "explanation": "..." }
 
 Return a JSON array of ${count} game objects. Use variety in game types if multiple types are requested.`;
 

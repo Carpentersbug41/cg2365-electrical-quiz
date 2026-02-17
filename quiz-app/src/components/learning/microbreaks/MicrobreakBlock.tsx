@@ -9,6 +9,7 @@ import SortingGame from './games/SortingGame';
 import SpotTheErrorGame from './games/SpotTheErrorGame';
 import TapToLabelGame from './games/TapToLabelGame';
 import QuickWinSprintGame from './games/QuickWinSprintGame';
+import AdvancedTextGame from './games/AdvancedTextGame';
 
 export default function MicrobreakBlock({ block }: BlockProps) {
   const content = block.content as MicrobreakContent;
@@ -55,6 +56,17 @@ export default function MicrobreakBlock({ block }: BlockProps) {
       return <TapToLabelGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
     case 'quick-win':
       return <QuickWinSprintGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
+    case 'sequencing':
+    case 'fill-gap':
+    case 'is-correct-why':
+    case 'diagnosis-ranked':
+    case 'classify-two-bins':
+    case 'scenario-match':
+    case 'formula-build':
+    case 'tap-the-line':
+    case 'tap-the-word':
+    case 'elimination':
+      return <AdvancedTextGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
     default:
       return null;
   }

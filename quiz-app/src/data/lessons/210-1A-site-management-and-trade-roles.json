@@ -6,9 +6,9 @@
   "unit": "Unit 210",
   "topic": "Site Management and Trade Roles",
   "learningOutcomes": [
-    "Identify the key members of a standard site management team",
-    "Describe the distinct purposes of design and engineering roles on a construction project",
-    "Differentiate between the financial and procurement responsibilities of the quantity surveyor, buyer, and estimator"
+    "Identify the key members of a site management team and their job titles",
+    "Describe the primary purpose and responsibilities of design-led professional roles",
+    "Explain the functions of management and procurement staff in supporting site operations"
   ],
   "prerequisites": [],
   "blocks": [
@@ -19,16 +19,16 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify the key members of a standard site management team",
+            "text": "Identify the key members of a site management team and their job titles",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the distinct purposes of design and engineering roles on a construction project",
+            "text": "Describe the primary purpose and responsibilities of design-led professional roles",
             "bloomLevel": "understand"
           },
           {
-            "text": "Differentiate between the financial and procurement responsibilities of the quantity surveyor, buyer, and estimator",
-            "bloomLevel": "apply"
+            "text": "Explain the functions of management and procurement staff in supporting site operations",
+            "bloomLevel": "understand"
           }
         ]
       }
@@ -40,26 +40,48 @@
       "content": {
         "terms": [
           {
-            "term": "Project Manager",
-            "definition": "The individual responsible for the overall planning, coordination, and delivery of a project within the constraints of time, budget, and quality."
+            "term": "Architect",
+            "definition": "The professional responsible for the aesthetic design and functional layout of a building, not the structural calculations or physical assembly."
           },
           {
-            "term": "Clerk of Works",
-            "definition": "A site-based inspector who ensures that workmanship and materials meet the project specifications, not the day-to-day management of the site personnel."
+            "term": "Structural Engineer",
+            "definition": "The specialist who ensures the stability and load-bearing capacity of a building's framework, different from an architect because they focus on physical integrity rather than appearance."
           },
           {
             "term": "Estimator",
-            "definition": "A specialist who analyzes technical drawings and specifications to calculate the probable costs of a project during the pre-construction or tendering phase."
+            "definition": "The role responsible for calculating the anticipated costs of materials, labor, and equipment to produce a project bid before any work begins on site."
           },
           {
             "term": "Quantity Surveyor",
-            "definition": "A professional responsible for managing project budgets and contractual payments during the construction phase, different from an estimator who calculates costs before the work begins."
+            "definition": "The professional who manages the project budget and financial records throughout the construction process, not to be confused with an estimator who focuses on initial pricing."
           },
           {
-            "term": "Buyer",
-            "definition": "The procurement specialist responsible for sourcing and purchasing the materials, plant, and sub-contracted services required to complete the project according to the schedule."
+            "term": "Clerk of Works",
+            "definition": "A site-based inspector who represents the client to ensure that the quality of materials and workmanship meets the specified standards and design requirements."
+          },
+          {
+            "term": "Project Manager",
+            "definition": "The individual responsible for the overall planning, coordination, and delivery of a project to ensure it is completed on time and within budget."
           }
         ]
+      }
+    },
+    {
+      "id": "210-1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Site Management and Trade Roles Diagram",
+        "description": "Visual representation of Site Management and Trade Roles",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "architect-design",
+          "structural-framework",
+          "cost-estimation-bid",
+          "site-management-flow"
+        ],
+        "placeholderText": "The diagram should show a flowchart of project progression. At the top (Pre-Construction), the architect-design and structural-framework elements are linked to show collaboration, leading into the cost-estimation-bid phase. An arrow then points to the Construction phase, where the site-management-flow element centralizes the project manager, quantity surveyor, and clerk of works as they interact with the physical build."
       }
     },
     {
@@ -67,8 +89,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Site Management and Project Oversight",
-        "content": "### In this lesson\nIn this lesson, you will learn to identify the key members of a standard site management team and their specific responsibilities. This knowledge is essential for understanding who directs work, who checks quality, and who manages the legalities of a project. \n\n*   The distinct roles of the Project Manager and Contracts Manager.\n*   The specific inspection duties of the Clerk of Works.\n*   How oversight roles interact to ensure project success.\n\n**What this is**\nSite management involves the strategic coordination of people, resources, and schedules to complete a technical project. The **Project Manager** is the individual responsible for the overall planning, coordination, and delivery of a project within the constraints of time, budget, and quality. They are the central hub of communication. Supporting the project at a higher level is the **contracts manager**, who typically oversees multiple projects simultaneously, handling high-level legal agreements and ensuring the company’s broader targets are met. While the Project Manager runs the site day-to-day, the **Clerk of Works** acts as a site-based inspector who ensures that workmanship and materials meet the project specifications, not the day-to-day management of the site personnel. \n\n**Why it matters**\nWithout clear oversight, technical projects can quickly fail due to poor quality or budget overruns. Understanding these roles allows team members to report to the correct person. For example, if a delivery is late, the Project Manager needs to know to adjust the schedule. If a specific installation looks incorrect, the Clerk of Works must be consulted to verify it against the project specifications. This structure prevents \"mission creep\" where quality is sacrificed for speed.\n\n**Key facts / rules**\n*   The **Project Manager** manages the \"Iron Triangle\": Time, Cost, and Quality.\n*   The **Clerk of Works** provides an independent assessment of quality for the client.\n*   A **contracts manager** often acts as the link between the site office and the head office.\n*   Site management roles are defined by their level of authority and their specific focus (e.g., quality vs. schedule).\n*   Communication must flow vertically (up to management) and horizontally (between inspectors and managers).\n\n**When to choose it**\nSelection of these roles depends on the specific project need. You would look to a **Project Manager** when the primary concern is meeting a deadline or staying within a budget. You would rely on a **Clerk of Works** when the priority is technical compliance and material standards. For instance, in a scenario where a project has a strict 12-month deadline and a £1 million budget, the Project Manager focuses on the 12-month timeline, while the Clerk of Works ensures the materials used in month 3 are exactly what was ordered.\n\n**Common mistakes**\nLearners often confuse the **Project Manager** with the **Clerk of Works**; the **Project Manager** is responsible for managing the people and the schedule, whereas the **Clerk of Works** is solely focused on inspecting the quality of the work. \n\nMisconceptions (targeted):\n* Misconception: The Clerk of Works tells workers what tasks to do each day. | Correction: The Clerk of Works only inspects the results; the Project Manager or site supervisor directs the daily tasks. | AC: 210.LO1.AC1.1\n* Misconception: The Project Manager is only concerned with money. | Correction: The Project Manager must balance budget, time, and quality equally to deliver a successful project. | AC: 210.LO1.AC1.1\n\n**Key Points**\n*   The **Project Manager** is the primary decision-maker for site operations.\n*   The **Clerk of Works** ensures technical specifications are followed.\n*   The **contracts manager** handles the legal and multi-project coordination.\n*   Effective oversight requires a balance between speed (management) and standards (inspection).\n\n**Quick recap**\nSite management is a tiered system of responsibility. The **Project Manager** handles the daily balance of time and cost, the **contracts manager** provides high-level support, and the **Clerk of Works** ensures that every physical component of the project meets the required standards. Together, they ensure the project is delivered safely, legally, and correctly.\n\n### Coming Up Next\nNext, we will look at the specialists who design the project and manage the financial and procurement processes before and during the work."
+        "title": "Design and Pre-Construction Roles",
+        "content": "### In this lesson\nYou will learn to identify the key members of a site management team who operate during the design and pre-construction phases. This knowledge allows you to understand who is responsible for the technical specifications and costings before physical work commences. \n\n*   The distinction between aesthetic design and structural integrity.\n*   The role of cost estimation in securing project bids.\n*   The collaborative relationship between designers and engineers.\n\n**What this is**\nDesign and pre-construction roles involve the professionals who translate a client's vision into technical reality. This stage is dominated by the **Architect**, the **Structural Engineer**, and the **Estimator**. The **Architect** acts as the lead designer, focusing on the aesthetic design and functional layout of a building, rather than the structural calculations or physical assembly. Supporting this vision is the **Structural Engineer**, a specialist who ensures the stability and load-bearing capacity of a building's framework. While the **Architect** determines where a wall looks best, the **Structural Engineer** determines how thick that wall must be to support the roof. Additionally, the **Estimator** focuses on the financial feasibility, calculating the anticipated costs of materials, labor, and equipment to produce a project bid before any work begins on site.\n\n**Why it matters**\nUnderstanding these roles is essential for identifying the primary purpose and responsibilities of design-led professional roles. Without a clear division of labor, a building might look beautiful but be structurally unsafe, or it might be technically perfect but far too expensive to build. By identifying the correct professional for a specific query, you ensure that technical issues are resolved by the right expert, preventing costly delays and ensuring the project meets both safety standards and the client's budget.\n\n**Key facts / rules**\n*   The **Architect** is the primary point of contact for the building's visual and spatial layout.\n*   The **Structural Engineer** provides the essential calculations for the building's \"skeleton\" or framework.\n*   An **Estimator** must complete their work before a project is typically awarded to a contractor.\n*   Surveyors (such as land or building surveyors) provide the initial site data used by the design team.\n*   Building services engineers design the internal systems like power, water, and ventilation.\n*   All design-led roles must comply with current building regulations and local planning laws.\n\n**When to choose it**\nYou would look for these roles during the early stages of a project lifecycle. If a client needs to know if a specific material is affordable for the whole build, they consult the **Estimator**. If a contractor is unsure if a beam can support a specific weight, they must refer to the **Structural Engineer**. In contrast, if the room layout needs changing to improve natural light, the **Architect** is the appropriate professional to contact. \n\nConsider this micro-scenario: An **Estimator** calculates that using premium stone will cost £20,000 more than the budget allows; the client must then choose between increasing the budget or asking the **Architect** to specify a different material.\n\n**Common mistakes**\nLearners often confuse the **Architect** with the **Structural Engineer**; the **Architect** is responsible for the look and feel of the space, whereas the **Structural Engineer** is responsible for making sure the building does not collapse. \n\nMisconceptions (targeted):\n*   Misconception: The Architect calculates the strength of the steel beams. | Correction: The Structural Engineer performs the load-bearing calculations, while the Architect designs the layout. | AC: 210.LO1.AC1.2\n*   Misconception: The Estimator manages the money while the building is being built. | Correction: The Estimator only calculates costs for the initial bid; the Quantity Surveyor manages costs during construction. | AC: 210.LO1.AC1.1\n\n**Key Points**\n*   The **Architect** focuses on aesthetics and functional layout.\n*   The **Structural Engineer** focuses on stability and physical integrity.\n*   The **Estimator** provides the initial pricing for project bids.\n*   These roles form the foundation of the project's technical specifications.\n\n**Quick recap**\nThe design and pre-construction phase relies on a team of professionals who define what will be built and how much it will cost. The **Architect** designs the space, the **Structural Engineer** ensures it is safe and stable, and the **Estimator** ensures the project is financially viable before work begins. \n\n### Coming Up Next\nWe will move from the drawing board to the construction site to examine the management and procurement roles responsible for turning these designs into a physical reality."
       }
     },
     {
@@ -76,62 +98,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Site Management and Project Oversight",
+        "title": "Check Your Understanding: Design and Pre-Construction Roles",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1A-C1-L1-A",
-            "questionText": "What three factors make up the Iron Triangle managed by the Project Manager?",
+            "questionText": "Which professional focuses on the aesthetic design and functional layout of a building?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Time, Cost, and Quality",
-              "Time Cost Quality",
-              "Time, Cost, Quality"
+              "Architect",
+              "The Architect",
+              "Architects"
             ],
-            "hint": "These three constraints must be balanced equally for a project to be successful."
+            "hint": "This person acts as the lead designer for the building's visual look."
           },
           {
             "id": "210-1A-C1-L1-B",
-            "questionText": "Which role acts as a site-based inspector rather than the person running the site day-to-day?",
+            "questionText": "Which specialist determines how thick a wall must be to support the roof?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Clerk of Works",
-              "The Clerk of Works",
-              "Clerk of the Works"
+              "Structural Engineer",
+              "The Structural Engineer",
+              "Structural Engineers"
             ],
-            "hint": "This person focuses on whether materials and workmanship meet the project specifications."
+            "hint": "This role provides calculations for the stability and load-bearing capacity of the framework."
           },
           {
             "id": "210-1A-C1-L1-C",
-            "questionText": "Which role serves as the link between the site office and the company's head office?",
+            "questionText": "Who focuses on the financial feasibility by calculating the anticipated costs of materials?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Contracts Manager",
-              "The Contracts Manager",
-              "Contract Manager"
+              "Estimator",
+              "The Estimator",
+              "Estimators"
             ],
-            "hint": "This individual typically oversees multiple projects and handles high-level legal agreements."
+            "hint": "This professional produces the project bid before any work begins on site."
           },
           {
             "id": "210-1A-C1-L2",
-            "questionText": "Using your answers to Q1 (the Iron Triangle), Q2 (inspection vs management), and Q3 (head office links), explain why a project requires this specific hierarchy of roles. How do we know that one person cannot perform all these tasks alone?",
+            "questionText": "Using your answers to Q1 (Architect), Q2 (Structural Engineer), and Q3 (Estimator), why must these three roles collaborate before physical work commences?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The Project Manager must balance the Iron Triangle while the Clerk of Works provides an independent check on quality",
-              "The contracts manager connects site-level operations to broader company targets and head office",
-              "Separating inspection from daily management prevents quality being sacrificed for speed or budget",
-              "The roles represent different levels of authority and focus, from site-based technical compliance to high-level legal oversight"
+              "The Architect's visual design must be validated by the Structural Engineer's calculations to ensure safety",
+              "The Estimator ensures the design and structural requirements are financially feasible within the budget",
+              "Collaboration ensures technical issues are resolved by the right expert before construction starts to prevent delays",
+              "Without this relationship a building may be beautiful but unsafe or too expensive to build"
             ],
             "expectedAnswer": [
-              "A project needs this hierarchy because the Project Manager is focused on balancing time, cost, and quality, while the Clerk of Works provides an independent check to ensure quality isn't sacrificed. We know one person can't do it all because the contracts manager is needed to link these site activities back to the head office and legal targets.",
-              "These roles work together by separating the daily management of the Iron Triangle from the technical inspection of the work. By having a Clerk of Works for inspection and a contracts manager for head office links, the Project Manager can focus on site delivery without a conflict of interest between speed and quality standards."
+              "These roles must work together so that the Architect's aesthetic vision is safe according to the Structural Engineer and affordable according to the Estimator's calculations. If they do not collaborate, the project might be structurally unsafe or exceed the client's budget before it even starts.",
+              "They collaborate to translate a client's vision into a technical reality that is safe and affordable. The Engineer ensures the Architect's layout will stand up, while the Estimator confirms the materials needed for that layout fit the financial feasibility of the project."
             ],
-            "hint": "Think about how separating the duty of 'getting it done' from 'checking it is correct' protects the project's quality."
+            "hint": "Consider how the visual design, the safety calculations, and the budget must all align to make a project viable."
           }
         ]
       }
@@ -141,8 +163,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Design, Technical, and Financial Specialists",
-        "content": "### In this lesson\nYou will learn to describe the distinct purposes of design and engineering roles and differentiate between the financial and procurement responsibilities of the quantity surveyor, buyer, and estimator. This is vital for understanding how a project moves from a concept to a fully funded and supplied reality.\n\n*   The roles of architects and engineers in project design.\n*   The difference between pre-construction and construction-phase financial roles.\n*   The specific procurement duties of the **Buyer**.\n\n**What this is**\nTechnical projects require a blend of design and financial expertise. The **architect** creates the aesthetic and functional design, while the **structural engineer** ensures the safety and stability of the physical framework. The **building services engineer** designs internal systems like ventilation and power. On the financial side, the **Estimator** is a specialist who analyzes technical drawings and specifications to calculate the probable costs of a project during the pre-construction or tendering phase. Once the work begins, the **Quantity Surveyor** takes over, acting as a professional responsible for managing project budgets and contractual payments. Supporting both is the **Buyer**, the procurement specialist responsible for sourcing and purchasing the materials, plant, and sub-contracted services required to complete the project.\n\n**Why it matters**\nSpecialization prevents errors. An architect might design a beautiful glass wall, but the **structural engineer** must calculate if it can withstand wind loads. Similarly, a project cannot start without an accurate price from an **Estimator**, and it cannot continue without a **Buyer** securing materials at the right time. If these roles are confused, the project might run out of money or materials, leading to total failure.\n\n**Key facts / rules**\n*   The **architect** focuses on the \"what\" and \"where\" of a design.\n*   The **structural engineer** focuses on the \"how\" (stability and forces).\n*   An **Estimator** works primarily *before* a project is won or started.\n*   A **Quantity Surveyor** works primarily *during* the project to manage cash flow.\n*   The **Buyer** must balance cost with the project schedule to ensure materials arrive when needed.\n\n**When to choose it**\nChoosing between these specialists depends on the project phase. During the planning phase, you need an **Estimator** to tell you if the project is affordable. If you are halfway through a project and need to pay a subcontractor for work completed, you must use a **Quantity Surveyor**. For example, if an **Estimator** predicts a project will cost £50,000, the **Buyer** might find a way to purchase the materials for £45,000, and the **Quantity Surveyor** will track that £5,000 saving in the live budget.\n\n**Common mistakes**\nLearners often confuse the **Estimator** with the **Quantity Surveyor**; the **Estimator** calculates costs before the work begins to help win the contract, whereas the **Quantity Surveyor** manages the actual budget and payments once the project is underway. \n\nMisconceptions (targeted):\n* Misconception: The Buyer just picks the cheapest materials available. | Correction: The Buyer must source materials that meet the exact project specifications and the delivery schedule, not just the lowest price. | AC: 210.LO1.AC1.2\n* Misconception: The architect is responsible for calculating the strength of steel beams. | Correction: The architect designs the layout, but the structural engineer is responsible for the load-bearing calculations. | AC: 210.LO1.AC1.2\n\n**Key Points**\n*   Designers (architects/engineers) define the technical requirements.\n*   The **Estimator** sets the initial financial target.\n*   The **Quantity Surveyor** manages the real-world spending.\n*   The **Buyer** ensures the physical resources are available on site.\n\n**Quick recap**\nSuccess depends on the transition from design to finance. Architects and engineers create the technical plan, while the **Estimator** prices it. During construction, the **Buyer** sources the necessary goods, and the **Quantity Surveyor** manages the payments to ensure the project remains financially viable until completion.\n\n### Coming Up Next\nNow that you understand the management and specialist roles, we will explore how these individuals communicate using standardized documentation and site records."
+        "title": "Management and Procurement Roles",
+        "content": "### In this lesson\nYou will learn to explain the functions of management and procurement staff in supporting site operations. This involves identifying the professionals responsible for the daily running of the site, the quality of the work, and the ongoing management of the project's finances.\n\n*   The coordination duties of the **Project Manager**.\n*   The quality inspection role of the **Clerk of Works**.\n*   The difference between initial pricing and active budget management.\n\n**What this is**\nManagement and procurement roles are the \"engine room\" of the construction phase. The **Project Manager** is the individual responsible for the overall planning, coordination, and delivery of a project to ensure it is completed on time and within budget. They are the central hub for all communication. Working alongside them is the **Quantity Surveyor**, the professional who manages the project budget and financial records throughout the construction process. While the work is being carried out, the **Clerk of Works** acts as a site-based inspector representing the client to ensure that the quality of materials and workmanship meets the specified standards. \n\n**Why it matters**\nThese roles are critical for supporting site operations and ensuring that the theoretical designs are executed correctly. Without a **Project Manager**, different trades might clash or work in the wrong order. Without a **Quantity Surveyor**, a project could easily run out of money halfway through. The **Clerk of Works** provides an essential layer of protection for the client, ensuring they get exactly what they paid for in terms of quality and safety. \n\n**Key facts / rules**\n*   The **Project Manager** oversees the entire timeline and trade coordination.\n*   A **Quantity Surveyor** tracks every penny spent during the physical build process.\n*   The **Clerk of Works** has the authority to reject work that does not meet the design requirements.\n*   Buyers are responsible for the physical procurement of materials and equipment.\n*   Contracts managers oversee the legal agreements between the client and the contractors.\n*   Procurement staff ensure that materials arrive on site just when they are needed to prevent delays.\n\n**When to choose it**\nYou identify the need for these roles based on the operational requirements of a live site. If there is a dispute over the cost of an extra electrical socket requested mid-build, the **Quantity Surveyor** is the person to resolve it. If the brickwork looks uneven or uses the wrong mortar mix, the **Clerk of Works** is the professional who flags the issue. The **Project Manager** is chosen when the team needs a decision on how a delay in one area will affect the rest of the schedule.\n\nConsider this micro-scenario: A **Quantity Surveyor** notices that material costs have risen by 5% in month two; they must immediately adjust the remaining budget to ensure the project doesn't overspend by the final month.\n\n**Common mistakes**\nLearners often confuse the **Quantity Surveyor** with the **Estimator**; the **Estimator** focuses on initial pricing before the project starts, whereas the **Quantity Surveyor** manages the actual financial records as the project progresses. \n\nMisconceptions (targeted):\n*   Misconception: The Project Manager is always the person who physically builds the project. | Correction: The Project Manager coordinates the people and resources, but they focus on management, not manual labor. | AC: 210.LO1.AC1.1\n*   Misconception: The Clerk of Works works for the contractor. | Correction: The Clerk of Works typically represents the client to ensure the contractor is meeting the required standards. | AC: 210.LO1.AC1.2\n\n**Key Points**\n*   The **Project Manager** handles timeline, delivery, and coordination.\n*   The **Quantity Surveyor** manages the ongoing project budget and financial records.\n*   The **Clerk of Works** ensures quality and adherence to specifications on-site.\n*   Procurement staff (Buyers) ensure materials and tools are available for the trades.\n\n**Quick recap**\nManagement and procurement roles ensure that the project is delivered efficiently. The **Project Manager** keeps the project on track, the **Quantity Surveyor** keeps it on budget, and the **Clerk of Works** keeps it at the required quality level. Together, they bridge the gap between the design office and the physical site.\n\n### Coming Up Next\nIn the next lesson, we will look at how these management roles communicate with the various trade specialists on site to ensure a safe and productive working environment."
       }
     },
     {
@@ -150,64 +172,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Design, Technical, and Financial Specialists",
+        "title": "Check Your Understanding: Management and Procurement Roles",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "210-1A-C2-L1-A",
-            "questionText": "Which designer focuses on the stability and forces of a design rather than the what and where?",
+            "questionText": "Who is the individual responsible for the overall planning coordination and delivery of a project?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Structural Engineer",
-              "The Structural Engineer",
-              "Structural Engineers"
+              "Project Manager",
+              "The Project Manager",
+              "PM"
             ],
-            "hint": "This specialist calculates the load-bearing requirements of the project framework."
+            "hint": "This person acts as the central hub for all communication and project timelines."
           },
           {
             "id": "210-1A-C2-L1-B",
-            "questionText": "At what stage does an Estimator primarily perform their work?",
-            "answerType": "short-text",
-            "cognitiveLevel": "recall",
-            "expectedAnswer": [
-              "Before the project starts",
-              "Pre-construction",
-              "Before starting",
-              "Tendering phase"
-            ],
-            "hint": "This specialist calculates costs to help win the contract or determine if the project is affordable."
-          },
-          {
-            "id": "210-1A-C2-L1-C",
-            "questionText": "Which specialist is responsible for managing cash flow and payments while a project is underway?",
+            "questionText": "Which professional manages the project budget and financial records throughout the construction process?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Quantity Surveyor",
               "The Quantity Surveyor",
-              "QS",
-              "Quantity Surveyors"
+              "QS"
             ],
-            "hint": "This role manages the real-world spending and contractual payments during the construction phase."
+            "hint": "Unlike the Estimator, this person tracks the actual spend during the physical build."
+          },
+          {
+            "id": "210-1A-C2-L1-C",
+            "questionText": "Who typically represents the client to ensure the contractor is meeting the required standards?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Clerk of Works",
+              "The Clerk of Works",
+              "Site inspector"
+            ],
+            "hint": "This site-based inspector focuses on the quality of materials and workmanship."
           },
           {
             "id": "210-1A-C2-L2",
-            "questionText": "Using your answers to Q1 (structural stability), Q2 (pre-start estimation), and Q3 (live cash flow), explain how these roles connect to move a project from a drawing to a finished building. Why must the financial roles be separated into different project phases?",
+            "questionText": "Using your answers to Q1 (Project Manager), Q2 (Quantity Surveyor), and Q3 (Clerk of Works), how do we know these roles are essential for supporting site operations?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Structural engineers turn an architect's design into a safe, buildable plan",
-              "The Estimator sets the initial financial target based on those technical designs before work begins",
-              "The Quantity Surveyor manages the actual spending and budget during construction to ensure the project remains viable",
-              "Separating these roles ensures financial accuracy at every stage from initial bidding to final completion"
+              "The Project Manager ensures trades are coordinated so the timeline is met",
+              "The Quantity Surveyor ensures the project remains financially viable as costs change during the build",
+              "The Clerk of Works ensures the physical workmanship matches the quality specified in the design",
+              "These roles work together to bridge the gap between office-based design and physical site execution"
             ],
             "expectedAnswer": [
-              "The roles connect by moving from the technical safety of the structural engineer's design to the Estimator's pre-start budget. Once work begins, the Quantity Surveyor manages the live cash flow. We separate the financial roles because estimating a price to win work requires different skills than managing real-world payments and budget changes during construction.",
-              "A project moves from design to reality when the structural engineer ensures it is safe, the Estimator determines the cost before it starts, and the Quantity Surveyor tracks the actual spending during the work. This separation is necessary so that the initial price is set accurately before the project is committed to, while the live budget is managed professionally as costs change on site."
+              "We know these roles are essential because they ensure the theoretical design is executed correctly on site. The Project Manager coordinates the trades, the Quantity Surveyor manages the active budget, and the Clerk of Works verifies the quality, preventing the project from running out of money or being built poorly.",
+              "These roles support operations by managing the three pillars of a live site: time, money, and quality. The Project Manager handles the delivery timeline, the Quantity Surveyor tracks the financial records, and the Clerk of Works protects the client by inspecting the standards of work."
             ],
-            "hint": "Consider the difference between predicting a cost and managing the actual money being spent on site."
+            "hint": "Think about what would happen to the timeline, the budget, and the quality of the building if these roles were missing from a live site."
           }
         ]
       }
@@ -221,44 +241,55 @@
         "questions": [
           {
             "id": "210-1A-P1",
-            "questionText": "Explain why the Clerk of Works must remain independent from the Project Manager’s daily task scheduling.",
-            "answerType": "short-text",
+            "questionText": "An Estimator calculates that a project requires 55000 in materials, 30000 in labor, and 15000 in equipment. What is the total project bid value?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "To provide independent quality inspection",
-              "to ensure unbiased quality oversight",
-              "to focus on specifications not schedule",
-              "to maintain independent standards"
+              "100000"
             ],
-            "hint": "Think about the difference between managing people/time versus inspecting the final quality of materials."
+            "hint": "Sum the anticipated costs of materials, labor, and equipment in the pre-construction phase."
           },
           {
             "id": "210-1A-P2",
-            "questionText": "An Estimator calculates the initial cost of a technical project at 85000. During the procurement phase, the Buyer successfully sources materials for 78500. What is the total cost saving that the Quantity Surveyor will record?",
+            "questionText": "A Quantity Surveyor manages a live project budget of 200000. If the cost of materials rises by 5 percent during the build, what is the new total project cost?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "6500"
+              "210000"
             ],
-            "hint": "Subtract the actual cost from the estimated cost. Value in £."
+            "hint": "Calculate the 5 percent increase and add it to the original budget."
           },
           {
             "id": "210-1A-P3",
-            "questionText": "A project involves installing 400 identical technical units. During an inspection, the Clerk of Works finds that 5% of the units do not meet the project specifications. How many units must the Project Manager arrange to be corrected?",
-            "answerType": "numeric",
+            "questionText": "Explain why a project cannot proceed to construction using only an Architect's layout drawings.",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "20"
+              "lacks structural calculations",
+              "needs stability calculations",
+              "missing load-bearing data",
+              "requires structural integrity"
             ],
-            "hint": "Calculate 5% of 400. This represents the units failing quality standards."
+            "hint": "Consider what the Structural Engineer provides that the Architect does not."
           },
           {
             "id": "210-1A-P4",
-            "questionText": "In a complex engineering project, which specialist is responsible for designing the internal systems such as power distribution, ventilation, and data cabling?",
+            "questionText": "During a site visit, a client is concerned that the internal wiring being installed is of a lower quality than what was agreed in the contract. Which site-based professional is responsible for identifying and rejecting this work?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Building Services Engineer",
-              "building services engineers",
-              "Building Services Engineering"
+              "Clerk of Works",
+              "the Clerk of Works",
+              "site inspector"
             ],
-            "hint": "This role focuses on the internal systems rather than the structural frame or the aesthetic layout."
+            "hint": "Identify the professional who represents the client and inspects the quality of workmanship."
+          },
+          {
+            "id": "210-1A-P5",
+            "questionText": "Which professional is responsible for adjusting the financial records when an unexpected cost arises while the physical work is already in progress?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Quantity Surveyor",
+              "the Quantity Surveyor",
+              "QS"
+            ],
+            "hint": "This role manages the budget during the construction phase, not just for the initial bid."
           }
         ]
       }
@@ -274,40 +305,40 @@
         "questions": [
           {
             "id": "210-1A-INT-1",
-            "questionText": "Explain how the operational oversight provided by the site management team interacts with the financial control functions of the project. In your answer, include: (1) the primary objective of the Project Manager, (2) the specific financial monitoring role of the Quantity Surveyor, (3) how these two roles collaborate to maintain project viability. Why is this collaborative relationship essential for project completion? (2-3 sentences)",
+            "questionText": "Analyze how the technical specifications produced by design-led professionals influence the daily oversight duties of site management staff. In your answer, include: (1) the role of design specifications in setting project standards, (2) the function of quality inspection roles such as the Clerk of Works, and (3) the relationship between pre-construction planning and site supervision. Why must management staff strictly adhere to the initial design specifications during the construction phase? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identifies the Project Manager's role in directing site operations and schedule adherence.",
-              "Describes the Quantity Surveyor's role in managing costs and financial reporting.",
-              "Explains the link between site progress and budget expenditure.",
-              "Reasoning: Demonstrates that operational decisions have direct financial consequences that require validation to prevent budget overruns."
+              "Explains that design roles establish the technical and aesthetic benchmarks for the project.",
+              "Identifies that management roles like the Clerk of Works use these benchmarks for quality control.",
+              "Describes the link between pre-construction documentation and physical site verification.",
+              "Reasons that adherence is necessary to maintain structural integrity and meet client requirements."
             ],
             "expectedAnswer": [
-              "The Project Manager oversees the daily execution of the work schedule, while the Quantity Surveyor monitors the costs associated with those activities to ensure they stay within budget. This relationship is essential because site management decisions regarding labor and materials must be financially validated to prevent the project from becoming non-viable or running out of funds before completion.",
-              "Site management focuses on the 'how' and 'when' of construction, whereas the Quantity Surveyor focuses on the 'how much.' They collaborate by reconciling physical progress with financial outlays; this is critical because without this link, a project could meet its technical milestones while failing its financial objectives."
+              "Design professionals establish the technical requirements and material standards that management staff must enforce during the build. Roles like the Clerk of Works use these specifications as a checklist to ensure the quality of work matches the intended design. Management must adhere to these specs because any deviation could compromise the structural safety or the aesthetic outcome of the project.",
+              "The pre-construction phase provides the blueprints and specifications that dictate how site management supervises daily operations. The Clerk of Works ensures that the physical construction aligns with the engineer's structural requirements and the architect's vision. This relationship holds because strict adherence prevents costly errors and ensures the project remains compliant with technical regulations."
             ],
-            "hint": "Think about how the person running the site needs to communicate with the person managing the money."
+            "hint": "Think about how a blueprint created in the office becomes the standard for inspection on the ground."
           },
           {
             "id": "210-1A-INT-2",
-            "questionText": "Analyze how the distinct functions of design specialists, financial controllers, and site management teams must integrate to deliver a technical project from concept to completion. In your answer, include: (1) the transition from engineering specifications to material procurement, (2) the difference between pre-construction estimation and active site financial management, (3) the role of quality oversight in verifying technical compliance, (4) how these functions collectively mitigate project risk. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Evaluate how the transition from pre-construction planning to active site operations requires the integration of design, management, and procurement roles. In your answer, include: (1) the impact of initial cost estimation on procurement staff, (2) the coordination duties of the Project Manager, (3) the distinction between structural design and quality inspection, and (4) how these roles collaborate to maintain project viability. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Connects engineering designs to the Buyer’s procurement actions.",
-              "Differentiates the Estimator’s initial budget from the Quantity Surveyor’s ongoing management.",
-              "Explains how the Clerk of Works or PM ensures the physical build matches design specs.",
-              "Identifies that integration prevents costly rework and delays.",
-              "Highlights the flow of information from design to finance to site execution.",
-              "Discusses risk mitigation through checks and balances between roles.",
-              "Maintains technical precision regarding role-specific duties."
+              "Identifies that pre-construction costings set the baseline for active procurement and budget management.",
+              "Describes the Project Manager's role in synchronizing design requirements with operational activities.",
+              "Distinguishes between the engineer's role in creating structural designs and the management's role in inspecting them.",
+              "Explains how procurement supports site operations by managing finances based on initial bids.",
+              "Demonstrates how collaboration ensures technical specifications are met within budget constraints.",
+              "Links the different phases of the project lifecycle through professional accountability.",
+              "Maintains technical precision regarding job titles and their specific functions."
             ],
             "expectedAnswer": [
-              "Project delivery relies on the Buyer procuring materials that meet the Engineer's technical specifications while staying within the Estimator's budget. During construction, the Quantity Surveyor manages active costs against these estimates, while the Clerk of Works ensures the physical installation complies with the original design. This integrated approach mitigates risk by ensuring that financial, technical, and operational constraints are balanced, preventing rework and budget deficits.",
-              "• The Buyer uses engineering specifications to source materials that the Estimator has budgeted for.\n• The Quantity Surveyor tracks real-time spending on site while the site management team ensures work follows the design.\n• Quality oversight roles like the Clerk of Works verify that the final output meets technical standards.\n• These roles work together to mitigate risk by ensuring the project is built correctly, on time, and within the allocated funding."
+              "The Project Manager coordinates the transition by ensuring that procurement staff manage the active budget according to the initial cost estimations. Meanwhile, the Clerk of Works inspects the site to ensure the physical work matches the structural designs and technical specifications provided by the pre-construction team. This collaboration ensures that the project remains financially viable while meeting all safety and quality standards defined during the design phase.",
+              "• Initial cost estimations provide the framework for procurement staff to manage ongoing site expenses and material orders.\n• The Project Manager serves as the central link, ensuring design specifications are translated into daily site activities.\n• While engineers focus on structural integrity, the Clerk of Works provides the necessary oversight to verify that these designs are executed correctly.\n• Effective integration of these roles prevents project drift by aligning financial management with technical and quality requirements."
             ],
-            "hint": "Consider the journey of a project from a drawing to a purchased material, and finally to a checked installation."
+            "hint": "Consider how the financial, technical, and supervisory roles must work together to prevent the project from failing."
           }
         ]
       }
@@ -321,35 +352,35 @@
         "questions": [
           {
             "id": "210-1A-SR-1",
-            "questionText": "What term is used to describe the physical location where construction work is managed and performed?",
+            "questionText": "What general term is used to describe the physical location where construction or technical operations take place?",
             "expectedAnswer": [
               "Site",
               "Construction site",
               "Worksite"
             ],
-            "hint": "Think of the place where the building activity happens.",
+            "hint": "It is the first word used in the lesson title.",
             "answerType": "short-text"
           },
           {
             "id": "210-1A-SR-2",
-            "questionText": "What general term is used to describe specialized manual skills or crafts within the construction industry?",
+            "questionText": "What word is used to describe a person's specific position or the set of tasks they are assigned within a team?",
             "expectedAnswer": [
-              "Trade",
-              "Trades",
-              "Trade roles"
+              "Role",
+              "Job role",
+              "Position"
             ],
-            "hint": "Examples include carpentry, plumbing, and bricklaying.",
+            "hint": "This term appears in the title to describe different trade functions.",
             "answerType": "short-text"
           },
           {
             "id": "210-1A-SR-3",
-            "questionText": "What term describes a planned piece of work that has a specific start and end date to create a building?",
+            "questionText": "What is the term for a skilled manual occupation or specialized craft practiced by workers on a project?",
             "expectedAnswer": [
-              "Project",
-              "Construction project",
-              "A project"
+              "Trade",
+              "Skilled trade",
+              "Craft"
             ],
-            "hint": "It is a temporary undertaking to achieve a specific result.",
+            "hint": "Examples include plumbing, carpentry, or masonry.",
             "answerType": "short-text"
           }
         ],
@@ -358,11 +389,12 @@
     }
   ],
   "targetAssessmentCriteria": [
-    "AC1"
+    "AC1",
+    "AC2"
   ],
   "metadata": {
-    "created": "2026-02-16",
-    "updated": "2026-02-16",
+    "created": "2026-02-17",
+    "updated": "2026-02-17",
     "version": "1.0",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
@@ -370,41 +402,42 @@
       "unit": "210",
       "learningOutcome": "LO1",
       "coveredAC": [
-        "AC1"
+        "AC1",
+        "AC2"
       ],
       "outOfScopeAC": [
-        "AC2",
         "AC3",
-        "AC4"
+        "AC4",
+        "AC5"
       ]
     },
     "scope": {
-      "inScope": "Defining the primary purpose and identification of professional roles within the site management and design team.",
-      "outOfScope": "Detailed workflows, specific professional qualifications, or the technical procedures performed by these individuals.",
-      "rationale": "Level 2 learners require a foundational awareness of 'who is who' on site to facilitate effective communication and reporting lines."
+      "inScope": "Identification and functional description of specific site management and professional roles.",
+      "outOfScope": "Detailed technical procedures or specific communication documentation used by these roles.",
+      "rationale": "Level 2 learners require a foundational understanding of who the stakeholders are before mastering communication protocols."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus on role identification and purpose as per the must-have list; exclude professional entry requirements."
+      "specificScope": "Focus on role identification and purpose as per the 'must have' list"
     },
     "misconceptions": [
       {
-        "misconception": "The Clerk of Works tells workers what tasks to do each day.",
-        "correction": "The Clerk of Works only inspects the results to ensure they meet specifications; the Project Manager or site supervisor directs the daily tasks.",
+        "misconception": "The Architect calculates the strength of the steel beams.",
+        "correction": "The Structural Engineer performs the load-bearing calculations, while the Architect designs the layout and aesthetics.",
+        "relatedAC": "210.LO1.AC1.2"
+      },
+      {
+        "misconception": "The Project Manager is the person who physically builds the project.",
+        "correction": "The Project Manager coordinates the people, timeline, and resources but focuses on management rather than manual assembly.",
         "relatedAC": "210.LO1.AC1.1"
       },
       {
-        "misconception": "The Estimator manages the budget throughout the entire construction process.",
-        "correction": "The Estimator calculates costs during the pre-construction phase; the Quantity Surveyor takes over budget management and payments once construction starts.",
-        "relatedAC": "210.LO1.AC1.2"
-      },
-      {
-        "misconception": "The Buyer's only job is to find the lowest possible price for materials.",
-        "correction": "The Buyer must ensure materials meet technical specifications and are delivered according to the project schedule, balancing cost with quality and timing.",
-        "relatedAC": "210.LO1.AC1.2"
+        "misconception": "The Estimator manages the money while the building is being built.",
+        "correction": "The Estimator only calculates costs for the initial bid; the Quantity Surveyor manages costs during the actual construction phase.",
+        "relatedAC": "210.LO1.AC1.1"
       }
     ]
   }

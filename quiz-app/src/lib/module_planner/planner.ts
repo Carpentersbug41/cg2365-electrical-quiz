@@ -10,10 +10,12 @@ import {
 } from './constants';
 import {
   createModuleRun,
+  deleteModuleRun,
   findArtifactByRequestHash,
   getModuleRunById,
   getRunSummary,
   getStageArtifact,
+  listModuleRuns,
   getSyllabusStructureByVersionAndUnit,
   getSyllabusVersionById,
   listRunLessons,
@@ -2529,6 +2531,15 @@ export async function listModulePlannerUnits(syllabusVersionId: string): Promise
 
 export async function listModulePlannerUnitLos(syllabusVersionId: string, unit: string): Promise<string[]> {
   return getUnitLos(syllabusVersionId, unit);
+}
+
+export async function listModulePlannerRuns(limit = 50): Promise<ModuleRunRow[]> {
+  return listModuleRuns(limit);
+}
+
+export async function deletePlannerRun(runId: string): Promise<void> {
+  await requireRun(runId);
+  await deleteModuleRun(runId);
 }
 
 export async function getReplayableArtifacts(runId: string): Promise<Record<ModuleStage, boolean>> {

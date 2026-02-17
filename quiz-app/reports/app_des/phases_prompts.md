@@ -1,8 +1,12 @@
 # Sequential Generation Phase Prompts - Current Contracts
 
-Last verified: 2026-02-16
+Last verified: 2026-02-17
 Status: Current implementation reference
 Scope: Active prompt contracts in `src/lib/generation/phases`
+
+Note (2026-02-17 sync):
+- Module Planner behavior was updated to planner-only M0-M5 plus per-lesson generation controls.
+- Phase prompt contracts in this document are unchanged.
 
 ---
 

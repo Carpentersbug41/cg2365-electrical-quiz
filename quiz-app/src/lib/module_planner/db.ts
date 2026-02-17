@@ -202,6 +202,34 @@ export async function getModuleRunById(runId: string): Promise<ModuleRunRow | nu
   return data ? normalizeRunRow(data as Record<string, unknown>) : null;
 }
 
+export async function listModuleRuns(limit = 50): Promise<ModuleRunRow[]> {
+  if (useMemoryDb()) {
+    return [...memoryDb.module_runs]
+      .sort((a, b) => b.created_at.localeCompare(a.created_at))
+      .slice(0, Math.max(1, limit));
+  }
+  const supabase = requireSupabase();
+  const { data, error } = await supabase
+    .from('module_runs')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(Math.max(1, limit));
+  if (error) throw new Error(error.message);
+  return (data ?? []).map((row) => normalizeRunRow(row as Record<string, unknown>));
+}
+
+export async function deleteModuleRun(runId: string): Promise<void> {
+  if (useMemoryDb()) {
+    memoryDb.module_runs = memoryDb.module_runs.filter((row) => row.id !== runId);
+    memoryDb.module_run_artifacts = memoryDb.module_run_artifacts.filter((row) => row.run_id !== runId);
+    memoryDb.generated_lessons = memoryDb.generated_lessons.filter((row) => row.run_id !== runId);
+    return;
+  }
+  const supabase = requireSupabase();
+  const { error } = await supabase.from('module_runs').delete().eq('id', runId);
+  if (error) throw new Error(error.message);
+}
+
 export async function updateModuleRun(
   runId: string,
   patch: Partial<

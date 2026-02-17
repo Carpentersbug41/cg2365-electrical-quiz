@@ -20,7 +20,22 @@ interface LessonOption {
   totalBlocks: number;
 }
 
-type GameType = 'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win';
+type GameType =
+  | 'matching'
+  | 'sorting'
+  | 'spot-error'
+  | 'tap-label'
+  | 'quick-win'
+  | 'sequencing'
+  | 'fill-gap'
+  | 'is-correct-why'
+  | 'diagnosis-ranked'
+  | 'classify-two-bins'
+  | 'scenario-match'
+  | 'formula-build'
+  | 'tap-the-line'
+  | 'tap-the-word'
+  | 'elimination';
 
 type GenerationStatus = 'idle' | 'generating' | 'preview' | 'saving' | 'success' | 'error';
 
@@ -241,7 +256,17 @@ export default function GameGeneratorForm() {
     { value: 'sorting', label: 'Sorting', description: 'Sort items into two categories' },
     { value: 'spot-error', label: 'Spot the Error', description: 'Identify the incorrect statement' },
     { value: 'tap-label', label: 'Tap to Label', description: 'Label diagram elements' },
-    { value: 'quick-win', label: 'Quick Win Sprint', description: 'Rapid-fire easy questions' }
+    { value: 'quick-win', label: 'Quick Win Sprint', description: 'Rapid-fire easy questions' },
+    { value: 'sequencing', label: 'Sequencing', description: 'Arrange steps in correct order' },
+    { value: 'fill-gap', label: 'Fill Gap', description: 'Fill missing terms in sentence context' },
+    { value: 'is-correct-why', label: 'Is Correct + Why', description: 'Judge statement then pick reason' },
+    { value: 'diagnosis-ranked', label: 'Diagnosis Ranked', description: 'Rank top two likely causes' },
+    { value: 'classify-two-bins', label: 'Classify Two Bins', description: 'Sort items into left/right bins' },
+    { value: 'scenario-match', label: 'Scenario Match', description: 'Match scenarios to answers' },
+    { value: 'formula-build', label: 'Formula Build', description: 'Assemble formula from tokens' },
+    { value: 'tap-the-line', label: 'Tap The Line', description: 'Pick the correct line from list' },
+    { value: 'tap-the-word', label: 'Tap The Word', description: 'Pick the correct word or phrase' },
+    { value: 'elimination', label: 'Elimination', description: 'Eliminate then choose final answer' }
   ];
 
   const isGenerating = status === 'generating' || status === 'saving';

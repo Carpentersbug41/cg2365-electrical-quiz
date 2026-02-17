@@ -39,6 +39,14 @@ interface RunSummary {
   replayable: Record<StageKey, boolean>;
 }
 
+interface RunListItem {
+  id: string;
+  unit: string;
+  status: string;
+  created_at: string;
+  syllabus_version_id: string;
+}
+
 interface StageResult {
   success: boolean;
   stage: StageKey;
@@ -95,6 +103,7 @@ export default function ModulePlannerPage() {
   const [manualLoOverride, setManualLoOverride] = useState(false);
   const [notes, setNotes] = useState('');
   const [runId, setRunId] = useState('');
+  const [recentRuns, setRecentRuns] = useState<RunListItem[]>([]);
   const [runSummary, setRunSummary] = useState<RunSummary | null>(null);
   const [stageResults, setStageResults] = useState<Partial<Record<StageKey, StageResult>>>({});
   const [replayFromArtifacts, setReplayFromArtifacts] = useState(false);
@@ -115,6 +124,7 @@ export default function ModulePlannerPage() {
   const [activeStage, setActiveStage] = useState<StageKey | null>(null);
   const [activeTaskLabel, setActiveTaskLabel] = useState<string | null>(null);
   const [generatingBlueprintId, setGeneratingBlueprintId] = useState<string | null>(null);
+  const [deletingRunId, setDeletingRunId] = useState<string | null>(null);
   const [unitStructure, setUnitStructure] = useState<CanonicalUnitStructure | null>(null);
   const [viewLessonPayload, setViewLessonPayload] = useState<{
     title: string;
@@ -172,15 +182,17 @@ export default function ModulePlannerPage() {
   );
 
   const callApi = useCallback(
-    async (url: string, body?: unknown, isFormData = false) => {
+    async (url: string, body?: unknown, isFormData = false, method?: 'GET' | 'POST' | 'DELETE') => {
       if (abortRef.current) {
         abortRef.current.abort();
       }
       const controller = new AbortController();
       abortRef.current = controller;
+      const requestMethod = method ?? (body ? 'POST' : 'GET');
 
       const response = await fetch(url, {
-        method: body ? 'POST' : 'GET',
+        method: requestMethod,
+        cache: 'no-store',
         headers: body ? (isFormData ? buildHeaders() : buildHeaders('application/json')) : buildHeaders(),
         body: body ? (isFormData ? (body as FormData) : JSON.stringify(body)) : undefined,
         signal: controller.signal,
@@ -225,6 +237,10 @@ export default function ModulePlannerPage() {
       const versions = Array.isArray(data.syllabusVersions)
         ? (data.syllabusVersions as SyllabusVersion[])
         : [];
+      const runs = Array.isArray(data.recentRuns)
+        ? (data.recentRuns as RunListItem[])
+        : [];
+      const sortedRuns = [...runs].sort((a, b) => b.created_at.localeCompare(a.created_at));
       const defaultVersionId = String(data.defaultSyllabusVersionId ?? '');
       const nextVersionId =
         syllabusVersionId && versions.some((version) => version.id === syllabusVersionId)
@@ -232,6 +248,7 @@ export default function ModulePlannerPage() {
           : defaultVersionId;
 
       setSyllabusVersions(versions);
+      setRecentRuns(sortedRuns);
       setSyllabusVersionId(nextVersionId);
       if (nextVersionId) {
         await loadVersionScope(nextVersionId, unit);
@@ -425,6 +442,57 @@ export default function ModulePlannerPage() {
     }
   };
 
+  const handleLoadRun = async (id: string) => {
+    setLoading(true);
+    setActiveTaskLabel(`Loading run ${id}`);
+    setError(null);
+    setInfo(null);
+    try {
+      setRunId(id);
+      await loadRunSummary(id);
+      setInfo(`Loaded run ${id}.`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to load run');
+    } finally {
+      setLoading(false);
+      setActiveTaskLabel(null);
+    }
+  };
+
+  const handleDeleteRun = async (id: string) => {
+    const target = recentRuns.find((row) => row.id === id);
+    const confirmation = window.confirm(
+      `Delete run ${id}${target ? ` (Unit ${target.unit}, ${new Date(target.created_at).toLocaleString()})` : ''}? This cannot be undone.`
+    );
+    if (!confirmation) return;
+
+    setDeletingRunId(id);
+    setError(null);
+    setInfo(null);
+    try {
+      await callApi(`/api/admin/module/runs/${id}`, undefined, false, 'DELETE');
+      setRecentRuns((prev) => prev.filter((row) => row.id !== id));
+      if (runId === id) {
+        setRunId('');
+        setRunSummary(null);
+        setStageResults({});
+      }
+      // Confirm the run no longer exists server-side.
+      try {
+        await callApi(`/api/admin/module/runs/${id}`);
+        setError(`Delete warning: run ${id} still resolves from API.`);
+      } catch {
+        // Expected path: API should 404 after deletion.
+      }
+      await loadBootstrap();
+      setInfo(`Deleted run ${id}.`);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to delete run');
+    } finally {
+      setDeletingRunId(null);
+    }
+  };
+
   const runStage = async (stage: StageKey) => {
     if (!runId) {
       setError('Create a run before executing stages.');
@@ -593,6 +661,45 @@ export default function ModulePlannerPage() {
             <p className="text-xs text-slate-600">
               {activeVersion.filename} | {activeVersion.content_hash.slice(0, 12)} | {new Date(activeVersion.created_at).toLocaleString()} | chunks {String(activeVersion.meta_json?.chunkCount ?? '?')} | LOs {String(activeVersion.meta_json?.loCount ?? '?')} | ACs {String(activeVersion.meta_json?.acCount ?? '?')} | units {JSON.stringify(activeVersion.meta_json?.unitsFound ?? [])}
             </p>
+          )}
+        </section>
+
+        <section className="rounded-lg bg-white p-4 shadow-sm">
+          <h2 className="mb-2 text-lg font-semibold">Runs</h2>
+          <p className="mb-2 text-xs text-slate-600">Newest first. Actions apply to the exact Run ID shown on each row.</p>
+          {recentRuns.length === 0 ? (
+            <p className="text-sm text-slate-600">No runs yet.</p>
+          ) : (
+            <div className="space-y-2">
+              {recentRuns.map((row) => (
+                <div key={row.id} className="flex flex-wrap items-center justify-between gap-2 rounded border border-slate-200 p-2 text-sm">
+                  <div>
+                    <p className="font-medium">
+                      Run ID {row.id} | Unit {row.unit}
+                    </p>
+                    <p className="text-xs text-slate-600">
+                      {new Date(row.created_at).toLocaleString()} | status {row.status} | syllabus {row.syllabus_version_id.slice(0, 8)}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => void handleLoadRun(row.id)}
+                      disabled={loading || deletingRunId === row.id}
+                      className="rounded border border-slate-300 px-2 py-1 text-xs disabled:opacity-60"
+                    >
+                      Open
+                    </button>
+                    <button
+                      onClick={() => void handleDeleteRun(row.id)}
+                      disabled={loading || deletingRunId !== null}
+                      className="rounded border border-rose-300 px-2 py-1 text-xs text-rose-700 disabled:opacity-60"
+                    >
+                      {deletingRunId === row.id ? 'Deleting...' : 'Delete Entire Run'}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
           )}
         </section>
 

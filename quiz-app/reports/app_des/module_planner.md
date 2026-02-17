@@ -1,6 +1,6 @@
 # Module Planner vNext - Operator Guide and Interface Reference
 
-Last verified: 2026-02-16
+Last verified: 2026-02-17
 Route: `/admin/module`
 API base: `/api/admin/module/*`
 
@@ -17,7 +17,7 @@ Module Planner is a syllabus-versioned pipeline that:
 4. creates lesson plan proposals (`M3`)
 5. builds lesson blueprints (`M4`)
 6. validates blueprint and coverage contracts (`M5`)
-7. generates lessons from selected blueprints (per-lesson M6)
+7. generates lessons from selected blueprints (per-lesson only, one lesson at a time)
 
 Feature gate:
 - `MODULE_PLANNER_ENABLED=true`
@@ -39,6 +39,7 @@ Required for DB-backed planner persistence:
 Required DB migrations:
 - `supabase/migrations/202602140001_module_planner_vnext.sql`
 - `supabase/migrations/202602140002_module_planner_ingestions.sql`
+- `supabase/migrations/202602160001_module_planner_allow_planned_status.sql`
 
 Run app:
 ```powershell
@@ -86,6 +87,11 @@ Buttons:
 - `Plan lessons (M0-M5)`
 - stage buttons for `M0`..`M5`
 - `Refresh Run Summary`
+
+Runs panel:
+- lists previous runs (`Run ID`, `Unit`, `created_at`, `status`, syllabus id short form)
+- `Open` loads that run summary + lesson matrix
+- `Delete Entire Run` deletes the run and dependent rows
 
 ### Results panels
 
@@ -141,6 +147,7 @@ Important behaviors:
   - `loBlueprintSets`
   - `loLedgers`
   - `lessonLedgerMetadata`
+- persists one row per blueprint in `generated_lessons` with `status='planned'`
 
 ### M5 Validate
 
@@ -166,8 +173,7 @@ Behavior:
 
 Bulk M6 endpoint:
 - `POST /api/admin/module/:runId/m6-generate`
-- disabled unless `MODULE_PLANNER_BULK_M6_ENABLED=true`
-- returns 403 with explicit message when disabled
+- currently disabled at route layer (returns 403 always)
 
 ---
 

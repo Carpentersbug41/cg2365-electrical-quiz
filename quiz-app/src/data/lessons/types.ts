@@ -142,7 +142,34 @@ export interface DiagramBlockContent {
  * Microbreak Block: Short engagement reset activities
  */
 export type MicrobreakType = 'rest' | 'game';
-export type GameType = 'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win';
+export type GameType =
+  | 'matching'
+  | 'sorting'
+  | 'spot-error'
+  | 'tap-label'
+  | 'quick-win'
+  | 'sequencing'
+  | 'fill-gap'
+  | 'is-correct-why'
+  | 'diagnosis-ranked'
+  | 'classify-two-bins'
+  | 'scenario-match'
+  | 'formula-build'
+  | 'tap-the-line'
+  | 'tap-the-word'
+  | 'elimination';
+
+export interface MicrobreakGameBase {
+  breakType: 'game';
+  gameType: GameType;
+  id?: string;
+  prompt?: string;
+  instructions?: string;
+  difficulty?: 'easy' | 'medium';
+  timerSeconds?: number;
+  enableSound?: boolean;
+  enableEffects?: boolean;
+}
 
 export interface RestMicrobreakContent {
   breakType: 'rest';
@@ -205,13 +232,103 @@ export interface QuickWinGameContent {
   }>;
 }
 
+export interface SequencingGameContent extends MicrobreakGameBase {
+  gameType: 'sequencing';
+  steps: string[];
+  correctOrder: string[];
+}
+
+export interface FillGapGameContent extends MicrobreakGameBase {
+  gameType: 'fill-gap';
+  textTemplate: string;
+  gaps: Array<{
+    id: string;
+    options: string[];
+    correctOptionIndex: number;
+  }>;
+}
+
+export interface IsCorrectWhyGameContent extends MicrobreakGameBase {
+  gameType: 'is-correct-why';
+  statement: string;
+  isCorrect: boolean;
+  reasons: string[];
+  correctReasonIndex: number;
+  explanation?: string;
+}
+
+export interface DiagnosisRankedGameContent extends MicrobreakGameBase {
+  gameType: 'diagnosis-ranked';
+  scenario: string;
+  options: string[];
+  correctRankedIndices: [number, number];
+  rationale?: string;
+}
+
+export interface ClassifyTwoBinsGameContent extends MicrobreakGameBase {
+  gameType: 'classify-two-bins';
+  leftLabel: string;
+  rightLabel: string;
+  items: Array<{
+    text: string;
+    correctBin: 'left' | 'right';
+  }>;
+}
+
+export interface ScenarioMatchGameContent extends MicrobreakGameBase {
+  gameType: 'scenario-match';
+  pairs: Array<{
+    scenario: string;
+    answer: string;
+  }>;
+  distractors?: string[];
+}
+
+export interface FormulaBuildGameContent extends MicrobreakGameBase {
+  gameType: 'formula-build';
+  tokens: string[];
+  correctSequence: string[];
+}
+
+export interface TapTheLineGameContent extends MicrobreakGameBase {
+  gameType: 'tap-the-line';
+  lines: string[];
+  correctLineIndex: number;
+  feedback?: string;
+}
+
+export interface TapTheWordGameContent extends MicrobreakGameBase {
+  gameType: 'tap-the-word';
+  sentence: string;
+  options: string[];
+  correctOptionIndex: number;
+}
+
+export interface EliminationGameContent extends MicrobreakGameBase {
+  gameType: 'elimination';
+  question: string;
+  options: string[];
+  correctIndex: number;
+  explanation?: string;
+}
+
 export type MicrobreakContent = 
   | RestMicrobreakContent
   | MatchingGameContent
   | SortingGameContent
   | SpotErrorGameContent
   | TapLabelGameContent
-  | QuickWinGameContent;
+  | QuickWinGameContent
+  | SequencingGameContent
+  | FillGapGameContent
+  | IsCorrectWhyGameContent
+  | DiagnosisRankedGameContent
+  | ClassifyTwoBinsGameContent
+  | ScenarioMatchGameContent
+  | FormulaBuildGameContent
+  | TapTheLineGameContent
+  | TapTheWordGameContent
+  | EliminationGameContent;
 
 /**
  * Block Content Union Type
@@ -296,5 +413,4 @@ export interface LessonIndex {
   order: number;
   available: boolean;
 }
-
 

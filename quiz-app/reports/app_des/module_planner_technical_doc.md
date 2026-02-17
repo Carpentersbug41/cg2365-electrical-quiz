@@ -1,6 +1,6 @@
 # Module Planner vNext - Technical Documentation
 
-Last verified: 2026-02-16
+Last verified: 2026-02-17
 Primary UI route: `/admin/module`
 Primary API routes: `/api/admin/module/*`
 Library root: `src/lib/module_planner/*`
@@ -73,7 +73,7 @@ Environment variables:
 - `MODULE_PLANNER_CONCURRENCY` (clamped `1..2`)
 - `MODULE_PLANNER_BASE_URL` (optional adapter target override)
 - `NEXT_PUBLIC_APP_URL` (adapter fallback)
-- `MODULE_PLANNER_BULK_M6_ENABLED` (bulk M6 route gate)
+- `MODULE_PLANNER_BULK_M6_ENABLED` (legacy env; bulk route now hard-disabled in API)
 - `MODULE_PLANNER_DB_MODE=memory` (optional memory DB mode)
 
 Supabase requirements for non-memory mode:
@@ -101,6 +101,7 @@ Implementation (`src/lib/module_planner/db.ts`):
 SQL schema migrations:
 - `supabase/migrations/202602140001_module_planner_vnext.sql`
 - `supabase/migrations/202602140002_module_planner_ingestions.sql`
+- `supabase/migrations/202602160001_module_planner_allow_planned_status.sql`
 
 Primary tables:
 - `module_runs`
@@ -277,7 +278,11 @@ Per-lesson function (`runM6GenerateLesson`):
 Bulk function (`runM6Generate`):
 - queue generation with concurrency `1..2`
 - updates run status `m6-running` and potentially `failed`
-- route gated by `MODULE_PLANNER_BULK_M6_ENABLED=true`
+- route is blocked at API layer (403) to enforce planner-only + per-lesson generation contract
+
+M4 planning persistence detail:
+- on successful M4, planner upserts one row per blueprint into `generated_lessons` with `status='planned'`
+- this creates the full unit lesson tree before any lesson generation
 
 ---
 
@@ -308,7 +313,7 @@ Common error shape:
 
 `GET /api/admin/module/runs`
 - resolves version, unit, LOs, unit truth structure
-- returns syllabus versions + latest ingestion
+- returns syllabus versions + latest ingestion + `recentRuns` list for UI run history
 
 `POST /api/admin/module/runs`
 - requires `syllabusVersionId` and `unit`
@@ -316,6 +321,10 @@ Common error shape:
 
 `GET /api/admin/module/runs/:id`
 - returns run summary + replayable stage map
+
+`DELETE /api/admin/module/runs/:id`
+- deletes one run and dependent artifacts/lesson rows
+- used by "Delete Entire Run" in admin UI
 
 ### Stage APIs
 
