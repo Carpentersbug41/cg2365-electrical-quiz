@@ -168,6 +168,34 @@
       }
     },
     {
+      "id": "210-1A-microbreak-1",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Architect",
+            "right": "Aesthetic design and layout"
+          },
+          {
+            "left": "Structural Engineer",
+            "right": "Stability and load-bearing capacity"
+          },
+          {
+            "left": "Estimator",
+            "right": "Calculates initial project bids"
+          },
+          {
+            "left": "Clerk of Works",
+            "right": "Inspects quality and workmanship"
+          }
+        ]
+      },
+      "order": 5.2
+    },
+    {
       "id": "210-1A-check-2",
       "type": "practice",
       "order": 5.5,
@@ -233,6 +261,46 @@
       }
     },
     {
+      "id": "210-1A-microbreak-2",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Design & Pre-Construction",
+          "Management & Procurement"
+        ],
+        "items": [
+          {
+            "text": "Architect",
+            "correctBucket": 0
+          },
+          {
+            "text": "Estimator",
+            "correctBucket": 0
+          },
+          {
+            "text": "Structural Engineer",
+            "correctBucket": 0
+          },
+          {
+            "text": "Project Manager",
+            "correctBucket": 1
+          },
+          {
+            "text": "Quantity Surveyor",
+            "correctBucket": 1
+          },
+          {
+            "text": "Clerk of Works",
+            "correctBucket": 1
+          }
+        ]
+      },
+      "order": 5.75
+    },
+    {
       "id": "210-1A-practice",
       "type": "practice",
       "order": 8,
@@ -295,6 +363,32 @@
       }
     },
     {
+      "id": "210-1A-microbreak-3",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "A new project is starting. Who is handling the money?",
+        "options": [
+          {
+            "text": "Estimator calculates costs before work begins.",
+            "isError": false
+          },
+          {
+            "text": "Quantity Surveyor manages budget during construction.",
+            "isError": false
+          },
+          {
+            "text": "Estimator manages financial records during construction.",
+            "isError": true
+          }
+        ],
+        "explanation": "The Estimator prices the bid; the Quantity Surveyor manages the budget once work starts."
+      },
+      "order": 8.25
+    },
+    {
       "id": "210-1A-integrative",
       "type": "practice",
       "order": 9.5,
@@ -342,6 +436,23 @@
           }
         ]
       }
+    },
+    {
+      "id": "210-1A-microbreak-4",
+      "type": "microbreak",
+      "content": {
+        "breakType": "game",
+        "gameType": "tap-the-word",
+        "duration": 60,
+        "sentence": "The professional responsible for structural integrity rather than appearance is the ___.",
+        "options": [
+          "Architect",
+          "Structural Engineer",
+          "Clerk of Works"
+        ],
+        "correctOptionIndex": 1
+      },
+      "order": 9.7
     },
     {
       "id": "210-1A-spaced-review",
@@ -395,7 +506,7 @@
   "metadata": {
     "created": "2026-02-17",
     "updated": "2026-02-17",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

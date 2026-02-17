@@ -504,6 +504,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-1A'),
     available: true,
     order: 1,
+  },
+  {
+    id: '210-1B',
+    title: 'Site Visitors and Inspectors',
+    unit: 'Unit 210',
+    unitNumber: '210',
+    topic: 'Site Visitors and Inspectors',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('210-1B'),
+    available: true,
+    order: 2,
   },];
 
 /**

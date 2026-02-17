@@ -190,18 +190,35 @@ export default function ModulePlannerPage() {
       abortRef.current = controller;
       const requestMethod = method ?? (body ? 'POST' : 'GET');
 
-      const response = await fetch(url, {
-        method: requestMethod,
-        cache: 'no-store',
-        headers: body ? (isFormData ? buildHeaders() : buildHeaders('application/json')) : buildHeaders(),
-        body: body ? (isFormData ? (body as FormData) : JSON.stringify(body)) : undefined,
-        signal: controller.signal,
-      });
-      const data = await response.json();
-      if (!response.ok || data.success === false) {
-        throw new Error(data.message || data.error || `Request failed (${response.status})`);
+      let response: Response;
+      try {
+        response = await fetch(url, {
+          method: requestMethod,
+          cache: 'no-store',
+          headers: body ? (isFormData ? buildHeaders() : buildHeaders('application/json')) : buildHeaders(),
+          body: body ? (isFormData ? (body as FormData) : JSON.stringify(body)) : undefined,
+          signal: controller.signal,
+        });
+      } catch (error) {
+        if (error instanceof Error && error.name === 'AbortError') {
+          throw new Error('Request was cancelled');
+        }
+        throw new Error('Network error while calling API');
       }
-      return data as Record<string, unknown>;
+
+      const contentType = response.headers.get('content-type') ?? '';
+      const payload = contentType.includes('application/json')
+        ? await response.json()
+        : { message: await response.text() };
+      const data = (payload && typeof payload === 'object' ? payload : {}) as Record<string, unknown>;
+      if (!response.ok || data.success === false) {
+        const message =
+          (typeof data.message === 'string' && data.message) ||
+          (typeof data.error === 'string' && data.error) ||
+          `Request failed (${response.status})`;
+        throw new Error(message);
+      }
+      return data;
     },
     [buildHeaders]
   );
@@ -300,6 +317,17 @@ export default function ModulePlannerPage() {
       setStageResults(nextResults);
     },
     [callApi]
+  );
+
+  const refreshRunSummarySafe = useCallback(
+    async (id: string) => {
+      try {
+        await loadRunSummary(id);
+      } catch (error) {
+        console.error('[ModulePlanner] Failed to refresh run summary', error);
+      }
+    },
+    [loadRunSummary]
   );
 
   useEffect(() => {
@@ -601,11 +629,11 @@ export default function ModulePlannerPage() {
     setInfo(null);
     try {
       const data = await callApi(`/api/admin/module/${runId}/lessons/${encodeURIComponent(blueprintId)}/generate`, {});
-      await loadRunSummary(runId);
+      await refreshRunSummarySafe(runId);
       setInfo(`Generated ${String(data.lessonId ?? blueprintId)}.`);
     } catch (e) {
       setError(e instanceof Error ? e.message : `Failed to generate ${blueprintId}`);
-      await loadRunSummary(runId);
+      await refreshRunSummarySafe(runId);
     } finally {
       setGeneratingBlueprintId(null);
     }
@@ -671,14 +699,17 @@ export default function ModulePlannerPage() {
             <p className="text-sm text-slate-600">No runs yet.</p>
           ) : (
             <div className="space-y-2">
-              {recentRuns.map((row) => (
+              {recentRuns.map((row, index) => (
                 <div key={row.id} className="flex flex-wrap items-center justify-between gap-2 rounded border border-slate-200 p-2 text-sm">
                   <div>
                     <p className="font-medium">
-                      Run ID {row.id} | Unit {row.unit}
+                      Run #{index + 1} | Unit {row.unit}
+                    </p>
+                    <p className="text-xs text-slate-600 break-all">
+                      Run ID: {row.id}
                     </p>
                     <p className="text-xs text-slate-600">
-                      {new Date(row.created_at).toLocaleString()} | status {row.status} | syllabus {row.syllabus_version_id.slice(0, 8)}
+                      Date: {new Date(row.created_at).toLocaleString()} | Status: {row.status} | Syllabus: {row.syllabus_version_id.slice(0, 8)}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
