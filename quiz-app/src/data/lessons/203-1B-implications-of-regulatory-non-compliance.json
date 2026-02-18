@@ -1,0 +1,422 @@
+{
+  "id": "203-1B",
+  "title": "203.1B — Implications of Regulatory Non-compliance",
+  "description": "Learn about Implications of Regulatory Non-compliance in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Implications of Regulatory Non-compliance",
+  "learningOutcomes": [
+    "Identify the legal penalties associated with breaching statutory regulations",
+    "Describe the professional and financial risks of failing to meet non-statutory requirements",
+    "Differentiate between criminal liability and contractual breach in a technical context"
+  ],
+  "prerequisites": [
+    "203-1A"
+  ],
+  "blocks": [
+    {
+      "id": "203-1B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the legal penalties associated with breaching statutory regulations",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the professional and financial risks of failing to meet non-statutory requirements",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Differentiate between criminal liability and contractual breach in a technical context",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Statutory Regulation",
+            "definition": "A mandatory legal requirement established by an Act of Parliament that must be followed by law, not a voluntary guideline."
+          },
+          {
+            "term": "Non-statutory Regulation",
+            "definition": "A technical standard or code of practice that provides industry-recognised guidance, different from statutory law because it is not directly enforceable as an Act of Parliament."
+          },
+          {
+            "term": "Criminal Liability",
+            "definition": "The legal responsibility for a breach of statutory law that can result in prosecution, fines, or imprisonment, rather than just civil financial compensation."
+          },
+          {
+            "term": "Contractual Breach",
+            "definition": "A failure to fulfill the specific terms and conditions agreed upon in a work contract, which can lead to civil legal action or the voiding of warranties."
+          },
+          {
+            "term": "Professional Accreditation",
+            "definition": "Formal recognition by an industry body that a contractor meets specific standards, which may be revoked as a consequence of failing to follow non-statutory regulations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Consequences of Statutory Non-compliance",
+        "content": "### In this lesson\nYou will learn how to identify the severe legal consequences that arise when mandatory laws are ignored in a technical environment. This knowledge is applied whenever you are assessing whether a specific work practice meets the minimum legal threshold required by the state.\n\n*   The definition of mandatory legal requirements.\n*   The specific types of legal penalties for non-compliance.\n*   The distinction between criminal and civil legal responsibilities.\n\n**What this is**\nA **Statutory Regulation** is a mandatory legal requirement established by an Act of Parliament that must be followed by law, not a voluntary guideline. These regulations represent the highest level of authority in any technical field. Because they are laws, failing to follow them is not just a mistake; it is a crime against the state. This leads to **Criminal Liability**, which is the legal responsibility for a breach of statutory law that can result in prosecution, fines, or imprisonment, rather than just civil financial compensation. \n\nTo understand this, consider the physical-world analogy of a red traffic light. A red light is not a suggestion or a \"best practice\" provided by a driving club; it is a legal requirement set by the government. If you ignore it, you are not just being an unsafe driver; you are committing a legal offence that can lead to a summons to court, regardless of whether an accident actually occurred.\n\n**Why it matters**\nUnderstanding these implications is critical for personal and professional protection. If a technician fails to identify and follow a **Statutory Regulation**, they cannot claim ignorance as a defence. The penalties are designed to ensure public safety by holding individuals personally accountable. Without this understanding, a technician might unknowingly expose themselves to a criminal record, which would permanently end their career and potentially lead to a loss of liberty.\n\n**Key facts / rules**\n*   Statutory regulations are passed by Parliament and carry the full weight of the law.\n*   Non-compliance is treated as a criminal offence, not a private disagreement.\n*   Penalties can include unlimited fines for businesses and individuals.\n*   Serious breaches can result in custodial sentences (imprisonment).\n*   Enforcement is typically carried out by government-appointed bodies or the police.\n*   Compliance is mandatory and cannot be \"opted out\" of via a private contract.\n\n**How to recognise it**\nYou can recognise a **Statutory Regulation** by looking for specific markers in documentation. Typically, these documents will include the word \"Act,\" \"Order,\" or \"Regulation\" in their title (e.g., The Health and Safety at Work etc. Act). The language used within the document will be definitive, using words like \"must\" and \"shall\" rather than \"should\" or \"may.\" You will also see references to the specific government department responsible for the law. In many cases, these documents are published by official government printers rather than commercial industry bodies.\n\n**Micro-scenario:** Imagine two sites where a safety barrier is required by law. Site A installs the barrier correctly. Site B decides the barrier is too expensive and skips it. If an inspector visits, Site B faces immediate prosecution and a heavy fine under **Statutory Regulation**, even if no one was hurt. Site A has fulfilled its legal duty and faces no penalty.\n\n**Common mistakes**\nLearners often confuse **Criminal Liability** with a **Contractual Breach**; **Criminal Liability** involves the state prosecuting an individual for breaking a **Statutory Regulation**, whereas a **Contractual Breach** is a private dispute over agreed terms between two parties. \n\nMisconceptions (targeted):\n*   Misconception: Statutory regulations are only suggestions for how to work safely. | Correction: They are mandatory laws, and failure to follow them is a criminal offence. | AC: 203.LO1.AC1.3\n*   Misconception: Only the company owner is responsible for legal breaches. | Correction: Any individual technician can face personal criminal liability for their own actions. | AC: 203.LO1.AC1.3\n\n**Key Points**\n*   Statutory regulations are mandatory laws, not guidelines.\n*   Breaches lead to **Criminal Liability**, including fines and prison.\n*   Recognised by formal titles like \"Act\" or \"Regulation.\"\n*   Personal accountability applies to all levels of staff.\n\n**Quick recap**\nStatutory regulations are the mandatory laws of the land. Failing to follow them results in criminal liability, which is a serious legal matter involving the court system. These regulations are easily identified by their formal legal titles and the mandatory language they use to dictate safety and performance standards.\n\n### Coming Up Next\nWe will now look at non-statutory regulations, which focus on industry standards, professional reputation, and the financial risks of failing to meet agreed-upon quality levels."
+      }
+    },
+    {
+      "id": "203-1B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Consequences of Statutory Non-compliance",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-C1-L1-A",
+            "questionText": "Which body passes statutory regulations to ensure they carry the full weight of the law?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Parliament",
+              "The Parliament",
+              "Act of Parliament"
+            ],
+            "hint": "This is the primary legislative body mentioned in the text."
+          },
+          {
+            "id": "203-1B-C1-L1-B",
+            "questionText": "How is non-compliance with statutory regulations legally categorised rather than being a private disagreement?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "criminal offence",
+              "a criminal offence",
+              "criminal offense"
+            ],
+            "hint": "Consider the legal status of breaking a law passed by the state."
+          },
+          {
+            "id": "203-1B-C1-L1-C",
+            "questionText": "What specific words are typically found in the title of a statutory regulation document?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Act Order or Regulation",
+              "Act, Order, or Regulation",
+              "Act Order Regulation"
+            ],
+            "hint": "Look for the three specific markers used to identify these documents."
+          },
+          {
+            "id": "203-1B-C1-L2",
+            "questionText": "Using your answers to Q1 (the role of Parliament), Q2 (criminal offences), and Q3 (document titles), explain how these facts connect to identify a statutory requirement. Why must a technician look for these specific titles before starting work?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Documents titled Act Order or Regulation indicate they were passed by Parliament",
+              "Parliamentary authority gives these documents the full weight of the law",
+              "Identifying these titles is necessary because failure to comply results in a criminal offence rather than a private dispute",
+              "Technicians must identify these markers to ensure they do not face prosecution or imprisonment"
+            ],
+            "expectedAnswer": [
+              "A technician must look for titles containing Act Order or Regulation because these identify laws passed by Parliament. Because these carry the full weight of the law, any failure to follow them is a criminal offence rather than a private disagreement, meaning the technician must identify them to avoid personal prosecution.",
+              "Documents with specific titles like Act or Regulation are passed by Parliament and represent mandatory laws. We know a technician must identify these because non-compliance is a criminal offence, so recognizing the title is the only way to know if they are facing potential criminal liability."
+            ],
+            "hint": "Connect the formal names of the documents to the authority that created them and the severity of the legal penalty."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Consequences of Non-statutory Non-compliance",
+        "content": "### In this lesson\nYou will learn to identify the professional and financial risks associated with failing to follow industry-recognised standards. This context applies when you are managing client expectations, maintaining your professional standing, and ensuring that insurance and warranties remain valid.\n\n*   The role of codes of practice and industry standards.\n*   The impact of non-compliance on professional standing.\n*   Financial implications including insurance and contract law.\n\n**What this is**\nA **Non-statutory Regulation** is a technical standard or code of practice that provides industry-recognised guidance, different from statutory law because it is not directly enforceable as an Act of Parliament. While not \"laws\" in the criminal sense, they are often used as the benchmark for what constitutes \"good practice.\" Failing to meet these standards often results in a **Contractual Breach**, which is a failure to fulfill the specific terms and conditions agreed upon in a work contract. This can lead to civil legal action where one party sues another for money.\n\nAn everyday contextual anchor for this is a professional sports league's rulebook. If a player breaks a league rule (like wearing the wrong uniform), they won't go to jail because it isn't a statutory law. However, they might be fined by the league, suspended, or have their contract terminated. They lose their \"license to play\" because they didn't follow the agreed-upon standards of the profession.\n\n**Why it matters**\nFollowing these standards is essential for commercial survival. If you ignore a **Non-statutory Regulation**, you risk losing your **Professional Accreditation**, which is the formal recognition by an industry body that a contractor meets specific standards. Without this, you may be unable to win work or join professional registers. Furthermore, insurance companies commonly refuse to pay out for damages if the work was not performed according to recognised codes of practice, leaving the technician or company to pay the full cost of any failures.\n\n**Key facts / rules**\n*   Non-statutory regulations are often called \"Codes of Practice\" or \"Standards.\"\n*   Compliance is usually required to maintain professional insurance policies.\n*   Breaching these standards can lead to a **Contractual Breach** and financial lawsuits.\n*   Industry bodies can revoke **Professional Accreditation** for poor standard of work.\n*   Warranties on equipment are often voided if installation standards aren't met.\n*   They are frequently used in court as evidence of what a \"competent person\" should have done.\n\n**How to recognise it**\nYou can recognise a **Non-statutory Regulation** by looking for titles that include \"British Standard\" (BS), \"Code of Practice\" (CP), or \"Guide.\" These documents are typically published by professional institutions or standard-setting bodies rather than the government. The language used is often more advisory, using words like \"should\" or \"is recommended,\" though a contract might make these \"recommendations\" mandatory for a specific job. You will also see them referenced in the \"terms and conditions\" section of a work order or an insurance policy.\n\n**Micro-scenario:** A technician installs a system using a method that is legal (statutory) but ignores the industry's \"Best Practice Guide\" (non-statutory). Two months later, the system fails. The client successfully claims a **Contractual Breach**, and the technician's insurance refuses to pay because the guide was ignored. The technician must now pay £5,000 out of pocket for the repairs.\n\n**Common mistakes**\nLearners often confuse a **Non-statutory Regulation** with a voluntary suggestion that can be ignored without consequence; in reality, while you might not go to prison, the financial loss and loss of **Professional Accreditation** can be just as damaging to a career. \n\nMisconceptions (targeted):\n*   Misconception: If it's not a statutory law, I don't have to follow it. | Correction: You must follow it to maintain insurance, warranties, and your professional license. | AC: 203.LO1.AC1.4\n*   Misconception: Contractual breaches are the same as criminal acts. | Correction: A breach is a civil matter between two parties, usually settled with money, not prison. | AC: 203.LO1.AC1.4\n\n**Key Points**\n*   Non-statutory regulations define industry \"best practice.\"\n*   Failure to comply can lead to a **Contractual Breach** and civil lawsuits.\n*   Loss of **Professional Accreditation** can prevent you from working in the industry.\n*   Insurance and warranties often depend on following these standards.\n\n**Quick recap**\nNon-statutory regulations are the professional standards of an industry. While they are not laws, they are often tied to contracts and insurance policies. Failing to follow them can result in a contractual breach, the loss of professional accreditation, and significant financial penalties through civil courts.\n\n### Coming Up Next\nNow that you can identify the risks of non-compliance, we will look at how to properly document work to prove that both statutory and non-statutory requirements have been met."
+      }
+    },
+    {
+      "id": "203-1B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Consequences of Non-statutory Non-compliance",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-C2-L1-A",
+            "questionText": "What are non-statutory regulations often commonly called in a technical environment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Codes of Practice or Standards",
+              "Codes of Practice",
+              "Standards"
+            ],
+            "hint": "These are the two most common alternative names for industry-recognised guidance."
+          },
+          {
+            "id": "203-1B-C2-L1-B",
+            "questionText": "What must be maintained by ensuring compliance with non-statutory regulations?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "professional insurance policies",
+              "insurance policies",
+              "professional insurance"
+            ],
+            "hint": "This relates to the financial protection required for technical work."
+          },
+          {
+            "id": "203-1B-C2-L1-C",
+            "questionText": "Although not criminal laws, how are non-statutory regulations used within an industry?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "benchmark for good practice",
+              "benchmark for what constitutes good practice",
+              "good practice benchmark"
+            ],
+            "hint": "Consider how these documents define the expected quality of work."
+          },
+          {
+            "id": "203-1B-C2-L2",
+            "questionText": "Using your answers to Q1 (industry titles), Q2 (insurance requirements), and Q3 (benchmarks for good practice), explain how these facts connect. How do we know if a technician is meeting their professional obligations even if no statutory law is broken?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Codes of Practice or Standards establish the benchmark for good practice in the industry",
+              "Insurance companies use this benchmark to determine if work was performed correctly",
+              "A technician meets their obligations by following these standards to ensure their insurance policies remain valid",
+              "Identifying these standards is how we know the work meets the expected professional level despite not being a criminal law"
+            ],
+            "expectedAnswer": [
+              "We know a technician is meeting their obligations by identifying and following Codes of Practice or Standards, which serve as the benchmark for good practice. Even though they aren't criminal laws, insurance policies usually require compliance with these benchmarks to remain valid, so following the industry titles ensures professional and financial protection.",
+              "Technicians use Codes of Practice to establish a benchmark for good practice. This connection is valid because professional insurance policies depend on following these standards; therefore, identifying the correct standard is the only way to prove the work is professionally acceptable and covered by insurance."
+            ],
+            "hint": "Link the name of the document to its role as a quality marker and its impact on financial protection."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-1B-P1",
+            "questionText": "A technician is reviewing a document titled \"Professional Code of Practice for Site Layout.\" Based on the title, identify the specific category of regulation this represents.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Non-statutory Regulation",
+              "Non-statutory",
+              "Non-statutory regulations"
+            ],
+            "hint": "Check if the title contains 'Act' or 'Code of Practice'."
+          },
+          {
+            "id": "203-1B-P2",
+            "questionText": "Explain why a technician cannot be prosecuted by the state or receive a criminal record solely for failing to follow a \"Best Practice Guide\" published by a private trade association.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "It is non-statutory",
+              "It is a civil matter",
+              "It is not a law",
+              "It is not statutory"
+            ],
+            "hint": "Consider the difference between a law passed by Parliament and a guide from an industry body."
+          },
+          {
+            "id": "203-1B-P3",
+            "questionText": "A site audit finds that a worker ignored 4 safety requirements: 1 mandatory Act of Parliament and 3 industry-recommended standards. How many of these specific instances result in criminal liability for the worker?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1"
+            ],
+            "hint": "Only breaches of statutory regulations carry criminal liability."
+          },
+          {
+            "id": "203-1B-P4",
+            "questionText": "An insurance provider refuses to pay for a system failure because the installer ignored the manufacturer's recommended installation standards. What specific legal consequence has the installer triggered?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Contractual Breach",
+              "Breach of contract",
+              "Contractual"
+            ],
+            "hint": "This relates to failing to fulfill agreed terms in a work agreement or policy."
+          },
+          {
+            "id": "203-1B-P5",
+            "questionText": "A company loses its 'Approved Contractor' status after an audit confirms they ignored industry standards. Which specific consequence defined in the lesson does this represent?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Loss of Professional Accreditation",
+              "Professional Accreditation loss",
+              "Loss of accreditation"
+            ],
+            "hint": "This is the formal recognition given by an industry body."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1B-INT-1",
+            "questionText": "Explain the relationship between mandatory statutory requirements and the financial risks associated with non-statutory standards. In your answer, include: (1) the primary penalties for statutory breaches, (2) the impact of non-statutory failures on insurance and warranties, (3) the distinction between criminal liability and contractual breach. Why must a technical professional evaluate both frameworks simultaneously when assessing operational risk?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies statutory penalties such as fines or imprisonment imposed by the state.",
+              "Explains that non-statutory failure can invalidate insurance coverage and manufacturer warranties.",
+              "Distinguishes criminal liability (offences against the state) from contractual breach (failure to meet agreed terms).",
+              "Reasons that statutory compliance is the legal minimum, while non-statutory compliance manages commercial and professional viability.",
+              "Concludes that a breach in one area often triggers a secondary failure in the other (e.g., a legal fine plus a loss of contract)."
+            ],
+            "expectedAnswer": [
+              "Statutory breaches lead to legal penalties like fines or prosecution, while non-statutory failures result in financial losses such as voided insurance or breach of contract claims. Criminal liability is enforced by the state for law-breaking, whereas contractual breaches are civil matters between parties. Professionals must evaluate both because satisfying the law does not automatically protect one from the financial ruin of a professional negligence claim or lost warranty.",
+              "A professional must manage both statutory and non-statutory requirements because they carry different consequences; statutory breaches involve criminal or civil penalties from the government, while non-statutory breaches lead to the loss of professional standing and the invalidation of insurance. While a criminal liability focuses on safety and legal standards, a contractual breach focuses on service delivery. Simultaneous evaluation is required because a single technical failure can lead to both state prosecution and private litigation."
+            ],
+            "hint": "Consider how the state enforces laws versus how clients and insurers enforce standards."
+          },
+          {
+            "id": "203-1B-INT-2",
+            "questionText": "Analyze how adherence to industry codes of practice and statutory regulations collectively defines the total liability of a practitioner. In your answer, include: (1) the role of statutory regulations as a legal baseline, (2) the function of codes of practice in maintaining professional standing, (3) the financial implications of non-compliance on contract law, (4) how these elements integrate to mitigate overall professional risk. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Defines statutory regulations as mandatory legal thresholds for operation.",
+              "Describes codes of practice as the benchmark for professional competence and industry acceptance.",
+              "Links non-compliance with industry standards to financial penalties under contract law.",
+              "Explains how following codes of practice often provides evidence of meeting statutory 'duty of care'.",
+              "Identifies the loss of professional standing as a long-term risk of non-statutory failure.",
+              "Synthesizes that total liability includes both legal punishment and commercial exclusion.",
+              "Recognizes that insurance validity acts as the bridge between standard adherence and financial protection.",
+              "Maintains technical precision regarding the difference between mandatory law and voluntary standards."
+            ],
+            "expectedAnswer": [
+              "Adherence to statutory regulations ensures the practitioner avoids criminal penalties, while following industry codes of practice protects their professional standing and ensures contract fulfillment. These elements integrate because industry standards often serve as the technical roadmap for meeting high-level legal obligations. Failure in either area results in a combination of legal fines, voided insurance, and the loss of commercial viability. Answer in 3-4 sentences OR concise bullet points.",
+              "• Statutory regulations provide the mandatory legal baseline to avoid criminal prosecution and state-imposed fines.\n• Codes of practice maintain professional standing and serve as evidence of competence during contractual disputes.\n• Non-compliance triggers financial risks, including the invalidation of professional indemnity insurance and breach of contract claims.\n• Integrating both frameworks ensures that the practitioner is protected from both legal liability and the financial consequences of professional negligence. Answer in 3-4 sentences OR concise bullet points."
+            ],
+            "hint": "Think about how a professional proves they have worked safely and competently to both a judge and a client."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-1B-SR-1",
+            "questionText": "What term is used to describe regulations that are mandatory and written into law?",
+            "expectedAnswer": [
+              "Statutory",
+              "Statutory regulations",
+              "Statute law"
+            ],
+            "hint": "This term refers to laws passed by a legislative body.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-1B-SR-2",
+            "questionText": "What is the general term for a failure to act in accordance with established rules or requirements?",
+            "expectedAnswer": [
+              "Non-compliance",
+              "Noncompliance",
+              "Breach"
+            ],
+            "hint": "It is the opposite of compliance.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-1B-SR-3",
+            "questionText": "What is the name for a legally binding agreement between two parties to perform technical work?",
+            "expectedAnswer": [
+              "Contract",
+              "Agreement",
+              "Legal contract"
+            ],
+            "hint": "Failing to meet the terms of this results in a breach.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Implications of Regulatory Non-compliance"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-02-18",
+    "updated": "2026-02-18",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "The legal, financial, and professional consequences of failing to adhere to both mandatory laws and industry-standard codes of practice.",
+      "outOfScope": "The specific technical content of the regulations or the methods used to achieve compliance.",
+      "rationale": "Focusing purely on implications reinforces the importance of professional accountability before moving into specific technical application."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": false,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on consequences and implications rather than the specific clauses of the regulations."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Statutory regulations are only suggestions for how to work safely.",
+        "correction": "They are mandatory laws, and failure to follow them is a criminal offence.",
+        "relatedAC": "203.LO1.AC1.3"
+      },
+      {
+        "misconception": "If it's not a statutory law, I don't have to follow it.",
+        "correction": "You must follow non-statutory regulations to maintain insurance, warranties, and your professional license.",
+        "relatedAC": "203.LO1.AC1.4"
+      }
+    ]
+  }
+}

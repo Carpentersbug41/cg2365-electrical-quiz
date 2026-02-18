@@ -42,9 +42,11 @@ import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.
 import lesson210_1B from '@/data/lessons/210-1B-site-visitors-and-inspectors.json';
 import lesson210_2A from '@/data/lessons/210-2A-legislation-and-workplace-documentation.json';
 import lesson203_1A from '@/data/lessons/203-1A-statutory-and-non-statutory-regulations.json';
+import lesson203_1B from '@/data/lessons/203-1B-implications-of-regulatory-non-compliance.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-1B': lesson203_1B as Lesson,
   '203-1A': lesson203_1A as Lesson,
   '210-2A': lesson210_2A as Lesson,
   '210-1B': lesson210_1B as Lesson,
