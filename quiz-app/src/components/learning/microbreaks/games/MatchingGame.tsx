@@ -101,9 +101,9 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
           <div className="grid grid-cols-2 gap-4">
             {/* Left column */}
             <div className="space-y-2">
-              {leftItems.map((item) => (
+              {leftItems.map((item, idx) => (
                 <button
-                  key={item}
+                  key={`left-${idx}-${item || 'blank'}`}
                   onClick={() => handleLeftClick(item)}
                   disabled={completed || !!matches[item]}
                   className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${
@@ -121,11 +121,11 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
 
             {/* Right column */}
             <div className="space-y-2">
-              {rightItems.map((item) => {
+              {rightItems.map((item, idx) => {
                 const isMatched = Object.values(matches).includes(item);
                 return (
                   <button
-                    key={item}
+                    key={`right-${idx}-${item || 'blank'}`}
                     onClick={() => handleRightClick(item, handleComplete)}
                     disabled={completed || isMatched || !selectedLeft}
                     className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${

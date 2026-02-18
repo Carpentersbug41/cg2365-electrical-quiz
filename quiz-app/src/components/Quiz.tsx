@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { questions as allQuestions, Question } from '@/data/questions';
 import confetti from 'canvas-confetti';
 import ChatAssistant from './chat/ChatAssistant';
+import ChatMessage from './chat/ChatMessage';
 import { 
   saveQuizAttempt, 
   getQuizProgress,
@@ -44,6 +45,25 @@ interface QuizProps {
       confidence?: 'not-sure' | 'somewhat-sure' | 'very-sure';
     }>;
   }) => void;
+}
+
+interface QuizFeedbackReportItem {
+  questionNumber: number;
+  whyWrong: string;
+  howToGetRight: string;
+  whatToReview: string[];
+}
+
+interface QuizFeedbackReport {
+  summary: string;
+  overallFocus: string[];
+  items: QuizFeedbackReportItem[];
+}
+
+interface ReportChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
 }
 
 // Function to shuffle answer options within a question
@@ -169,6 +189,14 @@ export default function Quiz({
 
   // Chat State - Start open by default
   const [isChatCollapsed, setIsChatCollapsed] = useState(false);
+  const [llmReport, setLlmReport] = useState<QuizFeedbackReport | null>(null);
+  const [isGeneratingReport, setIsGeneratingReport] = useState(false);
+  const [reportError, setReportError] = useState<string | null>(null);
+  const [reportChatMessages, setReportChatMessages] = useState<ReportChatMessage[]>([]);
+  const [reportChatInput, setReportChatInput] = useState('');
+  const [isReportChatLoading, setIsReportChatLoading] = useState(false);
+  const [reportProgress, setReportProgress] = useState(0);
+  const [reportChatProgress, setReportChatProgress] = useState(0);
 
   const questions = selectedQuestions;
 
@@ -449,6 +477,14 @@ export default function Quiz({
     setPendingAnswer(null);
     setPendingConfidence(null);
     setShowFeedback(false);
+    setLlmReport(null);
+    setIsGeneratingReport(false);
+    setReportError(null);
+    setReportChatMessages([]);
+    setReportChatInput('');
+    setIsReportChatLoading(false);
+    setReportProgress(0);
+    setReportChatProgress(0);
   };
 
   const startQuiz = (questionCount: number) => {
@@ -479,6 +515,186 @@ export default function Quiz({
     setIsReviewing(true);
     setShowResults(false);
     setCurrentQuestion(0);
+  };
+
+  const getIncorrectQuestions = () => {
+    return questions
+      .map((q, index) => ({
+        question: q,
+        index,
+        userAnswer: selectedAnswers[index],
+      }))
+      .filter(({ question, userAnswer }) => userAnswer !== question.correctAnswer);
+  };
+
+  useEffect(() => {
+    if (!showResults) return;
+    if (llmReport || isGeneratingReport || reportError) return;
+
+    const incorrectQuestions = getIncorrectQuestions();
+    if (incorrectQuestions.length === 0) return;
+
+    let cancelled = false;
+
+    const generateReport = async () => {
+      setIsGeneratingReport(true);
+      setReportError(null);
+
+      try {
+        const payload = incorrectQuestions.map(({ question, index, userAnswer }) => {
+          const taggedQ = question as TaggedQuestion;
+          let misconceptionName: string | undefined;
+          let misconceptionFix: string | undefined;
+
+          if (taggedQ.misconceptionCodes && userAnswer !== null && userAnswer !== taggedQ.correctAnswer) {
+            const misconceptionCode = taggedQ.misconceptionCodes[userAnswer];
+            if (misconceptionCode) {
+              try {
+                const misconception = getMisconception(misconceptionCode);
+                misconceptionName = misconception.name;
+                misconceptionFix = misconception.fixPrompt;
+              } catch {
+                // Ignore lookup failures.
+              }
+            }
+          }
+
+          return {
+            questionNumber: index + 1,
+            questionText: question.question,
+            category: question.category,
+            tags: taggedQ.tags || [],
+            userAnswer: userAnswer !== null ? question.options[userAnswer] : 'Not answered',
+            correctAnswer: question.options[question.correctAnswer],
+            explanation: taggedQ.explanation,
+            misconceptionName,
+            misconceptionFix,
+          };
+        });
+
+        const response = await fetch('/api/quiz-feedback-report', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ wrongQuestions: payload }),
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to generate feedback report');
+        }
+
+        const data = await response.json();
+        if (!cancelled) {
+          setReportProgress(100);
+          setLlmReport(data.report);
+          setReportChatMessages([
+            {
+              role: 'assistant',
+              content: 'Ask about any question number and I will explain why it was wrong and the steps to get it right.',
+              timestamp: new Date(),
+            },
+          ]);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setReportError('Could not generate detailed feedback right now.');
+        }
+      } finally {
+        if (!cancelled) {
+          setIsGeneratingReport(false);
+        }
+      }
+    };
+
+    void generateReport();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [showResults]);
+
+  useEffect(() => {
+    if (!isGeneratingReport) {
+      setReportProgress(0);
+      return;
+    }
+
+    setReportProgress(12);
+    const timer = setInterval(() => {
+      setReportProgress((prev) => (prev >= 92 ? prev : prev + 6));
+    }, 250);
+
+    return () => clearInterval(timer);
+  }, [isGeneratingReport]);
+
+  useEffect(() => {
+    if (!isReportChatLoading) {
+      setReportChatProgress(0);
+      return;
+    }
+
+    setReportChatProgress(10);
+    const timer = setInterval(() => {
+      setReportChatProgress((prev) => (prev >= 90 ? prev : prev + 5));
+    }, 220);
+
+    return () => clearInterval(timer);
+  }, [isReportChatLoading]);
+
+  const handleSendReportChat = async () => {
+    const message = reportChatInput.trim();
+    if (!message || isReportChatLoading) return;
+
+    const incorrectQuestions = getIncorrectQuestions();
+    const wrongQuestionContext = incorrectQuestions.map(({ question, index, userAnswer }) => ({
+      questionNumber: index + 1,
+      questionText: question.question,
+      category: question.category,
+      tags: (question as TaggedQuestion).tags || [],
+      userAnswer: userAnswer !== null ? question.options[userAnswer] : 'Not answered',
+      correctAnswer: question.options[question.correctAnswer],
+    }));
+
+    const userMessage: ReportChatMessage = {
+      role: 'user',
+      content: message,
+      timestamp: new Date(),
+    };
+
+    setReportChatMessages((prev) => [...prev, userMessage]);
+    setReportChatInput('');
+    setIsReportChatLoading(true);
+
+    try {
+      const response = await fetch('/api/quiz-feedback-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message,
+          report: llmReport,
+          wrongQuestions: wrongQuestionContext,
+        }),
+      });
+
+      const data = await response.json();
+      setReportChatProgress(100);
+      const assistantMessage: ReportChatMessage = {
+        role: 'assistant',
+        content: data.response || 'I could not generate a response.',
+        timestamp: new Date(),
+      };
+      setReportChatMessages((prev) => [...prev, assistantMessage]);
+    } catch (error) {
+      setReportChatMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'I could not load the explanation right now. Try again with a specific question number.',
+          timestamp: new Date(),
+        },
+      ]);
+    } finally {
+      setIsReportChatLoading(false);
+    }
   };
 
   const answeredCount = selectedAnswers.filter(a => a !== null).length;
@@ -564,14 +780,7 @@ export default function Quiz({
   }
 
   if (showResults) {
-    // Get all incorrect questions
-    const incorrectQuestions = questions
-      .map((q, index) => ({
-        question: q,
-        index,
-        userAnswer: selectedAnswers[index],
-      }))
-      .filter(({ question, userAnswer }) => userAnswer !== question.correctAnswer);
+    const incorrectQuestions = getIncorrectQuestions();
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4">
@@ -714,6 +923,121 @@ export default function Quiz({
               <div className="text-6xl mb-4">🏆</div>
               <h3 className="text-2xl font-bold text-green-600 dark:text-green-400">Perfect Score!</h3>
               <p className="text-gray-600 dark:text-slate-400 mt-2">You answered all questions correctly!</p>
+            </div>
+          )}
+
+          {incorrectQuestions.length > 0 && (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 mt-6">
+              <h3 className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-4">
+                Personalized LLM Feedback Report
+              </h3>
+
+              {isGeneratingReport && (
+                <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-700 rounded-lg p-4 text-indigo-800 dark:text-indigo-300">
+                  <div className="mb-2 font-medium">Generating your feedback report...</div>
+                  <div className="w-full bg-indigo-200 dark:bg-indigo-900 rounded-full h-2.5">
+                    <div
+                      className="bg-indigo-600 dark:bg-indigo-400 h-2.5 rounded-full transition-all duration-300"
+                      style={{ width: `${reportProgress}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+
+              {!isGeneratingReport && reportError && (
+                <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg p-4 text-amber-800 dark:text-amber-300">
+                  {reportError}
+                </div>
+              )}
+
+              {!isGeneratingReport && llmReport && (
+                <div className="space-y-4">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+                    <div className="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-1">Summary</div>
+                    <p className="text-gray-800 dark:text-slate-300">{llmReport.summary}</p>
+                  </div>
+
+                  {llmReport.overallFocus.length > 0 && (
+                    <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-4">
+                      <div className="text-sm font-semibold text-green-800 dark:text-green-300 mb-2">What To Focus On Next</div>
+                      <ul className="list-disc list-inside space-y-1 text-gray-800 dark:text-slate-300">
+                        {llmReport.overallFocus.map((focus, idx) => (
+                          <li key={idx}>{focus}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  <div className="space-y-4">
+                    {llmReport.items.map((item) => (
+                      <div key={item.questionNumber} className="border border-slate-200 dark:border-slate-700 rounded-lg p-4">
+                        <div className="font-semibold text-gray-900 dark:text-slate-100 mb-2">
+                          Question {item.questionNumber}
+                        </div>
+                        <div className="text-sm text-gray-700 dark:text-slate-300 mb-2">
+                          <span className="font-semibold">Why it was wrong:</span> {item.whyWrong}
+                        </div>
+                        <div className="text-sm text-gray-700 dark:text-slate-300 mb-2">
+                          <span className="font-semibold">How to get it right:</span> {item.howToGetRight}
+                        </div>
+                        {item.whatToReview.length > 0 && (
+                          <div className="text-sm text-gray-700 dark:text-slate-300">
+                            <span className="font-semibold">What to review:</span> {item.whatToReview.join(', ')}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {incorrectQuestions.length > 0 && (
+            <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 mt-6">
+              <h3 className="text-2xl font-bold text-indigo-700 dark:text-indigo-300 mb-4">
+                Quiz Assistant (Results Context)
+              </h3>
+
+              <div className="max-h-80 overflow-y-auto pr-2 mb-4">
+                {reportChatMessages.map((msg, idx) => (
+                  <ChatMessage key={idx} role={msg.role} content={msg.content} timestamp={msg.timestamp} />
+                ))}
+                {isReportChatLoading && (
+                  <div className="text-sm text-gray-500 dark:text-slate-400">
+                    <div className="mb-2">Assistant is thinking...</div>
+                    <div className="w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
+                      <div
+                        className="bg-indigo-600 dark:bg-indigo-400 h-2 rounded-full transition-all duration-300"
+                        style={{ width: `${reportChatProgress}%` }}
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex gap-2">
+                <textarea
+                  value={reportChatInput}
+                  onChange={(e) => setReportChatInput(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      void handleSendReportChat();
+                    }
+                  }}
+                  placeholder="Ask why a question was wrong and how to solve it correctly..."
+                  className="flex-1 resize-none rounded-lg border border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 text-gray-800 dark:text-white"
+                  rows={2}
+                />
+                <button
+                  onClick={() => void handleSendReportChat()}
+                  disabled={isReportChatLoading || !reportChatInput.trim()}
+                  className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed"
+                >
+                  Send
+                </button>
+              </div>
             </div>
           )}
 

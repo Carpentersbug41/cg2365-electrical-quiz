@@ -217,6 +217,43 @@
       }
     },
     {
+      "id": "210-2A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Left Bin",
+        "rightLabel": "Right Bin",
+        "items": [
+          {
+            "text": "Statutory Legislation and Regulations",
+            "correctBin": "left"
+          },
+          {
+            "text": "In this lesson In this lesson, you will learn to identify the mandatory legal frameworks that govern every technical workplace.",
+            "correctBin": "right"
+          },
+          {
+            "text": "You will understand how these laws apply to your daily activities and how they differ from non-mandatory guidance.",
+            "correctBin": "left"
+          },
+          {
+            "text": "* Identify the primary types of Statutory Regulation .",
+            "correctBin": "right"
+          },
+          {
+            "text": "* Understand the legal requirements of Data Protection and Equal Opportunities .",
+            "correctBin": "left"
+          },
+          {
+            "text": "* Differentiate between mandatory laws and advisory documentation.",
+            "correctBin": "right"
+          }
+        ]
+      }
+    },
+    {
       "id": "210-2A-practice",
       "type": "practice",
       "order": 8,
@@ -273,6 +310,42 @@
               "0"
             ],
             "hint": "Are any of these Acts of Parliament, or are they just business/technical documents?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "210-2A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Statutory Regulation",
+            "right": "A mandatory legal requirement established by an Act of Parliament that must be followed by law e.g., Health & Safety at Work Act ."
+          },
+          {
+            "left": "British Standards",
+            "right": "Published technical specifications that provide quality benchmarks for products and services e.g., BS 7671 ."
+          },
+          {
+            "left": "Manufacturer Guidance",
+            "right": "Product-specific documentation containing precise data e.g., torque settings, dimensions for safe installation and maintenance."
+          },
+          {
+            "left": "Job Sheet",
+            "right": "A workplace document recording specific work details, time spent, and parts used, often requiring a customer signature."
+          },
+          {
+            "left": "Handover Certificate",
+            "right": "A formal document given to the customer upon completion, confirming the system is safe and explaining how to use it."
+          },
+          {
+            "left": "Code of Practice",
+            "right": "A set of practical rules or methods that guide industry professionals on how to comply with legal regulations."
           }
         ]
       }
@@ -377,7 +450,7 @@
   "metadata": {
     "created": "2026-02-17",
     "updated": "2026-02-17",
-    "version": "1.1",
+    "version": "1.5",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

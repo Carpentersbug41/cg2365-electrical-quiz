@@ -1,252 +1,222 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Quiz from '@/components/Quiz';
-import { questions } from '@/data/questions';
-import { getLessonsByUnit, unitMetadata } from '@/data/lessons/lessonIndex';
+import type { Question } from '@/data/questions';
 
-type TabType = 'topic' | 'lesson';
+interface CatalogUnit {
+  unit_code: string;
+  unit_title: string;
+  level_min: number;
+  level_max: number;
+  approved_question_count: number;
+  approved_by_level: { 2: number; 3: number };
+}
+
+interface UnitLo {
+  lo_code: string;
+  lo_title: string | null;
+  lo_text_preview: string;
+  approved_question_count: number;
+}
 
 export default function QuizPage() {
-  const [selectedSection, setSelectedSection] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<TabType>('topic');
-  
-  // Calculate question counts for each section
-  const healthAndSafetyCount = questions.filter(q => q.section === "Health and Safety").length;
-  const communicationCount = questions.filter(q => q.section === "Communication").length;
-  const scienceCount = questions.filter(q => q.section === "Science 2365 Level 2").length;
+  const [units, setUnits] = useState<CatalogUnit[]>([]);
+  const [selectedUnit, setSelectedUnit] = useState('');
+  const [selectedLevel, setSelectedLevel] = useState<2 | 3>(2);
+  const [mode, setMode] = useState<'unit' | 'lo'>('unit');
+  const [los, setLos] = useState<UnitLo[]>([]);
+  const [selectedLos, setSelectedLos] = useState<string[]>([]);
+  const [count, setCount] = useState(20);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [quizQuestions, setQuizQuestions] = useState<Question[] | null>(null);
+  const [selectionSummary, setSelectionSummary] = useState<string>('');
 
-  // Get lessons organized by unit
-  const lessonsByUnit = getLessonsByUnit();
+  const canBuild = useMemo(() => {
+    if (!selectedUnit || loading) return false;
+    if (mode === 'lo' && selectedLos.length === 0) return false;
+    return true;
+  }, [loading, mode, selectedLos.length, selectedUnit]);
 
-  // Section selection screen
-  if (!selectedSection) {
+  useEffect(() => {
+    void (async () => {
+      try {
+        const response = await fetch('/api/quiz/catalog', { cache: 'no-store' });
+        const data = await response.json();
+        const list = (Array.isArray(data.units) ? data.units : []) as CatalogUnit[];
+        setUnits(list);
+        if (list.length > 0) setSelectedUnit(list[0].unit_code);
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Failed to load quiz catalog.');
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    if (!selectedUnit) return;
+    void (async () => {
+      try {
+        const response = await fetch(`/api/quiz/units/${selectedUnit}/los`, { cache: 'no-store' });
+        const data = await response.json();
+        const list = (Array.isArray(data.los) ? data.los : []) as UnitLo[];
+        setLos(list);
+        setSelectedLos([]);
+      } catch (e) {
+        setError(e instanceof Error ? e.message : 'Failed to load learning outcomes.');
+      }
+    })();
+  }, [selectedUnit]);
+
+  const toggleLo = (loCode: string) => {
+    setSelectedLos((prev) => (prev.includes(loCode) ? prev.filter((item) => item !== loCode) : [...prev, loCode]));
+  };
+
+  const buildQuiz = async () => {
+    if (!canBuild) return;
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await fetch('/api/quiz/build', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          unit_code: selectedUnit,
+          level: selectedLevel,
+          mode,
+          lo_codes: mode === 'lo' ? selectedLos : undefined,
+          count,
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error ?? 'Failed to build quiz.');
+      }
+      const questions = (Array.isArray(data.questions) ? data.questions : []) as Question[];
+      if (questions.length === 0) {
+        throw new Error('No approved MCQ questions available for this selection.');
+      }
+      setQuizQuestions(questions);
+      setSelectionSummary(
+        `Unit ${selectedUnit}, Level ${selectedLevel}, ${mode === 'unit' ? 'all LOs' : selectedLos.join(', ')}, ${questions.length} questions`
+      );
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to build quiz.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (quizQuestions) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4 flex items-center justify-center transition-colors duration-300">
-        <div className="max-w-5xl w-full">
-          <div className="mb-6">
-            <Link href="/" className="inline-flex items-center text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors">
-              &larr; Back to Home
-            </Link>
-          </div>
-          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 md:p-12">
-            <div className="text-center mb-12">
-              <h1 className="text-5xl md:text-6xl font-bold text-gray-800 dark:text-white mb-4">
-                2365 Quiz Platform
-              </h1>
-              <p className="text-xl text-gray-600 dark:text-slate-300">
-                Choose how you want to practice
-              </p>
-            </div>
-
-            {/* Tab Switcher */}
-            <div className="flex justify-center mb-8">
-              <div className="inline-flex rounded-lg border border-gray-200 dark:border-slate-700 p-1 bg-gray-100 dark:bg-slate-900">
-                <button
-                  onClick={() => setActiveTab('topic')}
-                  className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                    activeTab === 'topic'
-                      ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md'
-                      : 'text-gray-600 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200'
-                  }`}
-                >
-                  By Topic
-                </button>
-                <button
-                  onClick={() => setActiveTab('lesson')}
-                  className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                    activeTab === 'lesson'
-                      ? 'bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-md'
-                      : 'text-gray-600 dark:text-slate-400 hover:text-gray-800 dark:hover:text-slate-200'
-                  }`}
-                >
-                  By Lesson
-                </button>
-              </div>
-            </div>
-
-            {/* Tab Content */}
-            {activeTab === 'topic' && (
-              <div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                  {/* Health and Safety Section */}
-                  <button
-                    onClick={() => setSelectedSection("Health and Safety")}
-                    className="group relative p-8 bg-gradient-to-br from-red-500 to-red-600 text-white rounded-2xl hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col justify-between"
-                  >
-                    <div className="text-center w-full">
-                      <div className="text-6xl mb-4">⚡</div>
-                      <h2 className="text-2xl font-bold mb-3">Health & Safety</h2>
-                      <p className="text-red-100 text-lg mb-4">
-                        2365 Level 2 & 3 (201/601)
-                      </p>
-                    </div>
-                    <div className="bg-white/20 rounded-lg p-3 backdrop-blur-sm w-full">
-                      <p className="text-sm font-semibold">{healthAndSafetyCount} Questions Available</p>
-                    </div>
-                  </button>
-
-                  {/* Communication Section */}
-                  <button
-                    onClick={() => setSelectedSection("Communication")}
-                    className="group relative p-8 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col justify-between"
-                  >
-                    <div className="text-center w-full">
-                      <div className="text-6xl mb-4">💬</div>
-                      <h2 className="text-2xl font-bold mb-3">Communication</h2>
-                      <p className="text-blue-100 text-lg mb-4">
-                        2365 Level 2 (210)
-                      </p>
-                    </div>
-                    <div className="bg-white/20 rounded-lg p-3 backdrop-blur-sm w-full">
-                      <p className="text-sm font-semibold">{communicationCount} Questions Available</p>
-                    </div>
-                  </button>
-
-                  {/* Science Section */}
-                  <button
-                    onClick={() => setSelectedSection("Science 2365 Level 2")}
-                    className="group relative p-8 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-2xl hover:from-green-600 hover:to-green-700 transition-all duration-200 shadow-lg hover:shadow-2xl transform hover:scale-105 flex flex-col justify-between"
-                  >
-                    <div className="text-center w-full">
-                      <div className="text-6xl mb-4">🔬</div>
-                      <h2 className="text-2xl font-bold mb-3">Science</h2>
-                      <p className="text-green-100 text-lg mb-4">
-                        2365 Level 2 (202)
-                      </p>
-                    </div>
-                    <div className="bg-white/20 rounded-lg p-3 backdrop-blur-sm w-full">
-                      <p className="text-sm font-semibold">{scienceCount} Questions Available</p>
-                    </div>
-                  </button>
-                </div>
-
-                <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6">
-                  <h3 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center text-lg">
-                    <span className="text-2xl mr-3">ℹ️</span>
-                    Getting Started
-                  </h3>
-                  <ul className="space-y-2 text-gray-700 dark:text-slate-300">
-                    <li className="flex items-start">
-                      <span className="mr-3 text-indigo-600 dark:text-indigo-400 font-bold">1.</span>
-                      <span>Choose a test section from the options above</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-3 text-indigo-600 dark:text-indigo-400 font-bold">2.</span>
-                      <span>Select how many questions you want to practice</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-3 text-indigo-600 dark:text-indigo-400 font-bold">3.</span>
-                      <span>Answer all questions and review your results</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'lesson' && (
-              <div>
-                <div className="space-y-6 mb-8">
-                  {Object.entries(lessonsByUnit).map(([unitNumber, lessons]) => {
-                    const metadata = unitMetadata[unitNumber as keyof typeof unitMetadata];
-                    if (!metadata) return null;
-
-                    const colorClasses = {
-                      red: 'from-red-500 to-red-600 hover:from-red-600 hover:to-red-700',
-                      blue: 'from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700',
-                      green: 'from-green-500 to-green-600 hover:from-green-600 hover:to-green-700',
-                      indigo: 'from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700',
-                      violet: 'from-violet-500 to-violet-600 hover:from-violet-600 hover:to-violet-700',
-                      purple: 'from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700',
-                      cyan: 'from-cyan-500 to-cyan-600 hover:from-cyan-600 hover:to-cyan-700',
-                    };
-
-                    return (
-                      <div key={unitNumber} className="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-6 border border-gray-200 dark:border-slate-700">
-                        <div className="flex items-center gap-3 mb-4">
-                          <span className="text-4xl">{metadata.icon}</span>
-                          <div>
-                            <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
-                              {metadata.fullName}
-                            </h2>
-                            <p className="text-sm text-gray-600 dark:text-slate-400">Unit {unitNumber}</p>
-                          </div>
-                        </div>
-
-                        <div className="grid md:grid-cols-2 gap-4">
-                          {lessons.filter(lesson => lesson.available && lesson.questionCount > 0).map(lesson => (
-                            <Link
-                              key={lesson.id}
-                              href={`/learn/${lesson.id}/quiz`}
-                              className={`block p-6 bg-gradient-to-br ${colorClasses[metadata.color as keyof typeof colorClasses]} text-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-200 transform hover:scale-105`}
-                            >
-                              <div className="flex items-start justify-between mb-3">
-                                <div className="flex-1">
-                                  <h3 className="text-lg font-bold mb-1">{lesson.title}</h3>
-                                  <p className="text-sm opacity-90 mb-2">{lesson.description}</p>
-                                </div>
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-sm font-medium bg-white/20 rounded-full px-3 py-1 backdrop-blur-sm">
-                                  {lesson.topic}
-                                </span>
-                                <span className="text-sm font-semibold">
-                                  {lesson.questionCount} questions →
-                                </span>
-                              </div>
-                            </Link>
-                          ))}
-
-                          {lessons.filter(lesson => lesson.available && lesson.questionCount > 0).length === 0 && (
-                            <div className="col-span-2 text-center py-8 text-gray-500 dark:text-slate-400">
-                              <p className="text-lg mb-2">📚 No quizzes available yet</p>
-                              <p className="text-sm">Check back soon for more lessons!</p>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-6">
-                  <h3 className="font-semibold text-indigo-900 dark:text-indigo-300 mb-3 flex items-center text-lg">
-                    <span className="text-2xl mr-3">💡</span>
-                    Lesson-Specific Quizzes
-                  </h3>
-                  <ul className="space-y-2 text-gray-700 dark:text-slate-300">
-                    <li className="flex items-start">
-                      <span className="mr-3 text-indigo-600 dark:text-indigo-400 font-bold">•</span>
-                      <span>Each quiz tests knowledge from a specific lesson</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-3 text-indigo-600 dark:text-indigo-400 font-bold">•</span>
-                      <span>Questions are tailored to the learning outcomes of that lesson</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="mr-3 text-indigo-600 dark:text-indigo-400 font-bold">•</span>
-                      <span>Perfect for reviewing after completing a lesson</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
+      <Quiz
+        questions={quizQuestions}
+        section={selectionSummary}
+        onBack={() => setQuizQuestions(null)}
+        enableConfidence={false}
+        enableImmediateFeedback
+        enableTypedRetries={false}
+        context="practice"
+      />
     );
   }
 
-  // Quiz screen with selected section
   return (
-    <Quiz 
-      section={selectedSection} 
-      onBack={() => setSelectedSection(null)}
-      enableConfidence={false}
-      enableImmediateFeedback={true}
-      enableTypedRetries={false}
-      context="practice"
-    />
+    <main className="min-h-screen bg-slate-50 px-4 py-8 text-slate-900">
+      <div className="mx-auto max-w-4xl space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Question Bank Practice</h1>
+          <Link href="/" className="rounded border border-slate-300 px-3 py-2 text-sm">
+            Back Home
+          </Link>
+        </div>
+
+        <section className="rounded-lg border border-slate-200 bg-white p-4">
+          <label className="block text-sm font-medium">Unit</label>
+          <select
+            className="mt-1 w-full rounded border border-slate-300 px-2 py-2"
+            value={selectedUnit}
+            onChange={(event) => setSelectedUnit(event.target.value)}
+          >
+            {units.map((unit) => (
+              <option key={unit.unit_code} value={unit.unit_code}>
+                Unit {unit.unit_code} - {unit.unit_title} ({unit.approved_question_count} approved)
+              </option>
+            ))}
+          </select>
+        </section>
+
+        <section className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 md:grid-cols-3">
+          <label className="text-sm font-medium">
+            Level
+            <select
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-2"
+              value={selectedLevel}
+              onChange={(event) => setSelectedLevel(Number(event.target.value) as 2 | 3)}
+            >
+              <option value={2}>Level 2</option>
+              <option value={3}>Level 3</option>
+            </select>
+          </label>
+          <label className="text-sm font-medium">
+            Mode
+            <select
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-2"
+              value={mode}
+              onChange={(event) => setMode(event.target.value as 'unit' | 'lo')}
+            >
+              <option value="unit">Practice by Unit</option>
+              <option value="lo">Practice by LO</option>
+            </select>
+          </label>
+          <label className="text-sm font-medium">
+            Questions
+            <input
+              type="number"
+              min={1}
+              max={100}
+              className="mt-1 w-full rounded border border-slate-300 px-2 py-2"
+              value={count}
+              onChange={(event) => setCount(Number.parseInt(event.target.value || '20', 10))}
+            />
+          </label>
+        </section>
+
+        {mode === 'lo' && (
+          <section className="rounded-lg border border-slate-200 bg-white p-4">
+            <p className="mb-3 text-sm font-medium">Learning Outcomes</p>
+            <div className="grid gap-2 md:grid-cols-2">
+              {los.map((lo) => (
+                <label key={lo.lo_code} className="rounded border border-slate-200 p-3 text-sm">
+                  <input
+                    type="checkbox"
+                    className="mr-2"
+                    checked={selectedLos.includes(lo.lo_code)}
+                    onChange={() => toggleLo(lo.lo_code)}
+                  />
+                  <span className="font-semibold">{lo.lo_code}</span> ({lo.approved_question_count} approved)
+                  <p className="mt-1 text-xs text-slate-600">{lo.lo_text_preview}</p>
+                </label>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {error && (
+          <section className="rounded border border-rose-300 bg-rose-50 p-3 text-sm text-rose-700">
+            {error}
+          </section>
+        )}
+
+        <button
+          onClick={() => void buildQuiz()}
+          disabled={!canBuild}
+          className="rounded bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+        >
+          {loading ? 'Building Quiz...' : 'Build Quiz'}
+        </button>
+      </div>
+    </main>
   );
 }

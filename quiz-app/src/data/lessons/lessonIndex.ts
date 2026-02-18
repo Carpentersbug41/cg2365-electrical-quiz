@@ -178,157 +178,14 @@ export const lessonIndex: LessonIndexEntry[] = [
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
-  {
-    id: '203-1A',
-    title: 'Statutory Regulations (LAW)',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Statutory Regulations (LAW)',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-1A'),
-    available: true,
-    order: 1,
-  },
-  {
-    id: '203-1B',
-    title: 'Non-Statutory Regulations & Guidance',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Non-Statutory Regulations & Guidance',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-1B'),
-    available: true,
-    order: 2,
-  },
-  {
-    id: '203-1C',
-    title: 'Using BS 7671 on a Job',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Using BS 7671 on a Job',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-1C'),
-    available: true,
-    order: 3,
-  },
-  {
-    id: '203-2A',
-    title: 'Sources, Drawings, Symbols & Scale',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Sources, Drawings, Symbols & Scale',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-2A'),
-    available: true,
-    order: 4,
-  },
-  
-  {
-    id: '203-2B',
-    title: 'Reading Installation Drawings: Legend, Symbols, Notes & Abbreviations',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Reading Installation Drawings: Legend, Symbols, Notes & Abbreviations',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-2B'),
-    available: true,
-    order: 5,
-  },
-  {
-    id: '203-2C',
-    title: 'Recognising Electrical Symbols on Drawings',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Recognising Electrical Symbols on Drawings',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-2C'),
-    available: true,
-    order: 6,
-  },
-  {
-    id: '203-2D',
-    title: 'Converting Drawing Scale to Real Measurements',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Converting Drawing Scale to Real Measurements',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-2D'),
-    available: true,
-    order: 7,
-  },
-  
-  {
-    id: '203-3A',
-    title: 'Circuit Types: What They Do (Principles of Operation)',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Circuit Types: What They Do (Principles of Operation)',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A'),
-    available: true,
-    order: 8,
-  },
-  {
-    id: '203-3B',
-    title: 'Wiring Systems by Environment: Choosing the Right Cable + Containment',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Wiring Systems by Environment: Choosing the Right Cable + Containment',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3B'),
-    available: true,
-    order: 9,
-  },
-  {
-    id: '203-3C',
-    title: 'Cable Sizing Basics: Ib / In / Iz + Factors',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Cable Sizing Basics: Ib / In / Iz + Factors',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3C'),
-    available: true,
-    order: 10,
-  },
-  {
-    id: '203-3D',
-    title: 'Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Protective Devices Basics: Fuses, MCB Types, RCDs, RCBOs',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3D'),
-    available: true,
-    order: 11,
-  },
-  {
-    id: '203-3E',
-    title: 'Specialised Installing Equipment',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Specialised Installing Equipment',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3E'),
-    available: true,
-    order: 12,
-  },
-  
+          
+        
+            
   
       
   
   
-  {
-    id: '203-3F',
-    title: 'Spacing Factor / Enclosure Fill',
-    unit: 'Unit 203',
-    unitNumber: '203',
-    topic: 'Spacing Factor / Enclosure Fill',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3F'),
-    available: true,
-    order: 13,
-  },
-                
+                  
       
         
         
@@ -337,16 +194,17 @@ export const lessonIndex: LessonIndexEntry[] = [
   
             
   
-    {
-    id: '203-3A123',
-    title: 'Circuit Types: What They Do',
+    
+  {
+    id: '203-1A',
+    title: 'Statutory and Non-statutory Regulations',
     unit: 'Unit 203',
     unitNumber: '203',
-    topic: 'Circuit Types: What They Do',
+    topic: 'Statutory and Non-statutory Regulations',
     description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-3A123'),
+    questionCount: getLessonQuestionCount('203-1A'),
     available: true,
-    order: 15,
+    order: 1,
   },// Unit 210: Communication
   {
     id: '204-10A',

@@ -1,0 +1,430 @@
+{
+  "id": "203-1A",
+  "title": "203.1A — Statutory and Non-statutory Regulations",
+  "description": "Learn about Statutory and Non-statutory Regulations in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Statutory and Non-statutory Regulations",
+  "learningOutcomes": [
+    "Identify the primary statutory regulations relevant to the technical sector",
+    "Explain the legal status difference between statutory and non-statutory documentation",
+    "Classify common industry documents as either mandatory regulations or advisory guidance"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the primary statutory regulations relevant to the technical sector",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the legal status difference between statutory and non-statutory documentation",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Classify common industry documents as either mandatory regulations or advisory guidance",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Statutory Regulations",
+            "definition": "Legally binding requirements created by Acts of Parliament that must be followed by law, not just as a matter of choice."
+          },
+          {
+            "term": "Non-statutory Guidance",
+            "definition": "Industry-recognised documents and codes of practice that provide advice on how to meet safety standards, different from statutory regulations because they are not laws themselves."
+          },
+          {
+            "term": "Legislation",
+            "definition": "The formal laws and acts passed by government that establish mandatory legal duties for individuals and organisations within a specific sector."
+          },
+          {
+            "term": "Code of Practice",
+            "definition": "A set of written rules and procedures that provide practical guidance on how to perform technical tasks to a professional standard, not a legal act in itself."
+          },
+          {
+            "term": "Compliance",
+            "definition": "The act of meeting the specific requirements of all relevant laws, regulations, and standards to ensure work is performed safely and legally."
+          },
+          {
+            "term": "Duty of Care",
+            "definition": "A legal obligation requiring individuals to take reasonable steps to ensure the health and safety of themselves and others who may be affected by their work."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Statutory Regulations",
+        "content": "### In this lesson\nThis lesson teaches you how to identify the mandatory legal framework governing technical work. You will learn how to distinguish between different types of industry documentation based on their legal weight. By the end, you will be able to identify primary **Statutory Regulations**, explain the concept of **Legislation**, and understand your mandatory **Duty of Care**.\n\n**What this is**\n**Statutory Regulations** are legally binding requirements created by Acts of Parliament that must be followed by law, not just as a matter of choice. These documents represent the highest level of authority in any technical sector. They are often referred to as **Legislation**, which consists of the formal laws and acts passed by the government to establish mandatory legal duties for individuals and organisations. Unlike suggestions or tips, these are strict requirements. If you fail to follow them, you are breaking the law, which can lead to fines, prosecution, or imprisonment. A primary example found in many technical sectors is the Health and Safety at Work Act, which sets the foundation for all other safety rules.\n\n**Why it matters**\nUnderstanding these regulations is the only way to ensure full **Compliance** with the law. As a technician, you have a **Duty of Care**, which is a legal obligation requiring individuals to take reasonable steps to ensure the health and safety of themselves and others who may be affected by their work. If you do not know which documents are statutory, you cannot guarantee that your work is legal. Following these laws protects you, your employer, and the public from harm and legal liability.\n\n**Key facts / rules**\n* **Statutory Regulations** are mandatory and must be followed by everyone in the industry.\n* These regulations are created through **Legislation** passed by Parliament.\n* Failure to comply with these laws is a criminal offence, not just a professional mistake.\n* They establish a clear **Duty of Care** for all persons on a work site.\n* They take precedence over any other type of industry document or manual.\n* You cannot \"opt-out\" of these requirements even if a client requests it.\n\n**When to choose it**\nYou must choose to follow **Statutory Regulations** in every single work scenario without exception. You refer to these documents when you need to identify the absolute minimum legal safety requirements for a task. For instance, when determining if a specific safety guard is required by law, you look to the relevant Act or Regulation. \n\nConsider a scenario where **Legislation** requires a safety barrier to be at least 1100mm high. If a technician installs a barrier at 900mm, they have failed to meet **Compliance** with **Statutory Regulations**, regardless of whether the work looks professional or functions well in other ways.\n\n**Common mistakes**\nLearners often confuse **Statutory Regulations** with **Non-statutory Guidance**; **Statutory Regulations** are mandatory laws that must be followed to achieve **Compliance**, whereas **Non-statutory Guidance** consists of advisory documents that suggest best practice. \n\nMisconceptions (targeted):\n* Misconception: Regulations are only suggestions for best practice. | Correction: **Statutory Regulations** are legally binding laws; ignoring them is a criminal act. | AC: 203.LO1.AC1.2\n* Misconception: Only the business owner is responsible for the law. | Correction: Every individual has a **Duty of Care** under **Legislation** to ensure safety. | AC: 203.LO1.AC1.1\n\n**Key Points**\n* **Statutory Regulations** are mandatory laws from Parliament.\n* **Legislation** sets the legal framework for industry safety.\n* **Compliance** is required to avoid criminal prosecution.\n* Every worker has a legal **Duty of Care**.\n\n**Quick recap**\n**Statutory Regulations** are the mandatory \"must-follow\" laws of the industry. They are created through government **Legislation** and establish your **Duty of Care**. Because they are legally binding, failing to follow them means you are not in **Compliance**, which carries serious legal consequences. Think of them like the red lights at a junction; they are not suggestions, and everyone must stop.\n\n### Coming Up Next\nNow that we have covered the mandatory laws, we will look at the advisory documents known as **Non-statutory Guidance** that help us meet these legal standards."
+      }
+    },
+    {
+      "id": "203-1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Statutory Regulations",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1A-C1-L1-A",
+            "questionText": "What is the legal status of Statutory Regulations for everyone in the industry?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Mandatory",
+              "Must be followed",
+              "Legally binding"
+            ],
+            "hint": "Think about whether these are optional suggestions or requirements that must be followed by law."
+          },
+          {
+            "id": "203-1A-C1-L1-B",
+            "questionText": "Through what process are Statutory Regulations created?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Legislation passed by Parliament",
+              "Legislation",
+              "Acts of Parliament"
+            ],
+            "hint": "Identify the formal term for the laws and acts passed by the government."
+          },
+          {
+            "id": "203-1A-C1-L1-C",
+            "questionText": "How do Statutory Regulations differ from Non-statutory Guidance in terms of legal requirement?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "They are mandatory laws",
+              "Mandatory laws",
+              "Legally binding requirements"
+            ],
+            "hint": "Recall the difference between a law and an advisory document."
+          },
+          {
+            "id": "203-1A-C1-L2",
+            "questionText": "Using your answers to Q1 (legal status), Q2 (creation process), and Q3 (difference from guidance), explain how these facts connect. Why does this relationship matter for a technician's daily work?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Legislation from Parliament creates the mandatory status of regulations",
+              "The mandatory nature distinguishes these laws from advisory guidance",
+              "Technicians must follow these specific documents to achieve legal compliance",
+              "Failure to follow these laws results in criminal offences"
+            ],
+            "expectedAnswer": [
+              "Because Parliament passes legislation, these regulations become mandatory laws that must be followed, unlike advisory guidance which is not a direct law. This matters because technicians must follow them to ensure legal compliance.",
+              "Statutory Regulations are mandatory laws created by Parliament, meaning they take precedence over advisory guidance. Technicians must identify these to ensure they are not committing a criminal offence."
+            ],
+            "hint": "Consider how the source of the document (Parliament) determines its legal weight compared to other documents."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Non-statutory Guidance",
+        "content": "### In this lesson\nThis lesson explores the advisory side of industry documentation and how it supports legal requirements. You will learn to recognise industry-recognised advice and how it differs from law. By the end, you will be able to identify a **Code of Practice**, explain the purpose of **Non-statutory Guidance**, and classify these documents correctly.\n\n**What this is**\n**Non-statutory Guidance** refers to industry-recognised documents and codes of practice that provide advice on how to meet safety standards. These are different from statutory regulations because they are not laws themselves. A common form of this is a **Code of Practice**, which is a set of written rules and procedures that provide practical guidance on how to perform technical tasks to a professional standard. While you cannot be prosecuted simply for not following a piece of guidance, these documents are often used in court to see if you have met your legal **Duty of Care**. If you follow the guidance, it is usually accepted that you have done enough to meet the law.\n\n**Why it matters**\nThese documents are essential because **Legislation** is often written in broad terms, telling you *what* you must do (e.g., \"keep people safe\"), but not *how* to do it. **Non-statutory Guidance** provides the technical detail and step-by-step methods required to achieve **Compliance**. They represent the \"best practice\" of the industry. Following them ensures that your work is up to a professional standard and provides a safety net if your work is ever questioned.\n\n**Key facts / rules**\n* **Non-statutory Guidance** is advisory and not a direct law.\n* A **Code of Practice** provides the practical \"how-to\" for technical tasks.\n* These documents are often produced by industry bodies or standard committees.\n* They are used as evidence in court to prove whether a technician was competent.\n* They can be updated more frequently than **Legislation** to reflect new technology.\n* While not law, ignoring them without a valid, safer alternative is highly risky.\n\n**When to choose it**\nYou choose to use **Non-statutory Guidance** when you need specific, technical instructions on how to complete a task safely and professionally. It is the go-to resource for day-to-day technical decisions. \n\nImagine a **Code of Practice** suggests using a specific type of insulation for a high-heat component, but a technician uses a different material they believe is \"good enough.\" While using the different material might not be a direct crime, if the component fails, the technician must prove their choice met their **Duty of Care** as effectively as the recommended guidance would have.\n\n**Common mistakes**\nLearners often confuse a **Code of Practice** with **Legislation**; a **Code of Practice** is a set of advisory professional rules, whereas **Legislation** is the actual law passed by the government. \n\nMisconceptions (targeted):\n* Misconception: If it isn't a law, I can completely ignore it. | Correction: **Non-statutory Guidance** is used to prove you met your **Duty of Care**; ignoring it makes you legally vulnerable. | AC: 203.LO1.AC1.2\n* Misconception: Guidance documents never change. | Correction: Industry standards and codes are updated regularly; you must verify the current edition for **Compliance**. | AC: 203.LO1.AC1.3\n\n**Key Points**\n* **Non-statutory Guidance** is advisory, not mandatory law.\n* A **Code of Practice** defines industry best practice.\n* These documents help technicians meet their **Duty of Care**.\n* They provide the technical details that **Legislation** often lacks.\n\n**Quick recap**\n**Non-statutory Guidance** and any associated **Code of Practice** act as the professional handbook for the industry. They aren't laws, but they show you the best way to achieve **Compliance** with the laws. Think of them like a high-quality recipe book; while you won't go to jail for changing an ingredient, following the recipe is the most reliable way to ensure the result is safe and successful.\n\n### Coming Up Next\nWe have now identified both mandatory and advisory documents. Next, we will look at how to use these together to perform safe and legal technical inspections."
+      }
+    },
+    {
+      "id": "203-1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Non-statutory Guidance",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1A-C2-L1-A",
+            "questionText": "What do industry-recognised documents and codes of practice provide to technicians?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Advice",
+              "Practical guidance",
+              "Technical advice"
+            ],
+            "hint": "Look for the term used to describe information that helps meet standards but isn't a law."
+          },
+          {
+            "id": "203-1A-C2-L1-B",
+            "questionText": "Which specific document provides the practical how-to for technical tasks?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Code of Practice",
+              "A Code of Practice",
+              "Codes of Practice"
+            ],
+            "hint": "This is a set of written rules and procedures for professional standards."
+          },
+          {
+            "id": "203-1A-C2-L1-C",
+            "questionText": "What is the legal status of Non-statutory Guidance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Advisory",
+              "Not a direct law",
+              "Non-mandatory"
+            ],
+            "hint": "Contrast this with the mandatory nature of statutory regulations."
+          },
+          {
+            "id": "203-1A-C2-L2",
+            "questionText": "Using your answers to Q1 (purpose of guidance), Q2 (Code of Practice), and Q3 (legal status), explain how these facts connect. How do we know these documents are important for meeting legal duties?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "A Code of Practice is the specific type of guidance that provides practical technical advice",
+              "Even though they are advisory and not law, they provide the detail legislation lacks",
+              "Following these documents is the accepted way to prove a Duty of Care was met",
+              "They translate broad legal requirements into specific technical actions"
+            ],
+            "expectedAnswer": [
+              "While a Code of Practice is advisory and not a direct law, it provides the practical advice needed to meet legal standards in technical work. We know they are important because following them is usually accepted as proof that the law was met.",
+              "Technicians use advisory Codes of Practice to find the technical details required to meet their legal duties. Although not law themselves, they provide the best practice needed to ensure safety and compliance."
+            ],
+            "hint": "Think about how practical advice helps a technician fulfill a broad legal requirement like 'keeping people safe'."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-1A-P1",
+            "questionText": "Based on the scenario provided in the lesson, what is the minimum height in millimeters a safety barrier must reach to achieve compliance with the legislation?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1100"
+            ],
+            "hint": "Provide the numeric value in mm as mentioned in the statutory example."
+          },
+          {
+            "id": "203-1A-P2",
+            "questionText": "Why can a technician be prosecuted for a criminal offence even if their finished work is functional and the client is satisfied?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "breach of statutory regulations",
+              "failure to comply",
+              "non-compliance",
+              "breach of legislation"
+            ],
+            "hint": "Think about what happens when legally binding requirements from Parliament are ignored."
+          },
+          {
+            "id": "203-1A-P3",
+            "questionText": "Which type of industry document is specifically designed to provide the practical 'how-to' steps for performing technical tasks to a professional standard?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "code of practice",
+              "non-statutory guidance",
+              "industry guidance",
+              "guidance"
+            ],
+            "hint": "This document type is advisory and describes best practice rather than being a direct law."
+          },
+          {
+            "id": "203-1A-P4",
+            "questionText": "A technician is reviewing three documents: a Government Act, an industry Code of Practice, and a safety advice leaflet. How many of these documents are legally mandatory statutory regulations?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1"
+            ],
+            "hint": "Only documents created through formal Legislation by Parliament carry mandatory legal weight."
+          },
+          {
+            "id": "203-1A-P5",
+            "questionText": "A technician is asked by a site manager to ignore a safety requirement found in an Act of Parliament to meet a deadline. What must be true about the technician's legal responsibility in this scenario?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "duty of care",
+              "legal obligation",
+              "mandatory compliance",
+              "legal liability"
+            ],
+            "hint": "Consider the term for the legal obligation that applies to every individual regardless of client requests."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-1A-INT-1",
+            "questionText": "Explain the relationship between statutory regulations and non-statutory guidance within a technical environment. In your answer, include: (1) the legal weight of statutory regulations, (2) the primary purpose of non-statutory guidance, (3) how these two types of documentation interact to ensure compliance. Why does this relationship hold? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Statutory regulations are mandatory laws that must be followed without exception.",
+              "Non-statutory guidance provides industry-recognised advice and methods for achieving compliance.",
+              "The relationship involves using advisory guidance as a roadmap to meet the legal requirements set by legislation.",
+              "This relationship holds because while law dictates the 'what' (minimum safety standards), guidance defines the 'how' (industry best practice).",
+              "Following non-statutory codes is often used as evidence that a person has met their statutory obligations."
+            ],
+            "expectedAnswer": [
+              "Statutory regulations are legally binding requirements, whereas non-statutory guidance provides the technical advice needed to meet those legal standards. This relationship holds because legislation often sets high-level safety goals, and industry-recognised codes provide the specific procedures required to achieve them in practice. Consequently, following guidance is the primary method for demonstrating that a statutory duty of care has been fulfilled.",
+              "Legislation constitutes the mandatory framework that governs technical work, while non-statutory guidance serves as an advisory tool to support these laws. This relationship exists because the law requires safe outcomes, but the guidance provides the technical benchmarks for what is considered safe practice. By adhering to codes of practice, a professional ensures they are operating within the boundaries of statutory requirements."
+            ],
+            "hint": "Consider the difference between a legal requirement and the 'best practice' methods used to achieve it."
+          },
+          {
+            "id": "203-1A-INT-2",
+            "questionText": "Evaluate how the framework of technical documentation supports the fulfillment of professional responsibilities. In your answer, include: (1) the defining features of statutory legislation, (2) the role of non-statutory codes of practice, (3) the criteria used to classify documents as mandatory or advisory, (4) how these elements collectively allow a practitioner to meet their duty of care. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Statutory legislation consists of legally binding Acts of Parliament that mandate specific behaviors.",
+              "Non-statutory codes of practice offer detailed technical advice on meeting legal obligations.",
+              "Classification is determined by whether a document is rooted in law (statutory) or industry consensus (non-statutory).",
+              "Duty of care is a legal obligation to ensure the safety of others while performing technical tasks.",
+              "The framework provides a clear hierarchy where legislation sets the rules and guidance provides the implementation steps.",
+              "Practitioners use these documents to identify their legal limits and the professional standards they must uphold.",
+              "Compliance with both ensures that work is performed to a legally defensible and safe standard.",
+              "Failure to follow advisory guidance can be used as evidence of a failure to meet mandatory statutory duties."
+            ],
+            "expectedAnswer": [
+              "The technical framework consists of statutory legislation, which provides mandatory legal requirements, and non-statutory codes, which offer advisory best practices. Documents are classified based on their legal origin and the language used (e.g., 'must' versus 'should'). By integrating these, a practitioner fulfills their duty of care by following the specific technical procedures that satisfy high-level legal safety obligations. This combined approach ensures that all work is both legally compliant and performed to recognized industry standards.",
+              "• Statutory legislation provides the mandatory legal foundation for all technical operations.\n• Non-statutory codes of practice translate these legal requirements into specific, advisory technical steps.\n• Documents are classified as mandatory if they are Acts of Parliament, while advisory documents are industry-led guidance.\n• A practitioner meets their duty of care by using these documents to identify legal boundaries and apply the best practice methods required to prevent harm."
+            ],
+            "hint": "Think about how the law and industry advice work together to protect both the practitioner and the public."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-1A-SR-1",
+            "questionText": "What term is used to describe a rule or requirement that has been written into law by a governing body?",
+            "expectedAnswer": [
+              "statutory",
+              "statute",
+              "legislation"
+            ],
+            "hint": "This term relates to formal laws passed by a government.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-1A-SR-2",
+            "questionText": "What word is used to describe an action or rule that is compulsory and must be followed?",
+            "expectedAnswer": [
+              "mandatory",
+              "compulsory",
+              "required"
+            ],
+            "hint": "Think of a term that means you have no choice but to comply.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-1A-SR-3",
+            "questionText": "What term refers to documentation that provides advice or recommendations instead of legal requirements?",
+            "expectedAnswer": [
+              "guidance",
+              "advisory",
+              "guidelines"
+            ],
+            "hint": "These documents suggest best practice but are not the law itself.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Statutory and Non-statutory Regulations"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-18",
+    "updated": "2026-02-18",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Definition, identification, and legal status of statutory and non-statutory regulatory frameworks.",
+      "outOfScope": "Specific technical procedures for compliance or detailed enforcement and prosecution processes.",
+      "rationale": "Foundational knowledge requires distinguishing between mandatory law and best practice before moving to technical application."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on categorization and legal standing of documentation only."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Regulations are only suggestions for best practice.",
+        "correction": "Statutory Regulations are legally binding laws; ignoring them is a criminal act.",
+        "relatedAC": "203.LO1.AC1.2"
+      },
+      {
+        "misconception": "If it isn't a law, I can completely ignore it.",
+        "correction": "Non-statutory Guidance is used to prove you met your Duty of Care; ignoring it makes you legally vulnerable.",
+        "relatedAC": "203.LO1.AC1.2"
+      },
+      {
+        "misconception": "Only the business owner is responsible for the law.",
+        "correction": "Every individual has a Duty of Care under Legislation to ensure safety.",
+        "relatedAC": "203.LO1.AC1.1"
+      }
+    ]
+  }
+}

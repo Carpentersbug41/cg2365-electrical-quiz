@@ -18,6 +18,26 @@ const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT_WINDOW = 60000; // 1 minute
 const MAX_REQUESTS_PER_WINDOW = 30; // 30 requests per minute per IP
 
+function normalizeEquationFormatting(text: string): string {
+  let normalized = text;
+
+  // Remove inline/block LaTeX math delimiters that leak into UI.
+  normalized = normalized.replace(/\$\$([\s\S]*?)\$\$/g, '$1');
+  normalized = normalized.replace(/\$([^$\n]+)\$/g, '$1');
+
+  // Convert common LaTeX operators to readable plain text.
+  normalized = normalized.replace(/\\frac\s*\{([^{}]+)\}\s*\{([^{}]+)\}/g, '($1)/($2)');
+  normalized = normalized.replace(/\\times/g, ' x ');
+  normalized = normalized.replace(/\\cdot/g, ' * ');
+  normalized = normalized.replace(/\\div/g, ' / ');
+
+  // Remove escaped braces and collapse spacing introduced by replacements.
+  normalized = normalized.replace(/[{}]/g, '');
+  normalized = normalized.replace(/[ \t]{2,}/g, ' ');
+
+  return normalized.trim();
+}
+
 function checkRateLimit(identifier: string): boolean {
   const now = Date.now();
   const record = rateLimitStore.get(identifier);
@@ -110,11 +130,11 @@ YOUR ROLE:
 You are an ELECTRICAL SUBJECT MATTER EXPERT. You fully understand what this question is testing and you're here to TEACH the underlying electrical concepts, principles, and regulations that relate to this question.
 
 COMMUNICATION STYLE:
-- Use SIMPLE, PLAIN LANGUAGE - talk like a helpful colleague, not a textbook
-- Keep responses SHORT and FOCUSED - aim for 100-150 words maximum
+- Use SIMPLE, PLAIN LANGUAGE - talk like you are speaking to a 14 year old, not an expert.
+- Keep responses SHORT and FOCUSED - aim for 2 sentences max.
 - Don't overcomplicate - your explanation should be SIMPLER than a textbook
 - Get straight to the point - no long introductions or unnecessary detail
-- Use everyday analogies when helpful
+- Use everyday analogies when helpful that a 12 year old would understand.
 
 WHAT YOU SHOULD DO:
 - Explain electrical concepts clearly and briefly
@@ -131,13 +151,15 @@ WHAT YOU SHOULD NOT DO:
 - DO NOT directly state "The answer is A/B/C/D"
 - DO NOT eliminate wrong options or narrow down choices
 - DO NOT give step-by-step solutions that lead directly to the answer
+- DO NOT use LaTeX or math delimiters like $, $$, \\frac{}, \\times, or curly-brace formula syntax
+- Write equations in plain text like: I = P / (V x PF) unless asked explicitly.
 
 EXAMPLE GOOD RESPONSES:
 Student: "What's impedance?"
 You: "Impedance is the total opposition to current flow in AC circuits. Think of it like resistance, but for AC. It combines resistance (from the wire) and reactance (from coils and capacitors). Measured in ohms, just like resistance."
 
 Student: "I don't understand this question"
-You: "This is asking about [concept]. Here's the key: [2-3 sentences explaining the core principle]. That's what you need to work this out."
+You: "This is asking about [concept]. Here's the key: [1-2 sentences explaining the core principle as if to a 14 year old]. That's what you need to work this out."
 
 REMEMBER: SHORT, SIMPLE, FOCUSED. You're a helpful expert, not a textbook.`;
     } else {
@@ -176,6 +198,8 @@ WHAT YOU SHOULD NOT DO:
 - DO NOT write long, complicated explanations
 - DO NOT just rephrase or explain the wording of the question
 - DO NOT act like a language tutor
+- DO NOT use LaTeX or math delimiters like $, $$, \\frac{}, \\times, or curly-brace formula syntax
+- Write equations in plain text like: I = P / (V x PF)
 
 REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writing an essay.`;
     }
@@ -189,7 +213,7 @@ REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writi
 
     // Generate response
     const result = await model.generateContent(message);
-    const text = result.response.text();
+    const text = normalizeEquationFormatting(result.response.text());
 
     return NextResponse.json({ response: text });
   } catch (error) {
@@ -236,4 +260,3 @@ REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writi
     );
   }
 }
-

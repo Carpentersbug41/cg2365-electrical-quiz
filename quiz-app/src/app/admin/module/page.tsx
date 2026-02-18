@@ -72,6 +72,11 @@ interface CanonicalUnitStructure {
 }
 
 type PopulateState = 'IDLE' | 'RUNNING' | 'READY' | 'FAILED';
+interface LessonGenerationProgress {
+  blueprintId: string;
+  progress: number;
+  phaseMessage: string;
+}
 
 const STAGE_ROUTE: Record<StageKey, string> = {
   M0: 'm0-distill',
@@ -92,6 +97,13 @@ const STAGE_LABEL: Record<StageKey, string> = {
   M5: 'Validate',
   M6: 'Generate',
 };
+const LESSON_GENERATION_PHASES: Array<{ progress: number; message: string }> = [
+  { progress: 10, message: 'Phase 1/5: Validating prerequisites' },
+  { progress: 26, message: 'Phase 2/5: Preparing blueprint payload' },
+  { progress: 52, message: 'Phase 3/5: Generating lesson content' },
+  { progress: 78, message: 'Phase 4/5: Running quality passes' },
+  { progress: 94, message: 'Phase 5/5: Persisting lesson artifacts' },
+];
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -129,6 +141,7 @@ export default function ModulePlannerPage() {
   const [activeStage, setActiveStage] = useState<StageKey | null>(null);
   const [activeTaskLabel, setActiveTaskLabel] = useState<string | null>(null);
   const [generatingBlueprintId, setGeneratingBlueprintId] = useState<string | null>(null);
+  const [lessonGenerationProgress, setLessonGenerationProgress] = useState<LessonGenerationProgress | null>(null);
   const [deletingRunId, setDeletingRunId] = useState<string | null>(null);
   const [unitStructure, setUnitStructure] = useState<CanonicalUnitStructure | null>(null);
   const [viewLessonPayload, setViewLessonPayload] = useState<{
@@ -655,17 +668,43 @@ export default function ModulePlannerPage() {
       return;
     }
     setGeneratingBlueprintId(blueprintId);
+    setLessonGenerationProgress({
+      blueprintId,
+      progress: LESSON_GENERATION_PHASES[0].progress,
+      phaseMessage: LESSON_GENERATION_PHASES[0].message,
+    });
     setError(null);
     setInfo(null);
+    let phaseIndex = 0;
+    const phaseTimer = window.setInterval(() => {
+      phaseIndex = Math.min(phaseIndex + 1, LESSON_GENERATION_PHASES.length - 1);
+      const phase = LESSON_GENERATION_PHASES[phaseIndex];
+      setLessonGenerationProgress((prev) => {
+        if (!prev || prev.blueprintId !== blueprintId) return prev;
+        return {
+          blueprintId,
+          progress: phase.progress,
+          phaseMessage: phase.message,
+        };
+      });
+    }, 3500);
     try {
       const data = await callApi(`/api/admin/module/${runId}/lessons/${encodeURIComponent(blueprintId)}/generate`, {});
+      setLessonGenerationProgress({
+        blueprintId,
+        progress: 100,
+        phaseMessage: 'Completed: lesson generated',
+      });
       await refreshRunSummarySafe(runId);
+      await sleep(400);
       setInfo(`Generated ${String(data.lessonId ?? blueprintId)}.`);
     } catch (e) {
       setError(e instanceof Error ? e.message : `Failed to generate ${blueprintId}`);
       await refreshRunSummarySafe(runId);
     } finally {
+      window.clearInterval(phaseTimer);
       setGeneratingBlueprintId(null);
+      setLessonGenerationProgress(null);
     }
   };
 
@@ -1053,6 +1092,20 @@ export default function ModulePlannerPage() {
                                     )}
                                   </div>
                                 </div>
+                                {lessonGenerationProgress?.blueprintId === bp.id && (
+                                  <div className="mt-2 rounded border border-sky-200 bg-sky-50 p-2">
+                                    <div className="flex items-center justify-between text-[11px] text-sky-800">
+                                      <span>{lessonGenerationProgress.phaseMessage}</span>
+                                      <span>{lessonGenerationProgress.progress}%</span>
+                                    </div>
+                                    <div className="mt-1 h-1.5 w-full overflow-hidden rounded bg-sky-100">
+                                      <div
+                                        className="h-full rounded bg-sky-500 transition-all duration-500"
+                                        style={{ width: `${lessonGenerationProgress.progress}%` }}
+                                      />
+                                    </div>
+                                  </div>
+                                )}
                                 <div className="mt-2 text-xs text-slate-700">
                                   <p className="font-medium">Covered ACs</p>
                                   <ul className="mt-1 space-y-1">

@@ -514,19 +514,24 @@ function hasDigestGrounding(text: string, digestTokens: Set<string>): boolean {
 function getGameStem(content: MicrobreakContent): string {
   if (content.breakType === 'rest') return 'rest';
 
+  const safeFirst = (value: unknown): string => {
+    if (!Array.isArray(value) || value.length === 0) return '';
+    return String(value[0] ?? '');
+  };
+
   switch (content.gameType) {
     case 'matching':
-      return (content.pairs[0]?.left || '').toLowerCase();
+      return (Array.isArray(content.pairs) ? String(content.pairs[0]?.left || '') : '').toLowerCase();
     case 'sorting':
-      return (content.items[0]?.text || '').toLowerCase();
+      return (Array.isArray(content.items) ? String(content.items[0]?.text || '') : '').toLowerCase();
     case 'spot-error':
       return (content.scenario || '').toLowerCase();
     case 'tap-label':
-      return (content.items[0]?.label || '').toLowerCase();
+      return (Array.isArray(content.items) ? String(content.items[0]?.label || '') : '').toLowerCase();
     case 'quick-win':
-      return (content.questions[0]?.question || '').toLowerCase();
+      return (Array.isArray(content.questions) ? String(content.questions[0]?.question || '') : '').toLowerCase();
     case 'sequencing':
-      return (content.steps[0] || '').toLowerCase();
+      return safeFirst(content.steps).toLowerCase();
     case 'fill-gap':
       return (content.textTemplate || '').toLowerCase();
     case 'is-correct-why':
@@ -534,13 +539,13 @@ function getGameStem(content: MicrobreakContent): string {
     case 'diagnosis-ranked':
       return (content.scenario || '').toLowerCase();
     case 'classify-two-bins':
-      return (content.items[0]?.text || '').toLowerCase();
+      return (Array.isArray(content.items) ? String(content.items[0]?.text || '') : '').toLowerCase();
     case 'scenario-match':
-      return (content.pairs[0]?.scenario || '').toLowerCase();
+      return (Array.isArray(content.pairs) ? String(content.pairs[0]?.scenario || '') : '').toLowerCase();
     case 'formula-build':
-      return (content.correctSequence.join(' ') || '').toLowerCase();
+      return (Array.isArray(content.correctSequence) ? content.correctSequence.join(' ') : '').toLowerCase();
     case 'tap-the-line':
-      return (content.lines[0] || '').toLowerCase();
+      return safeFirst(content.lines).toLowerCase();
     case 'tap-the-word':
       return (content.sentence || '').toLowerCase();
     case 'elimination':
@@ -567,8 +572,10 @@ function validateGameSchemaAndContent(
     return errors;
   }
 
-  const requireGrounding = (texts: string[], label: string) => {
-    for (const text of texts) {
+  const requireGrounding = (texts: unknown[], label: string) => {
+    for (const value of texts) {
+      const text = typeof value === 'string' ? value : '';
+      if (!text) continue;
       if (!hasDigestGrounding(text, digestTokenSet)) {
         errors.push(`${label} lacks digest grounding: ${text.slice(0, 80)}`);
         break;
@@ -578,105 +585,134 @@ function validateGameSchemaAndContent(
 
   switch (content.gameType) {
     case 'matching': {
-      if (!Array.isArray(content.pairs) || content.pairs.length < 4) errors.push('matching requires >=4 pairs');
-      requireGrounding(content.pairs.flatMap(p => [p.left, p.right]), 'matching pair');
+      const pairs = Array.isArray(content.pairs) ? content.pairs : [];
+      if (pairs.length < 4) errors.push('matching requires >=4 pairs');
+      if (pairs.some(p => !String(p.left || '').trim() || !String(p.right || '').trim())) {
+        errors.push('matching pairs must include non-empty left and right text');
+      }
+      requireGrounding(pairs.flatMap(p => [p.left, p.right]), 'matching pair');
       break;
     }
     case 'sorting': {
-      if (!Array.isArray(content.buckets) || content.buckets.length !== 2) errors.push('sorting requires 2 buckets');
-      if (!Array.isArray(content.items) || content.items.length < 6) errors.push('sorting requires >=6 items');
-      requireGrounding(content.items.map(i => i.text), 'sorting item');
+      const buckets = Array.isArray(content.buckets) ? content.buckets : [];
+      const items = Array.isArray(content.items) ? content.items : [];
+      if (buckets.length !== 2) errors.push('sorting requires 2 buckets');
+      if (items.length < 6) errors.push('sorting requires >=6 items');
+      requireGrounding(items.map(i => i.text), 'sorting item');
       break;
     }
     case 'spot-error': {
-      if (!content.scenario) errors.push('spot-error requires scenario');
-      if (!Array.isArray(content.options) || content.options.length < 3) errors.push('spot-error requires >=3 options');
-      if (content.options.filter(o => o.isError).length !== 1) errors.push('spot-error requires exactly one error option');
-      requireGrounding([content.scenario, ...content.options.map(o => o.text)], 'spot-error');
+      const scenario = typeof content.scenario === 'string' ? content.scenario : '';
+      const options = Array.isArray(content.options) ? content.options : [];
+      if (!scenario) errors.push('spot-error requires scenario');
+      if (options.length < 3) errors.push('spot-error requires >=3 options');
+      if (options.filter(o => o.isError).length !== 1) errors.push('spot-error requires exactly one error option');
+      requireGrounding([scenario, ...options.map(o => o.text)], 'spot-error');
       break;
     }
     case 'tap-label': {
-      if (!Array.isArray(content.items) || content.items.length < 3) errors.push('tap-label requires >=3 items');
-      requireGrounding(content.items.map(i => i.label), 'tap-label label');
+      const items = Array.isArray(content.items) ? content.items : [];
+      if (items.length < 3) errors.push('tap-label requires >=3 items');
+      requireGrounding(items.map(i => i.label), 'tap-label label');
       break;
     }
     case 'quick-win': {
-      if (!Array.isArray(content.questions) || content.questions.length < 5) errors.push('quick-win requires >=5 questions');
-      requireGrounding(content.questions.flatMap(q => [q.question, q.answer]), 'quick-win question');
+      const questions = Array.isArray(content.questions) ? content.questions : [];
+      if (questions.length < 5) errors.push('quick-win requires >=5 questions');
+      requireGrounding(questions.flatMap(q => [q.question, q.answer]), 'quick-win question');
       break;
     }
     case 'sequencing': {
-      if (!Array.isArray(content.steps) || content.steps.length < 4) errors.push('sequencing requires >=4 steps');
-      if (!Array.isArray(content.correctOrder) || content.correctOrder.length !== content.steps.length) {
+      const steps = Array.isArray(content.steps) ? content.steps : [];
+      const correctOrder = Array.isArray(content.correctOrder) ? content.correctOrder : [];
+      if (steps.length < 4) errors.push('sequencing requires >=4 steps');
+      if (correctOrder.length !== steps.length) {
         errors.push('sequencing correctOrder must match steps length');
       }
-      requireGrounding([...content.steps, ...content.correctOrder], 'sequencing');
+      requireGrounding([...steps, ...correctOrder], 'sequencing');
       break;
     }
     case 'fill-gap': {
-      if (!content.textTemplate) errors.push('fill-gap requires textTemplate');
-      if (!Array.isArray(content.gaps) || content.gaps.length < 1) errors.push('fill-gap requires >=1 gap');
-      requireGrounding([content.textTemplate, ...content.gaps.flatMap(g => g.options)], 'fill-gap');
+      const textTemplate = typeof content.textTemplate === 'string' ? content.textTemplate : '';
+      const gaps = Array.isArray(content.gaps) ? content.gaps : [];
+      if (!textTemplate) errors.push('fill-gap requires textTemplate');
+      if (gaps.length < 1) errors.push('fill-gap requires >=1 gap');
+      requireGrounding([textTemplate, ...gaps.flatMap(g => (Array.isArray(g.options) ? g.options : []))], 'fill-gap');
       break;
     }
     case 'is-correct-why': {
-      if (!content.statement) errors.push('is-correct-why requires statement');
-      if (!Array.isArray(content.reasons) || content.reasons.length < 3) errors.push('is-correct-why requires >=3 reasons');
-      requireGrounding([content.statement, ...content.reasons], 'is-correct-why');
+      const statement = typeof content.statement === 'string' ? content.statement : '';
+      const reasons = Array.isArray(content.reasons) ? content.reasons : [];
+      if (!statement) errors.push('is-correct-why requires statement');
+      if (reasons.length < 3) errors.push('is-correct-why requires >=3 reasons');
+      requireGrounding([statement, ...reasons], 'is-correct-why');
       break;
     }
     case 'diagnosis-ranked': {
-      if (!content.scenario) errors.push('diagnosis-ranked requires scenario');
-      if (!Array.isArray(content.options) || content.options.length < 4) errors.push('diagnosis-ranked requires >=4 options');
+      const scenario = typeof content.scenario === 'string' ? content.scenario : '';
+      const options = Array.isArray(content.options) ? content.options : [];
+      if (!scenario) errors.push('diagnosis-ranked requires scenario');
+      if (options.length < 4) errors.push('diagnosis-ranked requires >=4 options');
       if (!Array.isArray(content.correctRankedIndices) || content.correctRankedIndices.length !== 2) {
         errors.push('diagnosis-ranked requires two ranked indices');
       }
-      requireGrounding([content.scenario, ...content.options], 'diagnosis-ranked');
+      requireGrounding([scenario, ...options], 'diagnosis-ranked');
       break;
     }
     case 'classify-two-bins': {
-      if (!content.leftLabel || !content.rightLabel) errors.push('classify-two-bins requires left/right labels');
-      if (!Array.isArray(content.items) || content.items.length < 6) errors.push('classify-two-bins requires >=6 items');
-      requireGrounding([content.leftLabel, content.rightLabel, ...content.items.map(i => i.text)], 'classify-two-bins');
+      const leftLabel = typeof content.leftLabel === 'string' ? content.leftLabel : '';
+      const rightLabel = typeof content.rightLabel === 'string' ? content.rightLabel : '';
+      const items = Array.isArray(content.items) ? content.items : [];
+      if (!leftLabel || !rightLabel) errors.push('classify-two-bins requires left/right labels');
+      if (items.length < 6) errors.push('classify-two-bins requires >=6 items');
+      requireGrounding([leftLabel, rightLabel, ...items.map(i => i.text)], 'classify-two-bins');
       break;
     }
     case 'scenario-match': {
-      if (!Array.isArray(content.pairs) || content.pairs.length < 4) errors.push('scenario-match requires >=4 pairs');
-      requireGrounding(content.pairs.flatMap(p => [p.scenario, p.answer]), 'scenario-match');
+      const pairs = Array.isArray(content.pairs) ? content.pairs : [];
+      if (pairs.length < 4) errors.push('scenario-match requires >=4 pairs');
+      requireGrounding(pairs.flatMap(p => [p.scenario, p.answer]), 'scenario-match');
       break;
     }
     case 'formula-build': {
-      if (!Array.isArray(content.tokens) || content.tokens.length < 4) errors.push('formula-build requires >=4 tokens');
-      if (!Array.isArray(content.correctSequence) || content.correctSequence.length < 4) {
+      const tokens = Array.isArray(content.tokens) ? content.tokens : [];
+      const correctSequence = Array.isArray(content.correctSequence) ? content.correctSequence : [];
+      if (tokens.length < 4) errors.push('formula-build requires >=4 tokens');
+      if (correctSequence.length < 4) {
         errors.push('formula-build requires >=4 correct sequence items');
       }
-      requireGrounding([...content.tokens, ...content.correctSequence], 'formula-build');
+      requireGrounding([...tokens, ...correctSequence], 'formula-build');
       break;
     }
     case 'tap-the-line': {
-      if (!Array.isArray(content.lines) || content.lines.length < 3) errors.push('tap-the-line requires >=3 lines');
-      if (content.correctLineIndex < 0 || content.correctLineIndex >= content.lines.length) {
+      const lines = Array.isArray(content.lines) ? content.lines : [];
+      if (lines.length < 3) errors.push('tap-the-line requires >=3 lines');
+      if (content.correctLineIndex < 0 || content.correctLineIndex >= lines.length) {
         errors.push('tap-the-line correctLineIndex out of bounds');
       }
-      requireGrounding(content.lines, 'tap-the-line');
+      requireGrounding(lines, 'tap-the-line');
       break;
     }
     case 'tap-the-word': {
-      if (!content.sentence) errors.push('tap-the-word requires sentence');
-      if (!Array.isArray(content.options) || content.options.length < 3) errors.push('tap-the-word requires >=3 options');
-      if (content.correctOptionIndex < 0 || content.correctOptionIndex >= content.options.length) {
+      const sentence = typeof content.sentence === 'string' ? content.sentence : '';
+      const options = Array.isArray(content.options) ? content.options : [];
+      if (!sentence) errors.push('tap-the-word requires sentence');
+      if (options.length < 3) errors.push('tap-the-word requires >=3 options');
+      if (content.correctOptionIndex < 0 || content.correctOptionIndex >= options.length) {
         errors.push('tap-the-word correctOptionIndex out of bounds');
       }
-      requireGrounding([content.sentence, ...content.options], 'tap-the-word');
+      requireGrounding([sentence, ...options], 'tap-the-word');
       break;
     }
     case 'elimination': {
-      if (!content.question) errors.push('elimination requires question');
-      if (!Array.isArray(content.options) || content.options.length < 4) errors.push('elimination requires >=4 options');
-      if (content.correctIndex < 0 || content.correctIndex >= content.options.length) {
+      const question = typeof content.question === 'string' ? content.question : '';
+      const options = Array.isArray(content.options) ? content.options : [];
+      if (!question) errors.push('elimination requires question');
+      if (options.length < 4) errors.push('elimination requires >=4 options');
+      if (content.correctIndex < 0 || content.correctIndex >= options.length) {
         errors.push('elimination correctIndex out of bounds');
       }
-      requireGrounding([content.question, ...content.options], 'elimination');
+      requireGrounding([question, ...options], 'elimination');
       break;
     }
     default:
@@ -685,6 +721,38 @@ function validateGameSchemaAndContent(
 
   return errors;
 }
+function buildFallbackMatchingPairs(digest: LessonDigest): Array<{ left: string; right: string }> {
+  const vocabPairs = digest.vocabPairs
+    .map(v => ({ left: String(v.term || '').trim(), right: String(v.definition || '').trim() }))
+    .filter(v => v.left.length > 0 && v.right.length > 0);
+
+  const pairs: Array<{ left: string; right: string }> = [...vocabPairs.slice(0, 6)];
+  const facts = digest.keyFacts.map(f => String(f || '').trim()).filter(Boolean);
+
+  let idx = 0;
+  while (pairs.length < 4 && idx + 1 < facts.length) {
+    const left = facts[idx];
+    const right = facts[idx + 1];
+    if (left && right) {
+      pairs.push({ left, right });
+    }
+    idx += 2;
+  }
+
+  while (pairs.length < 4) {
+    const n = pairs.length + 1;
+    pairs.push({ left: `Term ${n}`, right: `Definition ${n}` });
+  }
+
+  const seen = new Set<string>();
+  return pairs.map((p, i) => {
+    let left = p.left;
+    if (seen.has(left)) left = `${left} (${i + 1})`;
+    seen.add(left);
+    return { left, right: p.right || `Definition ${i + 1}` };
+  });
+}
+
 function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakContent {
   const vocab = digest.vocabPairs;
   const facts = digest.keyFacts;
@@ -697,7 +765,7 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         breakType: 'game',
         gameType: 'matching',
         duration: 90,
-        pairs: vocab.slice(0, 5).map(v => ({ left: v.term, right: v.definition })),
+        pairs: buildFallbackMatchingPairs(digest),
       };
     case 'sorting':
       return {
