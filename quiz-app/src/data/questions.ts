@@ -73,6 +73,7 @@ import { technicalInformationAndDrawingTypesQuestions } from './questions/techni
 import { symbolsAndScalingInDrawingsQuestions } from './questions/symbolsAndScalingInDrawingsQuestions';
 import { conductorSizingAndProtectiveDevicesQuestions } from './questions/conductorSizingAndProtectiveDevicesQuestions';
 import { installationEquipmentAndEnclosureSpacingQuestions } from './questions/installationEquipmentAndEnclosureSpacingQuestions';
+import { earthingSystemsAndAdsComponentsQuestions } from './questions/earthingSystemsAndAdsComponentsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -139,6 +140,7 @@ export const questions: Question[] = [
   ...symbolsAndScalingInDrawingsQuestions,
   ...conductorSizingAndProtectiveDevicesQuestions,
   ...installationEquipmentAndEnclosureSpacingQuestions,
+  ...earthingSystemsAndAdsComponentsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

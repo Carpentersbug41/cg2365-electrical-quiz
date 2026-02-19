@@ -65,11 +65,13 @@ import { technicalInformationAndDrawingTypesQuestions } from './technicalInforma
 import { symbolsAndScalingInDrawingsQuestions } from './symbolsAndScalingInDrawingsQuestions';
 import { conductorSizingAndProtectiveDevicesQuestions } from './conductorSizingAndProtectiveDevicesQuestions';
 import { installationEquipmentAndEnclosureSpacingQuestions } from './installationEquipmentAndEnclosureSpacingQuestions';
+import { earthingSystemsAndAdsComponentsQuestions } from './earthingSystemsAndAdsComponentsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...earthingSystemsAndAdsComponentsQuestions,
   ...installationEquipmentAndEnclosureSpacingQuestions,
   ...conductorSizingAndProtectiveDevicesQuestions,
   ...symbolsAndScalingInDrawingsQuestions,
@@ -197,6 +199,7 @@ export { technicalInformationAndDrawingTypesQuestions } from './technicalInforma
 export { symbolsAndScalingInDrawingsQuestions } from './symbolsAndScalingInDrawingsQuestions';
 export { conductorSizingAndProtectiveDevicesQuestions } from './conductorSizingAndProtectiveDevicesQuestions';
 export { installationEquipmentAndEnclosureSpacingQuestions } from './installationEquipmentAndEnclosureSpacingQuestions';
+export { earthingSystemsAndAdsComponentsQuestions } from './earthingSystemsAndAdsComponentsQuestions';
 
 /**
  * Filter questions by tags

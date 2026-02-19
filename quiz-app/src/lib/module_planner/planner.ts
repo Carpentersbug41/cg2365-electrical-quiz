@@ -2556,11 +2556,28 @@ function extractLessonGenerationScores(
   };
 }
 
+const inFlightSingleLessonGeneration = new Map<
+  string,
+  Promise<{
+    lessonId: string;
+    status: 'generated' | 'failed' | 'pending' | 'skipped';
+    error: string | null;
+    deduped: boolean;
+    message: string;
+  }>
+>();
+
 export async function runM6GenerateLesson(
   runId: string,
   blueprintId: string,
   options: { apiBaseUrl: string }
-): Promise<{ lessonId: string; status: 'generated' | 'failed'; error: string | null }> {
+): Promise<{
+  lessonId: string;
+  status: 'generated' | 'failed' | 'pending' | 'skipped';
+  error: string | null;
+  deduped: boolean;
+  message: string;
+}> {
   await requireRun(runId);
   const validation = await getTypedStageArtifact(runId, 'M5', toValidationResultValidator);
   if (!validation.valid) {
@@ -2574,43 +2591,54 @@ export async function runM6GenerateLesson(
     throw new ModulePlannerError('M6', 'JSON_SCHEMA_FAIL', `Blueprint not found: ${blueprintId}`, 404);
   }
 
-  await upsertRunLesson({
-    runId,
-    blueprintId: blueprint.id,
-    lessonId: blueprint.id,
-    status: 'pending',
-    error: null,
-  });
+  const key = `${runId}:${blueprint.id}`;
+  const existingPromise = inFlightSingleLessonGeneration.get(key);
+  if (existingPromise) {
+    return {
+      ...(await existingPromise),
+      deduped: true,
+      message: 'Duplicate request deduped while generation was already in progress.',
+    };
+  }
 
-  try {
-    const result = await generateLessonFromBlueprint(blueprint, { apiBaseUrl: options.apiBaseUrl });
+  const generationPromise = (async () => {
+    const existingRow = (await listRunLessons(runId)).find((row) => row.blueprint_id === blueprint.id);
+    if (existingRow?.status === 'success') {
+      return {
+        lessonId: existingRow.lesson_id || blueprint.id,
+        status: 'skipped' as const,
+        error: null,
+        deduped: true,
+        message: 'Lesson already generated for this run. Skipped duplicate request.',
+      };
+    }
+    if (existingRow?.status === 'pending') {
+      return {
+        lessonId: existingRow.lesson_id || blueprint.id,
+        status: 'pending' as const,
+        error: null,
+        deduped: true,
+        message: 'Lesson generation is already pending for this run.',
+      };
+    }
+
     await upsertRunLesson({
       runId,
       blueprintId: blueprint.id,
-      lessonId: result.lessonId,
-      status: 'success',
+      lessonId: blueprint.id,
+      status: 'pending',
       error: null,
-      lessonJson: buildPersistedLessonPayload(result),
     });
-    const lessons = await listRunLessons(runId);
-    const summary: GenerateSummary = {
-      generated: lessons.filter((row) => row.status === 'success').length,
-      failed: lessons.filter((row) => row.status === 'failed').length,
-      lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
-    };
-    await upsertArtifactAndStatus(runId, 'M6', summary);
-    return { lessonId: result.lessonId, status: 'generated', error: null };
-  } catch (error) {
-    const message = error instanceof Error ? error.message : 'Unknown generation failure';
-    const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
-    if (recoveredLessonFile) {
+
+    try {
+      const result = await generateLessonFromBlueprint(blueprint, { apiBaseUrl: options.apiBaseUrl });
       await upsertRunLesson({
         runId,
         blueprintId: blueprint.id,
-        lessonId: blueprint.id,
+        lessonId: result.lessonId,
         status: 'success',
         error: null,
-        lessonJson: buildRecoveredLessonPayload(blueprint.id, recoveredLessonFile),
+        lessonJson: buildPersistedLessonPayload(result),
       });
       const lessons = await listRunLessons(runId);
       const summary: GenerateSummary = {
@@ -2619,23 +2647,72 @@ export async function runM6GenerateLesson(
         lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
       };
       await upsertArtifactAndStatus(runId, 'M6', summary);
-      return { lessonId: blueprint.id, status: 'generated', error: null };
+      return {
+        lessonId: result.lessonId,
+        status: 'generated' as const,
+        error: null,
+        deduped: false,
+        message: 'Lesson generated successfully.',
+      };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown generation failure';
+      const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
+      if (recoveredLessonFile) {
+        await upsertRunLesson({
+          runId,
+          blueprintId: blueprint.id,
+          lessonId: blueprint.id,
+          status: 'success',
+          error: null,
+          lessonJson: buildRecoveredLessonPayload(blueprint.id, recoveredLessonFile),
+        });
+        const lessons = await listRunLessons(runId);
+        const summary: GenerateSummary = {
+          generated: lessons.filter((row) => row.status === 'success').length,
+          failed: lessons.filter((row) => row.status === 'failed').length,
+          lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
+        };
+        await upsertArtifactAndStatus(runId, 'M6', summary);
+        return {
+          lessonId: blueprint.id,
+          status: 'generated' as const,
+          error: null,
+          deduped: false,
+          message: 'Recovered existing generated lesson from disk after request failure.',
+        };
+      }
+      await upsertRunLesson({
+        runId,
+        blueprintId: blueprint.id,
+        lessonId: blueprint.id,
+        status: 'failed',
+        error: message,
+      });
+      const lessons = await listRunLessons(runId);
+      const summary: GenerateSummary = {
+        generated: lessons.filter((row) => row.status === 'success').length,
+        failed: lessons.filter((row) => row.status === 'failed').length,
+        lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
+      };
+      await upsertArtifactAndStatus(runId, 'M6', summary);
+      return {
+        lessonId: blueprint.id,
+        status: 'failed' as const,
+        error: message,
+        deduped: false,
+        message: `Lesson generation failed: ${message}`,
+      };
     }
-    await upsertRunLesson({
-      runId,
-      blueprintId: blueprint.id,
-      lessonId: blueprint.id,
-      status: 'failed',
-      error: message,
-    });
-    const lessons = await listRunLessons(runId);
-    const summary: GenerateSummary = {
-      generated: lessons.filter((row) => row.status === 'success').length,
-      failed: lessons.filter((row) => row.status === 'failed').length,
-      lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
-    };
-    await upsertArtifactAndStatus(runId, 'M6', summary);
-    return { lessonId: blueprint.id, status: 'failed', error: message };
+  })();
+
+  inFlightSingleLessonGeneration.set(key, generationPromise);
+  try {
+    return await generationPromise;
+  } finally {
+    const current = inFlightSingleLessonGeneration.get(key);
+    if (current === generationPromise) {
+      inFlightSingleLessonGeneration.delete(key);
+    }
   }
 }
 

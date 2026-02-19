@@ -748,14 +748,33 @@ export default function ModulePlannerPage() {
     }, 3500);
     try {
       const data = await callApi(`/api/admin/module/${runId}/lessons/${encodeURIComponent(blueprintId)}/generate`, {});
+      const generationStatus = typeof data.status === 'string' ? data.status : 'generated';
+      const generationMessage =
+        typeof data.message === 'string' && data.message.trim().length > 0
+          ? data.message
+          : null;
       setLessonGenerationProgress({
         blueprintId,
         progress: 100,
-        phaseMessage: 'Completed: lesson generated',
+        phaseMessage:
+          generationStatus === 'skipped'
+            ? 'Skipped: already generated for this run'
+            : generationStatus === 'pending'
+              ? 'Skipped: generation already in progress'
+              : generationStatus === 'failed'
+                ? 'Failed: lesson generation error'
+                : 'Completed: lesson generated',
       });
       await refreshRunSummarySafe(runId);
       await sleep(400);
-      setInfo(`Generated ${String(data.lessonId ?? blueprintId)}.`);
+      const lessonIdLabel = String(data.lessonId ?? blueprintId);
+      if (generationStatus === 'skipped' || generationStatus === 'pending') {
+        setInfo(generationMessage ?? `No new generation started for ${lessonIdLabel}.`);
+      } else if (generationStatus === 'failed') {
+        setError(typeof data.error === 'string' && data.error ? data.error : `Failed to generate ${lessonIdLabel}.`);
+      } else {
+        setInfo(generationMessage ?? `Generated ${lessonIdLabel}.`);
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : `Failed to generate ${blueprintId}`);
       await refreshRunSummarySafe(runId);

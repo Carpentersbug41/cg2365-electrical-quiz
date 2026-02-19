@@ -1,0 +1,455 @@
+{
+  "id": "203-4A",
+  "title": "203.4A — Earthing Systems and ADS Components",
+  "description": "Learn about Earthing Systems and ADS Components in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Earthing Systems and ADS Components",
+  "learningOutcomes": [
+    "Identify the primary types of earthing system arrangements",
+    "Describe the function of specific components within an ADS system",
+    "Classify components according to their role in achieving disconnection"
+  ],
+  "prerequisites": [
+    "203-3C"
+  ],
+  "blocks": [
+    {
+      "id": "203-4A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the primary types of earthing system arrangements",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the function of specific components within an ADS system",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Classify components according to their role in achieving disconnection",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Automatic Disconnection of Supply (ADS)",
+            "definition": "A protective measure that interrupts the electrical supply within a specified time during a fault to prevent electric shock, not to be confused with manual isolation or switching."
+          },
+          {
+            "term": "Circuit Protective Conductor (CPC)",
+            "definition": "A dedicated conductor used to connect exposed-conductive-parts of equipment to the main earthing terminal, different from a bonding conductor which connects extraneous-conductive-parts like gas or water pipes."
+          },
+          {
+            "term": "Earth Fault Loop Impedance (Zs)",
+            "definition": "The total resistance of the complete path that a fault current follows back to the supply transformer, which must be low enough to ensure the protective device operates within the required time."
+          },
+          {
+            "term": "TN-S System",
+            "definition": "An earthing arrangement where the neutral and protective functions use separate conductors throughout the entire system, unlike TN-C-S where these functions are combined in the supply cable."
+          },
+          {
+            "term": "TN-C-S System",
+            "definition": "An earthing arrangement where the neutral and protective functions are combined in a single conductor for the supply part of the system but separated within the consumer's installation."
+          },
+          {
+            "term": "TT System",
+            "definition": "An earthing arrangement where the installation's protective earth is connected directly to a local earth electrode rather than relying on the supplier's network for the return path."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Earthing Systems and ADS Components Diagram",
+        "description": "Visual representation of Earthing Systems and ADS Components",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "tn-s-system",
+          "tn-c-s-system",
+          "tt-system",
+          "circuit-protective-conductor",
+          "earth-fault-loop-impedance"
+        ],
+        "placeholderText": "A three-part diagram showing the different earthing arrangements. The first part shows a TN-S system with separate neutral and earth paths from the transformer. The second part shows a TN-C-S system where the neutral and earth are joined at the intake. The third part shows a TT system with an earth rod at the consumer side. A dotted line should trace the complete path of the earth-fault-loop-impedance from the transformer, through the line conductor, to a fault, and back through the circuit-protective-conductor."
+      }
+    },
+    {
+      "id": "203-4A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Earthing System Arrangements",
+        "content": "### In this lesson\nThis lesson teaches you how to identify the primary types of earthing system arrangements. You will learn how the relationship between the supplier's equipment and the consumer's installation defines the system type.\n\n*   Identify the three main earthing configurations: TN-S, TN-C-S, and TT.\n*   Understand the physical characteristics of the supply conductors for each system.\n*   Recognise the role of the source transformer in the earthing loop.\n\n**What this is**\nAn earthing system is the specific method used to connect an installation to the general mass of Earth. This connection provides a return path for fault current. The names (like **TN-S** or **TT**) describe the physical wire connections:\n*   **T (Terre):** Connected to Earth.\n*   **N (Neutral):** Connected to the neutral point of the source.\n*   **C (Combined):** Functions combined in one wire.\n*   **S (Separate):** Functions in separate wires.\n\n**Why it matters**\nIdentifying the earthing system is the first step in any electrical task because it tells you the path the electricity will take if something goes wrong. A system using a thick metal cable from the supplier (TN-S) offers a very easy path (low resistance). A system using a metal rod in the dirt (TT) offers a difficult path (high resistance). Knowing the difference helps you predict if standard safety switches will work.\n\n**Key facts / rules**\n*   **TN-S:** Separate Neutral and Earth conductors all the way from the transformer.\n*   **TN-C-S:** Combined Neutral and Earth in the supply cable (PEN conductor), but separated at the consumer's main terminal.\n*   **TT:** No earth wire from the supplier. Uses a local earth electrode (rod) buried in the ground.\n\n**How to recognise it**\n*   **TN-S:** Look for a lead-sheathed cable or a separate earth wire coming from the supply cable head. You will see **3 distinct paths** back to the source: Line, Neutral, and Earth.\n*   **TN-C-S:** Look for a link wire connecting the Neutral block to the Earth block at the cutout. You will see only **2 distinct paths** in the supply cable (Line and PEN), splitting into 3 inside the house.\n*   **TT:** Look for an overhead supply with no earth wire, or a supply cable where the earth terminal is not connected. You will find a green-and-yellow wire going out to a rod in the ground.\n\n**Micro-Scenario**\nImagine two houses. House A (TN-C-S) has a solid metal wire connecting it to the transformer. House B (TT) connects to the transformer through the dirt in the garden. Because metal conducts better than dirt, House A has a \"low impedance\" path, allowing fault current to flow easily. House B has a \"high impedance\" path, restricting the flow. This physical difference changes which safety device is needed.\n\n**Common mistakes**\nLearners often confuse a **TN-C-S System** with a **TN-S System**; remember that 'C' stands for Combined (in the supply). Another error is assuming all installations have a supplier-provided earth; rural TT systems often do not.\n\nMisconceptions (targeted):\n*   Misconception: A TT system is safer because it has its own rod. | Correction: A TT system often has a much higher impedance, meaning it usually requires an RCD to achieve ADS safely. | AC: 203.LO4.AC1\n*   Misconception: You can use the gas pipe as the main earth. | Correction: Only a dedicated CPC or supplier earth can serve as the primary return path; pipes are for bonding only. | AC: 203.LO4.AC2\n\n**Key Points**\n*   TN-S: Separate throughout.\n*   TN-C-S: Combined in supply, Separate in installation.\n*   TT: Local earth electrode.\n\n### Coming Up Next\nWe will examine the specific components that make up the ADS system and how they work together to disconnect power during a fault."
+      }
+    },
+    {
+      "id": "203-4A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Earthing System Arrangements",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4A-C1-L1-A",
+            "questionText": "What does the first letter 'T' indicate in an earthing system arrangement?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "source is connected directly to Earth",
+              "source connected directly to Earth",
+              "source connected to Earth",
+              "source is connected to Earth"
+            ],
+            "hint": "Think about the relationship between the supply transformer and the ground."
+          },
+          {
+            "id": "203-4A-C1-L1-B",
+            "questionText": "To what component does the Circuit Protective Conductor lead in a TT System?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "external earth electrode",
+              "external electrode",
+              "earth rod",
+              "an external earth electrode"
+            ],
+            "hint": "This system does not use the supplier's cable for the return path."
+          },
+          {
+            "id": "203-4A-C1-L1-C",
+            "questionText": "How are the neutral and earth conductors arranged in the supply cable of a TN-C-S System?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "neutral and earth are combined",
+              "combined in the supply",
+              "combined neutral and earth",
+              "they are combined"
+            ],
+            "hint": "Contrast this with a TN-S system where they are kept separate throughout."
+          },
+          {
+            "id": "203-4A-C1-L2",
+            "questionText": "Using your answers to Q1 (source connection), Q2 (TT CPC path), and Q3 (TN-C-S conductor arrangement), why must we distinguish between these arrangements to ensure safety?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The 'T' shows the source is grounded to allow a return path",
+              "TT systems use a local electrode which results in different impedance than TN systems",
+              "TN-C-S combines conductors in the supply which changes how we identify the earth terminal",
+              "Correct identification is required to predict if the fault current will be high enough for ADS"
+            ],
+            "expectedAnswer": [
+              "Distinguishing the systems is vital because the 'T' connection at the source combined with either a local electrode in TT or combined conductors in TN-C-S determines the loop impedance. We need this information to know if the protection will operate fast enough during a fault.",
+              "We must identify the arrangement because a TT system using a local electrode behaves differently than a TN-C-S system with combined supply conductors. Knowing how the source is connected (T) allows us to verify if the ADS will function correctly for that specific path."
+            ],
+            "hint": "Consider how the physical path back to the grounded source changes depending on the system type."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "ADS Component Identification",
+        "content": "### In this lesson\nThis lesson describes the function of specific components within an ADS system and classifies them by their role. You will learn how these parts work together to ensure safety during an electrical fault.\n\n*   Define the role of the **Circuit Protective Conductor (CPC)**.\n*   Classify protective devices like fuses and circuit breakers.\n*   Explain how **Earth Fault Loop Impedance (Zs)** relates to component operation.\n\n**What this is**\n**Automatic Disconnection of Supply (ADS)** is a system designed to cut power when a fault occurs. It relies on a simple principle: **Low Resistance = High Current**. \n\nThink of the ADS system like a water hose. \n*   The **Voltage** is the water pressure.\n*   The **Impedance (Zs)** is a kink in the hose.\n*   The **Current** is the water flow.\n*   The **Protective Device** is a shut-off valve that only triggers if the water flows *very fast*.\n\nIf the hose is clear (Low Zs), the water rushes out (High Current), and the valve shuts off instantly. If the hose is kinked (High Zs), the water trickles (Low Current), and the valve might not notice. We need the system to have low impedance so the fault current is strong enough to trip the breaker.\n\n**Why it matters**\nEvery component must be correct for this \"rush\" of current to happen. If a **CPC** is too thin or loose, it adds resistance (a kink in the hose). This prevents the protective device from operating, leaving the metal casing live and dangerous.\n\n**Key Components**\n1.  **Circuit Protective Conductor (CPC):** The \"Green and Yellow\" wire. It connects the metal casing of equipment (Exposed Conductive Parts) to the main earthing terminal. It is the \"return road\" for fault current.\n2.  **Protective Device:** Fuses or Circuit Breakers (Overcurrent devices) and RCDs (Residual Current Devices). These are the \"brains\" that detect the fault and cut the power.\n3.  **Earth Fault Loop Impedance (Zs):** Not a physical part, but a measurement of the whole loop's resistance. It must be low.\n\n**How to recognise it**\n*   **CPC:** Look for green-and-yellow sleeving. Do not confuse it with bonding conductors (which connect to pipes).\n*   **Protective Device:** Located in the consumer unit (fuse box). Labelled with a rating (e.g., \"32A\").\n\n**Micro-Scenario**\nA fault occurs in a toaster. The live wire touches the metal case. The current rushes down the **CPC**, through the main earthing terminal, back to the transformer. Because the wire is thick and the connections are tight (Low Zs), the current spikes to hundreds of amps. The 32A breaker sees this huge spike and trips in a fraction of a second. Safety is achieved.\n\n**Common mistakes**\nLearners often confuse the **CPC** with a bonding conductor; the **CPC** is for electrical equipment, bonding is for pipes. Another error is thinking any fuse will do; the fuse rating must match the circuit design to ensure it trips fast enough.\n\nMisconceptions (targeted):\n*   Misconception: The CPC carries current all the time. | Correction: The CPC only carries current during a fault condition or due to minor leakage. | AC: 203.LO4.AC2\n*   Misconception: Any fuse will work for ADS. | Correction: The fuse must be specifically rated to coordinate with the circuit's Zs to ensure fast disconnection. | AC: 203.LO4.AC2\n\n**Key Points**\n*   **CPC** = The path.\n*   **Protective Device** = The switch.\n*   **Zs** = The resistance of the loop (must be low).\n*   Relationship: Low Zs -> High Fault Current -> Fast Disconnection.\n\n### Coming Up Next\nIn the next section, we will verify your understanding of these components and their roles."
+      }
+    },
+    {
+      "id": "203-4A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: ADS Component Identification",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4A-C2-L1-A",
+            "questionText": "What is the specific role of the Circuit Protective Conductor (CPC)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "connects exposed-conductive-parts to main earthing terminal",
+              "connects exposed-conductive-parts to MET",
+              "connects parts to main earthing terminal",
+              "carries the fault current"
+            ],
+            "hint": "Identify which parts of the installation this conductor links together."
+          },
+          {
+            "id": "203-4A-C2-L1-B",
+            "questionText": "What are the two primary classifications for protective devices in an ADS system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "overcurrent or residual current devices",
+              "overcurrent and residual current",
+              "overcurrent or residual current",
+              "fuses and RCDs"
+            ],
+            "hint": "Think about the types of electrical conditions these devices are designed to detect."
+          },
+          {
+            "id": "203-4A-C2-L1-C",
+            "questionText": "What must be true about the Earth Fault Loop Impedance (Zs) to ensure the protective device operates?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "low enough to allow sufficient current",
+              "low enough to trip device",
+              "must be low enough",
+              "sufficiently low impedance"
+            ],
+            "hint": "Consider the relationship between resistance and the current needed to trigger a fuse or breaker."
+          },
+          {
+            "id": "203-4A-C2-L2",
+            "questionText": "Using your answers to Q1 (CPC purpose), Q2 (device classification), and Q3 (Zs requirements), how do we know if the ADS system will successfully protect a user during a fault?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The CPC provides the necessary path from the exposed parts to the terminal",
+              "The protective device (overcurrent or residual) must be able to detect the fault",
+              "Low Zs is the condition that allows enough current to flow through the CPC to trigger the device",
+              "Safety is confirmed when the path, the device, and the impedance are all coordinated"
+            ],
+            "expectedAnswer": [
+              "We know the system is safe if the CPC provides a clear path and the Zs is low enough to allow the specific protective device (overcurrent or residual) to trip. If the impedance is too high, the device will not detect the fault current flowing through the CPC.",
+              "ADS success depends on the CPC carrying current to the earthing terminal and the Zs being low enough to trigger the protective device. If these components are correctly classified and the loop resistance is low, the supply will disconnect automatically."
+            ],
+            "hint": "Explain how the physical wire, the type of breaker, and the total resistance work together to stop the flow of electricity."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-4A-P1",
+            "questionText": "Why does a TT system typically require a more sensitive protective device, such as an RCD, to achieve Automatic Disconnection of Supply (ADS)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "High impedance",
+              "High resistance",
+              "High Zs"
+            ],
+            "hint": "Think about the resistance of the earth electrode compared to a metallic cable sheath."
+          },
+          {
+            "id": "203-4A-P2",
+            "questionText": "What is the standard nominal voltage (U0) in Volts used for single-phase installations in the UK?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "230",
+              "230.0"
+            ],
+            "hint": "This value is the standard 'pressure' pushing current through the circuit."
+          },
+          {
+            "id": "203-4A-P3",
+            "questionText": "You are inspecting a supply where the neutral and protective functions are combined in a single conductor (PEN) within the supplier's cable, but separate within the building. Identify this arrangement.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "TN-C-S",
+              "TN-C-S system",
+              "TNC-S"
+            ],
+            "hint": "The name reflects 'Combined' and 'Separate' stages."
+          },
+          {
+            "id": "203-4A-P4",
+            "questionText": "In a TN-S system, how many separate conductors (Line, Neutral, Earth) are provided by the supplier to the consumer's intake?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3",
+              "3.0"
+            ],
+            "hint": "Count the distinct paths coming from the supply head (L, N, E)."
+          },
+          {
+            "id": "203-4A-P5",
+            "questionText": "What is the name of the dedicated conductor that carries fault current from the equipment's exposed metalwork back to the installation's main earthing terminal?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "CPC",
+              "Circuit Protective Conductor",
+              "Circuit protective conductor"
+            ],
+            "hint": "This is the internal path within the circuit, not the external connection to the supplier."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4A-INT-1",
+            "questionText": "Explain how the physical characteristics of a specific earthing system arrangement affect the circuit's ability to achieve automatic disconnection. In your answer, include: (1) the path of the fault current through the supply conductors, (2) the role of the protective device in this circuit, (3) the relationship between the system impedance (Zs) and the speed of disconnection. Why does the specific arrangement of the supply source determine the maximum allowable impedance for safety? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies the fault path relative to the specific arrangement (e.g., TN-S vs TT)",
+              "Explains how the protective device (fuse/breaker) reacts to the magnitude of fault current",
+              "Connects high impedance (Zs) to lower fault current and slower disconnection times",
+              "Reasons that the source arrangement dictates the available return path, which directly limits the total loop impedance",
+              "Relates the disconnection speed to the safety requirements for preventing electric shock"
+            ],
+            "expectedAnswer": [
+              "The earthing arrangement defines the return path to the source transformer; for example, in a TN-S system, the current travels via a dedicated metallic conductor. The protective device monitors this path and must disconnect the supply when the fault current exceeds its rating. We know the arrangement determines the maximum impedance because a metallic path offers lower resistance than the mass of earth, meaning the system must be designed to ensure the impedance is low enough to trigger the device within the required safety timeframe.",
+              "In a TT system, the fault current must pass through the mass of earth, which typically results in a higher Earth Fault Loop Impedance (Zs) compared to TN systems. Because the protective device relies on a specific current threshold to operate, the impedance must be managed to ensure the fault current is high enough to cause rapid disconnection. This relationship holds because the physical conductors provided by the supplier set the baseline for how much resistance the fault current will encounter before the safety components can react."
+            ],
+            "hint": "Consider how the connection between the consumer's installation and the supplier's transformer creates a loop for the fault current."
+          },
+          {
+            "id": "203-4A-INT-2",
+            "questionText": "Evaluate how the selection of an earthing system arrangement impacts the coordination of ADS components to ensure the system achieves safety standards. In your answer, include: (1) the distinction between TN and TT system arrangements, (2) the functional role of the Circuit Protective Conductor (CPC), (3) the classification of protective devices required for disconnection, (4) how these elements collectively ensure the system functions under fault conditions. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Distinguishes between TN (metallic return) and TT (earth electrode return) configurations",
+              "Defines the CPC as the internal path for fault current to reach the earthing arrangement",
+              "Classifies protective devices as the active components that interrupt the circuit",
+              "Synthesizes how the earthing arrangement dictates the required sensitivity of the protective device",
+              "Explains the integration of Zs as the performance metric for the entire ADS system",
+              "Connects the CPC's integrity to the successful operation of the protective device",
+              "Concludes how coordination prevents prolonged exposure to hazardous voltages"
+            ],
+            "expectedAnswer": [
+              "The choice between a TN system (with a metallic return) and a TT system (using earth electrodes) determines the total loop impedance, which in turn dictates whether standard overcurrent devices or residual current devices are required for disconnection. The CPC provides the essential internal path for fault current, ensuring that the protective device can detect the fault and interrupt the supply. These components work together to ensure that the total impedance (Zs) remains low enough to facilitate automatic disconnection before dangerous touch voltages persist. This integrated coordination between the supply arrangement and internal components is the foundation of the ADS safety strategy.",
+              "• TN systems utilize a low-impedance metallic path, while TT systems rely on the mass of earth, requiring different protective device classifications to ensure disconnection.\n• The CPC acts as the primary safety conductor within the installation, linking the fault to the external earthing arrangement.\n• Protective devices such as circuit breakers are coordinated with the system's impedance (Zs) to ensure they operate within specified time limits.\n• Collectively, these elements ensure that any insulation fault results in a current flow sufficient to trigger the ADS system, thereby protecting users from electric shock."
+            ],
+            "hint": "Think about how the total resistance of the path (Zs) changes based on the supplier's equipment and how that changes what the protective device needs to do."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-4A-SR-1",
+            "questionText": "What term describes a collection of related parts that work together to achieve a specific goal?",
+            "expectedAnswer": [
+              "System",
+              "Systems",
+              "A system"
+            ],
+            "hint": "It is a word used to describe a set of connected things or parts.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4A-SR-2",
+            "questionText": "What is the technical term for an individual part or element that performs a function within a larger assembly?",
+            "expectedAnswer": [
+              "Component",
+              "Components",
+              "Part"
+            ],
+            "hint": "These are the building blocks that make up a system.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4A-SR-3",
+            "questionText": "What term refers to the act of breaking a connection to prevent a supply from reaching a destination?",
+            "expectedAnswer": [
+              "Disconnection",
+              "Disconnecting",
+              "Disconnect"
+            ],
+            "hint": "Think of the opposite of 'connection'.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Earthing Systems and ADS Components"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-19",
+    "updated": "2026-02-19",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, CLASSIFICATION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Recognition of earthing system types and the individual parts that form an ADS circuit.",
+      "outOfScope": "Installation procedures, circuit testing, and fault current calculations.",
+      "rationale": "Focus is on establishing foundational terminology and conceptual recognition before proceeding to practical application."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on the identification of types and component parts as specified in requirements."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A TT system is safer because it has its own rod.",
+        "correction": "A TT system often has a much higher impedance, meaning it usually requires an RCD to achieve ADS safely.",
+        "relatedAC": "203.LO4.AC1"
+      },
+      {
+        "misconception": "You can use the gas pipe as the main earth.",
+        "correction": "Only a dedicated CPC or supplier earth can serve as the primary return path; pipes are for bonding only.",
+        "relatedAC": "203.LO4.AC2"
+      },
+      {
+        "misconception": "The CPC carries current all the time.",
+        "correction": "The CPC only carries current during a fault condition or due to minor leakage.",
+        "relatedAC": "203.LO4.AC2"
+      }
+    ]
+  }
+}

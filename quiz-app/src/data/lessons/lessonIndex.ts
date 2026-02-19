@@ -260,6 +260,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3C'),
     available: true,
     order: 6,
+  },
+  {
+    id: '203-4A',
+    title: 'Earthing Systems and ADS Components',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Earthing Systems and ADS Components',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-4A'),
+    available: true,
+    order: 7,
   },// Unit 210: Communication
   {
     id: '204-10A',

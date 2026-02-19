@@ -47,9 +47,11 @@ import lesson203_2A from '@/data/lessons/203-2A-technical-information-and-drawin
 import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.json';
 import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
 import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclosure-spacing.json';
+import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-4A': lesson203_4A as Lesson,
   '203-3C': lesson203_3C as Lesson,
   '203-3B': lesson203_3B as Lesson,
   '203-2B': lesson203_2B as Lesson,
