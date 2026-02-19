@@ -1,15 +1,14 @@
 {
   "id": "203-2B",
-  "title": "203.2B — Technical Information: Sources, Types, and Scaling",
-  "description": "Learn to identify sources of technical information, recognize drawing types, and apply symbols and scaling to electrical documentation.",
+  "title": "203.2B — Symbols and Scaling in Drawings",
+  "description": "Learn about Symbols and Scaling in Drawings in Installation 2365 Level 2",
   "layout": "linear-flow",
   "unit": "Unit 203",
-  "topic": "Technical Information and Drawing Interpretation",
+  "topic": "Symbols and Scaling in Drawings",
   "learningOutcomes": [
-    "State the purpose of different sources of technical information (AC1)",
-    "Recognise common drawing types such as site plans and floor plans (AC2)",
-    "Identify standard graphical symbols and their meaning via legends (AC3)",
-    "Convert drawing scale to actual physical dimensions (AC4)"
+    "Identify standard graphical symbols used in technical documentation",
+    "Describe the purpose of scale ratios in technical drawings",
+    "Calculate actual physical dimensions from scaled drawing measurements"
   ],
   "prerequisites": [
     "203-2A"
@@ -22,19 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Identify sources of technical information like specifications and site instructions.",
+            "text": "Identify standard graphical symbols used in technical documentation",
             "bloomLevel": "remember"
           },
           {
-            "text": "Distinguish between drawing types including site plans, floor plans, and schematics.",
+            "text": "Describe the purpose of scale ratios in technical drawings",
             "bloomLevel": "understand"
           },
           {
-            "text": "Interpret graphical symbols using a drawing legend.",
-            "bloomLevel": "apply"
-          },
-          {
-            "text": "Calculate actual physical dimensions using scale ratios.",
+            "text": "Calculate actual physical dimensions from scaled drawing measurements",
             "bloomLevel": "apply"
           }
         ]
@@ -47,24 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "Technical Source",
-            "definition": "Any document providing official data for a project, such as specifications, manufacturer data, or site instructions."
-          },
-          {
-            "term": "Drawing Type",
-            "definition": "The specific perspective or layout used to show information, such as a Site Plan (location) or a Floor Plan (room layout)."
-          },
-          {
             "term": "Graphical Symbol",
-            "definition": "A standardized icon representing a component (e.g., a socket or light) to keep drawings clear and uncluttered."
+            "definition": "A standardized visual representation used to identify a specific component or feature within a drawing, not a realistic illustration of its physical appearance."
           },
           {
             "term": "Legend",
-            "definition": "The 'key' or dictionary on a drawing that explains what each graphical symbol represents."
+            "definition": "A reference list that defines the specific meaning of symbols and abbreviations used in a drawing, different from a title block because it focuses on technical interpretation rather than project metadata."
           },
           {
             "term": "Scale Ratio",
-            "definition": "The mathematical relationship between the size of the drawing and the real-world object (e.g., 1:50)."
+            "definition": "The fixed mathematical relationship between a measurement on a drawing and the actual physical dimension of the object, different from a dimension because it represents a proportion rather than a fixed length."
+          },
+          {
+            "term": "Dimension",
+            "definition": "A specific measurement on a drawing representing the actual size or position of a feature in real-world units, not the physical length of the line as measured on the paper."
+          },
+          {
+            "term": "Scaling Factor",
+            "definition": "The numerical multiplier used to convert a measured drawing distance into its true physical size, which is determined by the specific scale ratio applied to the document."
           }
         ]
       }
@@ -74,18 +69,17 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "The Anatomy of Technical Documentation",
-        "description": "A layout showing how sources, drawing types, symbols, and scale work together.",
+        "title": "Symbols and Scaling in Drawings Diagram",
+        "description": "Visual representation of Symbols and Scaling in Drawings",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
-          "source-spec",
-          "drawing-type-label",
-          "legend-box",
-          "scale-ratio",
-          "symbol-icons"
+          "graphical-symbol",
+          "legend-block",
+          "dimension-line",
+          "scale-ratio-indicator"
         ],
-        "placeholderText": "The diagram shows a technical drawing sheet. Top left: A 'Specification' document (Source). Top right: Labelled 'Floor Plan' (Drawing Type). Bottom right: A 'Legend' box defining symbols like circles and squares. Bottom center: A scale bar showing '1:100'. Main area: Symbols connected by lines representing an installation."
+        "placeholderText": "The diagram should show a portion of a technical floor plan. On the left, a 'graphical-symbol' (like a circle with a cross) is placed within a room. A 'dimension-line' with arrows at both ends and a numerical value (e.g., 2500mm) indicates the width of the room. On the right side, a 'legend-block' shows the same symbol with a text description next to it. At the bottom of the drawing, a 'scale-ratio-indicator' clearly displays 'Scale 1:50'."
       }
     },
     {
@@ -93,8 +87,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Sources, Types, and Symbols",
-        "content": "### Understanding the Documentation\nBefore starting work, you must know where to find information and how it is presented. \n\n**1. Sources of Information (AC1)**\nA **Technical Source** is any official document that tells you what to install. \n*   **Specifications:** Detailed written descriptions of materials and quality standards.\n*   **On-site Instructions:** Specific directions given by a supervisor or client.\n*   **Manufacturer Data:** Technical sheets explaining how to install specific equipment.\n\n**2. Drawing Types (AC2)**\nInformation is shown in different ways depending on what you need to see:\n*   **Site Plan:** Shows the building's location in relation to the surrounding area.\n*   **Floor Plan:** A 'birds-eye' view of a room showing where components are located.\n*   **Schematic/Wiring Diagram:** Shows how components are electrically connected, rather than their physical location.\n\n**3. Graphical Symbols & Legends (AC3)**\nBecause drawings are small, we use **Graphical Symbols** (icons) instead of photos. A circle with a line might mean a 'lighting point'. To be sure, you must check the **Legend** (the key). Symbols represent the **function** of an item, not necessarily what it looks like in real life.\n\n**Concrete Anchor:** Think of a car's dashboard. The 'battery' light is a **symbol**. The **Owner's Manual** is the **source** that explains what it means. The **Dashboard Layout** is the **drawing type** showing where all the gauges are.\n\n**Micro-scenario:** You are looking at a 'Floor Plan' (Type) to find a socket. You see a square symbol. You check the 'Legend' (Key) and realize it's actually a data port, not a power socket. You then check the 'Specification' (Source) to see what brand of data port to buy."
+        "title": "Technical Symbols",
+        "content": "### In this lesson\nYou will learn how to identify and interpret the visual shorthand used in technical documentation to represent physical components. This knowledge allows you to read complex plans accurately across different technical fields. \n\n*   Recognising the role of a **Graphical Symbol** in documentation.\n*   Using a **Legend** to verify component identities.\n*   Distinguishing between realistic illustrations and technical symbols.\n\n**What this is**\nIn technical documentation, a **Graphical Symbol** is a standardized visual representation used to identify a specific component or feature within a drawing. It is important to note that this is not a realistic illustration of the object's physical appearance. Instead, it is a simplified shape or icon that communicates function or type. To ensure these symbols are understood by everyone reading the document, they are typically listed in a **Legend**. This is a reference list that defines the specific meaning of symbols and abbreviations used in a drawing. It is different from a title block because it focuses on technical interpretation rather than project metadata like the date or author.\n\n**Why it matters**\nTechnical drawings must remain clear even when they contain hundreds of individual parts. If every component were drawn as a detailed, realistic picture, the drawing would become cluttered and impossible to read. By using standard symbols, designers can convey complex information in a small space. This standardisation ensures that a technician in one city can perfectly understand a drawing produced by an engineer in another, reducing the risk of installation errors or safety hazards. Without a consistent **Legend**, the meaning of these symbols could be misinterpreted, leading to costly mistakes.\n\n**Key facts / rules**\n*   Symbols represent the function or category of a component, not its physical size.\n*   Standardisation allows for cross-industry communication between different technical roles.\n*   A **Legend** must be consulted to confirm the specific version of a symbol being used.\n*   Symbols are typically simplified into geometric shapes like circles, squares, or triangles.\n*   Orientation of a symbol can sometimes change its meaning depending on the specific standard applied.\n*   Always verify the current edition or version of the symbol standards used in your specific field.\n\n**How to recognise it**\nTo recognise symbols effectively, you must look for recurring geometric patterns rather than photographic detail. For example, a small circle might represent a connection point in one context or a light source in another. You should first locate the **Legend** on the drawing sheet—often found in the corner or on a separate cover page—and match the shapes on the plan to the definitions provided. If you see two different symbols that look similar, such as a solid circle versus a hollow circle, the **Legend** will clarify if they represent different grades or types of the same component.\n\nConcrete Anchor: Think of the icons on a smartphone or a digital map. A small picture of a fork and knife doesn't look like a specific building, but you instantly recognise it represents a restaurant. Similarly, a **Graphical Symbol** is a functional shortcut for a real-world object.\n\n**Common mistakes**\nLearners often confuse a **Graphical Symbol** with a realistic illustration; a **Graphical Symbol** is a simplified functional icon, whereas a realistic illustration attempts to show exactly what the object looks like. Another common error is ignoring the **Legend** and assuming a symbol means the same thing across all types of drawings. \n\nMisconceptions (targeted):\n*   Misconception: Symbols are drawn to the same scale as the physical component. | Correction: Symbols are usually a fixed size for clarity and do not represent the physical dimensions of the part. | AC: 203.LO2.AC2.3\n*   Misconception: A symbol's meaning is universal and never changes. | Correction: While many are standard, you must always check the **Legend** as symbols can vary between different standards or projects. | AC: 203.LO2.AC2.3\n\n**Key Points**\n*   A **Graphical Symbol** is a functional icon, not a picture.\n*   The **Legend** is the primary tool for decoding drawing symbols.\n*   Standardisation prevents confusion and improves safety.\n*   Always check the specific drawing's reference list before starting work.\n\n**Quick recap**\nTechnical drawings use a **Graphical Symbol** to represent parts clearly without cluttering the page with realistic detail. These symbols are defined in a **Legend**, which acts as a dictionary for the drawing. By matching symbols to the definitions in the legend, you can accurately identify every component required for a task.\n\n### Coming Up Next\nNow that you can identify what the components are, we will look at how to determine their actual size and position using scales and dimensions."
       }
     },
     {
@@ -102,63 +96,64 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Documentation Basics",
+        "title": "Check Your Understanding: Technical Symbols",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-2B-C1-L1-A",
-            "questionText": "What is the term for a document, like a specification or manufacturer's data sheet, that provides technical details?",
+            "questionText": "What is the difference between a graphical symbol and a realistic illustration in technical documentation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Technical source",
-              "Source of information",
-              "Source"
+              "symbol is functional illustration is realistic",
+              "symbols are simplified icons",
+              "illustration shows physical appearance",
+              "symbols show function not appearance"
             ],
-            "hint": "It is the 'where' you get the information from."
+            "hint": "Think about whether the drawing looks like a photo or a simplified icon."
           },
           {
             "id": "203-2B-C1-L1-B",
-            "questionText": "Which drawing type shows a 'birds-eye' view of a building's layout and room positions?",
+            "questionText": "What reference list is used to define the specific meaning of symbols and abbreviations in a drawing?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Floor plan",
-              "Floorplans",
-              "Plan view"
+              "Legend",
+              "the legend",
+              "a legend"
             ],
-            "hint": "Think of looking down at the floor from the ceiling."
+            "hint": "This list acts like a dictionary for the symbols used on the plan."
           },
           {
             "id": "203-2B-C1-L1-C",
-            "questionText": "Do graphical symbols usually represent the physical appearance of a component or its function?",
+            "questionText": "What do symbols represent instead of the physical size of a component?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Function",
-              "its function",
-              "component function"
+              "function or category",
+              "component function",
+              "category of component",
+              "function and type"
             ],
-            "hint": "Symbols are icons, not photos."
+            "hint": "Symbols communicate what a part does rather than how big it is."
           },
           {
             "id": "203-2B-C1-L2",
-            "questionText": "Explain how a technician uses a Source, a Drawing Type, and a Legend together to identify a component correctly. Why are all three needed?",
+            "questionText": "Using your answers to Q1 (symbol vs illustration), Q2 (the legend), and Q3 (function vs size), explain how these connect to ensure a technician identifies components correctly. Why must a technician consult the legend even if they recognize a symbol's general shape?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The Source (e.g. Specification) provides the specific brand or quality requirements.",
-              "The Drawing Type (e.g. Floor Plan) shows the physical location in the building.",
-              "The Legend acts as the 'decoder' for the symbols found on the drawing.",
-              "Symbols represent function, so they are not self-explanatory without the legend.",
-              "Missing one element leads to errors (e.g. right location, but wrong component).",
-              "The relationship ensures the technician knows exactly what, where, and how to install."
+              "Symbols are simplified functional icons rather than realistic pictures",
+              "The legend provides the specific definition for these functional icons",
+              "Because symbols do not show physical size, the legend is required to confirm the exact type or category",
+              "Technicians must use the legend because a single shape can represent different components in different standards"
             ],
             "expectedAnswer": [
-              "A technician uses the drawing type to find the location, the legend to decode the symbol into a component type, and the source to find the specific technical requirements for that component. Without all three, you might install the wrong part or put it in the wrong place because symbols are only functional icons."
+              "Graphical symbols are functional icons rather than realistic pictures, meaning they do not show the physical size of a part. Because of this simplification, a technician must use the legend to verify the specific category or meaning of the shape to avoid misinterpretation.",
+              "Since symbols represent a category or function instead of a realistic appearance, the legend is the only way to confirm what the simplified shape actually represents. We know this is necessary because symbols are not drawn to scale and their meanings can vary between projects."
             ],
-            "hint": "Think about what happens if you have a drawing but no key, or a key but no location information."
+            "hint": "Consider how the lack of realistic detail and physical scale makes a reference list necessary for identification."
           }
         ]
       }
@@ -168,8 +163,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Scaling Principles (AC4)",
-        "content": "### Measuring Reality\nBecause we can't print a life-sized building on paper, we use **Scaling**.\n\n**What is a Scale Ratio?**\nA **Scale Ratio** (e.g., 1:50) is a fixed mathematical proportion. \n*   The first number (**1**) is the measurement on the drawing.\n*   The second number (**50**) is the multiplier for the real world.\n\n**Calculating Dimensions**\nTo find the actual **Dimension** (real-world size):\n1.  **Measure** the line on the drawing with a ruler (e.g., 10mm).\n2.  **Multiply** by the second number of the ratio (10mm x 50).\n3.  **Result:** 500mm (0.5 metres).\n\n**Why it Matters**\nIf you use the wrong scale, you will order the wrong amount of cable or try to fit a component into a space that is too small. \n\n**Concrete Anchor:** Think of a map on your phone. If you 'zoom in', the scale changes. On a paper drawing, the scale is fixed in the 'Title Block' (the info box at the bottom). A 1:100 scale means the real object is 100 times bigger than the drawing.\n\n**Common Mistake:** Thinking a 1:100 drawing is 'bigger' than 1:20. Actually, 1:100 is much smaller because the real world has been 'shrunk' 100 times instead of just 20 times."
+        "title": "Scaling and Dimensioning",
+        "content": "### In this lesson\nYou will learn how to translate the small measurements found on a paper or digital drawing into the actual sizes required for physical installation. This involves understanding the relationship between drawing units and real-world units.\n\n*   Defining the purpose of a **Scale Ratio**.\n*   Distinguishing between a **Dimension** and a measured line.\n*   Using a **Scaling Factor** to calculate physical sizes.\n\n**What this is**\nTechnical drawings are rarely the same size as the objects they represent. To fit a large system onto a piece of paper, we use a **Scale Ratio**, which is the fixed mathematical relationship between a measurement on a drawing and the actual physical dimension of the object. This is different from a **Dimension**, which is a specific measurement written on a drawing representing the actual size or position of a feature in real-world units, regardless of how long the line appears on the paper. To convert a physical measurement taken from the drawing sheet into a real-world value, we apply a **Scaling Factor**, which is the numerical multiplier derived from the ratio.\n\n**Why it matters**\nAccuracy is critical in technical work. If a technician miscalculates the size of a component or its distance from a wall, the entire installation might fail to fit or may violate safety clearances. Understanding how to use a **Scale Ratio** allows you to plan materials and space before any physical work begins. It ensures that every part of a project, from the smallest bracket to the largest enclosure, is accounted for in its true size, even when viewed on a small screen or printed sheet.\n\n**Key facts / rules**\n*   A **Scale Ratio** is usually expressed as 1:X (e.g., 1:50 or 1:100).\n*   The first number (1) typically represents the measurement on the drawing.\n*   The second number (X) represents the actual size in the real world.\n*   A **Dimension** written on the drawing always takes priority over a measurement taken with a ruler.\n*   The **Scaling Factor** is the number you multiply by to find the real-world size.\n*   Always verify the scale in the title block, as different parts of a drawing may use different scales.\n\n**How to calculate it**\nTo find the actual physical size of an object, you first identify the **Scale Ratio** (for example, 1:20). This tells you that the real object is 20 times larger than the drawing. The **Scaling Factor** in this case is 20. You then measure the distance on the drawing using a ruler. Finally, multiply your measurement by the scaling factor. If the drawing measurement is 50mm and the ratio is 1:20, the calculation is 50mm x 20 = 1000mm (or 1 metre). \n\nConcrete Anchor: Imagine a toy car. If the toy is marked as 1:24 scale, it means the real car is exactly 24 times larger than the toy. If you measured the toy's wheel as 1cm, the real car's wheel would be 24cm.\n\nMicro-scenario: If a drawing has a **Scale Ratio** of 1:100 and you measure a wall length as 40mm on the paper, the actual physical length is 4000mm (4 metres). If you were comparing this to a 1:50 drawing where the same wall measures 80mm, both represent the same 4-metre physical **Dimension**.\n\n**Common mistakes**\nLearners often confuse a **Dimension** with the physical length of the line as measured on the paper; a **Dimension** is the real-world value written on the drawing, whereas the paper measurement is only a representation. Another mistake is using the wrong **Scaling Factor** by dividing instead of multiplying, or vice versa, when moving between the drawing and the real world.\n\nMisconceptions (targeted):\n*   Misconception: You can determine the size of any object just by measuring the paper with a ruler. | Correction: You must use the **Scale Ratio** to convert that measurement, or rely on the written **Dimension** which is more accurate. | AC: 203.LO2.AC2.4\n*   Misconception: A 1:100 scale drawing is larger than a 1:50 scale drawing. | Correction: A 1:100 scale means the object is shrunk 100 times, making the drawing smaller than a 1:50 version. | AC: 203.LO2.AC2.4\n\n**Key Points**\n*   The **Scale Ratio** keeps the drawing proportional to the real world.\n*   Written **Dimension** values are the most reliable source of size information.\n*   The **Scaling Factor** is the multiplier used for conversion.\n*   Always check the drawing title block to confirm the scale before calculating.\n\n**Quick recap**\nScaling allows large objects to be represented accurately on small sheets. By using the **Scale Ratio**, you can find the **Scaling Factor** needed to turn a drawing measurement into a real-world **Dimension**. This mathematical relationship ensures that everything built from the drawing will fit perfectly in the physical environment.\n\n### Coming Up Next\nIn the next lesson, we will apply these identification and calculation skills to read full layout drawings and identify specific installation requirements."
       }
     },
     {
@@ -177,62 +172,63 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Scaling",
+        "title": "Check Your Understanding: Scaling and Dimensioning",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-2B-C2-L1-A",
-            "questionText": "What is the term for the fixed mathematical proportion between a drawing measurement and the real-world distance?",
+            "questionText": "What source of size information always takes priority over a measurement taken with a ruler?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Scale ratio",
-              "Scale",
-              "Ratio"
+              "Dimension written on the drawing",
+              "written dimension",
+              "the dimension",
+              "written dimensions"
             ],
-            "hint": "It usually looks like 1:50 or 1:100."
+            "hint": "Look for the specific numerical values printed directly on the plan."
           },
           {
             "id": "203-2B-C2-L1-B",
-            "questionText": "In a 1:20 scale, if you measure 1mm on paper, how many millimetres is it in real life?",
+            "questionText": "What term describes the fixed mathematical relationship between a drawing measurement and the actual physical dimension?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "20",
-              "20mm",
-              "twenty"
+              "Scale Ratio",
+              "the scale ratio",
+              "a scale ratio"
             ],
-            "hint": "The second number is your multiplier."
+            "hint": "This is usually expressed as two numbers separated by a colon, such as 1:50."
           },
           {
             "id": "203-2B-C2-L1-C",
-            "questionText": "Which scale represents a smaller drawing of the same building: 1:10 or 1:100?",
+            "questionText": "What is the numerical multiplier used to calculate the real-world size from a drawing measurement?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "1:100",
-              "the 1:100 scale"
+              "Scaling Factor",
+              "the scaling factor",
+              "a scaling factor"
             ],
-            "hint": "A larger second number means the object has been shrunk more."
+            "hint": "This number is derived from the ratio and is used in multiplication."
           },
           {
             "id": "203-2B-C2-L2",
-            "questionText": "Explain the step-by-step process a technician takes to find the real-world length of a wall from a 1:50 drawing. How do they ensure the calculation is accurate?",
+            "questionText": "Using your answers to Q1 (written dimensions), Q2 (scale ratio), and Q3 (scaling factor), explain how these concepts work together to determine an object's actual size. How do we know which value to use if a ruler measurement contradicts a written dimension?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Identify the scale ratio from the drawing title block (1:50).",
-              "Measure the specific distance on the drawing using a standard ruler.",
-              "Multiply the drawing measurement by the scale factor (50).",
-              "Convert the resulting figure into appropriate units (e.g., mm to metres).",
-              "Accuracy is ensured by using the fixed mathematical proportion rather than guessing.",
-              "Verify the scale applies to that specific sheet or view."
+              "The scale ratio defines the scaling factor used to convert ruler measurements",
+              "The scaling factor is the multiplier applied to paper measurements to find the real-world size",
+              "Written dimensions are the most reliable source and override any calculated measurements",
+              "We know to prioritize written dimensions because ruler measurements are only representations and can be less accurate"
             ],
             "expectedAnswer": [
-              "First, identify the scale (1:50) from the title block. Measure the wall on the drawing with a ruler. Multiply that measurement by 50 to get the real dimension. Finally, check that the units (like mm) make sense for a real wall. This is accurate because the ratio is a fixed mathematical rule."
+              "The scale ratio provides the scaling factor, which is the multiplier used to turn a measurement into a real-world size. However, if a written dimension is present, it must be used instead because written values always take priority over manual ruler measurements for accuracy.",
+              "To find a size, you multiply a measurement by the scaling factor derived from the scale ratio. We know that the written dimension is the most valid value to use because it is the primary source of truth on a drawing, even if a calculation using a ruler suggests a different size."
             ],
-            "hint": "Start with where you find the ratio, then the measurement, then the math."
+            "hint": "Explain how the ratio and factor are used for calculation, and identify which piece of information is the 'master' value."
           }
         ]
       }
@@ -242,39 +238,39 @@
       "type": "worked-example",
       "order": 6,
       "content": {
-        "title": "Worked Example: Calculating Cable Length",
-        "given": "You are looking at a Floor Plan with a scale of 1:100. You measure a straight run of cable on the drawing as 65mm.",
+        "title": "Worked Example: Identifying Components and Calculating Dimensions",
+        "given": "A technical drawing displays a triangle symbol. The Legend identifies the triangle as a 'Support Pillar'. The title block lists a Scale Ratio of 1:50. A measurement taken on the drawing for the pillar width is 10mm.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Identify the Scale Factor",
+            "description": "Identify context/constraints: Locate the triangle symbol on the plan and the 1:50 Scale Ratio in the title block.",
             "formula": null,
             "calculation": null,
-            "result": "The ratio is 1:100, so the multiplier is 100."
+            "result": "Triangle symbol, 1:50 Scale Ratio"
           },
           {
             "stepNumber": 2,
-            "description": "Measure the drawing distance",
+            "description": "Select appropriate option: Match the triangle symbol to the 'Support Pillar' entry in the Legend and identify the Scaling Factor as 50.",
             "formula": null,
             "calculation": null,
-            "result": "Drawing measurement = 65mm."
+            "result": "Support Pillar, Scaling Factor 50"
           },
           {
             "stepNumber": 3,
-            "description": "Calculate actual dimension",
-            "formula": "Drawing Measurement x Scale Factor",
-            "calculation": "65 x 100",
-            "result": "6500mm"
+            "description": "State purpose/result: Determine the real-world Dimension by multiplying the drawing measurement by the Scaling Factor (10mm x 50).",
+            "formula": null,
+            "calculation": null,
+            "result": "500mm"
           },
           {
             "stepNumber": 4,
-            "description": "Convert to metres for ordering",
-            "formula": "mm / 1000",
-            "calculation": "6500 / 1000",
-            "result": "6.5 metres"
+            "description": "State common wrong choice and why: Confusing the symbol with a realistic illustration, which incorrectly assumes the icon represents the physical appearance of the pillar.",
+            "formula": null,
+            "calculation": null,
+            "result": "Realistic illustration error"
           }
         ],
-        "notes": "Always check the 'Title Block' to ensure you are using the correct scale for that specific drawing sheet."
+        "notes": "Always verify the current edition or version of the symbol standards used in your specific field. Ensure the Scale Ratio applies to the specific section of the drawing being measured."
       }
     },
     {
@@ -282,35 +278,43 @@
       "type": "guided-practice",
       "order": 7,
       "content": {
-        "title": "Guided Practice: Real-World Sizing",
-        "problem": "A Site Plan (Drawing Type) uses a scale of 1:250. You measure the distance between two buildings as 40mm.",
+        "title": "Guided Practice (We Do)",
+        "problem": "A technician is reviewing a plan with a circular symbol. The Legend defines the circle as an 'Access Point'. The title block confirms a Scale Ratio of 1:100. A measurement of 5mm is taken from the drawing.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the scale factor (the multiplier) for this drawing?",
+            "prompt": "Identify the Scale Ratio provided in the title block for this drawing.",
             "expectedAnswer": [
-              "250"
+              "1:100",
+              "1 to 100"
             ],
-            "hint": "Look at the second number in the 1:250 ratio."
+            "hint": "Check the title block for the mathematical relationship between the drawing and the real world."
           },
           {
             "stepNumber": 2,
-            "prompt": "Multiply the 40mm drawing measurement by the scale factor.",
+            "prompt": "Identify the name of the component represented by the circular symbol according to the Legend.",
             "expectedAnswer": [
-              "10000",
-              "40 * 250"
+              "Access Point",
+              "Access Point symbol"
             ],
-            "hint": "40 times 250."
+            "hint": "Look at the reference list that defines the shorthand icons used in the drawing."
           },
           {
             "stepNumber": 3,
-            "prompt": "What is the distance in metres? (Divide your mm answer by 1000).",
+            "prompt": "Calculate the real-world dimension (in mm) for a 5mm drawing measurement using the 100x scaling factor.",
             "expectedAnswer": [
-              "10",
-              "10m",
-              "10 metres"
+              "500"
             ],
-            "hint": "There are 1000mm in 1 metre."
+            "hint": "Multiply the drawing measurement by the second number in the scale ratio."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "What is the common error of treating a functional shorthand icon as if it were a detailed picture of the object?",
+            "expectedAnswer": [
+              "Realistic illustration",
+              "Realistic picture"
+            ],
+            "hint": "Think of the term for a drawing that shows exactly what an object looks like instead of just its function."
           }
         ]
       }
@@ -320,49 +324,59 @@
       "type": "practice",
       "order": 8,
       "content": {
-        "title": "Symbols and Scaling Mastery",
+        "title": "Your Turn (You Do)",
         "questions": [
           {
             "id": "203-2B-P1",
-            "questionText": "A wall measures 120mm on a 1:20 scale drawing. What is the actual length of the wall in mm?",
-            "answerType": "numeric",
+            "questionText": "Why is a graphical symbol used on a complex technical plan instead of a realistic illustration of the component?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "2400"
+              "avoid clutter",
+              "prevent clutter",
+              "maintain clarity",
+              "standardisation"
             ],
-            "hint": "120 x 20."
+            "hint": "Think about how a drawing would look if every part was a detailed picture."
           },
           {
             "id": "203-2B-P2",
-            "questionText": "Where on a drawing do you find the definitions for the graphical symbols used?",
-            "answerType": "short-text",
+            "questionText": "A drawing has a Scale Ratio of 1:25. If a technician measures a distance of 40mm on the paper with a ruler, what is the actual physical distance in the real world?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Legend",
-              "The legend",
-              "Drawing legend",
-              "Key"
+              "1000"
             ],
-            "hint": "It's the dictionary for symbols."
+            "hint": "Multiply the drawing measurement by the scaling factor (25). Provide the answer in mm."
           },
           {
             "id": "203-2B-P3",
-            "questionText": "Why is it dangerous to assume a symbol's size on paper represents its real-world width?",
-            "answerType": "short-text",
+            "questionText": "A physical component is 1500mm long. If it is drawn at a Scale Ratio of 1:50, how many millimeters long will the line be on the drawing sheet?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "Not to scale",
-              "Symbols are not to scale",
-              "Sized for visibility",
-              "Functional only"
+              "30"
             ],
-            "hint": "Symbols are icons used for clarity, not precise physical outlines."
+            "hint": "Divide the real-world dimension by the scaling factor (50). Provide the answer in mm."
           },
           {
             "id": "203-2B-P4",
-            "questionText": "A floor plan has a scale of 1:50. A room is 80mm wide on the drawing. What is the real width in millimetres?",
-            "answerType": "numeric",
+            "questionText": "On a layout of a city's utility network, a small solid square is used to represent a connection hub. What is the technical term for this specific visual shorthand?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "4000"
+              "graphical symbol",
+              "symbol",
+              "technical symbol"
             ],
-            "hint": "80 x 50."
+            "hint": "This is a standardized icon used to represent a functional part."
+          },
+          {
+            "id": "203-2B-P5",
+            "questionText": "What must be true if a technician finds that a physical measurement taken from a drawing using a ruler contradicts the written Dimension value provided on the same drawing?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "dimension takes priority",
+              "written dimension takes priority",
+              "the dimension is correct"
+            ],
+            "hint": "Recall which piece of information is considered the most reliable source for sizing."
           }
         ]
       }
@@ -372,47 +386,48 @@
       "type": "practice",
       "order": 9.5,
       "content": {
-        "title": "Integrative Case Study: Site Preparation",
+        "title": "Putting It All Together",
         "mode": "integrative",
         "sequential": true,
         "questions": [
           {
             "id": "203-2B-INT-1",
-            "questionText": "You are given a Floor Plan and a Specification. Explain how you use these together with the Legend and Scale Ratio to prepare a list of materials for a room. (3-4 sentences)",
+            "questionText": "Explain the relationship between identifying graphical symbols and applying scale ratios when interpreting a technical drawing for a physical installation. In your answer, include: (1) the role of the legend in symbol identification, (2) the function of the scale ratio in determining size, and (3) how these two elements together ensure the correct component is installed in the correct space. Why must both be verified before starting work? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The Floor Plan shows the location of items.",
-              "The Legend identifies what the symbols represent (e.g., socket vs switch).",
-              "The Specification (Source) defines the specific type/quality of material needed.",
-              "The Scale Ratio allows for the calculation of cable lengths between symbols.",
-              "Combining identity (legend) and quantity (scale) creates an accurate material list.",
-              "The Specification ensures the materials meet the contract requirements."
+              "Identifies that the legend provides the definition for graphical symbols to prevent misidentification of components.",
+              "Explains that the scale ratio provides the mathematical relationship between the drawing and the real-world object.",
+              "Connects symbol identification to component type and scale ratios to component footprint/placement.",
+              "Argues that knowing 'what' a component is (symbol) is insufficient without knowing 'how large' it is (scale) for installation accuracy.",
+              "Concludes that both are necessary to prevent installation errors or spatial conflicts."
             ],
             "expectedAnswer": [
-              "First, I use the Legend to identify the components shown as symbols on the Floor Plan. Then, I check the Specification to find the exact brand or grade of those items. Finally, I use the Scale Ratio to measure the distances between components to calculate how much cable is required. This ensures the material list is accurate for both type and quantity."
+              "The legend allows a technician to identify exactly what component a graphical symbol represents, while the scale ratio allows them to calculate the actual physical space that component will occupy. Both must be verified because identifying the correct part is useless if the calculated dimensions do not fit the available installation area, and vice versa. This relationship ensures that the right equipment is placed with the correct clearances.",
+              "Technicians use the legend to confirm symbol meanings and the scale ratio to translate drawing measurements into physical dimensions. This relationship holds because technical documentation requires both qualitative identification and quantitative measurement to be actionable. If only the symbol is known, the size is a guess; if only the scale is known, the component type remains ambiguous."
             ],
-            "hint": "Think about identifying the 'what', the 'where', and the 'how much'."
+            "hint": "Think about what information is missing if you only have the name of a component but not its size, or its size but not its name."
           },
           {
             "id": "203-2B-INT-2",
-            "questionText": "Evaluate why a technician must verify the Drawing Type and the Scale Ratio before starting any installation. What are the risks of ignoring these?",
+            "questionText": "Describe the complete workflow required to determine the actual size and type of a component from a technical drawing. In your answer, include: (1) the use of graphical symbols, (2) the verification process using a legend, (3) the application of scale ratios to measured lines, and (4) how these factors integrate to produce accurate physical dimensions. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Drawing Type defines the purpose (e.g. Site Plan for location vs Schematic for wiring).",
-              "Using a Schematic to find physical location is a mistake because it is not a layout.",
-              "Scale Ratio is essential for calculating physical fit and material quantities.",
-              "Risk: Ordering insufficient materials if the scale is misinterpreted.",
-              "Risk: Components not fitting in the physical space (site constraints).",
-              "Risk: Installing items in the wrong room if the drawing type is misunderstood.",
-              "Verification prevents costly rework and procurement errors.",
-              "Ensures compliance with the project's technical sources/specifications."
+              "Initial identification of the component through its unique graphical symbol.",
+              "Verification of the symbol's specific meaning using the drawing's legend.",
+              "Measurement of the symbol or associated dimension lines using a standard unit.",
+              "Selection of the correct scale ratio provided in the documentation.",
+              "Application of a scaling factor to the measured drawing units.",
+              "Calculation of the final physical dimension for installation.",
+              "Integration of the component type and size to ensure specification compliance.",
+              "Maintenance of technical precision by distinguishing between a drawn line and a real-world dimension."
             ],
             "expectedAnswer": [
-              "Verifying the Drawing Type ensures you are looking at a physical layout (like a Floor Plan) rather than just a wiring diagram. Verifying the Scale Ratio is critical because it is the only way to calculate real-world sizes accurately. Ignoring these risks ordering the wrong amount of material, causing components not to fit in the allocated space, and wasting time on rework."
+              "First, identify the component by matching its graphical symbol to the definition found in the drawing's legend. Next, measure the required dimensions on the drawing and apply the specified scale ratio to calculate the actual physical size. By combining the verified component type with these calculated measurements, you ensure the physical installation matches the technical design. This workflow integrates symbol recognition with mathematical scaling to achieve high precision.",
+              "• Use the legend to confirm the identity of the graphical symbols found on the drawing.\n• Measure the drawing units and multiply them by the scaling factor derived from the scale ratio.\n• Integrate the identified component type with the calculated physical dimensions to determine installation requirements.\n• Verify that the final physical dimensions are used for procurement and placement rather than the raw drawing measurements."
             ],
-            "hint": "Consider the difference between a wiring diagram and a floor plan, and the math of scaling."
+            "hint": "Follow the path from seeing a shape on the paper to knowing exactly what to buy and how much space to clear for it."
           }
         ]
       }
@@ -422,85 +437,96 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Technical Information Review",
+        "title": "Foundation Check",
         "questions": [
           {
             "id": "203-2B-SR-1",
-            "questionText": "What is the name of the 'key' on a drawing that defines symbols?",
+            "questionText": "What is the general name for visual documents used to communicate design and construction details?",
             "expectedAnswer": [
-              "Legend"
+              "technical drawings",
+              "drawings",
+              "technical drawing"
             ],
-            "hint": "It often appears in a box on the side of the drawing.",
+            "hint": "Refer to the previous lesson on drawing types.",
             "answerType": "short-text"
           },
           {
             "id": "203-2B-SR-2",
-            "questionText": "Which source of information provides detailed written standards for a project?",
+            "questionText": "What term describes a regulation that is legally mandatory to follow?",
             "expectedAnswer": [
-              "Specification",
-              "The specification",
-              "Specs"
+              "statutory",
+              "statutory regulation",
+              "statutory regulations"
             ],
-            "hint": "It is a written technical document, not a drawing.",
+            "hint": "Think about the types of regulations covered in Lesson 1.",
             "answerType": "short-text"
           },
           {
             "id": "203-2B-SR-3",
-            "questionText": "In a 1:50 scale, does the '50' represent the drawing size or the real-world size multiplier?",
+            "questionText": "What is the collective term for the manuals, data sheets, and drawings used to provide project details?",
             "expectedAnswer": [
-              "Real world",
-              "Real world size",
-              "Multiplier",
-              "Actual size"
+              "technical information",
+              "technical documentation",
+              "documentation"
             ],
-            "hint": "The second number always refers to the actual object.",
+            "hint": "Look at the title of the previous lesson on information types.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Quick check of the core concepts: Sources, Symbols, and Scaling."
+        "notes": "Foundation check before starting Symbols and Scaling in Drawings"
       }
     }
   ],
   "targetAssessmentCriteria": [
     "AC1",
-    "AC2",
-    "AC3",
-    "AC4"
+    "AC2"
   ],
   "metadata": {
     "created": "2026-02-19",
     "updated": "2026-02-19",
-    "version": "1.1",
+    "version": "1.0",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, CALCULATION, ANALYSIS",
+    "taskMode": "IDENTIFICATION, CALCULATION",
     "syllabusAnchors": {
       "unit": "203",
       "learningOutcome": "LO2",
       "coveredAC": [
         "AC1",
-        "AC2",
-        "AC3",
-        "AC4"
+        "AC2"
       ],
       "outOfScopeAC": [
+        "AC3",
+        "AC4",
         "AC5"
       ]
     },
     "scope": {
-      "inScope": "Sources of information (AC1), Drawing types (AC2), Symbols/Legends (AC3), and Scaling calculations (AC4).",
-      "outOfScope": "Creation of CAD drawings or complex structural engineering calculations.",
-      "rationale": "Technicians must first be able to read and interpret various documentation types before they can execute an installation."
+      "inScope": "Interpretation of technical symbols and the mathematical conversion of scale ratios to actual dimensions.",
+      "outOfScope": "The manual production of technical drawings or the use of computer-aided design (CAD) software.",
+      "rationale": "The lesson focuses on the extraction and interpretation of data from existing documentation rather than the creation of new drawings."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": false,
+      "specificScope": "Focus on interpreting documentation and applying scale ratios."
     },
     "misconceptions": [
       {
-        "misconception": "Symbols show what the component looks like.",
-        "correction": "Symbols show the function (e.g., a light point), not the physical appearance.",
-        "relatedAC": "203.LO2.AC2.3"
+        "misconception": "Symbols are drawn to the same scale as the physical component.",
+        "correction": "Symbols are usually a fixed size for clarity and do not represent the physical dimensions of the part.",
+        "relatedAC": "AC2.3"
       },
       {
-        "misconception": "A 1:100 scale drawing is bigger than 1:20.",
-        "correction": "1:100 is smaller; the object has been reduced 100 times.",
-        "relatedAC": "203.LO2.AC2.4"
+        "misconception": "A symbol's meaning is universal and never changes.",
+        "correction": "While many are standard, you must always check the Legend as symbols can vary between different standards or projects.",
+        "relatedAC": "AC2.3"
+      },
+      {
+        "misconception": "You can determine the size of any object just by measuring the paper with a ruler.",
+        "correction": "You must use the Scale Ratio to convert that measurement, or rely on the written Dimension which is more accurate.",
+        "relatedAC": "AC2.4"
       }
     ]
   }
