@@ -1,0 +1,502 @@
+{
+  "id": "203-3C",
+  "title": "203.3C — Installation Equipment and Enclosure Spacing",
+  "description": "Master the selection of specialised installation tools and the calculation of enclosure capacity using space factors to ensure safe and compliant wiring systems.",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Installation Equipment and Enclosure Spacing",
+  "learningOutcomes": [
+    "Identify specialised equipment required for the installation of specific wiring systems.",
+    "Explain the purpose of specialised equipment used in the installation process.",
+    "Calculate the required capacity of wiring enclosures using spacing factor tables."
+  ],
+  "prerequisites": [
+    "203-3B"
+  ],
+  "blocks": [
+    {
+      "id": "203-3C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify specialised tools like draw tapes and stocks and dies used in wiring installations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain why specific tools are required for metallic versus non-metallic containment systems.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate enclosure capacity by comparing total cable factors against enclosure factors.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Space Factor",
+            "definition": "The percentage of an enclosure's internal area occupied by cables. For trunking, this is usually 45%, leaving 55% as air space.",
+            "anchor": "Think of a suitcase: if it's 100% full, there's no room for air to move and the contents might get crushed."
+          },
+          {
+            "term": "Cable Factor",
+            "definition": "A number representing the physical space a specific cable size takes up inside a conduit or trunking.",
+            "anchor": "Like a 'size' tag on clothing; it tells you how much room that specific item needs in the bag."
+          },
+          {
+            "term": "Enclosure Factor",
+            "definition": "The total 'space budget' of a conduit or trunking run, determined by its diameter, length, and number of bends.",
+            "anchor": "Like the total weight limit of a suitcase."
+          },
+          {
+            "term": "Stock and Die",
+            "definition": "A tool used to cut external threads onto the ends of metallic conduit so they can be screwed into fittings.",
+            "anchor": "Like a heavy-duty pencil sharpener that cuts screw-threads into steel instead of wood."
+          },
+          {
+            "term": "Bending Spring",
+            "definition": "A flexible spring inserted into PVC conduit to support the walls from the inside while bending.",
+            "anchor": "Acts like a temporary skeleton to stop the pipe from kinking or collapsing."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Specialised Tools and Enclosure Fill",
+        "description": "Visualizing the tools used to prepare containment and the concept of space factors within a conduit.",
+        "videoUrl": "",
+        "diagramType": "wiring",
+        "elementIds": [
+          "draw-tape",
+          "stock-and-die",
+          "bending-spring",
+          "space-factor-cross-section"
+        ],
+        "placeholderText": "A three-part diagram. Part 1: A Stock and Die cutting threads on a steel pipe. Part 2: A Bending Spring inside a PVC pipe being bent by hand. Part 3: A cross-section of trunking showing 45% area filled with cables and 55% empty air space labeled 'Heat Dissipation Zone'."
+      }
+    },
+    {
+      "id": "203-3C-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Specialised Installation Equipment",
+        "content": "### Preparing the Path\nBefore cables can be installed, the containment (conduit or trunking) must be shaped and joined. Because different materials have different properties, we use specific tools to ensure the containment remains strong and smooth.\n\n**1. Metallic Systems (Steel Conduit)**\nSteel conduit is rigid and requires mechanical joints. We use a **Stock and Die** to cut threads onto the ends of the pipe. \n*   **Anchor:** If you didn't cut these threads, you couldn't screw the pipe into a junction box, leaving the cables exposed to sharp edges.\n\n**2. Non-Metallic Systems (PVC Conduit)**\nPVC is flexible when bent, but it wants to 'kink' or collapse. A **Bending Spring** is inserted into the pipe before bending.\n*   **Anchor:** The spring provides internal pressure, keeping the pipe round so that cables can actually fit through the corner later.\n\n**3. The Installation Phase**\nOnce the pipes are fixed to the walls, we use a **Draw Tape** (or 'fish tape'). This is a long, flexible strip of steel or nylon pushed through the empty conduit.\n*   **Micro-Scenario:** You push the tape through a 10-meter run, hook the cables to the end, and pull them back through the pipe. Without this, you could never get a flexible wire through a long, rigid pipe.\n\n**Key Rule:** Tools must match the material. You cannot use a Bending Spring on steel, and a Stock and Die is only for metallic systems."
+      }
+    },
+    {
+      "id": "203-3C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Tools",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3C-C1-L1-A",
+            "questionText": "Which tool is used to pull cables through a conduit run that is already fixed to a wall?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Draw Tape",
+              "Fish tape",
+              "Nylon draw tape",
+              "Steel draw tape"
+            ],
+            "hint": "It 'fishes' the wire through the pipe."
+          },
+          {
+            "id": "203-3C-C1-L1-B",
+            "questionText": "What tool is used to create screw-threads on the end of a steel conduit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Stock and Die",
+              "Stocks and Dies",
+              "Die"
+            ],
+            "hint": "This tool cuts the metal to allow for a threaded joint."
+          },
+          {
+            "id": "203-3C-C1-L1-C",
+            "questionText": "What tool prevents PVC conduit from collapsing or kinking while it is being bent?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Bending Spring",
+              "Internal spring",
+              "PVC spring"
+            ],
+            "hint": "It acts as a temporary internal skeleton."
+          },
+          {
+            "id": "203-3C-C1-L2",
+            "questionText": "Explain why a Bending Spring is used during the preparation phase, while a Draw Tape is used during the final installation phase. How do these tools relate to each other?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Bending spring ensures the conduit maintains its internal diameter/shape during construction",
+              "Draw tape is used after construction to pull the cables through the clear path",
+              "If the spring isn't used correctly, the draw tape and cables may get stuck in a collapsed pipe"
+            ],
+            "expectedAnswer": [
+              "The bending spring is used first to ensure the pipe stays round and open. If the pipe kinks, the draw tape cannot pass through it later to pull the cables. The spring prepares the path, and the tape uses that path.",
+              "A bending spring is used to shape the PVC without it collapsing. Once the containment is built, the draw tape is used to pull the wires through the finished run."
+            ],
+            "hint": "Think about what happens to the path inside the pipe if the spring isn't used."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Enclosure Spacing Factors",
+        "content": "### Why We Leave Empty Space\nWe never fill a conduit or trunking 100% full. If we did, the cables would overheat and the insulation would melt. \n\n**The 45% Rule (Trunking)**\nFor trunking (rectangular enclosures), the standard **Space Factor** is 45%. This means 55% of the inside must be empty air. This air allows heat to escape from the cables.\n\n**The Factor System (Conduit)**\nFor conduit (round pipes), calculating area is harder because of bends. Instead of percentages, we use a 'Factor' system from BS 7671 (the IET Wiring Regulations):\n1.  **Cable Factor:** A number for each wire (e.g., a 2.5mm² wire might have a factor of 30).\n2.  **Enclosure Factor:** A number for the pipe (e.g., a 20mm conduit with two bends might have a capacity factor of 460).\n\n**The Golden Rule:**\nSum of all Cable Factors ≤ Enclosure Factor.\n\n**Micro-Scenario:**\nIf your total Cable Factor is 500, but your conduit only allows 460, the cables will be packed too tightly. You must either use a larger pipe or a different route with fewer bends."
+      }
+    },
+    {
+      "id": "203-3C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Spacing",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3C-C2-L1-A",
+            "questionText": "In a standard trunking installation, what percentage of the internal space is reserved for empty air?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "55%",
+              "55 percent",
+              "55"
+            ],
+            "hint": "If the space factor (fill) is 45%, the rest is air."
+          },
+          {
+            "id": "203-3C-C2-L1-B",
+            "questionText": "What term describes the numerical value assigned to a cable to represent its 'footprint' in a calculation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cable Factor",
+              "Cable factors"
+            ],
+            "hint": "It is the factor for the wire itself."
+          },
+          {
+            "id": "203-3C-C2-L1-C",
+            "questionText": "To be safe, the sum of Cable Factors must be _____ than or equal to the Enclosure Factor.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "less",
+              "lower",
+              "smaller"
+            ],
+            "hint": "You cannot exceed the budget of the enclosure."
+          },
+          {
+            "id": "203-3C-C2-L2",
+            "questionText": "Why do regulations require an air gap (empty space) inside a conduit even if the cables physically fit? What is the risk of ignoring the Space Factor?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Cables generate heat when carrying current",
+              "Air gap is needed for heat dissipation/cooling",
+              "Without air, insulation can degrade or melt",
+              "Overcrowding causes mechanical damage during the pull-in process"
+            ],
+            "expectedAnswer": [
+              "The air gap is required for heat dissipation. If cables are packed too tightly, the heat generated by the current cannot escape, which causes the insulation to melt and creates a fire risk.",
+              "We need empty space so the cables can cool down. If the space factor is too high, the cables will overheat and the insulation will degrade over time."
+            ],
+            "hint": "Think about what current does to a wire's temperature."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Conduit Capacity",
+        "given": "You need to install 6 cables. Each cable has a Cable Factor of 35. You are using a 20mm conduit with an Enclosure Factor of 200.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Calculate Total Cable Factor.",
+            "formula": "Number of Cables x Individual Cable Factor",
+            "calculation": "6 x 35",
+            "result": "210"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Identify Enclosure Factor.",
+            "formula": null,
+            "calculation": "From provided scenario",
+            "result": "200"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Compare Total Cable Factor (210) to Enclosure Factor (200).",
+            "formula": "210 <= 200?",
+            "calculation": "210 is greater than 200",
+            "result": "Fail (Unsafe/Overcrowded)"
+          }
+        ],
+        "notes": "Because 210 exceeds the capacity of 200, you must select a larger conduit size."
+      }
+    },
+    {
+      "id": "203-3C-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice: Capacity Check",
+        "problem": "An installer wants to put 4 cables (Cable Factor 43 each) into a conduit with an Enclosure Factor of 180. Is this allowed?",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "First, multiply the number of cables by the cable factor. What is the Total Cable Factor?",
+            "expectedAnswer": [
+              "172"
+            ],
+            "hint": "4 x 43"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Now, compare 172 to the Enclosure Factor of 180. Is the total cable factor less than or equal to the enclosure factor?",
+            "expectedAnswer": [
+              "Yes",
+              "True"
+            ],
+            "hint": "Is 172 smaller than 180?"
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Is this installation suitable and safe regarding space?",
+            "expectedAnswer": [
+              "Yes",
+              "Suitable",
+              "Safe"
+            ],
+            "hint": "If the total is within the budget, it is safe."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Independent Practice",
+        "questions": [
+          {
+            "id": "203-3C-P1",
+            "questionText": "A run of trunking contains 10 cables with a factor of 40 each, and 5 cables with a factor of 20 each. What is the Total Cable Factor?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "500"
+            ],
+            "hint": "(10 x 40) + (5 x 20)"
+          },
+          {
+            "id": "203-3C-P2",
+            "questionText": "When working with galvanised steel conduit, which tool is used to cut the external threads required for a secure mechanical joint?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "stock and die",
+              "stocks and dies",
+              "die"
+            ],
+            "hint": "Used for metallic threading."
+          },
+          {
+            "id": "203-3C-P3",
+            "questionText": "Identify the primary safety reason why a containment system cannot be filled to 100% of its internal capacity.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "heat dissipation",
+              "overheating",
+              "cooling",
+              "fire risk",
+              "dissipate heat"
+            ],
+            "hint": "Think about what happens to cables when they get hot."
+          },
+          {
+            "id": "203-3C-P4",
+            "questionText": "Which specialised tool is used specifically to navigate the path inside a finished conduit run to pull conductors through?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "draw tape",
+              "fish tape",
+              "drawtape"
+            ],
+            "hint": "It pulls cables through."
+          },
+          {
+            "id": "203-3C-P5",
+            "questionText": "A conduit has an Enclosure Factor of 290. If the cables being installed have a Total Cable Factor of 295, how many units over the capacity is this installation?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "5"
+            ],
+            "hint": "Subtract the capacity from the total cable factors."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Integrative Case Study",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3C-INT-1",
+            "questionText": "A technician is installing 2.5mm² cables into a PVC conduit run with four 90-degree bends. Explain why the technician must perform capacity calculations *before* attempting to use a draw tape. How does the number of bends affect the choice of enclosure factor?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Bends reduce the available Enclosure Factor (capacity) because they increase friction",
+              "Calculations ensure the cables won't be damaged by the force of the draw tape pull",
+              "If the factor is exceeded, the draw tape may snap or the cable insulation may be stripped"
+            ],
+            "expectedAnswer": [
+              "The technician must calculate capacity because every bend in the conduit reduces the enclosure factor. If they use a draw tape to pull cables into an overfilled pipe with many bends, the friction will be too high, potentially damaging the cable insulation or breaking the draw tape.",
+              "Calculations are needed to ensure there is enough space for the cables to move around the corners. More bends mean a lower enclosure factor. If the technician just pulls them through without checking, they risk overheating the cables or damaging them during the pull."
+            ],
+            "hint": "Think about how hard it is to pull a rope around a corner versus a straight line."
+          },
+          {
+            "id": "203-3C-INT-2",
+            "questionText": "Compare the preparation requirements for a steel conduit system versus a PVC conduit system. Mention the specific tools used for each and why the 'Space Factor' remains a critical safety rule for both.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Steel requires stocks and dies for threading joints",
+              "PVC requires bending springs to prevent wall collapse",
+              "Both require space factors to ensure heat dissipation",
+              "Both must be sized to prevent mechanical damage during pulling"
+            ],
+            "expectedAnswer": [
+              "Steel conduit preparation requires a stock and die to cut threads for mechanical joints, while PVC requires a bending spring to maintain the pipe's shape during cold bending. For both systems, the space factor is critical because it ensures an air gap for heat dissipation, preventing the cables from overheating regardless of the material used.",
+              "For steel, we use stocks and dies to make joints. For PVC, we use bending springs to stop kinking. Both need a proper space factor because if the pipe is too full, heat can't escape and the wires will melt, which is a fire hazard in any system."
+            ],
+            "hint": "Recall the tool for threading vs. the tool for supporting PVC from the inside."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Review",
+        "questions": [
+          {
+            "id": "203-3C-SR-1",
+            "questionText": "What is the general term for the pipes and trunking used to house and protect electrical cables?",
+            "expectedAnswer": [
+              "Containment",
+              "Enclosure",
+              "Wiring systems"
+            ],
+            "hint": "It 'contains' the wiring.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3C-SR-2",
+            "questionText": "True or False: A Stock and Die is used to cut threads on PVC conduit.",
+            "expectedAnswer": [
+              "False",
+              "F"
+            ],
+            "hint": "PVC is plastic; it doesn't use screw-threads in the same way as steel.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3C-SR-3",
+            "questionText": "What is the primary purpose of an air gap within a wiring enclosure?",
+            "expectedAnswer": [
+              "Heat dissipation",
+              "Cooling",
+              "To stop overheating"
+            ],
+            "hint": "It relates to the temperature of the conductors.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Reviewing the basics of containment and safety before moving to support methods."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC5",
+    "AC6"
+  ],
+  "metadata": {
+    "created": "2026-02-19",
+    "updated": "2026-02-19",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "CALCULATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC5",
+        "AC6"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC3",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of specialised equipment (AC5) and calculation of spacing factors (AC6).",
+      "outOfScope": "The physical handling of tools or the installation of enclosures.",
+      "rationale": "Focuses on the selection and planning phases of installation to ensure regulatory compliance."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Space factors are 45% for all systems.",
+        "correction": "45% is the standard for trunking. Conduit uses a specific factor system (Cable/Enclosure Factors) that accounts for bends and length.",
+        "relatedAC": "203.LO3.AC6"
+      },
+      {
+        "misconception": "You can use a Stock and Die on PVC.",
+        "correction": "PVC fittings are usually solvent-welded or push-fit; Stock and Dies are for creating mechanical threads on metallic conduit.",
+        "relatedAC": "203.LO3.AC5"
+      }
+    ]
+  }
+}

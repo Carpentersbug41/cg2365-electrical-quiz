@@ -249,6 +249,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3B'),
     available: true,
     order: 5,
+  },
+  {
+    id: '203-3C',
+    title: 'Installation Equipment and Enclosure Spacing',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Installation Equipment and Enclosure Spacing',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3C'),
+    available: true,
+    order: 6,
   },// Unit 210: Communication
   {
     id: '204-10A',

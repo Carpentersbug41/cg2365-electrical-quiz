@@ -41,6 +41,7 @@ import lesson203_1B from '@/data/lessons/203-1B-implications-of-regulatory-non-c
 import lesson203_2A from '@/data/lessons/203-2A-technical-information-and-drawing-types.json';
 import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.json';
 import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
+import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclosure-spacing.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -84,6 +85,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_3C,
   lesson203_3B,
   lesson203_2B,
   lesson203_2A,

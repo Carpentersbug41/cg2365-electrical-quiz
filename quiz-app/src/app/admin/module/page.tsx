@@ -78,6 +78,14 @@ interface LessonGenerationProgress {
   phaseMessage: string;
 }
 
+interface PersistedGenerationScores {
+  phase10OriginalScore: number | null;
+  phase13FinalScore: number | null;
+  scoreDelta: number | null;
+  wasRefined: boolean | null;
+  source: 'phase10-13' | 'lesson-metadata' | null;
+}
+
 const STAGE_ROUTE: Record<StageKey, string> = {
   M0: 'm0-distill',
   M1: 'm1-analyze',
@@ -107,6 +115,56 @@ const LESSON_GENERATION_PHASES: Array<{ progress: number; message: string }> = [
 
 function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+}
+
+function toScore(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function extractPersistedGenerationScores(payload: unknown): PersistedGenerationScores | null {
+  if (!isRecord(payload)) return null;
+
+  const fromPersisted = isRecord(payload.generationScores) ? payload.generationScores : null;
+  const lesson = isRecord(payload.generatedLesson) ? payload.generatedLesson : null;
+  const metadata = lesson && isRecord(lesson.metadata) ? lesson.metadata : null;
+  const scoreDetails = metadata && isRecord(metadata.generationScoreDetails) ? metadata.generationScoreDetails : null;
+
+  const phase10OriginalScore =
+    toScore(fromPersisted?.phase10OriginalScore) ?? toScore(scoreDetails?.originalScore);
+  const phase13FinalScore =
+    toScore(fromPersisted?.phase13FinalScore) ??
+    toScore(scoreDetails?.finalScore) ??
+    toScore(metadata?.generationScore);
+  const scoreDelta =
+    toScore(fromPersisted?.scoreDelta) ??
+    (phase10OriginalScore != null && phase13FinalScore != null
+      ? phase13FinalScore - phase10OriginalScore
+      : null);
+  const wasRefined =
+    typeof fromPersisted?.wasRefined === 'boolean'
+      ? fromPersisted.wasRefined
+      : typeof scoreDetails?.wasRefined === 'boolean'
+        ? scoreDetails.wasRefined
+        : null;
+  const source =
+    fromPersisted?.source === 'phase10-13' || fromPersisted?.source === 'lesson-metadata'
+      ? fromPersisted.source
+      : phase10OriginalScore != null || phase13FinalScore != null
+        ? 'lesson-metadata'
+        : null;
+
+  if (phase10OriginalScore == null && phase13FinalScore == null) return null;
+  return {
+    phase10OriginalScore,
+    phase13FinalScore,
+    scoreDelta,
+    wasRefined,
+    source,
+  };
 }
 
 export default function ModulePlannerPage() {
@@ -1053,12 +1111,19 @@ export default function ModulePlannerPage() {
                           {lessons.map((bp) => {
                             const row = lessonByBlueprint.get(bp.id);
                             const state = row?.status === 'success' ? 'generated' : row?.status === 'failed' ? 'failed' : row?.status === 'pending' ? 'generating' : 'planned';
+                            const generationScores = extractPersistedGenerationScores(row?.lesson_json ?? null);
                             return (
                               <div key={bp.id} className="rounded border border-slate-200 p-3">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
                                   <div>
                                     <p className="text-sm font-semibold">{bp.id}</p>
                                     <p className="text-xs text-slate-600">{bp.topic}</p>
+                                    {generationScores && (
+                                      <p className="text-xs text-slate-700">
+                                        P10 {generationScores.phase10OriginalScore ?? '-'} | P13 {generationScores.phase13FinalScore ?? '-'}
+                                        {generationScores.scoreDelta != null ? ` | Δ ${generationScores.scoreDelta > 0 ? '+' : ''}${generationScores.scoreDelta}` : ''}
+                                      </p>
+                                    )}
                                   </div>
                                   <div className="flex items-center gap-2">
                                     <span className="rounded bg-slate-100 px-2 py-1 text-xs">{state}</span>

@@ -2446,17 +2446,20 @@ function findGeneratedLessonFilenameForBlueprint(blueprintId: string): string | 
 }
 
 function buildRecoveredLessonPayload(blueprintId: string, lessonFile: string): Record<string, unknown> {
+  const generatedLesson = readGeneratedLessonJson(lessonFile);
+  const generatorResponse = {
+    success: true,
+    lessonFile,
+    warnings: ['Recovered existing lesson file after generator request failure.'],
+  };
   return {
     lessonId: blueprintId,
     lessonFile,
     generatedAt: new Date().toISOString(),
     recoveredFromDisk: true,
-    generatorResponse: {
-      success: true,
-      lessonFile,
-      warnings: ['Recovered existing lesson file after generator request failure.'],
-    },
-    generatedLesson: readGeneratedLessonJson(lessonFile),
+    generatorResponse,
+    generatedLesson,
+    generationScores: extractLessonGenerationScores(generatorResponse, generatedLesson),
   };
 }
 
@@ -2482,12 +2485,74 @@ function buildPersistedLessonPayload(result: {
   lessonId: string;
 }): Record<string, unknown> {
   const lessonFile = result.response.lessonFile ?? null;
+  const generatedLesson = readGeneratedLessonJson(result.response.lessonFile);
   return {
     lessonId: result.lessonId,
     lessonFile,
     generatedAt: new Date().toISOString(),
     generatorResponse: result.response,
-    generatedLesson: readGeneratedLessonJson(result.response.lessonFile),
+    generatedLesson,
+    generationScores: extractLessonGenerationScores(result.response, generatedLesson),
+  };
+}
+
+function toScore(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) ? value : null;
+}
+
+function extractLessonGenerationScores(
+  response: BlueprintGenerationResult['response'] | { success: boolean; lessonFile?: string; warnings?: string[] },
+  generatedLesson: unknown
+): {
+  phase10OriginalScore: number | null;
+  phase13FinalScore: number | null;
+  scoreDelta: number | null;
+  wasRefined: boolean | null;
+  source: 'phase10-13' | 'lesson-metadata' | null;
+} {
+  const responseRecord = isRecord(response) ? (response as Record<string, unknown>) : null;
+  const refinementMetadataValue = responseRecord ? responseRecord['refinementMetadata'] : null;
+  const refinementMetadata = isRecord(refinementMetadataValue)
+    ? (refinementMetadataValue as Record<string, unknown>)
+    : null;
+
+  const fromRefinementOriginal = toScore(refinementMetadata?.originalScore);
+  const fromRefinementFinal = toScore(refinementMetadata?.finalScore);
+  const wasRefinedRaw = refinementMetadata ? (refinementMetadata as Record<string, unknown>).wasRefined : null;
+  const wasRefinedFromResponse = typeof wasRefinedRaw === 'boolean' ? wasRefinedRaw : null;
+
+  const lessonMetadata = isRecord(generatedLesson) && isRecord(generatedLesson.metadata)
+    ? generatedLesson.metadata
+    : null;
+  const generationScoreDetails =
+    lessonMetadata && isRecord(lessonMetadata.generationScoreDetails)
+      ? lessonMetadata.generationScoreDetails
+      : null;
+  const metadataOriginal = toScore(generationScoreDetails?.originalScore);
+  const metadataFinal =
+    toScore(generationScoreDetails?.finalScore) ?? toScore(lessonMetadata?.generationScore);
+  const wasRefinedFromMetadata =
+    typeof generationScoreDetails?.wasRefined === 'boolean' ? generationScoreDetails.wasRefined : null;
+
+  const phase10OriginalScore = fromRefinementOriginal ?? metadataOriginal;
+  const phase13FinalScore = fromRefinementFinal ?? metadataFinal;
+  const scoreDelta =
+    phase10OriginalScore != null && phase13FinalScore != null
+      ? phase13FinalScore - phase10OriginalScore
+      : null;
+  const wasRefined = wasRefinedFromResponse ?? wasRefinedFromMetadata;
+
+  return {
+    phase10OriginalScore,
+    phase13FinalScore,
+    scoreDelta,
+    wasRefined,
+    source:
+      fromRefinementOriginal != null || fromRefinementFinal != null
+        ? 'phase10-13'
+        : metadataOriginal != null || metadataFinal != null
+          ? 'lesson-metadata'
+          : null,
   };
 }
 

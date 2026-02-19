@@ -72,6 +72,7 @@ import { implicationsOfRegulatoryNonComplianceQuestions } from './questions/impl
 import { technicalInformationAndDrawingTypesQuestions } from './questions/technicalInformationAndDrawingTypesQuestions';
 import { symbolsAndScalingInDrawingsQuestions } from './questions/symbolsAndScalingInDrawingsQuestions';
 import { conductorSizingAndProtectiveDevicesQuestions } from './questions/conductorSizingAndProtectiveDevicesQuestions';
+import { installationEquipmentAndEnclosureSpacingQuestions } from './questions/installationEquipmentAndEnclosureSpacingQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -137,6 +138,7 @@ export const questions: Question[] = [
   ...technicalInformationAndDrawingTypesQuestions,
   ...symbolsAndScalingInDrawingsQuestions,
   ...conductorSizingAndProtectiveDevicesQuestions,
+  ...installationEquipmentAndEnclosureSpacingQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

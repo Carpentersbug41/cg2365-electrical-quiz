@@ -64,11 +64,13 @@ import { implicationsOfRegulatoryNonComplianceQuestions } from './implicationsOf
 import { technicalInformationAndDrawingTypesQuestions } from './technicalInformationAndDrawingTypesQuestions';
 import { symbolsAndScalingInDrawingsQuestions } from './symbolsAndScalingInDrawingsQuestions';
 import { conductorSizingAndProtectiveDevicesQuestions } from './conductorSizingAndProtectiveDevicesQuestions';
+import { installationEquipmentAndEnclosureSpacingQuestions } from './installationEquipmentAndEnclosureSpacingQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...installationEquipmentAndEnclosureSpacingQuestions,
   ...conductorSizingAndProtectiveDevicesQuestions,
   ...symbolsAndScalingInDrawingsQuestions,
   ...technicalInformationAndDrawingTypesQuestions,
@@ -194,6 +196,7 @@ export { implicationsOfRegulatoryNonComplianceQuestions } from './implicationsOf
 export { technicalInformationAndDrawingTypesQuestions } from './technicalInformationAndDrawingTypesQuestions';
 export { symbolsAndScalingInDrawingsQuestions } from './symbolsAndScalingInDrawingsQuestions';
 export { conductorSizingAndProtectiveDevicesQuestions } from './conductorSizingAndProtectiveDevicesQuestions';
+export { installationEquipmentAndEnclosureSpacingQuestions } from './installationEquipmentAndEnclosureSpacingQuestions';
 
 /**
  * Filter questions by tags

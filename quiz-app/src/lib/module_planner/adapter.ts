@@ -27,6 +27,13 @@ export interface BlueprintGenerationResult {
       message?: string;
       stack?: string;
     };
+    refinementMetadata?: {
+      wasRefined?: boolean;
+      originalScore?: number;
+      finalScore?: number;
+      patchesApplied?: number;
+      details?: unknown[];
+    };
   };
 }
 
