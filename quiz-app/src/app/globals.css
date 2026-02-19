@@ -38,3 +38,27 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.admin-page button {
+  transition: transform 120ms ease, box-shadow 160ms ease, filter 160ms ease;
+}
+
+.admin-page button:not(:disabled) {
+  cursor: pointer;
+}
+
+.admin-page button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+  filter: saturate(1.05);
+}
+
+.admin-page button:not(:disabled):active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+}
+
+.admin-page button:focus-visible {
+  outline: 2px solid #0f172a;
+  outline-offset: 2px;
+}

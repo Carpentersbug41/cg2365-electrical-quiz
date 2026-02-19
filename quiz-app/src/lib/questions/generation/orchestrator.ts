@@ -20,6 +20,14 @@ const STEP_ORDER: QuestionRunStepKey[] = [
   'validate',
   'refresh_summary',
 ];
+const MAX_RUN_DURATION_MS = 720_000;
+const VALIDATE_MAX_DURATION_MS = 180_000;
+
+class RunCancelledError extends Error {
+  constructor(runId: string) {
+    super(`Question run ${runId} was cancelled.`);
+  }
+}
 
 function nowIso(): string {
   return new Date().toISOString();
@@ -105,6 +113,22 @@ async function readStepOutput(runId: string, stepKey: QuestionRunStepKey): Promi
     throw new Error(`Missing output for step ${stepKey}.`);
   }
   return row.output;
+}
+
+async function assertRunNotCancelled(runId: string): Promise<void> {
+  const run = await getQuestionRun(runId);
+  if (!run) {
+    throw new Error(`Question run not found: ${runId}`);
+  }
+  if (run.status === 'cancelled') {
+    throw new RunCancelledError(runId);
+  }
+}
+
+function assertRunNotTimedOut(runId: string, startedAt: number): void {
+  if (Date.now() - startedAt > MAX_RUN_DURATION_MS) {
+    throw new Error(`Question run ${runId} exceeded max duration (${MAX_RUN_DURATION_MS}ms) and was aborted.`);
+  }
 }
 
 export async function createDefaultQuestionRun(input: {
@@ -301,6 +325,19 @@ async function runValidate(run: QuestionGenerationRun, runId: string): Promise<R
     blueprints,
     acByKey,
     loTextByCode,
+    maxDurationMs: VALIDATE_MAX_DURATION_MS,
+    onProgress: async (progress) => {
+      await upsertRunStep({
+        run_id: runId,
+        step_key: 'validate',
+        status: 'running',
+        output: {
+          progress,
+          validate_max_duration_ms: VALIDATE_MAX_DURATION_MS,
+        },
+        error: null,
+      });
+    },
   });
   return result as unknown as Record<string, unknown>;
 }
@@ -320,13 +357,21 @@ export async function executeQuestionRun(runId: string): Promise<{
   run: QuestionGenerationRun;
   steps: Awaited<ReturnType<typeof listRunSteps>>;
 }> {
+  const runStartedAt = Date.now();
   const run = await getQuestionRun(runId);
   if (!run) throw new Error(`Question run not found: ${runId}`);
+  if (run.status === 'cancelled') {
+    const steps = await listRunSteps(runId);
+    return { run, steps };
+  }
 
   await updateQuestionRun(runId, { status: 'running' });
 
   try {
     for (const step of STEP_ORDER) {
+      await assertRunNotCancelled(runId);
+      assertRunNotTimedOut(runId, runStartedAt);
+      const stepStartedAtMs = Date.now();
       await setStepRunning(runId, step);
       let output: Record<string, unknown>;
 
@@ -338,15 +383,31 @@ export async function executeQuestionRun(runId: string): Promise<{
       else if (step === 'validate') output = await runValidate(run, runId);
       else output = await runRefreshSummary(run, runId);
 
-      await setStepDone(runId, step, output);
+      const existingDebug = (output.debug as Record<string, unknown> | undefined) ?? {};
+      await setStepDone(runId, step, {
+        ...output,
+        debug: {
+          ...existingDebug,
+          step_elapsed_ms: Date.now() - stepStartedAtMs,
+          run_elapsed_ms: Date.now() - runStartedAt,
+          max_run_duration_ms: MAX_RUN_DURATION_MS,
+          validate_max_duration_ms: VALIDATE_MAX_DURATION_MS,
+        },
+      });
       if (step === 'refresh_summary') {
         await updateQuestionRun(runId, { summary: output });
       }
     }
+    await assertRunNotCancelled(runId);
     const updatedRun = await updateQuestionRun(runId, { status: 'completed' });
     const steps = await listRunSteps(runId);
     return { run: updatedRun, steps };
   } catch (error) {
+    if (error instanceof RunCancelledError) {
+      const cancelledRun = await updateQuestionRun(runId, { status: 'cancelled' });
+      const steps = await listRunSteps(runId);
+      return { run: cancelledRun, steps };
+    }
     const message = error instanceof Error ? error.message : 'Question run failed.';
     const existingSteps = await listRunSteps(runId);
     const currentStep = STEP_ORDER.find((key) => !existingSteps.find((step) => step.step_key === key && step.status === 'completed'));

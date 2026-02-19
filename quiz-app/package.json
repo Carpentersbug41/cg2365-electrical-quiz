@@ -9,6 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest",
+    "test:questions-generation": "vitest run src/lib/questions/__tests__/validateAndInsert.batch.test.ts src/lib/questions/__tests__/validateAndInsert.test.ts",
+    "questions:e2e": "npx tsx scripts/runQuestionGenerationE2E.ts",
     "test:golden-set": "vitest run src/tests/golden-set",
     "test:ui": "vitest --ui",
     "test:watch": "vitest watch",

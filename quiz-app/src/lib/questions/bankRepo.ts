@@ -226,6 +226,12 @@ export async function getQuestionById(questionId: string): Promise<QuestionItem 
   return data ? normalizeQuestionRow(data as Record<string, unknown>) : null;
 }
 
+export async function deleteQuestionById(questionId: string): Promise<void> {
+  const supabase = requireSupabase();
+  const { error } = await supabase.from('question_items').delete().eq('id', questionId);
+  if (error) throw new Error(error.message);
+}
+
 export async function updateQuestionById(
   questionId: string,
   patch: Partial<
@@ -314,24 +320,85 @@ export async function listApprovedQuestionsByScope(input: {
 
 export async function listApprovedQuestionCountsByUnit(): Promise<Array<{ unit_code: string; level: number }>> {
   const supabase = requireSupabase();
-  const { data, error } = await supabase.from('question_items').select('unit_code, level').eq('status', 'approved').limit(10000);
-  if (error) throw new Error(error.message);
-  return (data ?? []).map((row) => ({
-    unit_code: String((row as Record<string, unknown>).unit_code),
-    level: Number((row as Record<string, unknown>).level),
-  }));
+  const pageSize = 1000;
+  let from = 0;
+  const rows: Array<{ unit_code: string; level: number }> = [];
+
+  while (true) {
+    const { data, error } = await supabase
+      .from('question_items')
+      .select('unit_code, level')
+      .eq('status', 'approved')
+      .range(from, from + pageSize - 1);
+    if (error) throw new Error(error.message);
+
+    const page = (data ?? []).map((row) => ({
+      unit_code: String((row as Record<string, unknown>).unit_code),
+      level: Number((row as Record<string, unknown>).level),
+    }));
+    rows.push(...page);
+
+    if (page.length < pageSize) break;
+    from += pageSize;
+  }
+
+  return rows;
 }
 
 export async function listApprovedQuestionCountsByLo(unitCode: string): Promise<Array<{ lo_code: string | null }>> {
   const supabase = requireSupabase();
-  const { data, error } = await supabase
+  const pageSize = 1000;
+  let from = 0;
+  const rows: Array<{ lo_code: string | null }> = [];
+
+  while (true) {
+    const { data, error } = await supabase
+      .from('question_items')
+      .select('lo_code')
+      .eq('status', 'approved')
+      .eq('unit_code', unitCode)
+      .range(from, from + pageSize - 1);
+    if (error) throw new Error(error.message);
+
+    const page = (data ?? []).map((row) => ({
+      lo_code: (row as Record<string, unknown>).lo_code == null ? null : String((row as Record<string, unknown>).lo_code),
+    }));
+    rows.push(...page);
+
+    if (page.length < pageSize) break;
+    from += pageSize;
+  }
+
+  return rows;
+}
+
+export async function listQuestionsByScope(input: {
+  unit_code: string;
+  level: number;
+  lo_codes?: string[];
+  status?: string;
+  include_retired?: boolean;
+  limit?: number;
+}): Promise<QuestionItem[]> {
+  const supabase = requireSupabase();
+  let query = supabase
     .from('question_items')
-    .select('lo_code')
-    .eq('status', 'approved')
-    .eq('unit_code', unitCode)
-    .limit(10000);
+    .select('*')
+    .eq('unit_code', input.unit_code)
+    .eq('level', input.level);
+
+  if (!input.include_retired) {
+    query = query.neq('status', 'retired');
+  }
+  if (input.lo_codes && input.lo_codes.length > 0) {
+    query = query.in('lo_code', input.lo_codes);
+  }
+  if (input.status && input.status.trim().length > 0) {
+    query = query.eq('status', input.status.trim());
+  }
+
+  const safeLimit = Math.max(1, Math.min(2000, Number(input.limit ?? 500)));
+  const { data, error } = await query.order('created_at', { ascending: false }).limit(safeLimit);
   if (error) throw new Error(error.message);
-  return (data ?? []).map((row) => ({
-    lo_code: (row as Record<string, unknown>).lo_code == null ? null : String((row as Record<string, unknown>).lo_code),
-  }));
+  return (data ?? []).map((row) => normalizeQuestionRow(row as Record<string, unknown>));
 }

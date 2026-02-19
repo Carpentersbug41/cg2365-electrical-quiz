@@ -1,6 +1,6 @@
 # C&G 2365 Quiz App - Current Implementation Documentation
 
-Last verified: 2026-02-17
+Last verified: 2026-02-18
 Status: Active implementation reference
 Scope: Current code behavior only (not roadmap)
 
@@ -95,6 +95,19 @@ Implemented `route.ts` endpoints:
 - `/api/diagnostic-analysis`
 - `/api/questions/variant`
 - `/api/upload-image`
+- `/api/quiz/catalog`
+- `/api/quiz/units/:unit_code/los`
+- `/api/quiz/build`
+- `/api/admin/questions/runs`
+- `/api/admin/questions/runs/:run_id`
+- `/api/admin/questions/runs/:run_id/start`
+- `/api/admin/questions/runs/:run_id/cancel`
+- `/api/admin/questions/runs/:run_id/drafts`
+- `/api/admin/questions/:question_id/approve`
+- `/api/admin/questions/:question_id/reject`
+- `/api/admin/questions/:question_id/edit`
+- `/api/admin/questions/duplicates`
+- `/api/admin/questions/duplicates/resolve`
 
 ---
 
@@ -178,6 +191,34 @@ Protected endpoints under `/api/v1/*` support:
 - attempt logging (`/api/v1/attempts`)
 - lesson start/complete progress (`/api/v1/progress/*`)
 - wrong-item review queue (`/api/v1/review/wrong-items`)
+
+---
+
+## 6.1 DB-Backed Quiz Question Bank
+
+Current `/quiz` behavior is database-backed and not sourced directly from static question arrays:
+
+- unit/LO catalog data is read from syllabus structures + approved question counts
+- learner quiz build selects only `status='approved'` rows from `question_items`
+- random quiz assembly is AC-weighted, with duplicate suppression by row id and normalized content signature
+- LO filter uses dropdown selection and LO descriptions
+
+Current `/admin/questions` behavior:
+
+- create/start/cancel question generation runs
+- review pending drafts (`approve`, `reject`, `approve all drafts`)
+- duplicate controls:
+  - cluster report (`/api/admin/questions/duplicates`)
+  - cluster resolve (`/api/admin/questions/duplicates/resolve`) retaining one canonical approved item and retiring others
+
+Generation + approval duplicate gates:
+
+- validate stage blocks near-duplicate draft insertions against approved scope and same-run drafts
+- approve route blocks near-duplicate approvals with `409` (`code='NEAR_DUPLICATE'`)
+
+Detailed canonical reference:
+
+- `reports/app_des/quiz.md`
 
 ---
 

@@ -711,7 +711,7 @@ export default function ModulePlannerPage() {
   const stageOrder: StageKey[] = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5'];
 
   return (
-    <main className="min-h-screen bg-slate-100 p-6 text-slate-900">
+    <main className="admin-page min-h-screen bg-slate-100 p-6 text-slate-900">
       <div className="mx-auto max-w-6xl space-y-6">
         <header className="flex items-center justify-between rounded-lg bg-white p-4 shadow-sm">
           <div>

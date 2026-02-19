@@ -1,4 +1,4 @@
-# Quiz System Documentation (DB-Backed Question Bank + Run/Review Pipeline)
+# Quiz System Documentation (DB-Backed Question Bank + Run/Review + Duplicate Control Pipeline)
 
 Last updated: 2026-02-18  
 Project root: `C:\Users\carpe\Desktop\hs_quiz\quiz-app`
@@ -13,6 +13,8 @@ This document describes the current quiz system end-to-end:
 - API contracts
 - Generation stages and orchestration
 - LLM integration in validate stage
+- Batch trial quality workflow
+- Duplicate prevention and cleanup workflows
 - RLS security model
 - Import/migration scripts
 - Tests and operational runbooks
@@ -21,7 +23,7 @@ This is the canonical implementation doc for the question bank system currently 
 
 ## 2. System Overview
 
-The quiz system now uses a database-backed question bank (`question_items`) instead of static TypeScript arrays for learner selection.
+The quiz system uses a database-backed question bank (`question_items`) instead of static TypeScript arrays for learner selection.
 
 High-level model:
 
@@ -30,6 +32,7 @@ High-level model:
 3. Pipeline stages execute and create `draft` questions.
 4. Admin reviews/approves/rejects drafts.
 5. Learner `/quiz` only consumes `status='approved'` questions.
+6. Duplicate controls run at generation, approval, and cleanup-report layers.
 
 Core folders:
 
@@ -156,6 +159,7 @@ Responsibilities:
 - Insert/list/update questions
 - Create review audits
 - Query approved question scopes and counts
+- Paginate count scans for full-bank correctness (no 10k truncation)
 
 Representative snippet:
 
@@ -206,9 +210,42 @@ Algorithm:
 
 - Weight by coverage gap: `1 / (1 + approved_count_for_ac)`
 - Weighted AC sampling
-- Deduped question pick
+- Deduped question pick by:
+  - row id
+  - normalized content signature (`stem + options + correct`)
 - Fallback pool fill
 - Shortfall metadata
+
+## 5.5 Similarity Service
+
+File: `src/lib/questions/similarity.ts`
+
+Current duplicate detection is deterministic and non-LLM:
+
+- normalize text
+- tokenize + stop-word removal
+- weighted Jaccard scoring across stem/options/correct
+- threshold varies by scope overlap (same LO/AC/format is stricter)
+
+## 5.6 Alignment Gate
+
+File: `src/lib/questions/alignment.ts`
+
+Purpose:
+
+- Score semantic-alignment of generated question content to selected LO/AC/range context
+- Reject off-topic drafts before insertion
+- Adaptive thresholds for broad AC text versus specific AC text
+
+## 5.7 Prompt Builder
+
+File: `src/lib/questions/generation/promptBuilder.ts`
+
+Purpose:
+
+- Centralized single-question and batch prompt templates
+- Supports injected LO-specific context text in batch mode
+- Enforces strict JSON contract and scope constraints
 
 ## 6. Admin Generation Pipeline
 
@@ -256,7 +293,7 @@ State is persisted into `question_generation_run_steps`.
 
 - Expands plan into one blueprint per target question.
 
-### Validate (LLM-integrated)
+### Validate (LLM-integrated + alignment + near-duplicate gate)
 
 - Implemented in:
   - `src/lib/questions/generation/validateAndInsert.ts`
@@ -264,15 +301,18 @@ State is persisted into `question_generation_run_steps`.
 Flow per blueprint:
 
 1. LLM prompt generation (strict JSON only)
-2. Parse + coerce
+2. Parse + coerce (with malformed-JSON recovery)
 3. Hard validation
 4. If fail: one repair retry using validation errors
-5. If still fail: deterministic fallback draft
-6. Re-validate
+5. Per-blueprint bounded retries (`maxAttemptsPerBlueprint`) for alternate assessment angles
+6. Alignment gate check (LO/AC/range overlap scoring)
 7. Dedupe by hash
-8. Insert as `draft`
+8. Near-duplicate check against:
+  - approved questions in run scope
+  - already-accepted drafts in current run
+9. Insert as `draft` only when all gates pass
 
-Output now includes diagnostics:
+Output includes diagnostics:
 
 - `llm_used_count`
 - `repair_retry_count`
@@ -325,12 +365,25 @@ Capabilities:
 
 - Create run (unit/level/LO/targets/mixes)
 - Start selected run
+- Cancel selected run (`queued`/`running`)
 - View run list and statuses
 - Inspect step timeline and raw step JSON
+- Auto-refresh timeline while run is in progress
 - Validate-stage metrics badges (`LLM used`, `Repair retries`, `Fallbacks`)
 - Review queue actions:
   - approve
   - reject
+  - approve all pending drafts
+- Review queue only displays `status='draft'` items
+- Duplicate operations:
+  - load duplicate cluster report for selected scope
+  - retire duplicate cluster members while keeping selected canonical item
+- Batch trial operations:
+  - run batch-50 quality trial
+  - optional context injections (one line per instruction/snippet)
+  - visual progress bar while trial is running
+  - trial metrics: parsed/accepted/valid/alignment/duplicate counts
+  - alignment failure samples and near-duplicate pair samples
 
 ## 9. Learner UI
 
@@ -341,7 +394,8 @@ Page:
 Behavior:
 
 - Loads dynamic unit catalog from DB-backed API.
-- Supports practice by Unit or by LO.
+- Supports unit practice with optional LO dropdown filter.
+- Shows LO descriptions in UI.
 - Builds quiz via server-side API using approved questions only.
 - Uses existing `Quiz` component (MCQ-compatible payload shape).
 
@@ -389,6 +443,7 @@ Guarantee:
 - `POST /api/admin/questions/runs`
 - `GET /api/admin/questions/runs/:run_id`
 - `POST /api/admin/questions/runs/:run_id/start`
+- `POST /api/admin/questions/runs/:run_id/cancel`
 - `GET /api/admin/questions/runs/:run_id/drafts`
 
 ### Review Actions
@@ -396,6 +451,34 @@ Guarantee:
 - `POST /api/admin/questions/:question_id/approve`
 - `POST /api/admin/questions/:question_id/reject`
 - `POST /api/admin/questions/:question_id/edit`
+
+Approval guard:
+
+- `approve` blocks near-duplicates of already approved questions with `409` / `code='NEAR_DUPLICATE'`.
+
+### Duplicate Control APIs
+
+- `GET /api/admin/questions/duplicates`
+  - Query: `unit_code` (required), `level` (optional), `lo_codes` (optional), `max_items` (optional)
+  - Returns near-duplicate clusters in selected scope
+- `POST /api/admin/questions/duplicates/resolve`
+  - Body: `cluster_ids`, optional `keep_id`
+  - Retires duplicate cluster members and keeps one canonical approved question
+
+### Trial API
+
+- `POST /api/admin/questions/trials/batch-quality`
+  - Body: `unit_code`, `lo_code`, `level`, `count`, optional `context_injections[]`
+  - Behavior:
+    - multi-attempt batch generation
+    - malformed JSON recovery/skip
+    - strict acceptance filter (valid + aligned + non-duplicate)
+    - returns accepted question set and diagnostics
+
+### Retire/Delete APIs
+
+- `POST /api/admin/questions/:question_id/retire`
+- `POST /api/admin/questions/:question_id/delete`
 
 ## 11. Security and RLS
 
@@ -439,6 +522,7 @@ Question-system tests:
 - `src/lib/questions/__tests__/validation.test.ts`
 - `src/lib/questions/__tests__/acMixing.test.ts`
 - `src/lib/questions/__tests__/validateAndInsert.test.ts`
+- `src/lib/questions/__tests__/alignment.test.ts`
 
 Coverage intent:
 
@@ -481,7 +565,10 @@ URLs:
 - Create run in admin UI.
 - Start run.
 - Verify step statuses and draft rows.
+- Verify cancel action on a queued/running run.
 - Approve subset.
+- Verify duplicate report loads for chosen unit/level scope.
+- Resolve one duplicate cluster and confirm retired rows are excluded from learner quiz selection.
 - Build learner quiz by Unit/LO.
 - Confirm no draft items appear in learner payloads.
 
@@ -489,7 +576,8 @@ URLs:
 
 1. Learner renderer currently consumes MCQ-compatible payload; non-MCQ rendering is a separate enhancement.
 2. Analyze step is currently mostly rule-based and can be extended with richer risk tagging.
-3. Future extension can add semantic similarity dedupe and stricter AC-classifier checks.
+3. Similarity detection is rule-based token overlap (no embedding/LLM semantic scorer yet).
+4. Batch trial currently uses client-side progress animation; server-side streaming progress is a future enhancement.
 
 ## 16. File Index (Implementation Map)
 
@@ -501,11 +589,14 @@ Core:
 - `src/lib/questions/hash.ts`
 - `src/lib/questions/validation.ts`
 - `src/lib/questions/acMixing.ts`
+- `src/lib/questions/similarity.ts`
+- `src/lib/questions/alignment.ts`
 
 Generation:
 
 - `src/lib/questions/generation/orchestrator.ts`
 - `src/lib/questions/generation/validateAndInsert.ts`
+- `src/lib/questions/generation/promptBuilder.ts`
 
 APIs:
 
@@ -516,10 +607,16 @@ APIs:
 - `src/app/api/admin/questions/runs/route.ts`
 - `src/app/api/admin/questions/runs/[run_id]/route.ts`
 - `src/app/api/admin/questions/runs/[run_id]/start/route.ts`
+- `src/app/api/admin/questions/runs/[run_id]/cancel/route.ts`
 - `src/app/api/admin/questions/runs/[run_id]/drafts/route.ts`
+- `src/app/api/admin/questions/duplicates/route.ts`
+- `src/app/api/admin/questions/duplicates/resolve/route.ts`
+- `src/app/api/admin/questions/trials/batch-quality/route.ts`
 - `src/app/api/admin/questions/[question_id]/approve/route.ts`
 - `src/app/api/admin/questions/[question_id]/reject/route.ts`
 - `src/app/api/admin/questions/[question_id]/edit/route.ts`
+- `src/app/api/admin/questions/[question_id]/retire/route.ts`
+- `src/app/api/admin/questions/[question_id]/delete/route.ts`
 
 UI:
 

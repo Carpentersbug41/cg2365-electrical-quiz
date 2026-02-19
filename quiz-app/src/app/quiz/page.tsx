@@ -25,20 +25,20 @@ export default function QuizPage() {
   const [units, setUnits] = useState<CatalogUnit[]>([]);
   const [selectedUnit, setSelectedUnit] = useState('');
   const [selectedLevel, setSelectedLevel] = useState<2 | 3>(2);
-  const [mode, setMode] = useState<'unit' | 'lo'>('unit');
   const [los, setLos] = useState<UnitLo[]>([]);
-  const [selectedLos, setSelectedLos] = useState<string[]>([]);
+  const [selectedLoCode, setSelectedLoCode] = useState('');
   const [count, setCount] = useState(20);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [quizQuestions, setQuizQuestions] = useState<Question[] | null>(null);
   const [selectionSummary, setSelectionSummary] = useState<string>('');
 
+  const selectedLo = useMemo(() => los.find((lo) => lo.lo_code === selectedLoCode) ?? null, [los, selectedLoCode]);
+
   const canBuild = useMemo(() => {
     if (!selectedUnit || loading) return false;
-    if (mode === 'lo' && selectedLos.length === 0) return false;
     return true;
-  }, [loading, mode, selectedLos.length, selectedUnit]);
+  }, [loading, selectedUnit]);
 
   useEffect(() => {
     void (async () => {
@@ -62,22 +62,19 @@ export default function QuizPage() {
         const data = await response.json();
         const list = (Array.isArray(data.los) ? data.los : []) as UnitLo[];
         setLos(list);
-        setSelectedLos([]);
+        setSelectedLoCode('');
       } catch (e) {
         setError(e instanceof Error ? e.message : 'Failed to load learning outcomes.');
       }
     })();
   }, [selectedUnit]);
 
-  const toggleLo = (loCode: string) => {
-    setSelectedLos((prev) => (prev.includes(loCode) ? prev.filter((item) => item !== loCode) : [...prev, loCode]));
-  };
-
   const buildQuiz = async () => {
     if (!canBuild) return;
     setLoading(true);
     setError(null);
     try {
+      const mode: 'unit' | 'lo' = selectedLoCode ? 'lo' : 'unit';
       const response = await fetch('/api/quiz/build', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
@@ -85,7 +82,7 @@ export default function QuizPage() {
           unit_code: selectedUnit,
           level: selectedLevel,
           mode,
-          lo_codes: mode === 'lo' ? selectedLos : undefined,
+          lo_codes: mode === 'lo' ? [selectedLoCode] : undefined,
           count,
         }),
       });
@@ -99,7 +96,7 @@ export default function QuizPage() {
       }
       setQuizQuestions(questions);
       setSelectionSummary(
-        `Unit ${selectedUnit}, Level ${selectedLevel}, ${mode === 'unit' ? 'all LOs' : selectedLos.join(', ')}, ${questions.length} questions`
+        `Unit ${selectedUnit}, Level ${selectedLevel}, ${mode === 'unit' ? 'all LOs' : selectedLoCode}, ${questions.length} questions`
       );
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to build quiz.');
@@ -160,14 +157,14 @@ export default function QuizPage() {
             </select>
           </label>
           <label className="text-sm font-medium">
-            Mode
-            <select
-              className="mt-1 w-full rounded border border-slate-300 px-2 py-2"
-              value={mode}
-              onChange={(event) => setMode(event.target.value as 'unit' | 'lo')}
-            >
-              <option value="unit">Practice by Unit</option>
-              <option value="lo">Practice by LO</option>
+            Learning Outcome
+            <select className="mt-1 w-full rounded border border-slate-300 px-2 py-2" value={selectedLoCode} onChange={(event) => setSelectedLoCode(event.target.value)}>
+              <option value="">All LOs in unit</option>
+              {los.map((lo) => (
+                <option key={lo.lo_code} value={lo.lo_code}>
+                  {lo.lo_code} ({lo.approved_question_count} approved)
+                </option>
+              ))}
             </select>
           </label>
           <label className="text-sm font-medium">
@@ -183,25 +180,28 @@ export default function QuizPage() {
           </label>
         </section>
 
-        {mode === 'lo' && (
-          <section className="rounded-lg border border-slate-200 bg-white p-4">
-            <p className="mb-3 text-sm font-medium">Learning Outcomes</p>
-            <div className="grid gap-2 md:grid-cols-2">
+        <section className="rounded-lg border border-slate-200 bg-white p-4">
+          <p className="mb-2 text-sm font-medium">LO Description</p>
+          {selectedLo ? (
+            <div className="rounded border border-slate-200 bg-slate-50 p-3 text-sm">
+              <p>
+                <span className="font-semibold">{selectedLo.lo_code}</span> ({selectedLo.approved_question_count} approved)
+              </p>
+              <p className="mt-1 text-slate-700">{selectedLo.lo_text_preview}</p>
+            </div>
+          ) : (
+            <div className="space-y-2">
               {los.map((lo) => (
-                <label key={lo.lo_code} className="rounded border border-slate-200 p-3 text-sm">
-                  <input
-                    type="checkbox"
-                    className="mr-2"
-                    checked={selectedLos.includes(lo.lo_code)}
-                    onChange={() => toggleLo(lo.lo_code)}
-                  />
-                  <span className="font-semibold">{lo.lo_code}</span> ({lo.approved_question_count} approved)
-                  <p className="mt-1 text-xs text-slate-600">{lo.lo_text_preview}</p>
-                </label>
+                <div key={lo.lo_code} className="rounded border border-slate-200 bg-slate-50 p-3 text-sm">
+                  <p>
+                    <span className="font-semibold">{lo.lo_code}</span> ({lo.approved_question_count} approved)
+                  </p>
+                  <p className="mt-1 text-slate-700">{lo.lo_text_preview}</p>
+                </div>
               ))}
             </div>
-          </section>
-        )}
+          )}
+        </section>
 
         {error && (
           <section className="rounded border border-rose-300 bg-rose-50 p-3 text-sm text-rose-700">
