@@ -1,14 +1,14 @@
 {
   "id": "203-3B",
-  "title": "203.3B — Wiring Systems, Circuit Types, and Conductor Sizing",
-  "description": "Learn to identify wiring systems, understand circuit principles (Radial and Ring), and calculate conductor current-carrying capacity.",
+  "title": "203.3B — Circuit Types and Wiring Systems",
+  "description": "Understand the principles of Ring and Radial circuits and selecting wiring systems for different environments.",
   "layout": "linear-flow",
   "unit": "Unit 203",
-  "topic": "Wiring Systems and Conductor Sizing",
+  "topic": "Wiring Systems and Circuit Types",
   "learningOutcomes": [
-    "Describe the principles of operation for radial and ring final circuits.",
-    "Identify suitable wiring systems (Conduit, Trunking, SWA) for different environments.",
-    "Calculate the minimum current-carrying capacity (Iz) for conductors based on protective device ratings and correction factors."
+    "Describe the principles of operation for Ring Final and Radial circuits.",
+    "Identify appropriate wiring systems for specific installation environments.",
+    "Explain the advantages and limitations of different circuit arrangements."
   ],
   "prerequisites": [
     "203-3A"
@@ -21,20 +21,12 @@
       "content": {
         "outcomes": [
           {
-            "text": "Describe principles of operation of radial and ring final circuits (AC1).",
+            "text": "Describe the principles of operation for Ring Final and Radial circuits (AC1).",
             "bloomLevel": "understand"
           },
           {
-            "text": "Identify wiring systems like conduit, trunking, and SWA for specific environments (AC2).",
-            "bloomLevel": "remember"
-          },
-          {
-            "text": "Determine minimum current-carrying capacity (Iz) using correction factors (AC3).",
+            "text": "Identify wiring systems like SWA and Conduit for different environments (AC2).",
             "bloomLevel": "apply"
-          },
-          {
-            "text": "State applications for protective devices like MCBs and fuses (AC4).",
-            "bloomLevel": "remember"
           }
         ]
       }
@@ -47,27 +39,23 @@
         "terms": [
           {
             "term": "Radial Circuit",
-            "definition": "A circuit where the cable runs from the consumer unit to each point in a single line, like a dead-end street."
+            "definition": "A circuit arrangement where the cable runs from the consumer unit to the last point in a single line, like a dead-end street."
           },
           {
             "term": "Ring Final Circuit",
-            "definition": "A circuit where the cable forms a complete loop, starting and ending at the consumer unit, allowing current to flow in two directions."
+            "definition": "A circuit where the cable forms a continuous loop, starting and ending at the same terminals in the consumer unit."
           },
           {
             "term": "Conduit",
-            "definition": "A tube (plastic or metal) used to protect and route individual cables, often used where mechanical protection is needed on walls."
+            "definition": "A tube (plastic or metal) used to house and protect individual cables from mechanical damage or moisture."
           },
           {
             "term": "SWA (Steel Wire Armoured)",
-            "definition": "A cable with a layer of steel wire for heavy-duty mechanical protection, suitable for burial or outdoor use."
+            "definition": "A cable with a built-in layer of galvanized steel wire for high mechanical protection, suitable for burial or outdoor use."
           },
           {
-            "term": "Design Current (Ib)",
-            "definition": "The maximum current expected to flow through a circuit during normal operation."
-          },
-          {
-            "term": "Nominal Rating (In)",
-            "definition": "The labeled current rating of a protective device (e.g., a 32A MCB)."
+            "term": "Trunking",
+            "definition": "A rectangular enclosure with a removable lid used to carry multiple circuits along a wall or ceiling."
           }
         ]
       }
@@ -77,17 +65,17 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "Circuit Types and Wiring Containment",
-        "description": "Visual comparison of Radial vs Ring circuits and common containment systems.",
+        "title": "Circuit Types and Wiring Systems",
+        "description": "Visual comparison of Radial and Ring circuits and different enclosure types.",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
-          "radial-path",
-          "ring-loop",
-          "conduit-protection",
-          "swa-armour"
+          "radial-layout",
+          "ring-layout",
+          "swa-cable",
+          "conduit-system"
         ],
-        "placeholderText": "A diagram showing two circuit layouts. On the left: A 'Radial Circuit' showing a single line from a consumer unit to three sockets. On the right: A 'Ring Final Circuit' showing a loop starting at the consumer unit, visiting three sockets, and returning to the unit. Below these are cross-sections of 'Conduit' (a pipe with wires inside) and 'SWA' (a cable with a ring of steel wires under the outer sheath)."
+        "placeholderText": "The diagram should show two circuit layouts side-by-side. On the left, a 'radial-layout' showing a single line from a consumer unit to three sockets. On the right, a 'ring-layout' showing a loop from the consumer unit through three sockets and back. Below these, show an 'swa-cable' (with visible metal armor) and a 'conduit-system' (a pipe with wires inside) to illustrate different wiring systems."
       }
     },
     {
@@ -95,8 +83,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Circuit Principles and Protective Devices",
-        "content": "### Circuit Types (AC1)\nThere are two main ways we wire power circuits:\n*   **Radial Circuits:** The cable leaves the consumer unit and goes to the first point, then the second, and ends at the last point. It is simple but the voltage drops more at the far end.\n*   **Ring Final Circuits:** The cable leaves the consumer unit, visits every socket, and **returns** to the same terminal in the consumer unit. This creates a loop. \n*   **Concrete Anchor:** Think of a Radial circuit like a dead-end road; a Ring Final is like a circular race track where cars (current) can go both ways to reach a destination.\n\n### Protective Devices (AC4)\nTo keep these circuits safe, we use protective devices to act as the 'weak link' that breaks the circuit if there is too much current.\n*   **MCB (Miniature Circuit Breaker):** An electromechanical switch that 'trips' (flips off) when it detects an overload or a short circuit. It can be reset.\n*   **Fuse:** A sacrificial wire that melts when too much current flows. Once it 'blows,' it must be replaced.\n*   **Application:** MCBs are standard in modern consumer units for easy resetting. Fuses are often found in plugs or older industrial switchgear.\n\n### The Golden Rule\nThe **Nominal Rating (In)** of the device must be equal to or greater than the **Design Current (Ib)** of the load. If you have a 13A load, you cannot use a 10A fuse; it would blow immediately. You would use a 15A or 16A device instead."
+        "title": "Principles of Circuit Types (AC1)",
+        "content": "### Circuit Arrangements\nIn electrical installations, we arrange cables in specific patterns called circuit types. The two most common are **Radial** and **Ring Final** circuits.\n\n**What they are**\n*   **Radial Circuit**: Think of this like a garden hose. The water (current) flows from the tap (consumer unit) to the nozzle (the last socket or light). If the hose is cut, everything after the cut loses power.\n*   **Ring Final Circuit**: Think of this like a circular running track. The current can travel in two directions around the loop to reach any socket. It starts and ends at the same point in the consumer unit.\n\n**Why it matters**\nRadial circuits are simple and used for lighting or heavy individual appliances (like a cooker). Ring Final circuits are unique to the UK and allow for more sockets on a single circuit because the load is shared across two paths, allowing the use of smaller cables than a radial circuit of the same total capacity would require.\n\n**Key Rules**\n*   Radial circuits can be used for almost any load but are standard for lighting.\n*   Ring Final circuits must always return to the same fuse or breaker they started from.\n*   A ring circuit provides two paths for current, effectively doubling the current-carrying capability of the cable loop.\n\n**Common Mistakes**\nLearners often think a Ring Final circuit is \"faster.\" It isn't; it simply shares the load. A dangerous error is a \"broken ring,\" where the loop is snapped, turning it into two radials that might now be overloaded because they are sharing a single high-rated breaker."
       }
     },
     {
@@ -104,61 +92,60 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Circuits and Protection",
+        "title": "Check Your Understanding: Circuit Types",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-3B-C1-L1-A",
-            "questionText": "In which circuit type does the cable return to the consumer unit to form a complete loop?",
+            "questionText": "Which circuit type forms a continuous loop starting and ending at the consumer unit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Ring Final",
               "Ring Final Circuit",
+              "Ring Final",
               "Ring"
             ],
-            "hint": "Think of the circuit that allows current to flow in two directions through a loop."
+            "hint": "Think of a circular track where you end where you started."
           },
           {
             "id": "203-3B-C1-L1-B",
-            "questionText": "What is the primary advantage of an MCB over a fuse after it has operated?",
+            "questionText": "What is the standard circuit arrangement for a single heavy appliance like an electric cooker?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "it can be reset",
-              "can be reset",
-              "resettable",
-              "does not need replacement"
+              "Radial",
+              "Radial circuit"
             ],
-            "hint": "Fuses melt and are destroyed; what happens to an MCB switch?"
+            "hint": "This is a single line from the source to the appliance."
           },
           {
             "id": "203-3B-C1-L1-C",
-            "questionText": "If a circuit has a Design Current (Ib) of 24A, what is the minimum standard Nominal Rating (In) for the protective device (choose from 16A, 20A, 32A)?",
+            "questionText": "How many paths for current flow exist to any socket in a healthy Ring Final circuit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "32A",
-              "32",
-              "32 Amps"
+              "Two",
+              "2",
+              "two paths"
             ],
-            "hint": "The rating (In) must be equal to or greater than the design current (Ib)."
+            "hint": "Current can go 'clockwise' or 'anti-clockwise' around the loop."
           },
           {
             "id": "203-3B-C1-L2",
-            "questionText": "Explain why a Ring Final circuit uses less copper (smaller cable) than a Radial circuit to supply the same total load of sockets.",
+            "questionText": "Explain the main physical difference between a Radial and a Ring Final circuit. Why might a Ring Final circuit be preferred for a room with many sockets?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Current is split between two paths in a ring",
-              "Each path carries only part of the total load",
-              "Smaller conductors can be used because the current is shared"
+              "Radial is a single line; Ring is a loop.",
+              "Ring circuits share the load across two paths.",
+              "Allows for more sockets using smaller/cheaper cable sizes.",
+              "Ring circuits return to the source; radials end at the last point."
             ],
             "expectedAnswer": [
-              "In a ring final circuit, the current has two paths to reach the sockets because it is a loop. This means the total current is shared between the two sides of the ring, allowing us to use a smaller cable than a radial circuit where all the current must flow through a single path."
+              "A radial circuit is a single run of cable from the source to the last point, while a ring final circuit forms a complete loop back to the source. A ring is preferred for many sockets because it provides two paths for current, allowing the load to be shared and enabling the use of smaller cables for a higher total current capacity."
             ],
-            "hint": "Think about how the 'loop' layout affects how much current flows through any single part of the wire."
+            "hint": "Compare the 'dead-end' vs 'loop' structure and think about cable size."
           }
         ]
       }
@@ -168,8 +155,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Wiring Systems and Conductor Sizing",
-        "content": "### Wiring Systems (AC2)\nWe choose the 'container' for the wires based on the environment:\n*   **Conduit:** Plastic (PVC) or Metal pipes. Used in workshops or offices where cables need protection from being hit but might need to be changed later.\n*   **Trunking:** Square or rectangular housing with a removable lid. Best for carrying many circuits at once in commercial buildings.\n*   **SWA (Steel Wire Armoured):** A heavy-duty cable with built-in steel protection. Used for underground runs or outdoors where it might be hit by a spade or crushed.\n\n### Conductor Sizing (AC3)\n**Current-Carrying Capacity (Iz)** is the maximum current a cable can handle before its insulation melts. This capacity changes based on the environment. We use **Correction Factors (CF)** to adjust the rating.\n\n**The Calculation Formula:**\nTo find the minimum required capacity (**Iz**), we take the protective device rating (**In**) and divide it by the correction factors:\n**Iz ≥ In / (Factors)**\n\n**Common Factors:**\n*   **Ca (Ambient Temperature):** If the room is hot, the cable can't shed heat easily.\n*   **Cg (Grouping):** If many cables are bunched together, they heat each other up.\n*   **Ci (Thermal Insulation):** If a cable is buried in loft insulation, the heat is trapped.\n\n**Micro-scenario:** If you put a heater (cable) under a thick duvet (insulation), it gets much hotter. We must use a larger cable to compensate for that trapped heat."
+        "title": "Wiring Systems for Environments (AC2)",
+        "content": "### Matching Systems to Environments\nCables cannot just be left loose; they need a **Wiring System** to protect them. The choice depends on the environment.\n\n**What they are**\n*   **SWA (Steel Wire Armoured)**: The \"Knight in Armor.\" Used when cables are buried or outside where they might be hit by a spade or crushed.\n*   **Conduit (PVC or Steel)**: The \"Protective Pipe.\" Used in workshops or garages where cables are on the surface and need protection from knocks.\n*   **PVC/PVC (Twin and Earth)**: The \"Standard Wire.\" Used inside walls or under floors in dry, domestic homes where they are hidden and safe.\n\n**Why it matters**\nIf you use standard PVC cable in a wet or high-impact area (like a factory floor), the insulation will fail, leading to shocks or fires. You must match the physical strength and water resistance of the system to the \"External Influences\" of the room.\n\n**Micro-scenario**:\nIf you are wiring a light in a clean, dry bedroom, standard **PVC/PVC** clipped under the floorboards is fine. If you are wiring a light in a car wash, you would use **PVC Conduit** with waterproof seals to keep the moisture out.\n\n**Rules for Selection**\n1.  **Mechanical Risk**: Use Steel Conduit or SWA.\n2.  **Moisture**: Use plastic conduit with solvent-welded joints or specialized outdoor cables.\n3.  **Aesthetics**: Use hidden PVC/PVC or decorative trunking."
       }
     },
     {
@@ -177,62 +164,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Systems and Sizing",
+        "title": "Check Your Understanding: Wiring Systems",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-3B-C2-L1-A",
-            "questionText": "Which wiring system is most suitable for a cable being buried directly in the ground to supply an outdoor shed?",
+            "questionText": "Which wiring system is best described as a 'Knight in Armor' for underground use?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "SWA",
               "Steel Wire Armoured",
-              "Armoured cable"
+              "Steel Wire Armored"
             ],
-            "hint": "Which system has built-in steel protection for heavy-duty use?"
+            "hint": "Look for the system with 'Armoured' in the name."
           },
           {
             "id": "203-3B-C2-L1-B",
-            "questionText": "What happens to a cable's current-carrying capacity if it is surrounded by thermal insulation in a loft?",
+            "questionText": "What system uses a protective pipe to house cables on the surface of a wall?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "It decreases",
-              "Reduces",
-              "Lowered",
-              "It goes down"
+              "Conduit",
+              "PVC Conduit",
+              "Steel Conduit"
             ],
-            "hint": "Does insulation help heat escape or does it trap it?"
+            "hint": "This is a tube or pipe."
           },
           {
             "id": "203-3B-C2-L1-C",
-            "questionText": "In the formula Iz ≥ In / Factors, what does 'In' represent?",
+            "questionText": "Where is standard PVC/PVC (Twin and Earth) cable typically installed?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Nominal rating of the protective device",
-              "Protective device rating",
-              "Device rating",
-              "Rating of the fuse or MCB"
+              "Domestic",
+              "Inside walls",
+              "Under floors",
+              "Dry environments"
             ],
-            "hint": "This is the labeled capacity of the safety device you selected."
+            "hint": "Think of a standard house."
           },
           {
             "id": "203-3B-C2-L2",
-            "questionText": "A technician calculates Iz by multiplying the device rating by the correction factor (e.g., 32A * 0.5 = 16A). Explain why this is a dangerous mistake.",
+            "questionText": "Why would an electrician choose SWA cable instead of standard PVC cable for a run across a garden? What 'External Influence' are they protecting against?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Multiplying results in a smaller required capacity",
-              "Correction factors are usually less than 1.0",
-              "We must divide to find a larger required capacity to handle heat"
+              "SWA provides mechanical protection.",
+              "Protects against impact (e.g., garden tools/spades).",
+              "Suitable for direct burial.",
+              "Standard PVC is too soft and easily damaged."
             ],
             "expectedAnswer": [
-              "Correction factors are usually less than 1.0 (like 0.5). If you multiply, the resulting Iz becomes smaller than the device rating, which is incorrect. You must divide so that the required capacity (Iz) increases. This ensures the cable is large enough to handle the heat trapped by the environment without melting."
+              "An electrician chooses SWA because it has a steel armor layer that provides mechanical protection. This protects the cable from external influences like physical impact from garden tools or crushing if it is buried, which standard PVC cable cannot withstand."
             ],
-            "hint": "If a cable is in a hot environment, do you need a thinner wire or a thicker wire to stay safe?"
+            "hint": "Focus on the 'Armor' and the risk of digging."
           }
         ]
       }
@@ -242,32 +229,39 @@
       "type": "worked-example",
       "order": 6,
       "content": {
-        "title": "Worked Example: Sizing a Cable in Conduit",
-        "given": "A circuit for a small heater has a Design Current (Ib) of 14A. It is protected by a 16A MCB (In). The cable is installed in a plastic conduit through a hot boiler room, giving a Correction Factor (Ca) of 0.7.",
+        "title": "Worked Example: Selecting a Wiring System",
+        "given": "A client wants a new power socket installed in a detached garden shed. The cable must run 10 meters underground across the lawn.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Identify the Nominal Rating (In) of the protective device.",
+            "description": "Identify the environment and external influences.",
             "formula": null,
             "calculation": null,
-            "result": "16A"
+            "result": "Outdoor, underground, risk of moisture and impact (spades)."
           },
           {
             "stepNumber": 2,
-            "description": "Identify the Correction Factor (CF) for the environment.",
+            "description": "Evaluate mechanical protection requirements.",
             "formula": null,
             "calculation": null,
-            "result": "0.7"
+            "result": "High protection needed due to burial."
           },
           {
             "stepNumber": 3,
-            "description": "Calculate the minimum required Current-Carrying Capacity (Iz).",
-            "formula": "Iz ≥ In / CF",
-            "calculation": "16 / 0.7",
-            "result": "22.86A"
+            "description": "Select the appropriate wiring system based on rules.",
+            "formula": null,
+            "calculation": null,
+            "result": "SWA (Steel Wire Armoured) cable."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Determine the circuit type for a single socket in a shed.",
+            "formula": null,
+            "calculation": null,
+            "result": "Radial circuit (simpler for a single point)."
           }
         ],
-        "notes": "You would then look at a standard table to find a cable size that can carry at least 22.86A when installed in conduit."
+        "notes": "Always ensure the armor of the SWA is correctly earthed at both ends for safety."
       }
     },
     {
@@ -275,34 +269,46 @@
       "type": "guided-practice",
       "order": 7,
       "content": {
-        "title": "Guided Practice: Sizing for Grouped Circuits",
-        "problem": "A circuit has a Design Current (Ib) of 28A. A 32A MCB (In) is used. The cable is grouped with three other circuits in trunking, resulting in a Grouping Factor (Cg) of 0.65. Calculate the required capacity.",
+        "title": "Guided Practice: Commercial Kitchen",
+        "problem": "You are tasked with installing wiring for several ovens in a commercial kitchen where the walls are regularly hosed down for cleaning.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the Nominal Rating (In) of the protective device being used?",
+            "prompt": "What is the primary environmental concern (external influence) in a kitchen that is hosed down?",
             "expectedAnswer": [
-              "32",
-              "32A"
+              "Water",
+              "Moisture",
+              "Wetness"
             ],
-            "hint": "The device rating is provided as 32A."
+            "hint": "Think about what comes out of a hose."
           },
           {
             "stepNumber": 2,
-            "prompt": "What is the Correction Factor (Cg) for grouping?",
+            "prompt": "Which wiring system provides a sealed enclosure that can be made water-tight?",
             "expectedAnswer": [
-              "0.65"
+              "PVC Conduit",
+              "Conduit"
             ],
-            "hint": "Look for the numerical value associated with grouping in the problem."
+            "hint": "It's a pipe that can be glued (solvent welded) to stay dry inside."
           },
           {
             "stepNumber": 3,
-            "prompt": "Calculate the minimum required Current-Carrying Capacity (Iz) by dividing In by the factor.",
+            "prompt": "If each oven requires its own dedicated supply from the consumer unit, what circuit type is being used?",
             "expectedAnswer": [
-              "49.23",
-              "49.2"
+              "Radial",
+              "Radial circuit"
             ],
-            "hint": "32 divided by 0.65."
+            "hint": "A single line for a single heavy appliance."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Why is a Ring Final circuit NOT used for a single high-power oven?",
+            "expectedAnswer": [
+              "Ovens are high load",
+              "Radials are for dedicated appliances",
+              "Too much current for a ring"
+            ],
+            "hint": "Think about the total power a single oven draws compared to a laptop charger."
           }
         ]
       }
@@ -312,48 +318,57 @@
       "type": "practice",
       "order": 8,
       "content": {
-        "title": "Independent Practice",
+        "title": "Your Turn: Practical Application",
         "questions": [
           {
             "id": "203-3B-P1",
-            "questionText": "A circuit has a design current (Ib) of 18A. From the standard MCB ratings (6A, 10A, 16A, 20A, 32A), what is the minimum Nominal Rating (In) you should select?",
+            "questionText": "In a standard Ring Final circuit, how many separate paths are available for current to reach any given socket outlet?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "20"
+              "2"
             ],
-            "hint": "Select the smallest rating that is still greater than or equal to 18A."
+            "hint": "It's a loop, so current can go left or right."
           },
           {
             "id": "203-3B-P2",
-            "questionText": "Which wiring system provides the best mechanical protection for cables installed in a heavy industrial factory floor environment?",
+            "questionText": "Which wiring system would be most appropriate for an industrial workshop where heavy machinery is moved and cables might be struck?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "SWA",
-              "Steel Wire Armoured",
-              "Metal Conduit",
-              "Steel Conduit"
+              "Steel Conduit",
+              "Steel Trunking",
+              "SWA"
             ],
-            "hint": "Think about systems made of steel that can withstand heavy impacts."
+            "hint": "You need something made of metal for high impact resistance."
           },
           {
             "id": "203-3B-P3",
-            "questionText": "A 20A protective device is used. The cable is covered by thermal insulation for a long distance (Correction Factor 0.5). Calculate the required Iz in Amps.",
+            "questionText": "In a radial circuit serving a line of 5 lights, how many cables enter the very last light fitting in the run?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "40"
+              "1"
             ],
-            "hint": "Divide the rating (20) by the factor (0.5)."
+            "hint": "A radial is a 'dead end' line."
           },
           {
             "id": "203-3B-P4",
-            "questionText": "What term describes the unwanted tripping of a circuit breaker during normal operation because the rating was chosen too low?",
+            "questionText": "What is the main reason for using a Ring Final circuit in a domestic house rather than several radials for sockets?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "Nuisance tripping",
-              "Nuisance trip",
-              "Premature tripping"
+              "cable economy",
+              "smaller cables",
+              "share the load",
+              "cost"
             ],
-            "hint": "It starts with 'N' and describes an 'annoying' or 'unnecessary' trip."
+            "hint": "Think about the cost of copper and the size of the cables needed."
+          },
+          {
+            "id": "203-3B-P5",
+            "questionText": "What term is used for the rectangular enclosure with a removable lid used to carry many different cables together?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Trunking"
+            ],
+            "hint": "It is larger than conduit and has a lid."
           }
         ]
       }
@@ -363,41 +378,41 @@
       "type": "practice",
       "order": 9.5,
       "content": {
-        "title": "Synthesis: System Design",
+        "title": "Integrating Circuits and Systems",
         "mode": "integrative",
         "sequential": true,
         "questions": [
           {
             "id": "203-3B-INT-1",
-            "questionText": "Compare a Radial circuit and a Ring Final circuit in terms of their physical layout and how current flows. Why might a Ring Final circuit be preferred for a large room with many high-power sockets?",
+            "questionText": "A factory needs a new Ring Final circuit for a row of workbenches and a separate Radial circuit for a heavy-duty air compressor. The environment is dusty and has frequent movement of pallet trucks. Explain (1) which wiring system you would choose for both and (2) how the two circuit types differ in their connection to the consumer unit.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Radial is a single line, Ring is a loop",
-              "Ring allows current to flow two ways",
-              "Ring can handle more load with smaller cables due to current sharing"
+              "Choose Steel Conduit or Trunking for mechanical protection against pallet trucks.",
+              "The Ring Final circuit connects both ends of the loop to the same breaker.",
+              "The Radial circuit connects only one end of the cable to the breaker.",
+              "Steel systems provide the best protection in industrial environments."
             ],
             "expectedAnswer": [
-              "A radial circuit is a single line from the source to the loads, whereas a ring final circuit is a loop that returns to the source. A ring is often preferred for high-power areas because the current splits and flows in two directions, allowing the circuit to support a higher total load (up to 32A) while using relatively thin, flexible 2.5mm cables."
+              "I would choose steel conduit or trunking because the factory environment has a high risk of mechanical damage from pallet trucks. The Ring Final circuit for the workbenches will have two cables connected to the breaker forming a loop, whereas the Radial circuit for the compressor will only have one cable starting at the breaker and ending at the machine."
             ],
-            "hint": "Think about the 'loop' vs the 'line' and how that affects the current path."
+            "hint": "Think about 'Armor' for the pallet trucks and 'Loop' vs 'Line' for the connections."
           },
           {
             "id": "203-3B-INT-2",
-            "questionText": "Describe the full process of selecting a conductor for a new circuit. Include how you use the Design Current (Ib), the Nominal Rating (In), and Correction Factors to find the Current-Carrying Capacity (Iz).",
+            "questionText": "Evaluate why an electrician must consider both the circuit type and the wiring system during the design phase. What could happen if they chose a Ring Final circuit but used standard PVC/PVC cable in an outdoor, wet environment? (3-4 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Determine Ib from the load",
-              "Select In ≥ Ib",
-              "Identify environmental factors (Ca, Cg, Ci)",
-              "Calculate Iz = In / Factors",
-              "Select physical cable from tables where rating ≥ Iz"
+              "Circuit type determines electrical capacity and load sharing.",
+              "Wiring system determines physical protection and environmental suitability.",
+              "PVC/PVC in wet areas leads to insulation breakdown.",
+              "The result is a dangerous installation prone to short circuits or shocks regardless of the circuit type."
             ],
             "expectedAnswer": [
-              "The process begins by determining the design current (Ib) based on the equipment being used. Next, a protective device is selected with a nominal rating (In) that is equal to or greater than Ib. Then, environmental factors like temperature or grouping are identified as correction factors. Finally, the required current-carrying capacity (Iz) is calculated by dividing In by these factors, and a cable is chosen that meets this Iz value."
+              "Designing a circuit requires balancing the electrical load (circuit type) with the physical environment (wiring system). If a Ring Final circuit is installed using standard PVC/PVC cable outdoors, the moisture will eventually penetrate the insulation, leading to electrical faults. Even though the circuit type might be electrically correct for the load, the failure of the wiring system makes the entire installation dangerous and non-compliant."
             ],
-            "hint": "List the steps in order: Load -> Device -> Factors -> Calculation -> Cable Selection."
+            "hint": "Consider the difference between 'how electricity flows' and 'how the wire is protected'."
           }
         ]
       }
@@ -407,86 +422,90 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Foundation Check",
+        "title": "Foundation Review",
         "questions": [
           {
             "id": "203-3B-SR-1",
-            "questionText": "What term describes regulations that are mandatory and legally enforceable, such as EAWR 1989?",
+            "questionText": "What is the SI unit for electrical potential difference?",
             "expectedAnswer": [
-              "Statutory",
-              "Statutory regulations"
+              "Volt",
+              "Volts",
+              "V"
             ],
-            "hint": "Think of the legal status of a regulation that must be followed by law.",
+            "hint": "Named after Alessandro Volta.",
             "answerType": "short-text"
           },
           {
             "id": "203-3B-SR-2",
-            "questionText": "What is the standard unit of measurement for electrical current?",
+            "questionText": "What device is used to automatically disconnect a circuit during a fault to prevent fire?",
             "expectedAnswer": [
-              "Amperes",
-              "Amps",
-              "A"
+              "Circuit breaker",
+              "MCB",
+              "Fuse"
             ],
-            "hint": "Named after André-Marie Ampère.",
+            "hint": "It 'breaks' the flow of electricity.",
             "answerType": "short-text"
           },
           {
             "id": "203-3B-SR-3",
-            "questionText": "On a site plan, what feature is used to relate the distance on the paper to the actual distance on the ground?",
+            "questionText": "What does the term 'Current' measure in an electrical circuit?",
             "expectedAnswer": [
-              "Scale",
-              "Drawing scale",
-              "Scaling"
+              "Flow of electrons",
+              "Flow of charge",
+              "Rate of flow"
             ],
-            "hint": "e.g., 1:100.",
+            "hint": "Think about the movement of electricity through a wire.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Quick review of legal status and basic electrical units."
+        "notes": "Quick check of fundamental electrical concepts."
       }
     }
   ],
   "targetAssessmentCriteria": [
     "AC1",
-    "AC2",
-    "AC3",
-    "AC4"
+    "AC2"
   ],
   "metadata": {
     "created": "2026-02-19",
     "updated": "2026-02-19",
     "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "CALCULATION, SELECTION, IDENTIFICATION",
+    "taskMode": "IDENTIFICATION, SELECTION",
     "syllabusAnchors": {
       "unit": "203",
       "learningOutcome": "LO3",
       "coveredAC": [
         "AC1",
-        "AC2",
-        "AC3",
-        "AC4"
+        "AC2"
       ],
       "outOfScopeAC": [
-        "AC5",
-        "AC6"
+        "AC3",
+        "AC4"
       ]
     },
     "scope": {
-      "inScope": "Principles of Radial/Ring circuits, Identification of Conduit/Trunking/SWA, and calculation of conductor capacity using correction factors.",
-      "outOfScope": "Voltage drop calculations and spacing factors for containment (AC6).",
-      "rationale": "Students must understand how circuits are laid out and protected before learning how to size the containment pipes themselves."
+      "inScope": "Principles of Radial and Ring Final circuits; identification of wiring systems (SWA, Conduit, etc.) for various environments.",
+      "outOfScope": "Detailed calculations for voltage drop or earth fault loop impedance.",
+      "rationale": "Aligning with LO3 AC1 and AC2 which focus on descriptive principles and system identification."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Circuit types and environmental wiring systems"
     },
     "misconceptions": [
       {
-        "misconception": "A Ring Final circuit is just a Radial circuit with more sockets.",
-        "correction": "A Ring Final is a loop that returns to the consumer unit, allowing current to flow in two directions; a Radial is a single line.",
+        "misconception": "A Ring Final circuit is used because it makes electricity 'stronger'.",
+        "correction": "It is used to share the load across two paths, allowing for smaller cable sizes for a given current rating.",
         "relatedAC": "AC1"
       },
       {
-        "misconception": "You multiply the protective device rating by the correction factor to find the cable size.",
-        "correction": "You must divide the rating (In) by the factor to find the required capacity (Iz), which usually results in a larger required cable to handle heat.",
-        "relatedAC": "AC3"
+        "misconception": "Steel Wire Armoured (SWA) cable is only for aesthetics in industrial buildings.",
+        "correction": "SWA is used specifically for mechanical protection against impact and is required for burial or high-risk areas.",
+        "relatedAC": "AC2"
       }
     ]
   }
