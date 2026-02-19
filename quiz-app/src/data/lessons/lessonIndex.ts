@@ -216,6 +216,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-1B'),
     available: true,
     order: 2,
+  },
+  {
+    id: '203-2A',
+    title: 'Technical Information and Drawing Types',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Technical Information and Drawing Types',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-2A'),
+    available: true,
+    order: 3,
   },// Unit 210: Communication
   {
     id: '204-10A',

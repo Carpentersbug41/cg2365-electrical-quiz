@@ -61,11 +61,13 @@ import { communicationMethodsAndDiversityQuestions } from './communicationMethod
 import { conflictResolutionAndCommunicationImpactQuestions } from './conflictResolutionAndCommunicationImpactQuestions';
 import { statutoryAndNonStatutoryRegulationsQuestions } from './statutoryAndNonStatutoryRegulationsQuestions';
 import { implicationsOfRegulatoryNonComplianceQuestions } from './implicationsOfRegulatoryNonComplianceQuestions';
+import { technicalInformationAndDrawingTypesQuestions } from './technicalInformationAndDrawingTypesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...technicalInformationAndDrawingTypesQuestions,
   ...implicationsOfRegulatoryNonComplianceQuestions,
   ...statutoryAndNonStatutoryRegulationsQuestions,
   ...conflictResolutionAndCommunicationImpactQuestions,
@@ -185,6 +187,7 @@ export { communicationMethodsAndDiversityQuestions } from './communicationMethod
 export { conflictResolutionAndCommunicationImpactQuestions } from './conflictResolutionAndCommunicationImpactQuestions';
 export { statutoryAndNonStatutoryRegulationsQuestions } from './statutoryAndNonStatutoryRegulationsQuestions';
 export { implicationsOfRegulatoryNonComplianceQuestions } from './implicationsOfRegulatoryNonComplianceQuestions';
+export { technicalInformationAndDrawingTypesQuestions } from './technicalInformationAndDrawingTypesQuestions';
 
 /**
  * Filter questions by tags

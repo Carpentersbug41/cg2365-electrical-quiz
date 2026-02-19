@@ -69,6 +69,7 @@ import { communicationMethodsAndDiversityQuestions } from './questions/communica
 import { conflictResolutionAndCommunicationImpactQuestions } from './questions/conflictResolutionAndCommunicationImpactQuestions';
 import { statutoryAndNonStatutoryRegulationsQuestions } from './questions/statutoryAndNonStatutoryRegulationsQuestions';
 import { implicationsOfRegulatoryNonComplianceQuestions } from './questions/implicationsOfRegulatoryNonComplianceQuestions';
+import { technicalInformationAndDrawingTypesQuestions } from './questions/technicalInformationAndDrawingTypesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -131,6 +132,7 @@ export const questions: Question[] = [
   ...conflictResolutionAndCommunicationImpactQuestions,
   ...statutoryAndNonStatutoryRegulationsQuestions,
   ...implicationsOfRegulatoryNonComplianceQuestions,
+  ...technicalInformationAndDrawingTypesQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

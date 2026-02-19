@@ -1,0 +1,443 @@
+{
+  "id": "203-2A",
+  "title": "203.2A — Technical Information and Drawing Types",
+  "description": "Learn about Technical Information and Drawing Types in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Technical Information and Drawing Types",
+  "learningOutcomes": [
+    "Identify common sources of technical information used within the installation sector",
+    "Describe the purpose and function of different technical information sources",
+    "Distinguish between various types of technical drawings used in installation projects"
+  ],
+  "prerequisites": [
+    "203-1B"
+  ],
+  "blocks": [
+    {
+      "id": "203-2A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common sources of technical information used within the installation sector",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the purpose and function of different technical information sources",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between various types of technical drawings used in installation projects",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Specification",
+            "definition": "A detailed document outlining the precise materials, standards, and installation methods required for a project, not to be confused with a general description."
+          },
+          {
+            "term": "Statutory Regulation",
+            "definition": "A mandatory legal requirement that must be followed by law, different from non-statutory guidance which represents recommended best practice."
+          },
+          {
+            "term": "Site Plan",
+            "definition": "A scale drawing showing the location and orientation of a project within its surrounding environment, not to be confused with an internal floor plan."
+          },
+          {
+            "term": "Layout Drawing",
+            "definition": "A diagram showing the physical position and spacing of equipment and components within a structure, different from a circuit diagram which shows logical connections."
+          },
+          {
+            "term": "Circuit Diagram",
+            "definition": "A graphical representation using standardized symbols to show how components in a system are interconnected, not to be confused with the physical routing of cables."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Technical Information and Drawing Types Diagram",
+        "description": "Visual representation of Technical Information and Drawing Types",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "site-plan-boundary",
+          "layout-equipment-position",
+          "circuit-logical-symbol",
+          "specification-detail-callout"
+        ],
+        "placeholderText": "A comparison graphic showing three distinct panels. Panel 1: A Site Plan showing a building footprint within a boundary line (site-plan-boundary). Panel 2: A Layout Drawing zoomed into a room showing a piece of equipment at a specific measurement from a wall (layout-equipment-position). Panel 3: A Circuit Diagram showing three components connected by lines representing logic, using standard symbols (circuit-logical-symbol). A floating text box (specification-detail-callout) points to the equipment in the layout, listing its material and standard requirements."
+      }
+    },
+    {
+      "id": "203-2A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Sources of Technical Information",
+        "content": "### In this lesson\nYou will learn how to identify and use the primary sources of technical information required for an installation project. This knowledge is applied during the planning and execution phases to ensure work meets legal and client standards. \n\n*   Differentiating between mandatory laws and project-specific instructions.\n*   Understanding the role of manufacturer data in equipment selection.\n*   Recognizing when to consult a specification versus a regulation.\n\n**What this is**\nTechnical information consists of documents and data that guide how a project is designed, installed, and maintained. A **Specification** is a detailed document outlining the precise materials, standards, and installation methods required for a project. It acts as the \"rulebook\" for a specific job. In contrast, a **Statutory Regulation** is a mandatory legal requirement that must be followed by law. While a specification tells you what the client wants, a regulation tells you what the law demands. Additionally, manufacturer data provides specific performance limits and installation instructions for individual components.\n\nTo visualize this, imagine building a custom bicycle. The **Statutory Regulation** is the law that says the bike must have working brakes and reflectors to be on the road. The **Specification** is the list from the customer stating they want a carbon-fiber frame, blue paint, and 21 gears. One is about legal safety, the other is about the specific project requirements.\n\n**Why it matters**\nUsing the correct technical information ensures that an installation is safe, legal, and functional. Failure to follow a **Statutory Regulation** can lead to legal prosecution or unsafe conditions. Failure to follow a **Specification** might result in a breach of contract or an installation that does not meet the client’s operational needs. Accessing these sources allows installers to verify that the materials and methods used are appropriate for the environment (AC 203.LO2.AC2.1).\n\n**Key facts / rules**\n*   **Statutory Regulations** are non-negotiable and legally binding.\n*   Non-statutory guidance (like Codes of Practice) represents recommended best practice but is not law itself.\n*   A **Specification** often exceeds the minimum requirements of a regulation but can never legally fall below them.\n*   Manufacturer instructions must be followed to maintain warranties and ensure equipment operates within design parameters.\n*   Always verify you are using the most current edition or version of any technical document.\n\n**When to choose it**\nChoose a **Statutory Regulation** when you need to confirm the minimum legal safety distances or protection levels required for an installation. Choose a **Specification** when you need to identify the exact grade of material or the specific brand of components the client has paid for. If you are unsure of the maximum operating temperature or the mounting torque for a specific device, you must refer to the manufacturer’s technical data sheet. \n\nIn a scenario where a project requires a cable to be buried, the **Statutory Regulation** might state it must be deep enough to avoid damage, while the **Specification** might demand a specific depth of 600mm for that particular site. The installer must adhere to the more specific requirement in the specification as long as it meets the legal minimum.\n\n**Common mistakes**\nLearners often confuse a **Specification** with a general description; a **Specification** is a precise technical document outlining exact materials and methods, whereas a general description is an informal summary. \n\nMisconceptions (targeted):\n*   Misconception: All technical guidance is legally mandatory. | Correction: Only a **Statutory Regulation** is mandatory by law; other guidance may be best practice unless cited in a contract. | AC: AC2.1\n*   Misconception: Manufacturer instructions are just suggestions. | Correction: Following manufacturer data is often a requirement for both warranty validity and regulatory compliance. | AC: AC2.2\n\n**Key Points**\n*   Regulations are the law; specifications are project-specific instructions.\n*   Manufacturer data provides the physical and operational limits of equipment.\n*   Always check for the most recent version of any document.\n*   Specifications define the quality and type of materials to be used.\n\n**Quick recap**\nInstallers rely on various sources of information to complete work correctly. **Statutory Regulations** provide the legal safety framework, while a **Specification** provides the detailed project requirements. Manufacturer data fills in the gaps for specific equipment handling. Together, these sources ensure the installation is safe, compliant, and meets the client's expectations.\n\n### Coming Up Next\nNow that we understand the text-based sources of information, we will look at how this information is translated into visual formats through technical drawings."
+      }
+    },
+    {
+      "id": "203-2A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Sources of Technical Information",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2A-C1-L1-A",
+            "questionText": "What is the legal status of Statutory Regulations in a technical project?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "non-negotiable and legally binding",
+              "legally binding",
+              "non-negotiable",
+              "mandatory"
+            ],
+            "hint": "Think about whether these rules can be ignored or changed."
+          },
+          {
+            "id": "203-2A-C1-L1-B",
+            "questionText": "Which document outlines the precise materials, standards, and installation methods for a specific project?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Specification",
+              "A specification",
+              "Project specification"
+            ],
+            "hint": "This document acts as the rulebook for a specific job."
+          },
+          {
+            "id": "203-2A-C1-L1-C",
+            "questionText": "What is the rule regarding how a specification's requirements compare to a regulation's minimums?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "never legally fall below them",
+              "cannot fall below them",
+              "never below them"
+            ],
+            "hint": "Consider if a client's request can override a law."
+          },
+          {
+            "id": "203-2A-C1-L2",
+            "questionText": "Using your answers to Q1 (legal status), Q2 (specification purpose), and Q3 (minimum requirements), explain how these sources work together to guide an installation. Why must the installer check both documents before starting work?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Regulations provide the mandatory legal safety framework that cannot be ignored",
+              "Specifications define the specific materials and quality standards requested for that project",
+              "The specification must be checked against the regulation to ensure it does not fall below the legal minimum",
+              "Why: To ensure the installation is both legally compliant and meets the specific contract requirements"
+            ],
+            "expectedAnswer": [
+              "An installer must check both because the regulations provide the non-negotiable legal safety rules, while the specification provides the precise project details. Because a specification can never legally fall below the regulations, checking both ensures the work meets the client's needs without breaking the law.",
+              "The regulations are the legally binding baseline, but the specification provides the specific materials for the job. Why this matters is that the specification often sets higher standards, but it must never fall below the legal minimums defined by the regulations."
+            ],
+            "hint": "Consider how the legal baseline and the project-specific details must align."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Technical Drawing Types",
+        "content": "### In this lesson\nYou will learn to distinguish between the various types of drawings used in technical projects. Understanding these formats allows you to locate where a project is, where the equipment goes, and how it is logically connected.\n\n*   Identifying the scale and scope of site plans versus layout drawings.\n*   Recognizing the logical flow of a circuit diagram.\n*   Understanding how different drawings provide different layers of project information.\n\n**What this is**\nTechnical drawings are visual tools used to communicate complex information. A **Site Plan** is a scale drawing showing the location and orientation of a project within its surrounding environment, such as its position relative to roads or other buildings. A **Layout Drawing** is a diagram showing the physical position and spacing of equipment and components within a structure. Finally, a **Circuit Diagram** is a graphical representation using standardized symbols to show how components in a system are interconnected logically.\n\nThink of it like a smartphone map app. The **Site Plan** is the high-level view showing the building on the street. The **Layout Drawing** is the floor-plan view showing where the rooms and furniture are. The **Circuit Diagram** is like the internal wiring schematic of the phone itself—it doesn't show where the parts are physically located, but how the electricity flows between them.\n\n**Why it matters**\nUsing the wrong drawing can lead to significant errors. If an installer uses a **Circuit Diagram** to try and find where to bolt a motor to the floor, they will fail because that drawing only shows electrical connections, not physical locations. Conversely, using a **Site Plan** to wire a control panel would be impossible because it lacks the necessary detail of the internal connections. Each drawing type serves a specific function in the installation process (AC 203.LO2.AC2.2).\n\n**Key facts / rules**\n*   **Site Plans** use large scales (e.g., 1:500) to show boundaries and access points.\n*   **Layout Drawings** use smaller scales (e.g., 1:50 or 1:100) to show exact equipment coordinates.\n*   **Circuit Diagrams** are often not to scale; they prioritize clarity of connection over physical distance.\n*   Standardized symbols are used across all drawing types to ensure universal understanding.\n*   Drawings should always be checked against the \"Key\" or \"Legend\" to confirm symbol meanings.\n\n**How to recognise it**\nTo identify a **Site Plan**, look for external features like North arrows, neighboring buildings, and site boundaries. You can recognise a **Layout Drawing** by the presence of structural details like walls, doors, and the physical footprints of machinery. A **Circuit Diagram** is easily spotted because it consists of abstract symbols (like circles, squares, or zig-zags) connected by straight lines, representing a logical path rather than a physical one.\n\nIn a micro-scenario, if a technician is handed a drawing with a scale of 1:20 showing the exact distance between two light fixtures and the wall, they are looking at a **Layout Drawing**. If they are handed a drawing with no scale that shows a battery symbol connected to a switch and a lamp symbol, they are looking at a **Circuit Diagram**.\n\n**Common mistakes**\nLearners often confuse a **Layout Drawing** with a **Circuit Diagram**; a **Layout Drawing** shows physical positions whereas a **Circuit Diagram** shows logical connections. \n\nMisconceptions (targeted):\n*   Misconception: Circuit diagrams show exactly where the wires are run in a building. | Correction: A **Circuit Diagram** shows electrical logic; a **Layout Drawing** or wiring schedule is needed for physical routing. | AC: AC2.2\n*   Misconception: A site plan and a floor plan are the same thing. | Correction: A **Site Plan** shows the building's exterior context, while a floor plan (a type of layout drawing) shows the interior. | AC: AC2.2\n\n**Key Points**\n*   **Site Plans** orient the project in the real world.\n*   **Layout Drawings** provide the physical coordinates for installation.\n*   **Circuit Diagrams** explain how the system functions logically.\n*   Each drawing type uses specific scales and symbol sets.\n\n**Quick recap**\nTechnical drawings provide the visual instructions for a project. **Site Plans** show where the building is, **Layout Drawings** show where the equipment goes inside, and **Circuit Diagrams** show how that equipment is logically linked. Mastering the identification of these drawings is essential for any technical installer to ensure work is placed and connected accurately.\n\n### Coming Up Next\nWe have covered how to identify information and drawings. Next, we will explore the standard symbols and notations used within these documents to ensure you can interpret them accurately."
+      }
+    },
+    {
+      "id": "203-2A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Technical Drawing Types",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2A-C2-L1-A",
+            "questionText": "Which type of scale drawing shows the location and orientation of a project within its environment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Site Plan",
+              "A site plan",
+              "Site plans"
+            ],
+            "hint": "This drawing orientates the project relative to roads or other buildings."
+          },
+          {
+            "id": "203-2A-C2-L1-B",
+            "questionText": "What type of diagram shows the physical position and spacing of equipment within a structure?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Layout Drawing",
+              "A layout drawing",
+              "Layout diagrams"
+            ],
+            "hint": "This drawing uses small scales to show exact coordinates for equipment."
+          },
+          {
+            "id": "203-2A-C2-L1-C",
+            "questionText": "According to the text, what must be used instead of a circuit diagram to identify physical routing?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Layout Drawing or wiring schedule",
+              "Layout Drawing",
+              "Wiring schedule"
+            ],
+            "hint": "A circuit diagram only shows logic, not physical paths."
+          },
+          {
+            "id": "203-2A-C2-L2",
+            "questionText": "Using your answers to Q1 (site plans), Q2 (layout drawings), and Q3 (routing information), explain how these drawings differ in purpose. How do we know which drawing to select when planning the physical path of a cable?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Site plans locate the building in the environment whereas layout drawings locate equipment inside it",
+              "Circuit diagrams show logical connections but lack physical routing details",
+              "Layout drawings or wiring schedules must be selected for physical paths because they show spacing and coordinates",
+              "How-we-know: We select based on whether we need external context, internal physical coordinates, or just logical flow"
+            ],
+            "expectedAnswer": [
+              "We know to select a layout drawing for physical paths because, unlike a circuit diagram which only shows logic, the layout drawing shows physical position and spacing. Site plans provide the wider context of the building, but the layout drawing is required to find the coordinates for installation inside the structure.",
+              "Site plans show where the project is, layout drawings show where the equipment is physically located, and circuit diagrams show the logic. We choose the layout drawing for physical routing because the text states circuit diagrams do not show where wires are actually run."
+            ],
+            "hint": "Connect the high-level location, the internal placement, and the difference between logic and physical paths."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-2A-P1",
+            "questionText": "A project requires a specific grade of high-durability material to be used for an installation. Which document acts as the 'rulebook' for these specific project-level requirements?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "specification",
+              "a specification",
+              "the specification"
+            ],
+            "hint": "This document outlines the precise materials and standards chosen for a particular job."
+          },
+          {
+            "id": "203-2A-P2",
+            "questionText": "A site plan is typically drawn at a scale of 1:500, while a layout drawing is often drawn at 1:50. How many times larger is the scale of the layout drawing compared to the site plan?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "10"
+            ],
+            "hint": "Divide the larger ratio number by the smaller ratio number to find the difference in scale."
+          },
+          {
+            "id": "203-2A-P3",
+            "questionText": "What must be true if a technical drawing represents components as abstract symbols connected by straight lines rather than showing their physical dimensions or exact room positions?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it is a circuit diagram",
+              "circuit diagram",
+              "a circuit diagram"
+            ],
+            "hint": "This type of drawing focuses on the logical flow of a system rather than physical coordinates."
+          },
+          {
+            "id": "203-2A-P4",
+            "questionText": "A technician is installing a high-pressure valve and needs to know the maximum operating temperature and the specific mounting torque required to maintain the warranty. Which source of information must they consult?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "manufacturer data",
+              "manufacturer instructions",
+              "technical data sheet",
+              "manufacturers data"
+            ],
+            "hint": "This source provides the specific physical and operational limits for individual components."
+          },
+          {
+            "id": "203-2A-P5",
+            "questionText": "Why is a statutory regulation considered the highest priority source of information even if a client's specification suggests a different approach?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it is the law",
+              "it is mandatory",
+              "legal requirement",
+              "legally binding"
+            ],
+            "hint": "Think about the legal status of these documents compared to project-specific instructions."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2A-INT-1",
+            "questionText": "Explain the relationship between manufacturer data and layout drawings during the installation phase. In your answer, include: (1) the purpose of manufacturer data, (2) the function of a layout drawing, (3) how these two sources are cross-referenced to ensure compliance. Why does this relationship hold? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies manufacturer data as providing specific technical tolerances and component requirements.",
+              "Identifies layout drawings as defining physical positioning and spatial constraints.",
+              "Explains that manufacturer data informs the specific mounting or clearance requirements within the layout.",
+              "Argues that drawings alone lack the performance-specific data required for safe operation.",
+              "Uses reasoning to show that cross-referencing ensures the physical install meets technical performance standards."
+            ],
+            "expectedAnswer": [
+              "Manufacturer data provides specific technical requirements like clearances and tolerances, while a layout drawing shows the physical location of equipment within a space. This relationship holds because the layout drawing provides the 'where' of the installation, but the manufacturer data provides the 'how' regarding specific component constraints, ensuring the installation is both accurately placed and technically compliant.",
+              "Layout drawings provide the scale and physical arrangement of a system, whereas manufacturer data details the specific operational limits of the equipment being installed. We know this relationship is essential because an installer must use manufacturer data to verify that the physical space allocated in the layout drawing provides enough ventilation or access for the specific equipment selected."
+            ],
+            "hint": "Consider how the physical dimensions in a drawing must accommodate the specific technical needs of the equipment being installed."
+          },
+          {
+            "id": "203-2A-INT-2",
+            "questionText": "Evaluate how different technical information sources and drawing types are combined to create a complete project plan. In your answer, include: (1) the role of mandatory regulations versus project specifications, (2) the distinction between site plans and layout drawings, (3) the function of circuit diagrams in showing logical flow, (4) how these elements must align to ensure a safe and accurate installation. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Distinguishes between mandatory legal requirements and project-specific client instructions.",
+              "Explains site plans as the broad geographical context or external location.",
+              "Defines layout drawings as the internal arrangement of components within a structure.",
+              "Describes circuit/system diagrams as the logical functional path of the installation.",
+              "Synthesizes how regulations set the safety baseline while specifications define the scope.",
+              "Integrates how drawings translate written technical data into visual instructions.",
+              "Explains that misalignment between these sources leads to safety or functional failure.",
+              "Highlights the necessity of cross-referencing all sources for project accuracy."
+            ],
+            "expectedAnswer": [
+              "A project plan integrates mandatory regulations for safety and project specifications for performance, which are then visualized through site plans for location and layout drawings for component placement. These are supported by circuit diagrams that define the logical flow of the system. For a safe and accurate installation, the physical layout must accommodate the logical connections while adhering to the legal standards and client requirements defined in the written documentation.",
+              "• Mandatory regulations and project specifications define the legal and functional requirements of the work.\n• Site plans and layout drawings provide the external and internal physical context for the installation.\n• Circuit diagrams ensure the logical connectivity and functional flow of components are understood.\n• All elements must align so that the physical installation matches the logical design and meets all safety and client standards."
+            ],
+            "hint": "Think about how written rules (regulations/specs) are transformed into visual guides (plans/diagrams) to guide the physical work."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-2A-SR-1",
+            "questionText": "What term is used to describe a visual representation or plan used to communicate how something should be built or arranged?",
+            "expectedAnswer": [
+              "drawing",
+              "technical drawing",
+              "diagram"
+            ],
+            "hint": "This is a visual source of information mentioned in the lesson title.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-2A-SR-2",
+            "questionText": "What word describes the process or activity of setting up and fixing equipment or systems into their required positions?",
+            "expectedAnswer": [
+              "installation",
+              "installing",
+              "install"
+            ],
+            "hint": "This term defines the sector and types of projects covered in this lesson.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-2A-SR-3",
+            "questionText": "In a work environment, what term is used to describe a planned piece of work or a specific task that has a start and an end?",
+            "expectedAnswer": [
+              "project",
+              "installation project",
+              "job"
+            ],
+            "hint": "The learning outcomes refer to these when discussing where drawings are used.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Technical Information and Drawing Types"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-19",
+    "updated": "2026-02-19",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "The identification and intended purpose of technical documentation and standard drawing formats.",
+      "outOfScope": "The creation of technical drawings or the detailed interpretation of specific regulatory clauses.",
+      "rationale": "Level 2 learners must first recognize and understand the utility of documentation before applying it to practical installation tasks."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on purpose of sources and identification of drawing types only"
+    },
+    "misconceptions": [
+      {
+        "misconception": "All technical guidance is legally mandatory.",
+        "correction": "Only a Statutory Regulation is mandatory by law; other guidance may be best practice unless cited in a contract.",
+        "relatedAC": "203.LO2.AC2.1"
+      },
+      {
+        "misconception": "Circuit diagrams show exactly where the wires are run in a building.",
+        "correction": "A Circuit Diagram shows electrical logic; a Layout Drawing or wiring schedule is needed for physical routing.",
+        "relatedAC": "203.LO2.AC2.2"
+      }
+    ]
+  }
+}
