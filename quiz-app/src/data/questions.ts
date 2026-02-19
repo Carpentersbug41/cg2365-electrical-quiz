@@ -70,6 +70,7 @@ import { conflictResolutionAndCommunicationImpactQuestions } from './questions/c
 import { statutoryAndNonStatutoryRegulationsQuestions } from './questions/statutoryAndNonStatutoryRegulationsQuestions';
 import { implicationsOfRegulatoryNonComplianceQuestions } from './questions/implicationsOfRegulatoryNonComplianceQuestions';
 import { technicalInformationAndDrawingTypesQuestions } from './questions/technicalInformationAndDrawingTypesQuestions';
+import { symbolsAndScalingInDrawingsQuestions } from './questions/symbolsAndScalingInDrawingsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -133,6 +134,7 @@ export const questions: Question[] = [
   ...statutoryAndNonStatutoryRegulationsQuestions,
   ...implicationsOfRegulatoryNonComplianceQuestions,
   ...technicalInformationAndDrawingTypesQuestions,
+  ...symbolsAndScalingInDrawingsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

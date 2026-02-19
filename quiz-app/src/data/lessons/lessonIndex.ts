@@ -227,6 +227,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-2A'),
     available: true,
     order: 3,
+  },
+  {
+    id: '203-2B',
+    title: 'Symbols and Scaling in Drawings',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Symbols and Scaling in Drawings',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-2B'),
+    available: true,
+    order: 4,
   },// Unit 210: Communication
   {
     id: '204-10A',
