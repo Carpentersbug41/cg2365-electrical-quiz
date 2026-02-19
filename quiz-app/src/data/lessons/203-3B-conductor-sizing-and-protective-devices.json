@@ -1,15 +1,14 @@
 {
   "id": "203-3B",
-  "title": "203.3B — Conductor Sizing and Protective Devices",
-  "description": "Learn to select wiring systems, understand circuit types, and calculate conductor capacity based on environmental factors.",
+  "title": "203.3B — Wiring Systems, Circuit Types, and Conductor Sizing",
+  "description": "Learn to identify wiring systems, understand circuit principles (Radial and Ring), and calculate conductor current-carrying capacity.",
   "layout": "linear-flow",
   "unit": "Unit 203",
-  "topic": "Conductor Sizing and Protective Devices",
+  "topic": "Wiring Systems and Conductor Sizing",
   "learningOutcomes": [
-    "Describe the principles of operation for radial and ring circuit types.",
-    "Identify appropriate wiring systems (Conduit, SWA, Trunking) for different environments.",
-    "Identify common circuit protective devices and their standard ratings.",
-    "Determine the minimum current-carrying capacity ($I_t$) of conductors using correction factors."
+    "Describe the principles of operation for radial and ring final circuits.",
+    "Identify suitable wiring systems (Conduit, Trunking, SWA) for different environments.",
+    "Calculate the minimum current-carrying capacity (Iz) for conductors based on protective device ratings and correction factors."
   ],
   "prerequisites": [
     "203-3A"
@@ -22,19 +21,19 @@
       "content": {
         "outcomes": [
           {
-            "text": "Describe the operation of radial and ring circuit types (AC1).",
+            "text": "Describe principles of operation of radial and ring final circuits (AC1).",
             "bloomLevel": "understand"
           },
           {
-            "text": "Select wiring systems like SWA or Conduit for specific environments (AC2).",
+            "text": "Identify wiring systems like conduit, trunking, and SWA for specific environments (AC2).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Determine minimum current-carrying capacity (Iz) using correction factors (AC3).",
             "bloomLevel": "apply"
           },
           {
-            "text": "Calculate minimum conductor capacity ($I_t$) using environmental correction factors (AC3).",
-            "bloomLevel": "apply"
-          },
-          {
-            "text": "State the applications and standard ratings of protective devices (AC4).",
+            "text": "State applications for protective devices like MCBs and fuses (AC4).",
             "bloomLevel": "remember"
           }
         ]
@@ -47,28 +46,28 @@
       "content": {
         "terms": [
           {
-            "term": "$I_b$ (Design Current)",
-            "definition": "The total current expected in a circuit during normal use. Think of this as the 'actual load' of the appliances."
-          },
-          {
-            "term": "$I_n$ (Nominal Rating)",
-            "definition": "The rated current of a protective device (fuse or breaker). Standard sizes include 6A, 10A, 16A, 20A, and 32A."
-          },
-          {
-            "term": "$I_t$ (Tabulated Capacity)",
-            "definition": "The value we look up in a table to pick a cable size. It is the capacity required after accounting for heat factors."
-          },
-          {
             "term": "Radial Circuit",
-            "definition": "A circuit that runs in a single line from the consumer unit to the last point, like a dead-end road."
+            "definition": "A circuit where the cable runs from the consumer unit to each point in a single line, like a dead-end street."
           },
           {
             "term": "Ring Final Circuit",
-            "definition": "A circuit that forms a complete loop, starting and ending at the consumer unit. This allows current to flow in two directions."
+            "definition": "A circuit where the cable forms a complete loop, starting and ending at the consumer unit, allowing current to flow in two directions."
           },
           {
-            "term": "Correction Factor ($C_f$)",
-            "definition": "A decimal (like 0.8) used to 'penalise' a cable's capacity because of heat-trapping conditions like high temperature ($C_a$) or grouping ($C_g$)."
+            "term": "Conduit",
+            "definition": "A tube (plastic or metal) used to protect and route individual cables, often used where mechanical protection is needed on walls."
+          },
+          {
+            "term": "SWA (Steel Wire Armoured)",
+            "definition": "A cable with a layer of steel wire for heavy-duty mechanical protection, suitable for burial or outdoor use."
+          },
+          {
+            "term": "Design Current (Ib)",
+            "definition": "The maximum current expected to flow through a circuit during normal operation."
+          },
+          {
+            "term": "Nominal Rating (In)",
+            "definition": "The labeled current rating of a protective device (e.g., a 32A MCB)."
           }
         ]
       }
@@ -78,16 +77,17 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "Heat Dissipation and Circuit Types",
-        "description": "A visual comparison of how environment affects cable heat and how circuit paths differ.",
+        "title": "Circuit Types and Wiring Containment",
+        "description": "Visual comparison of Radial vs Ring circuits and common containment systems.",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
-          "radial-vs-ring",
-          "heat-trapping-insulation",
-          "open-air-cooling"
+          "radial-path",
+          "ring-loop",
+          "conduit-protection",
+          "swa-armour"
         ],
-        "placeholderText": "The diagram shows two panels. Panel A: A 'Radial' circuit (one line to loads) and a 'Ring' circuit (a continuous loop). Panel B: A cable in 'Open Air' with heat waves moving away freely, contrasted with a cable 'Enclosed in Insulation' where heat waves are bounced back, showing why 'Correction Factors' are needed to prevent melting."
+        "placeholderText": "A diagram showing two circuit layouts. On the left: A 'Radial Circuit' showing a single line from a consumer unit to three sockets. On the right: A 'Ring Final Circuit' showing a loop starting at the consumer unit, visiting three sockets, and returning to the unit. Below these are cross-sections of 'Conduit' (a pipe with wires inside) and 'SWA' (a cable with a ring of steel wires under the outer sheath)."
       }
     },
     {
@@ -95,8 +95,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Circuit Types and Protective Devices",
-        "content": "### Circuit Types (AC1)\nEvery installation uses specific circuit layouts depending on the load:\n*   **Radial Circuits:** These run from the source to the points of use and stop. They are simple and used for most lighting and heavy fixed appliances (like a cooker).\n*   **Ring Final Circuits:** These form a loop. Because the current has two paths to travel, you can use thinner conductors for the same total load. These are unique to UK-style socket outlets.\n\n### Protective Devices (AC4)\nProtective devices like **MCBs (Miniature Circuit Breakers)** and **Fuses** protect the cable from **Overcurrent** (heat damage). \n\n**Standard Ratings ($I_n$):** To prevent the device from tripping during normal use, the rating ($I_n$) must be equal to or greater than the load ($I_b$). Standard commercial ratings you will often select from include: **6A, 10A, 16A, 20A, 25A, 32A, and 40A.**\n\n**The Golden Rule:** $I_n \\ge I_b$. \n*Example:* If your load ($I_b$) is 14A, you cannot use a 10A breaker (it would trip). You would select the next standard size: **16A**.\n\n### Why it matters\nIf you use a radial circuit for a high-power area without the right protection, the cable could melt before the fuse blows. The device must be the 'weak link' that breaks first to save the building from fire."
+        "title": "Circuit Principles and Protective Devices",
+        "content": "### Circuit Types (AC1)\nThere are two main ways we wire power circuits:\n*   **Radial Circuits:** The cable leaves the consumer unit and goes to the first point, then the second, and ends at the last point. It is simple but the voltage drops more at the far end.\n*   **Ring Final Circuits:** The cable leaves the consumer unit, visits every socket, and **returns** to the same terminal in the consumer unit. This creates a loop. \n*   **Concrete Anchor:** Think of a Radial circuit like a dead-end road; a Ring Final is like a circular race track where cars (current) can go both ways to reach a destination.\n\n### Protective Devices (AC4)\nTo keep these circuits safe, we use protective devices to act as the 'weak link' that breaks the circuit if there is too much current.\n*   **MCB (Miniature Circuit Breaker):** An electromechanical switch that 'trips' (flips off) when it detects an overload or a short circuit. It can be reset.\n*   **Fuse:** A sacrificial wire that melts when too much current flows. Once it 'blows,' it must be replaced.\n*   **Application:** MCBs are standard in modern consumer units for easy resetting. Fuses are often found in plugs or older industrial switchgear.\n\n### The Golden Rule\nThe **Nominal Rating (In)** of the device must be equal to or greater than the **Design Current (Ib)** of the load. If you have a 13A load, you cannot use a 10A fuse; it would blow immediately. You would use a 15A or 16A device instead."
       }
     },
     {
@@ -104,61 +104,61 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check: Circuits and Devices",
+        "title": "Check Your Understanding: Circuits and Protection",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-3B-C1-L1-A",
-            "questionText": "Which circuit type forms a complete loop back to the consumer unit?",
+            "questionText": "In which circuit type does the cable return to the consumer unit to form a complete loop?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "ring final",
-              "ring circuit",
-              "ring"
+              "Ring Final",
+              "Ring Final Circuit",
+              "Ring"
             ],
-            "hint": "Think of a circular shape."
+            "hint": "Think of the circuit that allows current to flow in two directions through a loop."
           },
           {
             "id": "203-3B-C1-L1-B",
-            "questionText": "If a circuit has a Design Current (Ib) of 22A, what is the next standard protective device rating (In) to use?",
+            "questionText": "What is the primary advantage of an MCB over a fuse after it has operated?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "25A",
-              "25",
-              "25 Amps"
+              "it can be reset",
+              "can be reset",
+              "resettable",
+              "does not need replacement"
             ],
-            "hint": "Look at the list of standard ratings: 6, 10, 16, 20, 25, 32..."
+            "hint": "Fuses melt and are destroyed; what happens to an MCB switch?"
           },
           {
             "id": "203-3B-C1-L1-C",
-            "questionText": "What is the primary purpose of a circuit protective device?",
+            "questionText": "If a circuit has a Design Current (Ib) of 24A, what is the minimum standard Nominal Rating (In) for the protective device (choose from 16A, 20A, 32A)?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "protect the cable",
-              "prevent fire",
-              "overcurrent protection",
-              "protect conductors"
+              "32A",
+              "32",
+              "32 Amps"
             ],
-            "hint": "It stops the cable from getting too hot during a fault."
+            "hint": "The rating (In) must be equal to or greater than the design current (Ib)."
           },
           {
             "id": "203-3B-C1-L2",
-            "questionText": "Explain why a Ring Final circuit allows for thinner cables compared to a Radial circuit with the same total load.",
+            "questionText": "Explain why a Ring Final circuit uses less copper (smaller cable) than a Radial circuit to supply the same total load of sockets.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Current splits into two paths",
-              "Each side of the loop carries only part of the load",
-              "Total current capacity is effectively doubled for the same wire size"
+              "Current is split between two paths in a ring",
+              "Each path carries only part of the total load",
+              "Smaller conductors can be used because the current is shared"
             ],
             "expectedAnswer": [
-              "In a ring circuit, the current can travel in two directions around the loop. This means the load is shared across two paths, allowing the conductors to be thinner because neither path carries the full current."
+              "In a ring final circuit, the current has two paths to reach the sockets because it is a loop. This means the total current is shared between the two sides of the ring, allowing us to use a smaller cable than a radial circuit where all the current must flow through a single path."
             ],
-            "hint": "Think about current flow paths."
+            "hint": "Think about how the 'loop' layout affects how much current flows through any single part of the wire."
           }
         ]
       }
@@ -168,8 +168,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Wiring Systems and Conductor Capacity",
-        "content": "### Wiring Systems for Environments (AC2)\nYou must choose a wiring system that survives its environment:\n*   **PVC/PVC (Twin & Earth):** Standard for dry, protected domestic walls.\n*   **Conduit (PVC or Steel):** Used where cables need to be 'rewirable' or protected from light impact (e.g., offices).\n*   **SWA (Steel Wire Armoured):** Used for underground or outdoor areas where cables might be crushed or hit by tools.\n\n### Factors Affecting Capacity (AC3)\nA cable's **Current-Carrying Capacity** is limited by heat. If heat can't escape, we must 'de-rate' the cable (act as if it's smaller than it is).\n\n**The Factors:**\n1.  **Reference Method:** How is it fixed? (e.g., Method C is 'clipped to a wall'; Method A is 'in a pipe in an insulated wall').\n2.  **$C_a$ (Ambient Temp):** If the room is hot (e.g., 40°C), the cable can't cool down easily.\n3.  **$C_g$ (Grouping):** If many cables are bundled together, they heat each other up.\n\n**The Calculation:**\nTo find the capacity we need to look up in a table ($I_t$), we divide the device rating ($I_n$) by the correction factors.\n\n**Formula:** $I_t \\ge \\frac{I_n}{C_a \\times C_g}$\n\n*Example:* A 20A breaker ($I_n$) is in a hot room where the factor is 0.5. \nCalculation: $20 / 0.5 = 40A$. \nYou must pick a cable that is rated for **40A** in that environment, even though the load is only 20A!"
+        "title": "Wiring Systems and Conductor Sizing",
+        "content": "### Wiring Systems (AC2)\nWe choose the 'container' for the wires based on the environment:\n*   **Conduit:** Plastic (PVC) or Metal pipes. Used in workshops or offices where cables need protection from being hit but might need to be changed later.\n*   **Trunking:** Square or rectangular housing with a removable lid. Best for carrying many circuits at once in commercial buildings.\n*   **SWA (Steel Wire Armoured):** A heavy-duty cable with built-in steel protection. Used for underground runs or outdoors where it might be hit by a spade or crushed.\n\n### Conductor Sizing (AC3)\n**Current-Carrying Capacity (Iz)** is the maximum current a cable can handle before its insulation melts. This capacity changes based on the environment. We use **Correction Factors (CF)** to adjust the rating.\n\n**The Calculation Formula:**\nTo find the minimum required capacity (**Iz**), we take the protective device rating (**In**) and divide it by the correction factors:\n**Iz ≥ In / (Factors)**\n\n**Common Factors:**\n*   **Ca (Ambient Temperature):** If the room is hot, the cable can't shed heat easily.\n*   **Cg (Grouping):** If many cables are bunched together, they heat each other up.\n*   **Ci (Thermal Insulation):** If a cable is buried in loft insulation, the heat is trapped.\n\n**Micro-scenario:** If you put a heater (cable) under a thick duvet (insulation), it gets much hotter. We must use a larger cable to compensate for that trapped heat."
       }
     },
     {
@@ -177,13 +177,13 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check: Systems and Sizing",
+        "title": "Check Your Understanding: Systems and Sizing",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-3B-C2-L1-A",
-            "questionText": "Which wiring system provides the most mechanical protection for burial underground?",
+            "questionText": "Which wiring system is most suitable for a cable being buried directly in the ground to supply an outdoor shed?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
@@ -191,45 +191,48 @@
               "Steel Wire Armoured",
               "Armoured cable"
             ],
-            "hint": "It has a layer of steel wires for protection."
+            "hint": "Which system has built-in steel protection for heavy-duty use?"
           },
           {
             "id": "203-3B-C2-L1-B",
-            "questionText": "What does the symbol 'Ca' represent in conductor sizing?",
+            "questionText": "What happens to a cable's current-carrying capacity if it is surrounded by thermal insulation in a loft?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "Ambient temperature",
-              "temperature factor",
-              "ambient temp"
+              "It decreases",
+              "Reduces",
+              "Lowered",
+              "It goes down"
             ],
-            "hint": "It relates to the heat of the surrounding air."
+            "hint": "Does insulation help heat escape or does it trap it?"
           },
           {
             "id": "203-3B-C2-L1-C",
-            "questionText": "When calculating required capacity (It), do you multiply or divide the device rating by the correction factor?",
+            "questionText": "In the formula Iz ≥ In / Factors, what does 'In' represent?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "divide",
-              "division"
+              "Nominal rating of the protective device",
+              "Protective device rating",
+              "Device rating",
+              "Rating of the fuse or MCB"
             ],
-            "hint": "Dividing by a decimal smaller than 1 makes the result larger."
+            "hint": "This is the labeled capacity of the safety device you selected."
           },
           {
             "id": "203-3B-C2-L2",
-            "questionText": "A cable is moved from an open wall (clipped direct) into a conduit buried in a thick insulated wall. Explain what happens to its current-carrying capacity and why.",
+            "questionText": "A technician calculates Iz by multiplying the device rating by the correction factor (e.g., 32A * 0.5 = 16A). Explain why this is a dangerous mistake.",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Capacity decreases",
-              "Thermal insulation traps heat",
-              "Reference method changes to one with worse dissipation"
+              "Multiplying results in a smaller required capacity",
+              "Correction factors are usually less than 1.0",
+              "We must divide to find a larger required capacity to handle heat"
             ],
             "expectedAnswer": [
-              "The current-carrying capacity decreases. This is because the insulation in the wall traps the heat generated by the cable, preventing it from cooling down. As a result, the cable cannot safely carry as much current as it could when it was in open air."
+              "Correction factors are usually less than 1.0 (like 0.5). If you multiply, the resulting Iz becomes smaller than the device rating, which is incorrect. You must divide so that the required capacity (Iz) increases. This ensures the cable is large enough to handle the heat trapped by the environment without melting."
             ],
-            "hint": "Think about heat escape."
+            "hint": "If a cable is in a hot environment, do you need a thinner wire or a thicker wire to stay safe?"
           }
         ]
       }
@@ -239,39 +242,32 @@
       "type": "worked-example",
       "order": 6,
       "content": {
-        "title": "Worked Example: Selecting a Target Capacity",
-        "given": "A radial circuit has a Design Current ($I_b$) of 27A. We are using a 32A MCB ($I_n$). The cable runs through a ceiling with a grouping factor ($C_g$) of 0.8.",
+        "title": "Worked Example: Sizing a Cable in Conduit",
+        "given": "A circuit for a small heater has a Design Current (Ib) of 14A. It is protected by a 16A MCB (In). The cable is installed in a plastic conduit through a hot boiler room, giving a Correction Factor (Ca) of 0.7.",
         "steps": [
           {
             "stepNumber": 1,
-            "description": "Identify the Nominal Rating ($I_n$) of the protective device.",
+            "description": "Identify the Nominal Rating (In) of the protective device.",
             "formula": null,
             "calculation": null,
-            "result": "32A"
+            "result": "16A"
           },
           {
             "stepNumber": 2,
-            "description": "Identify the Correction Factor ($C_g$).",
+            "description": "Identify the Correction Factor (CF) for the environment.",
             "formula": null,
             "calculation": null,
-            "result": "0.8"
+            "result": "0.7"
           },
           {
             "stepNumber": 3,
-            "description": "Calculate the minimum Tabulated Capacity ($I_t$).",
-            "formula": "It = In / Cg",
-            "calculation": "32 / 0.8",
-            "result": "40"
-          },
-          {
-            "stepNumber": 4,
-            "description": "Conclusion: You must select a cable size from the tables that can carry at least 40A.",
-            "formula": null,
-            "calculation": null,
-            "result": "40A"
+            "description": "Calculate the minimum required Current-Carrying Capacity (Iz).",
+            "formula": "Iz ≥ In / CF",
+            "calculation": "16 / 0.7",
+            "result": "22.86A"
           }
         ],
-        "notes": "Always use the device rating (In) for this calculation, not the load (Ib), to ensure the cable is fully protected."
+        "notes": "You would then look at a standard table to find a cable size that can carry at least 22.86A when installed in conduit."
       }
     },
     {
@@ -279,34 +275,34 @@
       "type": "guided-practice",
       "order": 7,
       "content": {
-        "title": "Guided Practice: Sizing for Heat",
-        "problem": "A circuit has a load ($I_b$) of 12A. You select a 16A protective device ($I_n$). The cable is in a very hot area where the factor ($C_a$) is 0.5.",
+        "title": "Guided Practice: Sizing for Grouped Circuits",
+        "problem": "A circuit has a Design Current (Ib) of 28A. A 32A MCB (In) is used. The cable is grouped with three other circuits in trunking, resulting in a Grouping Factor (Cg) of 0.65. Calculate the required capacity.",
         "steps": [
           {
             "stepNumber": 1,
-            "prompt": "What is the Nominal Rating ($I_n$) you will use for the calculation?",
-            "expectedAnswer": [
-              "16",
-              "16A"
-            ],
-            "hint": "Use the rating of the breaker, not the load."
-          },
-          {
-            "stepNumber": 2,
-            "prompt": "What is the Correction Factor ($C_a$) for this environment?",
-            "expectedAnswer": [
-              "0.5"
-            ],
-            "hint": "This is the decimal given for the hot area."
-          },
-          {
-            "stepNumber": 3,
-            "prompt": "Divide the rating by the factor (16 / 0.5). What is the required capacity ($I_t$)?",
+            "prompt": "What is the Nominal Rating (In) of the protective device being used?",
             "expectedAnswer": [
               "32",
               "32A"
             ],
-            "hint": "16 divided by 0.5 is the same as 16 multiplied by 2."
+            "hint": "The device rating is provided as 32A."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "What is the Correction Factor (Cg) for grouping?",
+            "expectedAnswer": [
+              "0.65"
+            ],
+            "hint": "Look for the numerical value associated with grouping in the problem."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Calculate the minimum required Current-Carrying Capacity (Iz) by dividing In by the factor.",
+            "expectedAnswer": [
+              "49.23",
+              "49.2"
+            ],
+            "hint": "32 divided by 0.65."
           }
         ]
       }
@@ -320,44 +316,44 @@
         "questions": [
           {
             "id": "203-3B-P1",
-            "questionText": "A circuit has a load (Ib) of 28A. Select the most appropriate standard protective device rating (In) from these options: 15, 20, 25, 32.",
+            "questionText": "A circuit has a design current (Ib) of 18A. From the standard MCB ratings (6A, 10A, 16A, 20A, 32A), what is the minimum Nominal Rating (In) you should select?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "32"
+              "20"
             ],
-            "hint": "The rating must be higher than the load."
+            "hint": "Select the smallest rating that is still greater than or equal to 18A."
           },
           {
             "id": "203-3B-P2",
-            "questionText": "A 20A circuit breaker is used. The cables are grouped together ($Cg = 0.5$). Calculate the minimum required tabulated capacity (It) for the cable.",
+            "questionText": "Which wiring system provides the best mechanical protection for cables installed in a heavy industrial factory floor environment?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "SWA",
+              "Steel Wire Armoured",
+              "Metal Conduit",
+              "Steel Conduit"
+            ],
+            "hint": "Think about systems made of steel that can withstand heavy impacts."
+          },
+          {
+            "id": "203-3B-P3",
+            "questionText": "A 20A protective device is used. The cable is covered by thermal insulation for a long distance (Correction Factor 0.5). Calculate the required Iz in Amps.",
             "answerType": "numeric",
             "expectedAnswer": [
               "40"
             ],
-            "hint": "Divide In by Cg (20 / 0.5)."
-          },
-          {
-            "id": "203-3B-P3",
-            "questionText": "Why is SWA cable preferred over PVC/PVC Twin & Earth for a cable being clipped to the outside of a brick wall at low level?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "mechanical protection",
-              "impact protection",
-              "armour",
-              "damage protection"
-            ],
-            "hint": "Outdoor low-level cables are likely to be hit or kicked."
+            "hint": "Divide the rating (20) by the factor (0.5)."
           },
           {
             "id": "203-3B-P4",
-            "questionText": "If you increase the number of cables in a single conduit, what happens to the Correction Factor (Cg)?",
+            "questionText": "What term describes the unwanted tripping of a circuit breaker during normal operation because the rating was chosen too low?",
             "answerType": "short-text",
             "expectedAnswer": [
-              "decreases",
-              "it gets lower",
-              "goes down"
+              "Nuisance tripping",
+              "Nuisance trip",
+              "Premature tripping"
             ],
-            "hint": "More cables mean more heat, so the 'penalty' factor must be a smaller decimal (e.g., 0.8 becomes 0.6)."
+            "hint": "It starts with 'N' and describes an 'annoying' or 'unnecessary' trip."
           }
         ]
       }
@@ -367,39 +363,41 @@
       "type": "practice",
       "order": 9.5,
       "content": {
-        "title": "Integration: Design Scenario",
+        "title": "Synthesis: System Design",
         "mode": "integrative",
         "sequential": true,
         "questions": [
           {
             "id": "203-3B-INT-1",
-            "questionText": "You are designing a circuit for a workshop. The load is 21A. You decide to use a Radial circuit in steel conduit. (1) Choose a standard protective device rating, (2) Explain why you chose conduit, and (3) Calculate the target capacity ($I_t$) if the grouping factor is 0.7.",
+            "questionText": "Compare a Radial circuit and a Ring Final circuit in terms of their physical layout and how current flows. Why might a Ring Final circuit be preferred for a large room with many high-power sockets?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Select 25A rating",
-              "Conduit for mechanical protection/impact in workshop",
-              "Calculation: 25 / 0.7 = 35.7A"
+              "Radial is a single line, Ring is a loop",
+              "Ring allows current to flow two ways",
+              "Ring can handle more load with smaller cables due to current sharing"
             ],
             "expectedAnswer": [
-              "I would select a 25A protective device because it is the next standard size above 21A. Steel conduit is chosen because a workshop environment requires mechanical protection against impacts. The target capacity (It) would be 25 / 0.7, which is approximately 35.7A."
+              "A radial circuit is a single line from the source to the loads, whereas a ring final circuit is a loop that returns to the source. A ring is often preferred for high-power areas because the current splits and flows in two directions, allowing the circuit to support a higher total load (up to 32A) while using relatively thin, flexible 2.5mm cables."
             ],
-            "hint": "Combine device selection, environment, and calculation."
+            "hint": "Think about the 'loop' vs the 'line' and how that affects the current path."
           },
           {
             "id": "203-3B-INT-2",
-            "questionText": "A client wants a Ring Final circuit for a domestic kitchen. Explain how the loop nature of the ring affects cable sizing, and why we must still apply correction factors if the cable passes through a hot loft space.",
+            "questionText": "Describe the full process of selecting a conductor for a new circuit. Include how you use the Design Current (Ib), the Nominal Rating (In), and Correction Factors to find the Current-Carrying Capacity (Iz).",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Ring splits current into two paths allowing smaller cable",
-              "Correction factors are still needed for local heat",
-              "Heat in loft reduces the cable's ability to dissipate energy regardless of the circuit type"
+              "Determine Ib from the load",
+              "Select In ≥ Ib",
+              "Identify environmental factors (Ca, Cg, Ci)",
+              "Calculate Iz = In / Factors",
+              "Select physical cable from tables where rating ≥ Iz"
             ],
             "expectedAnswer": [
-              "The ring circuit split current into two paths, which allows for thinner cables. However, correction factors are still required because the heat in the loft space traps thermal energy in the cable. If we don't account for this using Ca, the cable insulation could melt even if the electrical load is balanced."
+              "The process begins by determining the design current (Ib) based on the equipment being used. Next, a protective device is selected with a nominal rating (In) that is equal to or greater than Ib. Then, environmental factors like temperature or grouping are identified as correction factors. Finally, the required current-carrying capacity (Iz) is calculated by dividing In by these factors, and a cable is chosen that meets this Iz value."
             ],
-            "hint": "Think about the difference between how current flows (circuit type) and how heat escapes (environment)."
+            "hint": "List the steps in order: Load -> Device -> Factors -> Calculation -> Cable Selection."
           }
         ]
       }
@@ -409,11 +407,21 @@
       "type": "spaced-review",
       "order": 10,
       "content": {
-        "title": "Quick Review",
+        "title": "Foundation Check",
         "questions": [
           {
             "id": "203-3B-SR-1",
-            "questionText": "What is the unit of measurement for electrical current?",
+            "questionText": "What term describes regulations that are mandatory and legally enforceable, such as EAWR 1989?",
+            "expectedAnswer": [
+              "Statutory",
+              "Statutory regulations"
+            ],
+            "hint": "Think of the legal status of a regulation that must be followed by law.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3B-SR-2",
+            "questionText": "What is the standard unit of measurement for electrical current?",
             "expectedAnswer": [
               "Amperes",
               "Amps",
@@ -423,29 +431,18 @@
             "answerType": "short-text"
           },
           {
-            "id": "203-3B-SR-2",
-            "questionText": "Does a higher ambient temperature increase or decrease a cable's current capacity?",
-            "expectedAnswer": [
-              "decrease",
-              "lower",
-              "reduces"
-            ],
-            "hint": "Heat makes it harder for the cable to stay cool.",
-            "answerType": "short-text"
-          },
-          {
             "id": "203-3B-SR-3",
-            "questionText": "Which term describes the 'intended' current of a circuit ($I_b$)?",
+            "questionText": "On a site plan, what feature is used to relate the distance on the paper to the actual distance on the ground?",
             "expectedAnswer": [
-              "Design current",
-              "load current",
-              "design"
+              "Scale",
+              "Drawing scale",
+              "Scaling"
             ],
-            "hint": "It is the current the circuit is 'designed' to carry.",
+            "hint": "e.g., 1:100.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Review of core concepts from this and previous units."
+        "notes": "Quick review of legal status and basic electrical units."
       }
     }
   ],
@@ -460,7 +457,7 @@
     "updated": "2026-02-19",
     "version": "1.1",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "CALCULATION, SELECTION",
+    "taskMode": "CALCULATION, SELECTION, IDENTIFICATION",
     "syllabusAnchors": {
       "unit": "203",
       "learningOutcome": "LO3",
@@ -469,17 +466,26 @@
         "AC2",
         "AC3",
         "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC5",
+        "AC6"
       ]
     },
     "scope": {
-      "inScope": "Principles of radial/ring circuits, selection of wiring systems (SWA/Conduit), and calculation of It using correction factors.",
-      "outOfScope": "Voltage drop calculations and Zs verification.",
-      "rationale": "Focuses on the core selection and sizing principles for Unit 203 LO3."
+      "inScope": "Principles of Radial/Ring circuits, Identification of Conduit/Trunking/SWA, and calculation of conductor capacity using correction factors.",
+      "outOfScope": "Voltage drop calculations and spacing factors for containment (AC6).",
+      "rationale": "Students must understand how circuits are laid out and protected before learning how to size the containment pipes themselves."
     },
     "misconceptions": [
       {
-        "misconception": "You multiply by correction factors to find cable size.",
-        "correction": "You must divide the device rating by the factor to find the required 'up-sized' capacity.",
+        "misconception": "A Ring Final circuit is just a Radial circuit with more sockets.",
+        "correction": "A Ring Final is a loop that returns to the consumer unit, allowing current to flow in two directions; a Radial is a single line.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "You multiply the protective device rating by the correction factor to find the cable size.",
+        "correction": "You must divide the rating (In) by the factor to find the required capacity (Iz), which usually results in a larger required cable to handle heat.",
         "relatedAC": "AC3"
       }
     ]

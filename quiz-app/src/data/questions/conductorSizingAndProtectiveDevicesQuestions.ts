@@ -9,35 +9,119 @@ import { TaggedQuestion } from './types';
 export const conductorSizingAndProtectiveDevicesQuestions: TaggedQuestion[] = [
   {
     "id": 4016,
-    "question": "What is the primary purpose of a circuit protective device such as an MCB?",
+    "question": "In the context of circuit protection and conductor sizing, what does the symbol 'In' represent?",
     "options": [
-      "To protect the circuit conductors from the effects of overcurrent",
-      "To protect the electrical appliance from internal component failure",
-      "To reduce the electricity consumption of the connected load",
-      "To ensure the supply voltage remains constant during peak use"
+      "The nominal rating of the protective device",
+      "The design current of the electrical load",
+      "The maximum current-carrying capacity of the cable",
+      "The actual current measured during a test"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "terminology",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "'In' is the standard symbol used in BS 7671 to represent the nominal rating or setting of the protective device (e.g., a 16A circuit breaker)."
+  },
+  {
+    "id": 4017,
+    "question": "Which of the following mathematical relationships must be satisfied when selecting a protective device for a circuit?",
+    "options": [
+      "Ib ≤ In ≤ Iz",
+      "Iz ≤ In ≤ Ib",
+      "In ≤ Ib ≤ Iz",
+      "Ib ≤ Iz ≤ In"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "FORMULA_NOT_REARRANGED",
+      "2": "TOPOLOGY_CONFUSION",
       "3": "CONFUSED_TERMINOLOGY"
     },
     "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
+    "category": "Conductor Sizing and Protective Devices",
     "tags": [
-      "terminology",
       "discrimination",
-      "legislation"
+      "calculation",
+      "units"
     ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "The fundamental role of a protective device (like an MCB) is to protect the installation's wiring from damage caused by overloads or short circuits."
+    "explanation": "To ensure safety, the design current (Ib) must be less than or equal to the protective device rating (In), which in turn must be less than or equal to the cable's current-carrying capacity (Iz)."
   },
   {
-    "id": 4017,
-    "question": "Which type of circuit breaker (MCB) to BS EN 60898 is most commonly used for standard domestic lighting circuits?",
+    "id": 4018,
+    "question": "An electrician calculates a circuit's design current (Ib) to be 14A. What is the most appropriate BS EN 60898 circuit breaker rating (In) to use?",
+    "options": [
+      "16A",
+      "10A",
+      "6A",
+      "32A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "application",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "The protective device rating (In) must be equal to or greater than the design current (Ib). For 14A, the next standard size is 16A."
+  },
+  {
+    "id": 4019,
+    "question": "What is the primary reason for applying a 'correction factor' to a cable's current-carrying capacity?",
+    "options": [
+      "To account for environmental conditions that affect heat dissipation",
+      "To increase the voltage available at the end of the circuit",
+      "To reduce the cost of the installation by using smaller cables",
+      "To change the frequency of the alternating current"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_FREQUENCY_WITH_VOLTAGE",
+      "2": "OTHER",
+      "3": "CONFUSED_AC_WITH_DC"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Correction factors (like ambient temperature or grouping) are used because heat is the main limiting factor for cables; if they cannot dissipate heat well, their current capacity must be reduced."
+  },
+  {
+    "id": 4020,
+    "question": "Which BS EN 60898 circuit breaker type is the standard choice for domestic installations with low inrush currents, such as lighting?",
     "options": [
       "Type B",
       "Type C",
@@ -51,25 +135,138 @@ export const conductorSizingAndProtectiveDevicesQuestions: TaggedQuestion[] = [
       "3": "OTHER"
     },
     "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
+    "category": "Conductor Sizing and Protective Devices",
     "tags": [
       "discrimination",
-      "terminology"
+      "terminology",
+      "application"
     ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "Type B MCBs are designed to trip between 3 to 5 times the full load current and are standard for domestic resistive or low inductive loads like lighting."
+    "explanation": "Type B devices are designed to trip at 3 to 5 times the rated current, making them suitable for domestic applications where high inrush currents are not expected."
   },
   {
-    "id": 4018,
-    "question": "In the context of conductor sizing, what does the symbol 'In' represent?",
+    "id": 4021,
+    "question": "If a cable is completely surrounded by thermal insulation for a distance of 0.5 metres, what effect does this have on its current-carrying capacity?",
     "options": [
-      "The nominal rating of the protective device",
+      "The capacity is significantly reduced",
+      "The capacity is significantly increased",
+      "There is no change to the capacity",
+      "The voltage drop is automatically eliminated"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
+      "3": "CONFUSED_I_V_R"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Thermal insulation acts as a blanket, trapping heat within the cable. This reduces the cable's ability to carry current safely without overheating."
+  },
+  {
+    "id": 4022,
+    "question": "What does the symbol 'Ib' represent in the cable sizing process?",
+    "options": [
       "The design current of the circuit",
-      "The current-carrying capacity of the cable",
-      "The actual current flowing to the load"
+      "The breaking capacity of the fuse",
+      "The insulation resistance value",
+      "The total length of the conductor"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "UNITS_MISSING"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "'Ib' is the design current, which is the maximum current intended to be carried by the circuit in normal service."
+  },
+  {
+    "id": 4023,
+    "question": "A 230V immersion heater is rated at 3kW. Using the formula P = V × I, the design current is approximately 13A. Which protective device would be standard for this circuit?",
+    "options": [
+      "16A BS EN 60898 MCB",
+      "6A BS EN 60898 MCB",
+      "10A BS EN 60898 MCB",
+      "40A BS EN 60898 MCB"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "DIVIDED_INSTEAD",
+      "2": "DIVIDED_INSTEAD",
+      "3": "MULTIPLIED_INSTEAD"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "application",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Since Ib is 13A, the protective device (In) must be greater than 13A. 16A is the nearest standard rating that satisfies Ib ≤ In."
+  },
+  {
+    "id": 4024,
+    "question": "When several circuits are run together in the same conduit or trunking, which correction factor must be applied to the cable sizing calculation?",
+    "options": [
+      "Cg (Grouping)",
+      "Ca (Ambient temperature)",
+      "Ci (Thermal insulation)",
+      "Cf (Semi-enclosed fuse)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "calculation"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 1,
+    "estimatedTime": 45,
+    "explanation": "Cg is the correction factor for grouping. When cables are grouped together, they heat each other up, so their current-carrying capacity must be reduced."
+  },
+  {
+    "id": 4025,
+    "question": "Which of the following describes the term 'Iz' in BS 7671?",
+    "options": [
+      "The current-carrying capacity of a cable for a specific installation method",
+      "The maximum fault current the device can handle",
+      "The voltage drop per ampere per metre",
+      "The impedance of the earth fault loop"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
@@ -78,8 +275,9 @@ export const conductorSizingAndProtectiveDevicesQuestions: TaggedQuestion[] = [
       "3": "CONFUSED_I_V_R"
     },
     "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
+    "category": "Conductor Sizing and Protective Devices",
     "tags": [
+      "conceptual",
       "terminology",
       "units"
     ],
@@ -87,409 +285,486 @@ export const conductorSizingAndProtectiveDevicesQuestions: TaggedQuestion[] = [
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "'In' refers to the nominal current rating of the fuse or circuit breaker selected for the circuit."
+    "explanation": "Iz is the current-carrying capacity of a cable under the specific conditions of the installation, after correction factors have been applied."
   },
   {
-    "id": 4019,
-    "question": "How does surrounding a cable with thermal insulation affect its current-carrying capacity?",
+    "id": 4026,
+    "question": "What is the primary purpose of a circuit protective device, such as an MCB, in an electrical installation?",
     "options": [
-      "It decreases the current-carrying capacity",
-      "It increases the current-carrying capacity",
-      "It has no effect on the current-carrying capacity",
-      "It only affects the voltage drop, not the current capacity"
+      "To protect the circuit conductors from the effects of overcurrent",
+      "To protect the appliance or equipment from internal faults",
+      "To reduce the electricity consumption of the connected load",
+      "To increase the voltage available at the end of the circuit"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "OTHER",
+      "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "CONFUSED_TERMINOLOGY"
+      "3": "CONFUSED_I_V_R"
     },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "conceptual",
-      "application"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Thermal insulation restricts the dissipation of heat from the cable. To prevent the cable from overheating, its current-carrying capacity must be reduced (derated)."
-  },
-  {
-    "id": 4020,
-    "question": "Which of the following is a standard requirement for an RCD providing additional protection in a domestic bathroom?",
-    "options": [
-      "A rated residual operating current (IΔn) not exceeding 30mA",
-      "A rated residual operating current (IΔn) of exactly 100mA",
-      "A time-delay setting of at least 2 seconds",
-      "A manual reset that must be operated every 24 hours"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
+    "section": "Conductor Sizing and Protective Devices",
     "category": "Protective Devices",
     "tags": [
-      "application",
-      "health-safety",
-      "discrimination"
+      "terminology",
+      "explanation",
+      "conceptual"
     ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
-    "difficulty": 2,
+    "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "BS 7671 requires that RCDs used for additional protection must have a rated residual operating current not exceeding 30mA and operate within 40ms at 5 x IΔn."
+    "explanation": "The primary role of a circuit protective device like an MCB is to protect the fixed wiring (conductors) from damage caused by overloads or short circuits."
   },
   {
-    "id": 4021,
-    "question": "Which British Standard covers the requirements for general purpose circuit breakers (MCBs) used in household installations?",
+    "id": 4027,
+    "question": "Which BS EN standard applies to Miniature Circuit Breakers (MCBs) used for overcurrent protection in domestic and commercial installations?",
     "options": [
       "BS EN 60898",
-      "BS 3036",
-      "BS 1361",
+      "BS EN 61008",
+      "BS 1363",
       "BS 7671"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
+      "2": "OTHER",
+      "3": "OTHER"
     },
-    "section": "Installation 2365 Level 2",
+    "section": "Conductor Sizing and Protective Devices",
     "category": "Protective Devices",
     "tags": [
       "discrimination",
-      "legislation",
       "terminology"
     ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
-    "difficulty": 2,
+    "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "BS EN 60898 is the specific standard for circuit breakers. BS 3036 is for semi-enclosed (rewirable) fuses, and BS 1361 (now BS EN 60269-3) was for cartridge fuses."
+    "explanation": "BS EN 60898 is the specific product standard for MCBs. BS EN 61008 is for RCCBs, BS 1363 is for plugs/sockets, and BS 7671 is the Wiring Regulations."
   },
   {
-    "id": 4022,
-    "question": "When designing a circuit, the 'Design Current' (Ib) is defined as the:",
+    "id": 4028,
+    "question": "Which type of MCB is generally recommended for circuits supplying loads with high inrush currents, such as small electric motors?",
     "options": [
-      "Current intended to be carried by the circuit in normal service",
-      "Maximum current the cable can carry without melting",
-      "Current at which the protective device will definitely trip",
-      "Total current available at the origin of the installation"
+      "Type C",
+      "Type B",
+      "Type A",
+      "Type Z"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Design current (Ib) is the amount of current the load is expected to draw under normal operating conditions."
-  },
-  {
-    "id": 4023,
-    "question": "An electrician is installing a standard 6A lighting circuit using Twin and Earth cable. What is the minimum cross-sectional area (CSA) typically used for this circuit?",
-    "options": [
-      "1.0 mm²",
-      "2.5 mm²",
-      "4.0 mm²",
-      "6.0 mm²"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
       "2": "OTHER",
       "3": "OTHER"
     },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "1.0 mm² is the most common minimum size for domestic lighting circuits protected by a 6A device, provided voltage drop and earth fault loop impedance limits are met."
-  },
-  {
-    "id": 4024,
-    "question": "What is the main function of a Residual Current Device (RCD)?",
-    "options": [
-      "To detect and interrupt leakage currents to earth",
-      "To protect the circuit against high-voltage surges from lightning",
-      "To provide protection against short circuits between live and neutral",
-      "To prevent the motor from running in the wrong direction"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
+    "section": "Conductor Sizing and Protective Devices",
     "category": "Protective Devices",
     "tags": [
-      "conceptual",
-      "discrimination"
+      "discrimination",
+      "application"
     ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "An RCD monitors the balance of current between live conductors; if an imbalance (leakage to earth) occurs, it disconnects the supply."
+    "explanation": "Type C breakers are designed to handle higher inductive inrush currents without nuisance tripping, compared to Type B which is for general domestic use."
   },
   {
-    "id": 4025,
-    "question": "Which of the following correctly shows the relationship required for coordination between circuit current (Ib), device rating (In), and cable capacity (Iz)?",
+    "id": 4029,
+    "question": "An electrician calculates the design current (Ib) for a circuit to be 22A. According to the coordination rule (Ib ≤ In), which standard protective device rating should be selected?",
     "options": [
-      "Ib ≤ In ≤ Iz",
-      "Iz ≤ In ≤ Ib",
-      "In ≤ Ib ≤ Iz",
-      "Ib ≤ Iz ≤ In"
+      "32A",
+      "20A",
+      "15A",
+      "6A"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "FORMULA_NOT_REARRANGED",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "FORMULA_NOT_REARRANGED"
+      "2": "DIVIDED_INSTEAD",
+      "3": "OTHER"
     },
-    "section": "Installation 2365 Level 2",
+    "section": "Conductor Sizing and Protective Devices",
     "category": "Conductor Sizing",
     "tags": [
-      "conceptual",
+      "calculation",
       "application"
     ],
     "learningOutcomeId": "203.LO3.AC3.3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
-    "explanation": "To ensure safety, the design current (Ib) must be less than or equal to the fuse rating (In), which in turn must be less than or equal to the cable's actual current-carrying capacity (Iz)."
-  },
-  {
-    "id": 4026,
-    "question": "Which British Standard covers the requirements for circuit breakers used in domestic and similar installations (MCBs)?",
-    "options": [
-      "BS EN 60898",
-      "BS 1363",
-      "BS EN 61008",
-      "BS 7671"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "terminology",
-      "legislation",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "BS EN 60898 is the specific standard for circuit breakers (MCBs) used in domestic and commercial installations. BS 1363 is for plugs and sockets, while BS EN 61008 is for RCDs."
-  },
-  {
-    "id": 4027,
-    "question": "When a cable is installed in an environment with a high ambient temperature, how is its current-carrying capacity affected?",
-    "options": [
-      "The capacity decreases",
-      "The capacity increases",
-      "The capacity remains exactly the same",
-      "The voltage rating of the cable increases"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "conceptual",
-      "resistance-rule",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "High ambient temperatures reduce the cable's ability to dissipate heat, meaning it can carry less current before reaching its maximum operating temperature. This is why rating factors (Ca) are applied."
-  },
-  {
-    "id": 4028,
-    "question": "What is the primary function of an overcurrent protective device, such as a fuse or circuit breaker?",
-    "options": [
-      "To protect the circuit conductors from damage due to heat",
-      "To ensure the voltage remains constant at the load",
-      "To measure the amount of energy used in the circuit",
-      "To prevent the user from touching live parts"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "conceptual",
-      "explanation",
-      "current-rule"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "Overcurrent protective devices are designed to disconnect the supply when current exceeds the cable's capacity, preventing insulation damage or fire caused by excessive heat."
-  },
-  {
-    "id": 4029,
-    "question": "An electrician is installing a standard 6A domestic lighting circuit using Twin and Earth cable. Which conductor size is most commonly selected for this application?",
-    "options": [
-      "1.5 mm²",
-      "0.75 mm²",
-      "4.0 mm²",
-      "10.0 mm²"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "OTHER",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "application",
-      "units",
-      "calculation"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 1,
-    "estimatedTime": 45,
-    "explanation": "In UK domestic installations, 1.5 mm² is the standard conductor size for lighting circuits, providing a balance between current capacity and ease of installation."
+    "explanation": "The rating of the protective device (In) must be equal to or greater than the design current (Ib). Since 22A is the load, the next standard size up is 32A (as 20A would be too small and cause tripping)."
   },
   {
     "id": 4030,
-    "question": "In the context of circuit design and conductor sizing, what does the symbol 'In' represent?",
+    "question": "What effect does installing a cable inside thermal insulation have on its current-carrying capacity?",
     "options": [
-      "The nominal current rating of the protective device",
-      "The design current of the electrical load",
-      "The actual current flowing through the neutral conductor",
-      "The total resistance of the circuit"
+      "The current-carrying capacity decreases",
+      "The current-carrying capacity increases",
+      "The current-carrying capacity remains the same",
+      "The current-carrying capacity only changes if the cable is longer than 10 meters"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_I_V_R"
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
+      "3": "OTHER"
     },
-    "section": "Installation 2365 Level 2",
+    "section": "Conductor Sizing and Protective Devices",
     "category": "Conductor Sizing",
     "tags": [
-      "terminology",
-      "discrimination",
-      "units"
+      "conceptual",
+      "explanation"
     ],
     "learningOutcomeId": "203.LO3.AC3.3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
-    "explanation": "'In' is the standard symbol for the nominal current or 'rating' of the protective device (e.g., a 20A MCB has an In of 20A)."
+    "explanation": "Thermal insulation restricts the dissipation of heat from the cable. To prevent the conductor from overheating, its current-carrying capacity must be derated (decreased)."
   },
   {
     "id": 4031,
-    "question": "When selecting a cable for a new circuit, which of the following expressions correctly defines the relationship between Design Current (Ib), Nominal Rating of the protective device (In), and the Current-carrying capacity of the conductor (Iz)?",
+    "question": "A circuit is protected by a 20A Type B MCB. It is installed in a location where the ambient temperature is 40°C ($C_a = 0.87$). Calculate the minimum current-carrying capacity ($I_t$) required for the conductor.",
     "options": [
-      "Ib ≤ In ≤ Iz",
-      "Iz ≤ In ≤ Ib",
-      "In ≤ Ib ≤ Iz",
-      "Ib ≤ Iz ≤ In"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "terminology",
-      "application",
-      "calculation"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "According to BS 7671, the design current (Ib) must be less than or equal to the rating of the protective device (In), which in turn must be less than or equal to the current-carrying capacity of the conductor (Iz) to ensure the cable is protected."
-  },
-  {
-    "id": 4032,
-    "question": "An electrician is installing a circuit where the cables will be grouped with three other circuits. Which correction factor must be applied to determine the required cable size?",
-    "options": [
-      "Cg",
-      "Ca",
-      "Ci",
-      "Cc"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "WRONG_UNITS",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "units",
-      "terminology",
-      "conceptual"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "Cg is the correction factor for grouping. Ca is for ambient temperature, Ci is for thermal insulation, and Cc is for semi-enclosed (rewireable) fuses."
-  },
-  {
-    "id": 4033,
-    "question": "A circuit protected by a 32 A BS EN 60898 Type B circuit breaker is installed in an area with an ambient temperature of 40°C. If the correction factor (Ca) for 40°C is 0.87, what is the minimum tabulated current-carrying capacity (It) required for the cable?",
-    "options": [
-      "36.78 A",
-      "27.84 A",
-      "32.00 A",
-      "45.22 A"
+      "22.99 A",
+      "17.40 A",
+      "20.87 A",
+      "20.00 A"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "MULTIPLIED_INSTEAD",
       "2": "FORMULA_NOT_REARRANGED",
       "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "calculation",
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "To find $I_t$, the nominal rating of the protective device ($I_n$) is divided by the correction factors. $20 / 0.87 = 22.99$ A."
+  },
+  {
+    "id": 4032,
+    "question": "Why would an electrician select a Type C circuit breaker instead of a Type B for a workshop circuit containing several small motors?",
+    "options": [
+      "To allow for higher starting currents without nuisance tripping",
+      "To provide faster disconnection times for lighting circuits",
+      "To increase the total current capacity of the final circuit",
+      "To reduce the risk of electric shock in high-moisture areas"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_I_V_R",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "discrimination",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Type C breakers are designed to handle higher inductive inrush currents (5-10 times $I_n$) common in motors, preventing nuisance tripping."
+  },
+  {
+    "id": 4033,
+    "question": "Which protective device is specifically designed to detect and disconnect a circuit when a small leakage current to Earth is detected?",
+    "options": [
+      "RCD (Residual Current Device)",
+      "MCB (Miniature Circuit Breaker)",
+      "BS 88-2 HRC Fuse",
+      "MCCB (Moulded Case Circuit Breaker)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "An RCD monitors the balance between line and neutral currents and trips when a leakage to earth (imbalance) is detected."
+  },
+  {
+    "id": 4034,
+    "question": "A 32A ring final circuit is grouped with three other circuits in a conduit, resulting in a grouping factor ($C_g$) of 0.65. What is the minimum $I_t$ value required for the cable?",
+    "options": [
+      "49.23 A",
+      "20.80 A",
+      "32.65 A",
+      "32.00 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "calculation",
+      "application"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "The minimum $I_t$ is calculated by dividing the protective device rating by the correction factor: $32 / 0.65 = 49.23$ A."
+  },
+  {
+    "id": 4035,
+    "question": "According to BS 7671, what is the correct relationship for selecting conductor size and protective device ratings relative to the design current?",
+    "options": [
+      "$I_b \\le I_n \\le I_z$",
+      "$I_z \\le I_n \\le I_b$",
+      "$I_n \\le I_b \\le I_z$",
+      "$I_b \\le I_z \\le I_n$"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The design current ($I_b$) must be less than or equal to the protective device rating ($I_n$), which must be less than or equal to the cable's current-carrying capacity ($I_z$)."
+  },
+  {
+    "id": 4036,
+    "question": "When calculating conductor size, which correction factor is specifically used to account for the presence of thermal insulation surrounding a cable for a length of 100mm?",
+    "options": [
+      "$C_i$",
+      "$C_a$",
+      "$C_g$",
+      "$C_f$"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "$C_i$ is the correction factor for thermal insulation. $C_a$ is ambient temperature, $C_g$ is grouping, and $C_f$ is the semi-enclosed fuse factor."
+  },
+  {
+    "id": 4037,
+    "question": "An electrician is installing a circuit for a large industrial motor with a very high and prolonged inductive start-up current. Which MCB type is most suitable?",
+    "options": [
+      "Type D",
+      "Type B",
+      "Type A",
+      "Type 1"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "application",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Type D MCBs are designed for circuits with very high inrush currents, such as large transformers or industrial motors, tripping at 10-20 times $I_n$."
+  },
+  {
+    "id": 4038,
+    "question": "What is a primary advantage of using a BS 88-2 High Rupturing Capacity (HRC) fuse in an industrial installation compared to other fuse types?",
+    "options": [
+      "It has a high breaking capacity for safely interrupting large fault currents",
+      "It can be manually reset multiple times after a fault occurs",
+      "It allows the user to adjust the trip current manually",
+      "It is much cheaper to replace than a standard BS 3036 fuse"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "conceptual",
+      "discrimination"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "BS 88 fuses (HRC) have very high breaking capacities (up to 80kA), making them suitable for industrial locations with high potential fault currents."
+  },
+  {
+    "id": 4039,
+    "question": "In the process of conductor sizing, what does the term $I_z$ represent?",
+    "options": [
+      "The current-carrying capacity of the cable under actual installation conditions",
+      "The tabulated current-carrying capacity found in BS 7671 Appendix 4",
+      "The maximum current the load is expected to draw during normal operation",
+      "The nominal rating of the circuit breaker or fuse used for protection"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "conceptual",
+      "terminology"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "$I_z$ is the actual current-carrying capacity of the cable after correction factors have been applied. $I_t$ is the tabulated value."
+  },
+  {
+    "id": 4040,
+    "question": "Why must the current-carrying capacity of a cable be increased if a BS 3036 semi-enclosed fuse is used as the protective device?",
+    "options": [
+      "Because the fuse has a high fusing factor of 1.45, requiring a 0.725 multiplier",
+      "Because semi-enclosed fuses are prone to mechanical wear and vibration",
+      "Because the fuse operates significantly faster than a modern MCB",
+      "Because the fuse is not affected by the ambient temperature of the room"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "OTHER",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "conceptual",
+      "calculation"
+    ],
+    "learningOutcomeId": "203-3B-LO3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "BS 3036 fuses have a high fusing factor (1.45). To ensure the cable is protected during the long time it takes the fuse to blow, the cable capacity must be derated by a factor of 0.725."
+  },
+  {
+    "id": 4041,
+    "question": "What is the primary purpose of a BS EN 60898 Type B circuit breaker when installed in a domestic consumer unit?",
+    "options": [
+      "To provide protection against both overload and short-circuit currents",
+      "To provide protection against earth leakage currents only",
+      "To protect the installation against transient overvoltages",
+      "To allow for high inrush currents from industrial motor starting"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "terminology",
+      "conceptual",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "A BS EN 60898 MCB is an overcurrent protective device designed to trip under overload conditions (thermal element) and short-circuit conditions (magnetic element)."
+  },
+  {
+    "id": 4042,
+    "question": "An electrician is calculating the cable size for a circuit where the ambient temperature is expected to be 40°C. Which correction factor must be selected from the BS 7671 tables?",
+    "options": [
+      "Ca",
+      "Cg",
+      "Ci",
+      "Cf"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "terminology",
+      "units",
+      "calculation"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Ca is the correction factor for Ambient temperature. Cg is for Grouping, Ci is for thermal Insulation, and Cf is for semi-enclosed Fuses."
+  },
+  {
+    "id": 4043,
+    "question": "A circuit has a design current (Ib) of 22 A, and a 25 A MCB (In) is used. If the cable is completely surrounded by thermal insulation for a distance of 600 mm (Ci = 0.5), what is the minimum tabulations current-carrying capacity (It) required?",
+    "options": [
+      "50 A",
+      "12.5 A",
+      "44 A",
+      "11 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "MULTIPLIED_INSTEAD"
     },
     "section": "Installation 2365 Level 2",
     "category": "Conductor Sizing",
@@ -502,11 +777,426 @@ export const conductorSizingAndProtectiveDevicesQuestions: TaggedQuestion[] = [
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
-    "explanation": "The formula is It ≥ In / Ca. Therefore, 32 / 0.87 = 36.78 A. Multiplying (32 * 0.87) is a common error resulting in 27.84 A."
+    "explanation": "To find It, we divide the protective device rating (In) by the correction factors. It = In / Ci. Therefore, 25 / 0.5 = 50 A."
   },
   {
-    "id": 4034,
-    "question": "Which type of BS EN 60898 circuit breaker is specifically designed for circuits supplying equipment with very high inductive start-up currents, such as large transformers or industrial motors?",
+    "id": 4044,
+    "question": "Which of the following mathematical expressions correctly represents the coordination between design current (Ib), protective device rating (In), and conductor current-carrying capacity (Iz)?",
+    "options": [
+      "Ib ≤ In ≤ Iz",
+      "Iz ≤ In ≤ Ib",
+      "In ≤ Ib ≤ Iz",
+      "Ib ≤ Iz ≤ In"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "SIGN_ERROR",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "conceptual",
+      "terminology",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The design current must be less than or equal to the device rating, which in turn must be less than or equal to the actual current-carrying capacity of the cable after factors are applied."
+  },
+  {
+    "id": 4045,
+    "question": "Which type of BS EN 60898 circuit breaker would be most appropriate for a circuit supplying a large bank of fluorescent luminaires with significant inductive ballasts?",
+    "options": [
+      "Type C",
+      "Type B",
+      "Type S",
+      "Type AC"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_AC_DC_SOURCES"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "discrimination",
+      "application",
+      "terminology"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Type C breakers are designed for inductive loads with higher inrush currents, such as motors and fluorescent lighting, whereas Type B is for resistive domestic loads."
+  },
+  {
+    "id": 4046,
+    "question": "What is the primary reason for applying a grouping correction factor (Cg) when sizing conductors installed in a common conduit?",
+    "options": [
+      "To prevent the cables from overheating due to the thermal energy of adjacent cables",
+      "To reduce the voltage drop caused by the increased magnetic field",
+      "To ensure the protective device trips within the required 0.4 second limit",
+      "To compensate for the increased resistance of the copper at high frequencies"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "conceptual",
+      "explanation",
+      "health-safety"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Cables in the same enclosure dissipate heat less effectively; the grouping factor reduces the allowed current to prevent insulation damage from cumulative heat."
+  },
+  {
+    "id": 4047,
+    "question": "When using a BS 3036 semi-enclosed (rewirable) fuse for circuit protection, which factor must be applied to the calculation of It to account for its higher fusing factor?",
+    "options": [
+      "0.725",
+      "1.45",
+      "0.80",
+      "0.95"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "RECIPROCAL_ERROR",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "discrimination",
+      "units",
+      "calculation"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 60,
+    "explanation": "BS 3036 fuses have a high fusing factor (approx 1.45). To ensure the cable is protected, the current-carrying capacity must be derated by a factor of 0.725 (which is 1/1.45)."
+  },
+  {
+    "id": 4048,
+    "question": "What is the maximum disconnection time required for a 32 A circuit supplying a mobile equipment for use outdoors in a TN system?",
+    "options": [
+      "0.4 seconds",
+      "5 seconds",
+      "0.2 seconds",
+      "0.1 seconds"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "TOPOLOGY_CONFUSION",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "application",
+      "health-safety",
+      "terminology"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "In a TN system, final circuits up to 63 A (with sockets) or 32 A (fixed equipment) require a disconnection time of 0.4 seconds."
+  },
+  {
+    "id": 4049,
+    "question": "A circuit is protected by a 20 A MCB. The cable runs through an area with an ambient temperature factor Ca of 0.87 and is grouped with other circuits giving a Cg of 0.7. Calculate the minimum It required.",
+    "options": [
+      "32.84 A",
+      "12.18 A",
+      "24.52 A",
+      "28.57 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "ROUNDING_ERROR"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "application",
+      "calculation",
+      "units"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 120,
+    "explanation": "It = In / (Ca x Cg). Therefore, It = 20 / (0.87 x 0.7) = 20 / 0.609 = 32.84 A."
+  },
+  {
+    "id": 4050,
+    "question": "Which British Standard refers to Residual Current Breakers with Overcurrent protection (RCBOs)?",
+    "options": [
+      "BS EN 61009",
+      "BS EN 60898",
+      "BS EN 61008",
+      "BS EN 60947-2"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "discrimination",
+      "terminology",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "BS EN 61009 is the standard for RCBOs. BS EN 60898 is for MCBs, and BS EN 61008 is for RCCBs (which do not have overcurrent protection)."
+  },
+  {
+    "id": 4051,
+    "question": "What is the primary reason the current-carrying capacity of a conductor (Iz) must be equal to or greater than the nominal rating of the protective device (In)?",
+    "options": [
+      "To prevent the cable insulation from overheating before the protective device operates",
+      "To ensure the circuit breaker trips faster during a short-circuit fault",
+      "To reduce the voltage drop across the length of the circuit",
+      "To allow the circuit to be extended with additional sockets in the future"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "OTHER",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "calculation",
+      "explanation",
+      "conceptual"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "The cable must be able to carry more current than the protective device's rating to ensure that if an overload occurs, the device trips before the cable reaches a temperature that would damage its insulation."
+  },
+  {
+    "id": 4052,
+    "question": "Which type of circuit breaker (MCB) is specifically designed to handle high inrush currents, such as those found in industrial motors or large transformers, without tripping unnecessarily?",
+    "options": [
+      "Type D",
+      "Type B",
+      "Type C",
+      "Type A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "discrimination",
+      "terminology"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 45,
+    "explanation": "Type D MCBs are designed for high inductive loads where very high inrush currents are expected (tripping at 10 to 20 times the nominal current)."
+  },
+  {
+    "id": 4053,
+    "question": "An electrician is installing a circuit with a design current (Ib) of 24A. The protective device (In) is rated at 32A. If a correction factor for grouping (Cg) of 0.8 is the only factor to consider, what is the minimum required tabulated current-carrying capacity (It) for the cable?",
+    "options": [
+      "40A",
+      "25.6A",
+      "30A",
+      "32A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "calculation",
+      "application"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 90,
+    "explanation": "Using the formula It >= In / Cg, we calculate 32 / 0.8 = 40A. Using Ib instead of In is a common error, as is multiplying by the factor instead of dividing."
+  },
+  {
+    "id": 4054,
+    "question": "In the context of circuit protection, what is the specific function of 'overload' protection compared to 'short-circuit' protection?",
+    "options": [
+      "It protects against a small but sustained current exceeding the circuit rating",
+      "It protects against extremely high currents caused by a fault of negligible impedance",
+      "It only monitors the leakage current flowing to the earthing system",
+      "It prevents the supply voltage from rising above 230V"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "TOPOLOGY_CONFUSION",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "CONFUSED_FREQUENCY_WITH_VOLTAGE"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "discrimination",
+      "explanation"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 2,
+    "estimatedTime": 60,
+    "explanation": "Overload protection is designed to detect currents that are higher than the design current but lower than fault currents, which would cause gradual overheating over time."
+  },
+  {
+    "id": 4055,
+    "question": "When sizing a conductor for a circuit protected by a semi-enclosed (rewirable) fuse to BS 3036, what additional factor must be applied to the protective device rating (In) to find the required current-carrying capacity?",
+    "options": [
+      "Divide the rating by 0.72",
+      "Multiply the rating by 1.45",
+      "Divide the rating by 0.63",
+      "No factor is required for BS 3036 fuses"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "OTHER",
+      "3": "CONFUSED_TERMINOLOGY"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing and Protective Devices",
+    "tags": [
+      "calculation",
+      "conceptual",
+      "application"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 3,
+    "estimatedTime": 75,
+    "explanation": "Because BS 3036 fuses have a high fusing factor, the regulations require the rating of the protective device to be divided by 0.72 when calculating the required cable size (It)."
+  },
+  {
+    "id": 4056,
+    "question": "An electrician is designing a 32 A radial circuit using a BS EN 60898 Type B MCB. The cable will be grouped with three other loaded circuits (Cg = 0.65) and pass through a wall with thermal insulation for a distance of 600 mm (Ci = 0.5). What is the minimum required current-carrying capacity (It) for the conductor?",
+    "options": [
+      "98.46 A",
+      "10.40 A",
+      "49.23 A",
+      "64.00 A"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "MULTIPLIED_INSTEAD",
+      "2": "FORMULA_NOT_REARRANGED",
+      "3": "DIVIDED_INSTEAD"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "calculation",
+      "units",
+      "application"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "The formula for It is In / (Cg x Ci). Therefore, 32 / (0.65 x 0.5) = 32 / 0.325 = 98.46 A. Many students mistakenly multiply the rating by the factors or only apply one factor."
+  },
+  {
+    "id": 4057,
+    "question": "According to BS 7671, which condition must be met to ensure a protective device provides adequate protection against 'small overloads' in a circuit?",
+    "options": [
+      "The current ensuring effective operation (I2) must not exceed 1.45 times the current-carrying capacity (Iz)",
+      "The nominal rating (In) must be exactly equal to the design current (Ib)",
+      "The breaking capacity (Icn) must be less than the prospective fault current (Ipf)",
+      "The current-carrying capacity (Iz) must be less than the nominal rating (In)"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "SIGN_ERROR"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "conceptual",
+      "legislation"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Regulation 433.1.1 states that I2 (the current ensuring effective operation in the conventional time) must not exceed 1.45 x Iz. This ensures the cable does not overheat significantly before the device trips."
+  },
+  {
+    "id": 4058,
+    "question": "A circuit is protected by a 30 A BS 3036 semi-enclosed fuse. If the conductor current-carrying capacity (Iz) must be calculated, what specific correction factor (Cf) must be applied to the nominal rating of the fuse?",
+    "options": [
+      "0.725",
+      "0.87",
+      "1.45",
+      "0.95"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "WRONG_UNITS",
+      "2": "RECIPROCAL_ERROR",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "calculation",
+      "terminology"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "BS 3036 fuses have a high fusing factor. To compensate for this when sizing cables, a correction factor (Cf) of 0.725 is applied (In / 0.725) to ensure the cable is protected against overloads."
+  },
+  {
+    "id": 4059,
+    "question": "An industrial motor has a very high starting inrush current, measured at 12 times its full-load current. Which BS EN 60898 MCB type is specifically designed to handle this without nuisance tripping?",
     "options": [
       "Type D",
       "Type B",
@@ -517,876 +1207,180 @@ export const conductorSizingAndProtectiveDevicesQuestions: TaggedQuestion[] = [
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "DISCRIMINATION_ERROR"
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Installation 2365 Level 2",
     "category": "Protective Devices",
     "tags": [
       "discrimination",
-      "application",
-      "terminology"
+      "application"
     ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Type D breakers are used for high inrush currents (tripping at 10-20 times In). Type B is for domestic/general use (3-5 times In), and Type C is for commercial/moderate inrush (5-10 times In)."
-  },
-  {
-    "id": 4035,
-    "question": "Why must a correction factor of 0.725 be applied to the current-carrying capacity of a cable when the protective device is a BS 3036 semi-enclosed fuse?",
-    "options": [
-      "The fuse has a higher fusing factor and takes longer to blow under overload",
-      "The fuse operates at a lower temperature than modern circuit breakers",
-      "The fuse is more sensitive to ambient temperature changes",
-      "The fuse provides better short-circuit protection than an MCB"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONCEPTUAL_ERROR"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "conceptual",
-      "discrimination",
-      "protection"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "BS 3036 fuses have a fusing factor of approximately 1.45. To ensure the cable does not overheat during the time it takes for the fuse to operate, the cable must be significantly oversized, which is achieved by applying the 0.725 factor (Cc)."
-  },
-  {
-    "id": 4036,
-    "question": "A design current (Ib) for a shower circuit is calculated at 37 A. Which of the following standard BS EN 60898 protective device ratings (In) should be selected?",
-    "options": [
-      "40 A",
-      "32 A",
-      "45 A",
-      "50 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "application",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The rating of the protective device (In) must be greater than or equal to the design current (Ib). The next standard rating above 37 A for a BS EN 60898 MCB is 40 A."
-  },
-  {
-    "id": 4037,
-    "question": "What is the primary purpose of applying the correction factor Ci (0.5) when a cable is totally surrounded by thermal insulation for a distance of 500mm or more?",
-    "options": [
-      "To account for the cable's inability to dissipate heat into the air",
-      "To account for the increased resistance caused by the insulation material",
-      "To compensate for the magnetic effects of the insulation",
-      "To allow for the increased voltage drop within the insulation"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONCEPTUAL_ERROR",
-      "2": "OTHER",
-      "3": "CONFUSED_I_V_R"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "conceptual",
-      "explanation",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Thermal insulation prevents heat from escaping the cable. To prevent the conductor insulation from melting, the current-carrying capacity must be halved (Ci = 0.5) when fully surrounded."
-  },
-  {
-    "id": 4038,
-    "question": "A 20 A circuit breaker is used to protect a circuit where the cables are grouped (Cg = 0.7) and the ambient temperature is high (Ca = 0.87). Calculate the minimum required tabulated current-carrying capacity (It) for the cable.",
-    "options": [
-      "32.84 A",
-      "12.18 A",
-      "22.98 A",
-      "28.57 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "OTHER",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "calculation",
-      "application",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 120,
-    "explanation": "It ≥ In / (Ca * Cg). So, It ≥ 20 / (0.87 * 0.7) = 20 / 0.609 = 32.84 A. Multiplying 20 * 0.87 * 0.7 gives 12.18 A, which is a common misconception."
-  },
-  {
-    "id": 4039,
-    "question": "Which component of a standard MCB provides protection against small, long-duration overcurrents (overload protection)?",
-    "options": [
-      "The bimetallic strip",
-      "The magnetic solenoid",
-      "The arc chute",
-      "The manual toggle switch"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONCEPTUAL_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "conceptual",
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The bimetallic strip heats up and bends over time during an overload, eventually tripping the mechanism. The magnetic solenoid is used for instantaneous short-circuit protection."
-  },
-  {
-    "id": 4040,
-    "question": "When using the 'Simplified Method' for cable sizing, if the protective device is a BS EN 60898 MCB, what is the correct formula to find the minimum tabulated current (It)?",
-    "options": [
-      "It ≥ In / (Correction Factors)",
-      "It ≥ Ib * (Correction Factors)",
-      "It ≥ (In * 1.45) / 0.725",
-      "It ≥ Ib / 0.725"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "OTHER",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "conceptual",
-      "calculation",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "To ensure Iz is at least equal to In under installed conditions, the tabulated value It must be adjusted by dividing In by all applicable correction factors."
-  },
-  {
-    "id": 4041,
-    "question": "When designing a circuit, why must the ambient temperature correction factor (Ca) be applied to the calculation for a cable's current-carrying capacity?",
-    "options": [
-      "To prevent the conductor insulation from exceeding its maximum safe operating temperature",
-      "To ensure the circuit breaker trips faster during a short-circuit fault",
-      "To increase the total resistance of the circuit to limit the design current",
-      "To allow for the physical expansion of the copper conductor when it gets hot"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_I_V_R",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "calculation",
-      "conceptual",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Correction factors like Ca ensure that the heat generated by the load current, combined with the environment, does not cause the cable insulation (e.g., 70°C for PVC) to melt or degrade."
-  },
-  {
-    "id": 4042,
-    "question": "Which of the following formulas is used to determine the minimum current-carrying capacity (It) of a conductor when correction factors for grouping (Cg) and ambient temperature (Ca) are present?",
-    "options": [
-      "It >= In / (Cg x Ca)",
-      "It >= In x Cg x Ca",
-      "It >= Ib / (Cg + Ca)",
-      "It >= In - (Cg x Ca)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "SIGN_ERROR"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "calculation",
-      "units",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 3,
+    "difficulty": 4,
     "estimatedTime": 90,
-    "explanation": "To find the minimum tabulated current-carrying capacity (It), the nominal rating of the protective device (In) must be divided by the applicable correction factors."
+    "explanation": "Type D MCBs are designed to trip at 10 to 20 times their rated current, making them suitable for high inrush loads like large motors or transformers. Type B (3-5x) and Type C (5-10x) would likely trip."
   },
   {
-    "id": 4043,
-    "question": "An electrician is installing a 32A radial circuit. The cable will be totally surrounded by thermal insulation for a distance of 600mm (Ci = 0.5). What is the minimum required tabulated current-carrying capacity (It) for the cable?",
+    "id": 4060,
+    "question": "When calculating the minimum current-carrying capacity for a cable installed in a boiler room where the ambient temperature is 45°C, which factor must be used for a 70°C PVC insulated cable (Ca)?",
     "options": [
-      "64 A",
-      "16 A",
-      "32 A",
-      "48 A"
+      "0.71",
+      "1.00",
+      "0.87",
+      "0.50"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "ROUNDING_ERROR"
+      "1": "WRONG_UNITS",
+      "2": "ROUNDING_ERROR",
+      "3": "OTHER"
     },
     "section": "Installation 2365 Level 2",
     "category": "Conductor Sizing",
     "tags": [
       "calculation",
-      "application",
-      "units"
+      "application"
     ],
     "learningOutcomeId": "203.LO3.AC3.3",
     "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "It = In / Ci. Therefore, 32A / 0.5 = 64A. The cable selected must be able to carry 64A under standard conditions to handle 32A when insulated."
+    "difficulty": 4,
+    "estimatedTime": 120,
+    "explanation": "Using Table 4B1 of BS 7671, the correction factor for 70°C PVC insulation at an ambient temperature of 45°C is 0.71. This reduces the effective current the cable can safely carry."
   },
   {
-    "id": 4044,
-    "question": "According to BS 7671, what is the correct relationship between the design current (Ib), the nominal rating of the protective device (In), and the current-carrying capacity of the conductor (Iz)?",
+    "id": 4061,
+    "question": "In a complex installation, 'selectivity' (formerly discrimination) is achieved when:",
     "options": [
-      "Ib <= In <= Iz",
-      "Iz <= In <= Ib",
-      "In <= Ib <= Iz",
-      "Ib >= In >= Iz"
+      "The protective device closest to the fault operates, leaving the upstream devices unaffected",
+      "The main switch trips before any individual circuit breakers to ensure total isolation",
+      "All protective devices in the chain trip simultaneously to ensure maximum safety",
+      "The cable size is doubled for every upstream protective device"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "TOPOLOGY_CONFUSION",
       "2": "CONFUSED_TERMINOLOGY",
-      "3": "SIGN_ERROR"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "conceptual",
-      "terminology",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "The design current must be less than or equal to the protective device rating, which in turn must be less than or equal to the actual capacity of the cable to ensure safety."
-  },
-  {
-    "id": 4045,
-    "question": "Which type of BS EN 60898 circuit breaker is typically selected for commercial installations where moderate inrush currents are expected from fluorescent lighting or small motors?",
-    "options": [
-      "Type C",
-      "Type B",
-      "Type D",
-      "Type AC"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "discrimination",
-      "application",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Type C breakers trip between 5 and 10 times the rated current, making them suitable for inductive loads with moderate inrush currents."
-  },
-  {
-    "id": 4046,
-    "question": "A 9.2 kW electric shower is connected to a 230V supply. After calculating the design current (Ib), which standard BS EN 60898 MCB rating (In) is the most appropriate minimum size?",
-    "options": [
-      "45 A",
-      "40 A",
-      "32 A",
-      "50 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "ROUNDING_ERROR",
-      "2": "USED_SERIES_RULE",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Protective Devices",
-    "tags": [
-      "application",
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "Ib = P / V = 9200 / 230 = 40A. Since In must be greater than or equal to Ib, and standard MCB sizes are 40A or 45A, a 40A or 45A could work, but 45A is the next standard size often used to prevent nuisance tripping at full load."
-  },
-  {
-    "id": 4047,
-    "question": "When cables are grouped together in a trunking, why must a grouping factor (Cg) be applied to determine the cable size?",
-    "options": [
-      "Heat from adjacent cables reduces the ability of a cable to dissipate its own heat",
-      "The magnetic fields of the cables cancel each other out, reducing efficiency",
-      "The total resistance of the conductors increases when they are physically close",
-      "To account for the increased voltage drop caused by mutual induction"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "USED_PARALLEL_RULE",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "conceptual",
-      "explanation",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Grouping cables traps heat. If multiple cables generate heat in a confined space, they cannot cool down as effectively, necessitating a larger conductor size to keep temperatures safe."
-  },
-  {
-    "id": 4048,
-    "question": "If a circuit is protected by a BS 3036 semi-enclosed (rewireable) fuse, what additional factor (Cc) must be applied to the calculation of the required cable capacity (It)?",
-    "options": [
-      "0.72",
-      "1.45",
-      "0.80",
-      "1.00"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "CONFUSED_TERMINOLOGY",
       "3": "OTHER"
     },
     "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "discrimination",
-      "calculation",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 45,
-    "explanation": "BS 3036 fuses have a high fusing factor (1.45). To compensate for the fact that they take longer to blow during an overload, the cable capacity must be derated by a factor of 0.72 (which is 1/1.45)."
-  },
-  {
-    "id": 4049,
-    "question": "A designer determines that a circuit requires a 32A Type B MCB. The cable is run through an area with an ambient temperature of 40°C (Ca = 0.87). What is the minimum It required for the cable selection?",
-    "options": [
-      "36.78 A",
-      "27.84 A",
-      "32.00 A",
-      "22.62 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "FORMULA_NOT_REARRANGED",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "MULTIPLIED_INSTEAD"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing",
-    "tags": [
-      "application",
-      "calculation",
-      "units"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "It = In / Ca = 32 / 0.87 = 36.78 A. The cable selected from the tables must have a capacity of at least 36.78 A."
-  },
-  {
-    "id": 4050,
-    "question": "Which of the following protective devices is specifically used to protect against the effects of earth leakage currents but does not necessarily provide overload protection?",
-    "options": [
-      "Residual Current Device (RCD)",
-      "Miniature Circuit Breaker (MCB)",
-      "High Breaking Capacity (HBC) fuse",
-      "Residual Current Breaker with Overload (RCBO)"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Installation 2365 Level 2",
     "category": "Protective Devices",
     "tags": [
       "discrimination",
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "A standard RCD (RCCB) monitors the balance of current between line and neutral to detect earth leakage; it does not protect against overloads or short circuits unless it is an RCBO."
-  },
-  {
-    "id": 4051,
-    "question": "Which type of circuit breaker, according to BS EN 60898, is specifically designed for circuits supplying equipment with very high inductive starting currents, such as large industrial motors or transformers?",
-    "options": [
-      "Type D",
-      "Type B",
-      "Type C",
-      "Type AC"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "terminology",
-      "calculation",
-      "legislation"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.4",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "Type D circuit breakers are designed for high inrush currents, tripping at 10 to 20 times their rated current. Type B is for domestic/low surge, and Type C is for standard commercial/inductive loads."
-  },
-  {
-    "id": 4052,
-    "question": "When selecting a protective device and cable for a circuit, which of the following expressions correctly defines the relationship between design current (Ib), nominal rating of the protective device (In), and the current-carrying capacity of the cable (Iz)?",
-    "options": [
-      "Ib ≤ In ≤ Iz",
-      "In ≤ Ib ≤ Iz",
-      "Iz ≤ In ≤ Ib",
-      "Ib ≥ In ≥ Iz"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 75,
-    "explanation": "To ensure safety, the design current must be less than or equal to the fuse rating, which in turn must be less than or equal to the cable's capacity after correction factors are applied."
-  },
-  {
-    "id": 4053,
-    "question": "An electrician is installing a circuit with a design current (Ib) of 22 A. They select a 32 A circuit breaker (In). If the cable is installed in an area with an ambient temperature correction factor (Ca) of 0.87, what is the minimum calculated current-carrying capacity (It) required for the cable?",
-    "options": [
-      "36.78 A",
-      "27.84 A",
-      "25.29 A",
-      "32.00 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "FORMULA_NOT_REARRANGED",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "calculation",
-      "units",
-      "application"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 3,
-    "estimatedTime": 90,
-    "explanation": "The formula is It ≥ In / Ca. Therefore, 32 / 0.87 = 36.78 A. Using the design current (Ib) instead of the protective device rating (In) is a common error."
-  },
-  {
-    "id": 4054,
-    "question": "According to BS 7671, what correction factor value (Ci) must be applied to the current-carrying capacity of a cable when it is completely surrounded by thermal insulation for a distance exceeding 500mm?",
-    "options": [
-      "0.50",
-      "0.87",
-      "0.72",
-      "1.03"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "terminology",
-      "legislation"
-    ],
-    "learningOutcomeId": "203.LO3.AC3.3",
-    "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "When a cable is totally surrounded by thermal insulation for more than 500mm, its current-carrying capacity is reduced by half, requiring a factor of 0.5."
-  },
-  {
-    "id": 4055,
-    "question": "A standard BS EN 60898 MCB provides protection against which two specific circuit conditions?",
-    "options": [
-      "Overload and short-circuit",
-      "Overload and earth leakage",
-      "Short-circuit and open-circuit",
-      "Earth leakage and surge voltage"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
     "learningOutcomeId": "203.LO3.AC3.4",
     "answerType": "mcq",
-    "difficulty": 2,
-    "estimatedTime": 60,
-    "explanation": "MCBs are overcurrent protective devices designed to trip during thermal overload (slow) and magnetic short-circuit (instantaneous) conditions. Earth leakage is protected by RCDs."
-  },
-  {
-    "id": 4056,
-    "question": "An electrician is designing a circuit where the design current (Ib) is 27 A. A 32 A BS EN 60898 Type B MCB is selected. If the cable is routed through an area with an ambient temperature of 40°C (Ca = 0.87), what is the minimum required tabulated current-carrying capacity (It) for the conductor?",
-    "options": [
-      "36.78 A",
-      "27.84 A",
-      "31.05 A",
-      "23.49 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "calculation",
-      "units",
-      "ohms-law"
-    ],
-    "learningOutcomeId": "203-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "To find the tabulated current-carrying capacity (It), the nominal rating of the protective device (In) must be divided by the correction factors. It ≥ In / Ca. Therefore, 32 / 0.87 = 36.78 A."
-  },
-  {
-    "id": 4057,
-    "question": "Which specific condition must be met to ensure that a protective device provides effective protection against both overload and short-circuit currents according to BS 7671?",
-    "options": [
-      "The nominal rating (In) must be less than or equal to the continuous current-carrying capacity (Iz) of the conductor",
-      "The design current (Ib) must be exactly equal to the tabulated current-carrying capacity (It)",
-      "The breaking capacity (Icn) must be lower than the prospective fault current (Ipf)",
-      "The grouping factor (Cg) must always be applied to the design current (Ib) rather than the fuse rating"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "TOPOLOGY_CONFUSION"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "conceptual",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3B-LO1",
-    "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "For overload protection, the fundamental requirement is Ib ≤ In ≤ Iz. This ensures the protective device trips before the conductor reaches a temperature that would damage its insulation."
-  },
-  {
-    "id": 4058,
-    "question": "A 10 kW 230 V fixed immersion heater is to be installed using multicore 70°C thermoplastic cable. The cable is grouped with two other loaded circuits in a conduit (Cg = 0.70). Calculate the minimum required tabulated current (It) for selecting the cable size, assuming a standard 50 A protective device is used.",
-    "options": [
-      "71.43 A",
-      "43.48 A",
-      "35.00 A",
-      "62.11 A"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_I_V_R",
-      "2": "MULTIPLIED_INSTEAD",
-      "3": "ROUNDING_ERROR"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "calculation",
-      "application",
-      "power"
-    ],
-    "learningOutcomeId": "203-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 150,
-    "explanation": "First, find Ib: 10,000 / 230 = 43.48 A. A 50 A protective device is selected (In). Then apply the grouping factor to In: It ≥ In / Cg = 50 / 0.70 = 71.43 A."
-  },
-  {
-    "id": 4059,
-    "question": "When selecting a circuit breaker for a commercial kitchen ventilation system with a high-power centrifugal fan motor, which trip characteristic is most appropriate to prevent nuisance tripping during start-up?",
-    "options": [
-      "Type C BS EN 60898",
-      "Type B BS EN 60898",
-      "BS 3036 semi-enclosed fuse",
-      "Type AC RCD"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "discrimination",
-      "application"
-    ],
-    "learningOutcomeId": "203-3B-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "Motors have high inrush currents. Type C breakers are designed to trip at 5-10 times their nominal current, making them suitable for inductive loads where Type B (3-5 times) might trip unnecessarily."
-  },
-  {
-    "id": 4060,
-    "question": "A conductor is installed in an area where it is totally surrounded by thermal insulation for a length of 600mm. According to BS 7671, what is the correct factor (Ci) to apply to the current-carrying capacity?",
-    "options": [
-      "0.50",
-      "0.75",
-      "1.00",
-      "0.63"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "ROUNDING_ERROR",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "conceptual",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "BS 7671 states that where a cable is totally surrounded by thermal insulation for a distance of 500mm or more, a factor (Ci) of 0.5 must be applied."
-  },
-  {
-    "id": 4061,
-    "question": "In the context of protective devices, what does the term 'Breaking Capacity' (Icn) represent?",
-    "options": [
-      "The maximum fault current the device can safely interrupt without damage",
-      "The current level at which the device will trip within 0.1 seconds",
-      "The minimum current required to melt a fuse element",
-      "The maximum continuous load the device can carry at 30°C"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "CONFUSED_TERMINOLOGY",
-      "2": "CONFUSED_RMS_WITH_PEAK",
-      "3": "OTHER"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "discrimination",
-      "terminology"
-    ],
-    "learningOutcomeId": "203-3B-LO2",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 90,
-    "explanation": "Breaking capacity (Icn) is the prospective fault current that a protective device is capable of breaking at a specific voltage under defined conditions."
+    "explanation": "Selectivity ensures that only the protective device immediately upstream of a fault operates, preventing a single fault from disconnecting unrelated parts of the installation."
   },
   {
     "id": 4062,
-    "question": "A circuit is protected by a 20 A BS 88-3 fuse. The design current is 14 A. The cable passes through a conduit with an ambient temperature of 45°C (Ca = 0.79). What is the value of Iz (actual current-carrying capacity) required to satisfy the overload protection requirement?",
+    "question": "A 10 mm² twin and earth cable is installed such that it is completely surrounded by thermal insulation for a length of 150 mm. Which correction factor (Ci) from Table 52.2 should be applied to its current-carrying capacity?",
     "options": [
-      "At least 20 A",
-      "Exactly 14 A",
-      "At least 25.3 A",
-      "At least 17.7 A"
+      "0.78",
+      "0.50",
+      "1.00",
+      "0.89"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
-      "1": "MULTIPLIED_INSTEAD",
-      "2": "DIVIDED_INSTEAD",
-      "3": "CONFUSED_TERMINOLOGY"
+      "1": "OTHER",
+      "2": "WRONG_UNITS",
+      "3": "ROUNDING_ERROR"
     },
     "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
+    "category": "Conductor Sizing",
     "tags": [
-      "conceptual",
+      "calculation",
       "application"
     ],
-    "learningOutcomeId": "203-3B-LO1",
+    "learningOutcomeId": "203.LO3.AC3.3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 150,
-    "explanation": "The requirement for overload protection is In ≤ Iz. Since the nominal rating of the fuse (In) is 20 A, the actual capacity (Iz) of the cable in its installed environment must be at least 20 A."
+    "explanation": "BS 7671 Table 52.2 specifies that for a cable surrounded by thermal insulation for 150 mm, a factor of 0.78 must be applied. 0.5 is only used for lengths exceeding 500 mm."
   },
   {
     "id": 4063,
-    "question": "Why is it necessary to apply a correction factor (Cg) when cables are grouped together in a single enclosure?",
+    "question": "What is the primary reason for applying a grouping factor (Cg) when sizing conductors for a multi-circuit trunking system?",
     "options": [
-      "Because heat dissipation is restricted, leading to a higher conductor temperature",
-      "Because the magnetic fields of the cables cancel each other out, reducing efficiency",
-      "Because the voltage drop increases due to mutual inductance between conductors",
-      "Because it reduces the total resistance of the circuit conductors"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "TOPOLOGY_CONFUSION",
-      "3": "CONFUSED_TERMINOLOGY"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "conceptual",
-      "explanation"
-    ],
-    "learningOutcomeId": "203-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 4,
-    "estimatedTime": 120,
-    "explanation": "When cables are grouped, they act as heat sources for one another. This reduces the ability of each cable to dissipate heat into the air, necessitating a reduction in their current rating."
-  },
-  {
-    "id": 4064,
-    "question": "An electrician is installing a 32 A ring final circuit using 2.5mm² Twin and Earth cable. If the cable is run through a thermal insulation layer for 100mm, which of the following is true regarding the conductor sizing?",
-    "options": [
-      "No correction factor for insulation (Ci) is required as the length is under 400mm",
-      "A correction factor of 0.5 must be applied regardless of the length",
-      "The cable must be upsized to 4.0mm² immediately",
-      "The grouping factor (Cg) must be doubled to compensate for the heat"
-    ],
-    "correctAnswer": 0,
-    "misconceptionCodes": {
-      "1": "OTHER",
-      "2": "CONFUSED_TERMINOLOGY",
-      "3": "FORMULA_NOT_REARRANGED"
-    },
-    "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
-    "tags": [
-      "application",
-      "discrimination"
-    ],
-    "learningOutcomeId": "203-3B-LO1",
-    "answerType": "mcq",
-    "difficulty": 5,
-    "estimatedTime": 120,
-    "explanation": "According to BS 7671, correction factors for thermal insulation (Ci) generally apply to lengths of 400mm or more. For 100mm, the impact is negligible enough that specific derating factors from Table 52.2 are not triggered."
-  },
-  {
-    "id": 4065,
-    "question": "Which protective device provides the fastest disconnection time for a high-magnitude short-circuit fault, assuming all have the same nominal rating?",
-    "options": [
-      "BS EN 60898 Type B MCB",
-      "BS 3036 semi-enclosed re-wireable fuse",
-      "BS 1361 (BS 88-3) cartridge fuse",
-      "BS EN 60947-2 MCCB with thermal-magnetic trip"
+      "Accumulated heat from adjacent cables reduces the ability of an individual cable to dissipate heat",
+      "Magnetic fields from adjacent cables increase the resistance of the copper conductors",
+      "To account for the increased voltage drop caused by the proximity of other circuits",
+      "To ensure that there is enough physical space in the trunking for future expansion"
     ],
     "correctAnswer": 0,
     "misconceptionCodes": {
       "1": "CONFUSED_TERMINOLOGY",
       "2": "OTHER",
-      "3": "CONFUSED_AC_DC_SOURCES"
+      "3": "TOPOLOGY_CONFUSION"
     },
     "section": "Installation 2365 Level 2",
-    "category": "Conductor Sizing and Protective Devices",
+    "category": "Conductor Sizing",
     "tags": [
-      "discrimination",
-      "conceptual"
+      "conceptual",
+      "calculation"
     ],
-    "learningOutcomeId": "203-3B-LO2",
+    "learningOutcomeId": "203.LO3.AC3.3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
-    "explanation": "Modern MCBs (BS EN 60898) utilize a magnetic trip mechanism for short-circuits which is significantly faster (typically <0.1s) than the thermal melting process of older fuse technologies."
+    "explanation": "Cables grouped together cannot dissipate heat as effectively as a single cable. The grouping factor reduces the allowed current to prevent the insulation from reaching its maximum operating temperature."
+  },
+  {
+    "id": 4064,
+    "question": "A designer determines the design current (Ib) is 24 A. They select a 25 A BS EN 60898 MCB (In). After applying correction factors, the cable's current-carrying capacity (Iz) is found to be 22 A. Does this circuit meet the coordination requirements of BS 7671?",
+    "options": [
+      "No, because Iz must be greater than or equal to In",
+      "Yes, because In is greater than Ib",
+      "Yes, because Iz is close enough to In",
+      "No, because Ib must be greater than In"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "SIGN_ERROR",
+      "2": "CONFUSED_TERMINOLOGY",
+      "3": "OTHER"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Conductor Sizing",
+    "tags": [
+      "discrimination",
+      "legislation"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.3",
+    "answerType": "mcq",
+    "difficulty": 5,
+    "estimatedTime": 150,
+    "explanation": "The fundamental rule for coordination is Ib ≤ In ≤ Iz. In this case, 25 A (In) is greater than 22 A (Iz), so the cable is not protected against overload and the design fails."
+  },
+  {
+    "id": 4065,
+    "question": "Which protective device provides the highest breaking capacity for use in industrial environments with very high prospective fault currents (PFC)?",
+    "options": [
+      "BS 88-2 cartridge fuse",
+      "BS EN 60898 Type B MCB",
+      "BS 3036 semi-enclosed fuse",
+      "BS 1362 plug fuse"
+    ],
+    "correctAnswer": 0,
+    "misconceptionCodes": {
+      "1": "CONFUSED_TERMINOLOGY",
+      "2": "OTHER",
+      "3": "TOPOLOGY_CONFUSION"
+    },
+    "section": "Installation 2365 Level 2",
+    "category": "Protective Devices",
+    "tags": [
+      "discrimination",
+      "application"
+    ],
+    "learningOutcomeId": "203.LO3.AC3.4",
+    "answerType": "mcq",
+    "difficulty": 4,
+    "estimatedTime": 90,
+    "explanation": "BS 88-2 (HRC) fuses have very high breaking capacities (often up to 80kA), making them ideal for the high fault levels found in industrial main switchboards, far exceeding standard MCBs."
   }
 ];
