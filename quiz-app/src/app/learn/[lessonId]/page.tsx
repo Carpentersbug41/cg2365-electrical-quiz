@@ -45,9 +45,11 @@ import lesson203_1A from '@/data/lessons/203-1A-statutory-and-non-statutory-regu
 import lesson203_1B from '@/data/lessons/203-1B-implications-of-regulatory-non-compliance.json';
 import lesson203_2A from '@/data/lessons/203-2A-technical-information-and-drawing-types.json';
 import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.json';
+import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3B': lesson203_3B as Lesson,
   '203-2B': lesson203_2B as Lesson,
   '203-2A': lesson203_2A as Lesson,
   '203-1B': lesson203_1B as Lesson,

@@ -238,6 +238,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-2B'),
     available: true,
     order: 4,
+  },
+  {
+    id: '203-3B',
+    title: 'Conductor Sizing and Protective Devices',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Conductor Sizing and Protective Devices',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3B'),
+    available: true,
+    order: 5,
   },// Unit 210: Communication
   {
     id: '204-10A',

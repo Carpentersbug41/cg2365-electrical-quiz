@@ -1,0 +1,520 @@
+{
+  "id": "203-3B",
+  "title": "203.3B — Conductor Sizing and Protective Devices",
+  "description": "Learn about Conductor Sizing and Protective Devices in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Conductor Sizing and Protective Devices",
+  "learningOutcomes": [
+    "Identify common types of overcurrent protective devices used in electrical systems",
+    "Explain how installation conditions affect the current-carrying capacity of live conductors",
+    "Calculate the minimum required current-carrying capacity for a conductor under specific environmental factors"
+  ],
+  "prerequisites": [
+    "203-3A"
+  ],
+  "blocks": [
+    {
+      "id": "203-3B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common types of overcurrent protective devices used in electrical systems",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain how installation conditions affect the current-carrying capacity of live conductors",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate the minimum required current-carrying capacity for a conductor under specific environmental factors",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Current-carrying Capacity (Iz)",
+            "definition": "The maximum current a conductor can carry continuously without overheating. Think of this as the 'weight limit' of a bridge—exceeding it causes structural damage."
+          },
+          {
+            "term": "Correction Factor (C)",
+            "definition": "A multiplier (usually less than 1.0) that acts like a 'penalty' to reduce a cable's rating based on harsh conditions. Example: A factor of 0.8 means the cable is only 80% as effective due to heat."
+          },
+          {
+            "term": "Overcurrent",
+            "definition": "Any current flow that exceeds the safe limit. It includes 'overload' (too many appliances) and 'fault current' (a short circuit)."
+          },
+          {
+            "term": "Circuit Protective Device",
+            "definition": "A safety component (like a fuse or breaker) that automatically cuts power if the current gets too high, acting like a 'guard' for the wire."
+          },
+          {
+            "term": "Ambient Temperature",
+            "definition": "The temperature of the surrounding air. Example: A cable in a hot attic (40°C) has a harder time cooling down than one in a cool basement (20°C)."
+          },
+          {
+            "term": "Design Current (Ib)",
+            "definition": "The actual amount of current the connected equipment (load) is expected to draw during normal operation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Conductor Capacity and Correction Factors",
+        "content": "### In this lesson\nYou will learn how heat affects wires and how to calculate the right size wire for the job. \n\n*   How installation conditions (like heat and bundling) affect how much current a wire can hold.\n*   What **Correction Factors** are and how to use them.\n*   How to calculate the minimum safe capacity for a conductor.\n\n**What this is**\nEvery wire has a limit to how much electricity it can carry before it gets too hot. This is called **Current-carrying Capacity** ($I_z$). Think of it like a water pipe: if you push too much water through a narrow pipe, the pressure gets too high. In a wire, too much current creates dangerous heat.\n\nHowever, this limit isn't fixed. It changes based on the environment. If a wire is in a hot room, it can't cool down easily, so its capacity goes down. To calculate this, we use a **Correction Factor**. This is a number (like 0.8 or 0.5) that acts as a 'penalty.' \n\n**Why it matters**\nIf you pick a wire based on its standard rating but install it in a hot ceiling, it might overheat and cause a fire. You must apply the 'heat penalties' (Correction Factors) to find out the *real* capacity of the wire in that specific location.\n\n**Key facts / rules**\n*   **Heat** is the enemy. Anything that traps heat (insulation, other cables, hot air) lowers the wire's capacity.\n*   **Ambient Temperature**: If the air is hotter than 30°C, the wire handles less current.\n*   **Grouping**: Bundling cables together is like people huddling in a crowd—it traps heat. You must reduce the rating for every cable in the bundle.\n*   **Thermal Insulation**: Covering a cable with insulation is like wearing a winter coat; the wire can't release heat, so its capacity drops significantly.\n\n**How to calculate it**\nTo find the minimum capacity your cable needs ($I_z$), follow these steps:\n1.  Identify the rating of the **Circuit Protective Device** ($I_n$). This is the fuse or breaker size.\n2.  Find the **Correction Factors** ($C$) for the environment (from a table).\n3.  Divide the device rating by the correction factors: $I_z = I_n / C$.\n\n*Example:* You have a 20A fuse ($I_n$). The cable runs through a hot ceiling with a factor ($C_a$) of 0.80.\nCalculation: $20 \\div 0.80 = 25A$.\nThis means you need a cable that can handle at least 25A, not just 20A, because the heat makes the cable less efficient.\n\n*Micro-scenario:* Imagine a cable rated for 20A in open air. If you wrap it in insulation (factor 0.5), it acts like a 10A cable. If you try to push 16A through it, it will overheat. The math protects you from this mistake.\n\n**Common mistakes**\n*   **Ignoring the factors:** Learners often just match the cable to the load ($I_b$) without checking the fuse size ($I_n$) or the environment.\n*   **Wrong direction:** Remember, correction factors *divide* the current rating in this formula to tell you the *larger* cable you need. \n\n**Key Points**\n*   Calculated capacity ($I_z$) must be $\\ge$ Protective Device Rating ($I_n$).\n*   Correction factors are usually decimals (e.g., 0.8, 0.9).\n*   Dividing by a decimal gives you a larger number, ensuring you pick a bigger, safer cable."
+      }
+    },
+    {
+      "id": "203-3B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Conductor Capacity",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3B-C1-L1-A",
+            "questionText": "What physical byproduct of electricity is the primary limiting factor for any conductor?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Heat",
+              "Thermal energy",
+              "Temperature"
+            ],
+            "hint": "What happens to a wire when too much current flows through it?"
+          },
+          {
+            "id": "203-3B-C1-L1-B",
+            "questionText": "If you apply a correction factor of 0.8 to a cable calculation, does it mean the environment is better or worse than standard conditions?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Worse",
+              "Harder",
+              "More difficult",
+              "Hotter"
+            ],
+            "hint": "Standard conditions have a factor of 1.0. A number less than 1.0 implies a 'penalty'."
+          },
+          {
+            "id": "203-3B-C1-L1-C",
+            "questionText": "To ensure safety, must the cable's capacity (Iz) be higher or lower than the protective device rating (In)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Higher",
+              "Greater",
+              "More",
+              "Higher or equal"
+            ],
+            "hint": "The cable must be strong enough to handle whatever the fuse allows through."
+          },
+          {
+            "id": "203-3B-C1-L2",
+            "questionText": "Explain simply why we divide the fuse rating by the correction factor (e.g., 20A / 0.5 = 40A). Why do we need a 40A cable for a 20A fuse in this case?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The environment (insulation/heat) reduces the cable's efficiency",
+              "A factor of 0.5 means the cable is only half as effective",
+              "We need a much larger cable (40A) so that even when it is 'penalized' by 50%, it can still safely carry the 20A current"
+            ],
+            "expectedAnswer": [
+              "We divide because the environment makes the cable less efficient. A factor of 0.5 means the cable can only do half its job. By dividing 20A by 0.5, we get 40A. This tells us we need a thick cable rated for 40A so that, even after losing half its capacity to the heat/insulation, it can still safely handle the 20A flow.",
+              "The correction factor represents a penalty. Dividing by a decimal increases the required cable size. We need a 40A cable because the insulation traps heat, effectively cutting the cable's safe capacity in half. Starting with a 40A cable ensures it remains safe even under those bad conditions."
+            ],
+            "hint": "Think of the correction factor as reducing the cable's strength. You need a stronger starting cable to handle the penalty."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Protective Device Characteristics",
+        "content": "### In this lesson\nYou will learn about the devices that protect circuits and how to pick the right one.\n\n*   Types of protective devices (Fuses vs. Breakers).\n*   Matching the device to the load.\n*   Understanding 'Prospective Fault Current'.\n\n**What this is**\nA **Circuit Protective Device** is the 'gatekeeper' of the circuit. It sits at the start of the wire. Its job is to detect **Overcurrent** (too much electricity) and cut the power off automatically.\n\n**Types of Devices**\n1.  **Circuit Breakers (MCBs):** These are the switches found in modern consumer units. If they trip, you can reset them by flipping the switch back up. They come in Types B, C, and D based on how sensitive they are to surges.\n2.  **Fuses:** These contain a thin wire that melts if the current gets too high. Once blown, they must be replaced. They are often used in industrial settings or plugs.\n\n**Key Concepts**\n*   **Design Current ($I_b$):** The current the load actually uses (e.g., a 10A heater).\n*   **Device Rating ($I_n$):** The limit stamped on the fuse/breaker (e.g., 16A). The device will allow up to 16A to flow forever, but will trip if it goes higher.\n*   **Prospective Fault Current:** This is a worst-case scenario. It is the massive surge of energy that *could* flow if there is a direct short circuit—like the pressure behind a dam bursting. The device must be strong enough to break this surge without exploding.\n\n**Rules for Selection**\nTo be safe, the ratings must follow this order:\n$$I_b \\le I_n \\le I_z$$\n\n1.  **$I_b \\le I_n$**: The protective device must be big enough to handle the normal load (so the heater doesn't trip the breaker).\n2.  **$I_n \\le I_z$**: The cable ($I_z$) must be stronger than the protective device ($I_n$). If the cable is weaker than the fuse, the cable will melt before the fuse blows.\n\n*Micro-scenario:* You have a 13A heater ($I_b$). You choose a 16A breaker ($I_n$). You must use a cable that can handle at least 16A ($I_z$). If you used a thin 10A cable, the breaker would happily let 16A flow, burning up the wire.\n\n**Common mistakes**\n*   **Wrong Type:** Using a Type B breaker (sensitive) for a large motor. Motors have a high 'inrush' current (a temporary surge) when starting. This surge trips Type B breakers instantly. You would need a Type C or D, which ignores short surges.\n*   **Oversizing the Fuse:** Putting a 32A fuse on a circuit meant for lights. If a fault occurs, the wires might burn before the 32A fuse notices.\n\n**Key Points**\n*   Fuses melt (one-time use); Breakers trip (resettable).\n*   The device protects the *cable*, not just the appliance.\n*   Always check that the device can handle the potential fault energy (Prospective Fault Current)."
+      }
+    },
+    {
+      "id": "203-3B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Protective Devices",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3B-C2-L1-A",
+            "questionText": "What is the main advantage of a Circuit Breaker (MCB) over a fuse?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Resettable",
+              "Can be reset",
+              "Reusable",
+              "Doesn't need replacing"
+            ],
+            "hint": "What can you do with a breaker after it trips that you can't do with a blown fuse?"
+          },
+          {
+            "id": "203-3B-C2-L1-B",
+            "questionText": "Which value must be the largest in a safe circuit design: the load ($I_b$), the fuse rating ($I_n$), or the cable capacity ($I_z$)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cable capacity",
+              "Iz",
+              "Cable rating",
+              "The cable"
+            ],
+            "hint": "The 'container' (cable) must be bigger than the 'gatekeeper' (fuse)."
+          },
+          {
+            "id": "203-3B-C2-L1-C",
+            "questionText": "What type of current describes the massive surge of energy during a direct short circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Fault current",
+              "Prospective fault current",
+              "Short circuit current"
+            ],
+            "hint": "We compared this to a dam bursting."
+          },
+          {
+            "id": "203-3B-C2-L2",
+            "questionText": "A large motor keeps tripping its circuit breaker the moment it is turned on, even though the breaker is rated for the motor's normal running current. Why is this happening and what characteristic of the breaker should be changed?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Motors have a high 'inrush' or starting current",
+              "The current breaker type (likely Type B) is too sensitive to this surge",
+              "The breaker type should be changed to one that handles surges better (like Type C or D)",
+              "Do not just increase the Amperage rating ($I_n$) blindly; change the Type"
+            ],
+            "expectedAnswer": [
+              "The motor likely has a high 'inrush' current (a temporary surge) when it starts up. Even if the running current is low, this initial spike trips a sensitive breaker (like Type B). The solution is to switch to a breaker 'Type' that is designed to tolerate surges, such as Type C or Type D, rather than just increasing the amperage rating.",
+              "It is happening because of the motor's startup surge (inrush current). The breaker is reacting too quickly. You should change the breaker Type (e.g., from B to C) to allow for this brief surge without tripping."
+            ],
+            "hint": "Think about the difference between a sensitive Type B breaker and a robust Type C breaker regarding startup surges."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Calculating Minimum Cable Size",
+        "given": "You are installing a circuit protected by a 20A breaker ($I_n$). The cable runs through a hot ceiling space where the Correction Factor ($C_a$) is 0.87.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the Protective Device Rating ($I_n$).",
+            "formula": null,
+            "calculation": null,
+            "result": "20A"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Identify the Correction Factor ($C$).",
+            "formula": null,
+            "calculation": null,
+            "result": "0.87"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Calculate the minimum required Capacity ($I_z$). Divide the rating by the factor.",
+            "formula": "Iz = In / C",
+            "calculation": "20 / 0.87",
+            "result": "22.98"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Interpret the result. The cable must be rated for at least 22.98A.",
+            "formula": null,
+            "calculation": null,
+            "result": "Select a cable rated 23A or higher."
+          }
+        ],
+        "notes": "Note how dividing by 0.87 made the requirement go UP from 20A to ~23A. This extra buffer accounts for the heat."
+      }
+    },
+    {
+      "id": "203-3B-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A circuit is protected by a 16A breaker ($I_n$). It is installed inside thermal insulation which has a severe Correction Factor ($C_i$) of 0.5.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What is the rating of the Protective Device ($I_n$)?",
+            "expectedAnswer": [
+              "16",
+              "16A"
+            ],
+            "hint": "Find the Amperage value of the breaker."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "What is the Correction Factor ($C_i$) for the insulation?",
+            "expectedAnswer": [
+              "0.5"
+            ],
+            "hint": "Find the decimal number representing the insulation penalty."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Calculate the minimum capacity ($I_z$) using the formula: $I_z = I_n / C_i$.",
+            "expectedAnswer": [
+              "32",
+              "32A"
+            ],
+            "hint": "Divide 16 by 0.5. (Note: Dividing by 0.5 is the same as doubling the number)."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Why do we need a 32A cable for a 16A circuit in this case?",
+            "expectedAnswer": [
+              "insulation traps heat",
+              "cable capacity is reduced",
+              "factor is 0.5",
+              "heat penalty"
+            ],
+            "hint": "The insulation reduces the cable's effectiveness by half, so we need a cable twice as strong to start with."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3B-P1",
+            "questionText": "Calculate the minimum required capacity ($I_z$) for a conductor protected by a 32A device, installed in an environment with a correction factor of 0.72. Round to two decimal places.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "44.44"
+            ],
+            "hint": "Formula: $32 \\div 0.72$."
+          },
+          {
+            "id": "203-3B-P2",
+            "questionText": "A cable has a base rating of 10A. It is bundled with other cables (factor 0.6) AND covered in insulation (factor 0.5). What is its NEW safe capacity after applying these penalties?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3",
+              "3.0"
+            ],
+            "hint": "Multiply the base rating by ALL factors: $10 \\times 0.6 \\times 0.5$."
+          },
+          {
+            "id": "203-3B-P3",
+            "questionText": "Why must the Protective Device Rating ($I_n$) be LESS than or equal to the Cable Capacity ($I_z$)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "protect the cable",
+              "prevent overheating",
+              "cable will melt first",
+              "safety"
+            ],
+            "hint": "If the 'guard' (device) is stronger than the 'road' (cable), the road will break before the guard stops traffic."
+          },
+          {
+            "id": "203-3B-P4",
+            "questionText": "You are powering a large industrial machine that has a high start-up surge. Would you choose a Type B or Type D circuit breaker?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Type D",
+              "D",
+              "D type"
+            ],
+            "hint": "Type B is sensitive (for homes). Type D is robust (for heavy machines)."
+          },
+          {
+            "id": "203-3B-P5",
+            "questionText": "If the ambient temperature gets hotter, does the Correction Factor number get smaller (e.g., 0.8) or larger (e.g., 1.2)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "smaller",
+              "lower",
+              "decreases",
+              "less"
+            ],
+            "hint": "A harsher environment means a bigger penalty, which is mathematically a smaller fraction (further from 1.0)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3B-INT-1",
+            "questionText": "Explain the relationship between the Protective Device ($I_n$) and the Conductor Capacity ($I_z$) when environmental factors are present. Why do we divide $I_n$ by the correction factors to find the required cable size?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Environmental factors (heat/grouping) reduce a cable's ability to carry current",
+              "Correction factors are penalties (decimals < 1.0)",
+              "Dividing the device rating ($I_n$) by the factor gives a larger number ($I_z$)",
+              "This ensures we select a larger cable that can safely handle the current even after the environment reduces its efficiency"
+            ],
+            "expectedAnswer": [
+              "Environmental factors like heat reduce a cable's efficiency. We represent this with a correction factor (e.g., 0.8). We divide the protective device rating ($I_n$) by this factor to calculate a higher required capacity ($I_z$). This math tells us to pick a thicker cable that is strong enough to handle the current safely, even with the 'heat penalty' applied.",
+              "Because the environment acts as a penalty, we must start with a cable that is 'over-specified' for standard conditions. Dividing the fuse rating by the decimal factor gives us a higher target number. This ensures that the cable we buy is large enough that, once it loses capacity due to heat or grouping, it is still stronger than the fuse protecting it."
+            ],
+            "hint": "Focus on how the environment weakens the cable, so we need to buy a stronger one to compensate."
+          },
+          {
+            "id": "203-3B-INT-2",
+            "questionText": "You are designing a circuit for a bakery oven (high continuous heat). The load is 25A ($I_b$). You select a 32A breaker ($I_n$). The cable runs through a hot ceiling (Factor 0.7). Walk through the safety check: Is a 32A cable sufficient? Why or why not?",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Identify $I_n$ = 32A",
+              "Identify Factor = 0.7",
+              "Calculate required $I_z$: $32 / 0.7 = 45.7A$",
+              "Compare: A 32A cable is much smaller than the required 45.7A",
+              "Conclusion: Not sufficient. The cable would overheat."
+            ],
+            "expectedAnswer": [
+              "No, a 32A cable is not sufficient. We must calculate the minimum required capacity based on the breaker and the heat. Calculation: $32A \\div 0.7 = 45.7A$. This means we need a cable rated for at least 46A. If we used a 32A cable in that hot ceiling, its real capacity would drop significantly (to about 22A), and it would overheat long before the 32A breaker tripped.",
+              "The 32A cable is unsafe. Because of the 0.7 heat factor, we need a cable capable of carrying $32 / 0.7 = 45.7A$. A standard 32A cable would be severely undersized for this environment and would likely melt."
+            ],
+            "hint": "Calculate $I_z = 32 / 0.7$ and compare the result to the proposed 32A cable."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3B-SR-1",
+            "questionText": "What do we call the material (like copper) that allows electricity to flow easily?",
+            "expectedAnswer": [
+              "conductor",
+              "conductors",
+              "wire"
+            ],
+            "hint": "It 'conducts' electricity.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3B-SR-2",
+            "questionText": "What is the main purpose of a fuse or circuit breaker?",
+            "expectedAnswer": [
+              "safety",
+              "protection",
+              "protect the circuit",
+              "prevent fire"
+            ],
+            "hint": "It stops the power when things get dangerous.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3B-SR-3",
+            "questionText": "What word describes the maximum limit of a component?",
+            "expectedAnswer": [
+              "capacity",
+              "rating",
+              "limit"
+            ],
+            "hint": "Starts with C or R.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Conductor Sizing and Protective Devices"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC3",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-19",
+    "updated": "2026-02-19",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "CALCULATION, SELECTION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC3",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Selection of conductor sizes based on capacity calculations ($I_z$) and matching them to appropriate protective devices ($I_n$).",
+      "outOfScope": "Physical installation of cables, termination techniques, or verification/testing procedures.",
+      "rationale": "Level 2 learners must master the selection and sizing logic as a prerequisite to practical installation tasks."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": false,
+      "specificScope": "Focus on sizing logic and application criteria rather than installation procedures."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A cable's capacity is a fixed value printed on the drum.",
+        "correction": "Capacity changes based on installation conditions like temperature and grouping.",
+        "relatedAC": "203.LO3.AC3.3"
+      },
+      {
+        "misconception": "A larger fuse is always safer because it won't blow as easily.",
+        "correction": "A fuse that is too large will not blow when the cable is overheating, creating a fire risk.",
+        "relatedAC": "203.LO3.AC3.4"
+      },
+      {
+        "misconception": "Adding more cables to a tray doesn't affect the existing ones.",
+        "correction": "Grouping cables increases heat, which requires a reduction in the capacity of all cables in that group.",
+        "relatedAC": "203.LO3.AC3.3"
+      }
+    ]
+  }
+}
