@@ -271,6 +271,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-4A'),
     available: true,
     order: 7,
+  },
+  {
+    id: '203-4B',
+    title: 'Exposed and Extraneous Conductive Parts',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Exposed and Extraneous Conductive Parts',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-4B'),
+    available: true,
+    order: 8,
   },// Unit 210: Communication
   {
     id: '204-10A',

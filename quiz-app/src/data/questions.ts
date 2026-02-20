@@ -74,6 +74,7 @@ import { symbolsAndScalingInDrawingsQuestions } from './questions/symbolsAndScal
 import { conductorSizingAndProtectiveDevicesQuestions } from './questions/conductorSizingAndProtectiveDevicesQuestions';
 import { installationEquipmentAndEnclosureSpacingQuestions } from './questions/installationEquipmentAndEnclosureSpacingQuestions';
 import { earthingSystemsAndAdsComponentsQuestions } from './questions/earthingSystemsAndAdsComponentsQuestions';
+import { exposedAndExtraneousConductivePartsQuestions } from './questions/exposedAndExtraneousConductivePartsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -141,6 +142,7 @@ export const questions: Question[] = [
   ...conductorSizingAndProtectiveDevicesQuestions,
   ...installationEquipmentAndEnclosureSpacingQuestions,
   ...earthingSystemsAndAdsComponentsQuestions,
+  ...exposedAndExtraneousConductivePartsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

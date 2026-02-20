@@ -43,6 +43,7 @@ import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.
 import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
 import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclosure-spacing.json';
 import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
+import lesson203_4B from '@/data/lessons/203-4B-exposed-and-extraneous-conductive-parts.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -86,6 +87,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_4B,
   lesson203_4A,
   lesson203_3C,
   lesson203_3B,

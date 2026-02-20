@@ -71,8 +71,10 @@ import {
   runM3Plan,
   runM4Blueprints,
   runM5Validate,
+  runM6GenerateLesson,
   runM6Generate,
 } from '@/lib/module_planner/planner';
+import { generateLessonFromBlueprint } from '@/lib/module_planner/adapter';
 import { clearModulePlannerDbForTests } from '@/lib/module_planner/db';
 import { seedLegacyChunksAsDefaultVersionIfNeeded } from '@/lib/module_planner/syllabus';
 
@@ -235,5 +237,69 @@ describe('module planner stages', () => {
 
     const summary = await getPlannerRunSummary(run.id);
     expect(summary.lessons.every((row) => row.status === 'success')).toBe(true);
+  });
+
+  it('dedupes concurrent single-lesson generation requests for the same run/blueprint', async () => {
+    const syllabusVersionId = await seedLegacyChunksAsDefaultVersionIfNeeded();
+    expect(syllabusVersionId).toBeTruthy();
+
+    const run = await createPlannerRun({
+      syllabusVersionId: String(syllabusVersionId),
+      unit: '202',
+      chatTranscript: 'Build LO5 only',
+    });
+
+    await runM0Distill(
+      run.id,
+      {
+        syllabusVersionId: String(syllabusVersionId),
+        unit: '202',
+        selectedLos: ['LO5'],
+        constraints: {
+          minimiseLessons: true,
+          defaultMaxLessonsPerLO: 2,
+          maxAcsPerLesson: 12,
+          preferredAcsPerLesson: 12,
+          maxLessonsOverrides: {},
+          level: 'Level 2',
+          audience: 'beginner',
+        },
+        orderingPreference: 'foundation-first',
+        notes: 'M6 single lesson dedupe test',
+      },
+      { replayFromArtifacts: false }
+    );
+    await runM1Analyze(run.id, { replayFromArtifacts: false });
+    await runM2Coverage(run.id, { replayFromArtifacts: false });
+    await runM3Plan(run.id, { replayFromArtifacts: false });
+    const m4 = await runM4Blueprints(run.id, { replayFromArtifacts: false });
+    await runM5Validate(run.id, { replayFromArtifacts: false });
+
+    const m4Artifact = m4.artifact as unknown as
+      | Array<{ id: string }>
+      | { blueprints?: Array<{ id: string }> };
+    const blueprints = Array.isArray(m4Artifact) ? m4Artifact : (m4Artifact.blueprints ?? []);
+    const blueprintId = blueprints[0]?.id;
+    expect(blueprintId).toBeTruthy();
+
+    const mockedGenerator = vi.mocked(generateLessonFromBlueprint);
+    mockedGenerator.mockImplementationOnce(async (blueprint: { id: string }) => {
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      return {
+        lessonId: blueprint.id,
+        response: { success: true },
+      };
+    });
+
+    const [first, second] = await Promise.all([
+      runM6GenerateLesson(run.id, String(blueprintId), { apiBaseUrl: 'http://localhost:3000' }),
+      runM6GenerateLesson(run.id, String(blueprintId), { apiBaseUrl: 'http://localhost:3000' }),
+    ]);
+
+    expect(mockedGenerator).toHaveBeenCalledTimes(1);
+    expect(first.error).toBeNull();
+    expect(second.error).toBeNull();
+    expect([first.status, second.status]).toContain('generated');
+    expect(first.deduped || second.deduped).toBe(true);
   });
 });

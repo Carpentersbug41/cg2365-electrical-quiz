@@ -2567,6 +2567,90 @@ const inFlightSingleLessonGeneration = new Map<
   }>
 >();
 
+const moduleGenerationLockDir = path.join(process.cwd(), '.tmp_module_generation_locks');
+const moduleGenerationLockStaleMs = 45 * 60 * 1000;
+
+function sanitizeLockSegment(value: string): string {
+  return value.replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
+function getModuleGenerationLockPath(runId: string, blueprintId: string): string {
+  return path.join(
+    moduleGenerationLockDir,
+    `${sanitizeLockSegment(runId)}__${sanitizeLockSegment(blueprintId)}.lock`
+  );
+}
+
+function tryAcquireModuleGenerationFileLock(
+  runId: string,
+  blueprintId: string
+): { acquired: true; lockPath: string; token: string } | { acquired: false; lockPath: string } {
+  const lockPath = getModuleGenerationLockPath(runId, blueprintId);
+  const token = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+  fs.mkdirSync(moduleGenerationLockDir, { recursive: true });
+
+  const tryCreate = (): boolean => {
+    try {
+      fs.writeFileSync(
+        lockPath,
+        JSON.stringify({
+          token,
+          runId,
+          blueprintId,
+          createdAt: new Date().toISOString(),
+          pid: process.pid,
+        }),
+        { flag: 'wx', encoding: 'utf8' }
+      );
+      return true;
+    } catch (error) {
+      const code = (error as NodeJS.ErrnoException | undefined)?.code;
+      if (code !== 'EEXIST') throw error;
+      return false;
+    }
+  };
+
+  if (tryCreate()) {
+    return { acquired: true, lockPath, token };
+  }
+
+  try {
+    const raw = fs.readFileSync(lockPath, 'utf8');
+    const parsed = safeJsonParse<{ createdAt?: string; createdMs?: number }>(raw);
+    if (parsed.success) {
+      const createdMs =
+        typeof parsed.data?.createdMs === 'number'
+          ? parsed.data.createdMs
+          : typeof parsed.data?.createdAt === 'string'
+            ? Date.parse(parsed.data.createdAt)
+            : NaN;
+      if (Number.isFinite(createdMs) && Date.now() - createdMs > moduleGenerationLockStaleMs) {
+        fs.unlinkSync(lockPath);
+        if (tryCreate()) {
+          return { acquired: true, lockPath, token };
+        }
+      }
+    }
+  } catch {
+    // Ignore lock-read failures; treat as active lock.
+  }
+
+  return { acquired: false, lockPath };
+}
+
+function releaseModuleGenerationFileLock(lockPath: string, token: string): void {
+  try {
+    const raw = fs.readFileSync(lockPath, 'utf8');
+    const parsed = safeJsonParse<{ token?: string }>(raw);
+    const lockToken = parsed.success && typeof parsed.data?.token === 'string' ? parsed.data.token : null;
+    if (lockToken === token) {
+      fs.unlinkSync(lockPath);
+    }
+  } catch {
+    // Best effort cleanup only.
+  }
+}
+
 export async function runM6GenerateLesson(
   runId: string,
   blueprintId: string,
@@ -2602,6 +2686,18 @@ export async function runM6GenerateLesson(
   }
 
   const generationPromise = (async () => {
+    const fileLock = tryAcquireModuleGenerationFileLock(runId, blueprint.id);
+    if (!fileLock.acquired) {
+      return {
+        lessonId: blueprint.id,
+        status: 'pending' as const,
+        error: null,
+        deduped: true,
+        message: 'Lesson generation is already running for this run/blueprint.',
+      };
+    }
+
+    try {
     const existingRow = (await listRunLessons(runId)).find((row) => row.blueprint_id === blueprint.id);
     if (existingRow?.status === 'success') {
       return {
@@ -2702,6 +2798,9 @@ export async function runM6GenerateLesson(
         deduped: false,
         message: `Lesson generation failed: ${message}`,
       };
+    }
+    } finally {
+      releaseModuleGenerationFileLock(fileLock.lockPath, fileLock.token);
     }
   })();
 
