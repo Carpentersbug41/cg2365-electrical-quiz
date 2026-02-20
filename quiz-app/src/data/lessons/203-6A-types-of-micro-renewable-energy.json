@@ -1,0 +1,442 @@
+{
+  "id": "203-6A",
+  "title": "203.6A — Types of Micro-renewable Energy",
+  "description": "Learn about Types of Micro-renewable Energy in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Types of Micro-renewable Energy",
+  "learningOutcomes": [
+    "Identify the primary types of micro-renewable energy systems used in modern installations.",
+    "Describe the fundamental operating principles of different micro-renewable technologies.",
+    "Classify micro-renewable sources based on their environmental characteristics and energy output types."
+  ],
+  "prerequisites": [
+    "203-5B"
+  ],
+  "blocks": [
+    {
+      "id": "203-6A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the primary types of micro-renewable energy systems used in modern installations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the fundamental operating principles of different micro-renewable technologies.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Classify micro-renewable sources based on their environmental characteristics and energy output types.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Micro-generation",
+            "definition": "Small-scale production of heat or electricity from renewable sources for use within an individual building."
+          },
+          {
+            "term": "Photovoltaic (PV)",
+            "definition": "Technology that converts solar radiation directly into electrical energy (electricity)."
+          },
+          {
+            "term": "Solar Thermal",
+            "definition": "System that captures energy from sunlight to heat water or a fluid (heat)."
+          },
+          {
+            "term": "Heat Pump",
+            "definition": "Device that extracts thermal energy from the air or ground and upgrades it to heat a building."
+          },
+          {
+            "term": "Biomass",
+            "definition": "Renewable energy source using organic materials (like wood pellets) burned to produce heat."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Types of Micro-renewable Energy Diagram",
+        "description": "Visual representation of Types of Micro-renewable Energy",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "pv-module",
+          "thermal-collector",
+          "outdoor-heat-exchanger",
+          "fuel-storage-hopper"
+        ],
+        "placeholderText": "A comparative layout showing four distinct micro-renewable systems. On the left, a pv-module (flat panel with grid) and a thermal-collector (panel with internal piping) are shown on a roof. In the center, an outdoor-heat-exchanger (fan unit) for a heat pump is located against an external wall. On the right, a fuel-storage-hopper for a biomass system is shown feeding into a central boiler. The diagram illustrates that while all are forms of micro-generation, they occupy different physical spaces and provide different energy outputs."
+      }
+    },
+    {
+      "id": "203-6A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Characteristics of Micro-renewable Technologies",
+        "content": "### In this lesson\nYou will learn to identify the four primary types of micro-renewable energy systems. This is essential for distinguishing between systems that generate electricity and those that generate heat.\n\n**What this is**\n**Micro-generation** is the production of energy on a small scale for a specific building. We focus on four main types:\n\n1.  **Photovoltaic (PV)**: Converts sunlight into **electricity**. Think of the small solar strip on a calculator, but large enough to cover a roof.\n2.  **Solar Thermal**: Uses sunlight to **heat water**. Think of a garden hose left in the sun; the water gets hot, but it cannot power a TV.\n3.  **Heat Pump**: Moves heat from outside to inside. Think of a kitchen fridge working in reverse; it extracts heat from the air or ground and pumps it into the house.\n4.  **Biomass**: Burns organic material to create **heat**. Think of a wood-burning stove, but automated with a fuel hopper.\n\n**Why it matters**\nIdentifying the correct technology is the first step in any job. If you mistake a **Solar Thermal** panel for a **PV** panel, you might look for electrical cables when you should be looking for water pipes. Misidentification can lead to dangerous errors or incorrect system checks.\n\n**Key facts**\n*   **PV** produces Direct Current (DC) electricity. It usually connects to an **inverter** to convert this to Alternating Current (AC) for the building.\n*   **Solar Thermal** heats a fluid (water/glycol). It connects to a hot water tank, not a fuse box.\n*   **Heat Pumps** require an electrical supply to run the compressor, but they deliver more heat energy than the electricity they consume.\n*   **Biomass** is carbon-neutral because the plants absorbed CO2 while growing. It requires physical storage for fuel (wood pellets/chips).\n\n**How to recognise it**\n*   **PV**: Look for flat, dark blue or black panels with a grid of thin silver wires. You will often see an **inverter** installed nearby.\n*   **Solar Thermal**: Look for panels with visible tubes or pipes inside. They are often thicker than PV panels and connect to insulated pipework.\n*   **Heat Pump**: Look for a large fan unit outside (like an air conditioner) or pipes going into the ground.\n*   **Biomass**: Look for a boiler unit with a flue (chimney) and a hopper or store for wood fuel.\n\n*Micro-scenario: You are inspecting a roof. You see 10 flat panels. They are connected by electrical cables to a box labeled 'DC Inverter'. This is a **Photovoltaic (PV)** system. If the panels were connected to copper pipes running to a water cylinder, it would be **Solar Thermal**.*"
+      }
+    },
+    {
+      "id": "203-6A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Characteristics",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-6A-C1-L1-A",
+            "questionText": "What specific type of electricity is produced by Photovoltaic (PV) systems before it passes through an inverter?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Direct Current",
+              "DC",
+              "Direct Current electricity"
+            ],
+            "hint": "It is the type of current produced by batteries and solar cells, not the mains supply."
+          },
+          {
+            "id": "203-6A-C1-L1-B",
+            "questionText": "What is the primary useful output of a Solar Thermal system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "hot water",
+              "heated fluid",
+              "heat",
+              "thermal energy"
+            ],
+            "hint": "Unlike PV, this system does not generate electricity."
+          },
+          {
+            "id": "203-6A-C1-L1-C",
+            "questionText": "What does a Heat Pump require to drive its compressor and transfer heat?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "electricity",
+              "electrical input",
+              "electrical power",
+              "power supply"
+            ],
+            "hint": "It moves heat from outside, but it needs this energy source to run the machinery."
+          },
+          {
+            "id": "203-6A-C1-L2",
+            "questionText": "Explain the physical difference between a Photovoltaic (PV) installation and a Solar Thermal installation as described in the text. How would you distinguish them by looking at their connections?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "PV panels connect to an inverter via electrical cables",
+              "Solar Thermal panels connect to a tank via pipes",
+              "PV produces electricity; Solar Thermal produces hot water"
+            ],
+            "expectedAnswer": [
+              "You can distinguish them by their connections. A Photovoltaic (PV) system connects to an inverter using electrical cables to handle the DC electricity. In contrast, a Solar Thermal system connects to a water tank using pipes to transport the heated fluid.",
+              "PV systems use electrical wiring and inverters, whereas Solar Thermal systems use plumbing pipes and fluid headers. Physically, PV panels often have a grid of wires, while Solar Thermal panels may have visible tubes."
+            ],
+            "hint": "Focus on what leaves the panels: wires for one, pipes for the other."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Application and Suitability",
+        "content": "### In this lesson\nYou will learn how to classify these systems based on when they work (availability) and what they need (environment). This helps in deciding which system fits a building's needs.\n\n**What this is**\nWe classify systems into two main behaviors:\n1.  **Intermittent (Weather-Dependent)**: These only work when the sun shines. **PV** and **Solar Thermal** are intermittent. If it is night time, they produce zero output.\n2.  **Dispatchable (On-Demand)**: These work whenever you want, provided you have fuel or power. **Biomass** is dispatchable because you can burn fuel anytime. \n\n**Heat Pumps** are a special case: they are available all the time (like dispatchable sources) but their efficiency depends on the outside temperature.\n\n**Why it matters**\nA building that needs constant heat 24/7 cannot rely solely on **Solar Thermal** without a large storage tank. A **Biomass** boiler might be better because it can run at night. However, **Biomass** needs space for fuel delivery, which a city apartment might not have.\n\n**Key facts**\n*   **Intermittent** sources (PV, Solar Thermal) usually require storage (batteries for PV, hot water cylinders for Thermal) to be useful when the sun is down.\n*   **Biomass** requires a dry storage area for fuel (wood pellets). It is good for rural areas with space.\n*   **Heat Pump Efficiency**: Heat pumps are highly efficient. For every **1** unit of electricity they consume, they typically deliver **3** units of heat. This is why they are better than electric heaters.\n*   **Solar Thermal** is strictly for heating water. It cannot run lights or appliances.\n\n**How to recognise it**\n*   **Space**: If you see a large hopper or bunker next to a building, it is likely for **Biomass**. If you see a south-facing roof full of panels, it is likely **PV** or **Solar Thermal**.\n*   **Environment**: PV needs an unshaded roof. Heat Pumps need airflow (for air-source) or garden space (for ground-source).\n\n*Micro-scenario: A client wants to reduce their electric heating bill. They have no garden space for a fuel tank but have a large wall. An air-source **Heat Pump** is suitable because it attaches to the wall and upgrades heat from the air, delivering 3 units of heat for every 1 unit of electricity bought.*"
+      }
+    },
+    {
+      "id": "203-6A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Suitability",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-6A-C2-L1-A",
+            "questionText": "Why are PV and Solar Thermal systems called 'intermittent' sources?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "depend on sunlight",
+              "weather dependent",
+              "only work when sunny",
+              "output depends on solar radiation"
+            ],
+            "hint": "Think about why they stop working at night."
+          },
+          {
+            "id": "203-6A-C2-L1-B",
+            "questionText": "What does a Biomass system require to be 'dispatchable' (able to run on demand)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "fuel",
+              "wood pellets",
+              "supply of fuel",
+              "organic material"
+            ],
+            "hint": "It needs a physical resource fed into the boiler."
+          },
+          {
+            "id": "203-6A-C2-L1-C",
+            "questionText": "What component is essential for a Solar Thermal system to provide hot water when the sun is not shining?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "thermal storage cylinder",
+              "hot water tank",
+              "insulated tank",
+              "storage cylinder"
+            ],
+            "hint": "Since the source is intermittent, the heat must be held in this container."
+          },
+          {
+            "id": "203-6A-C2-L2",
+            "questionText": "Explain why a Heat Pump is considered more efficient than a standard electric heater, referencing the input-to-output relationship described in the text.",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Heat pumps move heat rather than creating it",
+              "They deliver more units of heat than the electricity they consume",
+              "Typical ratio is around 1 unit in to 3 units out"
+            ],
+            "expectedAnswer": [
+              "A heat pump is more efficient because it extracts existing heat from the environment rather than creating it from scratch. For every 1 unit of electricity used to run the pump, it typically delivers about 3 units of heat, whereas a standard electric heater only delivers 1 unit of heat for 1 unit of electricity.",
+              "The text states that heat pumps deliver 3 units of heat for every 1 unit of electricity. This makes them efficient because they multiply the effective output by moving thermal energy from outside to inside."
+            ],
+            "hint": "Compare how much heat you get for 1 unit of electricity with a heat pump versus a direct heater."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-6A-P1",
+            "questionText": "How many primary types of micro-renewable energy systems are detailed in this lesson (PV, Solar Thermal, Heat Pump, Biomass)?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "4",
+              "4.0"
+            ],
+            "hint": "Count the distinct technologies listed in the diagram and explanation."
+          },
+          {
+            "id": "203-6A-P2",
+            "questionText": "If you see a roof array connected to a device labeled 'Inverter', which specific technology is installed?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Photovoltaic",
+              "PV",
+              "Solar PV",
+              "Photovoltaic system"
+            ],
+            "hint": "This device converts DC to AC, which is only necessary for the system that generates electricity."
+          },
+          {
+            "id": "203-6A-P3",
+            "questionText": "A remote cabin needs a reliable heat source that works during a week-long snowstorm with no sun. Which dispatchable technology is most suitable?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "biomass",
+              "biomass system",
+              "biomass boiler"
+            ],
+            "hint": "Choose the system that burns stored fuel rather than relying on the weather."
+          },
+          {
+            "id": "203-6A-P4",
+            "questionText": "According to the efficiency principle described, for every 1 unit of electricity input, how many units of heat does a standard heat pump typically deliver?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3",
+              "3.0"
+            ],
+            "hint": "Recall the efficiency ratio mentioned in the text (1 unit in, __ units out)."
+          },
+          {
+            "id": "203-6A-P5",
+            "questionText": "Why is a Solar Thermal system NOT classified as 'dispatchable'?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it is weather dependent",
+              "it is intermittent",
+              "depends on sunlight",
+              "cannot work on demand"
+            ],
+            "hint": "Can you turn it on at full power at midnight? If not, it is not dispatchable."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-6A-INT-1",
+            "questionText": "Explain how the 'fuel' source for a micro-renewable system determines if it is intermittent or dispatchable. Compare Photovoltaic (PV) against Biomass in your answer.",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "PV relies on sunlight, which is an environmental variable (intermittent)",
+              "Biomass relies on wood/organic matter, which is a stored physical fuel (dispatchable)",
+              "Intermittent sources work when the environment allows; dispatchable sources work when the user decides"
+            ],
+            "expectedAnswer": [
+              "The classification depends on whether the energy source is controllable. Photovoltaic (PV) systems rely on sunlight, which varies with weather and time of day, making them intermittent. In contrast, Biomass systems use stored physical fuel (like wood pellets) that can be burned on demand, making them dispatchable.",
+              "PV is intermittent because its 'fuel' (sunlight) cannot be stored or controlled directly. Biomass is dispatchable because its fuel is physical and can be fed into the boiler whenever heat is needed, regardless of the weather."
+            ],
+            "hint": "Consider which 'fuel' you can keep in a box and which one you have to wait for."
+          },
+          {
+            "id": "203-6A-INT-2",
+            "questionText": "A client requires a system to generate electricity for lighting and office equipment. They also have a high demand for hot water. Why would installing ONLY a Solar Thermal system be a mistake, and what combination or alternative might be needed?",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Solar Thermal only produces heat, not electricity",
+              "Lighting and office equipment require electricity (PV output)",
+              "The client needs a system that generates electricity (PV) for the equipment",
+              "They might need both systems or a different solution to cover both needs"
+            ],
+            "expectedAnswer": [
+              "Installing only Solar Thermal would be a mistake because Solar Thermal produces hot water, not electricity. It could not power the lighting or office equipment. The client would need a Photovoltaic (PV) system to generate the required electricity. To meet both needs, they might install both PV (for power) and Solar Thermal (for hot water).",
+              "Solar Thermal cannot generate electricity, so it fails the requirement for lighting and office equipment. A PV system is required for the electrical load. The client should likely install PV for the electricity and could keep Solar Thermal for the hot water, or use the PV to power an electric water heater."
+            ],
+            "hint": "Match the output of the technology (Heat vs Electricity) to the client's specific needs (Lights vs Hot Water)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Lesson Recap",
+        "questions": [
+          {
+            "id": "203-6A-SR-1",
+            "questionText": "What term describes an energy source that is naturally replenished (like sun or wind) and will not run out?",
+            "expectedAnswer": [
+              "Renewable",
+              "Renewable energy",
+              "Renewables"
+            ],
+            "hint": "This is the general category for all the systems discussed in this lesson.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-6A-SR-2",
+            "questionText": "What term refers to the useful product (heat or electricity) generated by a system?",
+            "expectedAnswer": [
+              "Output",
+              "Energy output",
+              "Power output"
+            ],
+            "hint": "We classified systems based on this (e.g., PV produces electrical ___).",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-6A-SR-3",
+            "questionText": "What is the general term for a set of connected components (panels, inverters, cables) working together?",
+            "expectedAnswer": [
+              "System",
+              "A system",
+              "Systems"
+            ],
+            "hint": "We refer to the whole installation as a micro-renewable ___.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Review of core terminology used in this lesson."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO6",
+      "coveredAC": [
+        "AC1"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification and basic conceptual understanding of micro-renewable energy types.",
+      "outOfScope": "Installation procedures, technical maintenance, or detailed capacity calculations for renewable systems.",
+      "rationale": "Level 2 introductory units focus on technology recognition and conceptual awareness prior to technical application."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on the identification of types rather than installation or maintenance procedures."
+    },
+    "misconceptions": [
+      {
+        "misconception": "PV panels and solar thermal panels are the same because they both go on the roof.",
+        "correction": "PV panels generate electricity through the photoelectric effect, while solar thermal panels use solar radiation to heat a liquid.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Heat pumps create heat from nothing.",
+        "correction": "Heat pumps extract and upgrade existing thermal energy from the environment using mechanical work.",
+        "relatedAC": "AC2"
+      },
+      {
+        "misconception": "Biomass is the same as burning coal because they both involve fire.",
+        "correction": "Biomass uses recently living organic material which is renewable, unlike fossil fuels which take millions of years to form.",
+        "relatedAC": "AC3"
+      }
+    ]
+  }
+}

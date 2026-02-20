@@ -52,9 +52,11 @@ import lesson203_4B from '@/data/lessons/203-4B-exposed-and-extraneous-conductiv
 import lesson203_4C from '@/data/lessons/203-4C-earth-loop-impedance-path.json';
 import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-transmission.json';
 import lesson203_5B from '@/data/lessons/203-5B-distribution-voltages-and-network-components.json';
+import lesson203_6A from '@/data/lessons/203-6A-types-of-micro-renewable-energy.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-6A': lesson203_6A as Lesson,
   '203-5B': lesson203_5B as Lesson,
   '203-5A': lesson203_5A as Lesson,
   '203-4C': lesson203_4C as Lesson,

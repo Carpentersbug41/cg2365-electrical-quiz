@@ -78,6 +78,7 @@ import { exposedAndExtraneousConductivePartsQuestions } from './questions/expose
 import { earthLoopImpedancePathQuestions } from './questions/earthLoopImpedancePathQuestions';
 import { electricityGenerationAndTransmissionQuestions } from './questions/electricityGenerationAndTransmissionQuestions';
 import { distributionVoltagesAndNetworkComponentsQuestions } from './questions/distributionVoltagesAndNetworkComponentsQuestions';
+import { typesOfMicroRenewableEnergyQuestions } from './questions/typesOfMicroRenewableEnergyQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -149,6 +150,7 @@ export const questions: Question[] = [
   ...earthLoopImpedancePathQuestions,
   ...electricityGenerationAndTransmissionQuestions,
   ...distributionVoltagesAndNetworkComponentsQuestions,
+  ...typesOfMicroRenewableEnergyQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

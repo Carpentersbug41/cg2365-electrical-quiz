@@ -315,6 +315,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-5B'),
     available: true,
     order: 11,
+  },
+  {
+    id: '203-6A',
+    title: 'Types of Micro-renewable Energy',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Types of Micro-renewable Energy',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-6A'),
+    available: true,
+    order: 12,
   },// Unit 210: Communication
   {
     id: '204-10A',

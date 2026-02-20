@@ -2368,6 +2368,16 @@ async function runBlueprintGenerationQueue(
         });
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown generation failure';
+        if (isGenerationInProgressConflict(error)) {
+          await upsertRunLesson({
+            runId,
+            blueprintId: blueprint.id,
+            lessonId: blueprint.id,
+            status: 'pending',
+            error: null,
+          });
+          continue;
+        }
         const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
         if (recoveredLessonFile && !isQualityGateFailure(error)) {
           await upsertRunLesson({
@@ -2506,6 +2516,14 @@ function isQualityGateFailure(error: unknown): error is LessonGenerationApiError
   return (
     error instanceof LessonGenerationApiError &&
     (error.payload?.code === 'QUALITY_THRESHOLD_FAIL' || error.status === 422)
+  );
+}
+
+function isGenerationInProgressConflict(error: unknown): error is LessonGenerationApiError {
+  return (
+    error instanceof LessonGenerationApiError &&
+    error.status === 409 &&
+    error.payload?.code === 'GENERATION_IN_PROGRESS'
   );
 }
 
@@ -2799,6 +2817,22 @@ export async function runM6GenerateLesson(
       };
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown generation failure';
+      if (isGenerationInProgressConflict(error)) {
+        await upsertRunLesson({
+          runId,
+          blueprintId: blueprint.id,
+          lessonId: blueprint.id,
+          status: 'pending',
+          error: null,
+        });
+        return {
+          lessonId: blueprint.id,
+          status: 'pending' as const,
+          error: null,
+          deduped: true,
+          message: 'Generation already in progress for this lesson. Kept as pending; retry after the active run finishes.',
+        };
+      }
       const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
       if (recoveredLessonFile && !isQualityGateFailure(error)) {
         await upsertRunLesson({

@@ -70,11 +70,13 @@ import { exposedAndExtraneousConductivePartsQuestions } from './exposedAndExtran
 import { earthLoopImpedancePathQuestions } from './earthLoopImpedancePathQuestions';
 import { electricityGenerationAndTransmissionQuestions } from './electricityGenerationAndTransmissionQuestions';
 import { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
+import { typesOfMicroRenewableEnergyQuestions } from './typesOfMicroRenewableEnergyQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...typesOfMicroRenewableEnergyQuestions,
   ...distributionVoltagesAndNetworkComponentsQuestions,
   ...electricityGenerationAndTransmissionQuestions,
   ...earthLoopImpedancePathQuestions,
@@ -212,6 +214,7 @@ export { exposedAndExtraneousConductivePartsQuestions } from './exposedAndExtran
 export { earthLoopImpedancePathQuestions } from './earthLoopImpedancePathQuestions';
 export { electricityGenerationAndTransmissionQuestions } from './electricityGenerationAndTransmissionQuestions';
 export { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
+export { typesOfMicroRenewableEnergyQuestions } from './typesOfMicroRenewableEnergyQuestions';
 
 /**
  * Filter questions by tags
