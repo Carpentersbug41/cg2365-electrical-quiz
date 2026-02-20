@@ -46,7 +46,9 @@ export interface RefinementOutput {
   patchesApplied: any[];
   originalScore: number;
   refinedScore: number;
-  accepted?: boolean;
+  accepted: boolean;
+  reason: string;
+  regressions: string[];
   improvementSuccess: boolean;
 }
 
@@ -65,6 +67,20 @@ export interface SequentialGeneratorResult {
     finalScore: number;
     patchesApplied: number;
     details: any[];
+    report?: {
+      status:
+        | 'pass_no_refinement'
+        | 'pass_after_refinement'
+        | 'fail_below_threshold'
+        | 'fail_regression'
+        | 'fail_refinement_error';
+      threshold: number;
+      initialScore: number;
+      finalScore: number;
+      acceptedCandidate: boolean;
+      reason: string;
+      regressions?: string[];
+    };
   };
   debugBundle?: GenerationDebugBundle;
 }
@@ -331,6 +347,15 @@ export class SequentialLessonGenerator {
       let originalLesson: Lesson | undefined = undefined;
       let rejectedRefinedLesson: Lesson | undefined = undefined;
       let refinementResult: RefinementOutput | null = null;
+      let refinementReport: NonNullable<SequentialGeneratorResult['refinementMetadata']>['report'] = {
+        status: 'pass_no_refinement',
+        threshold: refinementConfig.scoreThreshold,
+        initialScore: initialScore.total,
+        finalScore: initialScore.total,
+        acceptedCandidate: false,
+        reason: 'Initial score meets threshold; refinement not required.',
+        regressions: [],
+      };
 
       // Record baseline in debug bundle (always)
       debugCollector.recordBaseline(lesson, initialScore as any, []);
@@ -345,7 +370,7 @@ export class SequentialLessonGenerator {
         originalLesson = lesson;
         
         try {
-          refinementResult = await this.runPhase10(lesson, initialScore, debugCollector, request);
+          refinementResult = await this.runPhase10(lesson, initialScore, debugCollector, request, threshold);
           
           // Refinement result now includes refined score from isolation scoring
           if (refinementResult && refinementResult.improvementSuccess) {
@@ -375,7 +400,7 @@ export class SequentialLessonGenerator {
             console.log('');
             
             // Only use refined version if score improved
-            if (refinedScore.total > initialScore.total) {
+            if (refinementResult.accepted) {
               const improvement = refinedScore.total - initialScore.total;
               console.log(`✅ [Refinement] Score IMPROVED by ${improvement} points: ${initialScore.total} → ${refinedScore.total}`);
               console.log(`✅ [Refinement] Keeping refined version`);
@@ -423,7 +448,7 @@ export class SequentialLessonGenerator {
           });
         }
       } else {
-        console.log(`✅ [Scoring] Score meets threshold (${initialScore.total} >= 93), no refinement needed`);
+        console.log(`✅ [Scoring] Score meets threshold (${initialScore.total} >= ${threshold}), no refinement needed`);
         phases.push({
           phase: 'Auto-Refinement',
           status: 'completed',
@@ -431,7 +456,57 @@ export class SequentialLessonGenerator {
           output: `Score meets threshold (${initialScore.total}/100 >= ${threshold})`
         });
       }
-
+      if (initialScore.total >= threshold) {
+        refinementReport = {
+          status: 'pass_no_refinement',
+          threshold,
+          initialScore: initialScore.total,
+          finalScore: initialScore.total,
+          acceptedCandidate: false,
+          reason: 'Initial score meets threshold; refinement not required.',
+          regressions: [],
+        };
+      } else if (!refinementResult) {
+        refinementReport = {
+          status: 'fail_refinement_error',
+          threshold,
+          initialScore: initialScore.total,
+          finalScore: initialScore.total,
+          acceptedCandidate: false,
+          reason: 'Refinement pipeline did not complete.',
+          regressions: [],
+        };
+      } else if (refinementResult.accepted && refinementResult.refinedScore >= threshold) {
+        refinementReport = {
+          status: 'pass_after_refinement',
+          threshold,
+          initialScore: initialScore.total,
+          finalScore: refinementResult.refinedScore,
+          acceptedCandidate: true,
+          reason: refinementResult.reason,
+          regressions: refinementResult.regressions,
+        };
+      } else if (refinementResult.regressions.length > 0) {
+        refinementReport = {
+          status: 'fail_regression',
+          threshold,
+          initialScore: initialScore.total,
+          finalScore: refinementResult.refinedScore,
+          acceptedCandidate: false,
+          reason: refinementResult.reason,
+          regressions: refinementResult.regressions,
+        };
+      } else {
+        refinementReport = {
+          status: 'fail_below_threshold',
+          threshold,
+          initialScore: initialScore.total,
+          finalScore: refinementResult.refinedScore,
+          acceptedCandidate: false,
+          reason: refinementResult.reason,
+          regressions: refinementResult.regressions,
+        };
+      }
       debugLog('SEQUENTIAL_GEN_COMPLETE', { lessonId, finalScore: refinementResult?.refinedScore || initialScore.total });
       console.log(`✅ [Sequential] Generation complete for ${lessonId}`);
 
@@ -441,13 +516,15 @@ export class SequentialLessonGenerator {
         originalScore: initialScore.total,
         finalScore: refinementResult.refinedScore,
         patchesApplied: refinementResult.patchesApplied.length,
-        details: refinementResult.patchesApplied
+        details: refinementResult.patchesApplied,
+        report: refinementReport,
       } : {
         wasRefined: false,
         originalScore: initialScore.total,
         finalScore: initialScore.total,
         patchesApplied: 0,
-        details: []
+        details: [],
+        report: refinementReport,
       };
 
       return {
@@ -1192,7 +1269,13 @@ export class SequentialLessonGenerator {
    * 
    * Runs the new pipeline: Score → Suggest → Implement → Rescore
    */
-  private async runPhase10(lesson: Lesson, phase10Score: Phase10Score, debugCollector: DebugBundleCollector, request: GenerationRequest): Promise<RefinementOutput | null> {
+  private async runPhase10(
+    lesson: Lesson,
+    phase10Score: Phase10Score,
+    debugCollector: DebugBundleCollector,
+    request: GenerationRequest,
+    threshold: number
+  ): Promise<RefinementOutput | null> {
     console.log('  🔧 Phase 10-13: Pedagogical Improvement Pipeline...');
     
     try {
@@ -1229,7 +1312,7 @@ export class SequentialLessonGenerator {
         phase10Score,
         this.phase10.lastSyllabusContext,
         this.generateWithRetry,
-        96  // threshold
+        threshold
       );
       
       if (!result.accepted) {
@@ -1242,12 +1325,14 @@ export class SequentialLessonGenerator {
       // Convert to RefinementOutput format for compatibility
       return {
         originalLesson: lesson,
-        refined: result.finalLesson,
+        refined: refinement.refinedLesson,
         patchesApplied: [],  // New pipeline doesn't track patches this way
         originalScore: result.originalScore,
         refinedScore: result.candidateScore,
         accepted: result.accepted,
-        improvementSuccess: true
+        reason: result.reason,
+        regressions: result.regressions,
+        improvementSuccess: result.accepted
       };
       
     } catch (error) {

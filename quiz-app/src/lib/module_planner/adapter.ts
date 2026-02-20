@@ -4,6 +4,18 @@ export interface BlueprintGenerationOptions {
   apiBaseUrl?: string;
 }
 
+export class LessonGenerationApiError extends Error {
+  status: number;
+  payload: BlueprintGenerationResult['response'] | null;
+
+  constructor(message: string, status: number, payload: BlueprintGenerationResult['response'] | null) {
+    super(message);
+    this.name = 'LessonGenerationApiError';
+    this.status = status;
+    this.payload = payload;
+  }
+}
+
 export interface BlueprintGenerationResult {
   lessonId: string;
   response: {
@@ -33,7 +45,22 @@ export interface BlueprintGenerationResult {
       finalScore?: number;
       patchesApplied?: number;
       details?: unknown[];
+      report?: {
+        status?: string;
+        threshold?: number;
+        initialScore?: number;
+        finalScore?: number;
+        acceptedCandidate?: boolean;
+        reason?: string;
+        regressions?: string[];
+      };
     };
+    qualityGate?: {
+      threshold?: number;
+      finalScore?: number;
+      passed?: boolean;
+    };
+    code?: string;
   };
 }
 
@@ -167,7 +194,7 @@ export async function generateLessonFromBlueprint(
     }
 
     const detailSuffix = details.length > 0 ? ` | ${details.join(' | ')}` : '';
-    throw new Error(`${baseMessage}${detailSuffix}`);
+    throw new LessonGenerationApiError(`${baseMessage}${detailSuffix}`, response.status, parsed);
   }
 
   return {

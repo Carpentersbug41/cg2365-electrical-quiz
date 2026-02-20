@@ -74,7 +74,7 @@ import {
   ValidationIssue,
   ValidationResult,
 } from './types';
-import { BlueprintGenerationResult, generateLessonFromBlueprint } from './adapter';
+import { BlueprintGenerationResult, LessonGenerationApiError, generateLessonFromBlueprint } from './adapter';
 import { createLLMClient } from '@/lib/llm/client';
 import { getGeminiApiKey, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { cleanCodeBlocks, preprocessToValidJson, safeJsonParse } from '@/lib/generation/utils';
@@ -2369,7 +2369,7 @@ async function runBlueprintGenerationQueue(
       } catch (error) {
         const message = error instanceof Error ? error.message : 'Unknown generation failure';
         const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
-        if (recoveredLessonFile) {
+        if (recoveredLessonFile && !isQualityGateFailure(error)) {
           await upsertRunLesson({
             runId,
             blueprintId: blueprint.id,
@@ -2386,6 +2386,7 @@ async function runBlueprintGenerationQueue(
           lessonId: blueprint.id,
           status: 'failed',
           error: message,
+          lessonJson: buildGenerationFailurePayload(blueprint.id, error, message),
         });
         abortError = new Error(message);
       }
@@ -2486,6 +2487,10 @@ function buildPersistedLessonPayload(result: {
 }): Record<string, unknown> {
   const lessonFile = result.response.lessonFile ?? null;
   const generatedLesson = readGeneratedLessonJson(result.response.lessonFile);
+  const refinementReport =
+    result.response.refinementMetadata && isRecord(result.response.refinementMetadata.report)
+      ? result.response.refinementMetadata.report
+      : null;
   return {
     lessonId: result.lessonId,
     lessonFile,
@@ -2493,6 +2498,48 @@ function buildPersistedLessonPayload(result: {
     generatorResponse: result.response,
     generatedLesson,
     generationScores: extractLessonGenerationScores(result.response, generatedLesson),
+    generationReport: refinementReport,
+  };
+}
+
+function isQualityGateFailure(error: unknown): error is LessonGenerationApiError {
+  return (
+    error instanceof LessonGenerationApiError &&
+    (error.payload?.code === 'QUALITY_THRESHOLD_FAIL' || error.status === 422)
+  );
+}
+
+function buildGenerationFailurePayload(
+  blueprintId: string,
+  error: unknown,
+  fallbackMessage: string
+): Record<string, unknown> {
+  if (error instanceof LessonGenerationApiError) {
+    return {
+      lessonId: blueprintId,
+      generatedAt: new Date().toISOString(),
+      generatorResponse: error.payload,
+      generationScores: extractLessonGenerationScores(error.payload ?? { success: false }, null),
+      generationReport: isRecord(error.payload?.refinementMetadata)
+        ? (error.payload?.refinementMetadata as Record<string, unknown>).report ?? null
+        : null,
+      qualityGate: isRecord(error.payload?.qualityGate) ? error.payload.qualityGate : null,
+      failure: {
+        message: error.message,
+        status: error.status,
+        code: error.payload?.code ?? null,
+      },
+    };
+  }
+
+  return {
+    lessonId: blueprintId,
+    generatedAt: new Date().toISOString(),
+    failure: {
+      message: fallbackMessage,
+      status: null,
+      code: null,
+    },
   };
 }
 
@@ -2753,7 +2800,7 @@ export async function runM6GenerateLesson(
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Unknown generation failure';
       const recoveredLessonFile = findGeneratedLessonFilenameForBlueprint(blueprint.id);
-      if (recoveredLessonFile) {
+      if (recoveredLessonFile && !isQualityGateFailure(error)) {
         await upsertRunLesson({
           runId,
           blueprintId: blueprint.id,
@@ -2783,6 +2830,7 @@ export async function runM6GenerateLesson(
         lessonId: blueprint.id,
         status: 'failed',
         error: message,
+        lessonJson: buildGenerationFailurePayload(blueprint.id, error, message),
       });
       const lessons = await listRunLessons(runId);
       const summary: GenerateSummary = {

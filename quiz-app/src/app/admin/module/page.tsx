@@ -86,6 +86,16 @@ interface PersistedGenerationScores {
   source: 'phase10-13' | 'lesson-metadata' | null;
 }
 
+interface PersistedGenerationReport {
+  status: 'pass_no_refinement' | 'pass_after_refinement' | 'fail_below_threshold' | 'fail_regression' | 'fail_refinement_error';
+  threshold: number | null;
+  initialScore: number | null;
+  finalScore: number | null;
+  acceptedCandidate: boolean | null;
+  reason: string | null;
+  regressions: string[];
+}
+
 const STAGE_ROUTE: Record<StageKey, string> = {
   M0: 'm0-distill',
   M1: 'm1-analyze',
@@ -164,6 +174,39 @@ function extractPersistedGenerationScores(payload: unknown): PersistedGeneration
     scoreDelta,
     wasRefined,
     source,
+  };
+}
+
+function extractPersistedGenerationReport(payload: unknown): PersistedGenerationReport | null {
+  if (!isRecord(payload)) return null;
+  const fromPersisted = isRecord(payload.generationReport) ? payload.generationReport : null;
+  const generatorResponse = isRecord(payload.generatorResponse) ? payload.generatorResponse : null;
+  const refinementMetadata = generatorResponse && isRecord(generatorResponse.refinementMetadata)
+    ? generatorResponse.refinementMetadata
+    : null;
+  const fromRefinement = refinementMetadata && isRecord(refinementMetadata.report) ? refinementMetadata.report : null;
+  const report = fromPersisted ?? fromRefinement;
+  if (!report) return null;
+
+  const status = typeof report.status === 'string' ? report.status : null;
+  if (
+    status !== 'pass_no_refinement' &&
+    status !== 'pass_after_refinement' &&
+    status !== 'fail_below_threshold' &&
+    status !== 'fail_regression' &&
+    status !== 'fail_refinement_error'
+  ) {
+    return null;
+  }
+
+  return {
+    status,
+    threshold: toScore(report.threshold),
+    initialScore: toScore(report.initialScore),
+    finalScore: toScore(report.finalScore),
+    acceptedCandidate: typeof report.acceptedCandidate === 'boolean' ? report.acceptedCandidate : null,
+    reason: typeof report.reason === 'string' ? report.reason : null,
+    regressions: Array.isArray(report.regressions) ? report.regressions.filter((x): x is string => typeof x === 'string') : [],
   };
 }
 
@@ -1131,6 +1174,7 @@ export default function ModulePlannerPage() {
                             const row = lessonByBlueprint.get(bp.id);
                             const state = row?.status === 'success' ? 'generated' : row?.status === 'failed' ? 'failed' : row?.status === 'pending' ? 'generating' : 'planned';
                             const generationScores = extractPersistedGenerationScores(row?.lesson_json ?? null);
+                            const generationReport = extractPersistedGenerationReport(row?.lesson_json ?? null);
                             return (
                               <div key={bp.id} className="rounded border border-slate-200 p-3">
                                 <div className="flex flex-wrap items-center justify-between gap-2">
@@ -1143,10 +1187,16 @@ export default function ModulePlannerPage() {
                                         {generationScores.scoreDelta != null ? ` | Δ ${generationScores.scoreDelta > 0 ? '+' : ''}${generationScores.scoreDelta}` : ''}
                                       </p>
                                     )}
+                                    {generationReport && (
+                                      <p className={`text-xs ${generationReport.status.startsWith('fail_') ? 'text-rose-700' : 'text-emerald-700'}`}>
+                                        Quality: {generationReport.status}
+                                        {generationReport.reason ? ` | ${generationReport.reason}` : ''}
+                                      </p>
+                                    )}
                                   </div>
                                   <div className="flex items-center gap-2">
                                     <span className="rounded bg-slate-100 px-2 py-1 text-xs">{state}</span>
-                                    {state === 'generated' ? (
+                                    {state === 'generated' || (state === 'failed' && row?.lesson_json) ? (
                                       <button
                                         onClick={() =>
                                           setViewLessonPayload({

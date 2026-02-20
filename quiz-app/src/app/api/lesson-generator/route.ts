@@ -17,6 +17,7 @@ import {
   validateMasterLessonBlueprintContract,
 } from '@/lib/module_planner/masterLessonBlueprint';
 import { MasterLessonBlueprint } from '@/lib/module_planner/types';
+import { getRefinementConfig } from '@/lib/generation/config';
 import fs from 'fs';
 import path from 'path';
 
@@ -27,6 +28,52 @@ type LessonGenerationResult = Awaited<ReturnType<FileGenerator['generateLesson']
   originalLesson?: unknown;
   rejectedRefinedLesson?: unknown;
 };
+
+const lessonGeneratorLockDir = path.join(process.cwd(), '.tmp_lesson_generator_locks');
+const lessonGeneratorLockStaleMs = 45 * 60 * 1000;
+
+function sanitizeLockName(value: string): string {
+  return value.replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
+function acquireLessonGeneratorLock(lessonId: string): { acquired: true; lockPath: string } | { acquired: false } {
+  const lockPath = path.join(lessonGeneratorLockDir, `${sanitizeLockName(lessonId)}.lock`);
+  fs.mkdirSync(lessonGeneratorLockDir, { recursive: true });
+
+  try {
+    fs.writeFileSync(lockPath, JSON.stringify({ lessonId, pid: process.pid, createdAt: Date.now() }), {
+      flag: 'wx',
+      encoding: 'utf8',
+    });
+    return { acquired: true, lockPath };
+  } catch (error) {
+    const code = (error as NodeJS.ErrnoException | undefined)?.code;
+    if (code !== 'EEXIST') throw error;
+    try {
+      const stat = fs.statSync(lockPath);
+      if (Date.now() - stat.mtimeMs > lessonGeneratorLockStaleMs) {
+        fs.unlinkSync(lockPath);
+        fs.writeFileSync(lockPath, JSON.stringify({ lessonId, pid: process.pid, createdAt: Date.now() }), {
+          flag: 'wx',
+          encoding: 'utf8',
+        });
+        return { acquired: true, lockPath };
+      }
+    } catch {
+      // Treat lock as active.
+    }
+    return { acquired: false };
+  }
+}
+
+function releaseLessonGeneratorLock(lockPath: string | null): void {
+  if (!lockPath) return;
+  try {
+    if (fs.existsSync(lockPath)) fs.unlinkSync(lockPath);
+  } catch {
+    // Best-effort cleanup only.
+  }
+}
 
 function buildBlueprintDebugData(
   lesson: { id: string; blocks: Array<{ id: string; type: string; order: number }> },
@@ -102,6 +149,7 @@ function debugLog(stage: string, data: unknown) {
 
 export async function POST(request: NextRequest) {
   const errorHandler = new ErrorHandler();
+  let generationLockPath: string | null = null;
   
   // Validate environment
   const envValidation = errorHandler.validateEnvironment();
@@ -150,6 +198,19 @@ export async function POST(request: NextRequest) {
     }
 
     const fullLessonId = generateLessonId(body.unit, body.lessonId);
+    const lock = acquireLessonGeneratorLock(fullLessonId);
+    if (!lock.acquired) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: 'GENERATION_IN_PROGRESS',
+          error: `Generation already in progress for ${fullLessonId}.`,
+        },
+        { status: 409, headers }
+      );
+    }
+    generationLockPath = lock.lockPath;
+
     const warnings: string[] = [];
     const errors: string[] = [];
 
@@ -287,6 +348,42 @@ export async function POST(request: NextRequest) {
           { status: 400 }
         );
       }
+    }
+
+    const refinementConfig = getRefinementConfig();
+    const qualityThreshold = refinementConfig.scoreThreshold;
+    const finalScoreBeforeWrite =
+      lessonResult.refinementMetadata?.finalScore ?? lessonResult.refinementMetadata?.originalScore ?? null;
+    const refinementReport =
+      lessonResult.refinementMetadata &&
+      typeof lessonResult.refinementMetadata === 'object' &&
+      'report' in lessonResult.refinementMetadata
+        ? (lessonResult.refinementMetadata as {
+            report?: {
+              status?: string;
+              reason?: string;
+              initialScore?: number;
+              finalScore?: number;
+              threshold?: number;
+            };
+          }).report
+        : undefined;
+    if (typeof finalScoreBeforeWrite === 'number' && finalScoreBeforeWrite < qualityThreshold) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: 'QUALITY_THRESHOLD_FAIL',
+          error: `Lesson quality ${finalScoreBeforeWrite}/100 below threshold ${qualityThreshold}/100`,
+          qualityGate: {
+            threshold: qualityThreshold,
+            finalScore: finalScoreBeforeWrite,
+            passed: false,
+          },
+          refinementMetadata: lessonResult.refinementMetadata,
+          refinementReport,
+        },
+        { status: 422, headers }
+      );
     }
 
     // Step 5: Write files
@@ -471,6 +568,8 @@ export async function POST(request: NextRequest) {
       lessonId: lessonIdContext,
       filesUpdated: filesUpdated.length > 0 ? filesUpdated : undefined,
     }, { status: errorResponse.status });
+  } finally {
+    releaseLessonGeneratorLock(generationLockPath);
   }
 }
 

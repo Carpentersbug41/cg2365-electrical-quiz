@@ -282,6 +282,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-4B'),
     available: true,
     order: 8,
+  },
+  {
+    id: '203-4C',
+    title: 'Earth Loop Impedance Path',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Earth Loop Impedance Path',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-4C'),
+    available: true,
+    order: 9,
   },// Unit 210: Communication
   {
     id: '204-10A',

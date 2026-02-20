@@ -18,6 +18,7 @@ export interface Phase13Result {
   improvement: number;
   finalLesson: Lesson;
   reason: string;
+  regressions: string[];
   originalScoreDetail?: Phase10Score;
   candidateScoreDetail?: Phase10Score;
 }
@@ -151,23 +152,23 @@ export class Phase13_Rescore {
       );
     }
 
-    const accepted = improves || fewerIssuesAtSameScore;
+    const meetsThreshold = candidateScore.total >= threshold;
+    const hasNoDomainRegressions = domainRegressions.length === 0;
+    const accepted = meetsThreshold && hasNoDomainRegressions && (improves || fewerIssuesAtSameScore);
 
     let reason: string;
-    if (improves) {
+    if (!meetsThreshold) {
+      reason = `Candidate score ${candidateScore.total} is below threshold ${threshold}`;
+    } else if (!hasNoDomainRegressions) {
+      reason = `Candidate has domain regressions: ${domainRegressions.join(', ')}`;
+    } else if (improves) {
       if (pedagogyRegressions.length > 0) {
         reason = `Candidate improves total score (${candidateScore.total} > ${originalScore.total}) but has pedagogy regressions: ${pedagogyRegressions.join(', ')}`;
-      } else if (domainRegressions.length > 0) {
-        reason = `Candidate improves total score (${candidateScore.total} > ${originalScore.total}) but has domain regressions: ${domainRegressions.join(', ')}`;
       } else {
         reason = `Candidate improves on original (${candidateScore.total} > ${originalScore.total}) with no domain regression`;
       }
     } else if (fewerIssuesAtSameScore) {
-      if (domainRegressions.length > 0) {
-        reason = `Candidate keeps score (${candidateScore.total}) and reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length}) but has domain regressions: ${domainRegressions.join(', ')}`;
-      } else {
-        reason = `Candidate keeps score (${candidateScore.total}) but reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length})`;
-      }
+      reason = `Candidate keeps score (${candidateScore.total}) and reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length})`;
     } else {
       reason = `Candidate does not improve score or issue count (${candidateScore.total}/${candidateScore.issues.length} vs ${originalScore.total}/${originalScore.issues.length})`;
     }
@@ -187,9 +188,10 @@ export class Phase13_Rescore {
       console.log('\nDecision Logic:');
       console.log(`  - Improves on original: ${improves ? 'YES' : 'NO'} (${candidateScore.total} ${improves ? '>' : '<='} ${originalScore.total})`);
       console.log(`  - Fewer issues at same score: ${fewerIssuesAtSameScore ? 'YES' : 'NO'}`);
+      console.log(`  - Meets threshold: ${meetsThreshold ? 'YES' : 'NO'} (${candidateScore.total} ${meetsThreshold ? '>=' : '<'} ${threshold})`);
       console.log(`  - Domain regressions: ${domainRegressions.length === 0 ? 'NONE' : domainRegressions.join('; ')}`);
       console.log(`  - Pedagogy regressions: ${pedagogyRegressions.length === 0 ? 'NONE' : pedagogyRegressions.join('; ')}`);
-      console.log(`  - Final Decision: ${accepted ? 'ACCEPT' : 'KEEP ORIGINAL'} (policy: total score improvement or fewer issues at same score)`);
+      console.log(`  - Final Decision: ${accepted ? 'ACCEPT' : 'KEEP ORIGINAL'} (policy: meets threshold + no domain regressions + improvement/fewer issues)`);
       console.log(`  - Reason: ${reason}`);
       console.log(`  - Final Lesson: ${accepted ? 'CANDIDATE' : 'ORIGINAL'} (best pedagogical outcome)`);
     }
@@ -209,6 +211,7 @@ export class Phase13_Rescore {
       improvement,
       finalLesson: accepted ? candidateLesson : originalLesson,
       reason,
+      regressions: domainRegressions,
       originalScoreDetail: originalScore,
       candidateScoreDetail: candidateScore,
     };

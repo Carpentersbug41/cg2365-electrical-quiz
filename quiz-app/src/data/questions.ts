@@ -75,6 +75,7 @@ import { conductorSizingAndProtectiveDevicesQuestions } from './questions/conduc
 import { installationEquipmentAndEnclosureSpacingQuestions } from './questions/installationEquipmentAndEnclosureSpacingQuestions';
 import { earthingSystemsAndAdsComponentsQuestions } from './questions/earthingSystemsAndAdsComponentsQuestions';
 import { exposedAndExtraneousConductivePartsQuestions } from './questions/exposedAndExtraneousConductivePartsQuestions';
+import { earthLoopImpedancePathQuestions } from './questions/earthLoopImpedancePathQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -143,6 +144,7 @@ export const questions: Question[] = [
   ...installationEquipmentAndEnclosureSpacingQuestions,
   ...earthingSystemsAndAdsComponentsQuestions,
   ...exposedAndExtraneousConductivePartsQuestions,
+  ...earthLoopImpedancePathQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

@@ -1,0 +1,534 @@
+{
+  "id": "203-4C",
+  "title": "203.4C — Earth Loop Impedance Path",
+  "description": "Learn about Earth Loop Impedance Path in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Earth Loop Impedance Path",
+  "learningOutcomes": [
+    "Identify the individual components that form a complete earth fault loop path.",
+    "Explain the sequence of conductors and equipment an earth fault current travels through.",
+    "Calculate total earth loop impedance by combining the external and internal path values."
+  ],
+  "prerequisites": [
+    "203-4B"
+  ],
+  "blocks": [
+    {
+      "id": "203-4C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the individual components that form a complete earth fault loop path.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the sequence of conductors and equipment an earth fault current travels through.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate total earth loop impedance by combining the external and internal path values.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Impedance",
+            "definition": "Impedance is the total opposition to the flow of alternating current (AC) in a circuit, measured in Ohms, and is different from simple resistance because it includes the effects of reactance."
+          },
+          {
+            "term": "External Earth Fault Loop Impedance (Ze)",
+            "definition": "Ze is the impedance of the supply path from the transformer to the origin of the installation, not including any of the consumer's internal wiring."
+          },
+          {
+            "term": "Circuit Protective Conductor (R2)",
+            "definition": "The CPC is a dedicated conductor used to connect exposed-conductive-parts to the main earthing terminal to provide a safe return path for fault current."
+          },
+          {
+            "term": "Internal Path (R1 + R2)",
+            "definition": "The internal path is the combined resistance of the circuit line conductor (R1) and the circuit protective conductor (R2) from the distribution board to the point of the fault."
+          },
+          {
+            "term": "Earth Fault Loop Impedance (Zs)",
+            "definition": "Zs is the total impedance of the entire fault path, calculated by adding the external impedance (Ze) to the internal path resistance (R1 + R2)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Earth Loop Impedance Path Diagram",
+        "description": "Visual representation of Earth Loop Impedance Path",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "transformer-source",
+          "external-path-ze",
+          "origin-of-installation",
+          "line-conductor-r1",
+          "circuit-protective-conductor-r2"
+        ],
+        "placeholderText": "A circular diagram showing the complete earth fault loop. On the left is the transformer-source. A line represents the external-path-ze leading to the origin-of-installation. From the origin, a loop extends to the right representing the internal path, consisting of the line-conductor-r1 going out to a fault point and the circuit-protective-conductor-r2 returning to the origin's earth terminal. The diagram should visually indicate that Zs is the sum of all these components."
+      }
+    },
+    {
+      "id": "203-4C-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The External Path (Ze)",
+        "content": "### In this lesson\nIn this lesson, you will learn to identify the components of the external portion of the earth fault loop. This understanding is applied when assessing the safety of the supply before any internal wiring is considered.\n\n*   Identify the source of the supply and the distribution cables.\n*   Define the role of the transformer in the loop path.\n*   Recognise the boundary of the external path at the installation origin.\n\n**What this is**\n**External Earth Fault Loop Impedance (Ze)** refers to the total opposition to current flow in the part of the circuit that exists outside of the building or installation. It is the measurement of the path that starts at the supply transformer, travels through the distributor's cables, and reaches the origin of the installation. Because we are dealing with alternating current (AC), we use the term **Impedance**, which accounts for both simple resistance and the effects of electromagnetic fields (reactance) created by the supply equipment.\n\n**Why it matters**\nIdentifying the external path is critical because the safety of the entire installation depends on the supplier providing a low-resistance return path. If the **External Earth Fault Loop Impedance (Ze)** is too high, the protective devices (like fuses or circuit breakers) may not trip fast enough during a fault, leaving equipment or structures energized and dangerous. Knowing where the external path ends and the internal path begins allows technicians to isolate whether a fault-loop issue is a problem with the utility provider or the building's wiring.\n\n**Key facts / rules**\n*   The path starts at the secondary winding of the supply transformer.\n*   It includes the resistance of the supplier's line conductor.\n*   It includes the resistance of the supplier's earth return path (such as the cable sheath or a separate earth wire).\n*   **External Earth Fault Loop Impedance (Ze)** is measured at the origin of the installation, typically at the main intake or meter position.\n*   The external path excludes any part of the consumer's internal distribution board or final circuits.\n*   Values for Ze vary depending on the type of earthing system provided by the supplier.\n\n**How to recognise it**\nTo identify the external path, look for the physical cables entering the property from the street or the transformer. The path includes the service head (cut-out) and ends at the main earthing terminal (MET). \n\n**Concrete Anchor:** Think of the external path like the water utility pipes running from the city reservoir to your house's main water shut-off valve. The \"impedance\" of the external path is like the friction and pipe size limits in the city's network; no matter how good your indoor plumbing is, you are limited by the pressure and flow delivered to your front door.\n\n**Micro-scenario:** If an installation has a Ze of 0.8 Ohms and another has a Ze of 0.3 Ohms, the second installation has a much more efficient external return path, meaning the utility's cables are likely shorter or larger in diameter.\n\n**Common mistakes**\nLearners often confuse **External Earth Fault Loop Impedance (Ze)** with **Earth Fault Loop Impedance (Zs)**; **External Earth Fault Loop Impedance (Ze)** is only the supply-side path, whereas **Earth Fault Loop Impedance (Zs)** is the total path including the building's internal wiring.\n\nMisconceptions (targeted):\n*   Misconception: Ze includes the resistance of the consumer unit and the final circuit cables. | Correction: Ze only covers the path from the transformer to the origin of the installation. | AC: AC1\n*   Misconception: Impedance is exactly the same as DC resistance. | Correction: Impedance includes reactance, which only occurs in AC circuits due to magnetic and capacitive effects. | AC: AC1\n\n**Key Points**\n*   Ze is the external part of the fault loop.\n*   The path includes the transformer and the distributor's cables.\n*   It ends at the installation origin/main earthing terminal.\n*   It is measured in Ohms but represents total AC opposition (Impedance).\n\n**Quick recap**\nThe external path, known as Ze, is the portion of the earth fault loop provided by the electricity supplier. It starts at the transformer and ends at the building's origin. It is a vital component of the total fault path that ensures protective devices operate correctly.\n\n### Coming Up Next\nNext, we will trace the fault current as it moves through the building's internal wiring, including the line conductor and the circuit protective conductor."
+      }
+    },
+    {
+      "id": "203-4C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The External Path (Ze)",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4C-C1-L1-A",
+            "questionText": "At what specific point does the external earth fault loop path begin?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "secondary winding of the supply transformer",
+              "supply transformer secondary winding",
+              "secondary winding"
+            ],
+            "hint": "Think about the starting point within the supplier's equipment."
+          },
+          {
+            "id": "203-4C-C1-L1-B",
+            "questionText": "Where is the External Earth Fault Loop Impedance (Ze) measured in relation to the installation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "origin of the installation",
+              "installation origin",
+              "main intake",
+              "meter position"
+            ],
+            "hint": "This is the point where the utility cables first enter the building's systems."
+          },
+          {
+            "id": "203-4C-C1-L1-C",
+            "questionText": "What components are specifically excluded from the external path measurement?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "consumer's internal distribution board or final circuits",
+              "internal distribution board",
+              "final circuits",
+              "internal wiring"
+            ],
+            "hint": "The external path only covers the supplier's side of the system."
+          },
+          {
+            "id": "203-4C-C1-L2",
+            "questionText": "Using your answers to Q1 (the path start), Q2 (measurement location), and Q3 (excluded components), explain how these facts connect. Why is it necessary to define the boundary of the external path so strictly?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The path starts at the transformer and ends at the installation origin",
+              "Ze only measures the utility side of the loop",
+              "Excluding internal circuits allows for isolation of utility-side faults",
+              "Defining the boundary allows technicians to determine if a high impedance is the supplier's responsibility"
+            ],
+            "expectedAnswer": [
+              "By knowing the path starts at the transformer and ends at the origin, we can measure Ze to check the supplier's cables. Because internal circuits are excluded, any high resistance found in this measurement must belong to the utility provider rather than the building wiring.",
+              "The external path is a specific loop from the transformer to the installation origin. Since it excludes internal boards and circuits, defining this boundary allows us to identify if the safety of the supply itself is adequate before checking the building's own wiring."
+            ],
+            "hint": "Consider how knowing exactly where the utility's responsibility ends helps you diagnose fault issues."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Internal Path (R1 + R2)",
+        "content": "### In this lesson\nIn this lesson, you will learn how to calculate the total earth loop impedance by focusing on the internal path of a circuit. This is necessary for verifying that individual circuits within an installation are safe.\n\n*   Identify the components of the **Internal Path (R1 + R2)**.\n*   Trace the sequence of conductors during an earth fault.\n*   Calculate **Earth Fault Loop Impedance (Zs)** using the standard summation formula.\n\n**What this is**\nThe **Internal Path (R1 + R2)** represents the combined resistance of the specific conductors inside a building that carry fault current. When a fault occurs, current travels from the distribution board through the line conductor (R1) to the point of the fault. From there, it must return to the source via the **Circuit Protective Conductor (R2)**. The sum of these two resistances is added to the external impedance to find the total **Earth Fault Loop Impedance (Zs)**.\n\n**Why it matters**\nCalculating the total impedance is the only way to ensure that a circuit's protective device will disconnect the power within the required time limits during a fault. If the **Internal Path (R1 + R2)** is too long or the wires are too thin, the resistance will be high, the fault current will be low, and the fuse or breaker might not trip at all. This creates a fire hazard and a risk of electric shock.\n\n**Key facts / rules**\n*   R1 is the resistance of the line conductor from the distribution board to the fault.\n*   R2 is the resistance of the **Circuit Protective Conductor (R2)** from the fault back to the distribution board.\n*   The **Internal Path (R1 + R2)** is usually measured or calculated for the furthest point of a circuit.\n*   The total loop path (Zs) is the sum of the external path and the internal path.\n*   The formula used is: Zs = Ze + (R1 + R2).\n*   All values must be in the same unit (Ohms) before adding them.\n\n**How to calculate it**\nTo find the total **Earth Fault Loop Impedance (Zs)**, you must first identify the **External Earth Fault Loop Impedance (Ze)** at the origin. Then, you determine the resistance of the internal wiring (R1 + R2). Finally, you add these values together. \n\n**Concrete Anchor:** Imagine a circular race track where the start and finish line is the transformer. The \"external path\" is the road from the transformer to the stadium gates. The \"internal path\" is the specific lane inside the stadium (out to the turn and back). To find the total travel effort, you must add the road distance to the lane distance.\n\n**Micro-scenario:** If a circuit has an external impedance (Ze) of 0.2 Ohms and the internal conductors (R1 + R2) have a combined resistance of 1.1 Ohms, the total **Earth Fault Loop Impedance (Zs)** is 1.3 Ohms. If you swapped the internal wires for thicker ones, the 1.1 Ohms would decrease, lowering the total Zs.\n\n**Common mistakes**\nLearners often confuse the **Circuit Protective Conductor (R2)** with the neutral conductor; the **Circuit Protective Conductor (R2)** is a dedicated safety path, whereas the neutral is part of the normal functional circuit. \n\nMisconceptions (targeted):\n*   Misconception: You can calculate Zs by only looking at the internal wiring. | Correction: Zs must include the external impedance (Ze) to represent the complete loop back to the transformer. | AC: AC3\n*   Misconception: R1 and R2 are two different names for the same wire. | Correction: R1 is the line conductor (carrying power out) and R2 is the protective conductor (carrying fault current back). | AC: AC1\n\n**Key Points**\n*   The internal path consists of the line conductor (R1) and the CPC (R2).\n*   The sequence of fault current is: Transformer -> Line -> Fault Point -> CPC -> Main Earth Terminal -> Transformer.\n*   The calculation for total loop impedance is Zs = Ze + (R1 + R2).\n*   Lower resistance values result in safer, faster disconnection times.\n\n**Quick recap**\nThe total Earth Fault Loop Impedance (Zs) is the sum of the external supply impedance (Ze) and the internal circuit resistance (R1 + R2). Identifying the sequence of conductors from the line to the protective conductor allows us to calculate if a circuit is safe for use.\n\n### Coming Up Next\nIn the next module, we will look at how to compare these calculated Zs values against the maximum permitted limits found in technical standards."
+      }
+    },
+    {
+      "id": "203-4C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Internal Path (R1 + R2)",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4C-C2-L1-A",
+            "questionText": "What does the value R1 represent in the context of an internal circuit fault?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "resistance of the line conductor",
+              "line conductor resistance",
+              "line resistance"
+            ],
+            "hint": "This is the conductor that carries power from the board to the fault."
+          },
+          {
+            "id": "203-4C-C2-L1-B",
+            "questionText": "What does the value R2 represent in the internal fault path?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "resistance of the Circuit Protective Conductor",
+              "CPC resistance",
+              "Circuit Protective Conductor resistance"
+            ],
+            "hint": "This is the dedicated safety path that returns fault current to the board."
+          },
+          {
+            "id": "203-4C-C2-L1-C",
+            "questionText": "How is the total Earth Fault Loop Impedance (Zs) calculated?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "sum of the external path and the internal path",
+              "Ze + (R1 + R2)",
+              "Ze plus R1 and R2"
+            ],
+            "hint": "You must combine the supply-side impedance with the internal wiring resistance."
+          },
+          {
+            "id": "203-4C-C2-L2",
+            "questionText": "Using your answers to Q1 (R1), Q2 (R2), and Q3 (Zs calculation), explain how these facts connect. How do we know if a circuit's internal wiring is sized correctly for safety?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "R1 and R2 combined represent the total internal resistance of a circuit",
+              "The internal path is added to the external Ze to find the total Zs",
+              "Total Zs determines if the fault current is high enough to trip protection",
+              "We know wiring is sized correctly if the resulting Zs allows for fast disconnection"
+            ],
+            "expectedAnswer": [
+              "The internal path consists of R1 and R2, which are added to the external Ze to calculate the total Zs. We know the wiring is safe if the combined resistance of these paths is low enough to ensure the protective device trips quickly during a fault.",
+              "To find Zs, we take the external impedance and add the resistances of the line conductor (R1) and CPC (R2). If the internal wires are too thin or long, the R1+R2 value will increase the total Zs, which could prevent the fuse or breaker from operating correctly."
+            ],
+            "hint": "Think about how the resistance of internal wires affects the total loop and the operation of fuses."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Calculating Total Earth Fault Loop Impedance (Zs)",
+        "given": "An installation has an external impedance (Ze) of 0.35 Ohms. The circuit being tested has a line conductor resistance (R1) of 0.5 Ohms and a protective conductor resistance (R2) of 0.3 Ohms.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the values for the external supply path and the internal circuit conductors.",
+            "formula": null,
+            "calculation": null,
+            "result": "Ze = 0.35, R1 = 0.5, R2 = 0.3"
+          },
+          {
+            "stepNumber": 2,
+            "description": "State the formula used to combine the external and internal paths.",
+            "formula": "Zs = Ze + (R1 + R2)",
+            "calculation": null,
+            "result": "Zs = Ze + (R1 + R2)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Calculate the resistance of the internal path by adding the line conductor and the protective conductor.",
+            "formula": "R1 + R2",
+            "calculation": "0.5 + 0.3",
+            "result": "0.8"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Calculate the total Earth Fault Loop Impedance by adding the external path to the internal path result.",
+            "formula": "Ze + (Internal Path)",
+            "calculation": "0.35 + 0.8",
+            "result": "1.15"
+          }
+        ],
+        "notes": "Ensure all values are converted to Ohms before calculation. Verify current edition/version of technical standards for maximum permitted Zs limits."
+      }
+    },
+    {
+      "id": "203-4C-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A technician measures the external impedance (Ze) at the origin as 0.8 Ohms. The internal wiring for the circuit consists of a line conductor (R1) with a resistance of 1.2 Ohms and a protective conductor (R2) with a resistance of 0.6 Ohms. Calculate the total Earth Fault Loop Impedance (Zs).",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Identify the values for Ze, R1, and R2 from the scenario.",
+            "expectedAnswer": [
+              "Ze=0.8, R1=1.2, R2=0.6",
+              "0.8, 1.2, 0.6"
+            ],
+            "hint": "Look for the external path value and the two internal conductor resistances provided in the text."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "State the formula used to calculate the total Earth Fault Loop Impedance (Zs).",
+            "expectedAnswer": [
+              "Zs = Ze + (R1 + R2)",
+              "Zs=Ze+R1+R2"
+            ],
+            "hint": "The total impedance is the sum of the external path and the internal path (R1 and R2)."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Calculate the sum of the internal path (R1 + R2) in Ohms.",
+            "expectedAnswer": [
+              "1.8"
+            ],
+            "hint": "Add the resistance of the line conductor to the resistance of the circuit protective conductor."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Calculate the final total Earth Fault Loop Impedance (Zs) in Ohms.",
+            "expectedAnswer": [
+              "2.6"
+            ],
+            "hint": "Add your internal path result to the external impedance (Ze) value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-4C-P1",
+            "questionText": "A technician measures the external path (Ze) as 0.35 Ohms. The internal conductors (R1 + R2) for a specific circuit are measured at 1.20 Ohms. Calculate the total Earth Fault Loop Impedance (Zs).",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1.55"
+            ],
+            "hint": "Add the external impedance (Ze) to the internal resistance (R1 + R2). Value in Ohms."
+          },
+          {
+            "id": "203-4C-P2",
+            "questionText": "Why is the external path (Ze) measured specifically at the origin of the installation rather than including the building's internal wiring?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "supplier responsibility",
+              "utility responsibility",
+              "boundary of supply",
+              "isolate utility fault"
+            ],
+            "hint": "Consider who provides the external path and where their equipment ends."
+          },
+          {
+            "id": "203-4C-P3",
+            "questionText": "A circuit has a total Earth Fault Loop Impedance (Zs) of 1.48 Ohms. If the internal path (R1 + R2) accounts for 1.16 Ohms, what is the value of the External Earth Fault Loop Impedance (Ze)?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.32"
+            ],
+            "hint": "Subtract the internal resistance from the total impedance to find the external value. Value in Ohms."
+          },
+          {
+            "id": "203-4C-P4",
+            "questionText": "If a technician replaces a circuit's protective conductor with a much thinner wire, how will this change the value of the total Earth Fault Loop Impedance (Zs)?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it will increase",
+              "increase",
+              "it increases",
+              "higher"
+            ],
+            "hint": "Think about how wire thickness affects the resistance of the internal path (R2)."
+          },
+          {
+            "id": "203-4C-P5",
+            "questionText": "What must be true about the total impedance (Zs) compared to the external impedance (Ze) in any functional circuit containing internal wiring?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Zs is higher",
+              "Zs is greater",
+              "Zs > Ze",
+              "Zs is larger"
+            ],
+            "hint": "Consider that Zs is the sum of Ze and the internal resistance."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4C-INT-1",
+            "questionText": "Analyze the relationship between the external supply path and the internal circuit arrangement when determining total loop impedance. In your answer, include: (1) the components that constitute the external path (Ze), (2) the specific conductors that form the internal path (R1 + R2), and (3) the formula used to combine these values. Why must the external path value be established as a baseline before evaluating internal circuit safety? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies Ze components including the transformer and distribution cabling",
+              "Identifies R1 + R2 as the line conductor and circuit protective conductor",
+              "States the summation formula Zs = Ze + (R1 + R2)",
+              "Explains that Ze is a fixed value provided by the supplier at the origin",
+              "Reasons that the total impedance (Zs) is limited by the baseline external value"
+            ],
+            "expectedAnswer": [
+              "The external path (Ze) consists of the supply transformer and distribution cables, while the internal path (R1 + R2) consists of the circuit's line and protective conductors, combined using the formula Zs = Ze + (R1 + R2). The external path must be established first because it represents the fixed impedance of the supply; if this baseline is too high, the total loop impedance cannot be safely maintained regardless of the internal wiring configuration.",
+              "To find total loop impedance (Zs), we add the external path (Ze)—comprising the source and supply cables—to the internal path (R1 + R2) of the line and earth conductors. We verify Ze first because it is the starting point of the fault loop at the installation origin; without a valid baseline measurement of the supply's impedance, the final calculation for circuit protection would be inaccurate and potentially unsafe."
+            ],
+            "hint": "Consider how the supply path at the origin forms the foundation for all downstream circuit calculations."
+          },
+          {
+            "id": "203-4C-INT-2",
+            "questionText": "Synthesize the complete journey of a fault current through an electrical installation from the source to the point of return. In your answer, include: (1) the sequence of conductors from the transformer to the load, (2) the transition point between the external and internal paths, (3) how individual path resistances are aggregated, and (4) how the resulting total impedance affects the performance of protective equipment. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Traces current from transformer through distribution cables to the origin",
+              "Traces current from origin through R1 to the fault and back through R2",
+              "Identifies the installation origin as the boundary between Ze and R1+R2",
+              "Explains the summation of Ze and (R1 + R2) to calculate Zs",
+              "Describes the return path to the transformer star point",
+              "Links low total impedance to high fault current flow",
+              "Connects high fault current to the rapid operation of protective devices",
+              "Confirms that Zs must be low enough to meet specific disconnection times"
+            ],
+            "expectedAnswer": [
+              "A fault current travels from the supply transformer through distribution cables to the installation origin (Ze), then through the internal line conductor (R1) to the fault, returning via the protective conductor (R2) to the star point. These paths are aggregated using the formula Zs = Ze + (R1 + R2) to determine the total loop impedance. This total value is critical because a lower impedance ensures a high enough fault current to trigger protective devices within the required safety disconnection times.",
+              "• The current flows from the source transformer through external distribution cables to the installation origin.\n• From the origin, it traverses the internal line conductor (R1) to the fault and returns through the circuit protective conductor (R2).\n• Total impedance (Zs) is the sum of the external (Ze) and internal (R1 + R2) path values.\n• A sufficiently low Zs ensures that the fault current is high enough to cause the protective device to operate rapidly, preventing damage or injury."
+            ],
+            "hint": "Think about the continuous loop from the transformer, through the circuit, and back to the transformer's neutral point."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-4C-SR-1",
+            "questionText": "What mathematical term is used to describe the final value obtained by adding two or more separate figures together?",
+            "expectedAnswer": [
+              "Total",
+              "Sum",
+              "Summation"
+            ],
+            "hint": "This is the result of an addition calculation.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4C-SR-2",
+            "questionText": "What term describes the specific order or arrangement in which items follow one another along a route?",
+            "expectedAnswer": [
+              "Sequence",
+              "Order",
+              "Succession"
+            ],
+            "hint": "Think of the logical progression from start to finish.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4C-SR-3",
+            "questionText": "What word is used to describe the individual parts or pieces of equipment that make up a complete system?",
+            "expectedAnswer": [
+              "Components",
+              "Parts",
+              "Elements"
+            ],
+            "hint": "These are the single units that form the whole assembly.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Earth Loop Impedance Path"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, CALCULATION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of the physical components and the mathematical summation of the earth fault loop path.",
+      "outOfScope": "Practical use of test instruments and the physical verification of disconnection times.",
+      "rationale": "Students must understand the theoretical path and components before learning how to measure them with live testing equipment."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": false,
+      "specificScope": "Focus on the constituent parts of the loop and their sequence."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Ze includes the resistance of the consumer unit and the final circuit cables.",
+        "correction": "Ze only covers the path from the transformer to the origin of the installation.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Impedance is exactly the same as DC resistance.",
+        "correction": "Impedance includes reactance, which only occurs in AC circuits due to magnetic and capacitive effects.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "You can calculate Zs by only looking at the internal wiring.",
+        "correction": "Zs must include the external impedance (Ze) to represent the complete loop back to the transformer.",
+        "relatedAC": "AC3"
+      }
+    ]
+  }
+}

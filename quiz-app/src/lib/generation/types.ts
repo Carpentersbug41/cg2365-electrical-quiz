@@ -87,6 +87,20 @@ export interface GenerationResponse {
     finalScore: number;
     patchesApplied: number;
     details: any[]; // Patch details from Phase 12 (Implement)
+    report?: {
+      status:
+        | 'pass_no_refinement'
+        | 'pass_after_refinement'
+        | 'fail_below_threshold'
+        | 'fail_regression'
+        | 'fail_refinement_error';
+      threshold: number;
+      initialScore: number;
+      finalScore: number;
+      acceptedCandidate: boolean;
+      reason: string;
+      regressions?: string[];
+    };
   };
   debugBundle?: GenerationDebugBundle;
 }

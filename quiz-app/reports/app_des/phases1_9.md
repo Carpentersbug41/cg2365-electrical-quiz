@@ -24,6 +24,10 @@ Each phase:
 
 The orchestrator is `src/lib/generation/SequentialLessonGenerator.ts`.
 
+Scope note:
+- This document covers **generation phases 1-9 only**.
+- Concurrency guards (duplicate-request lock), scoring/refinement (phases 10/12/13), and quality threshold gating are enforced outside this phase set (API route + post-assembly scoring pipeline).
+
 ---
 
 ## 2) How prompts are executed technically
