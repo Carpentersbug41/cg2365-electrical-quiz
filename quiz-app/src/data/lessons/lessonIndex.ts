@@ -339,15 +339,26 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 13,
   },
   {
-    id: '203-203-CU1A',
+    id: '203-CU1A',
     title: 'Consumer Units: Purpose + Protective Devices',
     unit: 'Unit 203',
     unitNumber: '203',
     topic: 'Consumer Units: Purpose + Protective Devices',
     description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-203-CU1A'),
+    questionCount: getLessonQuestionCount('203-CU1A'),
     available: true,
     order: 14,
+  },
+  {
+    id: '203-CU1B',
+    title: 'Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-CU1B'),
+    available: true,
+    order: 15,
   },// Unit 210: Communication
   {
     id: '204-10A',

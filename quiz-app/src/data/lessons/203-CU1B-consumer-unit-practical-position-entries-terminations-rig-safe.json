@@ -1,0 +1,539 @@
+{
+  "id": "203-CU1B",
+  "title": "203.CU1B — Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)",
+  "description": "Learn about Consumer Unit Practical: Position, Entries, Terminations (Rig-safe) in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)",
+  "learningOutcomes": [
+    "State the rig-safe rules and safe isolation requirements for consumer unit installation",
+    "Explain the importance of cable entry protection and neat conductor dressing for safety and inspection",
+    "Complete a consumer unit installation workflow including marking out, fixing, dressing, and terminating conductors"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-CU1B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the rig-safe rules and safe isolation requirements for consumer unit installation",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the importance of cable entry protection and neat conductor dressing for safety and inspection",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Complete a consumer unit installation workflow including marking out, fixing, dressing, and terminating conductors",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Safe Isolation",
+            "definition": "A mandatory procedure used to ensure a system is de-energised and secured against accidental reactivation before work begins, not just deactivated at a switch."
+          },
+          {
+            "term": "Dressing",
+            "definition": "The methodical arrangement and routing of conductors within an enclosure to ensure they are neat, accessible, and do not obstruct components, different from simply pushing wires into place."
+          },
+          {
+            "term": "Termination",
+            "definition": "The secure mechanical and electrical connection of a conductor to a terminal or component, ensuring a low-resistance path and physical stability."
+          },
+          {
+            "term": "Cable Entry Protection",
+            "definition": "The use of accessories such as grommets or bushings to prevent the sharp edges of an enclosure from damaging cable insulation, not just the physical opening itself."
+          },
+          {
+            "term": "Circuit Protective Conductor (CPC)",
+            "definition": "A dedicated conductor used to connect the exposed-conductive-parts of an installation to the main earthing terminal to provide protection against electric shock."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Consumer Unit Practical: Position, Entries, Terminations (Rig-safe) Diagram",
+        "description": "Visual representation of Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)",
+        "videoUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw",
+        "diagramType": "concept",
+        "elementIds": [
+          "enclosure-base",
+          "cable-entry-protection",
+          "conductor-dressing-path",
+          "termination-point",
+          "cpc-earth-bar"
+        ],
+        "placeholderText": "The diagram should show an open consumer unit enclosure mounted on a vertical surface. It should highlight a rubber grommet at the top (cable-entry-protection) with a cable entering. Inside, the wires should be shown routed neatly along the internal perimeter (conductor-dressing-path) leading to the circuit breakers and the earth bar (cpc-earth-bar). A close-up 'call-out' should show a perfect termination-point where the insulation meets the terminal housing with no copper visible and no stray strands."
+      }
+    },
+    {
+      "id": "203-CU1B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Rig-Safe Preparation and Positioning",
+        "content": "### In this lesson\nIn this lesson, you will learn how to prepare a workspace and mount a consumer unit enclosure according to a technical specification. This process ensures that the installation is physically stable and follows safety protocols before any wiring begins. \n\n*   How to apply **Safe Isolation** habits on a training rig.\n*   The process of marking out dimensions and fixing an enclosure securely.\n*   The criteria for a mechanically sound installation.\n\n**What this is**\nRig-safe preparation is the sequence of actions taken to ensure an environment is safe for work and that an accessory is positioned exactly where the design requires. This involves performing **Safe Isolation**—a mandatory procedure to ensure the system is de-energised and secured—and then using technical drawings to translate measurements onto a physical surface. Positioning is the act of aligning the enclosure so it is level, square, and fixed at the correct height.\n\n**Why it matters**\nA consumer unit is the central hub of an installation. If it is mounted poorly, it can vibrate, become loose over time, or make it impossible to fit internal components correctly. Following rig-safe rules builds the professional habits needed to prevent accidental energisation of a circuit while someone is working on it. Accuracy in marking out ensures that all subsequent wiring systems will align correctly with the enclosure entries.\n\n**Key facts / rules**\n*   **Safe Isolation** must be performed and verified before any enclosure covers are removed or work commences.\n*   Always use a spirit level to ensure the enclosure is horizontal and vertical.\n*   Marking out must be done using the dimensions provided in the technical drawing (verify current version).\n*   Fixings must be appropriate for the mounting surface to ensure the unit is mechanically secure.\n*   A \"dead-work\" environment must be maintained at all times during this practical session.\n*   Clearances around the enclosure must be maintained to allow for future maintenance and inspection.\n\n**How to do it**\nBegin by performing **Safe Isolation** on your rig to ensure no voltage is present; this is a habit that must be practiced even if you believe the power is off. Once safe, refer to your technical drawing to identify the mounting coordinates. Use a tape measure and pencil to mark the top edge and the center line of the unit. Hold the enclosure base against your marks and use a spirit level to check it is square. Mark the fixing holes, then remove the unit to prepare the surface (such as drilling). Secure the enclosure using the correct screws; it should not wobble or twist when force is applied. \n\n**Concrete Anchor:** Think of mounting a heavy kitchen cabinet. If you don't use a level or find the right fixing points, the cabinet will hang crookedly and eventually pull away from the wall under the weight of its contents. A consumer unit requires the same mechanical stability.\n\n**Micro-scenario:** You have two enclosures. Enclosure A is fixed with two screws in the top corners and moves when you press the bottom. Enclosure B is fixed in all four corners and remains rigid. Enclosure B is the only one that meets the requirement for being mechanically sound.\n\n**Common mistakes**\nLearners often confuse **Safe Isolation** with simply turning off a local switch; **Safe Isolation** is a methodical procedure involving locking off and proving dead, whereas a switch can be easily flipped back on by someone else. \n\nMisconceptions (targeted):\n*   Misconception: I don't need to isolate because the rig isn't plugged in. | Correction: You must treat every system as live until you have personally performed the isolation procedure to build safe habits. | AC3.7\n*   Misconception: Marking out by eye is faster and just as good. | Correction: Technical drawings provide specific dimensions that must be followed to ensure the installation meets the design specification and aligns with other components. | AC3.2\n\n**Key Points**\n*   Always isolate and prove dead before starting.\n*   Use drawings to mark out the exact position.\n*   Ensure the enclosure is level and mechanically secure.\n*   Build professional habits on the rig that transfer to the site.\n\n**Quick recap**\nBefore touching a consumer unit, you must ensure the area is safe through isolation. You then translate dimensions from a drawing to the wall, ensuring the enclosure is fixed firmly and level. This mechanical foundation is essential for a safe and professional electrical installation.\n\n### Coming Up Next\nOnce the enclosure is securely mounted, we will look at how to bring cables into the unit safely and arrange the internal conductors for a neat finish."
+      }
+    },
+    {
+      "id": "203-CU1B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Rig-Safe Preparation and Positioning",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-CU1B-C1-L1-A",
+            "questionText": "When must Safe Isolation be performed and verified during the preparation process?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "before enclosure covers are removed",
+              "before covers are removed",
+              "before work commences"
+            ],
+            "hint": "Think about the very first step required before exposing any internal parts."
+          },
+          {
+            "id": "203-CU1B-C1-L1-B",
+            "questionText": "What tool must be used to ensure the enclosure is mounted horizontal and vertical?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "spirit level",
+              "a spirit level"
+            ],
+            "hint": "This tool uses a bubble to check if a surface is perfectly level."
+          },
+          {
+            "id": "203-CU1B-C1-L1-C",
+            "questionText": "What specific actions make Safe Isolation a methodical procedure compared to just using a switch?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "locking off and proving dead",
+              "lock off and prove dead",
+              "locking off",
+              "proving dead"
+            ],
+            "hint": "Consider the steps taken to ensure the power cannot be turned back on accidentally."
+          },
+          {
+            "id": "203-CU1B-C1-L2",
+            "questionText": "Using your answers to Q1 (isolation timing), Q2 (leveling), and Q3 (locking off), explain why this sequence of safety and precision must be followed. Why does this relationship matter?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Safe isolation ensures the environment is dead before physical mounting starts",
+              "Methodical locking off prevents accidental energisation while using tools to level the unit",
+              "Combining safety protocols with precision tools ensures the hub is both safe to touch and mechanically sound"
+            ],
+            "expectedAnswer": [
+              "Performing isolation by locking off and proving dead ensures the rig is safe before you use a spirit level to position the unit. This prevents accidental shocks while focusing on the physical alignment.",
+              "You must isolate and prove dead before removing covers to ensure safety. Once safe, using a spirit level ensures the unit is square, creating a professional foundation that won't vibrate or come loose."
+            ],
+            "hint": "Connect the need for a de-energised environment with the physical task of aligning the enclosure."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Entries, Dressing, and Terminations",
+        "content": "### In this lesson\nIn this lesson, you will learn how to manage the transition of cables into the consumer unit and how to connect them to the internal components. This covers the physical protection of cables, their internal arrangement, and the quality of the electrical connections.\n\n*   The use of **Cable Entry Protection** to prevent insulation damage.\n*   The technique of **Dressing** conductors for neatness and accessibility.\n*   Executing a secure **Termination** for Line, Neutral, and the **Circuit Protective Conductor (CPC)**.\n\n**What this is**\nThis phase of the installation involves three distinct tasks. First, **Cable Entry Protection** involves installing grommets or bushings at the point where cables enter the metal or plastic enclosure. Second, **Dressing** is the methodical routing of wires inside the unit so they follow the perimeter and do not cross over components. Finally, **Termination** is the act of stripping the conductor insulation and securing the copper into the correct terminal.\n\n**Why it matters**\nIf a cable enters a sharp-edged hole without protection, vibration or movement can cause the edge to cut through the insulation, leading to a short circuit or an electric shock. Neat **Dressing** is not just for looks; it allows an inspector to trace every wire easily and prevents heat build-up. A high-quality **Termination** ensures a low-resistance path, which prevents overheating and ensures that safety devices like the **Circuit Protective Conductor (CPC)** can do their job during a fault.\n\n**Key facts / rules**\n*   No sharp edges should ever be in contact with cable insulation.\n*   Conductors must be routed (dressed) around the outside of the internal space, not directly across the middle.\n*   When stripping insulation for a **Termination**, no copper should be visible outside the terminal, and no insulation should be trapped inside the terminal.\n*   Every **Circuit Protective Conductor (CPC)** must be terminated in the dedicated earth bar.\n*   Terminals must be tightened sufficiently so that a \"tug test\" does not result in any movement.\n*   Stray strands of wire must be avoided, as they can cause short circuits between adjacent terminals.\n\n**How to do it**\nStart by installing **Cable Entry Protection** (like a rubber grommet) into the knockout holes. Feed your cables through, leaving enough length to reach the furthest terminal. Begin **Dressing** the conductors by bending them neatly into the corners of the enclosure, grouping the Line, Neutral, and **CPC** for each circuit. To perform a **Termination**, strip the insulation back just enough to fit the depth of the terminal. Insert the copper fully, tighten the screw, and perform a visual check for stray strands. Finally, give the wire a gentle tug to ensure it is physically stable. \n\n**Concrete Anchor:** Think of **Dressing** like the wiring inside a high-end computer or a well-organized fuse box at home. If the wires are a \"spaghetti mess,\" you can't find anything, and things are more likely to break. Organized wires stay cool and are easy to fix.\n\n**Micro-scenario:** You have two terminations. Termination A has 2mm of bare copper showing outside the screw terminal. Termination B has the insulation sitting flush against the terminal entry with no copper visible. Termination B is the only safe and correct connection.\n\n**Common mistakes**\nLearners often confuse **Dressing** with simply pushing wires into the box; **Dressing** is the methodical arrangement and routing of conductors to ensure they are accessible, whereas pushing wires is just forcing them out of the way, which often causes strain on the connections. \n\nMisconceptions (targeted):\n*   Misconception: A few stray strands outside the terminal don't matter. | Correction: Every single strand must be inside the terminal to ensure the full current-carrying capacity is used and to prevent short circuits. | AC3.5\n*   Misconception: If the screw is tight, the entry protection isn't important. | Correction: Entry protection is vital to prevent the enclosure from cutting the cable insulation over time, regardless of how tight the terminals are. | AC3.4\n\n**Key Points**\n*   Protect every cable entry point with grommets or bushings.\n*   Route conductors neatly around the edges (dressing).\n*   Ensure copper is fully enclosed in the terminal with no stray strands.\n*   Always terminate the **CPC** to the earth bar first for safety.\n\n**Quick recap**\nSafe installation requires protecting cables as they enter the unit, routing them neatly to avoid clutter, and ensuring every connection is electrically and mechanically sound. By focusing on **Dressing** and correct **Termination**, you ensure the system is safe to energise and easy to maintain.\n\n### Coming Up Next\nIn the next stage, we will look at the final visual inspections and the basic dead-testing procedures to verify that your practical work meets industry standards."
+      }
+    },
+    {
+      "id": "203-CU1B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Entries, Dressing, and Terminations",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-CU1B-C2-L1-A",
+            "questionText": "What should never be in contact with cable insulation at the entry point of the enclosure?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "sharp edges",
+              "no sharp edges",
+              "any sharp edges"
+            ],
+            "hint": "Think about the risks posed by the metal or plastic holes in the enclosure."
+          },
+          {
+            "id": "203-CU1B-C2-L1-B",
+            "questionText": "Where must conductors be routed within the internal space of the consumer unit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "around the outside",
+              "around the perimeter",
+              "around the edges",
+              "outside of the internal space"
+            ],
+            "hint": "Avoid the middle of the unit where components are located."
+          },
+          {
+            "id": "203-CU1B-C2-L1-C",
+            "questionText": "What check must be performed to ensure terminals are tightened sufficiently with no movement?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "tug test",
+              "a tug test",
+              "performing a tug test"
+            ],
+            "hint": "This is a physical pull on the wire to check its stability."
+          },
+          {
+            "id": "203-CU1B-C2-L2",
+            "questionText": "Using your answers to Q1 (sharp edges), Q2 (routing), and Q3 (tightness verification), explain how these facts connect to ensure a safe installation. How do we know the system will remain reliable over time?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Protecting insulation from sharp edges prevents future short circuits",
+              "Routing conductors around the outside prevents heat build-up and damage to wires",
+              "Tug tests verify that connections won't loosen or overheat during operation"
+            ],
+            "expectedAnswer": [
+              "By ensuring no sharp edges touch the cables and routing them neatly around the outside, you prevent insulation damage and overheating. Performing a tug test then confirms the connection is mechanically stable enough to last.",
+              "We know the system is safe because entry protection stops sharp edges from cutting wires, dressing them around the edges keeps the unit organized, and a tug test proves the termination is tight."
+            ],
+            "hint": "Think about how physical protection, neatness, and mechanical strength combine to prevent electrical faults."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Preparing and Terminating a Consumer Unit",
+        "given": "A training rig requiring the installation of a plastic consumer unit enclosure and the termination of one circuit using a technical drawing for positioning.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Perform Safe Isolation on the training rig and verify the system is de-energised.",
+            "formula": null,
+            "calculation": null,
+            "result": "The rig is proven dead and secured for work."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Mark the mounting coordinates using a tape measure and pencil, then use a spirit level to ensure the enclosure base is horizontal and vertical.",
+            "formula": null,
+            "calculation": null,
+            "result": "The enclosure is positioned level and square according to the drawing."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Install rubber grommets into the enclosure knockouts and feed the cables through the protected entries.",
+            "formula": null,
+            "calculation": null,
+            "result": "Cable insulation is protected from sharp enclosure edges."
+          },
+          {
+            "stepNumber": 4,
+            "description": "Dress the conductors neatly around the perimeter, strip insulation to the terminal depth, and secure the copper into the terminals.",
+            "formula": null,
+            "calculation": null,
+            "result": "Terminations are secure with no stray strands or exposed copper."
+          }
+        ],
+        "notes": "Always refer to the technical drawing for specific mounting heights; verify current version of the drawing before marking out."
+      }
+    },
+    {
+      "id": "203-CU1B-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "You are tasked with mounting a second enclosure on the training rig and terminating the incoming conductors for a lighting circuit.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "What mandatory procedure must be performed and verified before any enclosure covers are removed or work begins?",
+            "expectedAnswer": [
+              "Safe Isolation",
+              "Perform Safe Isolation"
+            ],
+            "hint": "This is the habit practiced to ensure the system is de-energised."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Which tool must be used alongside the technical drawing to ensure the unit is mounted perfectly level?",
+            "expectedAnswer": [
+              "Spirit level",
+              "A spirit level"
+            ],
+            "hint": "This tool ensures the enclosure is horizontal and vertical."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What must be fitted to the knockout holes before feeding cables into the enclosure to prevent insulation damage?",
+            "expectedAnswer": [
+              "Grommets",
+              "Cable entry protection"
+            ],
+            "hint": "These prevent sharp edges from cutting into the wire coating."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "After tightening a terminal screw, what physical check should be performed to ensure the connection is mechanically sound?",
+            "expectedAnswer": [
+              "Tug test",
+              "Perform a tug test"
+            ],
+            "hint": "This involves a gentle pull on the wire to check for movement."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-CU1B-P1",
+            "questionText": "A technical drawing requires an enclosure to be mounted centrally on a vertical mark. If the enclosure is 220mm wide, how many millimeters from that center mark is the outer edge of the unit?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "110"
+            ],
+            "hint": "Divide the total width by two to find the distance from the center to the edge in mm."
+          },
+          {
+            "id": "203-CU1B-P2",
+            "questionText": "A technician is installing four separate circuits into a single enclosure. Based on the rules for safety and termination, how many total Circuit Protective Conductors (CPCs) must be connected to the dedicated earth bar?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "4"
+            ],
+            "hint": "Every circuit requires its own dedicated CPC to be terminated."
+          },
+          {
+            "id": "203-CU1B-P3",
+            "questionText": "What must be true about an enclosure's physical state for it to be classified as 'mechanically sound' according to the lesson criteria?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it does not wobble or twist",
+              "it remains rigid",
+              "no movement when force is applied",
+              "securely fixed with no movement"
+            ],
+            "hint": "Consider the difference between the two enclosures described in the micro-scenario."
+          },
+          {
+            "id": "203-CU1B-P4",
+            "questionText": "A learner is mounting a control box onto a metal frame that experiences constant vibration. Why is the use of 'Cable Entry Protection' (such as a grommet) more critical in this scenario than on a stationary surface?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "vibration can cut insulation",
+              "prevent sharp edges cutting cables",
+              "prevents friction damage",
+              "to avoid short circuits"
+            ],
+            "hint": "Think about what happens when a sharp metal edge rubs against plastic insulation repeatedly."
+          },
+          {
+            "id": "203-CU1B-P5",
+            "questionText": "During the 'dressing' phase, a learner pushes all excess wire into the center of the enclosure to close the lid. Why is this practice rejected in favor of routing conductors around the perimeter?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "allows for easy maintenance",
+              "prevents heat build-up",
+              "ensures wires are accessible",
+              "allows wires to be traced"
+            ],
+            "hint": "Neatness serves functional purposes related to heat and future inspections."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-CU1B-INT-1",
+            "questionText": "Explain the relationship between initial safety protocols and the mechanical stability of the installation. In your answer, include: (1) the role of safe isolation during preparation, (2) the requirements for secure enclosure fixing, and (3) how the unit's position affects the internal termination process. Why must the enclosure be mechanically sound before any conductors are dressed? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Safe isolation ensures the workspace is electrically dead before physical installation begins.",
+              "Secure fixing requires marking out to specification to ensure the enclosure is level and immobile.",
+              "Correct positioning allows conductors to reach terminals without being under mechanical tension.",
+              "Mechanical stability prevents the enclosure from shifting, which would stress or loosen internal connections.",
+              "Stability is required to maintain the integrity of cable entry points and internal dressing."
+            ],
+            "expectedAnswer": [
+              "Safe isolation ensures a secure environment for mounting the enclosure, which must be fixed according to dimensions to remain immobile. If the enclosure is not mechanically sound, the unit may shift during the dressing phase, causing stress on the terminations and potentially leading to loose connections. Therefore, stability is the foundation for maintaining the electrical integrity of the internal conductors.",
+              "Initial safety protocols like safe isolation allow for a focused mechanical installation where the enclosure is securely fixed to prevent movement. This stability ensures that the conductors, once dressed and terminated, are not subjected to mechanical strain from a loose unit. We know stability is essential because any movement of the enclosure after termination could damage insulation or pull conductors from their terminals."
+            ],
+            "hint": "Consider how a loose enclosure might impact the tension on the wires you have just connected."
+          },
+          {
+            "id": "203-CU1B-INT-2",
+            "questionText": "Synthesize the complete installation workflow from preparation to final termination to explain how it achieves a safe and compliant outcome. In your answer, include: (1) rig-safe preparation requirements, (2) the function of cable entry protection, (3) the purpose of conductor dressing, and (4) how these individual steps integrate to ensure long-term system reliability. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Rig-safe protocols establish a baseline of safety for the technician and the equipment.",
+              "Cable entry protection prevents mechanical damage and abrasion to conductor insulation at the point of entry.",
+              "Conductor dressing organizes the internal layout for heat dissipation and ease of inspection.",
+              "Secure terminations provide low-resistance paths and prevent thermal failure.",
+              "The workflow ensures that mechanical protection (entry) supports electrical integrity (termination).",
+              "Neat dressing allows for identifying circuits and maintaining clear access for future maintenance.",
+              "Integration of all steps ensures the installation meets technical specifications and safety standards.",
+              "Systematic progression from fixing to termination prevents rework and accidental damage to components."
+            ],
+            "expectedAnswer": [
+              "A compliant installation begins with safe isolation and secure mechanical fixing to provide a stable foundation. Cable entry protection is then applied to prevent insulation damage, followed by neat conductor dressing which ensures the unit is accessible for inspection. Finally, secure terminations are made to ensure electrical continuity, resulting in a system that is mechanically protected, electrically sound, and easy to maintain.",
+              "The workflow ensures safety through the following integrated steps:\n- Rig-safe preparation establishes a dead working environment.\n- Entry protection and secure fixing prevent physical damage to the conductors and enclosure.\n- Neat dressing and precise termination allow for effective heat management and reliable electrical connections.\n- Together, these steps produce an installation that is durable, safe, and meets all technical specifications."
+            ],
+            "hint": "Think about the journey of a conductor from the moment it enters the box until it is secured in a terminal."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-CU1B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-CU1B-SR-1",
+            "questionText": "What is the name of the mandatory procedure used to ensure an electrical installation is dead and safe to work on?",
+            "expectedAnswer": [
+              "safe isolation",
+              "safe isolation procedure",
+              "isolation"
+            ],
+            "hint": "This process must be completed before any practical installation work begins.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-CU1B-SR-2",
+            "questionText": "In the installation workflow, what task must be completed to identify the correct position of the equipment before fixing it to a surface?",
+            "expectedAnswer": [
+              "marking out",
+              "mark out",
+              "marking"
+            ],
+            "hint": "This involves using a pencil or tool to show where screws or the unit will go.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-CU1B-SR-3",
+            "questionText": "What term describes the process of making a secure electrical connection at the end of a conductor within an enclosure?",
+            "expectedAnswer": [
+              "terminating",
+              "termination",
+              "terminating conductors"
+            ],
+            "hint": "This is the final stage of connecting the wires into the terminals.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC2",
+    "AC3",
+    "AC4",
+    "AC5",
+    "AC6",
+    "AC7"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "PROCEDURE, PRACTICAL_INSTALLATION",
+    "syllabusAnchors": {
+      "unit": "204",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC7"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC8"
+      ]
+    },
+    "scope": {
+      "inScope": "The physical, repeatable workflow for mounting a consumer unit and terminating cables on a dead training rig.",
+      "outOfScope": "Selection of protective devices, earthing theory, and live circuit testing or energisation.",
+      "rationale": "Separating mechanical installation and termination skills from electrical theory and testing ensures students master physical quality standards first."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Dead-work training rigs only; focus on mechanical soundness and termination quality."
+    },
+    "misconceptions": [
+      {
+        "misconception": "I don't need to perform Safe Isolation because the training rig is currently disconnected from the mains.",
+        "correction": "You must treat every system as live and perform the full Safe Isolation procedure to build the mandatory professional habits required by industry regulations.",
+        "relatedAC": "AC3.7"
+      },
+      {
+        "misconception": "Dressing conductors is only about making the job look pretty for the assessor.",
+        "correction": "Methodical dressing ensures conductors are not under physical strain, prevents overheating, and allows for clear identification and inspection of the circuit paths.",
+        "relatedAC": "AC3.4"
+      },
+      {
+        "misconception": "A termination is acceptable as long as the wire doesn't fall out when pulled.",
+        "correction": "A correct termination must have no stray strands, no exposed copper outside the terminal, and no insulation trapped under the terminal screw to be safe.",
+        "relatedAC": "AC3.5"
+      }
+    ],
+    "youtubeUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw"
+  }
+}

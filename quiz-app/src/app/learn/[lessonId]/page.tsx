@@ -54,11 +54,13 @@ import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-trans
 import lesson203_5B from '@/data/lessons/203-5B-distribution-voltages-and-network-components.json';
 import lesson203_6A from '@/data/lessons/203-6A-types-of-micro-renewable-energy.json';
 import lesson203_6B from '@/data/lessons/203-6B-installation-and-evaluation-of-micro-renewables.json';
-import lesson203_203_CU1A from '@/data/lessons/203-203-CU1A-consumer-units-purpose-protective-devices.json';
+import lesson203_203_CU1A from '@/data/lessons/203-CU1A-consumer-units-purpose-protective-devices.json';
+import lesson203_CU1B from '@/data/lessons/203-CU1B-consumer-unit-practical-position-entries-terminations-rig-safe.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
-  '203-203-CU1A': lesson203_203_CU1A as Lesson,
+  '203-CU1B': lesson203_CU1B as Lesson,
+  '203-CU1A': lesson203_203_CU1A as Lesson,
   '203-6B': lesson203_6B as Lesson,
   '203-6A': lesson203_6A as Lesson,
   '203-5B': lesson203_5B as Lesson,
