@@ -234,6 +234,42 @@
       }
     },
     {
+      "id": "203-CU1A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Consumer Unit",
+            "right": "A type of distribution board used in domestic installations to house protective devices and provide a central point for circuit control and isolation."
+          },
+          {
+            "left": "Overcurrent",
+            "right": "A condition where current exceeds the rated capacity of a circuit due to overload or short circuit, requiring interruption to prevent thermal damage."
+          },
+          {
+            "left": "Residual Current",
+            "right": "An electrical current that leaks to earth due to a fault or insulation failure, creating an imbalance that poses a risk of electric shock."
+          },
+          {
+            "left": "Miniature Circuit Breaker MCB",
+            "right": "An automatic electromagnetic device designed to protect a circuit from overcurrent, not from earth leakage."
+          },
+          {
+            "left": "Residual Current Device RCD",
+            "right": "A safety device that disconnects the supply when it detects an imbalance caused by earth leakage, different from an MCB because it does not provide overcurrent protection."
+          },
+          {
+            "left": "RCBO",
+            "right": "A combined protective device that incorporates the functions of both an MCB and an RCD to provide simultaneous protection against overcurrent and earth leakage."
+          }
+        ]
+      }
+    },
+    {
       "id": "203-CU1A-practice",
       "type": "practice",
       "order": 8,
@@ -295,6 +331,23 @@
             "hint": "The number following the Type letter on an MCB or RCBO indicates the rating in Amps."
           }
         ]
+      }
+    },
+    {
+      "id": "203-CU1A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "is-correct-why",
+        "statement": "The Role of the Consumer Unit",
+        "isCorrect": true,
+        "reasons": [
+          "In this lesson This lesson introduces the fundamental purpose of a distribution board within a home environment.",
+          "You will learn how electricity is managed and divided once it enters a property to ensure safety and functionality.",
+          "The main switch in a consumer unit will trip if there is a short circuit."
+        ],
+        "correctReasonIndex": 0
       }
     },
     {
@@ -400,7 +453,7 @@
   "metadata": {
     "created": "2026-02-20",
     "updated": "2026-02-20",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY, SELECTION",
     "syllabusAnchors": {

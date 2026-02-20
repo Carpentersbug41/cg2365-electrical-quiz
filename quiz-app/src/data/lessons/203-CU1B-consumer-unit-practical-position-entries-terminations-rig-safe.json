@@ -229,6 +229,23 @@
       }
     },
     {
+      "id": "203-CU1B-microbreak-1",
+      "type": "microbreak",
+      "order": 5.7,
+      "content": {
+        "breakType": "game",
+        "gameType": "is-correct-why",
+        "statement": "Rig-Safe Preparation and Positioning",
+        "isCorrect": true,
+        "reasons": [
+          "In this lesson In this lesson, you will learn how to prepare a workspace and mount a consumer unit enclosure according to a technical specification.",
+          "This process ensures that the installation is physically stable and follows safety protocols before any wiring begins.",
+          "I don't need to perform Safe Isolation because the training rig is currently disconnected from the mains."
+        ],
+        "correctReasonIndex": 0
+      }
+    },
+    {
       "id": "203-CU1B-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -380,6 +397,29 @@
       }
     },
     {
+      "id": "203-CU1B-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "sequencing",
+        "prompt": "Arrange the steps in order.",
+        "steps": [
+          "Perform Safe Isolation on the training rig and verify the system is de-energised.",
+          "Mark the mounting coordinates using a tape measure and pencil, then use a spirit level to ensure the enclosure base is horizontal and vertical.",
+          "Install rubber grommets into the enclosure knockouts and feed the cables through the protected entries.",
+          "Dress the conductors neatly around the perimeter, strip insulation to the terminal depth, and secure the copper into the terminals."
+        ],
+        "correctOrder": [
+          "Perform Safe Isolation on the training rig and verify the system is de-energised.",
+          "Mark the mounting coordinates using a tape measure and pencil, then use a spirit level to ensure the enclosure base is horizontal and vertical.",
+          "Install rubber grommets into the enclosure knockouts and feed the cables through the protected entries.",
+          "Dress the conductors neatly around the perimeter, strip insulation to the terminal depth, and secure the copper into the terminals."
+        ],
+        "timerSeconds": 25
+      }
+    },
+    {
       "id": "203-CU1B-integrative",
       "type": "practice",
       "order": 9.5,
@@ -486,7 +526,7 @@
   "metadata": {
     "created": "2026-02-20",
     "updated": "2026-02-20",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "PROCEDURE, PRACTICAL_INSTALLATION",
     "syllabusAnchors": {
