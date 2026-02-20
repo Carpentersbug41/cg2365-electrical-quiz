@@ -1316,8 +1316,8 @@ export class SequentialLessonGenerator {
       );
       
       if (!result.accepted) {
-        console.log(`  ⚠️  Phase 13: Candidate did not improve - ${result.reason}`);
-        console.log(`  ↩️  Keeping original lesson (best score: ${result.originalScore})`);
+        console.log(`  ⚠️  Phase 13: Candidate rejected - ${result.reason}`);
+        console.log(`  ↩️  Keeping original lesson (original: ${result.originalScore}, candidate: ${result.candidateScore})`);
       } else {
         console.log(`  ✅ Phase 13: Accepted (${result.originalScore} → ${result.candidateScore}, +${result.improvement})`);
       }

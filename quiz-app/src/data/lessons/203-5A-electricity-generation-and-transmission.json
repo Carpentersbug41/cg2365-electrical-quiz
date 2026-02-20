@@ -1,0 +1,441 @@
+{
+  "id": "203-5A",
+  "title": "203.5A — Electricity Generation and Transmission",
+  "description": "Learn about Electricity Generation and Transmission in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Electricity Generation and Transmission",
+  "learningOutcomes": [
+    "Identify common methods of large-scale electricity generation for distribution",
+    "Explain the purpose of using high voltages for the transmission of electricity",
+    "Recognize standard voltage levels used within the national grid and distribution systems"
+  ],
+  "prerequisites": [
+    "203-4C"
+  ],
+  "blocks": [
+    {
+      "id": "203-5A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common methods of large-scale electricity generation for distribution",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the purpose of using high voltages for the transmission of electricity",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Recognize standard voltage levels used within the national grid and distribution systems",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "National Grid",
+            "definition": "The interconnected network of power stations, transmission lines, and substations that manages the supply and demand of electricity across a country."
+          },
+          {
+            "term": "Transmission",
+            "definition": "The bulk movement of electricity at very high voltages over long distances to minimize energy loss, distinct from distribution which focuses on local delivery."
+          },
+          {
+            "term": "Distribution",
+            "definition": "The final stage of the supply network that delivers electricity from the high-voltage grid to individual domestic and industrial consumers at lower, safer voltages."
+          },
+          {
+            "term": "Step-up Transformer",
+            "definition": "A device used at power stations to increase voltage and decrease current for efficient transmission, not for use at the consumer end of the circuit."
+          },
+          {
+            "term": "Step-down Transformer",
+            "definition": "A device used at substations to reduce high transmission voltages to lower levels suitable for local distribution and final equipment use."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Electricity Generation and Transmission Diagram",
+        "description": "Visual representation of Electricity Generation and Transmission",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "power-station",
+          "step-up-transformer",
+          "transmission-lines",
+          "step-down-transformer",
+          "distribution-network"
+        ],
+        "placeholderText": "A flow diagram showing the journey of electricity. It starts at a power-station (generation), connects to a step-up-transformer, which then feeds into high-voltage transmission-lines (pylons). These lines lead to a step-down-transformer (substation), which finally connects to the domestic distribution-network (houses and shops). The diagram illustrates the flow from a generation source through a step-up-transformer to high-voltage transmission lines, followed by a step-down-transformer leading to the local distribution network."
+      }
+    },
+    {
+      "id": "203-5A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Methods of Electricity Generation",
+        "content": "### In this lesson\nIn this lesson, you will learn to identify the primary methods used to generate electricity for large-scale use. This knowledge is essential for understanding how the energy we use in buildings is first created and fed into the wider network. You will identify common energy sources, recognize the role of power stations, and understand how energy enters the national supply.\n\n**What this is**\nElectricity generation is the process of generating electric power from sources of primary energy. For the **National Grid**, this typically happens in large-scale power stations where one form of energy—such as heat or kinetic movement—is converted into electrical energy. Most large-scale generation relies on the principle of electromagnetic induction, where a conductor moves through a magnetic field to create a flow of electricity. This process is the starting point for the entire electrical supply chain, providing the bulk energy that will eventually reach domestic and industrial consumers.\n\n**Why it matters**\nUnderstanding generation methods is vital because different sources have different impacts on the stability and availability of the supply. Technicians must recognize that while the electricity at a socket looks the same regardless of its source, the way it is generated dictates how it must be managed by the **National Grid**. Large-scale generation ensures that there is a constant \"base load\" of electricity to meet the minimum demands of a population, while flexible methods are used to meet sudden increases in demand.\n\n**Key facts / rules**\n*   Thermal generation typically uses heat from burning fossil fuels or nuclear fission to create steam.\n*   Kinetic generation uses the movement of wind or water to turn turbines directly.\n*   Power stations generate electricity at a medium voltage, which is then managed for long-distance travel.\n*   Solar photovoltaic (PV) generation converts light directly into electricity without moving parts.\n*   The **National Grid** must constantly balance the total energy generated with the total energy being used by consumers.\n*   Large-scale generation is usually centralized, meaning energy is produced in a few massive locations rather than many tiny ones.\n\n**When to choose it**\nWhen identifying generation methods, the choice is typically based on the required output and the available resources. Thermal power stations (coal, gas, or nuclear) are often chosen for \"base load\" generation because they can provide a huge, steady flow of electricity 24 hours a day. In contrast, renewable methods like wind or solar are selected to reduce environmental impact, though they are weather-dependent. \n\nConsider a micro-scenario: If a city requires 500 Megawatts of constant power during a calm, cloudy night, a thermal or nuclear station would be the primary choice over wind or solar to ensure the supply remains stable.\n\n**Common mistakes**\nLearners often confuse **Transmission** with **Distribution**; **Transmission** is the bulk movement of energy at very high voltages over long distances, whereas **Distribution** is the local delivery of that energy to consumers at lower voltages. \n\nMisconceptions (targeted):\n* Misconception: Electricity is stored in large quantities within the grid | Correction: Electricity is generally generated at the moment it is needed, as large-scale storage is difficult | AC: 203.LO5.AC5.1\n* Misconception: All power stations produce the same voltage | Correction: Different types of generators produce different voltages, which must be standardized using transformers | AC: 203.LO5.AC5.2\n\n**Key Points**\n*   Generation converts primary energy (heat, wind, water) into electrical energy.\n*   Thermal and kinetic methods are the most common for large-scale supply.\n*   The **National Grid** coordinates these sources to meet national demand.\n*   Centralized generation provides the necessary volume for industrial and domestic needs.\n\n**Quick recap**\nElectricity is generated at large power stations using various energy sources like gas, nuclear, wind, or water. This energy is then fed into a central network called the **National Grid**, which ensures that the supply of electricity always matches the demand from homes and businesses across the country.\n\n### Coming Up Next\nNext, we will look at how this generated electricity is moved across the country using high voltages and the specific equipment used to change those voltage levels."
+      }
+    },
+    {
+      "id": "203-5A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Methods of Electricity Generation",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-5A-C1-L1-A",
+            "questionText": "What is the primary purpose of electricity generation in relation to energy sources?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Generating power from primary energy",
+              "Generating electric power from primary energy",
+              "Creating power from primary energy sources"
+            ],
+            "hint": "Think about the transition from raw resources to the energy we use."
+          },
+          {
+            "id": "203-5A-C1-L1-B",
+            "questionText": "What specific sources are typically burned in thermal generation to produce the required steam?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Fossil fuels or nuclear fission",
+              "Burning fossil fuels or nuclear fission",
+              "Fossil fuels and nuclear fission"
+            ],
+            "hint": "Identify the two main sources of heat mentioned for thermal power stations."
+          },
+          {
+            "id": "203-5A-C1-L1-C",
+            "questionText": "How does the role of transmission differ from the role of distribution?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Bulk movement versus local delivery",
+              "Bulk movement and local delivery",
+              "Long distance versus local delivery"
+            ],
+            "hint": "Consider the scale and destination of the energy movement."
+          },
+          {
+            "id": "203-5A-C1-L2",
+            "questionText": "Using your answers to Q1 (primary energy sources), Q2 (thermal generation methods), and Q3 (transmission versus distribution), explain why the National Grid must coordinate these different stages. Why is it necessary to distinguish between bulk movement and local delivery?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Primary energy is converted to electricity at centralized locations",
+              "Thermal generation provides a steady bulk energy supply",
+              "Transmission moves this bulk energy before distribution handles local needs",
+              "Coordination ensures primary energy conversion matches the specific delivery stage"
+            ],
+            "expectedAnswer": [
+              "The National Grid coordinates these because primary energy is converted in bulk at thermal stations, which requires high-voltage transmission to move it long distances before it is safely distributed to local users. This ensures the volume of energy generated matches the scale of the delivery network.",
+              "Coordination is necessary because generation methods like nuclear fission create massive amounts of power that must be moved via transmission networks before being broken down into local distribution. This relationship matters because the grid must balance the bulk generation with the specific delivery needs of consumers."
+            ],
+            "hint": "Connect the starting source of energy to how it is moved across different scales of the network."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Transmission Voltages and the Grid",
+        "content": "### In this lesson\nYou will learn why the **National Grid** uses very high voltages to move electricity and how to recognize the standard voltage levels used in the network. This involves understanding the transition from bulk energy movement to local delivery. You will identify the roles of different transformers and the specific voltages used for different stages of the supply.\n\n**What this is**\n**Transmission** is the high-voltage movement of electricity from power stations to substations located near population centers. Because electricity must travel long distances, it is vulnerable to energy loss in the form of heat. To minimize this, a **Step-up Transformer** is used at the power station to increase the voltage. This allows the same amount of power to be moved with a much lower current. Once the electricity reaches its destination area, a **Step-down Transformer** reduces the voltage to safer, usable levels for **Distribution** to homes and businesses.\n\n**Why it matters**\nHigh-voltage transmission is the only way to move large amounts of energy efficiently over hundreds of miles. If we tried to move electricity at 230V over long distances, the resistance in the wires would turn almost all the energy into heat before it reached the consumer. By using high voltages, we ensure that the maximum amount of generated power actually reaches the end user, keeping the system efficient and costs lower.\n\n**Key facts / rules**\n*   The \"Super Grid\" typically operates at 400kV or 275kV for long-distance movement.\n*   Intermediate transmission and heavy industrial supply often use 132kV, 66kV, or 33kV.\n*   Local **Distribution** to smaller businesses and neighborhoods typically occurs at 11kV.\n*   Final delivery to domestic homes is standard at 400V (three-phase) or 230V (single-phase).\n*   A **Step-up Transformer** increases voltage and decreases current to reduce heat loss.\n*   A **Step-down Transformer** decreases voltage and increases current for safe consumer use.\n*   Always verify current voltage standards in the latest edition of the local wiring or supply regulations.\n\n**When to choose it**\nSelection of voltage levels depends entirely on the distance the energy must travel and the needs of the consumer. High voltages (400kV) are chosen for the \"backbone\" of the grid because they offer the least loss over the longest distances. Lower voltages (11kV) are chosen when the electricity enters a town, as they are easier to manage in built-up areas. \n\nConsider a micro-scenario: If a power line must carry energy 200 miles to a city, 400kV is selected; if that energy is then being sent to a local primary school, it must be reduced to 230V using a **Step-down Transformer** for safety.\n\n**Common mistakes**\nLearners often confuse a **Step-up Transformer** with a **Step-down Transformer**; a **Step-up Transformer** is used only at the start of the transmission chain to increase voltage, whereas a **Step-down Transformer** is used at the end to make the voltage safe for equipment.\n\nMisconceptions (targeted):\n* Misconception: High voltage is used because it travels faster | Correction: High voltage is used to reduce current, which minimizes energy lost as heat ($I^2R$) | AC: 203.LO5.AC5.1\n* Misconception: The voltage in your house is the same as the voltage in the big pylon lines | Correction: Pylon lines carry hundreds of thousands of volts, while houses use 230V | AC: 203.LO5.AC5.2\n\n**Key Points**\n*   High voltages are essential for efficient, long-distance **Transmission**.\n*   Transformers are the key components that change voltage levels up or down.\n*   The **National Grid** uses a hierarchy of voltages from 400kV down to 230V.\n*   Voltage reduction is necessary for safety and compatibility with consumer appliances.\n\n**Quick recap**\nTo move electricity across the country, the **National Grid** uses a **Step-up Transformer** to reach very high voltages (up to 400,000V), which reduces energy loss. As the electricity nears its destination, a series of **Step-down Transformers** reduces it to lower levels, eventually reaching the 230V used in our homes for local **Distribution**.\n\n### Coming Up Next\nNow that you understand how electricity is generated and moved, we will explore the specific components and safety devices found within local distribution substations."
+      }
+    },
+    {
+      "id": "203-5A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Transmission Voltages and the Grid",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-5A-C2-L1-A",
+            "questionText": "What is the specific purpose of increasing voltage using a step-up transformer?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Reduce heat loss",
+              "To reduce heat loss",
+              "Reduce energy loss as heat"
+            ],
+            "hint": "Focus on what happens to the current and the energy efficiency of the wire."
+          },
+          {
+            "id": "203-5A-C2-L1-B",
+            "questionText": "Which two voltage levels are standard for long-distance movement on the Super Grid?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "400kV or 275kV",
+              "400kV and 275kV",
+              "275kV or 400kV"
+            ],
+            "hint": "These are the highest voltages used for the backbone of the transmission system."
+          },
+          {
+            "id": "203-5A-C2-L1-C",
+            "questionText": "Where are step-up and step-down transformers positioned within the transmission chain?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Start and end",
+              "At the start and end",
+              "The start versus the end"
+            ],
+            "hint": "Identify the location of each transformer relative to the movement of electricity."
+          },
+          {
+            "id": "203-5A-C2-L2",
+            "questionText": "Using your answers to Q1 (heat loss reduction), Q2 (Super Grid voltage levels), and Q3 (transformer placement), explain how these elements work together to deliver power. How do we know that high voltage is the correct choice for long-distance movement?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Step-up transformers at the start enable high-voltage transmission",
+              "High voltages like 400kV allow long-distance movement on the Super Grid",
+              "Increased voltage reduces current which prevents energy loss as heat",
+              "Step-down transformers at the end return voltage to safe levels"
+            ],
+            "expectedAnswer": [
+              "We know high voltage is necessary because using 400kV on the Super Grid reduces the current, which minimizes the energy lost as heat during long-distance travel. This is achieved by placing a step-up transformer at the start of the chain and a step-down transformer at the end to ensure the electricity is safe for consumers.",
+              "These elements work together to ensure efficiency; the step-up transformer creates the high 275kV or 400kV levels needed to prevent heat loss over long distances. The system must use these high voltages for transmission and then use step-down transformers at the end of the chain to make the supply usable for equipment."
+            ],
+            "hint": "Think about how the location of the transformer dictates the voltage level and why that level is chosen for efficiency."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-5A-P1",
+            "questionText": "What is the standard single-phase voltage, in volts, delivered to domestic consumers at the final stage of the supply chain?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "230"
+            ],
+            "hint": "Value in Volts (V)."
+          },
+          {
+            "id": "203-5A-P2",
+            "questionText": "In the hierarchy of the transmission network, what is the highest standard voltage in kilovolts (kV) typically used for the 'Super Grid' backbone?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "400"
+            ],
+            "hint": "Value in kilovolts (kV)."
+          },
+          {
+            "id": "203-5A-P3",
+            "questionText": "Explain why a step-up transformer must be used at the point of generation before electricity is sent across the transmission network.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "reduce energy loss",
+              "minimize heat loss",
+              "reduce current",
+              "minimize energy loss"
+            ],
+            "hint": "Consider the relationship between voltage, current, and heat in long-distance cables."
+          },
+          {
+            "id": "203-5A-P4",
+            "questionText": "A new manufacturing plant requires a constant, high-volume 'base load' of power that must remain stable 24 hours a day regardless of weather. Which category of generation method is best suited for this purpose?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "thermal generation",
+              "thermal",
+              "thermal power",
+              "nuclear"
+            ],
+            "hint": "Identify the method used for steady, large-scale output that does not rely on wind or sun."
+          },
+          {
+            "id": "203-5A-P5",
+            "questionText": "What is the specific term for the final stage of the supply chain that delivers electricity from substations to individual homes and small businesses?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "distribution",
+              "electrical distribution",
+              "power distribution"
+            ],
+            "hint": "This term is distinct from the bulk movement of energy over long distances."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-5A-INT-1",
+            "questionText": "Explain the relationship between large-scale electricity generation and the requirement for high-voltage transmission. In your answer, include: (1) the primary role of a power station in the network, (2) the function of step-up transformers, (3) the physical reason why voltage must be increased for bulk movement. Why is this specific sequence of events necessary for an efficient national supply?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies power stations as the primary source of bulk energy generation.",
+              "Explains that step-up transformers increase voltage immediately after generation.",
+              "Relates high voltage to the reduction of current and subsequent energy loss (heat).",
+              "Argues that without high voltage, long-distance transmission would be inefficient due to cable resistance.",
+              "Confirms that the sequence ensures maximum energy reaches the distribution network."
+            ],
+            "expectedAnswer": [
+              "Power stations generate bulk electricity which must be transported over long distances. To do this efficiently, step-up transformers increase the voltage to very high levels because higher voltage reduces the current required, which in turn minimizes energy lost as heat through the transmission lines. This sequence is necessary because it allows electricity to be moved from remote generators to populated areas with minimal waste.",
+              "A power station creates the initial electrical supply, which is then passed through a step-up transformer to reach transmission levels like 400kV. This must be true because high-voltage transmission is the only way to reduce the energy lost to resistance in the cables over many miles. Therefore, the sequence of generation followed by voltage increase is essential for maintaining an economically viable national grid."
+            ],
+            "hint": "Think about the relationship between voltage, current, and heat loss in a cable."
+          },
+          {
+            "id": "203-5A-INT-2",
+            "questionText": "Synthesize the process of delivering electricity from a central generator to a local distribution system. In your answer, include: (1) a method of large-scale generation, (2) the purpose of using high voltages for long-distance transport, (3) standard voltage levels used at different stages of the network, and (4) how transformers facilitate the transition between these stages. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Identifies a valid generation method (e.g., thermal, nuclear, or wind).",
+              "Explains that high voltage reduces energy loss during transmission.",
+              "References specific standard voltages (e.g., 400kV/275kV for transmission).",
+              "References distribution voltages (e.g., 11kV or 400V/230V).",
+              "Describes the role of step-up transformers at the source.",
+              "Describes the role of step-down transformers at substations.",
+              "Integrates all components into a logical flow from source to end-user.",
+              "Maintains technical precision regarding voltage terminology."
+            ],
+            "expectedAnswer": [
+              "Electricity is produced at power stations using methods like steam turbines, then increased to 400kV or 275kV by step-up transformers to ensure efficient long-distance transmission with low energy loss. As the power reaches local areas, step-down transformers at substations reduce the voltage to levels like 11kV for distribution and eventually 400V/230V for safe use in buildings. This integrated system of transformers and varying voltage levels ensures energy is moved efficiently and delivered at a usable pressure.",
+              "• Electricity is generated at scale using primary sources like fossil fuels or renewables.\n• It is stepped up to high transmission voltages (e.g., 400kV) to minimize heat loss over the National Grid.\n• Step-down transformers at various substations gradually reduce the voltage to distribution levels such as 11kV.\n• The system concludes with a final reduction to 400V/230V for local delivery to the end consumer."
+            ],
+            "hint": "Trace the energy from the power station through the grid to the final transformer."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-5A-SR-1",
+            "questionText": "Which term describes the process of producing or creating a supply of a resource, such as energy, for a wider system?",
+            "expectedAnswer": [
+              "generation",
+              "generating",
+              "production"
+            ],
+            "hint": "It is the first word in the lesson title.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-5A-SR-2",
+            "questionText": "Which term refers to the bulk movement of a resource over long distances from a source to a local area?",
+            "expectedAnswer": [
+              "transmission",
+              "transmitting",
+              "transport"
+            ],
+            "hint": "It is the last word in the lesson title.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-5A-SR-3",
+            "questionText": "Which term describes the stage where a resource is shared or delivered from a local system to individual end users?",
+            "expectedAnswer": [
+              "distribution",
+              "distributing",
+              "delivery"
+            ],
+            "hint": "This term appears in the first and third learning outcomes.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Electricity Generation and Transmission"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO5",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Overview of electricity generation methods and the standard voltage levels used for transmission and distribution.",
+      "outOfScope": "Specific technical procedures for synchronizing generators or calculating voltage drop in transmission lines.",
+      "rationale": "Level 2 requirements focus on identifying infrastructure components and understanding their purpose rather than technical engineering calculations."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "generation methods and transmission voltages only"
+    },
+    "misconceptions": [
+      {
+        "misconception": "Electricity is stored in large quantities within the grid",
+        "correction": "Electricity is generally generated at the moment it is needed, as large-scale storage is difficult",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "High voltage is used because it travels faster",
+        "correction": "High voltage is used to reduce current, which minimizes energy lost as heat (I²R)",
+        "relatedAC": "AC2"
+      }
+    ]
+  }
+}

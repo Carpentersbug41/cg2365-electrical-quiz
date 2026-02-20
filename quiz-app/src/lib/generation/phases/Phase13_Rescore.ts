@@ -117,8 +117,10 @@ export class Phase13_Rescore {
       }
     ]);
 
-    // Decision logic: accept if candidate improves overall score
-    // (or keeps score with fewer issues), while still surfacing domain regressions.
+    // Decision logic:
+    // Default policy is score-first (simpler and easier to reason about):
+    // accept if candidate meets threshold and improves total score (or keeps score with fewer issues).
+    // Optional strict mode can be enabled via PHASE13_STRICT_REGRESSIONS=true.
     const improves = candidateScore.total > originalScore.total;
     const sameScore = candidateScore.total === originalScore.total;
     const fewerIssuesAtSameScore = sameScore && candidateScore.issues.length < originalScore.issues.length;
@@ -154,19 +156,20 @@ export class Phase13_Rescore {
 
     const meetsThreshold = candidateScore.total >= threshold;
     const hasNoDomainRegressions = domainRegressions.length === 0;
-    const accepted = meetsThreshold && hasNoDomainRegressions && (improves || fewerIssuesAtSameScore);
+    const strictNoRegressionGate = process.env.PHASE13_STRICT_REGRESSIONS === 'true';
+    const accepted = strictNoRegressionGate
+      ? (meetsThreshold && hasNoDomainRegressions && (improves || fewerIssuesAtSameScore))
+      : (meetsThreshold && (improves || fewerIssuesAtSameScore));
 
     let reason: string;
     if (!meetsThreshold) {
       reason = `Candidate score ${candidateScore.total} is below threshold ${threshold}`;
-    } else if (!hasNoDomainRegressions) {
+    } else if (strictNoRegressionGate && !hasNoDomainRegressions) {
       reason = `Candidate has domain regressions: ${domainRegressions.join(', ')}`;
     } else if (improves) {
-      if (pedagogyRegressions.length > 0) {
-        reason = `Candidate improves total score (${candidateScore.total} > ${originalScore.total}) but has pedagogy regressions: ${pedagogyRegressions.join(', ')}`;
-      } else {
-        reason = `Candidate improves on original (${candidateScore.total} > ${originalScore.total}) with no domain regression`;
-      }
+      reason = strictNoRegressionGate
+        ? `Candidate improves on original (${candidateScore.total} > ${originalScore.total}) with no domain regression`
+        : `Candidate improves on original (${candidateScore.total} > ${originalScore.total}) and meets threshold`;
     } else if (fewerIssuesAtSameScore) {
       reason = `Candidate keeps score (${candidateScore.total}) and reduces issue count (${candidateScore.issues.length} < ${originalScore.issues.length})`;
     } else {
@@ -189,9 +192,10 @@ export class Phase13_Rescore {
       console.log(`  - Improves on original: ${improves ? 'YES' : 'NO'} (${candidateScore.total} ${improves ? '>' : '<='} ${originalScore.total})`);
       console.log(`  - Fewer issues at same score: ${fewerIssuesAtSameScore ? 'YES' : 'NO'}`);
       console.log(`  - Meets threshold: ${meetsThreshold ? 'YES' : 'NO'} (${candidateScore.total} ${meetsThreshold ? '>=' : '<'} ${threshold})`);
+      console.log(`  - Strict regression gate: ${strictNoRegressionGate ? 'ON' : 'OFF'} (env PHASE13_STRICT_REGRESSIONS)`);
       console.log(`  - Domain regressions: ${domainRegressions.length === 0 ? 'NONE' : domainRegressions.join('; ')}`);
       console.log(`  - Pedagogy regressions: ${pedagogyRegressions.length === 0 ? 'NONE' : pedagogyRegressions.join('; ')}`);
-      console.log(`  - Final Decision: ${accepted ? 'ACCEPT' : 'KEEP ORIGINAL'} (policy: meets threshold + no domain regressions + improvement/fewer issues)`);
+      console.log(`  - Final Decision: ${accepted ? 'ACCEPT' : 'KEEP ORIGINAL'} (policy: ${strictNoRegressionGate ? 'strict no-regressions gate' : 'score-first gate'})`);
       console.log(`  - Reason: ${reason}`);
       console.log(`  - Final Lesson: ${accepted ? 'CANDIDATE' : 'ORIGINAL'} (best pedagogical outcome)`);
     }

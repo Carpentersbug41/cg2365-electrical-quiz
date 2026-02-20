@@ -293,6 +293,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-4C'),
     available: true,
     order: 9,
+  },
+  {
+    id: '203-5A',
+    title: 'Electricity Generation and Transmission',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Electricity Generation and Transmission',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-5A'),
+    available: true,
+    order: 10,
   },// Unit 210: Communication
   {
     id: '204-10A',

@@ -45,6 +45,7 @@ import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclo
 import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
 import lesson203_4B from '@/data/lessons/203-4B-exposed-and-extraneous-conductive-parts.json';
 import lesson203_4C from '@/data/lessons/203-4C-earth-loop-impedance-path.json';
+import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-transmission.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -88,6 +89,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_5A,
   lesson203_4C,
   lesson203_4B,
   lesson203_4A,

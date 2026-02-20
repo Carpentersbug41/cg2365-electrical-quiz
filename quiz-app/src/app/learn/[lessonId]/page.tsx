@@ -50,9 +50,11 @@ import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclo
 import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
 import lesson203_4B from '@/data/lessons/203-4B-exposed-and-extraneous-conductive-parts.json';
 import lesson203_4C from '@/data/lessons/203-4C-earth-loop-impedance-path.json';
+import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-transmission.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-5A': lesson203_5A as Lesson,
   '203-4C': lesson203_4C as Lesson,
   '203-4B': lesson203_4B as Lesson,
   '203-4A': lesson203_4A as Lesson,

@@ -204,7 +204,7 @@ export async function POST(request: NextRequest) {
         {
           success: false,
           code: 'GENERATION_IN_PROGRESS',
-          error: `Generation already in progress for ${fullLessonId}.`,
+          error: `A generation job is already running for ${fullLessonId}. Wait for that run to finish, then retry.`,
         },
         { status: 409, headers }
       );
