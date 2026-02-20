@@ -62,3 +62,102 @@ body {
   outline: 2px solid #0f172a;
   outline-offset: 2px;
 }
+
+.microbreak-enter {
+  animation: microbreak-fade-up 280ms ease-out;
+}
+
+.microbreak-game-soft button {
+  transition: transform 100ms ease, box-shadow 150ms ease, filter 140ms ease;
+}
+
+.microbreak-game-soft button:not(:disabled):hover {
+  transform: translateY(-0.5px) scale(1.005);
+  box-shadow: 0 5px 12px rgba(15, 23, 42, 0.1);
+  filter: saturate(1.03);
+}
+
+.microbreak-game-soft button:not(:disabled):active {
+  transform: translateY(0) scale(0.99);
+  box-shadow: 0 2px 7px rgba(15, 23, 42, 0.08);
+}
+
+.microbreak-game-medium button {
+  transition: transform 120ms ease, box-shadow 180ms ease, filter 160ms ease;
+}
+
+.microbreak-game-medium button:not(:disabled):hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+  filter: saturate(1.06);
+}
+
+.microbreak-game-medium button:not(:disabled):active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 3px 10px rgba(15, 23, 42, 0.12);
+}
+
+.microbreak-game-bold button {
+  transition: transform 130ms ease, box-shadow 190ms ease, filter 170ms ease;
+}
+
+.microbreak-game-bold button:not(:disabled):hover {
+  transform: translateY(-1.5px) scale(1.02);
+  box-shadow: 0 11px 22px rgba(15, 23, 42, 0.18);
+  filter: saturate(1.1);
+}
+
+.microbreak-game-bold button:not(:disabled):active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: 0 4px 11px rgba(15, 23, 42, 0.14);
+}
+
+.microbreak-correct {
+  animation: microbreak-correct-pop 300ms ease-out;
+}
+
+.microbreak-wrong {
+  animation: microbreak-shake 280ms ease-out;
+}
+
+@keyframes microbreak-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes microbreak-correct-pop {
+  0% {
+    transform: scale(0.96);
+  }
+  60% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes microbreak-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-4px);
+  }
+  40% {
+    transform: translateX(4px);
+  }
+  60% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}

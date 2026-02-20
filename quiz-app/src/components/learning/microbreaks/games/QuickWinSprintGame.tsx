@@ -137,6 +137,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
   // Handle answer submission
   const handleSubmitAnswer = (handleComplete: (score?: number, accuracy?: number) => void) => {
     if (!userAnswer.trim() || isValidating || gameFailed) return;
+    playClickSound(0.3);
     
     setIsValidating(true);
     const isCorrect = validateAnswer(userAnswer, currentQuestion.answer);
@@ -213,6 +214,8 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
     <GameWrapper 
       title="Quick Win Sprint"
       duration={34}
+      instruction="Answer fast: tap I Know It, type your answer, then submit before the timer ends."
+      motionPreset="bold"
       onComplete={onComplete}
       onSkip={onSkip}
       disableTimer={true}
@@ -265,7 +268,9 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                       // Show result
                       <div className="text-center space-y-4">
                         <div className={`text-5xl ${answerResult === 'correct' ? 'text-green-600' : 'text-red-600'}`}>
+                          <span className={answerResult === 'correct' ? 'microbreak-correct inline-block' : 'microbreak-wrong inline-block'}>
                           {answerResult === 'correct' ? '✓' : '✗'}
+                          </span>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-slate-400">
                           Correct answer: <span className="font-bold text-gray-900 dark:text-white">{currentQuestion.answer}</span>

@@ -1,6 +1,6 @@
 {
-  "id": "203-CU1B",
-  "title": "203.CU1B — Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)",
+  "id": "203-10C",
+  "title": "203.10C — Consumer Unit Practical: Position, Entries, Terminations (Rig-safe)",
   "description": "Learn about Consumer Unit Practical: Position, Entries, Terminations (Rig-safe) in Installation 2365 Level 2",
   "layout": "split-vis",
   "unit": "Unit 203",
@@ -13,7 +13,7 @@
   "prerequisites": [],
   "blocks": [
     {
-      "id": "203-CU1B-outcomes",
+      "id": "203-10C-outcomes",
       "type": "outcomes",
       "order": 1,
       "content": {
@@ -34,7 +34,7 @@
       }
     },
     {
-      "id": "203-CU1B-vocab",
+      "id": "203-10C-vocab",
       "type": "vocab",
       "order": 2,
       "content": {
@@ -63,7 +63,7 @@
       }
     },
     {
-      "id": "203-CU1B-diagram",
+      "id": "203-10C-diagram",
       "type": "diagram",
       "order": 3,
       "content": {
@@ -82,7 +82,7 @@
       }
     },
     {
-      "id": "203-CU1B-explain-1",
+      "id": "203-10C-explain-1",
       "type": "explanation",
       "order": 4,
       "content": {
@@ -91,7 +91,7 @@
       }
     },
     {
-      "id": "203-CU1B-check-1",
+      "id": "203-10C-check-1",
       "type": "practice",
       "order": 4.5,
       "content": {
@@ -100,7 +100,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "203-CU1B-C1-L1-A",
+            "id": "203-10C-C1-L1-A",
             "questionText": "When must Safe Isolation be performed and verified during the preparation process?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -112,7 +112,7 @@
             "hint": "Think about the very first step required before exposing any internal parts."
           },
           {
-            "id": "203-CU1B-C1-L1-B",
+            "id": "203-10C-C1-L1-B",
             "questionText": "What tool must be used to ensure the enclosure is mounted horizontal and vertical?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -123,7 +123,7 @@
             "hint": "This tool uses a bubble to check if a surface is perfectly level."
           },
           {
-            "id": "203-CU1B-C1-L1-C",
+            "id": "203-10C-C1-L1-C",
             "questionText": "What specific actions make Safe Isolation a methodical procedure compared to just using a switch?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -136,7 +136,7 @@
             "hint": "Consider the steps taken to ensure the power cannot be turned back on accidentally."
           },
           {
-            "id": "203-CU1B-C1-L2",
+            "id": "203-10C-C1-L2",
             "questionText": "Using your answers to Q1 (isolation timing), Q2 (leveling), and Q3 (locking off), explain why this sequence of safety and precision must be followed. Why does this relationship matter?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
@@ -155,7 +155,7 @@
       }
     },
     {
-      "id": "203-CU1B-explain-2",
+      "id": "203-10C-explain-2",
       "type": "explanation",
       "order": 5,
       "content": {
@@ -164,7 +164,7 @@
       }
     },
     {
-      "id": "203-CU1B-check-2",
+      "id": "203-10C-check-2",
       "type": "practice",
       "order": 5.5,
       "content": {
@@ -173,7 +173,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "203-CU1B-C2-L1-A",
+            "id": "203-10C-C2-L1-A",
             "questionText": "What should never be in contact with cable insulation at the entry point of the enclosure?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -185,7 +185,7 @@
             "hint": "Think about the risks posed by the metal or plastic holes in the enclosure."
           },
           {
-            "id": "203-CU1B-C2-L1-B",
+            "id": "203-10C-C2-L1-B",
             "questionText": "Where must conductors be routed within the internal space of the consumer unit?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -198,7 +198,7 @@
             "hint": "Avoid the middle of the unit where components are located."
           },
           {
-            "id": "203-CU1B-C2-L1-C",
+            "id": "203-10C-C2-L1-C",
             "questionText": "What check must be performed to ensure terminals are tightened sufficiently with no movement?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -210,7 +210,7 @@
             "hint": "This is a physical pull on the wire to check its stability."
           },
           {
-            "id": "203-CU1B-C2-L2",
+            "id": "203-10C-C2-L2",
             "questionText": "Using your answers to Q1 (sharp edges), Q2 (routing), and Q3 (tightness verification), explain how these facts connect to ensure a safe installation. How do we know the system will remain reliable over time?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
@@ -229,7 +229,7 @@
       }
     },
     {
-      "id": "203-CU1B-microbreak-1",
+      "id": "203-10C-microbreak-1",
       "type": "microbreak",
       "order": 5.7,
       "content": {
@@ -246,7 +246,7 @@
       }
     },
     {
-      "id": "203-CU1B-worked-example",
+      "id": "203-10C-worked-example",
       "type": "worked-example",
       "order": 6,
       "content": {
@@ -286,7 +286,7 @@
       }
     },
     {
-      "id": "203-CU1B-guided",
+      "id": "203-10C-guided",
       "type": "guided-practice",
       "order": 7,
       "content": {
@@ -333,14 +333,14 @@
       }
     },
     {
-      "id": "203-CU1B-practice",
+      "id": "203-10C-practice",
       "type": "practice",
       "order": 8,
       "content": {
         "title": "Your Turn (You Do)",
         "questions": [
           {
-            "id": "203-CU1B-P1",
+            "id": "203-10C-P1",
             "questionText": "A technical drawing requires an enclosure to be mounted centrally on a vertical mark. If the enclosure is 220mm wide, how many millimeters from that center mark is the outer edge of the unit?",
             "answerType": "numeric",
             "expectedAnswer": [
@@ -349,7 +349,7 @@
             "hint": "Divide the total width by two to find the distance from the center to the edge in mm."
           },
           {
-            "id": "203-CU1B-P2",
+            "id": "203-10C-P2",
             "questionText": "A technician is installing four separate circuits into a single enclosure. Based on the rules for safety and termination, how many total Circuit Protective Conductors (CPCs) must be connected to the dedicated earth bar?",
             "answerType": "numeric",
             "expectedAnswer": [
@@ -358,7 +358,7 @@
             "hint": "Every circuit requires its own dedicated CPC to be terminated."
           },
           {
-            "id": "203-CU1B-P3",
+            "id": "203-10C-P3",
             "questionText": "What must be true about an enclosure's physical state for it to be classified as 'mechanically sound' according to the lesson criteria?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -370,7 +370,7 @@
             "hint": "Consider the difference between the two enclosures described in the micro-scenario."
           },
           {
-            "id": "203-CU1B-P4",
+            "id": "203-10C-P4",
             "questionText": "A learner is mounting a control box onto a metal frame that experiences constant vibration. Why is the use of 'Cable Entry Protection' (such as a grommet) more critical in this scenario than on a stationary surface?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -382,7 +382,7 @@
             "hint": "Think about what happens when a sharp metal edge rubs against plastic insulation repeatedly."
           },
           {
-            "id": "203-CU1B-P5",
+            "id": "203-10C-P5",
             "questionText": "During the 'dressing' phase, a learner pushes all excess wire into the center of the enclosure to close the lid. Why is this practice rejected in favor of routing conductors around the perimeter?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -397,7 +397,7 @@
       }
     },
     {
-      "id": "203-CU1B-microbreak-2",
+      "id": "203-10C-microbreak-2",
       "type": "microbreak",
       "order": 8.25,
       "content": {
@@ -420,7 +420,7 @@
       }
     },
     {
-      "id": "203-CU1B-integrative",
+      "id": "203-10C-integrative",
       "type": "practice",
       "order": 9.5,
       "content": {
@@ -429,7 +429,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "203-CU1B-INT-1",
+            "id": "203-10C-INT-1",
             "questionText": "Explain the relationship between initial safety protocols and the mechanical stability of the installation. In your answer, include: (1) the role of safe isolation during preparation, (2) the requirements for secure enclosure fixing, and (3) how the unit's position affects the internal termination process. Why must the enclosure be mechanically sound before any conductors are dressed? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
@@ -447,7 +447,7 @@
             "hint": "Consider how a loose enclosure might impact the tension on the wires you have just connected."
           },
           {
-            "id": "203-CU1B-INT-2",
+            "id": "203-10C-INT-2",
             "questionText": "Synthesize the complete installation workflow from preparation to final termination to explain how it achieves a safe and compliant outcome. In your answer, include: (1) rig-safe preparation requirements, (2) the function of cable entry protection, (3) the purpose of conductor dressing, and (4) how these individual steps integrate to ensure long-term system reliability. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
@@ -471,14 +471,14 @@
       }
     },
     {
-      "id": "203-CU1B-spaced-review",
+      "id": "203-10C-spaced-review",
       "type": "spaced-review",
       "order": 10,
       "content": {
         "title": "Foundation Check",
         "questions": [
           {
-            "id": "203-CU1B-SR-1",
+            "id": "203-10C-SR-1",
             "questionText": "What is the name of the mandatory procedure used to ensure an electrical installation is dead and safe to work on?",
             "expectedAnswer": [
               "safe isolation",
@@ -489,7 +489,7 @@
             "answerType": "short-text"
           },
           {
-            "id": "203-CU1B-SR-2",
+            "id": "203-10C-SR-2",
             "questionText": "In the installation workflow, what task must be completed to identify the correct position of the equipment before fixing it to a surface?",
             "expectedAnswer": [
               "marking out",
@@ -500,7 +500,7 @@
             "answerType": "short-text"
           },
           {
-            "id": "203-CU1B-SR-3",
+            "id": "203-10C-SR-3",
             "questionText": "What term describes the process of making a secure electrical connection at the end of a conductor within an enclosure?",
             "expectedAnswer": [
               "terminating",

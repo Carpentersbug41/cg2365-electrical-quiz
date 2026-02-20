@@ -49,8 +49,9 @@ import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-trans
 import lesson203_5B from '@/data/lessons/203-5B-distribution-voltages-and-network-components.json';
 import lesson203_6A from '@/data/lessons/203-6A-types-of-micro-renewable-energy.json';
 import lesson203_6B from '@/data/lessons/203-6B-installation-and-evaluation-of-micro-renewables.json';
-import lesson203_203_CU1A from '@/data/lessons/203-CU1A-consumer-units-purpose-protective-devices.json';
-import lesson203_CU1B from '@/data/lessons/203-CU1B-consumer-unit-practical-position-entries-terminations-rig-safe.json';
+import lesson203_10B from '@/data/lessons/203-10B-consumer-units-purpose-protective-devices.json';
+import lesson203_10C from '@/data/lessons/203-10C-consumer-unit-practical-position-entries-terminations-rig-safe.json';
+import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -94,8 +95,9 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
-  lesson203_CU1B,
-  lesson203_203_CU1A,
+  lesson203_10A,
+  lesson203_10C,
+  lesson203_10B,
   lesson203_6B,
   lesson203_6A,
   lesson203_5B,

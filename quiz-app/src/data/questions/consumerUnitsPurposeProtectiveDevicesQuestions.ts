@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * Consumer Units: Purpose + Protective Devices Question Bank
- * Aligned with lesson 203-CU1A learning outcomes
+ * Aligned with lesson 203-10B learning outcomes
  * Generated: 2026-02-20
  */
 
@@ -29,7 +29,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "units"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -56,7 +56,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -83,7 +83,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "current-rule"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -110,7 +110,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -137,7 +137,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -164,7 +164,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -191,7 +191,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -218,7 +218,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -245,7 +245,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -272,7 +272,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -299,7 +299,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -326,7 +326,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -353,7 +353,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -380,7 +380,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -407,7 +407,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -435,7 +435,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -463,7 +463,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "units",
       "application"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -491,7 +491,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "calculation",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -519,7 +519,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "explanation",
       "units"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -547,7 +547,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "units"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -575,7 +575,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -603,7 +603,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "units"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -631,7 +631,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "units"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -659,7 +659,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "explanation"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -687,7 +687,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "units"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -715,7 +715,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -743,7 +743,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "ohms-law"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -770,7 +770,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -798,7 +798,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 100,
@@ -825,7 +825,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -852,7 +852,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -879,7 +879,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -906,7 +906,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -933,7 +933,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -960,7 +960,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -988,7 +988,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "protective-devices"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1016,7 +1016,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "protective-devices"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -1044,7 +1044,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1072,7 +1072,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "protective-devices"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1100,7 +1100,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "calculation"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1128,7 +1128,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "terminology",
       "explanation"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1155,7 +1155,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1182,7 +1182,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1209,7 +1209,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "calculation"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1236,7 +1236,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
@@ -1263,7 +1263,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "application"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1290,7 +1290,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 90,
@@ -1317,7 +1317,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "conceptual",
       "explanation"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1344,7 +1344,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "discrimination",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1371,7 +1371,7 @@ export const consumerUnitsPurposeProtectiveDevicesQuestions: TaggedQuestion[] = 
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1A-LO3",
+    "learningOutcomeId": "203-10B-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,

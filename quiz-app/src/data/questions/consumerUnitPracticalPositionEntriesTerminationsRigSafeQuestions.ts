@@ -2,7 +2,7 @@ import { TaggedQuestion } from './types';
 
 /**
  * Consumer Unit Practical: Position, Entries, Terminations (Rig-safe) Question Bank
- * Aligned with lesson 203-CU1B learning outcomes
+ * Aligned with lesson 203-10C learning outcomes
  * Generated: 2026-02-20
  */
 
@@ -28,7 +28,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "health-safety",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1B-LO1",
+    "learningOutcomeId": "203-10C-LO1",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -55,7 +55,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -82,7 +82,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -109,7 +109,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -136,7 +136,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -163,7 +163,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -190,7 +190,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "ac-dc",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 30,
@@ -217,7 +217,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "ac-dc",
       "units"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 30,
@@ -244,7 +244,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -271,7 +271,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -299,7 +299,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -326,7 +326,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO4",
+    "learningOutcomeId": "203-10C-LO4",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -353,7 +353,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "explanation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -380,7 +380,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -407,7 +407,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 1,
     "estimatedTime": 45,
@@ -435,7 +435,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -463,7 +463,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -491,7 +491,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "rms-peak",
       "ac-dc"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -518,7 +518,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "conceptual",
       "explanation"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -545,7 +545,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -572,7 +572,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "calculation",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO2",
+    "learningOutcomeId": "203-10C-LO2",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -600,7 +600,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "ac-dc",
       "transformers"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -627,7 +627,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -655,7 +655,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "frequency",
       "sine-wave"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -683,7 +683,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -711,7 +711,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "frequency",
       "units"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -739,7 +739,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "legislation",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO1",
+    "learningOutcomeId": "203-10C-LO1",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -767,7 +767,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "rms-peak",
       "calculation"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -795,7 +795,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "electromagnetic-induction",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 75,
@@ -823,7 +823,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -851,7 +851,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -879,7 +879,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -907,7 +907,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "conceptual",
       "units"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -935,7 +935,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -963,7 +963,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "terminology"
     ],
-    "learningOutcomeId": "203-CU1B-LO4",
+    "learningOutcomeId": "203-10C-LO4",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 45,
@@ -991,7 +991,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 60,
@@ -1019,7 +1019,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "transformers",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 75,
@@ -1047,7 +1047,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "sine-wave",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 60,
@@ -1075,7 +1075,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "health-safety",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 2,
     "estimatedTime": 90,
@@ -1103,7 +1103,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "units"
     ],
-    "learningOutcomeId": "203-CU1B-LO2",
+    "learningOutcomeId": "203-10C-LO2",
     "answerType": "mcq",
     "difficulty": 3,
     "estimatedTime": 90,
@@ -1131,7 +1131,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "sine-wave",
       "calculation"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1159,7 +1159,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "application",
       "units"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1187,7 +1187,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "resistance-rule",
       "calculation"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1215,7 +1215,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "electromagnetic-induction",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1243,7 +1243,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "terminology",
       "discrimination"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1271,7 +1271,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "discrimination",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO3",
+    "learningOutcomeId": "203-10C-LO3",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1299,7 +1299,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "sine-wave",
       "conceptual"
     ],
-    "learningOutcomeId": "203-CU1B-LO5",
+    "learningOutcomeId": "203-10C-LO5",
     "answerType": "mcq",
     "difficulty": 5,
     "estimatedTime": 120,
@@ -1327,7 +1327,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "units",
       "application"
     ],
-    "learningOutcomeId": "203-CU1B-LO2",
+    "learningOutcomeId": "203-10C-LO2",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1355,7 +1355,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "conceptual",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO4",
+    "learningOutcomeId": "203-10C-LO4",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,
@@ -1383,7 +1383,7 @@ export const consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions: T
       "discrimination",
       "health-safety"
     ],
-    "learningOutcomeId": "203-CU1B-LO1",
+    "learningOutcomeId": "203-10C-LO1",
     "answerType": "mcq",
     "difficulty": 4,
     "estimatedTime": 120,

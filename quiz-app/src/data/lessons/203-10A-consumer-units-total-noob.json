@@ -1,0 +1,531 @@
+{
+  "id": "203-10A",
+  "title": "203.10A — Consumer Units (TOTAL NOOB)",
+  "description": "Learn about Consumer Units (TOTAL NOOB) in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Consumer Units (TOTAL NOOB)",
+  "learningOutcomes": [
+    "Define a consumer unit and identify four key internal components",
+    "Explain the functional difference between overcurrent protection and earth leakage protection",
+    "Describe the 'Stop -> Make Safe -> Look' procedure for a visual inspection on a training rig"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-10A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define a consumer unit and identify four key internal components",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the functional difference between overcurrent protection and earth leakage protection",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Describe the 'Stop -> Make Safe -> Look' procedure for a visual inspection on a training rig",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Consumer Unit",
+            "definition": "The central distribution board that splits the incoming electrical supply into individual circuits and houses the necessary protective devices."
+          },
+          {
+            "term": "Main Switch",
+            "definition": "The primary isolation device used to manually disconnect the entire electrical supply from the consumer unit, not individual circuits."
+          },
+          {
+            "term": "Circuit Breaker (MCB)",
+            "definition": "An automatic safety device that protects an individual circuit from damage caused by overcurrent or short circuits, not from earth leakage."
+          },
+          {
+            "term": "RCD (Residual Current Device)",
+            "definition": "A sensitive safety device that disconnects the circuit when it detects a leakage of current to earth, protecting people from electric shock rather than protecting the wiring from overload."
+          },
+          {
+            "term": "Visual Inspection",
+            "definition": "A non-intrusive safety procedure used to identify obvious defects like exposed copper or damaged insulation before any physical work or testing begins."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Consumer Units (TOTAL NOOB) Diagram",
+        "description": "Visual representation of Consumer Units (TOTAL NOOB)",
+        "videoUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw",
+        "diagramType": "concept",
+        "elementIds": [
+          "main-switch-isolator",
+          "mcb-overcurrent-device",
+          "rcd-leakage-device",
+          "neutral-earth-bars",
+          "exposed-copper-fault"
+        ],
+        "placeholderText": "A front-on view of an open consumer unit on a training rig. On the far right, a large red Main Switch is visible. To its left, several narrow MCBs are lined up, followed by a wider RCD with a prominent 'Test' button. At the top and sides of the enclosure, metal bars (Neutral and Earth bars) show multiple wire connections. One specific wire at an MCB terminal should be highlighted to show a 'stray strand' and 'exposed copper' as a visual defect example."
+      }
+    },
+    {
+      "id": "203-10A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Consumer Unit: Purpose and Circuits",
+        "content": "### In this lesson\n- You will learn to define a consumer unit as the central control point for a building's electricity.\n- This knowledge is applied whenever you need to understand how power is distributed and protected in a basic installation.\n- Key takeaways include the definition of a CU, the concept of circuit splitting, and identifying common circuit types.\n\n**What this is**\nA **Consumer Unit** is the central distribution board that splits the incoming electrical supply into individual circuits and houses the necessary protective devices. It is the primary point where electricity enters a specific area (like a house or a workshop) and is divided into manageable \"routes\" called circuits. In a typical beginner training rig, you will see it as the plastic or metal box that acts as the \"brain\" of the electrical system.\n\n**Why it matters**\nWithout a **Consumer Unit**, a single fault in one lamp would turn off every electrical item in the entire building. By splitting the supply into separate circuits—such as a lighting circuit for the lights and a socket circuit for the wall outlets—the system becomes safer and more convenient. If a fault occurs on the sockets, the lights typically remain functional, preventing the building from being plunged into total darkness while also isolating the danger.\n\n**Key facts / rules**\n- A **Consumer Unit** must provide a way to turn off the whole supply manually.\n- It must contain individual protective devices for every circuit it supplies.\n- Common circuits include lighting (for fixed lamps) and sockets (for plug-in appliances).\n- It serves as the link between the external supply and the internal wiring system.\n- The enclosure must be fire-rated in many modern domestic settings (verify current edition/version of regulations).\n- It allows for the safe isolation of specific parts of a building for maintenance.\n\n**When to choose it**\nYou choose to use a **Consumer Unit** when you need to distribute power safely to multiple locations from a single source. It is selected based on the number of circuits required and the types of protection needed for the environment. For example, a small garage might only need a two-way unit, whereas a large house requires a much larger board. You identify the need for a CU when the goal is to provide both a central point of isolation and individual circuit safety.\n\n**Common mistakes**\nLearners often confuse a **Consumer Unit** with a simple junction box; a **Consumer Unit** is a distribution and protection hub, whereas a junction box is merely a point where cables are joined together. \n\nMisconceptions (targeted):\n* Misconception: A consumer unit is only for turning things on and off. | Correction: Its primary technical role is safety and circuit distribution, not just switching. | AC: AC3.1\n* Misconception: One consumer unit can only handle one type of circuit. | Correction: A single unit typically handles many different circuit types, like lighting and sockets, simultaneously. | AC: AC3.1\n\n**Key Points**\n- The **Consumer Unit** is the building's electricity control centre.\n- It splits the main supply into smaller, safer circuits.\n- It houses all the safety switches and protective devices.\n- Lighting and sockets are the most common circuits supplied.\n\n**Quick recap**\nA **Consumer Unit** is the heart of an electrical installation. It takes the big incoming power supply and breaks it down into smaller circuits, like those for your lights and sockets, while providing a central location for safety devices to live. Think of it like a water manifold: one big pipe comes in, and many smaller pipes go out to different rooms, each with its own safety valve.\n\n### Coming Up Next\nNow that you know what the box does, we will look inside to identify the specific switches and safety devices that keep the building safe."
+      }
+    },
+    {
+      "id": "203-10A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The Consumer Unit: Purpose and Circuits",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-10A-C1-L1-A",
+            "questionText": "What must a Consumer Unit provide to allow a person to manually control the entire electrical supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "a way to turn off the whole supply manually",
+              "way to turn off whole supply manually",
+              "manual way to turn off the supply"
+            ],
+            "hint": "The unit acts as a central control point for the building's electricity."
+          },
+          {
+            "id": "203-10A-C1-L1-B",
+            "questionText": "What must be included inside a Consumer Unit for every individual circuit that it supplies?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "individual protective devices",
+              "protective devices",
+              "individual safety devices"
+            ],
+            "hint": "Every circuit needs its own dedicated safety component."
+          },
+          {
+            "id": "203-10A-C1-L1-C",
+            "questionText": "In terms of technical role, how does a Consumer Unit differ from a simple junction box?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "it is a distribution and protection hub",
+              "distribution and protection hub",
+              "hub for distribution and protection"
+            ],
+            "hint": "While a junction box only joins cables, the consumer unit has a more complex role involving safety."
+          },
+          {
+            "id": "203-10A-C1-L2",
+            "questionText": "Using your answers to Q1 (manual supply control), Q2 (individual protective devices), and Q3 (distribution and protection hub), explain how these features define the purpose of a Consumer Unit. Why is it more than just a place where wires meet?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The unit distributes power to multiple circuits while providing a central point for manual isolation",
+              "Unlike a junction box it houses protective devices to ensure each circuit is safe",
+              "It acts as a hub because it manages both the safety of individual routes and the control of the whole system"
+            ],
+            "expectedAnswer": [
+              "A consumer unit is a hub because it doesn't just join wires like a junction box; it distributes them into circuits and protects them with individual devices while allowing the whole supply to be turned off manually.",
+              "It is more than a junction box because it combines a way to turn off the whole supply with individual protective devices for every circuit, making it a distribution and protection hub."
+            ],
+            "hint": "Consider how the combination of control and safety devices makes it a 'hub' rather than just a connection point."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Internal Components and Safety Roles",
+        "content": "### In this lesson\n- You will learn to identify the four key internal components of a consumer unit.\n- This is essential for identifying which device has tripped during a fault and understanding what kind of danger it is preventing.\n- Key takeaways include the roles of the Main Switch, MCB, RCD, and the distribution bars.\n\n**What this is**\nInside the **Consumer Unit**, there are specific components designed for different safety tasks. The **Main Switch** is the primary isolation device used to manually disconnect the entire electrical supply from the consumer unit. For individual circuit safety, we use a **Circuit Breaker (MCB)** to protect against overcurrent, and an **RCD (Residual Current Device)** to protect against earth leakage. Finally, the neutral bar and earth bar act as terminal strips where all the returning and safety wires connect.\n\n**Why it matters**\nDifferent electrical problems require different solutions. If you try to use a device meant for \"too much current\" to stop a \"leakage\" problem, it won't work, and someone could get hurt. Understanding the functional difference between overcurrent protection and earth leakage protection is the foundation of electrical safety. The **Circuit Breaker (MCB)** prevents fires by stopping wires from melting, while the **RCD (Residual Current Device)** prevents heart failure by stopping electricity from flowing through a person.\n\n**Key facts / rules**\n- The **Main Switch** does not provide automatic protection; it is for manual isolation only.\n- A **Circuit Breaker (MCB)** (BS EN 60898) trips when it detects too much current (overload or short circuit).\n- An **RCD (Residual Current Device)** (BS EN 61008) trips when it detects current leaking to earth.\n- An **RCBO** (BS EN 61009) combines both MCB and RCD functions into one device.\n- The neutral bar is for the return path of the electricity.\n- The earth bar is the safety path that connects all metal parts to the ground.\n\n**How to recognise it**\nYou can recognise the **Main Switch** because it is usually the largest switch and is often red or clearly separated from the others. A **Circuit Breaker (MCB)** is typically narrower and has a simple ON/OFF toggle. An **RCD (Residual Current Device)** is wider than an MCB and always features a small \"Test\" button (often marked 'T'). \n\n*Micro-scenario: If a circuit is rated for 20 Amps but you try to pull 40 Amps through it, the MCB will trip to prevent the cable from overheating. However, if only 0.03 Amps (30mA) leaks to a metal toaster case, the RCD will trip to prevent a shock, even though the current is very low.*\n\n**Common mistakes**\nLearners often confuse a **Circuit Breaker (MCB)** with an **RCD (Residual Current Device)**; a **Circuit Breaker (MCB)** is for protecting the wiring from too much current, whereas an **RCD (Residual Current Device)** is for protecting people from electric shock caused by leakage.\n\nMisconceptions (targeted):\n* Misconception: An RCD will trip if I plug too many heaters in. | Correction: An RCD detects leaks to earth; it is the MCB that trips when too much current is used. | AC: AC3.4\n* Misconception: The Main Switch will automatically turn off if there is a fault. | Correction: The Main Switch is a manual isolator only; it does not trip automatically. | AC: AC3.4\n\n**Key Points**\n- The **Main Switch** isolates the whole board manually.\n- The **Circuit Breaker (MCB)** stops overcurrent (fire protection).\n- The **RCD (Residual Current Device)** stops leakage (shock protection).\n- The neutral and earth bars are the common connection points for those specific wires.\n\n**Quick recap**\nThink of the **Main Switch** like the master tap for a house's water supply. The **Circuit Breaker (MCB)** is like a pressure valve that bursts if the water flows too fast, protecting the pipes. The **RCD (Residual Current Device)** is like a sensitive sensor that detects if a single drop of water is leaking out of a hole in the pipe and shuts everything down immediately to prevent a slip.\n\n### Coming Up Next\nNow that you know what the parts are, we will learn the specific procedure for inspecting them safely on a training rig."
+      }
+    },
+    {
+      "id": "203-10A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Internal Components and Safety Roles",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-10A-C2-L1-A",
+            "questionText": "What is the specific functional limitation of the Main Switch regarding automatic safety?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "it does not provide automatic protection",
+              "no automatic protection",
+              "does not provide auto protection"
+            ],
+            "hint": "The Main Switch is for manual isolation only."
+          },
+          {
+            "id": "203-10A-C2-L1-B",
+            "questionText": "Under what specific electrical condition will a Circuit Breaker (MCB) trip?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "when it detects too much current",
+              "detects too much current",
+              "too much current"
+            ],
+            "hint": "The MCB protects against overcurrent and fire."
+          },
+          {
+            "id": "203-10A-C2-L1-C",
+            "questionText": "What specific fault condition is an RCD designed to detect to trigger a trip?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "current leaking to earth",
+              "leaking to earth",
+              "current leak to earth"
+            ],
+            "hint": "This device protects people from electric shocks."
+          },
+          {
+            "id": "203-10A-C2-L2",
+            "questionText": "Using your answers to Q1 (Main Switch role), Q2 (MCB function), and Q3 (RCD function), explain how these components work together to provide complete system safety. How do we know which device to check if the power goes off but the Main Switch is still on?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The Main Switch only provides manual isolation while the MCB and RCD provide automatic protection",
+              "We check the MCB if there was too much current and the RCD if there was a leak to earth",
+              "The system is only fully safe if both overcurrent and leakage are monitored by separate automatic devices"
+            ],
+            "expectedAnswer": [
+              "The Main Switch provides manual isolation, but the MCB and RCD are needed for automatic safety. If the power goes off but the Main Switch is on, we know an automatic device tripped because it detected either too much current or current leaking to earth.",
+              "Since the Main Switch does not provide automatic protection, we must check the MCB and RCD. These work together to stop fires from too much current and shocks from leakage to earth."
+            ],
+            "hint": "Recall that the Main Switch is manual, while the others respond to specific types of electrical faults."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Identifying a Safety Device",
+        "given": "A component inside a consumer unit is observed to be wider than a standard circuit breaker and features a small button marked with the letter 'T'.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify context and constraints",
+            "formula": null,
+            "calculation": null,
+            "result": "The device is wider than an MCB and includes a 'Test' button."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select appropriate option",
+            "formula": null,
+            "calculation": null,
+            "result": "Residual Current Device (RCD)"
+          },
+          {
+            "stepNumber": 3,
+            "description": "State purpose/result",
+            "formula": null,
+            "calculation": null,
+            "result": "To protect people from electric shock by detecting current leaking to earth."
+          },
+          {
+            "stepNumber": 4,
+            "description": "State common wrong choice and why",
+            "formula": null,
+            "calculation": null,
+            "result": "Circuit Breaker (MCB), because it protects against overcurrent (fire) and does not have a test button."
+          }
+        ],
+        "notes": "Always verify the specific markings on the device as designs can vary; verify current edition/version of regulations for specific labeling requirements."
+      }
+    },
+    {
+      "id": "203-10A-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "Identify the component in a consumer unit that is the largest switch on the board, often colored red and separated from the individual circuit switches.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Identify the context and physical constraints of this specific component.",
+            "expectedAnswer": [
+              "Largest red switch",
+              "Main switch separated from others"
+            ],
+            "hint": "Look for the most prominent manual control that is usually a different color from the others."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Select the appropriate name for this component based on the identified features.",
+            "expectedAnswer": [
+              "Main Switch",
+              "Main Isolator"
+            ],
+            "hint": "It is the primary device used to control the entire incoming supply."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "State the primary purpose or result of operating this component.",
+            "expectedAnswer": [
+              "Manual isolation",
+              "Turn off the whole supply"
+            ],
+            "hint": "Think about what happens to the rest of the building's power when this switch is moved to the OFF position."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "State a common wrong choice regarding this component's function and explain why.",
+            "expectedAnswer": [
+              "Automatic trip",
+              "It does not trip automatically"
+            ],
+            "hint": "Does this switch turn off by itself during a fault, or is it only moved by a person?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-10A-P1",
+            "questionText": "An RCD is designed to trip when it detects a specific level of leakage. If the leakage is 0.03 Amps, how many milliamperes (mA) is this?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "30"
+            ],
+            "hint": "Value in mA (milliamperes)."
+          },
+          {
+            "id": "203-10A-P2",
+            "questionText": "A distribution board is being set up with 3 lighting circuits, 5 socket circuits, and 1 cooker circuit. How many individual protective devices (MCBs or RCBOs) are required to ensure every circuit has its own dedicated protection?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "9"
+            ],
+            "hint": "Total count of individual protective devices needed."
+          },
+          {
+            "id": "203-10A-P3",
+            "questionText": "Why can a standard Main Switch not be used to protect a circuit from an electrical fire caused by an overcurrent overload?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "manual isolation only",
+              "it is manual",
+              "no automatic protection",
+              "manual switch only"
+            ],
+            "hint": "Consider if the device can operate on its own without a human."
+          },
+          {
+            "id": "203-10A-P4",
+            "questionText": "In the safety mantra 'Stop -> Make Safe -> Look', which specific step involves confirming the equipment is dead and disconnected from the supply before an inspection begins?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Make Safe",
+              "make-safe",
+              "making safe"
+            ],
+            "hint": "Identify the second step of the three-part procedure."
+          },
+          {
+            "id": "203-10A-P5",
+            "questionText": "You are inspecting a control panel and see 5mm of shiny metal conductor visible between the wire insulation and the terminal screw. What is the technical term for this specific defect?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "exposed copper",
+              "exposed conductor",
+              "exposed metal"
+            ],
+            "hint": "Identify the defect where the internal wire is visible."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-10A-INT-1",
+            "questionText": "Explain how the identification of specific internal protective devices informs the 'Make Safe' stage of the safety mantra. In your answer, include: (1) the functional roles of overcurrent and earth leakage devices, (2) the objective of the 'Make Safe' step, and (3) how component identification ensures the system is correctly isolated. Why is it essential to distinguish between these components before proceeding with an inspection? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies MCBs as overcurrent protection and RCDs as earth leakage protection",
+              "Explains 'Make Safe' as the process of isolating power to remove hazards",
+              "Links component identification to the ability to verify a de-energized state",
+              "Reasoning: Distinguishing components ensures the correct circuit is targeted for isolation",
+              "Reasoning: Failure to identify components leads to incomplete isolation and risk of shock"
+            ],
+            "expectedAnswer": [
+              "Identifying internal components like MCBs and RCDs is critical because they manage different fault types; knowing which is which allows a technician to effectively 'Make Safe' by isolating the correct circuit. This relationship holds because if a technician cannot distinguish between protective devices, they may fail to achieve full isolation, leaving the system live and dangerous during the inspection phase.",
+              "The 'Make Safe' step requires the technician to use the consumer unit's internal devices to cut power. By understanding the difference between overcurrent and leakage protection, the technician ensures the system is properly de-energized before touching any equipment. Accurate identification is essential because it prevents the accidental inspection of live circuits, which is the primary goal of the safety mantra."
+            ],
+            "hint": "Think about how knowing the difference between an MCB and an RCD helps you ensure no electricity is flowing before you start your visual check."
+          },
+          {
+            "id": "203-10A-INT-2",
+            "questionText": "Synthesize the relationship between consumer unit architecture, specific protection types, and the visual inspection procedure to explain how a technician maintains safety on a training rig. In your answer, include: (1) the role of the consumer unit as a distribution point, (2) the operational difference between overcurrent and leakage protection, (3) the sequence of the 'Stop-Make Safe-Look' mantra, and (4) how these elements work together to prevent accidents. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Defines the Consumer Unit as the central control and distribution point",
+              "Differentiates MCB (overcurrent) from RCD (earth leakage) protection",
+              "Outlines the 'Stop -> Make Safe -> Look' sequence correctly",
+              "Explains that 'Make Safe' relies on using the CU's internal components",
+              "Connects 'Look' (visual inspection) to identifying physical defects after isolation",
+              "States that understanding CU architecture allows for targeted, safe isolation",
+              "Synthesizes that the mantra provides the framework while CU knowledge provides the technical means to execute it safely",
+              "Concludes that this integration prevents electrical contact and equipment damage"
+            ],
+            "expectedAnswer": [
+              "The consumer unit acts as the central distribution point where MCBs provide overcurrent protection and RCDs provide leakage protection. To maintain safety, a technician follows the 'Stop-Make Safe-Look' mantra, using their knowledge of the CU's internal components to isolate power before performing a visual inspection for defects. This integrated approach ensures the rig is electrically inert and physically sound before any practical work begins, thereby preventing accidents.",
+              "A technician maintains safety by: \n- Using the consumer unit to manage power distribution and identify protective devices.\n- Distinguishing between MCBs (overcurrent) and RCDs (leakage) to understand system status.\n- Executing the 'Stop-Make Safe-Look' procedure to ensure isolation precedes inspection.\n- Combining these steps to verify the rig is de-energized and free of visible hazards before proceeding."
+            ],
+            "hint": "Consider how the safety mantra provides the 'when' and 'how,' while the consumer unit components provide the 'what' for the isolation process."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-10A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-10A-SR-1",
+            "questionText": "What collective term is used to describe the individual parts that are found inside a larger piece of equipment?",
+            "expectedAnswer": [
+              "Components",
+              "Parts",
+              "Internal parts"
+            ],
+            "hint": "Think of the elements that make up the whole unit.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-10A-SR-2",
+            "questionText": "In a technical system, what is the primary purpose of a 'protection' device or feature?",
+            "expectedAnswer": [
+              "Safety",
+              "Prevent damage",
+              "Protection",
+              "Stop faults"
+            ],
+            "hint": "Consider why we include safety mechanisms in a system.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-10A-SR-3",
+            "questionText": "What is the main goal of performing a 'visual inspection' on a piece of technical equipment?",
+            "expectedAnswer": [
+              "Check condition",
+              "Identify damage",
+              "Find faults",
+              "Look for problems"
+            ],
+            "hint": "This involves using your eyes to assess the state of the equipment.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Consumer Units (TOTAL NOOB)"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY, PROCEDURE",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Basic recognition of consumer unit parts, their safety purposes, and a non-invasive visual inspection routine.",
+      "outOfScope": "Live testing, earthing system types, MCB selection criteria, and physical installation or termination of cables.",
+      "rationale": "Prioritizes safety awareness and terminology for total beginners before introduced to technical selection or live working."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Training rig only; strictly no live work or real-property installation."
+    },
+    "misconceptions": [
+      {
+        "misconception": "An RCD protects against circuit overload (too many appliances).",
+        "correction": "An RCD protects against current leaking to earth (shock protection); an MCB protects against overload.",
+        "relatedAC": "AC3.4"
+      },
+      {
+        "misconception": "Exposed copper at a terminal is fine as long as the wire is tight.",
+        "correction": "Exposed copper is a major defect; insulation should go right up to the terminal to prevent accidental contact.",
+        "relatedAC": "LO3"
+      },
+      {
+        "misconception": "The Main Switch will trip automatically if there is a short circuit.",
+        "correction": "The Main Switch is a manual isolator only; it will not trip automatically to clear a fault.",
+        "relatedAC": "AC3.4"
+      }
+    ],
+    "youtubeUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw"
+  }
+}

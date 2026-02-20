@@ -73,6 +73,8 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
       <GameWrapper 
         title="Match the Terms"
         duration={content.duration}
+        instruction="Tap a term on the left, then tap its matching definition on the right."
+        motionPreset="bold"
         onComplete={onComplete}
         onSkip={onSkip}
       >
@@ -89,15 +91,13 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
     <GameWrapper 
       title="Match the Terms"
       duration={content.duration}
+      instruction="Tap a term on the left, then tap its matching definition on the right."
+      motionPreset="bold"
       onComplete={onComplete}
       onSkip={onSkip}
     >
       {(handleComplete: (score?: number, accuracy?: number) => void) => (
         <div className="space-y-4">
-          <p className="text-sm text-gray-600 dark:text-slate-400">
-            Tap a term on the left, then tap its matching definition on the right
-          </p>
-
           <div className="grid grid-cols-2 gap-4">
             {/* Left column */}
             <div className="space-y-2">
@@ -106,9 +106,9 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                   key={`left-${idx}-${item || 'blank'}`}
                   onClick={() => handleLeftClick(item)}
                   disabled={completed || !!matches[item]}
-                  className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${
-                    matches[item]
-                      ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-2 border-green-300 dark:border-green-700'
+                    className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${
+                      matches[item]
+                      ? 'microbreak-correct bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-2 border-green-300 dark:border-green-700'
                       : selectedLeft === item
                       ? 'bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100 border-2 border-blue-400 dark:border-blue-600 shadow-md'
                       : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-2 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'
@@ -130,9 +130,9 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                     disabled={completed || isMatched || !selectedLeft}
                     className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${
                       isMatched
-                        ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-2 border-green-300 dark:border-green-700'
+                        ? 'microbreak-correct bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-2 border-green-300 dark:border-green-700'
                         : wrongMatch === item
-                        ? 'bg-red-200 dark:bg-red-800 text-red-900 dark:text-red-100 border-2 border-red-500 dark:border-red-600 animate-pulse'
+                        ? 'microbreak-wrong bg-red-200 dark:bg-red-800 text-red-900 dark:text-red-100 border-2 border-red-500 dark:border-red-600'
                         : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-2 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >

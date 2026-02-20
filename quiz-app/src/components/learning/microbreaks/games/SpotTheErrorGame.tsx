@@ -41,6 +41,8 @@ export default function SpotTheErrorGame({ content, onComplete, onSkip }: SpotTh
     <GameWrapper 
       title="Spot the Error"
       duration={content.duration}
+      instruction="Read the scenario and tap the one option that contains the error."
+      motionPreset="soft"
       onComplete={onComplete}
       onSkip={onSkip}
       disableCelebration={true}
@@ -71,9 +73,9 @@ export default function SpotTheErrorGame({ content, onComplete, onSkip }: SpotTh
                   disabled={showResult}
                   className={`w-full p-4 rounded-lg text-left text-sm font-medium transition-all border-2 ${
                     showCorrect
-                      ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-400 dark:border-green-600'
+                      ? 'microbreak-correct bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-400 dark:border-green-600'
                       : showWrong
-                      ? 'bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 border-red-400 dark:border-red-600'
+                      ? 'microbreak-wrong bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 border-red-400 dark:border-red-600'
                       : isSelected
                       ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-400 dark:border-blue-600'
                       : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'

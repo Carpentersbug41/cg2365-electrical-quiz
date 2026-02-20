@@ -65,6 +65,8 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
       <GameWrapper 
         title="Sort into Categories"
         duration={content.duration}
+        instruction="Assign every item to the correct category, then press Check Answers."
+        motionPreset="medium"
         onComplete={onComplete}
         onSkip={onSkip}
       >
@@ -81,15 +83,13 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
     <GameWrapper 
       title="Sort into Categories"
       duration={content.duration}
+      instruction="Assign every item to the correct category, then press Check Answers."
+      motionPreset="medium"
       onComplete={onComplete}
       onSkip={onSkip}
     >
       {(handleComplete: (score?: number, accuracy?: number) => void) => (
         <div className="space-y-4">
-          <p className="text-sm text-gray-600 dark:text-slate-400">
-            Tap each item to assign it to the correct category
-          </p>
-
           {/* Category headers */}
           <div className="grid grid-cols-2 gap-4 mb-2">
             {content.buckets.map((bucket, index) => (
@@ -129,8 +129,8 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
                             assignedBucket === index
                               ? showResults
                                 ? isCorrect
-                                  ? 'bg-green-500 text-white'
-                                  : 'bg-red-500 text-white'
+                                  ? 'microbreak-correct bg-green-500 text-white'
+                                  : 'microbreak-wrong bg-red-500 text-white'
                                 : 'bg-indigo-600 text-white'
                               : 'bg-gray-200 dark:bg-slate-600 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-500'
                           } disabled:cursor-not-allowed`}

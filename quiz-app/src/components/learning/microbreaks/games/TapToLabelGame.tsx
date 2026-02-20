@@ -57,6 +57,8 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
     <GameWrapper 
       title="Label the Diagram"
       duration={content.duration}
+      instruction="For each position, tap the correct label. Green means correct and red means incorrect."
+      motionPreset="medium"
       onComplete={onComplete}
       onSkip={onSkip}
     >
@@ -122,8 +124,8 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
                     key={item.id}
                     className={`p-3 rounded-lg border-2 ${
                       isCorrect
-                        ? 'bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-700'
-                        : 'bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
+                        ? 'microbreak-correct bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-700'
+                        : 'microbreak-wrong bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
                     }`}
                   >
                     <div className="flex items-center justify-between">

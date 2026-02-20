@@ -1,6 +1,6 @@
 {
-  "id": "203-CU1A",
-  "title": "203.CU1A — Consumer Units: Purpose + Protective Devices",
+  "id": "203-10B",
+  "title": "203.10B — Consumer Units: Purpose + Protective Devices",
   "description": "Learn about Consumer Units: Purpose + Protective Devices in Installation 2365 Level 2",
   "layout": "split-vis",
   "unit": "Unit 203",
@@ -13,7 +13,7 @@
   "prerequisites": [],
   "blocks": [
     {
-      "id": "203-CU1A-outcomes",
+      "id": "203-10B-outcomes",
       "type": "outcomes",
       "order": 1,
       "content": {
@@ -34,7 +34,7 @@
       }
     },
     {
-      "id": "203-CU1A-vocab",
+      "id": "203-10B-vocab",
       "type": "vocab",
       "order": 2,
       "content": {
@@ -67,13 +67,13 @@
       }
     },
     {
-      "id": "203-CU1A-diagram",
+      "id": "203-10B-diagram",
       "type": "diagram",
       "order": 3,
       "content": {
         "title": "Consumer Units: Purpose + Protective Devices Diagram",
         "description": "Visual representation of Consumer Units: Purpose + Protective Devices",
-        "videoUrl": "",
+        "videoUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw",
         "diagramType": "concept",
         "elementIds": [
           "main-switch-isolator",
@@ -86,7 +86,7 @@
       }
     },
     {
-      "id": "203-CU1A-explain-1",
+      "id": "203-10B-explain-1",
       "type": "explanation",
       "order": 4,
       "content": {
@@ -95,7 +95,7 @@
       }
     },
     {
-      "id": "203-CU1A-check-1",
+      "id": "203-10B-check-1",
       "type": "practice",
       "order": 4.5,
       "content": {
@@ -104,7 +104,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "203-CU1A-C1-L1-A",
+            "id": "203-10B-C1-L1-A",
             "questionText": "What must a Consumer Unit provide to allow all power to be shut off?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -116,7 +116,7 @@
             "hint": "Look for the specific requirement for shutting off the entire installation's power."
           },
           {
-            "id": "203-CU1A-C1-L1-B",
+            "id": "203-10B-C1-L1-B",
             "questionText": "What does the unit distribute power to including lighting radial and ring final types?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -128,7 +128,7 @@
             "hint": "These are the smaller paths the supply is divided into."
           },
           {
-            "id": "203-CU1A-C1-L1-C",
+            "id": "203-10B-C1-L1-C",
             "questionText": "According to the text, what is the primary purpose of the main switch compared to individual MCBs or RCBOs?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -140,7 +140,7 @@
             "hint": "Consider the distinction between a device that disconnects power and one that provides protection."
           },
           {
-            "id": "203-CU1A-C1-L2",
+            "id": "203-10B-C1-L2",
             "questionText": "Using your answers to Q1 (main isolation), Q2 (final circuits), and Q3 (isolator function), explain how the unit manages safe maintenance. Why must we distinguish between the main switch and individual circuit breakers?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
@@ -160,7 +160,7 @@
       }
     },
     {
-      "id": "203-CU1A-explain-2",
+      "id": "203-10B-explain-2",
       "type": "explanation",
       "order": 5,
       "content": {
@@ -169,7 +169,7 @@
       }
     },
     {
-      "id": "203-CU1A-check-2",
+      "id": "203-10B-check-2",
       "type": "practice",
       "order": 5.5,
       "content": {
@@ -178,7 +178,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "203-CU1A-C2-L1-A",
+            "id": "203-10B-C2-L1-A",
             "questionText": "What two types of faults are included in the term Overcurrent?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -190,7 +190,7 @@
             "hint": "Think about too many appliances or a direct fault between conductors."
           },
           {
-            "id": "203-CU1A-C2-L1-B",
+            "id": "203-10B-C2-L1-B",
             "questionText": "What term refers to current leaking to earth often through damaged insulation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -202,7 +202,7 @@
             "hint": "This involves an imbalance monitored by specific safety devices."
           },
           {
-            "id": "203-CU1A-C2-L1-C",
+            "id": "203-10B-C2-L1-C",
             "questionText": "What specific type of protection is an RCD unable to provide?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
@@ -214,7 +214,7 @@
             "hint": "Consider the limitation of a device that only monitors current balance."
           },
           {
-            "id": "203-CU1A-C2-L2",
+            "id": "203-10B-C2-L2",
             "questionText": "Using your answers to Q1 (Overcurrent types), Q2 (Residual Current definition), and Q3 (RCD limitations), explain why a single RCD is insufficient for full circuit safety. How do we know which device to select for a specific fault type?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
@@ -234,7 +234,7 @@
       }
     },
     {
-      "id": "203-CU1A-microbreak-1",
+      "id": "203-10B-microbreak-1",
       "type": "microbreak",
       "order": 5.75,
       "content": {
@@ -270,14 +270,14 @@
       }
     },
     {
-      "id": "203-CU1A-practice",
+      "id": "203-10B-practice",
       "type": "practice",
       "order": 8,
       "content": {
         "title": "Consumer Unit and Protective Devices Practice",
         "questions": [
           {
-            "id": "203-CU1A-P1",
+            "id": "203-10B-P1",
             "questionText": "A small property requires 3 lighting circuits, 4 power circuits, and 2 dedicated appliance circuits. What is the minimum number of individual protective device 'ways' required in the consumer unit to accommodate these?",
             "answerType": "numeric",
             "expectedAnswer": [
@@ -286,7 +286,7 @@
             "hint": "Each final circuit requires its own individual protective device and 'way' within the board."
           },
           {
-            "id": "203-CU1A-P2",
+            "id": "203-10B-P2",
             "questionText": "Why is the main switch in a consumer unit unable to protect the cables from melting during a short circuit?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -298,7 +298,7 @@
             "hint": "Recall the specific purpose of the main switch compared to an MCB."
           },
           {
-            "id": "203-CU1A-P3",
+            "id": "203-10B-P3",
             "questionText": "Which specific device should be selected to provide both overcurrent protection and residual current protection within a single module space?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -309,7 +309,7 @@
             "hint": "This device combines the functions of an MCB and an RCD."
           },
           {
-            "id": "203-CU1A-P4",
+            "id": "203-10B-P4",
             "questionText": "In a large data center, individual server racks have their own power breakers rather than one single breaker for the whole room. What concept from the lesson describes the goal of ensuring one rack's failure does not shut down the others?",
             "answerType": "short-text",
             "expectedAnswer": [
@@ -321,7 +321,7 @@
             "hint": "This term refers to the ability of a system to isolate a fault to a specific area."
           },
           {
-            "id": "203-CU1A-P5",
+            "id": "203-10B-P5",
             "questionText": "A protective device is marked with the code 'B40'. What is the current rating of this device?",
             "answerType": "numeric",
             "expectedAnswer": [
@@ -334,7 +334,7 @@
       }
     },
     {
-      "id": "203-CU1A-microbreak-2",
+      "id": "203-10B-microbreak-2",
       "type": "microbreak",
       "order": 8.25,
       "content": {
@@ -351,7 +351,7 @@
       }
     },
     {
-      "id": "203-CU1A-integrative",
+      "id": "203-10B-integrative",
       "type": "practice",
       "order": 9.5,
       "content": {
@@ -360,7 +360,7 @@
         "sequential": true,
         "questions": [
           {
-            "id": "203-CU1A-INT-1",
+            "id": "203-10B-INT-1",
             "questionText": "Explain the relationship between the distribution of circuits within a consumer unit and the requirement for overcurrent protection. In your answer, include: (1) the function of splitting the supply into final circuits, (2) the specific role of overcurrent protective devices like MCBs, and (3) how these elements coordinate to manage circuit faults. Why must each final circuit be protected independently rather than using a single protective device for the whole installation?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
@@ -378,7 +378,7 @@
             "hint": "Think about how the rating of a protective device must match the specific cable it is protecting in a final circuit."
           },
           {
-            "id": "203-CU1A-INT-2",
+            "id": "203-10B-INT-2",
             "questionText": "Analyze how a consumer unit provides a comprehensive safety system by integrating various protective technologies for a domestic installation. In your answer, include: (1) the distribution function of the consumer unit, (2) the technical difference between overcurrent and residual current protection, (3) the criteria for selecting specific device types like MCBs, RCDs, or RCBOs, and (4) how these components collectively mitigate different types of electrical risks. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
@@ -402,14 +402,14 @@
       }
     },
     {
-      "id": "203-CU1A-spaced-review",
+      "id": "203-10B-spaced-review",
       "type": "spaced-review",
       "order": 10,
       "content": {
         "title": "Foundation Check",
         "questions": [
           {
-            "id": "203-CU1A-SR-1",
+            "id": "203-10B-SR-1",
             "questionText": "What term is used to describe an individual electrical path that delivers power within an installation?",
             "expectedAnswer": [
               "Circuit",
@@ -420,7 +420,7 @@
             "answerType": "short-text"
           },
           {
-            "id": "203-CU1A-SR-2",
+            "id": "203-10B-SR-2",
             "questionText": "What is the primary reason for including protective devices in any technical system or installation?",
             "expectedAnswer": [
               "Safety",
@@ -431,7 +431,7 @@
             "answerType": "short-text"
           },
           {
-            "id": "203-CU1A-SR-3",
+            "id": "203-10B-SR-3",
             "questionText": "What term refers to the flow of electricity that protective devices are designed to monitor and control?",
             "expectedAnswer": [
               "Current",
