@@ -1,0 +1,456 @@
+{
+  "id": "203-5B",
+  "title": "203.5B — Generation, Distribution, and Network Components",
+  "description": "Learn about the electrical supply chain from Generation methods to Distribution Voltages and Network Components in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Distribution Voltages and Network Components",
+  "learningOutcomes": [
+    "Identify methods of electricity generation and the basic conversion process.",
+    "State the standard voltage levels used at different stages (Transmission and Distribution).",
+    "Identify key physical components found between the point of generation and the consumer intake.",
+    "Explain the purpose of specific network components in maintaining supply stability."
+  ],
+  "prerequisites": [
+    "203-5A"
+  ],
+  "blocks": [
+    {
+      "id": "203-5B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify methods of electricity generation and the basic conversion process.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "State the standard voltage levels used at different stages (Transmission and Distribution).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Identify key physical components found between the point of generation and the consumer intake.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the purpose of specific network components in maintaining supply stability.",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Generation",
+            "definition": "The creation of electricity by converting mechanical energy into electrical energy using a prime mover and an alternator."
+          },
+          {
+            "term": "Prime Mover",
+            "definition": "The mechanical engine (e.g., steam turbine, wind blade, diesel engine) that provides the turning force to spin the generator."
+          },
+          {
+            "term": "Alternator",
+            "definition": "The electrical machine that converts the spinning mechanical energy from the prime mover into alternating current (AC) electricity."
+          },
+          {
+            "term": "Transmission Network",
+            "definition": "The 'motorway' of the grid; high-voltage infrastructure (275kV/400kV) used to transport electricity efficiently over long distances."
+          },
+          {
+            "term": "Distribution Network",
+            "definition": "The 'local roads' of the grid; a system that carries electricity at reduced voltages (132kV, 33kV, 11kV) to neighborhoods."
+          },
+          {
+            "term": "Low Voltage (LV)",
+            "definition": "The final voltage stage (230V single-phase / 400V three-phase) safe enough for use in domestic and commercial installations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Electrical Supply Chain",
+        "description": "Visual representation of the path from Generation to Consumer Intake",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "generation-station",
+          "transmission-pylons",
+          "distribution-poles",
+          "substation-unit",
+          "consumer-intake"
+        ],
+        "placeholderText": "A flow diagram showing the path of electricity left-to-right. 1. A Power Station (Generation) with a turbine icon. 2. Large steel Pylons (Transmission 400kV). 3. A Substation (Transformation). 4. Wooden Poles/Cables (Distribution 11kV). 5. A House (Consumer Intake 230V)."
+      }
+    },
+    {
+      "id": "203-5B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "From Generation to Distribution",
+        "content": "### In this lesson\nWe trace the journey of electricity from its creation at the power station to the lower voltages used in local streets. You will learn how energy is generated and why voltage levels change during transport.\n\n*   Identify how electricity is generated (AC1).\n*   Recognise standard Transmission voltages (AC2).\n*   Recognise standard Distribution voltages (AC3).\n\n**1. Generation: The Source**\nBefore electricity can be distributed, it must be generated. Think of a bicycle dynamo: as you pedal (mechanical energy), the dynamo spins to light the lamp (electrical energy). \n\nIn a power station, this happens on a massive scale:\n*   **The Prime Mover**: A fuel source (like burning gas, nuclear heat, or wind pressure) drives a turbine or engine.\n*   **The Alternator**: The spinning turbine rotates an alternator, which uses magnetic fields to produce electricity, typically at 25kV.\n\nCommon **Generation Methods** include:\n*   **Thermal**: Burning coal, oil, or gas to make steam.\n*   **Nuclear**: Using atomic fission to make steam.\n*   **Renewable**: Using wind, water (hydro), or solar rays.\n\n**2. Transmission: The Motorway (400kV)**\nOnce generated, the electricity is stepped up to extremely high voltages—**275kV or 400kV**—to travel long distances on the **Transmission Network**. \n\n*Why?* Imagine trying to push water through a very long, narrow pipe; you lose a lot of pressure. If you use a wide, high-pressure pipe, the water travels easily. Similarly, high voltage pushes electricity with less current, minimizing heat loss over hundreds of miles.\n\n**3. Distribution: The Local Roads (132kV - 11kV)**\nAs power nears a town, it leaves the 'motorway' and enters the **Distribution Network**. It is stepped down in stages:\n*   **132kV**: Regional distribution.\n*   **33kV**: Heavy industry or large areas.\n*   **11kV**: The most common voltage for local neighborhoods.\n\n**4. Low Voltage (LV): The Driveway (230V)**\nFinally, for safety and compatibility, the voltage is reduced to **Low Voltage (LV)**. In the UK, this is **230V** for homes (single-phase) and **400V** for businesses (three-phase).\n\n**Key facts**\n*   **Generation** uses a Prime Mover to spin an Alternator.\n*   **Transmission** voltages are 275kV or 400kV.\n*   **Distribution** voltages are 132kV, 33kV, and 11kV.\n*   **LV** is 230V (Single-Phase) or 400V (Three-Phase).\n\n**Common mistakes**\n*   Confusing the **Prime Mover** (the engine) with the **Alternator** (the electrical generator).\n*   Thinking 11kV is 'Low Voltage'. In the grid, 11kV is high voltage; 'Low Voltage' specifically refers to the <1000V range used by consumers."
+      }
+    },
+    {
+      "id": "203-5B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Supply Chain Hierarchy",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-5B-C1-L1-A",
+            "questionText": "In the generation process, which component is responsible for physically converting mechanical rotation into electrical energy?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Alternator",
+              "The alternator",
+              "Generator"
+            ],
+            "hint": "The Prime Mover spins this component to create the current."
+          },
+          {
+            "id": "203-5B-C1-L1-B",
+            "questionText": "What are the standard voltage levels used for the Transmission Network (the 'motorway') in the UK?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "275kV or 400kV",
+              "275kV and 400kV",
+              "400kV or 275kV",
+              "400kV",
+              "275kV"
+            ],
+            "hint": "These are the highest voltages used for long-distance efficiency."
+          },
+          {
+            "id": "203-5B-C1-L1-C",
+            "questionText": "Which voltage level is most commonly used in the Distribution Network to supply local neighborhoods before the final step-down?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "11kV",
+              "11000V",
+              "11000 volts",
+              "11 kV"
+            ],
+            "hint": "This is a 'local road' voltage, often found in substations near streets."
+          },
+          {
+            "id": "203-5B-C1-L2",
+            "questionText": "Explain the relationship between the Prime Mover and the Alternator during generation. How does this lead to the need for a Transmission Network?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The Prime Mover (e.g., turbine) provides mechanical energy (rotation)",
+              "The Alternator converts this rotation into electrical energy",
+              "Generation usually happens far from consumers",
+              "The Transmission Network is needed to move this energy efficiently over long distances"
+            ],
+            "expectedAnswer": [
+              "The Prime Mover, such as a steam turbine, captures energy from fuel and uses it to spin the Alternator. The Alternator then converts this mechanical rotation into electricity. Because this generation happens at large power stations far from cities, a high-voltage Transmission Network is required to transport the electricity efficiently to where it is needed.",
+              "A Prime Mover drives the Alternator to generate electricity. Since this happens at centralized power stations, the electricity must be transported via the Transmission Network at high voltages to minimize energy loss over the long distance to consumers."
+            ],
+            "hint": "Think about the conversion of energy (Mechanical -> Electrical) and then the problem of distance."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Network Hardware: Components of the Grid",
+        "content": "### In this lesson\nWe look at the physical equipment (AC4) that manages the electricity as it flows through the network. You will learn to identify the hardware that makes the voltage changes possible.\n\n*   **Substations**\n*   **Transformers**\n*   **Consumer Intake**\n\n**1. The Substation (The Control Center)**\nA **Substation** is a secure, fenced area or building. It acts as a node in the network where lines meet. Its main jobs are:\n*   **Switching**: Turning parts of the grid on or off for maintenance or fault isolation.\n*   **Transformation**: Housing the transformers that change voltage levels.\n\n**2. The Step-down Transformer (The Gearbox)**\nFound inside substations or on poles, the **Step-down Transformer** is the workhorse of the grid. \n*   **Function**: It uses electromagnetic induction to lower the voltage (e.g., from 11kV down to 230V) while increasing the available current.\n*   **Why**: High voltage is safe for travel but dangerous for touch. The transformer 'steps it down' to a usable level for your phone charger or kettle.\n\n**3. The Consumer Intake (The Letterbox)**\nThis is where the Distribution Network ends and your installation begins. It is the physical boundary point.\n*   **Service Cable**: Brings power from the street.\n*   **Service Head (Cut-out)**: The main fuse protecting the supply. This is the exact property boundary.\n*   **Meter**: Measures usage.\n\n**Scenario: The Journey**\nImagine a parcel (electricity). The **Generation** station packs it. The **Transmission** network flies it to a regional airport. A **Substation** sorts it. A **Transformer** puts it in a small van. The **Consumer Intake** is the letterbox where it is finally delivered to you.\n\n**Key facts**\n*   **Substations** contain switchgear and transformers.\n*   **Transformers** reduce voltage (Step-down) for safety and compatibility.\n*   **Consumer Intake** starts at the Service Head (Cut-out).\n\n**Common mistakes**\n*   Thinking the electricity meter is the property of the homeowner. (It belongs to the metering company/supplier).\n*   Assuming all transformers are massive. Some are small drums mounted on wooden poles (Pole-mounted transformers) for rural supplies."
+      }
+    },
+    {
+      "id": "203-5B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Network Hardware",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-5B-C2-L1-A",
+            "questionText": "What is the primary function of a Step-down Transformer in the distribution network?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "reduce voltage",
+              "lower voltage",
+              "step down voltage",
+              "decrease voltage"
+            ],
+            "hint": "It changes the electrical pressure from a high transport level to a lower usable level."
+          },
+          {
+            "id": "203-5B-C2-L1-B",
+            "questionText": "Which specific component marks the physical boundary where the network operator's responsibility ends and the consumer's installation begins?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Service head",
+              "The service head",
+              "Cut-out",
+              "Main fuse"
+            ],
+            "hint": "It is the first component the service cable enters, located before the meter."
+          },
+          {
+            "id": "203-5B-C2-L1-C",
+            "questionText": "Besides housing transformers, what other key function does a Substation perform?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Switching",
+              "Switching circuits",
+              "Isolation",
+              "Control"
+            ],
+            "hint": "Think about what needs to happen if engineers need to work on a line safely."
+          },
+          {
+            "id": "203-5B-C2-L2",
+            "questionText": "Describe the sequence of hardware a supply passes through from the street to the user. Why is the Service Head (Cut-out) the first item inside the building?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Sequence: Distribution Cable -> Service Head -> Meter -> Consumer Unit",
+              "The Service Head contains the main fuse",
+              "It must be first to protect the entire intake from faults entering from the network",
+              "It acts as the isolation/boundary point"
+            ],
+            "expectedAnswer": [
+              "The supply comes from the street cable into the Service Head (Cut-out), then to the Meter, and finally to the consumer's fuse box. The Service Head is first because it contains the main fuse that protects the property from surges and defines the boundary where the network's responsibility ends.",
+              "Hardware sequence: Service Cable -> Service Head -> Meter. The Service Head is placed first to provide immediate protection and isolation capabilities for the incoming supply before it reaches any measuring or consumer equipment."
+            ],
+            "hint": "Follow the cable into the house. What device is needed immediately for safety and ownership definition?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-5B-P1",
+            "questionText": "What is the standard voltage level (in Volts) used for a single-phase domestic supply in the UK? (Enter the number only)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "230"
+            ],
+            "hint": "Do not type 'V' or 'Volts'. Just the value."
+          },
+          {
+            "id": "203-5B-P2",
+            "questionText": "Why is electricity stepped up to 400kV for the Transmission Network instead of being transported at the generated voltage?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Efficiency",
+              "Reduce heat loss",
+              "Minimize energy loss",
+              "Lower current"
+            ],
+            "hint": "Think about the relationship between high voltage, low current, and energy wasted as heat."
+          },
+          {
+            "id": "203-5B-P3",
+            "questionText": "Name the piece of equipment in the Consumer Intake that measures the amount of energy used.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Meter",
+              "Electricity meter",
+              "Energy meter",
+              "kWh meter"
+            ],
+            "hint": "This device is read by the energy supplier to calculate the bill."
+          },
+          {
+            "id": "203-5B-P4",
+            "questionText": "What is the standard voltage level (in Volts) for a three-phase commercial supply in the UK? (Enter the number only)",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "400"
+            ],
+            "hint": "Do not type 'V' or 'Volts'. Just the value."
+          },
+          {
+            "id": "203-5B-P5",
+            "questionText": "Which network component uses electromagnetic induction to convert 11kV distribution voltage down to 230V?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Step-down transformer",
+              "Transformer",
+              "Step down transformer"
+            ],
+            "hint": "This is the 'gearbox' component found in substations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-5B-INT-1",
+            "questionText": "Explain the journey of a unit of electricity from Generation to the Consumer Intake. Include: (1) The role of the Alternator, (2) The reason for high Transmission voltages, and (3) The function of the Substation. (3-4 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Generation: Alternator converts mechanical energy to electrical energy.",
+              "Transmission: Voltage is stepped up (400kV) to reduce current and heat loss for long distances.",
+              "Distribution: Substations step down voltage (via transformers) to safe levels (11kV -> 230V) for the consumer.",
+              "The sequence ensures efficiency during travel and safety at arrival."
+            ],
+            "expectedAnswer": [
+              "Electricity starts at the power station where an Alternator converts mechanical energy into electrical energy. It is then stepped up to high voltages like 400kV for the Transmission Network to minimize heat loss over long distances. Finally, it passes through Substations where transformers step the voltage down to safe levels (230V) for delivery to the Consumer Intake.",
+              "The Alternator generates the electricity, which is then transported at high voltage (400kV) to ensure efficiency. As it nears the user, Substations reduce this voltage using transformers. This ensures the power arriving at the Consumer Intake is safe and compatible with domestic appliances."
+            ],
+            "hint": "Trace the path: Creation -> Transport -> Reduction -> Delivery."
+          },
+          {
+            "id": "203-5B-INT-2",
+            "questionText": "Synthesize the safety and efficiency rules of the network. Why do we have a 'High Voltage' Transmission Network but a 'Low Voltage' Consumer supply? How does the hardware bridge this gap?",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Efficiency: High voltage is needed for transport to prevent energy loss.",
+              "Safety: Low voltage (230V) is needed for consumer use to reduce risk.",
+              "Hardware: Step-down transformers bridge the gap by converting the voltage.",
+              "The system balances the need for efficient transport with the need for safe usage."
+            ],
+            "expectedAnswer": [
+              "We use a High Voltage Transmission Network because it is the only efficient way to move energy over long distances without losing it all as heat. However, we need a Low Voltage supply for consumers because high voltages are too dangerous and would destroy appliances. The hardware that bridges this gap is the step-down transformer, which safely converts the efficient transport voltage into the safe usage voltage.",
+              "• Transmission uses High Voltage (400kV) for efficiency (low current, low heat).\n• Consumers use Low Voltage (230V) for safety and equipment compatibility.\n• The Step-down Transformer is the critical link that converts the power from one form to the other."
+            ],
+            "hint": "Contrast the needs of the 'journey' (efficiency) with the needs of the 'destination' (safety)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-5B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-5B-SR-1",
+            "questionText": "What is the name of the machine in a power station that turns mechanical energy into electrical energy?",
+            "expectedAnswer": [
+              "Alternator",
+              "Generator",
+              "The alternator"
+            ],
+            "hint": "It is spun by the Prime Mover.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-5B-SR-2",
+            "questionText": "Which network operates at 275kV or 400kV?",
+            "expectedAnswer": [
+              "Transmission",
+              "Transmission Network",
+              "The transmission network"
+            ],
+            "hint": "The 'motorway' for electricity.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-5B-SR-3",
+            "questionText": "What is the standard UK voltage for a single-phase domestic supply? (Number only)",
+            "expectedAnswer": [
+              "230"
+            ],
+            "hint": "The value in Volts.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check on Generation and Distribution basics."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2",
+    "AC3",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO5",
+      "coveredAC": [
+        "AC1",
+        "AC2",
+        "AC3",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of generation methods, nominal distribution voltages, and primary hardware components of the supply network.",
+      "outOfScope": "Detailed internal transformer calculations, earthing arrangement configurations, and installation procedures.",
+      "rationale": "Level 2 learners require a conceptual overview of the entire grid hierarchy (Generation to Intake) before progressing to specific system types."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on naming conventions, generation concepts, and voltage values."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Low Voltage (LV) means a safe, non-lethal voltage level.",
+        "correction": "LV in the UK (230V) is still high enough to be fatal; it is only 'low' relative to the thousands of volts in the distribution grid.",
+        "relatedAC": "203.LO5.AC3"
+      },
+      {
+        "misconception": "The electricity meter is the start of the consumer's wiring.",
+        "correction": "The Consumer Intake begins at the service head (cut-out) before the meter; the meter is part of the intake equipment.",
+        "relatedAC": "203.LO5.AC4"
+      },
+      {
+        "misconception": "Electricity is generated at 230V.",
+        "correction": "Electricity is generated at much higher voltages (e.g., 25kV), stepped up for transport, and only stepped down to 230V at the very end.",
+        "relatedAC": "203.LO5.AC1"
+      }
+    ]
+  }
+}

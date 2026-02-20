@@ -304,6 +304,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-5A'),
     available: true,
     order: 10,
+  },
+  {
+    id: '203-5B',
+    title: 'Distribution Voltages and Network Components',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Distribution Voltages and Network Components',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-5B'),
+    available: true,
+    order: 11,
   },// Unit 210: Communication
   {
     id: '204-10A',

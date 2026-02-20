@@ -69,11 +69,13 @@ import { earthingSystemsAndAdsComponentsQuestions } from './earthingSystemsAndAd
 import { exposedAndExtraneousConductivePartsQuestions } from './exposedAndExtraneousConductivePartsQuestions';
 import { earthLoopImpedancePathQuestions } from './earthLoopImpedancePathQuestions';
 import { electricityGenerationAndTransmissionQuestions } from './electricityGenerationAndTransmissionQuestions';
+import { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...distributionVoltagesAndNetworkComponentsQuestions,
   ...electricityGenerationAndTransmissionQuestions,
   ...earthLoopImpedancePathQuestions,
   ...exposedAndExtraneousConductivePartsQuestions,
@@ -209,6 +211,7 @@ export { earthingSystemsAndAdsComponentsQuestions } from './earthingSystemsAndAd
 export { exposedAndExtraneousConductivePartsQuestions } from './exposedAndExtraneousConductivePartsQuestions';
 export { earthLoopImpedancePathQuestions } from './earthLoopImpedancePathQuestions';
 export { electricityGenerationAndTransmissionQuestions } from './electricityGenerationAndTransmissionQuestions';
+export { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
 
 /**
  * Filter questions by tags
