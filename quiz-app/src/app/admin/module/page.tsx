@@ -435,7 +435,7 @@ export default function ModulePlannerPage() {
   }, [callApi, loadVersionScope, syllabusVersionId, unit]);
 
   const loadRunSummary = useCallback(
-    async (id: string) => {
+    async (id: string): Promise<RunSummary> => {
       const data = await callApi(`/api/admin/module/runs/${id}`);
       const summary = data as unknown as RunSummary;
       setRunSummary(summary);
@@ -449,6 +449,7 @@ export default function ModulePlannerPage() {
         };
       });
       setStageResults(nextResults);
+      return summary;
     },
     [callApi]
   );
@@ -460,6 +461,21 @@ export default function ModulePlannerPage() {
       } catch (error) {
         console.error('[ModulePlanner] Failed to refresh run summary', error);
       }
+    },
+    [loadRunSummary]
+  );
+
+  const waitForLessonStatus = useCallback(
+    async (id: string, blueprintId: string, timeoutMs: number = 6 * 60 * 1000): Promise<'success' | 'failed' | 'timeout'> => {
+      const start = Date.now();
+      while (Date.now() - start < timeoutMs) {
+        const summary = await loadRunSummary(id);
+        const row = summary.lessons.find((lesson) => lesson.blueprint_id === blueprintId);
+        if (row?.status === 'success') return 'success';
+        if (row?.status === 'failed') return 'failed';
+        await sleep(2500);
+      }
+      return 'timeout';
     },
     [loadRunSummary]
   );
@@ -813,6 +829,26 @@ export default function ModulePlannerPage() {
       const lessonIdLabel = String(data.lessonId ?? blueprintId);
       if (generationStatus === 'skipped' || generationStatus === 'pending') {
         setInfo(generationMessage ?? `No new generation started for ${lessonIdLabel}.`);
+        if (generationStatus === 'pending') {
+          const finalStatus = await waitForLessonStatus(runId, blueprintId);
+          if (finalStatus === 'success') {
+            setLessonGenerationProgress({
+              blueprintId,
+              progress: 100,
+              phaseMessage: 'Completed: lesson generated',
+            });
+            setInfo(`Generated ${lessonIdLabel}.`);
+          } else if (finalStatus === 'failed') {
+            setLessonGenerationProgress({
+              blueprintId,
+              progress: 100,
+              phaseMessage: 'Failed: lesson generation error',
+            });
+            setError(`Generation failed for ${lessonIdLabel}.`);
+          } else {
+            setInfo(`Generation for ${lessonIdLabel} is still in progress. Refresh to check latest status.`);
+          }
+        }
       } else if (generationStatus === 'failed') {
         setError(typeof data.error === 'string' && data.error ? data.error : `Failed to generate ${lessonIdLabel}.`);
       } else {

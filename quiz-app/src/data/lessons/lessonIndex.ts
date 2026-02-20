@@ -326,6 +326,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-6A'),
     available: true,
     order: 12,
+  },
+  {
+    id: '203-6B',
+    title: 'Installation and Evaluation of Micro-renewables',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Installation and Evaluation of Micro-renewables',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-6B'),
+    available: true,
+    order: 13,
   },// Unit 210: Communication
   {
     id: '204-10A',

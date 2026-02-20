@@ -71,11 +71,13 @@ import { earthLoopImpedancePathQuestions } from './earthLoopImpedancePathQuestio
 import { electricityGenerationAndTransmissionQuestions } from './electricityGenerationAndTransmissionQuestions';
 import { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
 import { typesOfMicroRenewableEnergyQuestions } from './typesOfMicroRenewableEnergyQuestions';
+import { installationAndEvaluationOfMicroRenewablesQuestions } from './installationAndEvaluationOfMicroRenewablesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...installationAndEvaluationOfMicroRenewablesQuestions,
   ...typesOfMicroRenewableEnergyQuestions,
   ...distributionVoltagesAndNetworkComponentsQuestions,
   ...electricityGenerationAndTransmissionQuestions,
@@ -215,6 +217,7 @@ export { earthLoopImpedancePathQuestions } from './earthLoopImpedancePathQuestio
 export { electricityGenerationAndTransmissionQuestions } from './electricityGenerationAndTransmissionQuestions';
 export { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
 export { typesOfMicroRenewableEnergyQuestions } from './typesOfMicroRenewableEnergyQuestions';
+export { installationAndEvaluationOfMicroRenewablesQuestions } from './installationAndEvaluationOfMicroRenewablesQuestions';
 
 /**
  * Filter questions by tags

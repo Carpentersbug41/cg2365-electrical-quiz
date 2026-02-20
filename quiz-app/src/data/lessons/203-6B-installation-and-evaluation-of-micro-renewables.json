@@ -1,0 +1,520 @@
+{
+  "id": "203-6B",
+  "title": "203.6B — Installation and Evaluation of Micro-renewables",
+  "description": "Learn about Installation and Evaluation of Micro-renewables in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Installation and Evaluation of Micro-renewables",
+  "learningOutcomes": [
+    "State the primary installation requirements for common micro-renewable technologies.",
+    "Explain the technical advantages and disadvantages of different micro-renewable systems.",
+    "Evaluate a site's suitability for installation based on physical and environmental constraints."
+  ],
+  "prerequisites": [
+    "203-6A"
+  ],
+  "blocks": [
+    {
+      "id": "203-6B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the primary installation requirements for common micro-renewable technologies.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the technical advantages and disadvantages of different micro-renewable systems.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Evaluate a site's suitability for installation based on physical and environmental constraints.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Micro-generation",
+            "definition": "The small-scale production of heat or electricity from renewable sources. Common types include Solar PV (electricity), Solar Thermal (hot water), Wind Turbines (wind to power), and Heat Pumps (heat transfer)."
+          },
+          {
+            "term": "Site Suitability",
+            "definition": "The evaluation of physical and environmental factors to determine if a specific location can effectively support and sustain a micro-renewable installation."
+          },
+          {
+            "term": "Orientation",
+            "definition": "The compass direction a system faces (e.g., South) to optimize energy harvesting. This is distinct from tilt (the vertical angle)."
+          },
+          {
+            "term": "Structural Integrity",
+            "definition": "The ability of a building to safely support the weight and movement of the equipment. Think of a table: it must be strong enough to hold a heavy box (static load) and stable enough not to tip over if pushed (dynamic load)."
+          },
+          {
+            "term": "Coefficient of Performance (COP)",
+            "definition": "A ratio measuring the efficiency of heat-generating systems. A COP of 3 means the system creates 3 units of heat for every 1 unit of electricity used."
+          },
+          {
+            "term": "Regulatory Constraint",
+            "definition": "Legal or planning rules, such as height limits or conservation area restrictions, that dictate where and how a system can be installed."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Installation and Evaluation of Micro-renewables Diagram",
+        "description": "Visual representation of Installation and Evaluation of Micro-renewables",
+        "videoUrl": "",
+        "diagramType": "wiring",
+        "elementIds": [
+          "mounting-structure",
+          "energy-collector",
+          "orientation-axis",
+          "structural-support"
+        ],
+        "placeholderText": "A diagram showing a micro-renewable energy collector (such as a solar panel) mounted on a building. The diagram should highlight the 'mounting-structure' attached to the roof, the 'energy-collector' itself, an 'orientation-axis' indicating the compass direction (South), and 'structural-support' labels pointing to the internal roof rafters that ensure structural integrity. A compass rose should be included to show how orientation is measured."
+      }
+    },
+    {
+      "id": "203-6B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Installation Requirements for Micro-renewables",
+        "content": "### In this lesson\nThis lesson explores the technical and environmental requirements for installing small-scale energy systems. You will learn how to assess a location to ensure it is fit for purpose and safe for the equipment.\n\n**What this is**\n**Micro-generation** is the production of energy on a small scale. Before installing, you must understand the technology types:\n*   **Solar Photovoltaic (PV):** Panels that convert sunlight directly into electricity.\n*   **Solar Thermal:** Collectors that use sunlight to heat water stored in a cylinder.\n*   **Wind Turbines:** Rotors that capture kinetic wind energy to generate electricity.\n*   **Heat Pumps:** Devices that transfer heat from the air or ground into a building.\n\nTo ensure these systems work, installers must verify **Site Suitability**. This involves checking the physical space, the available energy resource (sun or wind), and the existing infrastructure.\n\n**Why it matters**\nInstalling a system in a poor location results in low energy yields and safety hazards. For example, if a solar array is placed in a shaded area, its output drops significantly. Even worse, failing to account for **Structural Integrity**—the building's ability to hold the equipment's weight—could lead to roof collapse. Imagine placing a heavy safe on a weak bookshelf; the shelf will bow or break. Similarly, a roof must handle the \"dead load\" of the panels and the \"live load\" of wind pushing against them.\n\n**Key facts / rules**\n*   **The Golden Rule of Suitability:** A south-facing roof is only suitable if it is **free from shading** AND has the **structural integrity** to support the system.\n*   **Orientation vs. Tilt:** Orientation is the compass direction (e.g., South); Tilt is the angle up from the ground.\n*   **Regulatory Constraints:** Local rules may limit installation. For example, a wind turbine extending more than 3 meters above the roofline often requires special planning permission.\n*   **Access:** You must ensure safe access for future maintenance.\n\n**How to do it**\n1.  **Check Orientation:** Use a compass to confirm the surface faces the optimal direction (usually South in the Northern Hemisphere).\n2.  **Verify Structure:** Inspect rafters or mounting surfaces to ensure they meet manufacturer load specifications (Structural Integrity).\n3.  **Check Regulations:** Consult local planning guidelines. Ask: \"Does this turbine height violate the 3-meter rule?\" or \"Is this a conservation area?\"\n4.  **Analyze Shading:** Confirm the site is clear of trees or chimneys that would block the energy source.\n\n**Common mistakes**\nLearners often assume a south-facing roof is always perfect. It is not perfect if a large tree shades it or if the rafters are too weak to hold the panels. Always check all three: Orientation, Shading, and Structure.\n\nMisconceptions (targeted):\n*   *Misconception:* Any south-facing roof is perfect for solar. | *Correction:* It must also be unshaded and structurally sound.\n*   *Misconception:* Planning permission is never needed for small units. | *Correction:* Height limits (e.g., turbine masts) or listed building status can trigger legal constraints."
+      }
+    },
+    {
+      "id": "203-6B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Installation Requirements",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-6B-C1-L1-A",
+            "questionText": "What is required of an installation's orientation to ensure it captures the maximum amount of energy?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "optimal orientation",
+              "face south",
+              "south facing",
+              "face the optimal orientation"
+            ],
+            "hint": "Think about the specific direction the system needs to point (e.g., towards the sun at midday)."
+          },
+          {
+            "id": "203-6B-C1-L1-B",
+            "questionText": "What property must a mounting surface possess to safely manage the dead load of micro-renewable equipment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "structural integrity",
+              "structural strength",
+              "load bearing capacity"
+            ],
+            "hint": "This term refers to the ability of a building to support weight and wind loads without breaking."
+          },
+          {
+            "id": "203-6B-C1-L1-C",
+            "questionText": "Under what two conditions is a south-facing roof considered suitable for a solar micro-generation system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "free from shading and structural integrity",
+              "unshaded and strong",
+              "no shading and structural integrity",
+              "no shading and structural strength"
+            ],
+            "hint": "A good direction alone is not enough; the roof must be clear of shadows and strong enough to hold the weight."
+          },
+          {
+            "id": "203-6B-C1-L2",
+            "questionText": "Using your answers to Q1 (optimal orientation), Q2 (structural integrity), and Q3 (shading and strength), explain why an installer cannot rely on orientation alone. What happens if the other factors are ignored?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Orientation provides the potential for energy capture.",
+              "Shading prevents that potential from being realized.",
+              "Structural integrity ensures the building doesn't fail under the weight.",
+              "All three must be present for a site to be 'suitable'."
+            ],
+            "expectedAnswer": [
+              "An installer cannot rely on orientation alone because a south-facing roof is useless if it is shaded (reducing output) or weak (causing safety hazards). Site suitability requires the combination of optimal direction, lack of obstruction (shading), and the structural integrity to safely hold the equipment.",
+              "Even if the orientation is perfect, ignoring structural integrity could lead to roof collapse. Ignoring shading would mean the system generates little power. Therefore, orientation, structural strength, and clear access to the sun/wind must all be verified together."
+            ],
+            "hint": "Consider the safety risks (collapsing roof) and performance risks (no power due to shadow) even if the panels face South."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Evaluating System Performance",
+        "content": "### In this lesson\nThis lesson covers how to compare different micro-renewable technologies based on their efficiency and physical limitations.\n\n**What this is**\nEvaluating performance involves checking how efficiently a system converts energy. For heat pumps, we use the **Coefficient of Performance (COP)**. \n\n**The \"Buy One, Get Free\" Analogy:**\nThink of COP as a deal at a shop. A COP of 3.0 is like \"Buy 1, Get 2 Free.\" You pay for 1 unit of electricity, and the system gives you 3 units of heat (1 paid + 2 free from the environment). The higher the COP, the better the deal.\n\n**Key facts / rules**\n*   **COP vs. Seasonal Efficiency:** COP is a **snapshot** of performance at a specific moment (e.g., on a mild day). **Seasonal Efficiency** is the average performance over a whole year. Do not confuse them. A system might have a great COP today but a poor average over winter.\n*   **Solar PV:** Major advantage is **no moving parts**, meaning very low maintenance. Disadvantage: Works only during daylight.\n*   **Wind Turbines:** Advantage: Can work at night. Disadvantage: Moving parts require maintenance, and they can be noisy.\n*   **Intermittency:** Most renewables are intermittent—they don't generate power 24/7.\n\n**How to do it**\n1.  **Calculate COP:** Divide Heat Output by Electrical Input. (e.g., 12kW heat / 3kW input = COP 4).\n2.  **Compare Features:** Weigh technical advantages (e.g., low maintenance of PV) against site disadvantages (e.g., north-facing roof).\n3.  **Check Environment:** A heat pump's COP drops when it is very cold outside. Always check if the local climate supports the technology.\n\n**Common mistakes**\nAssuming a high COP at installation guarantees low bills forever. It doesn't. If the average annual temperature is very low, the *Seasonal Efficiency* will be lower than the tested COP.\n\nMisconceptions (targeted):\n*   *Misconception:* A system with a high COP is always cheapest to run. | *Correction:* COP fluctuates with weather; seasonal efficiency is the better predictor of annual cost.\n*   *Misconception:* Solar panels are always best because they have no moving parts. | *Correction:* They are low maintenance, but useless if the site has no sun."
+      }
+    },
+    {
+      "id": "203-6B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Evaluating Performance",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-6B-C2-L1-A",
+            "questionText": "What specific ratio is used to measure the efficiency of a heat-generating system at a single moment in time?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Coefficient of Performance",
+              "COP",
+              "the COP"
+            ],
+            "hint": "This ratio compares heat output to energy input."
+          },
+          {
+            "id": "203-6B-C2-L1-B",
+            "questionText": "What is the primary technical advantage of Solar PV systems regarding maintenance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "no moving parts",
+              "zero moving parts",
+              "lack of moving parts"
+            ],
+            "hint": "Unlike wind turbines which spin, solar panels sit still."
+          },
+          {
+            "id": "203-6B-C2-L1-C",
+            "questionText": "How does the Coefficient of Performance (COP) differ from Seasonal Efficiency?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "snapshot versus average",
+              "moment vs year",
+              "snapshot vs annual average",
+              "single point vs average"
+            ],
+            "hint": "One measures efficiency right now (snapshot); the other averages it over a full year."
+          },
+          {
+            "id": "203-6B-C2-L2",
+            "questionText": "Why is it risky to estimate annual running costs based solely on the manufacturer's stated COP? Use the difference between 'snapshot' and 'average' in your explanation.",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "COP is a snapshot under specific conditions.",
+              "Real-world conditions change (temperature drops), lowering efficiency.",
+              "Seasonal efficiency averages these changes over a year.",
+              "Using only COP ignores the times when the system performs poorly."
+            ],
+            "expectedAnswer": [
+              "It is risky because the manufacturer's COP is just a snapshot of performance under ideal or specific conditions. In reality, external temperatures change throughout the year, often lowering the efficiency. To estimate annual costs accurately, a technician must use the seasonal efficiency, which averages performance over the entire year.",
+              "COP only tells you how the system performs at one specific moment. Since weather varies, the system won't always hit that number. Seasonal efficiency accounts for the ups and downs over a full year, making it a better predictor of actual costs."
+            ],
+            "hint": "Think about how a heat pump works harder on a freezing winter night compared to a mild spring day."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Evaluating Site Suitability",
+        "given": "A technician is assessing a residential roof for a solar installation. The roof faces South, but there is a large chimney casting a shadow. The client also wants to know the efficiency of a heat pump option.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Verify Orientation and Shading.",
+            "formula": null,
+            "calculation": null,
+            "result": "Orientation is South (Good), but Shading is present (Bad). Conclusion: Site is currently unsuitable for Solar PV unless shading is removed."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Check Structural Integrity.",
+            "formula": null,
+            "calculation": null,
+            "result": "Technician inspects rafters. They are standard 4x2 timber in good condition. Conclusion: Structural integrity is sufficient for the load."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Calculate Heat Pump Efficiency (COP).",
+            "formula": "COP = Heat Output / Electrical Input",
+            "calculation": "12kW Output / 3kW Input",
+            "result": "COP = 4.0. (This means for every 1kW paid for, 4kW of heat are provided)."
+          }
+        ],
+        "notes": "Notice how the site failed the Solar check due to shading, even though orientation and structure were fine. All conditions must be met."
+      }
+    },
+    {
+      "id": "203-6B-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A technician is evaluating a site for a wind turbine. The proposed turbine is 4 meters taller than the roofline. The technician must check legal rules, physical strength, and efficiency.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "The turbine is 4m above the roof. What specific type of check must be done to ensure this height is legal?",
+            "expectedAnswer": [
+              "Regulatory Constraint",
+              "Planning permission",
+              "Check planning guidelines"
+            ],
+            "hint": "Think about the rules that limit the height of structures in residential areas."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Wind turbines vibrate and push against the roof. What physical property of the roof must be verified to handle this dynamic load?",
+            "expectedAnswer": [
+              "Structural Integrity",
+              "Structural strength",
+              "Load bearing capacity"
+            ],
+            "hint": "The roof needs to be strong enough not to break under the movement."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "If the turbine produces 5kW of power from wind, what is the main maintenance disadvantage compared to a solar panel?",
+            "expectedAnswer": [
+              "Moving parts",
+              "Mechanical wear",
+              "Maintenance of moving parts"
+            ],
+            "hint": "Solar panels sit still; turbines spin."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Which tool would you use to confirm the direction of the prevailing wind or the roof orientation?",
+            "expectedAnswer": [
+              "Compass",
+              "Site map"
+            ],
+            "hint": "A magnetic device used for navigation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-6B-P1",
+            "questionText": "A heat pump system produces 16kW of heat while consuming 4kW of electricity. Calculate the Coefficient of Performance (COP).",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "4",
+              "4.0"
+            ],
+            "hint": "Divide the output (16) by the input (4)."
+          },
+          {
+            "id": "203-6B-P2",
+            "questionText": "Regardless of how sunny a location is, what safety factor must be confirmed to ensure the roof does not collapse under the weight of the panels?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "structural integrity",
+              "structural capacity",
+              "load capacity"
+            ],
+            "hint": "The ability of the building to support the static and dynamic loads."
+          },
+          {
+            "id": "203-6B-P3",
+            "questionText": "System A has a COP of 2.5. System B generates 15kW of heat using 3kW of electricity. What is the COP of System B?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "5",
+              "5.0"
+            ],
+            "hint": "Calculate Output / Input for System B."
+          },
+          {
+            "id": "203-6B-P4",
+            "questionText": "A technician wants to install a large wind turbine. What term describes the legal rules, such as height limits or noise restrictions, that might stop this installation?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "regulatory constraint",
+              "regulatory constraints",
+              "planning permission"
+            ],
+            "hint": "These are external rules set by local authorities."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-6B-INT-1",
+            "questionText": "Explain why a site assessment must include Orientation, Structural Integrity, AND Regulatory Constraints before a system is chosen. Give an example of how failing one of these (e.g., Structural Integrity) makes the others irrelevant. (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Orientation determines energy potential.",
+              "Regulatory constraints determine legality.",
+              "Structural integrity determines safety.",
+              "If one fails (e.g., structure is weak), the project cannot proceed safely, regardless of how good the orientation is."
+            ],
+            "expectedAnswer": [
+              "A site assessment must include all three because a system needs to be effective (Orientation), legal (Regulatory), and safe (Structural). If the structural integrity is insufficient, the project cannot proceed because the roof might collapse, making the perfect orientation or planning permission irrelevant.",
+              "You check orientation for energy, regulations for permission, and structure for safety. Failing structural integrity means the installation is dangerous. Even if the sun is perfect and the law allows it, you cannot install a system on a roof that will break."
+            ],
+            "hint": "Think about the consequences: Low energy (Orientation), Forced removal (Regulatory), or Collapse (Structural)."
+          },
+          {
+            "id": "203-6B-INT-2",
+            "questionText": "A client wants a wind turbine because 'it works at night'. However, the site is in a dense housing estate with strict noise rules. Evaluate this choice. Why might a Solar PV system be a better 'fit for purpose' here, despite the client's preference?",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Wind turbines have moving parts and generate noise.",
+              "Dense housing estates often have Regulatory Constraints regarding noise.",
+              "Solar PV has no moving parts and is silent.",
+              "Fit for purpose involves meeting legal/environmental constraints, not just energy preferences."
+            ],
+            "expectedAnswer": [
+              "The wind turbine is likely a poor choice because strict noise rules in a housing estate are a Regulatory Constraint that turbines (which have moving parts) often violate. Solar PV would be a better fit for purpose because it has no moving parts and operates silently, avoiding the regulatory issues while still providing renewable energy.",
+              "Even though the client wants night-time power, the regulatory constraint on noise makes the turbine unviable. Solar PV is silent and typically permitted in residential areas, making it the only legal and practical option for this specific site."
+            ],
+            "hint": "Compare the noise levels of a spinning turbine vs. a static solar panel against the rules of a housing estate."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-6B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-6B-SR-1",
+            "questionText": "What is the primary purpose of evaluating a site before a technical installation begins?",
+            "expectedAnswer": [
+              "Check suitability",
+              "Assess feasibility",
+              "Determine suitability",
+              "Ensure safety and efficiency"
+            ],
+            "hint": "Think about why we inspect a location before starting work.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-6B-SR-2",
+            "questionText": "What term describes the physical or environmental factors that may limit or restrict an installation process?",
+            "expectedAnswer": [
+              "Constraints",
+              "Limitations",
+              "Restrictions"
+            ],
+            "hint": "This term is used in the learning outcomes to describe site-based obstacles.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-6B-SR-3",
+            "questionText": "When comparing different technologies, what term is used to describe the positive technical features or benefits of a system?",
+            "expectedAnswer": [
+              "Advantages",
+              "Benefits",
+              "Pros"
+            ],
+            "hint": "This is the opposite of a disadvantage.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Installation and Evaluation of Micro-renewables"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "PROCEDURE, EVALUATION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO6",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Technical requirements for site preparation and the comparative evaluation of system benefits and limitations.",
+      "outOfScope": "Detailed electrical circuit calculations or hands-on commissioning and maintenance procedures.",
+      "rationale": "Focus is on the planning and evaluation phase appropriate for Level 2, prior to the technical execution covered in higher levels."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": false,
+      "specificScope": null
+    },
+    "misconceptions": [
+      {
+        "misconception": "Any south-facing roof is perfect for solar micro-generation.",
+        "correction": "A south-facing roof is only suitable if it is free from shading and has the structural integrity to support the panels.",
+        "relatedAC": "203.LO6.AC6.3"
+      },
+      {
+        "misconception": "Planning permission is never needed for small solar panels.",
+        "correction": "While many are 'permitted development,' specific regulatory constraints often apply in conservation areas or on listed buildings.",
+        "relatedAC": "203.LO6.AC6.2"
+      },
+      {
+        "misconception": "A system with a high COP will always be the cheapest to run.",
+        "correction": "COP changes with external temperatures; a heat pump might have a high COP in spring but a much lower one in mid-winter.",
+        "relatedAC": "203.LO6.AC6.3"
+      }
+    ]
+  }
+}
