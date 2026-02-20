@@ -14,7 +14,6 @@ interface GenerationForm {
   unit: number;
   lessonId: string;
   topic: string;
-  section: string;
   layout?: 'split-vis' | 'linear-flow' | 'auto';
   prerequisites: string[];
   mustHaveTopics?: string;
@@ -34,6 +33,20 @@ interface LessonIndexEntry {
   generationScore?: number | null;
   available: boolean;
   order: number;
+}
+
+interface SyllabusMetaUnit {
+  unit: string;
+  unitTitle: string;
+  loCount: number;
+}
+
+interface SyllabusMetadataResponse {
+  success: boolean;
+  selectedVersionId?: string;
+  syllabusVersions?: Array<{ id: string; filename: string; created_at: string }>;
+  units?: SyllabusMetaUnit[];
+  error?: string;
 }
 
 interface DeleteStatus {
@@ -118,12 +131,24 @@ interface GenerationStatus {
   debugData?: QuestionDebugInfo[];
 }
 
+const SECTION_BY_UNIT: Record<number, string> = {
+  201: 'Health and Safety 2365 Level 2',
+  202: 'Science 2365 Level 2',
+  203: 'Installation 2365 Level 2',
+  204: 'Wiring Systems 2365 Level 2',
+  210: 'Communication 2365 Level 2',
+  305: 'Advanced Safety 2365 Level 3',
+};
+
+function inferSectionFromUnit(unit: number): string {
+  return SECTION_BY_UNIT[unit] ?? `Unit ${unit}`;
+}
+
 export default function GeneratePage() {
   const [form, setForm] = useState<GenerationForm>({
     unit: 202,
     lessonId: '',
     topic: '',
-    section: 'Science 2365 Level 2',
     layout: 'auto',
     prerequisites: [],
     mustHaveTopics: '',
@@ -177,6 +202,19 @@ export default function GeneratePage() {
   const selectedImproveLessonData = selectedImproveLesson
     ? lessons.find((lesson) => lesson.id === selectedImproveLesson)
     : null;
+  const [syllabusVersionId, setSyllabusVersionId] = useState<string>('');
+  const [syllabusUnits, setSyllabusUnits] = useState<SyllabusMetaUnit[]>([]);
+  const availableUnits = Array.from(
+    new Set([
+      ...syllabusUnits
+        .map((entry) => Number(entry.unit))
+        .filter((value) => Number.isFinite(value)),
+      ...Object.keys(SECTION_BY_UNIT).map((value) => Number(value)),
+      ...Object.keys(lessonsByUnit)
+        .map((value) => Number(value))
+        .filter((value) => Number.isFinite(value)),
+    ])
+  ).sort((a, b) => a - b);
 
   const fetchLessons = useCallback(async () => {
     try {
@@ -191,10 +229,33 @@ export default function GeneratePage() {
     }
   }, []);
 
+  const fetchSyllabusMetadata = useCallback(async () => {
+    try {
+      const response = await fetch('/api/syllabus/metadata');
+      const data = (await response.json()) as SyllabusMetadataResponse;
+      if (!response.ok || !data.success) return;
+
+      const units = Array.isArray(data.units) ? data.units : [];
+      const nextVersionId = typeof data.selectedVersionId === 'string' ? data.selectedVersionId : '';
+      setSyllabusUnits(units);
+      setSyllabusVersionId(nextVersionId);
+
+      if (units.length > 0) {
+        const preferredUnit = Number(units[0].unit);
+        if (!Number.isNaN(preferredUnit)) {
+          setForm((prev) => ({ ...prev, unit: preferredUnit }));
+        }
+      }
+    } catch (error) {
+      console.error('Failed to fetch syllabus metadata:', error);
+    }
+  }, []);
+
   // Fetch lessons on mount
   useEffect(() => {
     void fetchLessons();
-  }, [fetchLessons]);
+    void fetchSyllabusMetadata();
+  }, [fetchLessons, fetchSyllabusMetadata]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -236,6 +297,10 @@ export default function GeneratePage() {
       alert('Please fill in all required fields');
       return;
     }
+    if (!syllabusVersionId) {
+      alert('No uploaded syllabus version found. Please populate/upload syllabus first.');
+      return;
+    }
 
     setStatus({
       stage: 'generating',
@@ -249,7 +314,8 @@ export default function GeneratePage() {
         unit: form.unit,
         lessonId: form.lessonId,
         topic: form.topic,
-        section: form.section,
+        section: inferSectionFromUnit(form.unit),
+        syllabusVersionId: syllabusVersionId || undefined,
         layout: form.layout === 'auto' ? undefined : form.layout,
         prerequisites: form.prerequisites.filter(p => p.length > 0),
         mustHaveTopics: form.mustHaveTopics && form.mustHaveTopics.trim().length > 0 
@@ -413,7 +479,6 @@ export default function GeneratePage() {
       unit: 202,
       lessonId: '',
       topic: '',
-      section: 'Science 2365 Level 2',
       layout: 'auto',
       prerequisites: [],
       mustHaveTopics: '',
@@ -631,13 +696,23 @@ export default function GeneratePage() {
                     className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white"
                     disabled={status.stage === 'generating'}
                   >
-                    <option value={201}>Unit 201 - Health & Safety</option>
-                    <option value={202}>Unit 202 - Science</option>
-                    <option value={203}>Unit 203 - Installations</option>
-                    <option value={204}>Unit 204 - Wiring Systems & Enclosures</option>
-                    <option value={210}>Unit 210 - Communication</option>
-                    <option value={305}>Unit 305 - Advanced Safety</option>
+                    {availableUnits.map((unit) => (
+                      <option key={unit} value={unit}>
+                        Unit {unit} - {inferSectionFromUnit(unit)}
+                      </option>
+                    ))}
                   </select>
+                  <p className="mt-2 text-xs text-gray-500 dark:text-slate-400">
+                    Unit list comes from configured syllabus units; section is inferred automatically.
+                  </p>
+                  <p className="mt-1 text-xs text-gray-500 dark:text-slate-400">
+                    Syllabus version: {syllabusVersionId ? syllabusVersionId.slice(0, 8) : 'not available'}
+                  </p>
+                  {!syllabusVersionId && (
+                    <p className="mt-1 text-xs text-red-600 dark:text-red-400">
+                      Upload/populate syllabus first. Generation is locked until a syllabus version is available.
+                    </p>
+                  )}
                 </div>
 
                 <div>
@@ -672,24 +747,14 @@ export default function GeneratePage() {
                 />
               </div>
 
-              {/* Section */}
+              {/* Section (auto-inferred) */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-slate-300 mb-2">
-                  Section *
+                  Section (from unit)
                 </label>
-                <select
-                  value={form.section}
-                  onChange={e => setForm({ ...form, section: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white"
-                  disabled={status.stage === 'generating'}
-                >
-                  <option value="Science 2365 Level 2">Science 2365 Level 2</option>
-                  <option value="Health & Safety Level 1">Health & Safety Level 1</option>
-                  <option value="Health & Safety Level 2">Health & Safety Level 2</option>
-                  <option value="Electrical Installations Technology">
-                    Electrical Installations Technology
-                  </option>
-                </select>
+                <div className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg bg-gray-50 dark:bg-slate-700 dark:text-white">
+                  {inferSectionFromUnit(form.unit)}
+                </div>
               </div>
 
               {/* Layout */}
@@ -871,7 +936,7 @@ export default function GeneratePage() {
               <div className="flex gap-4">
                 <button
                   type="submit"
-                  disabled={status.stage === 'generating'}
+                  disabled={status.stage === 'generating' || !syllabusVersionId}
                   className="flex-1 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {status.stage === 'generating' ? 'Generating...' : 'Generate Lesson'}
@@ -884,7 +949,6 @@ export default function GeneratePage() {
                       unit: 203,
                       lessonId: '3A',
                       topic: 'Circuit Types: What They Do',
-                      section: 'Electrical Installations Technology',
                       layout: 'split-vis',
                       prerequisites: [],
                       mustHaveTopics: '203-3A — Circuit Types: What They Do (3.1)\n\nLighting vs power/heating vs alarm/emergency vs data/comms vs control + ring final vs radial (principles + typical use).',

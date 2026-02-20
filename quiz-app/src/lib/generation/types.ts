@@ -33,6 +33,7 @@ export interface GenerationRequest {
   lessonId: string;
   topic: string;
   section: string;
+  syllabusVersionId?: string;
   layout?: 'split-vis' | 'linear-flow';
   prerequisites?: string[];
   prerequisiteAnchors?: string; // Extracted key facts from prerequisite lessons for spaced review

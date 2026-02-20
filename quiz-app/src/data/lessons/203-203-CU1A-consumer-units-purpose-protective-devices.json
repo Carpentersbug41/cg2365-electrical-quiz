@@ -1,0 +1,449 @@
+{
+  "id": "203-203-CU1A",
+  "title": "203.203-CU1A — Consumer Units: Purpose + Protective Devices",
+  "description": "Learn about Consumer Units: Purpose + Protective Devices in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Consumer Units: Purpose + Protective Devices",
+  "learningOutcomes": [
+    "Define the primary functions of a consumer unit within a domestic installation.",
+    "Distinguish between overcurrent (overload/short-circuit) and residual current (leakage) protection.",
+    "Select the correct protective device type and MCB classification for specific circuit scenarios."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-203-CU1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define the primary functions of a consumer unit within a domestic installation.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Distinguish between overcurrent (overload/short-circuit) and residual current (leakage) protection.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Select the correct protective device type and MCB classification for specific circuit scenarios.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-CU1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Consumer Unit",
+            "definition": "A type of distribution board used in domestic installations to house protective devices and provide a central point for circuit control and isolation."
+          },
+          {
+            "term": "Overcurrent",
+            "definition": "A condition where current exceeds the rated capacity of a circuit due to overload or short circuit, requiring interruption to prevent thermal damage."
+          },
+          {
+            "term": "Residual Current",
+            "definition": "An electrical current that leaks to earth due to a fault or insulation failure, creating an imbalance that poses a risk of electric shock."
+          },
+          {
+            "term": "Miniature Circuit Breaker (MCB)",
+            "definition": "An automatic electromagnetic device designed to protect a circuit from overcurrent, not from earth leakage."
+          },
+          {
+            "term": "Residual Current Device (RCD)",
+            "definition": "A safety device that disconnects the supply when it detects an imbalance caused by earth leakage, different from an MCB because it does not provide overcurrent protection."
+          },
+          {
+            "term": "RCBO",
+            "definition": "A combined protective device that incorporates the functions of both an MCB and an RCD to provide simultaneous protection against overcurrent and earth leakage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-CU1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Consumer Units: Purpose + Protective Devices Diagram",
+        "description": "Visual representation of Consumer Units: Purpose + Protective Devices",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "main-switch-isolator",
+          "mcb-device",
+          "rcd-protection-device",
+          "rcbo-combined-device",
+          "busbar-connection"
+        ],
+        "placeholderText": "A diagram of a modern consumer unit interior. On the far left is the main-switch-isolator. To its right is a group of mcb-device units connected by a busbar-connection at the bottom. Further right, an rcd-protection-device is shown protecting a group of circuits, and a standalone rcbo-combined-device is shown as a single-module protection for a dedicated circuit. The diagram should clearly show the test buttons on the RCD and RCBO to distinguish them from the standard MCB."
+      }
+    },
+    {
+      "id": "203-203-CU1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Role of the Consumer Unit",
+        "content": "### In this lesson\nThis lesson introduces the fundamental purpose of a distribution board within a home environment. You will learn how electricity is managed and divided once it enters a property to ensure safety and functionality.\n\n*   The primary functions of a **Consumer Unit** in domestic installations.\n*   How a distribution board splits a single supply into multiple final circuits.\n*   The importance of isolation and localized protection for circuit control.\n\n**What this is**\nA **Consumer Unit** is a specialized type of distribution board designed specifically for domestic or small-scale commercial installations. It serves as the central hub where the main electrical supply from the provider is received and then divided into smaller, manageable paths known as final circuits. Each of these circuits, such as a lighting circuit or a ring final circuit, is individually protected by a device housed within the unit. The unit also provides a single point of main isolation, allowing the entire installation to be disconnected from the power source for maintenance or in an emergency.\n\n**Why it matters**\nWithout a **Consumer Unit**, a fault in one single appliance could potentially disable the entire electrical system of a building or, worse, lead to a fire because the cables would not have localized protection. By splitting the installation into separate circuits (like lighting, radial, or ring final), the unit ensures that a problem in the kitchen sockets typically does not leave the upstairs bedrooms in the dark. This concept of \"selectivity\" or \"discrimination\" allows for better safety management and easier fault finding.\n\n**Key facts / rules**\n*   A **Consumer Unit** must provide a means of main isolation to shut off all power.\n*   It distributes power to final circuits, which include lighting, radial, and ring final types.\n*   The enclosure houses various protective devices to prevent damage from **Overcurrent**.\n*   It acts as a central point for safety devices that detect **Residual Current**.\n*   Standard domestic units typically include a busbar to distribute power to individual breakers.\n*   Modern units are often constructed from non-combustible materials in domestic settings (verify current edition/version).\n\n**When to choose it**\nSelection of a **Consumer Unit** depends on the number of circuits required and the level of protection needed for the occupants. In a standard domestic scenario, you would choose a unit based on the total load of the property and the specific types of circuits present. For example, a small flat might only require a 6-way unit, whereas a large house might require a 16-way or 22-way unit to accommodate multiple ring final circuits and dedicated radial supplies for high-power appliances like electric showers or cookers. The choice is driven by the need to provide separate protection and isolation for different areas of the home to maintain service continuity.\n\n**Common mistakes**\nLearners often confuse a **Consumer Unit** with a simple junction box; a **Consumer Unit** is an active distribution and protection hub, whereas a junction box is merely a point for joining cables. Another common error is thinking that the main switch provides **Overcurrent** protection; in reality, the main switch is typically just an isolator, and protection is provided by the individual MCBs or RCBOs.\n\nMisconceptions (targeted):\n*   Misconception: The main switch in a consumer unit will trip if there is a short circuit. | Correction: The main switch is usually an isolator only; the individual circuit breakers (MCBs) or fuses are designed to trip during a short circuit. | AC3.4\n*   Misconception: You can put as many wires as you want into one breaker. | Correction: Each breaker is rated for a specific circuit capacity to prevent cable overheating. | AC3.1\n\n**Key Points**\n*   The unit splits the main supply into lighting, radial, and ring final circuits.\n*   It provides a central point for isolation and safety protection.\n*   It prevents a single fault from affecting the entire installation.\n*   Protection devices are selected based on the specific circuit they serve.\n\n**Quick recap**\nA **Consumer Unit** is the \"brain\" of a home's electrical system. It takes the incoming power and distributes it safely to different areas through various circuit types, while housing the devices that protect those circuits from faults. It allows for easy isolation and ensures that the installation remains safe for the users.\n\n### Coming Up Next\nNow that we understand what the unit does, we will look closely at the specific devices inside that provide protection against different types of electrical faults."
+      }
+    },
+    {
+      "id": "203-203-CU1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The Role of the Consumer Unit",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-203-CU1A-C1-L1-A",
+            "questionText": "What must a Consumer Unit provide to allow all power to be shut off?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "means of main isolation",
+              "main isolation",
+              "a means of main isolation"
+            ],
+            "hint": "Look for the specific requirement for shutting off the entire installation's power."
+          },
+          {
+            "id": "203-203-CU1A-C1-L1-B",
+            "questionText": "What does the unit distribute power to including lighting radial and ring final types?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "final circuits",
+              "individual final circuits",
+              "the final circuits"
+            ],
+            "hint": "These are the smaller paths the supply is divided into."
+          },
+          {
+            "id": "203-203-CU1A-C1-L1-C",
+            "questionText": "According to the text, what is the primary purpose of the main switch compared to individual MCBs or RCBOs?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "just an isolator",
+              "isolator",
+              "an isolator only"
+            ],
+            "hint": "Consider the distinction between a device that disconnects power and one that provides protection."
+          },
+          {
+            "id": "203-203-CU1A-C1-L2",
+            "questionText": "Using your answers to Q1 (main isolation), Q2 (final circuits), and Q3 (isolator function), explain how the unit manages safe maintenance. Why must we distinguish between the main switch and individual circuit breakers?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Main isolation allows the whole installation to be shut off for maintenance",
+              "Final circuits allow localized control and protection of different areas",
+              "The main switch only isolates power and does not provide overcurrent protection",
+              "Individual protection devices are needed for each specific final circuit"
+            ],
+            "expectedAnswer": [
+              "The unit uses a main switch for isolation to shut off all power while final circuits provide localized paths. We must distinguish them because the main switch is just an isolator, meaning it cannot provide the overcurrent protection that individual breakers provide to the final circuits.",
+              "Because the main switch is typically just an isolator, it provides the main isolation for the whole board but doesn't protect the final circuits. The MCBs or RCBOs are required to protect those individual circuits from faults."
+            ],
+            "hint": "Think about why you need both a general switch and specific protective devices for different paths."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-CU1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Protective Device Characteristics",
+        "content": "### In this lesson\nIn this lesson, you will learn to identify and differentiate between the various protective devices found within a **Consumer Unit**. Understanding these differences is critical for ensuring both the safety of the electrical cables and the protection of people from electric shock.\n\n*   The difference between **Overcurrent** and **Residual Current** protection.\n*   How to identify **Miniature Circuit Breakers (MCB)**, **Residual Current Devices (RCD)**, and **RCBO**s.\n*   The meaning of MCB classifications (Types B, C, and D).\n\n**What this is**\nProtective devices are components installed in a **Consumer Unit** to automatically disconnect the supply when a fault occurs. An **Overcurrent** protection device, such as a **Miniature Circuit Breaker (MCB)** or a fuse (like BS88 or BS3036), detects when too much electricity is flowing through a wire, which could cause it to melt or catch fire. A **Residual Current Device (RCD)**, however, monitors the balance of current between the live and neutral conductors; if it detects an imbalance (known as **Residual Current**), it trips to prevent electric shock. An **RCBO** is a single device that performs both roles simultaneously.\n\n**Why it matters**\nUsing the wrong device can lead to catastrophic failure. An MCB will not protect a person from a small earth leakage that could still be fatal, and a standard RCD will not trip if a circuit is simply overloaded with too many appliances. For instance, a Type B MCB is typically used for domestic lighting because it trips quickly, whereas a Type C might be needed for a small workshop motor that has a high \"inrush\" current when it first starts up.\n\n**Key facts / rules**\n*   **Overcurrent** includes both overloads (too many appliances) and short circuits.\n*   **Residual Current** refers to current \"leaking\" to earth, often through damaged insulation.\n*   **MCB**s (BS EN 60898) are categorized by letters: Type B (domestic), Type C (commercial/motors), and Type D (industrial/high inrush).\n*   An **RCD** (BS EN 61008) provides earth leakage protection but NO **Overcurrent** protection.\n*   An **RCBO** (BS EN 61009) provides both **Overcurrent** and earth leakage protection in one module.\n*   Fuses like the BS3036 (rewireable) are older technology and less precise than modern MCBs.\n\n**How to recognise it**\nTo identify these devices, look at the labeling on the front of the component. An **MCB** will typically show a rating like \"B32\" or \"B6,\" where the letter indicates the trip curve and the number indicates the current rating in Amps. An **RCD** is usually wider than an MCB and features a \"Test\" button (often marked with a 'T'). If a device has a amperage rating (like 32A) AND a test button, it is likely an **RCBO**. \n\n**Micro-scenario:** Compare a circuit protected by a B16 MCB versus one with a C16 MCB. If a vacuum cleaner with a powerful motor causes the B16 to trip every time it starts, you might select a C16, which is less sensitive to that initial surge of power while still providing the same 16A protection.\n\n**Common mistakes**\nLearners often confuse an **RCD** with an **RCBO**; an **RCD** is a pure leakage detector, whereas an **RCBO** is a combination device. Another mistake is assuming a Type D MCB is \"stronger\" or \"better\" than a Type B; in reality, a Type D is simply less sensitive and should only be used in specific industrial contexts to avoid failing to trip during a real fault.\n\nMisconceptions (targeted):\n*   Misconception: An RCD protects against short circuits. | Correction: An RCD only detects earth leakage; you need an MCB or the overcurrent part of an RCBO for short-circuit protection. | AC3.4\n*   Misconception: Type D breakers are the safest because they don't trip easily. | Correction: Type D breakers are the least sensitive and may not trip fast enough in a domestic setting to prevent fire. | AC3.4\n\n**Key Points**\n*   MCBs protect cables from **Overcurrent** (overload and short circuits).\n*   RCDs protect people from electric shock caused by **Residual Current**.\n*   RCBOs combine both functions into one device for individual circuit safety.\n*   MCB types (B, C, D) define how the device reacts to sudden surges in current.\n\n**Quick recap**\nProtective devices are the safety guards of the **Consumer Unit**. MCBs handle the \"heavy lifting\" of preventing wires from overheating, while RCDs act as \"leak detectors\" to prevent fatal shocks. For the best of both worlds on a single circuit, an RCBO is used to provide comprehensive protection against both **Overcurrent** and **Residual Current**.\n\n### Coming Up Next\nWe will move on to looking at how these devices are arranged in a physical installation and the specific rules for sizing the cables they protect."
+      }
+    },
+    {
+      "id": "203-203-CU1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Protective Device Characteristics",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-203-CU1A-C2-L1-A",
+            "questionText": "What two types of faults are included in the term Overcurrent?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "overloads and short circuits",
+              "overload and short circuit",
+              "overloads short circuits"
+            ],
+            "hint": "Think about too many appliances or a direct fault between conductors."
+          },
+          {
+            "id": "203-203-CU1A-C2-L1-B",
+            "questionText": "What term refers to current leaking to earth often through damaged insulation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Residual Current",
+              "residual current",
+              "earth leakage"
+            ],
+            "hint": "This involves an imbalance monitored by specific safety devices."
+          },
+          {
+            "id": "203-203-CU1A-C2-L1-C",
+            "questionText": "What specific type of protection is an RCD unable to provide?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Overcurrent protection",
+              "overcurrent",
+              "overcurrent protection"
+            ],
+            "hint": "Consider the limitation of a device that only monitors current balance."
+          },
+          {
+            "id": "203-203-CU1A-C2-L2",
+            "questionText": "Using your answers to Q1 (Overcurrent types), Q2 (Residual Current definition), and Q3 (RCD limitations), explain why a single RCD is insufficient for full circuit safety. How do we know which device to select for a specific fault type?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Overcurrent involves overloads and short circuits which heat cables",
+              "Residual Current involves leakage to earth which causes shock",
+              "An RCD only detects leakage and provides no overcurrent protection",
+              "Selection depends on whether the goal is cable protection or shock protection"
+            ],
+            "expectedAnswer": [
+              "A single RCD is insufficient because while it detects Residual Current leaking to earth, it provides no Overcurrent protection against overloads or short circuits. We select devices based on the fault type, using MCBs for cable protection and RCDs for shock protection.",
+              "We know an RCD is not enough because it cannot trip during an overload or short circuit. Since overcurrent and residual current are different types of faults, we must select devices like RCBOs that combine both functions to ensure full safety."
+            ],
+            "hint": "Connect the specific fault types to the limitations of the protective devices mentioned."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-CU1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Consumer Unit and Protective Devices Practice",
+        "questions": [
+          {
+            "id": "203-203-CU1A-P1",
+            "questionText": "A small property requires 3 lighting circuits, 4 power circuits, and 2 dedicated appliance circuits. What is the minimum number of individual protective device 'ways' required in the consumer unit to accommodate these?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "9"
+            ],
+            "hint": "Each final circuit requires its own individual protective device and 'way' within the board."
+          },
+          {
+            "id": "203-203-CU1A-P2",
+            "questionText": "Why is the main switch in a consumer unit unable to protect the cables from melting during a short circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "isolation only",
+              "no overcurrent protection",
+              "it is an isolator",
+              "it is just an isolator"
+            ],
+            "hint": "Recall the specific purpose of the main switch compared to an MCB."
+          },
+          {
+            "id": "203-203-CU1A-P3",
+            "questionText": "Which specific device should be selected to provide both overcurrent protection and residual current protection within a single module space?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "RCBO",
+              "an RCBO",
+              "Residual Current Breaker with Overcurrent"
+            ],
+            "hint": "This device combines the functions of an MCB and an RCD."
+          },
+          {
+            "id": "203-203-CU1A-P4",
+            "questionText": "In a large data center, individual server racks have their own power breakers rather than one single breaker for the whole room. What concept from the lesson describes the goal of ensuring one rack's failure does not shut down the others?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "selectivity",
+              "discrimination",
+              "service continuity",
+              "fault isolation"
+            ],
+            "hint": "This term refers to the ability of a system to isolate a fault to a specific area."
+          },
+          {
+            "id": "203-203-CU1A-P5",
+            "questionText": "A protective device is marked with the code 'B40'. What is the current rating of this device?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "40",
+              "40.0"
+            ],
+            "hint": "The number following the Type letter on an MCB or RCBO indicates the rating in Amps."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-CU1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-203-CU1A-INT-1",
+            "questionText": "Explain the relationship between the distribution of circuits within a consumer unit and the requirement for overcurrent protection. In your answer, include: (1) the function of splitting the supply into final circuits, (2) the specific role of overcurrent protective devices like MCBs, and (3) how these elements coordinate to manage circuit faults. Why must each final circuit be protected independently rather than using a single protective device for the whole installation?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies that the consumer unit splits the main supply into distinct final circuits for different loads.",
+              "Explains that MCBs provide protection against overloads and short-circuits for specific cable runs.",
+              "Describes the coordination as localized protection where only the faulted circuit is disconnected.",
+              "Reasons that individual protection is necessary because different circuits have different current-carrying capacities.",
+              "Explains that a single device for the whole installation would lead to nuisance tripping and safety hazards across the entire property."
+            ],
+            "expectedAnswer": [
+              "The consumer unit divides the incoming supply into multiple final circuits to manage electricity throughout the property. Each circuit is fitted with an MCB to provide overcurrent protection specifically sized for that circuit's cables and load. This relationship holds because individual protection ensures that a fault on one circuit only isolates that specific area, maintaining power to the rest of the installation and preventing a single fault from creating a total blackout.",
+              "By splitting the supply into final circuits, the consumer unit allows for the use of MCBs to protect against overloads and short-circuits. This coordination is essential because different circuits use cables with different ratings; therefore, each requires a dedicated protective device matched to its capacity. Independent protection is required to ensure that the protective device operates correctly for the specific cable size it is guarding, which would be impossible with one large device for the whole building."
+            ],
+            "hint": "Think about how the rating of a protective device must match the specific cable it is protecting in a final circuit."
+          },
+          {
+            "id": "203-203-CU1A-INT-2",
+            "questionText": "Analyze how a consumer unit provides a comprehensive safety system by integrating various protective technologies for a domestic installation. In your answer, include: (1) the distribution function of the consumer unit, (2) the technical difference between overcurrent and residual current protection, (3) the criteria for selecting specific device types like MCBs, RCDs, or RCBOs, and (4) how these components collectively mitigate different types of electrical risks. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Defines the consumer unit as the central distribution point for all final circuits.",
+              "Distinguishes overcurrent (thermal/magnetic protection for cables) from residual current (leakage protection for people).",
+              "Explains that MCBs are selected based on circuit load and type (e.g., Type B or C).",
+              "Identifies RCDs as essential for detecting earth leakage and preventing electric shock.",
+              "Notes that RCBOs integrate both overcurrent and residual current protection into one unit.",
+              "Synthesizes how these devices work together to prevent fire (overcurrent) and shock (residual current).",
+              "Recognizes that device selection depends on the specific circuit scenario and required safety level.",
+              "Concludes that the consumer unit acts as the primary interface for both system control and user safety."
+            ],
+            "expectedAnswer": [
+              "The consumer unit acts as the central hub that divides power into circuits, using MCBs to protect cables from overcurrent and RCDs to protect users from electric shock caused by current leakage. Selection of these devices, or combined RCBOs, depends on the specific circuit requirements and the nature of the connected loads. Together, these components provide a multi-layered safety strategy that mitigates risks of both electrical fires and fatal injuries. This integration ensures that every part of the installation is monitored for thermal damage and earth faults simultaneously.",
+              "• The consumer unit distributes power into final circuits, allowing for localized control and protection.\n• Overcurrent protection (MCBs) prevents cable damage from excessive load, while residual current protection (RCDs) detects leakage to prevent shock.\n• Selecting the correct device, such as an RCBO for individual circuit integrity, ensures that both fire and shock risks are addressed for that specific scenario.\n• This integrated approach provides a comprehensive safety system that maintains installation functionality while meeting stringent safety standards."
+            ],
+            "hint": "Consider the dual goals of protecting the physical infrastructure (cables) and the human users of the system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-203-CU1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-203-CU1A-SR-1",
+            "questionText": "What term is used to describe an individual electrical path that delivers power within an installation?",
+            "expectedAnswer": [
+              "Circuit",
+              "Electrical circuit",
+              "Final circuit"
+            ],
+            "hint": "Think of the specific routes that flow from a central distribution point.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-203-CU1A-SR-2",
+            "questionText": "What is the primary reason for including protective devices in any technical system or installation?",
+            "expectedAnswer": [
+              "Safety",
+              "Protection",
+              "To prevent damage"
+            ],
+            "hint": "Consider the main objective of preventing faults from causing harm or fire.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-203-CU1A-SR-3",
+            "questionText": "What term refers to the flow of electricity that protective devices are designed to monitor and control?",
+            "expectedAnswer": [
+              "Current",
+              "Electrical current",
+              "Amperage"
+            ],
+            "hint": "This word describes the movement of electrical charge through a circuit.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Consumer Units: Purpose + Protective Devices"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-20",
+    "updated": "2026-02-20",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY, SELECTION",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Purpose of the consumer unit, identification of protective devices (BS88, BS3036, MCB, RCD, RCBO), and device selection based on fault types.",
+      "outOfScope": "Physical installation techniques, termination procedures, earthing system design, and mathematical fault calculations.",
+      "rationale": "Separating conceptual purpose from physical installation and complex calculation ensures foundational understanding before practical application."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on the 'what' and 'why' of devices, not the 'how' of installation or design."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The main switch in a consumer unit will trip if there is a short circuit.",
+        "correction": "The main switch is usually an isolator only; the individual circuit breakers (MCBs) or fuses are designed to trip during a short circuit.",
+        "relatedAC": "AC3.4"
+      },
+      {
+        "misconception": "An RCD protects against short circuits.",
+        "correction": "An RCD only detects earth leakage; you need an MCB or the overcurrent part of an RCBO for short-circuit protection.",
+        "relatedAC": "AC3.4"
+      },
+      {
+        "misconception": "Type D breakers are the safest because they don't trip easily.",
+        "correction": "Type D breakers are the least sensitive and may not trip fast enough in a domestic setting to prevent fire.",
+        "relatedAC": "AC3.4"
+      }
+    ]
+  }
+}

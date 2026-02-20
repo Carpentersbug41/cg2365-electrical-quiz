@@ -72,11 +72,13 @@ import { electricityGenerationAndTransmissionQuestions } from './electricityGene
 import { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
 import { typesOfMicroRenewableEnergyQuestions } from './typesOfMicroRenewableEnergyQuestions';
 import { installationAndEvaluationOfMicroRenewablesQuestions } from './installationAndEvaluationOfMicroRenewablesQuestions';
+import { consumerUnitsPurposeProtectiveDevicesQuestions } from './consumerUnitsPurposeProtectiveDevicesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...consumerUnitsPurposeProtectiveDevicesQuestions,
   ...installationAndEvaluationOfMicroRenewablesQuestions,
   ...typesOfMicroRenewableEnergyQuestions,
   ...distributionVoltagesAndNetworkComponentsQuestions,
@@ -218,6 +220,7 @@ export { electricityGenerationAndTransmissionQuestions } from './electricityGene
 export { distributionVoltagesAndNetworkComponentsQuestions } from './distributionVoltagesAndNetworkComponentsQuestions';
 export { typesOfMicroRenewableEnergyQuestions } from './typesOfMicroRenewableEnergyQuestions';
 export { installationAndEvaluationOfMicroRenewablesQuestions } from './installationAndEvaluationOfMicroRenewablesQuestions';
+export { consumerUnitsPurposeProtectiveDevicesQuestions } from './consumerUnitsPurposeProtectiveDevicesQuestions';
 
 /**
  * Filter questions by tags

@@ -17,6 +17,8 @@ import {
   validateMasterLessonBlueprintContract,
 } from '@/lib/module_planner/masterLessonBlueprint';
 import { MasterLessonBlueprint } from '@/lib/module_planner/types';
+import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
+import { getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 import { getRefinementConfig } from '@/lib/generation/config';
 import fs from 'fs';
 import path from 'path';
@@ -31,9 +33,72 @@ type LessonGenerationResult = Awaited<ReturnType<FileGenerator['generateLesson']
 
 const lessonGeneratorLockDir = path.join(process.cwd(), '.tmp_lesson_generator_locks');
 const lessonGeneratorLockStaleMs = 45 * 60 * 1000;
+const SECTION_BY_UNIT: Record<number, string> = {
+  201: 'Health and Safety 2365 Level 2',
+  202: 'Science 2365 Level 2',
+  203: 'Installation 2365 Level 2',
+  204: 'Wiring Systems 2365 Level 2',
+  210: 'Communication 2365 Level 2',
+  305: 'Advanced Safety 2365 Level 3',
+};
 
 function sanitizeLockName(value: string): string {
   return value.replace(/[^a-zA-Z0-9_-]/g, '_');
+}
+
+function inferSectionFromUnit(unit: number): string {
+  return SECTION_BY_UNIT[unit] ?? `Unit ${unit}`;
+}
+
+async function resolveGroundingStructure(
+  unit: number,
+  requestedVersionId?: string
+): Promise<{ versionId: string; structure: Record<string, unknown> } | null> {
+  const versions = await listSyllabusVersions();
+  if (versions.length === 0) return null;
+
+  const resolvedVersionId =
+    (requestedVersionId && versions.some((version) => version.id === requestedVersionId)
+      ? requestedVersionId
+      : versions[0].id);
+
+  const row = await getSyllabusStructureByVersionAndUnit(resolvedVersionId, String(unit));
+  if (!row?.structure_json) return null;
+
+  return {
+    versionId: resolvedVersionId,
+    structure: row.structure_json as unknown as Record<string, unknown>,
+  };
+}
+
+function buildGroundingInstructions(structure: Record<string, unknown>, versionId: string): string {
+  const los = Array.isArray(structure.los) ? structure.los : [];
+  const loSummary = los
+    .map((lo) => {
+      const loRecord = lo as Record<string, unknown>;
+      const loNumber = String(loRecord.loNumber ?? '').trim();
+      const loTitle = String(loRecord.title ?? '').trim();
+      const acs = Array.isArray(loRecord.acs) ? loRecord.acs : [];
+      const acSummary = acs
+        .map((ac) => {
+          const acRecord = ac as Record<string, unknown>;
+          const number = String(acRecord.acNumber ?? '').trim();
+          const text = String(acRecord.text ?? '').trim();
+          return `${number}${text ? ` ${text}` : ''}`.trim();
+        })
+        .filter(Boolean)
+        .join(' | ');
+      return `LO${loNumber}${loTitle ? ` ${loTitle}` : ''}${acSummary ? ` :: ${acSummary}` : ''}`;
+    })
+    .filter((line) => line.length > 0)
+    .join('\n');
+
+  return [
+    `SYLLABUS GROUNDING (version ${versionId}):`,
+    `Unit: ${String(structure.unit ?? '')} ${String(structure.unitTitle ?? '')}`.trim(),
+    'You must keep all content grounded to the unit/LO/AC scope below. Do not invent out-of-scope curriculum points.',
+    loSummary ? `Allowed LO/AC scope:\n${loSummary}` : 'Allowed LO/AC scope: unavailable',
+  ].join('\n');
 }
 
 function acquireLessonGeneratorLock(lessonId: string): { acquired: true; lockPath: string } | { acquired: false } {
@@ -186,10 +251,33 @@ export async function POST(request: NextRequest) {
   try {
     const body: GenerationRequest = await request.json();
 
+    const normalizedSection = body.section?.trim() || inferSectionFromUnit(body.unit);
+    body.section = normalizedSection;
+
+    const hasMasterBlueprint = Boolean(body.masterLessonBlueprint);
+    const grounding = await resolveGroundingStructure(body.unit, body.syllabusVersionId);
+    if (!grounding && !hasMasterBlueprint) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: 'SYLLABUS_GROUNDING_MISSING',
+          error: `No uploaded syllabus structure found for unit ${body.unit}. Upload/populate syllabus first.`,
+        },
+        { status: 400 }
+      );
+    }
+    if (grounding) {
+      const groundingInstructions = buildGroundingInstructions(grounding.structure, grounding.versionId);
+      body.additionalInstructions = [groundingInstructions, body.additionalInstructions?.trim()]
+        .filter((value): value is string => Boolean(value && value.length > 0))
+        .join('\n\n');
+      body.syllabusVersionId = grounding.versionId;
+    }
+
     debugLog('REQUEST_RECEIVED', { unit: body.unit, lessonId: body.lessonId, topic: body.topic, section: body.section });
 
     // Validate request
-    if (!body.unit || !body.lessonId || !body.topic || !body.section) {
+    if (!body.unit || !body.lessonId || !body.topic) {
       debugLog('REQUEST_INVALID', { body });
       return NextResponse.json(
         { success: false, error: 'Missing required fields' },

@@ -23,7 +23,7 @@ export const GENERATION_CONFIG = {
      * Refinement activates if lesson score < this value
      * Default: 95 (trigger improvement attempts)
      */
-    scoreThreshold: 95,
+    scoreThreshold: 91,
     
     /**
      * Save original lesson when refinement is applied

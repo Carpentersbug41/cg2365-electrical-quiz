@@ -80,6 +80,7 @@ import { electricityGenerationAndTransmissionQuestions } from './questions/elect
 import { distributionVoltagesAndNetworkComponentsQuestions } from './questions/distributionVoltagesAndNetworkComponentsQuestions';
 import { typesOfMicroRenewableEnergyQuestions } from './questions/typesOfMicroRenewableEnergyQuestions';
 import { installationAndEvaluationOfMicroRenewablesQuestions } from './questions/installationAndEvaluationOfMicroRenewablesQuestions';
+import { consumerUnitsPurposeProtectiveDevicesQuestions } from './questions/consumerUnitsPurposeProtectiveDevicesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -153,6 +154,7 @@ export const questions: Question[] = [
   ...distributionVoltagesAndNetworkComponentsQuestions,
   ...typesOfMicroRenewableEnergyQuestions,
   ...installationAndEvaluationOfMicroRenewablesQuestions,
+  ...consumerUnitsPurposeProtectiveDevicesQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

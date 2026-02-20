@@ -49,6 +49,7 @@ import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-trans
 import lesson203_5B from '@/data/lessons/203-5B-distribution-voltages-and-network-components.json';
 import lesson203_6A from '@/data/lessons/203-6A-types-of-micro-renewable-energy.json';
 import lesson203_6B from '@/data/lessons/203-6B-installation-and-evaluation-of-micro-renewables.json';
+import lesson203_203_CU1A from '@/data/lessons/203-203-CU1A-consumer-units-purpose-protective-devices.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -92,6 +93,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_203_CU1A,
   lesson203_6B,
   lesson203_6A,
   lesson203_5B,
