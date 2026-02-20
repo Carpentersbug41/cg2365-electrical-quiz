@@ -1,14 +1,14 @@
 {
   "id": "203-4B",
   "title": "203.4B — Exposed and Extraneous Conductive Parts",
-  "description": "Learn to identify Exposed and Extraneous Conductive Parts as components of an ADS system in Electrical Installations.",
+  "description": "Learn about Exposed and Extraneous Conductive Parts in Installation 2365 Level 2",
   "layout": "linear-flow",
   "unit": "Unit 203",
   "topic": "Exposed and Extraneous Conductive Parts",
   "learningOutcomes": [
-    "Define 'exposed conductive part' and 'extraneous conductive part' within the context of ADS",
-    "Describe the key differences between these parts based on their relationship to the electrical installation",
-    "Identify specific examples of both part types using concrete scenarios"
+    "Define the terms 'exposed-conductive-part' and 'extraneous-conductive-part' according to industry standards",
+    "Identify specific examples of exposed and extraneous conductive parts within a typical installation environment",
+    "Distinguish between conductive parts that are part of the electrical system and those that are external to it"
   ],
   "prerequisites": [
     "203-4A"
@@ -21,15 +21,15 @@
       "content": {
         "outcomes": [
           {
-            "text": "Define 'exposed conductive part' and 'extraneous conductive part' within the context of ADS",
+            "text": "Define the terms 'exposed-conductive-part' and 'extraneous-conductive-part' according to industry standards",
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe the key differences between these parts based on their relationship to the electrical installation",
-            "bloomLevel": "understand"
+            "text": "Identify specific examples of exposed and extraneous conductive parts within a typical installation environment",
+            "bloomLevel": "remember"
           },
           {
-            "text": "Identify specific examples of both part types using concrete scenarios",
+            "text": "Distinguish between conductive parts that are part of the electrical system and those that are external to it",
             "bloomLevel": "apply"
           }
         ]
@@ -42,24 +42,24 @@
       "content": {
         "terms": [
           {
-            "term": "ADS (Automatic Disconnection of Supply)",
-            "definition": "A protective measure in which the power supply is automatically cut off (e.g., by a fuse or breaker) when a fault occurs, relying on earthing connections to function."
+            "term": "Conductive Part",
+            "definition": "A part made of material (like metal) capable of conducting electric current."
           },
           {
-            "term": "Exposed Conductive Part",
-            "definition": "A conductive part of electrical equipment that you can touch. It is not normally live but can become live if internal insulation fails. It is part of the ADS system."
+            "term": "Exposed-conductive-part",
+            "definition": "A conductive part of the electrical equipment itself (like a metal casing) which can be touched and is not normally live, but may become live under fault conditions."
           },
           {
-            "term": "Extraneous Conductive Part",
-            "definition": "A conductive part that is NOT part of the electrical installation (like a water pipe) but can introduce an electrical potential (usually Earth potential) into the environment."
+            "term": "Extraneous-conductive-part",
+            "definition": "A conductive part not forming part of the electrical installation (like a water pipe) but liable to introduce a potential, generally Earth potential. Industry guidance often uses a resistance to earth of less than 22,000 Ohms (22kΩ) to identify these parts."
           },
           {
             "term": "Fault Condition",
-            "definition": "An accidental situation where electricity flows where it shouldn't, such as a live wire touching a metal casing."
+            "definition": "A failure of the electrical system, such as an insulation breakdown, that causes current to flow where it shouldn't (e.g., to the metal casing)."
           },
           {
-            "term": "Potential Difference",
-            "definition": "A difference in voltage between two points. If you touch two parts with a potential difference, current can flow through you."
+            "term": "Earth Potential",
+            "definition": "The electric potential of the conductive mass of the Earth, conventionally taken as 0 Volts."
           }
         ]
       }
@@ -69,18 +69,17 @@
       "type": "diagram",
       "order": 3,
       "content": {
-        "title": "Exposed vs. Extraneous Parts in ADS",
-        "description": "Visual representation distinguishing installation parts from environmental parts.",
+        "title": "Exposed and Extraneous Conductive Parts Diagram",
+        "description": "Visual representation of Exposed and Extraneous Conductive Parts",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
           "exposed-conductive-part",
           "extraneous-conductive-part",
-          "protective-bonding",
-          "earth-potential-source",
-          "fault-condition-path"
+          "fault-condition-path",
+          "earth-potential-connection"
         ],
-        "placeholderText": "A diagram showing a kitchen scenario. 1. A washing machine (electrical equipment) with a metal casing is labeled 'Exposed Conductive Part'. 2. A copper water pipe coming out of the floor is labeled 'Extraneous Conductive Part'. 3. A green/yellow wire connects the pipe to the earthing terminal (Protective Bonding). 4. A red jagged line inside the washer shows a 'Fault Condition' where a wire touches the casing."
+        "placeholderText": "The diagram should show a cross-section of a room containing an electrical appliance (e.g., a metal-cased heater) and a non-electrical service (e.g., a metal water pipe). The heater's metal shell should be labeled 'exposed-conductive-part'. The metal water pipe, which is shown entering the ground, should be labeled 'extraneous-conductive-part'. A dashed line labeled 'fault-condition-path' should show a internal wire touching the heater shell. A symbol for 'earth-potential-connection' should be shown where the pipe meets the soil."
       }
     },
     {
@@ -88,8 +87,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Exposed Conductive Parts (AC3 & ADS)",
-        "content": "### In this lesson\nWe focus on identifying specific components of the **ADS (Automatic Disconnection of Supply)** system. To ensure safety, we must distinguish between parts of the equipment and parts of the building.\n\n*   Definition of an **Exposed Conductive Part** (AC3).\n*   Its role in the **ADS** system (AC2).\n*   Real-world identification.\n\n**What this is**\nAn **Exposed Conductive Part** is a metal or conductive component of the electrical equipment itself that can be touched. Under normal conditions, it is safe (zero volts). However, if the internal insulation fails (a **Fault Condition**), this metal part can become live.\n\n**Connection to ADS (AC2)**\nIn an **ADS** system, these parts are critical. We connect them to Earth so that if they do become live, a large current flows to earth, blowing the fuse or tripping the breaker. Without this connection, the casing would remain live and dangerous.\n\n**Concrete Anchor: The Toaster**\nImagine a metal toaster. The shiny metal body is an **Exposed Conductive Part**. \n*   **Is it part of the electrical equipment?** Yes.\n*   **Can you touch it?** Yes.\n*   **Is it normally live?** No.\n*   **Could it become live?** Yes, if the heating element breaks and touches the side.\n\n**How to recognise it**\nLook for metal surfaces that house electrical components. \n*   **Yes:** Metal casing of a washing machine, metal back box of a light switch, metal body of a motor.\n*   **No:** A plastic kettle (insulator), a copper water pipe (not electrical equipment).\n\n**Key facts**\n*   Must be part of the electrical installation.\n*   Must be conductive (metal).\n*   Must be touchable.\n*   Relies on **Earthing** to work with ADS."
+        "title": "Exposed Conductive Parts",
+        "content": "### In this lesson\nYou will learn how to define and identify the specific components of an electrical system that are classified as exposed conductive parts.\n\n*   Defining the term **Exposed-conductive-part**.\n*   Identifying specific examples like metal casings and conduit.\n*   Understanding how these parts behave during a **Fault Condition**.\n\n**What this is**\nAn **Exposed-conductive-part** is a metal part of the electrical equipment that you can touch. It is not supposed to be live (energized) during normal use, but if the insulation inside fails, it can become live.\n\n**Concrete Anchor: The Metal Toaster**\nThink of a chrome toaster. Under normal operation, the metal shell is safe to touch (0 Volts). The live heating elements are inside. However, if a wire inside comes loose and touches the shell, the shell becomes energized at 230 Volts. Because the shell is part of the equipment and can be touched, it is an **Exposed-conductive-part**.\n\n**Micro-Scenario: The Continuity Test**\nHow do we confirm a part is \"Exposed\" and properly earthed? An electrician uses a resistance tester on a metal-cased drill. They place one probe on the metal chuck and the other on the earth pin of the plug. The meter reads **0.1 Ohms** (very low resistance). This confirms the metal casing is conductive and connected to the earthing system. If it were plastic, the reading would be infinite (open circuit).\n\n**Why it matters**\nIf we don't identify these parts, we might fail to earth them. Without earthing, a fault would leave the metal casing live, waiting to shock the next person who touches it.\n\n**Key facts / rules**\n*   It is part of the electrical equipment (e.g., motor frame, metal conduit, switch box).\n*   It is made of conductive material (metal).\n*   It is touchable (exposed).\n*   It is normally safe but becomes live during a fault.\n\n**Common mistakes**\n*   **Misconception:** \"Exposed\" means it has no cover. **Correction:** \"Exposed\" means *accessible to touch*. A metal switch plate is a cover, but it is also an exposed-conductive-part.\n*   **Misconception:** All metal in a room is an exposed part. **Correction:** Only metal that is *part of the electrical equipment* is an exposed part."
       }
     },
     {
@@ -97,64 +96,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Exposed Parts",
+        "title": "Check Your Understanding: Exposed Conductive Parts",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-4B-C1-L1-A",
-            "questionText": "An exposed conductive part is a component of the electrical equipment. What material property must it have?",
+            "questionText": "What is the term for a conductive part of electrical equipment which can be touched?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "conductive",
-              "metal",
-              "conductivity",
-              "electrical conductor"
+              "Exposed-conductive-part",
+              "Exposed conductive part",
+              "An exposed conductive part"
             ],
-            "hint": "It must be able to carry an electric current if a fault occurs."
+            "hint": "This term describes metal housings or casings that are part of the electrical equipment itself."
           },
           {
             "id": "203-4B-C1-L1-B",
-            "questionText": "In the context of ADS (Automatic Disconnection of Supply), what happens to an exposed conductive part during a fault condition?",
+            "questionText": "Under what specific state can an exposed-conductive-part become live?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "it becomes live",
-              "it becomes energized",
-              "carries fault current",
-              "voltage rises"
+              "Fault Condition",
+              "A fault condition",
+              "Under a fault condition"
             ],
-            "hint": "Think about what happens if a live wire touches the metal casing."
+            "hint": "This happens when something goes wrong, such as an internal insulation failure."
           },
           {
             "id": "203-4B-C1-L1-C",
-            "questionText": "Why is a plastic switch plate NOT classified as an exposed conductive part?",
+            "questionText": "How is an exposed-conductive-part different from a live part regarding its intended state?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "it is non-conductive",
-              "it is an insulator",
-              "plastic does not conduct",
-              "cannot become live"
+              "Not intended to be energized",
+              "Not normally live",
+              "Not intended to carry current"
             ],
-            "hint": "Consider if plastic can transmit a shock to your hand."
+            "hint": "Live parts are meant to carry electricity to make the device work, but these parts are not."
           },
           {
             "id": "203-4B-C1-L2",
-            "questionText": "A technician claims that a metal shelf next to a distribution board is an 'Exposed Conductive Part'. Explain why they are incorrect based on the definition of ADS components.",
+            "questionText": "Using your answers to Q1 (touchable parts), Q2 (fault conditions), and Q3 (distinction from live parts), explain how these facts connect. Why must we identify these parts even though they are safe during normal use?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The shelf is not part of the electrical equipment/installation.",
-              "Exposed conductive parts must be part of the equipment (like the board casing itself).",
-              "The shelf does not house live parts and cannot become live via internal insulation failure."
+              "Exposed parts are the touchable metal surfaces of the electrical equipment itself",
+              "They are normally safe because they are not intended to be energized like live parts",
+              "They only become dangerous during a fault condition when insulation fails",
+              "We must identify them to ensure they are earthed so the supply disconnects if they become live"
             ],
             "expectedAnswer": [
-              "The technician is incorrect because the metal shelf is not part of the electrical equipment or installation. An exposed conductive part must be a component of the electrical device itself (like the distribution board casing) that could become live if internal insulation fails. The shelf is just a structural item.",
-              "To be an exposed conductive part, the item must be part of the electrical system. A shelf is furniture or structure, not electrical equipment, so it does not fit the definition even if it is metal."
+              "Exposed conductive parts are touchable metal components of equipment that are not intended to be energized like live parts are. However, because they can become live during a fault condition, we must identify them to ensure they are properly earthed for safety.",
+              "We identify these touchable parts because, unlike live parts, they are normally safe but have the potential to carry current if a fault occurs. Identifying them allows us to connect them to the earthing system to prevent electric shock."
             ],
-            "hint": "Focus on the phrase 'part of the electrical equipment'."
+            "hint": "Think about how the location of the part and its behavior during a failure determines why we need to earth it."
           }
         ]
       }
@@ -164,8 +161,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Extraneous Conductive Parts (AC4)",
-        "content": "### Extraneous Conductive Parts\nNow we look at items *outside* the electrical system that still pose a risk.\n\n**What this is**\nAn **Extraneous Conductive Part** is a conductive object (usually metal) that is **not** part of the electrical installation but can introduce a potential—usually **Earth Potential** (0 Volts)—into the workspace.\n\n**Concrete Anchor: The Water Pipe**\nPicture a copper water pipe coming out of the ground and running up a wall.\n*   **Is it electrical equipment?** No, it carries water.\n*   **Is it conductive?** Yes, copper conducts electricity.\n*   **Is it connected to Earth?** Yes, it goes physically into the ground.\nThis pipe is an **Extraneous Conductive Part**.\n\n**Why it is a risk**\nIf you touch a live fault with one hand and this earthed pipe with the other, electricity flows through you to the pipe. The pipe provides the path to earth. To prevent this, we use **Protective Bonding** (connecting the pipe to our main earth terminal) to keep everything at the same voltage (Equipotential Zone).\n\n**The 'Isolation' Test**\nImagine a metal picture frame hanging on a dry wooden wall.\n*   It is metal (conductive).\n*   It is not electrical.\n*   **But**, it has no connection to the ground. It cannot introduce a potential.\nTherefore, the picture frame is **NOT** an extraneous conductive part. It does not need bonding.\n\n**Key facts**\n*   NOT part of the electrical installation.\n*   Liable to introduce a potential (has a path to earth).\n*   Examples: Gas pipes, water pipes, structural steel beams.\n*   Safety Measure: **Protective Bonding**."
+        "title": "Extraneous Conductive Parts",
+        "content": "### In this lesson\nYou will learn to define **Extraneous-conductive-parts** and distinguish them from the electrical installation. These are parts that bring dangerous Earth potential into a room.\n\n*   Defining **Extraneous-conductive-part**.\n*   Distinguishing between electrical system parts and external metalwork.\n*   Using resistance values to identify these parts.\n\n**What this is**\nAn **Extraneous-conductive-part** is a metal part that is *not* part of the electrical wiring but can introduce a potential (usually Earth potential/0V). These are typically items like water pipes, gas pipes, or structural steel that are in contact with the ground outside.\n\n**Concrete Anchor: The Copper Water Pipe**\nImagine a copper water pipe rising from the concrete floor. It is not connected to your fuse box, but it *is* connected to the wet soil under the building. This means the pipe is permanently at 0 Volts (Earth Potential). If you touch a live wire and this pipe at the same time, you get a shock.\n\n**Micro-Scenario: The 22kΩ Rule**\nHow do we know if a piece of metal is truly \"extraneous\"? We measure its resistance to the ground. \n*   **Scenario A:** You measure the resistance of a metal handrail to the main earth terminal. The reading is **5,000 Ohms (5kΩ)**. This is low resistance (below the industry guideline of **22,000 Ohms**). It can easily conduct dangerous current. This **IS** an extraneous-conductive-part.\n*   **Scenario B:** You measure a metal table leg standing on a dry floor. The reading is **500,000 Ohms (500kΩ)**. This is high resistance. It is isolated from the earth. This is **NOT** an extraneous-conductive-part.\n\n**Why it matters**\nIf an electrical fault energizes a metal appliance casing to 230V, and you are touching a water pipe at 0V, the voltage difference across your body is 230V. To prevent this, we bond extraneous parts to the main earthing terminal, keeping everything at the same potential (Equipotential Bonding).\n\n**Key facts / rules**\n*   It is NOT part of the electrical installation.\n*   It is conductive (metal).\n*   It introduces a potential (usually Earth/0V).\n*   **Rule of Thumb:** Resistance to earth is typically < 22kΩ.\n\n**Common mistakes**\n*   **Misconception:** Any metal object is extraneous. **Correction:** Only metal that connects to the ground (introduces potential) is extraneous. Isolated metal (like a floating metal shelf) is not."
       }
     },
     {
@@ -173,62 +170,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Extraneous Parts",
+        "title": "Check Your Understanding: Extraneous Conductive Parts",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "203-4B-C2-L1-A",
-            "questionText": "What is the primary difference between an extraneous conductive part and an exposed conductive part regarding their origin?",
+            "questionText": "What is the term for a conductive part that does not form part of the electrical installation?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "extraneous is not part of the electrical installation",
-              "exposed is electrical equipment",
-              "extraneous is external",
-              "extraneous is not electrical"
+              "Extraneous-conductive-part",
+              "Extraneous conductive part",
+              "An extraneous conductive part"
             ],
-            "hint": "One belongs to the wiring/equipment, the other belongs to the building/structure."
+            "hint": "These are metal items like pipes or structural steel that are separate from the wiring system."
           },
           {
             "id": "203-4B-C2-L1-B",
-            "questionText": "What potential is an extraneous conductive part most likely to introduce into a building?",
+            "questionText": "What specific potential is an extraneous-conductive-part liable to introduce into a building?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
               "Earth Potential",
-              "zero volts",
-              "ground potential",
-              "earth"
+              "Potential of the earth",
+              "0V potential"
             ],
-            "hint": "Think about where water pipes and structural steel usually originate."
+            "hint": "This occurs because the metal part is in contact with the physical ground outside (typically 0 Volts)."
           },
           {
             "id": "203-4B-C2-L1-C",
-            "questionText": "A metal table leg stands on a rubber mat and touches nothing else. Is it an extraneous conductive part? (Yes/No)",
+            "questionText": "Why are extraneous-conductive-parts considered distinct from exposed-conductive-parts?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "No",
-              "no"
+              "Do not house electrical components",
+              "Not part of electrical equipment",
+              "They are non-electrical metalwork"
             ],
-            "hint": "Does it have a connection to the ground to introduce a potential?"
+            "hint": "Consider whether the part contains wires and switches or if it is part of the plumbing/structure."
           },
           {
             "id": "203-4B-C2-L2",
-            "questionText": "Explain why a copper gas pipe entering a building is classified as 'Extraneous', while a copper wire inside a cable is not.",
+            "questionText": "Using your answers to Q1 (non-electrical parts), Q2 (introduced potential), and Q3 (distinction from exposed parts), explain how these facts connect. How do we know if a metal object is an extraneous-conductive-part?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The gas pipe is not part of the electrical system but is conductive and in contact with the ground (introduces earth potential).",
-              "The copper wire is an active part of the electrical installation designed to carry current.",
-              "Extraneous parts are defined by being non-electrical items that introduce potential."
+              "Extraneous parts are metal items not belonging to the electrical installation",
+              "They are identified by their ability to bring Earth potential into a location",
+              "Resistance testing (e.g., < 22kΩ) confirms if they are liable to introduce this potential",
+              "They differ from exposed parts because they do not contain or support electrical components"
             ],
             "expectedAnswer": [
-              "The gas pipe is classified as extraneous because it is a conductive item that is not part of the electrical installation but connects to the ground, introducing earth potential. The copper wire, although conductive, is an intended live part of the electrical installation itself, not an external structural item.",
-              "The gas pipe is external to the electrical system and brings in earth potential from outside, fitting the extraneous definition. The wire is the electrical system itself."
+              "We know a part is an extraneous-conductive-part if it is a metal object that is not part of the electrical system and does not house components, but is connected to the ground. This connection means it introduces Earth potential into the building. We often confirm this by measuring if the resistance to earth is low (e.g., below 22kΩ).",
+              "An extraneous-conductive-part is non-electrical metalwork that is distinct from exposed parts because it contains no wiring. It is identified by its low-resistance connection to the mass of the earth, which allows it to introduce earth potential into the installation."
             ],
-            "hint": "Compare their function: one carries gas/structure, the other carries the circuit current."
+            "hint": "Focus on the source of the potential and whether the part is actually part of the electrical system."
           }
         ]
       }
@@ -238,61 +235,45 @@
       "type": "practice",
       "order": 8,
       "content": {
-        "title": "Your Turn: Identification Scenarios",
+        "title": "Your Turn (You Do)",
         "questions": [
           {
             "id": "203-4B-P1",
-            "questionText": "You are inspecting a motor. The metal casing is part of the motor assembly. How do you classify this casing?",
-            "answerType": "short-text",
+            "questionText": "An inspector identifies the following four items in a room: a metal motor housing, a plastic light switch, a copper gas pipe, and a wooden door frame. How many of these items meet the definition of a 'conductive part'?",
+            "answerType": "numeric",
             "expectedAnswer": [
-              "exposed conductive part",
-              "exposed part",
-              "exposed"
+              "2"
             ],
-            "hint": "It is part of the electrical equipment and is metal."
+            "hint": "Count only the items made of material capable of carrying electric current (the motor housing and the gas pipe)."
           },
           {
             "id": "203-4B-P2",
-            "questionText": "You see a plastic junction box. Why is this NOT an exposed conductive part?",
+            "questionText": "Explain why a metal water pipe that enters a building from the ground is classified as an extraneous-conductive-part rather than an exposed-conductive-part.",
             "answerType": "short-text",
             "expectedAnswer": [
-              "it is non-conductive",
-              "it is insulating",
-              "plastic is an insulator",
-              "not conductive"
+              "not part of the electrical installation",
+              "not part of the installation"
             ],
-            "hint": "Focus on the material property."
+            "hint": "Focus on whether the item is an intended component of the electrical system itself or external to it."
           },
           {
             "id": "203-4B-P3",
-            "questionText": "In a room, you identify: 1. Metal conduit carrying wires, 2. A metal central heating pipe coming from the floor, 3. A metal light switch faceplate. How many of these are 'Extraneous Conductive Parts'?",
-            "answerType": "numeric",
+            "questionText": "A metal storage rack in a warehouse is bolted directly into the building's structural steel frame, which is embedded in the ground. If this rack is liable to introduce earth potential into the location, how is it classified?",
+            "answerType": "short-text",
             "expectedAnswer": [
-              "1"
+              "extraneous-conductive-part",
+              "extraneous conductive part"
             ],
-            "hint": "Items 1 and 3 are part of the electrical installation. Only Item 2 is a non-electrical service connected to earth."
+            "hint": "This is a conductive part that is not part of the electrical installation but introduces a potential (low resistance to earth)."
           },
           {
             "id": "203-4B-P4",
-            "questionText": "What specific safety connection is used to connect extraneous conductive parts (like gas pipes) to the main earthing terminal?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "protective bonding",
-              "bonding",
-              "equipotential bonding",
-              "main protective bonding"
-            ],
-            "hint": "This connection ensures all metal parts are at the same potential."
-          },
-          {
-            "id": "203-4B-P5",
-            "questionText": "If an Exposed Conductive Part is working correctly (no faults), what should its voltage be relative to Earth?",
+            "questionText": "Under normal operating conditions (no faults), what is the intended voltage of an exposed-conductive-part, such as a metal appliance casing?",
             "answerType": "numeric",
             "expectedAnswer": [
-              "0",
-              "0.0"
+              "0"
             ],
-            "hint": "Ideally, it should be safe to touch."
+            "hint": "The part is not normally live. Provide the numeric value in Volts."
           }
         ]
       }
@@ -302,43 +283,47 @@
       "type": "practice",
       "order": 9.5,
       "content": {
-        "title": "Putting It All Together: ADS & Safety",
+        "title": "Putting It All Together",
         "mode": "integrative",
         "sequential": true,
         "questions": [
           {
             "id": "203-4B-INT-1",
-            "questionText": "Compare 'Exposed' and 'Extraneous' conductive parts in terms of the risk they pose. Which one *becomes* live due to a fault, and which one *introduces* a potential from outside? Why is this distinction important for the ADS system?",
+            "questionText": "Explain the fundamental difference between the metallic housings of electrical equipment and the structural metalwork found within a building environment. In your answer, include: (1) the definition of an exposed-conductive-part, (2) the definition of an extraneous-conductive-part, and (3) the specific relationship each has to the electrical system. Why is this distinction critical for determining the correct safety measures? (2-3 sentences)",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Exposed parts belong to the equipment and become live if insulation fails (internal risk).",
-              "Extraneous parts are external (like pipes) and introduce earth potential (external risk).",
-              "Distinction is vital because exposed parts need Earthing (to trip fuses), while extraneous parts need Bonding (to equalize potential).",
-              "Confusing them could lead to applying the wrong safety connection."
+              "Defines exposed-conductive-part as a part of electrical equipment which can be touched and is not normally live.",
+              "Defines extraneous-conductive-part as a conductive part not forming part of the electrical installation.",
+              "Identifies that exposed parts are internal to the electrical system's components.",
+              "Identifies that extraneous parts are external to the system but liable to introduce a potential (often confirmed by <22kΩ resistance).",
+              "Reasons that the distinction is necessary because each requires different protective treatments to prevent shock."
             ],
             "expectedAnswer": [
-              "Exposed conductive parts are part of the equipment and become live due to an internal fault, posing a direct shock risk from the supply. Extraneous conductive parts are external items like pipes that introduce earth potential from the ground. This distinction is important because ADS relies on earthing the exposed parts to disconnect the supply during a fault, whereas extraneous parts must be bonded to prevent dangerous potential differences.",
-              "The exposed part is the source of danger during a fault (it becomes live), while the extraneous part provides a path to earth (introducing potential). We must distinguish them because exposed parts trigger the ADS protection, while extraneous parts are bonded to maintain the equipotential zone."
+              "An exposed-conductive-part is a metallic housing of the electrical system that can become live during a fault, whereas an extraneous-conductive-part is external metalwork like a pipe that is not part of the system but can introduce a potential. This distinction is critical because it dictates whether a part requires earthing as part of the circuit or protective bonding to the installation's main earthing terminal. We know this because the origin of the potential—internal fault versus external introduction—determines the safety path required.",
+              "Exposed-conductive-parts are components of the electrical installation itself, such as conduit or motor casings, while extraneous-conductive-parts are external items like structural steel or gas pipes. The relationship holds because safety regulations categorize parts based on their function within or outside the electrical circuit. This distinction is vital for ensuring that the correct protective measures, such as automatic disconnection of supply or bonding, are applied to the specific type of metalwork."
             ],
-            "hint": "Think: One is the 'victim' of a fault (exposed), the other is a 'bridge' to the ground (extraneous)."
+            "hint": "Think about which parts are intended to hold electrical components and which parts belong to the building's infrastructure."
           },
           {
             "id": "203-4B-INT-2",
-            "questionText": "Imagine a fault occurs in a washing machine (Exposed Part) and a person is touching it while also holding a water pipe (Extraneous Part). Explain how Earthing and Bonding work together in this scenario to protect the person.",
+            "questionText": "Evaluate how various conductive components in a facility are categorized and managed to maintain a safe environment. In your answer, include: (1) the criteria for identifying parts that are part of the electrical system, (2) the criteria for parts that are external to it, (3) how these categories are distinguished during an inspection, and (4) how these classifications together ensure overall installation safety. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Earthing connects the machine casing to earth, allowing a large fault current to flow and trip the breaker (ADS).",
-              "Bonding connects the water pipe to the main earth terminal, keeping the pipe and the machine casing at roughly the same voltage.",
-              "Together, they reduce the voltage difference (touch voltage) across the person's body.",
-              "Ideally, the supply disconnects before harm occurs."
+              "Criteria for exposed parts: part of equipment, touchable, can become live under fault.",
+              "Criteria for extraneous parts: not part of installation, liable to introduce potential (e.g., earth potential).",
+              "Distinction method: verifying if the part encloses electrical conductors or is independent metalwork (using resistance tests if needed).",
+              "Integration: Exposed parts are earthed to facilitate rapid disconnection of supply during faults.",
+              "Integration: Extraneous parts are bonded to maintain an equipotential zone.",
+              "Technical precision: Correct use of 'potential', 'fault conditions', and 'installation' terms.",
+              "Synthesis: Combined application prevents dangerous touch voltages between different conductive surfaces."
             ],
             "expectedAnswer": [
-              "In this scenario, Earthing ensures the washing machine casing is connected to the supply earth, allowing enough current to flow to trip the circuit breaker (ADS) and cut the power. Bonding connects the water pipe to the same earth terminal, ensuring the pipe and the machine casing rise to a similar potential during the fault. This minimizes the voltage difference across the person's body, preventing a lethal shock while the device disconnects.",
-              "• Earthing creates a path for fault current to disconnect the supply (ADS).\n• Bonding keeps the water pipe at the same potential as the earthing system.\n• Together, they ensure that even if the machine becomes live for a split second, there is no dangerous voltage difference between the machine and the pipe the person is holding."
+              "Conductive parts are categorized by their role: exposed-conductive-parts are the metallic enclosures of the electrical system itself, while extraneous-conductive-parts are external metalwork like moisture-prone pipes. During inspection, these are distinguished by determining if the part is an integral housing for electrical components or an independent structural element. By classifying them correctly, installers can apply earthing to exposed parts for fault protection and bonding to extraneous parts to eliminate potential differences, creating a safe equipotential environment.",
+              "• Exposed-conductive-parts are identified as metallic enclosures belonging to the electrical system that may become live during a fault.\n• Extraneous-conductive-parts are identified as external metallic structures liable to introduce a potential, such as water mains or steel frames.\n• Inspectors distinguish them by evaluating if the component is part of the electrical equipment or part of the building's non-electrical services.\n• These classifications ensure safety by allowing for specific protective measures—earthing for system parts and bonding for external parts—to prevent electric shock."
             ],
-            "hint": "Earthing acts to cut the power; Bonding acts to keep voltages equal."
+            "hint": "Consider how identifying the source of a potential (internal fault vs. external earth) determines the protective method used."
           }
         ]
       }
@@ -352,94 +337,86 @@
         "questions": [
           {
             "id": "203-4B-SR-1",
-            "questionText": "What do we call a material (like copper or iron) that allows electricity to flow through it easily?",
+            "questionText": "What type of material, such as copper or aluminum, allows electric current to flow easily?",
             "expectedAnswer": [
-              "conductor",
-              "conductive material",
-              "electrical conductor"
+              "Conductor",
+              "Conductive material"
             ],
-            "hint": "It is the opposite of an insulator.",
+            "hint": "This is the opposite of an insulator.",
             "answerType": "short-text"
           },
           {
             "id": "203-4B-SR-2",
-            "questionText": "For an electric shock to occur, there must be a difference in voltage between two points. What is the technical term for this difference?",
+            "questionText": "What is the unit of measurement for electrical resistance?",
             "expectedAnswer": [
-              "potential difference",
-              "voltage difference",
-              "p.d."
+              "Ohm",
+              "Ohms"
             ],
-            "hint": "It is measured in Volts.",
+            "hint": "This unit is represented by the Greek letter Omega (Ω) and is key to determining if a part is conductive.",
             "answerType": "short-text"
           },
           {
             "id": "203-4B-SR-3",
-            "questionText": "What is the general mass of the earth considered to be in terms of voltage?",
+            "questionText": "What is the standard voltage potential of the general mass of the Earth?",
             "expectedAnswer": [
-              "zero volts",
+              "0",
               "0V",
-              "0 volts",
-              "zero potential"
+              "Zero",
+              "0 Volts"
             ],
-            "hint": "It is the reference point for our earthing system.",
+            "hint": "Think of the voltage reference point for the entire electrical system.",
             "answerType": "short-text"
           }
         ],
-        "notes": "Foundation check on Conductors, Potential Difference, and Earth reference."
+        "notes": "Foundation check before starting Exposed and Extraneous Conductive Parts"
       }
     }
   ],
   "targetAssessmentCriteria": [
-    "AC2",
     "AC3",
     "AC4"
   ],
   "metadata": {
     "created": "2026-02-20",
     "updated": "2026-02-20",
-    "version": "1.1",
+    "version": "1.0",
     "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION",
+    "taskMode": "IDENTIFICATION, CLASSIFICATION",
     "syllabusAnchors": {
       "unit": "203",
       "learningOutcome": "LO4",
       "coveredAC": [
-        "AC2",
         "AC3",
         "AC4"
       ],
       "outOfScopeAC": [
         "AC1",
+        "AC2",
         "AC5"
       ]
     },
     "scope": {
-      "inScope": "Definitions and identification of Exposed and Extraneous Conductive Parts as components of ADS.",
-      "outOfScope": "Calculations of adiabatic equations, selection of specific protective conductor sizes, or earthing system types (TN-S etc).",
-      "rationale": "Learners must distinguish the components of ADS before learning how to size or install them."
+      "inScope": "The definitions, characteristics, and visual identification of exposed and extraneous conductive parts, including the use of resistance values (e.g., 22kΩ) to verify extraneous parts.",
+      "outOfScope": "Installation methods for protective bonding conductors or calculation of earth fault loop impedance.",
+      "rationale": "Foundational terminology and part identification must be mastered before moving to the practical application of earthing and bonding regulations."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": false,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus on classification (Exposed vs Extraneous) and their role in ADS."
+      "specificScope": "Focus exclusively on the classification and identification of parts"
     },
     "misconceptions": [
       {
-        "misconception": "Exposed means 'uninsulated' or 'bare' live wires.",
-        "correction": "Exposed refers to the conductive casing of equipment (like a toaster body) that should be safe, not the live wires inside.",
-        "relatedAC": "203.LO4.AC4.3"
+        "misconception": "All metal objects in a room are exposed conductive parts.",
+        "correction": "Only metal parts that are actually part of the electrical equipment or system (like enclosures or conduits) are classified as exposed.",
+        "relatedAC": "203.LO4.AC3"
       },
       {
-        "misconception": "Any metal object in a room is an extraneous conductive part.",
-        "correction": "It is only extraneous if it can introduce a potential (usually by touching the ground/earth). Isolated metal is not extraneous.",
-        "relatedAC": "203.LO4.AC4.4"
-      },
-      {
-        "misconception": "Exposed and Extraneous parts are treated the same way.",
-        "correction": "Exposed parts are Earthed (to trip faults); Extraneous parts are Bonded (to equalize potential).",
-        "relatedAC": "203.LO4.AC2"
+        "misconception": "Any piece of metal in a building is an extraneous conductive part.",
+        "correction": "It must be liable to introduce a potential (usually by being in contact with the ground, like a buried pipe) to be classified as extraneous. Isolated metal is not extraneous.",
+        "relatedAC": "203.LO4.AC4"
       }
     ]
   }
