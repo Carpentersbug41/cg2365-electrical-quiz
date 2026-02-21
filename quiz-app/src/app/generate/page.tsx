@@ -74,6 +74,52 @@ interface RefinementPatch {
   pointsRecovered: number;
 }
 
+interface PhaseScoreIssue {
+  id: string;
+  category: 'beginnerClarity' | 'teachingBeforeTesting' | 'markingRobustness' | 'alignmentToLO' | 'questionQuality';
+  problem: string;
+  whyItMatters: string;
+  alignmentGap?: string;
+  excerpt?: string;
+}
+
+interface PhaseScoreDetail {
+  total: number;
+  grade: 'Ship it' | 'Strong' | 'Usable' | 'Needs rework';
+  breakdown: {
+    beginnerClarity: number;
+    teachingBeforeTesting: number;
+    markingRobustness: number;
+    alignmentToLO: number;
+    questionQuality: number;
+  };
+  issues: PhaseScoreIssue[];
+  overallAssessment?: string;
+}
+
+interface ExistingLessonScoreDetail {
+  id: string;
+  category: 'beginnerClarity' | 'teachingBeforeTesting' | 'markingRobustness' | 'alignmentToLO' | 'questionQuality';
+  problem: string;
+  whyItMatters: string;
+  alignmentGap?: string;
+  excerpt?: string;
+}
+
+interface ExistingLessonScore {
+  total: number;
+  grade: 'Ship it' | 'Strong' | 'Usable' | 'Needs rework';
+  breakdown: {
+    beginnerClarity: number;
+    teachingBeforeTesting: number;
+    markingRobustness: number;
+    alignmentToLO: number;
+    questionQuality: number;
+  };
+  issues: ExistingLessonScoreDetail[];
+  overallAssessment?: string;
+}
+
 interface QuestionDebugInfo {
   questionId: number;
   issue: string;
@@ -102,6 +148,15 @@ interface GenerationStatus {
       finalScore: number;
       patchesApplied: number;
       details: RefinementPatch[];
+      phase10Score?: PhaseScoreDetail;
+      phase13?: {
+        ran: boolean;
+        accepted: boolean;
+        reason: string;
+        regressions: string[];
+        originalScoreDetail?: PhaseScoreDetail;
+        candidateScoreDetail?: PhaseScoreDetail;
+      };
     };
     debugBundle?: any; // GenerationDebugBundle from types
   };
@@ -199,6 +254,22 @@ export default function GeneratePage() {
     success: false,
     error: null,
   });
+  const [scoreStatus, setScoreStatus] = useState<{
+    scoring: boolean;
+    success: boolean;
+    error: string | null;
+    result?: {
+      lessonId: string;
+      total: number;
+      grade: string;
+      persisted: boolean;
+      score: ExistingLessonScore;
+    };
+  }>({
+    scoring: false,
+    success: false,
+    error: null,
+  });
   const selectedImproveLessonData = selectedImproveLesson
     ? lessons.find((lesson) => lesson.id === selectedImproveLesson)
     : null;
@@ -215,6 +286,10 @@ export default function GeneratePage() {
         .filter((value) => Number.isFinite(value)),
     ])
   ).sort((a, b) => a - b);
+
+  useEffect(() => {
+    setScoreStatus({ scoring: false, success: false, error: null });
+  }, [selectedImproveLesson]);
 
   const fetchLessons = useCallback(async () => {
     try {
@@ -643,6 +718,49 @@ export default function GeneratePage() {
     } catch (error) {
       setImproveStatus({
         improving: false,
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error',
+      });
+    }
+  };
+
+  const handleScoreExistingLesson = async () => {
+    if (!selectedImproveLesson) return;
+
+    setScoreStatus({ scoring: true, success: false, error: null });
+
+    try {
+      const response = await fetch('/api/score-lesson', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          lessonId: selectedImproveLesson,
+          persist: true,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Scoring failed');
+      }
+
+      setScoreStatus({
+        scoring: false,
+        success: true,
+        error: null,
+        result: {
+          lessonId: data.lessonId,
+          total: data.score?.total ?? 0,
+          grade: data.score?.grade ?? 'Unknown',
+          persisted: Boolean(data.persisted),
+          score: data.score as ExistingLessonScore,
+        },
+      });
+
+      await fetchLessons();
+    } catch (error) {
+      setScoreStatus({
+        scoring: false,
         success: false,
         error: error instanceof Error ? error.message : 'Unknown error',
       });
@@ -1150,6 +1268,104 @@ export default function GeneratePage() {
                                 <div className="text-purple-700 dark:text-purple-400 mt-1 font-mono">Path: {patch.path}</div>
                               </div>
                             ))}
+                          </div>
+                        </details>
+                      )}
+
+                      {status.result.refinementMetadata.phase10Score && (
+                        <details className="mt-2">
+                          <summary className="cursor-pointer text-sm font-semibold text-blue-900 dark:text-blue-200 hover:underline">
+                            View Full Phase 10 Scoring
+                          </summary>
+                          <div className="mt-2 rounded-lg border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 p-3 space-y-3">
+                            <p className="text-sm text-blue-900 dark:text-blue-200">
+                              Total: <strong>{status.result.refinementMetadata.phase10Score.total}/100</strong> ({status.result.refinementMetadata.phase10Score.grade})
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-5 gap-2 text-xs">
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Beginner Clarity: <strong>{status.result.refinementMetadata.phase10Score.breakdown.beginnerClarity}/30</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Teaching Before Testing: <strong>{status.result.refinementMetadata.phase10Score.breakdown.teachingBeforeTesting}/25</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Marking Robustness: <strong>{status.result.refinementMetadata.phase10Score.breakdown.markingRobustness}/20</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Alignment to LO: <strong>{status.result.refinementMetadata.phase10Score.breakdown.alignmentToLO}/15</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Question Quality: <strong>{status.result.refinementMetadata.phase10Score.breakdown.questionQuality}/10</strong></div>
+                            </div>
+                            {status.result.refinementMetadata.phase10Score.overallAssessment && (
+                              <p className="text-xs text-blue-800 dark:text-blue-300">
+                                {status.result.refinementMetadata.phase10Score.overallAssessment}
+                              </p>
+                            )}
+                            <div className="space-y-2">
+                              <p className="text-xs font-semibold text-blue-900 dark:text-blue-200">
+                                Issues ({status.result.refinementMetadata.phase10Score.issues.length})
+                              </p>
+                              {status.result.refinementMetadata.phase10Score.issues.length === 0 && (
+                                <p className="text-xs text-blue-800 dark:text-blue-300">No issues reported in Phase 10.</p>
+                              )}
+                              {status.result.refinementMetadata.phase10Score.issues.map((issue, i) => (
+                                <div key={`${issue.id}-${i}`} className="text-xs rounded border-l-2 border-blue-300 dark:border-blue-700 pl-3 py-2 bg-white dark:bg-gray-800">
+                                  <div className="font-semibold">{i + 1}. [{issue.category}] {issue.id}</div>
+                                  <div className="mt-1 text-gray-700 dark:text-gray-300">{issue.problem}</div>
+                                  <div className="mt-1 text-gray-600 dark:text-gray-400">{issue.whyItMatters}</div>
+                                  {issue.alignmentGap && (
+                                    <div className="mt-1 text-blue-700 dark:text-blue-400">Alignment: {issue.alignmentGap}</div>
+                                  )}
+                                  {issue.excerpt && (
+                                    <div className="mt-1 text-gray-500 dark:text-gray-400">Excerpt: {issue.excerpt}</div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </details>
+                      )}
+
+                      {status.result.refinementMetadata.phase13?.ran && status.result.refinementMetadata.phase13.candidateScoreDetail && (
+                        <details className="mt-2">
+                          <summary className="cursor-pointer text-sm font-semibold text-indigo-900 dark:text-indigo-200 hover:underline">
+                            View Full Phase 13 Re-Scoring
+                          </summary>
+                          <div className="mt-2 rounded-lg border border-indigo-200 dark:border-indigo-800 bg-indigo-50 dark:bg-indigo-900/20 p-3 space-y-3">
+                            <p className="text-sm text-indigo-900 dark:text-indigo-200">
+                              Decision: <strong>{status.result.refinementMetadata.phase13.accepted ? 'Accepted' : 'Rejected'}</strong>
+                            </p>
+                            <p className="text-xs text-indigo-800 dark:text-indigo-300">
+                              {status.result.refinementMetadata.phase13.reason}
+                            </p>
+                            <p className="text-xs text-indigo-800 dark:text-indigo-300">
+                              Candidate score: <strong>{status.result.refinementMetadata.phase13.candidateScoreDetail.total}/100</strong> ({status.result.refinementMetadata.phase13.candidateScoreDetail.grade})
+                            </p>
+                            <div className="grid grid-cols-1 md:grid-cols-5 gap-2 text-xs">
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Beginner Clarity: <strong>{status.result.refinementMetadata.phase13.candidateScoreDetail.breakdown.beginnerClarity}/30</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Teaching Before Testing: <strong>{status.result.refinementMetadata.phase13.candidateScoreDetail.breakdown.teachingBeforeTesting}/25</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Marking Robustness: <strong>{status.result.refinementMetadata.phase13.candidateScoreDetail.breakdown.markingRobustness}/20</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Alignment to LO: <strong>{status.result.refinementMetadata.phase13.candidateScoreDetail.breakdown.alignmentToLO}/15</strong></div>
+                              <div className="bg-white dark:bg-gray-800 rounded p-2">Question Quality: <strong>{status.result.refinementMetadata.phase13.candidateScoreDetail.breakdown.questionQuality}/10</strong></div>
+                            </div>
+                            <div className="space-y-2">
+                              <p className="text-xs font-semibold text-indigo-900 dark:text-indigo-200">
+                                Issues ({status.result.refinementMetadata.phase13.candidateScoreDetail.issues.length})
+                              </p>
+                              {status.result.refinementMetadata.phase13.candidateScoreDetail.issues.length === 0 && (
+                                <p className="text-xs text-indigo-800 dark:text-indigo-300">No issues reported in Phase 13 candidate score.</p>
+                              )}
+                              {status.result.refinementMetadata.phase13.candidateScoreDetail.issues.map((issue, i) => (
+                                <div key={`${issue.id}-${i}`} className="text-xs rounded border-l-2 border-indigo-300 dark:border-indigo-700 pl-3 py-2 bg-white dark:bg-gray-800">
+                                  <div className="font-semibold">{i + 1}. [{issue.category}] {issue.id}</div>
+                                  <div className="mt-1 text-gray-700 dark:text-gray-300">{issue.problem}</div>
+                                  <div className="mt-1 text-gray-600 dark:text-gray-400">{issue.whyItMatters}</div>
+                                  {issue.alignmentGap && (
+                                    <div className="mt-1 text-indigo-700 dark:text-indigo-400">Alignment: {issue.alignmentGap}</div>
+                                  )}
+                                  {issue.excerpt && (
+                                    <div className="mt-1 text-gray-500 dark:text-gray-400">Excerpt: {issue.excerpt}</div>
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                            {status.result.refinementMetadata.phase13.regressions.length > 0 && (
+                              <div className="text-xs text-rose-700 dark:text-rose-300">
+                                Regressions: {status.result.refinementMetadata.phase13.regressions.join(' | ')}
+                              </div>
+                            )}
                           </div>
                         </details>
                       )}
@@ -1801,28 +2017,108 @@ export default function GeneratePage() {
             </div>
 
             {/* Improve Button */}
-            <button
-              onClick={handleImproveLesson}
-              disabled={!selectedImproveLesson || improveStatus.improving}
-              className="w-full px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {improveStatus.improving ? (
-                <>
-                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  <span>Improving...</span>
-                </>
-              ) : (
-                <>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                  </svg>
-                  <span>Improve Lesson</span>
-                </>
-              )}
-            </button>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <button
+                onClick={handleScoreExistingLesson}
+                disabled={!selectedImproveLesson || scoreStatus.scoring || improveStatus.improving}
+                className="w-full px-6 py-3 bg-emerald-600 dark:bg-emerald-500 text-white rounded-lg font-medium hover:bg-emerald-700 dark:hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {scoreStatus.scoring ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Scoring...</span>
+                  </>
+                ) : (
+                  <span>Score Existing Lesson</span>
+                )}
+              </button>
+              <button
+                onClick={handleImproveLesson}
+                disabled={!selectedImproveLesson || improveStatus.improving || scoreStatus.scoring}
+                className="w-full px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-medium hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {improveStatus.improving ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>Improving...</span>
+                  </>
+                ) : (
+                  <>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                    </svg>
+                    <span>Improve Lesson</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {scoreStatus.success && scoreStatus.result && (
+              <div className="p-4 rounded-lg border bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800">
+                <h4 className="font-semibold text-emerald-900 dark:text-emerald-200">Lesson Scored</h4>
+                <p className="text-sm text-emerald-800 dark:text-emerald-300 mt-1">
+                  {scoreStatus.result.lessonId}: <strong>{scoreStatus.result.total}/100</strong> ({scoreStatus.result.grade})
+                </p>
+                <p className="text-xs text-emerald-700 dark:text-emerald-300 mt-1">
+                  {scoreStatus.result.persisted ? 'Score saved to lesson metadata.' : 'Score calculated (not persisted).'}
+                </p>
+                <details className="mt-3">
+                  <summary className="cursor-pointer text-sm font-semibold text-emerald-900 dark:text-emerald-200 hover:underline">
+                    View Detailed Score Output
+                  </summary>
+                  <div className="mt-2 space-y-3">
+                    <div className="grid grid-cols-1 md:grid-cols-5 gap-2 text-xs">
+                      <div className="bg-white dark:bg-slate-800 rounded p-2">Beginner Clarity: <strong>{scoreStatus.result.score.breakdown.beginnerClarity}/30</strong></div>
+                      <div className="bg-white dark:bg-slate-800 rounded p-2">Teaching Before Testing: <strong>{scoreStatus.result.score.breakdown.teachingBeforeTesting}/25</strong></div>
+                      <div className="bg-white dark:bg-slate-800 rounded p-2">Marking Robustness: <strong>{scoreStatus.result.score.breakdown.markingRobustness}/20</strong></div>
+                      <div className="bg-white dark:bg-slate-800 rounded p-2">Alignment to LO: <strong>{scoreStatus.result.score.breakdown.alignmentToLO}/15</strong></div>
+                      <div className="bg-white dark:bg-slate-800 rounded p-2">Question Quality: <strong>{scoreStatus.result.score.breakdown.questionQuality}/10</strong></div>
+                    </div>
+                    {scoreStatus.result.score.overallAssessment && (
+                      <p className="text-xs text-emerald-900 dark:text-emerald-200">
+                        {scoreStatus.result.score.overallAssessment}
+                      </p>
+                    )}
+                    <div className="space-y-2">
+                      <p className="text-xs font-semibold text-emerald-900 dark:text-emerald-200">
+                        Issues ({scoreStatus.result.score.issues.length})
+                      </p>
+                      {scoreStatus.result.score.issues.length === 0 && (
+                        <p className="text-xs text-emerald-800 dark:text-emerald-300">No issues reported.</p>
+                      )}
+                      {scoreStatus.result.score.issues.map((issue, i) => (
+                        <div key={`${issue.id}-${i}`} className="text-xs rounded border-l-2 border-emerald-300 dark:border-emerald-700 bg-white dark:bg-slate-800 p-2">
+                          <div className="font-semibold">
+                            {i + 1}. [{issue.category}] {issue.id}
+                          </div>
+                          <div className="mt-1">{issue.problem}</div>
+                          <div className="mt-1 text-gray-600 dark:text-gray-400">{issue.whyItMatters}</div>
+                          {issue.alignmentGap && (
+                            <div className="mt-1 text-emerald-700 dark:text-emerald-400">Alignment gap: {issue.alignmentGap}</div>
+                          )}
+                          {issue.excerpt && (
+                            <div className="mt-1 text-gray-500 dark:text-gray-400">Excerpt: {issue.excerpt}</div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </details>
+              </div>
+            )}
+
+            {scoreStatus.error && (
+              <div className="p-4 bg-red-50 dark:bg-red-900/20 rounded-lg border border-red-200 dark:border-red-800">
+                <h4 className="font-semibold text-red-900 dark:text-red-200">Scoring Failed</h4>
+                <p className="text-sm text-red-800 dark:text-red-300 mt-1">{scoreStatus.error}</p>
+              </div>
+            )}
 
             {/* Success Message */}
             {improveStatus.success && improveStatus.result && (

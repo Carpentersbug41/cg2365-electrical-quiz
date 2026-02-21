@@ -4,6 +4,7 @@
 
 import { BlockProps } from './types';
 import { OutcomesBlockContent } from '@/data/lessons/types';
+import BlockTTSButton from '../tts/BlockTTSButton';
 
 const bloomColors: Record<string, string> = {
   remember: 'bg-blue-100 text-blue-800 border-blue-300',
@@ -16,13 +17,19 @@ const bloomColors: Record<string, string> = {
 
 export default function OutcomesBlock({ block }: BlockProps) {
   const content = block.content as OutcomesBlockContent;
+  const ttsText = `Learning Outcomes. ${content.outcomes
+    .map((outcome, index) => `Outcome ${index + 1}. ${outcome.text}.`)
+    .join(' ')}`;
 
   return (
     <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-200" id={block.id}>
-      <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-        <span className="text-indigo-600">🎯</span>
-        Learning Outcomes
-      </h2>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+          <span className="text-indigo-600">LO</span>
+          Learning Outcomes
+        </h2>
+        <BlockTTSButton blockId={block.id} text={ttsText} label="Read learning outcomes aloud" />
+      </div>
       <ul className="space-y-3">
         {content.outcomes.map((outcome, index) => (
           <li key={index} className="flex items-start gap-3">
@@ -41,9 +48,5 @@ export default function OutcomesBlock({ block }: BlockProps) {
     </div>
   );
 }
-
-
-
-
 
 

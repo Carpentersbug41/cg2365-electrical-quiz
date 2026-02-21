@@ -50,6 +50,8 @@ export interface RefinementOutput {
   reason: string;
   regressions: string[];
   improvementSuccess: boolean;
+  phase13OriginalScoreDetail?: Phase10Score;
+  phase13CandidateScoreDetail?: Phase10Score;
 }
 
 export interface SequentialGeneratorResult {
@@ -67,6 +69,15 @@ export interface SequentialGeneratorResult {
     finalScore: number;
     patchesApplied: number;
     details: any[];
+    phase10Score?: Phase10Score;
+    phase13?: {
+      ran: boolean;
+      accepted: boolean;
+      reason: string;
+      regressions: string[];
+      originalScoreDetail?: Phase10Score;
+      candidateScoreDetail?: Phase10Score;
+    };
     report?: {
       status:
         | 'pass_no_refinement'
@@ -193,6 +204,7 @@ export class SequentialLessonGenerator {
         output: planResult ? `Layout: ${planResult.layout}, ${planResult.explanationSections.length} sections` : 'Failed',
       });
       if (!planResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Planning' });
         return { ...this.errorResult('Phase 1 (Planning) failed'), phases };
       }
 
@@ -206,6 +218,7 @@ export class SequentialLessonGenerator {
         output: vocabResult ? `Generated ${vocabResult.terms.length} terms` : 'Failed',
       });
       if (!vocabResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Vocabulary' });
         return { ...this.errorResult('Phase 2 (Vocabulary) failed'), phases };
       }
 
@@ -219,6 +232,7 @@ export class SequentialLessonGenerator {
         output: explanationResult ? `Generated ${explanationResult.explanations.length} explanation(s)` : 'Failed',
       });
       if (!explanationResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Explanation' });
         return { ...this.errorResult('Phase 3 (Explanation) failed'), phases };
       }
 
@@ -232,6 +246,7 @@ export class SequentialLessonGenerator {
         output: checksResult ? `Generated ${checksResult.checks.length} check block(s)` : 'Failed',
       });
       if (!checksResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Understanding Checks' });
         return { ...this.errorResult('Phase 4 (Understanding Checks) failed'), phases };
       }
 
@@ -245,6 +260,7 @@ export class SequentialLessonGenerator {
         output: workedExampleResult ? (workedExampleResult.workedExample ? 'Generated worked example' : 'Skipped (not needed)') : 'Failed',
       });
       if (!workedExampleResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Worked Example' });
         return { ...this.errorResult('Phase 5 (Worked Example) failed'), phases };
       }
 
@@ -258,6 +274,7 @@ export class SequentialLessonGenerator {
         output: practiceResult ? `Generated ${practiceResult.practice.questions.length} questions` : 'Failed',
       });
       if (!practiceResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Practice' });
         return { ...this.errorResult('Phase 6 (Practice) failed'), phases };
       }
 
@@ -271,6 +288,7 @@ export class SequentialLessonGenerator {
         output: integrationResult ? `Generated ${integrationResult.integrative.questions.length} integrative questions` : 'Failed',
       });
       if (!integrationResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Integration' });
         return { ...this.errorResult('Phase 7 (Integration) failed'), phases };
       }
 
@@ -284,6 +302,7 @@ export class SequentialLessonGenerator {
         output: spacedReviewResult ? `Generated ${spacedReviewResult.spacedReview.questions.length} review questions` : 'Failed',
       });
       if (!spacedReviewResult) {
+        debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Spaced Review' });
         return { ...this.errorResult('Phase 8 (Spaced Review) failed'), phases };
       }
 
@@ -342,6 +361,24 @@ export class SequentialLessonGenerator {
         console.log(`   Issues: ${initialScore.issues.length}`);
       }
       console.log('');
+
+      console.log(`📊 [Scoring] Phase 10 Issues Detail (${initialScore.issues.length}):`);
+      initialScore.issues.forEach((issue, idx) => {
+        console.log(`   ${idx + 1}. [${issue.category}] ${issue.id}`);
+        console.log(`      Problem: ${issue.problem}`);
+        console.log(`      Why: ${issue.whyItMatters}`);
+        if (issue.alignmentGap) {
+          console.log(`      Alignment: ${issue.alignmentGap}`);
+        }
+      });
+      debugLog('PHASE10_SCORE_FULL', {
+        lessonId,
+        total: initialScore.total,
+        grade: initialScore.grade,
+        breakdown: initialScore.breakdown,
+        issueCount: initialScore.issues.length,
+        issues: initialScore.issues,
+      });
 
       let finalLesson = lesson;
       let originalLesson: Lesson | undefined = undefined;
@@ -508,6 +545,7 @@ export class SequentialLessonGenerator {
         };
       }
       debugLog('SEQUENTIAL_GEN_COMPLETE', { lessonId, finalScore: refinementResult?.refinedScore || initialScore.total });
+      debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases });
       console.log(`✅ [Sequential] Generation complete for ${lessonId}`);
 
       // Always include score metadata
@@ -517,6 +555,15 @@ export class SequentialLessonGenerator {
         finalScore: refinementResult.refinedScore,
         patchesApplied: refinementResult.patchesApplied.length,
         details: refinementResult.patchesApplied,
+        phase10Score: initialScore,
+        phase13: {
+          ran: true,
+          accepted: refinementResult.accepted,
+          reason: refinementResult.reason,
+          regressions: refinementResult.regressions,
+          originalScoreDetail: refinementResult.phase13OriginalScoreDetail,
+          candidateScoreDetail: refinementResult.phase13CandidateScoreDetail,
+        },
         report: refinementReport,
       } : {
         wasRefined: false,
@@ -524,6 +571,22 @@ export class SequentialLessonGenerator {
         finalScore: initialScore.total,
         patchesApplied: 0,
         details: [],
+        phase10Score: initialScore,
+        phase13: refinementResult
+          ? {
+              ran: true,
+              accepted: refinementResult.accepted,
+              reason: refinementResult.reason,
+              regressions: refinementResult.regressions,
+              originalScoreDetail: refinementResult.phase13OriginalScoreDetail,
+              candidateScoreDetail: refinementResult.phase13CandidateScoreDetail,
+            }
+          : {
+              ran: false,
+              accepted: false,
+              reason: 'Phase 13 did not run (no refinement required or refinement failed).',
+              regressions: [],
+            },
         report: refinementReport,
       };
 
@@ -539,6 +602,7 @@ export class SequentialLessonGenerator {
 
     } catch (error) {
       debugLog('SEQUENTIAL_GEN_ERROR', { lessonId, error: error instanceof Error ? error.message : 'unknown' });
+      debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Unhandled Exception' });
       return { ...this.errorResult(error instanceof Error ? error.message : 'Unknown error in sequential generation'), phases };
     }
   }
@@ -1314,6 +1378,30 @@ export class SequentialLessonGenerator {
         this.generateWithRetry,
         threshold
       );
+
+      if (result.candidateScoreDetail) {
+        const candidate = result.candidateScoreDetail;
+        console.log(`  📊 Phase 13 Candidate Score: ${candidate.total}/100 (${candidate.grade})`);
+        console.log(`     - Beginner Clarity: ${candidate.breakdown.beginnerClarity}/30`);
+        console.log(`     - Teaching-Before-Testing: ${candidate.breakdown.teachingBeforeTesting}/25`);
+        console.log(`     - Marking Robustness: ${candidate.breakdown.markingRobustness}/20`);
+        console.log(`     - Alignment to LO: ${candidate.breakdown.alignmentToLO}/15`);
+        console.log(`     - Question Quality: ${candidate.breakdown.questionQuality}/10`);
+        console.log(`     - Issues: ${candidate.issues.length}`);
+        if (candidate.issues.length > 0) {
+          candidate.issues.forEach((issue, idx) => {
+            console.log(`       ${idx + 1}. [${issue.category}] ${issue.id}: ${issue.problem}`);
+          });
+        }
+      }
+      debugLog('PHASE13_SCORE_FULL', {
+        original: result.originalScoreDetail || null,
+        candidate: result.candidateScoreDetail || null,
+        accepted: result.accepted,
+        reason: result.reason,
+        improvement: result.improvement,
+        regressions: result.regressions,
+      });
       
       if (!result.accepted) {
         console.log(`  ⚠️  Phase 13: Candidate rejected - ${result.reason}`);
@@ -1332,7 +1420,9 @@ export class SequentialLessonGenerator {
         accepted: result.accepted,
         reason: result.reason,
         regressions: result.regressions,
-        improvementSuccess: result.accepted
+        improvementSuccess: result.accepted,
+        phase13OriginalScoreDetail: result.originalScoreDetail,
+        phase13CandidateScoreDetail: result.candidateScoreDetail,
       };
       
     } catch (error) {

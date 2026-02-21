@@ -75,11 +75,13 @@ import { installationAndEvaluationOfMicroRenewablesQuestions } from './installat
 import { consumerUnitsPurposeProtectiveDevicesQuestions } from './consumerUnitsPurposeProtectiveDevicesQuestions';
 import { consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions } from './consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions';
 import { consumerUnitsTotalNoobQuestions } from './consumerUnitsTotalNoobQuestions';
+import { lightingCircuitsNoobLevel1Questions } from './lightingCircuitsNoobLevel1Questions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...lightingCircuitsNoobLevel1Questions,
   ...consumerUnitsTotalNoobQuestions,
   ...consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions,
   ...consumerUnitsPurposeProtectiveDevicesQuestions,
@@ -227,6 +229,7 @@ export { installationAndEvaluationOfMicroRenewablesQuestions } from './installat
 export { consumerUnitsPurposeProtectiveDevicesQuestions } from './consumerUnitsPurposeProtectiveDevicesQuestions';
 export { consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions } from './consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions';
 export { consumerUnitsTotalNoobQuestions } from './consumerUnitsTotalNoobQuestions';
+export { lightingCircuitsNoobLevel1Questions } from './lightingCircuitsNoobLevel1Questions';
 
 /**
  * Filter questions by tags

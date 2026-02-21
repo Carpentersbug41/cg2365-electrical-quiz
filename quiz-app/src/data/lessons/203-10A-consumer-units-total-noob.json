@@ -228,6 +228,38 @@
       }
     },
     {
+      "id": "203-10A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.7,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Consumer Unit",
+            "right": "The central distribution board that splits the incoming electrical supply into individual circuits and houses the necessary protective devices."
+          },
+          {
+            "left": "Main Switch",
+            "right": "The primary isolation device used to manually disconnect the entire electrical supply from the consumer unit, not individual circuits."
+          },
+          {
+            "left": "Circuit Breaker MCB",
+            "right": "An automatic safety device that protects an individual circuit from damage caused by overcurrent or short circuits, not from earth leakage."
+          },
+          {
+            "left": "RCD Residual Current Device",
+            "right": "A sensitive safety device that disconnects the circuit when it detects a leakage of current to earth, protecting people from electric shock rather than protecting the wiring from overload."
+          },
+          {
+            "left": "Visual Inspection",
+            "right": "A non-intrusive safety procedure used to identify obvious defects like exposed copper or damaged insulation before any physical work or testing begins."
+          }
+        ]
+      }
+    },
+    {
       "id": "203-10A-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -377,6 +409,24 @@
       }
     },
     {
+      "id": "203-10A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "is-correct-why",
+        "statement": "An RCD protects against circuit overload caused by too many appliances.",
+        "isCorrect": false,
+        "reasons": [
+          "An RCD detects current leaking to earth and trips to reduce electric shock risk.",
+          "An MCB is the device that trips on overload or short-circuit overcurrent.",
+          "An RCD is mainly for balancing current to earth leakage, not overcurrent protection."
+        ],
+        "correctReasonIndex": 1,
+        "explanation": "The statement is incorrect. Overload protection is provided by an MCB (or RCBO), while an RCD is for earth leakage protection."
+      }
+    },
+    {
       "id": "203-10A-integrative",
       "type": "practice",
       "order": 9.5,
@@ -480,8 +530,8 @@
   ],
   "metadata": {
     "created": "2026-02-20",
-    "updated": "2026-02-20",
-    "version": "1.0",
+    "updated": "2026-02-21",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY, PROCEDURE",
     "syllabusAnchors": {
@@ -526,6 +576,14 @@
         "relatedAC": "AC3.4"
       }
     ],
-    "youtubeUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw"
+    "youtubeUrl": "https://www.youtube.com/watch?v=J6w-ASh6eKw",
+    "generationScore": 78,
+    "generationScoreDetails": {
+      "originalScore": 78,
+      "finalScore": 78,
+      "wasRefined": false,
+      "generatedAt": "2026-02-20T23:52:39.802Z",
+      "source": "score-lesson-api"
+    }
   }
 }

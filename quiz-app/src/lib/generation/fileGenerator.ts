@@ -566,6 +566,25 @@ OUTPUT FORMAT: Pure JSON only`;
         debugLog('SEQUENTIAL_GENERATION_FAILED', { lessonId, error: result.error });
         return result;
       }
+
+      const refinementMeta = result.refinementMetadata as
+        | {
+            originalScore?: number;
+            finalScore?: number;
+            wasRefined?: boolean;
+          }
+        | undefined;
+      const originalScore =
+        typeof refinementMeta?.originalScore === 'number' ? refinementMeta.originalScore : null;
+      const finalScore =
+        typeof refinementMeta?.finalScore === 'number' ? refinementMeta.finalScore : originalScore;
+      if (typeof finalScore === 'number') {
+        const scoreDelta = typeof originalScore === 'number' ? finalScore - originalScore : 0;
+        const scoreDeltaLabel = scoreDelta > 0 ? `+${scoreDelta}` : `${scoreDelta}`;
+        console.log(
+          `[Sequential] Score summary: original=${originalScore ?? 'n/a'}/100, final=${finalScore}/100, delta=${scoreDeltaLabel}, refined=${Boolean(refinementMeta?.wasRefined)}`
+        );
+      }
       
       // Run strict lint on the assembled lesson
       const strictLint = this.strictLintService.strictLint(result.content, lessonId);
@@ -593,6 +612,10 @@ OUTPUT FORMAT: Pure JSON only`;
           content: result.content,
           warnings,
           phases: result.phases,
+          refinementMetadata: result.refinementMetadata,
+          debugBundle: result.debugBundle,
+          originalLesson: result.originalLesson,
+          rejectedRefinedLesson: result.rejectedRefinedLesson,
         };
       }
       
@@ -609,6 +632,10 @@ OUTPUT FORMAT: Pure JSON only`;
         content: result.content,
         warnings: softValidation.warnings.length > 0 ? softValidation.warnings : undefined,
         phases: result.phases,
+        refinementMetadata: result.refinementMetadata,
+        debugBundle: result.debugBundle,
+        originalLesson: result.originalLesson,
+        rejectedRefinedLesson: result.rejectedRefinedLesson,
       };
       
     } catch (error) {

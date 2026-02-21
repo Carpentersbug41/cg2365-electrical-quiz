@@ -83,6 +83,7 @@ import { installationAndEvaluationOfMicroRenewablesQuestions } from './questions
 import { consumerUnitsPurposeProtectiveDevicesQuestions } from './questions/consumerUnitsPurposeProtectiveDevicesQuestions';
 import { consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions } from './questions/consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions';
 import { consumerUnitsTotalNoobQuestions } from './questions/consumerUnitsTotalNoobQuestions';
+import { lightingCircuitsNoobLevel1Questions } from './questions/lightingCircuitsNoobLevel1Questions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -159,6 +160,7 @@ export const questions: Question[] = [
   ...consumerUnitsPurposeProtectiveDevicesQuestions,
   ...consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions,
   ...consumerUnitsTotalNoobQuestions,
+  ...lightingCircuitsNoobLevel1Questions,
 ];
 
 // Re-export allTaggedQuestions for API routes

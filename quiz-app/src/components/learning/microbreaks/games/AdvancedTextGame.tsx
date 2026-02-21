@@ -53,7 +53,7 @@ function defaultInstruction(type: AdvancedGameContent['gameType']): string {
     case 'fill-gap':
       return 'Choose one option for each gap, then tap Check.';
     case 'is-correct-why':
-      return 'Pick Correct or Incorrect, choose the best reason, then check.';
+      return 'Step 1: Decide if the statement is correct. Step 2: Pick the best reason. Step 3: Tap Check.';
     case 'diagnosis-ranked':
       return 'Choose the best 1st and 2nd options, then tap Check.';
     case 'classify-two-bins':
@@ -208,16 +208,19 @@ function IsCorrectWhyGame({ content, soundEnabled, onDone }: { content: IsCorrec
   return (
     <div className="space-y-2">
       <p className="rounded border border-gray-300 bg-white p-2 text-sm dark:border-slate-600 dark:bg-slate-700">{content.statement}</p>
+      <p className="text-xs font-semibold text-gray-700 dark:text-slate-300">1) Is the statement correct?</p>
       <div className="flex gap-2">
         <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setChoice(true); }} className={`rounded border px-2 py-1 text-xs ${tone(checked, content.isCorrect, choice === true)}`}>Correct</button>
         <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setChoice(false); }} className={`rounded border px-2 py-1 text-xs ${tone(checked, !content.isCorrect, choice === false)}`}>Incorrect</button>
       </div>
+      <p className="text-xs font-semibold text-gray-700 dark:text-slate-300">2) Why?</p>
       <div className="space-y-1">
         {content.reasons.map((r, idx) => (
           <button key={`${r}-${idx}`} disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setReason(idx); }} className={`block w-full rounded border px-2 py-1 text-left text-xs ${tone(checked, idx === content.correctReasonIndex, reason === idx)}`}>{r}</button>
         ))}
       </div>
       {checked && content.explanation ? <p className="text-xs text-gray-600 dark:text-slate-400">{content.explanation}</p> : null}
+      <p className="text-xs font-semibold text-gray-700 dark:text-slate-300">3) Check your answer</p>
       <button disabled={checked || choice === null || reason === null} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(score, score * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
     </div>
   );

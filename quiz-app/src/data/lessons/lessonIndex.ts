@@ -370,6 +370,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-10A'),
     available: true,
     order: 16,
+  },
+  {
+    id: '203-LC1A',
+    title: 'Lighting Circuits (Noob Level 1)',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Lighting Circuits (Noob Level 1)',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-LC1A'),
+    available: true,
+    order: 17,
   },// Unit 210: Communication
   {
     id: '204-10A',

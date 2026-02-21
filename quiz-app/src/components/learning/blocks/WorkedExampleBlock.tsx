@@ -4,19 +4,35 @@
 
 import { BlockProps } from './types';
 import { WorkedExampleBlockContent } from '@/data/lessons/types';
+import BlockTTSButton from '../tts/BlockTTSButton';
 
 export default function WorkedExampleBlock({ block }: BlockProps) {
   const content = block.content as WorkedExampleBlockContent;
+  const ttsText = [
+    content.title,
+    `Given. ${content.given}`,
+    ...content.steps.map((step) =>
+      `Step ${step.stepNumber}. ${step.description}. ${step.formula ? `Formula. ${step.formula}.` : ''} ${
+        step.calculation ? `Calculation. ${step.calculation}.` : ''
+      } ${step.result ? `Result. ${step.result}.` : ''}`
+    ),
+    content.notes ? `Note. ${content.notes}` : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl shadow-lg p-6 border-2 border-green-200" id={block.id}>
-      <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-        <span className="text-green-600">✏️</span>
-        {content.title}
-        <span className="ml-auto px-3 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full border border-green-300">
-          I Do (Model)
-        </span>
-      </h2>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+          <span className="text-green-600">EX</span>
+          {content.title}
+          <span className="ml-auto px-3 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full border border-green-300">
+            I Do (Model)
+          </span>
+        </h2>
+        <BlockTTSButton blockId={block.id} text={ttsText} label={`Read ${content.title} aloud`} />
+      </div>
       
       <div className="bg-white rounded-xl p-4 mb-4 border border-green-200">
         <p className="text-sm font-semibold text-gray-600 mb-2">Given:</p>
@@ -59,7 +75,7 @@ export default function WorkedExampleBlock({ block }: BlockProps) {
       {content.notes && (
         <div className="mt-4 bg-amber-50 rounded-lg p-4 border border-amber-200">
           <p className="text-sm text-amber-900 flex items-start gap-2">
-            <span className="text-amber-600 flex-shrink-0">💡</span>
+            <span className="text-amber-600 flex-shrink-0">Note</span>
             <span>{content.notes}</span>
           </p>
         </div>
@@ -67,9 +83,3 @@ export default function WorkedExampleBlock({ block }: BlockProps) {
     </div>
   );
 }
-
-
-
-
-
-

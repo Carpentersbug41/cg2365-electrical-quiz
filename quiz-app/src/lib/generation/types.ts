@@ -88,6 +88,72 @@ export interface GenerationResponse {
     finalScore: number;
     patchesApplied: number;
     details: any[]; // Patch details from Phase 12 (Implement)
+    phase10Score?: {
+      total: number;
+      grade: 'Ship it' | 'Strong' | 'Usable' | 'Needs rework';
+      breakdown: {
+        beginnerClarity: number;
+        teachingBeforeTesting: number;
+        markingRobustness: number;
+        alignmentToLO: number;
+        questionQuality: number;
+      };
+      issues: Array<{
+        id: string;
+        category: 'beginnerClarity' | 'teachingBeforeTesting' | 'markingRobustness' | 'alignmentToLO' | 'questionQuality';
+        problem: string;
+        whyItMatters: string;
+        alignmentGap?: string;
+        excerpt?: string;
+      }>;
+      overallAssessment?: string;
+    };
+    phase13?: {
+      ran: boolean;
+      accepted: boolean;
+      reason: string;
+      regressions: string[];
+      originalScoreDetail?: {
+        total: number;
+        grade: 'Ship it' | 'Strong' | 'Usable' | 'Needs rework';
+        breakdown: {
+          beginnerClarity: number;
+          teachingBeforeTesting: number;
+          markingRobustness: number;
+          alignmentToLO: number;
+          questionQuality: number;
+        };
+        issues: Array<{
+          id: string;
+          category: 'beginnerClarity' | 'teachingBeforeTesting' | 'markingRobustness' | 'alignmentToLO' | 'questionQuality';
+          problem: string;
+          whyItMatters: string;
+          alignmentGap?: string;
+          excerpt?: string;
+        }>;
+        overallAssessment?: string;
+      };
+      candidateScoreDetail?: {
+        total: number;
+        grade: 'Ship it' | 'Strong' | 'Usable' | 'Needs rework';
+        breakdown: {
+          beginnerClarity: number;
+          teachingBeforeTesting: number;
+          markingRobustness: number;
+          alignmentToLO: number;
+          questionQuality: number;
+        };
+        issues: Array<{
+          id: string;
+          category: 'beginnerClarity' | 'teachingBeforeTesting' | 'markingRobustness' | 'alignmentToLO' | 'questionQuality';
+          problem: string;
+          whyItMatters: string;
+          alignmentGap?: string;
+          excerpt?: string;
+        }>;
+        overallAssessment?: string;
+      };
+    };
     report?: {
       status:
         | 'pass_no_refinement'

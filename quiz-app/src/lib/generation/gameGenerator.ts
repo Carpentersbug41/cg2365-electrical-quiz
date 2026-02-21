@@ -645,6 +645,21 @@ function validateGameSchemaAndContent(
       const reasons = Array.isArray(content.reasons) ? content.reasons : [];
       if (!statement) errors.push('is-correct-why requires statement');
       if (reasons.length < 3) errors.push('is-correct-why requires >=3 reasons');
+      if (content.correctReasonIndex < 0 || content.correctReasonIndex >= reasons.length) {
+        errors.push('is-correct-why correctReasonIndex out of bounds');
+      }
+      if (reasons.some(r => typeof r !== 'string' || !r.trim())) {
+        errors.push('is-correct-why reasons must be non-empty strings');
+      }
+      if (reasons.some(r => /^\s*[-*]/.test(String(r)))) {
+        errors.push('is-correct-why reasons must not include markdown bullet formatting');
+      }
+      if (reasons.some(r => String(r).length > 180)) {
+        errors.push('is-correct-why reasons are too long for quick gameplay');
+      }
+      if (reasons.some(r => /in this lesson/i.test(String(r)))) {
+        errors.push('is-correct-why reasons must be gameplay options, not lesson framing text');
+      }
       requireGrounding([statement, ...reasons], 'is-correct-why');
       break;
     }

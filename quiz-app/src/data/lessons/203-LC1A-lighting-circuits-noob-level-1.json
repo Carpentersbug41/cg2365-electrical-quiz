@@ -1,0 +1,450 @@
+{
+  "id": "203-LC1A",
+  "title": "203.LC1A — Lighting Circuits (Noob Level 1)",
+  "description": "Learn about Lighting Circuits (Noob Level 1) in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Lighting Circuits (Noob Level 1)",
+  "learningOutcomes": [
+    "Define the purpose of a lighting circuit and identify its key components.",
+    "Explain the sequence of electricity flow through a basic switch-controlled path.",
+    "Identify common visual hazards and the importance of the earth (CPC) for safety."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-LC1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define the purpose of a lighting circuit and identify its key components.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the sequence of electricity flow through a basic switch-controlled path.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify common visual hazards and the importance of the earth (CPC) for safety.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Circuit",
+            "definition": "A complete path of conductors that allows electrical current to flow from a source to a load and back again."
+          },
+          {
+            "term": "Line Conductor",
+            "definition": "The conductor that carries electrical energy from the supply source to the switch or load, different from the neutral because it is at a higher potential."
+          },
+          {
+            "term": "Neutral Conductor",
+            "definition": "The conductor that provides the return path for current to the supply source, completing the loop under normal operating conditions."
+          },
+          {
+            "term": "Circuit Protective Conductor (CPC)",
+            "definition": "A conductor used for safety that connects exposed metal parts to earth to protect against electric shock, not for carrying normal load current."
+          },
+          {
+            "term": "Load",
+            "definition": "Any component in a circuit, such as a lamp, that converts electrical energy into another form like light or heat."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Lighting Circuits (Noob Level 1) Diagram",
+        "description": "Visual representation of Lighting Circuits (Noob Level 1)",
+        "videoUrl": "",
+        "imageUrl": "https://www.youtube.com/watch?v=fixa_1jp55c&list=PL2Ea5r9gxUUfm4SACOSOZigCeSxxC5xaO",
+        "diagramType": "circuit",
+        "elementIds": [
+          "line-conductor",
+          "neutral-conductor",
+          "circuit-protective-conductor",
+          "light-switch",
+          "lamp-load"
+        ],
+        "placeholderText": "A schematic diagram showing a simple lighting loop. The line-conductor (brown) travels from the supply to a light-switch. From the switch, it continues to the lamp-load. A neutral-conductor (blue) returns from the lamp-load to the supply, completing the circuit. A green-and-yellow circuit-protective-conductor is shown connected to the metal frame of the lamp-load and the switch box, leading back to the main earth terminal."
+      }
+    },
+    {
+      "id": "203-LC1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Circuit Purpose and Components",
+        "content": "### In this lesson\n- You will learn to define a lighting circuit and identify its essential physical parts.\n- This knowledge is applied when interpreting technical drawings or identifying parts on a training rig.\n- Key takeaways include the definition of a circuit, the role of the load, and the functions of different conductors.\n\n**What this is**\nIn technical terms, a **Circuit** is a complete path of conductors that allows electrical current to flow from a source to a load and back again. A lighting circuit is a specific type of electrical loop dedicated to providing energy to lamps. Unlike other circuits that might power heavy machinery or kitchen appliances, lighting circuits are typically designed for lower power demands and are separated to ensure that a fault in a power socket does not leave a building in total darkness. The components within this loop include the supply source, the switch (control), the **Load** (the lamp), and the various conductors that link them together.\n\n**Why it matters**\nUnderstanding the components of a lighting circuit is the foundation of electrical installation. If you cannot identify the **Line Conductor** or the **Neutral Conductor**, you cannot ensure the system operates correctly or safely. Identifying these parts allows a technician to understand how energy is distributed throughout a room and ensures that safety features, like the **Circuit Protective Conductor (CPC)**, are in their correct positions to prevent accidents.\n\n**Key facts / rules**\n- A lighting circuit must form a continuous loop to function.\n- The **Line Conductor** is the wire that carries energy from the source toward the switch or load.\n- The **Neutral Conductor** provides the essential return path to the supply source.\n- The **Circuit Protective Conductor (CPC)** is a safety wire that does not carry current under normal conditions.\n- A **Load** is any component, such as a lamp, that consumes electrical energy to do work.\n- Lighting circuits are commonly kept separate from socket circuits for safety and reliability.\n\n**When to choose it**\nSelection of a lighting circuit layout is necessary whenever a space requires controlled illumination. You choose to identify and isolate these components when the goal is specifically to manage light levels without affecting other electrical services. For example, in a residential hallway, you identify the specific **Circuit** dedicated to the ceiling lights to ensure that maintenance can be performed on the lamps without turning off the power to the heating system or the refrigerator. The choice to use a dedicated lighting path ensures that the **Load** receives a consistent supply of energy at the correct potential.\n\n**Common mistakes**\nLearners often confuse the **Neutral Conductor** with the **Circuit Protective Conductor (CPC)**; the **Neutral Conductor** is the normal return path for current whereas the **CPC** is a safety path only used during a fault. Another common error is assuming the **Load** is the source of the power, rather than the component consuming it.\n\nMisconceptions (targeted):\n- Misconception: The CPC is a backup wire that carries current if the Neutral breaks. | Correction: The CPC is for safety grounding only and should never carry normal load current. | AC: AC3.1\n- Misconception: A circuit is just a single wire going to a bulb. | Correction: A circuit must be a complete loop (Line and Neutral) for current to flow. | AC: AC3.1\n\n**Key Points**\n- A **Circuit** is a complete loop for electricity.\n- The **Line Conductor** brings power in; the **Neutral Conductor** takes it back.\n- The **Load** (lamp) is the part that uses the energy.\n- The **CPC** is the safety connection to earth.\n\n**Quick recap**\nA lighting circuit is a dedicated loop of conductors designed to power lamps. It consists of a **Line Conductor** for supply, a **Neutral Conductor** for the return path, a **Load** to convert energy into light, and a **CPC** to ensure safety. These parts must work together to form a complete path.\n\n### Coming Up Next\nNow that we can identify the parts, we will look at the principles of operation to see how electricity actually moves through these components in a specific sequence."
+      }
+    },
+    {
+      "id": "203-LC1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Purpose and Components",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-LC1A-C1-L1-A",
+            "questionText": "What physical form must a lighting circuit take in order to function?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "continuous loop",
+              "a continuous loop",
+              "complete loop"
+            ],
+            "hint": "Think about the shape the conductors must form to allow electricity to travel from the source and back."
+          },
+          {
+            "id": "203-LC1A-C1-L1-B",
+            "questionText": "What is the primary purpose of the Neutral Conductor in a circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "essential return path",
+              "return path",
+              "return to source"
+            ],
+            "hint": "Identify the role of the wire that leads away from the load."
+          },
+          {
+            "id": "203-LC1A-C1-L1-C",
+            "questionText": "Under normal conditions, when should the Circuit Protective Conductor (CPC) carry load current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "never",
+              "never carry current",
+              "no conditions"
+            ],
+            "hint": "Recall the specific safety-only role of the CPC compared to the functional wires."
+          },
+          {
+            "id": "203-LC1A-C1-L2",
+            "questionText": "Using your answers to Q1 (continuous loop), Q2 (return path), and Q3 (CPC current), why must we distinguish between the Neutral Conductor and the CPC?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The loop requires a return path to function",
+              "The Neutral provides this functional return path",
+              "The CPC is for safety only and does not contribute to the loop",
+              "Confusing them would mean using a safety wire for a functional purpose"
+            ],
+            "expectedAnswer": [
+              "We must distinguish them because a circuit needs a continuous loop to work, which the Neutral provides as the return path, whereas the CPC is for safety only and should never carry current unless there is a fault.",
+              "The Neutral is part of the functional loop that returns current to the source, but the CPC is a safety connection that must stay separate because it is not meant to carry normal load current."
+            ],
+            "hint": "Consider which wire is needed for the light to turn on versus which wire is there to prevent accidents."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Principles of Operation",
+        "content": "### In this lesson\n- You will learn the sequence of electricity flow through a basic switch-controlled path.\n- This helps you understand how a switch interacts with the conductors to control a lamp.\n- Key takeaways include the flow sequence, the state of the switch, and the importance of the CPC for safety.\n\n**What this is**\nThe principles of operation describe how energy moves through the **Circuit**. For a lamp to light up, there must be a continuous, unbroken path from the source, through the **Line Conductor**, through the **Load**, and back through the **Neutral Conductor**. This is known as a closed loop. If the path is broken at any point—such as by a switch being turned off—the flow stops instantly. The **Circuit Protective Conductor (CPC)** stays out of this normal flow, acting as a silent observer that only becomes active if electricity escapes the normal path.\n\n**Why it matters**\nKnowing the flow sequence allows you to diagnose why a light isn't working or identify potential hazards. If you understand that electricity must travel through the switch before reaching the **Load**, you can recognise that a fault at the switch will prevent the lamp from functioning. Furthermore, recognizing the role of the **CPC** helps you appreciate why all metal parts of a light fitting must be connected to earth to prevent electric shock.\n\n**Key facts / rules**\n- Electricity typically flows from the source to the switch via the **Line Conductor**.\n- When the switch is \"closed,\" it completes the path to the **Load**.\n- When the switch is \"open,\" it creates a gap, stopping the flow of current.\n- The **Neutral Conductor** must be intact to allow current to return to the source.\n- The **CPC** connects exposed metal parts to earth to protect against shock.\n- Visual hazards include loose wires or damaged insulation that breaks the intended path.\n\n**How to recognise it**\nYou can recognise the operation of a lighting circuit by observing the physical state of the components. In a standard setup, you will see the **Line Conductor** entering the switch. If the switch is toggled to the \"on\" position, the internal contacts meet, and you can identify the continuation of the path toward the lamp. In the diagram, the **Load** is positioned between the controlled line and the **Neutral Conductor**. You can recognise a hazard if you see exposed copper on any conductor or if the **CPC** is disconnected from a metal light fitting. \n\n**Common mistakes**\nLearners often confuse an \"open\" circuit with a \"working\" circuit; an open **Circuit** is actually broken (off), whereas a closed **Circuit** is complete (on). \n\nMisconceptions (targeted):\n- Misconception: Electricity is \"used up\" at the lamp and doesn't need to return. | Correction: Current must return to the source via the Neutral Conductor to maintain flow. | AC: AC3.1\n- Misconception: The CPC is only needed for the light to turn on. | Correction: The light will work without a CPC, but the system will be unsafe. | AC: AC4.2\n\n**Key Points**\n- Flow sequence: Source → Switch → **Load** → **Neutral**.\n- An open switch breaks the **Line Conductor** path.\n- The **Neutral Conductor** completes the return loop.\n- The **CPC** provides a safety path to earth for fault currents.\n\n**Quick recap**\nElectricity flows in a specific sequence: it leaves the source via the **Line Conductor**, passes through a switch to the **Load**, and returns via the **Neutral Conductor**. The **CPC** is a critical safety component that protects users by providing an earth path, even though it is not part of the normal functional flow. Recognizing this sequence and the presence of these conductors is vital for safety.\n\n### Coming Up Next\nIn the next lesson, we will look at different types of wiring systems used to house these lighting circuits in various environments."
+      }
+    },
+    {
+      "id": "203-LC1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Principles of Operation",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-LC1A-C2-L1-A",
+            "questionText": "What is the effect on the flow of current when a switch is in the open state?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "stopping the flow",
+              "stops flow",
+              "stops current flow"
+            ],
+            "hint": "Recall what happens when a gap is created in the conductor path."
+          },
+          {
+            "id": "203-LC1A-C2-L1-B",
+            "questionText": "What must be true of the Neutral Conductor to allow electricity to return to the source?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "must be intact",
+              "be intact",
+              "intact"
+            ],
+            "hint": "Think about the required physical condition of the return wire."
+          },
+          {
+            "id": "203-LC1A-C2-L1-C",
+            "questionText": "What is the safety status of a lighting circuit that is operating without a CPC?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "system will be unsafe",
+              "unsafe",
+              "dangerous"
+            ],
+            "hint": "Identify if the absence of a safety wire prevents the lamp from working or creates a hazard."
+          },
+          {
+            "id": "203-LC1A-C2-L2",
+            "questionText": "Using your answers to Q1 (open switch), Q2 (intact Neutral), and Q3 (missing CPC), how do we know that a functional circuit is not necessarily a safe circuit?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Function depends on the switch and an intact Neutral to complete the path",
+              "The light will still turn on even if the CPC is missing",
+              "A circuit without a CPC is unsafe despite being functionally complete",
+              "Safety components are independent of the operational flow sequence"
+            ],
+            "expectedAnswer": [
+              "We know this because the light will still work if the switch is closed and the Neutral is intact, but without a CPC the system will be unsafe because there is no path for fault currents.",
+              "A circuit is functional if the path for current is complete, but it is only safe if the CPC is present; the light operating does not prove the safety features are working."
+            ],
+            "hint": "Think about whether a lamp needs the CPC to light up, and what that implies about safety versus operation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-LC1A-P1",
+            "questionText": "Which specific conductor is identified as the one carrying energy from the supply source toward the control switch or the load?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Line Conductor",
+              "Line"
+            ],
+            "hint": "This conductor is at a higher potential than the return path."
+          },
+          {
+            "id": "203-LC1A-P2",
+            "questionText": "What must be true of the Circuit Protective Conductor (CPC) for it to effectively protect a user from an electric shock during a fault?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Connected to earth",
+              "Properly grounded",
+              "Continuous to earth"
+            ],
+            "hint": "Think about where the electricity needs to go if it escapes the normal path."
+          },
+          {
+            "id": "203-LC1A-P3",
+            "questionText": "In an industrial cooling system, a heavy-duty fan is used to dissipate heat. Within the context of circuit components, how is this fan classified?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Load",
+              "The load"
+            ],
+            "hint": "Identify the component that consumes energy to perform work."
+          },
+          {
+            "id": "203-LC1A-P4",
+            "questionText": "In a standard circuit containing a line, a neutral, and a CPC, how many of these conductors are designed to carry current under normal, non-fault conditions?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "2"
+            ],
+            "hint": "Count only the conductors that form the functional loop (supply and return)."
+          },
+          {
+            "id": "203-LC1A-P5",
+            "questionText": "Why are lighting circuits typically separated from high-power socket circuits in a building's distribution system?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Safety and reliability",
+              "Prevent total darkness",
+              "Reliability"
+            ],
+            "hint": "Consider what happens to the lights if a fault occurs in a kitchen appliance plugged into a socket."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-LC1A-INT-1",
+            "questionText": "Explain how the physical components of a circuit determine the operational sequence of electricity flow. In your answer, include: (1) the role of the load within the circuit, (2) the function of the switch within the flow sequence, and (3) the requirement for the conductor path. Why must the path be continuous for the load to function? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies the load as the component that consumes or converts energy",
+              "Describes the switch as the control mechanism that interrupts or completes the path",
+              "Explains that conductors provide the physical route from source to load and back",
+              "Reasons that an unbroken path is required to allow current to travel the full loop",
+              "Connects component integrity to the ability of the circuit to perform its purpose"
+            ],
+            "expectedAnswer": [
+              "The load converts electrical energy into a useful output, while the switch acts as a gatekeeper in the sequence to start or stop the flow. For the load to function, conductors must form a continuous loop because electricity requires an uninterrupted path to travel from the source, through the components, and back. If the path is broken at any point, the flow stops and the load cannot operate.",
+              "Electricity flows in a sequence from the source through conductors to the load, with the switch positioned to break this sequence when needed. A continuous path must be maintained because the flow of energy relies on a complete circuit to move charge. Without a return path to the source, the electrical pressure cannot move through the load."
+            ],
+            "hint": "Think about what happens to the flow of energy if one part of the loop is missing or the switch is open."
+          },
+          {
+            "id": "203-LC1A-INT-2",
+            "questionText": "Evaluate the relationship between circuit operation, component sequence, and safety requirements. In your answer, include: (1) the primary purpose of a lighting circuit, (2) the sequence of flow through a switch-controlled path, (3) the specific safety role of the Circuit Protective Conductor (CPC), and (4) how these elements integrate to create a functional and safe system. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Defines the circuit purpose as providing a controlled path for energy to a load",
+              "Details the sequence from source, through switch, to load, and return",
+              "Identifies the CPC as the dedicated path for fault current to ensure safety",
+              "Explains that the switch provides operational control over the sequence",
+              "Synthesizes that a circuit requires both a functional path and a protective path",
+              "Connects component identification to the prevention of hazards",
+              "Recognizes that the earth (CPC) is essential for protecting users from visual or hidden hazards",
+              "Concludes that integration of control and protection is necessary for technical compliance"
+            ],
+            "expectedAnswer": [
+              "A lighting circuit provides a controlled path for energy to reach a load, following a sequence from the source, through a switch, and back via a return conductor. While the switch manages the operational state of the lamp, the Circuit Protective Conductor (CPC) provides a vital safety path to earth to prevent hazards. These elements work together to ensure the circuit is both functional for the user and protected against electrical faults.",
+              "• The circuit's purpose is to deliver energy to a load through a series of conductors and components.\n• Electricity flows in a sequence controlled by a switch, which opens or closes the conductive path.\n• The CPC (earth) acts as a safety component by providing a dedicated route for electricity in the event of a fault.\n• Together, these components ensure that the system operates efficiently while protecting the environment from hazards."
+            ],
+            "hint": "Consider how the operational path (for the light) differs from the safety path (for protection)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-LC1A-SR-1",
+            "questionText": "What is the general term for a complete and continuous path through which a flow travels?",
+            "expectedAnswer": [
+              "circuit",
+              "a circuit",
+              "electrical circuit"
+            ],
+            "hint": "Think of a loop that starts and ends at the same source.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-LC1A-SR-2",
+            "questionText": "What is the general term for a component used to start, stop, or redirect flow within a system?",
+            "expectedAnswer": [
+              "switch",
+              "a switch",
+              "control"
+            ],
+            "hint": "This device is used to manually open or close a path.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-LC1A-SR-3",
+            "questionText": "What is the term for any potential source of harm, injury, or damage in a work environment?",
+            "expectedAnswer": [
+              "hazard",
+              "a hazard",
+              "danger",
+              "risk"
+            ],
+            "hint": "Safety procedures are designed to identify and manage these.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Lighting Circuits (Noob Level 1)"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1"
+  ],
+  "metadata": {
+    "created": "2026-02-21",
+    "updated": "2026-02-21",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "Basic definitions, component identification, and the functional path of a simple lighting circuit.",
+      "outOfScope": "Installation procedures, multi-way switching, electrical calculations, and live testing.",
+      "rationale": "Establishes foundational conceptual awareness for beginners before introducing practical installation or technical calculations."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Rig-safe and dead-safe awareness only; strictly no live work or wiring procedures."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The CPC is a backup wire that carries current if the Neutral breaks.",
+        "correction": "The CPC is for safety grounding only and should never carry normal load current.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "Electricity is \"used up\" at the lamp and doesn't need to return.",
+        "correction": "Current must return to the source via the Neutral Conductor to maintain flow.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "The CPC is only needed for the light to turn on.",
+        "correction": "The light will work without a CPC, but the system will be unsafe because metal parts won't be earthed.",
+        "relatedAC": "AC4.2"
+      }
+    ],
+    "generationScore": 97,
+    "generationScoreDetails": {
+      "originalScore": 97,
+      "finalScore": 97,
+      "wasRefined": false,
+      "generatedAt": "2026-02-21T21:16:48.338Z",
+      "source": "phase10-13"
+    }
+  }
+}

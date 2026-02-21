@@ -20,7 +20,8 @@
     "phase10:analyze-failures": "npx tsx scripts/runPhase10Diagnostics.ts analyze-failures",
     "phase10:analyze-recent": "npx tsx scripts/runPhase10Diagnostics.ts analyze-recent",
     "phase10:dashboard": "npx tsx scripts/runPhase10Diagnostics.ts dashboard",
-    "phase10:summary": "npx tsx scripts/runPhase10Diagnostics.ts summary"
+    "phase10:summary": "npx tsx scripts/runPhase10Diagnostics.ts summary",
+    "score:lessons": "npx tsx scripts/scoreExistingLessons.ts"
   },
   "dependencies": {
     "@google-cloud/vertexai": "^1.4.0",

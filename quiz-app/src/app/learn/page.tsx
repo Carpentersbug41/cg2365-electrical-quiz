@@ -52,6 +52,7 @@ import lesson203_6B from '@/data/lessons/203-6B-installation-and-evaluation-of-m
 import lesson203_10B from '@/data/lessons/203-10B-consumer-units-purpose-protective-devices.json';
 import lesson203_10C from '@/data/lessons/203-10C-consumer-unit-practical-position-entries-terminations-rig-safe.json';
 import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json';
+import lesson203_LC1A from '@/data/lessons/203-LC1A-lighting-circuits-noob-level-1.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -95,6 +96,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_LC1A,
   lesson203_10A,
   lesson203_10C,
   lesson203_10B,
