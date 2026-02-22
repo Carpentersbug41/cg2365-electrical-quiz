@@ -70,7 +70,7 @@
         "title": "Lighting Circuits (Noob Level 1) Diagram",
         "description": "Visual representation of Lighting Circuits (Noob Level 1)",
         "videoUrl": "",
-        "imageUrl": "https://www.youtube.com/watch?v=fixa_1jp55c&list=PL2Ea5r9gxUUfm4SACOSOZigCeSxxC5xaO",
+        "imageUrl": "/images/lessons/203-LC1A-lighting-circuits.svg",
         "diagramType": "circuit",
         "elementIds": [
           "line-conductor",
@@ -231,6 +231,43 @@
       }
     },
     {
+      "id": "203-LC1A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Normal Current Path",
+        "rightLabel": "Safety / Fault Protection",
+        "items": [
+          {
+            "text": "Line Conductor",
+            "correctBin": "left"
+          },
+          {
+            "text": "Neutral Conductor",
+            "correctBin": "left"
+          },
+          {
+            "text": "Load (lamp)",
+            "correctBin": "left"
+          },
+          {
+            "text": "Circuit Protective Conductor (CPC)",
+            "correctBin": "right"
+          },
+          {
+            "text": "Earth connection for exposed metal parts",
+            "correctBin": "right"
+          },
+          {
+            "text": "Carries current only during a fault",
+            "correctBin": "right"
+          }
+        ]
+      }
+    },
+    {
       "id": "203-LC1A-practice",
       "type": "practice",
       "order": 8,
@@ -287,6 +324,38 @@
               "Reliability"
             ],
             "hint": "Consider what happens to the lights if a fault occurs in a kitchen appliance plugged into a socket."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-LC1A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 75,
+        "questions": [
+          {
+            "question": "Which conductor carries electrical energy from the supply toward the switch or load?",
+            "answer": "Line Conductor"
+          },
+          {
+            "question": "Which conductor provides the return path for current to the source?",
+            "answer": "Neutral Conductor"
+          },
+          {
+            "question": "Which conductor is for safety grounding and should not carry normal load current?",
+            "answer": "Circuit Protective Conductor (CPC)"
+          },
+          {
+            "question": "What is the name of the component that uses electrical energy to do useful work, such as producing light?",
+            "answer": "Load"
+          },
+          {
+            "question": "For a lamp circuit to operate, what must the conductor path form?",
+            "answer": "A complete continuous loop"
           }
         ]
       }
@@ -393,8 +462,8 @@
   ],
   "metadata": {
     "created": "2026-02-21",
-    "updated": "2026-02-21",
-    "version": "1.0",
+    "updated": "2026-02-22",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

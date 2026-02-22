@@ -1,0 +1,444 @@
+{
+  "id": "201-203-SC1A",
+  "title": "Procedures for Electric Shock and Injuries",
+  "description": "Learn the immediate emergency procedures for dealing with accidents involving electric shock and electrical burns in the workplace.",
+  "layout": "split-vis",
+  "unit": "Unit 201",
+  "topic": "Emergency Procedures: Electric Shock",
+  "learningOutcomes": [
+    "Identify the immediate safe actions to take when an electric shock accident occurs",
+    "Describe how to safely isolate a casualty from a live electrical source",
+    "Recognize the physical signs of electric shock and electrical burns for reporting"
+  ],
+  "prerequisites": [
+    "Basic understanding of workplace hazards"
+  ],
+  "blocks": [
+    {
+      "id": "201-203-SC1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the immediate safe actions to take when an electric shock accident occurs",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe how to safely isolate a casualty from a live electrical source using non-conductive materials",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify the correct reporting procedure and physical signs of electrical injury",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-203-SC1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Conductor",
+            "definition": "A material, such as metal or the human body, that allows electricity to flow through it easily."
+          },
+          {
+            "term": "Non-conductive",
+            "definition": "A material (insulator) that does not allow electricity to flow, such as dry wood, plastic, or rubber."
+          },
+          {
+            "term": "Safe Isolation",
+            "definition": "The process of turning off the electrical supply at the main switch or consumer unit to stop the flow of current."
+          },
+          {
+            "term": "Electrical Burn",
+            "definition": "Damage to skin and internal tissue caused by an electric current passing through the body, often showing 'entry' and 'exit' marks."
+          },
+          {
+            "term": "Casualty",
+            "definition": "The person who has been injured or affected by the accident."
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-203-SC1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "The Electric Shock Response Chain",
+        "description": "Visual steps for responding to an electrical emergency safely.",
+        "videoUrl": "",
+        "diagramType": "process",
+        "elementIds": [
+          "step-1-assess",
+          "step-2-isolate",
+          "step-3-rescue",
+          "step-4-first-aid"
+        ],
+        "placeholderText": "A flowchart showing: 1. ASSESS (Look for danger, do not touch casualty). 2. ISOLATE (Turn off the main power switch). 3. RESCUE (If power can't be cut, use a dry wooden broom to push the casualty away). 4. HELP (Call emergency services and check breathing)."
+      }
+    },
+    {
+      "id": "201-203-SC1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Immediate Actions: The 'No-Touch' Rule",
+        "content": "### In this lesson\n- You will learn how to respond to an electric shock without becoming a casualty yourself.\n- This knowledge is critical for saving lives while maintaining your own safety.\n- Key takeaways: **Never touch** a live casualty, how to **isolate** power, and using **non-conductive** tools.\n\n**What this is**\nWhen a person suffers an electric shock, their muscles often contract, making them 'stick' to the live source. Because the human body is a **conductor**, if you touch the person while they are still in contact with the electricity, the current will flow through them and into you. The most important rule is: **Do not touch the casualty until the power is off.**\n\n**Why it matters**\nElectricity is invisible. If you rush in to help and touch the person, you will also be shocked, leaving two casualties instead of one. Understanding the procedure ensures that the rescue is successful and that emergency services can be called immediately to deal with internal injuries that might not be visible.\n\n**Key facts / rules**\n- **Step 1: Assess Danger.** Look for the source of the shock (bare wires, wet floors, tools).\n- **Step 2: Isolate.** Switch off the power at the main consumer unit or pull the plug if safe.\n- **Step 3: Rescue.** If the power cannot be turned off, use a **non-conductive** object (like a dry wooden broom handle) to push the casualty away from the source.\n- **Step 4: Call for help.** Dial emergency services (999/112) immediately.\n\n**How to recognise it**\nA person receiving a shock may be shaking, unable to move, or may have been thrown across a room. \n\n*Concrete Anchor:* Think of a live wire like a 'hot' stove that you can't let go of. If someone tries to pull you off with their bare hands, they get burned too. You need a 'wooden spoon' (a non-conductive tool) to push them away safely.\n\n*Micro-scenario:* You enter a plant room and see a colleague slumped against a control panel. You hear a buzzing sound. Before moving toward them, you look for the 'Emergency Stop' button or the main isolator switch to kill the power.\n\n**Common mistakes**\nLearners often think they can pull a casualty away by their clothing. This is dangerous because clothing can be damp or thin, allowing the current to reach you. Always use a solid, dry, non-conductive object if the power cannot be turned off.\n\n**Key Points**\n- The body is a **conductor**; touching a casualty is dangerous.\n- **Safe Isolation** is the only 100% safe way to stop the shock.\n- Use **non-conductive** materials for rescue only if isolation is impossible.\n\n**Quick recap**\nYour priority is your own safety. Stop the flow of electricity by switching it off. Only then can you safely approach the casualty to provide first aid."
+      }
+    },
+    {
+      "id": "201-203-SC1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Immediate Response",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "201-203-SC1A-C1-L1-A",
+            "questionText": "What is the very first thing you should do if you see someone suffering from an electric shock?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Assess for danger",
+              "Assess the danger",
+              "Check for danger",
+              "Look for danger"
+            ],
+            "hint": "Before acting, you must ensure you won't become a casualty yourself."
+          },
+          {
+            "id": "201-203-SC1A-C1-L1-B",
+            "questionText": "What is the process of turning off the electrical supply at the main switch called?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Safe Isolation",
+              "Isolation",
+              "Isolating the power",
+              "Safe Isolation procedure"
+            ],
+            "hint": "It involves making the circuit 'dead' so it is safe to touch."
+          },
+          {
+            "id": "201-203-SC1A-C1-L1-C",
+            "questionText": "If you cannot turn the power off, what property must an object have to safely push a casualty away?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Non-conductive",
+              "Insulating",
+              "Non conductive",
+              "It must be an insulator"
+            ],
+            "hint": "Think of materials like dry wood or plastic that don't carry electricity."
+          },
+          {
+            "id": "201-203-SC1A-C1-L2",
+            "questionText": "Explain why you must never touch a person who is still in contact with a live electrical source. What happens to the rescuer in this situation?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The human body is a conductor of electricity.",
+              "Current will flow through the casualty into the rescuer.",
+              "The rescuer will also receive an electric shock.",
+              "This creates multiple casualties and prevents help from being called."
+            ],
+            "expectedAnswer": [
+              "You must never touch the person because the human body is a conductor. If you touch them while they are live, the electricity will flow through them and into you, causing you to receive a shock as well. This would mean there are now two people injured and no one to call for help.",
+              "Touching a live casualty makes you part of the electrical circuit. Because the body conducts electricity, the current will pass into you, potentially stopping your heart or causing burns. This is why you must isolate the power or use a non-conductive object first."
+            ],
+            "hint": "Consider how electricity travels through materials and what happens when a person becomes part of that path."
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-203-SC1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Identifying Injuries and Reporting",
+        "content": "### In this lesson\n- You will learn to recognize the signs of electric shock and burns.\n- This helps you provide accurate information to emergency services and site supervisors.\n- Key takeaways: identifying **Electrical Burns**, checking for breathing, and the importance of reporting.\n\n**What this is**\nElectric shock doesn't just cause external damage; it can stop the heart or cause internal organ damage. **Electrical Burns** are unique because they often have an 'entry' point (where the current entered the body) and an 'exit' point (where it traveled to ground). These wounds can look small on the skin but be very deep and serious underneath.\n\n**Why it matters**\nEven if a casualty seems 'fine' after a shock, they must be seen by a doctor. Electrical current can cause heart rhythm problems that appear hours later. Accurate reporting ensures the site is made safe so the accident doesn't happen again.\n\n**Key facts / rules**\n- **Signs of Shock:** Difficulty breathing, weak pulse, muscle pain, or unconsciousness.\n- **Electrical Burns:** Look for charred or red skin where the person touched the source or the ground.\n- **First Aid:** If the person is not breathing, start CPR if trained. For burns, use cool water (not ice) and cover with a non-sticky dressing.\n- **Reporting:** All electrical accidents must be reported to the **Responsible Person** (e.g., Site Manager or H&S Officer).\n\n**How to recognise it**\nLook for 'entry' and 'exit' marks. For example, a burn on the hand (entry) and a burn on the foot (exit). If the person is unconscious, always treat it as a medical emergency even if there are no visible marks.\n\n*Micro-scenario:* A worker is shocked by a faulty drill. They are awake but have a small black mark on their thumb. You must call for a first aider and ensure the worker goes to the hospital, as the current may have affected their heart rhythm.\n\n**Common mistakes**\nThinking that 'no visible burns' means 'no injury.' Internal damage is the biggest risk with electricity. Always seek medical advice.\n\n**Key Points**\n- Electrical burns have entry and exit points.\n- Internal injuries (like heart failure) are common and invisible.\n- All accidents must be reported to the site's **Responsible Person**.\n\n**Quick recap**\nOnce the casualty is safe from the source, check their breathing and look for burns. Always treat electric shock as a serious internal injury and report the incident immediately."
+      }
+    },
+    {
+      "id": "201-203-SC1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Injuries and Reporting",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "201-203-SC1A-C2-L1-A",
+            "questionText": "What two points are often found on the skin of a person who has suffered a serious electrical burn?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Entry and exit points",
+              "Entry and exit marks",
+              "Entrance and exit",
+              "Entry and exit"
+            ],
+            "hint": "Think about where the current went in and where it left the body to reach the ground."
+          },
+          {
+            "id": "201-203-SC1A-C2-L1-B",
+            "questionText": "Who is the 'Responsible Person' you should usually report a health and safety matter to on a work site?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Site Manager",
+              "H&S Officer",
+              "Supervisor",
+              "Foreman"
+            ],
+            "hint": "This is the person in charge of safety or the overall site."
+          },
+          {
+            "id": "201-203-SC1A-C2-L1-C",
+            "questionText": "Even if there are no visible burns, which vital organ can be affected by an electric shock?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "The heart",
+              "Heart",
+              "Lungs"
+            ],
+            "hint": "Electricity can disrupt the natural rhythm of this organ."
+          },
+          {
+            "id": "201-203-SC1A-C2-L2",
+            "questionText": "Why is it essential for a casualty to receive medical attention even if they appear to have no visible injuries after an electric shock?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Electricity causes internal injuries that aren't visible.",
+              "Current can disrupt the heart's natural rhythm.",
+              "Heart problems can develop hours after the initial shock.",
+              "Internal burns can damage organs and tissue."
+            ],
+            "expectedAnswer": [
+              "It is essential because electric shock causes internal damage that you cannot see from the outside. The current can disrupt the heart's rhythm, which might lead to a heart attack hours later. Even without skin burns, internal organs may have been damaged by the heat of the current.",
+              "Medical attention is needed because internal injuries are common with electricity. The heart is especially at risk of rhythm changes that can be fatal if not monitored. A doctor needs to check for these invisible effects to ensure the person is truly safe."
+            ],
+            "hint": "Think about what is happening inside the body when electricity passes through it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-203-SC1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Scenario Practice: Emergency Response",
+        "questions": [
+          {
+            "id": "201-203-SC1A-P1",
+            "questionText": "You find a worker unconscious next to a frayed extension lead. What is the very first action you take?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Assess for danger",
+              "Check for danger",
+              "Look for danger"
+            ],
+            "hint": "Remember the first step in any emergency procedure."
+          },
+          {
+            "id": "201-203-SC1A-P2",
+            "questionText": "The power cannot be turned off. You see a plastic pipe and a metal ladder nearby. Which do you use to move the casualty?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Plastic pipe",
+              "The plastic pipe",
+              "Plastic"
+            ],
+            "hint": "One of these is a conductor, and one is non-conductive."
+          },
+          {
+            "id": "201-203-SC1A-P3",
+            "questionText": "How many main priorities are there when managing an accident scene: (1) Your own safety, (2) The casualty's safety, (3) Getting help?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count the priorities listed in the question."
+          },
+          {
+            "id": "201-203-SC1A-P4",
+            "questionText": "What is the name of the injury caused by electricity that may leave marks where the current entered and left the body?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Electrical burn",
+              "Electric burn",
+              "Burns"
+            ],
+            "hint": "This was defined in the vocabulary section."
+          },
+          {
+            "id": "201-203-SC1A-P5",
+            "questionText": "In the initial 'DRS' assessment (Danger, Response, Shout), how many steps must you complete before you check the casualty's airway?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count the letters in 'DRS'."
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-203-SC1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "201-203-SC1A-INT-1",
+            "questionText": "A colleague is being shocked by a piece of machinery. Describe the full sequence of actions you would take from the moment you see them until help arrives. Include how you would handle the power source and what materials you would use if the switch is unreachable. (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Assess the scene for danger first.",
+              "Isolate the power at the main switch if possible.",
+              "Use a non-conductive object (like dry wood) if power cannot be cut.",
+              "Call emergency services (999/112).",
+              "Check the casualty only after they are clear of the source."
+            ],
+            "expectedAnswer": [
+              "First, I would assess the scene for danger and immediately try to isolate the power at the main switch. If the switch is unreachable, I would use a non-conductive object like a dry wooden broom to push the colleague away from the machine. Once they are safe from the current, I would call emergency services and check their breathing.",
+              "I would start by checking for danger to ensure I don't get shocked. I would then turn off the power source; if that's not possible, I would use a non-conductive tool to move the person. Finally, I would call 999 and stay with the casualty until help arrives."
+            ],
+            "hint": "Think: Danger -> Isolate -> Rescue -> Help."
+          },
+          {
+            "id": "201-203-SC1A-INT-2",
+            "questionText": "Evaluate why 'Safe Isolation' is the preferred method for dealing with an electric shock rescue compared to using a non-conductive rescue hook or wooden pole. How does this link to the concept of the body as a conductor? Answer in 3-4 sentences.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Safe isolation removes all electrical energy from the area.",
+              "Non-conductive tools still leave live electricity present, which is risky.",
+              "The body is a conductor, so any contact with the live source is fatal.",
+              "Isolation ensures the rescuer cannot become a second casualty."
+            ],
+            "expectedAnswer": [
+              "Safe isolation is preferred because it completely removes the electrical hazard from the environment, making it 100% safe to touch the casualty. While non-conductive tools provide a barrier, the live electricity is still present and could jump or travel through dampness. Because the human body is an excellent conductor, any mistake while using a rescue pole could still lead to the rescuer being shocked, whereas isolation eliminates that risk entirely.",
+              "Isolating the power is the safest method because it stops the flow of current at the source. Since the body is a conductor, it will carry electricity as long as the source is live. Using a non-conductive pole is a backup method that still carries risk if the pole is damp or the voltage is high, so turning off the switch is always the priority to prevent the rescuer from becoming a second casualty."
+            ],
+            "hint": "Compare the difference between removing the danger vs. just trying to work around it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "201-203-SC1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check: Health and Safety",
+        "questions": [
+          {
+            "id": "201-203-SC1A-SR-1",
+            "questionText": "What is the term for anything that has the potential to cause harm in the workplace?",
+            "expectedAnswer": [
+              "Hazard",
+              "A hazard",
+              "Hazards"
+            ],
+            "hint": "This is a fundamental H&S term for a danger.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "201-203-SC1A-SR-2",
+            "questionText": "What does the acronym PPE stand for?",
+            "expectedAnswer": [
+              "Personal Protective Equipment",
+              "Personal Protection Equipment"
+            ],
+            "hint": "Items like hard hats and safety boots fall into this category.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "201-203-SC1A-SR-3",
+            "questionText": "What is the term for the likelihood that a hazard will actually cause harm?",
+            "expectedAnswer": [
+              "Risk",
+              "The risk",
+              "Risks"
+            ],
+            "hint": "You assess this to decide how dangerous a situation is.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Review of core H&S concepts before specializing in electrical emergency procedures."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "2.1"
+  ],
+  "metadata": {
+    "created": "2026-02-22",
+    "updated": "2026-02-22",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PROCEDURE",
+    "syllabusAnchors": {
+      "unit": "201",
+      "learningOutcome": "LO2",
+      "coveredAC": [
+        "2.1"
+      ],
+      "outOfScopeAC": [
+        "2.2",
+        "2.3",
+        "2.4"
+      ]
+    },
+    "scope": {
+      "inScope": "Procedures for electric shock, isolation of casualty, non-conductive materials, identification of electrical burns, and reporting to responsible persons.",
+      "outOfScope": "Advanced first aid (CPR training), specific medical diagnosis, electrical circuit design, or live testing.",
+      "rationale": "Focuses on the immediate emergency response required by Unit 201 LO2 AC 2.1."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Emergency response procedures only."
+    },
+    "misconceptions": [
+      {
+        "misconception": "You can safely pull a casualty away if you wear rubber-soled boots.",
+        "correction": "Electricity can still travel through your body if you touch the casualty; you must isolate the power or use a non-conductive tool.",
+        "relatedAC": "2.1"
+      },
+      {
+        "misconception": "If there are no burns on the skin, the person is not injured.",
+        "correction": "Electric shock often causes internal injuries to the heart and organs that are not visible.",
+        "relatedAC": "2.1"
+      }
+    ],
+    "generationScore": 93,
+    "generationScoreDetails": {
+      "originalScore": 85,
+      "finalScore": 93,
+      "wasRefined": true,
+      "generatedAt": "2026-02-22T21:22:07.572Z",
+      "source": "phase10-13"
+    }
+  }
+}

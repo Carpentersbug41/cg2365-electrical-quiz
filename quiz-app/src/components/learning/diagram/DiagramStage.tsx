@@ -45,6 +45,7 @@ export default function DiagramStage({
   const content = block.content as DiagramBlockContent;
   const playerRef = useRef<{ playVideo: () => void; pauseVideo: () => void; seekTo: (seconds: number, allowSeekAhead: boolean) => void; destroy: () => void } | null>(null);
   const [isPlayerReady, setIsPlayerReady] = useState(false);
+  const [imageLoadError, setImageLoadError] = useState(false);
   const videoContainerRef = useRef<HTMLDivElement>(null);
 
   // Extract YouTube video ID from URL
@@ -55,6 +56,11 @@ export default function DiagramStage({
   };
 
   const videoId = content.videoUrl ? getVideoId(content.videoUrl) : null;
+  const isSvgImage = Boolean(content.imageUrl && /\.svg($|\?)/i.test(content.imageUrl));
+
+  useEffect(() => {
+    setImageLoadError(false);
+  }, [content.imageUrl]);
 
   // Load YouTube IFrame API
   useEffect(() => {
@@ -196,23 +202,41 @@ export default function DiagramStage({
           ) : content.imageUrl ? (
             /* Static Image */
             <div className="w-full rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800 p-4">
-              <img 
-                src={content.imageUrl} 
-                alt={content.title}
-                className="w-full h-auto rounded-lg"
-                onError={(e) => {
-                  // Fallback if image fails to load
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  const errorDiv = document.createElement('div');
-                  errorDiv.className = 'text-center p-8 text-red-600 dark:text-red-400';
-                  errorDiv.innerHTML = `
-                    <p class="font-semibold">Image failed to load</p>
-                    <p class="text-sm text-gray-500 dark:text-slate-400 mt-2">${content.imageUrl}</p>
-                  `;
-                  target.parentElement?.appendChild(errorDiv);
-                }}
-              />
+              {isSvgImage ? (
+                <object
+                  type="image/svg+xml"
+                  data={content.imageUrl}
+                  aria-label={content.title}
+                  className="w-full h-auto rounded-lg bg-white dark:bg-slate-800"
+                  style={{ minHeight: '320px' }}
+                  onError={() => setImageLoadError(true)}
+                >
+                  <img
+                    src={content.imageUrl}
+                    alt={content.title}
+                    className="w-full h-auto rounded-lg"
+                    onError={() => setImageLoadError(true)}
+                  />
+                </object>
+              ) : (
+                <img 
+                  src={content.imageUrl} 
+                  alt={content.title}
+                  className="w-full h-auto rounded-lg"
+                  onError={() => setImageLoadError(true)}
+                />
+              )}
+              {imageLoadError && (
+                <div className="text-center p-8 text-red-600 dark:text-red-400">
+                  <p className="font-semibold">Image failed to load</p>
+                  <p className="text-sm text-gray-500 dark:text-slate-400 mt-2">{content.imageUrl}</p>
+                </div>
+              )}
+              {isSvgImage && !imageLoadError && (
+                <p className="mt-3 text-center text-xs text-gray-500 dark:text-slate-400">
+                  Tip: Click interactive parts of the diagram to toggle states.
+                </p>
+              )}
               {/* Element IDs for reference */}
               {content.elementIds && content.elementIds.length > 0 && (
                 <div className="flex flex-wrap justify-center gap-2 mt-4">

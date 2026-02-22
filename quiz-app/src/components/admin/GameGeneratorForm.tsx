@@ -25,7 +25,6 @@ type GameType =
   | 'matching'
   | 'sorting'
   | 'spot-error'
-  | 'tap-label'
   | 'quick-win'
   | 'sequencing'
   | 'fill-gap'
@@ -243,7 +242,6 @@ export default function GameGeneratorForm() {
     { value: 'matching', label: 'Matching', description: 'Match terms to definitions' },
     { value: 'sorting', label: 'Sorting', description: 'Sort items into two categories' },
     { value: 'spot-error', label: 'Spot the Error', description: 'Identify the incorrect statement' },
-    { value: 'tap-label', label: 'Tap to Label', description: 'Label diagram elements' },
     { value: 'quick-win', label: 'Quick Win Sprint', description: 'Rapid-fire easy questions' },
     { value: 'sequencing', label: 'Sequencing', description: 'Arrange steps in correct order' },
     { value: 'fill-gap', label: 'Fill Gap', description: 'Fill missing terms in sentence context' },

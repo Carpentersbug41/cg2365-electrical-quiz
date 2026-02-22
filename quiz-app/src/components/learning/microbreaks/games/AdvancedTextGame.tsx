@@ -266,15 +266,40 @@ function ClassifyTwoBinsGame({ content, soundEnabled, onDone }: { content: Class
         <div className="rounded border border-indigo-300 bg-indigo-100 p-2 text-center text-indigo-900 dark:border-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-200">{content.leftLabel}</div>
         <div className="rounded border border-indigo-300 bg-indigo-100 p-2 text-center text-indigo-900 dark:border-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-200">{content.rightLabel}</div>
       </div>
-      {content.items.map((item) => (
-        <div key={item.text} className={`flex items-center justify-between rounded border p-2 text-xs ${checked ? (assigned[item.text] === item.correctBin ? 'border-green-500 bg-green-100 dark:border-green-600 dark:bg-green-900/30' : 'border-red-500 bg-red-100 dark:border-red-600 dark:bg-red-900/30') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
-          <span>{item.text}</span>
-          <div className="flex gap-1">
-            <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setAssigned((p) => ({ ...p, [item.text]: 'left' })); }} className="rounded border px-2 py-1">Left</button>
-            <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setAssigned((p) => ({ ...p, [item.text]: 'right' })); }} className="rounded border px-2 py-1">Right</button>
+      {content.items.map((item) => {
+        const assignedBin = assigned[item.text];
+        const leftSelected = assignedBin === 'left';
+        const rightSelected = assignedBin === 'right';
+        const rowTone = checked
+          ? assignedBin === item.correctBin
+            ? 'border-green-500 bg-green-100 dark:border-green-600 dark:bg-green-900/30'
+            : 'border-red-500 bg-red-100 dark:border-red-600 dark:bg-red-900/30'
+          : assignedBin
+            ? 'border-blue-400 bg-blue-50 dark:border-blue-700 dark:bg-blue-900/20'
+            : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700';
+
+        return (
+          <div key={item.text} className={`flex items-center justify-between rounded border p-2 text-xs ${rowTone}`}>
+            <span>{item.text}</span>
+            <div className="flex gap-1">
+              <button
+                disabled={checked}
+                onClick={() => { if (soundEnabled) playClickSound(0.2); setAssigned((p) => ({ ...p, [item.text]: 'left' })); }}
+                className={`rounded border px-2 py-1 ${tone(checked, item.correctBin === 'left', leftSelected)}`}
+              >
+                Left
+              </button>
+              <button
+                disabled={checked}
+                onClick={() => { if (soundEnabled) playClickSound(0.2); setAssigned((p) => ({ ...p, [item.text]: 'right' })); }}
+                className={`rounded border px-2 py-1 ${tone(checked, item.correctBin === 'right', rightSelected)}`}
+              >
+                Right
+              </button>
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
       <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
     </div>
   );

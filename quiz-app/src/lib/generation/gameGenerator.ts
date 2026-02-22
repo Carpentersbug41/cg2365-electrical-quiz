@@ -41,6 +41,7 @@ export interface LessonDigest {
   diagram?: {
     id: string;
     labels: string[];
+    imageUrl?: string;
   };
 }
 
@@ -234,6 +235,9 @@ export function buildLessonDigest(lesson: Lesson): LessonDigest {
         return {
           id: diagramBlock.id,
           labels: (content.elementIds || []).map(cleanText).filter(Boolean),
+          imageUrl: typeof content.imageUrl === 'string' && content.imageUrl.trim().length > 0
+            ? content.imageUrl.trim()
+            : undefined,
         };
       })()
     : undefined;
@@ -291,7 +295,7 @@ export function getGameTypeEligibility(gameType: GameType, digest: LessonDigest)
         ? { ok: true }
         : { ok: false, reason: 'requires misconceptions or enough factual contrast' };
     case 'tap-label':
-      return diagramLabels >= 3 ? { ok: true } : { ok: false, reason: 'requires diagram labels' };
+      return { ok: false, reason: 'tap-label temporarily disabled' };
     case 'diagnosis-ranked':
       return misconceptionCount >= 2 || factCount >= 8
         ? { ok: true }
@@ -511,6 +515,25 @@ function hasDigestGrounding(text: string, digestTokens: Set<string>): boolean {
   return tokens.some(t => digestTokens.has(t));
 }
 
+function isLikelyInstructionalFraming(text: string): boolean {
+  const normalized = String(text || '').trim().toLowerCase();
+  if (!normalized) return false;
+
+  if (
+    /^[-*#]/.test(normalized) ||
+    normalized.startsWith('in this lesson') ||
+    normalized.startsWith('what this is') ||
+    normalized.startsWith('why it matters') ||
+    normalized.startsWith('key takeaways') ||
+    normalized.startsWith('coming up next') ||
+    normalized.startsWith('quick recap')
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 function getGameStem(content: MicrobreakContent): string {
   if (content.breakType === 'rest') return 'rest';
 
@@ -558,7 +581,8 @@ function getGameStem(content: MicrobreakContent): string {
 function validateGameSchemaAndContent(
   expectedType: GameType,
   content: MicrobreakContent,
-  digestTokenSet: Set<string>
+  digestTokenSet: Set<string>,
+  digest: LessonDigest
 ): string[] {
   const errors: string[] = [];
 
@@ -613,6 +637,9 @@ function validateGameSchemaAndContent(
     case 'tap-label': {
       const items = Array.isArray(content.items) ? content.items : [];
       if (items.length < 3) errors.push('tap-label requires >=3 items');
+      if (digest.diagram?.imageUrl && (!content.imageUrl || !String(content.imageUrl).trim())) {
+        errors.push('tap-label requires imageUrl when diagram image is available');
+      }
       requireGrounding(items.map(i => i.label), 'tap-label label');
       break;
     }
@@ -680,6 +707,22 @@ function validateGameSchemaAndContent(
       const items = Array.isArray(content.items) ? content.items : [];
       if (!leftLabel || !rightLabel) errors.push('classify-two-bins requires left/right labels');
       if (items.length < 6) errors.push('classify-two-bins requires >=6 items');
+      if (/^\s*left\b/i.test(leftLabel) || /^\s*right\b/i.test(rightLabel)) {
+        errors.push('classify-two-bins labels must be meaningful content labels, not side placeholders');
+      }
+      if (isLikelyInstructionalFraming(leftLabel) || isLikelyInstructionalFraming(rightLabel)) {
+        errors.push('classify-two-bins labels must not be lesson framing text');
+      }
+      if (items.some(i => isLikelyInstructionalFraming(String(i?.text || '')))) {
+        errors.push('classify-two-bins items must be concise concepts, not lesson framing or bullets');
+      }
+      if (items.some(i => String(i?.text || '').trim().length > 120)) {
+        errors.push('classify-two-bins items are too long for quick classification');
+      }
+      const binsUsed = new Set(items.map(i => i.correctBin).filter(bin => bin === 'left' || bin === 'right'));
+      if (binsUsed.size < 2) {
+        errors.push('classify-two-bins must include items for both bins');
+      }
       requireGrounding([leftLabel, rightLabel, ...items.map(i => i.text)], 'classify-two-bins');
       break;
     }
@@ -807,6 +850,7 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         breakType: 'game',
         gameType: 'tap-label',
         duration: 75,
+        imageUrl: digest.diagram?.imageUrl,
         items: (digest.diagram?.labels || ['Label A', 'Label B', 'Label C']).slice(0, 3).map((label, idx) => ({
           id: `label-${idx + 1}`,
           label,
@@ -861,13 +905,34 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         correctRankedIndices: [0, 1],
       };
     case 'classify-two-bins':
-      return {
-        breakType: 'game',
-        gameType: 'classify-two-bins',
-        leftLabel: 'Left Bin',
-        rightLabel: 'Right Bin',
-        items: facts.slice(0, 6).map((f, idx) => ({ text: f, correctBin: idx % 2 === 0 ? 'left' : 'right' })),
-      };
+      {
+        const vocabPairs = digest.vocabPairs
+          .map(v => ({ term: String(v.term || '').trim(), definition: String(v.definition || '').trim() }))
+          .filter(v => v.term.length > 0 && v.definition.length > 0);
+
+        const items = vocabPairs.slice(0, 3).flatMap(v => [
+          { text: v.term, correctBin: 'left' as const },
+          { text: v.definition, correctBin: 'right' as const },
+        ]);
+
+        const paddedItems = items.length >= 6
+          ? items.slice(0, 6)
+          : [
+              ...items,
+              ...facts
+                .filter(f => !isLikelyInstructionalFraming(f))
+                .slice(0, Math.max(0, 6 - items.length))
+                .map((f, idx) => ({ text: f, correctBin: idx % 2 === 0 ? ('left' as const) : ('right' as const) })),
+            ].slice(0, 6);
+
+        return {
+          breakType: 'game',
+          gameType: 'classify-two-bins',
+          leftLabel: 'Term',
+          rightLabel: 'Definition',
+          items: paddedItems,
+        };
+      }
     case 'scenario-match':
       return {
         breakType: 'game',
@@ -1000,7 +1065,7 @@ export async function generateMicrobreaksFromPlan(
     if (!game.content) itemErrors.push('missing content');
 
     if (planItem && game.content) {
-      const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet);
+      const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
       itemErrors.push(...schemaErrors);
     }
 
@@ -1032,7 +1097,7 @@ export async function generateMicrobreaksFromPlan(
   const finalDuplicates = validateNoDuplicateStems(repaired);
   repaired.forEach((game, index) => {
     const planItem = slotById.get(game.slotId) || plan[index];
-    const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet);
+    const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
     const duplicateError = finalDuplicates.get(index);
 
     if (schemaErrors.length > 0 || duplicateError) {

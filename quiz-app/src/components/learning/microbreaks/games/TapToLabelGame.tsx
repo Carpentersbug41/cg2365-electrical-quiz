@@ -19,6 +19,7 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
 
   const currentItem = content.items[currentIndex];
   const availableLabels = content.items.map(item => item.label);
+  const isSvgImage = Boolean(content.imageUrl && /\.svg($|\?)/i.test(content.imageUrl));
 
   const handleLabelSelect = (label: string, handleComplete: (score?: number, accuracy?: number) => void) => {
     playClickSound(0.3);
@@ -66,11 +67,27 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
         <div className="space-y-4">
           {content.imageUrl && (
             <div className="bg-gray-100 dark:bg-slate-800 rounded-lg p-4 border-2 border-gray-300 dark:border-slate-600">
-              <img 
-                src={content.imageUrl} 
-                alt="Diagram to label" 
-                className="w-full h-auto rounded"
-              />
+              {isSvgImage ? (
+                <object
+                  type="image/svg+xml"
+                  data={content.imageUrl}
+                  aria-label="Diagram to label"
+                  className="w-full h-auto rounded bg-white dark:bg-slate-800"
+                  style={{ minHeight: '240px' }}
+                >
+                  <img
+                    src={content.imageUrl}
+                    alt="Diagram to label"
+                    className="w-full h-auto rounded"
+                  />
+                </object>
+              ) : (
+                <img
+                  src={content.imageUrl}
+                  alt="Diagram to label"
+                  className="w-full h-auto rounded"
+                />
+              )}
             </div>
           )}
 

@@ -76,11 +76,13 @@ import { consumerUnitsPurposeProtectiveDevicesQuestions } from './consumerUnitsP
 import { consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions } from './consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions';
 import { consumerUnitsTotalNoobQuestions } from './consumerUnitsTotalNoobQuestions';
 import { lightingCircuitsNoobLevel1Questions } from './lightingCircuitsNoobLevel1Questions';
+import { socketCircuitsNoobLevel1Questions } from './socketCircuitsNoobLevel1Questions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...socketCircuitsNoobLevel1Questions,
   ...lightingCircuitsNoobLevel1Questions,
   ...consumerUnitsTotalNoobQuestions,
   ...consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions,
@@ -230,6 +232,7 @@ export { consumerUnitsPurposeProtectiveDevicesQuestions } from './consumerUnitsP
 export { consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions } from './consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions';
 export { consumerUnitsTotalNoobQuestions } from './consumerUnitsTotalNoobQuestions';
 export { lightingCircuitsNoobLevel1Questions } from './lightingCircuitsNoobLevel1Questions';
+export { socketCircuitsNoobLevel1Questions } from './socketCircuitsNoobLevel1Questions';
 
 /**
  * Filter questions by tags
