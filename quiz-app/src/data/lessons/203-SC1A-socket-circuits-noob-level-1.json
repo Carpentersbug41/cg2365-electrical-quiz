@@ -1,0 +1,447 @@
+{
+  "id": "203-SC1A",
+  "title": "203.SC1A — Socket Circuits (Noob Level 1)",
+  "description": "Learn about Socket Circuits (Noob Level 1) in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Socket Circuits (Noob Level 1)",
+  "learningOutcomes": [
+    "Define a socket circuit and identify its primary hardware components.",
+    "Explain the basic electrical path from the consumer unit through the socket outlets and back.",
+    "Distinguish between ring final and radial circuit configurations based on their wiring paths."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-SC1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define a socket circuit and identify its primary hardware components.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the basic electrical path from the consumer unit through the socket outlets and back.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between ring final and radial circuit configurations based on their wiring paths.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-SC1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Consumer Unit",
+            "definition": "The central distribution point that houses protective devices and serves as the origin for all electrical circuits within a building."
+          },
+          {
+            "term": "Protective Device",
+            "definition": "A component, such as a circuit breaker, that automatically interrupts the flow of electricity to prevent damage from overloads or short circuits."
+          },
+          {
+            "term": "Circuit Protective Conductor (CPC)",
+            "definition": "A dedicated safety wire that provides a path for fault currents to reach earth, different from the neutral conductor which carries return current during normal operation."
+          },
+          {
+            "term": "Radial Circuit",
+            "definition": "A circuit arrangement where the cable runs from the consumer unit to each socket in a single line, terminating at the final outlet rather than returning to the source."
+          },
+          {
+            "term": "Ring Final Circuit",
+            "definition": "A circuit configuration where the wiring forms a continuous loop by starting and ending at the same terminals in the consumer unit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-SC1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Socket Circuits (Noob Level 1) Diagram",
+        "description": "Visual representation of Socket Circuits (Noob Level 1)",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "consumer-unit",
+          "protective-device",
+          "socket-outlet",
+          "circuit-protective-conductor",
+          "line-conductor"
+        ],
+        "placeholderText": "The diagram should show two side-by-side comparisons. On the left, a Radial Circuit layout showing a single line-conductor and neutral traveling from a consumer-unit through three socket-outlet components and stopping. On the right, a Ring Final Circuit showing the conductors leaving the protective-device, passing through the same three sockets, and then the cable returning to the same protective-device. Both should clearly highlight the circuit-protective-conductor (CPC) following the same path as the live conductors."
+      }
+    },
+    {
+      "id": "203-SC1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Socket Circuit Components",
+        "content": "### In this lesson\nThis lesson introduces the fundamental hardware that makes up a standard power circuit. You will learn to identify the parts that allow electricity to flow safely from a source to your everyday appliances.\n\n*   Identify the primary hardware components of a socket circuit.\n*   Understand the role of Line, Neutral, and Earth (CPC) conductors.\n*   Explain the basic electrical path from the source to the outlet.\n\n**What this is**\nA socket circuit is a specific arrangement of electrical hardware designed to provide power to **socket outlets** throughout a building. It acts as a delivery system, transporting energy from the building's entry point to the locations where users need to plug in devices. \n\nTo understand this, imagine a central heating system: the **Consumer Unit** is like the boiler (the source), the cables are the pipes, and the **socket outlets** are the radiators where the heat (power) is finally delivered to the room. Just as water must flow in a loop to work, electricity requires a complete path to function.\n\n**Why it matters**\nRecognising these components is the first step in understanding how electrical systems are organised. Without a clear grasp of what a **Protective Device** or a **Circuit Protective Conductor (CPC)** does, it is impossible to diagnose why a circuit has stopped working or to ensure that an installation is safe for the end-user. Safety in electrical work relies entirely on the correct identification and application of these parts.\n\n**Key facts / rules**\n*   The **Consumer Unit** serves as the origin for all circuits and houses the safety switches.\n*   A **Protective Device** is installed at the start of the circuit to prevent damage from faults or overloads.\n*   The Line conductor (often called 'live') carries the electrical energy toward the socket.\n*   The Neutral conductor provides the necessary return path for the current to complete the loop back to the source.\n*   The **Circuit Protective Conductor (CPC)** is a safety wire that only carries current during a fault to protect users from electric shock.\n*   Cables used in these circuits typically contain all three conductors (Line, Neutral, and CPC) bundled together.\n*   All components must be compatible with the specific requirements of the installation (verify current edition/version of regulations).\n\n**How to recognise it**\nYou can recognise a socket circuit by looking at the **Consumer Unit**. Within the unit, you will find a **Protective Device** (such as a circuit breaker) labelled for 'Sockets' or 'Power'. From this device, a cable exits and travels through the building structure. \n\nAt the point of use, the **socket outlet** is the most visible part, usually featuring a faceplate with three rectangular holes designed to accept a standard plug. If you were to look inside a disconnected socket, you would see three distinct termination points: one for the Line, one for the Neutral, and one for the **Circuit Protective Conductor (CPC)**. \n\n*Micro-scenario:* Consider a circuit with three **socket outlets**. If a lamp is plugged into the first outlet, the electricity travels from the **Consumer Unit**, through the cable to that specific outlet, and returns through the neutral, while the remaining two outlets remain energized and ready to provide power independently.\n\n**Common mistakes**\nLearners often confuse the Neutral conductor with the **Circuit Protective Conductor (CPC)**; the Neutral is a functional conductor that carries current during normal operation, whereas the **CPC** is a safety conductor that should only carry current during a fault. \n\nMisconceptions (targeted):\n*   Misconception: The Earth or CPC wire is just a 'spare' wire that isn't doing anything. | Correction: The CPC is a critical safety component that provides a path for fault current to trigger the protective device. | AC: AC3.1\n*   Misconception: Electricity 'stops' at the socket. | Correction: Electricity must always have a return path (Neutral) to the Consumer Unit to form a complete circuit. | AC: AC3.1\n\n**Key Points**\n*   The **Consumer Unit** is the distribution hub for the circuit.\n*   **Protective Devices** safeguard the circuit from electrical fire and damage.\n*   The electrical path is a loop: Line (out), Neutral (return), and **CPC** (safety).\n*   **Socket outlets** allow for the safe connection of portable appliances.\n\n**Quick recap**\nA socket circuit is a system of cables and components that starts at a **Consumer Unit**, passes through a **Protective Device**, and delivers power to various **socket outlets**. It relies on three main conductors: Line for supply, Neutral for return, and the **Circuit Protective Conductor (CPC)** for safety. Each part must be correctly identified to ensure the system operates as intended.\n\n### Coming Up Next\nNow that you can identify the individual parts of a circuit, we will look at how those parts are connected in different patterns, specifically the difference between a single run and a continuous loop."
+      }
+    },
+    {
+      "id": "203-SC1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Socket Circuit Components",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-SC1A-C1-L1-A",
+            "questionText": "What component serves as the origin for all circuits and houses the safety switches?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Consumer Unit",
+              "The Consumer Unit",
+              "consumer units"
+            ],
+            "hint": "This part acts as the distribution hub for the entire building's electrical system."
+          },
+          {
+            "id": "203-SC1A-C1-L1-B",
+            "questionText": "Which conductor provides the necessary return path for current to complete the loop back to the source?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Neutral conductor",
+              "Neutral",
+              "the neutral conductor",
+              "neutral wire"
+            ],
+            "hint": "Think of the wire that allows electricity to flow back to the start after it has powered a device."
+          },
+          {
+            "id": "203-SC1A-C1-L1-C",
+            "questionText": "Which conductor is identified as a safety conductor rather than a functional conductor that carries current during normal operation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "CPC",
+              "Circuit Protective Conductor",
+              "the CPC",
+              "the Circuit Protective Conductor"
+            ],
+            "hint": "This wire is only meant to carry electricity when there is a fault in the system."
+          },
+          {
+            "id": "203-SC1A-C1-L2",
+            "questionText": "Using your answers to Q1 (the origin of circuits), Q2 (the return path), and Q3 (the safety conductor), explain how these components work together to maintain a safe and functioning circuit. Why must the CPC be distinct from the Neutral conductor?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The Consumer Unit acts as the source and housing for safety switches that monitor the circuit",
+              "The Neutral completes the functional path for electricity to return to the Consumer Unit during normal use",
+              "The CPC provides a separate dedicated safety path specifically for fault currents",
+              "Separating the safety path from the functional return path ensures faults can be detected and isolated by protective devices"
+            ],
+            "expectedAnswer": [
+              "The Consumer Unit provides the starting point where the Neutral completes the return loop for normal operation, while the CPC provides a separate path for safety. This distinction is necessary so that the CPC only carries current during a fault, allowing safety switches to detect a problem and shut off power.",
+              "Electricity flows from the Consumer Unit and returns via the Neutral to function, but the CPC is kept separate as a dedicated safety wire. We know this is important because if the safety path was also the functional return path, the protective device might not distinguish between normal use and a dangerous fault."
+            ],
+            "hint": "Consider how having a dedicated wire for faults allows the safety switches in the distribution hub to do their job."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-SC1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Circuit Types: Ring vs Radial",
+        "content": "### In this lesson\nThis lesson explores the two primary ways socket circuits are wired. You will learn how to distinguish between these configurations based on their layout and intended use.\n\n*   Define the characteristics of a **Radial Circuit**.\n*   Define the characteristics of a **Ring Final Circuit**.\n*   Distinguish between the two based on their wiring paths.\n\n**What this is**\nIn electrical installations, the 'topology' or path of the wiring determines the circuit type. A **Radial Circuit** is a linear arrangement where the cable starts at the **Consumer Unit**, travels to the first socket, then the second, and continues until it reaches the final outlet, where it ends. \n\nA **Ring Final Circuit** is a loop. The cable leaves the **Consumer Unit**, visits every socket in the circuit, and then returns to the exact same terminals in the **Consumer Unit** where it started. \n\nThink of a **Radial Circuit** like a bus route that goes from the station to a far-off village and stops there. A **Ring Final Circuit** is like a circular city bus route that starts at the station, visits several stops, and eventually returns to the station to complete a full circle.\n\n**Why it matters**\nChoosing the right circuit type affects how much power can be delivered and how much cable is required. A **Ring Final Circuit** allows electricity to reach a socket from two directions at once, which can be very efficient for covering large floor areas. A **Radial Circuit** is often simpler to install and is ideal for smaller areas or dedicated high-power appliances. Knowing which one to use ensures the installation is efficient and meets the specific needs of the building.\n\n**Key facts / rules**\n*   A **Radial Circuit** has a definite 'start' and 'end' point.\n*   A **Ring Final Circuit** forms a continuous, unbroken loop.\n*   In a **Radial Circuit**, only one cable enters the **Protective Device** in the **Consumer Unit**.\n*   In a **Ring Final Circuit**, two cables (the start and the end of the loop) enter the same **Protective Device**.\n*   Both circuit types use Line, Neutral, and **Circuit Protective Conductor (CPC)** wires.\n*   The choice between them depends on the floor area and the expected electrical load (verify current edition/version of regulations for limits).\n*   A ring circuit must be a complete loop to function correctly as a 'ring'.\n\n**When to choose it**\nYou would typically choose a **Radial Circuit** for smaller rooms or for a single, heavy-duty appliance that needs its own dedicated supply. It is straightforward and uses less cable for short runs. \n\nYou would commonly choose a **Ring Final Circuit** for standard room layouts where many sockets are needed over a larger area. Because the power has two paths to travel, it can handle a higher total load across the whole loop compared to a radial circuit of the same cable thickness. \n\n*Micro-scenario:* If you are looking at a **Consumer Unit** and see two identical cables connected into a single 32A **Protective Device**, you are likely looking at a **Ring Final Circuit**. If there is only one cable, it is almost certainly a **Radial Circuit**.\n\n**Common mistakes**\nLearners often confuse a **Radial Circuit** with a **Ring Final Circuit** by assuming any circuit with multiple sockets must be a ring; however, a **Radial Circuit** can also have many outlets, it simply doesn't loop back to the start. \n\nMisconceptions (targeted):\n*   Misconception: A ring circuit is just two radial circuits joined together. | Correction: A ring circuit is a single, continuous loop designed to share the load across two paths. | AC: AC3.1\n*   Misconception: Radial circuits can only have one socket. | Correction: Radial circuits can serve multiple sockets, provided they stay within the load limits for that circuit. | AC: AC3.1\n\n**Key Points**\n*   **Radial Circuits** are linear paths that terminate at the last outlet.\n*   **Ring Final Circuits** are loops that return to the **Consumer Unit**.\n*   Ring circuits provide two paths for current, increasing capacity over large areas.\n*   Identification is usually done by checking the number of cables at the **Protective Device**.\n\n**Quick recap**\nSocket circuits are generally configured as either radials or rings. A **Radial Circuit** acts as a single line from the source to the end of the run. A **Ring Final Circuit** creates a loop that starts and ends at the **Consumer Unit**. Both types serve the same purpose—providing power to outlets—but they are chosen based on the size of the area and the amount of power required.\n\n### Coming Up Next\nIn the next section, we will look at how these circuits are protected from faults and the specific symbols used to represent them on technical drawings."
+      }
+    },
+    {
+      "id": "203-SC1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Circuit Types: Ring vs Radial",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-SC1A-C2-L1-A",
+            "questionText": "What type of circuit is a linear arrangement that continues until it reaches the final outlet where it ends?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Radial Circuit",
+              "Radial",
+              "A radial circuit"
+            ],
+            "hint": "This circuit type has a definite start and end point like a one-way bus route."
+          },
+          {
+            "id": "203-SC1A-C2-L1-B",
+            "questionText": "How many cables enter the same Protective Device in a Ring Final Circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Two cables",
+              "2 cables",
+              "two",
+              "2"
+            ],
+            "hint": "Consider that the loop must both leave and return to the same starting point."
+          },
+          {
+            "id": "203-SC1A-C2-L1-C",
+            "questionText": "What is the primary benefit of a circuit that allows electricity to reach a socket from two directions at once?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Efficient for large floor areas",
+              "Covering large floor areas",
+              "Efficient for large areas",
+              "Handles higher total load"
+            ],
+            "hint": "Think about how having two paths for power affects the capacity of the circuit over a wide space."
+          },
+          {
+            "id": "203-SC1A-C2-L2",
+            "questionText": "Using your answers to Q1 (linear arrangements), Q2 (cables at the protective device), and Q3 (two directions of flow), explain how you would identify a ring circuit at a Consumer Unit. How do we know which circuit type is better for a large room with many sockets?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identification is made by finding two cables connected to one protective device instead of the single cable used in a radial arrangement",
+              "A ring circuit is better for large rooms because it forms a loop that allows two directions of flow",
+              "The dual-path loop increases capacity and efficiency across larger floor areas compared to a linear radial path"
+            ],
+            "expectedAnswer": [
+              "You identify a ring circuit by looking for two cables at the protective device, unlike a radial which only has one and ends at the last outlet. We know the ring is better for large rooms because the two cables create a loop that delivers power from two directions, making it more efficient for high loads over large areas.",
+              "By checking for two cables in a single protective device, you can confirm it is a ring circuit rather than a linear radial. A ring circuit is the better choice for large rooms with many sockets because the dual paths allow it to handle more power across the entire floor area."
+            ],
+            "hint": "Link the physical number of cables you see at the source to the way electricity travels to the sockets."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-SC1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-SC1A-P1",
+            "questionText": "How many separate cable ends are connected directly into the terminals of a single protective device for a Ring Final Circuit?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "2"
+            ],
+            "hint": "A ring circuit forms a continuous loop that returns to its starting point."
+          },
+          {
+            "id": "203-SC1A-P2",
+            "questionText": "A technician is inspecting a power distribution hub for a series of industrial workstations. They observe that the cable runs from the source to the first station, then the second, and stops at the third. Which circuit type does this represent?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "radial circuit",
+              "radial",
+              "a radial circuit"
+            ],
+            "hint": "The cable does not return to the source after the final station."
+          },
+          {
+            "id": "203-SC1A-P3",
+            "questionText": "Explain why a Neutral conductor is required even if a Line conductor is already providing power to a device.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "to provide a return path",
+              "to complete the loop",
+              "to complete the circuit",
+              "provides a return path"
+            ],
+            "hint": "Electricity requires a continuous path back to the source to function."
+          },
+          {
+            "id": "203-SC1A-P4",
+            "questionText": "In a standard socket circuit cable, how many individual conductors are typically bundled together to ensure the circuit can operate safely and complete the electrical loop?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count the functional conductors and the safety conductor."
+          },
+          {
+            "id": "203-SC1A-P5",
+            "questionText": "What must be true about the wiring path if a circuit is classified as a Radial Circuit rather than a Ring Final Circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it terminates at the last outlet",
+              "it does not loop back",
+              "it has a definite end point",
+              "it is a linear path"
+            ],
+            "hint": "Consider where the cable goes after the final socket is reached."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-SC1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-SC1A-INT-1",
+            "questionText": "Explain the relationship between the physical hardware components and the operational electrical path within a power circuit. In your answer, include: (1) the specific roles of the three conductors, (2) the direction of the path relative to the source and hardware, (3) how the hardware facilitates the continuity of the path. Why must the CPC (Earth) be present in every part of the circuit path? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies the roles of Line (supply), Neutral (return), and CPC (safety/fault path).",
+              "Describes the path originating at the source and traveling through the hardware to the load.",
+              "Explains that hardware (sockets/terminals) provides the physical connection points for the path.",
+              "Reasons that the CPC ensures a continuous low-resistance path to ground for fault protection.",
+              "Connects conductor integrity to the overall safety and functionality of the electrical path."
+            ],
+            "expectedAnswer": [
+              "The electrical path is formed by the Line and Neutral conductors carrying current from the source to the socket hardware and back, while the hardware provides the termination points for these cables. The CPC must be present in every part of the path to ensure that any fault current is immediately directed to ground for safety. This relationship holds because the hardware and conductors together create a controlled environment for energy transfer and protection.",
+              "Hardware components like sockets allow the Line and Neutral conductors to deliver power in a continuous path from the consumer unit to the appliance. The CPC is integrated into this path as a dedicated safety conductor that remains dormant unless a fault occurs. This is necessary because the CPC provides the only guaranteed route for fault current to return to the source, preventing the hardware from becoming live."
+            ],
+            "hint": "Consider how the cables and the socket terminals work together to move electricity from the consumer unit and back again."
+          },
+          {
+            "id": "203-SC1A-INT-2",
+            "questionText": "Synthesize the differences between circuit topologies by evaluating how hardware is arranged to create different electrical paths. In your answer, include: (1) the primary hardware components involved, (2) the return path characteristic of a ring final circuit, (3) the termination point of a radial circuit, (4) how the chosen wiring path configuration affects the distribution of current through the hardware. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Identifies hardware: consumer unit, conductors (Line, Neutral, CPC), and socket outlets.",
+              "Defines the Ring Final circuit as a continuous loop returning to the source.",
+              "Defines the Radial circuit as a linear path ending at the final hardware outlet.",
+              "Explains that a Ring configuration provides two paths for current to reach the hardware.",
+              "Explains that a Radial configuration provides a single path for current flow.",
+              "Integrates the concept of 'topology' with the physical installation of conductors.",
+              "Maintains technical precision regarding the connection of components at the source."
+            ],
+            "expectedAnswer": [
+              "A socket circuit utilizes conductors and outlets to form either a Ring Final or Radial topology. In a Ring Final circuit, the path forms a complete loop where both ends of the circuit return to the consumer unit, allowing current to be distributed through two paths. In contrast, a Radial circuit follows a linear path that terminates at the final socket outlet, meaning all current for the hardware travels through a single sequence of conductors.",
+              "Circuit configurations are defined by their wiring paths and hardware arrangement: \n• Hardware includes the consumer unit, socket outlets, and three-core conductors.\n• Ring Final circuits feature a return path where the loop starts and ends at the source.\n• Radial circuits terminate at the last outlet without returning to the source.\n• These paths dictate whether current is split across two directions (Ring) or flows in one direction (Radial)."
+            ],
+            "hint": "Think about where the cables start and finish for each circuit type and how many paths the electricity can take."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-SC1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-SC1A-SR-1",
+            "questionText": "What term describes a complete loop or path through which electricity flows?",
+            "expectedAnswer": [
+              "Circuit",
+              "A circuit",
+              "Electrical circuit"
+            ],
+            "hint": "It is the second word in the title of this lesson.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-SC1A-SR-2",
+            "questionText": "What is the common name for a connection point where equipment is plugged into an electrical supply?",
+            "expectedAnswer": [
+              "Socket",
+              "Outlet",
+              "Socket outlet"
+            ],
+            "hint": "This term is the first word in the title of this lesson.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-SC1A-SR-3",
+            "questionText": "What is the name of the central distribution point where electrical circuits begin in a building?",
+            "expectedAnswer": [
+              "Consumer unit",
+              "The consumer unit",
+              "Fuse box"
+            ],
+            "hint": "It is mentioned in the learning outcomes as the starting point of the electrical path.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Socket Circuits (Noob Level 1)"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1"
+  ],
+  "metadata": {
+    "created": "2026-02-22",
+    "updated": "2026-02-22",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "Basic definition of socket circuits, identification of L/N/CPC conductors, and the conceptual difference between ring and radial layouts.",
+      "outOfScope": "Cable sizing calculations, circuit testing procedures (R1+R2), installation terminations, and spurs/diversity factors.",
+      "rationale": "This is a Level 1 introductory lesson focused on conceptual awareness for beginners, requiring identification rather than technical execution."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Dead-safe conceptual overview only; no live work or installation steps."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The Earth or CPC wire is just a 'spare' wire that isn't doing anything.",
+        "correction": "The CPC is a critical safety component that provides a path for fault current to trigger the protective device.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "A ring circuit is just two radial circuits joined together.",
+        "correction": "A ring circuit is a single, continuous loop designed to share the load across two paths.",
+        "relatedAC": "AC3.1"
+      }
+    ],
+    "generationScore": 96,
+    "generationScoreDetails": {
+      "originalScore": 96,
+      "finalScore": 96,
+      "wasRefined": false,
+      "generatedAt": "2026-02-22T21:47:53.935Z",
+      "source": "phase10-13"
+    }
+  }
+}

@@ -113,7 +113,8 @@ export function generateSlug(topic: string): string {
  * Generate full lesson ID
  */
 export function generateLessonId(unit: number, lessonId: string): string {
-  return `${unit}-${lessonId}`;
+  const normalizedLessonId = lessonId.trim().replace(new RegExp(`^${unit}-`), '');
+  return `${unit}-${normalizedLessonId}`;
 }
 
 /**
@@ -284,6 +285,91 @@ export function preprocessToValidJson(content: string): string {
   processed = processed.replace(/\)\s*(\})/g, '$1');
   
   return processed;
+}
+
+/**
+ * Repair malformed JSON string literals from LLM output.
+ * Targets common failure mode: unescaped double quotes inside string values.
+ */
+export function repairMalformedJsonStrings(content: string): string {
+  const input = content;
+  let output = '';
+  let inString = false;
+  let escaped = false;
+
+  const peekNextNonWhitespace = (start: number): string | null => {
+    for (let i = start; i < input.length; i++) {
+      const ch = input[i];
+      if (!/\s/.test(ch)) {
+        return ch;
+      }
+    }
+    return null;
+  };
+
+  for (let i = 0; i < input.length; i++) {
+    const ch = input[i];
+
+    if (!inString) {
+      if (ch === '"') {
+        inString = true;
+      }
+      output += ch;
+      continue;
+    }
+
+    // Inside string
+    if (escaped) {
+      output += ch;
+      escaped = false;
+      continue;
+    }
+
+    if (ch === '\\') {
+      output += ch;
+      escaped = true;
+      continue;
+    }
+
+    // Raw control chars inside strings are invalid JSON.
+    if (ch === '\n') {
+      output += '\\n';
+      continue;
+    }
+    if (ch === '\r') {
+      output += '\\r';
+      continue;
+    }
+    if (ch === '\t') {
+      output += '\\t';
+      continue;
+    }
+
+    if (ch === '"') {
+      const nextNonWs = peekNextNonWhitespace(i + 1);
+      // Valid closing quote contexts:
+      // - object key: "key":
+      // - value end: "value", "value"} "value"]
+      if (
+        nextNonWs === ':' ||
+        nextNonWs === ',' ||
+        nextNonWs === '}' ||
+        nextNonWs === ']' ||
+        nextNonWs === null
+      ) {
+        inString = false;
+        output += ch;
+      } else {
+        // Quote appears to be content inside string -> escape it.
+        output += '\\"';
+      }
+      continue;
+    }
+
+    output += ch;
+  }
+
+  return output;
 }
 
 /**

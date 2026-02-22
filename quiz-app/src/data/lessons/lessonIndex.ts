@@ -58,17 +58,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 3,
   },
-  {
-    id: '201-203-SC1A',
-    title: 'Socket Circuits (Noob Level 1)',
-    unit: 'Unit 201',
-    unitNumber: '201',
-    topic: 'Socket Circuits (Noob Level 1)',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('201-203-SC1A'),
-    available: true,
-    order: 4,
-  },// Unit 202: Science 2365 Level 2
+  // Unit 202: Science 2365 Level 2
   {
     id: '202-1A',
     title: 'Electrical Quantities: Units and Measurements',
@@ -392,6 +382,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-LC1A'),
     available: true,
     order: 17,
+  },
+  {
+    id: '203-SC1A',
+    title: 'Socket Circuits (Noob Level 1)',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Socket Circuits (Noob Level 1)',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-SC1A'),
+    available: true,
+    order: 18,
   },// Unit 210: Communication
   {
     id: '204-10A',

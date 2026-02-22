@@ -59,9 +59,11 @@ import lesson203_10C from '@/data/lessons/203-10C-consumer-unit-practical-positi
 import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json';
 import lesson203_LC1A from '@/data/lessons/203-LC1A-lighting-circuits-noob-level-1.json';
 import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob-level-1.json';
+import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-SC1A': lesson203_SC1A as Lesson,
   '201-203-SC1A': lesson201_203_SC1A as Lesson,
   '203-LC1A': lesson203_LC1A as Lesson,
   '203-10A': lesson203_10A as Lesson,

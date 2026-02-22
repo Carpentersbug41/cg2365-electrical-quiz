@@ -5,7 +5,14 @@
  */
 
 import { GenerationRequest, Lesson, DebugInfo, GenerationDebugBundle } from './types';
-import { preprocessToValidJson, safeJsonParse, validateLLMResponse, cleanCodeBlocks, debugLog } from './utils';
+import {
+  preprocessToValidJson,
+  repairMalformedJsonStrings,
+  safeJsonParse,
+  validateLLMResponse,
+  cleanCodeBlocks,
+  debugLog,
+} from './utils';
 import { requiresWorkedExample, classifyLessonTask, isPurposeOnly, getTaskModeString } from './taskClassifier';
 import { DebugBundleCollector, saveDebugBundle } from './debugBundle';
 import { v4 as uuidv4 } from 'uuid';
@@ -1464,6 +1471,17 @@ export class SequentialLessonGenerator {
       // 4. Parse (RFC 8259 JSON only)
       const parsed = safeJsonParse<T>(preprocessed);
       if (!parsed.success || !parsed.data) {
+        console.warn(`[${phaseName}] Initial JSON parse failed, attempting string repair...`);
+        const repaired = repairMalformedJsonStrings(preprocessed);
+        const repairedParsed = safeJsonParse<T>(repaired);
+        if (repairedParsed.success && repairedParsed.data) {
+          console.log(`[${phaseName}] Successfully parsed after string repair`);
+          return {
+            success: true,
+            data: repairedParsed.data,
+          };
+        }
+
         console.error(`❌ [${phaseName}] JSON parse failed:`, parsed.error);
         console.error(`❌ [${phaseName}] Preprocessed content (first 500):`, preprocessed.substring(0, 500));
         console.error(`❌ [${phaseName}] Preprocessed content (last 500):`, preprocessed.slice(-500));

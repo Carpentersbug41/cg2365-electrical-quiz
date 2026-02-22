@@ -54,6 +54,7 @@ import lesson203_10C from '@/data/lessons/203-10C-consumer-unit-practical-positi
 import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json';
 import lesson203_LC1A from '@/data/lessons/203-LC1A-lighting-circuits-noob-level-1.json';
 import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob-level-1.json';
+import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -97,6 +98,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_SC1A,
   lesson201_203_SC1A,
   lesson203_LC1A,
   lesson203_10A,
