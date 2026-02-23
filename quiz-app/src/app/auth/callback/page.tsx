@@ -25,7 +25,7 @@ function AuthCallbackContent() {
       const tokenHash = searchParams.get('token_hash');
       const type = searchParams.get('type');
       const authCode = searchParams.get('code');
-      const next = isSafeRedirect(searchParams.get('next')) ? searchParams.get('next')! : '/learn';
+      const next = isSafeRedirect(searchParams.get('next')) ? searchParams.get('next')! : '/2365/learn';
 
       let authError: string | null = null;
 

@@ -81,6 +81,14 @@ You MUST compute taskMode by analyzing the lesson requirements:
 
 This taskMode will be the SINGLE SOURCE OF TRUTH for all downstream phases.
 
+ID CONVENTION (CRITICAL):
+- Pattern "20X-XN1" means:
+  * first X after 20 = unit
+  * second X token (leading digit) = syllabus Learning Outcome number
+  * "N1" = novice/intro track marker (NOT a Learning Outcome)
+- Example: "203-2N1" => Unit 203, LO2, novice level lesson 1.
+- Never interpret "N1" as LO1.
+
 SYLLABUS SCOPE ANCHORING (CRITICAL):
 You MUST output explicit syllabus anchors and scope control fields:
 - syllabusAnchors.unit

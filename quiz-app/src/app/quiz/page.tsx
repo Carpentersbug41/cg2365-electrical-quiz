@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Quiz from '@/components/Quiz';
 import type { Question } from '@/data/questions';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface CatalogUnit {
   unit_code: string;
@@ -124,7 +125,7 @@ export default function QuizPage() {
       <div className="mx-auto max-w-4xl space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Question Bank Practice</h1>
-          <Link href="/" className="rounded border border-slate-300 px-3 py-2 text-sm">
+          <Link href={courseHref('/')} className="rounded border border-slate-300 px-3 py-2 text-sm">
             Back Home
           </Link>
         </div>

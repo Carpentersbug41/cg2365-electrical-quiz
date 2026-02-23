@@ -1,0 +1,442 @@
+{
+  "id": "203-2N1A",
+  "title": "203.2N1A — Electrical Symbols (Noob): Shape Grammar Basics ",
+  "description": "Learn about Electrical Symbols (Noob): Shape Grammar Basics  in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Electrical Symbols (Noob): Shape Grammar Basics ",
+  "learningOutcomes": [
+    "Name three drawing types (circuit, schematic, wiring) and state the purpose of each",
+    "Explain the meaning of common symbol components: breaks, dots, circles, and tails",
+    "Identify a specific set of switching, lighting, and protection symbols based on their functional features"
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-2N1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Name three drawing types (circuit, schematic, wiring) and state the purpose of each",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the meaning of common symbol components: breaks, dots, circles, and tails",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify a specific set of switching, lighting, and protection symbols based on their functional features",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2N1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Shape Grammar",
+            "definition": "The standardized visual logic that uses specific geometric elements like lines, circles, and breaks to define the function and meaning of a technical symbol."
+          },
+          {
+            "term": "Schematic Diagram",
+            "definition": "A drawing that uses symbols to represent the logical flow and functional operation of a system, different from a wiring diagram because it does not show physical component locations."
+          },
+          {
+            "term": "Wiring Diagram",
+            "definition": "A drawing that illustrates the physical arrangement and specific terminal connections of components as they appear in a real-world installation."
+          },
+          {
+            "term": "Circuit Diagram",
+            "definition": "A drawing that shows the electrical sequence and path of current from the supply to the load, focusing on the order of operation rather than physical layout."
+          },
+          {
+            "term": "Junction",
+            "definition": "A solid circular mark used at the intersection of lines to indicate a permanent electrical connection, not just a crossing of conductors."
+          },
+          {
+            "term": "Protective Device",
+            "definition": "A symbol representing a component, such as a fuse or circuit breaker, that is designed to automatically disconnect a circuit during an overcurrent or fault."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2N1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Symbol Shape Grammar",
+        "content": "### In this lesson\n- You will learn how to interpret the visual logic used to build technical symbols.\n- This knowledge is applied when reading any technical drawing to understand component functions without labels.\n- Key takeaways include: identifying connections via dots, recognizing switches via breaks, and understanding functional variants through tails.\n\n**What this is**\nTechnical drawings do not use photographs; they use a system called **Shape Grammar**. This is the standardized visual logic that uses specific geometric elements like lines, circles, and breaks to define the function and meaning of a technical symbol. Just as letters form words, these geometric \"shapes\" form a language that tells a technician exactly what a component does and how it is connected to the rest of the system.\n\n**Why it matters**\nIn a complex installation, there is no room for long text descriptions. Symbols allow a large amount of technical information to be packed into a small space. Understanding the **Shape Grammar** ensures that you can identify a component's basic behavior—such as whether it is a simple path or a point of control—even if you have never seen that specific symbol before. This prevents dangerous errors, such as assuming two crossing paths are connected when they are actually separate.\n\n**Key facts / rules**\n- A solid line represents a conductor or a path for energy/information flow.\n- A **Junction** is a solid circular mark used at the intersection of lines to indicate a permanent electrical connection.\n- A break or gap in a line indicates an \"open\" state, typically representing a switch that has stopped the flow.\n- A circle often identifies a specific \"point\" or terminal where a device, such as a light, is located.\n- Tails or extra strokes (short lines attached to a main shape) are used to modify a symbol's meaning, indicating a specific sub-type or method of operation.\n- If a symbol is unfamiliar, you must always refer to the drawing's legend or key (verify current edition/version of the standards used).\n\n**When to choose it**\nYou use **Shape Grammar** rules when you need to decode the function of a symbol on the fly. For example, if you see a line that suddenly stops and restarts with a diagonal stroke, you recognize this as a switch. If you see two lines crossing like a plus sign without a dot, you know they are bypassing each other. \n\nAn everyday contextual anchor is a set of road signs. A circle might always mean a command, while a triangle means a warning. You don't need to read the words to know the *category* of the message because you understand the \"grammar\" of the sign shapes.\n\nLearners might see two lines crossing and wonder if they are joined. In a system using 10mm lines, a **Junction** dot might be 3mm wide; if that dot is missing, the lines are 100% separate regardless of how close they look.\n\n**Common mistakes**\nLearners often confuse a **Junction** with a simple crossing of lines; a **Junction** is a deliberate mark showing a permanent connection, whereas a crossing without a dot indicates the paths are independent and do not touch. \n\nMisconceptions (targeted):\n* Misconception: Any lines that touch on a drawing are electrically connected. | Correction: Lines only represent a connection if a **Junction** (dot) is present or if the drawing style explicitly states otherwise. | AC: AC2.3\n* Misconception: Symbol shapes are just random drawings. | Correction: Symbols follow a strict **Shape Grammar** where every line and gap has a functional meaning. | AC: AC2.3\n\n**Key Points**\n- Lines represent paths; gaps represent breaks in that path.\n- The **Junction** dot is the only way to confirm a connection at a crossing.\n- Circles usually represent a physical point or device location.\n- Tails and strokes add specific functional details to base symbols.\n\n**Quick recap**\n**Shape Grammar** is the underlying logic of technical symbols. By recognizing basic elements like lines, breaks, dots, circles, and tails, you can determine if a component is a path, a connection, or a switch, ensuring you interpret technical drawings accurately and safely.\n\n### Coming Up Next\nNow that you understand how symbols are built, we will look at the different types of drawings where these symbols live and how to identify specific devices like switches and protective gear."
+      }
+    },
+    {
+      "id": "203-2N1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Symbol Shape Grammar",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2N1A-C1-L1-A",
+            "questionText": "What does a solid line represent in technical shape grammar?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Conductor or path",
+              "A conductor",
+              "Energy or information flow",
+              "A path"
+            ],
+            "hint": "Think about what provides the route for energy or information to travel through a system."
+          },
+          {
+            "id": "203-2N1A-C1-L1-B",
+            "questionText": "What is the function of a Junction mark where lines intersect?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Permanent electrical connection",
+              "A permanent connection",
+              "Permanent connection",
+              "Permanent electrical link"
+            ],
+            "hint": "This solid circular mark confirms that the paths are not just crossing but are joined."
+          },
+          {
+            "id": "203-2N1A-C1-L1-C",
+            "questionText": "What is indicated by a crossing of lines that does not include a dot?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Paths are independent",
+              "Independent paths",
+              "Paths do not touch",
+              "They are separate"
+            ],
+            "hint": "Consider if energy can flow from one line to the other if there is no junction mark."
+          },
+          {
+            "id": "203-2N1A-C1-L2",
+            "questionText": "Using your answers to Q1 (solid lines), Q2 (Junction marks), and Q3 (crossings without dots), why is it critical to identify the presence or absence of a dot at an intersection?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Lines represent the paths for energy flow",
+              "Dots confirm the paths are permanently connected at an intersection",
+              "Missing dots prove the paths are independent and do not touch",
+              "Misidentifying these markers leads to dangerous errors regarding system connectivity"
+            ],
+            "expectedAnswer": [
+              "Because lines represent paths, a technician must look for a Junction dot to know if those paths are permanently connected or if they are independent and do not touch. This ensures the system connectivity is interpreted safely.",
+              "We know if paths are joined or separate based on the dot; since lines are conductors, assuming a connection where none exists (or vice versa) would be a dangerous error in understanding the system flow."
+            ],
+            "hint": "Relate the purpose of the lines to how the dot (or lack of one) changes the relationship between those lines."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2N1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Drawing Types and Functional Symbols",
+        "content": "### In this lesson\n- You will learn to distinguish between three main drawing types and identify common functional symbols.\n- This is used to select the right document for a specific task, such as troubleshooting or physical installation.\n- Key takeaways include: the purpose of circuit, schematic, and wiring diagrams, and the identification of switching and protection symbols.\n\n**What this is**\nTechnical information is presented in different formats depending on what the user needs to do. A **Circuit Diagram** shows the sequence and path of current from supply to load. A **Schematic Diagram** uses symbols to represent the logical flow and functional operation of a system. Finally, a **Wiring Diagram** illustrates the physical arrangement and specific terminal connections of components as they appear in the real world.\n\n**Why it matters**\nUsing the wrong drawing for a task leads to confusion. For example, a **Schematic Diagram** is excellent for understanding *how* a system works logically, but it is useless for finding where a wire is physically tucked into a corner. Conversely, a **Wiring Diagram** shows you where the wires go but can make it hard to see the simple logical path of the electricity. Recognizing specific symbols for a **Protective Device** (like a fuse) or a switch is critical for safety and system maintenance.\n\n**Key facts / rules**\n- A **Circuit Diagram** focuses on the order of operation (sequence).\n- A **Schematic Diagram** focuses on logical relationships, not physical locations.\n- A **Wiring Diagram** focuses on physical terminals and actual layouts.\n- Switching symbols include: One-way (simple on/off), Two-way (changeover), and Intermediate (crossover).\n- A pull switch is identified by a specific \"tail\" or cord indicator on the switch symbol.\n- Lighting symbols vary by type: incandescent (standard), fluorescent (tube), and LED (diode).\n- A **Protective Device** symbol represents a fuse (sacrificial link) or a circuit breaker (resettable switch).\n- The Consumer Control Unit is the main box symbol where all circuits originate.\n\n**When to choose it**\nYou choose a **Schematic Diagram** when you need to diagnose a fault in the logic of a system. You choose a **Wiring Diagram** when you are physically connecting cables to terminals. \n\nA concrete anchor is a London Underground map. The colorful map you see in the station is a **Schematic Diagram**; it shows you how the lines connect logically but doesn't show the actual curves or depths of the tunnels. A GPS satellite view of the tracks would be more like a **Wiring Diagram**.\n\nIf you are looking at a drawing with 5 switches and need to find the one that controls two different paths, you would look for the \"Two-way\" symbol. If a circuit has a 20A limit, the symbol for the **Protective Device** tells you if you are looking for a fuse or a breaker to reset.\n\n**Common mistakes**\nLearners often confuse a **Circuit Diagram** with a **Wiring Diagram**; a **Circuit Diagram** is concerned with the sequence of the electrical path, whereas a **Wiring Diagram** shows the actual physical layout and terminal connections. \n\nMisconceptions (targeted):\n* Misconception: A schematic shows exactly where the components are in the room. | Correction: A **Schematic Diagram** shows logical flow; physical locations are found on layout or wiring drawings. | AC: AC2.2\n* Misconception: Fuses and circuit breakers use the same symbol because they both protect. | Correction: While both are a **Protective Device**, they have distinct symbols to show if they are sacrificial (fuse) or resettable (breaker). | AC: AC2.3\n\n**Key Points**\n- Schematics show logic; Wiring diagrams show physical layout.\n- Circuit diagrams show the sequence from supply to load.\n- Switches are identified by their \"way\" (one-way, two-way, intermediate).\n- Protective devices (fuses/breakers) have unique symbols to distinguish their operation.\n\n**Quick recap**\nUnderstanding drawing types allows you to pick the right tool for the job, whether you are analyzing logic or installing hardware. By recognizing functional symbols for switches, lights, and protective devices, you can safely navigate technical documentation.\n\n### Coming Up Next\nIn the next stage, we will look at how to take these drawings and convert the scaled dimensions on paper into real-world measurements for installation."
+      }
+    },
+    {
+      "id": "203-2N1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Drawing Types and Functional Symbols",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2N1A-C2-L1-A",
+            "questionText": "What is the primary focus of a Schematic Diagram?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Logical relationships",
+              "Logical flow",
+              "System logic",
+              "Functional operation"
+            ],
+            "hint": "This drawing type is concerned with how the system works, not where it is located physically."
+          },
+          {
+            "id": "203-2N1A-C2-L1-B",
+            "questionText": "What specific information does a Wiring Diagram focus on?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Physical terminals and layouts",
+              "Actual layouts",
+              "Physical arrangement",
+              "Terminal connections"
+            ],
+            "hint": "This drawing shows the real-world arrangement of components and their connection points."
+          },
+          {
+            "id": "203-2N1A-C2-L1-C",
+            "questionText": "Why are different symbols used for different types of protective devices?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Distinguish their operation",
+              "Show operation type",
+              "Identify operation",
+              "Distinguish function"
+            ],
+            "hint": "Think about how a technician identifies if a device is sacrificial, like a fuse, or resettable."
+          },
+          {
+            "id": "203-2N1A-C2-L2",
+            "questionText": "Using your answers to Q1 (Schematic Diagrams), Q2 (Wiring Diagrams), and Q3 (protective device symbols), how do we know which document and symbol to select for a physical installation task?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Wiring diagrams are selected for physical terminal and layout details",
+              "Schematics are avoided for installation as they do not show physical locations",
+              "Specific symbols identify the exact protective device required at the physical terminal",
+              "Correct selection ensures the logical flow is translated into the correct physical hardware"
+            ],
+            "expectedAnswer": [
+              "For physical installation, we select the Wiring Diagram because it focuses on physical terminals and layouts rather than just logical relationships. We then use unique protective device symbols to identify whether to install a fuse or a breaker at those terminals.",
+              "We know to use a Wiring Diagram for installation because it shows actual layouts; however, we might refer to a Schematic to understand the logic. The unique symbols ensure we select the correct device for the operation required by the system design."
+            ],
+            "hint": "Compare the practical use of physical layout information versus logical flow information."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2N1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-2N1A-P1",
+            "questionText": "In a technical drawing, there are 4 line crossings. 3 of these crossings have a solid circular mark (Junction), and 1 does not. How many permanent connections are represented in this specific section of the drawing?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count only the points where a Junction dot confirms a connection according to Shape Grammar rules."
+          },
+          {
+            "id": "203-2N1A-P2",
+            "questionText": "Why cannot a schematic diagram be used to determine the exact length of a cable required for a physical installation?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it shows logical flow",
+              "no physical locations",
+              "logical relationships only",
+              "it is not physical"
+            ],
+            "hint": "Think about the primary purpose of a schematic compared to a wiring or layout diagram."
+          },
+          {
+            "id": "203-2N1A-P3",
+            "questionText": "A technician needs to identify the specific terminal numbers where a cable connects to a component in the real world. Which specific type of drawing should they select for this task?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "wiring diagram",
+              "a wiring diagram",
+              "wiring diagrams"
+            ],
+            "hint": "This drawing type focuses on physical arrangements and terminal-to-terminal connections."
+          },
+          {
+            "id": "203-2N1A-P4",
+            "questionText": "A new symbol in a logic system uses a base circle. 2 short lines (tails) are added to indicate a 'high-speed' variant. If a diagram contains 5 base circles and 2 of them have these tails, how many 'high-speed' components are present?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "2"
+            ],
+            "hint": "In Shape Grammar, tails are used as modifiers to identify specific sub-types of a base component."
+          },
+          {
+            "id": "203-2N1A-P5",
+            "questionText": "What must be true about two lines on a technical drawing if they cross each other like a plus sign, but no 'Junction' dot is present at the intersection?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "they are separate",
+              "no connection",
+              "they are independent",
+              "not connected"
+            ],
+            "hint": "Consider the specific rule regarding line crossings and the requirement for a Junction mark."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2N1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-2N1A-INT-1",
+            "questionText": "Explain how the application of Shape Grammar ensures a schematic diagram accurately communicates system logic. In your answer, include: (1) the primary purpose of a schematic diagram, (2) how dots and breaks represent connectivity and control, and (3) the relationship between these visual indicators and functional path tracing. Why must these graphical conventions be standardized across different technical documents? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Schematic diagrams prioritize logical flow and functional operation over physical location",
+              "Dots indicate permanent or intended connections between paths",
+              "Breaks represent points of control where a path can be opened or closed",
+              "Visual indicators allow a technician to trace the sequence of operation and signal flow",
+              "Standardization is required to ensure universal interpretation and prevent safety errors during system diagnosis"
+            ],
+            "expectedAnswer": [
+              "A schematic diagram is designed to show how a system functions logically, using dots to show connections and breaks to show where control occurs. These Shape Grammar elements allow a technician to trace a functional path by identifying where signals or power can flow. Standardization is necessary because consistent visual logic ensures that any technician can identify a system's state and safety points without needing specific component labels.",
+              "The purpose of a schematic is to illustrate functional logic, which relies on dots for connections and breaks for switching points. By interpreting these symbols, a user can trace the functional path to understand the sequence of operation. This relationship holds because standardization prevents the misinterpretation of system states, which is critical for both operational accuracy and safety."
+            ],
+            "hint": "Think about how the symbols for connections and interruptions allow you to follow the 'flow' through a logical drawing."
+          },
+          {
+            "id": "203-2N1A-INT-2",
+            "questionText": "Analyze how the integration of drawing types, shape grammar, and functional symbols facilitates the maintenance of a technical system. In your answer, include: (1) the distinction between wiring and circuit diagrams, (2) the use of tails and circles to define specific component behavior, (3) the identification of protection symbols, and (4) how these elements work together to allow a technician to locate and test a specific component. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Wiring diagrams show physical connections and terminal locations while circuit diagrams show logical operation",
+              "Tails and circles modify base symbols to indicate specific functional variants or operational triggers",
+              "Protection symbols identify safety components that prevent system damage or hazards",
+              "Integration allows the technician to use the circuit diagram to identify a logical fault and the wiring diagram to find the physical component",
+              "Shape grammar ensures the technician understands the exact behavior of the component being tested",
+              "Protection symbols guide the technician to critical isolation points before maintenance begins",
+              "Synthesized knowledge ensures that maintenance is performed both logically and safely"
+            ],
+            "expectedAnswer": [
+              "Maintenance requires using wiring diagrams to locate physical components and circuit diagrams to understand their logical function. Shape grammar, such as tails and circles, further defines specific component behaviors, while protection symbols highlight critical safety points. Together, these allow a technician to identify a logical fault, locate the physical device, and safely isolate the system for testing.",
+              "• Wiring diagrams provide the physical layout, while circuit diagrams explain the logical sequence of the system.\n• Shape grammar elements like tails and circles clarify the specific functional features of switches or indicators.\n• Protection symbols indicate where safety devices are located to prevent system overloads.\n• Integrating these concepts allows a technician to accurately diagnose a fault logically and then locate the physical terminals for testing."
+            ],
+            "hint": "Consider the step-by-step process of finding a fault logically and then locating it physically in a system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-2N1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-2N1A-SR-1",
+            "questionText": "What is the term for a simplified shape or mark used to represent a physical component in a technical diagram?",
+            "expectedAnswer": [
+              "symbol",
+              "symbols",
+              "graphical symbol"
+            ],
+            "hint": "These are used instead of realistic pictures to keep drawings simple.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-2N1A-SR-2",
+            "questionText": "What is the general name for a visual plan or layout that shows how different parts of a system are connected?",
+            "expectedAnswer": [
+              "drawing",
+              "diagram",
+              "technical drawing"
+            ],
+            "hint": "This provides a map of how the components work together.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-2N1A-SR-3",
+            "questionText": "What term is used to describe the individual parts, such as switches or lights, that make up a larger system?",
+            "expectedAnswer": [
+              "components",
+              "parts",
+              "equipment"
+            ],
+            "hint": "These are the physical items represented by symbols.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Electrical Symbols (Noob): Shape Grammar Basics "
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC2",
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-02-23",
+    "updated": "2026-02-23",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO2",
+      "coveredAC": [
+        "AC2",
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "Identification of basic drawing types and the visual logic (grammar) of specific electrical symbols for novice learners.",
+      "outOfScope": "Scaling, advanced drawing types (as-fitted/block), and installation or wiring procedures.",
+      "rationale": "Focuses on establishing visual literacy and symbol recognition as a prerequisite for more technical drawing tasks like scaling or physical installation."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Text-only delivery focused on shape logic and symbol recognition without graphical diagrams"
+    },
+    "misconceptions": [
+      {
+        "misconception": "Any lines that touch on a drawing are electrically connected.",
+        "correction": "Lines only represent a connection if a Junction (dot) is present or if the drawing style explicitly states otherwise.",
+        "relatedAC": "AC2.3"
+      },
+      {
+        "misconception": "A schematic shows exactly where the components are in the room.",
+        "correction": "A Schematic Diagram shows logical flow; physical locations are found on layout or wiring drawings.",
+        "relatedAC": "AC2.2"
+      },
+      {
+        "misconception": "Fuses and circuit breakers use the same symbol because they both protect.",
+        "correction": "While both are a Protective Device, they have distinct symbols to show if they are sacrificial (fuse) or resettable (breaker).",
+        "relatedAC": "AC2.3"
+      }
+    ],
+    "youtubeUrl": "https://www.youtube.com/watch?v=U81CkkO9AbY",
+    "generationScore": 97,
+    "generationScoreDetails": {
+      "originalScore": 97,
+      "finalScore": 97,
+      "wasRefined": false,
+      "generatedAt": "2026-02-23T16:09:34.430Z",
+      "source": "phase10-13"
+    }
+  }
+}

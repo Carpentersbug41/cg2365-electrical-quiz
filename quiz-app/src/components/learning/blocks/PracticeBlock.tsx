@@ -9,6 +9,7 @@ import { AlertTriangle } from 'lucide-react';
 import { BlockProps } from './types';
 import { PracticeBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
+import BlockTTSButton from '../tts/BlockTTSButton';
 import { logAttempt } from '@/lib/authProgress/clientTelemetry';
 import {
   extractLessonIdFromBlockId,
@@ -263,7 +264,15 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
                       </span>
                     )}
                   </div>
-                  <p className="text-gray-800 font-medium">{question.questionText}</p>
+                  <div className="flex items-start gap-2">
+                    <p className="flex-1 text-gray-800 font-medium">{question.questionText}</p>
+                    <BlockTTSButton
+                      blockId={`${block.id}-practice-question-${question.id}`}
+                      text={question.questionText}
+                      label={`Read practice question ${index + 1} aloud`}
+                      iconOnly
+                    />
+                  </div>
                 </div>
               </div>
 

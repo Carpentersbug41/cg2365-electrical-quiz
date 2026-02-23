@@ -20,6 +20,7 @@ import Quiz from '@/components/Quiz';
 import DiagnosticFeedback from './DiagnosticFeedback';
 import { TaggedQuestion } from '@/data/questions/types';
 import { Question } from '@/data/questions';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface DiagnosticGateProps {
   lessonId: string;
@@ -181,7 +182,7 @@ export default function DiagnosticGate({ lessonId, diagnostic, children }: Diagn
             {coverage.coveredLessonIds.length > 0 && (
               <div className="mt-6 text-center">
                 <Link 
-                  href="/learn"
+                  href={courseHref('/learn')}
                   className="text-blue-600 dark:text-blue-400 hover:underline text-sm"
                 >
                   ← Back to Lesson Menu to Review
@@ -276,7 +277,7 @@ export default function DiagnosticGate({ lessonId, diagnostic, children }: Diagn
     return (
       <DiagnosticFeedback
         results={results}
-        onBackToMenu={() => window.location.href = '/learn'}
+        onBackToMenu={() => (window.location.href = courseHref('/learn'))}
         onProceedAnyway={handleProceedToLesson}
       />
     );
@@ -284,4 +285,3 @@ export default function DiagnosticGate({ lessonId, diagnostic, children }: Diagn
 
   return null;
 }
-

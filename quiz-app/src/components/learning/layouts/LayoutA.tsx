@@ -26,6 +26,7 @@ import MicrobreakBlock from '../microbreaks/MicrobreakBlock';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import { markLessonStarted } from '@/lib/authProgress/clientTelemetry';
+import { courseHref } from '@/lib/routing/courseHref';
 
 export default function LayoutA({ lesson }: LayoutProps) {
   const [highlightedElements, setHighlightedElements] = useState<string[]>([]);
@@ -108,13 +109,13 @@ export default function LayoutA({ lesson }: LayoutProps) {
             Review
           </button>
           <button 
-            onClick={() => window.location.href = `/learn/${lesson.id}/quiz`}
+            onClick={() => (window.location.href = courseHref(`/learn/${lesson.id}/quiz`))}
             className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 rounded-lg transition-colors shadow-sm"
           >
             Quiz
           </button>
           <button 
-            onClick={() => window.location.href = `/learn/${lesson.id}/quiz?mode=cumulative`}
+            onClick={() => (window.location.href = courseHref(`/learn/${lesson.id}/quiz?mode=cumulative`))}
             className="px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 hover:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 rounded-lg transition-all shadow-sm flex items-center gap-1"
             title="Quiz with questions from this lesson and all previous lessons in this unit"
           >
@@ -218,13 +219,13 @@ export default function LayoutA({ lesson }: LayoutProps) {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button 
-                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz`}
+                    onClick={() => (window.location.href = courseHref(`/learn/${lesson.id}/quiz`))}
                     className="px-8 py-4 text-lg font-semibold text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
                   >
                     Continue to Quiz →
                   </button>
                   <button 
-                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz?mode=cumulative`}
+                    onClick={() => (window.location.href = courseHref(`/learn/${lesson.id}/quiz?mode=cumulative`))}
                     className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 hover:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <span>🔄</span>
@@ -306,13 +307,13 @@ export default function LayoutA({ lesson }: LayoutProps) {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <button 
-                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz`}
+                    onClick={() => (window.location.href = courseHref(`/learn/${lesson.id}/quiz`))}
                     className="px-8 py-4 text-lg font-semibold text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105"
                   >
                     Continue to Quiz →
                   </button>
                   <button 
-                    onClick={() => window.location.href = `/learn/${lesson.id}/quiz?mode=cumulative`}
+                    onClick={() => (window.location.href = courseHref(`/learn/${lesson.id}/quiz?mode=cumulative`))}
                     className="px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700 hover:from-orange-600 hover:to-orange-700 dark:hover:from-orange-700 dark:hover:to-orange-800 rounded-xl transition-all shadow-lg hover:shadow-xl hover:scale-105 flex items-center justify-center gap-2"
                   >
                     <span>🔄</span>

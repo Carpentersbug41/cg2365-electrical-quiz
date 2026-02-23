@@ -394,14 +394,15 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 18,
   },
+  
   {
-    id: '203-SYM1A',
-    title: 'Electrical Symbols (Noob): Why the Shapes + How to Read Them',
+    id: '203-2N1A',
+    title: 'Electrical Symbols (Noob): Shape Grammar Basics ',
     unit: 'Unit 203',
     unitNumber: '203',
-    topic: 'Electrical Symbols (Noob): Why the Shapes + How to Read Them',
+    topic: 'Electrical Symbols (Noob): Shape Grammar Basics ',
     description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('203-SYM1A'),
+    questionCount: getLessonQuestionCount('203-2N1A'),
     available: true,
     order: 19,
   },// Unit 210: Communication

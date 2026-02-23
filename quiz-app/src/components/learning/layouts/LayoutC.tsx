@@ -9,6 +9,7 @@
 
 import { useState, useEffect } from 'react';
 import { TaggedQuestion } from '@/data/questions/types';
+import BlockTTSButton from '../tts/BlockTTSButton';
 
 interface LayoutCProps {
   quizId: string;
@@ -223,9 +224,17 @@ export default function LayoutC({ quizId, quizTitle, questions, onComplete }: La
                 </span>
               </div>
               
-              <h2 className="text-2xl font-bold text-gray-800 leading-relaxed">
-                {currentQ.question}
-              </h2>
+              <div className="flex items-start gap-2">
+                <h2 className="flex-1 text-2xl font-bold text-gray-800 leading-relaxed">
+                  {currentQ.question}
+                </h2>
+                <BlockTTSButton
+                  blockId={`layoutc-question-${quizId}-${currentQuestion}`}
+                  text={currentQ.question}
+                  label={`Read question ${currentQuestion + 1} aloud`}
+                  iconOnly
+                />
+              </div>
             </div>
 
             {/* Options */}
@@ -365,5 +374,4 @@ export default function LayoutC({ quizId, quizTitle, questions, onComplete }: La
     </div>
   );
 }
-
 

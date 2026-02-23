@@ -55,10 +55,11 @@ import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json
 import lesson203_LC1A from '@/data/lessons/203-LC1A-lighting-circuits-noob-level-1.json';
 import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob-level-1.json';
 import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
-import lesson203_SYM1A from '@/data/lessons/203-SYM1A-electrical-symbols-noob-why-the-shapes-how-to-read-them.json';
+import lesson203_2N1A from '@/data/lessons/203-2N1A-electrical-symbols-noob-shape-grammar-basics.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
+import { courseHref } from '@/lib/routing/courseHref';
 
 /**
  * Natural sort function for lesson IDs
@@ -99,8 +100,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
-  lesson203_SYM1A,
-  lesson203_SC1A,
+  lesson203_2N1A,  lesson203_SC1A,
   lesson201_203_SC1A,
   lesson203_LC1A,
   lesson203_10A,
@@ -315,7 +315,7 @@ export default function LearnPage() {
                   return (
                     <Link
                       key={lesson.id}
-                      href={`/learn/${lesson.id}`}
+                      href={courseHref(`/learn/${lesson.id}`)}
                       className="group"
                     >
                       <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col`}>
@@ -383,7 +383,7 @@ export default function LearnPage() {
           </div>
 
           <Link
-            href="/quiz/interleaved/mixed-series-parallel"
+            href={courseHref('/quiz/interleaved/mixed-series-parallel')}
             className="group block"
           >
             <div className="bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl shadow-xl hover:shadow-2xl p-8 transition-all duration-200 hover:scale-[1.02]">

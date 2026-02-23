@@ -20,6 +20,7 @@ import TypedRetrySection from './quiz/TypedRetrySection';
 import { saveAttempt, updateNeedsReview } from '@/lib/storage/indexedDBService';
 import { logAttempt, markLessonCompleted, markLessonStarted } from '@/lib/authProgress/clientTelemetry';
 import { getAcMetaFromQuestion, getStableIdForMcqQuestion } from '@/lib/authProgress/questionIdentity';
+import BlockTTSButton from './learning/tts/BlockTTSButton';
 
 interface QuizProps {
   section?: string;
@@ -1188,9 +1189,17 @@ export default function Quiz({
               </span>
             </div>
             
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-slate-100 leading-relaxed">
-              {currentQ.question}
-            </h2>
+            <div className="flex items-start gap-2">
+              <h2 className="flex-1 text-2xl font-bold text-gray-800 dark:text-slate-100 leading-relaxed">
+                {currentQ.question}
+              </h2>
+              <BlockTTSButton
+                blockId={`quiz-question-${currentQuestion}`}
+                text={currentQ.question}
+                label={`Read question ${currentQuestion + 1} aloud`}
+                iconOnly
+              />
+            </div>
           </div>
 
           {/* Options */}

@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { getReviewsDue, getUpcomingReviews, getReviewStats } from '@/lib/progress/reviewScheduler';
 import { getLessonById } from '@/data/lessons/lessonIndex';
 import { SpacedReviewItem } from '@/lib/progress/types';
+import { courseHref } from '@/lib/routing/courseHref';
 
 export default function ReviewDashboard() {
   const [dueReviews, setDueReviews] = useState<SpacedReviewItem[]>([]);
@@ -104,7 +105,7 @@ export default function ReviewDashboard() {
               return (
                 <Link
                   key={review.itemId}
-                  href={`/learn/${review.lessonId}/quiz?review=true`}
+                  href={courseHref(`/learn/${review.lessonId}/quiz?review=true`)}
                   className="block bg-white dark:bg-slate-800 rounded-lg p-3 border border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 hover:shadow-md transition-all"
                 >
                   <div className="flex items-center justify-between">

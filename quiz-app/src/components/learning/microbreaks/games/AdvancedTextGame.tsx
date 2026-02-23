@@ -14,7 +14,7 @@ import {
   TapTheLineGameContent,
   TapTheWordGameContent,
 } from '@/data/lessons/types';
-import { playClickSound, playSound } from '@/lib/microbreaks/celebrationEffects';
+import { playClickSound, playCustomSound, playSound } from '@/lib/microbreaks/celebrationEffects';
 
 type AdvancedGameContent =
   | SequencingGameContent
@@ -61,7 +61,7 @@ function defaultInstruction(type: AdvancedGameContent['gameType']): string {
     case 'scenario-match':
       return 'Pick the best answer for each scenario, then tap Check.';
     case 'formula-build':
-      return 'Tap tokens to build the formula, then tap Check.';
+      return 'Goal: build the target formula in order. Tap tokens left to right, use Clear to restart, then tap Check.';
     case 'tap-the-line':
       return 'Tap the correct line and then tap Check.';
     case 'tap-the-word':
@@ -82,7 +82,10 @@ function tone(checked: boolean, isCorrect: boolean, isSelected: boolean): string
 
 export default function AdvancedTextGame({ content, onComplete, onSkip }: AdvancedTextGameProps) {
   const [done, setDone] = useState(false);
-  const [timeLeft, setTimeLeft] = useState<number | null>(content.timerSeconds ?? null);
+  const defaultTimerSeconds = content.gameType === 'formula-build' ? 11 : 30;
+  const safeTimerSeconds = typeof content.timerSeconds === 'number' && content.timerSeconds > 0 ? content.timerSeconds : defaultTimerSeconds;
+  const [timeLeft, setTimeLeft] = useState<number | null>(safeTimerSeconds);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const soundEnabled = content.enableSound !== false;
 
@@ -98,10 +101,15 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
   };
 
   useEffect(() => {
-    if (done || timeLeft === null || timeLeft <= 0) return;
+    if (done || !hasStarted || timeLeft === null || timeLeft <= 0) return;
     const timer = setTimeout(() => setTimeLeft((prev) => (prev === null ? null : prev - 1)), 1000);
     return () => clearTimeout(timer);
-  }, [done, timeLeft]);
+  }, [done, hasStarted, timeLeft]);
+
+  useEffect(() => {
+    if (!hasStarted || !soundEnabled || content.gameType !== 'formula-build') return;
+    playCustomSound('/sounds/The Countdown Clock 11.mp3', 0.35);
+  }, [hasStarted, soundEnabled, content.gameType]);
 
   if (timeLeft !== null && timeLeft <= 0 && !done) {
     finish(0, 0);
@@ -110,7 +118,7 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
   return (
     <GameWrapper
       title={gameTitle(content.gameType)}
-      duration={content.timerSeconds ?? 30}
+      duration={safeTimerSeconds}
       instruction={content.instructions ?? defaultInstruction(content.gameType)}
       motionPreset="soft"
       onComplete={onComplete}
@@ -119,11 +127,15 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
       disableCelebration
     >
       {(wrapperComplete) => (
-        <div className="space-y-3">
+        <div
+          className="space-y-3"
+          onPointerDownCapture={() => setHasStarted(true)}
+          onKeyDownCapture={() => setHasStarted(true)}
+        >
           {content.prompt ? <p className="text-sm font-medium text-gray-700 dark:text-slate-300">{content.prompt}</p> : null}
           {timeLeft !== null ? (
             <div className={`text-xs font-semibold ${timeLeft <= 8 ? 'text-red-700 dark:text-red-300' : 'text-blue-700 dark:text-blue-300'}`}>
-              Time left: {timeLeft}s
+              {hasStarted ? `Time left: ${timeLeft}s` : `Time starts on first tap: ${timeLeft}s`}
             </div>
           ) : null}
           <AdvancedGameBody
@@ -353,9 +365,13 @@ function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaB
   const [sequence, setSequence] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
   const isCorrect = sequence.length === content.correctSequence.length && sequence.every((t, i) => t === content.correctSequence[i]);
+  const expectedLength = content.correctSequence.length;
 
   return (
     <div className="space-y-2">
+      <p className="text-xs text-gray-600 dark:text-slate-400">
+        Build the full formula in the answer box. You need {expectedLength} token{expectedLength === 1 ? '' : 's'} in the right order.
+      </p>
       <div className={`min-h-10 rounded border p-2 text-xs ${checked ? (isCorrect ? 'border-green-500 bg-green-100 text-green-900 dark:border-green-600 dark:bg-green-900/30 dark:text-green-200' : 'border-red-500 bg-red-100 text-red-900 dark:border-red-600 dark:bg-red-900/30 dark:text-red-200') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
         {sequence.join(' ') || 'Build the formula here'}
       </div>

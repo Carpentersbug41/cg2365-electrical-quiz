@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { BlockProps } from './types';
 import { GuidedPracticeBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
+import BlockTTSButton from '../tts/BlockTTSButton';
 
 export default function GuidedPracticeBlock({ block }: BlockProps) {
   const content = block.content as GuidedPracticeBlockContent;
@@ -153,7 +154,15 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
               </div>
               
               <div className="flex-1">
-                <p className="text-gray-700 mb-3 font-medium">{step.prompt}</p>
+                <div className="mb-3 flex items-start gap-2">
+                  <p className="flex-1 text-gray-700 font-medium">{step.prompt}</p>
+                  <BlockTTSButton
+                    blockId={`${block.id}-guided-step-${stepIndex}`}
+                    text={step.prompt}
+                    label={`Read guided question ${stepIndex + 1} aloud`}
+                    iconOnly
+                  />
+                </div>
                 
                 {stepIndex <= currentStep && (
                   <>
@@ -266,4 +275,3 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
     </div>
   );
 }
-

@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import { isMasteryReviewDue } from '@/lib/progress/progressService';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface MasteryGateProps {
   progress: LessonProgress | QuizProgress;
@@ -117,7 +118,7 @@ export default function MasteryGate({
                   This measures true learning - can you recall it after a delay?
                 </p>
                 <Link
-                  href={`/learn/${lessonId}/quiz?retest=true`}
+                  href={courseHref(`/learn/${lessonId}/quiz?retest=true`)}
                   className="inline-flex items-center gap-2 px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-semibold transition-colors shadow-md"
                 >
                   <svg
@@ -155,7 +156,7 @@ export default function MasteryGate({
                   <strong>Why wait?</strong> Delayed testing confirms true mastery, not just short-term performance.
                 </p>
                 <Link
-                  href={`/learn/${lessonId}`}
+                  href={courseHref(`/learn/${lessonId}`)}
                   className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 hover:bg-amber-50 dark:hover:bg-slate-700 text-amber-800 dark:text-amber-200 rounded-lg font-medium transition-colors border border-amber-300 dark:border-amber-700"
                 >
                   <svg

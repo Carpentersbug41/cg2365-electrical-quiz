@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { BlockProps } from './types';
 import { SpacedReviewBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
+import BlockTTSButton from '../tts/BlockTTSButton';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 import { logAttempt } from '@/lib/authProgress/clientTelemetry';
 import {
@@ -164,7 +165,15 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
               <span className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">
                 {index + 1}
               </span>
-              <p className="flex-1 text-gray-800 font-medium">{question.questionText}</p>
+              <div className="flex flex-1 items-start gap-2">
+                <p className="flex-1 text-gray-800 font-medium">{question.questionText}</p>
+                <BlockTTSButton
+                  blockId={`${block.id}-spaced-question-${question.id}`}
+                  text={question.questionText}
+                  label={`Read review question ${index + 1} aloud`}
+                  iconOnly
+                />
+              </div>
             </div>
 
             <textarea

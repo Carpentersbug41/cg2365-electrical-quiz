@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FormEvent, useEffect, useState } from 'react';
 import type { User } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { courseHref } from '@/lib/routing/courseHref';
 
 export default function SignInPage() {
   const [email, setEmail] = useState('');
@@ -45,7 +46,7 @@ export default function SignInPage() {
     setIsSubmitting(true);
     const redirectTo =
       typeof window !== 'undefined'
-        ? `${window.location.origin}/auth/callback?next=/learn`
+        ? `${window.location.origin}/auth/callback?next=${courseHref('/learn')}`
         : undefined;
 
     const { error } = await client.auth.signInWithOtp({
@@ -134,7 +135,7 @@ export default function SignInPage() {
         )}
 
         <div className="mt-6 text-sm">
-          <Link href="/" className="text-indigo-600 dark:text-indigo-400 hover:underline">
+          <Link href={courseHref('/')} className="text-indigo-600 dark:text-indigo-400 hover:underline">
             Back to home
           </Link>
         </div>

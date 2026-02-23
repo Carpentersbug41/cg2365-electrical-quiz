@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { courseHref } from '@/lib/routing/courseHref';
 
 export default function Home() {
   return (
@@ -22,7 +23,7 @@ export default function Home() {
         
         {/* Learn Link - NEW! */}
         <Link 
-          href="/learn"
+          href={courseHref('/learn')}
           className="group relative bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl shadow-2xl overflow-hidden hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
         >
           <div className="h-2 bg-gradient-to-r from-purple-400 to-pink-500"></div>
@@ -40,7 +41,7 @@ export default function Home() {
 
         {/* Quiz Link */}
         <Link 
-          href="/quiz"
+          href={courseHref('/quiz')}
           className="group relative bg-white dark:bg-slate-800 rounded-2xl shadow-2xl overflow-hidden hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
         >
           <div className="h-2 bg-gradient-to-r from-blue-500 to-indigo-600"></div>
@@ -58,7 +59,7 @@ export default function Home() {
 
         {/* Simulation Link */}
         <Link 
-          href="/electron-simulation"
+          href={courseHref('/electron-simulation')}
           className="group relative bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 rounded-2xl shadow-2xl overflow-hidden hover:shadow-cyan-500/20 transition-all duration-300 transform hover:-translate-y-1 flex flex-col"
         >
           <div className="h-2 bg-gradient-to-r from-cyan-400 to-blue-500"></div>

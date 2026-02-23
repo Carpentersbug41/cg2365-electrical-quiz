@@ -145,6 +145,42 @@
       }
     },
     {
+      "id": "202-2A-microbreak-1",
+      "type": "microbreak",
+      "order": 4.7,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Ohm's Law",
+            "right": "The fundamental relationship between voltage, current, and resistance, expressed as V = IR"
+          },
+          {
+            "left": "Voltage V",
+            "right": "Electrical pressure or potential difference that pushes current through a circuit, measured in volts V"
+          },
+          {
+            "left": "Current I",
+            "right": "The rate of flow of electric charge through a conductor, measured in amperes A"
+          },
+          {
+            "left": "Resistance R",
+            "right": "The opposition to current flow in a circuit, measured in ohms Ω"
+          },
+          {
+            "left": "Directly Proportional",
+            "right": "When one quantity increases, the other increases by the same factor V and I are directly proportional when R is constant"
+          },
+          {
+            "left": "Inversely Proportional",
+            "right": "When one quantity increases, the other decreases I and R are inversely proportional when V is constant"
+          }
+        ]
+      }
+    },
+    {
       "id": "202-2A-worked-example",
       "type": "worked-example",
       "order": 5,
@@ -275,6 +311,34 @@
       }
     },
     {
+      "id": "202-2A-microbreak-2",
+      "type": "microbreak",
+      "order": 7.2,
+      "content": {
+        "breakType": "game",
+        "gameType": "formula-build",
+        "prompt": "Build Ohm's Law in voltage form.",
+        "tokens": [
+          "R",
+          "-",
+          "*",
+          "=",
+          "V",
+          "+",
+          "I",
+          "/"
+        ],
+        "correctSequence": [
+          "V",
+          "=",
+          "I",
+          "*",
+          "R"
+        ],
+        "timerSeconds": 11
+      }
+    },
+    {
       "id": "202-2A-integrative",
       "type": "practice",
       "order": 7.5,
@@ -331,8 +395,8 @@
   ],
   "metadata": {
     "created": "2026-01-14",
-    "updated": "2026-01-14",
-    "version": "1.0",
+    "updated": "2026-02-23",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team"
   },
   "diagnostic": {

@@ -22,7 +22,8 @@ const GENERATOR_PROMPT = `You are an educational game generator.
 Return ONLY JSON.
 Never include markdown.
 Use only the provided lesson digest.
-Do not invent facts beyond digest.`;
+Do not invent facts beyond digest.
+For formula-build games: include a clear prompt naming the target formula, shuffle token order, and include at least one distractor token not used in correctSequence.`;
 
 export type MicrobreakSlotAnchorType = 'check' | 'practice' | 'integrative';
 
@@ -515,6 +516,119 @@ function hasDigestGrounding(text: string, digestTokens: Set<string>): boolean {
   return tokens.some(t => digestTokens.has(t));
 }
 
+function stableHash(input: string): number {
+  let hash = 2166136261;
+  for (let i = 0; i < input.length; i++) {
+    hash ^= input.charCodeAt(i);
+    hash += (hash << 1) + (hash << 4) + (hash << 7) + (hash << 8) + (hash << 24);
+  }
+  return hash >>> 0;
+}
+
+function normalizeToken(value: unknown): string {
+  return String(value || '').trim();
+}
+
+function dedupeTokens(tokens: string[]): string[] {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const token of tokens) {
+    const normalized = normalizeToken(token);
+    if (!normalized) continue;
+    if (seen.has(normalized)) continue;
+    seen.add(normalized);
+    out.push(normalized);
+  }
+  return out;
+}
+
+function deterministicShuffleTokens(tokens: string[], seed: string): string[] {
+  const withKeys = tokens.map((token, idx) => ({
+    token,
+    idx,
+    key: stableHash(`${seed}|${token}|${idx}`),
+  }));
+  withKeys.sort((a, b) => (a.key - b.key) || (a.idx - b.idx));
+  const shuffled = withKeys.map(x => x.token);
+
+  if (shuffled.length > 1 && shuffled.every((token, i) => token === tokens[i])) {
+    return [...shuffled.slice(1), shuffled[0]];
+  }
+  return shuffled;
+}
+
+function buildFormulaDistractors(correctSequence: string[], digest: LessonDigest, count: number = 2): string[] {
+  const correctSet = new Set(correctSequence.map(t => t.toLowerCase()));
+  const vocabCandidates = digest.vocabPairs
+    .map(v => normalizeToken(v.term).split(/\s+/)[0])
+    .filter(Boolean);
+  const operatorCandidates = ['+', '-', '/', '*', 'P', 'Q', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C'];
+  const candidates = dedupeTokens([...vocabCandidates, ...operatorCandidates])
+    .filter(token => !correctSet.has(token.toLowerCase()));
+
+  return candidates.slice(0, count);
+}
+
+function arraysMatch(a: string[], b: string[]): boolean {
+  return a.length === b.length && a.every((v, i) => v === b[i]);
+}
+
+function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  if (content.breakType !== 'game' || content.gameType !== 'formula-build') return content;
+
+  const correctSequence = dedupeTokens(Array.isArray(content.correctSequence) ? content.correctSequence : []);
+  const correctSet = new Set(correctSequence.map(token => token.toLowerCase()));
+  const originalTokens = dedupeTokens(Array.isArray(content.tokens) ? content.tokens : []);
+
+  const existingDistractors = originalTokens.filter(token => !correctSet.has(token.toLowerCase()));
+  const generatedDistractors = buildFormulaDistractors(correctSequence, digest, 3);
+
+  const distractors = dedupeTokens([...existingDistractors, ...generatedDistractors]);
+  const requiredDistractorCount = correctSequence.length >= 5 ? 2 : 1;
+  const selectedDistractors = distractors.slice(0, Math.max(requiredDistractorCount, 1));
+
+  let tokens = dedupeTokens([...correctSequence, ...selectedDistractors]);
+  if (tokens.length <= correctSequence.length) {
+    const fallbackDistractor = ['+', '-', '/'].find(token => !correctSet.has(token.toLowerCase()));
+    if (fallbackDistractor) {
+      tokens = dedupeTokens([...tokens, fallbackDistractor]);
+    }
+  }
+
+  let shuffledTokens = deterministicShuffleTokens(tokens, correctSequence.join('|'));
+  if (arraysMatch(shuffledTokens.slice(0, correctSequence.length), correctSequence)) {
+    shuffledTokens = [...shuffledTokens.slice(1), shuffledTokens[0]];
+  }
+
+  const prompt = normalizeToken((content as { prompt?: string }).prompt) || 'Build the target formula from the tokens.';
+
+  return {
+    ...content,
+    prompt,
+    tokens: shuffledTokens,
+    correctSequence,
+    timerSeconds: 11,
+  };
+}
+
+function extractFormulaSequenceFromDigest(digest: LessonDigest): string[] | null {
+  const corpus = [
+    ...digest.keyFacts,
+    ...digest.vocabPairs.flatMap(v => [v.term, v.definition]),
+  ];
+
+  for (const raw of corpus) {
+    const text = normalizeToken(raw);
+    if (!text.includes('=')) continue;
+    const tokens = (text.match(/[A-Za-z]{1,3}|[=+\-*/]/g) || []).map(normalizeToken).filter(Boolean);
+    if (tokens.length >= 4 && tokens.includes('=')) {
+      return tokens.slice(0, 6);
+    }
+  }
+
+  return null;
+}
+
 function isLikelyInstructionalFraming(text: string): boolean {
   const normalized = String(text || '').trim().toLowerCase();
   if (!normalized) return false;
@@ -739,6 +853,12 @@ function validateGameSchemaAndContent(
       if (correctSequence.length < 4) {
         errors.push('formula-build requires >=4 correct sequence items');
       }
+      if (tokens.length <= correctSequence.length) {
+        errors.push('formula-build tokens must include at least one distractor token');
+      }
+      if (tokens.join('|') === correctSequence.join('|')) {
+        errors.push('formula-build tokens must be shuffled, not in exact answer order');
+      }
       requireGrounding([...tokens, ...correctSequence], 'formula-build');
       break;
     }
@@ -941,14 +1061,25 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         distractors: facts.slice(4, 6),
       };
     case 'formula-build': {
-      const tokenSource = vocab.slice(0, 4).map(v => v.term.split(/\s+/)[0]).filter(Boolean);
-      const tokens = tokenSource.length >= 4 ? tokenSource.slice(0, 4) : ['A', '=', 'B', 'C'];
+      const extracted = extractFormulaSequenceFromDigest(digest);
+      const tokenSource = extracted && extracted.length >= 4
+        ? extracted
+        : ['V', '=', 'I', '*', 'R'];
+
+      const correctSequence = dedupeTokens(tokenSource).slice(0, 6);
+      const distractors = buildFormulaDistractors(correctSequence, digest, 3);
+      const tokens = deterministicShuffleTokens(
+        dedupeTokens([...correctSequence, ...distractors.slice(0, correctSequence.length >= 5 ? 2 : 1)]),
+        correctSequence.join('|')
+      );
+
       return {
         breakType: 'game',
         gameType: 'formula-build',
+        prompt: 'Build the target formula from the tokens.',
         tokens,
-        correctSequence: [...tokens],
-        timerSeconds: 25,
+        correctSequence,
+        timerSeconds: 11,
       };
     }
     case 'tap-the-line':
@@ -1065,6 +1196,9 @@ export async function generateMicrobreaksFromPlan(
     if (!game.content) itemErrors.push('missing content');
 
     if (planItem && game.content) {
+      if (planItem.gameType === 'formula-build') {
+        game.content = hardenFormulaBuildContent(game.content, digest);
+      }
       const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
       itemErrors.push(...schemaErrors);
     }
@@ -1097,6 +1231,9 @@ export async function generateMicrobreaksFromPlan(
   const finalDuplicates = validateNoDuplicateStems(repaired);
   repaired.forEach((game, index) => {
     const planItem = slotById.get(game.slotId) || plan[index];
+    if (planItem.gameType === 'formula-build') {
+      game.content = hardenFormulaBuildContent(game.content, digest);
+    }
     const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
     const duplicateError = finalDuplicates.get(index);
 

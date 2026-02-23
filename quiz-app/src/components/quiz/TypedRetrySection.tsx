@@ -8,6 +8,7 @@
 
 import { useState, useEffect } from 'react';
 import { Question } from '@/data/questions';
+import BlockTTSButton from '../learning/tts/BlockTTSButton';
 
 interface TypedRetryProps {
   wrongAnswers: Array<{
@@ -273,8 +274,16 @@ export default function TypedRetrySection({ wrongAnswers, context, lessonId }: T
         <div className="text-gray-700 dark:text-slate-300 mb-4">
           {currentQuestion.originalQuestion}
         </div>
-        <div className="text-lg font-semibold text-gray-800 dark:text-slate-100">
-          {currentQuestion.rephrasedQuestion}
+        <div className="flex items-start gap-2">
+          <div className="flex-1 text-lg font-semibold text-gray-800 dark:text-slate-100">
+            {currentQuestion.rephrasedQuestion}
+          </div>
+          <BlockTTSButton
+            blockId={`typed-retry-question-${currentRetryIndex}`}
+            text={currentQuestion.rephrasedQuestion}
+            label={`Read retry question ${currentRetryIndex + 1} aloud`}
+            iconOnly
+          />
         </div>
       </div>
 

@@ -17,6 +17,7 @@ import { getLessonProgress } from '@/lib/progress/progressService';
 import { Question } from '@/data/questions';
 import { TaggedQuestion } from '@/data/questions/types';
 import PrerequisiteGate from '@/components/learning/PrerequisiteGate';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface PageProps {
   params: Promise<{ quizId: string }>;
@@ -102,7 +103,7 @@ export default function InterleavedQuizPage({ params }: PageProps) {
             {error}
           </p>
           <Link
-            href="/learn"
+            href={courseHref('/learn')}
             className="inline-block px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors"
           >
             ← Back to Lessons
@@ -133,7 +134,7 @@ export default function InterleavedQuizPage({ params }: PageProps) {
           {/* Header */}
           <div className="mb-6">
             <Link
-              href="/learn"
+              href={courseHref('/learn')}
               className="inline-flex items-center gap-2 text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-4"
             >
               <span>←</span>
@@ -167,7 +168,7 @@ export default function InterleavedQuizPage({ params }: PageProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Link
-                href="/learn"
+                href={courseHref('/learn')}
                 className="text-gray-600 dark:text-slate-400 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
                 ← Exit
@@ -248,4 +249,3 @@ export default function InterleavedQuizPage({ params }: PageProps) {
     </div>
   );
 }
-

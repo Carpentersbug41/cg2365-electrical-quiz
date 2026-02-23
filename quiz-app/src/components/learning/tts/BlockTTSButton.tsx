@@ -42,9 +42,15 @@ type BlockTTSButtonProps = {
   blockId: string;
   text: string;
   label?: string;
+  iconOnly?: boolean;
 };
 
-export default function BlockTTSButton({ blockId, text, label = 'Read block aloud' }: BlockTTSButtonProps) {
+export default function BlockTTSButton({
+  blockId,
+  text,
+  label = 'Read block aloud',
+  iconOnly = false,
+}: BlockTTSButtonProps) {
   const [isSupported, setIsSupported] = useState(false);
   const [isSpeakingThisBlock, setIsSpeakingThisBlock] = useState(false);
   const speakableText = useMemo(() => toSpeakableText(text), [text]);
@@ -109,7 +115,9 @@ export default function BlockTTSButton({ blockId, text, label = 'Read block alou
     <button
       type="button"
       onClick={toggleSpeech}
-      className="inline-flex items-center gap-2 rounded-lg border border-white/80 bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white shadow-md ring-1 ring-slate-900/20 transition-colors hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:border-slate-700 dark:bg-white dark:text-slate-900 dark:ring-white/30 dark:hover:bg-slate-100"
+      className={`inline-flex items-center rounded-lg border border-white/80 bg-slate-900 text-xs font-semibold text-white shadow-md ring-1 ring-slate-900/20 transition-colors hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:border-slate-700 dark:bg-white dark:text-slate-900 dark:ring-white/30 dark:hover:bg-slate-100 ${
+        iconOnly ? 'h-8 w-8 justify-center p-0' : 'gap-2 px-3 py-1.5'
+      }`}
       aria-label={label}
       title={label}
     >
@@ -127,7 +135,7 @@ export default function BlockTTSButton({ blockId, text, label = 'Read block alou
           </svg>
         )}
       </span>
-      <span>{isSpeakingThisBlock ? 'Stop audio' : 'Read aloud'}</span>
+      {!iconOnly ? <span>{isSpeakingThisBlock ? 'Stop audio' : 'Read aloud'}</span> : null}
     </button>
   );
 }

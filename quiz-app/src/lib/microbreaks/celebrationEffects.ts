@@ -71,6 +71,17 @@ export function playClickSound(volumeOverride?: number) {
   });
 }
 
+export function playCustomSound(soundPath: string, volumeOverride?: number) {
+  const prefs = getPreferences();
+  if (!prefs.soundEnabled) return;
+
+  const audio = new Audio(soundPath);
+  audio.volume = volumeOverride ?? prefs.volume ?? 0.3;
+  audio.play().catch(err => {
+    console.log('Custom sound failed:', err.message);
+  });
+}
+
 export function triggerCelebration(type?: CelebrationType) {
   const prefs = getPreferences();
   if (!prefs.celebrationsEnabled) return;

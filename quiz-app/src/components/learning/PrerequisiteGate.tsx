@@ -8,6 +8,7 @@
 import Link from 'next/link';
 import { getQuizProgress } from '@/lib/progress/progressService';
 import { getLessonById } from '@/data/lessons/lessonIndex';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface PrerequisiteGateProps {
   prerequisites: string[]; // Lesson IDs
@@ -79,7 +80,7 @@ export default function PrerequisiteGate({
                   </div>
                   {!prereq.masteryAchieved && (
                     <Link
-                      href={`/learn/${prereq.id}`}
+                      href={courseHref(`/learn/${prereq.id}`)}
                       className="px-3 py-1 text-xs font-medium bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors"
                     >
                       Start
@@ -92,7 +93,7 @@ export default function PrerequisiteGate({
 
           <div className="flex flex-col sm:flex-row gap-3">
             <Link
-              href="/learn"
+              href={courseHref('/learn')}
               className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold transition-colors shadow-md"
             >
               <svg
@@ -127,4 +128,3 @@ export default function PrerequisiteGate({
     </div>
   );
 }
-

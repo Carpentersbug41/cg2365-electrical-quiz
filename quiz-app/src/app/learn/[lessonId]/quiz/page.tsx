@@ -13,6 +13,7 @@ import { filterQuestionsByLesson } from '@/lib/questions/questionFilter';
 import { getLessonById } from '@/data/lessons/lessonIndex';
 import { Question } from '@/data/questions';
 import { getCumulativeQuestions, getCumulativeQuizMetadata } from '@/lib/questions/cumulativeQuestions';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface PageProps {
   params: Promise<{ lessonId: string }>;
@@ -89,13 +90,13 @@ export default function LessonQuizPage({ params }: PageProps) {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href={`/learn/${lessonId}`}
+                href={courseHref(`/learn/${lessonId}`)}
                 className="px-8 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-md text-center"
               >
                 Back to Lesson
               </Link>
               <Link
-                href="/quiz"
+                href={courseHref('/quiz')}
                 className="px-8 py-3 bg-gray-600 dark:bg-slate-600 text-white rounded-lg font-semibold hover:bg-gray-700 dark:hover:bg-slate-700 transition-colors shadow-md text-center"
               >
                 Browse All Quizzes
@@ -115,7 +116,7 @@ export default function LessonQuizPage({ params }: PageProps) {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <Link
-                href={`/learn/${lessonId}`}
+                href={courseHref(`/learn/${lessonId}`)}
                 className="flex items-center gap-2 text-gray-600 dark:text-slate-300 hover:text-gray-800 dark:hover:text-white transition-colors"
               >
                 <span>←</span>
@@ -148,7 +149,7 @@ export default function LessonQuizPage({ params }: PageProps) {
       <Quiz
         questions={lessonQuestions}
         section={lesson.title}
-        onBack={() => router.push(`/learn/${lessonId}`)}
+        onBack={() => router.push(courseHref(`/learn/${lessonId}`))}
         lessonId={lessonId}
         isRetest={isRetest}
         enableConfidence={true}
@@ -159,4 +160,3 @@ export default function LessonQuizPage({ params }: PageProps) {
     </div>
   );
 }
-
