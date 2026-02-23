@@ -177,24 +177,43 @@ function FillGapGame({ content, soundEnabled, onDone }: { content: FillGapGameCo
   const [checked, setChecked] = useState(false);
   const total = content.gaps.length;
   const correct = content.gaps.reduce((sum, gap) => sum + (answers[gap.id] === gap.correctOptionIndex ? 1 : 0), 0);
+  const allAnswered = content.gaps.every((gap) => typeof answers[gap.id] === 'number');
+
+  const renderedTemplate = content.textTemplate.replace(/\[([^\]]+)\]/g, (match, gapId) => {
+    const gap = content.gaps.find((g) => g.id === gapId);
+    if (!gap) return match;
+    const selectedIndex = answers[gap.id];
+    const selectedOption = typeof selectedIndex === 'number' ? gap.options[selectedIndex] : null;
+    return selectedOption ?? '_____';
+  });
 
   return (
-    <div className="space-y-2">
-      <p className="text-sm">{content.textTemplate}</p>
+    <div className="space-y-3">
+      <p className="rounded border border-gray-300 bg-white p-3 text-sm leading-6 dark:border-slate-600 dark:bg-slate-700">{renderedTemplate}</p>
       {content.gaps.map((gap) => (
-        <div key={gap.id} className="rounded border border-gray-300 bg-white p-2 dark:border-slate-600 dark:bg-slate-700">
-          <p className="mb-1 text-xs font-semibold">Gap {gap.id}</p>
-          <div className="flex flex-wrap gap-1">
+        <div key={gap.id} className="rounded border border-gray-300 bg-white p-3 dark:border-slate-600 dark:bg-slate-700">
+          <p className="mb-2 text-xs font-semibold text-gray-700 dark:text-slate-300">Choose answer for {gap.id}</p>
+          <div className="space-y-2">
             {gap.options.map((opt, idx) => {
               const selected = answers[gap.id] === idx;
               return (
-                <button key={`${gap.id}-${opt}-${idx}`} disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setAnswers((prev) => ({ ...prev, [gap.id]: idx })); }} className={`rounded border px-2 py-1 text-xs ${tone(checked, idx === gap.correctOptionIndex, selected)}`}>{opt}</button>
+                <button
+                  key={`${gap.id}-${opt}-${idx}`}
+                  disabled={checked}
+                  onClick={() => {
+                    if (soundEnabled) playClickSound(0.2);
+                    setAnswers((prev) => ({ ...prev, [gap.id]: idx }));
+                  }}
+                  className={`block w-full rounded border px-3 py-2 text-left text-xs leading-5 ${tone(checked, idx === gap.correctOptionIndex, selected)}`}
+                >
+                  {opt}
+                </button>
               );
             })}
           </div>
         </div>
       ))}
-      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked || !allAnswered} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
     </div>
   );
 }

@@ -85,6 +85,7 @@ import { consumerUnitPracticalPositionEntriesTerminationsRigSafeQuestions } from
 import { consumerUnitsTotalNoobQuestions } from './questions/consumerUnitsTotalNoobQuestions';
 import { lightingCircuitsNoobLevel1Questions } from './questions/lightingCircuitsNoobLevel1Questions';
 import { socketCircuitsNoobLevel1Questions } from './questions/socketCircuitsNoobLevel1Questions';
+import { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './questions/electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -163,6 +164,7 @@ export const questions: Question[] = [
   ...consumerUnitsTotalNoobQuestions,
   ...lightingCircuitsNoobLevel1Questions,
   ...socketCircuitsNoobLevel1Questions,
+  ...electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

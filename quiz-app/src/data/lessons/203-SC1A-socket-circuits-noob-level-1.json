@@ -69,6 +69,7 @@
       "content": {
         "title": "Socket Circuits (Noob Level 1) Diagram",
         "description": "Visual representation of Socket Circuits (Noob Level 1)",
+        "imageUrl": "custom://socket-circuits-radial-ring",
         "videoUrl": "",
         "diagramType": "circuit",
         "elementIds": [
@@ -233,6 +234,28 @@
       }
     },
     {
+      "id": "203-SC1A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "fill-gap",
+        "prompt": "Fill the missing term.",
+        "textTemplate": "Consumer Unit means [g1].",
+        "gaps": [
+          {
+            "id": "g1",
+            "options": [
+              "The central distribution point that houses protective devices and serves as the origin for all electrical circuits within a building.",
+              "A component, such as a circuit breaker, that automatically interrupts the flow of electricity to prevent damage from overloads or short circuits.",
+              "A dedicated safety wire that provides a path for fault currents to reach earth, different from the neutral conductor which carries return current during normal operation."
+            ],
+            "correctOptionIndex": 0
+          }
+        ]
+      }
+    },
+    {
       "id": "203-SC1A-practice",
       "type": "practice",
       "order": 8,
@@ -293,6 +316,22 @@
             "hint": "Consider where the cable goes after the final socket is reached."
           }
         ]
+      }
+    },
+    {
+      "id": "203-SC1A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "tap-the-word",
+        "sentence": "Socket Circuit Components",
+        "options": [
+          "Consumer Unit",
+          "Protective Device",
+          "Circuit Protective Conductor CPC"
+        ],
+        "correctOptionIndex": 0
       }
     },
     {
@@ -396,7 +435,7 @@
   "metadata": {
     "created": "2026-02-22",
     "updated": "2026-02-22",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

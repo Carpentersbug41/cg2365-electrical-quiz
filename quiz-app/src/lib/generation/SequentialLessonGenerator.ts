@@ -500,6 +500,37 @@ export class SequentialLessonGenerator {
           output: `Score meets threshold (${initialScore.total}/100 >= ${threshold})`
         });
       }
+
+      // Recovery path: if refinement could not complete and alignment is critically off,
+      // rerun generation once with an explicit alignment scope lock.
+      if (
+        initialScore.total < threshold &&
+        !refinementResult &&
+        this.isCriticalAlignmentFailure(initialScore) &&
+        !this.hasAlignmentRetryMarker(request.additionalInstructions)
+      ) {
+        const recoveryInstructions = this.buildAlignmentRecoveryInstructions(
+          initialScore,
+          this.phase10.lastSyllabusContext
+        );
+        const retryRequest: GenerationRequest = {
+          ...request,
+          additionalInstructions: [request.additionalInstructions?.trim(), recoveryInstructions]
+            .filter((value): value is string => Boolean(value && value.length > 0))
+            .join('\n\n'),
+        };
+
+        console.warn(`⚠️ [Alignment Recovery] Refinement failed with critical alignment issues. Retrying generation once with strict syllabus scope lock.`);
+        debugLog('ALIGNMENT_RECOVERY_RETRY', {
+          lessonId,
+          threshold,
+          initialScore: initialScore.total,
+          alignmentToLO: initialScore.breakdown.alignmentToLO,
+        });
+
+        return await this.generate(retryRequest);
+      }
+
       if (initialScore.total >= threshold) {
         refinementReport = {
           status: 'pass_no_refinement',
@@ -1517,6 +1548,57 @@ export class SequentialLessonGenerator {
       content: {} as Lesson,
       error,
     };
+  }
+
+  private hasAlignmentRetryMarker(additionalInstructions?: string): boolean {
+    return Boolean(additionalInstructions?.includes('AUTO_ALIGNMENT_REGEN_ATTEMPT_1'));
+  }
+
+  private isCriticalAlignmentFailure(score: Phase10Score): boolean {
+    if (score.breakdown.alignmentToLO <= 2) {
+      return true;
+    }
+
+    return score.issues.some((issue) => {
+      if (issue.category !== 'alignmentToLO') return false;
+      const text = `${issue.problem} ${issue.whyItMatters}`.toLowerCase();
+      return (
+        text.includes('alignment mismatch') ||
+        text.includes('fails entirely') ||
+        text.includes('wrong syllabus slot') ||
+        text.includes('does not align')
+      );
+    });
+  }
+
+  private buildAlignmentRecoveryInstructions(
+    score: Phase10Score,
+    syllabusContext: { unit: string; learningOutcome: string; loTitle: string; assessmentCriteria: string[] } | null
+  ): string {
+    const criticalAlignmentIssues = score.issues
+      .filter((issue) => issue.category === 'alignmentToLO')
+      .slice(0, 3)
+      .map((issue, idx) => `${idx + 1}. ${issue.problem}`)
+      .join('\n');
+
+    const acList = (syllabusContext?.assessmentCriteria || [])
+      .map((ac, idx) => `AC${idx + 1}: ${ac}`)
+      .join('\n');
+
+    return [
+      'AUTO_ALIGNMENT_REGEN_ATTEMPT_1',
+      'SCOPE LOCK (NON-NEGOTIABLE):',
+      syllabusContext
+        ? `Teach ONLY Unit ${syllabusContext.unit}, ${syllabusContext.learningOutcome} (${syllabusContext.loTitle}).`
+        : 'Teach ONLY the LO implied by the lesson ID and selected topic.',
+      acList ? `Assessment criteria in scope:\n${acList}` : 'Assessment criteria in scope: use only criteria returned by syllabus grounding.',
+      'Do NOT switch to another LO or adjacent lesson topic.',
+      'Do NOT include content from drawing symbols, scaling, or schematic conventions unless explicitly part of the in-scope ACs.',
+      'Generate explanations and questions that directly assess the in-scope ACs.',
+      criticalAlignmentIssues ? `Previous critical alignment failures to avoid:\n${criticalAlignmentIssues}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n');
   }
 }
 

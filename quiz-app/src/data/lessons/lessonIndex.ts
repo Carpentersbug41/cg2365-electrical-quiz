@@ -393,6 +393,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-SC1A'),
     available: true,
     order: 18,
+  },
+  {
+    id: '203-SYM1A',
+    title: 'Electrical Symbols (Noob): Why the Shapes + How to Read Them',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Electrical Symbols (Noob): Why the Shapes + How to Read Them',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-SYM1A'),
+    available: true,
+    order: 19,
   },// Unit 210: Communication
   {
     id: '204-10A',

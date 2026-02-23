@@ -60,9 +60,11 @@ import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json
 import lesson203_LC1A from '@/data/lessons/203-LC1A-lighting-circuits-noob-level-1.json';
 import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob-level-1.json';
 import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
+import lesson203_SYM1A from '@/data/lessons/203-SYM1A-electrical-symbols-noob-why-the-shapes-how-to-read-them.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-SYM1A': lesson203_SYM1A as Lesson,
   '203-SC1A': lesson203_SC1A as Lesson,
   '201-203-SC1A': lesson201_203_SC1A as Lesson,
   '203-LC1A': lesson203_LC1A as Lesson,

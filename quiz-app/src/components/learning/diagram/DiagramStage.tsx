@@ -8,6 +8,7 @@
 import { useRef, useEffect, useState } from 'react';
 import { DiagramStageProps } from './types';
 import { DiagramBlockContent } from '@/data/lessons/types';
+import SocketCircuitRadialRingDiagram from './custom/SocketCircuitRadialRingDiagram';
 
 // YouTube IFrame API types
 declare global {
@@ -57,6 +58,7 @@ export default function DiagramStage({
 
   const videoId = content.videoUrl ? getVideoId(content.videoUrl) : null;
   const isSvgImage = Boolean(content.imageUrl && /\.svg($|\?)/i.test(content.imageUrl));
+  const isCustomSocketCircuitDiagram = content.imageUrl === 'custom://socket-circuits-radial-ring';
 
   useEffect(() => {
     setImageLoadError(false);
@@ -199,6 +201,10 @@ export default function DiagramStage({
                 </div>
               )}
             </>
+          ) : isCustomSocketCircuitDiagram ? (
+            <div className="w-full rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800 p-3">
+              <SocketCircuitRadialRingDiagram />
+            </div>
           ) : content.imageUrl ? (
             /* Static Image */
             <div className="w-full rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800 p-4">

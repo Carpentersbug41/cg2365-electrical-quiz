@@ -68,6 +68,11 @@ Analyze mustHaveTopics for teaching scope constraints:
 
 These constraints MUST be passed to downstream phases to prevent scope violations.
 
+ADDITIONAL INSTRUCTIONS PRIORITY (CRITICAL):
+- If ADDITIONAL INSTRUCTIONS include syllabus grounding or scope-lock directives, treat them as authoritative.
+- Do not contradict explicit unit/LO/AC scope provided in ADDITIONAL INSTRUCTIONS.
+- Never switch to a different LO if the lesson ID and grounding context indicate a specific LO.
+
 TASK MODE COMPUTATION (CRITICAL):
 You MUST compute taskMode by analyzing the lesson requirements:
 1. Classify task types from topic/section/mustHaveTopics
@@ -104,6 +109,7 @@ LESSON DETAILS:
 - Layout: ${request.layout || 'auto'}
 - Prerequisites: ${request.prerequisites?.length ? request.prerequisites.join(', ') : 'None'}
 ${request.mustHaveTopics ? `\nMUST HAVE TOPICS:\n${request.mustHaveTopics}` : ''}
+${request.additionalInstructions ? `\nADDITIONAL INSTRUCTIONS (AUTHORITATIVE WHEN PRESENT):\n${request.additionalInstructions}` : ''}
 
 ANALYSIS REQUIRED:
 1. Determine if layout is 'split-vis' (needs diagram), 'linear-flow', or 'focus-mode'
