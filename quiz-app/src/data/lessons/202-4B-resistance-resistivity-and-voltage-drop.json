@@ -1,0 +1,440 @@
+{
+  "id": "202-4B",
+  "title": "202.4B — Resistance, Resistivity, and Voltage Drop",
+  "description": "Learn about Resistance, Resistivity, and Voltage Drop in Science 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Resistance, Resistivity, and Voltage Drop",
+  "learningOutcomes": [
+    "Define the terms resistance and resistivity in the context of electrical circuits",
+    "Identify the relationship between conductor dimensions and its total resistance",
+    "Describe what voltage drop represents within a functioning circuit"
+  ],
+  "prerequisites": [
+    "202-4A"
+  ],
+  "blocks": [
+    {
+      "id": "202-4B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define the terms resistance and resistivity in the context of electrical circuits",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Identify the relationship between conductor dimensions and its total resistance",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe what voltage drop represents within a functioning circuit",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Resistance",
+            "definition": "Resistance is the opposition to the flow of electric current through a circuit or component, measured in Ohms."
+          },
+          {
+            "term": "Resistivity",
+            "definition": "Resistivity is the inherent property of a material that determines its ability to resist current flow, whereas resistance is dependent on the specific length and thickness of the object."
+          },
+          {
+            "term": "Cross-Sectional Area",
+            "definition": "Cross-sectional area is the surface area of a conductor perpendicular to the flow of current, where an increase in area results in a proportional decrease in resistance."
+          },
+          {
+            "term": "Voltage Drop",
+            "definition": "Voltage drop is the reduction in electrical potential as current passes through a resistive path, representing the energy used by that specific part of the circuit."
+          },
+          {
+            "term": "Temperature Coefficient",
+            "definition": "Temperature coefficient is the factor by which the resistance of a material changes in response to temperature fluctuations, typically increasing resistance in conductors as they heat up."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Resistance, Resistivity, and Voltage Drop Diagram",
+        "description": "Visual representation of Resistance, Resistivity, and Voltage Drop",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "resistive-path",
+          "cross-sectional-area",
+          "potential-difference",
+          "conductor-length"
+        ],
+        "placeholderText": "The diagram should show a 3D cylindrical conductor to illustrate physical properties. One arrow should indicate the 'conductor-length' from end to end. A circular cutaway at one end should highlight the 'cross-sectional-area'. Inside the conductor, small dots representing electrons move against a 'resistive-path' shown as jagged lines. Above the conductor, a voltmeter symbol is connected to both ends to show the 'potential-difference' or voltage drop occurring across the length."
+      }
+    },
+    {
+      "id": "202-4B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Resistance and Resistivity",
+        "content": "### In this lesson\nYou will learn how to distinguish between the physical opposition to current and the inherent properties of materials. This knowledge allows you to predict how different components will behave in a circuit based on their physical makeup.\n\n*   The definition of resistance and resistivity.\n*   The four physical factors that determine total resistance.\n*   How dimensions like length and area change electrical behavior.\n\n**What this is**\n**Resistance** is the opposition to the flow of electric current through a circuit or component, measured in Ohms. Every material, to some degree, slows down the movement of charge. However, we must distinguish this from **Resistivity**, which is the inherent property of a material that determines its ability to resist current flow. While **Resistance** depends on the specific shape and size of an object, **Resistivity** is a constant value for the material itself, regardless of its dimensions. \n\nTo understand this, imagine a hallway filled with people. The difficulty of getting through the hallway is the resistance. If the hallway is longer, it is harder to get through. If it is wider, it is easier. The \"resistivity\" in this analogy would be the type of floor surface; a sticky floor represents a material with high resistivity, while a polished floor represents low resistivity.\n\n**Why it matters**\nUnderstanding the relationship between conductor dimensions and its total resistance is vital for ensuring systems operate efficiently. If a material is chosen poorly or a component is sized incorrectly, the resulting resistance can cause excessive heat or prevent the system from receiving enough energy to function. By identifying these properties, you can select the right materials for specific technical tasks.\n\n**Key facts / rules**\n*   **Resistance** increases proportionally as the length of a conductor increases.\n*   An increase in the **Cross-Sectional Area** results in a proportional decrease in resistance.\n*   **Resistivity** is a fixed value for a specific material at a set temperature (verify current edition/version of technical tables for specific values).\n*   The **Temperature Coefficient** is the factor by which the resistance of a material changes in response to temperature fluctuations.\n*   For most metallic conductors, resistance typically increases as the temperature rises.\n*   The total resistance of a path is determined by the combination of its material, length, area, and current temperature.\n\n**How to recognise it**\nYou can identify how resistance will change by observing physical modifications to a conductor. If you see a conductor that is twice as long as another of the same material and thickness, it will have twice the resistance. If you observe a conductor with a larger **Cross-Sectional Area**, you can recognise it as a lower-resistance path compared to a thinner one of the same length. \n\n*Scenario:* Consider two identical copper rods. Rod A is 1 meter long and Rod B is 2 meters long. Rod B will exhibit exactly double the resistance of Rod A because the path for current is twice as long.\n\n**Common mistakes**\nLearners often confuse **Resistance** with **Resistivity**; **Resistivity** is a fixed property of the material itself, whereas **Resistance** is the actual opposition measured in a specific object based on its dimensions. \n\nMisconceptions (targeted):\n*   Misconception: A larger wire has more resistance because there is more material. | Correction: A larger cross-sectional area provides more paths for electrons, actually decreasing resistance. | AC: 202.LO4.AC4.3\n*   Misconception: Resistivity changes if you cut a wire in half. | Correction: Resistivity is a material constant; only the total resistance changes when the length is altered. | AC: 202.LO4.AC4.3\n\n**Key Points**\n*   **Resistance** measures total opposition in a specific component.\n*   **Resistivity** is the material’s internal resistance characteristic.\n*   Longer paths increase resistance; wider paths decrease it.\n*   Heat typically increases resistance in conductors.\n\n**Quick recap**\nResistance is the total opposition to flow in a circuit, influenced by the material's resistivity, the length of the path, and its cross-sectional area. While resistivity is a fixed property of the substance, the actual resistance changes based on how that substance is shaped and how hot it becomes.\n\n### Coming Up Next\nWe will explore how this resistance causes a measurable loss of electrical pressure, known as voltage drop, as current moves through a system."
+      }
+    },
+    {
+      "id": "202-4B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Resistance and Resistivity",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4B-C1-L1-A",
+            "questionText": "How does the resistance of a conductor change as its length increases?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "increases proportionally",
+              "resistance increases proportionally",
+              "it increases proportionally"
+            ],
+            "hint": "Think about whether a longer path makes it harder or easier for current to flow."
+          },
+          {
+            "id": "202-4B-C1-L1-B",
+            "questionText": "What effect does an increase in the cross-sectional area have on total resistance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "proportional decrease in resistance",
+              "proportional decrease",
+              "resistance decreases proportionally"
+            ],
+            "hint": "Consider if a wider path provides more or fewer routes for current."
+          },
+          {
+            "id": "202-4B-C1-L1-C",
+            "questionText": "What is the relationship between resistivity and a specific material at a set temperature?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "fixed value",
+              "it is a fixed value",
+              "fixed material value"
+            ],
+            "hint": "Recall if resistivity is a changing variable or a constant property of the substance itself."
+          },
+          {
+            "id": "202-4B-C1-L2",
+            "questionText": "Using your answers to Q1 (length effects), Q2 (area effects), and Q3 (resistivity values), explain how these factors combine to determine a component's total resistance. Why must we distinguish between the material type and its physical dimensions when designing a circuit?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Total resistance is determined by both the material's inherent resistivity and its physical shape",
+              "Length and area provide the physical dimensions that modify the base resistivity of the material",
+              "We must distinguish them because two components of the same material can have different resistance if their dimensions differ",
+              "Designers must choose both the right material and the correct size to achieve the target resistance"
+            ],
+            "expectedAnswer": [
+              "Total resistance depends on the fixed resistivity of the material combined with its physical dimensions. While resistivity is constant for the substance, the actual resistance changes proportionally based on how long or wide the component is shaped. This matters because we can use the same material to create different resistance levels by altering its length or area.",
+              "We distinguish between them because resistivity tells us the material's nature while length and area tell us its specific form. A component's resistance increases with length and decreases with area, but the underlying resistivity remains a fixed value for that material. Designers use this relationship to ensure a component is sized correctly for the circuit's needs."
+            ],
+            "hint": "Think about how a material property (resistivity) interacts with physical measurements (length and area) to create the final resistance value."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Concept of Voltage Drop",
+        "content": "### In this lesson\nYou will learn to describe what happens to electrical energy as it travels through a resistive path. This explains why the energy available at the end of a circuit is often less than at the start.\n\n*   The definition of voltage drop in a functioning circuit.\n*   The relationship between resistance and energy loss.\n*   How to identify the presence of voltage drop in practical scenarios.\n\n**What this is**\n**Voltage drop** is the reduction in electrical potential as current passes through a resistive path, representing the energy used by that specific part of the circuit. In any real-world system, the conductors and components possess some amount of **Resistance**. As current flows through these resistive elements, work is done to overcome the opposition, which results in a loss of electrical pressure (voltage). \n\nThink of a long garden hose connected to a tap. The water pressure at the tap is high. However, as the water travels through the long, narrow hose, the friction against the walls of the hose causes the pressure to drop. By the time the water reaches the nozzle, the pressure is lower than it was at the source. In this analogy, the pressure loss is the **Voltage Drop**.\n\n**Why it matters**\nIdentifying and managing voltage drop is critical for system performance. If the drop is too significant, the remaining electrical potential may be insufficient to power the intended device. Furthermore, the energy \"lost\" during a voltage drop is typically converted into heat. In many cases, excessive voltage drop indicates an inefficient or overloaded system that could lead to equipment failure.\n\n**Key facts / rules**\n*   **Voltage drop** occurs whenever current flows through a non-zero resistance.\n*   The magnitude of the drop is directly proportional to the amount of current flowing.\n*   The magnitude of the drop is directly proportional to the total **Resistance** of the path.\n*   Every component in a series circuit contributes to the total voltage drop of the system.\n*   Voltage drop represents the conversion of electrical energy into another form, commonly heat.\n*   Excessive drop can be caused by undersized conductors (small **Cross-Sectional Area**) or loose connections.\n\n**How to recognise it**\nYou can recognise voltage drop by comparing the electrical potential at the source with the potential at the load. If a power source provides 12V but a measurement at the motor shows only 11.2V, you have identified a **Voltage Drop** of 0.8V across the supply lines. You may also recognise it through secondary effects, such as a component becoming warm during operation or a light source dimming when more load is added to the circuit.\n\n*Scenario:* A circuit has a source of 24V. Due to a very long cable, 2V is used up just getting the electricity to the device. The device only receives 22V, illustrating a voltage drop that must be accounted for in the design.\n\n**Common mistakes**\nLearners often confuse **Voltage Drop** with **Resistance**; **Resistance** is the physical property of the path that opposes flow, whereas **Voltage Drop** is the actual loss of potential that occurs as a result of current moving through that resistance. \n\nMisconceptions (targeted):\n*   Misconception: Voltage drop means electricity is disappearing or leaking out. | Correction: Voltage drop represents energy being converted into another form, such as heat, not disappearing. | AC: 202.LO4.AC4.7\n*   Misconception: Voltage drop only happens in broken circuits. | Correction: Voltage drop happens in every functioning circuit with resistance; it is a standard part of electrical behavior. | AC: 202.LO4.AC4.7\n\n**Key Points**\n*   **Voltage drop** is the loss of electrical potential over a distance or component.\n*   It is caused by current overcoming **Resistance**.\n*   Higher current or higher resistance leads to a larger drop.\n*   It results in energy conversion, usually to heat.\n\n**Quick recap**\nVoltage drop is the measurable reduction in electrical pressure as current flows through a resistive path. It represents the energy required to push current through the opposition provided by the material and its dimensions. Managing this drop ensures that enough potential remains to operate equipment safely and effectively.\n\n### Coming Up Next\nIn the next module, we will apply these concepts to calculate exactly how much current, voltage, and resistance interact in different types of circuit arrangements."
+      }
+    },
+    {
+      "id": "202-4B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Concept of Voltage Drop",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4B-C2-L1-A",
+            "questionText": "Under what specific condition does a voltage drop occur in a circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "whenever current flows through resistance",
+              "current flows through non-zero resistance",
+              "current passes through a resistive path"
+            ],
+            "hint": "Consider what must be happening with both current and the path for a drop to be measured."
+          },
+          {
+            "id": "202-4B-C2-L1-B",
+            "questionText": "What is the relationship between the amount of current flowing and the magnitude of the voltage drop?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "directly proportional",
+              "it is directly proportional",
+              "proportional to current flowing"
+            ],
+            "hint": "Think about whether more current results in a larger or smaller loss of potential."
+          },
+          {
+            "id": "202-4B-C2-L1-C",
+            "questionText": "In terms of energy, what does a voltage drop represent?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "conversion of electrical energy",
+              "energy conversion",
+              "conversion into another form"
+            ],
+            "hint": "Recall what happens to the 'lost' electrical pressure as it passes through a resistor."
+          },
+          {
+            "id": "202-4B-C2-L2",
+            "questionText": "Using your answers to Q1 (conditions for drop), Q2 (current relationship), and Q3 (energy conversion), explain how voltage drop affects a functioning system. How do we know that energy is being used rather than simply disappearing?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Voltage drop is the result of current doing work to overcome resistance in a circuit",
+              "The amount of energy converted is tied to how much current is forced through that resistance",
+              "We know energy is used rather than disappearing because it is converted into other forms like heat",
+              "A measurable drop in potential confirms that electrical energy has been transformed by the path"
+            ],
+            "expectedAnswer": [
+              "Voltage drop occurs because current is flowing through resistance, which requires energy. This energy doesn't disappear; we know it is being used because it undergoes a conversion into another form, such as heat. The magnitude of this conversion is directly proportional to the current, meaning higher current flow results in more energy being transformed along the path.",
+              "A functioning system experiences voltage drop whenever current encounters resistance. This drop represents the conversion of electrical energy into heat or other forms. Because the drop is directly proportional to the current, we can identify that the 'lost' potential is actually the energy cost of moving charge through the circuit's opposition."
+            ],
+            "hint": "Connect the requirement of resistance and current to the physical evidence of energy changing form."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-4B-P1",
+            "questionText": "A specific conductor has a measured resistance of 4 Ohms. If the length of this conductor is doubled, but the material and thickness remain identical, what is the new resistance value?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "8",
+              "8.0"
+            ],
+            "hint": "Resistance is directly proportional to length; if the path doubles in length, the opposition also doubles. Provide value in Ohms."
+          },
+          {
+            "id": "202-4B-P2",
+            "questionText": "Why does increasing the cross-sectional area of a conductor cause the total resistance to decrease?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "more paths for electrons",
+              "provides more paths",
+              "easier for current to flow"
+            ],
+            "hint": "Consider the hallway analogy: does a wider space make it harder or easier for a crowd to move through?"
+          },
+          {
+            "id": "202-4B-P3",
+            "questionText": "A technician replaces a 10-meter copper cable with a 5-meter copper cable of the same thickness. Which inherent property of the material remains unchanged despite the change in total resistance?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "resistivity",
+              "material resistivity",
+              "specific resistance"
+            ],
+            "hint": "Identify the property that is a constant for the material itself, regardless of its physical dimensions."
+          },
+          {
+            "id": "202-4B-P4",
+            "questionText": "A system is supplied with 110V at the source. Due to the resistance of the path, a voltage drop of 4V is measured. What is the final voltage available at the connected equipment?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "106",
+              "106.0"
+            ],
+            "hint": "Voltage drop represents the energy 'used up' or lost along the path; subtract this loss from the starting potential. Provide value in Volts."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4B-INT-1",
+            "questionText": "Analyze how the inherent properties of a material and its physical dimensions determine the total opposition to flow within a system. In your answer, include: (1) the definition of resistivity as an intrinsic property, (2) the effect of length and cross-sectional area on the path, (3) the relationship between these variables and total resistance. Why must both material type and physical geometry be integrated to predict the circuit's behavior? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Defines resistivity as the material's inherent resistance per unit volume.",
+              "Explains that resistance increases with length and decreases with cross-sectional area.",
+              "States that total resistance is the product of resistivity and the ratio of dimensions.",
+              "Reasons that material choice sets the baseline, while dimensions scale that baseline to a final value.",
+              "Concludes that ignoring either factor leads to incorrect calculations of opposition."
+            ],
+            "expectedAnswer": [
+              "Resistivity is a fixed property of a material, while resistance depends on the specific length and width of the conductor. We must consider both because a material with low resistivity can still have high resistance if it is very long or thin. Therefore, total resistance is the result of the material's nature being scaled by its physical dimensions.",
+              "Total resistance is determined by multiplying the material's resistivity by its length and dividing by its cross-sectional area. Both must be integrated because the material provides the 'quality' of opposition while geometry provides the 'quantity'. Knowing only one factor makes it impossible to determine the actual energy loss in a functioning circuit."
+            ],
+            "hint": "Think about how the 'what' (material) and the 'how much' (size) combine to create the final resistance value."
+          },
+          {
+            "id": "202-4B-INT-2",
+            "questionText": "Evaluate the complete progression from material selection to the resulting energy availability within a functioning circuit. In your answer, include: (1) the role of resistivity, (2) the influence of physical dimensions, (3) the determination of total resistance, (4) the cause and effect of voltage drop on energy delivery. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Identifies resistivity as the starting point for material selection.",
+              "Describes how increasing length or decreasing area increases total resistance.",
+              "Explains that total resistance is the cumulative opposition to current flow.",
+              "Defines voltage drop as the conversion of electrical energy into other forms (like heat).",
+              "Links high resistance directly to a larger voltage drop.",
+              "Concludes that energy available at the load is reduced by the drop across the path.",
+              "Maintains technical precision regarding the relationship between path properties and energy loss.",
+              "Synthesizes all concepts into a unified flow of cause and effect."
+            ],
+            "expectedAnswer": [
+              "The material's resistivity and its physical dimensions (length and area) combine to create the total resistance of a conductor. When current flows through this resistance, a voltage drop occurs, representing energy lost as heat along the path. Consequently, the energy available at the end of the circuit is reduced, directly linking the physical makeup of the wire to the system's overall efficiency.",
+              "• Resistivity and dimensions (length/area) define the total resistance of the path.\n• This resistance opposes current flow, leading to a measurable voltage drop.\n• Voltage drop signifies a reduction in electrical potential energy as it travels.\n• Therefore, the physical properties of the conductor dictate how much energy actually reaches the load."
+            ],
+            "hint": "Trace the path of energy from the material choice, through the physical wire, to the final energy loss."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "202-4B-SR-1",
+            "questionText": "What term describes a complete path or loop through which an electric current can flow?",
+            "expectedAnswer": [
+              "circuit",
+              "electrical circuit",
+              "closed circuit"
+            ],
+            "hint": "It is the name for the continuous path provided for electricity.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-4B-SR-2",
+            "questionText": "What is the general term for a material that is specifically used to allow the flow of electricity?",
+            "expectedAnswer": [
+              "conductor",
+              "conductive material",
+              "conductors"
+            ],
+            "hint": "This is the type of material used for wiring in a circuit.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-4B-SR-3",
+            "questionText": "What term is used to describe the electrical pressure or potential difference within a circuit?",
+            "expectedAnswer": [
+              "voltage",
+              "potential difference",
+              "volts"
+            ],
+            "hint": "This is the force that pushes current through a conductor.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Resistance, Resistivity, and Voltage Drop"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC3",
+    "AC7"
+  ],
+  "metadata": {
+    "created": "2026-02-24",
+    "updated": "2026-02-24",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "CONCEPTUAL, IDENTIFICATION",
+    "syllabusAnchors": {
+      "unit": "202",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC3",
+        "AC7"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC8"
+      ]
+    },
+    "scope": {
+      "inScope": "The conceptual definitions and physical properties governing resistance, resistivity, and the occurrence of voltage drop.",
+      "outOfScope": "Mathematical calculation of resistance values using the resistivity formula or calculating specific voltage drops in series/parallel branches.",
+      "rationale": "The lesson is constrained by the 'meaning of' requirement, focusing on conceptual understanding (AC 4.3, 4.7) before progressing to calculations (AC 4.5)."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Focus on definitions and physical relationships (material/length/area) rather than numerical problem solving."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A larger wire has more resistance because there is more material.",
+        "correction": "A larger cross-sectional area provides more paths for electrons, actually decreasing resistance.",
+        "relatedAC": "202.LO4.AC4.3"
+      },
+      {
+        "misconception": "Voltage drop means electricity is disappearing or leaking out.",
+        "correction": "Voltage drop represents energy being converted into another form, such as heat, not disappearing.",
+        "relatedAC": "202.LO4.AC4.7"
+      }
+    ],
+    "generationScore": 97,
+    "generationScoreDetails": {
+      "originalScore": 97,
+      "finalScore": 97,
+      "wasRefined": false,
+      "generatedAt": "2026-02-24T17:43:49.878Z",
+      "source": "phase10-13"
+    }
+  }
+}

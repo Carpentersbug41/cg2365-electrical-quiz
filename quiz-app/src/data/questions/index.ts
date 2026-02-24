@@ -80,11 +80,13 @@ import { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './elect
 import { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './electricalSymbolsNoobShapeGrammarBasicsQuestions';
 import { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagnetismQuestions';
 import { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterialsQuestions';
+import { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...resistanceResistivityAndVoltageDropQuestions,
   ...electronTheoryAndMaterialsQuestions,
   ...magnetismAndElectromagnetismQuestions,
   ...electricalSymbolsNoobShapeGrammarBasicsQuestions,
@@ -242,6 +244,7 @@ export { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './elect
 export { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './electricalSymbolsNoobShapeGrammarBasicsQuestions';
 export { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagnetismQuestions';
 export { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterialsQuestions';
+export { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
 
 /**
  * Filter questions by tags

@@ -88,6 +88,7 @@ import { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './quest
 import { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './questions/electricalSymbolsNoobShapeGrammarBasicsQuestions';
 import { magnetismAndElectromagnetismQuestions } from './questions/magnetismAndElectromagnetismQuestions';
 import { electronTheoryAndMaterialsQuestions } from './questions/electronTheoryAndMaterialsQuestions';
+import { resistanceResistivityAndVoltageDropQuestions } from './questions/resistanceResistivityAndVoltageDropQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -168,6 +169,7 @@ export const questions: Question[] = [
   ...electricalSymbolsNoobShapeGrammarBasicsQuestions,
   ...magnetismAndElectromagnetismQuestions,
   ...electronTheoryAndMaterialsQuestions,
+  ...resistanceResistivityAndVoltageDropQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

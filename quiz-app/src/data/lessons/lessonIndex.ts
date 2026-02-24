@@ -89,6 +89,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-4A'),
     available: true,
     order: 2,
+  },
+  {
+    id: '202-4B',
+    title: 'Resistance, Resistivity, and Voltage Drop',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Resistance, Resistivity, and Voltage Drop',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-4B'),
+    available: true,
+    order: 3,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
