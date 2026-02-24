@@ -40,7 +40,11 @@ type GameType =
 type GenerationStatus = 'idle' | 'generating' | 'preview' | 'saving' | 'deleting' | 'success' | 'error';
 type SelectionMode = 'auto' | 'manual';
 
-export default function GameGeneratorForm() {
+interface GameGeneratorFormProps {
+  initialSelectedLessonFilename?: string | null;
+}
+
+export default function GameGeneratorForm({ initialSelectedLessonFilename = null }: GameGeneratorFormProps) {
   const [lessons, setLessons] = useState<LessonOption[]>([]);
   const [loadingLessons, setLoadingLessons] = useState(true);
   const [selectedLessonFilename, setSelectedLessonFilename] = useState<string | null>(null);
@@ -65,7 +69,17 @@ export default function GameGeneratorForm() {
     try {
       const response = await fetch('/api/admin/generate-games');
       const data = await response.json();
-      setLessons(data.lessons || []);
+      const loadedLessons: LessonOption[] = data.lessons || [];
+      setLessons(loadedLessons);
+
+      if (initialSelectedLessonFilename) {
+        const hasRequestedLesson = loadedLessons.some(
+          (lesson) => lesson.filename === initialSelectedLessonFilename
+        );
+        if (hasRequestedLesson) {
+          setSelectedLessonFilename(initialSelectedLessonFilename);
+        }
+      }
     } catch (error) {
       console.error('Failed to load lessons:', error);
       setErrorMessage('Failed to load lessons. Please refresh the page.');

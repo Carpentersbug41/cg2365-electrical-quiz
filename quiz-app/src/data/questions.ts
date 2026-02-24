@@ -21,7 +21,6 @@ import { magnetismElectromagnetismQuestions } from './questions/magnetismElectro
 import { acPrinciplesQuestions } from './questions/acPrinciplesQuestions';
 import { acGenerationQuestions } from './questions/acGenerationQuestions';
 import { acWaveformQuestions } from './questions/acWaveformQuestions';
-import { transformersQuestions } from './questions/transformersQuestions';
 import { deadTestLanguageWhatEachTestProvesQuestions } from './questions/deadTestLanguageWhatEachTestProvesQuestions';
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './questions/circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './questions/rigSafeDeadTestingMindsetAndSetupQuestions';
@@ -100,9 +99,7 @@ export const questions: Question[] = [
   ...magnetismElectromagnetismQuestions,
   ...acPrinciplesQuestions,
   ...acGenerationQuestions,
-  ...acWaveformQuestions,
-  ...transformersQuestions,
-  ...deadTestLanguageWhatEachTestProvesQuestions,
+  ...acWaveformQuestions,  ...deadTestLanguageWhatEachTestProvesQuestions,
   ...circuitMapThinkingConductorRolesExpectedOutcomesQuestions,
   ...rigSafeDeadTestingMindsetAndSetupQuestions,
   ...provingYourTesterWorksQuestions,

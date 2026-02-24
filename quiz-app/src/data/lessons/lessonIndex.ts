@@ -59,124 +59,15 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 3,
   },
   // Unit 202: Science 2365 Level 2
-  {
-    id: '202-1A',
-    title: 'Electrical Quantities: Units and Measurements',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Electrical Quantities',
-    description: 'Learn the fundamental electrical quantities, their SI units, and how to convert between unit prefixes.',
-    questionCount: getLessonQuestionCount('202-1A'),
-    available: true,
-    order: 1,
-  },
-  {
-    id: '202-2A',
-    title: 'Ohm\'s Law: Calculations and Applications',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Ohm\'s Law',
-    description: 'Master Ohm\'s Law (V=IR), learn to rearrange formulas, solve basic circuit calculations, and understand how voltage, current, and resistance interact.',
-    questionCount: getLessonQuestionCount('202-2A'),
-    available: true,
-    order: 2,
-  },
-  {
-    id: '202-3A',
-    title: 'Series Circuits: Rules and Calculations',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Series Circuits',
-    description: 'Learn the three series circuit rules and apply them to basic calculations.',
-    questionCount: getLessonQuestionCount('202-3A'),
-    available: true,
-    order: 3,
-  },
-  {
-    id: '202-3AB',
-    title: 'Series Circuits: Understanding Flow and Opposition (Linear Layout)',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Series Circuits',
-    description: 'Alternative text-heavy approach to series circuits with rich analogies and self-contained explanations.',
-    questionCount: getLessonQuestionCount('202-3AB'),
-    available: true,
-    order: 3.1,
-  },
-        {
-    id: '202-7A',
-    title: 'Alternating Current (AC) Principles',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'AC Principles',
-    description: 'Learn the fundamental differences between AC and DC, understand frequency, and explore UK mains supply characteristics (230V, 50Hz).',
-    questionCount: getLessonQuestionCount('202-7A'),
-    available: true,
-    order: 7,
-  },
-  {
-    id: '202-7B',
-    title: 'How AC is Generated: Single-Loop Generator',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'AC Generation',
-    description: 'Understand how rotating a loop of wire in a magnetic field generates alternating current with a sine wave pattern. Learn the basic components of a simple AC generator.',
-    questionCount: getLessonQuestionCount('202-7B'),
-    available: true,
-    order: 7.1,
-  },
-  {
-    id: '202-7C',
-    title: 'Sine-Wave Characteristics: Vocabulary and Measurements',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'AC Waveform Characteristics',
-    description: 'Learn the essential vocabulary for describing AC sine waves including RMS, peak, peak-to-peak, period, frequency, and amplitude values.',
-    questionCount: getLessonQuestionCount('202-7C'),
-    available: true,
-    order: 7.2,
-  },
-  {
-    id: '202-7D',
-    title: 'Transformers: Mutual Induction Basics',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Transformers',
-    description: 'Understand how transformers use mutual induction to step up or step down AC voltage through electromagnetic coupling.',
-    questionCount: getLessonQuestionCount('202-7D'),
-    available: true,
-    order: 7.3,
-  },
+                      
 
-
-  {
-    id: '202-3F',
-    title: 'Spacing Factor / Enclosure Fill',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Spacing Factor / Enclosure Fill',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-3F'),
-    available: true,
-    order: 8.3,
-  },
-  
+    
       
   
       
     
   
-  {
-    id: '202-5A',
-    title: 'Magnetism basics ',
-    unit: 'Unit 202',
-    unitNumber: '202',
-    topic: 'Magnetism basics ',
-    description: '[Generated lesson]',
-    questionCount: getLessonQuestionCount('202-5A'),
-    available: true,
-    order: 9.3,
-  },// Unit 203: Electrical Installations Technology
+  // Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
           

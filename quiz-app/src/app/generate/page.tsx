@@ -1446,6 +1446,16 @@ export default function GeneratePage() {
                   Generate Another
                 </button>
                 <Link
+                  href={
+                    status.result?.lessonFile
+                      ? `/2365/admin/generate-games?lesson=${encodeURIComponent(status.result.lessonFile)}`
+                      : '/2365/admin/generate-games'
+                  }
+                  className="flex-1 px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors text-center"
+                >
+                  Generate Games
+                </Link>
+                <Link
                   href="/learn"
                   className="flex-1 px-6 py-3 bg-gray-200 dark:bg-slate-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-slate-600 transition-colors text-center"
                 >

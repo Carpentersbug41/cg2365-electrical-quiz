@@ -117,12 +117,28 @@ export default function TutorPanel({
         }),
       });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to get response');
-      }
-
       const data = await response.json();
+
+      if (!response.ok) {
+        const errorMessage =
+          typeof data?.error === 'string' ? data.error : 'Failed to get response';
+
+        // Grounding guardrail: show this as tutor guidance, not a hard UI error.
+        if (data?.requiresBlockSelection) {
+          const assistantMessage: TutorMessage = {
+            id: (Date.now() + 1).toString(),
+            role: 'assistant',
+            content: errorMessage,
+            timestamp: new Date(),
+            mode,
+          };
+
+          setMessages(prev => [...prev, assistantMessage]);
+          return;
+        }
+
+        throw new Error(errorMessage);
+      }
 
       // Add assistant message
       const assistantMessage: TutorMessage = {
@@ -244,4 +260,3 @@ export default function TutorPanel({
     </div>
   );
 }
-

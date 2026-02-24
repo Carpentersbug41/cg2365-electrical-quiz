@@ -1,11 +1,13 @@
 'use client';
 
 import { ArrowLeft, Gamepad2 } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import GameGeneratorForm from '@/components/admin/GameGeneratorForm';
 
 export default function GenerateGamesPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const preselectedLessonFilename = searchParams.get('lesson');
 
   return (
     <div className="admin-page min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-slate-900 dark:via-indigo-950 dark:to-purple-950">
@@ -82,7 +84,7 @@ export default function GenerateGamesPage() {
         </div>
 
         {/* Generator Form */}
-        <GameGeneratorForm />
+        <GameGeneratorForm initialSelectedLessonFilename={preselectedLessonFilename} />
 
         {/* Footer Help */}
         <div className="mt-8 text-center text-sm text-gray-600 dark:text-slate-400">

@@ -7,14 +7,6 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import lesson202_1A from '@/data/lessons/202-1A-electrical-quantities-units.json';
-import lesson202_2A from '@/data/lessons/202-2A-ohms-law.json';
-import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
-import lesson202_3AB from '@/data/lessons/202-3AB-series-circuits-linear.json';
-import lesson202_7A from '@/data/lessons/202-7A-ac-principles.json';
-import lesson202_7B from '@/data/lessons/202-7B-how-ac-is-generated.json';
-import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
-import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
 import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
 import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
 import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
@@ -26,11 +18,9 @@ import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceili
 import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
 import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
 import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
-import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
 import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
 import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
-import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.json';
@@ -124,10 +114,9 @@ const RAW_LESSONS = [
   lesson210_1A, lesson210_1A,
   lesson210_1A,
   lesson210_1A,
-  lesson210_1A, lesson204_9A,
-  lesson202_5A,  lesson201_1C,
+  lesson210_1A, lesson204_9A,  lesson201_1C,
   lesson201_1B,
-  lesson201_1A,  lesson202_3F,  lesson204_13B,
+  lesson201_1A,  lesson204_13B,
   lesson204_13A,
   lesson204_14B,
   lesson204_14A,
@@ -138,14 +127,7 @@ const RAW_LESSONS = [
   lesson204_11B,
   lesson204_11A,
   lesson204_10B,
-  lesson204_10A,  lesson202_1A,
-  lesson202_2A,
-  lesson202_3A,
-  lesson202_3AB,  lesson202_7A,
-  lesson202_7B,
-  lesson202_7C,
-  lesson202_7D,
-];
+  lesson204_10A,];
 
 const LESSONS = (() => {
   const seen = new Set<string>();
