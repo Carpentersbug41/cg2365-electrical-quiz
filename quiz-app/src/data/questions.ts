@@ -86,6 +86,7 @@ import { lightingCircuitsNoobLevel1Questions } from './questions/lightingCircuit
 import { socketCircuitsNoobLevel1Questions } from './questions/socketCircuitsNoobLevel1Questions';
 import { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './questions/electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions';
 import { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './questions/electricalSymbolsNoobShapeGrammarBasicsQuestions';
+import { magnetismAndElectromagnetismQuestions } from './questions/magnetismAndElectromagnetismQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -164,6 +165,7 @@ export const questions: Question[] = [
   ...socketCircuitsNoobLevel1Questions,
   ...electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions,
   ...electricalSymbolsNoobShapeGrammarBasicsQuestions,
+  ...magnetismAndElectromagnetismQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

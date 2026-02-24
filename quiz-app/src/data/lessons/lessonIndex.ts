@@ -67,7 +67,18 @@ export const lessonIndex: LessonIndexEntry[] = [
       
     
   
-  // Unit 203: Electrical Installations Technology
+  
+  {
+    id: '202-5A',
+    title: 'Magnetism and Electromagnetism',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Magnetism and Electromagnetism',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-5A'),
+    available: true,
+    order: 1,
+  },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   
           

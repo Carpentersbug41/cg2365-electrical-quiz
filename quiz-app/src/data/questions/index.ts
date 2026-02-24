@@ -78,11 +78,13 @@ import { lightingCircuitsNoobLevel1Questions } from './lightingCircuitsNoobLevel
 import { socketCircuitsNoobLevel1Questions } from './socketCircuitsNoobLevel1Questions';
 import { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions';
 import { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './electricalSymbolsNoobShapeGrammarBasicsQuestions';
+import { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagnetismQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...magnetismAndElectromagnetismQuestions,
   ...electricalSymbolsNoobShapeGrammarBasicsQuestions,
   ...electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions,
   ...socketCircuitsNoobLevel1Questions,
@@ -236,6 +238,7 @@ export { lightingCircuitsNoobLevel1Questions } from './lightingCircuitsNoobLevel
 export { socketCircuitsNoobLevel1Questions } from './socketCircuitsNoobLevel1Questions';
 export { electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions } from './electricalSymbolsNoobWhyTheShapesHowToReadThemQuestions';
 export { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './electricalSymbolsNoobShapeGrammarBasicsQuestions';
+export { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagnetismQuestions';
 
 /**
  * Filter questions by tags
