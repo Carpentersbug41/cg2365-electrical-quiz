@@ -78,6 +78,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-5A'),
     available: true,
     order: 1,
+  },
+  {
+    id: '202-4A',
+    title: 'Electron Theory and Materials',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Electron Theory and Materials',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-4A'),
+    available: true,
+    order: 2,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

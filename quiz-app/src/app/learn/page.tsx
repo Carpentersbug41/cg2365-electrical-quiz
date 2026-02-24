@@ -47,6 +47,7 @@ import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob
 import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
 import lesson203_2N1A from '@/data/lessons/203-2N1A-electrical-symbols-noob-shape-grammar-basics.json';
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-and-electromagnetism.json';
+import lesson202_4A from '@/data/lessons/202-4A-electron-theory-and-materials.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -91,6 +92,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson202_4A,
   lesson202_5A,
   lesson203_2N1A,  lesson203_SC1A,
   lesson201_203_SC1A,

@@ -1,0 +1,461 @@
+{
+  "id": "202-4A",
+  "title": "202.4A — Electron Theory and Materials",
+  "description": "Learn about Electron Theory and Materials in Science 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 202",
+  "topic": "Electron Theory and Materials",
+  "learningOutcomes": [
+    "State the primary components of an atom and their respective charges",
+    "Describe how the movement of free electrons constitutes an electric current",
+    "Identify common materials categorized as conductors or insulators"
+  ],
+  "prerequisites": [
+    "202-3B"
+  ],
+  "blocks": [
+    {
+      "id": "202-4A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the primary components of an atom and their respective charges",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe how the movement of free electrons constitutes an electric current",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify common materials categorized as conductors or insulators",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Electron",
+            "definition": "A subatomic particle with a negative charge that orbits the nucleus of an atom and serves as the primary carrier of electricity."
+          },
+          {
+            "term": "Free Electron",
+            "definition": "An electron that has detached from its parent atom and is capable of moving through a material to create an electric current."
+          },
+          {
+            "term": "Conductor",
+            "definition": "A material that allows the easy flow of electric current because it contains a large number of free electrons."
+          },
+          {
+            "term": "Insulator",
+            "definition": "A material that prevents the flow of electric current because its electrons are tightly bound to their atoms, unlike a conductor which permits easy electron movement."
+          },
+          {
+            "term": "Electric Current",
+            "definition": "The organized movement of free electrons through a conductive material in a specific direction."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Electron Theory and Materials Diagram",
+        "description": "Visual representation of Electron Theory and Materials",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "atomic-nucleus",
+          "orbiting-electron",
+          "free-electron-path",
+          "conductive-material",
+          "insulating-barrier"
+        ],
+        "placeholderText": "The diagram should show two parts. Part one: A detailed atom showing the 'atomic-nucleus' (protons/neutrons) with 'orbiting-electron' particles in shells. Part two: A cross-section of a wire showing 'conductive-material' in the center with a 'free-electron-path' indicating organized movement (electric current), surrounded by an outer 'insulating-barrier' that shows electrons locked within their atoms."
+      }
+    },
+    {
+      "id": "202-4A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Atomic Structure and Electron Theory",
+        "content": "### In this lesson\nThis lesson explores the fundamental building blocks of all matter and how their internal structure allows for the existence of electricity. You will learn how the arrangement of subatomic particles dictates the electrical behavior of a substance.\n\n*   The primary components of an atom and their respective charges.\n*   The role of the **Electron** in carrying electrical charge.\n*   How the position of an electron determines its ability to move.\n\n**What this is**\nAt its most basic level, every physical object is made of atoms. An atom consists of a central nucleus surrounded by orbiting particles. The nucleus contains protons, which have a positive charge, and neutrons, which have no charge (they are neutral). The **Electron** is a subatomic particle with a negative charge that orbits the nucleus of an atom and serves as the primary carrier of electricity. In a stable atom, the number of positive protons usually equals the number of negative electrons, creating a balanced state.\n\n**Why it matters**\nUnderstanding atomic structure is the foundation of all electrical science. Without the specific behavior of electrons, we would not be able to harness energy to power devices. By identifying the primary components of an atom and their respective charges, technicians can predict how different materials will react when a force is applied to them, ensuring safety and functionality in technical systems.\n\n**Key facts / rules**\n*   Protons are located in the nucleus and carry a positive (+) charge.\n*   Neutrons are located in the nucleus and carry no electrical charge.\n*   The **Electron** orbits the nucleus in specific layers called shells.\n*   Electrons carry a negative (-) charge.\n*   Opposite charges (positive and negative) attract each other.\n*   Like charges (positive and positive, or negative and negative) repel each other.\n*   The further an **Electron** is from the nucleus, the weaker the pull of the positive charge holding it in place.\n\n**How to recognise it**\nTo identify the components of an atom, look at the arrangement of the particles. The nucleus is the dense, heavy center. The electrons are the light, fast-moving particles found in the outer regions. You can recognise an atom's potential for electricity by looking at its outermost shell; if there is only one **Electron** far from the center, it is easily influenced by external forces. \n\n**Concrete Anchor:** Imagine a solar system. The Sun is the nucleus (containing protons and neutrons). The planets are the electrons orbiting at various distances. Just as a planet very far from the Sun might be more easily pulled away by a passing star, an **Electron** in the outermost orbit of an atom is more easily detached.\n\n**Micro-scenario:** Consider Atom A with 2 electrons in a single shell close to the nucleus, and Atom B with 11 electrons spread across three shells. Atom B is much more likely to contribute to electrical flow because its furthest **Electron** is significantly less \"attached\" to the positive center than the electrons in Atom A.\n\n**Common mistakes**\nLearners often confuse a **Proton** with an **Electron**; a **Proton** is a heavy, positively charged particle fixed in the nucleus, whereas an **Electron** is a light, negatively charged particle that orbits the nucleus. \n\nMisconceptions (targeted):\n*   Misconception: Electrons are found inside the nucleus alongside protons. | Correction: Electrons orbit the nucleus in shells and are never found inside the nucleus itself. | AC: 202.LO4.AC4.1\n*   Misconception: Protons move through a wire to create electricity. | Correction: Protons are bound tightly in the nucleus; only electrons move to create flow. | AC: 202.LO4.AC4.1\n\n**Key Points**\n*   Atoms consist of protons (+), neutrons (neutral), and electrons (-).\n*   The nucleus is the center; electrons orbit in outer shells.\n*   The negative charge of the **Electron** is the basis for electrical charge.\n*   Distance from the nucleus affects how tightly an **Electron** is held.\n\n**Quick recap**\nAll matter is made of atoms containing a positive nucleus and negative electrons. The **Electron** is the specific particle responsible for electrical activity, and its ability to move depends on its position within the atomic structure.\n\n### Coming Up Next\nNow that we understand the structure of a single atom, we will look at how groups of atoms behave together to form conductors and insulators."
+      }
+    },
+    {
+      "id": "202-4A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Atomic Structure and Electron Theory",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4A-C1-L1-A",
+            "questionText": "Where are protons located within an atom and what is their specific charge?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Nucleus and positive charge",
+              "In the nucleus, positive",
+              "Nucleus, positive",
+              "The nucleus, positive charge"
+            ],
+            "hint": "Think about the dense center of the atom and the type of charge associated with protons."
+          },
+          {
+            "id": "202-4A-C1-L1-B",
+            "questionText": "In what specific layers do electrons orbit the nucleus of an atom?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Shells",
+              "In shells",
+              "Specific layers called shells",
+              "Atomic shells"
+            ],
+            "hint": "Recall the term used for the different levels or layers where particles orbit the center."
+          },
+          {
+            "id": "202-4A-C1-L1-C",
+            "questionText": "What happens to the pull of the positive charge as an electron moves further from the nucleus?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "The pull becomes weaker",
+              "Weaker pull",
+              "Positive charge pull weakens",
+              "It is held less tightly"
+            ],
+            "hint": "Consider how distance from the center affects the strength of the attraction."
+          },
+          {
+            "id": "202-4A-C1-L2",
+            "questionText": "Using your answers to Q1 (proton location and charge), Q2 (electron shells), and Q3 (distance from the nucleus), explain why an atom with many shells is more likely to contribute to electricity. How do we know which electrons are easiest to move?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Protons in the nucleus provide a positive charge that attracts negative electrons",
+              "Electrons orbit in shells at different distances from the positive center",
+              "Electrons in the outermost shells experience a weaker pull from the nucleus",
+              "We know electrons are easiest to move when they are further away because the positive hold is weakest there"
+            ],
+            "expectedAnswer": [
+              "Positive protons in the nucleus hold negative electrons in their shells. If an atom has many shells, the furthest electrons experience a weaker pull, making them easier to detach and move to create electricity.",
+              "We know the outermost electrons are easiest to move because the positive charge in the nucleus has a weaker hold on them due to their distance. This allows these specific electrons to be influenced by external forces."
+            ],
+            "hint": "Connect the idea of positive/negative attraction to how distance changes the strength of that bond."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Properties of Conductors and Insulators",
+        "content": "### In this lesson\nThis lesson focuses on how different materials react to electrical forces based on their atomic makeup. You will learn to distinguish between materials that allow electricity to flow and those that block it.\n\n*   How the movement of free electrons constitutes an electric current.\n*   The defining characteristics of a **Conductor** and an **Insulator**.\n*   Identifying common materials categorized as conductors or insulators.\n\n**What this is**\nMaterials are classified by how easily they allow electrons to move through them. A **Free Electron** is an electron that has detached from its parent atom and is capable of moving through a material. A **Conductor** is a material that allows the easy flow of electric current because it contains a large number of free electrons. Conversely, an **Insulator** is a material that prevents the flow of electric current because its electrons are tightly bound to their atoms. When these electrons move in a coordinated way, we call it **Electric Current**, which is the organized movement of free electrons through a conductive material in a specific direction.\n\n**Why it matters**\nIn any technical application, we must control where electricity goes. We use conductors to direct the energy to where it is needed and insulators to keep it from escaping or causing harm. Being able to identify common materials categorized as conductors or insulators is essential for selecting the right components for a task and ensuring user safety.\n\n**Key facts / rules**\n*   Metals (like copper and aluminum) are typically excellent conductors.\n*   Non-metals (like plastic, glass, and rubber) are typically excellent insulators.\n*   A **Conductor** has many \"loose\" electrons in its outer atomic shells.\n*   An **Insulator** has almost no free electrons because they are \"locked\" in place.\n*   **Electric Current** only occurs when there is a continuous path of conductive material.\n*   The movement of a **Free Electron** is what transfers energy from one point to another.\n\n**How to recognise it**\nYou can recognise a **Conductor** by its physical properties; most are shiny, dense metals. You can recognise an **Insulator** as being the protective coating around wires or the handles of tools. When identifying materials, remember that conductors facilitate movement, while insulators provide resistance and protection.\n\n**Concrete Anchor:** Think of a **Conductor** like a pipe filled with water; if you push water in at one end, it flows easily to the other. An **Insulator** is like a pipe filled with solid concrete; no matter how hard you push, nothing moves through it.\n\n**Micro-scenario:** If you have a copper rod and a glass rod, and you apply an electrical force to both, the copper (a **Conductor**) will show a high **Electric Current** because it has millions of free electrons. The glass (an **Insulator**) will show zero flow because its electrons are stuck.\n\n**Common mistakes**\nLearners often confuse a **Conductor** with an **Insulator**; a **Conductor** is a material that permits easy electron movement, whereas an **Insulator** is a material that restricts it. \n\nMisconceptions (targeted):\n*   Misconception: Insulators do not contain any electrons. | Correction: All matter contains electrons, but in an insulator, they are tightly bound and cannot become free electrons. | AC: 202.LO4.AC4.2\n*   Misconception: Electricity is a liquid that flows through a hollow wire. | Correction: Electric current is the movement of subatomic particles (electrons) through the solid structure of a material. | AC: 202.LO4.AC4.1\n\n**Key Points**\n*   **Electric Current** is the organized movement of free electrons.\n*   Conductors have many free electrons (e.g., Copper, Silver).\n*   Insulators have tightly bound electrons (e.g., PVC, Rubber).\n*   Material selection depends on whether you want to permit or prevent flow.\n\n**Quick recap**\nMaterials are divided into conductors and insulators based on their atomic structure. Conductors allow for **Electric Current** via the movement of a **Free Electron**, while insulators block this movement to provide safety and control.\n\n### Coming Up Next\nWe have identified how materials behave; next, we will learn how to measure the resistance these materials offer to the flow of current."
+      }
+    },
+    {
+      "id": "202-4A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Properties of Conductors and Insulators",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4A-C2-L1-A",
+            "questionText": "What does a conductor contain that allows for the easy flow of electric current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Large number of free electrons",
+              "Many free electrons",
+              "Free electrons",
+              "A large number of electrons"
+            ],
+            "hint": "Identify the specific type of subatomic particle that is not attached to a parent atom."
+          },
+          {
+            "id": "202-4A-C2-L1-B",
+            "questionText": "Why does an insulator prevent the flow of electric current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Electrons are tightly bound",
+              "Bound to their atoms",
+              "Electrons are locked in place",
+              "No free electrons"
+            ],
+            "hint": "Think about how the electrons are held within the atomic structure of an insulator."
+          },
+          {
+            "id": "202-4A-C2-L1-C",
+            "questionText": "What general category of materials, including plastic and glass, are typically excellent insulators?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Non-metals",
+              "Non-metal materials",
+              "Nonmetals"
+            ],
+            "hint": "Recall the group of materials that is the opposite of metals like copper or aluminum."
+          },
+          {
+            "id": "202-4A-C2-L2",
+            "questionText": "Using your answers to Q1 (free electrons in conductors), Q2 (bound electrons in insulators), and Q3 (non-metal properties), explain why electrical wires are coated in plastic. Why must this be true for the system to be safe?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The metal wire is a conductor with many free electrons that allow current to flow",
+              "The plastic coating is a non-metal insulator with tightly bound electrons",
+              "The insulator prevents current from moving outside the intended path",
+              "This must be true for safety because it ensures electricity stays within the wire and does not flow into other objects or people"
+            ],
+            "expectedAnswer": [
+              "Electrical wires use a metal conductor to allow free electrons to flow, but they are coated in plastic because non-metals act as insulators. Since the electrons in plastic are tightly bound, the current cannot move through the coating, which keeps the electricity safely contained.",
+              "We know this setup is safe because the plastic insulator lacks the free electrons needed for current to escape the wire. This ensures that the organized movement of electrons stays within the conductive metal and away from the user."
+            ],
+            "hint": "Relate the presence or absence of free electrons to whether a material allows or blocks movement."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-4A-P1",
+            "questionText": "A neutral atom contains 29 protons in its nucleus. How many electrons must it have orbiting the nucleus to remain in a balanced state?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "29"
+            ],
+            "hint": "In a stable atom, the number of positive protons and negative electrons is equal."
+          },
+          {
+            "id": "202-4A-P2",
+            "questionText": "Why is an electron in the outermost shell of an atom more likely to become a 'free electron' than an electron in the innermost shell?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "weaker pull",
+              "less attraction",
+              "reduced attraction",
+              "further away"
+            ],
+            "hint": "Consider how the distance from the positive nucleus affects the hold on the negative particle."
+          },
+          {
+            "id": "202-4A-P3",
+            "questionText": "A technician is testing a new composite material. They find that the material's electrons are locked in place and cannot detach from their parent atoms. How should this material be classified?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "insulator",
+              "an insulator",
+              "insulating"
+            ],
+            "hint": "Think about the definition of a material that prevents the flow of current due to bound electrons."
+          },
+          {
+            "id": "202-4A-P4",
+            "questionText": "If a sample of conductive material has 15 atoms, and each atom contributes exactly 2 free electrons, how many total electrons are available to form an electric current?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "30"
+            ],
+            "hint": "Multiply the number of atoms by the number of free electrons each one provides."
+          },
+          {
+            "id": "202-4A-P5",
+            "questionText": "What must be true about the atomic structure of a material for it to be considered an effective conductor?",
+            "originalQuestion": "What must be true about the atomic structure of a material for it to be considered an effective conductor?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "many free electrons",
+              "loose electrons",
+              "loosely bound electrons"
+            ],
+            "hint": "A conductor requires particles that are capable of moving easily through the material."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4A-INT-1",
+            "questionText": "Explain how the internal arrangement of an atom dictates whether a substance is classified as a conductor or an insulator. In your answer, include: (1) the specific subatomic particle responsible for electrical activity, (2) the physical state of these particles in a conductive material, and (3) the primary difference in particle mobility between conductors and insulators. Why must the atomic structure be the deciding factor in how a material reacts to electrical forces? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies the electron as the negative subatomic particle responsible for charge transfer.",
+              "Describes 'free electrons' as being loosely bound or easily detached from the atom.",
+              "Explains that conductors possess many free electrons while insulators have tightly bound electrons.",
+              "Reasons that material classification is determined by the availability of mobile charge carriers.",
+              "Connects atomic bonding strength to the material's ability to facilitate or resist flow."
+            ],
+            "expectedAnswer": [
+              "The electron is the subatomic particle responsible for electrical activity, and in conductors, these are 'free electrons' that are loosely bound to the nucleus. The primary difference is that conductors allow these particles to move easily between atoms, whereas insulators hold them tightly in place. This relationship holds because the atomic structure determines the availability of mobile charge carriers, without which an electric current cannot be sustained.",
+              "Electrical behavior depends on the electron; in conductive materials, these particles exist in a 'free' state allowing for easy migration. Unlike insulators, which have restricted particle mobility, conductors have an atomic arrangement that permits charge transfer. We know atomic structure is the deciding factor because the physical ability of a material to transport energy is a direct result of how strongly the nucleus holds its outermost particles."
+            ],
+            "hint": "Think about how the 'grip' an atom has on its outermost particles determines if they can move to form a current."
+          },
+          {
+            "id": "202-4A-INT-2",
+            "questionText": "Analyze how subatomic components and their properties facilitate the transition from individual atoms to a functional electric current within different material types. In your answer, include: (1) the charges associated with protons and electrons, (2) the definition of an electric current in terms of particle movement, (3) the criteria used to categorize a material as a conductor or insulator, and (4) how these concepts integrate to allow for the controlled transmission of energy. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "States that protons carry a positive charge and electrons carry a negative charge.",
+              "Defines electric current as the continuous movement of free electrons through a medium.",
+              "Distinguishes conductors (low resistance/high mobility) from insulators (high resistance/low mobility).",
+              "Explains that current flow requires both a source of charge and a path with compatible atomic structure.",
+              "Integrates the concept of subatomic attraction/repulsion with macro-level material behavior.",
+              "Concludes that energy transmission is managed by selecting materials based on their electron-holding properties.",
+              "Maintains technical precision regarding the relationship between atomic stability and electrical conductivity."
+            ],
+            "expectedAnswer": [
+              "Protons carry a positive charge while electrons are negative, and the movement of these 'free' electrons constitutes an electric current. Materials are categorized as conductors if their atomic structure allows easy electron flow, or insulators if they resist it. By combining these concepts, we can control energy transmission by using conductors to facilitate flow and insulators to contain or block it based on their subatomic properties.",
+              "• Protons are positively charged and electrons are negatively charged.\n• Electric current is the directed flow of free electrons between atoms.\n• Conductors provide high electron mobility, while insulators have electrons that are tightly bound to the nucleus.\n• These principles integrate to allow for the safe and efficient movement of electricity through specific material pathways."
+            ],
+            "hint": "Consider how the charge of the particle, its movement, and the material it travels through all work together to create a circuit."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "202-4A-SR-1",
+            "questionText": "What is the name of the smallest unit of matter that forms a chemical element?",
+            "expectedAnswer": [
+              "Atom",
+              "An atom",
+              "Atoms"
+            ],
+            "hint": "It is the basic building block of all physical substances.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-4A-SR-2",
+            "questionText": "What general term is used for the physical substances that make up all objects?",
+            "expectedAnswer": [
+              "Materials",
+              "Material",
+              "Matter"
+            ],
+            "hint": "Everything physical that has mass is made of this.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-4A-SR-3",
+            "questionText": "What are the two opposite types of electrical charge found in nature?",
+            "expectedAnswer": [
+              "Positive and negative",
+              "Positive, negative",
+              "Pos and neg"
+            ],
+            "hint": "Think of the markings found on the terminals of a battery.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Electron Theory and Materials"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-24",
+    "updated": "2026-02-24",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, CONCEPTS",
+    "syllabusAnchors": {
+      "unit": "202",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC7",
+        "AC8"
+      ]
+    },
+    "scope": {
+      "inScope": "Fundamental atomic theory, electron movement, and the classification of conductive and non-conductive materials.",
+      "outOfScope": "Quantitative resistance or resistivity calculations, Ohm's Law, and power calculations in DC circuits.",
+      "rationale": "This lesson provides the theoretical foundation for electricity before introducing mathematical circuit analysis and material resistivity."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus on atomic structure and material classification as per AC4.1 and AC4.2 only."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Electrons are found inside the nucleus alongside protons.",
+        "correction": "Electrons orbit the nucleus in shells and are never found inside the nucleus itself.",
+        "relatedAC": "202.LO4.AC4.1"
+      },
+      {
+        "misconception": "Insulators do not contain any electrons.",
+        "correction": "All matter contains electrons, but in an insulator, they are tightly bound and cannot become free electrons.",
+        "relatedAC": "202.LO4.AC4.2"
+      },
+      {
+        "misconception": "Protons move through a wire to create electricity.",
+        "correction": "Protons are bound tightly in the nucleus; only electrons move to create flow.",
+        "relatedAC": "202.LO4.AC4.1"
+      }
+    ],
+    "generationScore": 98,
+    "generationScoreDetails": {
+      "originalScore": 98,
+      "finalScore": 98,
+      "wasRefined": false,
+      "generatedAt": "2026-02-24T17:21:10.083Z",
+      "source": "phase10-13"
+    }
+  }
+}

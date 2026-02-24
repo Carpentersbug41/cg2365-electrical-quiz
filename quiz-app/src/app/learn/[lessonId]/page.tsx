@@ -52,9 +52,11 @@ import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob
 import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
 import lesson203_2N1A from '@/data/lessons/203-2N1A-electrical-symbols-noob-shape-grammar-basics.json';
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-and-electromagnetism.json';
+import lesson202_4A from '@/data/lessons/202-4A-electron-theory-and-materials.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '202-4A': lesson202_4A as Lesson,
   '202-5A': lesson202_5A as Lesson,
   '203-2N1A': lesson203_2N1A as Lesson,  '203-SC1A': lesson203_SC1A as Lesson,
   '201-203-SC1A': lesson201_203_SC1A as Lesson,
