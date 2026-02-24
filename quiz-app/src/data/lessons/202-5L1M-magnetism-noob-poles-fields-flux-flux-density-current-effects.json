@@ -1,0 +1,453 @@
+{
+  "id": "202-5L1M",
+  "title": "202.5L1M — Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects",
+  "description": "Learn about Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects in Science 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects",
+  "learningOutcomes": [
+    "State the behavior of like and unlike magnetic poles when placed in proximity.",
+    "Explain the difference between magnetic flux and flux density using a non-mathematical analogy.",
+    "Identify how electric current interacts with magnetic fields to produce force or EMF."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "202-5L1M-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the behavior of like and unlike magnetic poles when placed in proximity.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the difference between magnetic flux and flux density using a non-mathematical analogy.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify how electric current interacts with magnetic fields to produce force or EMF.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Magnetic Flux",
+            "definition": "Magnetic Flux is the total amount of magnetic field lines produced by a source, not to be confused with flux density which measures the field's concentration."
+          },
+          {
+            "term": "Magnetic Flux Density",
+            "definition": "Magnetic Flux Density is the measure of magnetic field strength per unit area, which is different from flux because it describes the concentration of the field rather than the total quantity."
+          },
+          {
+            "term": "Electromagnetism",
+            "definition": "Electromagnetism is the physical process where a magnetic field is generated around a conductor as a direct result of electric current flowing through it."
+          },
+          {
+            "term": "Electromagnetic Induction",
+            "definition": "Electromagnetic Induction is the generation of an electromotive force (EMF) caused by a conductor moving through a magnetic field or a magnetic field changing around a conductor."
+          },
+          {
+            "term": "Motor Effect",
+            "definition": "The Motor Effect is the mechanical force produced when a current-carrying conductor is placed within an external magnetic field, causing the conductor to move."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects Diagram",
+        "description": "Visual representation of Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "magnetic-pole",
+          "flux-lines",
+          "current-conductor",
+          "force-arrow"
+        ],
+        "placeholderText": "The diagram should show two distinct parts. Part A: Two bar magnets with 'N' and 'S' labels. One pair should show 'N' facing 'S' with flux-lines (arrows) connecting them to illustrate attraction. Another pair should show 'N' facing 'N' with flux-lines curving away to illustrate repulsion. Part B: A straight current-conductor (wire) passing through a uniform magnetic field. Circular flux-lines should be shown around the wire (electromagnetism), and a large force-arrow should indicate the direction of the motor effect push."
+      }
+    },
+    {
+      "id": "202-5L1M-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Magnetic Properties and Field Concepts",
+        "content": "### In this lesson\nYou will learn how magnets interact with one another and how to distinguish between total magnetic output and field concentration. This knowledge is used to understand how physical forces are managed in technical systems.\n\n*   The specific behavior of North and South magnetic poles.\n*   The conceptual difference between total field volume and field intensity.\n*   How to identify magnetic field patterns based on line density.\n\n**What this is**\nMagnetism is a physical phenomenon involving forces that attract or repel certain materials. Every magnet possesses two distinct regions called poles: a North pole and a South pole. These poles are the points where the magnetic influence is typically strongest. Surrounding any magnet is an invisible area of influence known as a magnetic field. To describe this field technically, we use two specific terms. **Magnetic Flux** is the total amount of magnetic field lines produced by a source, not to be confused with flux density which measures the field's concentration. Conversely, **Magnetic Flux Density** is the measure of magnetic field strength per unit area, which is different from flux because it describes the concentration of the field rather than the total quantity.\n\n**Why it matters**\nUnderstanding these concepts allows technicians to predict how components will react when placed near one another. If you cannot distinguish between the total amount of magnetism and how \"packed\" that magnetism is, you cannot accurately determine if a system will have enough force to perform a task. In many cases, increasing the concentration (density) is more important than increasing the total amount (flux) when trying to trigger a sensor or move a mechanical part.\n\n**Key facts / rules**\n*   All magnets have exactly two poles, designated North (N) and South (S).\n*   Like poles (N–N or S–S) will always experience a force that pushes them apart (repulsion).\n*   Unlike poles (N–S) will always experience a force that pulls them together (attraction).\n*   Magnetic field lines are a visual tool used to represent the path of magnetic influence.\n*   **Magnetic Flux** represents the entire 'bundle' of field lines coming from a magnet.\n*   **Magnetic Flux Density** describes how many of those lines pass through a specific square centimeter or meter.\n*   Reducing the area through which a field passes will increase its density, even if the total flux remains the same.\n*   Magnetic strength is typically greatest at the poles where the field lines are most concentrated.\n\n**How to recognise it**\nTo identify these concepts in a technical diagram, look at the spacing of the field lines. If the lines are drawn very close together, you are looking at an area of high **Magnetic Flux Density**. If you are looking at the entire collection of lines emerging from a source, you are observing the **Magnetic Flux**. You can recognise attraction when field lines move directly from the North pole of one object to the South pole of another, creating a link. Repulsion is recognised when field lines from two similar poles curve away from each other, showing that they cannot occupy the same space.\n\n*Concrete Anchor:* Imagine rain falling through an open window. The total number of raindrops entering the room is like the **Magnetic Flux**. If you half-close the shutters so the same amount of rain is forced through a smaller gap, the rain becomes much more \"intense\" or \"concentrated\" in that specific spot; this intensity is like the **Magnetic Flux Density**.\n\n*Micro-scenario:* If Magnet A and Magnet B both have a total flux of 1,000 lines, but Magnet A spreads them over 10cm² while Magnet B squeezes them into 2cm², Magnet B has a much higher flux density and will likely feel \"stronger\" at that specific point.\n\n**Common mistakes**\nLearners often confuse **Magnetic Flux** with **Magnetic Flux Density**; **Magnetic Flux** is the total quantity of the field whereas **Magnetic Flux Density** is how concentrated that field is in a specific area.\n\nMisconceptions (targeted):\n*   Misconception: All magnetic parts automatically pull toward each other. | Correction: Only unlike poles attract; like poles will actively push away from each other. | AC: AC5.1\n*   Misconception: A larger magnet always has a higher flux density than a small magnet. | Correction: A small magnet can have a higher density if its flux is concentrated into a very tiny area. | AC: AC5.2\n\n**Key Points**\n*   Like poles repel; unlike poles attract.\n*   Flux is the total field; flux density is the field per unit area.\n*   Field lines show the direction and strength of the magnetic influence.\n*   Concentration determines the local strength of the magnetic effect.\n\n**Quick recap**\nMagnets interact based on their poles, where opposites attract and similar poles repel. We measure the total magnetic output as flux, but we measure the concentration of that output as flux density. High density means the magnetic field lines are packed tightly together, providing more force in a smaller space.\n\n### Coming Up Next\nWe will explore how moving electricity can actually create these magnetic fields and how that process can be used to generate physical motion or electricity."
+      }
+    },
+    {
+      "id": "202-5L1M-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Magnetic Properties and Field Concepts",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-5L1M-C1-L1-A",
+            "questionText": "What are the two specific poles found on every magnet?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "North and South",
+              "North, South",
+              "N and S",
+              "N, S"
+            ],
+            "hint": "Think of the two distinct regions where magnetic influence is strongest."
+          },
+          {
+            "id": "202-5L1M-C1-L1-B",
+            "questionText": "What term is used to identify the entire bundle of field lines produced by a magnet?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Magnetic Flux",
+              "Flux",
+              "total magnetic flux"
+            ],
+            "hint": "This represents the total quantity of the magnetic field."
+          },
+          {
+            "id": "202-5L1M-C1-L1-C",
+            "questionText": "Which term identifies the concentration of magnetic lines passing through a specific square centimeter?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Magnetic Flux Density",
+              "Flux Density",
+              "field concentration"
+            ],
+            "hint": "This measures the field strength per unit area."
+          },
+          {
+            "id": "202-5L1M-C1-L2",
+            "questionText": "Using your answers to Q1 (poles), Q2 (total flux), and Q3 (flux density), explain how these facts connect. Why must a technician identify the concentration at the poles to predict a magnet's local strength?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Poles are where the magnetic influence is naturally strongest",
+              "Flux density is highest at the poles because field lines are concentrated there",
+              "Total flux (the bundle) does not indicate local strength without knowing the area (density)",
+              "Strength is determined by how 'packed' the field lines are in a specific spot"
+            ],
+            "expectedAnswer": [
+              "Magnets have North and South poles where the magnetic flux is most concentrated. We must identify the flux density because a high total flux spread over a wide area is weaker than a concentrated field at the poles where density is highest.",
+              "Local strength depends on how many field lines (flux) are squeezed into an area (density). Since poles are the points where these lines are most concentrated, identifying the flux density at the poles tells us if there is enough force for a task."
+            ],
+            "hint": "Consider how the total amount of magnetism relates to the specific areas where it is most 'packed' together."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Electrical and Magnetic Interactions",
+        "content": "### In this lesson\nYou will learn how electricity and magnetism work together to create force and energy. This is the foundation for almost all modern power generation and mechanical motion systems.\n\n*   How electric current creates a magnetic field.\n*   The conditions required to produce a physical force on a conductor.\n*   The process of generating voltage using moving magnetic fields.\n\n**What this is**\nThe relationship between electricity and magnetism is known as electromagnetism. **Electromagnetism** is the physical process where a magnetic field is generated around a conductor as a direct result of electric current flowing through it. This field exists as long as the current flows. When we place a conductor carrying this current into an *external* magnetic field, a mechanical interaction occurs. This is known as the **Motor Effect**, which is the mechanical force produced when a current-carrying conductor is placed within an external magnetic field, causing the conductor to move. Finally, we have the reverse process: **Electromagnetic Induction**. This is the generation of an electromotive force (EMF) caused by a conductor moving through a magnetic field or a magnetic field changing around a conductor.\n\n**Why it matters**\nThese three effects are the \"building blocks\" of technical equipment. Without electromagnetism, we couldn't create temporary magnets that can be turned on and off. Without the motor effect, we couldn't convert electrical energy into the physical rotation needed for pumps or fans. Without induction, we would have no way to generate large-scale electricity (EMF) to power our buildings and tools.\n\n**Key facts / rules**\n*   Every wire carrying an electric current has a circular magnetic field around it.\n*   Increasing the current increases the strength of the produced magnetic field.\n*   The **Motor Effect** requires three things: a magnetic field, a conductor, and a current flowing through that conductor.\n*   The force produced by the motor effect is typically strongest when the conductor is at a right angle to the magnetic field.\n*   **Electromagnetic Induction** requires relative motion; either the magnet must move or the wire must move.\n*   A static magnet and a static wire will produce zero EMF; change is mandatory for induction.\n*   The term \"EMF\" (Electromotive Force) is essentially the technical term for the generated voltage.\n*   Electromagnetism allows us to create magnetic fields without using permanent \"natural\" magnets.\n\n**When to choose it**\nYou would look for the **Motor Effect** when the goal is to create physical movement from an electrical source. You would identify **Electromagnetic Induction** as the primary process when the goal is to produce a voltage (EMF) from a mechanical source, such as a spinning turbine. You choose **Electromagnetism** when you need a magnetic field that can be controlled, reversed, or switched off instantly by stopping the current flow.\n\n*Concrete Anchor:* Think of a current-carrying wire like a person walking through a crowded room. The \"current\" is the person moving, and the \"magnetic field\" is the clear space or \"wake\" they create around them as they move. If they walk into a gust of wind (an external field), they feel a push (the motor effect). If they wave their hand through a stationary curtain (a magnetic field), they create a ripple in the fabric (the induced EMF).\n\n*Micro-scenario:* A wire is placed inside a strong magnetic field. If no current flows, the wire stays still. As soon as 5 Amps of current are applied, the wire jumps to the side. This is a clear demonstration of the motor effect producing mechanical force.\n\n**Common mistakes**\nLearners often confuse the **Motor Effect** with **Electromagnetic Induction**; the **Motor Effect** uses electricity to create motion, whereas **Electromagnetic Induction** uses motion to create electricity (EMF).\n\nMisconceptions (targeted):\n*   Misconception: A magnetic field only exists if there is a permanent magnet present. | Correction: Any conductor carrying an electric current produces its own magnetic field through electromagnetism. | AC: AC5.3\n*   Misconception: Holding a magnet still inside a coil of wire will generate electricity. | Correction: There must be a change or movement to trigger electromagnetic induction; a stationary magnet produces no EMF. | AC: AC5.3\n\n**Key Points**\n*   Current creates magnetism (Electromagnetism).\n*   Current + Magnetic Field = Physical Force (Motor Effect).\n*   Moving Magnetic Field + Conductor = Voltage (Induction).\n*   EMF is the result of induction.\n\n**Quick recap**\nElectricity and magnetism are linked. Current creates a field, and when that field interacts with another field, it creates a physical push called the motor effect. Conversely, by moving a conductor through a magnetic field, we can induce a voltage known as EMF. These interactions allow us to convert between electrical and mechanical energy.\n\n### Coming Up Next\nIn the next lesson, we will look at how these principles are applied specifically to generate an Alternating Current (A.C.) supply and the unique shapes those electrical waves take."
+      }
+    },
+    {
+      "id": "202-5L1M-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Electrical and Magnetic Interactions",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-5L1M-C2-L1-A",
+            "questionText": "What type of field is found around every wire carrying an electric current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "circular magnetic field",
+              "magnetic field",
+              "circular field"
+            ],
+            "hint": "This field exists as a direct result of the current flow."
+          },
+          {
+            "id": "202-5L1M-C2-L1-B",
+            "questionText": "Which three elements must be present to identify the requirements for the Motor Effect?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "magnetic field, conductor, current",
+              "field, conductor, and current",
+              "magnetic field, wire, current"
+            ],
+            "hint": "Consider the magnetic, electrical, and physical components needed for mechanical force."
+          },
+          {
+            "id": "202-5L1M-C2-L1-C",
+            "questionText": "What is the result if a magnet and a wire remain static during an attempt at induction?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "zero EMF",
+              "no voltage",
+              "zero voltage",
+              "no EMF"
+            ],
+            "hint": "Recall what is mandatory for induction to occur."
+          },
+          {
+            "id": "202-5L1M-C2-L2",
+            "questionText": "Using your answers to Q1 (current-carrying wires), Q2 (motor effect requirements), and Q3 (induction requirements), explain how these facts connect. How do we know that electric current is the active component needed to produce either a magnetic field or mechanical force?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Electromagnetism shows that current flow is the source of the magnetic field in a wire",
+              "The Motor Effect requires that same current to interact with an external field to create force",
+              "Induction is the reverse, where movement creates the current (EMF), proving they are linked",
+              "Without current flow or the movement required to induce it, no magnetic interaction or force occurs"
+            ],
+            "expectedAnswer": [
+              "We know current is the active component because it creates a circular magnetic field around a wire; when this wire is placed in an external field, the interaction creates the Motor Effect. If everything is static, no EMF is induced, proving that either current or motion is needed to trigger these magnetic forces.",
+              "Current creates magnetism via electromagnetism, and that current is a mandatory requirement for the Motor Effect to produce force. Because induction requires change to produce EMF, it confirms that electricity and magnetism only interact when there is active flow or movement."
+            ],
+            "hint": "Look at how the presence of current in Q1 and Q2 contrasts with the lack of movement in Q3."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-5L1M-P1",
+            "questionText": "A magnetic source produces a total flux of 1200 lines. If this flux is concentrated into an area of 4 square centimeters, what is the resulting magnetic flux density?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "300"
+            ],
+            "hint": "Divide the total flux by the area to find the density in lines per square centimeter."
+          },
+          {
+            "id": "202-5L1M-P2",
+            "questionText": "A technical component has a magnetic flux density of 40 units per square centimeter. If the total area of the component is 5 square centimeters, what is the total magnetic flux being produced?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "200"
+            ],
+            "hint": "Multiply the density by the total area to find the total flux."
+          },
+          {
+            "id": "202-5L1M-P3",
+            "questionText": "What must be true about the poles of two separate magnets if they are observed exerting a physical force that pushes them away from one another?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "they are like poles",
+              "like poles",
+              "same poles",
+              "they are the same"
+            ],
+            "hint": "Recall the rules regarding how North and South poles interact with their own kind."
+          },
+          {
+            "id": "202-5L1M-P4",
+            "questionText": "A design requires a mechanical lever to move whenever an electrical switch is closed. If the system uses a fixed permanent magnet and a wire carrying current to create this movement, which effect is being applied?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "motor effect",
+              "the motor effect",
+              "motor"
+            ],
+            "hint": "Identify the interaction where electricity and an external magnetic field produce physical motion."
+          },
+          {
+            "id": "202-5L1M-P5",
+            "questionText": "Explain why a high-strength permanent magnet sitting perfectly still inside a coil of copper wire will fail to produce any electromotive force (EMF).",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "no relative motion",
+              "no movement",
+              "no change in field",
+              "lack of motion"
+            ],
+            "hint": "Consider the mandatory condition required for electromagnetic induction to occur."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-5L1M-INT-1",
+            "questionText": "Explain how the interaction between magnetic poles influences the resulting flux density in the space between them. In your answer, include: (1) the fundamental behavior of like and unlike poles, (2) a description of flux density, (3) the effect of pole proximity on field concentration. Why do we know that field intensity changes as magnets are moved closer together? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies that like poles repel and unlike poles attract.",
+              "Defines flux density as the concentration of magnetic field lines in a specific area.",
+              "Explains that reducing the distance between poles concentrates the magnetic flux into a smaller volume.",
+              "Reasons that the increase in physical resistance or attraction is evidence of changing field intensity.",
+              "Connects pole orientation to the direction and compression of field lines."
+            ],
+            "expectedAnswer": [
+              "Like poles repel and unlike poles attract, creating a field between them where flux density represents the concentration of magnetic lines. As poles are moved closer, the magnetic flux is forced into a smaller area, which increases the density and intensity of the field. We know this because the physical force of attraction or repulsion increases significantly as the distance between the poles decreases.",
+              "Magnetic poles interact by either pulling together or pushing apart, which directly affects the flux density, or the amount of field lines per unit area. When proximity increases, the field lines become more concentrated in the gap between the magnets. This change in intensity is evident because the mechanical force required to hold the magnets in place must increase as the field density rises."
+            ],
+            "hint": "Think about how the 'crowding' of magnetic lines changes as the distance between attracting or repelling surfaces is reduced."
+          },
+          {
+            "id": "202-5L1M-INT-2",
+            "questionText": "Analyze how magnetic properties and electrical current must be coordinated to produce mechanical force within a technical system. In your answer, include: (1) the role of magnetic pole polarity, (2) the distinction between total magnetic flux and flux density, (3) the requirement for electric current, (4) how these elements combine to generate physical force. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Explains that polarity determines the direction of the magnetic field.",
+              "Distinguishes between total flux (total field output) and flux density (field concentration).",
+              "States that electric current creates a secondary magnetic field around a conductor.",
+              "Describes the interaction between the conductor's field and the permanent magnetic field.",
+              "Identifies that higher flux density leads to a greater magnitude of force.",
+              "Synthesizes how current and field density work together to achieve mechanical motion.",
+              "Maintains technical precision regarding the relationship between magnetism and electricity."
+            ],
+            "expectedAnswer": [
+              "To produce mechanical force, magnetic poles must first establish a directional field where the flux density is sufficiently concentrated to interact with an external component. An electric current is passed through a conductor to create its own magnetic field, which then reacts against the existing flux density of the permanent magnets. This interaction between the two fields results in a physical force, the magnitude of which is determined by the concentration of the flux and the strength of the current.",
+              "The generation of force requires a specific coordination of magnetic and electrical elements:\n* Polarity establishes the necessary field direction for the system.\n* High flux density ensures there is a concentrated field for the interaction to occur.\n* Electric current provides the secondary magnetic field required to create resistance or attraction against the primary field.\n* The resulting interaction between the total flux and the current-carrying conductor produces the physical movement or force."
+            ],
+            "hint": "Consider how the concentration of a field (density) and the presence of a current-carrying wire work together to create a physical push or pull."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "202-5L1M-SR-1",
+            "questionText": "What are the names given to the two opposite ends, or poles, of a magnet?",
+            "expectedAnswer": [
+              "North and South",
+              "North, South",
+              "North South"
+            ],
+            "hint": "Think of the two primary directions on a compass.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-5L1M-SR-2",
+            "questionText": "What term describes the flow of charge through a conductive material?",
+            "expectedAnswer": [
+              "Electric current",
+              "Current",
+              "Electrical current"
+            ],
+            "hint": "This term is used in the lesson title regarding 'Current Effects'.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-5L1M-SR-3",
+            "questionText": "In the context of electrical circuits, what does the abbreviation EMF stand for?",
+            "expectedAnswer": [
+              "Electromotive force",
+              "Electro-motive force",
+              "Electro motive force"
+            ],
+            "hint": "It is the pressure or force that pushes current through a circuit.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2",
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-02-24",
+    "updated": "2026-02-24",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "CONCEPTUAL, IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "202",
+      "learningOutcome": "LO5",
+      "coveredAC": [
+        "AC1",
+        "AC2",
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Basic magnetic polarity, conceptual definitions of flux and flux density, and the qualitative relationship between current, fields, and force.",
+      "outOfScope": "AC generation mechanics, sine-wave properties, Fleming's left/right-hand rules, and all mathematical formulas or calculations.",
+      "rationale": "This is an introductory lesson designed to build the vocabulary and conceptual framework required before technical or mathematical applications are introduced."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Exclude all formulas and calculation-based rules; focus on conceptual 'direction of influence' only."
+    },
+    "misconceptions": [
+      {
+        "misconception": "All magnetic parts automatically pull toward each other.",
+        "correction": "Only unlike poles attract; like poles will actively push away from each other (repulsion).",
+        "relatedAC": "AC5.1"
+      },
+      {
+        "misconception": "Magnetic flux and flux density are the same thing.",
+        "correction": "Flux is the total quantity of the field, while flux density is the concentration of that field in a specific area.",
+        "relatedAC": "AC5.2"
+      },
+      {
+        "misconception": "A stationary magnet inside a coil will produce a constant voltage.",
+        "correction": "Electromagnetic Induction requires a changing magnetic field or relative motion to generate an EMF; static conditions produce nothing.",
+        "relatedAC": "AC5.3"
+      }
+    ],
+    "generationScore": 95,
+    "generationScoreDetails": {
+      "originalScore": 95,
+      "finalScore": 95,
+      "wasRefined": false,
+      "generatedAt": "2026-02-24T18:04:17.979Z",
+      "source": "phase10-13"
+    }
+  }
+}

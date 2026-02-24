@@ -81,11 +81,13 @@ import { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './electricalSy
 import { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagnetismQuestions';
 import { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterialsQuestions';
 import { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
+import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions,
   ...resistanceResistivityAndVoltageDropQuestions,
   ...electronTheoryAndMaterialsQuestions,
   ...magnetismAndElectromagnetismQuestions,
@@ -245,6 +247,7 @@ export { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './electricalSy
 export { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagnetismQuestions';
 export { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterialsQuestions';
 export { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
+export { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 
 /**
  * Filter questions by tags

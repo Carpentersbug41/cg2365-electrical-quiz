@@ -89,6 +89,7 @@ import { electricalSymbolsNoobShapeGrammarBasicsQuestions } from './questions/el
 import { magnetismAndElectromagnetismQuestions } from './questions/magnetismAndElectromagnetismQuestions';
 import { electronTheoryAndMaterialsQuestions } from './questions/electronTheoryAndMaterialsQuestions';
 import { resistanceResistivityAndVoltageDropQuestions } from './questions/resistanceResistivityAndVoltageDropQuestions';
+import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './questions/magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -170,6 +171,7 @@ export const questions: Question[] = [
   ...magnetismAndElectromagnetismQuestions,
   ...electronTheoryAndMaterialsQuestions,
   ...resistanceResistivityAndVoltageDropQuestions,
+  ...magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

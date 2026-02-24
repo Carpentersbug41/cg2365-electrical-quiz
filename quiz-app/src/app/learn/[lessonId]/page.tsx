@@ -54,9 +54,11 @@ import lesson203_2N1A from '@/data/lessons/203-2N1A-electrical-symbols-noob-shap
 import lesson202_5A from '@/data/lessons/202-5A-magnetism-and-electromagnetism.json';
 import lesson202_4A from '@/data/lessons/202-4A-electron-theory-and-materials.json';
 import lesson202_4B from '@/data/lessons/202-4B-resistance-resistivity-and-voltage-drop.json';
+import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-flux-flux-density-current-effects.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '202-5L1M': lesson202_5L1M as Lesson,
   '202-4B': lesson202_4B as Lesson,
   '202-4A': lesson202_4A as Lesson,
   '202-5A': lesson202_5A as Lesson,
