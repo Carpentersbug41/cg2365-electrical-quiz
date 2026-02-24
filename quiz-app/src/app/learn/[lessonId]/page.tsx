@@ -12,14 +12,6 @@ import DiagnosticGate from '@/components/learning/DiagnosticGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 
 // Import lesson data
-import lesson202_1A from '@/data/lessons/202-1A-electrical-quantities-units.json';
-import lesson202_2A from '@/data/lessons/202-2A-ohms-law.json';
-import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
-import lesson202_3AB from '@/data/lessons/202-3AB-series-circuits-linear.json';
-import lesson202_7A from '@/data/lessons/202-7A-ac-principles.json';
-import lesson202_7B from '@/data/lessons/202-7B-how-ac-is-generated.json';
-import lesson202_7C from '@/data/lessons/202-7C-sine-wave-vocab.json';
-import lesson202_7D from '@/data/lessons/202-7D-transformers.json';
 import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
 import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
 import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
@@ -31,11 +23,9 @@ import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceili
 import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
 import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
 import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
-import lesson202_3F from '@/data/lessons/202-3F-spacing-factor-enclosure-fill.json';
 import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
 import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
 import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
-import lesson202_5A from '@/data/lessons/202-5A-magnetism-basics.json';
 import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
 import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
 import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.json';
@@ -89,11 +79,10 @@ const LESSONS: Record<string, Lesson> = {
   '210-210-2A1': lesson210_1A as Lesson,
   '210-210-1A1': lesson210_1A as Lesson,
   '204-9A': lesson204_9A as Lesson,
-  '204-15A': lesson204_15A as Lesson,
-  '202-5A': lesson202_5A as Lesson,  // Backward-compatible alias for legacy lesson IDs.
-  '202-202-5A': lesson202_5A as Lesson,  '201-1C': lesson201_1C as Lesson,
+  '204-15A': lesson204_15A as Lesson,  // Backward-compatible alias for legacy lesson IDs.
+  '202-202-5A': lesson203_5A as Lesson,  '201-1C': lesson201_1C as Lesson,
   '201-1B': lesson201_1B as Lesson,
-  '201-1A': lesson201_1A as Lesson,  '202-3F': lesson202_3F as Lesson,  '204-13B': lesson204_13B as Lesson,
+  '201-1A': lesson201_1A as Lesson,  '204-13B': lesson204_13B as Lesson,
   '204-13A': lesson204_13A as Lesson,
   '204-14B': lesson204_14B as Lesson,
   '204-14A': lesson204_14A as Lesson,
@@ -103,14 +92,7 @@ const LESSONS: Record<string, Lesson> = {
   '204-11B': lesson204_11B as Lesson,
   '204-11A': lesson204_11A as Lesson,
   '204-10B': lesson204_10B as Lesson,
-  '204-10A': lesson204_10A as Lesson,  '202-1A': lesson202_1A as Lesson,
-  '202-2A': lesson202_2A as Lesson,
-  '202-3A': lesson202_3A as Lesson,
-  '202-3AB': lesson202_3AB as Lesson,  '202-7A': lesson202_7A as Lesson,
-  '202-7B': lesson202_7B as Lesson,
-  '202-7C': lesson202_7C as Lesson,
-  '202-7D': lesson202_7D as Lesson,
-};
+  '204-10A': lesson204_10A as Lesson,};
 
 interface PageProps {
   params: Promise<{ lessonId: string }>;

@@ -13,7 +13,6 @@ import { magnetismElectromagnetismQuestions } from './magnetismElectromagnetismQ
 import { acPrinciplesQuestions } from './acPrinciplesQuestions';
 import { acGenerationQuestions } from './acGenerationQuestions';
 import { acWaveformQuestions } from './acWaveformQuestions';
-import { transformersQuestions } from './transformersQuestions';
 import { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
 import { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 import { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTestingMindsetAndSetupQuestions';
@@ -157,8 +156,7 @@ export const allTaggedQuestions: TaggedQuestion[] = [
   ...magnetismElectromagnetismQuestions,
   ...acPrinciplesQuestions,
   ...acGenerationQuestions,
-  ...acWaveformQuestions,
-  ...transformersQuestions
+  ...acWaveformQuestions
 ];
 
 /**
@@ -173,7 +171,6 @@ export { magnetismElectromagnetismQuestions } from './magnetismElectromagnetismQ
 export { acPrinciplesQuestions } from './acPrinciplesQuestions';
 export { acGenerationQuestions } from './acGenerationQuestions';
 export { acWaveformQuestions } from './acWaveformQuestions';
-export { transformersQuestions } from './transformersQuestions';
 export { deadTestLanguageWhatEachTestProvesQuestions } from './deadTestLanguageWhatEachTestProvesQuestions';
 export { circuitMapThinkingConductorRolesExpectedOutcomesQuestions } from './circuitMapThinkingConductorRolesExpectedOutcomesQuestions';
 export { rigSafeDeadTestingMindsetAndSetupQuestions } from './rigSafeDeadTestingMindsetAndSetupQuestions';
@@ -257,4 +254,3 @@ export function getQuestionsByLesson(lessonId: string): TaggedQuestion[] {
     q.learningOutcomeId.startsWith(lessonId)
   );
 }
-
