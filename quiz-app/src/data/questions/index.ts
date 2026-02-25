@@ -84,11 +84,13 @@ import { resistanceResistivityAndVoltageDropQuestions } from './resistanceResist
 import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 import { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
+import { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...acGenerationAndSineWavesQuestions,
   ...powerAndEffectsOfElectricCurrentQuestions,
   ...cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions,
   ...magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions,
@@ -254,6 +256,7 @@ export { resistanceResistivityAndVoltageDropQuestions } from './resistanceResist
 export { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 export { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 export { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
+export { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
 
 /**
  * Filter questions by tags

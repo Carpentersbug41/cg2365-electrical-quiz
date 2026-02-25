@@ -92,6 +92,7 @@ import { resistanceResistivityAndVoltageDropQuestions } from './questions/resist
 import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './questions/magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './questions/cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 import { powerAndEffectsOfElectricCurrentQuestions } from './questions/powerAndEffectsOfElectricCurrentQuestions';
+import { acGenerationAndSineWavesQuestions } from './questions/acGenerationAndSineWavesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -176,6 +177,7 @@ export const questions: Question[] = [
   ...magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions,
   ...cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions,
   ...powerAndEffectsOfElectricCurrentQuestions,
+  ...acGenerationAndSineWavesQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

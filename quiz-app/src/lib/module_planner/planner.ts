@@ -2773,15 +2773,8 @@ export async function runM6GenerateLesson(
         message: 'Lesson already generated for this run. Skipped duplicate request.',
       };
     }
-    if (existingRow?.status === 'pending') {
-      return {
-        lessonId: existingRow.lesson_id || blueprint.id,
-        status: 'pending' as const,
-        error: null,
-        deduped: true,
-        message: 'Lesson generation is already pending for this run.',
-      };
-    }
+    // Do not hard-stop on persisted pending rows. If a prior run crashed or
+    // lock state was lost, we need to allow this request to re-attempt generation.
 
     await upsertRunLesson({
       runId,

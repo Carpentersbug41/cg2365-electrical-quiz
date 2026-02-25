@@ -232,6 +232,35 @@
       }
     },
     {
+      "id": "202-4D-microbreak-1",
+      "type": "microbreak",
+      "order": 5.7,
+      "content": {
+        "breakType": "game",
+        "gameType": "formula-build",
+        "prompt": "Build the target formula from the tokens.",
+        "tokens": [
+          "Watt",
+          "ts",
+          "es",
+          "Key",
+          "/",
+          "Power",
+          "fac",
+          "rul"
+        ],
+        "correctSequence": [
+          "Key",
+          "fac",
+          "ts",
+          "/",
+          "rul",
+          "es"
+        ],
+        "timerSeconds": 11
+      }
+    },
+    {
       "id": "202-4D-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -378,6 +407,38 @@
       }
     },
     {
+      "id": "202-4D-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What is Power?",
+            "answer": "The rate at which energy is transferred or converted within a system, measured in Watts W and calculated in electrical circuits as the product of voltage and current."
+          },
+          {
+            "question": "What is Watt W?",
+            "answer": "The standard unit of power representing a rate of energy transfer of one joule per second, used to quantify the work capacity of electrical components."
+          },
+          {
+            "question": "What is Thermal Effect?",
+            "answer": "The generation of heat that occurs when current flows through a material with resistance, which is used intentionally in heating elements but represents a loss in supply conductors."
+          },
+          {
+            "question": "What is Chemical Effect?",
+            "answer": "The process where an electric current causes a chemical change or decomposition in a liquid solution, such as in battery charging, which is distinct from the physical heating of a solid conductor."
+          },
+          {
+            "question": "What is Energy Dissipation?",
+            "answer": "The conversion of electrical energy into unintended or non-recoverable forms, primarily heat, as it encounters resistance within circuit components."
+          }
+        ]
+      }
+    },
+    {
       "id": "202-4D-integrative",
       "type": "practice",
       "order": 9.5,
@@ -479,7 +540,7 @@
   "metadata": {
     "created": "2026-02-25",
     "updated": "2026-02-25",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "CALCULATION, IDENTIFICATION",
     "syllabusAnchors": {

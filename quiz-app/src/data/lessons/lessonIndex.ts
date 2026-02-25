@@ -122,6 +122,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-4D'),
     available: true,
     order: 5,
+  },
+  {
+    id: '202-5B',
+    title: 'AC Generation and Sine-Waves',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'AC Generation and Sine-Waves',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-5B'),
+    available: true,
+    order: 6,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

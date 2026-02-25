@@ -52,6 +52,7 @@ import lesson202_4B from '@/data/lessons/202-4B-resistance-resistivity-and-volta
 import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-flux-flux-density-current-effects.json';
 import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
 import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
+import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -96,6 +97,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson202_5B,
   lesson202_4D,
   lesson203_3L1C,
   lesson202_5L1M,

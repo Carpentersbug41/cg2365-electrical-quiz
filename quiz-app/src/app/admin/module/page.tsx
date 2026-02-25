@@ -329,13 +329,23 @@ export default function ModulePlannerPage() {
         const contentType = response.headers.get('content-type') ?? '';
         const payload = contentType.includes('application/json')
           ? await response.json()
-          : { message: await response.text() };
+          : { rawBody: await response.text() };
         const data = (payload && typeof payload === 'object' ? payload : {}) as Record<string, unknown>;
         if (!response.ok || data.success === false) {
+          const fallbackMessage = (() => {
+            if (typeof data.rawBody === 'string' && data.rawBody.trim().length > 0) {
+              const bodyText = data.rawBody;
+              if (bodyText.includes('<html') || bodyText.includes('<!DOCTYPE')) {
+                return `Request failed (${response.status}) while calling ${url}`;
+              }
+              return bodyText.slice(0, 300);
+            }
+            return `Request failed (${response.status}) while calling ${url}`;
+          })();
           const message =
             (typeof data.message === 'string' && data.message) ||
             (typeof data.error === 'string' && data.error) ||
-            `Request failed (${response.status})`;
+            fallbackMessage;
 
           const isTransient =
             requestMethod === 'GET' &&
