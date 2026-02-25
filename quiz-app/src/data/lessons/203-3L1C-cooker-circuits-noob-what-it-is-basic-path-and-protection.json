@@ -233,6 +233,46 @@
       }
     },
     {
+      "id": "203-3L1C-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Role",
+          "Responsibility"
+        ],
+        "items": [
+          {
+            "text": "Cooker Circuit Fundamentals",
+            "correctBucket": 0
+          },
+          {
+            "text": "In this lesson - You will learn to define a cooker circuit as a dedicated power and heating radial circuit and identify its basic components.",
+            "correctBucket": 1
+          },
+          {
+            "text": "- This knowledge is applied when designing or identifying electrical systems in residential and commercial buildings.",
+            "correctBucket": 0
+          },
+          {
+            "text": "- Key takeaways include the definition of a radial circuit, the components of a basic path, and the classification of high-power loads.",
+            "correctBucket": 1
+          },
+          {
+            "text": "What this is In technical installations, a cooker circuit is a specific type of Radial Circuit designed to supply high-demand appliances used for cooking.",
+            "correctBucket": 0
+          },
+          {
+            "text": "Unlike a ring final circuit, which forms a continuous loop back to the source, a Radial Circuit functions as a single branch.",
+            "correctBucket": 1
+          }
+        ]
+      }
+    },
+    {
       "id": "203-3L1C-practice",
       "type": "practice",
       "order": 8,
@@ -292,6 +332,43 @@
               "32"
             ],
             "hint": "The number on the OCPD/MCB indicates its capacity in Amps (A)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Term",
+        "rightLabel": "Definition",
+        "items": [
+          {
+            "text": "Radial Circuit",
+            "correctBin": "left"
+          },
+          {
+            "text": "A wiring topology where the circuit cable runs from the consumer unit to the final appliance without forming a continuous loop back to the origin, unlike a ring final circuit.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Line Conductor",
+            "correctBin": "left"
+          },
+          {
+            "text": "The conductor that is normally energized and carries electrical power from the source to the load, as opposed to the neutral conductor which provides the return path.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Neutral Conductor",
+            "correctBin": "left"
+          },
+          {
+            "text": "The conductor that provides the return path for current to the source under normal operating conditions, distinct from the CPC which only carries current during a fault.",
+            "correctBin": "right"
           }
         ]
       }
@@ -398,7 +475,7 @@
   "metadata": {
     "created": "2026-02-25",
     "updated": "2026-02-25",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
