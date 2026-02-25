@@ -657,7 +657,8 @@ OUTPUT FORMAT: Pure JSON only`;
   async generateQuiz(request: GenerationRequest): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo }> {
     try {
       const allQuestions: QuizQuestion[] = [];
-      let currentId = this.getStartingQuestionId();
+      const startId = this.getStartingQuestionId();
+      let currentId = startId;
 
       debugLog('QUIZ_GEN_START', { startId: currentId });
 
@@ -716,8 +717,11 @@ OUTPUT FORMAT: Pure JSON only`;
         console.error(`Question IDs:`, invalidCounts.map(q => q.id));
       }
 
-      debugLog('QUIZ_GEN_COMPLETE', { totalQuestions: allQuestions.length });
-      return { success: true, questions: allQuestions };
+      // LLM output can still repeat IDs; enforce deterministic uniqueness before validation/write.
+      const normalizedQuestions = this.ensureUniqueQuestionIds(allQuestions, startId);
+
+      debugLog('QUIZ_GEN_COMPLETE', { totalQuestions: normalizedQuestions.length, startId });
+      return { success: true, questions: normalizedQuestions };
     } catch (error) {
       debugLog('QUIZ_GEN_EXCEPTION', { error: error instanceof Error ? error.message : 'unknown' });
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -1013,6 +1017,17 @@ OUTPUT FORMAT: Pure JSON only`;
     }
 
     return { sanitized, warnings, rejected };
+  }
+
+  /**
+   * Ensure quiz question IDs are unique and contiguous for the generated set.
+   * This is intentionally deterministic to avoid LLM ID collisions.
+   */
+  private ensureUniqueQuestionIds(questions: QuizQuestion[], startId: number): QuizQuestion[] {
+    return questions.map((question, index) => ({
+      ...question,
+      id: startId + index,
+    }));
   }
 
   /**

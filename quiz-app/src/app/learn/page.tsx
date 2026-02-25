@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Learn Page - Lessons Index
  * Shows all available lessons with mastery gates
  */
@@ -50,6 +50,7 @@ import lesson202_5A from '@/data/lessons/202-5A-magnetism-and-electromagnetism.j
 import lesson202_4A from '@/data/lessons/202-4A-electron-theory-and-materials.json';
 import lesson202_4B from '@/data/lessons/202-4B-resistance-resistivity-and-voltage-drop.json';
 import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-flux-flux-density-current-effects.json';
+import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -94,6 +95,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_3L1C,
   lesson202_5L1M,
   lesson202_4B,
   lesson202_4A,
@@ -300,6 +302,7 @@ export default function LearnPage() {
                   const progress = lessonsProgress[lesson.id];
                   const hasMastery = progress?.masteryAchieved;
                   const isPending = progress?.masteryPending;
+                  const isCompleted = (progress?.attemptsCount ?? 0) > 0;
                   const colors = getUnitColors(lesson.id);
 
                   return (
@@ -308,7 +311,7 @@ export default function LearnPage() {
                       href={courseHref(`/learn/${lesson.id}`)}
                       className="group"
                     >
-                      <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col`}>
+                      <div className={`bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 ${colors.border} p-6 hover:shadow-xl ${colors.borderHover} transition-all duration-200 h-full flex flex-col ${isCompleted ? 'ring-2 ring-emerald-300/70 dark:ring-emerald-700/60 bg-emerald-50/40 dark:bg-emerald-950/10' : ''}`}>
                         <div className="flex items-start justify-between mb-4">
                           <div className="flex flex-wrap gap-2">
                             <span className={`px-3 py-1 text-xs font-medium ${colors.badge} rounded-full border`}>
@@ -322,6 +325,11 @@ export default function LearnPage() {
                             {isPending && !hasMastery && (
                               <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
                                 <span>⏳</span> Pending
+                              </span>
+                            )}
+                            {isCompleted && !isPending && !hasMastery && (
+                              <span className="px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/30 rounded-full border border-emerald-300 dark:border-emerald-700">
+                                Completed
                               </span>
                             )}
                           </div>
@@ -350,7 +358,7 @@ export default function LearnPage() {
                         </div>
 
                         <button className={`mt-4 w-full px-4 py-2 ${colors.button} text-white rounded-lg font-semibold transition-colors shadow-md`}>
-                          {hasMastery ? 'Review Lesson' : isPending ? 'Review Lesson' : 'Start Lesson'} →
+                          {hasMastery || isPending || isCompleted ? 'Review Lesson' : 'Start Lesson'} →
                         </button>
                       </div>
                     </Link>

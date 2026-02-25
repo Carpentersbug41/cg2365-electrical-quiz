@@ -20,7 +20,6 @@ export enum AppMode {
   VOLTAGE = 'voltage',
   RESISTANCE = 'resistance',
   REAL = 'real',
-  SERIES_PARALLEL = 'series_parallel',
 }
 
 export interface SimulationParams {
@@ -32,11 +31,3 @@ export interface SimulationParams {
   isRealMode: boolean;
   voltageDrop?: number;
 }
-
-
-
-
-
-
-
-

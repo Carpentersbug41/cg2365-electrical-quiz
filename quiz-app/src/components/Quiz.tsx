@@ -5,6 +5,7 @@ import { questions as allQuestions, Question } from '@/data/questions';
 import confetti from 'canvas-confetti';
 import ChatAssistant from './chat/ChatAssistant';
 import ChatMessage from './chat/ChatMessage';
+import { courseHref } from '@/lib/routing/courseHref';
 import { 
   saveQuizAttempt, 
   getQuizProgress,
@@ -819,6 +820,16 @@ export default function Quiz({
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {lessonId && (
+                <button
+                  onClick={() => {
+                    window.location.href = courseHref('/learn');
+                  }}
+                  className="px-8 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors shadow-md"
+                >
+                  Back to Learning
+                </button>
+              )}
               <button
                 onClick={handleReview}
                 className="px-8 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors shadow-md"

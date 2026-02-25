@@ -648,6 +648,17 @@ function isLikelyInstructionalFraming(text: string): boolean {
   return false;
 }
 
+function looksLikeDeclarativeStatement(text: string): boolean {
+  const normalized = String(text || '').trim();
+  if (!normalized) return false;
+  if (isLikelyInstructionalFraming(normalized)) return false;
+
+  const words = normalized.split(/\s+/).filter(Boolean);
+  if (words.length < 4) return false;
+
+  return /\b(is|are|was|were|has|have|can|cannot|can't|must|should|will|does|do|did|means?|causes?|produces?|creates?|attracts?|repels?|interacts?)\b/i.test(normalized);
+}
+
 function getGameStem(content: MicrobreakContent): string {
   if (content.breakType === 'rest') return 'rest';
 
@@ -785,6 +796,9 @@ function validateGameSchemaAndContent(
       const statement = typeof content.statement === 'string' ? content.statement : '';
       const reasons = Array.isArray(content.reasons) ? content.reasons : [];
       if (!statement) errors.push('is-correct-why requires statement');
+      if (statement && !looksLikeDeclarativeStatement(statement)) {
+        errors.push('is-correct-why statement must be a testable declarative statement');
+      }
       if (reasons.length < 3) errors.push('is-correct-why requires >=3 reasons');
       if (content.correctReasonIndex < 0 || content.correctReasonIndex >= reasons.length) {
         errors.push('is-correct-why correctReasonIndex out of bounds');
@@ -798,7 +812,7 @@ function validateGameSchemaAndContent(
       if (reasons.some(r => String(r).length > 180)) {
         errors.push('is-correct-why reasons are too long for quick gameplay');
       }
-      if (reasons.some(r => /in this lesson/i.test(String(r)))) {
+      if (reasons.some(r => isLikelyInstructionalFraming(String(r)))) {
         errors.push('is-correct-why reasons must be gameplay options, not lesson framing text');
       }
       requireGrounding([statement, ...reasons], 'is-correct-why');
@@ -1008,14 +1022,34 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         ],
       };
     case 'is-correct-why':
-      return {
-        breakType: 'game',
-        gameType: 'is-correct-why',
-        statement: facts[0] || 'This statement is correct.',
-        isCorrect: true,
-        reasons: [facts[1] || 'Reason one', facts[2] || 'Reason two', misconceptions[0] || 'Incorrect reason'],
-        correctReasonIndex: 0,
-      };
+      {
+        const cleanFacts = facts.filter(f => !isLikelyInstructionalFraming(f));
+        const cleanMisconceptions = misconceptions.filter(m => !isLikelyInstructionalFraming(m));
+        const statement = cleanFacts.find(looksLikeDeclarativeStatement) || 'Like poles repel, and unlike poles attract.';
+        const reasonPool = [
+          ...cleanFacts.filter(f => f !== statement),
+          ...cleanMisconceptions,
+        ]
+          .map(s => String(s || '').trim())
+          .filter(Boolean)
+          .filter(s => !isLikelyInstructionalFraming(s))
+          .slice(0, 6);
+
+        const reasons = [
+          reasonPool[0] || 'Because field interaction determines whether poles attract or repel.',
+          reasonPool[1] || 'Because all magnetic parts automatically pull toward each other.',
+          reasonPool[2] || 'Because total flux and flux density are always identical values.',
+        ];
+
+        return {
+          breakType: 'game',
+          gameType: 'is-correct-why',
+          statement,
+          isCorrect: true,
+          reasons,
+          correctReasonIndex: 0,
+        };
+      }
     case 'diagnosis-ranked':
       return {
         breakType: 'game',
@@ -1383,4 +1417,21 @@ export function generateSimpleSortingGame(lesson: Lesson, categories: [string, s
     },
     order: lesson.blocks.length + blockIndex,
   };
+}
+
+// Test hooks for deterministic unit tests around internal validation and fallback logic.
+export function __testLooksLikeDeclarativeStatement(text: string): boolean {
+  return looksLikeDeclarativeStatement(text);
+}
+
+export function __testValidateGameSchemaAndContent(
+  expectedType: GameType,
+  content: MicrobreakContent,
+  digest: LessonDigest
+): string[] {
+  return validateGameSchemaAndContent(expectedType, content, extractDigestTokenSet(digest), digest);
+}
+
+export function __testFallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakContent {
+  return fallbackGameFromDigest(plan, digest);
 }

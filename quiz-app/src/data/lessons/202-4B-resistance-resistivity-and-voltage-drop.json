@@ -71,6 +71,7 @@
       "content": {
         "title": "Resistance, Resistivity, and Voltage Drop Diagram",
         "description": "Visual representation of Resistance, Resistivity, and Voltage Drop",
+        "embedUrl": "/2365/circuit-simm-only",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [

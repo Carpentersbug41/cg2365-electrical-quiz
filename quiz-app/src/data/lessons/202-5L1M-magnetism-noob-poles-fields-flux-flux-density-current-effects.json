@@ -69,6 +69,7 @@
       "content": {
         "title": "Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects Diagram",
         "description": "Visual representation of Magnetism (Noob): Poles, Fields, Flux, Flux Density + Current Effects",
+        "embedUrl": "/2365/magnetic-field-simulation",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
@@ -231,6 +232,23 @@
       }
     },
     {
+      "id": "202-5L1M-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "is-correct-why",
+        "statement": "Like poles repel and unlike poles attract.",
+        "isCorrect": true,
+        "reasons": [
+          "Because the interaction of magnetic fields makes like poles push apart and unlike poles pull together.",
+          "Because all magnetic parts automatically pull toward each other.",
+          "Because flux density and total flux always mean the same thing."
+        ],
+        "correctReasonIndex": 0
+      }
+    },
+    {
       "id": "202-5L1M-practice",
       "type": "practice",
       "order": 8,
@@ -289,6 +307,43 @@
               "lack of motion"
             ],
             "hint": "Consider the mandatory condition required for electromagnetic induction to occur."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-5L1M-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Term",
+        "rightLabel": "Definition",
+        "items": [
+          {
+            "text": "Magnetic Flux",
+            "correctBin": "left"
+          },
+          {
+            "text": "Magnetic Flux is the total amount of magnetic field lines produced by a source, not to be confused with flux density which measures the field's concentration.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Magnetic Flux Density",
+            "correctBin": "left"
+          },
+          {
+            "text": "Magnetic Flux Density is the measure of magnetic field strength per unit area, which is different from flux because it describes the concentration of the field rather than the total quantity.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Electromagnetism",
+            "correctBin": "left"
+          },
+          {
+            "text": "Electromagnetism is the physical process where a magnetic field is generated around a conductor as a direct result of electric current flowing through it.",
+            "correctBin": "right"
           }
         ]
       }
@@ -396,7 +451,7 @@
   "metadata": {
     "created": "2026-02-24",
     "updated": "2026-02-24",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "CONCEPTUAL, IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

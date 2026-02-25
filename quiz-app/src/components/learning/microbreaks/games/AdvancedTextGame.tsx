@@ -40,6 +40,7 @@ function clampPercent(value: number): number {
 }
 
 function gameTitle(type: AdvancedGameContent['gameType']): string {
+  if (type === 'is-correct-why') return 'Is Correct + Why';
   return type
     .split('-')
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))

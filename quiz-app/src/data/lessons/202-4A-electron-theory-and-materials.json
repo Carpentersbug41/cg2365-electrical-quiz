@@ -2,7 +2,7 @@
   "id": "202-4A",
   "title": "202.4A — Electron Theory and Materials",
   "description": "Learn about Electron Theory and Materials in Science 2365 Level 2",
-  "layout": "linear-flow",
+  "layout": "split-vis",
   "unit": "Unit 202",
   "topic": "Electron Theory and Materials",
   "learningOutcomes": [
@@ -71,6 +71,7 @@
       "content": {
         "title": "Electron Theory and Materials Diagram",
         "description": "Visual representation of Electron Theory and Materials",
+        "embedUrl": "/2365/circuit-simm-only",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
@@ -237,6 +238,31 @@
       }
     },
     {
+      "id": "202-4A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "duration": 60,
+        "scenario": "Atomic Structure and Electron Theory",
+        "options": [
+          {
+            "text": "In this lesson This lesson explores the fundamental building blocks of all matter and how their internal structure allows for the existence of electricity.",
+            "isError": false
+          },
+          {
+            "text": "Electrons are found inside the nucleus alongside protons.",
+            "isError": true
+          },
+          {
+            "text": "You will learn how the arrangement of subatomic particles dictates the electrical behavior of a substance.",
+            "isError": false
+          }
+        ]
+      }
+    },
+    {
       "id": "202-4A-practice",
       "type": "practice",
       "order": 8,
@@ -295,6 +321,38 @@
               "loosely bound electrons"
             ],
             "hint": "A conductor requires particles that are capable of moving easily through the material."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "duration": 90,
+        "questions": [
+          {
+            "question": "What is Electron?",
+            "answer": "A subatomic particle with a negative charge that orbits the nucleus of an atom and serves as the primary carrier of electricity."
+          },
+          {
+            "question": "What is Free Electron?",
+            "answer": "An electron that has detached from its parent atom and is capable of moving through a material to create an electric current."
+          },
+          {
+            "question": "What is Conductor?",
+            "answer": "A material that allows the easy flow of electric current because it contains a large number of free electrons."
+          },
+          {
+            "question": "What is Insulator?",
+            "answer": "A material that prevents the flow of electric current because its electrons are tightly bound to their atoms, unlike a conductor which permits easy electron movement."
+          },
+          {
+            "question": "What is Electric Current?",
+            "answer": "The organized movement of free electrons through a conductive material in a specific direction."
           }
         ]
       }
@@ -401,7 +459,7 @@
   "metadata": {
     "created": "2026-02-24",
     "updated": "2026-02-24",
-    "version": "1.0",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, CONCEPTS",
     "syllabusAnchors": {

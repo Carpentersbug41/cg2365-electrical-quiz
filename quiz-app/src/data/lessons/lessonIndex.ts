@@ -340,6 +340,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-2N1A'),
     available: true,
     order: 19,
+  },
+  {
+    id: '203-3L1C',
+    title: 'Cooker Circuits (Noob): What It Is, Basic Path, and Protection',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Cooker Circuits (Noob): What It Is, Basic Path, and Protection',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3L1C'),
+    available: true,
+    order: 20,
   },// Unit 210: Communication
   {
     id: '204-10A',

@@ -82,11 +82,13 @@ import { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagn
 import { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterialsQuestions';
 import { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
 import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
+import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions,
   ...magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions,
   ...resistanceResistivityAndVoltageDropQuestions,
   ...electronTheoryAndMaterialsQuestions,
@@ -248,6 +250,7 @@ export { magnetismAndElectromagnetismQuestions } from './magnetismAndElectromagn
 export { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterialsQuestions';
 export { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
 export { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
+export { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 
 /**
  * Filter questions by tags

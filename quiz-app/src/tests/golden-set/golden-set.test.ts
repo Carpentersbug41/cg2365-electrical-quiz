@@ -10,7 +10,7 @@ import { POST as tutorHandler } from '@/app/api/tutor/route';
 import { GOLDEN_SCENARIOS, INVARIANTS } from './scenarios';
 import { createLessonContext } from '@/lib/tutor/groundingService';
 import { extractBlockReferences } from '@/lib/tutor/groundingService';
-import lesson202_3A from '@/data/lessons/202-3A-series-circuits.json';
+import lesson202_3A from '@/data/lessons/203-3A-circuit-types-what-they-do.json';
 import { Lesson } from '@/data/lessons/types';
 
 // Helper to create a mock request

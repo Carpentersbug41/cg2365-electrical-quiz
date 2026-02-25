@@ -1,0 +1,456 @@
+{
+  "id": "203-3L1C",
+  "title": "203.3L1C — Cooker Circuits (Noob): What It Is, Basic Path, and Protection",
+  "description": "Learn about Cooker Circuits (Noob): What It Is, Basic Path, and Protection in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Cooker Circuits (Noob): What It Is, Basic Path, and Protection",
+  "learningOutcomes": [
+    "Define a cooker circuit as a power/heating radial circuit and identify its basic path components.",
+    "Describe the functions of Line, Neutral, and CPC conductors within a circuit.",
+    "Distinguish between protective devices used for overcurrent (fuses/MCBs) and those used for earth leakage (RCDs/RCBOs)."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3L1C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define a cooker circuit as a power/heating radial circuit and identify its basic path components.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the functions of Line, Neutral, and CPC conductors within a circuit.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Distinguish between protective devices used for overcurrent (fuses/MCBs) and those used for earth leakage (RCDs/RCBOs).",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Radial Circuit",
+            "definition": "A wiring topology where the circuit cable runs from the consumer unit to the final appliance without forming a continuous loop back to the origin, unlike a ring final circuit."
+          },
+          {
+            "term": "Line Conductor",
+            "definition": "The conductor that is normally energized and carries electrical power from the source to the load, as opposed to the neutral conductor which provides the return path."
+          },
+          {
+            "term": "Neutral Conductor",
+            "definition": "The conductor that provides the return path for current to the source under normal operating conditions, distinct from the CPC which only carries current during a fault."
+          },
+          {
+            "term": "Circuit Protective Conductor (CPC)",
+            "definition": "A dedicated safety conductor that connects the metal parts of an installation to the earthing system to provide a path for fault currents, not for carrying normal circuit current."
+          },
+          {
+            "term": "Overcurrent Protective Device (OCPD)",
+            "definition": "A component such as a fuse or circuit breaker designed to break a circuit during an overload or short circuit, not for protection against earth leakage."
+          },
+          {
+            "term": "Residual Current Device (RCD)",
+            "definition": "A sensitive safety device that monitors the balance between conductors to disconnect power if a leak to earth is detected, different from an MCB which reacts to excessive current flow."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Cooker Circuits (Noob): What It Is, Basic Path, and Protection Diagram",
+        "description": "Visual representation of Cooker Circuits (Noob): What It Is, Basic Path, and Protection",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "consumer-unit",
+          "protective-device",
+          "radial-cable",
+          "cooker-isolator",
+          "appliance-connection"
+        ],
+        "placeholderText": "A linear flow diagram showing the basic path of a cooker circuit. It starts on the left with a 'consumer-unit' containing a 'protective-device'. A 'radial-cable' (showing L, N, and CPC conductors) connects the unit to a 'cooker-isolator' switch. Finally, the path terminates at the 'appliance-connection' point. The diagram should clearly illustrate that there is no return loop to the consumer unit, emphasizing the radial nature."
+      }
+    },
+    {
+      "id": "203-3L1C-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Cooker Circuit Fundamentals",
+        "content": "### In this lesson\n- You will learn to define a cooker circuit as a dedicated power and heating radial circuit and identify its basic components.\n- This knowledge is applied when designing or identifying electrical systems in residential and commercial buildings.\n- Key takeaways include the definition of a radial circuit, the components of a basic path, and the classification of high-power loads.\n\n**What this is**\nIn technical installations, a cooker circuit is a specific type of **Radial Circuit** designed to supply high-demand appliances used for cooking. Unlike a ring final circuit, which forms a continuous loop back to the source, a **Radial Circuit** functions as a single branch. It originates at the consumer unit, passes through a protective device, travels to a local isolation switch, and terminates at the appliance connection point. Because cookers are classified as power and heating loads, they typically require a dedicated path to ensure they do not interfere with smaller, more sensitive equipment on other circuits.\n\n**Why it matters**\nA cooker is often the highest-power appliance in a standard building. If it were shared with other devices, the total current would frequently exceed safe limits, causing the circuit to disconnect. By using a dedicated **Radial Circuit**, technicians ensure that the appliance has a reliable energy supply and can be safely isolated for maintenance without turning off the lights or sockets in the rest of the property.\n\n**Key facts / rules**\n- A cooker circuit is categorized as a power and heating circuit.\n- It follows a **Radial Circuit** topology, meaning it does not loop back to the start.\n- The circuit must originate from a dedicated **Overcurrent Protective Device (OCPD)** in the consumer unit.\n- It typically includes a local means of isolation (a cooker switch) within reach of the appliance.\n- The basic path follows a sequence: Consumer Unit → Protective Device → Cable → Isolator → Cooker.\n- It uses three specific types of conductors to function safely and effectively.\n\n**When to choose it**\nYou would choose this circuit arrangement specifically for high-power fixed appliances. In many cases, a standard 13A socket circuit is insufficient for the heavy energy demands of an electric oven or hob. You select a **Radial Circuit** over a ring circuit for this application because it simplifies the installation for a single, high-load point and ensures that the full capacity of the protective device is dedicated to that one appliance. \n\n**Concrete Anchor:** Think of a **Radial Circuit** like a one-way dead-end street. The power travels from the main road (the consumer unit) to the house at the end of the street (the cooker). There is no other way out; the \"traffic\" goes in and comes back via the return path on the same route, rather than driving in a big circle around a neighborhood.\n\n**Micro Worked Scenario:** Consider two appliances: a 3,000W kettle plugged into a shared ring circuit and a 10,000W range cooker. While the kettle can share its \"road\" with a toaster, the 10,000W cooker requires its own dedicated \"highway\" (a radial circuit) to prevent overloading the system.\n\n**Common mistakes**\nLearners often confuse a **Radial Circuit** with a ring final circuit; a **Radial Circuit** terminates at the last point of use, whereas a ring final circuit returns to its origin at the consumer unit. \n\nMisconceptions (targeted):\n- Misconception: A cooker circuit must always be part of the kitchen socket ring. | Correction: A cooker is a high-power load and typically requires its own dedicated radial circuit. | AC: AC3.1\n- Misconception: The term \"radial\" implies the wiring moves in a physical circle. | Correction: Radial refers to the electrical path from the source to the end, like a radius of a circle, not a loop. | AC: AC3.1\n\n**Key Points**\n- Cooker circuits are dedicated power and heating branches.\n- They use a radial topology (one-way path).\n- The path includes the consumer unit, an isolator, and the appliance.\n- Dedicated circuits prevent nuisance tripping from high loads.\n- Always verify current regulations for specific installation requirements.\n\n**Quick recap**\nA cooker circuit is a dedicated **Radial Circuit** used for high-power heating appliances. It follows a direct path from the consumer unit to the cooker, usually via a local isolator switch, ensuring the appliance has its own protected supply separate from other household devices.\n\n### Coming Up Next\nWe will examine the specific conductors (Line, Neutral, and CPC) that make up this path and how different devices protect them from faults."
+      }
+    },
+    {
+      "id": "203-3L1C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Cooker Circuit Fundamentals",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1C-C1-L1-A",
+            "questionText": "How is a cooker circuit categorized in terms of its load type?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "power and heating circuit",
+              "power and heating",
+              "heating and power"
+            ],
+            "hint": "Refer to the classification used for high-demand cooking equipment."
+          },
+          {
+            "id": "203-3L1C-C1-L1-B",
+            "questionText": "What does the radial topology of this circuit imply about its electrical path?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "does not loop back",
+              "no loop back",
+              "it does not loop back to the start"
+            ],
+            "hint": "Consider how a radial circuit differs from a continuous ring circuit."
+          },
+          {
+            "id": "203-3L1C-C1-L1-C",
+            "questionText": "What specific type of appliances is this radial circuit designed to supply?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "high-demand appliances",
+              "high demand appliances",
+              "high-power appliances"
+            ],
+            "hint": "Focus on the energy requirements of the equipment connected to this circuit."
+          },
+          {
+            "id": "203-3L1C-C1-L2",
+            "questionText": "Using your answers to Q1 (circuit category), Q2 (topology), and Q3 (appliance type), explain why a dedicated radial path is required for these installations. Why is a shared ring circuit unsuitable?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "High-demand appliances require a dedicated path to prevent overloading shared systems",
+              "The radial topology ensures the full capacity of the protective device is dedicated to one high-power load",
+              "Power and heating circuits must be separate to avoid interference with sensitive equipment"
+            ],
+            "expectedAnswer": [
+              "Because cookers are high-demand appliances, they need a dedicated power and heating circuit. A radial topology is used because it does not loop back, ensuring the protective device serves only that high-load appliance to prevent overloading.",
+              "High-demand appliances like cookers require their own dedicated radial circuit rather than a ring. This ensures the power and heating load is isolated and the capacity is not shared with other devices, which prevents the circuit from disconnecting under heavy use."
+            ],
+            "hint": "Think about how the high energy demand of the appliance dictates the need for a single, unshared path."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Conductors and Protection",
+        "content": "### In this lesson\n- You will learn the specific roles of the Line, Neutral, and CPC conductors within a cooker circuit.\n- You will distinguish between protective devices used for overcurrent and those used for earth leakage.\n- Key takeaways include conductor functions, the purpose of an OCPD, and the role of an RCD.\n\n**What this is**\nEvery cooker circuit relies on three essential conductors to operate. The **Line Conductor** is the \"live\" wire that carries energy to the cooker. The **Neutral Conductor** provides the return path to complete the circuit. The **Circuit Protective Conductor (CPC)**, commonly called the earth, is a safety wire that only carries current during a fault. To manage these conductors safely, we use an **Overcurrent Protective Device (OCPD)** (like a fuse or MCB) and a **Residual Current Device (RCD)**.\n\n**Why it matters**\nElectricity is dangerous if not contained. The **Line Conductor** and **Neutral Conductor** handle normal operation, but if a wire becomes loose and touches the metal casing of a cooker, the **Circuit Protective Conductor (CPC)** provides a safe path for that electricity to escape. Without the correct **Overcurrent Protective Device (OCPD)**, the wires could overheat and cause a fire. Without a **Residual Current Device (RCD)**, a person touching a faulty cooker could suffer a fatal electric shock.\n\n**Key facts / rules**\n- The **Line Conductor** is normally energized and delivers power.\n- The **Neutral Conductor** is the return path for current.\n- The **Circuit Protective Conductor (CPC)** connects metal parts to the earth for safety.\n- An **Overcurrent Protective Device (OCPD)** (MCB or fuse) protects against overloads and short circuits.\n- A **Residual Current Device (RCD)** protects against earth leakage and electric shock.\n- An RCBO is a single device that combines the functions of an MCB and an RCD.\n- Fuses (BS 88 or BS 3036) and MCBs (BS EN 60898) are types of OCPDs.\n\n**How to recognise it**\nYou can identify these components by their appearance and location in the consumer unit. An **Overcurrent Protective Device (OCPD)** like an MCB typically has a simple toggle switch labeled with a current rating (e.g., B32). A **Residual Current Device (RCD)** is usually wider and features a \"Test\" button (marked 'T'), which is a requirement for devices that monitor earth leakage. If you see a device that has both a toggle switch and a test button but occupies only one slot, it is likely an RCBO, which provides both types of protection for that specific circuit.\n\n**Concrete Anchor:** Think of the **Circuit Protective Conductor (CPC)** as an emergency exit in a building. Under normal conditions, no one uses it. However, if there is an emergency (a fault), it provides a dedicated, safe path for everyone (the current) to get out quickly so the safety systems can shut the building down.\n\n**Micro Worked Scenario:** If a cooker circuit is protected by a 32A MCB and a 30mA RCD, and the cooker develops a fault where 40A of current flows, the MCB will trip to prevent a fire. If the cooker instead develops a tiny leak where only 0.04A (40mA) escapes to the metal frame, the RCD will trip to prevent a shock.\n\n**Common mistakes**\nLearners often confuse the **Overcurrent Protective Device (OCPD)** with a **Residual Current Device (RCD)**; an **Overcurrent Protective Device (OCPD)** is designed to stop \"too much current\" from flowing (overload), whereas a **Residual Current Device (RCD)** is designed to detect current \"leaking\" out of the circuit (earth leakage).\n\nMisconceptions (targeted):\n- Misconception: The CPC carries current all the time. | Correction: The CPC only carries current during a fault condition to trigger protective devices. | AC: AC3.1\n- Misconception: A standard fuse protects you from electric shock if you touch a live wire. | Correction: Fuses protect against high current/fire; an RCD is required to protect against low-level earth leakage shock. | AC: AC3.4\n\n**Key Points**\n- Line and Neutral are the functional conductors.\n- CPC is the safety conductor (earth).\n- OCPDs (Fuses/MCBs) prevent fires caused by too much current.\n- RCDs prevent shocks caused by current leaking to earth.\n- RCBOs combine both protection types in one unit.\n\n**Quick recap**\nA cooker circuit uses a **Line Conductor** and **Neutral Conductor** for power, while the **Circuit Protective Conductor (CPC)** ensures safety. Protection is split into two roles: the **Overcurrent Protective Device (OCPD)** stops excessive current, and the **Residual Current Device (RCD)** stops dangerous leaks to earth.\n\n### Coming Up Next\nNow that you understand the components and protection, we will look at how to select the correct wiring systems for different environments."
+      }
+    },
+    {
+      "id": "203-3L1C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Conductors and Protection",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1C-C2-L1-A",
+            "questionText": "What is the primary safety purpose of the Circuit Protective Conductor (CPC)?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "connects metal parts to earth",
+              "connects metal parts to the earth",
+              "safety earth connection"
+            ],
+            "hint": "Identify which parts of the appliance this conductor connects to the ground."
+          },
+          {
+            "id": "203-3L1C-C2-L1-B",
+            "questionText": "Which two specific electrical faults does an Overcurrent Protective Device (OCPD) protect against?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "overloads and short circuits",
+              "overload and short circuit",
+              "excessive current"
+            ],
+            "hint": "These devices are designed to prevent fires caused by excessive current flow."
+          },
+          {
+            "id": "203-3L1C-C2-L1-C",
+            "questionText": "What two hazards does a Residual Current Device (RCD) protect against?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "earth leakage and electric shock",
+              "earth leakage",
+              "electric shock"
+            ],
+            "hint": "Identify the dangers associated with current escaping the intended circuit path."
+          },
+          {
+            "id": "203-3L1C-C2-L2",
+            "questionText": "Using your answers to Q1 (CPC purpose), Q2 (OCPD role), and Q3 (RCD role), explain how these components work together to ensure user safety. How do we know that an OCPD alone cannot protect a person from electric shock?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The CPC provides the safe path for current to reach the earth during a fault",
+              "The OCPD prevents fire by stopping high-current overloads",
+              "The RCD detects low-level earth leakage that an OCPD would ignore",
+              "Full safety requires detecting both high-current fire risks and low-current shock risks"
+            ],
+            "expectedAnswer": [
+              "The CPC connects metal parts to earth so that if a fault occurs, the RCD can detect earth leakage and the OCPD can detect short circuits. We know an OCPD alone is insufficient because it only stops overloads; an RCD is needed to detect the tiny leaks that cause electric shock.",
+              "Safety is achieved by the CPC providing a path to earth, while the OCPD stops overloads and the RCD stops earth leakage. An OCPD cannot protect against shock because shock levels are often too low to trigger a fuse, which is why an RCD is required for user protection."
+            ],
+            "hint": "Contrast the high current needed to trip a fuse with the low current that can cause a fatal shock."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3L1C-P1",
+            "questionText": "Why must a high-power heating appliance be installed on its own dedicated radial circuit instead of a shared ring circuit?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "prevent overloading",
+              "avoid overloading",
+              "prevent nuisance tripping",
+              "prevent circuit overload"
+            ],
+            "hint": "Think about what happens to the total current when multiple high-power devices share one 'road'."
+          },
+          {
+            "id": "203-3L1C-P2",
+            "questionText": "An RCD is designed to trip when it detects a leakage to earth. If the device is rated at 30mA, what is this value expressed in Amps?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.03",
+              "0.030"
+            ],
+            "hint": "Divide the milliampere value by 1,000 to get the value in Amps (A)."
+          },
+          {
+            "id": "203-3L1C-P3",
+            "questionText": "Which specific conductor is designed to carry current only during a fault condition to provide a safe path to earth?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "circuit protective conductor",
+              "cpc",
+              "earth conductor",
+              "earth wire"
+            ],
+            "hint": "This is the 'emergency exit' for electricity."
+          },
+          {
+            "id": "203-3L1C-P4",
+            "questionText": "A facility requires a dedicated power supply for a high-capacity server rack that cannot risk interference from other equipment. Which circuit topology should be used to provide this single, direct branch from the distribution board?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "radial circuit",
+              "radial",
+              "radial topology"
+            ],
+            "hint": "Consider the term for a circuit that runs from the source to the end point without looping back."
+          },
+          {
+            "id": "203-3L1C-P5",
+            "questionText": "A protective device labeled 'B32' is used to protect against overcurrent. What is the maximum current rating this device is intended to handle before it risks tripping due to overload?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "32"
+            ],
+            "hint": "The number on the OCPD/MCB indicates its capacity in Amps (A)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1C-INT-1",
+            "questionText": "Explain how the configuration of a radial circuit path relates to the specific functions of the Line and Neutral conductors. In your answer, include: (1) the definition of a radial path, (2) the role of the Line and Neutral conductors, (3) the physical relationship between the source and the load in this setup. Why must the circuit follow this specific path to ensure functionality? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Defines a radial circuit as a dedicated path from the source to the load.",
+              "Identifies the Line conductor as the source of energy to the appliance.",
+              "Identifies the Neutral conductor as the return path to the source.",
+              "Describes the continuous loop required for current flow in a dedicated circuit.",
+              "Explains that a dedicated radial path is necessary to handle high-power loads without affecting other circuits."
+            ],
+            "expectedAnswer": [
+              "A radial circuit is a dedicated wiring path that runs directly from the consumer unit to the appliance. The Line conductor carries the electrical energy to the load, while the Neutral conductor provides the necessary return path to complete the circuit loop. This relationship must hold because high-power appliances require a continuous, isolated path to draw sufficient current safely without overloading other parts of the installation.",
+              "In a radial configuration, the circuit starts at the distribution board and ends at the load, utilizing a Line conductor for supply and a Neutral for the return. This specific path ensures that the full current required by the appliance is contained within a single dedicated loop. We know this is essential because any break in this path or sharing of conductors would prevent the appliance from receiving the required power or lead to thermal damage of the wiring."
+            ],
+            "hint": "Think about how electricity must travel from the source to the appliance and back again to create a complete circuit."
+          },
+          {
+            "id": "203-3L1C-INT-2",
+            "questionText": "Analyze how the components of a high-power radial circuit integrate with protective devices to ensure safe operation. In your answer, include: (1) the purpose of a dedicated radial path, (2) the specific role of the CPC conductor, (3) the distinction between overcurrent and earth leakage protection, (4) how these elements work together to maintain system integrity. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Explains that radial paths isolate high-power loads to prevent overloading.",
+              "Identifies the CPC as the safety path for fault current to reach earth.",
+              "Distinguishes OCPDs (MCBs/fuses) as protection against excessive current/heat.",
+              "Distinguishes RCDs/RCBOs as protection against current leakage to earth.",
+              "Describes the integration of conductors and protection to trigger disconnection during faults.",
+              "Synthesizes how these components prevent both equipment damage and electric shock.",
+              "Maintains technical precision regarding the different types of electrical faults."
+            ],
+            "expectedAnswer": [
+              "Dedicated radial paths isolate high-power loads to ensure conductors are not overstressed, while the CPC provides a vital path for fault current to safely exit the system. Overcurrent devices (MCBs) protect the circuit from thermal damage due to overloads, whereas earth leakage devices (RCDs) monitor for imbalances that could cause electric shock. These components integrate to ensure that if current deviates from the L-N loop or exceeds safe limits, the circuit is immediately disconnected to protect both the user and the installation.",
+              "• Radial circuits provide isolated paths to manage high-power demands without impacting other system components.\n• The CPC conductor acts as a safety return, working in tandem with the RCD, which detects dangerous earth leakage.\n• OCPDs (fuses/MCBs) monitor the Line conductor for overcurrent to prevent fire or cable damage.\n• Together, these elements ensure that any fault—whether an overload or a leakage to earth—results in an automated disconnection of the power supply."
+            ],
+            "hint": "Consider how the conductors provide the path for energy, while the protective devices monitor those paths for different types of failures."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3L1C-SR-1",
+            "questionText": "What is the term for a complete path through which energy or current flows?",
+            "expectedAnswer": [
+              "circuit",
+              "electrical circuit",
+              "a circuit"
+            ],
+            "hint": "Think of the word used for a loop or path in power systems.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L1C-SR-2",
+            "questionText": "What is the general term for materials, such as wires, used to carry electricity through a system?",
+            "expectedAnswer": [
+              "conductors",
+              "conductor",
+              "electrical conductors"
+            ],
+            "hint": "Line and Neutral are specific examples of these.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L1C-SR-3",
+            "questionText": "What word describes the primary function of a device intended to prevent damage or ensure safety in a system?",
+            "expectedAnswer": [
+              "protection",
+              "protective",
+              "safety"
+            ],
+            "hint": "Fuses and MCBs are examples of these types of devices.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Cooker Circuits (Noob): What It Is, Basic Path, and Protection"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC4"
+  ],
+  "metadata": {
+    "created": "2026-02-25",
+    "updated": "2026-02-25",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1",
+        "AC4"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC5",
+        "AC6"
+      ]
+    },
+    "scope": {
+      "inScope": "High-level principles of cooker circuits, radial circuit definitions, conductor roles, and the application of specific protective devices.",
+      "outOfScope": "Cable sizing calculations, diversity factors, volt drop, installation procedures, and testing values.",
+      "rationale": "This is an introductory lesson focused on conceptual understanding and identification for beginners, strictly adhering to the 'dead-safe' and 'no-calculation' constraints."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Dead-safe only; focus on application-level knowledge of protective devices without design math."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A cooker circuit must always be part of the kitchen socket ring.",
+        "correction": "A cooker is a high-power load and typically requires its own dedicated radial circuit.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "The CPC carries current all the time.",
+        "correction": "The CPC only carries current during a fault condition to trigger protective devices.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "A standard fuse protects you from electric shock if you touch a live wire.",
+        "correction": "Fuses protect against high current/fire; an RCD is required to protect against low-level earth leakage shock.",
+        "relatedAC": "AC3.4"
+      }
+    ],
+    "generationScore": 96,
+    "generationScoreDetails": {
+      "originalScore": 96,
+      "finalScore": 96,
+      "wasRefined": false,
+      "generatedAt": "2026-02-25T11:27:39.203Z",
+      "source": "phase10-13"
+    }
+  }
+}

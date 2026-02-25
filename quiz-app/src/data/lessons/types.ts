@@ -124,6 +124,7 @@ export interface DiagramBlockContent {
   placeholderText?: string; // For MVP before SVG implementation
   videoUrl?: string; // YouTube video URL or embed ID
   imageUrl?: string; // Static image URL or local path (e.g., /images/lessons/diagram.png)
+  embedUrl?: string; // Embedded app URL rendered in an iframe (same-origin recommended)
   timestamps?: Array<{
     time: string; // Format: "0:45" or "1:23"
     label: string; // Description of what's shown
@@ -413,4 +414,3 @@ export interface LessonIndex {
   order: number;
   available: boolean;
 }
-

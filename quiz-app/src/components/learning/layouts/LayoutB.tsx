@@ -19,6 +19,7 @@ import WorkedExampleBlock from '../blocks/WorkedExampleBlock';
 import GuidedPracticeBlock from '../blocks/GuidedPracticeBlock';
 import PracticeBlock from '../blocks/PracticeBlock';
 import SpacedReviewBlock from '../blocks/SpacedReviewBlock';
+import DiagramStage from '../diagram/DiagramStage';
 import TutorPanel from '../tutor/TutorPanel';
 import MasteryGate from '../MasteryGate';
 import MicrobreakBlock from '../microbreaks/MicrobreakBlock';
@@ -29,6 +30,8 @@ import { courseHref } from '@/lib/routing/courseHref';
 
 export default function LayoutB({ lesson }: LayoutProps) {
   const [tutorOpen, setTutorOpen] = useState(false);
+  const [highlightedElements, setHighlightedElements] = useState<string[]>([]);
+  const [diagramExpanded, setDiagramExpanded] = useState(false);
   const [lessonProgress, setLessonProgress] = useState<LessonProgress | null>(null);
   const [quizProgress, setQuizProgress] = useState<QuizProgress | null>(null);
 
@@ -44,6 +47,16 @@ export default function LayoutB({ lesson }: LayoutProps) {
   }, [lesson.id]);
 
   const contentBlocks = lesson.blocks.sort((a, b) => a.order - b.order);
+
+  const handleDiagramAction = (action: 'highlight' | 'focus' | 'clear' | 'jumpToTimestamp', elementIds?: string[]) => {
+    if (action === 'clear') {
+      setHighlightedElements([]);
+    } else if (action === 'jumpToTimestamp') {
+      return;
+    } else if (elementIds) {
+      setHighlightedElements(elementIds);
+    }
+  };
 
   const renderBlock = (block: Block) => {
     const key = block.id;
@@ -63,6 +76,18 @@ export default function LayoutB({ lesson }: LayoutProps) {
         return <PracticeBlock key={key} block={block} lessonId={lesson.id} />;
       case 'spaced-review':
         return <SpacedReviewBlock key={key} block={block} lessonId={lesson.id} />;
+      case 'diagram':
+        return (
+          <div key={key} className={diagramExpanded ? 'fixed inset-0 z-50 p-4 bg-black/30 backdrop-blur-sm' : ''}>
+            <DiagramStage
+              block={block}
+              highlightedElements={highlightedElements}
+              onAction={handleDiagramAction}
+              isExpanded={diagramExpanded}
+              onToggleExpand={() => setDiagramExpanded(!diagramExpanded)}
+            />
+          </div>
+        );
       case 'microbreak':
         return <MicrobreakBlock key={key} block={block} lessonId={lesson.id} />;
       default:

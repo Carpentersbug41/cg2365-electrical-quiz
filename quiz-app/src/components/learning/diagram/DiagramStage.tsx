@@ -168,7 +168,18 @@ export default function DiagramStage({
       {/* Diagram Canvas / Video / Image */}
       <div className="flex-1 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900 overflow-auto">
         <div className="max-w-2xl w-full space-y-4">
-          {content.videoUrl ? (
+          {content.embedUrl ? (
+            <div className="w-full rounded-xl overflow-hidden shadow-lg bg-white dark:bg-slate-800 border border-indigo-200 dark:border-indigo-700">
+              <iframe
+                src={content.embedUrl}
+                title={content.title}
+                className="w-full border-0"
+                style={{ minHeight: '520px', height: '65vh' }}
+                loading="lazy"
+                allow="fullscreen"
+              />
+            </div>
+          ) : content.videoUrl ? (
             <>
               {/* YouTube Video */}
               <div className="aspect-video w-full rounded-xl overflow-hidden shadow-lg">
