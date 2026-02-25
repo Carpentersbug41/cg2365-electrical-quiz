@@ -111,6 +111,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-5L1M'),
     available: true,
     order: 4,
+  },
+  {
+    id: '202-4D',
+    title: 'Power and Effects of Electric Current',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Power and Effects of Electric Current',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-4D'),
+    available: true,
+    order: 5,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

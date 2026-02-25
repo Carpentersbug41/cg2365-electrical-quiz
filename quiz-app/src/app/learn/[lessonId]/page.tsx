@@ -56,9 +56,11 @@ import lesson202_4A from '@/data/lessons/202-4A-electron-theory-and-materials.js
 import lesson202_4B from '@/data/lessons/202-4B-resistance-resistivity-and-voltage-drop.json';
 import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-flux-flux-density-current-effects.json';
 import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
+import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '202-4D': lesson202_4D as Lesson,
   '203-3L1C': lesson203_3L1C as Lesson,
   '202-5L1M': lesson202_5L1M as Lesson,
   '202-4B': lesson202_4B as Lesson,

@@ -1,0 +1,539 @@
+{
+  "id": "202-4D",
+  "title": "202.4D — Power and Effects of Electric Current",
+  "description": "Learn about Power and Effects of Electric Current in Science 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 202",
+  "topic": "Power and Effects of Electric Current",
+  "learningOutcomes": [
+    "State the primary chemical and thermal effects of electric current flow",
+    "Explain the relationship between current flow and energy dissipation in circuits",
+    "Calculate power values for components in series and parallel D.C. circuit arrangements"
+  ],
+  "prerequisites": [
+    "202-4C"
+  ],
+  "blocks": [
+    {
+      "id": "202-4D-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the primary chemical and thermal effects of electric current flow",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the relationship between current flow and energy dissipation in circuits",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate power values for components in series and parallel D.C. circuit arrangements",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Power",
+            "definition": "The rate at which energy is transferred or converted within a system, measured in Watts (W) and calculated in electrical circuits as the product of voltage and current."
+          },
+          {
+            "term": "Watt (W)",
+            "definition": "The standard unit of power representing a rate of energy transfer of one joule per second, used to quantify the work capacity of electrical components."
+          },
+          {
+            "term": "Thermal Effect",
+            "definition": "The generation of heat that occurs when current flows through a material with resistance, which is used intentionally in heating elements but represents a loss in supply conductors."
+          },
+          {
+            "term": "Chemical Effect",
+            "definition": "The process where an electric current causes a chemical change or decomposition in a liquid solution, such as in battery charging, which is distinct from the physical heating of a solid conductor."
+          },
+          {
+            "term": "Energy Dissipation",
+            "definition": "The conversion of electrical energy into unintended or non-recoverable forms, primarily heat, as it encounters resistance within circuit components."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Power and Effects of Electric Current Diagram",
+        "description": "Visual representation of Power and Effects of Electric Current",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "dc-power-source",
+          "resistive-load",
+          "electrolyte-bath",
+          "thermal-radiation-lines",
+          "chemical-ion-bubbles"
+        ],
+        "placeholderText": "A split diagram showing two scenarios. On the left, a D.C. power source is connected to a resistive load (a heating element or resistor) with wavy red lines indicating thermal radiation and heat generation. On the right, the same power source is connected to two electrodes submerged in an electrolyte bath, showing small bubbles forming at the electrodes and a color gradient change in the liquid to represent the chemical effect. Kebab-case labels point to the dc-power-source, the resistive-load, and the chemical-ion-bubbles."
+      }
+    },
+    {
+      "id": "202-4D-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Power in D.C. Circuits",
+        "content": "### In this lesson\nYou will learn how to determine the rate of energy transfer within direct current (D.C.) circuits. This knowledge is applied whenever you need to size components or assess the load on a system to ensure safe operation. \n\n*   The definition and units of electrical power.\n*   The formulas used to calculate power using voltage, current, and resistance.\n*   The rules for calculating total power in series and parallel circuit configurations.\n\n**What this is**\n**Power** is defined as the rate at which energy is transferred or converted within a system. In an electrical context, it describes how quickly electrical energy is transformed into another form, such as light, motion, or heat. The standard unit of measurement for this rate is the **Watt (W)**. One **Watt (W)** represents a rate of energy transfer of exactly one joule per second. When we look at a D.C. circuit, the power used by a component is the product of the potential difference (voltage) across it and the current flowing through it. \n\nTo visualize this, imagine a water-powered mill. The **Power** generated by the water depends on both the pressure of the water (voltage) and the volume of water flowing per second (current). A small amount of water at very high pressure can do the same amount of work as a large volume of water at very low pressure. Similarly, in a circuit, a high-voltage, low-current component can have the same power rating as a low-voltage, high-current component.\n\n**Why it matters**\nUnderstanding power is essential for ensuring that components can handle the energy passing through them without failing. Every component has a maximum power rating; exceeding this leads to excessive **Energy Dissipation**, typically in the form of heat, which can damage the system. By calculating power, technical professionals can select the correct fuses, cable sizes, and resistors for a specific application, ensuring both efficiency and safety.\n\n**Key facts / rules**\n*   The fundamental formula for power is $P = V \\times I$.\n*   Power is measured in **Watts (W)**, voltage in Volts (V), and current in Amperes (A).\n*   By substituting Ohm’s Law ($V = I \\times R$), we can also use $P = I^2 \\times R$ or $P = V^2 / R$.\n*   In a series circuit, the total power is the sum of the power dissipated by each individual component.\n*   In a parallel circuit, the total power is also the sum of the power dissipated by each individual branch.\n*   Total circuit power always equals the power supplied by the source.\n\n**How to calculate it**\nTo calculate power in a D.C. circuit, you must first identify the known variables (Voltage, Current, or Resistance). If you know the voltage and current, use the primary formula $P = V \\times I$. For example, if a component has 12V across it and 2A flowing through it, the power is $12 \\times 2 = 24W$. \n\nIn series circuits, you might only know the current and the resistance of individual components. In this case, use $P = I^2 \\times R$ for each component and add them together to find the total power. In parallel circuits, where the voltage is the same across all branches, $P = V^2 / R$ is often the most efficient formula to use for each branch. \n\n*Micro-scenario:* If you have two resistors in a circuit, one dissipating 15W and another dissipating 10W, the total power drawn from the source is 25W, regardless of whether they are connected in series or parallel. \n\n**Common mistakes**\nLearners often confuse **Power** with energy; **Power** is the rate of transfer (how fast), whereas energy is the total amount of work done over time (how much). Another frequent error is assuming that power is calculated differently for series and parallel circuits; while the methods to find local voltage or current change, the total power is always the sum of individual component powers.\n\nMisconceptions (targeted):\n*   Misconception: Total power in a parallel circuit is calculated using reciprocal addition like resistance. | Correction: Total power is always the simple sum of individual component powers in both series and parallel arrangements. | AC: 202.LO4.AC4.6\n*   Misconception: Power is a physical substance that gets used up in a circuit. | Correction: Power is a mathematical rate of energy conversion, not a stored physical quantity. | AC: 202.LO4.AC4.6\n\n**Key Points**\n*   **Power** is the rate of energy conversion, measured in **Watts (W)**.\n*   $P = V \\times I$ is the primary relationship for D.C. power calculations.\n*   Total power in any circuit configuration is the sum of all individual component power values.\n*   **Energy Dissipation** occurs whenever current encounters resistance, resulting in power loss.\n\n**Quick recap**\nElectrical power tells us how fast a circuit is working. We measure this in Watts, where 1W equals 1 Joule per second. By using formulas derived from Ohm's Law, we can calculate the power for any component if we know at least two of the three main variables: voltage, current, or resistance. Importantly, whether components are in series or parallel, the total power of the system is simply the sum of all the individual parts.\n\n### Coming Up Next\nNow that we can calculate the rate of energy transfer, we will look at the physical consequences of that transfer, specifically how current flow changes the temperature and chemical state of different materials."
+      }
+    },
+    {
+      "id": "202-4D-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Power in D.C. Circuits",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4D-C1-L1-A",
+            "questionText": "What is the definition of power within an electrical system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "rate of energy transfer",
+              "rate of energy conversion",
+              "energy transfer rate"
+            ],
+            "hint": "Think about how quickly energy is being moved or changed."
+          },
+          {
+            "id": "202-4D-C1-L1-B",
+            "questionText": "What must the total power used by all components in a circuit always equal?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "power supplied by the source",
+              "source power",
+              "power from the source"
+            ],
+            "hint": "The energy entering the circuit must match the energy being used."
+          },
+          {
+            "id": "202-4D-C1-L1-C",
+            "questionText": "In terms of timing, what is the main difference between power and energy?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "power is the rate",
+              "power is how fast",
+              "energy is the total"
+            ],
+            "hint": "One describes the total amount of work, while the other describes how fast it happens."
+          },
+          {
+            "id": "202-4D-C1-L2",
+            "questionText": "Using your answers to Q1 (definition of power), Q2 (total circuit power), and Q3 (power versus energy), explain how these facts connect. Why must the total power consumed always match the power supplied?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Power is the rate of transfer from the source to the components",
+              "Total power is the sum of all individual rates of conversion",
+              "The rate of supply must equal the rate of use because energy is not lost from the system",
+              "If power is the speed of work, the source must work as fast as the components require"
+            ],
+            "expectedAnswer": [
+              "Since power is the rate of energy transfer, the speed at which the source provides energy must exactly match the sum of the rates at which all components convert it. This ensures the total power supplied equals the total power used.",
+              "Because power is a rate of transfer rather than a total amount, the total circuit power is simply the sum of every component's rate. We know they must match the source because all energy transferred into the system must be accounted for by the components."
+            ],
+            "hint": "Consider how the speed of energy coming 'in' from the source relates to the speed of energy being used 'out' by the components."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Chemical and Thermal Effects",
+        "content": "### In this lesson\nYou will learn to identify the physical results that occur when an electric current flows through different types of materials. This is vital for understanding both how useful devices work and how energy is unintentionally lost in a system.\n\n*   Identifying the **Thermal Effect** of electric current.\n*   Identifying the **Chemical Effect** of electric current.\n*   Understanding the relationship between current flow and **Energy Dissipation**.\n\n**What this is**\nWhen electric current flows, it does not just move through a medium silently; it interacts with the matter it passes through, producing observable effects. The **Thermal Effect** is the generation of heat as electrons collide with the atoms of a conducting material. The **Chemical Effect** occurs when current passes through a liquid (electrolyte), causing a chemical decomposition or rearrangement of molecules. \n\nThink of the **Thermal Effect** like the friction you feel when rubbing your hands together; the movement (current) against the resistance of your skin (conductor) creates heat. The **Chemical Effect** is more like a construction crew using electricity to break down an old building and sort the bricks into new piles; the current provides the energy to physically change the structure of the liquid.\n\n**Why it matters**\nThese effects are the basis for many technologies but also present significant engineering challenges. The **Thermal Effect** is used intentionally in heating elements and incandescent lamps, but in supply cables, it represents a loss of efficiency and a potential fire hazard. The **Chemical Effect** is the fundamental principle behind battery charging, electroplating, and the industrial production of chemicals. Recognizing these effects allows you to diagnose whether a system is operating correctly or if energy is being lost through unwanted **Energy Dissipation**.\n\n**Key facts / rules**\n*   The **Thermal Effect** occurs in all materials with resistance, but is most noticeable in solids.\n*   Heat produced is proportional to the square of the current ($I^2$).\n*   The **Chemical Effect** typically requires a liquid medium known as an electrolyte.\n*   During a chemical effect, ions move toward electrodes, leading to gas release or metal plating.\n*   **Energy Dissipation** is the conversion of electrical energy into non-recoverable forms, usually heat.\n*   Higher resistance in a conductor leads to greater **Energy Dissipation** for the same amount of current.\n\n**How to recognise it**\nTo identify the **Thermal Effect**, look for a rise in temperature in components or conductors. In many cases, this is observable through touch (safety permitting) or infrared thermography. If a wire feels warm to the touch while a machine is running, you are witnessing the thermal result of current flow. \n\nTo identify the **Chemical Effect**, look for changes in a liquid solution through which current is passing. Common signs include the formation of bubbles at an electrode (indicating gas release), a change in the color of the liquid, or the build-up of a solid material on a submerged metal part. \n\n*Micro-scenario:* If you observe a submerged copper rod becoming coated with a silver layer while connected to a D.C. source, you are seeing a **Chemical Effect**. If the wire leading to that rod becomes hot, you are seeing a **Thermal Effect**.\n\n**Common mistakes**\nLearners often confuse **Thermal Effect** with **Chemical Effect**; **Thermal Effect** involves heat generation in solids due to resistance, whereas **Chemical Effect** involves molecular changes in liquids. Another mistake is assuming that heat generation is always a fault; in reality, it is a natural law of physics ($I^2R$) that occurs in every circuit to some degree.\n\nMisconceptions (targeted):\n*   Misconception: The chemical effect can happen in standard copper house wiring. | Correction: The chemical effect requires an electrolyte (liquid) to allow ion movement; it does not occur in solid metallic conductors. | AC: 202.LO4.AC4.8\n*   Misconception: Energy dissipation only happens when a circuit is broken or faulty. | Correction: Energy dissipation occurs in every functional circuit because no conductor has zero resistance. | AC: 202.LO4.AC4.8\n\n**Key Points**\n*   **Thermal Effect** is the production of heat in a conductor due to resistance.\n*   **Chemical Effect** is the molecular change in a liquid caused by current flow.\n*   **Energy Dissipation** is the unintended loss of energy, primarily as heat.\n*   Current flow and resistance together determine the intensity of these effects.\n\n**Quick recap**\nElectric current produces physical changes. In solids, resistance leads to the **Thermal Effect**, where energy is dissipated as heat. In liquids, current causes the **Chemical Effect**, leading to chemical changes like those found in battery charging. Understanding these allows us to use electricity for heating and chemistry while managing the efficiency of our circuits.\n\n### Coming Up Next\nIn the next lesson, we will explore the relationship between electricity and magnetism, looking at how current flow can be used to create physical motion and magnetic fields."
+      }
+    },
+    {
+      "id": "202-4D-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Chemical and Thermal Effects",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4D-C2-L1-A",
+            "questionText": "What is the thermal effect of an electric current as it passes through a conductor?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "production of heat",
+              "generation of heat",
+              "heat production"
+            ],
+            "hint": "This occurs when electrons collide with atoms in the material."
+          },
+          {
+            "id": "202-4D-C2-L1-B",
+            "questionText": "What specific medium is typically required for the chemical effect to occur?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "liquid medium",
+              "electrolyte",
+              "liquid electrolyte"
+            ],
+            "hint": "The current must pass through a substance that allows ions to move."
+          },
+          {
+            "id": "202-4D-C2-L1-C",
+            "questionText": "In what type of material does the chemical effect NOT occur?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "solid metallic conductors",
+              "solid conductors",
+              "metallic solids"
+            ],
+            "hint": "Think about the materials used for standard house wiring."
+          },
+          {
+            "id": "202-4D-C2-L2",
+            "questionText": "Using your answers to Q1 (thermal effect), Q2 (chemical effect medium), and Q3 (solid metallic conductors), explain how these facts connect. How do we know which effect will be dominant in a specific part of a circuit?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The physical state of the material determines which effect occurs",
+              "Thermal effects are the primary result in solid metallic conductors due to resistance",
+              "Chemical effects are restricted to liquid electrolytes where molecular changes can happen",
+              "Identifying the medium allows us to predict if heat or chemical change will occur"
+            ],
+            "expectedAnswer": [
+              "We can identify the effect by looking at the material; if it is a solid metallic conductor, we will see the thermal effect (heat). If the current passes through a liquid electrolyte, we will see the chemical effect. Because the chemical effect cannot happen in solids, standard wiring only exhibits the thermal effect.",
+              "How we know which effect occurs depends on the medium. In solids, resistance causes the thermal effect (heat production). In liquids, the chemical effect occurs. Since the chemical effect is impossible in solid metals, we know that heat is the primary result of current flow in cables."
+            ],
+            "hint": "Link the type of material (solid vs liquid) to the specific physical result observed (heat vs chemical change)."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Calculating Power from Voltage and Current",
+        "given": "A component in a D.C. circuit has a measured potential difference of 12V across it and a current of 2A flowing through it.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the known electrical variables from the scenario.",
+            "formula": null,
+            "calculation": null,
+            "result": "Voltage (V) = 12V, Current (I) = 2A"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select the appropriate power formula based on the known variables.",
+            "formula": "P = V x I",
+            "calculation": null,
+            "result": "P = V x I"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Multiply the voltage by the current to find the rate of energy transfer.",
+            "formula": "12 x 2",
+            "calculation": "12 * 2",
+            "result": "24"
+          },
+          {
+            "stepNumber": 4,
+            "description": "State the final power value in Watts (W).",
+            "formula": null,
+            "calculation": null,
+            "result": "24W"
+          }
+        ],
+        "notes": "Ensure that voltage is in Volts and current is in Amperes before multiplying. Verify current edition/version of equipment manuals for specific component ratings."
+      }
+    },
+    {
+      "id": "202-4D-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "A D.C. circuit component is connected to a 24V supply and draws a constant current of 3A. Calculate the total power used by this component.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Identify the known values for Voltage (V) and Current (I) from the problem.",
+            "expectedAnswer": [
+              "24V and 3A",
+              "24 and 3"
+            ],
+            "hint": "Look for the values measured in Volts and Amperes provided in the scenario."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Which formula is used to calculate power when both voltage and current are known?",
+            "expectedAnswer": [
+              "P = V x I",
+              "P=VI"
+            ],
+            "hint": "Power is the product of the potential difference and the current flow."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Multiply the voltage and current values to determine the rate of energy transfer.",
+            "expectedAnswer": [
+              "72"
+            ],
+            "hint": "Multiply 24 by 3 to find the numerical value."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "State the final power value (numerical value only).",
+            "expectedAnswer": [
+              "72"
+            ],
+            "hint": "Provide the final result calculated in the previous step."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Power and Effects Practice",
+        "questions": [
+          {
+            "id": "202-4D-P1",
+            "questionText": "A component is connected to a 24V D.C. supply and draws a current of 3A. Calculate the power dissipated by the component.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "72",
+              "72.0"
+            ],
+            "hint": "Use the formula P = V x I. The result is measured in Watts (W)."
+          },
+          {
+            "id": "202-4D-P2",
+            "questionText": "A circuit contains three separate loads with power ratings of 12W, 18W, and 25W. What is the total power supplied to the circuit by the source?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "55"
+            ],
+            "hint": "Total power is the sum of all individual power values in the circuit, regardless of the connection type. Answer in Watts."
+          },
+          {
+            "id": "202-4D-P3",
+            "questionText": "What must be true about the state of matter of a material for a chemical effect to occur when an electric current passes through it?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "liquid",
+              "electrolyte",
+              "a liquid",
+              "an electrolyte"
+            ],
+            "hint": "Consider the medium required for ion movement and molecular decomposition."
+          },
+          {
+            "id": "202-4D-P4",
+            "questionText": "A conductor has a resistance of 10 ohms. If the current flowing through it is 4 amperes, calculate the power dissipated as heat.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "160"
+            ],
+            "hint": "Use the formula P = I² x R. Square the current first, then multiply by the resistance. Answer in Watts."
+          },
+          {
+            "id": "202-4D-P5",
+            "questionText": "Identify the physical effect observed when a solid conductor increases in temperature due to the collision of electrons with atoms during current flow.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "thermal effect",
+              "thermal",
+              "the thermal effect"
+            ],
+            "hint": "This effect is common in heating elements and is proportional to the square of the current."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-4D-INT-1",
+            "questionText": "Explain how the thermal effect of electricity relates to the concept of energy dissipation within a circuit conductor. In your answer, include: (1) the physical manifestation of the thermal effect, (2) the role of current flow in energy dissipation, (3) the mathematical relationship between current and power. Why must the rate of energy dissipation increase significantly when current flow is doubled through a fixed resistance? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies thermal effect as the generation of heat due to electron collisions",
+              "Defines energy dissipation as the conversion of electrical energy into heat over time",
+              "References the power formula P = I²R or P = V x I",
+              "Explains that power increases with the square of the current",
+              "Concludes that doubling current results in a fourfold increase in heat dissipation"
+            ],
+            "expectedAnswer": [
+              "The thermal effect manifests as heat generation when current flows through a conductor's resistance, representing energy dissipation where electrical energy is converted to thermal energy. According to the formula P = I²R, power dissipation is proportional to the square of the current; therefore, doubling the current increases the energy dissipation fourfold because the relationship is non-linear.",
+              "When current flows, electron collisions create a thermal effect that dissipates energy as heat. Because power (P) equals the square of current (I) multiplied by resistance (R), any increase in current flow leads to a squared increase in power loss, meaning doubling the current results in four times the heat generation."
+            ],
+            "hint": "Consider the relationship between current and power in the formula P = I²R."
+          },
+          {
+            "id": "202-4D-INT-2",
+            "questionText": "Evaluate how the physical effects of electric current are influenced by the total energy dissipation across different circuit configurations. In your answer, include: (1) the primary characteristics of chemical and thermal effects, (2) the definition of power as the rate of energy dissipation, (3) the methods for determining total power in series and parallel arrangements, (4) how the total circuit load dictates the intensity of these physical effects. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Describes chemical effects as molecular changes/electrolysis and thermal effects as heat generation",
+              "Defines power as the rate at which electrical energy is dissipated or transferred",
+              "States that total power in series is the sum of individual component powers (P1 + P2...)",
+              "States that total power in parallel is the sum of individual component powers (P1 + P2...)",
+              "Explains that higher total power consumption leads to more pronounced thermal or chemical results",
+              "Links circuit configuration to the distribution of current and resulting physical impact",
+              "Maintains technical accuracy regarding energy transfer units (Watts)"
+            ],
+            "expectedAnswer": [
+              "Chemical effects involve molecular decomposition while thermal effects result in heat, both of which are driven by the rate of energy dissipation known as power. In both series and parallel configurations, the total power is the sum of all individual component powers, determining the overall energy load on the system. As the total calculated power of a circuit increases, the magnitude of the resulting heat or chemical reactions intensifies across the connected components.",
+              "• Thermal effects produce heat and chemical effects cause electrolytic changes, both representing the rate of energy dissipation (power).\n• Total circuit power is found by summing the power values of all components, regardless of whether they are in series or parallel arrangements.\n• The intensity of these physical effects is directly proportional to the total power, as higher energy transfer rates increase the thermal and chemical activity in the system."
+            ],
+            "hint": "Think about how total power is calculated and how that total energy must manifest physically in the components."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4D-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "202-4D-SR-1",
+            "questionText": "What term is used to describe the flow of electricity through a circuit?",
+            "expectedAnswer": [
+              "Current",
+              "Electric current",
+              "Current flow"
+            ],
+            "hint": "This term refers to the movement of charge through a conductor.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-4D-SR-2",
+            "questionText": "What does the abbreviation 'D.C.' stand for in relation to electrical circuits?",
+            "expectedAnswer": [
+              "Direct Current",
+              "Direct-current",
+              "Direct current flow"
+            ],
+            "hint": "It describes a type of current that flows in only one direction.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-4D-SR-3",
+            "questionText": "Besides series, what is the other primary way components are arranged in a circuit?",
+            "expectedAnswer": [
+              "Parallel",
+              "Parallel circuit",
+              "In parallel"
+            ],
+            "hint": "This arrangement provides multiple paths for the current flow.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Power and Effects of Electric Current"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC6",
+    "AC8"
+  ],
+  "metadata": {
+    "created": "2026-02-25",
+    "updated": "2026-02-25",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "CALCULATION, IDENTIFICATION",
+    "syllabusAnchors": {
+      "unit": "202",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC6",
+        "AC8"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC7"
+      ]
+    },
+    "scope": {
+      "inScope": "Power calculations for DC circuits and the identification of thermal and chemical effects of current.",
+      "outOfScope": "Resistivity calculations, voltage drop, magnetism, and AC power theory.",
+      "rationale": "Focuses strictly on the energy-related outputs of current as defined by the specific AC anchors for this lesson."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": false,
+      "specificScope": "Covers both mathematical application and descriptive theory."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Total power in a parallel circuit is calculated using reciprocal addition like resistance.",
+        "correction": "Total power is always the simple sum of individual component powers in both series and parallel arrangements.",
+        "relatedAC": "202.LO4.AC4.6"
+      },
+      {
+        "misconception": "The chemical effect can happen in standard copper house wiring.",
+        "correction": "The chemical effect requires an electrolyte (liquid) to allow ion movement; it does not occur in solid metallic conductors.",
+        "relatedAC": "202.LO4.AC4.8"
+      },
+      {
+        "misconception": "Energy dissipation only happens when a circuit is broken or faulty.",
+        "correction": "Energy dissipation occurs in every functional circuit because no conductor has zero resistance.",
+        "relatedAC": "202.LO4.AC4.8"
+      }
+    ],
+    "generationScore": 97,
+    "generationScoreDetails": {
+      "originalScore": 97,
+      "finalScore": 97,
+      "wasRefined": false,
+      "generatedAt": "2026-02-25T14:03:33.377Z",
+      "source": "phase10-13"
+    }
+  }
+}

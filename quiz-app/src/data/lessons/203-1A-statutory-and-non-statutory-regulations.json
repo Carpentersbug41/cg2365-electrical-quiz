@@ -215,6 +215,43 @@
       }
     },
     {
+      "id": "203-1A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Term",
+        "rightLabel": "Definition",
+        "items": [
+          {
+            "text": "Statutory Regulations",
+            "correctBin": "left"
+          },
+          {
+            "text": "Legally binding requirements created by Acts of Parliament that must be followed by law, not just as a matter of choice.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Non-statutory Guidance",
+            "correctBin": "left"
+          },
+          {
+            "text": "Industry-recognised documents and codes of practice that provide advice on how to meet safety standards, different from statutory regulations because they are not laws themselves.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Legislation",
+            "correctBin": "left"
+          },
+          {
+            "text": "The formal laws and acts passed by government that establish mandatory legal duties for individuals and organisations within a specific sector.",
+            "correctBin": "right"
+          }
+        ]
+      }
+    },
+    {
       "id": "203-1A-practice",
       "type": "practice",
       "order": 8,
@@ -274,6 +311,42 @@
               "legal liability"
             ],
             "hint": "Consider the term for the legal obligation that applies to every individual regardless of client requests."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-1A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Statutory Regulations",
+            "right": "Legally binding requirements created by Acts of Parliament that must be followed by law, not just as a matter of choice."
+          },
+          {
+            "left": "Non-statutory Guidance",
+            "right": "Industry-recognised documents and codes of practice that provide advice on how to meet safety standards, different from statutory regulations because they are not laws themselves."
+          },
+          {
+            "left": "Legislation",
+            "right": "The formal laws and acts passed by government that establish mandatory legal duties for individuals and organisations within a specific sector."
+          },
+          {
+            "left": "Code of Practice",
+            "right": "A set of written rules and procedures that provide practical guidance on how to perform technical tasks to a professional standard, not a legal act in itself."
+          },
+          {
+            "left": "Compliance",
+            "right": "The act of meeting the specific requirements of all relevant laws, regulations, and standards to ensure work is performed safely and legally."
+          },
+          {
+            "left": "Duty of Care",
+            "right": "A legal obligation requiring individuals to take reasonable steps to ensure the health and safety of themselves and others who may be affected by their work."
           }
         ]
       }
@@ -380,8 +453,8 @@
   ],
   "metadata": {
     "created": "2026-02-18",
-    "updated": "2026-02-18",
-    "version": "1.0",
+    "updated": "2026-02-25",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

@@ -83,11 +83,13 @@ import { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterial
 import { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
 import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
+import { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...powerAndEffectsOfElectricCurrentQuestions,
   ...cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions,
   ...magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions,
   ...resistanceResistivityAndVoltageDropQuestions,
@@ -251,6 +253,7 @@ export { electronTheoryAndMaterialsQuestions } from './electronTheoryAndMaterial
 export { resistanceResistivityAndVoltageDropQuestions } from './resistanceResistivityAndVoltageDropQuestions';
 export { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from './magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions';
 export { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
+export { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
 
 /**
  * Filter questions by tags
