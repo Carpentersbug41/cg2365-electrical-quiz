@@ -10,6 +10,7 @@ const TTS_STATE_EVENT = 'lesson-block-tts-state';
 
 let activeBlockId: string | null = null;
 let activeUtterance: SpeechSynthesisUtterance | null = null;
+let speechReady = false;
 
 function emitState() {
   if (typeof window === 'undefined') return;
@@ -26,6 +27,25 @@ function stopAllSpeech() {
   activeBlockId = null;
   activeUtterance = null;
   emitState();
+}
+
+function hasSpeechSupport(): boolean {
+  if (typeof window === 'undefined') return false;
+  return (
+    typeof window.speechSynthesis !== 'undefined' &&
+    typeof window.SpeechSynthesisUtterance !== 'undefined'
+  );
+}
+
+function pickVoice(): SpeechSynthesisVoice | null {
+  if (!hasSpeechSupport()) return null;
+  const voices = window.speechSynthesis.getVoices();
+  if (!Array.isArray(voices) || voices.length === 0) return null;
+  return (
+    voices.find((voice) => voice.lang?.toLowerCase().startsWith('en-')) ??
+    voices[0] ??
+    null
+  );
 }
 
 function toSpeakableText(input: string): string {
@@ -53,26 +73,59 @@ export default function BlockTTSButton({
 }: BlockTTSButtonProps) {
   const [isSupported, setIsSupported] = useState(false);
   const [isSpeakingThisBlock, setIsSpeakingThisBlock] = useState(false);
+  const [isPreparing, setIsPreparing] = useState(false);
   const speakableText = useMemo(() => toSpeakableText(text), [text]);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const supported = typeof window.speechSynthesis !== 'undefined' && typeof window.SpeechSynthesisUtterance !== 'undefined';
+    const supported = hasSpeechSupport();
     setIsSupported(supported);
     setIsSpeakingThisBlock(activeBlockId === blockId);
+    if (!supported) return;
+
+    const hydrateVoices = () => {
+      const hasVoices = window.speechSynthesis.getVoices().length > 0;
+      speechReady = hasVoices;
+    };
+    hydrateVoices();
 
     const handler = (event: Event) => {
       const detail = (event as CustomEvent<TTSStateEventDetail>).detail;
       setIsSpeakingThisBlock(detail?.activeBlockId === blockId);
     };
 
+    window.speechSynthesis.addEventListener('voiceschanged', hydrateVoices);
     window.addEventListener(TTS_STATE_EVENT, handler as EventListener);
     return () => {
+      window.speechSynthesis.removeEventListener('voiceschanged', hydrateVoices);
       window.removeEventListener(TTS_STATE_EVENT, handler as EventListener);
     };
   }, [blockId]);
 
-  const toggleSpeech = () => {
+  const waitForVoices = async (): Promise<void> => {
+    if (!hasSpeechSupport()) return;
+    const synth = window.speechSynthesis;
+    if (speechReady || synth.getVoices().length > 0) {
+      speechReady = true;
+      return;
+    }
+
+    await new Promise<void>((resolve) => {
+      let resolved = false;
+      const done = () => {
+        if (resolved) return;
+        resolved = true;
+        speechReady = synth.getVoices().length > 0;
+        synth.removeEventListener('voiceschanged', onVoicesChanged);
+        resolve();
+      };
+      const onVoicesChanged = () => done();
+      synth.addEventListener('voiceschanged', onVoicesChanged);
+      window.setTimeout(done, 1200);
+    });
+  };
+
+  const toggleSpeech = async () => {
     if (!isSupported || !speakableText) return;
 
     if (activeBlockId === blockId) {
@@ -80,17 +133,28 @@ export default function BlockTTSButton({
       return;
     }
 
-    window.speechSynthesis.cancel();
+    setIsPreparing(true);
+    await waitForVoices();
+    const synth = window.speechSynthesis;
+    synth.cancel();
+    if (synth.paused) synth.resume();
 
-    const utterance = new SpeechSynthesisUtterance(speakableText);
+    const utterance = new window.SpeechSynthesisUtterance(speakableText);
+    const voice = pickVoice();
+    if (voice) utterance.voice = voice;
+    utterance.lang = voice?.lang || 'en-GB';
     utterance.rate = 1;
     utterance.pitch = 1;
     utterance.volume = 1;
+    utterance.onstart = () => {
+      setIsPreparing(false);
+    };
 
     utterance.onend = () => {
       if (activeUtterance === utterance) {
         activeBlockId = null;
         activeUtterance = null;
+        setIsPreparing(false);
         emitState();
       }
     };
@@ -99,6 +163,7 @@ export default function BlockTTSButton({
       if (activeUtterance === utterance) {
         activeBlockId = null;
         activeUtterance = null;
+        setIsPreparing(false);
         emitState();
       }
     };
@@ -106,7 +171,18 @@ export default function BlockTTSButton({
     activeBlockId = blockId;
     activeUtterance = utterance;
     emitState();
-    window.speechSynthesis.speak(utterance);
+    try {
+      synth.speak(utterance);
+      window.setTimeout(() => {
+        if (activeUtterance === utterance && !synth.speaking) {
+          stopAllSpeech();
+          setIsPreparing(false);
+        }
+      }, 2000);
+    } catch {
+      stopAllSpeech();
+      setIsPreparing(false);
+    }
   };
 
   if (!isSupported) return null;
@@ -114,10 +190,11 @@ export default function BlockTTSButton({
   return (
     <button
       type="button"
-      onClick={toggleSpeech}
+      onClick={() => void toggleSpeech()}
+      disabled={isPreparing}
       className={`inline-flex items-center rounded-lg border border-white/80 bg-slate-900 text-xs font-semibold text-white shadow-md ring-1 ring-slate-900/20 transition-colors hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:border-slate-700 dark:bg-white dark:text-slate-900 dark:ring-white/30 dark:hover:bg-slate-100 ${
         iconOnly ? 'h-8 w-8 justify-center p-0' : 'gap-2 px-3 py-1.5'
-      }`}
+      } disabled:cursor-not-allowed disabled:opacity-60`}
       aria-label={label}
       title={label}
     >
@@ -135,7 +212,7 @@ export default function BlockTTSButton({
           </svg>
         )}
       </span>
-      {!iconOnly ? <span>{isSpeakingThisBlock ? 'Stop audio' : 'Read aloud'}</span> : null}
+      {!iconOnly ? <span>{isPreparing ? 'Preparing audio...' : isSpeakingThisBlock ? 'Stop audio' : 'Read aloud'}</span> : null}
     </button>
   );
 }

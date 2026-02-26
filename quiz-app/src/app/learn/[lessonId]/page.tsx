@@ -35,6 +35,7 @@ import lesson203_1A from '@/data/lessons/203-1A-statutory-and-non-statutory-regu
 import lesson203_1B from '@/data/lessons/203-1B-implications-of-regulatory-non-compliance.json';
 import lesson203_2A from '@/data/lessons/203-2A-technical-information-and-drawing-types.json';
 import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.json';
+import lesson203_3A from '@/data/lessons/203-3A-circuit-types-what-they-do.json';
 import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
 import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclosure-spacing.json';
 import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
@@ -58,9 +59,11 @@ import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-
 import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
 import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
 import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
+import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-3L1A': lesson203_3L1A as Lesson,
   '202-5B': lesson202_5B as Lesson,
   '202-4D': lesson202_4D as Lesson,
   '203-3L1C': lesson203_3L1C as Lesson,
@@ -83,6 +86,7 @@ const LESSONS: Record<string, Lesson> = {
   '203-4A': lesson203_4A as Lesson,
   '203-3C': lesson203_3C as Lesson,
   '203-3B': lesson203_3B as Lesson,
+  '203-3A': lesson203_3A as Lesson,
   '203-2B': lesson203_2B as Lesson,
   '203-2A': lesson203_2A as Lesson,
   '203-1B': lesson203_1B as Lesson,

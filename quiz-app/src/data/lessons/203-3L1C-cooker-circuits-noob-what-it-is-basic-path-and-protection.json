@@ -241,32 +241,32 @@
         "gameType": "sorting",
         "duration": 90,
         "buckets": [
-          "Role",
-          "Responsibility"
+          "Component",
+          "Function"
         ],
         "items": [
           {
-            "text": "Cooker Circuit Fundamentals",
+            "text": "Consumer Unit",
             "correctBucket": 0
           },
           {
-            "text": "In this lesson - You will learn to define a cooker circuit as a dedicated power and heating radial circuit and identify its basic components.",
+            "text": "Supplies power to the cooker branch",
             "correctBucket": 1
           },
           {
-            "text": "- This knowledge is applied when designing or identifying electrical systems in residential and commercial buildings.",
+            "text": "Overcurrent Protective Device (OCPD)",
             "correctBucket": 0
           },
           {
-            "text": "- Key takeaways include the definition of a radial circuit, the components of a basic path, and the classification of high-power loads.",
+            "text": "Trips on overload or short circuit",
             "correctBucket": 1
           },
           {
-            "text": "What this is In technical installations, a cooker circuit is a specific type of Radial Circuit designed to supply high-demand appliances used for cooking.",
+            "text": "Cooker Isolator Switch",
             "correctBucket": 0
           },
           {
-            "text": "Unlike a ring final circuit, which forms a continuous loop back to the source, a Radial Circuit functions as a single branch.",
+            "text": "Allows local safe isolation for maintenance",
             "correctBucket": 1
           }
         ]
@@ -343,31 +343,31 @@
       "content": {
         "breakType": "game",
         "gameType": "classify-two-bins",
-        "leftLabel": "Term",
-        "rightLabel": "Definition",
+        "leftLabel": "Path / Circuit Element",
+        "rightLabel": "Protective Element",
         "items": [
           {
             "text": "Radial Circuit",
             "correctBin": "left"
           },
           {
-            "text": "A wiring topology where the circuit cable runs from the consumer unit to the final appliance without forming a continuous loop back to the origin, unlike a ring final circuit.",
-            "correctBin": "right"
-          },
-          {
             "text": "Line Conductor",
             "correctBin": "left"
-          },
-          {
-            "text": "The conductor that is normally energized and carries electrical power from the source to the load, as opposed to the neutral conductor which provides the return path.",
-            "correctBin": "right"
           },
           {
             "text": "Neutral Conductor",
             "correctBin": "left"
           },
           {
-            "text": "The conductor that provides the return path for current to the source under normal operating conditions, distinct from the CPC which only carries current during a fault.",
+            "text": "Circuit Protective Conductor (CPC)",
+            "correctBin": "right"
+          },
+          {
+            "text": "Overcurrent Protective Device (OCPD)",
+            "correctBin": "right"
+          },
+          {
+            "text": "Residual Current Device (RCD)",
             "correctBin": "right"
           }
         ]

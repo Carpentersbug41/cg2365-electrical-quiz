@@ -58,6 +58,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 3,
   },
+  {
+    id: '201-203-SC1A',
+    title: 'Procedures for Electric Shock and Injuries',
+    unit: 'Unit 201',
+    unitNumber: '201',
+    topic: 'Emergency Procedures: Electric Shock',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('201-203-SC1A'),
+    available: true,
+    order: 4,
+  },
   // Unit 202: Science 2365 Level 2
                       
 
@@ -198,6 +209,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     order: 4,
   },
   {
+    id: '203-3A',
+    title: 'Circuit Types and Their Purpose',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Circuit Types and Their Purpose',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3A'),
+    available: true,
+    order: 5,
+  },
+  {
     id: '203-3B',
     title: 'Conductor Sizing and Protective Devices',
     unit: 'Unit 203',
@@ -206,7 +228,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-3B'),
     available: true,
-    order: 5,
+    order: 6,
   },
   {
     id: '203-3C',
@@ -217,7 +239,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-3C'),
     available: true,
-    order: 6,
+    order: 7,
   },
   {
     id: '203-4A',
@@ -228,7 +250,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-4A'),
     available: true,
-    order: 7,
+    order: 8,
   },
   {
     id: '203-4B',
@@ -239,7 +261,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-4B'),
     available: true,
-    order: 8,
+    order: 9,
   },
   {
     id: '203-4C',
@@ -250,7 +272,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-4C'),
     available: true,
-    order: 9,
+    order: 10,
   },
   {
     id: '203-5A',
@@ -261,7 +283,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-5A'),
     available: true,
-    order: 10,
+    order: 11,
   },
   {
     id: '203-5B',
@@ -272,7 +294,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-5B'),
     available: true,
-    order: 11,
+    order: 12,
   },
   {
     id: '203-6A',
@@ -283,7 +305,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-6A'),
     available: true,
-    order: 12,
+    order: 13,
   },
   {
     id: '203-6B',
@@ -294,7 +316,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-6B'),
     available: true,
-    order: 13,
+    order: 14,
   },
   {
     id: '203-10B',
@@ -305,7 +327,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-10B'),
     available: true,
-    order: 14,
+    order: 15,
   },
   {
     id: '203-10C',
@@ -316,7 +338,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-10C'),
     available: true,
-    order: 15,
+    order: 16,
   },
   {
     id: '203-10A',
@@ -327,7 +349,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-10A'),
     available: true,
-    order: 16,
+    order: 17,
   },
   {
     id: '203-LC1A',
@@ -338,7 +360,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-LC1A'),
     available: true,
-    order: 17,
+    order: 18,
   },
   {
     id: '203-SC1A',
@@ -349,7 +371,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-SC1A'),
     available: true,
-    order: 18,
+    order: 19,
   },
   
   {
@@ -361,7 +383,7 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-2N1A'),
     available: true,
-    order: 19,
+    order: 20,
   },
   {
     id: '203-3L1C',
@@ -372,7 +394,18 @@ export const lessonIndex: LessonIndexEntry[] = [
     description: '[Generated lesson]',
     questionCount: getLessonQuestionCount('203-3L1C'),
     available: true,
-    order: 20,
+    order: 21,
+  },
+  {
+    id: '203-3L1A',
+    title: 'Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3L1A'),
+    available: true,
+    order: 22,
   },// Unit 210: Communication
   {
     id: '204-10A',
@@ -645,5 +678,3 @@ export const unitMetadata = {
     color: 'cyan',
   },
 };
-
-

@@ -365,6 +365,7 @@ function ScenarioMatchGame({ content, soundEnabled, onDone }: { content: Scenari
 function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaBuildGameContent; done: boolean; soundEnabled: boolean; onDone: (score: number, accuracy: number) => void; }) {
   const [sequence, setSequence] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
+  const [lastAttemptWrong, setLastAttemptWrong] = useState(false);
   const isCorrect = sequence.length === content.correctSequence.length && sequence.every((t, i) => t === content.correctSequence[i]);
   const expectedLength = content.correctSequence.length;
 
@@ -376,14 +377,57 @@ function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaB
       <div className={`min-h-10 rounded border p-2 text-xs ${checked ? (isCorrect ? 'border-green-500 bg-green-100 text-green-900 dark:border-green-600 dark:bg-green-900/30 dark:text-green-200' : 'border-red-500 bg-red-100 text-red-900 dark:border-red-600 dark:bg-red-900/30 dark:text-red-200') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
         {sequence.join(' ') || 'Build the formula here'}
       </div>
+      {checked && lastAttemptWrong ? (
+        <p className="text-xs font-medium text-red-700 dark:text-red-300">
+          Not quite. Tap Try again and rebuild the formula.
+        </p>
+      ) : null}
       <div className="flex flex-wrap gap-1">
         {content.tokens.map((token, idx) => (
           <button key={`${token}-${idx}`} disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setSequence((prev) => [...prev, token]); }} className="rounded border border-gray-300 bg-white px-2 py-1 text-xs dark:border-slate-600 dark:bg-slate-800">{token}</button>
         ))}
       </div>
       <div className="flex gap-2">
-        <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setSequence([]); }} className="rounded border border-gray-300 bg-white px-3 py-2 text-xs dark:border-slate-600 dark:bg-slate-800">Clear</button>
-        <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+        <button
+          disabled={checked}
+          onClick={() => {
+            if (soundEnabled) playClickSound(0.2);
+            setSequence([]);
+            setLastAttemptWrong(false);
+          }}
+          className="rounded border border-gray-300 bg-white px-3 py-2 text-xs dark:border-slate-600 dark:bg-slate-800"
+        >
+          Clear
+        </button>
+        <button
+          disabled={checked}
+          onClick={() => {
+            if (soundEnabled) playClickSound(0.25);
+            setChecked(true);
+            if (isCorrect) {
+              setLastAttemptWrong(false);
+              onDone(1, 100);
+              return;
+            }
+            setLastAttemptWrong(true);
+          }}
+          className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60"
+        >
+          Check
+        </button>
+        {checked && lastAttemptWrong ? (
+          <button
+            onClick={() => {
+              if (soundEnabled) playClickSound(0.2);
+              setChecked(false);
+              setSequence([]);
+              setLastAttemptWrong(false);
+            }}
+            className="rounded border border-indigo-300 bg-indigo-100 px-3 py-2 text-xs text-indigo-900 dark:border-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-200"
+          >
+            Try again
+          </button>
+        ) : null}
       </div>
     </div>
   );

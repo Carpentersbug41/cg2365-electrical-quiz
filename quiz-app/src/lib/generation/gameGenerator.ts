@@ -23,7 +23,8 @@ Return ONLY JSON.
 Never include markdown.
 Use only the provided lesson digest.
 Do not invent facts beyond digest.
-For formula-build games: include a clear prompt naming the target formula, shuffle token order, and include at least one distractor token not used in correctSequence.`;
+For formula-build games: include a clear prompt naming the target formula, shuffle token order, and include at least one distractor token not used in correctSequence.
+For sorting/classify games: use short gameplay-ready items only (phrases, terms, concise definitions), never lesson headings, bullets, or framing lines like "In this lesson", "What this is", "Quick recap".`;
 
 export type MicrobreakSlotAnchorType = 'check' | 'practice' | 'integrative';
 
@@ -308,11 +309,15 @@ export function getGameTypeEligibility(gameType: GameType, digest: LessonDigest)
     case 'is-correct-why':
       return factCount >= 5 ? { ok: true } : { ok: false, reason: 'insufficient facts for reason checking' };
     case 'classify-two-bins':
-      return factCount >= 6 ? { ok: true } : { ok: false, reason: 'insufficient facts for two-bin classification' };
+      return (misconceptionCount >= 2 && factCount >= 4) || vocabCount >= 6
+        ? { ok: true }
+        : { ok: false, reason: 'requires misconceptions+facts or richer vocab for non-trivial two-bin classification' };
     case 'scenario-match':
       return factCount >= 6 ? { ok: true } : { ok: false, reason: 'insufficient facts for scenario matching' };
     case 'formula-build':
-      return vocabCount >= 3 ? { ok: true } : { ok: false, reason: 'insufficient tokens from vocab' };
+      return extractFormulaSequenceFromDigest(digest)
+        ? { ok: true }
+        : { ok: false, reason: 'requires at least one extractable formula in digest' };
     case 'tap-the-line':
       return factCount >= 4 ? { ok: true } : { ok: false, reason: 'insufficient lines from key facts' };
     case 'tap-the-word':
@@ -529,6 +534,69 @@ function normalizeToken(value: unknown): string {
   return String(value || '').trim();
 }
 
+const FORMULA_OPERATOR_TOKENS = new Set(['=', '+', '-', '/', '*', 'x', '×', '(', ')']);
+const FORMULA_STOPWORDS = new Set([
+  'the', 'an', 'and', 'or', 'for', 'to', 'of', 'in', 'on', 'by', 'is', 'are', 'was', 'were',
+  'be', 'this', 'that', 'standard', 'formula', 'build', 'target', 'from', 'tokens', 'calculate',
+  'used', 'use', 'select', 'state', 'quick', 'break', 'activity',
+]);
+
+function normalizeFormulaToken(token: string): string {
+  const normalized = normalizeToken(token);
+  if (normalized === '×') return 'x';
+  return normalized;
+}
+
+function isFormulaSymbolToken(token: string): boolean {
+  const normalized = normalizeFormulaToken(token);
+  if (!normalized) return false;
+  if (FORMULA_OPERATOR_TOKENS.has(normalized)) return true;
+  if (/^\d+(\.\d+)?$/.test(normalized)) return true;
+  if (FORMULA_STOPWORDS.has(normalized.toLowerCase())) return false;
+  if (/^[a-z]+$/.test(normalized)) return false;
+  return /^[A-Za-z\u0391-\u03C9\u00B5\u03A6\u03A9][A-Za-z0-9\u0391-\u03C9\u00B5\u03A6\u03A9²³^]{0,6}$/.test(normalized);
+}
+
+function tokenizeFormulaExpression(expression: string): string[] {
+  const raw = normalizeToken(expression);
+  if (!raw) return [];
+
+  const matches = raw.match(/[A-Za-z\u0391-\u03C9\u00B5\u03A6\u03A9][A-Za-z0-9\u0391-\u03C9\u00B5\u03A6\u03A9²³^]{0,6}|\d+(?:\.\d+)?|[=+\-*/()x×]/g) || [];
+  return matches
+    .map(normalizeFormulaToken)
+    .filter(isFormulaSymbolToken);
+}
+
+function hasRhsMathOperator(tokens: string[]): boolean {
+  const equalsIndex = tokens.indexOf('=');
+  if (equalsIndex < 0) return false;
+  return tokens.slice(equalsIndex + 1).some(token => ['+', '-', '/', '*', 'x'].includes(token));
+}
+
+function isValidFormulaSequence(tokens: string[]): boolean {
+  if (tokens.length < 4) return false;
+  const equalsIndex = tokens.indexOf('=');
+  if (equalsIndex <= 0 || equalsIndex >= tokens.length - 1) return false;
+  if (!tokens.every(isFormulaSymbolToken)) return false;
+  return hasRhsMathOperator(tokens);
+}
+
+function extractEquationCandidates(text: string): string[] {
+  const cleaned = normalizeToken(text);
+  if (!cleaned || !cleaned.includes('=')) return [];
+
+  const candidates: string[] = [];
+  const regex = /([A-Za-z\u0391-\u03C9\u00B5\u03A6\u03A9][A-Za-z0-9\u0391-\u03C9\u00B5\u03A6\u03A9²³^]{0,6})\s*=\s*([A-Za-z0-9\u0391-\u03C9\u00B5\u03A6\u03A9²³^().+\-/*x×\s]{1,100})/g;
+  let match: RegExpExecArray | null;
+  while ((match = regex.exec(cleaned)) !== null) {
+    const lhs = normalizeToken(match[1]);
+    const rhs = normalizeToken(match[2]).replace(/[.,;:!?]+$/, '');
+    if (!lhs || !rhs) continue;
+    candidates.push(`${lhs} = ${rhs}`);
+  }
+  return candidates;
+}
+
 function dedupeTokens(tokens: string[]): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
@@ -559,12 +627,16 @@ function deterministicShuffleTokens(tokens: string[], seed: string): string[] {
 
 function buildFormulaDistractors(correctSequence: string[], digest: LessonDigest, count: number = 2): string[] {
   const correctSet = new Set(correctSequence.map(t => t.toLowerCase()));
-  const vocabCandidates = digest.vocabPairs
-    .map(v => normalizeToken(v.term).split(/\s+/)[0])
-    .filter(Boolean);
-  const operatorCandidates = ['+', '-', '/', '*', 'P', 'Q', 'W', 'X', 'Y', 'Z', 'A', 'B', 'C'];
-  const candidates = dedupeTokens([...vocabCandidates, ...operatorCandidates])
-    .filter(token => !correctSet.has(token.toLowerCase()));
+  const digestFormulaTokens = [
+    ...digest.keyFacts,
+    ...digest.vocabPairs.flatMap(v => [v.term, v.definition]),
+    ...(digest.procedures || []),
+  ].flatMap(item => tokenizeFormulaExpression(item));
+
+  const operatorCandidates = ['+', '-', '/', '*', 'x', 'P', 'Q', 'R', 'V', 'I', 'B', 'A', 'Φ', 'Zs', 'Ze', 'R1', 'R2'];
+  const candidates = dedupeTokens([...digestFormulaTokens, ...operatorCandidates])
+    .map(normalizeFormulaToken)
+    .filter(token => isFormulaSymbolToken(token) && !correctSet.has(token.toLowerCase()));
 
   return candidates.slice(0, count);
 }
@@ -573,12 +645,206 @@ function arraysMatch(a: string[], b: string[]): boolean {
   return a.length === b.length && a.every((v, i) => v === b[i]);
 }
 
+function buildSafeSortingContentFromDigest(digest: LessonDigest): MicrobreakContent {
+  const vocabPairs = digest.vocabPairs
+    .map(v => ({ term: normalizeGameplaySnippet(v.term, 50), definition: normalizeGameplaySnippet(v.definition, 90) }))
+    .filter(v => v.term.length > 0 && v.definition.length > 0)
+    .slice(0, 3);
+
+  const vocabItems = vocabPairs.flatMap(v => [
+    { text: v.term, correctBucket: 0 as const },
+    { text: v.definition, correctBucket: 1 as const },
+  ]);
+
+  const conciseFacts = digest.keyFacts
+    .map(f => normalizeGameplaySnippet(f, 85))
+    .filter(f => !isInvalidQuickGameplayItem(f, 100));
+
+  const seen = new Set<string>();
+  const items = [...vocabItems];
+  for (const fact of conciseFacts) {
+    if (items.length >= 6) break;
+    const key = fact.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push({ text: fact, correctBucket: (items.length % 2 === 0 ? 0 : 1) as 0 | 1 });
+  }
+
+  while (items.length < 6) {
+    const n = items.length + 1;
+    items.push({ text: `Concept ${n}`, correctBucket: (n % 2 === 0 ? 1 : 0) as 0 | 1 });
+  }
+
+  return {
+    breakType: 'game',
+    gameType: 'sorting',
+    duration: 90,
+    buckets: ['Term', 'Definition'],
+    items: items.slice(0, 6),
+  };
+}
+
+function hardenSortingContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  if (content.breakType !== 'game' || content.gameType !== 'sorting') return content;
+
+  const safeFallback = buildSafeSortingContentFromDigest(digest) as Extract<MicrobreakContent, { gameType: 'sorting' }>;
+  const buckets = Array.isArray(content.buckets) && content.buckets.length === 2
+    ? [
+        normalizeGameplaySnippet(String(content.buckets[0] || ''), 24) || 'Term',
+        normalizeGameplaySnippet(String(content.buckets[1] || ''), 24) || 'Definition',
+      ] as [string, string]
+    : safeFallback.buckets;
+
+  const cleanedItems = (Array.isArray(content.items) ? content.items : [])
+    .map((item, idx) => {
+      const text = normalizeGameplaySnippet(String(item?.text || ''), 100);
+      const bucket = item?.correctBucket === 0 || item?.correctBucket === 1
+        ? item.correctBucket
+        : ((idx % 2) as 0 | 1);
+      return { text, correctBucket: bucket as 0 | 1 };
+    })
+    .filter(item => !isInvalidQuickGameplayItem(item.text, 100));
+
+  const deduped: Array<{ text: string; correctBucket: 0 | 1 }> = [];
+  const seen = new Set<string>();
+  for (const item of cleanedItems) {
+    const key = item.text.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    deduped.push(item);
+  }
+
+  const merged = [...deduped];
+  const fallbackItems = safeFallback.items || [];
+  for (const candidate of fallbackItems) {
+    if (merged.length >= 6) break;
+    if (merged.some(item => item.text.toLowerCase() === candidate.text.toLowerCase())) continue;
+    merged.push(candidate);
+  }
+
+  const bucketsUsed = new Set(merged.map(i => i.correctBucket).filter(bucket => bucket === 0 || bucket === 1));
+  if (bucketsUsed.size < 2 && merged.length > 0) {
+    merged[0].correctBucket = 0;
+    if (merged.length > 1) merged[1].correctBucket = 1;
+  }
+
+  return {
+    ...content,
+    buckets,
+    items: merged.slice(0, 6),
+  };
+}
+
+function buildSafeClassifyTwoBinsContentFromDigest(digest: LessonDigest): MicrobreakContent {
+  const facts = digest.keyFacts
+    .map(f => normalizeGameplaySnippet(f, 95))
+    .filter(f => !isInvalidQuickGameplayItem(f, 100))
+    .filter(looksLikeDeclarativeStatement);
+
+  const misconceptions = (digest.misconceptions || [])
+    .map(m => normalizeGameplaySnippet(m, 95))
+    .filter(m => !isInvalidQuickGameplayItem(m, 100))
+    .filter(looksLikeDeclarativeStatement);
+
+  const factItems = facts.slice(0, 3).map(text => ({ text, correctBin: 'left' as const }));
+  const misconceptionItems = misconceptions.slice(0, 3).map(text => ({ text, correctBin: 'right' as const }));
+  const statementItems = [...factItems, ...misconceptionItems];
+  if (statementItems.length >= 6) {
+    return {
+      breakType: 'game',
+      gameType: 'classify-two-bins',
+      leftLabel: 'Accurate Statement',
+      rightLabel: 'Misconception',
+      items: statementItems.slice(0, 6),
+    };
+  }
+
+  const vocab = digest.vocabPairs
+    .map(v => normalizeGameplaySnippet(v.term, 55))
+    .filter(v => !isInvalidQuickGameplayItem(v, 70));
+
+  const isProtective = (text: string) => /(ocpd|rcd|mcb|fuse|breaker|protective|device)/i.test(text);
+  const leftTerms = vocab.filter(v => !isProtective(v)).slice(0, 4).map(text => ({ text, correctBin: 'left' as const }));
+  const rightTerms = vocab.filter(v => isProtective(v)).slice(0, 4).map(text => ({ text, correctBin: 'right' as const }));
+  let items = [...leftTerms.slice(0, 3), ...rightTerms.slice(0, 3)];
+
+  if (items.length < 6) {
+    const fallback = ['Line Conductor', 'Neutral Conductor', 'Radial Circuit', 'OCPD', 'RCD', 'CPC']
+      .map((text, idx) => ({
+        text,
+        correctBin: idx < 3 ? ('left' as const) : ('right' as const),
+      }));
+    for (const candidate of fallback) {
+      if (items.length >= 6) break;
+      if (items.some(i => i.text.toLowerCase() === candidate.text.toLowerCase())) continue;
+      items.push(candidate);
+    }
+  }
+
+  return {
+    breakType: 'game',
+    gameType: 'classify-two-bins',
+    leftLabel: 'Path / Circuit Element',
+    rightLabel: 'Protective Element',
+    items: items.slice(0, 6),
+  };
+}
+
+function hardenClassifyTwoBinsContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  if (content.breakType !== 'game' || content.gameType !== 'classify-two-bins') return content;
+
+  const safeFallback = buildSafeClassifyTwoBinsContentFromDigest(digest) as Extract<MicrobreakContent, { gameType: 'classify-two-bins' }>;
+  const leftLabel = normalizeGameplaySnippet(String(content.leftLabel || ''), 28);
+  const rightLabel = normalizeGameplaySnippet(String(content.rightLabel || ''), 28);
+  const labelsInvalid =
+    !leftLabel ||
+    !rightLabel ||
+    isLikelyInstructionalFraming(leftLabel) ||
+    isLikelyInstructionalFraming(rightLabel) ||
+    isGenericClassificationLabel(leftLabel) ||
+    isGenericClassificationLabel(rightLabel);
+
+  const cleanedItems = (Array.isArray(content.items) ? content.items : [])
+    .map((item) => ({
+      text: normalizeGameplaySnippet(String(item?.text || ''), 100),
+      correctBin: item?.correctBin === 'left' || item?.correctBin === 'right' ? item.correctBin : 'left' as const,
+    }))
+    .filter(item => !isInvalidQuickGameplayItem(item.text, 100));
+
+  if (cleanedItems.length < 6 || labelsInvalid || hasObviousFormatSplit(cleanedItems)) {
+    return safeFallback;
+  }
+
+  const binsUsed = new Set(cleanedItems.map(i => i.correctBin));
+  if (binsUsed.size < 2) return safeFallback;
+
+  return {
+    ...content,
+    leftLabel,
+    rightLabel,
+    items: cleanedItems.slice(0, 6),
+  };
+}
+
 function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
   if (content.breakType !== 'game' || content.gameType !== 'formula-build') return content;
 
-  const correctSequence = dedupeTokens(Array.isArray(content.correctSequence) ? content.correctSequence : []);
+  const extracted = extractFormulaSequenceFromDigest(digest);
+  const providedSequence = dedupeTokens(
+    (Array.isArray(content.correctSequence) ? content.correctSequence : [])
+      .map(normalizeFormulaToken)
+      .filter(isFormulaSymbolToken)
+  );
+  const correctSequence = isValidFormulaSequence(providedSequence)
+    ? providedSequence
+    : (extracted && isValidFormulaSequence(extracted) ? extracted : ['V', '=', 'I', '*', 'R']);
+
   const correctSet = new Set(correctSequence.map(token => token.toLowerCase()));
-  const originalTokens = dedupeTokens(Array.isArray(content.tokens) ? content.tokens : []);
+  const originalTokens = dedupeTokens(
+    (Array.isArray(content.tokens) ? content.tokens : [])
+      .map(normalizeFormulaToken)
+      .filter(isFormulaSymbolToken)
+  );
 
   const existingDistractors = originalTokens.filter(token => !correctSet.has(token.toLowerCase()));
   const generatedDistractors = buildFormulaDistractors(correctSequence, digest, 3);
@@ -600,7 +866,7 @@ function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDig
     shuffledTokens = [...shuffledTokens.slice(1), shuffledTokens[0]];
   }
 
-  const prompt = normalizeToken((content as { prompt?: string }).prompt) || 'Build the target formula from the tokens.';
+  const prompt = normalizeToken((content as { prompt?: string }).prompt) || `Build this formula: ${correctSequence.join(' ')}`;
 
   return {
     ...content,
@@ -611,18 +877,30 @@ function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDig
   };
 }
 
+function hardenGeneratedGameContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  let hardened = content;
+  hardened = hardenSortingContent(hardened, digest);
+  hardened = hardenClassifyTwoBinsContent(hardened, digest);
+  hardened = hardenFormulaBuildContent(hardened, digest);
+  return hardened;
+}
+
 function extractFormulaSequenceFromDigest(digest: LessonDigest): string[] | null {
   const corpus = [
     ...digest.keyFacts,
     ...digest.vocabPairs.flatMap(v => [v.term, v.definition]),
+    ...(digest.procedures || []),
   ];
 
   for (const raw of corpus) {
     const text = normalizeToken(raw);
     if (!text.includes('=')) continue;
-    const tokens = (text.match(/[A-Za-z]{1,3}|[=+\-*/]/g) || []).map(normalizeToken).filter(Boolean);
-    if (tokens.length >= 4 && tokens.includes('=')) {
-      return tokens.slice(0, 6);
+    const candidates = extractEquationCandidates(text);
+    for (const candidate of candidates) {
+      const tokens = tokenizeFormulaExpression(candidate);
+      if (isValidFormulaSequence(tokens)) {
+        return tokens;
+      }
     }
   }
 
@@ -646,6 +924,69 @@ function isLikelyInstructionalFraming(text: string): boolean {
   }
 
   return false;
+}
+
+function normalizeGameplaySnippet(text: string, maxLength: number = 90): string {
+  const cleaned = cleanText(String(text || ''))
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/^(in this lesson|what this is|why it matters|key takeaways|key points|quick recap|coming up next)\s*[:\-]?\s*/i, '')
+    .trim();
+
+  if (cleaned.length <= maxLength) return cleaned;
+  const truncated = cleaned.slice(0, maxLength).trim();
+  const lastSpace = truncated.lastIndexOf(' ');
+  const safe = lastSpace > Math.floor(maxLength * 0.6) ? truncated.slice(0, lastSpace) : truncated;
+  return `${safe.trim()}...`;
+}
+
+function isInvalidQuickGameplayItem(text: string, maxLength: number = 100): boolean {
+  const normalized = String(text || '').trim();
+  if (!normalized) return true;
+  if (/^\s*[-*#]/.test(normalized)) return true;
+  if (isLikelyInstructionalFraming(normalized)) return true;
+  return normalized.length > maxLength;
+}
+
+function isGenericClassificationLabel(label: string): boolean {
+  const normalized = String(label || '').trim().toLowerCase();
+  if (!normalized) return true;
+  return [
+    'term',
+    'terms',
+    'definition',
+    'definitions',
+    'word',
+    'meaning',
+    'concept',
+    'description',
+    'left',
+    'right',
+    'item',
+    'items',
+    'category',
+    'categories',
+  ].includes(normalized);
+}
+
+function hasObviousFormatSplit(
+  items: Array<{ text: string; correctBin: 'left' | 'right' }> | Array<{ text: string; correctBucket: 0 | 1 }>
+): boolean {
+  const toBin = (item: { correctBin?: 'left' | 'right'; correctBucket?: 0 | 1 }): 'left' | 'right' =>
+    item.correctBin ? item.correctBin : (item.correctBucket === 0 ? 'left' : 'right');
+
+  const left = items
+    .filter(i => toBin(i as { correctBin?: 'left' | 'right'; correctBucket?: 0 | 1 }) === 'left')
+    .map(i => String(i.text || '').trim());
+  const right = items
+    .filter(i => toBin(i as { correctBin?: 'left' | 'right'; correctBucket?: 0 | 1 }) === 'right')
+    .map(i => String(i.text || '').trim());
+  if (left.length < 2 || right.length < 2) return false;
+
+  const avgWords = (arr: string[]) => arr.reduce((sum, t) => sum + t.split(/\s+/).filter(Boolean).length, 0) / arr.length;
+  const leftAvg = avgWords(left);
+  const rightAvg = avgWords(right);
+  return (leftAvg <= 3 && rightAvg >= 9) || (rightAvg <= 3 && leftAvg >= 9);
 }
 
 function looksLikeDeclarativeStatement(text: string): boolean {
@@ -747,6 +1088,16 @@ function validateGameSchemaAndContent(
       const items = Array.isArray(content.items) ? content.items : [];
       if (buckets.length !== 2) errors.push('sorting requires 2 buckets');
       if (items.length < 6) errors.push('sorting requires >=6 items');
+      if (buckets.some(bucket => isLikelyInstructionalFraming(String(bucket || '')))) {
+        errors.push('sorting bucket labels must not be lesson framing text');
+      }
+      if (items.some(i => isInvalidQuickGameplayItem(String(i?.text || '')))) {
+        errors.push('sorting items must be concise concepts, not lesson framing or long prose');
+      }
+      const bucketsUsed = new Set(items.map(i => i.correctBucket).filter(bucket => bucket === 0 || bucket === 1));
+      if (bucketsUsed.size < 2) {
+        errors.push('sorting must include items for both buckets');
+      }
       requireGrounding(items.map(i => i.text), 'sorting item');
       break;
     }
@@ -838,6 +1189,9 @@ function validateGameSchemaAndContent(
       if (/^\s*left\b/i.test(leftLabel) || /^\s*right\b/i.test(rightLabel)) {
         errors.push('classify-two-bins labels must be meaningful content labels, not side placeholders');
       }
+      if (isGenericClassificationLabel(leftLabel) || isGenericClassificationLabel(rightLabel)) {
+        errors.push('classify-two-bins labels must not be generic term/definition-style labels');
+      }
       if (isLikelyInstructionalFraming(leftLabel) || isLikelyInstructionalFraming(rightLabel)) {
         errors.push('classify-two-bins labels must not be lesson framing text');
       }
@@ -846,6 +1200,9 @@ function validateGameSchemaAndContent(
       }
       if (items.some(i => String(i?.text || '').trim().length > 120)) {
         errors.push('classify-two-bins items are too long for quick classification');
+      }
+      if (hasObviousFormatSplit(items.map(i => ({ text: String(i?.text || ''), correctBin: i?.correctBin === 'right' ? 'right' : 'left' })))) {
+        errors.push('classify-two-bins must not rely on obvious format split (short terms vs long definitions)');
       }
       const binsUsed = new Set(items.map(i => i.correctBin).filter(bin => bin === 'left' || bin === 'right'));
       if (binsUsed.size < 2) {
@@ -867,13 +1224,18 @@ function validateGameSchemaAndContent(
       if (correctSequence.length < 4) {
         errors.push('formula-build requires >=4 correct sequence items');
       }
+      if (!isValidFormulaSequence(correctSequence.map(token => normalizeFormulaToken(String(token))))) {
+        errors.push('formula-build correctSequence must be a valid symbolic formula');
+      }
+      if (tokens.some(token => !isFormulaSymbolToken(normalizeFormulaToken(String(token))))) {
+        errors.push('formula-build tokens must only contain formula symbols/operators');
+      }
       if (tokens.length <= correctSequence.length) {
         errors.push('formula-build tokens must include at least one distractor token');
       }
       if (tokens.join('|') === correctSequence.join('|')) {
         errors.push('formula-build tokens must be shuffled, not in exact answer order');
       }
-      requireGrounding([...tokens, ...correctSequence], 'formula-build');
       break;
     }
     case 'tap-the-line': {
@@ -960,13 +1322,7 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         pairs: buildFallbackMatchingPairs(digest),
       };
     case 'sorting':
-      return {
-        breakType: 'game',
-        gameType: 'sorting',
-        duration: 90,
-        buckets: ['Role', 'Responsibility'],
-        items: facts.slice(0, 6).map((f, idx) => ({ text: f, correctBucket: (idx % 2) as 0 | 1 })),
-      };
+      return buildSafeSortingContentFromDigest(digest);
     case 'spot-error':
       return {
         breakType: 'game',
@@ -1059,34 +1415,7 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         correctRankedIndices: [0, 1],
       };
     case 'classify-two-bins':
-      {
-        const vocabPairs = digest.vocabPairs
-          .map(v => ({ term: String(v.term || '').trim(), definition: String(v.definition || '').trim() }))
-          .filter(v => v.term.length > 0 && v.definition.length > 0);
-
-        const items = vocabPairs.slice(0, 3).flatMap(v => [
-          { text: v.term, correctBin: 'left' as const },
-          { text: v.definition, correctBin: 'right' as const },
-        ]);
-
-        const paddedItems = items.length >= 6
-          ? items.slice(0, 6)
-          : [
-              ...items,
-              ...facts
-                .filter(f => !isLikelyInstructionalFraming(f))
-                .slice(0, Math.max(0, 6 - items.length))
-                .map((f, idx) => ({ text: f, correctBin: idx % 2 === 0 ? ('left' as const) : ('right' as const) })),
-            ].slice(0, 6);
-
-        return {
-          breakType: 'game',
-          gameType: 'classify-two-bins',
-          leftLabel: 'Term',
-          rightLabel: 'Definition',
-          items: paddedItems,
-        };
-      }
+      return buildSafeClassifyTwoBinsContentFromDigest(digest);
     case 'scenario-match':
       return {
         breakType: 'game',
@@ -1208,12 +1537,18 @@ export async function generateMicrobreaksFromPlan(
     generated = parseJson<GeneratedPlannedGame[]>(result.response.text());
   } catch (error) {
     console.warn(`[GameGenerator] bulk generation failed; using deterministic fallback. ${error instanceof Error ? error.message : 'unknown'}`);
-    return plan.map(p => ({ slotId: p.slotId, content: fallbackGameFromDigest(p, digest) }));
+    return plan.map(p => ({
+      slotId: p.slotId,
+      content: hardenGeneratedGameContent(fallbackGameFromDigest(p, digest), digest),
+    }));
   }
 
   if (!Array.isArray(generated) || generated.length !== plan.length) {
     console.warn('[GameGenerator] Generated batch length mismatch; using deterministic fallback.');
-    return plan.map(p => ({ slotId: p.slotId, content: fallbackGameFromDigest(p, digest) }));
+    return plan.map(p => ({
+      slotId: p.slotId,
+      content: hardenGeneratedGameContent(fallbackGameFromDigest(p, digest), digest),
+    }));
   }
 
   const digestTokenSet = extractDigestTokenSet(digest);
@@ -1230,9 +1565,7 @@ export async function generateMicrobreaksFromPlan(
     if (!game.content) itemErrors.push('missing content');
 
     if (planItem && game.content) {
-      if (planItem.gameType === 'formula-build') {
-        game.content = hardenFormulaBuildContent(game.content, digest);
-      }
+      game.content = hardenGeneratedGameContent(game.content, digest);
       const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
       itemErrors.push(...schemaErrors);
     }
@@ -1257,7 +1590,7 @@ export async function generateMicrobreaksFromPlan(
       console.warn(`[GameGenerator] targeted repair failed for index ${index}; using fallback. ${error instanceof Error ? error.message : 'unknown'}`);
       repaired[index] = {
         slotId: planItem.slotId,
-        content: fallbackGameFromDigest(planItem, digest),
+        content: hardenGeneratedGameContent(fallbackGameFromDigest(planItem, digest), digest),
       };
     }
   }
@@ -1265,16 +1598,15 @@ export async function generateMicrobreaksFromPlan(
   const finalDuplicates = validateNoDuplicateStems(repaired);
   repaired.forEach((game, index) => {
     const planItem = slotById.get(game.slotId) || plan[index];
-    if (planItem.gameType === 'formula-build') {
-      game.content = hardenFormulaBuildContent(game.content, digest);
-    }
+    game.content = hardenGeneratedGameContent(game.content, digest);
     const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
     const duplicateError = finalDuplicates.get(index);
 
     if (schemaErrors.length > 0 || duplicateError) {
+      const fallback = hardenGeneratedGameContent(fallbackGameFromDigest(planItem, digest), digest);
       repaired[index] = {
         slotId: planItem.slotId,
-        content: fallbackGameFromDigest(planItem, digest),
+        content: fallback,
       };
     }
   });

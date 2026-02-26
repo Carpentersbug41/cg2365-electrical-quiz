@@ -235,6 +235,28 @@
       }
     },
     {
+      "id": "202-5A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.7,
+      "content": {
+        "breakType": "game",
+        "gameType": "fill-gap",
+        "prompt": "Fill the missing term.",
+        "textTemplate": "Magnetic Pole means [g1].",
+        "gaps": [
+          {
+            "id": "g1",
+            "options": [
+              "A magnetic pole is one of the two regions at the ends of a magnet where the magnetic force is strongest, following the law that like poles repel while opposite poles attract.",
+              "A magnetic field is the area of influence surrounding a magnet or current-carrying conductor within which a magnetic force can be detected and measured.",
+              "Magnetic flux is the total number of magnetic field lines produced by a source, measured in Webers Wb , representing the total field rather than its concentration."
+            ],
+            "correctOptionIndex": 0
+          }
+        ]
+      }
+    },
+    {
       "id": "202-5A-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -372,6 +394,32 @@
       }
     },
     {
+      "id": "202-5A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "formula-build",
+        "prompt": "Build the target formula from the tokens.",
+        "tokens": [
+          "A",
+          "B",
+          "=",
+          "Φ",
+          "/",
+          "x"
+        ],
+        "correctSequence": [
+          "B",
+          "=",
+          "Φ",
+          "/",
+          "A"
+        ],
+        "timerSeconds": 11
+      }
+    },
+    {
       "id": "202-5A-integrative",
       "type": "practice",
       "order": 9.5,
@@ -474,8 +522,8 @@
   ],
   "metadata": {
     "created": "2026-02-24",
-    "updated": "2026-02-24",
-    "version": "1.0",
+    "updated": "2026-02-25",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "CONCEPTUAL, CALCULATION",
     "syllabusAnchors": {

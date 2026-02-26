@@ -85,11 +85,13 @@ import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from '
 import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 import { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
 import { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
+import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions,
   ...acGenerationAndSineWavesQuestions,
   ...powerAndEffectsOfElectricCurrentQuestions,
   ...cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions,
@@ -257,6 +259,7 @@ export { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from '
 export { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 export { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
 export { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
+export { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
 
 /**
  * Filter questions by tags

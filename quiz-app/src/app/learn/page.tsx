@@ -30,6 +30,7 @@ import lesson203_1A from '@/data/lessons/203-1A-statutory-and-non-statutory-regu
 import lesson203_1B from '@/data/lessons/203-1B-implications-of-regulatory-non-compliance.json';
 import lesson203_2A from '@/data/lessons/203-2A-technical-information-and-drawing-types.json';
 import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.json';
+import lesson203_3A from '@/data/lessons/203-3A-circuit-types-what-they-do.json';
 import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
 import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclosure-spacing.json';
 import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
@@ -53,6 +54,7 @@ import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-
 import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
 import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
 import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
+import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -97,6 +99,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_3L1A,
   lesson202_5B,
   lesson202_4D,
   lesson203_3L1C,
@@ -119,6 +122,7 @@ const RAW_LESSONS = [
   lesson203_4A,
   lesson203_3C,
   lesson203_3B,
+  lesson203_3A,
   lesson203_2B,
   lesson203_2A,
   lesson203_1B,

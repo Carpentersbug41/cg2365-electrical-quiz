@@ -93,6 +93,7 @@ import { magnetismNoobPolesFieldsFluxFluxDensityCurrentEffectsQuestions } from '
 import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './questions/cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions';
 import { powerAndEffectsOfElectricCurrentQuestions } from './questions/powerAndEffectsOfElectricCurrentQuestions';
 import { acGenerationAndSineWavesQuestions } from './questions/acGenerationAndSineWavesQuestions';
+import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './questions/alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -178,6 +179,7 @@ export const questions: Question[] = [
   ...cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions,
   ...powerAndEffectsOfElectricCurrentQuestions,
   ...acGenerationAndSineWavesQuestions,
+  ...alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

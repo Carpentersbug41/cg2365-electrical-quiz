@@ -1,0 +1,451 @@
+{
+  "id": "203-3L1A",
+  "title": "203.3L1A — Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting",
+  "description": "Learn about Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting in Installation 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 203",
+  "topic": "Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting",
+  "learningOutcomes": [
+    "State the operational differences between open and closed alarm circuit configurations.",
+    "Describe the core purpose and monitoring methods for fire and intruder alarm systems.",
+    "Identify the operational differences between maintained and non-maintained emergency lighting."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3L1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the operational differences between open and closed alarm circuit configurations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the core purpose and monitoring methods for fire and intruder alarm systems.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify the operational differences between maintained and non-maintained emergency lighting.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Closed Circuit",
+            "definition": "A configuration where current flows continuously through sensors in series, triggering an alarm when the path is broken, providing a fail-safe method superior to an open circuit."
+          },
+          {
+            "term": "End of Line (EOL) Monitoring",
+            "definition": "The use of resistors at the furthest point of a circuit to allow the control panel to monitor circuit integrity and distinguish between a genuine alarm signal and a wiring fault."
+          },
+          {
+            "term": "Tamper Circuit",
+            "definition": "A dedicated monitoring loop designed to trigger an alarm if equipment covers are removed or cables are cut, remaining active even when the main system is unset."
+          },
+          {
+            "term": "Maintained Luminaire",
+            "definition": "An emergency lighting unit designed to operate continuously from the normal supply and switch to battery power during a failure, unlike a non-maintained unit which only illuminates when the mains fail."
+          },
+          {
+            "term": "Non-maintained Luminaire",
+            "definition": "An emergency lighting unit that remains unlit during normal conditions and only illuminates using its internal battery when the local mains power supply fails."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting Diagram",
+        "description": "Visual representation of Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "closed-circuit-loop",
+          "eol-resistor-point",
+          "tamper-loop-path",
+          "maintained-luminaire-unit"
+        ],
+        "placeholderText": "The diagram should show two parallel comparisons. On the left, a series-wired loop representing a closed-circuit-loop connecting three sensors back to a control panel. On the right, an open-circuit fire zone showing detectors in parallel with an eol-resistor-point at the very end. Below these, a separate tamper-loop-path should be shown protecting a sensor housing. Finally, a side-by-side comparison of a maintained-luminaire-unit (lit) and a non-maintained unit (unlit) under normal power conditions."
+      }
+    },
+    {
+      "id": "203-3L1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Alarm Circuit Principles",
+        "content": "### In this lesson\n- You will learn to distinguish between the two primary circuit configurations used in alarm systems.\n- This knowledge is applied when identifying how sensors interact with a control panel to trigger an alert.\n- Key takeaways include the operational differences between open and closed circuits, the relationship between series and parallel wiring, and the concept of fail-safe security.\n\n**What this is**\nIn technical systems, an alarm circuit is the path through which signals travel from a detector to a control unit. There are two fundamental ways to arrange these paths: the open circuit and the **Closed Circuit**. In an open circuit, the path is normally broken (incomplete), and current only flows when a device is activated. Conversely, a **Closed Circuit** is a configuration where current flows continuously through sensors in series, triggering an alarm when the path is broken, providing a fail-safe method superior to an open circuit. These arrangements dictate how the system reacts to both a genuine emergency and a technical fault, such as a cut wire.\n\n**Why it matters**\nUnderstanding these principles is vital for safety and security. If a circuit is not designed correctly, a simple equipment failure or a deliberate act of sabotage could leave a building unprotected. For example, a system that cannot distinguish between a \"detected fire\" and a \"broken wire\" might fail to activate when needed most. Choosing the right configuration ensures that the system remains reliable and provides clear feedback to the user about the state of the installation.\n\n**Key facts / rules**\n- Open circuits typically use detectors connected in parallel across two main wires.\n- In an open circuit, the alarm only triggers when a sensor closes the gap in the wiring.\n- **Closed Circuit** systems typically use detectors connected in series.\n- A **Closed Circuit** is considered \"fail-safe\" because any break in the wire (accidental or intentional) triggers the alarm immediately.\n- Open circuits require additional monitoring to ensure a broken wire does not go unnoticed.\n- Parallel wiring in open circuits allows for easy addition of new sensors without re-routing the entire loop.\n\n**How to recognise it**\nYou can recognise these configurations by observing how the devices are connected to the main circuit path. Imagine a security tripwire across a path (a **Closed Circuit**); if the wire is intact, the \"signal\" is safe, but if the wire is snapped, the alarm sounds. Now, compare this to a standard doorbell (an open circuit); the bell only rings when you physically press the button to complete the path. In a technical setting, if you see multiple sensors connected one after another in a single continuous loop, you are likely looking at a **Closed Circuit**. If sensors are bridged across two separate common wires like rungs on a ladder, it is an open circuit arrangement.\n\n**Micro worked scenario:** Imagine two systems: System A has 5 sensors in a **Closed Circuit**, and System B has 5 sensors in an open circuit. If a cable is accidentally cut halfway through the installation, System A will immediately trigger an alarm or fault light, whereas System B will appear normal but the sensors past the break will fail to work if a real emergency occurs.\n\n**Common mistakes**\nLearners often confuse the term \"open\" with \"active.\" In alarm terminology, an \"open\" circuit means the system is at rest and inactive, whereas a \"closed\" circuit is active and flowing. Learners often confuse **Closed Circuit** with an open circuit; a **Closed Circuit** is inherently fail-safe because it monitors its own continuity, whereas an open circuit requires extra components to prove the wires are still connected.\n\nMisconceptions (targeted):\n- Misconception: An open circuit is better because it uses less power when the alarm is off. | Correction: While it uses less standby power, it is less secure because it cannot detect a broken wire without complex monitoring. | AC: AC3.1\n- Misconception: Sensors in a **Closed Circuit** are wired in parallel. | Correction: They are wired in series so that any single device opening the path breaks the entire loop. | AC: AC3.1\n\n**Key Points**\n- Open circuits are incomplete until a sensor activates.\n- **Closed Circuit** loops are continuous and break to trigger.\n- Series wiring is the standard for **Closed Circuit** fail-safe loops.\n- Parallel wiring is common for simple open-circuit triggers.\n\n**Quick recap**\nAlarm systems rely on either open or closed configurations to monitor detectors. Open circuits complete a path to trigger, while **Closed Circuit** systems break a continuous path. The latter is preferred for security because it naturally detects if a wire is cut, making it a more reliable \"fail-safe\" option for protecting property and life.\n\n### Coming Up Next\nWe will explore how these circuit principles are applied to specific systems like fire and intruder alarms, and how we monitor them for faults."
+      }
+    },
+    {
+      "id": "203-3L1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Alarm Circuit Principles",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1A-C1-L1-A",
+            "questionText": "How are detectors typically connected across the two main wires in an open circuit?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "In parallel",
+              "Parallel",
+              "Parallel wiring"
+            ],
+            "hint": "Think about the arrangement that looks like rungs on a ladder."
+          },
+          {
+            "id": "203-3L1A-C1-L1-B",
+            "questionText": "What wiring arrangement is standard for detectors in a Closed Circuit system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "In series",
+              "Series",
+              "Series wiring"
+            ],
+            "hint": "This arrangement creates a single continuous loop."
+          },
+          {
+            "id": "203-3L1A-C1-L1-C",
+            "questionText": "In an open circuit, what must a sensor do to the gap in the wiring to trigger an alarm?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Closes the gap",
+              "Close the gap",
+              "Close the wiring gap"
+            ],
+            "hint": "Recall that an open circuit is normally incomplete or broken."
+          },
+          {
+            "id": "203-3L1A-C1-L2",
+            "questionText": "Using your answers to Q1 (parallel wiring), Q2 (series wiring), and Q3 (closing the gap), why is a series-wired Closed Circuit considered more fail-safe than a parallel-wired open circuit? Explain why the open circuit cannot detect a cut wire without extra monitoring.",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Series wiring creates a continuous loop where current flows constantly",
+              "In a Closed Circuit any break in the wire triggers the alarm immediately",
+              "Open circuits with parallel wiring stay incomplete (open) regardless of a cut wire",
+              "An open circuit cannot distinguish between a broken wire and a system at rest"
+            ],
+            "expectedAnswer": [
+              "A Closed Circuit uses series wiring to maintain a continuous flow, so any break triggers the alarm. In contrast, open circuits use parallel wiring and only trigger when a sensor closes the gap, meaning a cut wire would simply leave the gap open and undetected.",
+              "Because series wiring in a Closed Circuit is always active, it is fail-safe; if a wire is cut, the path is broken and the alarm sounds. An open circuit is not fail-safe because a cut wire prevents the sensor from closing the gap, leaving the system unable to trigger."
+            ],
+            "hint": "Think about what happens to the signal path if a wire is cut in both series and parallel arrangements."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Emergency System Types",
+        "content": "### In this lesson\n- You will learn the purpose and identifying features of fire alarms, intruder alarms, and emergency lighting systems.\n- This context is essential for selecting the correct system type based on the building's usage and safety requirements.\n- Key takeaways include the role of **EOL Monitoring**, the function of a **Tamper Circuit**, and the difference between maintained and non-maintained lighting.\n\n**What this is**\nEmergency systems are specialized installations designed to protect life and property. Fire alarms detect heat or smoke and are often arranged in zones to help responders locate the source. They frequently use **End of Line (EOL) Monitoring**, which is the use of resistors at the furthest point of a circuit to allow the control panel to monitor circuit integrity and distinguish between a genuine alarm signal and a wiring fault. Intruder alarms focus on security and utilize a **Tamper Circuit**, a dedicated monitoring loop designed to trigger an alarm if equipment covers are removed or cables are cut. Finally, emergency lighting provides illumination during power failures using a **Maintained Luminaire** or a **Non-maintained Luminaire**.\n\n**Why it matters**\nThese systems are not just conveniences; they are often legal requirements. A fire alarm must be able to tell the difference between a fire and a broken wire to prevent false confidence. Intruder systems must be able to detect if a burglar is trying to disable the system before breaking in. Emergency lighting ensures that people can see their way to safety during a blackout, preventing panic and injury during an evacuation.\n\n**Key facts / rules**\n- Fire systems use zones to divide a building into manageable areas for identification.\n- **End of Line (EOL) Monitoring** allows an open-circuit fire system to detect a \"fault\" (broken wire) versus an \"alarm\" (triggered sensor).\n- A **Tamper Circuit** remains active 24 hours a day, even when the rest of the security system is turned off.\n- Emergency lighting must operate for a specific duration, typically 1 to 3 hours, depending on the building type (verify current edition/version of standards).\n- A **Maintained Luminaire** is designed to operate continuously from the normal supply and switch to battery power during a failure.\n- A **Non-maintained Luminaire** remains unlit during normal conditions and only illuminates using its internal battery when the local mains power supply fails.\n\n**When to choose it**\nSelection depends on the environment and occupancy. You would choose a **Maintained Luminaire** for areas like cinemas or theaters where the lights are dimmed, but exit signs must stay visible at all times. You would choose a **Non-maintained Luminaire** for a standard office corridor where normal lighting is usually sufficient, and the emergency light only needs to activate if the power cuts out. Fire systems are chosen based on whether the goal is protecting life (detectors in escape routes) or property (detectors in every room). Intruder systems are selected to provide a barrier against unauthorized entry, using **Tamper Circuit** loops to protect the control panel itself from interference.\n\n**Micro worked scenario:** In a small warehouse, you have two lights. Light A is a **Maintained Luminaire** and Light B is a **Non-maintained Luminaire**. During a normal workday with the power on, Light A is glowing to show the exit path, while Light B is dark. If the main circuit breaker trips, both Light A and Light B will now be powered by their internal batteries to light the way out.\n\n**Common mistakes**\nLearners often confuse the monitoring method of a fire alarm with that of an intruder alarm. Fire alarms often use resistors for **EOL Monitoring** on open circuits, while intruder alarms rely on the physical break of a **Closed Circuit**. Learners often confuse **Maintained Luminaire** with **Non-maintained Luminaire**; a **Maintained Luminaire** is lit during normal operation, whereas a **Non-maintained Luminaire** is only lit during a power failure.\n\nMisconceptions (targeted):\n- Misconception: Emergency lighting is the same as standby lighting. | Correction: Emergency lighting is for safe evacuation only; standby lighting allows normal work to continue. | AC: AC3.1\n- Misconception: A **Tamper Circuit** only works when the alarm is set. | Correction: It is a 24-hour circuit that triggers an alarm even if the main system is unset to prevent sabotage. | AC: AC3.1\n\n**Key Points**\n- **EOL Monitoring** identifies the difference between a fire and a wiring fault.\n- **Tamper Circuit** loops protect equipment from being opened or vandalized.\n- **Maintained Luminaire** units are always on; **Non-maintained Luminaire** units are \"fail-on.\"\n- Fire systems are zoned to speed up emergency response.\n\n**Quick recap**\nFire and intruder systems use different monitoring techniques, such as **EOL Monitoring** and **Tamper Circuit** loops, to ensure reliability. Emergency lighting is categorized into **Maintained Luminaire** (always on) and **Non-maintained Luminaire** (only on during failure) types to suit different building needs. Together, these systems provide a comprehensive safety net for occupants.\n\n### Coming Up Next\nIn the next module, we will look at the different types of wiring systems and enclosures used to protect these critical alarm cables from environmental damage."
+      }
+    },
+    {
+      "id": "203-3L1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Emergency System Types",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1A-C2-L1-A",
+            "questionText": "What does End of Line (EOL) Monitoring allow an open-circuit fire system to distinguish between?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Fault versus alarm",
+              "Fault and alarm",
+              "Fault or alarm"
+            ],
+            "hint": "This relates to identifying if a signal is a genuine fire or just a broken wire."
+          },
+          {
+            "id": "203-3L1A-C2-L1-B",
+            "questionText": "For how long does a Tamper Circuit remain active in a security system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "24 hours a day",
+              "Twenty-four hours",
+              "24 hours"
+            ],
+            "hint": "Consider whether this protection stops when the main alarm is turned off."
+          },
+          {
+            "id": "203-3L1A-C2-L1-C",
+            "questionText": "How is a Maintained Luminaire designed to operate when the normal power supply is active?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Operates continuously",
+              "Continuously",
+              "Always on"
+            ],
+            "hint": "Recall the difference between exit signs in a cinema versus standard office lighting."
+          },
+          {
+            "id": "203-3L1A-C2-L2",
+            "questionText": "Using your answers to Q1 (EOL Monitoring), Q2 (Tamper Circuits), and Q3 (Maintained Luminaires), explain how these features ensure continuous protection. What must be true about a system's monitoring capabilities to prevent sabotage or failure?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "EOL Monitoring ensures wiring integrity by detecting faults before an emergency occurs",
+              "Tamper Circuits prevent sabotage by remaining active 24 hours a day",
+              "Maintained Luminaires provide constant visibility regardless of power state",
+              "Systems must be able to monitor their own health and physical security at all times"
+            ],
+            "expectedAnswer": [
+              "Continuous protection is achieved because EOL Monitoring identifies circuit faults, Tamper Circuits protect against 24-hour sabotage, and Maintained Luminaires ensure constant light. To prevent failure, the system must be able to distinguish between a technical fault and a real emergency signal.",
+              "These features ensure the system is always 'aware' of its status; EOL differentiates between alarms and faults, Tamper loops prevent interference even when unset, and Maintained units are always lit. This means the system monitoring must be active and capable of reporting its own integrity to be reliable."
+            ],
+            "hint": "Consider how the system 'knows' it is still working correctly even when no emergency is happening."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3L1A-P1",
+            "questionText": "Why is a closed-circuit configuration considered more secure than an open-circuit configuration for alarm systems?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it detects broken wires",
+              "it is fail-safe",
+              "it detects a cut wire",
+              "broken wires trigger alarms"
+            ],
+            "hint": "Think about what happens to the signal path if a wire is accidentally or intentionally cut."
+          },
+          {
+            "id": "203-3L1A-P2",
+            "questionText": "A technician is inspecting a series-wired closed-circuit loop containing 12 detectors. If a single wire is cut at the start of the loop, how many of those detectors will still be able to send a signal to the control panel?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0"
+            ],
+            "hint": "In a series loop, the current must flow through every device in a single path to reach the end."
+          },
+          {
+            "id": "203-3L1A-P3",
+            "questionText": "A facility manager needs to install emergency exit signs in a dark theater that must remain illuminated during the performance as well as during a power cut. Which specific type of luminaire should be selected?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "maintained luminaire",
+              "maintained",
+              "maintained unit",
+              "maintained emergency light"
+            ],
+            "hint": "Consider which unit type is designed to be 'always on' regardless of the power state."
+          },
+          {
+            "id": "203-3L1A-P4",
+            "questionText": "According to the lesson, what is the maximum number of hours an emergency lighting system is typically required to operate using its internal battery?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "The text provides a range of 1 to 3 hours."
+          },
+          {
+            "id": "203-3L1A-P5",
+            "questionText": "What must be true about a tamper circuit for it to be effective even when the building is open and the security system is not 'set' or 'armed'?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it is a 24-hour circuit",
+              "it remains active",
+              "it stays on",
+              "it is always active"
+            ],
+            "hint": "Review the facts regarding the operational duration of protection against sabotage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1A-INT-1",
+            "questionText": "Explain the relationship between closed-circuit configurations and system monitoring in emergency installations. In your answer, include: (1) the operational state of a closed-loop circuit, (2) the function of end-of-line (EOL) monitoring, and (3) how these ensure system integrity. Why must this specific configuration be used to achieve a 'fail-safe' status? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Defines closed-circuit as a continuous path that triggers an alarm when interrupted.",
+              "Explains that EOL monitoring uses resistance to supervise the integrity of the wiring.",
+              "Identifies that a break in the circuit (tamper or fault) mimics a sensor activation.",
+              "Argues that 'fail-safe' status requires the system to alert if the connection is lost.",
+              "Contrasts with open-circuits which cannot detect a cut wire until an event occurs."
+            ],
+            "expectedAnswer": [
+              "A closed-circuit maintains a constant current flow that, when interrupted by a sensor or a cut wire, triggers the control panel. EOL monitoring adds a specific resistance to this loop, allowing the panel to distinguish between a normal closed state, an alarm, and a fault. This relationship is necessary for a fail-safe status because any physical damage to the wiring will automatically trigger an alert rather than leaving the system silently disabled.",
+              "In emergency systems, a closed-loop configuration ensures that the circuit is supervised at all times. By using EOL monitoring, the system can detect if the circuit has been tampered with or broken. This is the only way to achieve a fail-safe design because it ensures that the system defaults to an 'alarm' or 'fault' state if the monitoring path is compromised, ensuring the system never fails to detect an intrusion or hazard due to wiring damage."
+            ],
+            "hint": "Think about what happens to the signal in a closed loop if a wire is cut versus what happens in an open loop."
+          },
+          {
+            "id": "203-3L1A-INT-2",
+            "questionText": "Synthesize the operational requirements of a building's safety systems by evaluating circuit design and lighting modes. In your answer, include: (1) the distinction between open and closed alarm circuits, (2) the roles of tamper and EOL monitoring, (3) the operational differences between maintained and non-maintained lighting, and (4) how these features work together to provide continuous protection. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Differentiates between open (normally open) and closed (normally closed) circuit states.",
+              "Describes tamper circuits as protection against physical interference with devices.",
+              "Describes EOL monitoring as an electronic check on the cable integrity.",
+              "Explains maintained lighting as always operational/switched and non-maintained as emergency-only.",
+              "Relies on the integration of supervised circuits and specific lighting modes for occupant safety.",
+              "Connects circuit reliability to the necessity of immediate illumination during power/security events.",
+              "Provides a cohesive overview of how detection and response systems overlap."
+            ],
+            "expectedAnswer": [
+              "Closed circuits provide fail-safe detection while open circuits are used for non-critical triggers, both of which are enhanced by tamper and EOL monitoring to prevent system bypass. These detection methods are integrated with emergency lighting, where maintained units provide continuous visibility and non-maintained units activate only during power loss. Together, these systems ensure that any breach or hazard is immediately identified through supervised wiring and that safe egress is guaranteed through the appropriate lighting configuration.",
+              "• Closed circuits trigger upon interruption for high security, whereas open circuits trigger upon contact closure.\n• EOL and tamper monitoring ensure the physical and electronic integrity of these circuits against faults or interference.\n• Maintained lighting stays on for general use, while non-maintained lighting acts as a backup during mains failure.\n• Collectively, these components ensure that detection circuits are always supervised and that illumination is provided automatically during the emergencies those circuits detect."
+            ],
+            "hint": "Consider how the supervision of the alarm wiring relates to the automatic activation of emergency lighting during a system failure."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3L1A-SR-1",
+            "questionText": "In basic circuitry, what term describes a complete path that allows current to flow?",
+            "expectedAnswer": [
+              "closed circuit",
+              "closed",
+              "complete path"
+            ],
+            "hint": "Think of a circuit that is not broken or interrupted.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L1A-SR-2",
+            "questionText": "What term describes a system or device designed to provide a warning signal when a specific event is detected?",
+            "expectedAnswer": [
+              "alarm",
+              "alarm system",
+              "warning system"
+            ],
+            "hint": "The lesson title includes fire and intruder versions of these.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L1A-SR-3",
+            "questionText": "What is the general term for a lighting system intended for use when the normal power supply fails?",
+            "expectedAnswer": [
+              "emergency lighting",
+              "emergency lights",
+              "backup lighting"
+            ],
+            "hint": "This term is found in the title of the lesson.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1"
+  ],
+  "metadata": {
+    "created": "2026-02-26",
+    "updated": "2026-02-26",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC6"
+      ]
+    },
+    "scope": {
+      "inScope": "Principles of operation for open/closed circuits, fire, intruder, and emergency lighting systems at an introductory level.",
+      "outOfScope": "Installation procedures, wiring regulations, cable sizing, commissioning, or specific addressable system protocols.",
+      "rationale": "The lesson is a novice-level introduction focused on understanding 'what' systems do and 'how' they conceptually operate, rather than 'how' to install them."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Focus strictly on principles of operation and identification of system types and their components."
+    },
+    "misconceptions": [
+      {
+        "misconception": "An open circuit is better because it uses less power when the alarm is off.",
+        "correction": "While it uses less standby power, it is less secure because it cannot detect a broken wire without complex monitoring.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "Emergency lighting is the same as standby lighting.",
+        "correction": "Emergency lighting is for safe evacuation only; standby lighting allows normal work to continue.",
+        "relatedAC": "AC3.1"
+      },
+      {
+        "misconception": "A Tamper Circuit only works when the alarm is set.",
+        "correction": "It is a 24-hour circuit that triggers an alarm even if the main system is unset to prevent sabotage.",
+        "relatedAC": "AC3.1"
+      }
+    ],
+    "generationScore": 98,
+    "generationScoreDetails": {
+      "originalScore": 98,
+      "finalScore": 98,
+      "wasRefined": false,
+      "generatedAt": "2026-02-26T09:10:52.158Z",
+      "source": "phase10-13"
+    }
+  }
+}

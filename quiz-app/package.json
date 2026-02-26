@@ -4,10 +4,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/checkLessonRegistries.js",
     "dev": "next dev",
+    "prebuild": "node scripts/checkLessonRegistries.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "pretest": "node scripts/checkLessonRegistries.js",
     "test": "vitest",
     "test:questions-generation": "vitest run src/lib/questions/__tests__/validateAndInsert.batch.test.ts src/lib/questions/__tests__/validateAndInsert.test.ts",
     "questions:e2e": "npx tsx scripts/runQuestionGenerationE2E.ts",
