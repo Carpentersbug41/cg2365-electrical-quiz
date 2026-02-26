@@ -5,6 +5,7 @@ import { QuestionItem, SyllabusAssessmentCriteria } from '../types';
 function mkQuestion(id: string, lo: string, ac: string): QuestionItem {
   return {
     id,
+    curriculum: 'cg2365',
     generation_run_id: null,
     unit_code: '202',
     lo_code: lo,

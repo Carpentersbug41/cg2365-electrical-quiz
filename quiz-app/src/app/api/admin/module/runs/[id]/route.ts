@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { deletePlannerRun, getPlannerRunSummary, getReplayableArtifacts } from '@/lib/module_planner';
-import { guardModulePlannerAccess, toErrorResponse } from '../../_utils';
+import { assertModuleRunInScope, guardModulePlannerAccess, toErrorResponse } from '../../_utils';
 
 interface Params {
   params: Promise<{ id: string }>;
@@ -19,6 +19,8 @@ export async function GET(_request: NextRequest, context: Params) {
         { status: 400 }
       );
     }
+    const deniedScope = await assertModuleRunInScope(_request, runId);
+    if (deniedScope) return deniedScope;
     const summary = await getPlannerRunSummary(runId);
     return NextResponse.json({
       success: true,
@@ -43,6 +45,8 @@ export async function DELETE(_request: NextRequest, context: Params) {
         { status: 400 }
       );
     }
+    const deniedScope = await assertModuleRunInScope(_request, runId);
+    if (deniedScope) return deniedScope;
     await deletePlannerRun(runId);
     return NextResponse.json({ success: true, deletedRunId: runId });
   } catch (error) {

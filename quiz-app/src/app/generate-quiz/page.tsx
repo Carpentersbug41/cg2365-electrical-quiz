@@ -7,6 +7,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 interface LessonQuizStatus {
   lessonId: string;
@@ -127,7 +128,11 @@ export default function GenerateQuizPage() {
       const response = await fetch('/api/generate-quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ lessonId, regenerate }),
+        body: JSON.stringify({
+          lessonId,
+          regenerate,
+          curriculum: getCoursePrefixForClient() === '/gcse/science/physics' ? 'gcse-science-physics' : 'cg2365',
+        }),
       });
 
       const data = await response.json();

@@ -5,12 +5,16 @@
 
 import { ProgressStorage, LessonProgress } from './types';
 import { Lesson, BlockIdAliasMap } from '@/data/lessons/types';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 /**
  * Current progress version
  */
 export const CURRENT_PROGRESS_VERSION = 2;
-export const PROGRESS_STORAGE_KEY = 'cg2365-learning-progress';
+export function getProgressStorageKey(): string {
+  const prefix = getCoursePrefixForClient().replace(/\//g, '-').replace(/^-+/, '');
+  return `${prefix}-learning-progress`;
+}
 
 /**
  * Migration result
@@ -221,7 +225,8 @@ export function safeLoadProgress(): ProgressStorage {
   }
 
   try {
-    const stored = localStorage.getItem(PROGRESS_STORAGE_KEY);
+    const key = getProgressStorageKey();
+    const stored = localStorage.getItem(key);
     
     if (!stored) {
       return createDefaultStorage();
@@ -235,7 +240,7 @@ export function safeLoadProgress(): ProgressStorage {
     if (migrationResult.migrated) {
       console.log('📦 Progress data migrated:', migrationResult);
       // Save migrated data
-      localStorage.setItem(PROGRESS_STORAGE_KEY, JSON.stringify(data));
+      localStorage.setItem(key, JSON.stringify(data));
     }
 
     return data;

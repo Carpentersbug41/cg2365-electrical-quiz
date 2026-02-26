@@ -1,14 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createDefaultQuestionRun } from '@/lib/questions/generation/orchestrator';
 import { listQuestionRuns } from '@/lib/questions/bankRepo';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
+import { isUnitAllowedForScope } from '@/lib/routing/curriculumScope';
 
 export async function GET(request: NextRequest) {
   const denied = await guardQuestionAdminAccess(request);
   if (denied) return denied;
 
   try {
-    const runs = await listQuestionRuns(100);
+    const scope = getQuestionAdminScope(request);
+    const runs = (await listQuestionRuns(100)).filter((run) => isUnitAllowedForScope(run.unit_code, scope));
     return NextResponse.json({ success: true, runs });
   } catch (error) {
     return toQuestionAdminError(error);
@@ -34,6 +36,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    const scope = getQuestionAdminScope(request);
+    const deniedScope = assertUnitInQuestionScope(body.unit_code, scope);
+    if (deniedScope) return deniedScope;
 
     const run = await createDefaultQuestionRun({
       unit_code: body.unit_code,

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 
 type StageKey = 'M0' | 'M1' | 'M2' | 'M3' | 'M4' | 'M5' | 'M6';
@@ -211,6 +211,7 @@ function extractPersistedGenerationReport(payload: unknown): PersistedGeneration
 }
 
 export default function ModulePlannerPage() {
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [enabled, setEnabled] = useState<boolean | null>(null);
   const [units, setUnits] = useState<string[]>([]);
   const [unit, setUnit] = useState('');
@@ -241,6 +242,7 @@ export default function ModulePlannerPage() {
   const [populateState, setPopulateState] = useState<PopulateState>('IDLE');
   const [activeStage, setActiveStage] = useState<StageKey | null>(null);
   const [activeTaskLabel, setActiveTaskLabel] = useState<string | null>(null);
+  const [taskProgress, setTaskProgress] = useState(0);
   const [generatingBlueprintId, setGeneratingBlueprintId] = useState<string | null>(null);
   const [lessonGenerationProgress, setLessonGenerationProgress] = useState<LessonGenerationProgress | null>(null);
   const [deletingRunId, setDeletingRunId] = useState<string | null>(null);
@@ -494,6 +496,24 @@ export default function ModulePlannerPage() {
     void loadBootstrap();
   }, [loadBootstrap]);
 
+  useEffect(() => {
+    if (!loading) {
+      setTaskProgress(0);
+      return;
+    }
+
+    setTaskProgress((current) => (current > 0 ? current : 8));
+    const timer = window.setInterval(() => {
+      setTaskProgress((current) => {
+        if (current >= 92) return current;
+        const bump = current < 40 ? 6 : current < 70 ? 3 : 1;
+        return Math.min(92, current + bump);
+      });
+    }, 450);
+
+    return () => window.clearInterval(timer);
+  }, [loading, activeTaskLabel]);
+
   const handlePopulateSyllabus = async () => {
     setLoading(true);
     setActiveTaskLabel('Populating syllabus');
@@ -513,6 +533,35 @@ export default function ModulePlannerPage() {
     } catch (e) {
       setPopulateState('FAILED');
       setError(e instanceof Error ? e.message : 'Failed to populate syllabus');
+    } finally {
+      setLoading(false);
+      setActiveTaskLabel(null);
+    }
+  };
+
+  const handleClearSyllabus = async () => {
+    if (!confirm('Delete all syllabus versions for this curriculum scope and reset module runs?')) {
+      return;
+    }
+
+    setLoading(true);
+    setActiveTaskLabel('Clearing syllabus versions');
+    setError(null);
+    setInfo(null);
+    try {
+      const data = await callApi('/api/admin/module/syllabus/clear', {});
+      await loadBootstrap();
+      setRunId('');
+      setRunSummary(null);
+      setStageResults({});
+      setSyllabusVersionId('');
+      setUnits([]);
+      setUnit('');
+      setUnitLos([]);
+      setUnitStructure(null);
+      setInfo(String(data.message ?? 'Syllabus versions cleared.'));
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Failed to clear syllabus versions');
     } finally {
       setLoading(false);
       setActiveTaskLabel(null);
@@ -577,6 +626,10 @@ export default function ModulePlannerPage() {
       setLoading(false);
       setActiveTaskLabel(null);
     }
+  };
+
+  const handleChooseFile = () => {
+    fileInputRef.current?.click();
   };
 
   const handleCreateRun = async () => {
@@ -900,7 +953,27 @@ export default function ModulePlannerPage() {
             <button onClick={() => void handlePopulateSyllabus()} disabled={loading} className="rounded border border-slate-300 px-3 py-2 text-sm disabled:opacity-60">
               {populateState === 'RUNNING' ? 'Populating...' : 'Populate syllabus'}
             </button>
-            <input type="file" accept=".pdf,.docx,.txt" onChange={(e) => setUploadFile(e.target.files?.[0] ?? null)} />
+            <button
+              onClick={() => void handleClearSyllabus()}
+              disabled={loading}
+              className="rounded border border-rose-300 px-3 py-2 text-sm text-rose-700 disabled:opacity-60"
+            >
+              Clear syllabus data
+            </button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept=".pdf,.docx,.txt"
+              className="hidden"
+              onChange={(e) => setUploadFile(e.target.files?.[0] ?? null)}
+            />
+            <button
+              onClick={handleChooseFile}
+              disabled={loading}
+              className="rounded border border-slate-300 px-3 py-2 text-sm disabled:opacity-60"
+            >
+              {uploadFile ? `File: ${uploadFile.name}` : 'Choose file'}
+            </button>
             <button onClick={() => void handleUpload()} disabled={loading} className="rounded bg-slate-900 px-3 py-2 text-sm text-white disabled:opacity-60">Upload syllabus</button>
             <select className="rounded border border-slate-300 px-2 py-2" value={syllabusVersionId} onChange={(e) => void handleSyllabusVersionChange(e.target.value)}>
               <option value="">Select syllabus version</option>
@@ -909,6 +982,20 @@ export default function ModulePlannerPage() {
               ))}
             </select>
           </div>
+          {loading && (
+            <div className="rounded border border-sky-200 bg-sky-50 p-3">
+              <div className="mb-1 flex items-center justify-between text-xs text-sky-800">
+                <span>{activeTaskLabel ?? 'Working...'}</span>
+                <span>{taskProgress}%</span>
+              </div>
+              <div className="h-2 w-full overflow-hidden rounded bg-sky-100">
+                <div
+                  className="h-full rounded bg-sky-500 transition-all duration-500"
+                  style={{ width: `${taskProgress}%` }}
+                />
+              </div>
+            </div>
+          )}
           <p className="text-xs text-slate-600">
             Populate state:{' '}
             <span className={populateState === 'FAILED' ? 'text-rose-700' : 'text-slate-700'}>
@@ -1242,7 +1329,7 @@ export default function ModulePlannerPage() {
                                   </div>
                                   <div className="flex items-center gap-2">
                                     <span className="rounded bg-slate-100 px-2 py-1 text-xs">{state}</span>
-                                    {state === 'generated' || (state === 'failed' && row?.lesson_json) ? (
+                                    {(state === 'generated' || (state === 'failed' && Boolean(row?.lesson_json))) && (
                                       <button
                                         onClick={() =>
                                           setViewLessonPayload({
@@ -1254,7 +1341,8 @@ export default function ModulePlannerPage() {
                                       >
                                         View
                                       </button>
-                                    ) : state === 'generating' ? (
+                                    )}
+                                    {state === 'generating' ? (
                                       <button
                                         disabled
                                         className="rounded border border-slate-300 px-2 py-1 text-xs text-slate-500"
@@ -1267,7 +1355,11 @@ export default function ModulePlannerPage() {
                                         disabled={Boolean(generatingBlueprintId)}
                                         className="rounded bg-slate-900 px-2 py-1 text-xs text-white disabled:opacity-60"
                                       >
-                                        {generatingBlueprintId === bp.id ? 'Generating...' : 'Generate Lesson'}
+                                        {generatingBlueprintId === bp.id
+                                          ? 'Generating...'
+                                          : state === 'failed'
+                                            ? 'Regenerate'
+                                            : 'Generate Lesson'}
                                       </button>
                                     )}
                                   </div>

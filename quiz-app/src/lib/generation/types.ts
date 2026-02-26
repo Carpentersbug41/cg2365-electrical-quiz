@@ -29,7 +29,8 @@
  */
 
 export interface GenerationRequest {
-  unit: number;
+  curriculum: 'cg2365' | 'gcse-science-physics';
+  unit: number | string;
   lessonId: string;
   topic: string;
   section: string;
@@ -391,7 +392,7 @@ export interface GenerationDebugBundle {
   // Lesson metadata
   lessonMeta: {
     id: string;
-    unit?: number;
+    unit?: number | string;
     topic?: string;
     title?: string;
   };

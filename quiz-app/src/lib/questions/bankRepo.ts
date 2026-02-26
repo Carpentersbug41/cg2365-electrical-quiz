@@ -9,6 +9,12 @@ import {
   QuestionRunStepStatus,
 } from './types';
 
+type Curriculum = 'cg2365' | 'gcse-science-physics';
+
+function inferCurriculumFromUnitCode(unitCode: string): Curriculum {
+  return /^PHY-/i.test(unitCode) ? 'gcse-science-physics' : 'cg2365';
+}
+
 function requireSupabase() {
   const client = createSupabaseAdminClient();
   if (!client) {
@@ -23,10 +29,15 @@ function toStringArray(value: unknown): string[] | null {
 }
 
 function normalizeQuestionRow(row: Record<string, unknown>): QuestionItem {
+  const unitCode = String(row.unit_code);
   return {
     id: String(row.id),
+    curriculum:
+      row.curriculum === 'gcse-science-physics' || row.curriculum === 'cg2365'
+        ? row.curriculum
+        : inferCurriculumFromUnitCode(unitCode),
     generation_run_id: row.generation_run_id == null ? null : String(row.generation_run_id),
-    unit_code: String(row.unit_code),
+    unit_code: unitCode,
     lo_code: row.lo_code == null ? null : String(row.lo_code),
     ac_code: row.ac_code == null ? null : String(row.ac_code),
     level: Number(row.level),
@@ -51,9 +62,14 @@ function normalizeQuestionRow(row: Record<string, unknown>): QuestionItem {
 }
 
 function normalizeRunRow(row: Record<string, unknown>): QuestionGenerationRun {
+  const unitCode = String(row.unit_code);
   return {
     id: String(row.id),
-    unit_code: String(row.unit_code),
+    curriculum:
+      row.curriculum === 'gcse-science-physics' || row.curriculum === 'cg2365'
+        ? row.curriculum
+        : inferCurriculumFromUnitCode(unitCode),
+    unit_code: unitCode,
     level: Number(row.level) as 2 | 3,
     lo_codes: toStringArray(row.lo_codes),
     target_count: Number(row.target_count),
@@ -103,6 +119,7 @@ export async function createQuestionRun(input: {
   const { data, error } = await supabase
     .from('question_generation_runs')
     .insert({
+      curriculum: inferCurriculumFromUnitCode(input.unit_code),
       unit_code: input.unit_code,
       level: input.level,
       lo_codes: input.lo_codes,
@@ -183,6 +200,7 @@ export async function insertDraftQuestions(inputs: GeneratedQuestionDraftInput[]
   if (inputs.length === 0) return [];
   const supabase = requireSupabase();
   const payload = inputs.map((item) => ({
+    curriculum: item.curriculum ?? inferCurriculumFromUnitCode(item.unit_code),
     generation_run_id: item.generation_run_id,
     unit_code: item.unit_code,
     lo_code: item.lo_code,
@@ -253,14 +271,19 @@ export async function updateQuestionById(
       | 'level'
       | 'hash'
       | 'version'
+      | 'curriculum'
     >
   >
 ): Promise<QuestionItem> {
   const supabase = requireSupabase();
+  const nextPatch = {
+    ...patch,
+    ...(patch.unit_code ? { curriculum: inferCurriculumFromUnitCode(patch.unit_code) } : {}),
+  };
   const { data, error } = await supabase
     .from('question_items')
     .update({
-      ...patch,
+      ...nextPatch,
       updated_at: new Date().toISOString(),
     })
     .eq('id', questionId)

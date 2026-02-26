@@ -32,6 +32,7 @@ import { ValidationService } from './validationService';
 import { StrictLintService, type LintFailure } from './strictLintService';
 import { SequentialLessonGenerator } from './SequentialLessonGenerator';
 import { GenerationRequest, Lesson, QuizQuestion, DebugInfo } from './types';
+import type { CurriculumScope } from '@/lib/routing/curriculumScope';
 import {
   generateLessonFilename,
   generateQuizFilename,
@@ -754,7 +755,8 @@ OUTPUT FORMAT: Pure JSON only`;
   async generateQuizFromLesson(
     lessonId: string,
     lesson: Lesson,
-    section: string
+    section: string,
+    curriculum: CurriculumScope = 'cg2365'
   ): Promise<{ success: boolean; questions: QuizQuestion[]; error?: string; debugInfo?: DebugInfo }> {
     try {
       // Extract lesson info
@@ -763,6 +765,7 @@ OUTPUT FORMAT: Pure JSON only`;
       
       // Create a minimal generation request from lesson data
       const request: GenerationRequest = {
+        curriculum,
         unit,
         lessonId: lessonIdPart,
         topic: lesson.topic || lesson.title,

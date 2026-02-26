@@ -6,6 +6,12 @@
 import { getCumulativeQuestions, getCumulativeQuizMetadata } from '@/lib/questions/cumulativeQuestions';
 import { getLessonById, unitMetadata } from '@/data/lessons/lessonIndex';
 import { TaggedQuestion } from '@/data/questions/types';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
+
+function getDiagnosticKey(lessonId: string): string {
+  const prefix = getCoursePrefixForClient().replace(/\//g, '-').replace(/^-+/, '');
+  return `${prefix}-diagnostic-pass-${lessonId}`;
+}
 
 /**
  * Get diagnostic questions for a lesson
@@ -63,7 +69,7 @@ export function checkDiagnosticPass(lessonId: string): boolean {
     return false; // SSR - assume not passed
   }
   
-  const key = `diagnostic-pass-${lessonId}`;
+  const key = getDiagnosticKey(lessonId);
   const value = localStorage.getItem(key);
   
   return value === 'true';
@@ -78,7 +84,7 @@ export function saveDiagnosticPass(lessonId: string): void {
     return; // SSR - can't save
   }
   
-  const key = `diagnostic-pass-${lessonId}`;
+  const key = getDiagnosticKey(lessonId);
   localStorage.setItem(key, 'true');
 }
 
@@ -90,7 +96,7 @@ export function clearDiagnosticPass(lessonId: string): void {
     return;
   }
   
-  const key = `diagnostic-pass-${lessonId}`;
+  const key = getDiagnosticKey(lessonId);
   localStorage.removeItem(key);
 }
 
@@ -105,11 +111,14 @@ export function getAllDiagnosticPassStatuses(): Record<string, boolean> {
   
   const statuses: Record<string, boolean> = {};
   
-  // Scan localStorage for diagnostic pass keys
+  const prefix = getCoursePrefixForClient().replace(/\//g, '-').replace(/^-+/, '');
+  const keyPrefix = `${prefix}-diagnostic-pass-`;
+
+  // Scan localStorage for diagnostic pass keys in current curriculum only
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key?.startsWith('diagnostic-pass-')) {
-      const lessonId = key.replace('diagnostic-pass-', '');
+    if (key?.startsWith(keyPrefix)) {
+      const lessonId = key.replace(keyPrefix, '');
       statuses[lessonId] = localStorage.getItem(key) === 'true';
     }
   }

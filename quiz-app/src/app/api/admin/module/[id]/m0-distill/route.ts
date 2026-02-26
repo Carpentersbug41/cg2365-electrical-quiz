@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DistillInput, runM0Distill } from '@/lib/module_planner';
-import { guardModulePlannerAccess, toErrorResponse } from '../../_utils';
+import { assertModuleRunInScope, guardModulePlannerAccess, toErrorResponse } from '../../_utils';
 
 interface Params {
   params: Promise<{ id: string }>;
@@ -12,6 +12,8 @@ export async function POST(request: NextRequest, context: Params) {
 
   try {
     const { id } = await context.params;
+    const deniedScope = await assertModuleRunInScope(request, id);
+    if (deniedScope) return deniedScope;
     const body = (await request.json()) as DistillInput & { replayFromArtifacts?: boolean };
     const result = await runM0Distill(id, body, { replayFromArtifacts: body.replayFromArtifacts });
     return NextResponse.json({

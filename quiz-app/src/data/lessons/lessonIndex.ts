@@ -585,7 +585,18 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('210-2A'),
     available: true,
     order: 3,
-  },];
+  },  {
+    id: 'PHY-4-1A',
+    title: 'Introduction to Waves',
+    unit: 'Unit PHY-4',
+    unitNumber: 'PHY-4',
+    topic: 'Introduction to Waves',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('PHY-4-1A'),
+    available: true,
+    order: 1,
+  },
+];
 
 /**
  * Get lessons grouped by unit

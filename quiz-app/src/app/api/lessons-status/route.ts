@@ -4,12 +4,22 @@
  */
 
 import { NextResponse } from 'next/server';
-import { getAllLessonQuizStatuses, getQuizCoverageStats } from '@/lib/generation/lessonDetector';
+import { getAllLessonQuizStatuses } from '@/lib/generation/lessonDetector';
+import { getCurriculumScopeFromReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const lessons = getAllLessonQuizStatuses();
-    const stats = getQuizCoverageStats();
+    const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
+    const lessons = getAllLessonQuizStatuses().filter((lesson) =>
+      isLessonIdAllowedForScope(lesson.lessonId, scope)
+    );
+    const stats = {
+      total: lessons.length,
+      complete: lessons.filter((s) => s.questionCount >= 50).length,
+      partial: lessons.filter((s) => s.questionCount > 0 && s.questionCount < 50).length,
+      missing: lessons.filter((s) => s.questionCount === 0).length,
+      needsWork: lessons.filter((s) => s.questionCount < 30).length,
+    };
 
     return NextResponse.json({
       success: true,

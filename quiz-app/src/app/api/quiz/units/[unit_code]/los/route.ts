@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { listApprovedQuestionCountsByLo } from '@/lib/questions/bankRepo';
 import { getSyllabusUnit } from '@/lib/questions/syllabusRepo';
+import { getCurriculumScopeFromReferer, isUnitAllowedForScope } from '@/lib/routing/curriculumScope';
 
 interface Params {
   params: Promise<{ unit_code: string }>;
@@ -8,7 +9,12 @@ interface Params {
 
 export async function GET(_request: NextRequest, context: Params) {
   try {
+    const scope = getCurriculumScopeFromReferer(_request.headers.get('referer'));
     const { unit_code } = await context.params;
+    if (!isUnitAllowedForScope(unit_code, scope)) {
+      return NextResponse.json({ error: `Unit ${unit_code} is not available for this curriculum.` }, { status: 403 });
+    }
+
     const unit = await getSyllabusUnit(unit_code);
     if (!unit) {
       return NextResponse.json({ error: `Unknown unit ${unit_code}.` }, { status: 404 });

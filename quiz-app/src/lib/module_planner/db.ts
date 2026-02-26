@@ -40,6 +40,10 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
+function normalizeCurriculum(value: unknown): 'cg2365' | 'gcse-science-physics' {
+  return value === 'gcse-science-physics' ? 'gcse-science-physics' : 'cg2365';
+}
+
 function createId(): string {
   if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
   return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
@@ -61,6 +65,7 @@ function normalizeRunRow(row: Record<string, unknown>): ModuleRunRow {
   return {
     id: String(row.id),
     created_at: String(row.created_at),
+    curriculum: normalizeCurriculum(row.curriculum),
     syllabus_version_id: String(row.syllabus_version_id ?? ''),
     unit: String(row.unit),
     selected_los_json: Array.isArray(row.selected_los_json) ? row.selected_los_json.map((v) => String(v)) : [],
@@ -105,6 +110,7 @@ function normalizeLessonRow(row: Record<string, unknown>): ModuleRunLessonRow {
 function normalizeVersionRow(row: Record<string, unknown>): SyllabusVersionRow {
   return {
     id: String(row.id),
+    curriculum: normalizeCurriculum(row.curriculum),
     filename: String(row.filename),
     content_hash: String(row.content_hash),
     created_at: String(row.created_at),
@@ -158,6 +164,7 @@ function normalizeStructureRow(row: Record<string, unknown>): SyllabusStructureR
 
 export async function createModuleRun(input: {
   syllabusVersionId: string;
+  curriculum?: 'cg2365' | 'gcse-science-physics';
   unit: string;
   selectedLos: string[];
   constraints: ModuleConstraints | null;
@@ -168,6 +175,7 @@ export async function createModuleRun(input: {
   const row: ModuleRunRow = {
     id: createId(),
     created_at: nowIso(),
+    curriculum: normalizeCurriculum(input.curriculum),
     syllabus_version_id: input.syllabusVersionId,
     unit: input.unit,
     selected_los_json: input.selectedLos,
@@ -434,10 +442,12 @@ export async function getRunSummary(runId: string): Promise<ModuleRunSummary | n
 export async function createSyllabusVersion(input: {
   filename: string;
   contentHash: string;
+  curriculum?: 'cg2365' | 'gcse-science-physics';
   metaJson?: Record<string, unknown>;
 }): Promise<SyllabusVersionRow> {
   const row: SyllabusVersionRow = {
     id: createId(),
+    curriculum: normalizeCurriculum(input.curriculum ?? input.metaJson?.curriculum),
     filename: input.filename,
     content_hash: input.contentHash,
     created_at: nowIso(),
@@ -476,6 +486,48 @@ export async function listSyllabusVersions(): Promise<SyllabusVersionRow[]> {
   const { data, error } = await supabase.from('syllabus_versions').select('*').order('created_at', { ascending: false });
   if (error) throw new Error(error.message);
   return (data ?? []).map((row) => normalizeVersionRow(row as Record<string, unknown>));
+}
+
+export async function deleteModuleRunsBySyllabusVersionIds(versionIds: string[]): Promise<void> {
+  if (versionIds.length === 0) return;
+  const idSet = new Set(versionIds);
+
+  if (useMemoryDb()) {
+    const runIdsToDelete = new Set(
+      memoryDb.module_runs
+        .filter((row) => idSet.has(row.syllabus_version_id))
+        .map((row) => row.id)
+    );
+    memoryDb.module_runs = memoryDb.module_runs.filter((row) => !runIdsToDelete.has(row.id));
+    memoryDb.module_run_artifacts = memoryDb.module_run_artifacts.filter((row) => !runIdsToDelete.has(row.run_id));
+    memoryDb.generated_lessons = memoryDb.generated_lessons.filter((row) => !runIdsToDelete.has(row.run_id));
+    return;
+  }
+
+  const supabase = requireSupabase();
+  const { error } = await supabase.from('module_runs').delete().in('syllabus_version_id', versionIds);
+  if (error) throw new Error(error.message);
+}
+
+export async function deleteSyllabusVersionsByIds(versionIds: string[]): Promise<void> {
+  if (versionIds.length === 0) return;
+  const idSet = new Set(versionIds);
+
+  if (useMemoryDb()) {
+    memoryDb.syllabus_versions = memoryDb.syllabus_versions.filter((row) => !idSet.has(row.id));
+    memoryDb.syllabus_chunks = memoryDb.syllabus_chunks.filter((row) => !idSet.has(row.syllabus_version_id));
+    memoryDb.syllabus_structure = memoryDb.syllabus_structure.filter((row) => !idSet.has(row.syllabus_version_id));
+    memoryDb.syllabus_ingestions = memoryDb.syllabus_ingestions.map((row) =>
+      row.syllabus_version_id && idSet.has(row.syllabus_version_id)
+        ? { ...row, syllabus_version_id: null }
+        : row
+    );
+    return;
+  }
+
+  const supabase = requireSupabase();
+  const { error } = await supabase.from('syllabus_versions').delete().in('id', versionIds);
+  if (error) throw new Error(error.message);
 }
 
 export async function getSyllabusVersionById(id: string): Promise<SyllabusVersionRow | null> {

@@ -15,6 +15,7 @@ vi.mock('../bankRepo', () => ({
 function makeRun(): QuestionGenerationRun {
   return {
     id: 'run-batch-test',
+    curriculum: 'cg2365',
     unit_code: '203',
     level: 2,
     lo_codes: ['LO6'],
@@ -44,6 +45,7 @@ function makeBlueprint(index: number): QuestionBlueprint {
 function toInsertedQuestion(input: GeneratedQuestionDraftInput, index: number): QuestionItem {
   return {
     id: `q-${index + 1}`,
+    curriculum: input.curriculum ?? 'cg2365',
     generation_run_id: input.generation_run_id,
     unit_code: input.unit_code,
     lo_code: input.lo_code,

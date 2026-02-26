@@ -55,10 +55,12 @@ import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it
 import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
 import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
 import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
+import lessonPHY_4_1A from '@/data/lessons/PHY-4-1A-introduction-to-waves.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 import { courseHref } from '@/lib/routing/courseHref';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 /**
  * Natural sort function for lesson IDs
@@ -99,6 +101,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lessonPHY_4_1A,
   lesson203_3L1A,
   lesson202_5B,
   lesson202_4D,
@@ -220,15 +223,20 @@ const getUnitColors = (lessonId: string) => {
 
 export default function LearnPage() {
   const [lessonsProgress, setLessonsProgress] = useState<Record<string, QuizProgress | null>>({});
+  const coursePrefix = getCoursePrefixForClient();
+  const isGcsePhysics = coursePrefix === '/gcse/science/physics';
+  const visibleLessons = isGcsePhysics
+    ? LESSONS.filter((lesson) => lesson.id.toUpperCase().startsWith('PHY-'))
+    : LESSONS;
 
   useEffect(() => {
     // Load progress for all lessons
     const progress: Record<string, QuizProgress | null> = {};
-    LESSONS.forEach(lesson => {
+    visibleLessons.forEach(lesson => {
       progress[lesson.id] = getQuizProgress(`${lesson.id}-quiz`);
     });
     setLessonsProgress(progress);
-  }, []);
+  }, [coursePrefix]);
 
   const unitMeta: Record<string, { title: string; description: string }> = {
     '201': {
@@ -236,8 +244,10 @@ export default function LearnPage() {
       description: 'Essential health and safety legislation for electrical installations',
     },
     '202': {
-      title: 'Unit 202 - Science',
-      description: 'Fundamental electrical principles and circuit theory',
+      title: isGcsePhysics ? 'GCSE Science - Physics' : 'Unit 202 - Science',
+      description: isGcsePhysics
+        ? 'Core GCSE Physics concepts and calculations'
+        : 'Fundamental electrical principles and circuit theory',
     },
     '203': {
       title: 'Unit 203 - Electrical Installations Technology',
@@ -254,7 +264,7 @@ export default function LearnPage() {
   };
 
   const unitsToRender = Array.from(
-    new Set(LESSONS.map((lesson) => lesson.id.split('-')[0]))
+    new Set(visibleLessons.map((lesson) => lesson.id.split('-')[0]))
   ).sort((a, b) => Number(a) - Number(b));
 
   return (
@@ -265,10 +275,12 @@ export default function LearnPage() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Learning Modules</h1>
-              <p className="text-gray-600 dark:text-slate-300 mt-1">Select a lesson to start learning</p>
+              <p className="text-gray-600 dark:text-slate-300 mt-1">
+                {isGcsePhysics ? 'GCSE Physics pathway' : 'Select a lesson to start learning'}
+              </p>
             </div>
             <Link
-              href="/"
+              href={courseHref('/')}
               className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
             >
               ← Home
@@ -284,8 +296,19 @@ export default function LearnPage() {
           <ReviewDashboard />
         </div>
 
+        {isGcsePhysics && visibleLessons.length === 0 && (
+          <div className="mb-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-amber-200 dark:border-amber-800 p-6">
+            <h2 className="text-xl font-semibold text-amber-800 dark:text-amber-300">
+              GCSE Physics lessons not loaded yet
+            </h2>
+            <p className="mt-2 text-gray-700 dark:text-slate-300">
+              This route is isolated from 2365 on purpose. Upload GCSE Physics syllabus and lesson data to show content here.
+            </p>
+          </div>
+        )}
+
         {unitsToRender.map((unitId) => {
-          const unitLessons = LESSONS.filter((lesson) => lesson.id.startsWith(`${unitId}-`));
+          const unitLessons = visibleLessons.filter((lesson) => lesson.id.startsWith(`${unitId}-`));
           if (unitLessons.length === 0) return null;
 
           const unitFirstLessonColors = getUnitColors(unitLessons[0].id);
@@ -378,7 +401,7 @@ export default function LearnPage() {
         })}
 
         {/* Interleaved Quiz Section */}
-        <div className="mt-12">
+        {!isGcsePhysics && <div className="mt-12">
           <div className="mb-6">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
               Mastery Assessment
@@ -440,7 +463,7 @@ export default function LearnPage() {
               </div>
             </div>
           </Link>
-        </div>
+        </div>}
 
         {/* Coming Soon Placeholder */}
         <div className="mt-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-dashed border-gray-300 dark:border-slate-600 p-8 text-center">

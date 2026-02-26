@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { courseHref } from '@/lib/routing/courseHref';
 
 type AdminLink = {
   title: string;
@@ -98,6 +99,9 @@ function LinkGrid({ title, subtitle, items }: { title: string; subtitle: string;
 }
 
 export default function AdminHomePage() {
+  const withPrefix = (links: AdminLink[]): AdminLink[] =>
+    links.map((link) => ({ ...link, href: link.href.startsWith('/api') ? link.href : courseHref(link.href) }));
+
   return (
     <main
       className="min-h-screen bg-[#f1f6ff] px-6 py-10"
@@ -119,13 +123,13 @@ export default function AdminHomePage() {
         <LinkGrid
           title="Workspace Tools"
           subtitle="Primary admin workflows for planning, curation, and game content."
-          items={workspaceLinks}
+          items={withPrefix(workspaceLinks)}
         />
 
         <LinkGrid
           title="Generation Tools"
           subtitle="Direct generation utilities for lessons, quizzes, and debug flows."
-          items={generatorLinks}
+          items={withPrefix(generatorLinks)}
         />
 
         <LinkGrid

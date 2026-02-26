@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createPlannerRun, listModulePlannerRuns, listModulePlannerUnitLos, listModulePlannerUnits } from '@/lib/module_planner';
-import { guardModulePlannerAccess, toErrorResponse } from '../_utils';
+import { getModulePlannerScope, guardModulePlannerAccess, isSyllabusVersionInScope, toErrorResponse } from '../_utils';
 import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 import { getLatestSyllabusIngestion, getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 
@@ -9,7 +9,8 @@ export async function GET(request: NextRequest) {
   if (denied) return denied;
 
   try {
-    const versions = await listSyllabusVersions();
+    const scope = getModulePlannerScope(request);
+    const versions = (await listSyllabusVersions()).filter((version) => isSyllabusVersionInScope(version, scope));
     const requestedVersionId = request.nextUrl.searchParams.get('syllabusVersionId')?.trim() ?? '';
     const selectedVersionId =
       (requestedVersionId && versions.some((version) => version.id === requestedVersionId)
@@ -27,7 +28,10 @@ export async function GET(request: NextRequest) {
         ? await getSyllabusStructureByVersionAndUnit(selectedVersionId, resolvedUnit)
         : null;
     const latestIngestion = await getLatestSyllabusIngestion();
-    const recentRuns = await listModulePlannerRuns(100);
+    const allowedVersionIds = new Set(versions.map((version) => version.id));
+    const recentRuns = (await listModulePlannerRuns(100)).filter((run) =>
+      allowedVersionIds.has(run.syllabus_version_id)
+    );
 
     return NextResponse.json({
       success: true,
@@ -56,10 +60,19 @@ export async function POST(request: NextRequest) {
   if (denied) return denied;
 
   try {
+    const scope = getModulePlannerScope(request);
     const body = (await request.json()) as { syllabusVersionId?: string; unit?: string; chatTranscript?: string };
     if (!body.unit || !body.syllabusVersionId) {
       return NextResponse.json(
         { success: false, code: 'JSON_SCHEMA_FAIL', message: 'syllabusVersionId and unit are required' },
+        { status: 400 }
+      );
+    }
+    const versions = (await listSyllabusVersions()).filter((version) => isSyllabusVersionInScope(version, scope));
+    const allowedVersionIds = new Set(versions.map((version) => version.id));
+    if (!allowedVersionIds.has(body.syllabusVersionId)) {
+      return NextResponse.json(
+        { success: false, code: 'JSON_SCHEMA_FAIL', message: 'syllabusVersionId is not in current curriculum scope' },
         { status: 400 }
       );
     }

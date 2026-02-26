@@ -1,16 +1,18 @@
 import { NextResponse } from 'next/server';
 import { listApprovedQuestionCountsByUnit } from '@/lib/questions/bankRepo';
 import { getLatestSyllabusUnits } from '@/lib/questions/syllabusRepo';
+import { getCurriculumScopeFromReferer, isUnitAllowedForScope } from '@/lib/routing/curriculumScope';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
+    const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
     const [units, approvedRows] = await Promise.all([
       getLatestSyllabusUnits(),
       listApprovedQuestionCountsByUnit(),
     ]);
 
     const countsByUnit = new Map<string, { total: number; by_level: Record<string, number> }>();
-    for (const row of approvedRows) {
+    for (const row of approvedRows.filter((row) => isUnitAllowedForScope(row.unit_code, scope))) {
       const entry = countsByUnit.get(row.unit_code) ?? { total: 0, by_level: { '2': 0, '3': 0 } };
       entry.total += 1;
       entry.by_level[String(row.level)] = (entry.by_level[String(row.level)] ?? 0) + 1;
@@ -18,7 +20,7 @@ export async function GET() {
     }
 
     return NextResponse.json({
-      units: units.map((unit) => {
+      units: units.filter((unit) => isUnitAllowedForScope(unit.unit_code, scope)).map((unit) => {
         const counts = countsByUnit.get(unit.unit_code) ?? { total: 0, by_level: { '2': 0, '3': 0 } };
         return {
           unit_code: unit.unit_code,

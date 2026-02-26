@@ -86,11 +86,13 @@ import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './coo
 import { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
 import { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
 import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
+import { introductionToWavesQuestions } from './introductionToWavesQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...introductionToWavesQuestions,
   ...alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions,
   ...acGenerationAndSineWavesQuestions,
   ...powerAndEffectsOfElectricCurrentQuestions,
@@ -260,6 +262,7 @@ export { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './coo
 export { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfElectricCurrentQuestions';
 export { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
 export { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
+export { introductionToWavesQuestions } from './introductionToWavesQuestions';
 
 /**
  * Filter questions by tags

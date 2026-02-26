@@ -12,11 +12,10 @@ import {
 } from './types';
 import { 
   safeLoadProgress, 
-  PROGRESS_STORAGE_KEY,
+  getProgressStorageKey,
   CURRENT_PROGRESS_VERSION 
 } from './migrationService';
 
-const STORAGE_KEY = PROGRESS_STORAGE_KEY;
 const STORAGE_VERSION = `${CURRENT_PROGRESS_VERSION}.0`;
 
 /**
@@ -34,7 +33,7 @@ export function saveProgressStorage(data: ProgressStorage): void {
 
   try {
     data.lastSynced = new Date();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(getProgressStorageKey(), JSON.stringify(data));
   } catch (error) {
     console.error('Failed to save progress data:', error);
   }
@@ -304,7 +303,7 @@ export function getLearningPathProgress(pathId: string = 'unit-202'): LearningPa
  */
 export function clearAllProgress(): void {
   if (typeof window === 'undefined') return;
-  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(getProgressStorageKey());
 }
 
 /**
@@ -328,7 +327,6 @@ export function importProgress(jsonData: string): boolean {
     return false;
   }
 }
-
 
 
 

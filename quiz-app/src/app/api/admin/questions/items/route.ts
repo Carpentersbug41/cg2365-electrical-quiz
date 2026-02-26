@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { listQuestionsByScope } from '@/lib/questions/bankRepo';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
 
 export async function GET(request: NextRequest) {
   const denied = await guardQuestionAdminAccess(request);
@@ -21,6 +21,9 @@ export async function GET(request: NextRequest) {
         { status: 400 }
       );
     }
+    const scope = getQuestionAdminScope(request);
+    const deniedScope = assertUnitInQuestionScope(unitCode, scope);
+    if (deniedScope) return deniedScope;
 
     const loCodes = loCodesRaw
       .split(',')

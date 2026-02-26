@@ -9,6 +9,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import { DebugPanel } from '@/components/generate/DebugPanel';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 interface GenerationForm {
   unit: number;
@@ -386,6 +387,7 @@ export default function GeneratePage() {
     try {
       // Prepare request
       const request = {
+        curriculum: getCoursePrefixForClient() === '/gcse/science/physics' ? 'gcse-science-physics' : 'cg2365',
         unit: form.unit,
         lessonId: form.lessonId,
         topic: form.topic,

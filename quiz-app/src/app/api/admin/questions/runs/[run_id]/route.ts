@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getQuestionRun, listRunDrafts, listRunSteps } from '@/lib/questions/bankRepo';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
 
 interface Params {
   params: Promise<{ run_id: string }>;
@@ -16,6 +16,9 @@ export async function GET(request: NextRequest, context: Params) {
     if (!run) {
       return NextResponse.json({ success: false, message: `Run not found: ${run_id}` }, { status: 404 });
     }
+    const scope = getQuestionAdminScope(request);
+    const deniedScope = assertUnitInQuestionScope(run.unit_code, scope);
+    if (deniedScope) return NextResponse.json({ success: false, message: `Run not found: ${run_id}` }, { status: 404 });
     const [steps, drafts] = await Promise.all([listRunSteps(run_id), listRunDrafts(run_id)]);
     return NextResponse.json({
       success: true,

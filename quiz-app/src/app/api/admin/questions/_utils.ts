@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { isAdminRequest } from '@/lib/auth/roles';
+import { getCurriculumScopeFromReferer, isUnitAllowedForScope, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import { getQuestionById } from '@/lib/questions/bankRepo';
 
 function getTokenFromRequest(request: NextRequest | Request): string | null {
   const direct = request.headers.get('x-question-admin-token');
@@ -45,4 +47,36 @@ export function toQuestionAdminError(error: unknown): NextResponse {
     },
     { status: 500 }
   );
+}
+
+export function getQuestionAdminScope(request: NextRequest | Request): CurriculumScope {
+  return getCurriculumScopeFromReferer(request.headers.get('referer'));
+}
+
+export function assertUnitInQuestionScope(unitCode: string, scope: CurriculumScope): NextResponse | null {
+  if (!isUnitAllowedForScope(unitCode, scope)) {
+    return NextResponse.json(
+      { success: false, code: 'FORBIDDEN_SCOPE', message: 'Unit is not allowed in current curriculum scope.' },
+      { status: 403 }
+    );
+  }
+  return null;
+}
+
+export async function assertQuestionIdInScope(
+  questionId: string,
+  scope: CurriculumScope
+): Promise<{ denied: NextResponse | null; questionUnitCode: string | null }> {
+  const question = await getQuestionById(questionId);
+  if (!question) {
+    return { denied: NextResponse.json({ success: false, message: `Question not found: ${questionId}` }, { status: 404 }), questionUnitCode: null };
+  }
+  const denied = assertUnitInQuestionScope(question.unit_code, scope);
+  if (denied) {
+    return {
+      denied: NextResponse.json({ success: false, message: `Question not found: ${questionId}` }, { status: 404 }),
+      questionUnitCode: question.unit_code,
+    };
+  }
+  return { denied: null, questionUnitCode: question.unit_code };
 }

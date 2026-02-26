@@ -7,6 +7,7 @@ import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, BLOOM_LEVELS, COGNITIVE_LE
 import { GenerationRequest } from './types';
 import { inferLayout } from './utils';
 import { classifyLessonTask, requiresWorkedExample, getTaskContext } from './taskClassifier';
+import { getCurriculumPromptProfile } from './curriculumPromptProfile';
 import fs from 'fs';
 import path from 'path';
 
@@ -145,7 +146,7 @@ export class LessonPromptBuilder {
    * Build system prompt with templates and rules
    */
   private buildSystemPrompt(lessonId: string, layout: 'split-vis' | 'linear-flow' | 'focus-mode'): string {
-    return `You are an expert lesson designer for C&G 2365 Electrical Training courses.
+    return `You are an expert lesson designer for curriculum-specific technical training courses.
 
 OBJECTIVE: Generate complete, production-ready lesson JSON following the structure below.
 
@@ -709,6 +710,7 @@ OUTPUT FORMAT:
    * Build user prompt with specific lesson requirements
    */
   private buildUserPrompt(request: GenerationRequest, layout: 'split-vis' | 'linear-flow' | 'focus-mode'): string {
+    const profile = getCurriculumPromptProfile(request);
     const fullLessonId = `${request.unit}-${request.lessonId}`;
     const prereqsList = request.prerequisites && request.prerequisites.length > 0
       ? request.prerequisites.join(', ')
@@ -756,6 +758,7 @@ LESSON DETAILS:
 - ID: ${fullLessonId}
 - Topic: ${request.topic}
 - Section: ${request.section}
+- Curriculum: ${profile.programLabel}
 - Layout: ${layout}
 - Unit: Unit ${request.unit}
 - Prerequisites: ${prereqsList}
@@ -784,7 +787,7 @@ SPACED REVIEW QUALITY STANDARDS:
 TOPIC CONTEXT:
 ${this.getTopicContext(request.topic, request.section, request.mustHaveTopics)}${mustHaveSection}${additionalInstructionsSection}${youtubeUrlSection}${imageUrlSection}${prerequisiteAnchorsSection}${masterBlueprintSection}
 
-Generate the complete lesson JSON now. Remember: ONLY JSON, no markdown, no explanations.`;
+Generate the complete lesson JSON now for ${profile.learnerLabel}. Remember: ONLY JSON, no markdown, no explanations.`;
   }
   
   /**

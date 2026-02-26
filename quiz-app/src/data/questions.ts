@@ -94,6 +94,7 @@ import { cookerCircuitsNoobWhatItIsBasicPathAndProtectionQuestions } from './que
 import { powerAndEffectsOfElectricCurrentQuestions } from './questions/powerAndEffectsOfElectricCurrentQuestions';
 import { acGenerationAndSineWavesQuestions } from './questions/acGenerationAndSineWavesQuestions';
 import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './questions/alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
+import { introductionToWavesQuestions } from './questions/introductionToWavesQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -180,6 +181,7 @@ export const questions: Question[] = [
   ...powerAndEffectsOfElectricCurrentQuestions,
   ...acGenerationAndSineWavesQuestions,
   ...alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions,
+  ...introductionToWavesQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

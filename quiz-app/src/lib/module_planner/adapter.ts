@@ -74,7 +74,8 @@ const SECTION_BY_UNIT: Record<string, string> = {
 };
 
 interface ExistingLessonRequestPayload {
-  unit: number;
+  unit: number | string;
+  curriculum: 'cg2365' | 'gcse-science-physics';
   lessonId: string;
   topic: string;
   section: string;
@@ -85,16 +86,27 @@ interface ExistingLessonRequestPayload {
   masterLessonBlueprint?: LessonBlueprint['masterBlueprint'];
 }
 
+function inferCurriculumFromUnit(unit: string): 'cg2365' | 'gcse-science-physics' {
+  return /^phy-/i.test(unit.trim()) ? 'gcse-science-physics' : 'cg2365';
+}
+
 function toExistingLessonRequestPayload(blueprint: LessonBlueprint): ExistingLessonRequestPayload {
   const lessonId = blueprint.id.startsWith(`${blueprint.unit}-`)
     ? blueprint.id.slice(`${blueprint.unit}-`.length)
     : blueprint.id;
+  const curriculum = inferCurriculumFromUnit(blueprint.unit);
+  const numericUnit = Number.parseInt(blueprint.unit, 10);
+  const normalizedUnit = Number.isFinite(numericUnit) ? numericUnit : blueprint.unit;
+  const section =
+    SECTION_BY_UNIT[blueprint.unit] ??
+    (curriculum === 'gcse-science-physics' ? 'GCSE Science Physics' : `Unit ${blueprint.unit}`);
 
   return {
-    unit: Number.parseInt(blueprint.unit, 10),
+    unit: normalizedUnit,
+    curriculum,
     lessonId,
     topic: blueprint.topic,
-    section: SECTION_BY_UNIT[blueprint.unit] ?? `Unit ${blueprint.unit}`,
+    section,
     layout: blueprint.layout,
     prerequisites: blueprint.prerequisites,
     mustHaveTopics: blueprint.mustHaveTopics.join('; '),
@@ -153,9 +165,6 @@ export async function generateLessonFromBlueprint(
   options?: BlueprintGenerationOptions
 ): Promise<BlueprintGenerationResult> {
   const payload = toExistingLessonRequestPayload(blueprint);
-  if (!Number.isFinite(payload.unit)) {
-    throw new Error(`Invalid numeric unit in blueprint: ${blueprint.unit}`);
-  }
 
   const baseUrl = resolveApiBaseUrl(options);
   const response = await fetchLessonGeneratorWithRetry(`${baseUrl}/api/lesson-generator`, {
@@ -198,7 +207,7 @@ export async function generateLessonFromBlueprint(
   }
 
   return {
-    lessonId: `${payload.unit}-${payload.lessonId}`,
+    lessonId: `${blueprint.unit}-${payload.lessonId}`,
     response: parsed,
   };
 }

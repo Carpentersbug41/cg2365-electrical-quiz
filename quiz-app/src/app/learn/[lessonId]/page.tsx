@@ -5,11 +5,13 @@
  */
 
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import { Lesson } from '@/data/lessons/types';
 import LayoutA from '@/components/learning/layouts/LayoutA';
 import LayoutB from '@/components/learning/layouts/LayoutB';
 import DiagnosticGate from '@/components/learning/DiagnosticGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
+import { getCoursePrefixFromHeader } from '@/lib/routing/curricula';
 
 // Import lesson data
 import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
@@ -60,9 +62,11 @@ import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it
 import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
 import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
 import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
+import lessonPHY_4_1A from '@/data/lessons/PHY-4-1A-introduction-to-waves.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  'PHY-4-1A': lessonPHY_4_1A as Lesson,
   '203-3L1A': lesson203_3L1A as Lesson,
   '202-5B': lesson202_5B as Lesson,
   '202-4D': lesson202_4D as Lesson,
@@ -152,6 +156,9 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps) {
   const { lessonId } = await params;
   const lesson = LESSONS[lessonId];
+  const requestHeaders = await headers();
+  const coursePrefix = getCoursePrefixFromHeader(requestHeaders.get('x-course-prefix'));
+  const suffix = coursePrefix === '/gcse/science/physics' ? 'GCSE Physics Learning' : 'C&G 2365 Learning';
 
   if (!lesson) {
     return {
@@ -160,7 +167,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return {
-    title: `${decodeHtmlEntities(lesson.title)} | C&G 2365 Learning`,
+    title: `${decodeHtmlEntities(lesson.title)} | ${suffix}`,
     description: decodeHtmlEntities(lesson.description),
   };
 }

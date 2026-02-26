@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type { EmailOtpType } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { DEFAULT_COURSE_PREFIX } from '@/lib/routing/curricula';
 
 function isSafeRedirect(value: string | null): value is string {
   return typeof value === 'string' && value.startsWith('/');
@@ -25,7 +26,7 @@ function AuthCallbackContent() {
       const tokenHash = searchParams.get('token_hash');
       const type = searchParams.get('type');
       const authCode = searchParams.get('code');
-      const next = isSafeRedirect(searchParams.get('next')) ? searchParams.get('next')! : '/2365/learn';
+      const next = isSafeRedirect(searchParams.get('next')) ? searchParams.get('next')! : `${DEFAULT_COURSE_PREFIX}/learn`;
 
       let authError: string | null = null;
 

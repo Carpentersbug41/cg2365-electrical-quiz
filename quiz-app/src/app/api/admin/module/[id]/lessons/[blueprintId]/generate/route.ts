@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { runM6GenerateLesson } from '@/lib/module_planner';
-import { guardModulePlannerAccess, toErrorResponse } from '../../../../_utils';
+import { assertModuleRunInScope, guardModulePlannerAccess, toErrorResponse } from '../../../../_utils';
 
 interface Params {
   params: Promise<{ id: string; blueprintId: string }>;
@@ -12,6 +12,8 @@ export async function POST(request: NextRequest, context: Params) {
 
   try {
     const { id, blueprintId } = await context.params;
+    const deniedScope = await assertModuleRunInScope(request, id);
+    if (deniedScope) return deniedScope;
     const url = new URL(request.url);
     const result = await runM6GenerateLesson(id, blueprintId, { apiBaseUrl: url.origin });
     return NextResponse.json({

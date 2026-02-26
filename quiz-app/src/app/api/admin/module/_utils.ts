@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ModulePlannerError, isModulePlannerEnabled } from '@/lib/module_planner';
+import { ModulePlannerError, getPlannerRunSummary, isModulePlannerEnabled } from '@/lib/module_planner';
+import { getCurriculumScopeFromReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import { SyllabusVersionRow } from '@/lib/module_planner/types';
+import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 
 export function modulePlannerDisabledResponse(): NextResponse {
   return NextResponse.json(
@@ -74,4 +77,32 @@ export function toErrorResponse(error: unknown): NextResponse {
     },
     { status: 500 }
   );
+}
+
+export function getModulePlannerScope(request: NextRequest | Request): CurriculumScope {
+  return getCurriculumScopeFromReferer(request.headers.get('referer'));
+}
+
+export function isSyllabusVersionInScope(version: SyllabusVersionRow, scope: CurriculumScope): boolean {
+  const tagged = version.meta_json && typeof version.meta_json === 'object'
+    ? (version.meta_json as Record<string, unknown>).curriculum
+    : null;
+  if (scope === 'gcse-science-physics') {
+    return tagged === 'gcse-science-physics';
+  }
+  return tagged === 'cg2365' || tagged == null;
+}
+
+export async function assertModuleRunInScope(
+  request: NextRequest | Request,
+  runId: string
+): Promise<NextResponse | null> {
+  const scope = getModulePlannerScope(request);
+  const summary = await getPlannerRunSummary(runId);
+  const versions = await listSyllabusVersions();
+  const version = versions.find((item) => item.id === summary.run.syllabus_version_id);
+  if (!version || !isSyllabusVersionInScope(version, scope)) {
+    return NextResponse.json({ success: false, code: 'NOT_FOUND', message: 'Run not found' }, { status: 404 });
+  }
+  return null;
 }

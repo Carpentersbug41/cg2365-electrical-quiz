@@ -5,12 +5,14 @@
 
 import { NextResponse } from 'next/server';
 import { lessonIndex } from '@/data/lessons/lessonIndex';
+import { getCurriculumScopeFromReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 import fs from 'fs';
 import path from 'path';
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const allLessons = lessonIndex;
+    const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
+    const allLessons = lessonIndex.filter((lesson) => isLessonIdAllowedForScope(lesson.id, scope));
     const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
     const generationScores = new Map<string, number>();
 

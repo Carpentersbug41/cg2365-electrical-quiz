@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createQuestionReview, getQuestionById, updateQuestionById } from '@/lib/questions/bankRepo';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
+import { assertQuestionIdInScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
 
 interface Params {
   params: Promise<{ question_id: string }>;
@@ -12,6 +12,9 @@ export async function POST(request: NextRequest, context: Params) {
 
   try {
     const { question_id } = await context.params;
+    const scope = getQuestionAdminScope(request);
+    const scopeCheck = await assertQuestionIdInScope(question_id, scope);
+    if (scopeCheck.denied) return scopeCheck.denied;
     const before = await getQuestionById(question_id);
     if (!before) {
       return NextResponse.json({ success: false, message: `Question not found: ${question_id}` }, { status: 404 });

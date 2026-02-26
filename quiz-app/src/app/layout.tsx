@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
+import AuthEnforcer from "@/components/auth/AuthEnforcer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <DarkModeToggle />
-          {children}
+          <AuthEnforcer>{children}</AuthEnforcer>
         </ThemeProvider>
       </body>
     </html>

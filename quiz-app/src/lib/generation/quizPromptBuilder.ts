@@ -5,6 +5,7 @@
 
 import { APPROVED_TAGS, APPROVED_MISCONCEPTION_CODES, DIFFICULTY_DISTRIBUTION } from './constants';
 import { GenerationRequest } from './types';
+import { getCurriculumPromptProfile } from './curriculumPromptProfile';
 
 export class QuizPromptBuilder {
   /**
@@ -18,7 +19,7 @@ export class QuizPromptBuilder {
   ): { systemPrompt: string; userPrompt: string } {
     const fullLessonId = `${request.unit}-${request.lessonId}`;
 
-    const systemPrompt = this.buildSystemPrompt(fullLessonId, difficulty);
+    const systemPrompt = this.buildSystemPrompt(request, fullLessonId, difficulty);
     const userPrompt = this.buildUserPrompt(request, difficulty, count, startId);
 
     return { systemPrompt, userPrompt };
@@ -27,14 +28,16 @@ export class QuizPromptBuilder {
   /**
    * Build system prompt for quiz generation
    */
-  private buildSystemPrompt(lessonId: string, difficulty: 'easy' | 'medium' | 'hard'): string {
+  private buildSystemPrompt(request: GenerationRequest, lessonId: string, difficulty: 'easy' | 'medium' | 'hard'): string {
+    const profile = getCurriculumPromptProfile(request);
+
     const difficultyMap = {
       easy: '1-2 (basic recall, simple discrimination)',
       medium: '2-3 (application, multi-step, conceptual)',
       hard: '4-5 (complex scenarios, synthesis, novel applications)',
     };
 
-    return `You are an expert question writer for C&G 2365 Electrical Training assessments.
+    return `You are an expert question writer for ${profile.programLabel} assessments.
 
 OBJECTIVE: Generate high-quality multiple-choice questions with plausible distractors based on real student misconceptions.
 

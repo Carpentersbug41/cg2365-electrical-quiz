@@ -4,7 +4,7 @@ import { evaluateQuestionAlignment } from '@/lib/questions/alignment';
 import { findNearDuplicate, QuestionSimilarityLike, toSimilarityLike } from '@/lib/questions/similarity';
 import { validateQuestionDraft } from '@/lib/questions/validation';
 import { getSyllabusUnit } from '@/lib/questions/syllabusRepo';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
 
 export async function POST(request: NextRequest) {
   const denied = await guardQuestionAdminAccess(request);
@@ -29,6 +29,9 @@ export async function POST(request: NextRequest) {
     if (!unitCode || (level !== 2 && level !== 3)) {
       return NextResponse.json({ success: false, message: 'unit_code and level (2 or 3) are required.' }, { status: 400 });
     }
+    const scope = getQuestionAdminScope(request);
+    const deniedScope = assertUnitInQuestionScope(unitCode, scope);
+    if (deniedScope) return deniedScope;
 
     const unit = await getSyllabusUnit(unitCode);
     const loTextByCode = new Map<string, string>();

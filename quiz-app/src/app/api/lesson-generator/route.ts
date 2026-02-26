@@ -20,6 +20,7 @@ import { MasterLessonBlueprint } from '@/lib/module_planner/types';
 import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 import { getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 import { getRefinementConfig } from '@/lib/generation/config';
+import { getCurriculumScopeFromReferer } from '@/lib/routing/curriculumScope';
 import fs from 'fs';
 import path from 'path';
 
@@ -33,25 +34,27 @@ type LessonGenerationResult = Awaited<ReturnType<FileGenerator['generateLesson']
 
 const lessonGeneratorLockDir = path.join(process.cwd(), '.tmp_lesson_generator_locks');
 const lessonGeneratorLockStaleMs = 45 * 60 * 1000;
-const SECTION_BY_UNIT: Record<number, string> = {
-  201: 'Health and Safety 2365 Level 2',
-  202: 'Science 2365 Level 2',
-  203: 'Installation 2365 Level 2',
-  204: 'Wiring Systems 2365 Level 2',
-  210: 'Communication 2365 Level 2',
-  305: 'Advanced Safety 2365 Level 3',
+const SECTION_BY_UNIT: Record<string, string> = {
+  '201': 'Health and Safety 2365 Level 2',
+  '202': 'Science 2365 Level 2',
+  '203': 'Installation 2365 Level 2',
+  '204': 'Wiring Systems 2365 Level 2',
+  '210': 'Communication 2365 Level 2',
+  '305': 'Advanced Safety 2365 Level 3',
 };
 
 function sanitizeLockName(value: string): string {
   return value.replace(/[^a-zA-Z0-9_-]/g, '_');
 }
 
-function inferSectionFromUnit(unit: number): string {
-  return SECTION_BY_UNIT[unit] ?? `Unit ${unit}`;
+function inferSectionFromUnit(unit: number | string): string {
+  const unitToken = String(unit).trim();
+  if (/^phy-/i.test(unitToken)) return 'GCSE Science Physics';
+  return SECTION_BY_UNIT[unitToken] ?? `Unit ${unitToken}`;
 }
 
 async function resolveGroundingStructure(
-  unit: number,
+  unit: number | string,
   requestedVersionId?: string
 ): Promise<{ versionId: string; structure: Record<string, unknown> } | null> {
   const versions = await listSyllabusVersions();
@@ -62,7 +65,7 @@ async function resolveGroundingStructure(
       ? requestedVersionId
       : versions[0].id);
 
-  const row = await getSyllabusStructureByVersionAndUnit(resolvedVersionId, String(unit));
+  const row = await getSyllabusStructureByVersionAndUnit(resolvedVersionId, String(unit).trim());
   if (!row?.structure_json) return null;
 
   return {
@@ -250,6 +253,17 @@ export async function POST(request: NextRequest) {
 
   try {
     const body: GenerationRequest = await request.json();
+    if (!body.curriculum) {
+      const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
+      body.curriculum = scope === 'gcse-science-physics' ? 'gcse-science-physics' : 'cg2365';
+    }
+
+    if (body.curriculum !== 'cg2365' && body.curriculum !== 'gcse-science-physics') {
+      return NextResponse.json(
+        { success: false, error: 'Invalid curriculum. Use "cg2365" or "gcse-science-physics".' },
+        { status: 400 }
+      );
+    }
 
     const normalizedSection = body.section?.trim() || inferSectionFromUnit(body.unit);
     body.section = normalizedSection;
@@ -277,10 +291,10 @@ export async function POST(request: NextRequest) {
     debugLog('REQUEST_RECEIVED', { unit: body.unit, lessonId: body.lessonId, topic: body.topic, section: body.section });
 
     // Validate request
-    if (!body.unit || !body.lessonId || !body.topic) {
+    if (!body.unit || !body.lessonId || !body.topic || !body.curriculum) {
       debugLog('REQUEST_INVALID', { body });
       return NextResponse.json(
-        { success: false, error: 'Missing required fields' },
+        { success: false, error: 'Missing required fields (curriculum, unit, lessonId, topic)' },
         { status: 400 }
       );
     }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { runM6Generate } from '@/lib/module_planner';
-import { guardModulePlannerAccess, toErrorResponse } from '../../_utils';
+import { assertModuleRunInScope, guardModulePlannerAccess, toErrorResponse } from '../../_utils';
 
 interface Params {
   params: Promise<{ id: string }>;
@@ -9,6 +9,9 @@ interface Params {
 export async function POST(request: NextRequest, context: Params) {
   const denied = guardModulePlannerAccess(request);
   if (denied) return denied;
+  const { id } = await context.params;
+  const deniedScope = await assertModuleRunInScope(request, id);
+  if (deniedScope) return deniedScope;
 
   return NextResponse.json(
     {
@@ -20,7 +23,7 @@ export async function POST(request: NextRequest, context: Params) {
   );
 
   // Keep params/context in signature for route compatibility.
-  void context;
+  void id;
   void runM6Generate;
   void toErrorResponse;
 }

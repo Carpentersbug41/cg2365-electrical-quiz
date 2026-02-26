@@ -16,12 +16,14 @@ import {
   extractLearningOutcomes 
 } from '@/lib/generation/lessonDetector';
 import { generateQuizFilename, getCurrentTimestamp } from '@/lib/generation/utils';
+import { getCurriculumScopeFromReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
 import fs from 'fs';
 import path from 'path';
 
 interface QuizGenerationRequest {
   lessonId: string;
   regenerate?: boolean;
+  curriculum?: CurriculumScope;
 }
 
 interface QuizGenerationResponse {
@@ -93,8 +95,10 @@ export async function POST(request: NextRequest) {
 
   try {
     const body: QuizGenerationRequest = await request.json();
+    const derivedCurriculum = getCurriculumScopeFromReferer(request.headers.get('referer'));
+    const curriculum = body.curriculum ?? derivedCurriculum;
 
-    debugLog('REQUEST_RECEIVED', { lessonId: body.lessonId, regenerate: body.regenerate });
+    debugLog('REQUEST_RECEIVED', { lessonId: body.lessonId, regenerate: body.regenerate, curriculum });
 
     // Validate request
     if (!body.lessonId) {
@@ -103,6 +107,16 @@ export async function POST(request: NextRequest) {
         { 
           success: false, 
           error: 'Missing required field: lessonId',
+          warnings: [],
+        },
+        { status: 400 }
+      );
+    }
+    if (body.curriculum && body.curriculum !== derivedCurriculum) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Curriculum does not match route context',
           warnings: [],
         },
         { status: 400 }
@@ -173,7 +187,8 @@ export async function POST(request: NextRequest) {
     const quizResult = await fileGenerator.generateQuizFromLesson(
       body.lessonId,
       lessonData,
-      lessonStatus.section
+      lessonStatus.section,
+      curriculum
     );
 
     if (!quizResult.success) {

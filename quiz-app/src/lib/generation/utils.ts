@@ -112,15 +112,17 @@ export function generateSlug(topic: string): string {
 /**
  * Generate full lesson ID
  */
-export function generateLessonId(unit: number, lessonId: string): string {
-  const normalizedLessonId = lessonId.trim().replace(new RegExp(`^${unit}-`), '');
-  return `${unit}-${normalizedLessonId}`;
+export function generateLessonId(unit: number | string, lessonId: string): string {
+  const unitToken = String(unit).trim();
+  const escapedUnit = unitToken.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const normalizedLessonId = lessonId.trim().replace(new RegExp(`^${escapedUnit}-`, 'i'), '');
+  return `${unitToken}-${normalizedLessonId}`;
 }
 
 /**
  * Generate lesson filename
  */
-export function generateLessonFilename(unit: number, lessonId: string, topic: string): string {
+export function generateLessonFilename(unit: number | string, lessonId: string, topic: string): string {
   const fullId = generateLessonId(unit, lessonId);
   const slug = generateSlug(topic);
   return `${fullId}-${slug}.json`;
@@ -166,10 +168,11 @@ export function getGitTimestamp(): string {
 /**
  * Generate variable name from lesson ID
  */
-export function generateVariableName(unit: number, lessonId: string): string {
+export function generateVariableName(unit: number | string, lessonId: string): string {
   // Replace all non-alphanumeric characters with underscores
+  const sanitizedUnit = String(unit).replace(/[^a-zA-Z0-9]/g, '_');
   const sanitizedId = lessonId.replace(/[^a-zA-Z0-9]/g, '_');
-  return `lesson${unit}_${sanitizedId}`;
+  return `lesson${sanitizedUnit}_${sanitizedId}`;
 }
 
 /**

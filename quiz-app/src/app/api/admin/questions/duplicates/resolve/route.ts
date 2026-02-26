@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createQuestionReview, getQuestionById, updateQuestionById } from '@/lib/questions/bankRepo';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
 
 export async function POST(request: NextRequest) {
   const denied = await guardQuestionAdminAccess(request);
   if (denied) return denied;
 
   try {
+    const scope = getQuestionAdminScope(request);
     const body = (await request.json()) as {
       cluster_ids?: string[];
       keep_id?: string;
@@ -25,6 +26,12 @@ export async function POST(request: NextRequest) {
       id: string;
       question: NonNullable<Awaited<ReturnType<typeof getQuestionById>>>;
     }>;
+    for (const row of rows) {
+      const deniedScope = assertUnitInQuestionScope(row.question.unit_code, scope);
+      if (deniedScope) {
+        return NextResponse.json({ success: false, message: 'Cluster contains out-of-scope questions.' }, { status: 403 });
+      }
+    }
 
     if (rows.length < 2) {
       return NextResponse.json({ success: false, message: 'Need at least 2 approved questions to resolve a cluster.' }, { status: 400 });

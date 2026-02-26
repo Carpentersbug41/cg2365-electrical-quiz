@@ -1,0 +1,7 @@
+Unit PHY-1 Motion and Forces
+LO1 Explain scalar and vector quantities in motion problems.
+AC 1.1 Define distance, displacement, speed, and velocity with units.
+AC 1.2 Calculate average speed and interpret simple distance-time graphs.
+LO2 Explain Newton's laws for GCSE level examples.
+AC 2.1 State Newton's first, second, and third laws in plain language.
+AC 2.2 Apply F = m a to single-step numerical examples safely and clearly.

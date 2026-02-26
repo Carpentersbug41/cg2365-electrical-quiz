@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { listApprovedQuestionsByScope } from '@/lib/questions/bankRepo';
 import { findNearDuplicate, questionSimilarityScore, toSimilarityLike } from '@/lib/questions/similarity';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../_utils';
 
 interface DuplicateCluster {
   key: string;
@@ -57,6 +57,9 @@ export async function GET(request: NextRequest) {
     if (!unitCode) {
       return NextResponse.json({ success: false, message: 'unit_code query param is required.' }, { status: 400 });
     }
+    const scope = getQuestionAdminScope(request);
+    const deniedScope = assertUnitInQuestionScope(unitCode, scope);
+    if (deniedScope) return deniedScope;
     const level = levelParam ? Number(levelParam) : 2;
     if (level !== 2 && level !== 3) {
       return NextResponse.json({ success: false, message: 'level must be 2 or 3.' }, { status: 400 });

@@ -6,7 +6,7 @@ import { getSyllabusUnit } from '@/lib/questions/syllabusRepo';
 import { createBatchGenerationPrompt } from '@/lib/questions/generation/promptBuilder';
 import { evaluateQuestionAlignment } from '@/lib/questions/alignment';
 import { findNearDuplicate, type QuestionSimilarityLike } from '@/lib/questions/similarity';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
+import { assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
 
 function normalizeText(value: unknown): string {
   return String(value ?? '')
@@ -139,6 +139,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+    const scope = getQuestionAdminScope(request);
+    const deniedScope = assertUnitInQuestionScope(unitCode, scope);
+    if (deniedScope) return deniedScope;
 
     const unit = await getSyllabusUnit(unitCode);
     if (!unit) {

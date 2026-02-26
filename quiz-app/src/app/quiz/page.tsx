@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Quiz from '@/components/Quiz';
 import type { Question } from '@/data/questions';
 import { courseHref } from '@/lib/routing/courseHref';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 interface CatalogUnit {
   unit_code: string;
@@ -23,6 +24,7 @@ interface UnitLo {
 }
 
 export default function QuizPage() {
+  const isGcsePhysics = getCoursePrefixForClient() === '/gcse/science/physics';
   const [units, setUnits] = useState<CatalogUnit[]>([]);
   const [selectedUnit, setSelectedUnit] = useState('');
   const [selectedLevel, setSelectedLevel] = useState<2 | 3>(2);
@@ -131,6 +133,13 @@ export default function QuizPage() {
         </div>
 
         <section className="rounded-lg border border-slate-200 bg-white p-4">
+          {units.length === 0 && (
+            <p className="mb-3 rounded border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">
+              {isGcsePhysics
+                ? 'GCSE Physics question bank is not loaded yet. Import PHY-* units to enable quiz building.'
+                : 'No units available yet.'}
+            </p>
+          )}
           <label className="block text-sm font-medium">Unit</label>
           <select
             className="mt-1 w-full rounded border border-slate-300 px-2 py-2"

@@ -1,11 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { guardModulePlannerAccess } from '../../_utils';
+import { getModulePlannerScope, guardModulePlannerAccess } from '../../_utils';
 import { listSyllabusVersions, seedLegacyChunksAsDefaultVersionIfNeeded } from '@/lib/module_planner/syllabus';
 import { createSyllabusIngestion, updateSyllabusIngestion } from '@/lib/module_planner/db';
 
 export async function POST(request: NextRequest) {
   const denied = guardModulePlannerAccess(request);
   if (denied) return denied;
+  const scope = getModulePlannerScope(request);
+  if (scope !== 'cg2365') {
+    return NextResponse.json(
+      {
+        success: false,
+        code: 'JSON_SCHEMA_FAIL',
+        message: 'Legacy syllabus populate is only available for 2365 scope. Upload GCSE syllabus directly.',
+      },
+      { status: 400 }
+    );
+  }
 
   let ingestionId = '';
 

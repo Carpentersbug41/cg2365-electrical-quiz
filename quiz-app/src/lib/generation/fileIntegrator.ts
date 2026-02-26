@@ -111,6 +111,7 @@ export class FileIntegrator {
       
       // Create a minimal request object
       const dummyRequest: GenerationRequest = {
+        curriculum: 'cg2365',
         unit: 0, // Not used for quiz-only integration
         lessonId: '',
         topic: variableName.replace(/Questions$/, ''),

@@ -1844,7 +1844,8 @@ export async function createPlannerRun(input: {
   if (!syllabusVersionId) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', 'syllabusVersionId is required.', 400);
   }
-  if (!(await getSyllabusVersionById(syllabusVersionId))) {
+  const syllabusVersion = await getSyllabusVersionById(syllabusVersionId);
+  if (!syllabusVersion) {
     throw new ModulePlannerError('M0', 'JSON_SCHEMA_FAIL', `Unknown syllabusVersionId ${syllabusVersionId}`, 400);
   }
   if ((await getUnitLos(syllabusVersionId, normalizedUnit)).length === 0) {
@@ -1852,6 +1853,7 @@ export async function createPlannerRun(input: {
   }
   return createModuleRun({
     syllabusVersionId,
+    curriculum: syllabusVersion.curriculum,
     unit: normalizedUnit,
     selectedLos: [],
     constraints: null,

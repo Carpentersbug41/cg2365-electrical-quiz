@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { computeQuestionHash } from '@/lib/questions/hash';
 import { createQuestionReview, getQuestionById, updateQuestionById } from '@/lib/questions/bankRepo';
 import { validateQuestionDraft } from '@/lib/questions/validation';
-import { guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
+import { assertQuestionIdInScope, assertUnitInQuestionScope, getQuestionAdminScope, guardQuestionAdminAccess, toQuestionAdminError } from '../../_utils';
 
 interface Params {
   params: Promise<{ question_id: string }>;
@@ -14,6 +14,9 @@ export async function POST(request: NextRequest, context: Params) {
 
   try {
     const { question_id } = await context.params;
+    const scope = getQuestionAdminScope(request);
+    const scopeCheck = await assertQuestionIdInScope(question_id, scope);
+    if (scopeCheck.denied) return scopeCheck.denied;
     const body = (await request.json()) as {
       stem?: string;
       options?: string[] | null;
@@ -49,6 +52,8 @@ export async function POST(request: NextRequest, context: Params) {
       format: body.format ?? before.format,
       difficulty: body.difficulty ?? before.difficulty,
     };
+    const deniedScopeForUnit = assertUnitInQuestionScope(next.unit_code, scope);
+    if (deniedScopeForUnit) return deniedScopeForUnit;
 
     const nextHash = computeQuestionHash({
       stem: next.stem,
