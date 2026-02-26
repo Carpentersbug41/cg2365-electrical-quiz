@@ -95,7 +95,8 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
             {content.buckets.map((bucket, index) => (
               <div 
                 key={index}
-                className="bg-indigo-100 dark:bg-indigo-900 border-2 border-indigo-300 dark:border-indigo-700 rounded-lg p-3 text-center font-bold text-indigo-900 dark:text-indigo-100"
+                style={{ animationDelay: `${index * 70}ms` }}
+                className="microbreak-stagger microbreak-card-glide bg-indigo-100 dark:bg-indigo-900 border-2 border-indigo-300 dark:border-indigo-700 rounded-lg p-3 text-center font-bold text-indigo-900 dark:text-indigo-100"
               >
                 {bucket}
               </div>
@@ -104,7 +105,7 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
 
           {/* Items to sort */}
           <div className="space-y-2">
-            {shuffledItems.map((item) => {
+            {shuffledItems.map((item, idx) => {
               const assignedBucket = assignments[item.text];
               const isCorrect = showResults && assignedBucket === item.correctBucket;
               const isWrong = showResults && assignedBucket !== item.correctBucket;
@@ -112,7 +113,8 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
               return (
                 <div 
                   key={item.text}
-                  className="bg-white dark:bg-slate-700 rounded-lg border-2 border-gray-300 dark:border-slate-600 p-3"
+                  style={{ animationDelay: `${idx * 40}ms` }}
+                  className="microbreak-stagger microbreak-card-glide bg-white dark:bg-slate-700 rounded-lg border-2 border-gray-300 dark:border-slate-600 p-3"
                 >
                   <div className="flex items-center justify-between gap-4">
                     <span className="text-sm font-medium text-gray-800 dark:text-slate-200 flex-1">
@@ -133,7 +135,7 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
                                   : 'microbreak-wrong bg-red-500 text-white'
                                 : 'bg-indigo-600 text-white'
                               : 'bg-gray-200 dark:bg-slate-600 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-500'
-                          } disabled:cursor-not-allowed`}
+                          } microbreak-card-glide disabled:cursor-not-allowed`}
                         >
                           {index === 0 ? '1' : '2'}
                         </button>

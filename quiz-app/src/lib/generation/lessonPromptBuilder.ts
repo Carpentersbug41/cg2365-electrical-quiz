@@ -130,14 +130,15 @@ export class LessonPromptBuilder {
   buildPrompt(request: GenerationRequest): { systemPrompt: string; userPrompt: string } {
     const layout = request.layout || inferLayout(request.section, request.topic);
     const fullLessonId = `${request.unit}-${request.lessonId}`;
+    const profile = getCurriculumPromptProfile(request);
 
     // Auto-generate prerequisite anchors if not provided
     if (!request.prerequisiteAnchors && request.prerequisites && request.prerequisites.length > 0) {
       request.prerequisiteAnchors = this.buildPrerequisiteAnchors(request.prerequisites);
     }
 
-    const systemPrompt = this.buildSystemPrompt(fullLessonId, layout);
-    const userPrompt = this.buildUserPrompt(request, layout);
+    const systemPrompt = this.buildSystemPrompt(fullLessonId, layout, profile);
+    const userPrompt = this.buildUserPrompt(request, layout, profile);
 
     return { systemPrompt, userPrompt };
   }
@@ -145,8 +146,16 @@ export class LessonPromptBuilder {
   /**
    * Build system prompt with templates and rules
    */
-  private buildSystemPrompt(lessonId: string, layout: 'split-vis' | 'linear-flow' | 'focus-mode'): string {
-    return `You are an expert lesson designer for curriculum-specific technical training courses.
+  private buildSystemPrompt(
+    lessonId: string,
+    layout: 'split-vis' | 'linear-flow' | 'focus-mode',
+    profile: ReturnType<typeof getCurriculumPromptProfile>
+  ): string {
+    return `You are an expert lesson designer for curriculum-specific learning programs.
+
+AUDIENCE + TONE (MANDATORY):
+- ${profile.audienceInstruction}
+- ${profile.toneInstruction}
 
 OBJECTIVE: Generate complete, production-ready lesson JSON following the structure below.
 
@@ -224,7 +233,7 @@ CRITICAL: Top-level "learningOutcomes" field MUST be a simple string array. Do N
     "created": "${new Date().toISOString().split('T')[0]}",
     "updated": "${new Date().toISOString().split('T')[0]}",
     "version": "1.0",
-    "author": "C&G 2365 Learning Team",
+    "author": "${profile.authorLabel}",
     "youtubeUrl": "[YouTube URL if provided, otherwise omit this field]"
   }
 }
@@ -567,7 +576,7 @@ If explanation says: "BS 7671 is the UK wiring regulations standard"
 10. **FIELD NAMES**: All spaced-review questions MUST use "questionText" field (NEVER "attText", "questiontext", "question_text", or any other variant!)
 11. **LEARNING OUTCOMES FORMAT**: The top-level "learningOutcomes" field MUST be an array of plain strings (NOT objects). Only the outcomes BLOCK content uses objects with "text" and "bloomLevel" fields. These are two different structures - do not confuse them!
 12. **MEDIA URLS**: If YouTube URL or Image URL is provided, MUST include them in the diagram block's "videoUrl" and "imageUrl" fields respectively
-13. **Clarity**: Write for Level 2 electrician students (practical, not overly academic)
+13. **Clarity**: ${profile.audienceInstruction}
 
 ANSWER MARKING POLICY (MANDATORY):
 - expectedAnswer MUST ALWAYS be an array of strings for ALL question types:
@@ -709,8 +718,11 @@ OUTPUT FORMAT:
   /**
    * Build user prompt with specific lesson requirements
    */
-  private buildUserPrompt(request: GenerationRequest, layout: 'split-vis' | 'linear-flow' | 'focus-mode'): string {
-    const profile = getCurriculumPromptProfile(request);
+  private buildUserPrompt(
+    request: GenerationRequest,
+    layout: 'split-vis' | 'linear-flow' | 'focus-mode',
+    profile: ReturnType<typeof getCurriculumPromptProfile>
+  ): string {
     const fullLessonId = `${request.unit}-${request.lessonId}`;
     const prereqsList = request.prerequisites && request.prerequisites.length > 0
       ? request.prerequisites.join(', ')
@@ -764,6 +776,7 @@ LESSON DETAILS:
 - Prerequisites: ${prereqsList}
 
 REQUIREMENTS:
+- Audience/tone: ${profile.audienceInstruction} ${profile.toneInstruction}
 - Create 3-4 learning outcomes covering remember, understand, and apply levels
 - Include 4-6 vocabulary terms essential to the topic
 ${layout === 'split-vis' ? '- Include diagram block with appropriate diagram type' : '- Diagram block is optional'}

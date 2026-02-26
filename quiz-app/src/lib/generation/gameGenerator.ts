@@ -24,7 +24,15 @@ Never include markdown.
 Use only the provided lesson digest.
 Do not invent facts beyond digest.
 For formula-build games: include a clear prompt naming the target formula, shuffle token order, and include at least one distractor token not used in correctSequence.
-For sorting/classify games: use short gameplay-ready items only (phrases, terms, concise definitions), never lesson headings, bullets, or framing lines like "In this lesson", "What this is", "Quick recap".`;
+For sorting/classify games: use short gameplay-ready items only (phrases, terms, concise definitions), never lesson headings, bullets, or framing lines like "In this lesson", "What this is", "Quick recap".
+For quick-win games: every answer must be exactly one or two words (never full sentences/definitions).
+For fill-gap games: produce about 5 gaps, each gap must be solved by selecting exactly one single-word option, and each gap should include similar plausible one-word distractors.`;
+
+interface GamePromptProfile {
+  curriculum: 'cg2365' | 'gcse-science-physics';
+  audienceInstruction: string;
+  toneInstruction: string;
+}
 
 export type MicrobreakSlotAnchorType = 'check' | 'practice' | 'integrative';
 
@@ -70,6 +78,35 @@ interface GameGenerationOptions {
 interface EligibilityResult {
   ok: boolean;
   reason?: string;
+}
+
+function getGamePromptProfile(lesson: Lesson): GamePromptProfile {
+  const lessonId = String(lesson.id || '').toLowerCase();
+  const unit = String(lesson.unit || '').toLowerCase();
+  const author = String(lesson.metadata?.author || '').toLowerCase();
+  const isGcse = lessonId.startsWith('phy-') || unit.includes('phy') || author.includes('gcse');
+
+  if (isGcse) {
+    return {
+      curriculum: 'gcse-science-physics',
+      audienceInstruction: 'Primary audience is a 12-year-old girl learning GCSE Physics.',
+      toneInstruction: 'Use a fun, warm, encouraging, age-appropriate tone while staying accurate.',
+    };
+  }
+
+  return {
+    curriculum: 'cg2365',
+    audienceInstruction: 'Audience is Level 2 electrical trainees.',
+    toneInstruction: 'Use a practical, professional vocational tone.',
+  };
+}
+
+function buildAudienceTonePromptSection(profile?: GamePromptProfile): string {
+  if (!profile) return '';
+  return `AUDIENCE + TONE (MANDATORY):
+- ${profile.audienceInstruction}
+- ${profile.toneInstruction}
+- Keep game wording and definition-style phrasing aligned to this audience/tone.`;
 }
 
 function roundOrder(order: number): number {
@@ -426,7 +463,8 @@ async function getJsonModel() {
 export async function planMicrobreaks(
   slots: Slot[],
   digest: LessonDigest,
-  allowedGameTypes: GameType[]
+  allowedGameTypes: GameType[],
+  promptProfile?: GamePromptProfile
 ): Promise<Plan[]> {
   if (slots.length === 0) return [];
 
@@ -451,7 +489,7 @@ export async function planMicrobreaks(
   };
 
   for (let attempt = 1; attempt <= 3; attempt++) {
-    const prompt = `${PLANNER_PROMPT}\n\nInput:\n${JSON.stringify(plannerInput, null, 2)}\n\nReturn JSON array of objects exactly: [{"slotId":"...","gameType":"...","rationale":"...","contentSource":"vocab|facts|procedure|misconception|diagram"}]`;
+    const prompt = `${PLANNER_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\nInput:\n${JSON.stringify(plannerInput, null, 2)}\n\nReturn JSON array of objects exactly: [{"slotId":"...","gameType":"...","rationale":"...","contentSource":"vocab|facts|procedure|misconception|diagram"}]`;
     const result = await model.generateContent(prompt);
     const text = result.response.text();
 
@@ -877,11 +915,115 @@ function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDig
   };
 }
 
+function hardenFillGapContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  if (content.breakType !== 'game' || content.gameType !== 'fill-gap') return content;
+
+  const safeFallback = buildSafeFillGapContentFromDigest(digest) as Extract<MicrobreakContent, { gameType: 'fill-gap' }>;
+  const incomingGaps = Array.isArray(content.gaps) ? content.gaps : [];
+  const pool = collectFillGapWordPool(digest);
+  const fallbackPool = pool.length > 0 ? pool : ['current', 'voltage', 'resistance', 'neutral', 'earth', 'circuit'];
+
+  const sanitized = incomingGaps
+    .slice(0, 5)
+    .map((gap, idx) => {
+      const id = normalizeToken(gap.id) || `g${idx + 1}`;
+      const rawOptions = Array.isArray(gap.options) ? gap.options : [];
+      const normalizedOptions = rawOptions
+        .map(opt => normalizeSingleWordCandidate(String(opt || '')))
+        .filter(isSingleWordCandidate);
+
+      const unique = dedupeTokens(normalizedOptions).slice(0, 3);
+      const correctRaw = rawOptions[gap.correctOptionIndex];
+      const correct = normalizeSingleWordCandidate(String(correctRaw || unique[0] || fallbackPool[idx % fallbackPool.length]));
+      if (!isSingleWordCandidate(correct)) return null;
+
+      const options = [...unique];
+      if (!options.includes(correct)) options.unshift(correct);
+      while (options.length < 3) {
+        const candidate = fallbackPool[(idx + options.length) % fallbackPool.length];
+        if (!options.includes(candidate) && isSingleWordCandidate(candidate)) {
+          options.push(candidate);
+        } else {
+          break;
+        }
+      }
+
+      const cleanedOptions = dedupeTokens(options).slice(0, 3);
+      if (cleanedOptions.length < 3) return null;
+      const shuffled = deterministicShuffleTokens(cleanedOptions, `${id}:${correct}`);
+      const correctOptionIndex = shuffled.findIndex(opt => opt === correct);
+
+      return {
+        id,
+        options: shuffled,
+        correctOptionIndex: correctOptionIndex >= 0 ? correctOptionIndex : 0,
+        answer: correct,
+      };
+    })
+    .filter((gap): gap is { id: string; options: string[]; correctOptionIndex: number; answer: string } => Boolean(gap));
+
+  if (sanitized.length < 5) {
+    return safeFallback;
+  }
+
+  const textTemplate = typeof content.textTemplate === 'string' ? content.textTemplate : '';
+  const hasPlaceholders = sanitized.every(g => textTemplate.includes(`[${g.id}]`));
+  const template = hasPlaceholders
+    ? textTemplate
+    : sanitized.map((gap, idx) => `${idx + 1}. ${buildFillGapSentence(gap.answer, gap.id, digest)}`).join('\n');
+
+  return {
+    ...content,
+    prompt: normalizeToken((content as { prompt?: string }).prompt) || 'Pick the one-word term that best completes each gap.',
+    textTemplate: template,
+    gaps: sanitized.map(({ answer: _answer, ...rest }) => rest),
+  };
+}
+
+function hardenQuickWinContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  if (content.breakType !== 'game' || content.gameType !== 'quick-win') return content;
+
+  const fallbackQuestions = digest.vocabPairs.slice(0, 5).map((pair, idx) => ({
+    question: normalizeGameplaySnippet(`Word for: ${pair.definition || pair.term}`, 120) || `Quick recall ${idx + 1}`,
+    answer: normalizeQuickWinAnswer(pair.term || pair.definition || `Term ${idx + 1}`) || `Term${idx + 1}`,
+  }));
+  const defaultFallbackQuestions = fallbackQuestions.length > 0
+    ? fallbackQuestions
+    : Array.from({ length: 5 }, (_, idx) => ({
+        question: normalizeGameplaySnippet(digest.keyFacts[idx] || `Quick recall ${idx + 1}`, 120) || `Quick recall ${idx + 1}`,
+        answer: normalizeQuickWinAnswer(digest.keyFacts[idx] || `Term ${idx + 1}`) || `Term${idx + 1}`,
+      }));
+
+  const incoming = Array.isArray(content.questions) ? content.questions : [];
+  const sanitized = incoming
+    .slice(0, 7)
+    .map((q, idx) => {
+      const question = normalizeGameplaySnippet(String(q?.question || '').trim(), 140) || `Quick recall ${idx + 1}`;
+      const answer = normalizeQuickWinAnswer(String(q?.answer || '').trim());
+      return {
+        question,
+        answer: answer || defaultFallbackQuestions[idx % defaultFallbackQuestions.length]?.answer || `Term${idx + 1}`,
+      };
+    })
+    .filter(q => q.question.length > 0 && q.answer.length > 0);
+
+  const questions = sanitized.length >= 5
+    ? sanitized.slice(0, 6)
+    : [...sanitized, ...defaultFallbackQuestions].slice(0, 5);
+
+  return {
+    ...content,
+    questions,
+  };
+}
+
 function hardenGeneratedGameContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
   let hardened = content;
   hardened = hardenSortingContent(hardened, digest);
   hardened = hardenClassifyTwoBinsContent(hardened, digest);
   hardened = hardenFormulaBuildContent(hardened, digest);
+  hardened = hardenFillGapContent(hardened, digest);
+  hardened = hardenQuickWinContent(hardened, digest);
   return hardened;
 }
 
@@ -938,6 +1080,131 @@ function normalizeGameplaySnippet(text: string, maxLength: number = 90): string 
   const lastSpace = truncated.lastIndexOf(' ');
   const safe = lastSpace > Math.floor(maxLength * 0.6) ? truncated.slice(0, lastSpace) : truncated;
   return `${safe.trim()}...`;
+}
+
+function toQuickWinAnswerWords(text: string): string[] {
+  return String(text || '')
+    .replace(/[^\w\s-]/g, ' ')
+    .split(/\s+/)
+    .map(token => token.trim())
+    .filter(Boolean);
+}
+
+function isOneOrTwoWords(text: string): boolean {
+  const words = toQuickWinAnswerWords(text);
+  return words.length >= 1 && words.length <= 2;
+}
+
+function normalizeQuickWinAnswer(text: string): string {
+  const words = toQuickWinAnswerWords(text);
+  if (words.length === 0) return '';
+  return words.slice(0, 2).join(' ');
+}
+
+function normalizeSingleWordCandidate(value: string): string {
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/^[^a-z0-9]+|[^a-z0-9]+$/gi, '')
+    .replace(/[^a-z0-9-]/gi, '');
+}
+
+function isSingleWordCandidate(value: string): boolean {
+  if (!value) return false;
+  if (/\s/.test(value)) return false;
+  return /^[a-z0-9-]{2,24}$/i.test(value);
+}
+
+function collectFillGapWordPool(digest: LessonDigest): string[] {
+  const raw = [
+    ...digest.vocabPairs.flatMap(v => [v.term, v.definition]),
+    ...digest.keyFacts,
+    ...(digest.procedures || []),
+    ...(digest.misconceptions || []),
+  ];
+
+  const seen = new Set<string>();
+  const words: string[] = [];
+
+  for (const text of raw) {
+    const tokens = String(text || '')
+      .split(/[^A-Za-z0-9-]+/)
+      .map(normalizeSingleWordCandidate)
+      .filter(Boolean);
+    for (const token of tokens) {
+      if (!isSingleWordCandidate(token)) continue;
+      if (seen.has(token)) continue;
+      seen.add(token);
+      words.push(token);
+      if (words.length >= 60) return words;
+    }
+  }
+
+  return words;
+}
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function buildFillGapSentence(answer: string, gapId: string, digest: LessonDigest): string {
+  const facts = digest.keyFacts.slice(0, 20);
+  const re = new RegExp(`\\b${escapeRegExp(answer)}\\b`, 'i');
+  const fromFact = facts.find(f => re.test(String(f || '')));
+  if (fromFact) {
+    return String(fromFact).replace(re, `[${gapId}]`);
+  }
+  return `Choose the best word: [${gapId}]`;
+}
+
+function pickFillGapDistractors(answer: string, pool: string[], count: number): string[] {
+  const candidates = pool
+    .filter(word => word !== answer)
+    .map(word => ({ word, diff: Math.abs(word.length - answer.length) }))
+    .sort((a, b) => a.diff - b.diff)
+    .map(entry => entry.word);
+
+  const out: string[] = [];
+  for (const word of candidates) {
+    if (out.includes(word)) continue;
+    out.push(word);
+    if (out.length >= count) break;
+  }
+  return out;
+}
+
+function buildSafeFillGapContentFromDigest(digest: LessonDigest): MicrobreakContent {
+  const pool = collectFillGapWordPool(digest);
+  const fallbackPool = ['current', 'voltage', 'resistance', 'neutral', 'earth', 'circuit', 'switch', 'fuse'];
+  const sourcePool = pool.length >= 8 ? pool : fallbackPool;
+
+  const uniqueAnswers = sourcePool.slice(0, 5);
+  while (uniqueAnswers.length < 5) {
+    uniqueAnswers.push(fallbackPool[uniqueAnswers.length % fallbackPool.length]);
+  }
+
+  const gaps = uniqueAnswers.map((answer, idx) => {
+    const id = `g${idx + 1}`;
+    const distractors = pickFillGapDistractors(answer, sourcePool, 2);
+    const options = dedupeTokens([answer, ...distractors]).slice(0, 3);
+    const ordered = deterministicShuffleTokens(options, `${id}:${answer}`);
+    const correctOptionIndex = ordered.findIndex(opt => opt === answer);
+    return {
+      id,
+      options: ordered,
+      correctOptionIndex: correctOptionIndex >= 0 ? correctOptionIndex : 0,
+    };
+  });
+
+  const lines = gaps.map((gap, idx) => `${idx + 1}. ${buildFillGapSentence(uniqueAnswers[idx], gap.id, digest)}`);
+
+  return {
+    breakType: 'game',
+    gameType: 'fill-gap',
+    prompt: 'Pick the one-word term that best completes each gap.',
+    textTemplate: lines.join('\n'),
+    gaps,
+  };
 }
 
 function isInvalidQuickGameplayItem(text: string, maxLength: number = 100): boolean {
@@ -1122,6 +1389,9 @@ function validateGameSchemaAndContent(
     case 'quick-win': {
       const questions = Array.isArray(content.questions) ? content.questions : [];
       if (questions.length < 5) errors.push('quick-win requires >=5 questions');
+      if (questions.some(q => !isOneOrTwoWords(String(q?.answer || '')))) {
+        errors.push('quick-win answers must be one or two words only');
+      }
       requireGrounding(questions.flatMap(q => [q.question, q.answer]), 'quick-win question');
       break;
     }
@@ -1139,7 +1409,29 @@ function validateGameSchemaAndContent(
       const textTemplate = typeof content.textTemplate === 'string' ? content.textTemplate : '';
       const gaps = Array.isArray(content.gaps) ? content.gaps : [];
       if (!textTemplate) errors.push('fill-gap requires textTemplate');
-      if (gaps.length < 1) errors.push('fill-gap requires >=1 gap');
+      if (gaps.length < 5) errors.push('fill-gap requires about 5 gaps (minimum 5)');
+      if (gaps.length > 6) errors.push('fill-gap should not exceed 6 gaps');
+      for (const gap of gaps) {
+        if (!String(gap.id || '').trim()) errors.push('fill-gap gap id is required');
+        const options = Array.isArray(gap.options) ? gap.options : [];
+        if (options.length < 3) errors.push(`fill-gap ${gap.id || 'gap'} requires >=3 options`);
+        if (gap.correctOptionIndex < 0 || gap.correctOptionIndex >= options.length) {
+          errors.push(`fill-gap ${gap.id || 'gap'} correctOptionIndex out of bounds`);
+        }
+        const normalized = options.map(opt => normalizeSingleWordCandidate(String(opt || ''))).filter(Boolean);
+        if (normalized.some(opt => !isSingleWordCandidate(opt))) {
+          errors.push(`fill-gap ${gap.id || 'gap'} options must be single-word`);
+        }
+        if (normalized.some(opt => opt.length > 24)) {
+          errors.push(`fill-gap ${gap.id || 'gap'} options are too long`);
+        }
+        if (new Set(normalized).size !== normalized.length) {
+          errors.push(`fill-gap ${gap.id || 'gap'} options must be unique`);
+        }
+        if (textTemplate && !textTemplate.includes(`[${gap.id}]`)) {
+          errors.push(`fill-gap textTemplate missing placeholder for ${gap.id}`);
+        }
+      }
       requireGrounding([textTemplate, ...gaps.flatMap(g => (Array.isArray(g.options) ? g.options : []))], 'fill-gap');
       break;
     }
@@ -1352,7 +1644,10 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         breakType: 'game',
         gameType: 'quick-win',
         duration: 90,
-        questions: vocab.slice(0, 5).map(v => ({ question: `What is ${v.term}?`, answer: v.definition })),
+        questions: vocab.slice(0, 5).map((v, idx) => ({
+          question: `Word for: ${v.definition || v.term}?`,
+          answer: normalizeQuickWinAnswer(v.term || v.definition || `Term ${idx + 1}`) || `Term${idx + 1}`,
+        })),
       };
     case 'sequencing':
       return {
@@ -1364,19 +1659,7 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         timerSeconds: 25,
       };
     case 'fill-gap':
-      return {
-        breakType: 'game',
-        gameType: 'fill-gap',
-        prompt: 'Fill the missing term.',
-        textTemplate: `${vocab[0]?.term || 'The term'} means [g1].`,
-        gaps: [
-          {
-            id: 'g1',
-            options: [vocab[0]?.definition || 'definition', vocab[1]?.definition || 'other meaning', vocab[2]?.definition || 'different meaning'],
-            correctOptionIndex: 0,
-          },
-        ],
-      };
+      return buildSafeFillGapContentFromDigest(digest);
     case 'is-correct-why':
       {
         const cleanFacts = facts.filter(f => !isLikelyInstructionalFraming(f));
@@ -1486,9 +1769,10 @@ async function repairSingleGame(
   model: Awaited<ReturnType<typeof getJsonModel>>,
   plan: Plan,
   digest: LessonDigest,
-  failingReasons: string[]
+  failingReasons: string[],
+  promptProfile?: GamePromptProfile
 ): Promise<GeneratedPlannedGame> {
-  const prompt = `${GENERATOR_PROMPT}\n\nRepair one game object.\nPlan:\n${JSON.stringify(plan, null, 2)}\n\nDigest:\n${JSON.stringify(digest, null, 2)}\n\nValidation failures:\n${JSON.stringify(failingReasons, null, 2)}\n\nReturn exactly:\n{"slotId":"${plan.slotId}","content":{...valid game...}}`;
+  const prompt = `${GENERATOR_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\nRepair one game object.\nPlan:\n${JSON.stringify(plan, null, 2)}\n\nDigest:\n${JSON.stringify(digest, null, 2)}\n\nValidation failures:\n${JSON.stringify(failingReasons, null, 2)}\n\nReturn exactly:\n{"slotId":"${plan.slotId}","content":{...valid game...}}`;
 
   const result = await model.generateContent(prompt);
   const parsed = parseJson<GeneratedPlannedGame>(result.response.text());
@@ -1514,7 +1798,8 @@ function validateNoDuplicateStems(games: GeneratedPlannedGame[]): Map<number, st
 
 export async function generateMicrobreaksFromPlan(
   plan: Plan[],
-  digest: LessonDigest
+  digest: LessonDigest,
+  promptProfile?: GamePromptProfile
 ): Promise<GeneratedPlannedGame[]> {
   if (plan.length === 0) return [];
 
@@ -1532,7 +1817,7 @@ export async function generateMicrobreaksFromPlan(
 
   let generated: GeneratedPlannedGame[];
   try {
-    const prompt = `${GENERATOR_PROMPT}\n\nInput:\n${JSON.stringify(generationInput, null, 2)}\n\nReturn JSON array of length ${plan.length}. Each item format:\n{"slotId":"...","content":{"breakType":"game","gameType":"...",...}}`;
+    const prompt = `${GENERATOR_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\nInput:\n${JSON.stringify(generationInput, null, 2)}\n\nReturn JSON array of length ${plan.length}. Each item format:\n{"slotId":"...","content":{"breakType":"game","gameType":"...",...}}`;
     const result = await model.generateContent(prompt);
     generated = parseJson<GeneratedPlannedGame[]>(result.response.text());
   } catch (error) {
@@ -1584,7 +1869,7 @@ export async function generateMicrobreaksFromPlan(
     const existing = repaired[index];
     const planItem = slotById.get(existing.slotId) || plan[index];
     try {
-      const repairedGame = await repairSingleGame(model, planItem, digest, reasons);
+      const repairedGame = await repairSingleGame(model, planItem, digest, reasons, promptProfile);
       repaired[index] = repairedGame;
     } catch (error) {
       console.warn(`[GameGenerator] targeted repair failed for index ${index}; using fallback. ${error instanceof Error ? error.message : 'unknown'}`);
@@ -1679,18 +1964,19 @@ export async function generateMicrobreaksForLesson(
   }
 
   const digest = buildLessonDigest(lesson);
+  const promptProfile = getGamePromptProfile(lesson);
 
   const eligibleTypes = getEligibleTypes(allowedGameTypes, digest);
   if (eligibleTypes.length === 0) {
     throw new Error('No eligible game types available for this lesson based on hard constraints.');
   }
 
-  const plan = await planMicrobreaks(slots, digest, eligibleTypes);
+  const plan = await planMicrobreaks(slots, digest, eligibleTypes, promptProfile);
   if (plan.length !== slots.length) {
     throw new Error(`Planner returned ${plan.length} entries for ${slots.length} slots.`);
   }
 
-  const generatedGames = await generateMicrobreaksFromPlan(plan, digest);
+  const generatedGames = await generateMicrobreaksFromPlan(plan, digest, promptProfile);
   if (generatedGames.length !== plan.length) {
     throw new Error(`Generator returned ${generatedGames.length} entries for ${plan.length} planned slots.`);
   }

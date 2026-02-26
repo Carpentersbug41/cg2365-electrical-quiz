@@ -11,6 +11,7 @@ import {
 import {
   createModuleRun,
   deleteModuleRun,
+  deleteRunLesson,
   findArtifactByRequestHash,
   getModuleRunById,
   getRunSummary,
@@ -2890,6 +2891,40 @@ export async function runM6GenerateLesson(
       inFlightSingleLessonGeneration.delete(key);
     }
   }
+}
+
+export async function runM6DeleteLesson(
+  runId: string,
+  blueprintId: string
+): Promise<{
+  lessonId: string;
+  deleted: boolean;
+  message: string;
+}> {
+  await requireRun(runId);
+  const existing = (await listRunLessons(runId)).find((row) => row.blueprint_id === blueprintId);
+  if (!existing) {
+    return {
+      lessonId: blueprintId,
+      deleted: false,
+      message: 'No generated lesson record exists for this blueprint in the current run.',
+    };
+  }
+
+  await deleteRunLesson(runId, blueprintId);
+  const lessons = await listRunLessons(runId);
+  const summary: GenerateSummary = {
+    generated: lessons.filter((row) => row.status === 'success').length,
+    failed: lessons.filter((row) => row.status === 'failed').length,
+    lessonIds: lessons.filter((row) => row.status === 'success').map((row) => row.lesson_id),
+  };
+  await upsertArtifactAndStatus(runId, 'M6', summary);
+
+  return {
+    lessonId: blueprintId,
+    deleted: true,
+    message: `Deleted lesson record for ${blueprintId}.`,
+  };
 }
 
 export async function runM6Generate(

@@ -51,23 +51,84 @@ function calculateSimilarity(str1: string, str2: string): number {
   return (longer.length - editDistance) / longer.length;
 }
 
+function tokenizeForMatching(value: string): string[] {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .split(/\s+/)
+    .filter(token => token.length > 0);
+}
+
+function bestTokenSimilarity(token: string, candidates: string[]): number {
+  let best = 0;
+  for (const candidate of candidates) {
+    const similarity = calculateSimilarity(token, candidate);
+    if (similarity > best) best = similarity;
+  }
+  return best;
+}
+
+function clampToTwoWords(value: string): string {
+  const tokens = value
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .filter(Boolean);
+  return tokens.slice(0, 2).join(' ');
+}
+
 // Validate answer with fuzzy matching
 function validateAnswer(userInput: string, correctAnswer: string): boolean {
-  // Normalize both strings
-  const normalize = (str: string) => 
+  const normalizeCompact = (str: string) =>
     str.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
+
+  const normalizeSpaced = (str: string) =>
+    str.toLowerCase().trim().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
   
-  const normalizedUser = normalize(userInput);
-  const normalizedCorrect = normalize(correctAnswer);
+  const normalizedUser = normalizeCompact(userInput);
+  const normalizedCorrect = normalizeCompact(correctAnswer);
+  const spacedUser = normalizeSpaced(userInput);
+  const spacedCorrect = normalizeSpaced(correctAnswer);
+
+  if (!normalizedUser || !normalizedCorrect) return false;
   
   // Exact match after normalization
   if (normalizedUser === normalizedCorrect) return true;
+
+  // Accept containment for close phrase variants: "line conductor" vs "the line conductor"
+  if (
+    normalizedUser.length >= 4 &&
+    normalizedCorrect.length >= 4 &&
+    (normalizedCorrect.includes(normalizedUser) || normalizedUser.includes(normalizedCorrect))
+  ) {
+    return true;
+  }
+
+  // Token-level fuzzy handling for multi-word answers
+  const correctTokens = tokenizeForMatching(spacedCorrect);
+  const userTokens = tokenizeForMatching(spacedUser);
+  if (correctTokens.length > 1) {
+    const minTokenSimilarity = 0.7;
+    let matchedTokens = 0;
+    for (const token of correctTokens) {
+      const best = bestTokenSimilarity(token, userTokens);
+      if (best >= minTokenSimilarity) matchedTokens++;
+    }
+    const coverage = matchedTokens / correctTokens.length;
+    if (coverage >= 0.75) return true;
+  }
   
-  // Fuzzy matching - calculate similarity
+  // Character-level fuzzy fallback with adaptive thresholds
+  const distance = computeLevenshteinDistance(normalizedUser, normalizedCorrect);
+  const maxLen = Math.max(normalizedUser.length, normalizedCorrect.length);
   const similarity = calculateSimilarity(normalizedUser, normalizedCorrect);
-  
-  // Accept if 80% or more similar (handles typos)
-  return similarity >= 0.8;
+
+  // Short answers should tolerate small typo count.
+  if (maxLen <= 4) return distance <= 1 || similarity >= 0.72;
+  if (maxLen <= 7) return distance <= 2 || similarity >= 0.7;
+
+  return similarity >= 0.68 || distance <= Math.floor(maxLen * 0.25);
 }
 
 export default function QuickWinSprintGame({ content, onComplete, onSkip }: QuickWinSprintGameProps) {
@@ -86,6 +147,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
   const [gameFailed, setGameFailed] = useState(false);
 
   const currentQuestion = content.questions[currentIndex];
+  const currentExpectedAnswer = clampToTwoWords(currentQuestion.answer || '');
   const isLastQuestion = currentIndex === content.questions.length - 1;
 
   // Start countdown timer
@@ -140,7 +202,8 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
     playClickSound(0.3);
     
     setIsValidating(true);
-    const isCorrect = validateAnswer(userAnswer, currentQuestion.answer);
+    const clampedUserAnswer = clampToTwoWords(userAnswer);
+    const isCorrect = validateAnswer(clampedUserAnswer, currentExpectedAnswer);
     
     setAnswerResult(isCorrect ? 'correct' : 'wrong');
     
@@ -214,7 +277,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
     <GameWrapper 
       title="Quick Win Sprint"
       duration={34}
-      instruction="Answer fast: tap I Know It, type your answer, then submit before the timer ends."
+      instruction="Answer fast using 1-2 words: tap I Know It, type, then submit before the timer ends."
       motionPreset="bold"
       onComplete={onComplete}
       onSkip={onSkip}
@@ -242,7 +305,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                 </span>
                 
                 {timerStarted ? (
-                  <div className={`text-lg font-bold ${timeRemaining <= 10 ? 'text-red-600 dark:text-red-400 animate-pulse' : 'text-blue-600 dark:text-blue-400'}`}>
+                  <div className={`text-lg font-bold ${timeRemaining <= 10 ? 'text-red-600 dark:text-red-400 animate-pulse microbreak-soft-pulse' : 'text-blue-600 dark:text-blue-400'}`}>
                     ⏱️ {timeRemaining}s
                   </div>
                 ) : (
@@ -256,7 +319,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                 </span>
               </div>
 
-              <div className="bg-white dark:bg-slate-700 rounded-xl p-6 border-2 border-gray-300 dark:border-slate-600 min-h-[200px] flex flex-col justify-center">
+              <div key={`q-card-${currentIndex}-${showInput}-${showAnswer}-${answerResult}`} className="microbreak-enter-slow microbreak-card-glide bg-white dark:bg-slate-700 rounded-xl p-6 border-2 border-gray-300 dark:border-slate-600 min-h-[200px] flex flex-col justify-center">
                 {showInput ? (
                   // Answer input mode
                   <div className="space-y-4">
@@ -273,7 +336,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                           </span>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-slate-400">
-                          Correct answer: <span className="font-bold text-gray-900 dark:text-white">{currentQuestion.answer}</span>
+                          Correct answer: <span className="font-bold text-gray-900 dark:text-white">{currentExpectedAnswer}</span>
                         </p>
                       </div>
                     ) : (
@@ -282,21 +345,21 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                         <input
                           type="text"
                           value={userAnswer}
-                          onChange={(e) => setUserAnswer(e.target.value)}
+                          onChange={(e) => setUserAnswer(clampToTwoWords(e.target.value))}
                           onKeyPress={(e) => {
                             if (e.key === 'Enter') {
                               handleSubmitAnswer(handleComplete);
                             }
                           }}
-                          placeholder="Type your answer..."
+                          placeholder="Type 1-2 words..."
                           autoFocus
                           disabled={isValidating}
-                          className="w-full px-4 py-3 text-lg border-2 border-blue-400 dark:border-blue-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white"
+                          className="w-full px-4 py-3 text-lg border-2 border-blue-400 dark:border-blue-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white microbreak-card-glide"
                         />
                         <button 
                           onClick={() => handleSubmitAnswer(handleComplete)} 
                           disabled={!userAnswer.trim() || isValidating}
-                          className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+                          className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors microbreak-card-glide"
                         >
                           Submit Answer
                         </button>
@@ -313,13 +376,13 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                     <div className="flex gap-3">
                       <button
                         onClick={() => handleKnowIt()}
-                        className="flex-1 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors"
+                        className="flex-1 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors microbreak-card-glide"
                       >
                         I Know It! ✓
                       </button>
                       <button
                         onClick={() => handleSkipQuestion(handleComplete)}
-                        className="flex-1 py-3 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition-colors"
+                        className="flex-1 py-3 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition-colors microbreak-card-glide"
                       >
                         Show Answer
                       </button>
@@ -335,7 +398,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                       {currentQuestion.question}
                     </p>
                     <p className="text-xl font-bold text-gray-900 dark:text-white">
-                      {currentQuestion.answer}
+                      {currentExpectedAnswer}
                     </p>
                   </div>
                 )}

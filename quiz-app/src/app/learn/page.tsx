@@ -61,6 +61,7 @@ import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 import { courseHref } from '@/lib/routing/courseHref';
 import { getCoursePrefixForClient } from '@/lib/routing/curricula';
+import { isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
 /**
  * Natural sort function for lesson IDs
@@ -225,9 +226,8 @@ export default function LearnPage() {
   const [lessonsProgress, setLessonsProgress] = useState<Record<string, QuizProgress | null>>({});
   const coursePrefix = getCoursePrefixForClient();
   const isGcsePhysics = coursePrefix === '/gcse/science/physics';
-  const visibleLessons = isGcsePhysics
-    ? LESSONS.filter((lesson) => lesson.id.toUpperCase().startsWith('PHY-'))
-    : LESSONS;
+  const scope = isGcsePhysics ? 'gcse-science-physics' : 'cg2365';
+  const visibleLessons = LESSONS.filter((lesson) => isLessonIdAllowedForScope(lesson.id, scope));
 
   useEffect(() => {
     // Load progress for all lessons

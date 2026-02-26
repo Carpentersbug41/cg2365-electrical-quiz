@@ -245,6 +245,7 @@ export default function ModulePlannerPage() {
   const [taskProgress, setTaskProgress] = useState(0);
   const [generatingBlueprintId, setGeneratingBlueprintId] = useState<string | null>(null);
   const [lessonGenerationProgress, setLessonGenerationProgress] = useState<LessonGenerationProgress | null>(null);
+  const [deletingBlueprintId, setDeletingBlueprintId] = useState<string | null>(null);
   const [deletingRunId, setDeletingRunId] = useState<string | null>(null);
   const [unitStructure, setUnitStructure] = useState<CanonicalUnitStructure | null>(null);
   const [viewLessonPayload, setViewLessonPayload] = useState<{
@@ -927,6 +928,39 @@ export default function ModulePlannerPage() {
     }
   };
 
+  const handleDeleteLesson = async (blueprintId: string) => {
+    if (!runId) {
+      setError('Create or load a run first.');
+      return;
+    }
+    const confirmed = window.confirm(
+      `Delete generated lesson state for ${blueprintId} from this run? You can regenerate it afterwards.`
+    );
+    if (!confirmed) return;
+
+    setDeletingBlueprintId(blueprintId);
+    setError(null);
+    setInfo(null);
+    try {
+      const data = await callApi(
+        `/api/admin/module/${runId}/lessons/${encodeURIComponent(blueprintId)}/generate`,
+        undefined,
+        false,
+        'DELETE'
+      );
+      await refreshRunSummarySafe(runId);
+      setInfo(
+        typeof data.message === 'string' && data.message.trim().length > 0
+          ? data.message
+          : `Deleted lesson state for ${blueprintId}.`
+      );
+    } catch (e) {
+      setError(e instanceof Error ? e.message : `Failed to delete ${blueprintId}`);
+    } finally {
+      setDeletingBlueprintId(null);
+    }
+  };
+
   const stageOrder: StageKey[] = ['M0', 'M1', 'M2', 'M3', 'M4', 'M5'];
 
   return (
@@ -1352,7 +1386,7 @@ export default function ModulePlannerPage() {
                                     ) : (
                                       <button
                                         onClick={() => void handleGenerateLesson(bp.id)}
-                                        disabled={Boolean(generatingBlueprintId)}
+                                        disabled={Boolean(generatingBlueprintId) || Boolean(deletingBlueprintId)}
                                         className="rounded bg-slate-900 px-2 py-1 text-xs text-white disabled:opacity-60"
                                       >
                                         {generatingBlueprintId === bp.id
@@ -1360,6 +1394,15 @@ export default function ModulePlannerPage() {
                                           : state === 'failed'
                                             ? 'Regenerate'
                                             : 'Generate Lesson'}
+                                      </button>
+                                    )}
+                                    {state !== 'generating' && row && (
+                                      <button
+                                        onClick={() => void handleDeleteLesson(bp.id)}
+                                        disabled={Boolean(generatingBlueprintId) || Boolean(deletingBlueprintId)}
+                                        className="rounded border border-rose-300 px-2 py-1 text-xs text-rose-700 disabled:opacity-60"
+                                      >
+                                        {deletingBlueprintId === bp.id ? 'Deleting...' : 'Delete Lesson'}
                                       </button>
                                     )}
                                   </div>

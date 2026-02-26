@@ -11,6 +11,25 @@ const TTS_STATE_EVENT = 'lesson-block-tts-state';
 let activeBlockId: string | null = null;
 let activeUtterance: SpeechSynthesisUtterance | null = null;
 let speechReady = false;
+const TTS_VOICE_STORAGE_KEY = 'tts-preferred-voice';
+
+const PREFERRED_VOICE_NAME_HINTS = [
+  'google uk english female',
+  'google uk english male',
+  'google us english',
+  'microsoft aria',
+  'microsoft guy',
+  'microsoft jenny',
+  'microsoft ryan',
+  'microsoft sonia',
+  'samantha',
+  'daniel',
+  'serena',
+  'alex',
+];
+
+const HIGH_QUALITY_HINTS = ['natural', 'neural', 'online', 'enhanced', 'premium'];
+const LOW_QUALITY_HINTS = ['espeak', 'festival', 'compact'];
 
 function emitState() {
   if (typeof window === 'undefined') return;
@@ -41,11 +60,34 @@ function pickVoice(): SpeechSynthesisVoice | null {
   if (!hasSpeechSupport()) return null;
   const voices = window.speechSynthesis.getVoices();
   if (!Array.isArray(voices) || voices.length === 0) return null;
-  return (
-    voices.find((voice) => voice.lang?.toLowerCase().startsWith('en-')) ??
-    voices[0] ??
-    null
-  );
+
+  const preferredVoiceName =
+    typeof window !== 'undefined' ? window.localStorage.getItem(TTS_VOICE_STORAGE_KEY)?.toLowerCase() : null;
+  const browserLang = (typeof navigator !== 'undefined' ? navigator.language : 'en-GB').toLowerCase();
+  const browserBaseLang = browserLang.split('-')[0];
+
+  const scoreVoice = (voice: SpeechSynthesisVoice): number => {
+    const name = voice.name.toLowerCase();
+    const lang = (voice.lang || '').toLowerCase();
+    const baseLang = lang.split('-')[0];
+    let score = 0;
+
+    if (preferredVoiceName && name === preferredVoiceName) score += 1000;
+    if (lang === browserLang) score += 80;
+    if (baseLang === browserBaseLang) score += 60;
+    if (lang.startsWith('en-')) score += 40;
+    if (voice.default) score += 20;
+    if (PREFERRED_VOICE_NAME_HINTS.some((hint) => name.includes(hint))) score += 50;
+    if (HIGH_QUALITY_HINTS.some((hint) => name.includes(hint))) score += 25;
+    if (LOW_QUALITY_HINTS.some((hint) => name.includes(hint))) score -= 30;
+
+    return score;
+  };
+
+  return voices.reduce<SpeechSynthesisVoice | null>((best, voice) => {
+    if (!best) return voice;
+    return scoreVoice(voice) > scoreVoice(best) ? voice : best;
+  }, null);
 }
 
 function toSpeakableText(input: string): string {
@@ -142,8 +184,9 @@ export default function BlockTTSButton({
     const utterance = new window.SpeechSynthesisUtterance(speakableText);
     const voice = pickVoice();
     if (voice) utterance.voice = voice;
+    if (voice?.name) window.localStorage.setItem(TTS_VOICE_STORAGE_KEY, voice.name);
     utterance.lang = voice?.lang || 'en-GB';
-    utterance.rate = 1;
+    utterance.rate = 0.95;
     utterance.pitch = 1;
     utterance.volume = 1;
     utterance.onstart = () => {

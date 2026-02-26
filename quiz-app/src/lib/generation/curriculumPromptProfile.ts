@@ -5,6 +5,8 @@ export interface CurriculumPromptProfile {
   programLabel: string;
   learnerLabel: string;
   authorLabel: string;
+  toneInstruction: string;
+  audienceInstruction: string;
 }
 
 function hasGcsePhysicsSignal(text: string | undefined): boolean {
@@ -20,6 +22,10 @@ export function getCurriculumPromptProfile(request: GenerationRequest): Curricul
       programLabel: 'GCSE Physics',
       learnerLabel: 'GCSE Physics learners',
       authorLabel: 'GCSE Science Learning Team',
+      toneInstruction:
+        'Use a fun, warm, engaging tone. Keep language age-appropriate and confidence-building for younger learners.',
+      audienceInstruction:
+        'Primary audience is a 12-year-old girl studying GCSE Physics. Explain clearly, use relatable examples, and avoid dense jargon.',
     };
   }
 
@@ -36,6 +42,10 @@ export function getCurriculumPromptProfile(request: GenerationRequest): Curricul
       programLabel: 'GCSE Physics',
       learnerLabel: 'GCSE Physics learners',
       authorLabel: 'GCSE Science Learning Team',
+      toneInstruction:
+        'Use a fun, warm, engaging tone. Keep language age-appropriate and confidence-building for younger learners.',
+      audienceInstruction:
+        'Primary audience is a 12-year-old girl studying GCSE Physics. Explain clearly, use relatable examples, and avoid dense jargon.',
     };
   }
 
@@ -44,5 +54,9 @@ export function getCurriculumPromptProfile(request: GenerationRequest): Curricul
     programLabel: 'C&G 2365 Electrical Training',
     learnerLabel: 'C&G 2365 Electrical trainees',
     authorLabel: 'C&G 2365 Learning Team',
+    toneInstruction:
+      'Use a practical, professional training tone suitable for vocational electrical trainees.',
+    audienceInstruction:
+      'Audience is Level 2 electrical trainees; prioritize job-relevant clarity, safe practice language, and technical precision.',
   };
 }

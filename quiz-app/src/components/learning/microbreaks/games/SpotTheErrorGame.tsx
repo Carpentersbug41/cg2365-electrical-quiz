@@ -49,7 +49,7 @@ export default function SpotTheErrorGame({ content, onComplete, onSkip }: SpotTh
     >
       {(handleComplete: (score?: number, accuracy?: number) => void) => (
         <div className="space-y-4">
-          <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-lg p-4">
+          <div className="microbreak-enter-slow microbreak-card-glide bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-lg p-4">
             <p className="text-sm font-medium text-gray-800 dark:text-slate-200">
               {content.scenario}
             </p>
@@ -71,6 +71,7 @@ export default function SpotTheErrorGame({ content, onComplete, onSkip }: SpotTh
                   key={index}
                   onClick={() => !showResult && handleSelect(index, handleComplete)}
                   disabled={showResult}
+                  style={{ animationDelay: `${index * 55}ms` }}
                   className={`w-full p-4 rounded-lg text-left text-sm font-medium transition-all border-2 ${
                     showCorrect
                       ? 'microbreak-correct bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-400 dark:border-green-600'
@@ -79,7 +80,7 @@ export default function SpotTheErrorGame({ content, onComplete, onSkip }: SpotTh
                       : isSelected
                       ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-400 dark:border-blue-600'
                       : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'
-                  } disabled:cursor-default`}
+                  } microbreak-stagger microbreak-card-glide disabled:cursor-default`}
                 >
                   <div className="flex items-start gap-3">
                     <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${

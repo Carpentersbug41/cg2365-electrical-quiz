@@ -12,6 +12,7 @@ import LayoutB from '@/components/learning/layouts/LayoutB';
 import DiagnosticGate from '@/components/learning/DiagnosticGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 import { getCoursePrefixFromHeader } from '@/lib/routing/curricula';
+import { isLessonIdAllowedForScope, type CurriculumScope } from '@/lib/routing/curriculumScope';
 
 // Import lesson data
 import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
@@ -122,6 +123,13 @@ interface PageProps {
 
 export default async function LessonPage({ params }: PageProps) {
   const { lessonId } = await params;
+  const requestHeaders = await headers();
+  const coursePrefix = getCoursePrefixFromHeader(requestHeaders.get('x-course-prefix'));
+  const scope: CurriculumScope = coursePrefix === '/gcse/science/physics' ? 'gcse-science-physics' : 'cg2365';
+
+  if (!isLessonIdAllowedForScope(lessonId, scope)) {
+    notFound();
+  }
   
   // Load lesson data
   const lesson = LESSONS[lessonId];

@@ -20,6 +20,7 @@ export interface AssemblerInput {
   description: string;
   topic: string;
   unit: string;
+  curriculum?: 'cg2365' | 'gcse-science-physics';
   prerequisites?: string[];
   youtubeUrl?: string;
   imageUrl?: string;
@@ -263,7 +264,7 @@ export class Phase9_Assembler {
         created: new Date().toISOString().split('T')[0],
         updated: new Date().toISOString().split('T')[0],
         version: '1.0',
-        author: 'C&G 2365 Learning Team',
+        author: input.curriculum === 'gcse-science-physics' ? 'GCSE Science Learning Team' : 'C&G 2365 Learning Team',
         ...(plan.taskMode ? { taskMode: plan.taskMode } : {}),
         ...(plan.syllabusAnchors ? { syllabusAnchors: plan.syllabusAnchors } : {}),
         ...(plan.scope ? { scope: plan.scope } : {}),

@@ -53,15 +53,16 @@ export default function GameWrapper({
   };
 
   return (
-    <div className={`microbreak-enter microbreak-game-${motionPreset} rounded-2xl border-2 border-cyan-200 bg-gradient-to-br from-cyan-50 via-emerald-50 to-pink-50 p-6 shadow-xl dark:border-cyan-700 dark:from-slate-800 dark:via-teal-900 dark:to-indigo-900`}>
+    <div className={`microbreak-enter microbreak-enter-slow microbreak-game-${motionPreset} relative overflow-hidden rounded-2xl border-2 border-cyan-200 bg-gradient-to-br from-cyan-50 via-emerald-50 to-pink-50 p-6 shadow-xl dark:border-cyan-700 dark:from-slate-800 dark:via-teal-900 dark:to-indigo-900`}>
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-cyan-400 via-emerald-400 to-pink-400 opacity-85" />
       <div className="mb-4 flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-bold text-gray-900 dark:text-white">{title}</h3>
+          <h3 className="microbreak-float text-lg font-bold text-gray-900 dark:text-white">{title}</h3>
           <p className="mt-1 text-xs text-gray-600 dark:text-slate-400">Quick Break Activity</p>
         </div>
         <div className="flex items-center gap-4">
           {!disableTimer && (
-            <div className="rounded-full bg-white px-3 py-1 text-sm font-semibold text-gray-700 shadow-sm dark:bg-slate-700 dark:text-slate-300">
+            <div className="microbreak-soft-pulse rounded-full bg-white px-3 py-1 text-sm font-semibold text-gray-700 shadow-sm dark:bg-slate-700 dark:text-slate-300">
               {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
             </div>
           )}

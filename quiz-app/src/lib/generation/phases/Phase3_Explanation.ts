@@ -11,6 +11,7 @@ export interface ExplanationInput {
   lessonId: string;
   topic: string;
   section: string;
+  curriculum: 'cg2365' | 'gcse-science-physics';
   mustHaveTopics?: string;
   additionalInstructions?: string;
   plan: PlanningOutput;
@@ -47,8 +48,20 @@ export class Phase3_Explanation extends PhasePromptBuilder {
     return 'Phase 3: Explanation';
   }
 
-  protected buildSystemPrompt(): string {
-    return `You are an expert technical training content writer for City & Guilds courses.
+  protected buildSystemPrompt(input: ExplanationInput): string {
+    const isGcse = input.curriculum === 'gcse-science-physics';
+    const audienceInstruction = isGcse
+      ? 'Primary audience is a 12-year-old girl studying GCSE Physics. Keep explanations age-appropriate, confidence-building, and relatable.'
+      : 'Audience is Level 2 electrical trainees. Keep explanations practical, job-relevant, and technically precise.';
+    const toneInstruction = isGcse
+      ? 'Use a fun, warm, engaging tone while staying technically accurate.'
+      : 'Use a professional vocational teaching tone.';
+
+    return `You are an expert technical training content writer.
+
+AUDIENCE + TONE (MANDATORY):
+- ${audienceInstruction}
+- ${toneInstruction}
 
 Your task: write clear, accurate teaching explanations that match lesson scope and learning outcomes.
 
@@ -162,6 +175,10 @@ ${this.getJsonOutputInstructions()}`;
 
   protected buildUserPrompt(input: ExplanationInput): string {
     const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, taskMode } = input;
+    const isGcse = input.curriculum === 'gcse-science-physics';
+    const audienceToneInstruction = isGcse
+      ? 'Write for a 12-year-old girl learning GCSE Physics: fun, welcoming, clear, and age-appropriate.'
+      : 'Write for Level 2 electrical trainees: practical, precise, and professional.';
 
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\\n');
 
@@ -173,6 +190,9 @@ LESSON DETAILS:
 - Section: ${section}
 
 TASK MODE: ${taskMode}
+
+AUDIENCE + TONE:
+- ${audienceToneInstruction}
 
 CRITICAL:
 - Do NOT include specific numeric values from standards/tables unless they appear in the inputs above.

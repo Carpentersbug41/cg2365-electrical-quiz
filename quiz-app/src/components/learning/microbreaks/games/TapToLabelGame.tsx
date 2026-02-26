@@ -99,7 +99,7 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
                 </span>
               </div>
 
-              <div className="bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-lg p-4 text-center">
+              <div className="microbreak-enter-slow microbreak-card-glide bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-lg p-4 text-center">
                 <p className="text-lg font-semibold text-gray-900 dark:text-white">
                   What is this component?
                 </p>
@@ -116,11 +116,12 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
                       key={label}
                       onClick={() => !isUsed && handleLabelSelect(label, handleComplete)}
                       disabled={isUsed}
+                      style={{ animationDelay: `${Math.max(0, availableLabels.indexOf(label)) * 45}ms` }}
                       className={`p-3 rounded-lg text-sm font-medium transition-all ${
                         isUsed
                           ? 'bg-gray-200 dark:bg-slate-700 text-gray-400 dark:text-slate-500 cursor-not-allowed line-through'
                           : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-2 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'
-                      }`}
+                      } microbreak-stagger microbreak-card-glide`}
                     >
                       {label}
                     </button>
@@ -139,11 +140,12 @@ export default function TapToLabelGame({ content, onComplete, onSkip }: TapToLab
                 return (
                   <div 
                     key={item.id}
+                    style={{ animationDelay: `${Math.max(0, content.items.findIndex((i) => i.id === item.id)) * 55}ms` }}
                     className={`p-3 rounded-lg border-2 ${
                       isCorrect
                         ? 'microbreak-correct bg-green-50 dark:bg-green-900/20 border-green-300 dark:border-green-700'
                         : 'microbreak-wrong bg-red-50 dark:bg-red-900/20 border-red-300 dark:border-red-700'
-                    }`}
+                    } microbreak-stagger microbreak-card-glide`}
                   >
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-medium text-gray-700 dark:text-slate-300">

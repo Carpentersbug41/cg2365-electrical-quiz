@@ -429,6 +429,22 @@ export async function listRunLessons(runId: string): Promise<ModuleRunLessonRow[
   return (data ?? []).map((row) => normalizeLessonRow(row as Record<string, unknown>));
 }
 
+export async function deleteRunLesson(runId: string, blueprintId: string): Promise<void> {
+  if (useMemoryDb()) {
+    memoryDb.generated_lessons = memoryDb.generated_lessons.filter(
+      (row) => !(row.run_id === runId && row.blueprint_id === blueprintId)
+    );
+    return;
+  }
+  const supabase = requireSupabase();
+  const { error } = await supabase
+    .from('generated_lessons')
+    .delete()
+    .eq('run_id', runId)
+    .eq('blueprint_id', blueprintId);
+  if (error) throw new Error(error.message);
+}
+
 export async function getRunSummary(runId: string): Promise<ModuleRunSummary | null> {
   const run = await getModuleRunById(runId);
   if (!run) return null;

@@ -1,7 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Loader2, Sparkles, Save, AlertCircle, CheckCircle, Info, Trash2 } from 'lucide-react';
+import {
+  AlertCircle,
+  BookOpen,
+  CheckCircle,
+  Info,
+  Loader2,
+  Save,
+  SlidersHorizontal,
+  Sparkles,
+  Trash2,
+} from 'lucide-react';
 import LessonSelector from './LessonSelector';
 import GamePreview from './GamePreview';
 import { MicrobreakContent } from '@/data/lessons/types';
@@ -88,7 +98,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     }
   };
 
-  const selectedLesson = lessons.find(l => l.filename === selectedLessonFilename);
+  const selectedLesson = lessons.find((l) => l.filename === selectedLessonFilename);
   const estimatedGenerationCount = selectedLesson?.availableMicrobreakSlots || 0;
   const isManualMode = selectionMode === 'manual';
   const hasManualWhitelist = selectedGameTypes.size > 0;
@@ -107,7 +117,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     filename: selectedLesson?.filename,
     operation,
     mode: selectionMode,
-    allowedGameTypes: isManualMode ? Array.from(selectedGameTypes) : []
+    allowedGameTypes: isManualMode ? Array.from(selectedGameTypes) : [],
   });
 
   const handleGeneratePreview = async () => {
@@ -132,7 +142,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
@@ -178,7 +188,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody)
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
@@ -266,7 +276,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     { value: 'formula-build', label: 'Formula Build', description: 'Assemble formula from tokens' },
     { value: 'tap-the-line', label: 'Tap The Line', description: 'Pick the correct line from list' },
     { value: 'tap-the-word', label: 'Tap The Word', description: 'Pick the correct word or phrase' },
-    { value: 'elimination', label: 'Elimination', description: 'Eliminate then choose final answer' }
+    { value: 'elimination', label: 'Elimination', description: 'Eliminate then choose final answer' },
   ];
 
   const isGenerating = status === 'generating' || status === 'saving' || status === 'deleting';
@@ -279,15 +289,15 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-slate-700">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>??</span>
+      <div className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/70">
+        <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-gray-900 dark:text-white">
+          <BookOpen className="h-5 w-5 text-cyan-600 dark:text-cyan-300" />
           Lesson Selection
         </h2>
 
         {loadingLessons ? (
           <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-6 h-6 animate-spin text-indigo-600 dark:text-indigo-400" />
+            <Loader2 className="w-6 h-6 animate-spin text-cyan-600 dark:text-cyan-400" />
             <span className="ml-2 text-gray-600 dark:text-slate-400">Loading lessons...</span>
           </div>
         ) : (
@@ -300,27 +310,27 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         )}
 
         {selectedLesson && (
-          <div className="mt-4 bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border border-indigo-200 dark:border-indigo-800">
-            <h3 className="font-semibold text-indigo-900 dark:text-indigo-100 mb-2">{selectedLesson.title}</h3>
-            <p className="text-sm text-indigo-700 dark:text-indigo-300 mb-3">{selectedLesson.description}</p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 text-sm">
-              <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
+          <div className="mt-4 rounded-xl border border-cyan-300/50 bg-cyan-50/80 p-4 dark:border-cyan-700/40 dark:bg-cyan-950/25">
+            <h3 className="mb-1 font-semibold text-cyan-900 dark:text-cyan-100">{selectedLesson.title}</h3>
+            <p className="mb-3 text-sm text-cyan-800 dark:text-cyan-200">{selectedLesson.description}</p>
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-5 text-sm">
+              <div className="rounded bg-white/90 px-3 py-2 dark:bg-slate-900/60">
                 <div className="text-gray-600 dark:text-slate-400">Total Blocks</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.totalBlocks}</div>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
+              <div className="rounded bg-white/90 px-3 py-2 dark:bg-slate-900/60">
                 <div className="text-gray-600 dark:text-slate-400">Vocab Terms</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.vocabTermCount}</div>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
+              <div className="rounded bg-white/90 px-3 py-2 dark:bg-slate-900/60">
                 <div className="text-gray-600 dark:text-slate-400">Explanations</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.explanationCount}</div>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
+              <div className="rounded bg-white/90 px-3 py-2 dark:bg-slate-900/60">
                 <div className="text-gray-600 dark:text-slate-400">Existing Games</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.microbreakCount}</div>
               </div>
-              <div className="bg-white dark:bg-slate-800 rounded px-3 py-2">
+              <div className="rounded bg-white/90 px-3 py-2 dark:bg-slate-900/60">
                 <div className="text-gray-600 dark:text-slate-400">Microbreak Slots</div>
                 <div className="font-semibold text-gray-900 dark:text-white">{selectedLesson.availableMicrobreakSlots}</div>
               </div>
@@ -329,17 +339,17 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         )}
       </div>
 
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-slate-700">
-        <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-          <span>??</span>
+      <div className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/70">
+        <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-gray-900 dark:text-white">
+          <SlidersHorizontal className="h-5 w-5 text-amber-600 dark:text-amber-300" />
           Game Configuration
         </h2>
 
         <div className="space-y-4">
           <div>
-            <p className="block text-sm font-semibold text-gray-700 dark:text-slate-300 mb-3">Generation Mode</p>
+            <p className="mb-3 block text-sm font-semibold text-gray-700 dark:text-slate-300">Generation Mode</p>
             <div className="space-y-2">
-              <label className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${selectionMode === 'auto' ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'border-gray-200 dark:border-slate-700'}`}>
+              <label className={`flex items-start gap-3 rounded-lg border-2 p-3 cursor-pointer transition-all ${selectionMode === 'auto' ? 'border-cyan-500 dark:border-cyan-400 bg-cyan-50 dark:bg-cyan-900/20' : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600'}`}>
                 <input
                   type="radio"
                   name="generationMode"
@@ -353,7 +363,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
                   <div className="text-sm text-gray-600 dark:text-slate-400">Planner chooses best eligible game types for this lesson.</div>
                 </div>
               </label>
-              <label className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${selectionMode === 'manual' ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20' : 'border-gray-200 dark:border-slate-700'}`}>
+              <label className={`flex items-start gap-3 rounded-lg border-2 p-3 cursor-pointer transition-all ${selectionMode === 'manual' ? 'border-cyan-500 dark:border-cyan-400 bg-cyan-50 dark:bg-cyan-900/20' : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600'}`}>
                 <input
                   type="radio"
                   name="generationMode"
@@ -371,26 +381,26 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
           </div>
 
           {!isManualMode && (
-            <div className="rounded-lg border border-indigo-200 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 p-4 text-sm text-gray-700 dark:text-slate-300">
+            <div className="rounded-lg border border-cyan-300/60 bg-cyan-50/80 p-4 text-sm text-gray-700 dark:border-cyan-700/50 dark:bg-cyan-900/20 dark:text-slate-300">
               Planner will choose the best game types for this lesson.
             </div>
           )}
 
           {isManualMode && (
             <div>
-              <label className="block text-sm font-semibold text-gray-700 dark:text-slate-300 mb-2">
+              <label className="mb-2 block text-sm font-semibold text-gray-700 dark:text-slate-300">
                 Restrict Game Types (optional whitelist)
               </label>
-              <p className="text-sm text-gray-600 dark:text-slate-400 mb-3">
+              <p className="mb-3 text-sm text-gray-600 dark:text-slate-400">
                 The planner will choose from this list. Not guaranteed 1-per-type.
               </p>
-              <div className="space-y-2">
-                {gameTypeOptions.map(option => (
+              <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                {gameTypeOptions.map((option) => (
                   <label
                     key={option.value}
-                    className={`flex items-start gap-3 p-3 rounded-lg border-2 cursor-pointer transition-all ${
+                    className={`flex items-start gap-3 rounded-lg border-2 p-3 cursor-pointer transition-all ${
                       selectedGameTypes.has(option.value)
-                        ? 'border-indigo-500 dark:border-indigo-400 bg-indigo-50 dark:bg-indigo-900/20'
+                        ? 'border-cyan-500 dark:border-cyan-400 bg-cyan-50 dark:bg-cyan-900/20'
                         : 'border-gray-200 dark:border-slate-700 hover:border-gray-300 dark:hover:border-slate-600'
                     } ${isGenerating ? 'opacity-50 cursor-not-allowed' : ''}`}
                   >
@@ -399,7 +409,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
                       checked={selectedGameTypes.has(option.value)}
                       onChange={() => toggleGameType(option.value)}
                       disabled={isGenerating}
-                      className="mt-1 w-4 h-4 text-indigo-600 dark:text-indigo-400 border-gray-300 dark:border-slate-600 rounded focus:ring-indigo-500 dark:focus:ring-indigo-400"
+                      className="mt-1 h-4 w-4 rounded border-gray-300 text-cyan-600 focus:ring-cyan-500 dark:border-slate-600 dark:text-cyan-400 dark:focus:ring-cyan-400"
                     />
                     <div className="flex-1">
                       <div className="font-medium text-gray-900 dark:text-white">{option.label}</div>
@@ -416,31 +426,31 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
             </div>
           )}
 
-          <div className="rounded-lg border border-indigo-200 dark:border-indigo-700 bg-indigo-50 dark:bg-indigo-900/20 p-4 text-sm">
+          <div className="rounded-lg border border-amber-300/60 bg-amber-50/80 p-4 text-sm dark:border-amber-700/50 dark:bg-amber-900/20">
             <p className="text-gray-700 dark:text-slate-300">
-              This lesson has <span className="font-semibold text-indigo-700 dark:text-indigo-300">{estimatedGenerationCount}</span> microbreak slot{estimatedGenerationCount !== 1 ? 's' : ''}.
+              This lesson has <span className="font-semibold text-amber-700 dark:text-amber-300">{estimatedGenerationCount}</span> microbreak slot{estimatedGenerationCount !== 1 ? 's' : ''}.
             </p>
-            <p className="text-gray-700 dark:text-slate-300 mt-1">
-              Will generate <span className="font-semibold text-indigo-700 dark:text-indigo-300">{estimatedGenerationCount}</span> game{estimatedGenerationCount !== 1 ? 's' : ''}.
+            <p className="mt-1 text-gray-700 dark:text-slate-300">
+              Will generate <span className="font-semibold text-amber-700 dark:text-amber-300">{estimatedGenerationCount}</span> game{estimatedGenerationCount !== 1 ? 's' : ''}.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex gap-3">
+      <div className="flex flex-col gap-3 md:flex-row">
         <button
           onClick={handleGeneratePreview}
           disabled={generateDisabled}
-          className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-500 dark:to-purple-500 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-purple-700 dark:hover:from-indigo-600 dark:hover:to-purple-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+          className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,#0891b2,#0ea5e9)] px-6 py-4 font-semibold text-white shadow-lg shadow-cyan-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status === 'generating' ? (
             <>
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="h-5 w-5 animate-spin" />
               Generating...
             </>
           ) : (
             <>
-              <Sparkles className="w-5 h-5" />
+              <Sparkles className="h-5 w-5" />
               Generate Preview
             </>
           )}
@@ -450,16 +460,16 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
           <button
             onClick={handleSaveToLesson}
             disabled={generatedGames.length === 0 || isGenerating}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-gradient-to-r from-green-600 to-emerald-600 dark:from-green-500 dark:to-emerald-500 text-white font-semibold rounded-xl hover:from-green-700 hover:to-emerald-700 dark:hover:from-green-600 dark:hover:to-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+            className="flex-1 flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,#059669,#16a34a)] px-6 py-4 font-semibold text-white shadow-lg shadow-emerald-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {status === 'saving' ? (
               <>
-                <Loader2 className="w-5 h-5 animate-spin" />
+                <Loader2 className="h-5 w-5 animate-spin" />
                 Saving...
               </>
             ) : (
               <>
-                <Save className="w-5 h-5" />
+                <Save className="h-5 w-5" />
                 Save to Lesson
               </>
             )}
@@ -469,16 +479,16 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         <button
           onClick={handleDeleteGames}
           disabled={!selectedLessonFilename || !selectedLesson || selectedLesson.microbreakCount === 0 || isGenerating}
-          className="flex items-center justify-center gap-2 px-5 py-4 bg-red-600 text-white font-semibold rounded-xl hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-xl"
+          className="flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-4 font-semibold text-white shadow-lg shadow-red-900/20 transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status === 'deleting' ? (
             <>
-              <Loader2 className="w-5 h-5 animate-spin" />
+              <Loader2 className="h-5 w-5 animate-spin" />
               Deleting...
             </>
           ) : (
             <>
-              <Trash2 className="w-5 h-5" />
+              <Trash2 className="h-5 w-5" />
               Delete Games
             </>
           )}
@@ -486,7 +496,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       </div>
 
       {estimatedGenerationCount === 0 && selectedLesson && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-4">
+        <div className="rounded-xl border-2 border-amber-300 bg-amber-50 p-4 dark:border-amber-700 dark:bg-amber-900/20">
           <div className="font-semibold text-amber-900 dark:text-amber-100">No Available Slots</div>
           <div className="text-sm text-amber-800 dark:text-amber-200">
             This lesson has 0 microbreak slots. No games will be generated unless lesson structure changes.
@@ -495,17 +505,17 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       )}
 
       {errorMessage && (
-        <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-4 flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 rounded-xl border-2 border-red-300 bg-red-50 p-4 dark:border-red-700 dark:bg-red-900/20">
+          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600 dark:text-red-400" />
           <div className="flex-1">
             <div className="font-semibold text-red-900 dark:text-red-100">Error</div>
-            <div className="text-sm text-red-800 dark:text-red-200 whitespace-pre-wrap font-mono">{errorMessage}</div>
+            <div className="whitespace-pre-wrap font-mono text-sm text-red-800 dark:text-red-200">{errorMessage}</div>
             {debugInfo && (
               <details className="mt-3">
-                <summary className="cursor-pointer text-sm font-semibold text-red-700 dark:text-red-300 hover:text-red-900 dark:hover:text-red-100">
+                <summary className="cursor-pointer text-sm font-semibold text-red-700 hover:text-red-900 dark:text-red-300 dark:hover:text-red-100">
                   Debug Information (click to expand)
                 </summary>
-                <pre className="mt-2 text-xs bg-red-100 dark:bg-red-950 p-3 rounded overflow-x-auto border border-red-300 dark:border-red-800">{debugInfo}</pre>
+                <pre className="mt-2 overflow-x-auto rounded border border-red-300 bg-red-100 p-3 text-xs dark:border-red-800 dark:bg-red-950">{debugInfo}</pre>
               </details>
             )}
           </div>
@@ -513,8 +523,8 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       )}
 
       {successMessage && (
-        <div className="bg-green-50 dark:bg-green-900/20 border-2 border-green-300 dark:border-green-700 rounded-xl p-4 flex items-start gap-3">
-          <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 rounded-xl border-2 border-green-300 bg-green-50 p-4 dark:border-green-700 dark:bg-green-900/20">
+          <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-600 dark:text-green-400" />
           <div>
             <div className="font-semibold text-green-900 dark:text-green-100">Success</div>
             <div className="text-sm text-green-800 dark:text-green-200">{successMessage}</div>
@@ -523,20 +533,19 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       )}
 
       {selectedLesson && selectedLesson.vocabTermCount < 3 && (
-        <div className="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-4 flex items-start gap-3">
-          <Info className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
+        <div className="flex items-start gap-3 rounded-xl border-2 border-amber-300 bg-amber-50 p-4 dark:border-amber-700 dark:bg-amber-900/20">
+          <Info className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600 dark:text-amber-400" />
           <div>
             <div className="font-semibold text-amber-900 dark:text-amber-100">Limited Content</div>
             <div className="text-sm text-amber-800 dark:text-amber-200">
-              This lesson has only {selectedLesson.vocabTermCount} vocab term{selectedLesson.vocabTermCount !== 1 ? 's' : ''}.
-              Game generation may produce limited or repetitive content. Consider lessons with more vocabulary for better results.
+              This lesson has only {selectedLesson.vocabTermCount} vocab term{selectedLesson.vocabTermCount !== 1 ? 's' : ''}. Game generation may produce limited or repetitive content. Consider lessons with more vocabulary for better results.
             </div>
           </div>
         </div>
       )}
 
       {hasPreview && generatedGames.length > 0 && (
-        <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-lg p-6 border border-gray-200 dark:border-slate-700">
+        <div className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/70">
           <GamePreview games={generatedGames} />
         </div>
       )}

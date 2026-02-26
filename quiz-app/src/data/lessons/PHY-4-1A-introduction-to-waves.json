@@ -7,8 +7,8 @@
   "topic": "Introduction to Waves",
   "learningOutcomes": [
     "Recall that waves transfer energy and information without transferring matter.",
-    "Describe evidence from water waves that the medium does not travel with the wave.",
-    "Explain how sound waves demonstrate that air molecules do not travel from the source to the listener."
+    "Describe the behavior of particles in a medium as a wave passes through.",
+    "Identify evidence from water or sound waves showing that the medium remains in place."
   ],
   "prerequisites": [],
   "blocks": [
@@ -23,11 +23,11 @@
             "bloomLevel": "remember"
           },
           {
-            "text": "Describe evidence from water waves that the medium does not travel with the wave.",
+            "text": "Describe the behavior of particles in a medium as a wave passes through.",
             "bloomLevel": "understand"
           },
           {
-            "text": "Explain how sound waves demonstrate that air molecules do not travel from the source to the listener.",
+            "text": "Identify evidence from water or sound waves showing that the medium remains in place.",
             "bloomLevel": "remember"
           }
         ]
@@ -41,23 +41,23 @@
         "terms": [
           {
             "term": "Wave",
-            "definition": "A disturbance that transfers energy and information from one location to another, not the physical matter of the medium."
+            "definition": "A wave is a periodic disturbance that transfers energy and information from one point to another without the permanent displacement of matter."
           },
           {
             "term": "Medium",
-            "definition": "The material or substance through which a wave travels, which oscillates in place rather than moving with the wave."
+            "definition": "A medium is the physical material or substance through which a wave travels, which remains in its original location after the energy has passed."
           },
           {
             "term": "Oscillation",
-            "definition": "A repetitive back-and-forth motion about a central point, which serves as the mechanism for energy transfer without net movement of the particles."
+            "definition": "Oscillation is the repetitive back-and-forth or up-and-down motion of particles about a fixed position, not to be confused with the overall travel of the wave itself."
           },
           {
-            "term": "Equilibrium",
-            "definition": "The original, undisturbed position of a medium's particles before and after a wave passes through them."
+            "term": "Energy Transfer",
+            "definition": "Energy transfer is the process by which a wave moves power or data through a system, differing from matter transfer because the particles of the medium do not travel with the wave."
           },
           {
             "term": "Displacement",
-            "definition": "The distance and direction an oscillating particle has moved from its equilibrium position."
+            "definition": "Displacement is the distance and direction an individual particle moves from its original resting position as a wave passes through it."
           }
         ]
       }
@@ -72,13 +72,13 @@
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
-          "wave-source",
-          "medium-particles",
-          "equilibrium-line",
-          "energy-direction",
-          "particle-displacement"
+          "water-surface",
+          "bobbing-duck",
+          "wave-direction",
+          "particle-oscillation",
+          "resting-position"
         ],
-        "placeholderText": "The diagram should show a horizontal line representing the equilibrium-line. A series of medium-particles (dots) should be arranged along this line. A wave-source at the left generates a wave traveling to the right, indicated by an energy-direction arrow. One specific particle should be shown at its maximum particle-displacement (above or below the line) to illustrate oscillation, while a floating object (like a cork) is shown moving only vertically to demonstrate that it does not follow the energy-direction."
+        "placeholderText": "The diagram should show a side-view cross-section of a water wave. A 'resting-position' line should run horizontally through the center. A 'bobbing-duck' is placed on the 'water-surface', which is curved into a wave shape. An arrow labeled 'wave-direction' points to the right. Small circular arrows or vertical double-headed arrows labeled 'particle-oscillation' should be shown under the duck to demonstrate that the water moves up and down, while the duck stays at the same horizontal coordinate. This illustrates that the wave moves right, but the medium stays in place."
       }
     },
     {
@@ -86,8 +86,8 @@
       "type": "explanation",
       "order": 4,
       "content": {
-        "title": "Waves and Energy Transfer",
-        "content": "### In this lesson\nIn this lesson, you will learn the fundamental nature of how energy moves through different environments. This knowledge is essential for understanding how communication signals, light, and mechanical vibrations function in technical systems. You will learn to:\n*   Recall that waves transfer energy and information without transferring matter.\n*   Identify the role of the medium in wave propagation.\n*   Distinguish between the movement of energy and the oscillation of particles.\n\n**What this is**\nA **Wave** is defined as a disturbance that transfers energy and information from one location to another. Crucially, this process does not involve the physical transport of the matter that makes up the environment. The material or substance through which a wave travels is known as the **Medium**. While the energy moves across distances, the **Medium** itself typically undergoes an **Oscillation**, which is a repetitive back-and-forth motion about a central point. This central, undisturbed position is referred to as the **Equilibrium**. When a wave passes, the particles experience a temporary **Displacement**, moving away from their **Equilibrium** position before returning to it once the energy has passed. \n\n**Why it matters**\nUnderstanding that energy moves independently of matter is vital for designing efficient transmission systems. In many cases, if matter had to travel alongside the energy, the process would be significantly slower and require much more force. For example, in telecommunications, we rely on the fact that information can reach a receiver almost instantaneously without needing to physically move the atoms of the cable or the air between the two points. This principle allows for the rapid transfer of data across vast distances with minimal physical disruption to the environment.\n\n**Key facts / rules**\n*   Waves are mechanisms for energy transfer, not matter transport.\n*   The **Medium** provides the physical path but does not travel with the wave.\n*   **Oscillation** is the local movement that allows energy to progress.\n*   **Equilibrium** represents the rest state of the particles in the **Medium**.\n*   **Displacement** measures how far a particle has moved from its rest state.\n*   Information is carried by the patterns within the wave disturbances.\n*   Energy transfer occurs because neighboring particles interact during their **Oscillation**.\n\n**When to choose it**\nYou should apply this conceptual framework whenever you need to distinguish between a flow of material and a flow of energy. In many technical scenarios, such as analyzing structural vibrations or signal interference, you must isolate the wave behavior from any bulk movement of the substance. \n\nConsider a long, heavy spring stretched across a room. If you flick one end, a pulse travels to the other side. The metal of the spring (the **Medium**) stays in your hand and at the far wall, but the energy of the flick reaches the end. This demonstrates that the wave is the movement of the state of the spring, not the spring itself. \n\n**Micro-scenario:** Imagine a wave carrying 50 Joules of energy across a 10-meter stretch of a heavy steel cable. While the energy travels the full 10 meters, an individual molecule of steel might only exhibit a **Displacement** of 2 millimeters from its **Equilibrium** before returning to rest.\n\n**Common mistakes**\nLearners often confuse the **Wave** with the **Medium**; the **Wave** is the traveling energy pattern, whereas the **Medium** is the stationary substance that vibrates to let the energy pass. \n\nMisconceptions (targeted):\n*   Misconception: Waves push particles from the source all the way to the destination. | Correction: Particles only oscillate locally around their equilibrium position and do not travel with the wave. | AC: AC4.1\n*   Misconception: If a wave has more energy, the medium must move faster in the direction of the wave. | Correction: Increased energy usually increases displacement or frequency of oscillation, not the net speed of the medium's particles. | AC: AC4.1\n\n**Key Points**\n*   Energy and information move; matter stays local.\n*   The **Medium** oscillates but does not experience net movement.\n*   **Equilibrium** is the \"zero\" point for particle position.\n*   **Displacement** is the momentary deviation from that zero point.\n\n**Quick recap**\nWaves serve as a highly efficient way to move energy and information across a distance without the need to move physical matter. By using the local **Oscillation** of particles in a **Medium**, a wave can pass through a substance, causing temporary **Displacement** from **Equilibrium** without resulting in the permanent relocation of the material itself.\n\n### Coming Up Next\nIn the next section, we will look at specific physical evidence in water and air that proves the medium stays behind while the wave moves forward."
+        "title": "Energy and Information Transfer",
+        "content": "### In this lesson\nIn this lesson, you will learn how waves act as messengers that carry energy and data from one place to another. This is the foundation for understanding everything from how we hear music to how the internet works through fiber-optic cables.\n\n*   Waves move energy, not the material they travel through.\n*   Information can be carried by a wave without moving matter.\n*   Particles in a wave move around a fixed point.\n\n**What this is**\nA **Wave** is a periodic disturbance that transfers energy and information from one point to another without the permanent displacement of matter. Imagine you are holding one end of a long slinky and your friend is holding the other. If you give it a quick wiggle, a bump travels all the way to your friend. That bump is the wave! Even though the bump reached your friend, the metal rings of the slinky stayed in your hands or near your friend. The material the wave travels through is called the **Medium**. In our slinky example, the slinky itself is the **Medium**.\n\n**Why it matters**\nUnderstanding how waves work is like learning the secret language of the universe. It explains how a radio station in another city can send music to your car without throwing physical CDs through the air! By using **Energy Transfer**, we can send signals across the ocean or even from satellites in space. It allows us to communicate and move power efficiently without having to transport heavy physical objects every time we want to send a message.\n\n**Key facts / rules**\n*   Waves carry energy from a source to a receiver.\n*   Waves can carry information, such as sounds or digital signals.\n*   The **Medium** does not travel along with the wave.\n*   Particles in the **Medium** undergo **Oscillation**, moving back and forth or up and down.\n*   After the wave passes, the **Medium** returns to its original position.\n*   **Displacement** measures how far a particle has moved from its resting spot.\n\n**How to recognise it**\nYou can recognise a wave by looking for a pattern that moves across a distance while the parts making it up stay in the same general area. Think of a \"Mexican Wave\" at a sports stadium. You see a giant ripple move all the way around the seats. However, the people (the **Medium**) aren't running around the track! They simply stand up and sit down—this is their **Oscillation**. Because the people stay in their seats, you know it is a wave and not a group of people running in a circle.\n\n**Common mistakes**\nLearners often confuse **Energy Transfer** with matter transfer; **Energy Transfer** is the movement of the wave's signal across a distance, whereas matter transfer would mean the physical particles move from the start to the end. \n\nMisconceptions (targeted):\n*   Misconception: When you talk, the air from your mouth travels to the listener’s ear. | Correction: The air particles only vibrate back and forth, passing the energy along, but the air stays near you. | AC: AC4.1\n*   Misconception: Waves are physical objects like \"water bullets.\" | Correction: A wave is a pattern of movement traveling through a substance, not a solid object moving through space. | AC: AC4.1\n\n**Key Points**\n*   Waves transfer energy and information.\n*   The **Medium** stays in its original location.\n*   **Oscillation** is the repetitive motion of the particles.\n*   **Displacement** is the temporary move from the resting position.\n\n**Quick recap**\nWaves are amazing because they allow us to move energy and information over huge distances without actually moving any \"stuff\" permanently. Whether it's a ripple in a pond or a signal on your phone, the particles in the **Medium** just wiggle (oscillate) and then go back to where they started. This process of **Energy Transfer** is what makes our modern world work!\n\n### Coming Up Next\nNext, we will look at the specific evidence we can see in the real world that proves the water and air don't actually go anywhere when a wave passes through them!"
       }
     },
     {
@@ -95,62 +95,62 @@
       "type": "practice",
       "order": 4.5,
       "content": {
-        "title": "Check Your Understanding: Waves and Energy Transfer",
+        "title": "Check Your Understanding: Energy and Information Transfer",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "PHY-4-1A-C1-L1-A",
-            "questionText": "What are waves primarily defined as mechanisms for, rather than matter transport?",
+            "questionText": "What is transferred by a wave instead of the material it travels through?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "energy transfer",
-              "transferring energy",
-              "energy and information transfer"
+              "Energy",
+              "Energy and information",
+              "Wave energy"
             ],
-            "hint": "Think about what the wave carries from the source to the destination."
+            "hint": "Think about what the wave is 'carrying' to the receiver."
           },
           {
             "id": "PHY-4-1A-C1-L1-B",
-            "questionText": "What provides the physical path for a wave without traveling along with it?",
+            "questionText": "Where do particles in a wave move in relation to their starting position?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "the medium",
-              "medium",
-              "the substance"
+              "Around a fixed point",
+              "A fixed point",
+              "Their fixed point"
             ],
-            "hint": "This is the material or environment through which the wave moves."
+            "hint": "The particles wiggle but do not leave their general area."
           },
           {
             "id": "PHY-4-1A-C1-L1-C",
-            "questionText": "What term represents the rest state of the particles within the medium?",
+            "questionText": "What does not travel along with the wave as it moves from one place to another?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "equilibrium",
-              "the equilibrium",
-              "equilibrium position"
+              "The medium",
+              "Medium",
+              "The material"
             ],
-            "hint": "This is the central, undisturbed position particles return to."
+            "hint": "Identify the term for the substance the wave travels through."
           },
           {
             "id": "PHY-4-1A-C1-L2",
-            "questionText": "Using your answers to Q1 (energy transfer), Q2 (the medium), and Q3 (equilibrium), explain how these facts connect. Why must the particles return to their rest state for the wave to function as a non-matter transfer mechanism?",
+            "questionText": "Using your answers to Q1 (energy transfer), Q2 (particle movement), and Q3 (the medium), explain how these facts connect. Why does this relationship matter?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "The medium acts only as a temporary path for energy transfer",
-              "Particles oscillate locally rather than traveling with the energy",
-              "Returning to equilibrium ensures there is no net transport of matter",
-              "Energy moves across distances while the medium remains in its original location"
+              "Energy moves across a distance while the medium stays in place",
+              "Particles only oscillate around fixed points to pass the signal",
+              "This allows communication without moving heavy physical objects",
+              "Information transfer is possible because only the disturbance travels"
             ],
             "expectedAnswer": [
-              "Energy transfer occurs as the wave passes through the medium, but because the particles return to equilibrium, the medium itself does not move with the wave. This allows energy to travel without the physical transport of matter.",
-              "If the particles did not return to equilibrium, the medium would be transported with the energy; however, waves use the medium only as a path for oscillation to move energy forward while matter stays local."
+              "Waves are efficient because they move energy and information across a distance while the medium stays in place. Because particles only move around a fixed point, we can send signals without having to physically transport matter.",
+              "This relationship matters because it explains how information travels without matter transfer. The energy passes through the medium, but the medium itself does not travel along, meaning only the wiggling particles are needed to move the signal."
             ],
-            "hint": "Consider what would happen to the matter if the particles never returned to their starting point."
+            "hint": "Think about why we don't need to throw physical objects to send a message."
           }
         ]
       }
@@ -160,8 +160,8 @@
       "type": "explanation",
       "order": 5,
       "content": {
-        "title": "Evidence for Non-Matter Transfer",
-        "content": "### In this lesson\nYou will examine the observable evidence that confirms waves do not transport the medium through which they travel. This section focuses on real-world observations in fluids and gases. You will learn to:\n*   Describe evidence from water waves that the medium does not travel with the wave.\n*   Explain how sound waves demonstrate that air molecules do not travel from the source to the listener.\n*   Relate particle **Oscillation** to the lack of net matter transfer.\n\n**What this is**\nTo prove that waves transfer energy without matter, we look at the behavior of the **Medium** during the passage of a disturbance. In water, the **Medium** consists of water molecules. In sound, the **Medium** is typically air. By observing objects within these mediums, we can see that they move back and forth or up and down (the **Oscillation**) but do not move along with the wave. The maximum distance they move from their starting point is their **Displacement**, but they always return toward their **Equilibrium**. \n\n**Why it matters**\nThis distinction is critical for understanding the physical limits of our environment. If sound waves physically moved air from the source to the listener, every time someone spoke, they would create a significant wind or vacuum. Similarly, if water waves moved the water itself, the oceans would constantly be piling up on the shores. Recognizing that it is the wave and not the water or air itself that travels allows scientists and engineers to predict how energy will behave in different environments without worrying about mass relocation.\n\n**Key facts / rules**\n*   Objects floating on water waves move in circular or vertical paths but stay in the same general area.\n*   Sound waves are created by vibrating sources that push air back and forth.\n*   Air molecules do not travel the full distance from a speaker to an ear.\n*   Water ripples move outward, but the water molecules only undergo **Oscillation**.\n*   The lack of \"wind\" during loud sounds is evidence of non-matter transfer.\n*   The return to **Equilibrium** after a wave passes confirms no net movement of the **Medium**.\n\n**How to recognise it**\nYou can identify this principle by looking for stationary markers in a moving wave field. \n\nConsider a leaf floating on the surface of a still pond. When you throw a stone into the water, ripples (the **Wave**) spread outward from the impact. As the ripples reach the leaf, the leaf moves up and down—experiencing vertical **Displacement**—but it does not travel outward with the ripple. It stays in its original position. This provides clear evidence that the water (the **Medium**) is not moving away from the center; only the energy is moving.\n\nIn the case of sound, imagine a person standing 20 meters away from a heavy drum. When the drum is struck, the sound reaches the listener almost instantly. However, the listener does not feel a gust of air hitting them. If the air molecules traveled with the sound, a 100 dB sound would likely feel like a hurricane. Instead, the air molecules simply knock into each other, passing the energy along through local **Oscillation**.\n\n**Micro-scenario:** A sound wave travels through air at 340 meters per second. If a person talks for 10 seconds, the sound has traveled 3,400 meters, but the air molecules near the speaker's mouth have likely moved less than a fraction of a millimeter from their **Equilibrium** position.\n\n**Common mistakes**\nLearners often confuse a \"current\" (like a river) with a **Wave**; a current is the physical movement of the **Medium**, whereas a **Wave** is merely energy passing through it. \n\nMisconceptions (targeted):\n*   Misconception: Surfers are being carried by the water molecules of the wave. | Correction: Surfers use the energy of the wave and gravity; the water itself is mostly moving in a circular loop, not traveling to the beach. | AC: AC4.2\n*   Misconception: Sound is a wind that carries noise to our ears. | Correction: Sound is a pressure wave; the air molecules vibrate in place and do not move from the source to the listener. | AC: AC4.2\n\n**Key Points**\n*   Floating objects move up and down, not forward, proving water doesn't travel with the wave.\n*   Sound produces no net air flow, proving air doesn't travel with the wave.\n*   **Oscillation** allows for energy transfer without bulk transport.\n*   **Displacement** is temporary; the **Medium** returns to **Equilibrium**.\n\n**Quick recap**\nObservational evidence in both water and air confirms that while waves travel across large distances, the **Medium** stays put. Water waves cause objects to bob in place, and sound waves allow us to hear without feeling a blast of air. These examples prove that waves transfer energy and information by causing local **Oscillation** rather than moving matter from one place to another.\n\n### Coming Up Next\nNow that we understand what waves do, we will define the specific measurements we use to describe them, such as frequency and wavelength."
+        "title": "Evidence of Wave Motion",
+        "content": "### In this lesson\nYou will explore the observable evidence that proves waves travel through a substance without taking the substance with them. We will look at water ripples and sound waves to see physics in action.\n\n*   Water waves provide visual proof that the medium stays put.\n*   Sound waves move through air without creating a wind.\n*   Particle behavior is defined by temporary **Displacement**.\n\n**What this is**\nWhen we talk about waves, we need to prove that the **Medium** remains in place. This is called \"evidence of wave motion.\" For example, when a sound travels through the air, it is an **Energy Transfer** where air particles push against each other in a repetitive **Oscillation**. The particles don't actually fly across the room. If they did, every time someone spoke to you, you would feel a strong gust of wind hitting your face! Since you don't feel a breeze when someone talks, we know the air is staying put.\n\n**Why it matters**\nKnowing that the **Medium** stays in place helps scientists design better technology. If water waves actually moved the water across the ocean, the sea levels would pile up on one side of the world! By understanding that the particles only experience a temporary **Displacement**, we can predict how waves will behave when they hit obstacles or move from the deep ocean to the beach.\n\n**Key facts / rules**\n*   A floating object on water moves up and down but not sideways with the wave.\n*   Sound waves are vibrations that pass through air particles.\n*   **Displacement** is temporary; particles return to \"equilibrium\" (rest).\n*   Waves move through the **Medium**, they do not take it with them.\n*   In water waves, the \"humps\" move, but the water molecules mostly move in circles or up and down.\n*   In sound waves, air molecules move back and forth in the direction of the wave.\n\n**How to recognise it**\nYou can recognise this behavior by observing a \"marker\" in the **Medium**. Imagine a rubber duck floating on a calm pond. If you drop a stone nearby, ripples will move outward. Typically, you will see the duck bob up and down or rock back and forth as the wave passes. Crucially, the duck does not get pushed to the edge of the pond by the ripples. The duck’s motion shows us exactly what the water particles are doing: they are undergoing **Oscillation** but staying in the same spot. \n\nMicro-scenario: If a wave with a height of 20cm passes under a duck, the duck's maximum **Displacement** is 20cm from its resting position. However, after the wave has traveled 10 meters away, the duck is still in its original starting spot.\n\n**Common mistakes**\nLearners often confuse **Oscillation** with the overall travel of the wave; **Oscillation** is the local back-and-forth movement, whereas the wave travel is the movement of the energy pulse itself. \n\nMisconceptions (targeted):\n*   Misconception: Waves in the ocean move the water from the middle of the sea to the beach. | Correction: The energy moves to the beach, but the water particles mostly bob in place until they \"break\" at the shore. | AC: AC4.2\n*   Misconception: If a sound is louder, the air particles must be traveling further across the room. | Correction: A louder sound means the particles have a larger **Displacement** (they wiggle harder), but they still stay in the same area. | AC: AC4.2\n\n**Key Points**\n*   Floating objects provide evidence that water doesn't travel with the wave.\n*   The lack of \"wind\" from speakers proves air particles stay in place.\n*   Particles return to their resting position after the wave passes.\n*   Waves move energy, not matter.\n\n**Quick recap**\nWe can see and hear evidence every day that waves don't move matter. Whether it's a duck bobbing on a pond or the fact that your hair doesn't blow around when you listen to music, the evidence is clear: the **Medium** stays, and the energy travels. The particles just move a little bit (their **Displacement**) and then settle back down once the **Wave** has passed by.\n\n### Coming Up Next\nNow that we know what waves are, we'll learn how to measure them using terms like frequency and wavelength!"
       }
     },
     {
@@ -169,62 +169,62 @@
       "type": "practice",
       "order": 5.5,
       "content": {
-        "title": "Check Your Understanding: Evidence for Non-Matter Transfer",
+        "title": "Check Your Understanding: Evidence of Wave Motion",
         "mode": "conceptual",
         "sequential": true,
         "questions": [
           {
             "id": "PHY-4-1A-C2-L1-A",
-            "questionText": "How do objects floating on water waves behave as the energy passes them?",
+            "questionText": "How does a floating object move when a wave passes it on the water?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "stay in the same general area",
-              "bob up and down",
-              "move in circular paths"
+              "Up and down",
+              "Up and down but not sideways",
+              "Bobs up and down"
             ],
-            "hint": "Think about whether a leaf on a pond travels to the shore with a ripple."
+            "hint": "Consider the vertical motion of a marker like a rubber duck."
           },
           {
             "id": "PHY-4-1A-C2-L1-B",
-            "questionText": "How far do air molecules travel when sound moves from a speaker to a listener?",
+            "questionText": "What observable effect is absent when sound waves travel through the air?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "not the full distance",
-              "a fraction of a millimeter",
-              "not from source to listener"
+              "Wind",
+              "A wind",
+              "Gust of wind"
             ],
-            "hint": "Consider if you feel a gust of wind every time you hear a sound."
+            "hint": "Think about what you would feel on your face if the air particles actually moved across the room."
           },
           {
             "id": "PHY-4-1A-C2-L1-C",
-            "questionText": "What specific behavior of the medium confirms there is no net movement after a wave passes?",
+            "questionText": "What is the relationship between a wave and the medium it travels through?",
             "answerType": "short-text",
             "cognitiveLevel": "recall",
             "expectedAnswer": [
-              "return to equilibrium",
-              "returning to equilibrium",
-              "return to rest state"
+              "Do not take it with them",
+              "Does not take it",
+              "They do not take it"
             ],
-            "hint": "This is the final state of the particles once the energy has moved on."
+            "hint": "Does the wave carry the substance along with it or just pass through it?"
           },
           {
             "id": "PHY-4-1A-C2-L2",
-            "questionText": "Using your answers to Q1 (floating objects), Q2 (air molecules), and Q3 (return to equilibrium), explain how these observations relate. How do we know that energy is moving independently of the substance?",
+            "questionText": "Using your answers to Q1 (floating object motion), Q2 (lack of wind), and Q3 (the medium), explain how these facts connect. How do we know this connection is valid?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Observations of floating objects and air molecules show only local oscillation",
-              "The lack of bulk movement (no wind or current) proves the medium is stationary",
-              "The return to equilibrium is the physical proof that no mass relocation occurred",
-              "Energy is passed through collisions or interactions rather than physical transport"
+              "Floating objects and the lack of wind are visual and physical evidence",
+              "These observations prove that waves move through the medium without taking it with them",
+              "The up and down motion shows particles stay in one area",
+              "If the medium moved, we would see sideways drift and feel air currents"
             ],
             "expectedAnswer": [
-              "We know energy moves independently because floating objects and air molecules only move locally and return to equilibrium. If the substance moved with the energy, we would observe a constant flow of water or air rather than just a temporary disturbance.",
-              "The fact that sound doesn't create wind and floating leaves stay in place shows that the medium only oscillates. Because particles return to equilibrium, the wave must be a transfer of energy through the matter, not a movement of the matter itself."
+              "We know waves don't take the medium with them because a floating object only moves up and down and we don't feel a wind when sound travels. These observations prove that the energy moves through the substance while the particles stay in their general area.",
+              "The connection is valid because if waves did move the medium, we would feel a breeze from speakers and see ducks pushed to the edge of a pond. Since the duck bobs and there is no wind, we know the wave travels through the medium without taking it along."
             ],
-            "hint": "Link the lack of 'wind' or 'current' to the fact that particles end up back where they started."
+            "hint": "Connect the lack of physical 'pushing' to the idea that the medium stays put."
           }
         ]
       }
@@ -234,62 +234,62 @@
       "type": "practice",
       "order": 8,
       "content": {
-        "title": "Waves and Energy Transfer Practice",
+        "title": "Your Turn (You Do)",
         "questions": [
           {
             "id": "PHY-4-1A-P1",
-            "questionText": "A wave carries 100 Joules of energy across a 50-meter length of a copper rail. Once the energy has passed through the rail completely, what is the net distance in meters that the copper atoms have moved from their starting position?",
-            "answerType": "numeric",
-            "expectedAnswer": [
-              "0",
-              "0.0"
-            ],
-            "hint": "Recall the rule regarding matter transport versus energy transfer in a medium. Answer in meters."
-          },
-          {
-            "id": "PHY-4-1A-P2",
-            "questionText": "How do we know that sound waves do not physically transport the air molecules from a speaker to a listener's ear?",
+            "questionText": "How do we know that sound waves traveling through the air do not physically move the air mass from the speaker to the listener?",
             "answerType": "short-text",
             "expectedAnswer": [
               "no wind",
-              "no net air flow",
-              "lack of wind",
-              "no air movement"
+              "no breeze",
+              "no air movement",
+              "lack of wind"
             ],
-            "hint": "Think about the physical sensation or 'weather' effect that would occur if air moved at the speed of sound."
+            "hint": "Think about what you would feel on your face if the air particles were actually traveling across the room."
+          },
+          {
+            "id": "PHY-4-1A-P2",
+            "questionText": "A wave passes through a medium, causing a particle to move 14mm away from its resting position. What is the numeric value of the displacement at this moment?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "14",
+              "14.0"
+            ],
+            "hint": "Displacement is the distance a particle moves from its original resting spot. Provide the answer in mm."
           },
           {
             "id": "PHY-4-1A-P3",
-            "questionText": "A technician is analyzing vibrations in a support beam. The beam particles move back and forth but stay in the same average location. What is the specific term for this repetitive back-and-forth motion about a central point?",
+            "questionText": "In a fiber-optic system, digital information is sent as light waves through a glass cable. What must be true about the glass particles (the medium) once the information has reached its destination?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "stay in place",
+              "remain in place",
+              "return to original position",
+              "do not move"
+            ],
+            "hint": "Consider the rule regarding the permanent displacement of matter when a wave passes through a medium."
+          },
+          {
+            "id": "PHY-4-1A-P4",
+            "questionText": "A marker is floating on a liquid at a height of 5 meters. A series of waves passes through the liquid, causing the marker to oscillate. What is the height of the marker after all the waves have passed and the liquid is calm again?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "5",
+              "5.0"
+            ],
+            "hint": "Recall what happens to the medium's position after the energy of a wave has finished moving through it. Provide the answer in meters."
+          },
+          {
+            "id": "PHY-4-1A-P5",
+            "questionText": "What is the technical term for the repetitive back-and-forth or up-and-down motion that particles perform as a wave passes them?",
             "answerType": "short-text",
             "expectedAnswer": [
               "oscillation",
               "oscillations",
               "oscillating"
             ],
-            "hint": "This term describes the local movement that allows energy to progress through a substance."
-          },
-          {
-            "id": "PHY-4-1A-P4",
-            "questionText": "A particle in a mechanical system is disturbed by a passing wave, reaching a peak distance of 4mm away from its rest position. What is the technical term for this specific distance from the rest position?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "displacement",
-              "particle displacement"
-            ],
-            "hint": "This term measures how far a particle has moved from its equilibrium."
-          },
-          {
-            "id": "PHY-4-1A-P5",
-            "questionText": "During a test, a wave pulse is sent through a 12-meter tensioned cable. If the cable is the 'medium', what must be true about the cable's total mass once the wave reaches the other side?",
-            "answerType": "short-text",
-            "expectedAnswer": [
-              "it stays local",
-              "it does not move",
-              "no net movement",
-              "stays in place"
-            ],
-            "hint": "Consider whether the physical material of the medium travels along with the wave disturbance."
+            "hint": "This term describes the movement around a fixed point, not the travel of the wave itself."
           }
         ]
       }
@@ -305,42 +305,42 @@
         "questions": [
           {
             "id": "PHY-4-1A-INT-1",
-            "questionText": "Analyze the relationship between localized particle movement and the transmission of a signal through a system. In your answer, include: (1) the motion of individual particles relative to their starting point, (2) the specific entities that are successfully transferred across the system, and (3) the evidence that distinguishes this from bulk matter transport. Why must the particles return to their original position for this to be classified as wave propagation? (2-3 sentences)",
+            "questionText": "Explain the relationship between particle displacement and the transfer of information across a medium. In your answer, include: (1) the movement of particles relative to their fixed positions, (2) the distinction between matter transport and energy transfer, and (3) how the pattern of disturbance carries data. Why does the lack of net matter movement confirm that energy is the primary output of this process?",
             "answerType": "long-text",
             "cognitiveLevel": "connection",
             "keyPoints": [
-              "Particles undergo oscillation or vibration about a fixed equilibrium position.",
-              "Energy and information are the only components transported across the distance.",
-              "Observation of a medium (like water) shows vertical or back-and-forth movement without horizontal travel.",
-              "Wave classification requires the medium to remain in situ to distinguish it from a current or flow.",
-              "The lack of net matter transfer is the defining characteristic of the wave mechanism."
+              "Identifies that particles oscillate or move around a fixed reference point.",
+              "Explains that energy is passed between particles while the particles themselves return to their origin.",
+              "Describes how the sequence or pattern of the disturbance encodes information.",
+              "Reasons that if matter were transported, the system would be a flow or current rather than a wave.",
+              "Concludes that the medium acts only as a carrier for the energy state."
             ],
             "expectedAnswer": [
-              "In a wave system, individual particles oscillate around a fixed point, allowing energy and information to pass through without the particles themselves moving to the destination. We know this because objects in water bob up and down rather than being pushed forward by the wave; if the matter were transferred, it would be a current rather than a wave propagation.",
-              "Particles in a medium vibrate but do not experience net displacement, which ensures that only energy and information move from the source to the receiver. This relationship holds because wave propagation is defined by the transfer of a disturbance through a medium; if the medium traveled with the disturbance, it would constitute matter transport (like wind) rather than a wave."
+              "Particles in a medium move temporarily around a fixed point, passing energy to their neighbors without moving along with the wave. This allows information to be transmitted as a pattern of disturbances rather than a physical delivery of matter. We know energy is the primary output because the medium remains in its original location after the wave passes, proving that only the state of motion was transferred.",
+              "In a wave, particles undergo temporary displacement but do not experience net migration, which distinguishes energy transfer from matter transport. Information is carried through the specific frequency or timing of these particle movements. This relationship holds because if the medium moved with the wave, it would require a continuous supply of new matter rather than a self-sustaining periodic disturbance."
             ],
-            "hint": "Consider the difference between a particle's temporary displacement and its final position after the energy has passed."
+            "hint": "Focus on what happens to an individual particle after the wave has passed and what that implies about the transport of energy."
           },
           {
             "id": "PHY-4-1A-INT-2",
-            "questionText": "Synthesize the evidence from different physical environments to explain the fundamental mechanism of wave propagation. In your answer, include: (1) the primary purpose of a wave in terms of energy and information, (2) the observation of objects in a fluid medium during wave passage, (3) the behavior of gas particles during sound transmission, and (4) how the process of oscillation ensures the medium remains in situ. Answer in 3-4 sentences OR concise bullet points.",
+            "questionText": "Synthesize the principles of wave motion to explain how a signal can be transmitted across a distance without shifting the physical environment. In your answer, include: (1) the role of energy and information transfer, (2) the specific behavior of the medium’s particles, (3) observable evidence from water or sound that the medium remains in place, and (4) the necessity of temporary displacement in this system. Answer in 3-4 sentences OR concise bullet points.",
             "answerType": "long-text",
             "cognitiveLevel": "synthesis",
             "keyPoints": [
-              "Waves function to transfer energy and information across distances.",
-              "Evidence from water waves shows that floating objects return to their original coordinates after a wave passes.",
-              "Sound transmission relies on air molecules vibrating back and forth without traveling from source to listener.",
-              "Oscillation involves a repetitive movement that results in zero net displacement of matter.",
-              "The medium acts as a carrier for the disturbance rather than being the transported payload.",
-              "These principles confirm that matter is not consumed or moved along the path of the signal.",
-              "The distinction between energy transfer and matter transport is consistent across different states of matter (liquids and gases).",
-              "Technical systems rely on this stability of the medium to ensure reliable signal propagation."
+              "Waves serve as the mechanism for moving energy and data across distances.",
+              "The medium provides the physical substrate for the wave but does not travel with it.",
+              "Particles experience temporary displacement from an equilibrium position.",
+              "Evidence includes objects bobbing on water without moving forward with the ripples.",
+              "Evidence includes sound traveling through air without creating a constant wind or air current.",
+              "Temporary displacement is required to allow the disturbance to propagate continuously.",
+              "The stability of the medium confirms that waves are a transfer of state, not substance.",
+              "Information is preserved through the consistency of the particle oscillations."
             ],
             "expectedAnswer": [
-              "Waves serve to transfer energy and information without the physical relocation of the medium. This is evidenced by water waves where objects bob without moving forward, and by sound where air molecules vibrate locally rather than traveling from the source to the ear. The process of oscillation ensures that while energy moves through the system, the particles return to their equilibrium, resulting in no net matter transfer.",
-              "• Waves transfer energy and information through a medium without transporting the matter itself.\n• In fluids, objects like buoys demonstrate that the medium stays in place as the wave passes.\n• In gases, sound is transmitted via air molecule vibration rather than a continuous flow of air.\n• Particle oscillation allows the disturbance to propagate while ensuring the medium remains in its original location."
+              "Waves transmit energy and information by causing particles in a medium to undergo temporary displacement around a fixed point. Evidence for this is seen in water ripples where a floating object bobs in place rather than traveling with the wave, or sound moving through air without creating wind. This system requires that particles return to their original positions so that the medium remains stable while the signal passes through it.",
+              "• Waves act as messengers that carry energy and data through a substance without transporting the substance itself.\n• Particles within the medium move temporarily away from their equilibrium position before returning, facilitating the transfer of energy to adjacent particles.\n• We observe this when sound travels through a room without moving the air mass, or when water waves pass under a stationary buoy.\n• This temporary displacement is essential because it allows the wave to move across the environment while the physical medium stays in place."
             ],
-            "hint": "Think about how the behavior of a floating cork and the behavior of air during a conversation both prove the same physical principle."
+            "hint": "Combine the concept of particle oscillation with the real-world observations of water and sound to explain the efficiency of wave transmission."
           }
         ]
       }
@@ -354,35 +354,35 @@
         "questions": [
           {
             "id": "PHY-4-1A-SR-1",
-            "questionText": "What is the general term for any physical substance or material that occupies space?",
+            "questionText": "What is the general term for any physical substance that has mass and occupies space?",
             "expectedAnswer": [
               "matter",
               "physical matter",
               "substance"
             ],
-            "hint": "This is mentioned in the learning outcomes as something waves do not transfer.",
+            "hint": "It is the material that all physical objects are made of.",
             "answerType": "short-text"
           },
           {
             "id": "PHY-4-1A-SR-2",
-            "questionText": "What term is used to describe the capacity to do work or cause change?",
+            "questionText": "What term is used to describe the tiny individual units that make up a material or substance?",
             "expectedAnswer": [
-              "energy",
-              "work capacity",
-              "stored work"
+              "particles",
+              "atoms",
+              "molecules"
             ],
-            "hint": "Waves are defined by their ability to transfer this from one place to another.",
+            "hint": "Think about the smallest building blocks of a medium.",
             "answerType": "short-text"
           },
           {
             "id": "PHY-4-1A-SR-3",
-            "questionText": "What term describes the substance or material through which a signal or effect travels?",
+            "questionText": "What is the term for a material or substance, such as water or air, through which an effect can travel?",
             "expectedAnswer": [
               "medium",
-              "the medium",
-              "material"
+              "a medium",
+              "the medium"
             ],
-            "hint": "In the context of water or air, this is the environment the wave moves through.",
+            "hint": "This word describes the environment or carrier for the wave.",
             "answerType": "short-text"
           }
         ],
@@ -391,75 +391,70 @@
     }
   ],
   "targetAssessmentCriteria": [
-    "AC1",
-    "AC2"
+    "AC4.1",
+    "AC4.2"
   ],
   "metadata": {
     "created": "2026-02-26",
     "updated": "2026-02-26",
     "version": "1.0",
-    "author": "C&G 2365 Learning Team",
-    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "author": "GCSE Science Learning Team",
+    "taskMode": "IDENTIFICATION, CONCEPTUAL",
     "syllabusAnchors": {
       "unit": "PHY-4",
       "learningOutcome": "LO1",
       "coveredAC": [
-        "AC1",
-        "AC2"
+        "AC4.1",
+        "AC4.2"
       ],
       "outOfScopeAC": [
-        "AC3",
-        "AC4",
-        "AC5",
-        "AC6a",
-        "AC6b",
-        "AC6c",
-        "AC7",
-        "AC8P",
-        "AC9Pa",
-        "AC9Pb",
-        "AC9Pc",
-        "AC9Pd",
-        "AC9Pe",
-        "AC10",
-        "AC11"
+        "AC4.3",
+        "AC4.4",
+        "AC4.5",
+        "AC4.6a",
+        "AC4.6b",
+        "AC4.6c",
+        "AC4.7",
+        "AC4.8P",
+        "AC4.9Pa",
+        "AC4.9Pb",
+        "AC4.9Pc",
+        "AC4.9Pd",
+        "AC4.9Pe",
+        "AC4.10",
+        "AC4.11"
       ]
     },
     "scope": {
-      "inScope": "The basic concept of waves as energy carriers and the distinction between wave motion and medium motion.",
-      "outOfScope": "Wave terminology (frequency, wavelength, amplitude), the wave equation, and specific wave types like transverse or longitudinal.",
-      "rationale": "This lesson establishes the conceptual foundation of what a wave is before introducing technical definitions and mathematical applications."
+      "inScope": "The conceptual understanding of waves as energy transfers and the distinction between wave travel and medium displacement.",
+      "outOfScope": "Mathematical definitions of frequency/wavelength, wave equations, and classification of transverse or longitudinal waves.",
+      "rationale": "This introductory lesson establishes the physical nature of waves before layering on technical vocabulary and calculations found in later ACs."
     },
     "teachingConstraints": {
       "excludeHowTo": true,
       "purposeOnly": true,
       "identificationOnly": true,
       "noCalculations": true,
-      "specificScope": "Focus strictly on the transfer of energy/information vs matter and supporting evidence."
+      "specificScope": "Recall of energy transfer and identification of evidence regarding medium movement only."
     },
     "misconceptions": [
       {
-        "misconception": "Waves push particles from the source all the way to the destination.",
-        "correction": "Particles only oscillate locally around their equilibrium position and do not travel with the wave.",
+        "misconception": "When you talk, the air from your mouth travels all the way to the listener’s ear.",
+        "correction": "The air particles only vibrate back and forth (oscillate), passing the energy along like a relay race, but the air itself stays near you.",
         "relatedAC": "AC4.1"
       },
       {
-        "misconception": "Surfers are being carried by the water molecules of the wave.",
-        "correction": "Surfers use the energy of the wave and gravity; the water itself is mostly moving in a circular loop, not traveling to the beach.",
-        "relatedAC": "AC4.2"
-      },
-      {
-        "misconception": "Sound is a wind that carries noise to our ears.",
-        "correction": "Sound is a pressure wave; the air molecules vibrate in place and do not move from the source to the listener.",
+        "misconception": "Waves in the ocean move the water molecules from the middle of the sea all the way to the beach.",
+        "correction": "The energy moves to the beach, but the water particles mostly bob up and down in place; only the 'shape' of the wave travels across the surface.",
         "relatedAC": "AC4.2"
       }
     ],
-    "generationScore": 97,
+    "generationScore": 98,
     "generationScoreDetails": {
-      "originalScore": 97,
-      "finalScore": 97,
+      "originalScore": 98,
+      "finalScore": 98,
       "wasRefined": false,
-      "generatedAt": "2026-02-26T14:06:25.061Z",
+      "generatedAt": "2026-02-26T15:51:11.547Z",
       "source": "phase10-13"
     }
   }
