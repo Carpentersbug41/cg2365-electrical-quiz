@@ -59,7 +59,7 @@ describe('buildTutorProfile', () => {
       goal: 'top_grade',
       teaching_style: 'mixed',
       feedback_strictness: 'normal',
-      detail_level: 'medium',
+      language_level: 'technical',
       example_themes: ['sport', 'gaming'],
       learning_goals: ['pass exams', 'pass exams', 'understand concepts'],
       hobbies: ['football', 'Football'],
@@ -76,6 +76,7 @@ describe('buildTutorProfile', () => {
     expect(built.profileJson.hobbies).toEqual(['football']);
     expect(built.profileJson.preferred_name).toBe('Sam');
     expect(built.profileJson.goal).toBe('top_grade');
+    expect(built.profileJson.language_level).toBe('technical');
     expect(built.profileJson.example_themes).toEqual(['sport', 'gaming']);
     expect(built.profileSummary).toBe('Sentence one. Sentence two! Sentence three?');
   });

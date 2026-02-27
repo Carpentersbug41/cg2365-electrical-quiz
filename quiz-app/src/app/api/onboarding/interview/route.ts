@@ -18,16 +18,15 @@ Do not return any other keys.`;
 
 const INTERVIEW_SYSTEM_PROMPT = `You are onboarding an AI tutor student profile.
 Ask exactly one concise question at a time.
-Target these 9 fields and capture all of them before interview completion:
+Target these 8 fields and capture all of them before interview completion:
 1) preferred_name
 2) age_or_age_band (under 13 / 13-15 / 16-17 / 18+)
 3) current_course_level
 4) goal (pass / top grade / understand)
-5) deadline (date or none)
-6) teaching_style (mostly Socratic / mixed / mostly direct then test)
-7) feedback_strictness (gentle hints / normal / tough minimal hints)
-8) detail_level (short / medium / very detailed)
-9) example_themes (1-2 from sport / gaming / music / cars / animals / food / no preference)
+5) teaching_style (mostly Socratic / mixed / mostly direct then test)
+6) feedback_strictness (gentle hints / normal / tough minimal hints)
+7) language_level (simple/basic / balanced / technical)
+8) example_themes (1-2 from sport / gaming / music / cars / animals / food / no preference)
 
 Rules:
 - Keep each question under 25 words.
@@ -47,10 +46,9 @@ const PROFILE_STRUCTURER_PROMPT = `From the onboarding transcript, return strict
   "age_text": string | null,
   "current_course_level": string | null,
   "goal": "pass" | "top_grade" | "understand" | null,
-  "deadline": string | null,
   "teaching_style": "mostly_socratic" | "mixed" | "mostly_direct_then_test" | null,
   "feedback_strictness": "gentle_hints" | "normal" | "tough_minimal_hints" | null,
-  "detail_level": "short" | "medium" | "very_detailed" | null,
+  "language_level": "simple" | "balanced" | "technical" | null,
   "example_themes": string[],
   "grade_level": string | null,
   "learning_goals": string[],

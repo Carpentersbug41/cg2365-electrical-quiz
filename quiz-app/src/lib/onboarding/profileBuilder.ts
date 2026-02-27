@@ -11,10 +11,9 @@ export interface TutorProfileModelOutput {
   age_text: string | null;
   current_course_level: string | null;
   goal: 'pass' | 'top_grade' | 'understand' | null;
-  deadline: string | null;
   teaching_style: 'mostly_socratic' | 'mixed' | 'mostly_direct_then_test' | null;
   feedback_strictness: 'gentle_hints' | 'normal' | 'tough_minimal_hints' | null;
-  detail_level: 'short' | 'medium' | 'very_detailed' | null;
+  language_level: 'simple' | 'balanced' | 'technical' | null;
   example_themes: string[];
   grade_level: string | null;
   learning_goals: string[];
@@ -222,7 +221,6 @@ export function buildTutorProfile(
         ? compactWhitespace(source.current_course_level).slice(0, 120)
         : null,
     goal: readEnum(source.goal, ['pass', 'top_grade', 'understand'] as const),
-    deadline: typeof source.deadline === 'string' ? compactWhitespace(source.deadline).slice(0, 60) : null,
     teaching_style: readEnum(
       source.teaching_style,
       ['mostly_socratic', 'mixed', 'mostly_direct_then_test'] as const
@@ -231,7 +229,7 @@ export function buildTutorProfile(
       source.feedback_strictness,
       ['gentle_hints', 'normal', 'tough_minimal_hints'] as const
     ),
-    detail_level: readEnum(source.detail_level, ['short', 'medium', 'very_detailed'] as const),
+    language_level: readEnum(source.language_level, ['simple', 'balanced', 'technical'] as const),
     example_themes: readStringArray(source.example_themes),
     grade_level: typeof source.grade_level === 'string' ? compactWhitespace(source.grade_level).slice(0, 80) : null,
     learning_goals: readStringArray(source.learning_goals ?? source.goals),
