@@ -12,6 +12,9 @@ import {
 const MAX_TRANSCRIPT_TURNS = 40;
 const MAX_QUESTION_CHARS = 220;
 const QUESTION_GENERATION_MAX_ATTEMPTS = 3;
+const QUESTION_JSON_PROMPT_BASE = `Return JSON only in this exact shape:
+{"question":"<one complete onboarding question ending with ?>"}
+Do not return any other keys.`;
 
 const INTERVIEW_SYSTEM_PROMPT = `You are onboarding an AI tutor student profile.
 Ask exactly one concise question at a time.
@@ -98,10 +101,37 @@ function isIncompleteQuestion(question: string): boolean {
   return false;
 }
 
+function endsWithDanglingConnector(question: string): boolean {
+  const compact = question.trim().replace(/[?!.]+$/g, '').toLowerCase();
+  if (!compact) return true;
+  const parts = compact.split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return true;
+  const lastWord = parts[parts.length - 1];
+  const dangling = new Set([
+    'and',
+    'or',
+    'to',
+    'of',
+    'for',
+    'with',
+    'about',
+    'in',
+    'on',
+    'at',
+    'from',
+    'by',
+    'but',
+    'so',
+    'because',
+  ]);
+  return dangling.has(lastWord);
+}
+
 function isValidInterviewQuestion(question: string): boolean {
   if (!question.endsWith('?')) return false;
   if (question.length > MAX_QUESTION_CHARS) return false;
   if (isIncompleteQuestion(question)) return false;
+  if (endsWithDanglingConnector(question)) return false;
   return true;
 }
 
@@ -141,69 +171,69 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
     systemInstruction: INTERVIEW_SYSTEM_PROMPT,
   });
 
-  const history = transcript.map((turn) => ({
-    role: turn.role === 'user' ? 'user' : 'model',
-    parts: [{ text: turn.content }],
-  })) as Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }>;
-
-  const firstUserIndex = history.findIndex((turn) => turn.role === 'user');
-  const validHistory = firstUserIndex >= 0 ? history.slice(firstUserIndex) : [];
   const userTurns = transcript.filter((turn) => turn.role === 'user').length;
+  const transcriptText = transcriptToPlainText(transcript);
 
   logQuestionDebug({
     stage: 'start',
     transcriptTurns: transcript.length,
     userTurns,
-    reason: validHistory.length === 0 ? 'no-valid-history-yet' : 'chat-history-ready',
+    reason: transcript.length === 0 ? 'empty-transcript' : 'transcript-ready',
   });
 
   let lastCandidate = '';
 
   for (let attempt = 1; attempt <= QUESTION_GENERATION_MAX_ATTEMPTS; attempt += 1) {
-    if (validHistory.length === 0) {
-      const first = await model.generateContent({
-        contents: [{ role: 'user', parts: [{ text: NEXT_QUESTION_PROMPT }] }],
-        generationConfig: {
-          temperature: 0.6,
-          maxOutputTokens: 120,
-        },
-      });
-      const rawQuestion = first.response.text();
-      lastCandidate = sanitizeQuestion(rawQuestion);
-      logQuestionDebug({
-        stage: 'attempt-generateContent',
-        attempt,
-        transcriptTurns: transcript.length,
-        userTurns,
-        raw: rawQuestion,
-        sanitized: lastCandidate,
-      });
-    } else {
-      const chat = model.startChat({
-        history: validHistory,
-        generationConfig: {
-          temperature: 0.6,
-          maxOutputTokens: 120,
-        },
-      });
+    const repairPrompt =
+      attempt === 1
+        ? ''
+        : `Previous invalid output: "${lastCandidate}".
+Generate a complete question with no truncation and no dangling endings.`;
 
-      const prompt =
-        attempt === 1
-          ? NEXT_QUESTION_PROMPT
-          : `Your previous question was invalid or truncated: "${lastCandidate}".
-Rewrite as a complete, natural, single onboarding question with clear intent. Return only the question text.`;
-      const result = await chat.sendMessage(prompt);
-      const rawQuestion = result.response.text();
-      lastCandidate = sanitizeQuestion(rawQuestion);
-      logQuestionDebug({
-        stage: 'attempt-chat',
-        attempt,
-        transcriptTurns: transcript.length,
-        userTurns,
-        raw: rawQuestion,
-        sanitized: lastCandidate,
-      });
+    const result = await model.generateContent({
+      contents: [
+        {
+          role: 'user',
+          parts: [
+            {
+              text: `${QUESTION_JSON_PROMPT_BASE}
+
+${NEXT_QUESTION_PROMPT}
+${repairPrompt}
+
+Transcript:
+${transcriptText || '(empty)'}`,
+            },
+          ],
+        },
+      ],
+      generationConfig: {
+        temperature: 0.4,
+        maxOutputTokens: 200,
+        responseMimeType: 'application/json',
+      },
+    });
+
+    const rawQuestionPayload = result.response.text();
+    let extracted = '';
+    try {
+      const parsed = JSON.parse(rawQuestionPayload) as { question?: unknown };
+      if (typeof parsed.question === 'string') {
+        extracted = parsed.question;
+      }
+    } catch {
+      // Keep extracted empty; validation will fail and retry.
     }
+
+    lastCandidate = sanitizeQuestion(extracted);
+    logQuestionDebug({
+      stage: 'attempt-generate-json',
+      attempt,
+      transcriptTurns: transcript.length,
+      userTurns,
+      raw: rawQuestionPayload,
+      sanitized: lastCandidate,
+    });
 
     const valid = isValidInterviewQuestion(lastCandidate);
     logQuestionDebug({
