@@ -12,9 +12,10 @@ type OnboardingMessage = {
   content: string;
 };
 
+const MIN_RESPONSES_TO_ENABLE_BUTTON = 5;
 const TARGET_INTERVIEW_RESPONSES = 10;
-const FINAL_WRAP_UP_PROMPT = 'Thanks, is there anything else you want me to know before we finish your tutor profile?';
-const MIN_RESPONSES_TO_FINALIZE = TARGET_INTERVIEW_RESPONSES + 1;
+const FINAL_WRAP_UP_PROMPT =
+  'Thanks, that is enough to personalize your tutor. Please click "Complete Onboarding" when you are ready.';
 
 async function authedFetch(path: string, init?: RequestInit): Promise<Response> {
   const client = getSupabaseBrowserClient();
@@ -161,23 +162,22 @@ export default function OnboardingPage() {
       (msg) => msg.role === 'assistant' && msg.content === FINAL_WRAP_UP_PROMPT
     );
 
-    if (userTurnCountAfterSubmit === TARGET_INTERVIEW_RESPONSES && !hasWrapUpPrompt) {
-      const transcriptWithWrapUp = [
-        ...transcript,
-        { role: 'assistant' as const, content: FINAL_WRAP_UP_PROMPT },
-      ];
-      setMessages(transcriptWithWrapUp);
+    if (userTurnCountAfterSubmit >= TARGET_INTERVIEW_RESPONSES) {
+      if (!hasWrapUpPrompt) {
+        const transcriptWithWrapUp = [
+          ...transcript,
+          { role: 'assistant' as const, content: FINAL_WRAP_UP_PROMPT },
+        ];
+        setMessages(transcriptWithWrapUp);
+      } else {
+        setMessages(transcript);
+      }
       setInput('');
       return;
     }
 
     setMessages(transcript);
     setInput('');
-
-    if (hasWrapUpPrompt && userTurnCountAfterSubmit >= MIN_RESPONSES_TO_FINALIZE) {
-      await finalizeWithTranscript(transcript);
-      return;
-    }
 
     await requestNextQuestion(transcript);
   };
@@ -188,7 +188,8 @@ export default function OnboardingPage() {
   };
 
   const userTurnCount = messages.filter((msg) => msg.role === 'user').length;
-  const canFinalize = userTurnCount >= MIN_RESPONSES_TO_FINALIZE && !isLoadingQuestion && !isFinalizing;
+  const canFinalize = userTurnCount >= MIN_RESPONSES_TO_ENABLE_BUTTON && !isLoadingQuestion && !isFinalizing;
+  const interviewCapped = userTurnCount >= TARGET_INTERVIEW_RESPONSES;
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100">
@@ -244,7 +245,7 @@ export default function OnboardingPage() {
 
           <div className="mt-4 flex items-center justify-between gap-2">
             <p className="text-xs text-slate-400">
-              Responses captured: {userTurnCount}/{MIN_RESPONSES_TO_FINALIZE}
+              Responses captured: {userTurnCount}/{TARGET_INTERVIEW_RESPONSES}
             </p>
             <button
               type="button"
@@ -257,6 +258,11 @@ export default function OnboardingPage() {
           </div>
 
           {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+          {interviewCapped && (
+            <p className="mt-3 text-sm text-emerald-300">
+              Interview complete. Click <strong>Complete Onboarding</strong> to finish.
+            </p>
+          )}
           {finalSummary && (
             <div className="mt-3 rounded-lg border border-emerald-700 bg-emerald-900/30 p-3 text-sm text-emerald-200">
               <p className="font-semibold">Profile saved</p>
