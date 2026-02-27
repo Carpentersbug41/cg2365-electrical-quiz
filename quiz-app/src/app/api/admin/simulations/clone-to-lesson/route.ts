@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { promisify } from 'node:util';
-import { execFile } from 'node:child_process';
+import { exec, execFile } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { findLessonFile } from '@/lib/generation/lessonDetector';
 import { getCurriculumScopeFromHeaderOrReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
 const execFileAsync = promisify(execFile);
+const execAsync = promisify(exec);
 
 type CloneRequestBody = {
   lessonId?: string;
@@ -88,10 +89,105 @@ function isViteRepo(repoDir: string, packageJson: PackageJsonLike | null): boole
   return typeof allDeps.vite === 'string';
 }
 
+function hasLocalPostCssConfig(repoDir: string): boolean {
+  const candidates = [
+    'postcss.config.js',
+    'postcss.config.cjs',
+    'postcss.config.mjs',
+    'postcss.config.ts',
+    '.postcssrc',
+    '.postcssrc.json',
+    '.postcssrc.js',
+    '.postcssrc.cjs',
+    '.postcssrc.mjs',
+  ];
+  return candidates.some((candidate) => fs.existsSync(path.join(repoDir, candidate)));
+}
+
+function applyViteWindowsSpawnWorkaround(repoDir: string): void {
+  if (process.platform !== 'win32') return;
+
+  const chunksDir = path.join(repoDir, 'node_modules', 'vite', 'dist', 'node', 'chunks');
+  if (!fs.existsSync(chunksDir)) return;
+
+  const chunkFiles = fs
+    .readdirSync(chunksDir)
+    .filter((entry) => entry.endsWith('.js'))
+    .map((entry) => path.join(chunksDir, entry));
+
+  const pattern =
+    /exec\("net use", \(error, stdout\) => \{([\s\S]*?)\n  \}\);\n\}/m;
+
+  for (const filePath of chunkFiles) {
+    const source = fs.readFileSync(filePath, 'utf8');
+    if (!source.includes('exec("net use", (error, stdout) => {')) continue;
+
+    const patched = source.replace(
+      pattern,
+      'try { exec("net use", (error, stdout) => {$1\n  });\n  } catch {\n    safeRealpathSync = fs__default.realpathSync.native;\n  }\n}'
+    );
+
+    if (patched !== source) {
+      fs.writeFileSync(filePath, patched, 'utf8');
+      return;
+    }
+  }
+}
+
 function inferAutoEmbedPath(repoDir: string): string {
   if (fileExists(path.join(repoDir, 'dist', 'index.html'))) return 'dist/index.html';
   if (fileExists(path.join(repoDir, 'build', 'index.html'))) return 'build/index.html';
   return 'index.html';
+}
+
+function ensureFallbackSimulationPage(repoDir: string, repoName: string, reason: string): void {
+  const safeReason = reason.replace(/[<>&]/g, (char) => {
+    if (char === '<') return '&lt;';
+    if (char === '>') return '&gt;';
+    return '&amp;';
+  });
+  const distDir = path.join(repoDir, 'dist');
+  fs.mkdirSync(distDir, { recursive: true });
+  const fallbackHtml = `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simulation Ready Check</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f8fafc; color: #0f172a; margin: 0; }
+      .card { max-width: 760px; margin: 24px auto; background: #fff; border: 1px solid #cbd5e1; border-radius: 12px; padding: 16px; }
+      code { background: #e2e8f0; padding: 2px 4px; border-radius: 4px; }
+      h1 { margin: 0 0 8px; font-size: 1.1rem; }
+      p { margin: 0 0 8px; line-height: 1.4; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Simulation repo cloned, but auto-build failed.</h1>
+      <p>Repo: <code>${repoName}</code></p>
+      <p>This fallback page is shown so the iframe is not blank.</p>
+      <p>Build error: <code>${safeReason}</code></p>
+    </div>
+  </body>
+</html>`;
+  fs.writeFileSync(path.join(distDir, 'index.html'), fallbackHtml, 'utf8');
+}
+
+function patchDistIndexAssetBase(repoDir: string, repoName: string): void {
+  const distIndexPath = path.join(repoDir, 'dist', 'index.html');
+  if (!fileExists(distIndexPath)) return;
+
+  const expectedAssetPrefix = `/simulations/${repoName}/assets/`;
+  const correctedAssetPrefix = `/simulations/${repoName}/dist/assets/`;
+
+  const source = fs.readFileSync(distIndexPath, 'utf8');
+  if (!source.includes(expectedAssetPrefix)) return;
+
+  const patched = source.split(expectedAssetPrefix).join(correctedAssetPrefix);
+  if (patched !== source) {
+    fs.writeFileSync(distIndexPath, patched, 'utf8');
+  }
 }
 
 function isLikelyUnbuiltViteSource(repoDir: string, packageJson: PackageJsonLike | null): boolean {
@@ -109,16 +205,40 @@ function isLikelyUnbuiltViteSource(repoDir: string, packageJson: PackageJsonLike
 }
 
 async function runCommand(command: string, args: string[], cwd: string): Promise<void> {
-  const executable = process.platform === 'win32' && command === 'npm' ? 'npm.cmd' : command;
-  await execFileAsync(executable, args, { cwd, windowsHide: true });
+  if (process.platform === 'win32') {
+    const quoteArg = (value: string): string =>
+      /[\s"&|<>^]/.test(value) ? `"${value.replace(/"/g, '\\"')}"` : value;
+    const winCommand = [command, ...args].map(quoteArg).join(' ');
+
+    try {
+      await execAsync(winCommand, { cwd, windowsHide: true });
+      return;
+    } catch (error) {
+      try {
+        const executable = command === 'npm' ? 'npm.cmd' : command;
+        await execFileAsync(executable, args, { cwd, windowsHide: true });
+        return;
+      } catch {
+        throw error;
+      }
+    }
+  }
+
+  await execFileAsync(command, args, { cwd, windowsHide: true });
 }
 
 async function buildSimulationRepo(repoDir: string, repoName: string): Promise<void> {
   const packageJson = readPackageJson(repoDir);
   const buildScript = packageJson?.scripts?.build;
   if (!buildScript) return;
+  const needsLocalPostCssShield = !hasLocalPostCssConfig(repoDir);
+  const tempPostCssConfigPath = path.join(repoDir, 'postcss.config.cjs');
 
   try {
+    if (needsLocalPostCssShield) {
+      fs.writeFileSync(tempPostCssConfigPath, 'module.exports = { plugins: {} };\n', 'utf8');
+    }
+
     const hasPackageLock = fileExists(path.join(repoDir, 'package-lock.json'));
     if (hasPackageLock) {
       await runCommand('npm', ['ci', '--no-audit', '--no-fund'], repoDir);
@@ -127,7 +247,9 @@ async function buildSimulationRepo(repoDir: string, repoName: string): Promise<v
     }
 
     if (isViteRepo(repoDir, packageJson)) {
-      await runCommand('npm', ['run', 'build', '--', '--base', `/simulations/${repoName}/`], repoDir);
+      applyViteWindowsSpawnWorkaround(repoDir);
+      await runCommand('npm', ['run', 'build', '--', '--base', `/simulations/${repoName}/dist/`], repoDir);
+      patchDistIndexAssetBase(repoDir, repoName);
       return;
     }
 
@@ -138,6 +260,10 @@ async function buildSimulationRepo(repoDir: string, repoName: string): Promise<v
         ? error.message
         : 'Unknown build failure.';
     throw new Error(`Failed to auto-build simulation repo: ${detail}`);
+  } finally {
+    if (needsLocalPostCssShield && fs.existsSync(tempPostCssConfigPath)) {
+      fs.rmSync(tempPostCssConfigPath, { force: true });
+    }
   }
 }
 
@@ -208,13 +334,22 @@ export async function POST(request: NextRequest) {
     });
 
     fs.rmSync(path.join(targetDir, '.git'), { recursive: true, force: true });
-    await buildSimulationRepo(targetDir, parsed.repo);
+    let buildErrorMessage: string | null = null;
+    try {
+      await buildSimulationRepo(targetDir, parsed.repo);
+    } catch (error) {
+      buildErrorMessage =
+        error instanceof Error ? error.message : 'Unknown build failure.';
+      ensureFallbackSimulationPage(targetDir, parsed.repo, buildErrorMessage);
+    }
 
     const packageJson = readPackageJson(targetDir);
     const requestedEmbedPath = body.embedPath?.trim();
-    const resolvedEmbedPath = requestedEmbedPath || inferAutoEmbedPath(targetDir);
+    const resolvedEmbedPath =
+      requestedEmbedPath ||
+      (buildErrorMessage ? 'dist/index.html' : inferAutoEmbedPath(targetDir));
 
-    if (!requestedEmbedPath && isLikelyUnbuiltViteSource(targetDir, packageJson)) {
+    if (!requestedEmbedPath && !buildErrorMessage && isLikelyUnbuiltViteSource(targetDir, packageJson)) {
       return NextResponse.json(
         {
           success: false,
@@ -259,6 +394,7 @@ export async function POST(request: NextRequest) {
         name: parsed.repo,
         path: toPosixPath(path.relative(process.cwd(), targetDir)),
       },
+      buildWarning: buildErrorMessage ?? undefined,
       lessonFile: toPosixPath(path.relative(process.cwd(), lessonFile)),
     });
   } catch (error) {

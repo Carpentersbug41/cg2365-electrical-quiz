@@ -65,7 +65,7 @@ import lesson202_5B from '@/data/lessons/2365/202-5B-ac-generation-and-sine-wave
 import lesson203_3L1A from '@/data/lessons/2365/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
 import lessonPHY_4_1A from '@/data/lessons/gcse/physics/PHY-4-1A-introduction-to-waves.json';
 import lessonBIO_1_1A from '@/data/lessons/gcse/biology/BIO-1-1A-eukaryotic-cell-structures.json';
-import lesson202_6A from '@/data/lessons/202-6A-electronic-components-and-principles.json';
+import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-principles.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {

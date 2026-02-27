@@ -69,7 +69,6 @@
       "content": {
         "title": "Introduction to Waves Diagram",
         "description": "Visual representation of Introduction to Waves",
-        "embedUrl": "/simulations/wave1/dist/index.html",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
@@ -79,7 +78,8 @@
           "particle-oscillation",
           "resting-position"
         ],
-        "placeholderText": "The diagram should show a side-view cross-section of a water wave. A 'resting-position' line should run horizontally through the center. A 'bobbing-duck' is placed on the 'water-surface', which is curved into a wave shape. An arrow labeled 'wave-direction' points to the right. Small circular arrows or vertical double-headed arrows labeled 'particle-oscillation' should be shown under the duck to demonstrate that the water moves up and down, while the duck stays at the same horizontal coordinate. This illustrates that the wave moves right, but the medium stays in place."
+        "placeholderText": "The diagram should show a side-view cross-section of a water wave. A 'resting-position' line should run horizontally through the center. A 'bobbing-duck' is placed on the 'water-surface', which is curved into a wave shape. An arrow labeled 'wave-direction' points to the right. Small circular arrows or vertical double-headed arrows labeled 'particle-oscillation' should be shown under the duck to demonstrate that the water moves up and down, while the duck stays at the same horizontal coordinate. This illustrates that the wave moves right, but the medium stays in place.",
+        "embedUrl": "/simulations/waveforms/dist/index.html"
       }
     },
     {
@@ -231,6 +231,38 @@
       }
     },
     {
+      "id": "PHY-4-1A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "duration": 90,
+        "pairs": [
+          {
+            "left": "Wave",
+            "right": "A wave is a periodic disturbance that transfers energy and information from one point to another without the permanent displacement of matter."
+          },
+          {
+            "left": "Medium",
+            "right": "A medium is the physical material or substance through which a wave travels, which remains in its original location after the energy has passed."
+          },
+          {
+            "left": "Oscillation",
+            "right": "Oscillation is the repetitive back-and-forth or up-and-down motion of particles about a fixed position, not to be confused with the overall travel of the wave itself."
+          },
+          {
+            "left": "Energy Transfer",
+            "right": "Energy transfer is the process by which a wave moves power or data through a system, differing from matter transfer because the particles of the medium do not travel with the wave."
+          },
+          {
+            "left": "Displacement",
+            "right": "Displacement is the distance and direction an individual particle moves from its original resting position as a wave passes through it."
+          }
+        ]
+      }
+    },
+    {
       "id": "PHY-4-1A-practice",
       "type": "practice",
       "order": 8,
@@ -291,6 +323,46 @@
               "oscillating"
             ],
             "hint": "This term describes the movement around a fixed point, not the travel of the wave itself."
+          }
+        ]
+      }
+    },
+    {
+      "id": "PHY-4-1A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "sorting",
+        "duration": 90,
+        "buckets": [
+          "Term",
+          "Definition"
+        ],
+        "items": [
+          {
+            "text": "Wave",
+            "correctBucket": 0
+          },
+          {
+            "text": "A wave is a periodic disturbance that transfers energy and information from one point to...",
+            "correctBucket": 1
+          },
+          {
+            "text": "Medium",
+            "correctBucket": 0
+          },
+          {
+            "text": "A medium is the physical material or substance through which a wave travels, which...",
+            "correctBucket": 1
+          },
+          {
+            "text": "Oscillation",
+            "correctBucket": 0
+          },
+          {
+            "text": "Oscillation is the repetitive back-and-forth or up-and-down motion of particles about a...",
+            "correctBucket": 1
           }
         ]
       }
@@ -398,7 +470,7 @@
   "metadata": {
     "created": "2026-02-26",
     "updated": "2026-02-27",
-    "version": "1.0",
+    "version": "1.1",
     "author": "GCSE Science Learning Team",
     "taskMode": "IDENTIFICATION, CONCEPTUAL",
     "syllabusAnchors": {
@@ -460,4 +532,3 @@
     }
   }
 }
-

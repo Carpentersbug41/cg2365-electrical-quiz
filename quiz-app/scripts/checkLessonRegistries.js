@@ -12,10 +12,26 @@ function read(filePath) {
 }
 
 function getLessonFiles() {
-  return fs
-    .readdirSync(lessonsDir)
-    .filter((file) => file.endsWith('.json'))
-    .sort();
+  const files = [];
+
+  function walk(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(fullPath);
+        continue;
+      }
+
+      if (entry.isFile() && entry.name.endsWith('.json')) {
+        files.push(path.relative(lessonsDir, fullPath));
+      }
+    }
+  }
+
+  walk(lessonsDir);
+  return files.sort();
 }
 
 function parseLessonJson(fileName) {
