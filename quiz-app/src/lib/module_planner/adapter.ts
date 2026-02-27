@@ -75,7 +75,7 @@ const SECTION_BY_UNIT: Record<string, string> = {
 
 interface ExistingLessonRequestPayload {
   unit: number | string;
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   lessonId: string;
   topic: string;
   section: string;
@@ -86,8 +86,11 @@ interface ExistingLessonRequestPayload {
   masterLessonBlueprint?: LessonBlueprint['masterBlueprint'];
 }
 
-function inferCurriculumFromUnit(unit: string): 'cg2365' | 'gcse-science-physics' {
-  return /^phy-/i.test(unit.trim()) ? 'gcse-science-physics' : 'cg2365';
+function inferCurriculumFromUnit(unit: string): 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology' {
+  const normalized = unit.trim();
+  if (/^phy-/i.test(normalized)) return 'gcse-science-physics';
+  if (/^bio-/i.test(normalized)) return 'gcse-science-biology';
+  return 'cg2365';
 }
 
 function toExistingLessonRequestPayload(blueprint: LessonBlueprint): ExistingLessonRequestPayload {
@@ -99,7 +102,11 @@ function toExistingLessonRequestPayload(blueprint: LessonBlueprint): ExistingLes
   const normalizedUnit = Number.isFinite(numericUnit) ? numericUnit : blueprint.unit;
   const section =
     SECTION_BY_UNIT[blueprint.unit] ??
-    (curriculum === 'gcse-science-physics' ? 'GCSE Science Physics' : `Unit ${blueprint.unit}`);
+    (curriculum === 'gcse-science-physics'
+      ? 'GCSE Science Physics'
+      : curriculum === 'gcse-science-biology'
+        ? 'GCSE Science Biology'
+        : `Unit ${blueprint.unit}`);
 
   return {
     unit: normalizedUnit,

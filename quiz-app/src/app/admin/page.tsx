@@ -27,6 +27,12 @@ const workspaceLinks: AdminLink[] = [
     href: '/admin/generate-games',
     badge: 'Games',
   },
+  {
+    title: 'Simulations',
+    description: 'Clone GitHub simulations into src/app/simulations and attach them to lesson iframes.',
+    href: '/admin/simulations',
+    badge: 'Sim',
+  },
 ];
 
 const generatorLinks: AdminLink[] = [

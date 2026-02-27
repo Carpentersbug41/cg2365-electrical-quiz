@@ -184,11 +184,15 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
 
     try {
       const requestBody = buildRequestBody('save');
+      const requestBodyWithGames = {
+        ...requestBody,
+        games: generatedGames,
+      };
 
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(requestBody),
+        body: JSON.stringify(requestBodyWithGames),
       });
 
       const data = await response.json();
@@ -199,7 +203,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         if (data.errorType) errorMsg += `\n\nError Type: ${data.errorType}`;
         if (data.stack) errorMsg += `\n\nStack:\n${data.stack}`;
 
-        setDebugInfo(JSON.stringify({ request: requestBody, response: { status: response.status, data } }, null, 2));
+        setDebugInfo(JSON.stringify({ request: requestBodyWithGames, response: { status: response.status, data } }, null, 2));
         throw new Error(errorMsg);
       }
 

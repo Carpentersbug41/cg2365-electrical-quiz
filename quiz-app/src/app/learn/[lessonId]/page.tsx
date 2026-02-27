@@ -12,7 +12,7 @@ import LayoutB from '@/components/learning/layouts/LayoutB';
 import DiagnosticGate from '@/components/learning/DiagnosticGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 import { getCoursePrefixFromHeader } from '@/lib/routing/curricula';
-import { isLessonIdAllowedForScope, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
 // Import lesson data
 import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
@@ -64,9 +64,11 @@ import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-cu
 import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
 import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
 import lessonPHY_4_1A from '@/data/lessons/PHY-4-1A-introduction-to-waves.json';
+import lessonBIO_1_1A from '@/data/lessons/BIO-1-1A-eukaryotic-cell-structures.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  'BIO-1-1A': lessonBIO_1_1A as Lesson,
   'PHY-4-1A': lessonPHY_4_1A as Lesson,
   '203-3L1A': lesson203_3L1A as Lesson,
   '202-5B': lesson202_5B as Lesson,
@@ -125,7 +127,7 @@ export default async function LessonPage({ params }: PageProps) {
   const { lessonId } = await params;
   const requestHeaders = await headers();
   const coursePrefix = getCoursePrefixFromHeader(requestHeaders.get('x-course-prefix'));
-  const scope: CurriculumScope = coursePrefix === '/gcse/science/physics' ? 'gcse-science-physics' : 'cg2365';
+  const scope = getCurriculumScopeFromCoursePrefix(coursePrefix);
 
   if (!isLessonIdAllowedForScope(lessonId, scope)) {
     notFound();
@@ -166,7 +168,12 @@ export async function generateMetadata({ params }: PageProps) {
   const lesson = LESSONS[lessonId];
   const requestHeaders = await headers();
   const coursePrefix = getCoursePrefixFromHeader(requestHeaders.get('x-course-prefix'));
-  const suffix = coursePrefix === '/gcse/science/physics' ? 'GCSE Physics Learning' : 'C&G 2365 Learning';
+  const suffix =
+    coursePrefix === '/gcse/science/physics'
+      ? 'GCSE Physics Learning'
+      : coursePrefix === '/gcse/science/biology'
+        ? 'GCSE Biology Learning'
+        : 'C&G 2365 Learning';
 
   if (!lesson) {
     return {

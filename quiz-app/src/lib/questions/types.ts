@@ -41,7 +41,7 @@ export interface SyllabusUnit {
 
 export interface QuestionItem {
   id: string;
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   generation_run_id: string | null;
   unit_code: string;
   lo_code: string | null;
@@ -68,7 +68,7 @@ export interface QuestionItem {
 
 export interface QuestionGenerationRun {
   id: string;
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   unit_code: string;
   level: 2 | 3;
   lo_codes: string[] | null;
@@ -106,7 +106,7 @@ export interface QuestionBlueprint {
 }
 
 export interface GeneratedQuestionDraftInput {
-  curriculum?: 'cg2365' | 'gcse-science-physics';
+  curriculum?: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   generation_run_id: string | null;
   unit_code: string;
   lo_code: string | null;

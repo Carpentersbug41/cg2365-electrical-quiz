@@ -9,10 +9,12 @@ import {
   QuestionRunStepStatus,
 } from './types';
 
-type Curriculum = 'cg2365' | 'gcse-science-physics';
+type Curriculum = 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
 
 function inferCurriculumFromUnitCode(unitCode: string): Curriculum {
-  return /^PHY-/i.test(unitCode) ? 'gcse-science-physics' : 'cg2365';
+  if (/^PHY-/i.test(unitCode)) return 'gcse-science-physics';
+  if (/^BIO-/i.test(unitCode)) return 'gcse-science-biology';
+  return 'cg2365';
 }
 
 function requireSupabase() {
@@ -33,7 +35,7 @@ function normalizeQuestionRow(row: Record<string, unknown>): QuestionItem {
   return {
     id: String(row.id),
     curriculum:
-      row.curriculum === 'gcse-science-physics' || row.curriculum === 'cg2365'
+      row.curriculum === 'gcse-science-physics' || row.curriculum === 'gcse-science-biology' || row.curriculum === 'cg2365'
         ? row.curriculum
         : inferCurriculumFromUnitCode(unitCode),
     generation_run_id: row.generation_run_id == null ? null : String(row.generation_run_id),
@@ -66,7 +68,7 @@ function normalizeRunRow(row: Record<string, unknown>): QuestionGenerationRun {
   return {
     id: String(row.id),
     curriculum:
-      row.curriculum === 'gcse-science-physics' || row.curriculum === 'cg2365'
+      row.curriculum === 'gcse-science-physics' || row.curriculum === 'gcse-science-biology' || row.curriculum === 'cg2365'
         ? row.curriculum
         : inferCurriculumFromUnitCode(unitCode),
     unit_code: unitCode,

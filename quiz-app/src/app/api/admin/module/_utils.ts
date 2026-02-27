@@ -90,6 +90,9 @@ export function isSyllabusVersionInScope(version: SyllabusVersionRow, scope: Cur
   if (scope === 'gcse-science-physics') {
     return tagged === 'gcse-science-physics';
   }
+  if (scope === 'gcse-science-biology') {
+    return tagged === 'gcse-science-biology';
+  }
   return tagged === 'cg2365' || tagged == null;
 }
 

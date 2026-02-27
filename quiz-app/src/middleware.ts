@@ -54,6 +54,7 @@ export const config = {
   matcher: [
     '/',
     '/2365/:path*',
+    '/gcse/science/biology/:path*',
     '/gcse/science/physics/:path*',
     '/learn/:path*',
     '/quiz/:path*',
@@ -61,6 +62,6 @@ export const config = {
     '/generate-quiz/:path*',
     '/test-generation/:path*',
     '/admin/:path*',
-    '/electron-simulation/:path*',
+    '/simulations/:path*',
   ],
 };

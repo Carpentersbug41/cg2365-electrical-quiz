@@ -1,0 +1,463 @@
+{
+  "id": "BIO-1-1A",
+  "title": "BIO.1-1A — Eukaryotic Cell Structures",
+  "description": "Learn about Eukaryotic Cell Structures in GCSE Science Biology",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-1",
+  "topic": "Eukaryotic Cell Structures",
+  "learningOutcomes": [
+    "Identify the sub-cellular structures present in eukaryotic animal and plant cells.",
+    "Describe the specific functions of organelles including the nucleus, mitochondria, and ribosomes.",
+    "Explain how the presence of a cell wall, chloroplasts, and a permanent vacuole distinguishes plant cells from animal cells."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "BIO-1-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the sub-cellular structures present in eukaryotic animal and plant cells.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the specific functions of organelles including the nucleus, mitochondria, and ribosomes.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain how the presence of a cell wall, chloroplasts, and a permanent vacuole distinguishes plant cells from animal cells.",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-1-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Eukaryotic",
+            "definition": "A category of complex cells that contain a nucleus and membrane-bound organelles, distinguishing them from simpler prokaryotic cells."
+          },
+          {
+            "term": "Organelle",
+            "definition": "A specialized sub-cellular structure that performs a specific function, similar to a component within a mechanical system."
+          },
+          {
+            "term": "Nucleus",
+            "definition": "The organelle that contains genetic material and acts as the control center for all cellular activities."
+          },
+          {
+            "term": "Mitochondria",
+            "definition": "The specialized organelles where aerobic respiration occurs to release energy for the cell."
+          },
+          {
+            "term": "Cell Membrane",
+            "definition": "A semi-permeable barrier that regulates the passage of substances into and out of the cell, not to be confused with the rigid cell wall."
+          },
+          {
+            "term": "Cell Wall",
+            "definition": "A rigid outer layer made of cellulose that provides structural strength to plant cells, which is absent in animal cells."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-1-1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Eukaryotic Cell Structures Diagram",
+        "description": "Visual representation of Eukaryotic Cell Structures",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "nucleus-control-center",
+          "mitochondria-energy-unit",
+          "cell-membrane-barrier",
+          "cell-wall-support",
+          "chloroplast-solar-panel"
+        ],
+        "placeholderText": "The diagram should show a side-by-side comparison of a rounded animal cell and a rectangular plant cell. The animal cell features a central nucleus-control-center and several mitochondria-energy-unit structures. The plant cell shows the same features but is encased in a thick cell-wall-support, with large green chloroplast-solar-panel structures and a large central vacuole. Labels should clearly point to the cell-membrane-barrier which is present in both, located just inside the wall for the plant cell."
+      }
+    },
+    {
+      "id": "BIO-1-1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Animal Cell Structures and Functions",
+        "content": "### In this lesson\nYou will learn how to identify the internal parts of an animal cell and what each part does for the cell.\nThis helps us understand how complex living things, like humans, function at the smallest level.\n*   Identify the main parts of a **Eukaryotic** animal cell.\n*   Describe the roles of the **Nucleus**, **Mitochondria**, and ribosomes.\n*   Understand how the **Cell Membrane** acts as a gatekeeper.\n\n**What this is**\nAn animal cell is a type of **Eukaryotic** cell, which means it is a complex unit containing a **Nucleus** and other specialized parts called **Organelles**. Think of an **Organelle** like a specific machine in a factory; each one has a unique job to keep the factory running smoothly. Unlike simpler bacteria, animal cells have their instructions tucked away safely inside a central compartment, and they have various \"rooms\" (membrane-bound structures) where different chemical reactions happen.\n\n**Why it matters**\nUnderstanding these structures is like having the blueprint for a house. If you know how the parts work, you can understand how the whole body stays alive. For example, knowing how **Mitochondria** release energy helps doctors understand why some people feel very tired if their cells aren't working correctly. It also explains how our bodies build muscles using ribosomes and how our cells decide what nutrients to let in through the **Cell Membrane**.\n\n**Key facts / rules**\n*   The **Nucleus** acts as the control center, containing the cell's DNA.\n*   **Mitochondria** are the sites of aerobic respiration, where energy is released.\n*   Ribosomes are tiny structures where proteins are made.\n*   The **Cell Membrane** is a thin, flexible layer that surrounds the cell.\n*   Cytoplasm is a jelly-like substance where most chemical reactions happen.\n*   Animal cells are typically irregular in shape because they lack a rigid outer wall.\n\n**When to choose it**\nWhen you are trying to identify which **Organelle** is responsible for a specific task, look at the cell's \"needs.\" If the cell needs to send out instructions for growth, it \"chooses\" the **Nucleus** to provide the genetic blueprints. If the cell is very active and needs a lot of power, you will notice a high number of **Mitochondria**. To identify the boundary that decides what enters or leaves the cell, you are looking for the **Cell Membrane**. \n\n*Micro-scenario:* Imagine you are comparing a skin cell to a heart muscle cell. The heart muscle cell works much harder and needs more energy, so it typically contains hundreds more **Mitochondria** than the skin cell. If you see a cell packed with these energy-releasing structures, you can judge it to be a high-energy cell.\n\n**Common mistakes**\nLearners often confuse the **Cell Membrane** with the **Cell Wall**; the **Cell Membrane** is a soft, thin barrier found in all cells, whereas the **Cell Wall** is a tough, rigid outer layer found only in plants. Another common error is thinking **Mitochondria** \"create\" energy; in reality, they release energy from nutrients through respiration.\n\nMisconceptions (targeted):\n* Misconception: The nucleus is the \"brain\" of the cell and thinks for itself. | Correction: The nucleus is a control center because it contains DNA instructions; it doesn't \"think\" but follows genetic code. | AC: BIO-1.LO1.AC1.1a\n* Misconception: Ribosomes are large enough to see with a basic school microscope. | Correction: Ribosomes are incredibly tiny and usually require an electron microscope to be seen clearly. | AC: BIO-1.LO1.AC1.1a\n\n**Key Points**\n*   **Eukaryotic** cells like animal cells have a **Nucleus** and **Organelles**.\n*   The **Nucleus** stores genetic material (DNA).\n*   **Mitochondria** release energy through aerobic respiration.\n*   The **Cell Membrane** controls the movement of substances.\n\n**Quick recap**\nAnimal cells are complex **Eukaryotic** units with specialized parts called **Organelles**. The **Nucleus** holds the instructions, the **Cell Membrane** controls entry and exit, and the **Mitochondria** provide the energy needed for the cell to function. These parts work together like a tiny, efficient city to keep you alive!\n\n### Coming Up Next\nNext, we will look at plant cells to see the extra \"armour\" and \"solar panels\" they have that animal cells don't!"
+      }
+    },
+    {
+      "id": "BIO-1-1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Animal Cell Structures and Functions",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-1-1A-C1-L1-A",
+            "questionText": "Identify the part of the cell that acts as the control center and contains the cell's DNA.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Nucleus",
+              "The nucleus"
+            ],
+            "hint": "This structure holds the genetic instructions for the cell."
+          },
+          {
+            "id": "BIO-1-1A-C1-L1-B",
+            "questionText": "Which structures are identified as the sites of aerobic respiration where energy is released?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Mitochondria",
+              "Mitochondrion"
+            ],
+            "hint": "Think of the parts that provide power to the cell."
+          },
+          {
+            "id": "BIO-1-1A-C1-L1-C",
+            "questionText": "Identify the soft, thin barrier that is found in all cells.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cell Membrane",
+              "The cell membrane"
+            ],
+            "hint": "This layer surrounds the cell and is not the rigid outer wall found in plants."
+          },
+          {
+            "id": "BIO-1-1A-C1-L2",
+            "questionText": "Using your answers to Q1 (Nucleus), Q2 (Mitochondria), and Q3 (Cell Membrane), explain how these structures work together to keep a cell alive. Why must a highly active cell, like a heart muscle cell, contain a specific balance of these parts?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The nucleus provides the instructions for the cell to function and grow",
+              "The cell membrane controls the entry of nutrients needed for energy release",
+              "Mitochondria use those nutrients to release energy based on the nucleus's instructions",
+              "A heart cell needs more mitochondria because its high activity requires more energy release than other cells"
+            ],
+            "expectedAnswer": [
+              "The nucleus provides the instructions for the cell, while the cell membrane lets in the nutrients that mitochondria need to release energy. We know a heart cell needs more mitochondria because it is more active and requires more power to function.",
+              "The cell membrane acts as a gatekeeper for fuel, which the mitochondria then release as energy following the DNA instructions in the nucleus. This relationship matters because active cells require a higher number of energy-releasing structures to stay alive."
+            ],
+            "hint": "Think about how the instructions, the fuel entry, and the power release must coordinate."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-1-1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Plant Cell Structures and Functions",
+        "content": "### In this lesson\nYou will learn to identify the extra structures found in plant cells and explain why plants need them.\nThis explains why plants can stand up straight and make their own food while animals cannot.\n*   Identify the unique parts of a plant cell: **Cell Wall**, chloroplasts, and vacuole.\n*   Explain the role of the **Cell Wall** in providing structure.\n*   Describe how chloroplasts capture energy from the sun.\n\n**What this is**\nPlant cells are also **Eukaryotic**, meaning they have a **Nucleus** and **Mitochondria** just like animal cells. However, they have three extra \"bonus\" features that make them different. These are the **Cell Wall**, chloroplasts, and a permanent vacuole. An **Organelle** like a chloroplast is like a solar panel, while the **Cell Wall** is like a sturdy brick exterior. These structures allow plants to grow tall and produce their own energy from sunlight.\n\n**Why it matters**\nIf plants didn't have a **Cell Wall**, they would be floppy like a bag of water and couldn't grow toward the light. Without chloroplasts, plants couldn't perform photosynthesis, which means there would be no food for them—or for us! Understanding these differences helps us identify plant tissues under a microscope and explains how plants survive in different environments.\n\n**Key facts / rules**\n*   The **Cell Wall** is made of cellulose and provides strength and support.\n*   Chloroplasts contain chlorophyll to absorb light for photosynthesis.\n*   A permanent vacuole is filled with cell sap to keep the cell firm (turgid).\n*   Plant cells contain all the parts animal cells have, including a **Nucleus** and ribosomes.\n*   The **Cell Wall** is located outside the **Cell Membrane**.\n*   Chloroplasts are usually found in green parts of the plant, like leaves.\n\n**When to choose it**\nWhen identifying a cell, you can \"choose\" to classify it as a plant cell if you see a rigid, rectangular border, which is the **Cell Wall**. If you see green, oval-shaped structures, those are chloroplasts. If you are looking for the part that stores water and nutrients to keep the plant from wilting, you are looking for the permanent vacuole. \n\n*Micro-scenario:* If you look at a cell from a tree leaf and a cell from a tree root, the leaf cell will have many chloroplasts to catch sunlight, while the root cell (which is underground in the dark) will typically have none. You can judge a cell's location based on whether these \"solar panels\" are present.\n\n**Common mistakes**\nLearners often confuse **Chloroplasts** with **Chlorophyll**; **Chloroplasts** are the actual **Organelles** (the structures), whereas **Chlorophyll** is the green pigment (the substance) inside them that traps light. Another mistake is thinking plant cells have a **Cell Wall** instead of a **Cell Membrane**; in fact, they have both! The membrane is just tucked inside the wall.\n\nMisconceptions (targeted):\n* Misconception: Only plant cells have a vacuole. | Correction: Animal cells can have small, temporary vacuoles, but only plant cells have a large, permanent vacuole. | AC: BIO-1.LO1.AC1.1b\n* Misconception: Plant cells don't have mitochondria because they have chloroplasts. | Correction: Plant cells have both; chloroplasts make food, but mitochondria are still needed to release energy from that food. | AC: BIO-1.LO1.AC1.1b\n\n**Key Points**\n*   The **Cell Wall** provides rigid support and is made of cellulose.\n*   Chloroplasts are the site of photosynthesis.\n*   A large permanent vacuole keeps the cell firm.\n*   Plant cells are **Eukaryotic** and contain a **Nucleus**.\n\n**Quick recap**\nPlant cells have everything animal cells have, plus three special extras: a **Cell Wall** for strength, chloroplasts for making food from light, and a permanent vacuole for storage and firmness. These structures are the reason plants can stand tall and live off sunlight! The presence of these three parts is how we distinguish plant cells from animal cells.\n\n### Coming Up Next\nNow that we've mastered complex cells, we'll dive into the world of bacteria to see how much simpler life can be!"
+      }
+    },
+    {
+      "id": "BIO-1-1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Plant Cell Structures and Functions",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-1-1A-C2-L1-A",
+            "questionText": "Identify the structure made of cellulose that provides strength and support to the plant cell.",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Cell Wall",
+              "The cell wall"
+            ],
+            "hint": "This is the rigid outer layer located outside the membrane."
+          },
+          {
+            "id": "BIO-1-1A-C2-L1-B",
+            "questionText": "Which organelles contain chlorophyll to absorb light for photosynthesis?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Chloroplasts",
+              "Chloroplast"
+            ],
+            "hint": "These are the green, oval-shaped structures used to make food."
+          },
+          {
+            "id": "BIO-1-1A-C2-L1-C",
+            "questionText": "Which structure is found as a large, permanent unit in plant cells, unlike the small temporary versions in animal cells?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Large permanent vacuole",
+              "Permanent vacuole",
+              "Vacuole"
+            ],
+            "hint": "This part is filled with cell sap to keep the cell firm."
+          },
+          {
+            "id": "BIO-1-1A-C2-L2",
+            "questionText": "Using your answers to Q1 (Cell Wall), Q2 (Chloroplasts), and Q3 (Permanent vacuole), explain how these structures allow a plant to survive differently than an animal. Why must a plant have all three to grow upright toward the light?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The cell wall and permanent vacuole work together to provide the rigid structure and firmness needed to stand tall",
+              "Chloroplasts capture the light energy needed to produce food while the plant is held upright",
+              "Without the support of the wall and vacuole, the chloroplasts could not be positioned effectively to reach the sunlight",
+              "Animals lack these because they do not make food from light and do not require a rigid cellulose exterior"
+            ],
+            "expectedAnswer": [
+              "The cell wall and permanent vacuole provide the physical strength and firmness for the plant to stand up. This allows the chloroplasts to be held in the best position to absorb light for food. We know this is essential because without these supports, the plant would be floppy and unable to perform photosynthesis efficiently.",
+              "A plant uses its cell wall for strength and its vacuole for firmness so it can grow tall. This height helps the chloroplasts catch sunlight. This connection is valid because animals do not have these rigid structures and cannot produce their own food from light."
+            ],
+            "hint": "Consider how the physical support structures help the food-producing structures do their job."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-1-1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "BIO-1-1A-P1",
+            "questionText": "Which specific organelle serves as the control center by storing the genetic instructions (DNA) required for the cell to function?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "nucleus",
+              "the nucleus"
+            ],
+            "hint": "This structure acts like the management office of a factory."
+          },
+          {
+            "id": "BIO-1-1A-P2",
+            "questionText": "Explain why a cell located in the roots of a plant cannot perform photosynthesis.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it lacks chloroplasts",
+              "no chloroplasts",
+              "it has no chloroplasts",
+              "missing chloroplasts"
+            ],
+            "hint": "Consider which 'solar panel' organelle is required for photosynthesis and whether it would be present in underground structures."
+          },
+          {
+            "id": "BIO-1-1A-P3",
+            "questionText": "Based on the lesson, how many unique structural features (organelles or layers) are typically found in plant cells but are absent in animal cells?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count the specific 'bonus features' mentioned that provide armor, solar energy, and internal pressure."
+          },
+          {
+            "id": "BIO-1-1A-P4",
+            "questionText": "A technician identifies a cell that possesses a rigid outer border made of cellulose but does not contain any green pigments. What must be true about the classification of this cell?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it is a plant cell",
+              "plant cell",
+              "it is from a plant",
+              "it is a plant"
+            ],
+            "hint": "Focus on the presence of the cell wall, even if the 'solar panels' are missing."
+          },
+          {
+            "id": "BIO-1-1A-P5",
+            "questionText": "If a biological sample requires a high output of energy to perform mechanical work, which organelle would you expect to see in the highest concentration?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "mitochondria",
+              "the mitochondria",
+              "mitochondrion"
+            ],
+            "hint": "Look for the organelle responsible for aerobic respiration and energy release."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-1-1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-1-1A-INT-1",
+            "questionText": "Analyze the relationship between energy production and protein synthesis within a eukaryotic cell. In your answer, include: (1) the primary function of mitochondria, (2) the role of ribosomes, and (3) how these two structures interact to maintain cellular activity. Why must these functions be co-dependent for the cell to remain viable? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Mitochondria facilitate aerobic respiration to produce ATP (energy).",
+              "Ribosomes are the sites of protein synthesis within the cell.",
+              "Protein synthesis is an energy-intensive process requiring ATP from mitochondria.",
+              "Mitochondria require proteins/enzymes produced by ribosomes to function.",
+              "Reasoning: Without energy, synthesis fails; without proteins, energy production ceases, leading to cell death."
+            ],
+            "expectedAnswer": [
+              "Mitochondria provide the chemical energy (ATP) required for ribosomes to synthesize the proteins necessary for cell repair and growth. This relationship holds because the metabolic pathways in the mitochondria depend on enzymes (proteins) created by ribosomes, while ribosomes cannot link amino acids without the energy currency generated by the mitochondria.",
+              "Ribosomes synthesize proteins using energy released by the mitochondria during respiration. These processes are co-dependent because cellular work requires both the 'machinery' (proteins) and the 'fuel' (ATP) to be present simultaneously, or the cell's internal systems will collapse."
+            ],
+            "hint": "Consider how the 'fuel' produced in one organelle is used by the 'machinery' in another."
+          },
+          {
+            "id": "BIO-1-1A-INT-2",
+            "questionText": "Evaluate how the presence of specialized sub-cellular structures dictates the functional differences between plant and animal cells. In your answer, include: (1) the shared regulatory role of the nucleus, (2) the mechanical purpose of the cell wall and permanent vacuole, (3) the energy-conversion role of chloroplasts, and (4) how these differences affect the organism's requirements. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "The nucleus acts as the control center for both cell types by housing genetic material.",
+              "The cell wall provides a rigid external structure for support in plants.",
+              "The permanent vacuole maintains turgor pressure to keep the plant upright.",
+              "Chloroplasts allow plants to perform photosynthesis and produce their own food.",
+              "Animal cells lack these structures, requiring external food sources and different support systems.",
+              "Integration of structural support and energy acquisition methods.",
+              "Technical precision regarding eukaryotic commonalities and plant-specific adaptations."
+            ],
+            "expectedAnswer": [
+              "While both cells use a nucleus to regulate activities, plant cells utilize a cell wall and permanent vacuole to provide mechanical stability that animal cells lack. Additionally, chloroplasts allow plants to convert light into energy, making them autotrophic, whereas animal cells must ingest nutrients. These specialized structures enable plants to remain stationary and upright while producing their own chemical energy.",
+              "• The nucleus manages genetic information and cell operations in both animal and plant cells.\n• Plant cells are distinguished by a rigid cell wall and a large vacuole which provide structural integrity and turgidity.\n• Chloroplasts enable plants to synthesize food via photosynthesis, a capability absent in animal cells.\n• These adaptations mean plants can generate their own energy and maintain structure without a skeleton, unlike animal cells."
+            ],
+            "hint": "Think about why a plant can stand tall and make food from sunlight while an animal cannot."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-1-1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "BIO-1-1A-SR-1",
+            "questionText": "What is the basic structural unit that makes up both animal and plant organisms?",
+            "expectedAnswer": [
+              "cell",
+              "the cell",
+              "cells"
+            ],
+            "hint": "It is the fundamental building block of life mentioned in the lesson title.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-1-1A-SR-2",
+            "questionText": "Which two broad categories of organisms will be compared to identify differences in their internal features?",
+            "expectedAnswer": [
+              "animal and plant",
+              "animals and plants",
+              "plants and animals"
+            ],
+            "hint": "Look at the types of cells mentioned in the learning outcomes.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-1-1A-SR-3",
+            "questionText": "What general term is used to describe the specialized internal parts or structures found within a cell?",
+            "expectedAnswer": [
+              "organelles",
+              "sub-cellular structures",
+              "cell structures"
+            ],
+            "hint": "This term is used in the second learning outcome to describe the nucleus and mitochondria.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Eukaryotic Cell Structures"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-27",
+    "updated": "2026-02-27",
+    "version": "1.0",
+    "author": "GCSE Science Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "BIO-1",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC7",
+        "AC8",
+        "AC9",
+        "AC10",
+        "AC11",
+        "AC12",
+        "AC13",
+        "AC14",
+        "AC15",
+        "AC16",
+        "AC17"
+      ]
+    },
+    "scope": {
+      "inScope": "The identification and functional purpose of sub-cellular structures in eukaryotic animal and plant cells.",
+      "outOfScope": "Prokaryotic cell structures (bacteria), specialized cell adaptations, and microscopy techniques.",
+      "rationale": "Focusing on eukaryotic cells first establishes the fundamental biological structures before moving to prokaryotic differences or specialized adaptations."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Exclude bacterial cells (AC 1.1c) to focus exclusively on eukaryotic animal and plant structures as per the lesson title."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The nucleus is the brain of the cell and makes decisions.",
+        "correction": "The nucleus is a control center because it houses the DNA (instructions), not because it has a brain to think.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Plant cells have a cell wall instead of a cell membrane.",
+        "correction": "Plant cells have both; the cell membrane is a thin layer located just inside the rigid cell wall.",
+        "relatedAC": "AC2"
+      },
+      {
+        "misconception": "Mitochondria create energy for the cell.",
+        "correction": "Mitochondria do not create energy; they release energy from glucose through a process called aerobic respiration.",
+        "relatedAC": "AC1"
+      }
+    ],
+    "generationScore": 99,
+    "generationScoreDetails": {
+      "originalScore": 99,
+      "finalScore": 99,
+      "wasRefined": false,
+      "generatedAt": "2026-02-27T09:16:38.826Z",
+      "source": "phase10-13"
+    }
+  }
+}

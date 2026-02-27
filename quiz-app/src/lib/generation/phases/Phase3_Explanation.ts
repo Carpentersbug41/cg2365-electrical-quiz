@@ -11,7 +11,7 @@ export interface ExplanationInput {
   lessonId: string;
   topic: string;
   section: string;
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   mustHaveTopics?: string;
   additionalInstructions?: string;
   plan: PlanningOutput;
@@ -49,9 +49,9 @@ export class Phase3_Explanation extends PhasePromptBuilder {
   }
 
   protected buildSystemPrompt(input: ExplanationInput): string {
-    const isGcse = input.curriculum === 'gcse-science-physics';
+    const isGcse = input.curriculum !== 'cg2365';
     const audienceInstruction = isGcse
-      ? 'Primary audience is a 12-year-old girl studying GCSE Physics. Keep explanations age-appropriate, confidence-building, and relatable.'
+      ? 'Primary audience is a 12-year-old girl studying GCSE Science. Keep explanations age-appropriate, confidence-building, and relatable.'
       : 'Audience is Level 2 electrical trainees. Keep explanations practical, job-relevant, and technically precise.';
     const toneInstruction = isGcse
       ? 'Use a fun, warm, engaging tone while staying technically accurate.'
@@ -175,9 +175,9 @@ ${this.getJsonOutputInstructions()}`;
 
   protected buildUserPrompt(input: ExplanationInput): string {
     const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, taskMode } = input;
-    const isGcse = input.curriculum === 'gcse-science-physics';
+    const isGcse = input.curriculum !== 'cg2365';
     const audienceToneInstruction = isGcse
-      ? 'Write for a 12-year-old girl learning GCSE Physics: fun, welcoming, clear, and age-appropriate.'
+      ? 'Write for a 12-year-old girl learning GCSE Science: fun, welcoming, clear, and age-appropriate.'
       : 'Write for Level 2 electrical trainees: practical, precise, and professional.';
 
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\\n');

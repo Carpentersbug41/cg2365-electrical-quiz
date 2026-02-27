@@ -596,6 +596,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 1,
   },
+  {
+    id: 'BIO-1-1A',
+    title: 'Eukaryotic Cell Structures',
+    unit: 'Unit BIO-1',
+    unitNumber: 'BIO-1',
+    topic: 'Eukaryotic Cell Structures',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('BIO-1-1A'),
+    available: true,
+    order: 1,
+  },
 ];
 
 /**

@@ -56,12 +56,13 @@ import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-cu
 import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
 import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
 import lessonPHY_4_1A from '@/data/lessons/PHY-4-1A-introduction-to-waves.json';
+import lessonBIO_1_1A from '@/data/lessons/BIO-1-1A-eukaryotic-cell-structures.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 import { courseHref } from '@/lib/routing/courseHref';
 import { getCoursePrefixForClient } from '@/lib/routing/curricula';
-import { isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
+import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
 /**
  * Natural sort function for lesson IDs
@@ -102,6 +103,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lessonBIO_1_1A,
   lessonPHY_4_1A,
   lesson203_3L1A,
   lesson202_5B,
@@ -225,8 +227,9 @@ const getUnitColors = (lessonId: string) => {
 export default function LearnPage() {
   const [lessonsProgress, setLessonsProgress] = useState<Record<string, QuizProgress | null>>({});
   const coursePrefix = getCoursePrefixForClient();
-  const isGcsePhysics = coursePrefix === '/gcse/science/physics';
-  const scope = isGcsePhysics ? 'gcse-science-physics' : 'cg2365';
+  const scope = getCurriculumScopeFromCoursePrefix(coursePrefix);
+  const isGcsePhysics = scope === 'gcse-science-physics';
+  const isGcseBiology = scope === 'gcse-science-biology';
   const visibleLessons = LESSONS.filter((lesson) => isLessonIdAllowedForScope(lesson.id, scope));
 
   useEffect(() => {
@@ -244,9 +247,11 @@ export default function LearnPage() {
       description: 'Essential health and safety legislation for electrical installations',
     },
     '202': {
-      title: isGcsePhysics ? 'GCSE Science - Physics' : 'Unit 202 - Science',
+      title: isGcsePhysics ? 'GCSE Science - Physics' : isGcseBiology ? 'GCSE Science - Biology' : 'Unit 202 - Science',
       description: isGcsePhysics
-        ? 'Core GCSE Physics concepts and calculations'
+        ? 'Core GCSE Physics concepts'
+        : isGcseBiology
+          ? 'Core GCSE Biology concepts'
         : 'Fundamental electrical principles and circuit theory',
     },
     '203': {
@@ -265,7 +270,7 @@ export default function LearnPage() {
 
   const unitsToRender = Array.from(
     new Set(visibleLessons.map((lesson) => lesson.id.split('-')[0]))
-  ).sort((a, b) => Number(a) - Number(b));
+  ).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-300">
@@ -276,7 +281,7 @@ export default function LearnPage() {
             <div>
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Learning Modules</h1>
               <p className="text-gray-600 dark:text-slate-300 mt-1">
-                {isGcsePhysics ? 'GCSE Physics pathway' : 'Select a lesson to start learning'}
+                {isGcsePhysics ? 'GCSE Physics pathway' : isGcseBiology ? 'GCSE Biology pathway' : 'Select a lesson to start learning'}
               </p>
             </div>
             <Link
@@ -296,13 +301,13 @@ export default function LearnPage() {
           <ReviewDashboard />
         </div>
 
-        {isGcsePhysics && visibleLessons.length === 0 && (
+        {(isGcsePhysics || isGcseBiology) && visibleLessons.length === 0 && (
           <div className="mb-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-amber-200 dark:border-amber-800 p-6">
             <h2 className="text-xl font-semibold text-amber-800 dark:text-amber-300">
-              GCSE Physics lessons not loaded yet
+              {isGcsePhysics ? 'GCSE Physics lessons not loaded yet' : 'GCSE Biology lessons not loaded yet'}
             </h2>
             <p className="mt-2 text-gray-700 dark:text-slate-300">
-              This route is isolated from 2365 on purpose. Upload GCSE Physics syllabus and lesson data to show content here.
+              This route is isolated from 2365 on purpose. Upload subject syllabus and lesson data to show content here.
             </p>
           </div>
         )}
@@ -399,71 +404,6 @@ export default function LearnPage() {
             </div>
           );
         })}
-
-        {/* Interleaved Quiz Section */}
-        {!isGcsePhysics && <div className="mt-12">
-          <div className="mb-6">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-              Mastery Assessment
-            </h2>
-            <p className="text-gray-600 dark:text-slate-300">
-              After completing lessons, test your discrimination skills with mixed practice
-            </p>
-          </div>
-
-          <Link
-            href={courseHref('/quiz/interleaved/mixed-series-parallel')}
-            className="group block"
-          >
-            <div className="bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl shadow-xl hover:shadow-2xl p-8 transition-all duration-200 hover:scale-[1.02]">
-              <div className="flex items-start gap-6">
-                {/* Icon */}
-                <div className="text-6xl">🔀</div>
-                
-                {/* Content */}
-                <div className="flex-1 text-white">
-                  <div className="flex items-center gap-3 mb-3">
-                    <h3 className="text-2xl font-bold">
-                      Series & Parallel: Mixed Practice
-                    </h3>
-                    <span className="px-3 py-1 text-xs font-bold bg-white/20 rounded-full border border-white/30">
-                      Interleaved
-                    </span>
-                  </div>
-                  
-                  <p className="text-purple-100 mb-4 text-lg">
-                    Test your ability to discriminate between series and parallel circuits. 
-                    Questions are mixed to develop real-world problem-solving skills.
-                  </p>
-
-                  <div className="flex flex-wrap gap-3 text-sm">
-                    <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
-                      <span className="font-semibold">Prerequisites:</span>
-                      <span>202-3A & 202-4A</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
-                      <span className="font-semibold">Questions:</span>
-                      <span>~14 mixed</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
-                      <span className="font-semibold">Time:</span>
-                      <span>~20 min</span>
-                    </div>
-                    <div className="flex items-center gap-2 bg-white/20 rounded-lg px-3 py-2">
-                      <span className="font-semibold">Pass:</span>
-                      <span>70%</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 inline-flex items-center gap-2 text-white font-semibold group-hover:gap-3 transition-all">
-                    <span>Start Mixed Quiz</span>
-                    <span className="text-xl">→</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>}
 
         {/* Coming Soon Placeholder */}
         <div className="mt-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border-2 border-dashed border-gray-300 dark:border-slate-600 p-8 text-center">

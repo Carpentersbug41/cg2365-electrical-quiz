@@ -69,6 +69,7 @@
       "content": {
         "title": "Introduction to Waves Diagram",
         "description": "Visual representation of Introduction to Waves",
+        "embedUrl": "/simulations/wave1/index.html",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [

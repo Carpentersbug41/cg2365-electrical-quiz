@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { DarkModeToggle } from "@/components/DarkModeToggle";
@@ -32,7 +33,9 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <DarkModeToggle />
-          <AuthEnforcer>{children}</AuthEnforcer>
+          <Suspense fallback={null}>
+            <AuthEnforcer>{children}</AuthEnforcer>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

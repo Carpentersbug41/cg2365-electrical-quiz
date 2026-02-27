@@ -258,7 +258,7 @@ export interface ValidationResult {
 export interface ModuleRunRow {
   id: string;
   created_at: string;
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   syllabus_version_id: string;
   unit: string;
   selected_los_json: string[];
@@ -340,7 +340,7 @@ export interface RetrievedChunkRecord {
 
 export interface SyllabusVersionRow {
   id: string;
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   filename: string;
   content_hash: string;
   created_at: string;

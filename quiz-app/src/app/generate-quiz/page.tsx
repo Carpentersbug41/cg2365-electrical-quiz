@@ -128,10 +128,17 @@ export default function GenerateQuizPage() {
       const response = await fetch('/api/generate-quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        // Route-derived curriculum keeps GCSE Physics/Biology isolated.
+        // Unit code still remains source of truth server-side.
         body: JSON.stringify({
           lessonId,
           regenerate,
-          curriculum: getCoursePrefixForClient() === '/gcse/science/physics' ? 'gcse-science-physics' : 'cg2365',
+          curriculum:
+            getCoursePrefixForClient() === '/gcse/science/physics'
+              ? 'gcse-science-physics'
+              : getCoursePrefixForClient() === '/gcse/science/biology'
+                ? 'gcse-science-biology'
+                : 'cg2365',
         }),
       });
 

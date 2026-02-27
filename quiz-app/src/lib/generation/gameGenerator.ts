@@ -29,7 +29,7 @@ For quick-win games: every answer must be exactly one or two words (never full s
 For fill-gap games: produce about 5 gaps, each gap must be solved by selecting exactly one single-word option, and each gap should include similar plausible one-word distractors.`;
 
 interface GamePromptProfile {
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   audienceInstruction: string;
   toneInstruction: string;
 }
@@ -84,12 +84,16 @@ function getGamePromptProfile(lesson: Lesson): GamePromptProfile {
   const lessonId = String(lesson.id || '').toLowerCase();
   const unit = String(lesson.unit || '').toLowerCase();
   const author = String(lesson.metadata?.author || '').toLowerCase();
-  const isGcse = lessonId.startsWith('phy-') || unit.includes('phy') || author.includes('gcse');
+  const isGcsePhysics = lessonId.startsWith('phy-') || unit.includes('phy');
+  const isGcseBiology = lessonId.startsWith('bio-') || unit.includes('bio');
+  const isGcse = isGcsePhysics || isGcseBiology || author.includes('gcse');
 
   if (isGcse) {
     return {
-      curriculum: 'gcse-science-physics',
-      audienceInstruction: 'Primary audience is a 12-year-old girl learning GCSE Physics.',
+      curriculum: isGcseBiology ? 'gcse-science-biology' : 'gcse-science-physics',
+      audienceInstruction: isGcseBiology
+        ? 'Primary audience is a 12-year-old girl learning GCSE Biology.'
+        : 'Primary audience is a 12-year-old girl learning GCSE Physics.',
       toneInstruction: 'Use a fun, warm, encouraging, age-appropriate tone while staying accurate.',
     };
   }
@@ -1865,20 +1869,30 @@ export async function generateMicrobreaksFromPlan(
     failures.set(index, current);
   });
 
-  for (const [index, reasons] of failures.entries()) {
-    const existing = repaired[index];
-    const planItem = slotById.get(existing.slotId) || plan[index];
-    try {
-      const repairedGame = await repairSingleGame(model, planItem, digest, reasons, promptProfile);
-      repaired[index] = repairedGame;
-    } catch (error) {
-      console.warn(`[GameGenerator] targeted repair failed for index ${index}; using fallback. ${error instanceof Error ? error.message : 'unknown'}`);
-      repaired[index] = {
-        slotId: planItem.slotId,
-        content: hardenGeneratedGameContent(fallbackGameFromDigest(planItem, digest), digest),
-      };
-    }
-  }
+  const repairEntries = [...failures.entries()];
+  const repairedItems = await Promise.all(
+    repairEntries.map(async ([index, reasons]) => {
+      const existing = repaired[index];
+      const planItem = slotById.get(existing.slotId) || plan[index];
+      try {
+        const repairedGame = await repairSingleGame(model, planItem, digest, reasons, promptProfile);
+        return { index, game: repairedGame };
+      } catch (error) {
+        console.warn(`[GameGenerator] targeted repair failed for index ${index}; using fallback. ${error instanceof Error ? error.message : 'unknown'}`);
+        return {
+          index,
+          game: {
+            slotId: planItem.slotId,
+            content: hardenGeneratedGameContent(fallbackGameFromDigest(planItem, digest), digest),
+          } as GeneratedPlannedGame,
+        };
+      }
+    })
+  );
+
+  repairedItems.forEach(({ index, game }) => {
+    repaired[index] = game;
+  });
 
   const finalDuplicates = validateNoDuplicateStems(repaired);
   repaired.forEach((game, index) => {

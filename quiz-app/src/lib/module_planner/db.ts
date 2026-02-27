@@ -40,8 +40,10 @@ function nowIso(): string {
   return new Date().toISOString();
 }
 
-function normalizeCurriculum(value: unknown): 'cg2365' | 'gcse-science-physics' {
-  return value === 'gcse-science-physics' ? 'gcse-science-physics' : 'cg2365';
+function normalizeCurriculum(value: unknown): 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology' {
+  if (value === 'gcse-science-physics') return 'gcse-science-physics';
+  if (value === 'gcse-science-biology') return 'gcse-science-biology';
+  return 'cg2365';
 }
 
 function createId(): string {
@@ -164,7 +166,7 @@ function normalizeStructureRow(row: Record<string, unknown>): SyllabusStructureR
 
 export async function createModuleRun(input: {
   syllabusVersionId: string;
-  curriculum?: 'cg2365' | 'gcse-science-physics';
+  curriculum?: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   unit: string;
   selectedLos: string[];
   constraints: ModuleConstraints | null;
@@ -458,7 +460,7 @@ export async function getRunSummary(runId: string): Promise<ModuleRunSummary | n
 export async function createSyllabusVersion(input: {
   filename: string;
   contentHash: string;
-  curriculum?: 'cg2365' | 'gcse-science-physics';
+  curriculum?: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   metaJson?: Record<string, unknown>;
 }): Promise<SyllabusVersionRow> {
   const row: SyllabusVersionRow = {

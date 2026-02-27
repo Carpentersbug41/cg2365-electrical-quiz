@@ -1,7 +1,7 @@
 import { GenerationRequest } from './types';
 
 export interface CurriculumPromptProfile {
-  key: 'cg2365' | 'gcse-physics';
+  key: 'cg2365' | 'gcse-physics' | 'gcse-biology';
   programLabel: string;
   learnerLabel: string;
   authorLabel: string;
@@ -26,6 +26,18 @@ export function getCurriculumPromptProfile(request: GenerationRequest): Curricul
         'Use a fun, warm, engaging tone. Keep language age-appropriate and confidence-building for younger learners.',
       audienceInstruction:
         'Primary audience is a 12-year-old girl studying GCSE Physics. Explain clearly, use relatable examples, and avoid dense jargon.',
+    };
+  }
+  if (request.curriculum === 'gcse-science-biology') {
+    return {
+      key: 'gcse-biology',
+      programLabel: 'GCSE Biology',
+      learnerLabel: 'GCSE Biology learners',
+      authorLabel: 'GCSE Science Learning Team',
+      toneInstruction:
+        'Use a fun, warm, engaging tone. Keep language age-appropriate and confidence-building for younger learners.',
+      audienceInstruction:
+        'Primary audience is a 12-year-old girl studying GCSE Biology. Explain clearly, use relatable examples, and avoid dense jargon.',
     };
   }
 

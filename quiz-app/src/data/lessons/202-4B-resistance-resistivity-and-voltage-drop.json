@@ -232,6 +232,64 @@
       }
     },
     {
+      "id": "202-4B-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "fill-gap",
+        "prompt": "Pick the one-word term that best completes each gap.",
+        "textTemplate": "1. [g1] and Resistivity\n2. What this [g2] Resistance is the opposition to the flow of electric current through a circuit or component, measured in Ohms.\n3. In this lesson You will learn how to distinguish between [g3] physical opposition to current and the inherent properties of materials.\n4. In this lesson You will learn how to distinguish between the physical [g4] to current and the inherent properties of materials.\n5. In this lesson You will learn how [g5] distinguish between the physical opposition to current and the inherent properties of materials.",
+        "gaps": [
+          {
+            "id": "g1",
+            "options": [
+              "opposition",
+              "resistance",
+              "determines"
+            ],
+            "correctOptionIndex": 1
+          },
+          {
+            "id": "g2",
+            "options": [
+              "of",
+              "to",
+              "is"
+            ],
+            "correctOptionIndex": 2
+          },
+          {
+            "id": "g3",
+            "options": [
+              "the",
+              "its",
+              "and"
+            ],
+            "correctOptionIndex": 0
+          },
+          {
+            "id": "g4",
+            "options": [
+              "determines",
+              "opposition",
+              "resistance"
+            ],
+            "correctOptionIndex": 1
+          },
+          {
+            "id": "g5",
+            "options": [
+              "is",
+              "to",
+              "of"
+            ],
+            "correctOptionIndex": 1
+          }
+        ]
+      }
+    },
+    {
       "id": "202-4B-practice",
       "type": "practice",
       "order": 8,
@@ -279,6 +337,38 @@
               "106.0"
             ],
             "hint": "Voltage drop represents the energy 'used up' or lost along the path; subtract this loss from the starting potential. Provide value in Volts."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-4B-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "quick-win",
+        "instruction": "Test your knowledge on how conductor dimensions affect electrical resistance.",
+        "questions": [
+          {
+            "question": "Effect of increasing cross-sectional area on resistance?",
+            "answer": "Decreases resistance"
+          },
+          {
+            "question": "Does a larger wire provide more paths for electrons?",
+            "answer": "More paths"
+          },
+          {
+            "question": "Resistance of a thinner conductor compared to a thicker one?",
+            "answer": "Higher resistance"
+          },
+          {
+            "question": "Relationship between area and resistance?",
+            "answer": "Proportional decrease"
+          },
+          {
+            "question": "Word for: Resistance is the opposition to the flow of electric current through a circuit or component, measured in Ohms.",
+            "answer": "Resistance"
           }
         ]
       }
@@ -385,8 +475,8 @@
   ],
   "metadata": {
     "created": "2026-02-24",
-    "updated": "2026-02-24",
-    "version": "1.0",
+    "updated": "2026-02-26",
+    "version": "1.1",
     "author": "C&G 2365 Learning Team",
     "taskMode": "CONCEPTUAL, IDENTIFICATION",
     "syllabusAnchors": {

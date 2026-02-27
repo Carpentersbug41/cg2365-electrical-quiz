@@ -386,8 +386,14 @@ export default function GeneratePage() {
 
     try {
       // Prepare request
+      const prefix = getCoursePrefixForClient();
       const request = {
-        curriculum: getCoursePrefixForClient() === '/gcse/science/physics' ? 'gcse-science-physics' : 'cg2365',
+        curriculum:
+          prefix === '/gcse/science/physics'
+            ? 'gcse-science-physics'
+            : prefix === '/gcse/science/biology'
+              ? 'gcse-science-biology'
+              : 'cg2365',
         unit: form.unit,
         lessonId: form.lessonId,
         topic: form.topic,

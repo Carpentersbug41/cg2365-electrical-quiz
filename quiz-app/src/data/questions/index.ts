@@ -87,11 +87,13 @@ import { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfEl
 import { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
 import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
 import { introductionToWavesQuestions } from './introductionToWavesQuestions';
+import { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...eukaryoticCellStructuresQuestions,
   ...introductionToWavesQuestions,
   ...alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions,
   ...acGenerationAndSineWavesQuestions,
@@ -263,6 +265,7 @@ export { powerAndEffectsOfElectricCurrentQuestions } from './powerAndEffectsOfEl
 export { acGenerationAndSineWavesQuestions } from './acGenerationAndSineWavesQuestions';
 export { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
 export { introductionToWavesQuestions } from './introductionToWavesQuestions';
+export { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQuestions';
 
 /**
  * Filter questions by tags

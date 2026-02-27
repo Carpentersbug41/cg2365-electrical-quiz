@@ -95,6 +95,7 @@ import { powerAndEffectsOfElectricCurrentQuestions } from './questions/powerAndE
 import { acGenerationAndSineWavesQuestions } from './questions/acGenerationAndSineWavesQuestions';
 import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions } from './questions/alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions';
 import { introductionToWavesQuestions } from './questions/introductionToWavesQuestions';
+import { eukaryoticCellStructuresQuestions } from './questions/eukaryoticCellStructuresQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -182,6 +183,7 @@ export const questions: Question[] = [
   ...acGenerationAndSineWavesQuestions,
   ...alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightingQuestions,
   ...introductionToWavesQuestions,
+  ...eukaryoticCellStructuresQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

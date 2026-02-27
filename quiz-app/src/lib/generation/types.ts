@@ -29,7 +29,7 @@
  */
 
 export interface GenerationRequest {
-  curriculum: 'cg2365' | 'gcse-science-physics';
+  curriculum: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
   unit: number | string;
   lessonId: string;
   topic: string;

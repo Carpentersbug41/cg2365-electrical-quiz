@@ -97,7 +97,7 @@ function parseDelimitedLine(line: string): string[] {
 
 function tryParseStructuredTable(
   sourceText: string,
-  scope: 'cg2365' | 'gcse-science-physics'
+  scope: 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology'
 ): CanonicalUnitStructure[] | null {
   const lines = sourceText
     .split(/\r?\n/)
@@ -296,7 +296,10 @@ async function tryNormaliseStructureWithLlm(cleanedText: string): Promise<Canoni
   return normalized;
 }
 
-async function tryDeriveGcseStructureWithLlm(cleanedText: string): Promise<CanonicalUnitStructure[] | null> {
+async function tryDeriveGcseStructureWithLlm(
+  cleanedText: string,
+  subject: 'physics' | 'biology'
+): Promise<CanonicalUnitStructure[] | null> {
   if (!getGeminiApiKey()) return null;
   let modelName: string;
   try {
@@ -323,7 +326,7 @@ async function tryDeriveGcseStructureWithLlm(cleanedText: string): Promise<Canon
     schema: {
       structures: [
         {
-          unit: 'PHY-<topic-code>',
+          unit: `${subject === 'biology' ? 'BIO' : 'PHY'}-<topic-code>`,
           unitTitle: 'string',
           los: [
             {
@@ -344,7 +347,7 @@ async function tryDeriveGcseStructureWithLlm(cleanedText: string): Promise<Canon
       'Use only content present in the source excerpt.',
       'Convert topic-based statements into planner-friendly LO/AC entries.',
       'Create at least 1 AC per LO.',
-      'Unit code must start with PHY-.',
+      `Unit code must start with ${subject === 'biology' ? 'BIO-' : 'PHY-'}.`,
       'Return strict JSON only.',
     ],
   });
@@ -391,10 +394,12 @@ async function tryDeriveGcseStructureWithLlm(cleanedText: string): Promise<Canon
         los,
       };
     })
-    .filter((unit) => /^PHY-/i.test(unit.unit) && unit.los.length > 0);
+    .filter((unit) => unit.los.length > 0);
+  const expectedPrefix = subject === 'biology' ? /^BIO-/i : /^PHY-/i;
+  const filtered = normalized.filter((unit) => expectedPrefix.test(unit.unit) && unit.los.length > 0);
 
-  if (normalized.length === 0) return null;
-  return normalized;
+  if (filtered.length === 0) return null;
+  return filtered;
 }
 
 function mergeNormalizedStructures(structures: CanonicalUnitStructure[]): CanonicalUnitStructure[] {
@@ -464,7 +469,10 @@ async function tryNormaliseStructureWithLlmBatched(cleanedText: string): Promise
   return merged.length > 0 ? merged : null;
 }
 
-async function tryDeriveGcseStructureWithLlmBatched(cleanedText: string): Promise<CanonicalUnitStructure[] | null> {
+async function tryDeriveGcseStructureWithLlmBatched(
+  cleanedText: string,
+  subject: 'physics' | 'biology'
+): Promise<CanonicalUnitStructure[] | null> {
   const batchSize = 16000;
   const maxBatches = 10;
   const batches: string[] = [];
@@ -475,7 +483,7 @@ async function tryDeriveGcseStructureWithLlmBatched(cleanedText: string): Promis
 
   const all: CanonicalUnitStructure[] = [];
   for (const batch of batches) {
-    const one = await tryDeriveGcseStructureWithLlm(batch);
+    const one = await tryDeriveGcseStructureWithLlm(batch, subject);
     if (one && one.length > 0) all.push(...one);
   }
   if (all.length === 0) return null;
@@ -545,10 +553,13 @@ export async function POST(request: NextRequest) {
       }
     }
     if (
-      scope === 'gcse-science-physics' &&
+      (scope === 'gcse-science-physics' || scope === 'gcse-science-biology') &&
       (structureResult.confidence < 0.45 || structureResult.structures.length === 0)
     ) {
-      const derived = await tryDeriveGcseStructureWithLlmBatched(cleanedText);
+      const derived = await tryDeriveGcseStructureWithLlmBatched(
+        cleanedText,
+        scope === 'gcse-science-biology' ? 'biology' : 'physics'
+      );
       if (derived && derived.length > 0) {
         structureResult = {
           structures: derived,

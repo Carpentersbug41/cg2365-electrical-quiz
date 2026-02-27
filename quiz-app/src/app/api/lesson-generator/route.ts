@@ -50,6 +50,7 @@ function sanitizeLockName(value: string): string {
 function inferSectionFromUnit(unit: number | string): string {
   const unitToken = String(unit).trim();
   if (/^phy-/i.test(unitToken)) return 'GCSE Science Physics';
+  if (/^bio-/i.test(unitToken)) return 'GCSE Science Biology';
   return SECTION_BY_UNIT[unitToken] ?? `Unit ${unitToken}`;
 }
 
@@ -254,13 +255,16 @@ export async function POST(request: NextRequest) {
   try {
     const body: GenerationRequest = await request.json();
     if (!body.curriculum) {
-      const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
-      body.curriculum = scope === 'gcse-science-physics' ? 'gcse-science-physics' : 'cg2365';
+      body.curriculum = getCurriculumScopeFromReferer(request.headers.get('referer'));
     }
 
-    if (body.curriculum !== 'cg2365' && body.curriculum !== 'gcse-science-physics') {
+    if (
+      body.curriculum !== 'cg2365' &&
+      body.curriculum !== 'gcse-science-physics' &&
+      body.curriculum !== 'gcse-science-biology'
+    ) {
       return NextResponse.json(
-        { success: false, error: 'Invalid curriculum. Use "cg2365" or "gcse-science-physics".' },
+        { success: false, error: 'Invalid curriculum. Use "cg2365", "gcse-science-physics", or "gcse-science-biology".' },
         { status: 400 }
       );
     }

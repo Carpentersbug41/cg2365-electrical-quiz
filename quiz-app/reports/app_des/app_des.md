@@ -58,7 +58,7 @@ Implemented `page.tsx` routes:
 - `/admin/generate-games`
 - `/auth/sign-in`
 - `/auth/callback`
-- `/electron-simulation`
+- `/simulations/*`
 - `/test-generation`
 
 ### API routes

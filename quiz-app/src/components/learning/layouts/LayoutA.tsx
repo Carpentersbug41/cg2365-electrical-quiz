@@ -21,6 +21,7 @@ import PracticeBlock from '../blocks/PracticeBlock';
 import SpacedReviewBlock from '../blocks/SpacedReviewBlock';
 import DiagramStage from '../diagram/DiagramStage';
 import TutorPanel from '../tutor/TutorPanel';
+import TTSVoiceSelector from '../tts/TTSVoiceSelector';
 import MasteryGate from '../MasteryGate';
 import MicrobreakBlock from '../microbreaks/MicrobreakBlock';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
@@ -105,6 +106,7 @@ export default function LayoutA({ lesson }: LayoutProps) {
           </span>
         </div>
         <div className="flex items-center gap-2">
+          <TTSVoiceSelector />
           <button className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors">
             Review
           </button>

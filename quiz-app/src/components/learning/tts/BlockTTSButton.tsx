@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { TTS_VOICE_STORAGE_KEY } from './constants';
 
 type TTSStateEventDetail = {
   activeBlockId: string | null;
@@ -11,7 +12,6 @@ const TTS_STATE_EVENT = 'lesson-block-tts-state';
 let activeBlockId: string | null = null;
 let activeUtterance: SpeechSynthesisUtterance | null = null;
 let speechReady = false;
-const TTS_VOICE_STORAGE_KEY = 'tts-preferred-voice';
 
 const PREFERRED_VOICE_NAME_HINTS = [
   'google uk english female',
@@ -126,8 +126,18 @@ export default function BlockTTSButton({
     if (!supported) return;
 
     const hydrateVoices = () => {
-      const hasVoices = window.speechSynthesis.getVoices().length > 0;
+      const voices = window.speechSynthesis.getVoices();
+      const hasVoices = voices.length > 0;
       speechReady = hasVoices;
+
+      if (!hasVoices) return;
+      const storedVoiceName = window.localStorage.getItem(TTS_VOICE_STORAGE_KEY);
+      const initialVoice = storedVoiceName
+        ? voices.find((voice) => voice.name === storedVoiceName) ?? pickVoice()
+        : pickVoice();
+      if (initialVoice?.name) {
+        window.localStorage.setItem(TTS_VOICE_STORAGE_KEY, initialVoice.name);
+      }
     };
     hydrateVoices();
 
@@ -182,7 +192,13 @@ export default function BlockTTSButton({
     if (synth.paused) synth.resume();
 
     const utterance = new window.SpeechSynthesisUtterance(speakableText);
-    const voice = pickVoice();
+    const voices = window.speechSynthesis.getVoices();
+    const selectedVoiceName = window.localStorage.getItem(TTS_VOICE_STORAGE_KEY);
+    const selectedVoice =
+      selectedVoiceName && selectedVoiceName.length > 0
+        ? voices.find((voice) => voice.name === selectedVoiceName) ?? null
+        : null;
+    const voice = selectedVoice ?? pickVoice();
     if (voice) utterance.voice = voice;
     if (voice?.name) window.localStorage.setItem(TTS_VOICE_STORAGE_KEY, voice.name);
     utterance.lang = voice?.lang || 'en-GB';

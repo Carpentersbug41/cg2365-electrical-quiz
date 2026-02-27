@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { generateMicrobreaksForLesson, findMicrobreakSlots } from '@/lib/generation/gameGenerator';
-import { Lesson, GameType } from '@/data/lessons/types';
+import { Lesson, GameType, MicrobreakContent } from '@/data/lessons/types';
 
 const LESSONS_DIR = join(process.cwd(), 'src', 'data', 'lessons');
 
@@ -105,6 +105,7 @@ export async function GET() {
  */
 export async function POST(request: Request) {
   try {
+    const requestStartedAt = Date.now();
     const body = await request.json();
 
     const legacyMode = body?.mode;
@@ -120,6 +121,7 @@ export async function POST(request: Request) {
     const allowedGameTypes = Array.isArray(body?.allowedGameTypes)
       ? body.allowedGameTypes
       : (Array.isArray(body?.gameTypes) ? body.gameTypes : []);
+    const providedGames = Array.isArray(body?.games) ? body.games : null;
 
     if (!process.env.GEMINI_API_KEY) {
       console.error('GEMINI_API_KEY environment variable is not set');
@@ -172,6 +174,10 @@ export async function POST(request: Request) {
       const pool = generationMode === 'manual'
         ? (allowedGameTypes as GameType[])
         : ALL_SUPPORTED_GAME_TYPES;
+      const canUseProvidedGames =
+        operation === 'save' &&
+        Array.isArray(providedGames) &&
+        providedGames.length > 0;
 
       if (slotCount === 0) {
         return NextResponse.json({
@@ -185,13 +191,32 @@ export async function POST(request: Request) {
           },
           generatedCount: 0,
           modeUsed: generationMode,
-          games: []
+          games: [],
+          durationMs: Date.now() - requestStartedAt,
         });
       }
 
-      const games = await generateMicrobreaksForLesson(lesson, {
-        gameTypes: pool,
-      });
+      const games = canUseProvidedGames
+        ? providedGames
+            .filter((game): game is { id: string; type: string; order: number; content: MicrobreakContent } => {
+              return Boolean(
+                game &&
+                typeof game.id === 'string' &&
+                game.type === 'microbreak' &&
+                typeof game.order === 'number' &&
+                game.content &&
+                typeof game.content === 'object'
+              );
+            })
+            .map((game) => ({
+              id: game.id,
+              type: 'microbreak' as const,
+              order: game.order,
+              content: game.content,
+            }))
+        : await generateMicrobreaksForLesson(lesson, {
+            gameTypes: pool,
+          });
 
       if (operation === 'preview') {
         return NextResponse.json({
@@ -205,6 +230,8 @@ export async function POST(request: Request) {
           },
           generatedCount: games.length,
           modeUsed: generationMode,
+          source: 'server-generated',
+          durationMs: Date.now() - requestStartedAt,
           games: games.map(g => ({
             id: g.id,
             type: g.type,
@@ -239,6 +266,8 @@ export async function POST(request: Request) {
         generatedCount: games.length,
         modeUsed: generationMode,
         gamesAdded: games.length,
+        source: canUseProvidedGames ? 'client-preview' : 'server-generated',
+        durationMs: Date.now() - requestStartedAt,
         games: games.map(g => ({
           id: g.id,
           type: g.type,

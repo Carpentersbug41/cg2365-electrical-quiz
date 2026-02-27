@@ -10,7 +10,7 @@ export default function Home() {
         Select a subject area to keep learning paths and data fully separate.
       </p>
 
-      <div className="grid md:grid-cols-2 gap-6 w-full max-w-4xl">
+      <div className="grid md:grid-cols-3 gap-6 w-full max-w-6xl">
         <Link
           href="/2365/learn"
           className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-sm hover:shadow-md transition-shadow"
@@ -31,6 +31,17 @@ export default function Home() {
             Separate GCSE Physics route and data scope.
           </p>
           <p className="mt-5 text-blue-600 dark:text-blue-400 font-medium">Open GCSE Physics</p>
+        </Link>
+
+        <Link
+          href="/gcse/science/biology/learn"
+          className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-sm hover:shadow-md transition-shadow"
+        >
+          <h2 className="text-2xl font-semibold text-slate-900 dark:text-white">GCSE Science Biology</h2>
+          <p className="mt-3 text-slate-600 dark:text-slate-300">
+            Separate GCSE Biology route and data scope.
+          </p>
+          <p className="mt-5 text-blue-600 dark:text-blue-400 font-medium">Open GCSE Biology</p>
         </Link>
       </div>
     </div>

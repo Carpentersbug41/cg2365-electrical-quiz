@@ -11,6 +11,7 @@ export async function GET(request: Request) {
         ? (version.meta_json as Record<string, unknown>).curriculum
         : null;
       if (scope === 'gcse-science-physics') return tagged === 'gcse-science-physics';
+      if (scope === 'gcse-science-biology') return tagged === 'gcse-science-biology';
       return tagged === 'cg2365' || tagged == null;
     });
     const selectedVersionId = versions[0]?.id ?? '';
@@ -30,7 +31,7 @@ export async function GET(request: Request) {
           unitTitle: row.structure_json.unitTitle ?? `Unit ${row.unit}`,
           loCount: Array.isArray(row.structure_json.los) ? row.structure_json.los.length : 0,
         }))
-        .sort((a, b) => Number(a.unit) - Number(b.unit)),
+        .sort((a, b) => a.unit.localeCompare(b.unit, undefined, { numeric: true })),
     });
   } catch (error) {
     return NextResponse.json(
