@@ -618,6 +618,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 1,
   },
+  {
+    id: 'BIO-6-1A',
+    title: 'Photosynthesis and Producers',
+    unit: 'Unit BIO-6',
+    unitNumber: 'BIO-6',
+    topic: 'Photosynthesis and Producers',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('BIO-6-1A'),
+    available: true,
+    order: 1,
+  },
 ];
 
 /**

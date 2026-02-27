@@ -1,0 +1,466 @@
+{
+  "id": "BIO-6-1A",
+  "title": "BIO.6-1A — Photosynthesis and Producers",
+  "description": "Learn about Photosynthesis and Producers in GCSE Science Biology",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-6",
+  "topic": "Photosynthesis and Producers",
+  "learningOutcomes": [
+    "Define photosynthetic organisms as the primary producers of food and biomass.",
+    "Describe photosynthesis as an endothermic reaction that requires light energy.",
+    "Identify the reactants and products involved in photosynthesis for plants and algae."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "BIO-6-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Define photosynthetic organisms as the primary producers of food and biomass.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe photosynthesis as an endothermic reaction that requires light energy.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify the reactants and products involved in photosynthesis for plants and algae.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Producer",
+            "definition": "An organism, such as a plant or algae, that creates its own food and biomass by converting light energy into chemical energy."
+          },
+          {
+            "term": "Biomass",
+            "definition": "The total mass of living material in an organism or ecosystem, representing the stored chemical energy available to other organisms."
+          },
+          {
+            "term": "Photosynthesis",
+            "definition": "The chemical process by which plants and algae use light energy to convert carbon dioxide and water into glucose and oxygen."
+          },
+          {
+            "term": "Endothermic Reaction",
+            "definition": "A chemical reaction that absorbs energy from its surroundings to proceed, such as photosynthesis requiring light energy, rather than releasing energy to the environment."
+          },
+          {
+            "term": "Glucose",
+            "definition": "A simple sugar produced during photosynthesis that serves as a primary energy source and a fundamental building block for growth."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Photosynthesis and Producers Diagram",
+        "description": "Visual representation of Photosynthesis and Producers",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "light-energy-input",
+          "reactant-inputs",
+          "glucose-product",
+          "biomass-storage"
+        ],
+        "placeholderText": "The diagram should show a bright sun emitting rays labeled as 'light-energy-input' hitting a green leaf. Entering the leaf are arrows for carbon dioxide and water, labeled as 'reactant-inputs'. Inside the leaf, a transformation symbol represents the endothermic reaction. An arrow points away from the leaf showing oxygen being released, while a large hex-shaped molecule labeled 'glucose-product' is shown being stored or used to build the plant's body, labeled as 'biomass-storage'."
+      }
+    },
+    {
+      "id": "BIO-6-1A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Producers and Biomass",
+        "content": "### In this lesson\nIn this lesson, you will learn how certain living things act as the starting point for almost all life on Earth. We are exploring how energy from space is turned into the physical stuff that makes up living bodies.\n\n*   How to define a **Producer** and its role in nature.\n*   The meaning of **Biomass** and why it represents stored energy.\n*   Why photosynthetic organisms are the primary source of food for ecosystems.\n\n**What this is**\nA **Producer** is a special kind of organism, like a green plant on land or algae in the ocean, that doesn't need to eat other things to survive. Instead, it creates its own food and **Biomass** by converting light energy from the sun into chemical energy. This process is the foundation of life because it takes non-living things (like sunlight and gases) and turns them into living material. **Biomass** is the word we use to describe the total mass of this living material. You can think of it as the \"physical build\" of an organism—the roots, stems, leaves, and even the tiny cells of algae—which all contain stored energy that can be passed on to anything that eats them.\n\n**Why it matters**\nWithout producers, there would be no food for anything else! Every time you eat a snack, you are either eating a **Producer** directly (like an apple) or eating something that once ate a **Producer** (like a cow that ate grass). By creating **Biomass**, plants and algae act like the world's primary energy warehouse. They capture the sun's power and lock it away in a form that other living things can use to grow, move, and stay warm. Understanding this helps us see how energy flows through the entire planet.\n\n**Key facts / rules**\n*   Plants and algae are the main photosynthetic organisms on Earth.\n*   A **Producer** is always the first level in a food chain.\n*   **Biomass** is the total living mass of an organism or a whole group of organisms.\n*   Producers convert light energy into chemical energy stored in their tissues.\n*   Most life on Earth depends on the **Biomass** created by producers.\n*   Photosynthetic organisms are often called \"primary producers\" because they are the first to make food.\n\n**How to recognise it**\nYou can recognise a **Producer** by looking for organisms that use sunlight to grow without hunting or scavenging. In a garden, the grass, the flowers, and the giant oak trees are all producers. In a pond, the green \"scum\" or seaweed (algae) are the producers. They are usually green because they contain a special pigment to catch light. A great way to think about **Biomass** is to imagine a tiny sunflower seed weighing less than a gram. After a few months of sunshine and water, that seed grows into a tall plant weighing 500 grams. That massive increase is the new **Biomass** the plant created out of thin air and light! \n\nAnother concrete anchor is to think of a **Producer** like a solar-powered 3D printer. It takes \"ink\" from the environment (water and gas) and uses solar power to print more of itself. The \"printed\" object is the **Biomass**.\n\n*Micro-scenario:* Imagine a field where the total **Biomass** of the grass is 1,000kg. If a herd of cows eats all that grass, they will only gain a small amount of weight, because the grass was the primary **Producer** that held all that initial energy.\n\n**Common mistakes**\nLearners often confuse a **Producer** with a consumer; a **Producer** creates its own biomass from scratch using light, whereas a consumer must eat other organisms to get its energy. Another slip-up is thinking that plants get their \"food\" from the soil. Soil provides minerals and water, but the actual \"food\" (energy) comes from the sun!\n\nMisconceptions (targeted):\n* Misconception: Plants get their food from the soil like we eat from a plate. | Correction: Plants make their own food (glucose) using light energy; soil only provides water and minerals. | AC: BIO-6.LO1.AC6.1\n* Misconception: Biomass is just another word for waste or dead leaves. | Correction: Biomass is the total mass of all living material, including the healthy, growing parts of the organism. | AC: BIO-6.LO1.AC6.1\n\n**Key Points**\n*   Producers like plants and algae make their own food.\n*   **Biomass** is the living mass that stores chemical energy.\n*   All food chains start with a photosynthetic **Producer**.\n*   Producers turn light energy into a form other animals can eat.\n\n**Quick recap**\nProducers are the superstars of the natural world because they create their own food and **Biomass** using sunlight. Whether it is a giant tree or a tiny speck of algae, these organisms capture energy and turn it into the living material that supports almost every other creature on Earth.\n\n### Coming Up Next\nNow that we know who the producers are, we’ll look at the secret chemical recipe they use to turn sunlight into food!"
+      }
+    },
+    {
+      "id": "BIO-6-1A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Producers and Biomass",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1A-C1-L1-A",
+            "questionText": "Where is a producer always positioned within a food chain?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "the first level",
+              "first level",
+              "the start",
+              "the beginning"
+            ],
+            "hint": "Think about where all energy in a chain must start."
+          },
+          {
+            "id": "BIO-6-1A-C1-L1-B",
+            "questionText": "What term is used to describe the total living mass of an organism?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "biomass",
+              "living biomass",
+              "total biomass"
+            ],
+            "hint": "This word refers to the physical material that makes up a living thing."
+          },
+          {
+            "id": "BIO-6-1A-C1-L1-C",
+            "questionText": "Unlike a consumer that must eat other organisms, what do producers use to create their own biomass?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "light",
+              "sunlight",
+              "light energy",
+              "solar energy"
+            ],
+            "hint": "Consider the energy source that plants capture from space."
+          },
+          {
+            "id": "BIO-6-1A-C1-L2",
+            "questionText": "Using your answers to Q1 (position in food chain), Q2 (meaning of biomass), and Q3 (how biomass is created), why is it impossible for a food chain to exist without producers?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Producers are the only ones at the first level that can create biomass from non-living light energy",
+              "Consumers cannot make their own mass and must get it by eating others",
+              "Biomass acts as the stored energy warehouse for the rest of the chain",
+              "Without the initial creation of biomass by producers, there is no energy for any other level to survive"
+            ],
+            "expectedAnswer": [
+              "Producers must be at the first level because they are the only organisms that can turn light into biomass. Since consumers cannot do this and must eat to survive, the entire food chain depends on that initial biomass to provide energy.",
+              "Because producers use light to create the biomass that stores energy, they provide the foundation for everyone else. Why this matters is that if you remove the producer, there is no living mass for consumers to eat."
+            ],
+            "hint": "Think about where the physical material of a food chain comes from if nothing is eaten yet."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Photosynthesis Reaction",
+        "content": "### In this lesson\nIn this lesson, you will discover the exact chemical reaction that plants and algae use to make their food. We will look at the ingredients they need and the energy that powers the whole transformation.\n\n*   The definition of **Photosynthesis** as a chemical process.\n*   Why this process is an **Endothermic Reaction**.\n*   Identifying the reactants (inputs) and products (outputs) of the reaction.\n\n**What this is**\n**Photosynthesis** is the chemical process that happens inside the cells of plants and algae. During this process, they take two simple substances—carbon dioxide and water—and turn them into a high-energy sugar called **Glucose** and a gas called oxygen. Because this process needs a constant supply of light energy to work, it is called an **Endothermic Reaction**. In chemistry, \"endothermic\" means the reaction absorbs energy from its surroundings. Without the energy from light, the chemical bonds in the carbon dioxide and water wouldn't be able to break apart and rearrange themselves into **Glucose**.\n\n**Why it matters**\nThis reaction is the world's most important \"cooking\" process! The **Glucose** produced is the primary energy source for the plant. It acts as a fundamental building block for growth, helping the plant build bigger leaves and stronger stems. For us, the oxygen produced as a \"waste product\" is what we need to breathe. By understanding **Photosynthesis**, we understand how energy is literally \"packed\" into molecules that we can later eat for our own energy.\n\n**Key facts / rules**\n*   The reactants (what goes in) are carbon dioxide and water.\n*   The products (what comes out) are **Glucose** and oxygen.\n*   Light energy is required to power the reaction.\n*   **Photosynthesis** is an **Endothermic Reaction** because it takes in energy.\n*   This process happens in plants and algae.\n*   **Glucose** stores the chemical energy that was originally light energy.\n\n**How to recognise it**\nYou can recognise **Photosynthesis** by looking for the ingredients and the results. If a plant is in a bright spot, it is actively performing this reaction. A great everyday anchor is baking a cake. To turn flour, eggs, and sugar into a cake, you have to put it in the oven. The cake \"absorbs\" the heat energy to change. Without the heat, it stays as a bowl of goo! Similarly, **Photosynthesis** is an **Endothermic Reaction** because the plant \"absorbs\" light energy to change its ingredients into **Glucose**. \n\nAnother sensory comparison is a solar-powered toy. When you put it in the sun, it moves; when you cover it, it stops. The plant is doing something similar internally, but instead of moving, it is building sugar molecules. You can see the result of this reaction when you see a plant growing new leaves or when you see tiny bubbles of oxygen rising from pondweed in a sunny fish tank.\n\n*Micro-scenario:* If a scientist gives an algae plant plenty of water and carbon dioxide but places it in a pitch-black box, the plant will produce 0g of **Glucose**. This confirms that the reaction is endothermic and cannot proceed without light energy.\n\n**Common mistakes**\nLearners often confuse **Glucose** with **Biomass**; **Glucose** is the simple sugar made immediately during the reaction, whereas **Biomass** is the total living material built up over time using those sugars. People also sometimes forget that oxygen is a product; they focus so much on the food that they forget the plant is also releasing gas into the air!\n\nMisconceptions (targeted):\n* Misconception: Photosynthesis is just \"breathing\" for plants. | Correction: Photosynthesis is a chemical reaction that creates food (glucose); it is not the same as the way plants use oxygen to get energy. | AC: BIO-6.LO1.AC6.2\n* Misconception: Plants create energy out of nowhere. | Correction: Plants convert light energy into chemical energy; they don't create it, they just transform it through an endothermic reaction. | AC: BIO-6.LO1.AC6.2\n\n**Key Points**\n*   **Photosynthesis** uses light, water, and carbon dioxide.\n*   It produces **Glucose** (food) and oxygen.\n*   It is an **Endothermic Reaction** because it absorbs light energy.\n*   Plants and algae are the main organisms that do this.\n\n**Quick recap**\n**Photosynthesis** is the amazing process where plants and algae act as tiny chemical factories. By taking in light energy, they perform an **Endothermic Reaction** that turns carbon dioxide and water into **Glucose** and oxygen. This sugar provides the energy they need to grow and build their bodies!\n\n### Coming Up Next\nWe’ve seen how plants make food, but what happens if it’s too cold or too dark? Next, we’ll look at the \"limiting factors\" that can slow this whole process down!"
+      }
+    },
+    {
+      "id": "BIO-6-1A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Photosynthesis Reaction",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1A-C2-L1-A",
+            "questionText": "Why is the process of photosynthesis classified as an endothermic reaction?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "it takes in energy",
+              "absorbs energy",
+              "it absorbs energy",
+              "takes in light energy"
+            ],
+            "hint": "Look for a term that describes whether energy is released or absorbed."
+          },
+          {
+            "id": "BIO-6-1A-C2-L1-B",
+            "questionText": "What are the two substances produced by the photosynthesis reaction?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "glucose and oxygen",
+              "oxygen and glucose",
+              "sugar and oxygen",
+              "glucose, oxygen"
+            ],
+            "hint": "One is a high-energy sugar and the other is a gas we breathe."
+          },
+          {
+            "id": "BIO-6-1A-C2-L1-C",
+            "questionText": "What is the expected result if a plant is provided with water and carbon dioxide but kept in a pitch-black box?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "0g of glucose",
+              "no glucose produced",
+              "zero glucose",
+              "no sugar made"
+            ],
+            "hint": "Consider if the reaction can happen without its energy source."
+          },
+          {
+            "id": "BIO-6-1A-C2-L2",
+            "questionText": "Using your answers to Q1 (endothermic reaction), Q2 (reaction products), and Q3 (pitch-black box result), how do we know that light energy is a required ingredient for making glucose?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Photosynthesis is endothermic which means it must absorb energy to create products",
+              "Glucose is the specific product that stores this absorbed energy",
+              "The experiment shows that with 0 light, 0g of glucose is produced",
+              "This confirms that light is the specific energy being absorbed to power the chemical change"
+            ],
+            "expectedAnswer": [
+              "We know light is required because photosynthesis is an endothermic reaction that must absorb energy to work. Since the plant produces 0g of glucose in a dark box, it proves that light is the specific energy source needed to create those sugar products.",
+              "How we know this is valid is through the dark box test; even with other ingredients, the endothermic reaction cannot produce glucose without absorbing light energy first."
+            ],
+            "hint": "Connect the need to absorb energy with the fact that no food is made when light is missing."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "BIO-6-1A-P1",
+            "questionText": "A technician monitors a sample of algae that grows from an initial mass of 15 grams to a final mass of 165 grams over one week. What is the total mass of new biomass produced during this period?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "150"
+            ],
+            "hint": "Subtract the starting mass from the final mass to find the increase in grams."
+          },
+          {
+            "id": "BIO-6-1A-P2",
+            "questionText": "Why is photosynthesis classified as an endothermic reaction rather than an exothermic one?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it absorbs energy",
+              "absorbs light energy",
+              "takes in energy",
+              "requires energy input"
+            ],
+            "hint": "Think about whether the process releases energy or requires a constant supply of energy from the surroundings to work."
+          },
+          {
+            "id": "BIO-6-1A-P3",
+            "questionText": "In a self-sustaining aquatic life-support system, a specific type of seaweed is used to generate oxygen and food. In this technical context, what is the correct term for the seaweed's role in the energy cycle?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "producer",
+              "primary producer",
+              "a producer"
+            ],
+            "hint": "Identify the term for an organism that creates its own food and biomass from light energy."
+          },
+          {
+            "id": "BIO-6-1A-P4",
+            "questionText": "An experimental garden has a total producer biomass of 1200 kg. If environmental conditions cause 10% of this biomass to be lost, how many kilograms of biomass remain?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1080"
+            ],
+            "hint": "Calculate 10% of 1200, then subtract that value from the original 1200 kg."
+          },
+          {
+            "id": "BIO-6-1A-P5",
+            "questionText": "What must be true about the chemical products of photosynthesis for them to be useful as a source of biomass?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "they store energy",
+              "contain chemical energy",
+              "store chemical energy"
+            ],
+            "hint": "Consider what the glucose molecules actually hold that allows other organisms to use them for growth and movement."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1A-INT-1",
+            "questionText": "Explain how the chemical transformation of inputs into outputs results in the creation of physical matter in an organism. In your answer, include: (1) the specific reactants required, (2) the resulting products, and (3) the connection between these products and biomass. Why does this relationship hold? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies carbon dioxide and water as the necessary reactants.",
+              "Identifies glucose and oxygen as the products of the reaction.",
+              "Explains that the glucose produced is used to build the physical structure of the organism (biomass).",
+              "Reasons that the endothermic nature of the process requires energy to be 'trapped' in the products.",
+              "Connects the intake of inorganic matter to the production of organic biological mass."
+            ],
+            "expectedAnswer": [
+              "Photosynthesis uses the reactants carbon dioxide and water to generate glucose and oxygen. The glucose is then utilized by the plant to build its physical body, which is defined as biomass. This relationship holds because the endothermic reaction converts light energy into chemical energy that is stored within the physical matter of the producer.",
+              "Organisms take in water and carbon dioxide to produce oxygen and glucose through a chemical process. This glucose acts as the primary building block for the organism's biomass, which represents stored energy. This holds true because an endothermic process must absorb energy from the environment to transform simple reactants into complex, energy-rich biological structures."
+            ],
+            "hint": "Think about how the products of the chemical reaction are used by the plant to grow its physical body."
+          },
+          {
+            "id": "BIO-6-1A-INT-2",
+            "questionText": "Synthesize the chemical requirements and energy changes involved in the creation of biological material to explain the function of photosynthetic organisms. In your answer, include: (1) the role of producers, (2) the endothermic nature of the process, (3) the reactants and products involved, and (4) how these factors combine to establish an ecosystem's energy base. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Defines producers as the primary source of food and biomass in an ecosystem.",
+              "Classifies the reaction as endothermic, requiring an external energy input (light).",
+              "Lists carbon dioxide and water as the essential reactants.",
+              "Identifies glucose and oxygen as the vital products.",
+              "Explains that biomass is the physical storage of the energy captured during the reaction.",
+              "Synthesizes that without the energy-absorbing step, no food would be available for the ecosystem.",
+              "Connects the chemical outputs to the physical growth of the organism.",
+              "Maintains technical precision regarding energy transfer and matter production."
+            ],
+            "expectedAnswer": [
+              "Producers like plants use an endothermic reaction to absorb light energy and convert carbon dioxide and water into glucose and oxygen. This glucose is used to create biomass, which serves as the fundamental food source for the entire ecosystem. By synthesizing these chemical inputs into physical matter, producers provide the essential energy base that all other life depends on.",
+              "• Producers are organisms that create the initial biomass for an ecosystem.\n• They perform an endothermic reaction that requires a constant input of light energy to proceed.\n• This process transforms the reactants carbon dioxide and water into the products glucose and oxygen.\n• These factors combine to turn light into stored chemical energy in the form of biomass, which functions as the primary food source for other living things."
+            ],
+            "hint": "Consider how the energy from the sun is 'packaged' into the physical stuff that other animals eat."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "BIO-6-1A-SR-1",
+            "questionText": "What is the scientific term for the starting substances that are used up during a chemical reaction?",
+            "expectedAnswer": [
+              "reactants",
+              "reactant",
+              "starting materials",
+              "inputs"
+            ],
+            "hint": "These are the substances that react together at the beginning of the process.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-6-1A-SR-2",
+            "questionText": "What is the scientific term for the new substances that are formed as a result of a chemical reaction?",
+            "expectedAnswer": [
+              "products",
+              "product",
+              "outputs",
+              "resulting substances"
+            ],
+            "hint": "This term describes what is produced by the reaction.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-6-1A-SR-3",
+            "questionText": "What form of energy is radiated by the sun and used to power natural processes on Earth?",
+            "expectedAnswer": [
+              "light",
+              "light energy",
+              "solar",
+              "solar energy"
+            ],
+            "hint": "It is the type of energy that humans perceive as visible brightness.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Photosynthesis and Producers"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-27",
+    "updated": "2026-02-27",
+    "version": "1.0",
+    "author": "GCSE Science Learning Team",
+    "taskMode": "DEFINITION, IDENTIFICATION",
+    "syllabusAnchors": {
+      "unit": "BIO-6",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5",
+        "AC6",
+        "AC7",
+        "AC8",
+        "AC9",
+        "AC10",
+        "AC11",
+        "AC12",
+        "AC13"
+      ]
+    },
+    "scope": {
+      "inScope": "The fundamental role of producers in biomass production and the chemical nature of the photosynthesis reaction.",
+      "outOfScope": "Limiting factors, rate calculations, inverse square law, and plant anatomical adaptations like xylem or stomata.",
+      "rationale": "This introductory lesson focuses on the definition and chemical requirements of photosynthesis (AC6.1-6.2) as a foundation for later sections on rates and structures."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Limited to the descriptive properties of photosynthetic organisms and the basic reaction equation."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Plants get their food from the soil like we eat from a plate.",
+        "correction": "Plants make their own food (glucose) using light energy; soil only provides water and minerals.",
+        "relatedAC": "BIO-6.LO1.AC6.1"
+      },
+      {
+        "misconception": "Photosynthesis is just 'breathing' for plants.",
+        "correction": "Photosynthesis is a chemical reaction that creates food (glucose); it is not the same as the way plants use oxygen to get energy.",
+        "relatedAC": "BIO-6.LO1.AC6.2"
+      },
+      {
+        "misconception": "Biomass is just another word for waste or dead leaves.",
+        "correction": "Biomass is the total mass of all living material, including the healthy, growing parts of the organism.",
+        "relatedAC": "BIO-6.LO1.AC6.1"
+      }
+    ],
+    "generationScore": 96,
+    "generationScoreDetails": {
+      "originalScore": 96,
+      "finalScore": 96,
+      "wasRefined": false,
+      "generatedAt": "2026-02-27T15:39:27.841Z",
+      "source": "phase10-13"
+    }
+  }
+}

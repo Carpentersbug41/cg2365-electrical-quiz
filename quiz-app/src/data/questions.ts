@@ -97,6 +97,7 @@ import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightin
 import { introductionToWavesQuestions } from './questions/introductionToWavesQuestions';
 import { eukaryoticCellStructuresQuestions } from './questions/eukaryoticCellStructuresQuestions';
 import { electronicComponentsAndPrinciplesQuestions } from './questions/electronicComponentsAndPrinciplesQuestions';
+import { photosynthesisAndProducersQuestions } from './questions/photosynthesisAndProducersQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -186,6 +187,7 @@ export const questions: Question[] = [
   ...introductionToWavesQuestions,
   ...eukaryoticCellStructuresQuestions,
   ...electronicComponentsAndPrinciplesQuestions,
+  ...photosynthesisAndProducersQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

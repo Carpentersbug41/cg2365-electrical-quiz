@@ -89,11 +89,13 @@ import { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightin
 import { introductionToWavesQuestions } from './introductionToWavesQuestions';
 import { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQuestions';
 import { electronicComponentsAndPrinciplesQuestions } from './electronicComponentsAndPrinciplesQuestions';
+import { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...photosynthesisAndProducersQuestions,
   ...electronicComponentsAndPrinciplesQuestions,
   ...eukaryoticCellStructuresQuestions,
   ...introductionToWavesQuestions,
@@ -269,6 +271,7 @@ export { alarmEmergencySystemsNoobOpenClosedCircuitsFireIntruderEmergencyLightin
 export { introductionToWavesQuestions } from './introductionToWavesQuestions';
 export { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQuestions';
 export { electronicComponentsAndPrinciplesQuestions } from './electronicComponentsAndPrinciplesQuestions';
+export { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
 
 /**
  * Filter questions by tags
