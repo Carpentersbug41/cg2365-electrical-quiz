@@ -1,12 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   AlertCircle,
   BookOpen,
   CheckCircle,
+  FolderGit2,
   Info,
   Loader2,
+  Link2,
+  RefreshCcw,
   Save,
   SlidersHorizontal,
   Sparkles,
@@ -15,6 +18,7 @@ import {
 import LessonSelector from './LessonSelector';
 import GamePreview from './GamePreview';
 import { MicrobreakContent } from '@/data/lessons/types';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 interface LessonOption {
   id: string;
@@ -29,6 +33,8 @@ interface LessonOption {
   explanationCount: number;
   totalBlocks: number;
   availableMicrobreakSlots: number;
+  simulationEmbedUrl?: string | null;
+  simulationRepoName?: string | null;
 }
 
 type GameType =
@@ -55,6 +61,13 @@ interface GameGeneratorFormProps {
 }
 
 export default function GameGeneratorForm({ initialSelectedLessonFilename = null }: GameGeneratorFormProps) {
+  const extractRepoFromEmbedUrl = (embedUrl?: string | null): string | null => {
+    if (!embedUrl) return null;
+    const match = embedUrl.trim().match(/^\/simulations\/([^/?#]+)/i);
+    return match?.[1] ?? null;
+  };
+
+  const coursePrefix = getCoursePrefixForClient();
   const [lessons, setLessons] = useState<LessonOption[]>([]);
   const [loadingLessons, setLoadingLessons] = useState(true);
   const [selectedLessonFilename, setSelectedLessonFilename] = useState<string | null>(null);
@@ -70,14 +83,24 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [debugInfo, setDebugInfo] = useState<string | null>(null);
+  const [repoUrl, setRepoUrl] = useState('');
+  const [embedPath, setEmbedPath] = useState('');
+  const [overwriteSimulation, setOverwriteSimulation] = useState(false);
+  const [simulationStatus, setSimulationStatus] = useState<'idle' | 'cloning' | 'updating' | 'deleting'>('idle');
+  const [simulationError, setSimulationError] = useState<string | null>(null);
+  const [simulationSuccess, setSimulationSuccess] = useState<{
+    message: string;
+    embedUrl?: string;
+    path?: string;
+  } | null>(null);
 
-  useEffect(() => {
-    fetchLessons();
-  }, []);
-
-  const fetchLessons = async () => {
+  const fetchLessons = useCallback(async () => {
     try {
-      const response = await fetch('/api/admin/generate-games');
+      const response = await fetch('/api/admin/generate-games', {
+        headers: {
+          'x-course-prefix': coursePrefix,
+        },
+      });
       const data = await response.json();
       const loadedLessons: LessonOption[] = data.lessons || [];
       setLessons(loadedLessons);
@@ -96,9 +119,17 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     } finally {
       setLoadingLessons(false);
     }
-  };
+  }, [coursePrefix, initialSelectedLessonFilename]);
+
+  useEffect(() => {
+    void fetchLessons();
+  }, [fetchLessons]);
 
   const selectedLesson = lessons.find((l) => l.filename === selectedLessonFilename);
+  const selectedSimulationEmbedUrl = selectedLesson?.simulationEmbedUrl ?? null;
+  const selectedSimulationRepo =
+    selectedLesson?.simulationRepoName ??
+    extractRepoFromEmbedUrl(selectedSimulationEmbedUrl);
   const estimatedGenerationCount = selectedLesson?.availableMicrobreakSlots || 0;
   const isManualMode = selectionMode === 'manual';
   const hasManualWhitelist = selectedGameTypes.size > 0;
@@ -141,7 +172,10 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
 
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
         body: JSON.stringify(requestBody),
       });
 
@@ -191,7 +225,10 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
 
       const response = await fetch('/api/admin/generate-games', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
         body: JSON.stringify(requestBodyWithGames),
       });
 
@@ -242,7 +279,10 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       const requestBody = { filename: selectedLesson.filename };
       const response = await fetch('/api/admin/generate-games', {
         method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
         body: JSON.stringify(requestBody),
       });
 
@@ -263,6 +303,131 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
       console.error('Delete games error:', error);
       setStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Failed to delete games');
+    }
+  };
+
+  const handleCloneSimulation = async (forceOverwrite: boolean, mode: 'cloning' | 'updating') => {
+    if (!selectedLesson?.id) {
+      setSimulationError('Please select a lesson first.');
+      return;
+    }
+
+    if (!repoUrl.trim()) {
+      setSimulationError('Please enter a GitHub repository URL.');
+      return;
+    }
+
+    setSimulationStatus(mode);
+    setSimulationError(null);
+    setSimulationSuccess(null);
+
+    try {
+      const response = await fetch('/api/admin/simulations/clone-to-lesson', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
+        body: JSON.stringify({
+          lessonId: selectedLesson.id,
+          repoUrl: repoUrl.trim(),
+          embedPath: embedPath.trim() || undefined,
+          overwrite: forceOverwrite || overwriteSimulation,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Clone and lesson link update failed.');
+      }
+
+      if (selectedLesson?.filename) {
+        const nextEmbedUrl = typeof data.embedUrl === 'string' ? data.embedUrl : selectedLesson.simulationEmbedUrl ?? null;
+        const nextRepoName = typeof data.repo?.name === 'string'
+          ? data.repo.name
+          : extractRepoFromEmbedUrl(nextEmbedUrl);
+
+        setLessons((prev) =>
+          prev.map((lesson) =>
+            lesson.filename === selectedLesson.filename
+              ? {
+                  ...lesson,
+                  simulationEmbedUrl: nextEmbedUrl,
+                  simulationRepoName: nextRepoName,
+                }
+              : lesson
+          )
+        );
+      }
+
+      setSimulationSuccess({
+        message: mode === 'updating' ? 'Simulation repo updated and lesson iframe linked.' : 'Simulation repo cloned and lesson iframe linked.',
+        embedUrl: data.embedUrl,
+        path: data.repo?.path,
+      });
+    } catch (error) {
+      setSimulationError(error instanceof Error ? error.message : 'Simulation operation failed.');
+    } finally {
+      setSimulationStatus('idle');
+    }
+  };
+
+  const handleDeleteSimulation = async () => {
+    if (!selectedLesson?.id) {
+      setSimulationError('Please select a lesson first.');
+      return;
+    }
+
+    const confirmed = window.confirm(
+      `Delete the linked simulation repo folder for ${selectedLesson.id}? This removes files from src/app/simulations.`
+    );
+    if (!confirmed) return;
+
+    setSimulationStatus('deleting');
+    setSimulationError(null);
+    setSimulationSuccess(null);
+
+    try {
+      const response = await fetch('/api/admin/simulations/clone-to-lesson', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
+        body: JSON.stringify({
+          lessonId: selectedLesson.id,
+          repoUrl: repoUrl.trim() || undefined,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Delete failed.');
+      }
+
+      if (selectedLesson?.filename && data.embedCleared) {
+        setLessons((prev) =>
+          prev.map((lesson) =>
+            lesson.filename === selectedLesson.filename
+              ? {
+                  ...lesson,
+                  simulationEmbedUrl: null,
+                  simulationRepoName: null,
+                }
+              : lesson
+          )
+        );
+      }
+
+      setSimulationSuccess({
+        message: data.message || 'Simulation repo delete completed.',
+        embedUrl: data.embedCleared ? '(cleared from lesson diagram)' : undefined,
+        path: data.repo?.path,
+      });
+    } catch (error) {
+      setSimulationError(error instanceof Error ? error.message : 'Delete failed.');
+    } finally {
+      setSimulationStatus('idle');
     }
   };
 
@@ -439,6 +604,162 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
             </p>
           </div>
         </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/70">
+        <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-gray-900 dark:text-white">
+          <FolderGit2 className="h-5 w-5 text-emerald-600 dark:text-emerald-300" />
+          Simulation Repo Import
+        </h2>
+
+        <div className="mb-4 rounded-lg border border-emerald-300/60 bg-emerald-50/80 p-4 text-sm dark:border-emerald-700/50 dark:bg-emerald-900/20">
+          <p className="text-gray-800 dark:text-slate-200">
+            Working lesson:{' '}
+            <span className="font-semibold">
+              {selectedLesson ? `${selectedLesson.id} - ${selectedLesson.title}` : 'No lesson selected'}
+            </span>
+          </p>
+          <p className="text-gray-800 dark:text-slate-200">
+            Current simulation repo: <span className="font-semibold">{selectedSimulationRepo ?? 'No repo cloned'}</span>
+          </p>
+          {selectedSimulationEmbedUrl && (
+            <p className="text-gray-700 dark:text-slate-300">
+              Current embed URL: <code>{selectedSimulationEmbedUrl}</code>
+            </p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <label className="flex flex-col gap-2 text-sm">
+            <span className="font-semibold text-gray-700 dark:text-slate-300">Lesson for simulation import</span>
+            <select
+              className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
+              value={selectedLessonFilename ?? ''}
+              onChange={(event) => setSelectedLessonFilename(event.target.value || null)}
+              disabled={loadingLessons || isGenerating || simulationStatus !== 'idle'}
+            >
+              <option value="">Select lesson...</option>
+              {lessons.map((lesson) => (
+                <option key={lesson.filename} value={lesson.filename}>
+                  {lesson.id} - {lesson.title}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <label className="flex flex-col gap-2 text-sm">
+            <span className="font-semibold text-gray-700 dark:text-slate-300">GitHub Repo URL</span>
+            <input
+              type="url"
+              value={repoUrl}
+              onChange={(event) => setRepoUrl(event.target.value)}
+              placeholder="https://github.com/owner/repo.git"
+              className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
+              disabled={isGenerating || simulationStatus !== 'idle'}
+            />
+          </label>
+
+          <label className="flex flex-col gap-2 text-sm">
+            <span className="font-semibold text-gray-700 dark:text-slate-300">Iframe File Path</span>
+            <input
+              type="text"
+              value={embedPath}
+              onChange={(event) => setEmbedPath(event.target.value)}
+              placeholder="Leave blank to auto-detect (recommended)"
+              className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
+              disabled={isGenerating || simulationStatus !== 'idle'}
+            />
+          </label>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <label className="flex items-center gap-2 text-sm text-gray-700 dark:text-slate-300">
+            <input
+              type="checkbox"
+              checked={overwriteSimulation}
+              onChange={(event) => setOverwriteSimulation(event.target.checked)}
+              disabled={isGenerating || simulationStatus !== 'idle'}
+            />
+            Overwrite existing simulation folder
+          </label>
+        </div>
+
+        <div className="mt-3 grid gap-3 md:grid-cols-3">
+          <button
+            onClick={() => handleCloneSimulation(false, 'cloning')}
+            disabled={!selectedLesson || simulationStatus !== 'idle' || isGenerating}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,#059669,#16a34a)] px-5 py-3 font-semibold text-white shadow-lg shadow-emerald-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {simulationStatus === 'cloning' ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                Cloning Repo...
+              </>
+            ) : (
+              <>
+                <Link2 className="h-5 w-5" />
+                Clone and Link Iframe
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={() => handleCloneSimulation(true, 'updating')}
+            disabled={!selectedLesson || simulationStatus !== 'idle' || isGenerating}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,#2563eb,#1d4ed8)] px-5 py-3 font-semibold text-white shadow-lg shadow-blue-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {simulationStatus === 'updating' ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                Updating Repo...
+              </>
+            ) : (
+              <>
+                <RefreshCcw className="h-5 w-5" />
+                Update Repo
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={handleDeleteSimulation}
+            disabled={!selectedLesson || simulationStatus !== 'idle' || isGenerating}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-3 font-semibold text-white shadow-lg shadow-red-900/20 transition hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {simulationStatus === 'deleting' ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                Deleting Repo...
+              </>
+            ) : (
+              <>
+                <Trash2 className="h-5 w-5" />
+                Delete Repo
+              </>
+            )}
+          </button>
+        </div>
+
+        <p className="mt-3 text-sm text-gray-600 dark:text-slate-400">
+          Clones into <code>src/app/simulations</code> and updates the selected lesson&apos;s diagram
+          <code className="ml-1">embedUrl</code>.
+        </p>
+
+        {simulationError && (
+          <div className="mt-4 rounded-lg border border-red-300 bg-red-50 p-3 text-sm text-red-800 dark:border-red-700 dark:bg-red-900/20 dark:text-red-200">
+            {simulationError}
+          </div>
+        )}
+
+        {simulationSuccess && (
+          <div className="mt-4 rounded-lg border border-emerald-300 bg-emerald-50 p-3 text-sm text-emerald-800 dark:border-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-200">
+            <p className="font-semibold">{simulationSuccess.message}</p>
+            {simulationSuccess.embedUrl && <p>Embed URL: <code>{simulationSuccess.embedUrl}</code></p>}
+            {simulationSuccess.path && <p>Folder: <code>{simulationSuccess.path}</code></p>}
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col gap-3 md:flex-row">

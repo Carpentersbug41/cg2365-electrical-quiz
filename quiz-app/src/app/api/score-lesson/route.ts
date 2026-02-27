@@ -12,19 +12,36 @@ import { getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import fs from 'fs';
 import path from 'path';
 
-function resolveLessonPath(lessonId: string): string | null {
-  const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
-  const exactPath = path.join(lessonsDir, `${lessonId}.json`);
-  if (fs.existsSync(exactPath)) {
-    return exactPath;
+function collectLessonJsonFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectLessonJsonFiles(fullPath));
+      continue;
+    }
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      files.push(fullPath);
+    }
   }
 
-  const prefix = `${lessonId}-`;
-  const match = fs
-    .readdirSync(lessonsDir)
-    .find((name) => name.startsWith(prefix) && name.endsWith('.json'));
+  return files;
+}
 
-  return match ? path.join(lessonsDir, match) : null;
+function resolveLessonPath(lessonId: string): string | null {
+  const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
+  const files = collectLessonJsonFiles(lessonsDir);
+  const exactFilename = `${lessonId}.json`;
+  const prefix = `${lessonId}-`;
+  const match = files.find((filePath) => {
+    const name = path.basename(filePath);
+    return name === exactFilename || name.startsWith(prefix);
+  });
+
+  return match ?? null;
 }
 
 export async function POST(request: NextRequest) {

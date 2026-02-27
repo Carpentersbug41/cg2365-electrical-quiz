@@ -43,6 +43,25 @@ export class LessonPromptBuilder {
     }
   }
 
+  private collectLessonJsonFiles(dir: string): string[] {
+    if (!fs.existsSync(dir)) return [];
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const files: string[] = [];
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files.push(...this.collectLessonJsonFiles(fullPath));
+        continue;
+      }
+      if (entry.isFile() && entry.name.endsWith('.json')) {
+        files.push(fullPath);
+      }
+    }
+
+    return files;
+  }
+
   /**
    * Build prerequisite anchors from prerequisite lesson files
    * Extracts 4-10 key facts from each prerequisite lesson for spaced review
@@ -58,16 +77,15 @@ export class LessonPromptBuilder {
     for (const prereqId of prerequisites) {
       try {
         // Find the lesson file by ID
-        const files = fs.readdirSync(lessonsPath);
-        const lessonFile = files.find(f => f.startsWith(prereqId) && f.endsWith('.json'));
+        const files = this.collectLessonJsonFiles(lessonsPath);
+        const lessonFile = files.find((filePath) => path.basename(filePath).startsWith(prereqId));
         
         if (!lessonFile) {
           console.warn(`Prerequisite lesson file not found for ${prereqId}`);
           continue;
         }
 
-        const lessonPath = path.join(lessonsPath, lessonFile);
-        const lessonData = JSON.parse(fs.readFileSync(lessonPath, 'utf-8'));
+        const lessonData = JSON.parse(fs.readFileSync(lessonFile, 'utf-8'));
         const facts: string[] = [];
 
         // Extract vocab terms (limit to 4-6 most important)

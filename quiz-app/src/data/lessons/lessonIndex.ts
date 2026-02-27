@@ -144,6 +144,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('202-5B'),
     available: true,
     order: 6,
+  },
+  {
+    id: '202-6A',
+    title: 'Electronic Components and Principles',
+    unit: 'Unit 202',
+    unitNumber: '202',
+    topic: 'Electronic Components and Principles',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('202-6A'),
+    available: true,
+    order: 7,
   },// Unit 203: Electrical Installations Technology
   // Future lessons can be added here
   

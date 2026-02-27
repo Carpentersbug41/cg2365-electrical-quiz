@@ -21,6 +21,25 @@ export interface LessonQuizStatus {
   lessonFilePath?: string; // path to lesson JSON file
 }
 
+function collectLessonJsonFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectLessonJsonFiles(fullPath));
+      continue;
+    }
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
 /**
  * Get all lessons from the lesson index
  */
@@ -103,14 +122,12 @@ export function findLessonFile(lessonId: string): string | undefined {
   const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
   
   try {
-    const files = fs.readdirSync(lessonsDir);
-    const lessonFile = files.find(file => 
-      file.startsWith(lessonId) && file.endsWith('.json')
+    const files = collectLessonJsonFiles(lessonsDir);
+    const lessonFile = files.find(filePath => 
+      path.basename(filePath).startsWith(lessonId)
     );
     
-    if (lessonFile) {
-      return path.join(lessonsDir, lessonFile);
-    }
+    if (lessonFile) return lessonFile;
   } catch (error) {
     console.error(`Error finding lesson file for ${lessonId}:`, error);
   }

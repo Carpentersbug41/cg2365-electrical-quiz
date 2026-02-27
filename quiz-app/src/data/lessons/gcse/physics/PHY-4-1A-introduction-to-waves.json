@@ -69,7 +69,7 @@
       "content": {
         "title": "Introduction to Waves Diagram",
         "description": "Visual representation of Introduction to Waves",
-        "embedUrl": "/simulations/wave1/index.html",
+        "embedUrl": "/simulations/wave1/dist/index.html",
         "videoUrl": "",
         "diagramType": "concept",
         "elementIds": [
@@ -397,7 +397,7 @@
   ],
   "metadata": {
     "created": "2026-02-26",
-    "updated": "2026-02-26",
+    "updated": "2026-02-27",
     "version": "1.0",
     "author": "GCSE Science Learning Team",
     "taskMode": "IDENTIFICATION, CONCEPTUAL",
@@ -460,3 +460,4 @@
     }
   }
 }
+

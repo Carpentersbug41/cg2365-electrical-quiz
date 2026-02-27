@@ -9,6 +9,25 @@ import { getCurriculumScopeFromReferer, isLessonIdAllowedForScope } from '@/lib/
 import fs from 'fs';
 import path from 'path';
 
+function collectLessonJsonFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectLessonJsonFiles(fullPath));
+      continue;
+    }
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
 export async function GET(request: Request) {
   try {
     const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
@@ -18,10 +37,9 @@ export async function GET(request: Request) {
 
     // Read score metadata from lesson JSON files, if present.
     if (fs.existsSync(lessonsDir)) {
-      const files = fs.readdirSync(lessonsDir).filter((file) => file.endsWith('.json'));
-      for (const file of files) {
+      const files = collectLessonJsonFiles(lessonsDir);
+      for (const filePath of files) {
         try {
-          const filePath = path.join(lessonsDir, file);
           const raw = fs.readFileSync(filePath, 'utf-8');
           const parsed = JSON.parse(raw) as {
             id?: string;
@@ -31,7 +49,7 @@ export async function GET(request: Request) {
             generationScores.set(parsed.id, parsed.metadata.generationScore);
           }
         } catch (error) {
-          console.warn(`[Lessons API] Could not parse lesson file ${file}:`, error);
+          console.warn(`[Lessons API] Could not parse lesson file ${filePath}:`, error);
         }
       }
     }

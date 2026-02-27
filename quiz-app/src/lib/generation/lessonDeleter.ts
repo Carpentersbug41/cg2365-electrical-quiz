@@ -28,6 +28,36 @@ export class LessonDeleter {
     this.basePath = process.cwd();
   }
 
+  private getLessonsRootPath(): string {
+    return path.join(this.basePath, 'src', 'data', 'lessons');
+  }
+
+  private collectLessonJsonFiles(dir: string): string[] {
+    if (!fs.existsSync(dir)) return [];
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    const files: string[] = [];
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files.push(...this.collectLessonJsonFiles(fullPath));
+        continue;
+      }
+      if (entry.isFile() && entry.name.endsWith('.json')) {
+        files.push(fullPath);
+      }
+    }
+
+    return files;
+  }
+
+  private findLessonPathByFilename(lessonFilename: string): string | null {
+    const lessonsDir = this.getLessonsRootPath();
+    const files = this.collectLessonJsonFiles(lessonsDir);
+    const match = files.find((filePath) => path.basename(filePath) === lessonFilename);
+    return match ?? null;
+  }
+
   /**
    * Delete lesson and all its integrations
    */
@@ -125,13 +155,13 @@ export class LessonDeleter {
 
       // Phase 7: Delete lesson JSON file
       console.log('[Deleter] Phase 7: Deleting lesson file...');
-      const lessonFilePath = path.join(this.basePath, 'src', 'data', 'lessons', lessonFilename);
-      if (fs.existsSync(lessonFilePath)) {
+      const lessonFilePath = this.findLessonPathByFilename(lessonFilename);
+      if (lessonFilePath && fs.existsSync(lessonFilePath)) {
         fs.unlinkSync(lessonFilePath);
         filesDeleted.push(lessonFilePath);
         console.log(`[Deleter] Deleted ${lessonFilePath}`);
       } else {
-        warnings.push(`Lesson file not found: ${lessonFilePath}`);
+        warnings.push(`Lesson file not found: ${lessonFilename}`);
       }
 
       // Phase 9: Verify no remaining references
@@ -419,9 +449,9 @@ export class LessonDeleter {
   async detectLessonFiles(lessonId: string): Promise<DeletionRequest | null> {
     try {
       // Find lesson file
-      const lessonsDir = path.join(this.basePath, 'src', 'data', 'lessons');
-      const files = fs.readdirSync(lessonsDir);
-      const lessonFile = files.find(f => f.startsWith(lessonId) && f.endsWith('.json'));
+      const lessonsDir = this.getLessonsRootPath();
+      const files = this.collectLessonJsonFiles(lessonsDir);
+      const lessonFile = files.find(filePath => path.basename(filePath).startsWith(lessonId));
 
       if (!lessonFile) {
         return null;
@@ -454,7 +484,7 @@ export class LessonDeleter {
 
       return {
         lessonId,
-        lessonFilename: lessonFile,
+        lessonFilename: path.basename(lessonFile),
         questionsFilename,
       };
     } catch {

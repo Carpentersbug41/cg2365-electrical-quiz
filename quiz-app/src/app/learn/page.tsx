@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Learn Page - Lessons Index
  * Shows all available lessons with mastery gates
  */
@@ -7,56 +7,57 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import lesson204_10A from '@/data/lessons/204-10A-dead-test-language-what-each-test-proves.json';
-import lesson204_10B from '@/data/lessons/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
-import lesson204_11A from '@/data/lessons/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
-import lesson204_11B from '@/data/lessons/204-11B-proving-your-tester-works.json';
-import lesson204_11C from '@/data/lessons/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
-import lesson204_12A from '@/data/lessons/204-12A-the-dead-inspection-checklist.json';
-import lesson204_12B from '@/data/lessons/204-12B-inspection-decisions-and-recording.json';
-import lesson204_14A from '@/data/lessons/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
-import lesson204_14B from '@/data/lessons/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
-import lesson204_13A from '@/data/lessons/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
-import lesson204_13B from '@/data/lessons/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
-import lesson201_1A from '@/data/lessons/201-1A-roles-responsibilities.json';
-import lesson201_1B from '@/data/lessons/201-1B-health-safety-legislation.json';
-import lesson201_1C from '@/data/lessons/201-1C-environmental-legislation.json';
-import lesson204_15A from '@/data/lessons/204-15A-testing-overview-safe-isolation.json';
-import lesson204_9A from '@/data/lessons/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
-import lesson210_1A from '@/data/lessons/210-1A-site-management-and-trade-roles.json';
-import lesson210_1B from '@/data/lessons/210-1B-site-visitors-and-inspectors.json';
-import lesson210_2A from '@/data/lessons/210-2A-legislation-and-workplace-documentation.json';
-import lesson203_1A from '@/data/lessons/203-1A-statutory-and-non-statutory-regulations.json';
-import lesson203_1B from '@/data/lessons/203-1B-implications-of-regulatory-non-compliance.json';
-import lesson203_2A from '@/data/lessons/203-2A-technical-information-and-drawing-types.json';
-import lesson203_2B from '@/data/lessons/203-2B-symbols-and-scaling-in-drawings.json';
-import lesson203_3A from '@/data/lessons/203-3A-circuit-types-what-they-do.json';
-import lesson203_3B from '@/data/lessons/203-3B-conductor-sizing-and-protective-devices.json';
-import lesson203_3C from '@/data/lessons/203-3C-installation-equipment-and-enclosure-spacing.json';
-import lesson203_4A from '@/data/lessons/203-4A-earthing-systems-and-ads-components.json';
-import lesson203_4B from '@/data/lessons/203-4B-exposed-and-extraneous-conductive-parts.json';
-import lesson203_4C from '@/data/lessons/203-4C-earth-loop-impedance-path.json';
-import lesson203_5A from '@/data/lessons/203-5A-electricity-generation-and-transmission.json';
-import lesson203_5B from '@/data/lessons/203-5B-distribution-voltages-and-network-components.json';
-import lesson203_6A from '@/data/lessons/203-6A-types-of-micro-renewable-energy.json';
-import lesson203_6B from '@/data/lessons/203-6B-installation-and-evaluation-of-micro-renewables.json';
-import lesson203_10B from '@/data/lessons/203-10B-consumer-units-purpose-protective-devices.json';
-import lesson203_10C from '@/data/lessons/203-10C-consumer-unit-practical-position-entries-terminations-rig-safe.json';
-import lesson203_10A from '@/data/lessons/203-10A-consumer-units-total-noob.json';
-import lesson203_LC1A from '@/data/lessons/203-LC1A-lighting-circuits-noob-level-1.json';
-import lesson201_203_SC1A from '@/data/lessons/201-203-SC1A-socket-circuits-noob-level-1.json';
-import lesson203_SC1A from '@/data/lessons/203-SC1A-socket-circuits-noob-level-1.json';
-import lesson203_2N1A from '@/data/lessons/203-2N1A-electrical-symbols-noob-shape-grammar-basics.json';
-import lesson202_5A from '@/data/lessons/202-5A-magnetism-and-electromagnetism.json';
-import lesson202_4A from '@/data/lessons/202-4A-electron-theory-and-materials.json';
-import lesson202_4B from '@/data/lessons/202-4B-resistance-resistivity-and-voltage-drop.json';
-import lesson202_5L1M from '@/data/lessons/202-5L1M-magnetism-noob-poles-fields-flux-flux-density-current-effects.json';
-import lesson203_3L1C from '@/data/lessons/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
-import lesson202_4D from '@/data/lessons/202-4D-power-and-effects-of-electric-current.json';
-import lesson202_5B from '@/data/lessons/202-5B-ac-generation-and-sine-waves.json';
-import lesson203_3L1A from '@/data/lessons/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
-import lessonPHY_4_1A from '@/data/lessons/PHY-4-1A-introduction-to-waves.json';
-import lessonBIO_1_1A from '@/data/lessons/BIO-1-1A-eukaryotic-cell-structures.json';
+import lesson204_10A from '@/data/lessons/2365/204-10A-dead-test-language-what-each-test-proves.json';
+import lesson204_10B from '@/data/lessons/2365/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
+import lesson204_11A from '@/data/lessons/2365/204-11A-rig-safe-dead-testing-mindset-and-setup.json';
+import lesson204_11B from '@/data/lessons/2365/204-11B-proving-your-tester-works.json';
+import lesson204_11C from '@/data/lessons/2365/204-11C-leads-nulling-zeroing-and-avoiding-false-readings.json';
+import lesson204_12A from '@/data/lessons/2365/204-12A-the-dead-inspection-checklist.json';
+import lesson204_12B from '@/data/lessons/2365/204-12B-inspection-decisions-and-recording.json';
+import lesson204_14A from '@/data/lessons/2365/204-14A-one-way-lighting-3-plate-ceiling-rose.json';
+import lesson204_14B from '@/data/lessons/2365/204-14B-one-way-lighting-3-plate-ceiling-rose-build-flow-prove-it-rig-safe.json';
+import lesson204_13A from '@/data/lessons/2365/204-13A-3-plate-ceiling-rose-loop-in-explained-for-a-total-beginner.json';
+import lesson204_13B from '@/data/lessons/2365/204-13B-ceiling-rose-to-one-way-switch-for-absolute-beginners.json';
+import lesson201_1A from '@/data/lessons/2365/201-1A-roles-responsibilities.json';
+import lesson201_1B from '@/data/lessons/2365/201-1B-health-safety-legislation.json';
+import lesson201_1C from '@/data/lessons/2365/201-1C-environmental-legislation.json';
+import lesson204_15A from '@/data/lessons/2365/204-15A-testing-overview-safe-isolation.json';
+import lesson204_9A from '@/data/lessons/2365/204-9A-tools-measuring-marking-out-for-wiring-systems.json';
+import lesson210_1A from '@/data/lessons/2365/210-1A-site-management-and-trade-roles.json';
+import lesson210_1B from '@/data/lessons/2365/210-1B-site-visitors-and-inspectors.json';
+import lesson210_2A from '@/data/lessons/2365/210-2A-legislation-and-workplace-documentation.json';
+import lesson203_1A from '@/data/lessons/2365/203-1A-statutory-and-non-statutory-regulations.json';
+import lesson203_1B from '@/data/lessons/2365/203-1B-implications-of-regulatory-non-compliance.json';
+import lesson203_2A from '@/data/lessons/2365/203-2A-technical-information-and-drawing-types.json';
+import lesson203_2B from '@/data/lessons/2365/203-2B-symbols-and-scaling-in-drawings.json';
+import lesson203_3A from '@/data/lessons/2365/203-3A-circuit-types-what-they-do.json';
+import lesson203_3B from '@/data/lessons/2365/203-3B-conductor-sizing-and-protective-devices.json';
+import lesson203_3C from '@/data/lessons/2365/203-3C-installation-equipment-and-enclosure-spacing.json';
+import lesson203_4A from '@/data/lessons/2365/203-4A-earthing-systems-and-ads-components.json';
+import lesson203_4B from '@/data/lessons/2365/203-4B-exposed-and-extraneous-conductive-parts.json';
+import lesson203_4C from '@/data/lessons/2365/203-4C-earth-loop-impedance-path.json';
+import lesson203_5A from '@/data/lessons/2365/203-5A-electricity-generation-and-transmission.json';
+import lesson203_5B from '@/data/lessons/2365/203-5B-distribution-voltages-and-network-components.json';
+import lesson203_6A from '@/data/lessons/2365/203-6A-types-of-micro-renewable-energy.json';
+import lesson203_6B from '@/data/lessons/2365/203-6B-installation-and-evaluation-of-micro-renewables.json';
+import lesson203_10B from '@/data/lessons/2365/203-10B-consumer-units-purpose-protective-devices.json';
+import lesson203_10C from '@/data/lessons/2365/203-10C-consumer-unit-practical-position-entries-terminations-rig-safe.json';
+import lesson203_10A from '@/data/lessons/2365/203-10A-consumer-units-total-noob.json';
+import lesson203_LC1A from '@/data/lessons/2365/203-LC1A-lighting-circuits-noob-level-1.json';
+import lesson201_203_SC1A from '@/data/lessons/2365/201-203-SC1A-socket-circuits-noob-level-1.json';
+import lesson203_SC1A from '@/data/lessons/2365/203-SC1A-socket-circuits-noob-level-1.json';
+import lesson203_2N1A from '@/data/lessons/2365/203-2N1A-electrical-symbols-noob-shape-grammar-basics.json';
+import lesson202_5A from '@/data/lessons/2365/202-5A-magnetism-and-electromagnetism.json';
+import lesson202_4A from '@/data/lessons/2365/202-4A-electron-theory-and-materials.json';
+import lesson202_4B from '@/data/lessons/2365/202-4B-resistance-resistivity-and-voltage-drop.json';
+import lesson202_5L1M from '@/data/lessons/2365/202-5L1M-magnetism-noob-poles-fields-flux-flux-density-current-effects.json';
+import lesson203_3L1C from '@/data/lessons/2365/203-3L1C-cooker-circuits-noob-what-it-is-basic-path-and-protection.json';
+import lesson202_4D from '@/data/lessons/2365/202-4D-power-and-effects-of-electric-current.json';
+import lesson202_5B from '@/data/lessons/2365/202-5B-ac-generation-and-sine-waves.json';
+import lesson203_3L1A from '@/data/lessons/2365/203-3L1A-alarm-emergency-systems-noob-open-closed-circuits-fire-intruder-emergency-lighting.json';
+import lessonPHY_4_1A from '@/data/lessons/gcse/physics/PHY-4-1A-introduction-to-waves.json';
+import lessonBIO_1_1A from '@/data/lessons/gcse/biology/BIO-1-1A-eukaryotic-cell-structures.json';
+import lesson202_6A from '@/data/lessons/202-6A-electronic-components-and-principles.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -66,7 +67,7 @@ import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@
 
 /**
  * Natural sort function for lesson IDs
- * Sorts by: unit number (numerical) → lesson number (numerical) → suffix (alphabetical)
+ * Sorts by: unit number (numerical) ? lesson number (numerical) ? suffix (alphabetical)
  * Handles formats like "204-10A", "202-3AB", "204-12B"
  */
 function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
@@ -103,6 +104,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson202_6A,
   lessonBIO_1_1A,
   lessonPHY_4_1A,
   lesson203_3L1A,
@@ -288,7 +290,7 @@ export default function LearnPage() {
               href={courseHref('/')}
               className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
             >
-              ← Home
+              ? Home
             </Link>
           </div>
         </div>
@@ -355,12 +357,12 @@ export default function LearnPage() {
                             </span>
                             {hasMastery && (
                               <span className="px-3 py-1 text-xs font-medium text-green-700 dark:text-green-300 bg-green-100 dark:bg-green-900/30 rounded-full border border-green-300 dark:border-green-700 flex items-center gap-1">
-                                <span>🏆</span> Mastered
+                                <span>??</span> Mastered
                               </span>
                             )}
                             {isPending && !hasMastery && (
                               <span className="px-3 py-1 text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-100 dark:bg-amber-900/30 rounded-full border border-amber-300 dark:border-amber-700 flex items-center gap-1">
-                                <span>⏳</span> Pending
+                                <span>?</span> Pending
                               </span>
                             )}
                             {isCompleted && !isPending && !hasMastery && (
@@ -370,7 +372,7 @@ export default function LearnPage() {
                             )}
                           </div>
                           <span className="text-2xl group-hover:scale-110 transition-transform">
-                            {hasMastery ? '🏆' : '📚'}
+                            {hasMastery ? '??' : '??'}
                           </span>
                         </div>
 
@@ -384,17 +386,17 @@ export default function LearnPage() {
 
                         <div className="flex items-center justify-between text-xs text-gray-500 dark:text-slate-400 pt-4 border-t border-gray-200 dark:border-slate-700">
                           <span className="flex items-center gap-1">
-                            <span className={colors.text}>✓</span>
+                            <span className={colors.text}>?</span>
                             {lesson.learningOutcomes.length} Outcomes
                           </span>
                           <span className="flex items-center gap-1">
-                            <span className={colors.text}>📝</span>
+                            <span className={colors.text}>??</span>
                             {lesson.blocks.filter(b => b.type === 'practice').length} Practice
                           </span>
                         </div>
 
                         <button className={`mt-4 w-full px-4 py-2 ${colors.button} text-white rounded-lg font-semibold transition-colors shadow-md`}>
-                          {hasMastery || isPending || isCompleted ? 'Review Lesson' : 'Start Lesson'} →
+                          {hasMastery || isPending || isCompleted ? 'Review Lesson' : 'Start Lesson'} ?
                         </button>
                       </div>
                     </Link>

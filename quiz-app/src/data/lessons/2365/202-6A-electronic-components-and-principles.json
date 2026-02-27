@@ -1,0 +1,542 @@
+{
+  "id": "202-6A",
+  "title": "202.6A — Electronic Components and Principles",
+  "description": "Learn about Electronic Components and Principles in Science 2365 Level 2",
+  "layout": "linear-flow",
+  "unit": "Unit 202",
+  "topic": "Electronic Components and Principles",
+  "learningOutcomes": [
+    "Identify common electronic components used in electrical systems by their symbols and physical appearance",
+    "Describe the primary function and typical application of key electronic devices",
+    "Explain the basic operating principles of semiconductors and other electronic components in a circuit"
+  ],
+  "prerequisites": [
+    "202-5B"
+  ],
+  "blocks": [
+    {
+      "id": "202-6A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify common electronic components used in electrical systems by their symbols and physical appearance",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the primary function and typical application of key electronic devices",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Explain the basic operating principles of semiconductors and other electronic components in a circuit",
+            "bloomLevel": "understand"
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Semiconductor",
+            "definition": "A material with electrical conductivity between that of a conductor and an insulator, which allows for the controlled movement of electrons in electronic components."
+          },
+          {
+            "term": "Diode",
+            "definition": "A semiconductor device that allows current to flow in only one direction, acting as a one-way valve rather than a bidirectional conductor."
+          },
+          {
+            "term": "Capacitor",
+            "definition": "A component that stores electrical energy in an electrostatic field between two plates, used to smooth voltage fluctuations rather than acting as a primary power source."
+          },
+          {
+            "term": "Transistor",
+            "definition": "A semiconductor device used to switch or amplify electronic signals, functioning as an electrically controlled switch or a signal booster."
+          },
+          {
+            "term": "Rectification",
+            "definition": "The process of converting alternating current (AC) into direct current (DC) by using components like diodes to ensure current flows in only one direction."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Electronic Components and Principles Diagram",
+        "description": "Visual representation of Electronic Components and Principles",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "diode-symbol",
+          "capacitor-plates",
+          "transistor-terminals",
+          "semiconductor-layer",
+          "rectification-waveform"
+        ],
+        "placeholderText": "The diagram should show a schematic layout of a basic bridge rectifier circuit. It should feature a 'diode-symbol' arranged in a diamond pattern to illustrate the one-way path of current. Next to it, a 'capacitor-plates' element should be shown in parallel with the output to represent smoothing. A 'transistor-terminals' element should be shown separately to highlight the three-leg control structure. Finally, a 'rectification-waveform' graphic should compare the incoming wavy AC line with the resulting pulsed and then smoothed DC lines to visualize the operating principles."
+      }
+    },
+    {
+      "id": "202-6A-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Electronic Component Functions and Applications",
+        "content": "### In this lesson\nYou will learn to identify common electronic components used in electrical systems by their symbols and physical appearance.\nThis knowledge allows you to interpret circuit boards and control systems found in modern installations.\n*   Identify symbols for diodes, capacitors, and transistors.\n*   Understand the primary function of each device within a system.\n*   Relate physical component shapes to their schematic representations.\n\n**What this is**\nElectronic components are specialized devices that control the flow of electricity in more precise ways than standard power components like switches or contactors. Unlike heavy-duty electrical gear, these components are often mounted on printed circuit boards (PCBs) and are designed to handle smaller signal levels. To identify common electronic components used in electrical systems, a technician must look for specific physical markers, such as the striped end of a **diode** or the cylindrical body of a **capacitor**. Each component has a unique role, ranging from energy storage to signal switching, which is essential for the operation of modern control logic and power supplies.\n\n**Why it matters**\nUnderstanding how to describe the primary function and typical application of key electronic devices is vital for fault-finding. If an installer cannot distinguish a **capacitor** from a **transistor**, they cannot effectively diagnose why a control circuit has failed. Electronic components are the \"brains\" behind the \"brawn\" of heavy electrical machinery; they manage timing, safety interlocks, and power conversion. Recognizing these parts ensures you can communicate accurately with manufacturers and follow technical drawings during installation or repair.\n\n**Key facts / rules**\n*   A **diode** typically features a band or stripe on one end of its body to indicate the direction of current flow.\n*   The **capacitor** is often used to smooth voltage fluctuations rather than acting as a primary power source.\n*   A **transistor** usually has three terminals, allowing it to function as an electrically controlled switch or a signal booster.\n*   Schematic symbols use standardized lines and shapes to represent these physical parts in a simplified way.\n*   Polarity (the direction of connection) is critical for many electronic components; installing them backward can cause immediate failure.\n*   Component ratings (voltage and current) must be checked against the circuit requirements (verify current manufacturer data sheets).\n\n**How to recognise it**\nTo identify these components, look for their distinct physical profiles and schematic symbols. A **diode** is often a small cylinder with a silver or black band; its symbol is an arrow pointing toward a vertical line, representing a one-way path. A **capacitor** often looks like a small tin can (electrolytic type) or a flat disc (ceramic type); its symbol consists of two parallel lines representing internal plates. A **transistor** is typically a small plastic or metal package with three legs; its symbol features an arrow on one of the three lines (the emitter), indicating it is a device used to switch or amplify electronic signals. \n\nConsider a scenario where you are looking at two components on a board: Component A is a small black cylinder with two legs and a white stripe, while Component B has three legs and a flat metal tab. Component A is likely a **diode**, whereas Component B is a **transistor**. If you swap their roles in your mind, you will fail to understand the circuit logic.\n\nConcrete Anchor: Think of a **diode** as a mechanical check valve in a plumbing system. Just as a check valve allows water to flow in only one direction and blocks it from returning, a **diode** ensures current moves one way and prevents backflow.\n\n**Common mistakes**\nLearners often confuse a **capacitor** with a battery; a **capacitor** is a component that stores electrical energy in an electrostatic field for short-term use, whereas a battery stores energy chemically for long-term supply. Another common error is misidentifying the terminals of a **transistor**, which leads to incorrect wiring in control circuits.\n\nMisconceptions (targeted):\n*   Misconception: A diode can be installed in any direction like a resistor. | Correction: A diode is a one-way valve and must be oriented correctly to allow current flow. | AC: AC6.1\n*   Misconception: Capacitors create power for the circuit. | Correction: Capacitors only store and release energy provided by the source to smooth fluctuations. | AC: AC6.2\n\n**Key Points**\n*   Diodes act as one-way valves for current.\n*   Capacitors store energy to stabilize voltage.\n*   Transistors act as electronic switches or amplifiers.\n*   Symbols and physical shapes are the primary tools for identification.\n\n**Quick recap**\nElectronic components like diodes, capacitors, and transistors are identified by their unique shapes and schematic symbols. They perform specific roles, such as ensuring one-way current flow, storing temporary energy, or switching signals. Recognizing these parts is the first step in understanding complex electrical control systems.\n\n### Coming Up Next\nWe will examine the fundamental physics that allow these materials to behave as gatekeepers for electricity."
+      }
+    },
+    {
+      "id": "202-6A-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Electronic Component Functions and Applications",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-6A-C1-L1-A",
+            "questionText": "What physical marker is found on a diode to indicate the direction of current flow?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "band or stripe",
+              "stripe",
+              "band",
+              "silver or black band"
+            ],
+            "hint": "Look for the distinct marking on one end of the component's cylindrical body."
+          },
+          {
+            "id": "202-6A-C1-L1-B",
+            "questionText": "What is the primary function of a capacitor in a circuit rather than acting as a power source?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "smooth voltage fluctuations",
+              "smooth voltage",
+              "smoothing fluctuations",
+              "stabilize voltage"
+            ],
+            "hint": "Think about how this component handles changes in the electrical signal over time."
+          },
+          {
+            "id": "202-6A-C1-L1-C",
+            "questionText": "How many terminals does a transistor typically have to function as a switch or booster?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "three terminals",
+              "3 terminals",
+              "three legs",
+              "3 legs"
+            ],
+            "hint": "Count the number of connection points or 'legs' required for this device to control a signal."
+          },
+          {
+            "id": "202-6A-C1-L2",
+            "questionText": "Using your answers to Q1 (diode markers), Q2 (capacitor functions), and Q3 (transistor terminals), explain how these facts connect. Why does this relationship matter for identifying parts on a circuit board?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Physical markers like bands and terminal counts allow for visual identification",
+              "Each unique physical profile corresponds to a specific electrical function",
+              "Correct identification is required to understand the logic of the control system",
+              "Identifying these features ensures components are not confused or installed incorrectly"
+            ],
+            "expectedAnswer": [
+              "Technicians use physical markers like the diode's band and the transistor's three terminals to identify components and determine their function, such as smoothing voltage or switching. Why this matters is that misidentifying these parts would lead to a failure in understanding how the control logic operates.",
+              "By recognizing the band on a diode, the three terminals of a transistor, and the capacitor's role in smoothing fluctuations, a technician can map physical parts to their schematic roles. This relationship is vital because it allows for accurate fault-finding and ensures components are installed with the correct polarity."
+            ],
+            "hint": "Consider how a technician uses physical shapes and markers to predict what each part does within a wider system."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Operating Principles of Electronic Devices",
+        "content": "### In this lesson\nYou will learn the basic operating principles of semiconductors and other electronic components in a circuit.\nThis section explains the \"how\" and \"why\" behind the behavior of modern electronics.\n*   Define the nature of a semiconductor material.\n*   Explain the process of rectification.\n*   Understand how transistors and capacitors manipulate electrical energy.\n\n**What this is**\nThe basic operating principles of semiconductors and other electronic components in a circuit rely on the unique properties of materials like silicon. A **semiconductor** is a material with electrical conductivity between that of a conductor and an insulator. This middle-ground state allows for the controlled movement of electrons, which is the foundation of all solid-state electronics. By adding impurities to these materials (a process called doping), engineers can create components that respond to electrical signals by either allowing or blocking current, forming the basis for switching and logic.\n\n**Why it matters**\nUnderstanding these principles is essential for explaining the primary function and typical application of key electronic devices. For instance, knowing how a **semiconductor** works helps you understand why a **diode** can perform **rectification**. Without these principles, we could not convert the alternating current (AC) from the grid into the stable direct current (DC) required by computers, LED lighting, and charging systems. This transition from AC to DC is a fundamental requirement in nearly every modern electrical installation.\n\n**Key facts / rules**\n*   A **semiconductor** does not always conduct; its ability to pass current depends on the voltage applied or the temperature.\n*   **Rectification** is the process of converting alternating current (AC) into direct current (DC) using diodes.\n*   A **capacitor** stores energy in an electrostatic field between two plates, which it can release to fill in \"gaps\" during voltage drops.\n*   A **transistor** functions as an electrically controlled switch, where a small signal at one terminal controls a much larger flow between the others.\n*   In a circuit, a **diode** acts as a one-way valve rather than a bidirectional conductor.\n*   The efficiency of these processes depends on the component's internal resistance and heat dissipation (verify manufacturer thermal limits).\n\n**How to use it**\nTo apply these principles, you must look at how components interact within a circuit. For example, during **rectification**, a **diode** blocks the negative half of an AC cycle, allowing only the positive pulses to pass through. This results in a \"bumpy\" DC. To make this power usable for sensitive electronics, a **capacitor** is placed in parallel. The **capacitor** charges during the peaks and discharges during the troughs, smoothing the voltage fluctuations. \n\nMicro-scenario: Imagine a circuit where a 10V AC signal is passed through a single **diode**. The output would be roughly 5V of pulsed DC because half the wave is blocked. If you then add a **capacitor**, the average voltage remains steadier near 10V because the component \"fills in\" the empty spaces between pulses. This demonstrates the integration of multiple principles to achieve a stable output.\n\nConcrete Anchor: Think of a **semiconductor** as a bridge with a toll booth. It isn't a wide-open highway (conductor) or a brick wall (insulator). It only lets traffic through if the right conditions (the toll/voltage) are met. **Rectification** is like a one-way gate at the end of that bridge.\n\n**Common mistakes**\nLearners often confuse **rectification** with transformation; **rectification** is the process of changing AC to DC, whereas transformation (via a transformer) changes the voltage level of AC. Another mistake is assuming a **semiconductor** is a perfect conductor when \"on\"; in reality, there is always a small voltage drop across the component.\n\nMisconceptions (targeted):\n*   Misconception: Semiconductors are just poor conductors. | Correction: Semiconductors are unique because their conductivity can be controlled and changed by external signals. | AC: AC6.2\n*   Misconception: Rectification creates perfectly smooth DC instantly. | Correction: Rectification only makes the current unidirectional; capacitors are needed to smooth the resulting pulses into steady DC. | AC: AC6.1\n\n**Key Points**\n*   Semiconductors are the building blocks of modern electronics.\n*   Rectification turns AC into DC by blocking half the waveform.\n*   Capacitors act as buffers to smooth out electrical \"bumps.\"\n*   Transistors allow small signals to control large amounts of power.\n\n**Quick recap**\nThe operation of electronic circuits depends on the controlled movement of electrons through **semiconductor** materials. Components like the **diode** enable **rectification**, while the **capacitor** and **transistor** provide the storage and switching capabilities necessary for complex electrical systems. Understanding these principles allows technicians to grasp how AC power is transformed and managed for DC devices.\n\n### Coming Up Next\nIn the next module, we will look at how these individual components are combined into practical power supply units."
+      }
+    },
+    {
+      "id": "202-6A-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Operating Principles of Electronic Devices",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-6A-C2-L1-A",
+            "questionText": "Where is the electrical conductivity of a semiconductor positioned relative to other material types?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "between conductor and insulator",
+              "between conductors and insulators",
+              "midway between conductor and insulator"
+            ],
+            "hint": "Think of this material as a middle-ground that is neither a perfect path nor a total block."
+          },
+          {
+            "id": "202-6A-C2-L1-B",
+            "questionText": "What is the name of the process that uses diodes to convert alternating current into direct current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "rectification",
+              "rectifying",
+              "rectification process"
+            ],
+            "hint": "This term describes the conversion of AC to a unidirectional flow."
+          },
+          {
+            "id": "202-6A-C2-L1-C",
+            "questionText": "Where does a capacitor store energy so it can be released to fill gaps during voltage drops?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "electrostatic field",
+              "an electrostatic field",
+              "between two plates"
+            ],
+            "hint": "Recall the specific type of field created between the internal plates of the device."
+          },
+          {
+            "id": "202-6A-C2-L2",
+            "questionText": "Using your answers to Q1 (semiconductor properties), Q2 (rectification), and Q3 (capacitor energy storage), explain how these facts connect. How do we know this connection is valid when creating a stable power supply?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Semiconductors enable diodes to perform rectification by controlling electron flow",
+              "Rectification creates unidirectional but pulsed current",
+              "Capacitors use their electrostatic field to smooth those pulses into stable DC",
+              "The transition from AC to stable DC requires both switching (diodes) and storage (capacitors)"
+            ],
+            "expectedAnswer": [
+              "Semiconductors allow diodes to perform rectification, changing AC to DC, while capacitors use an electrostatic field to smooth the resulting voltage gaps. We know this is valid because without the semiconductor's ability to block half the wave and the capacitor's ability to release stored energy, the output would remain as fluctuating AC or pulsed DC.",
+              "The controlled conductivity of semiconductors allows for rectification, while the energy stored in a capacitor's electrostatic field fills the gaps created during that process. This connection is essential for converting raw AC power into the steady DC required by modern electronic devices."
+            ],
+            "hint": "Think about how the 'one-way' nature of a semiconductor device creates a need for the 'storage' nature of a capacitor."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Identifying Electronic Components by Physical Features",
+        "given": "A technician is inspecting a printed circuit board (PCB) and identifies a small black cylindrical component with two legs and a distinct white stripe on one end.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify context and physical constraints of the component.",
+            "formula": null,
+            "calculation": null,
+            "result": "Small black cylinder, two terminals (legs), and a directional white stripe."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select the appropriate component based on physical markers.",
+            "formula": null,
+            "calculation": null,
+            "result": "Diode"
+          },
+          {
+            "stepNumber": 3,
+            "description": "State the primary purpose or result of this component in the circuit.",
+            "formula": null,
+            "calculation": null,
+            "result": "Acts as a one-way valve to ensure current flows in only one direction (rectification)."
+          },
+          {
+            "stepNumber": 4,
+            "description": "State a common wrong choice and why it is incorrect.",
+            "formula": null,
+            "calculation": null,
+            "result": "Resistor; because a resistor does not have a directional stripe to indicate polarity or one-way flow."
+          }
+        ],
+        "notes": "Always verify component polarity and current ratings against the current manufacturer data sheets before installation."
+      }
+    },
+    {
+      "id": "202-6A-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice: Identifying Control Components",
+        "problem": "You are examining a control system board. You find a small plastic package that has three legs and a flat metal tab on the back for heat dissipation.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Identify the physical context and markers of this component.",
+            "expectedAnswer": [
+              "Three legs and a metal tab",
+              "3 terminals and a metal tab"
+            ],
+            "hint": "Count the number of connection points and note any unique physical features like a metal tab."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Based on the three-terminal configuration, what is the name of this component?",
+            "expectedAnswer": [
+              "Transistor"
+            ],
+            "hint": "Recall which component typically has three legs for switching or amplification."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "What is the primary function or result of using this component in a system?",
+            "expectedAnswer": [
+              "Electrically controlled switch",
+              "Signal booster"
+            ],
+            "hint": "Think about how a three-terminal device uses one terminal to control the flow between the others."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "State a common wrong choice for this component and why it is incorrect.",
+            "expectedAnswer": [
+              "Capacitor",
+              "Capacitor because it has two legs"
+            ],
+            "hint": "Consider a component that usually only has two legs and is used for energy storage rather than switching."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "202-6A-P1",
+            "questionText": "A technician is inspecting a circuit board and finds a small black cylinder with two legs and a distinct white stripe on one end. Which component have they identified?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "diode",
+              "a diode",
+              "rectifier diode"
+            ],
+            "hint": "Think of the component that acts like a check valve and has a stripe to show direction."
+          },
+          {
+            "id": "202-6A-P2",
+            "questionText": "Following the example in the lesson, if a 40V AC signal is passed through a single diode for rectification, what is the approximate voltage of the resulting pulsed DC signal?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "20",
+              "20.0"
+            ],
+            "hint": "A single diode blocks half of the AC waveform, effectively halving the output voltage. Value in Volts."
+          },
+          {
+            "id": "202-6A-P3",
+            "questionText": "Why must a diode be installed in a specific direction within a circuit to allow it to function correctly?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "one direction",
+              "one-way flow",
+              "blocks backflow",
+              "only one direction"
+            ],
+            "hint": "Consider the 'check valve' analogy and how it handles the movement of current."
+          },
+          {
+            "id": "202-6A-P4",
+            "questionText": "A transistor is being used as an electronic switch to control a motor. If the transistor has 3 terminals in total and 2 are connected to the motor circuit, how many terminals are left to receive the control signal?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "1"
+            ],
+            "hint": "The lesson notes that this component typically has three legs or terminals."
+          },
+          {
+            "id": "202-6A-P5",
+            "questionText": "In a sensitive control system, a component is needed to temporarily store energy to prevent the system from resetting during a momentary voltage drop. Which component should be selected for this task?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "capacitor",
+              "a capacitor",
+              "capacitors"
+            ],
+            "hint": "Identify the component that stores energy in an electrostatic field to smooth fluctuations."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "202-6A-INT-1",
+            "questionText": "Analyze the relationship between the symbolic representation of a semiconductor device and its physical operating principle within a circuit. In your answer, include: (1) the identification of a specific semiconductor symbol, (2) the operating principle associated with that component, and (3) how the symbol reflects its functional behavior. Why must the physical orientation of the component match the schematic symbol during installation? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies a specific semiconductor symbol (e.g., diode arrow or transistor emitter)",
+              "Describes the associated operating principle (e.g., rectification or switching)",
+              "Explains the link between the symbol's geometry and its electrical function",
+              "Reasons why physical polarity/orientation is critical based on semiconductor properties",
+              "Demonstrates technical accuracy regarding current flow direction"
+            ],
+            "expectedAnswer": [
+              "A diode symbol features an arrow indicating the direction of conventional current flow, which aligns with its operating principle of rectification. This relationship holds because the semiconductor material allows current in only one direction; therefore, the symbol serves as a functional map for the installer. Correct physical orientation is vital because reversing the component would block current and prevent the circuit from operating as designed.",
+              "Transistor symbols use arrows on the emitter to show current direction, reflecting their principle as a semiconductor switch or amplifier. The symbol's design represents the internal junctions that control energy flow. This must be true because the physical legs of the component are not interchangeable, and the schematic must communicate the exact wiring required for the semiconductor to manipulate the signal correctly."
+            ],
+            "hint": "Think about how the shape of a diode or transistor symbol tells you which way the electricity is allowed to move."
+          },
+          {
+            "id": "202-6A-INT-2",
+            "questionText": "Evaluate how various electronic components integrate to manage electrical energy within a complex control system. In your answer, include: (1) how component symbols assist in interpreting system design, (2) the role of semiconductor materials in controlling current, (3) the specific functions of capacitors or transistors in energy manipulation, and (4) how these elements work together to achieve a functional output. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Relates schematic symbols to the physical interpretation of system logic",
+              "Explains the fundamental role of semiconductors in current control",
+              "Describes the specific energy manipulation function of capacitors (storage) or transistors (switching/amplification)",
+              "Synthesizes how components work in sequence to process electrical signals",
+              "Connects component functions to a practical system outcome (e.g., power regulation)",
+              "Maintains technical precision in the description of semiconductor behavior",
+              "Explains the integration of multiple devices within a single circuit board context",
+              "Addresses the transition from individual component function to system-wide behavior"
+            ],
+            "expectedAnswer": [
+              "System interpretation begins with recognizing component symbols, which dictate where semiconductors like diodes and transistors are placed to control current flow. These semiconductors use their unique operating principles to rectify or switch energy, while capacitors store and release charge to smooth the output. Together, these components integrate to transform raw electrical input into a stable, controlled signal for the system's logic. Answer in 3-4 sentences OR concise bullet points.",
+              "• Schematic symbols allow technicians to visualize the flow of energy through semiconductor devices.\n• Semiconductors utilize their operating principles to provide one-way rectification or high-speed switching.\n• Capacitors and transistors manipulate this energy further by filtering noise or amplifying signals.\n• The integration of these components ensures the electrical system performs specific tasks, such as power conversion or motor control. Answer in 3-4 sentences OR concise bullet points."
+            ],
+            "hint": "Consider the journey of electricity as it passes through a diode for rectification, a capacitor for smoothing, and a transistor for switching."
+          }
+        ]
+      }
+    },
+    {
+      "id": "202-6A-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "202-6A-SR-1",
+            "questionText": "What term describes a complete path through which an electric current flows?",
+            "expectedAnswer": [
+              "circuit",
+              "electrical circuit",
+              "a circuit"
+            ],
+            "hint": "This term appears in the third learning outcome regarding operating principles.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-6A-SR-2",
+            "questionText": "What are the standardized visual representations used to identify parts within an electrical diagram?",
+            "expectedAnswer": [
+              "symbols",
+              "circuit symbols",
+              "electrical symbols"
+            ],
+            "hint": "Check the first learning outcome for the term used to identify components visually.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "202-6A-SR-3",
+            "questionText": "What general term is used for the individual parts or devices that make up an electrical system?",
+            "expectedAnswer": [
+              "components",
+              "electrical components",
+              "electronic components"
+            ],
+            "hint": "This term is found in the lesson title and refers to the items being studied.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Electronic Components and Principles"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-02-27",
+    "updated": "2026-02-27",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PRINCIPLES",
+    "syllabusAnchors": {
+      "unit": "202",
+      "learningOutcome": "LO6",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "Fundamental identification, purpose, and operating logic of basic electronic components.",
+      "outOfScope": "Detailed mathematical circuit analysis, characteristic curve plotting, or complex semiconductor physics.",
+      "rationale": "Level 2 focuses on the integration of electronics within electrical systems rather than specialist electronic engineering."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on the function and principles of components as per the 2365 Level 2 syllabus LO6."
+    },
+    "misconceptions": [
+      {
+        "misconception": "A diode can be installed in any direction like a resistor.",
+        "correction": "A diode is a one-way valve and must be oriented correctly to allow current flow.",
+        "relatedAC": "AC6.1"
+      },
+      {
+        "misconception": "Capacitors create power for the circuit.",
+        "correction": "Capacitors only store and release energy provided by the source to smooth fluctuations.",
+        "relatedAC": "AC6.2"
+      },
+      {
+        "misconception": "Rectification creates perfectly smooth DC instantly.",
+        "correction": "Rectification only makes the current unidirectional; capacitors are needed to smooth the resulting pulses into steady DC.",
+        "relatedAC": "AC6.1"
+      }
+    ],
+    "generationScore": 97,
+    "generationScoreDetails": {
+      "originalScore": 97,
+      "finalScore": 97,
+      "wasRefined": false,
+      "generatedAt": "2026-02-27T11:10:43.720Z",
+      "source": "phase10-13"
+    }
+  }
+}

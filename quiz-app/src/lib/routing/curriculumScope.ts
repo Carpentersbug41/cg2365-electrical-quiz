@@ -1,4 +1,4 @@
-import { getCoursePrefixFromPathname } from './curricula';
+import { getCoursePrefixFromHeader, getCoursePrefixFromPathname } from './curricula';
 
 export type CurriculumScope = 'cg2365' | 'gcse-science-physics' | 'gcse-science-biology';
 
@@ -18,6 +18,16 @@ export function getCurriculumScopeFromReferer(referer: string | null): Curriculu
   } catch {
     return 'cg2365';
   }
+}
+
+export function getCurriculumScopeFromHeaderOrReferer(
+  coursePrefixHeader: string | null,
+  referer: string | null
+): CurriculumScope {
+  if (coursePrefixHeader) {
+    return getCurriculumScopeFromCoursePrefix(getCoursePrefixFromHeader(coursePrefixHeader));
+  }
+  return getCurriculumScopeFromReferer(referer);
 }
 
 export function isUnitAllowedForScope(unitCode: string, scope: CurriculumScope): boolean {

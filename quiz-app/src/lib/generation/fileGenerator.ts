@@ -238,6 +238,14 @@ export class FileGenerator {
       this.generateWithRetry.bind(this)
     );
   }
+
+  private getLessonSubdirectory(unit: string | number): string {
+    const normalizedUnit = String(unit);
+    if (/^\d/.test(normalizedUnit)) return '2365';
+    if (/^PHY/i.test(normalizedUnit)) return path.join('gcse', 'physics');
+    if (/^BIO/i.test(normalizedUnit)) return path.join('gcse', 'biology');
+    return '';
+  }
   
   /**
    * Build repair prompt for fixing validation issues
@@ -1372,7 +1380,10 @@ OUTPUT FORMAT: Pure JSON only`;
    */
   async writeLessonFile(request: GenerationRequest, lesson: Lesson): Promise<string> {
     const filename = generateLessonFilename(request.unit, request.lessonId, request.topic);
-    const filePath = path.join(process.cwd(), 'src', 'data', 'lessons', filename);
+    const subdirectory = this.getLessonSubdirectory(request.unit);
+    const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons', subdirectory);
+    fs.mkdirSync(lessonsDir, { recursive: true });
+    const filePath = path.join(lessonsDir, filename);
 
     // Use fd-based write with fsync to force kernel buffer flush
     const content = JSON.stringify(lesson, null, 2);

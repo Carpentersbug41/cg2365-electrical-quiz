@@ -2415,13 +2415,39 @@ function readGeneratedLessonJson(lessonFile?: string): unknown | null {
   if (!lessonFile) return null;
   try {
     const safeFile = path.basename(lessonFile);
-    const lessonPath = path.join(process.cwd(), 'src', 'data', 'lessons', safeFile);
+    const lessonPath = findLessonPathByFilename(safeFile);
     if (!fs.existsSync(lessonPath)) return null;
     const raw = fs.readFileSync(lessonPath, 'utf8');
     return JSON.parse(raw);
   } catch {
     return null;
   }
+}
+
+function collectLessonJsonFiles(dir: string): string[] {
+  if (!fs.existsSync(dir)) return [];
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectLessonJsonFiles(fullPath));
+      continue;
+    }
+    if (entry.isFile() && entry.name.toLowerCase().endsWith('.json')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+function findLessonPathByFilename(filename: string): string {
+  const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
+  const files = collectLessonJsonFiles(lessonsDir);
+  const match = files.find((filePath) => path.basename(filePath) === filename);
+  return match ?? path.join(lessonsDir, filename);
 }
 
 function findGeneratedLessonFilenameForBlueprint(blueprintId: string): string | null {
@@ -2431,9 +2457,8 @@ function findGeneratedLessonFilenameForBlueprint(blueprintId: string): string | 
     const lessonsDir = path.join(process.cwd(), 'src', 'data', 'lessons');
     if (!fs.existsSync(lessonsDir)) return null;
 
-    const candidates = fs
-      .readdirSync(lessonsDir)
-      .filter((file) => file.toLowerCase().endsWith('.json'))
+    const candidates = collectLessonJsonFiles(lessonsDir)
+      .map((filePath) => path.basename(filePath))
       .filter((file) => {
         const lower = file.toLowerCase();
         if (!lower.startsWith(`${normalizedBlueprintId}-`) && lower !== `${normalizedBlueprintId}.json`) {
@@ -2447,8 +2472,8 @@ function findGeneratedLessonFilenameForBlueprint(blueprintId: string): string | 
     if (candidates.length === 0) return null;
 
     candidates.sort((a, b) => {
-      const aPath = path.join(lessonsDir, a);
-      const bPath = path.join(lessonsDir, b);
+      const aPath = findLessonPathByFilename(a);
+      const bPath = findLessonPathByFilename(b);
       const aMtime = fs.statSync(aPath).mtimeMs;
       const bMtime = fs.statSync(bPath).mtimeMs;
       return bMtime - aMtime;

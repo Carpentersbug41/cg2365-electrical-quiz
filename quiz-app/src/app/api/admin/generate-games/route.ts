@@ -1,8 +1,9 @@
 import { NextResponse } from 'next/server';
 import { readFileSync, writeFileSync, readdirSync } from 'fs';
-import { join } from 'path';
+import { basename, join } from 'path';
 import { generateMicrobreaksForLesson, findMicrobreakSlots } from '@/lib/generation/gameGenerator';
 import { Lesson, GameType, MicrobreakContent } from '@/data/lessons/types';
+import { getCurriculumScopeFromHeaderOrReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
 const LESSONS_DIR = join(process.cwd(), 'src', 'data', 'lessons');
 
@@ -27,6 +28,30 @@ const ALL_SUPPORTED_GAME_TYPES: GameType[] = [
 type GenerationMode = 'auto' | 'manual';
 type OperationMode = 'preview' | 'save';
 
+function extractRepoFromEmbedUrl(embedUrl: unknown): string | null {
+  if (typeof embedUrl !== 'string') return null;
+  const normalized = embedUrl.trim();
+  const match = normalized.match(/^\/simulations\/([^/?#]+)/i);
+  return match?.[1] ?? null;
+}
+
+function getLessonSimulationInfo(lesson: Lesson): { simulationEmbedUrl: string | null; simulationRepoName: string | null } {
+  const diagramBlock = lesson.blocks.find((block) => block.type === 'diagram');
+  const embedUrl =
+    diagramBlock &&
+    typeof diagramBlock.content === 'object' &&
+    diagramBlock.content !== null &&
+    'embedUrl' in diagramBlock.content &&
+    typeof diagramBlock.content.embedUrl === 'string'
+      ? diagramBlock.content.embedUrl
+      : null;
+
+  return {
+    simulationEmbedUrl: embedUrl,
+    simulationRepoName: extractRepoFromEmbedUrl(embedUrl),
+  };
+}
+
 function isGenerationMode(value: unknown): value is GenerationMode {
   return value === 'auto' || value === 'manual';
 }
@@ -44,19 +69,49 @@ function sanitizeLessonFilename(filename: unknown): string | null {
   return sanitizedFilename;
 }
 
+function collectLessonJsonFiles(dir: string): string[] {
+  const entries = readdirSync(dir, { withFileTypes: true });
+  const files: string[] = [];
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...collectLessonJsonFiles(fullPath));
+      continue;
+    }
+    if (entry.isFile() && entry.name.endsWith('.json')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+function findLessonPathByFilename(filename: string): string | null {
+  const files = collectLessonJsonFiles(LESSONS_DIR);
+  const match = files.find((filePath) => basename(filePath) === filename);
+  return match ?? null;
+}
+
 /**
  * GET /api/admin/generate-games
  * Returns list of all lessons with microbreak status
  */
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const files = readdirSync(LESSONS_DIR).filter(f => f.endsWith('.json') && f !== 'lessonIndex.ts');
+    const scope = getCurriculumScopeFromHeaderOrReferer(
+      request.headers.get('x-course-prefix'),
+      request.headers.get('referer')
+    );
+    const files = collectLessonJsonFiles(LESSONS_DIR);
 
-    const lessons = files.map(filename => {
+    const lessons = files.map((lessonPath) => {
       try {
-        const lessonPath = join(LESSONS_DIR, filename);
         const lessonData = readFileSync(lessonPath, 'utf-8');
         const lesson: Lesson = JSON.parse(lessonData);
+        if (!isLessonIdAllowedForScope(lesson.id, scope)) {
+          return null;
+        }
 
         const microbreakCount = lesson.blocks.filter(b => b.type === 'microbreak').length;
 
@@ -68,10 +123,11 @@ export async function GET() {
 
         const explanationCount = lesson.blocks.filter(b => b.type === 'explanation').length;
         const availableMicrobreakSlots = findMicrobreakSlots(lesson.blocks).length;
+        const simulationInfo = getLessonSimulationInfo(lesson);
 
         return {
           id: lesson.id,
-          filename,
+          filename: basename(lessonPath),
           title: lesson.title,
           unit: lesson.unit,
           description: lesson.description,
@@ -82,9 +138,11 @@ export async function GET() {
           explanationCount,
           totalBlocks: lesson.blocks.length,
           availableMicrobreakSlots,
+          simulationEmbedUrl: simulationInfo.simulationEmbedUrl,
+          simulationRepoName: simulationInfo.simulationRepoName,
         };
       } catch (error) {
-        console.error(`Error loading lesson ${filename}:`, error);
+        console.error(`Error loading lesson ${lessonPath}:`, error);
         return null;
       }
     }).filter(Boolean);
@@ -106,6 +164,10 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const requestStartedAt = Date.now();
+    const scope = getCurriculumScopeFromHeaderOrReferer(
+      request.headers.get('x-course-prefix'),
+      request.headers.get('referer')
+    );
     const body = await request.json();
 
     const legacyMode = body?.mode;
@@ -156,9 +218,15 @@ export async function POST(request: Request) {
       );
     }
 
-    const lessonPath = join(LESSONS_DIR, sanitizedFilename);
+    const lessonPath = findLessonPathByFilename(sanitizedFilename);
 
     let lesson: Lesson;
+    if (!lessonPath) {
+      return NextResponse.json(
+        { error: `Lesson file not found: ${sanitizedFilename}` },
+        { status: 404 }
+      );
+    }
     try {
       const lessonData = readFileSync(lessonPath, 'utf-8');
       lesson = JSON.parse(lessonData);
@@ -166,6 +234,13 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: `Lesson file not found: ${sanitizedFilename}` },
         { status: 404 }
+      );
+    }
+
+    if (!isLessonIdAllowedForScope(lesson.id, scope)) {
+      return NextResponse.json(
+        { error: `Lesson ${lesson.id} is not available in this curriculum scope.` },
+        { status: 403 }
       );
     }
 
@@ -323,6 +398,10 @@ export async function POST(request: Request) {
  */
 export async function DELETE(request: Request) {
   try {
+    const scope = getCurriculumScopeFromHeaderOrReferer(
+      request.headers.get('x-course-prefix'),
+      request.headers.get('referer')
+    );
     const body = await request.json();
     const filename = body?.filename;
 
@@ -341,9 +420,15 @@ export async function DELETE(request: Request) {
       );
     }
 
-    const lessonPath = join(LESSONS_DIR, sanitizedFilename);
+    const lessonPath = findLessonPathByFilename(sanitizedFilename);
 
     let lesson: Lesson;
+    if (!lessonPath) {
+      return NextResponse.json(
+        { error: `Lesson file not found: ${sanitizedFilename}` },
+        { status: 404 }
+      );
+    }
     try {
       const lessonData = readFileSync(lessonPath, 'utf-8');
       lesson = JSON.parse(lessonData);
@@ -351,6 +436,13 @@ export async function DELETE(request: Request) {
       return NextResponse.json(
         { error: `Lesson file not found: ${sanitizedFilename}` },
         { status: 404 }
+      );
+    }
+
+    if (!isLessonIdAllowedForScope(lesson.id, scope)) {
+      return NextResponse.json(
+        { error: `Lesson ${lesson.id} is not available in this curriculum scope.` },
+        { status: 403 }
       );
     }
 
