@@ -1,6 +1,6 @@
 # Module Planner vNext - Operator Guide and Interface Reference
 
-Last verified: 2026-02-17
+Last verified: 2026-02-27
 Route: `/admin/module`
 API base: `/api/admin/module/*`
 
@@ -206,6 +206,12 @@ Endpoint: `POST /api/syllabus/upload`
 - optional LLM normalizer fallback when parser confidence is low
 - writes version metadata (`chunkCount`, `loCount`, `acCount`, etc.)
 
+### Clear flow
+
+Endpoint: `POST /api/admin/module/syllabus/clear`
+- removes syllabus versions/chunks/structures and ingestions
+- intended for admin reset during iteration/testing
+
 ---
 
 ## 8. Common Errors and Checks
@@ -216,7 +222,7 @@ Endpoint: `POST /api/syllabus/upload`
 - `RAG_EMPTY` / `RAG_GROUNDEDNESS_FAIL` -> invalid unit/LO for selected syllabus version
 - M3 failure -> LLM unavailable/invalid JSON or unresolved blocking issues after single repair
 - M5 invalid -> inspect validation issues before any generation
-- bulk M6 403 -> use per-lesson `Generate now` or enable bulk env flag
+- bulk M6 403 -> use per-lesson `Generate now` (bulk route is hard-disabled)
 
 ---
 

@@ -15,6 +15,11 @@ import {
   TapTheWordGameContent,
 } from '@/data/lessons/types';
 import { playClickSound, playCustomSound, playSound } from '@/lib/microbreaks/celebrationEffects';
+import {
+  primaryActionButtonClass,
+  positiveActionButtonClass,
+  secondaryActionButtonClass,
+} from './buttonStyles';
 
 type AdvancedGameContent =
   | SequencingGameContent
@@ -180,7 +185,7 @@ function SequencingGame({ content, done, soundEnabled, onDone }: { content: Sequ
           </div>
         </div>
       ))}
-      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -371,7 +376,7 @@ function FillGapGame({ content, soundEnabled, onDone }: { content: FillGapGameCo
           setChecked(true);
           onDone(correct, (correct / Math.max(1, total)) * 100);
         }}
-        className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60"
+        className={primaryActionButtonClass}
       >
         Check
       </button>
@@ -401,7 +406,7 @@ function IsCorrectWhyGame({ content, soundEnabled, onDone }: { content: IsCorrec
       </div>
       {checked && content.explanation ? <p className="text-xs text-gray-600 dark:text-slate-400">{content.explanation}</p> : null}
       <p className="text-xs font-semibold text-gray-700 dark:text-slate-300">3) Check your answer</p>
-      <button disabled={checked || choice === null || reason === null} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(score, score * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked || choice === null || reason === null} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(score, score * 100); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -429,7 +434,7 @@ function DiagnosisRankedGame({ content, soundEnabled, onDone }: { content: Diagn
         );
       })}
       {checked && content.rationale ? <p className="text-xs text-gray-600 dark:text-slate-400">{content.rationale}</p> : null}
-      <button disabled={checked || first === null || second === null} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(score, score * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked || first === null || second === null} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(score, score * 100); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -480,7 +485,7 @@ function ClassifyTwoBinsGame({ content, soundEnabled, onDone }: { content: Class
           </div>
         );
       })}
-      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -505,7 +510,7 @@ function ScenarioMatchGame({ content, soundEnabled, onDone }: { content: Scenari
           </select>
         </div>
       ))}
-      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(correct, (correct / Math.max(1, total)) * 100); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -543,7 +548,7 @@ function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaB
             setSequence([]);
             setLastAttemptWrong(false);
           }}
-          className="rounded border border-gray-300 bg-white px-3 py-2 text-xs dark:border-slate-600 dark:bg-slate-800"
+          className={secondaryActionButtonClass}
         >
           Clear
         </button>
@@ -559,7 +564,7 @@ function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaB
             }
             setLastAttemptWrong(true);
           }}
-          className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60"
+          className={primaryActionButtonClass}
         >
           Check
         </button>
@@ -571,7 +576,7 @@ function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaB
               setSequence([]);
               setLastAttemptWrong(false);
             }}
-            className="rounded border border-indigo-300 bg-indigo-100 px-3 py-2 text-xs text-indigo-900 dark:border-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-200"
+            className={positiveActionButtonClass}
           >
             Try again
           </button>
@@ -591,7 +596,7 @@ function TapTheLineGame({ content, soundEnabled, onDone }: { content: TapTheLine
         <button key={`${line}-${idx}`} style={{ animationDelay: `${idx * 35}ms` }} disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setSelected(idx); }} className={`microbreak-stagger microbreak-card-glide block w-full rounded border px-2 py-1 text-left text-xs ${tone(checked, idx === content.correctLineIndex, selected === idx)}`}>{line}</button>
       ))}
       {checked && content.feedback ? <p className="text-xs text-gray-600 dark:text-slate-400">{content.feedback}</p> : null}
-      <button disabled={checked || selected === null} onClick={() => { if (soundEnabled) playClickSound(0.25); const isCorrect = selected === content.correctLineIndex; setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked || selected === null} onClick={() => { if (soundEnabled) playClickSound(0.25); const isCorrect = selected === content.correctLineIndex; setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -608,7 +613,7 @@ function TapTheWordGame({ content, soundEnabled, onDone }: { content: TapTheWord
           <button key={`${opt}-${idx}`} style={{ animationDelay: `${idx * 35}ms` }} disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.2); setSelected(idx); }} className={`microbreak-stagger microbreak-card-glide rounded border px-2 py-1 text-xs ${tone(checked, idx === content.correctOptionIndex, selected === idx)}`}>{opt}</button>
         ))}
       </div>
-      <button disabled={checked || selected === null} onClick={() => { if (soundEnabled) playClickSound(0.25); const isCorrect = selected === content.correctOptionIndex; setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked || selected === null} onClick={() => { if (soundEnabled) playClickSound(0.25); const isCorrect = selected === content.correctOptionIndex; setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }
@@ -628,7 +633,7 @@ function EliminationGame({ content, soundEnabled, onDone }: { content: Eliminati
         </div>
       ))}
       {checked && content.explanation ? <p className="text-xs text-gray-600 dark:text-slate-400">{content.explanation}</p> : null}
-      <button disabled={checked || selected === null} onClick={() => { if (soundEnabled) playClickSound(0.25); const isCorrect = selected === content.correctIndex; setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className="rounded bg-indigo-700 px-3 py-2 text-xs text-white disabled:opacity-60">Check</button>
+      <button disabled={checked || selected === null} onClick={() => { if (soundEnabled) playClickSound(0.25); const isCorrect = selected === content.correctIndex; setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className={primaryActionButtonClass}>Check</button>
     </div>
   );
 }

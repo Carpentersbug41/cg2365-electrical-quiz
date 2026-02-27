@@ -2,7 +2,7 @@
   "id": "BIO-6-1A",
   "title": "BIO.6-1A — Photosynthesis and Producers",
   "description": "Learn about Photosynthesis and Producers in GCSE Science Biology",
-  "layout": "linear-flow",
+  "layout": "split-vis",
   "unit": "Unit BIO-6",
   "topic": "Photosynthesis and Producers",
   "learningOutcomes": [
@@ -77,7 +77,8 @@
           "glucose-product",
           "biomass-storage"
         ],
-        "placeholderText": "The diagram should show a bright sun emitting rays labeled as 'light-energy-input' hitting a green leaf. Entering the leaf are arrows for carbon dioxide and water, labeled as 'reactant-inputs'. Inside the leaf, a transformation symbol represents the endothermic reaction. An arrow points away from the leaf showing oxygen being released, while a large hex-shaped molecule labeled 'glucose-product' is shown being stored or used to build the plant's body, labeled as 'biomass-storage'."
+        "placeholderText": "The diagram should show a bright sun emitting rays labeled as 'light-energy-input' hitting a green leaf. Entering the leaf are arrows for carbon dioxide and water, labeled as 'reactant-inputs'. Inside the leaf, a transformation symbol represents the endothermic reaction. An arrow points away from the leaf showing oxygen being released, while a large hex-shaped molecule labeled 'glucose-product' is shown being stored or used to build the plant's body, labeled as 'biomass-storage'.",
+        "embedUrl": "/simulations/BIO.1-1A/dist/index.html"
       }
     },
     {

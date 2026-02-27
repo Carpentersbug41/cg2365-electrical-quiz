@@ -2,7 +2,7 @@
   "id": "BIO-1-1A",
   "title": "BIO.1-1A — Eukaryotic Cell Structures",
   "description": "Learn about Eukaryotic Cell Structures in GCSE Science Biology",
-  "layout": "linear-flow",
+  "layout": "split-vis",
   "unit": "Unit BIO-1",
   "topic": "Eukaryotic Cell Structures",
   "learningOutcomes": [

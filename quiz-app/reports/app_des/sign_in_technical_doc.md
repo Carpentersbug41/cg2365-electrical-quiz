@@ -1,6 +1,6 @@
 # Sign-In + Auth Progress Tracking - Technical Documentation
 
-Last verified: 2026-02-17
+Last verified: 2026-02-27
 UI routes:
 - `/auth/sign-in`
 - `/auth/callback`
@@ -13,10 +13,6 @@ API routes:
 - `/api/v1/review/wrong-items`
 
 This document is the technical reference for auth and server-side progress tracking.
-
-Note (2026-02-17 sync):
-- Module Planner `/admin/module` now includes run history/open/delete actions and planner-only M0-M5 flow.
-- Sign-in/auth-progress technical contracts in this document are unchanged.
 
 ---
 

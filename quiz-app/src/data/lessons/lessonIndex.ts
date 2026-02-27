@@ -629,6 +629,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 1,
   },
+  {
+    id: 'BIO-6-1B',
+    title: 'Limiting Factors of Photosynthesis',
+    unit: 'Unit BIO-6',
+    unitNumber: 'BIO-6',
+    topic: 'Limiting Factors of Photosynthesis',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('BIO-6-1B'),
+    available: true,
+    order: 2,
+  },
 ];
 
 /**

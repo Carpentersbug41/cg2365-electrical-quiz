@@ -53,15 +53,15 @@ export default function GameWrapper({
   };
 
   return (
-    <div className={`microbreak-enter microbreak-enter-slow microbreak-game-${motionPreset} relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm dark:border-slate-700 dark:bg-slate-900`}>
-      <div className="bg-white border-b border-slate-200 dark:bg-slate-800 dark:border-slate-700 px-4 py-3 flex items-center justify-between">
+    <div className={`microbreak-enter microbreak-enter-slow microbreak-game-${motionPreset} relative overflow-hidden rounded-2xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-indigo-50/40 shadow-sm`}>
+      <div className="bg-white/90 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-display font-semibold text-slate-800 dark:text-white">{title}</h3>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">Quick Break Activity</p>
+          <h3 className="text-lg font-display font-semibold text-slate-800">{title}</h3>
+          <p className="mt-1 text-xs text-slate-500">Quick Break Activity</p>
         </div>
         <div className="flex items-center gap-4">
           {!disableTimer && (
-            <div className="microbreak-soft-pulse rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+            <div className="microbreak-soft-pulse rounded-full bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700">
               {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
             </div>
           )}
@@ -70,14 +70,14 @@ export default function GameWrapper({
               playClickSound(0.3);
               onSkip();
             }}
-            className="p-2 -mr-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-700"
+            className="p-2 -mr-1 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
           >
             Skip {'->'}
           </button>
         </div>
       </div>
 
-      <div className="m-4 mb-0 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200">
+      <div className="m-4 mb-0 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 shadow-sm">
         {instruction ?? 'Follow the on-screen prompt, then submit your answer to check it.'}
       </div>
 

@@ -237,27 +237,31 @@
       "content": {
         "breakType": "game",
         "gameType": "matching",
-        "duration": 90,
+        "instructions": "Hey there! Can you match these wave words to their secret meanings? Let's see how much of a physics pro you are!",
         "pairs": [
           {
             "left": "Wave",
-            "right": "A wave is a periodic disturbance that transfers energy and information from one point to another without the permanent displacement of matter."
+            "right": "A periodic disturbance that carries energy and information from one place to another without moving matter permanently."
           },
           {
             "left": "Medium",
-            "right": "A medium is the physical material or substance through which a wave travels, which remains in its original location after the energy has passed."
+            "right": "The physical material or substance that a ripple or signal travels through while staying in its original place."
           },
           {
             "left": "Oscillation",
-            "right": "Oscillation is the repetitive back-and-forth or up-and-down motion of particles about a fixed position, not to be confused with the overall travel of the wave itself."
+            "right": "The repetitive back-and-forth or up-and-down movement of particles around a fixed, central point."
           },
           {
             "left": "Energy Transfer",
-            "right": "Energy transfer is the process by which a wave moves power or data through a system, differing from matter transfer because the particles of the medium do not travel with the wave."
+            "right": "Moving power or data through a system without actually transporting any physical particles to the final destination."
           },
           {
             "left": "Displacement",
-            "right": "Displacement is the distance and direction an individual particle moves from its original resting position as a wave passes through it."
+            "right": "How far and in what direction a particle has moved from its starting resting spot."
+          },
+          {
+            "left": "Energy and Information Transfer",
+            "right": "In this lesson, you will learn how waves act as messengers that carry energy and data from one place to another."
           }
         ]
       }
@@ -333,38 +337,15 @@
       "order": 8.25,
       "content": {
         "breakType": "game",
-        "gameType": "sorting",
-        "duration": 90,
-        "buckets": [
-          "Term",
-          "Definition"
+        "gameType": "is-correct-why",
+        "statement": "This is the foundation for understanding everything from how we hear music to how the internet works through fiber-optic cables.",
+        "isCorrect": true,
+        "reasons": [
+          "Energy and Information Transfer",
+          "Imagine you are holding one end of a long slinky and your friend is holding the other.",
+          "If you give it a quick wiggle, a bump travels all the way to your friend."
         ],
-        "items": [
-          {
-            "text": "Wave",
-            "correctBucket": 0
-          },
-          {
-            "text": "A wave is a periodic disturbance that transfers energy and information from one point to...",
-            "correctBucket": 1
-          },
-          {
-            "text": "Medium",
-            "correctBucket": 0
-          },
-          {
-            "text": "A medium is the physical material or substance through which a wave travels, which...",
-            "correctBucket": 1
-          },
-          {
-            "text": "Oscillation",
-            "correctBucket": 0
-          },
-          {
-            "text": "Oscillation is the repetitive back-and-forth or up-and-down motion of particles about a...",
-            "correctBucket": 1
-          }
-        ]
+        "correctReasonIndex": 0
       }
     },
     {
@@ -470,7 +451,7 @@
   "metadata": {
     "created": "2026-02-26",
     "updated": "2026-02-27",
-    "version": "1.1",
+    "version": "1.3",
     "author": "GCSE Science Learning Team",
     "taskMode": "IDENTIFICATION, CONCEPTUAL",
     "syllabusAnchors": {

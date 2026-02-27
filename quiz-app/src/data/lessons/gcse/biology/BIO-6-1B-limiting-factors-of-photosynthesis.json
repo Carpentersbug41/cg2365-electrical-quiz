@@ -1,0 +1,463 @@
+{
+  "id": "BIO-6-1B",
+  "title": "BIO.6-1B — Limiting Factors of Photosynthesis",
+  "description": "Learn about Limiting Factors of Photosynthesis in GCSE Science Biology",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-6",
+  "topic": "Limiting Factors of Photosynthesis",
+  "learningOutcomes": [
+    "Identify the three main environmental factors that limit the rate of photosynthesis",
+    "Explain why the rate of photosynthesis levels off as light intensity or carbon dioxide concentration increases",
+    "Interpret complex graphs to determine which factor is limiting the rate of photosynthesis under different conditions"
+  ],
+  "prerequisites": [
+    "BIO-6-1A"
+  ],
+  "blocks": [
+    {
+      "id": "BIO-6-1B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the three main environmental factors that limit the rate of photosynthesis",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain why the rate of photosynthesis levels off as light intensity or carbon dioxide concentration increases",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Interpret complex graphs to determine which factor is limiting the rate of photosynthesis under different conditions",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Limiting Factor",
+            "definition": "The specific environmental variable that restricts the rate of a process because it is in the shortest supply, not simply any factor that influences the reaction."
+          },
+          {
+            "term": "Rate of Reaction",
+            "definition": "The speed at which reactants are converted into products, measured as a change in quantity over a specific period of time."
+          },
+          {
+            "term": "Saturation Point",
+            "definition": "The stage where increasing a specific input no longer increases the output because another factor has become the limiting constraint."
+          },
+          {
+            "term": "Optimum",
+            "definition": "The ideal value or condition at which a process performs at its maximum efficiency, different from 'maximum' because performance may drop if the value increases further."
+          },
+          {
+            "term": "Denaturation",
+            "definition": "The structural change in an enzyme that prevents it from functioning, which occurs when temperature exceeds the optimum level, not when it is below it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1B-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Limiting Factors of Photosynthesis Diagram",
+        "description": "Visual representation of Limiting Factors of Photosynthesis",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "reaction-rate-axis",
+          "light-intensity-axis",
+          "saturation-plateau",
+          "limiting-factor-slope",
+          "optimum-peak"
+        ],
+        "placeholderText": "A multi-line graph showing the rate of photosynthesis. The y-axis is labeled 'Rate of Reaction' and the x-axis is labeled 'Light Intensity'. Two curves are shown: one labeled 'Low CO2' which levels off early at a lower 'saturation-plateau', and another labeled 'High CO2' which continues to climb along the 'limiting-factor-slope' before leveling off higher up. A separate small inset graph shows a bell-shaped curve for temperature, marking the 'optimum-peak' before a sharp drop representing denaturation."
+      }
+    },
+    {
+      "id": "BIO-6-1B-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Individual Limiting Factors",
+        "content": "### In this lesson\nYou will learn how specific environmental conditions act as brakes on a plant’s ability to make food.\nUnderstanding these factors helps us predict how plants grow in different habitats or greenhouses.\n*   Identify light, carbon dioxide, and temperature as the three main factors.\n*   Understand how each factor independently changes the speed of food production.\n*   Explain why increasing a factor doesn't always lead to a faster reaction.\n\n**What this is**\nIn biology, the **Rate of Reaction** refers to how quickly a plant can take raw materials (like water and carbon dioxide) and turn them into products (like glucose and oxygen). However, this process doesn't happen at a constant speed. A **Limiting Factor** is a specific variable in the environment that restricts the **Rate of Reaction** because it is in the shortest supply. Even if every other requirement is perfect, the whole process is stuck at the speed allowed by this one missing or low-level ingredient.\n\n**Why it matters**\nPlants are the foundation of almost all life on Earth because they produce biomass. If we want to grow more food to feed the world, we need to know exactly what is slowing plants down. By identifying the **Limiting Factor**, farmers can add exactly what is missing—like extra light in the winter or extra heat in a greenhouse—to make sure plants grow as fast as possible.\n\n**Key facts / rules**\n*   Light intensity provides the energy needed for the reaction; without enough light, the process slows down.\n*   Carbon dioxide concentration is a raw material; if there isn't enough, the plant can't build glucose molecules.\n*   Temperature affects the enzymes that drive the reaction; they need heat to move and collide.\n*   As light or CO2 increases, the **Rate of Reaction** increases initially in a linear way.\n*   Eventually, the rate will stop increasing and stay flat at a **Saturation Point**.\n*   Temperature has an **Optimum** point where the reaction is fastest; going above this causes **Denaturation**.\n\n**How to use it**\nTo identify which factor is limiting a plant, you look at the immediate environment. Imagine you are baking 100 cupcakes. You have plenty of sugar, butter, and eggs, but you only have 10 cupcake liners. No matter how much more sugar you add, you can still only make 10 cupcakes. In this case, the liners are the **Limiting Factor**. In a plant, if it is a very bright day but the air is still and lacks CO2, adding more light won't help; the CO2 is the \"liner\" holding everything back. \n\nConsider this scenario: Plant A is in a room with low light and low CO2. Plant B is in a room with high light but the same low CO2. If both plants produce the same amount of oxygen per minute, we can judge that light was not the factor holding them back at that moment; CO2 was likely the constraint. \n\n**Common mistakes**\nLearners often confuse a **Limiting Factor** with a general requirement; a **Limiting Factor** is specifically the one variable currently restricting the speed, whereas a general requirement is simply any substance the plant needs to exist. Another error is thinking that \"more is always better\" for temperature. While more light usually helps, too much heat causes **Denaturation**, where the plant's internal machinery physically breaks down and stops working entirely.\n\nMisconceptions (targeted):\n* Misconception: The reaction stops when the graph line goes flat. | Correction: A flat line means the reaction is still happening at a steady, maximum speed, not that it has stopped. | AC: AC6.3\n* Misconception: Temperature and light affect the plant in the same way. | Correction: Light provides energy, but temperature affects enzyme shape; too much light just plateaus, but too much heat causes **Denaturation**. | AC: AC6.3\n\n**Key Points**\n*   The **Rate of Reaction** is limited by whichever resource is in the shortest supply.\n*   Light and CO2 graphs show a curve that levels off at a **Saturation Point**.\n*   Temperature graphs show a peak at the **Optimum**, followed by a sharp drop.\n*   **Denaturation** happens only at high temperatures, not low ones.\n\n**Quick recap**\nPhotosynthesis depends on light, CO2, and temperature. Whichever one of these is least available is the **Limiting Factor**. While increasing light and CO2 will eventually reach a **Saturation Point** where the rate stays steady, increasing temperature past the **Optimum** will cause the enzymes to undergo **Denaturation**, causing the reaction rate to crash.\n\n### Coming Up Next\nNow that we know how individual factors work, we will look at how to read complex graphs where multiple factors change at the same time!"
+      }
+    },
+    {
+      "id": "BIO-6-1B-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Individual Limiting Factors",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1B-C1-L1-A",
+            "questionText": "What is the term for a specific variable in the environment that restricts the Rate of Reaction?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Limiting Factor",
+              "limiting factors",
+              "a limiting factor"
+            ],
+            "hint": "This term describes a resource in the shortest supply that acts as a brake on the process."
+          },
+          {
+            "id": "BIO-6-1B-C1-L1-B",
+            "questionText": "What is the name of the point on a temperature graph where the reaction is fastest?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Optimum",
+              "optimum point",
+              "the optimum"
+            ],
+            "hint": "This is the specific peak where enzymes work at their maximum speed."
+          },
+          {
+            "id": "BIO-6-1B-C1-L1-C",
+            "questionText": "According to the lesson, in what specific temperature range does Denaturation occur?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "high temperatures",
+              "high temperature",
+              "at high temperatures"
+            ],
+            "hint": "The text notes this process does not happen when conditions are cold."
+          },
+          {
+            "id": "BIO-6-1B-C1-L2",
+            "questionText": "Using your answers to Q1 (Limiting Factors), Q2 (the Optimum), and Q3 (high temperatures), explain how these facts connect. Why must we monitor temperature differently than light or CO2 to prevent the reaction rate from crashing?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Temperature acts as a limiting factor by increasing the rate until it hits the optimum",
+              "Unlike light which plateaus, temperature has a peak followed by a sharp drop",
+              "High temperatures cause denaturation which physically breaks down the internal machinery",
+              "The reaction rate crashes because the machinery stops working entirely past the optimum"
+            ],
+            "expectedAnswer": [
+              "Temperature is a limiting factor that increases the rate until the optimum is reached, but if it gets too high, denaturation occurs and the rate crashes. This is different from light because too much heat actually destroys the plant's ability to function.",
+              "While increasing a limiting factor usually helps, going past the optimum temperature leads to denaturation. We must monitor this because high temperatures cause the reaction to stop entirely rather than just staying at a steady speed."
+            ],
+            "hint": "Consider what happens to the plant's internal machinery when the temperature goes past its fastest point."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1B-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Interactions of Limiting Factors",
+        "content": "### In this lesson\nYou will learn how to interpret graphs that show more than one environmental factor at a time.\nThis allows us to diagnose exactly what a plant needs in complex, real-world conditions.\n*   Analyze multi-line graphs to find the limiting factor.\n*   Explain why a graph \"levels off\" at different heights.\n*   Determine the **Optimum** conditions for maximum plant growth.\n\n**What this is**\nIn the real world, factors don't act alone; they interact. The \"interaction of limiting factors\" is the study of how light, CO2, and temperature work together to set the final **Rate of Reaction**. Even if you fix one problem (like giving a plant more light), the plant will only speed up until it hits the next **Limiting Factor** (like running out of CO2). This creates a stepping-stone effect where the plant's efficiency is always governed by its greatest weakness.\n\n**Why it matters**\nCommercial farmers use this knowledge to save money. If a greenhouse is already at its **Saturation Point** for light, spending money on extra lamps is a waste of electricity. Instead, the farmer would look at the graph and realize they need to turn up the heater or pump in more CO2 to raise the ceiling of production.\n\n**Key facts / rules**\n*   On a graph of light intensity, if the line levels off, light is no longer the **Limiting Factor**.\n*   If you repeat the experiment at a higher temperature and the line levels off at a higher point, then temperature was the factor limiting the first experiment.\n*   The factor that is being changed on the x-axis is only the **Limiting Factor** during the sloped part of the graph.\n*   The **Saturation Point** is the horizontal part of the curve where the rate is constant.\n*   The **Optimum** is the peak of a temperature curve; any point to the left of the peak is limited by low energy, and any point to the right is limited by **Denaturation**.\n\n**How to use it**\nTo interpret a complex graph, look at where the lines separate. Imagine a graph with two lines: one for a plant at 0.03% CO2 and one for 0.4% CO2. If both lines go up together at first but the 0.03% line flattens out much lower than the 0.4% line, you can recognise that CO2 was the **Limiting Factor** for the first plant. \n\nMicro-scenario: You have two tomato plants. Plant X is at 20°C and Plant Y is at 30°C. Both have the same high light levels. If Plant Y is producing oxygen twice as fast as Plant X, then temperature was the **Limiting Factor** for Plant X. If they both produce oxygen at the same rate, then something else (like CO2) is limiting both of them.\n\n**Common mistakes**\nLearners often confuse the **Saturation Point** with the **Optimum**. A **Saturation Point** is a flat plateau on a light or CO2 graph where the rate stays the same as you add more. An **Optimum** is a specific \"best\" temperature where the rate is at its highest before it drops. Another mistake is assuming that if the rate is low, light must be the problem. You must look at the other variables to be sure.\n\nMisconceptions (targeted):\n* Misconception: If the line is horizontal, the plant has stopped photosynthesizing. | Correction: The horizontal line indicates a steady **Rate of Reaction** that is no longer increasing because a different **Limiting Factor** has taken over. | AC: AC6.4\n* Misconception: You can determine the limiting factor by looking at just one point on a graph. | Correction: You must compare different lines or look at the slope versus the plateau to identify which factor is in shortest supply. | AC: AC6.4\n\n**Key Points**\n*   Graphs with multiple lines show how different factors interact.\n*   The factor on the x-axis is only limiting while the graph is still climbing.\n*   If increasing a second factor (like heat) raises the plateau, that second factor was the original constraint.\n*   The **Saturation Point** tells us we have reached the limit for that specific input.\n\n**Quick recap**\nInterpreting photosynthesis graphs is like being a detective. If the line is sloping up, the factor on the x-axis is the **Limiting Factor**. If the line is flat, you have reached a **Saturation Point**, and something else—like temperature or CO2—is now holding the plant back. By comparing lines at different levels, we can find the **Optimum** conditions for growth.\n\n### Coming Up Next\nWe’ve mastered the theory! Next, we will look at the Core Practical where you will actually measure the rate of photosynthesis yourself using pondweed!"
+      }
+    },
+    {
+      "id": "BIO-6-1B-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Interactions of Limiting Factors",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1B-C2-L1-A",
+            "questionText": "When is the factor shown on the x-axis of a graph considered to be the Limiting Factor?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "while the graph is climbing",
+              "when the graph is climbing",
+              "during the sloped part"
+            ],
+            "hint": "Look at the part of the graph where the line is still moving upwards."
+          },
+          {
+            "id": "BIO-6-1B-C2-L1-B",
+            "questionText": "What is the horizontal part of the curve called where the rate of reaction remains constant?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Saturation Point",
+              "the saturation point",
+              "saturation points"
+            ],
+            "hint": "This term describes the level where adding more of the x-axis factor no longer increases the speed."
+          },
+          {
+            "id": "BIO-6-1B-C2-L1-C",
+            "questionText": "What is the visual difference between a Saturation Point and an Optimum on a graph?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "plateau versus peak",
+              "flat plateau versus peak",
+              "plateau vs peak"
+            ],
+            "hint": "Think about whether the line stays flat or drops back down after reaching its highest point."
+          },
+          {
+            "id": "BIO-6-1B-C2-L2",
+            "questionText": "Using your answers to Q1 (climbing graphs), Q2 (Saturation Points), and Q3 (plateaus vs peaks), explain how these facts connect. How do we know that a different factor has become limiting when a light intensity graph levels off?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The climbing part of the graph proves the x-axis factor is currently limiting the rate",
+              "Reaching a saturation point creates a flat plateau rather than a peak",
+              "The plateau shows the rate is constant even as the x-axis factor increases",
+              "This indicates the x-axis factor is no longer the constraint and a different factor is now limiting the reaction"
+            ],
+            "expectedAnswer": [
+              "We know a different factor is limiting because the graph stops climbing and reaches a saturation point. Since this is a flat plateau and not a peak, it shows that adding more of the x-axis factor isn't helping anymore, meaning something else is in shortest supply.",
+              "When a graph levels off at a saturation point, the x-axis factor is no longer limiting the reaction. We can see this because the line becomes a flat plateau, indicating that the rate is now restricted by a different environmental variable."
+            ],
+            "hint": "Compare what the line is doing while it is sloped versus when it becomes a horizontal plateau."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1B-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "BIO-6-1B-P1",
+            "questionText": "In a multi-input production process, what must be true if the rate of output remains constant despite a significant increase in one of the primary raw materials?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Another factor is limiting",
+              "A different factor is the constraint",
+              "A bottleneck exists",
+              "Another factor is in shortest supply"
+            ],
+            "hint": "Consider which resource is currently restricting the speed of the entire process."
+          },
+          {
+            "id": "BIO-6-1B-P2",
+            "questionText": "A manufacturing unit produces 85 units per hour. Increasing the operating temperature does not change this rate. However, doubling the raw material supply increases production to 150 units. What was the output limit caused by the raw material before it was doubled?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "85"
+            ],
+            "hint": "Provide the value in units per hour."
+          },
+          {
+            "id": "BIO-6-1B-P3",
+            "questionText": "A data server's processing speed is determined by RAM, CPU power, and Connection Speed. If adding more RAM does not improve speed, but upgrading the Connection Speed immediately increases performance, which factor was the original limiting factor?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Connection Speed",
+              "The connection speed",
+              "Bandwidth"
+            ],
+            "hint": "Identify the resource that was in the shortest supply relative to the others."
+          },
+          {
+            "id": "BIO-6-1B-P4",
+            "questionText": "A system reaches its saturation point at an input level of 10. At this level, it produces 22 units of output per minute. If the input level is raised to 20 while all other environmental variables are kept identical, how many units will be produced per minute?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "22",
+              "22.0"
+            ],
+            "hint": "Consider what happens to the rate of reaction once the saturation point has been reached."
+          },
+          {
+            "id": "BIO-6-1B-P5",
+            "questionText": "Why does the output of a temperature-dependent system crash after passing its optimum point, rather than remaining at a steady maximum level like it does at a saturation point?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Denaturation",
+              "Denaturing",
+              "Structural breakdown",
+              "Components are damaged"
+            ],
+            "hint": "Focus on the physical change that happens to internal machinery when heat exceeds the optimum."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1B-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1B-INT-1",
+            "questionText": "Explain the relationship between specific environmental inputs and the resulting rate of production when one variable is increased in isolation. In your answer, include: (1) two primary environmental variables that influence the rate, (2) the effect on the rate as one variable increases from a low level, and (3) the behavior of the rate once it reaches a plateau. What must be true about the system's internal requirements for the rate to stop increasing despite a continued surplus of the initial variable? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies two variables such as light intensity and carbon dioxide concentration.",
+              "Describes the initial proportional increase in production rate as the variable increases.",
+              "Identifies the plateau or 'leveling off' point on a performance graph.",
+              "Reasons that a plateau occurs because a different factor has become the limiting constraint.",
+              "Explains that the system's output is restricted by the least available resource (bottleneck principle)."
+            ],
+            "expectedAnswer": [
+              "When light intensity or carbon dioxide concentration increases, the rate of production initially rises because more raw material or energy is available for the process. However, the rate eventually levels off because the system is constrained by a different factor that is in shorter supply. For the rate to plateau, it must be true that another necessary input has become the 'limiting factor,' preventing any further increase in efficiency regardless of how much of the first variable is added.",
+              "Increasing an input like light or CO2 will boost the production rate until the system reaches a saturation point. At this stage, the rate plateaus because the chemical machinery is working at its maximum capacity given the availability of other resources. This suggests that the system's total output is always dictated by whichever essential requirement is furthest from its own optimum level."
+            ],
+            "hint": "Consider how a shortage of one resource can act as a brake on the entire production process."
+          },
+          {
+            "id": "BIO-6-1B-INT-2",
+            "questionText": "Evaluate how the interaction of multiple environmental variables determines the maximum efficiency of a biological system. In your answer, include: (1) the three main factors that regulate production speed, (2) how these interactions are represented on a multi-line graph, (3) the definition of an optimum state for the system, and (4) the method used to diagnose which specific factor is currently restricting the rate. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Lists light intensity, carbon dioxide concentration, and temperature as the primary factors.",
+              "Explains that multi-line graphs show how the rate changes when one factor is adjusted while another is held at a different fixed level.",
+              "Defines the optimum as the ideal combination of all factors for maximum rate.",
+              "Explains that a higher plateau on a graph indicates the previous limiting factor has been increased.",
+              "Describes the diagnostic process: the limiting factor is the one that, when increased, causes an increase in the rate.",
+              "Maintains technical precision regarding the interaction of variables.",
+              "Addresses the leveling off of lines at different heights based on secondary variables."
+            ],
+            "expectedAnswer": [
+              "The rate of production is regulated by the interaction of light, carbon dioxide, and temperature, which are represented on complex graphs where different lines show the rate under varying fixed conditions. An optimum state is reached when all these factors are balanced to allow for the highest possible output without any single variable acting as a bottleneck. To diagnose the limiting factor, you must identify which specific variable, when increased, results in a corresponding increase in the rate of production; on a graph, this is shown by the line that plateaus at a higher level when a second variable is adjusted.",
+              "• The process is governed by three main inputs: light intensity, carbon dioxide levels, and temperature.\n• Multi-line graphs demonstrate interactions by showing that the rate plateaus at different heights depending on the availability of a secondary factor.\n• The optimum state occurs when all environmental conditions are perfectly tuned to allow for the maximum possible rate of production.\n• The limiting factor is diagnosed by observing which variable's increase leads to a higher rate of output, effectively 'releasing' the system from its current plateau."
+            ],
+            "hint": "Think about how you can tell which factor is 'holding back' the process by looking at where the lines on a graph level off."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1B-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "BIO-6-1B-SR-1",
+            "questionText": "What term is used to describe the speed at which a process or change occurs over time?",
+            "expectedAnswer": [
+              "Rate",
+              "The rate",
+              "Process rate"
+            ],
+            "hint": "Think of a word used to measure how fast something happens.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-6-1B-SR-2",
+            "questionText": "What is the name of the biological process that plants use to produce energy from light and carbon dioxide?",
+            "expectedAnswer": [
+              "Photosynthesis",
+              "Photosynthesising",
+              "Photo-synthesis"
+            ],
+            "hint": "It is the main subject of this lesson.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-6-1B-SR-3",
+            "questionText": "What term is used to describe the amount of a substance, such as a gas, found in a specific volume?",
+            "expectedAnswer": [
+              "Concentration",
+              "Gas concentration",
+              "The concentration"
+            ],
+            "hint": "This word describes how much of a substance is present in a mixture.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Limiting Factors of Photosynthesis"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC6.3",
+    "AC6.4"
+  ],
+  "metadata": {
+    "created": "2026-02-27",
+    "updated": "2026-02-27",
+    "version": "1.0",
+    "author": "GCSE Science Learning Team",
+    "taskMode": "CONCEPTUAL_EXPLANATION, GRAPH_INTERPRETATION",
+    "syllabusAnchors": {
+      "unit": "BIO-6",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC6.3",
+        "AC6.4"
+      ],
+      "outOfScopeAC": [
+        "AC6.1",
+        "AC6.2",
+        "AC6.5",
+        "AC6.6",
+        "AC6.7",
+        "AC6.8a",
+        "AC6.8b",
+        "AC6.9",
+        "AC6.10",
+        "AC6.11B",
+        "AC6.12",
+        "AC6.13"
+      ]
+    },
+    "scope": {
+      "inScope": "The biological effects and graphical representations of temperature, light, and CO2 as limiting factors and their interactions.",
+      "outOfScope": "Practical investigation procedures (Core Practical 6.5) and mathematical inverse square law calculations (6.6).",
+      "rationale": "Focusing on the conceptual understanding of limiting factors provides the necessary foundation before students apply these concepts to practical data or mathematical models."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": true,
+      "specificScope": "Focus exclusively on the relationship between environmental variables and the rate of reaction."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The reaction stops when the graph line goes flat.",
+        "correction": "A flat line means the reaction is still happening at a steady, maximum speed, not that it has stopped.",
+        "relatedAC": "AC6.3"
+      },
+      {
+        "misconception": "Temperature and light affect the plant in the same way.",
+        "correction": "Light provides energy, but temperature affects enzyme shape; too much light just plateaus, but too much heat causes Denaturation.",
+        "relatedAC": "AC6.3"
+      },
+      {
+        "misconception": "If the line is horizontal, the plant has stopped photosynthesizing.",
+        "correction": "The horizontal line indicates a steady Rate of Reaction that is no longer increasing because a different Limiting Factor has taken over.",
+        "relatedAC": "AC6.4"
+      }
+    ],
+    "generationScore": 94,
+    "generationScoreDetails": {
+      "originalScore": 94,
+      "finalScore": 94,
+      "wasRefined": false,
+      "generatedAt": "2026-02-27T17:00:54.341Z",
+      "source": "phase10-13"
+    }
+  }
+}

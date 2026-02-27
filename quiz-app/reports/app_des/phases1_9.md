@@ -1,5 +1,7 @@
 # Phases 1-9 Prompt System: Complete Explanation
 
+Last verified: 2026-02-27
+
 ## 1) What this is (high-level, no prior context required)
 
 This app generates a full lesson by running a **9-phase pipeline**.  

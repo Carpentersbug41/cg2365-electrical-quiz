@@ -1,6 +1,6 @@
 # Quiz System Documentation (DB-Backed Question Bank + Run/Review + Duplicate Control Pipeline)
 
-Last updated: 2026-02-18  
+Last updated: 2026-02-27  
 Project root: `C:\Users\carpe\Desktop\hs_quiz\quiz-app`
 
 ## 1. Scope
@@ -378,6 +378,9 @@ Capabilities:
 - Duplicate operations:
   - load duplicate cluster report for selected scope
   - retire duplicate cluster members while keeping selected canonical item
+- Item operations:
+  - browse scoped question items
+  - run admin quality-check diagnostics
 - Batch trial operations:
   - run batch-50 quality trial
   - optional context injections (one line per instruction/snippet)
@@ -445,6 +448,8 @@ Guarantee:
 - `POST /api/admin/questions/runs/:run_id/start`
 - `POST /api/admin/questions/runs/:run_id/cancel`
 - `GET /api/admin/questions/runs/:run_id/drafts`
+- `GET /api/admin/questions/items`
+- `GET /api/admin/questions/quality-check`
 
 ### Review Actions
 
@@ -479,6 +484,7 @@ Approval guard:
 
 - `POST /api/admin/questions/:question_id/retire`
 - `POST /api/admin/questions/:question_id/delete`
+- `POST /api/admin/questions/:question_id/restore`
 
 ## 11. Security and RLS
 

@@ -1,6 +1,6 @@
 # Module Planner vNext - Technical Documentation
 
-Last verified: 2026-02-17
+Last verified: 2026-02-27
 Primary UI route: `/admin/module`
 Primary API routes: `/api/admin/module/*`
 Library root: `src/lib/module_planner/*`
@@ -47,6 +47,7 @@ API:
 - `src/app/api/admin/module/_utils.ts`
 - `src/app/api/admin/module/runs/route.ts`
 - `src/app/api/admin/module/runs/[id]/route.ts`
+- `src/app/api/admin/module/syllabus/clear/route.ts`
 - `src/app/api/admin/module/syllabus/populate/route.ts`
 - `src/app/api/admin/module/[id]/m0-distill/route.ts`
 - `src/app/api/admin/module/[id]/m1-analyze/route.ts`
@@ -345,6 +346,7 @@ Bulk (gated):
 
 Syllabus ingestion:
 - `POST /api/admin/module/syllabus/populate`
+- `POST /api/admin/module/syllabus/clear`
 - `POST /api/syllabus/upload`
 - `GET /api/syllabus/upload`
 

@@ -205,7 +205,7 @@ export default function GeneratePage() {
     unit: 202,
     lessonId: '',
     topic: '',
-    layout: 'auto',
+    layout: 'split-vis',
     prerequisites: [],
     mustHaveTopics: '',
     additionalInstructions: '',
@@ -562,7 +562,7 @@ export default function GeneratePage() {
       unit: 202,
       lessonId: '',
       topic: '',
-      layout: 'auto',
+      layout: 'split-vis',
       prerequisites: [],
       mustHaveTopics: '',
       additionalInstructions: '',
@@ -894,9 +894,9 @@ export default function GeneratePage() {
                   className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:text-white"
                   disabled={status.stage === 'generating'}
                 >
-                  <option value="auto">Auto (infer from content)</option>
-                  <option value="split-vis">Split-Vis (diagram + content)</option>
+                  <option value="split-vis">Split-Vis (diagram + content, default)</option>
                   <option value="linear-flow">Linear Flow (single column)</option>
+                  <option value="auto">Auto (infer from content)</option>
                 </select>
               </div>
 

@@ -1,5 +1,7 @@
 # Scoring Phases: Complete Explanation (High-Level + Low-Level + Prompts)
 
+Last verified: 2026-02-27
+
 ## 1) High-level overview
 
 The app has a post-generation scoring/refinement pipeline that runs after phases 1-9 assemble a lesson.

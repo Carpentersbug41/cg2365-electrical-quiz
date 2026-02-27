@@ -1481,7 +1481,7 @@ function coerceLessonBlueprintCandidate(value: unknown, expected: LessonDraftExp
     (masterBlueprintCandidate && isRecord(masterBlueprintCandidate.identity)
       ? toCleanString(masterBlueprintCandidate.identity.layout)
       : null);
-  const layout = layoutCandidate === 'split-vis' || layoutCandidate === 'linear-flow' ? layoutCandidate : 'linear-flow';
+  const layout = layoutCandidate === 'split-vis' || layoutCandidate === 'linear-flow' ? layoutCandidate : 'split-vis';
 
   const acAnchors = toStringArray(value.acAnchors ?? value.coversAcKeys ?? value.covers_ac_keys);
   const mustHaveTopics = toStringArray(value.mustHaveTopics ?? value.must_have_topics);

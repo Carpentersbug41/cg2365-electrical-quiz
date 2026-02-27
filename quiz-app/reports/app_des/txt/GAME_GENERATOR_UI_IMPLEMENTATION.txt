@@ -1,6 +1,6 @@
 # Microbreak Game Generator UI - Complete Implementation Guide
 
-Last verified: 2026-02-17  
+Last verified: 2026-02-27  
 Status: Implemented and active  
 Scope: Admin UI, API, game generation engine, lesson mutation, runtime rendering, telemetry
 
@@ -74,6 +74,12 @@ Active game type union:
 - `tap-label`
 - `quick-win`
 
+Current admin UI selectable types:
+- `matching`
+- `sorting`
+- `spot-error`
+- `quick-win`
+
 Block wrapper:
 - `type: "microbreak"`
 - `content.breakType: "game"` (or `"rest"` for non-game breaks)
@@ -103,7 +109,7 @@ Block wrapper:
 - Runtime shape: `items: [{ id, label, correctPosition }]`, optional `imageUrl`.
 - Typical use: Diagram/component identification checkpoints.
 - Best for: Visual naming and component recall.
-- Current implementation note: Runtime fully supports this type, but LLM prompt formatting in `gameGenerator.ts` currently has explicit templates for matching/sorting/spot-error/quick-win only. `tap-label` can still be requested and may be generated, but shape quality depends on model output and should be validated in preview.
+- Current implementation note: Runtime renderer supports this type, but generation currently marks `tap-label` as unavailable (`tap-label temporarily disabled`) in game feasibility checks.
 
 `quick-win`
 - What it is: Fast recall sprint with short typed answers.

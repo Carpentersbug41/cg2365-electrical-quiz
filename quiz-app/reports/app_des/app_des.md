@@ -1,6 +1,6 @@
 # C&G 2365 Quiz App - Current Implementation Documentation
 
-Last verified: 2026-02-18
+Last verified: 2026-02-27
 Status: Active implementation reference
 Scope: Current code behavior only (not roadmap)
 
@@ -47,6 +47,7 @@ From `package.json`:
 
 Implemented `page.tsx` routes:
 - `/`
+- `/admin`
 - `/learn`
 - `/learn/[lessonId]`
 - `/learn/[lessonId]/quiz`
@@ -56,8 +57,11 @@ Implemented `page.tsx` routes:
 - `/generate-quiz`
 - `/admin/module`
 - `/admin/generate-games`
+- `/admin/questions`
+- `/admin/simulations`
 - `/auth/sign-in`
 - `/auth/callback`
+- `/circuit-simm-only`
 - `/simulations/*`
 - `/test-generation`
 
@@ -69,6 +73,7 @@ Implemented `route.ts` endpoints:
 - `/api/admin/generate-games`
 - `/api/admin/module/runs`
 - `/api/admin/module/runs/:id`
+- `/api/admin/module/syllabus/clear`
 - `/api/admin/module/syllabus/populate`
 - `/api/admin/module/:id/m0-distill`
 - `/api/admin/module/:id/m1-analyze`
@@ -103,20 +108,30 @@ Implemented `route.ts` endpoints:
 - `/api/admin/questions/runs/:run_id/start`
 - `/api/admin/questions/runs/:run_id/cancel`
 - `/api/admin/questions/runs/:run_id/drafts`
+- `/api/admin/questions/items`
+- `/api/admin/questions/quality-check`
 - `/api/admin/questions/:question_id/approve`
 - `/api/admin/questions/:question_id/reject`
 - `/api/admin/questions/:question_id/edit`
+- `/api/admin/questions/:question_id/retire`
+- `/api/admin/questions/:question_id/delete`
+- `/api/admin/questions/:question_id/restore`
 - `/api/admin/questions/duplicates`
 - `/api/admin/questions/duplicates/resolve`
+- `/api/admin/questions/trials/batch-quality`
+- `/api/admin/simulations/clone-to-lesson`
+- `/api/quiz-feedback-chat`
+- `/api/quiz-feedback-report`
+- `/api/syllabus/metadata`
 
 ---
 
 ## 4. Content Corpus
 
 Current local corpus in repo:
-- Lesson JSON files in `src/data/lessons`: 44
-- Quiz/question source files (`*Questions.ts`) in `src/data/questions`: 49
-- Available lesson index entries (`available: true`) in `src/data/lessons/lessonIndex.ts`: 43
+- Lesson JSON files in `src/data/lessons`: 52
+- Quiz/question source files (`*Questions.ts`) in `src/data/questions`: 86
+- Available lesson index entries (`available: true`) in `src/data/lessons/lessonIndex.ts`: 52
 
 ---
 

@@ -1,10 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { CheckCircle2 } from 'lucide-react';
 import GameWrapper from '../GameWrapper';
 import { MatchingGameContent } from '@/data/lessons/types';
 import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects';
-import { choiceButtonClass } from './buttonStyles';
 
 interface MatchingGameProps {
   content: MatchingGameContent;
@@ -12,60 +12,96 @@ interface MatchingGameProps {
   onSkip: () => void;
 }
 
+interface MatchingItem {
+  id: string;
+  text: string;
+}
+
+function shuffleArray<T>(array: T[]): T[] {
+  const next = [...array];
+  for (let i = next.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [next[i], next[j]] = [next[j], next[i]];
+  }
+  return next;
+}
+
 export default function MatchingGame({ content, onComplete, onSkip }: MatchingGameProps) {
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
-  const [matches, setMatches] = useState<Record<string, string>>({});
+  const [selectedRight, setSelectedRight] = useState<string | null>(null);
+  const [matchedPairs, setMatchedPairs] = useState<Set<string>>(new Set());
+  const [wrongMatch, setWrongMatch] = useState<{ left: string; right: string } | null>(null);
   const [completed, setCompleted] = useState(false);
-  const [wrongMatch, setWrongMatch] = useState<string | null>(null);
 
   // Shuffle arrays for display - initialize as empty to avoid hydration mismatch
-  const [leftItems, setLeftItems] = useState<string[]>([]);
-  const [rightItems, setRightItems] = useState<string[]>([]);
+  const [leftItems, setLeftItems] = useState<MatchingItem[]>([]);
+  const [rightItems, setRightItems] = useState<MatchingItem[]>([]);
+  const completeHandlerRef = useRef<((score?: number, accuracy?: number) => void) | null>(null);
+  const completionSentRef = useRef(false);
 
   // Shuffle only on client side after mount to avoid hydration mismatch
   useEffect(() => {
-    setLeftItems([...content.pairs].sort(() => Math.random() - 0.5).map((p) => p.left));
-    setRightItems([...content.pairs].sort(() => Math.random() - 0.5).map((p) => p.right));
+    const indexedPairs = content.pairs.map((pair, index) => ({
+      id: `pair-${index}`,
+      left: pair.left,
+      right: pair.right,
+    }));
+    setLeftItems(shuffleArray(indexedPairs).map((pair) => ({ id: pair.id, text: pair.left })));
+    setRightItems(shuffleArray(indexedPairs).map((pair) => ({ id: pair.id, text: pair.right })));
+    setSelectedLeft(null);
+    setSelectedRight(null);
+    setMatchedPairs(new Set());
+    setWrongMatch(null);
+    setCompleted(false);
+    completionSentRef.current = false;
   }, [content.pairs]);
 
-  const handleLeftClick = (item: string) => {
-    if (matches[item]) return; // Already matched
+  useEffect(() => {
+    if (!selectedLeft || !selectedRight) return;
+
+    if (selectedLeft === selectedRight) {
+      const matchedId = selectedLeft;
+      playSound('success', 0.45);
+      setTimeout(() => {
+        setMatchedPairs((prev) => {
+          const next = new Set(prev);
+          next.add(matchedId);
+
+          if (next.size === content.pairs.length && !completionSentRef.current) {
+            completionSentRef.current = true;
+            setCompleted(true);
+            completeHandlerRef.current?.(content.pairs.length, 100);
+          }
+
+          return next;
+        });
+        setSelectedLeft(null);
+        setSelectedRight(null);
+      }, 600);
+      return;
+    }
+
+    const wrongLeft = selectedLeft;
+    const wrongRight = selectedRight;
+    playSound('failure', 0.45);
+    setWrongMatch({ left: wrongLeft, right: wrongRight });
+    setTimeout(() => {
+      setWrongMatch(null);
+      setSelectedLeft(null);
+      setSelectedRight(null);
+    }, 800);
+  }, [content.pairs.length, selectedLeft, selectedRight]);
+
+  const handleLeftClick = (id: string) => {
+    if (matchedPairs.has(id) || wrongMatch) return;
     playClickSound(0.3);
-    setSelectedLeft(item);
+    setSelectedLeft((current) => (current === id ? null : id));
   };
 
-  const handleRightClick = (item: string, handleComplete: (score?: number, accuracy?: number) => void) => {
-    if (!selectedLeft) return;
-    if (Object.values(matches).includes(item)) return; // Already used
-
+  const handleRightClick = (id: string) => {
+    if (matchedPairs.has(id) || wrongMatch) return;
     playClickSound(0.3);
-
-    // Check if this is a correct match
-    const correctPair = content.pairs.find((p) => p.left === selectedLeft);
-    if (correctPair && correctPair.right === item) {
-      // Correct match
-      playSound('success', 0.5);
-      const newMatches = { ...matches, [selectedLeft]: item };
-      setMatches(newMatches);
-      setSelectedLeft(null);
-
-      // Check if all matched
-      if (Object.keys(newMatches).length === content.pairs.length) {
-        setCompleted(true);
-        const accuracy = 100; // All correct by nature of the game
-        handleComplete(content.pairs.length, accuracy);
-      }
-    } else {
-      // Wrong match - show red flash
-      playSound('failure', 0.5);
-      setWrongMatch(item);
-
-      // Flash red then return to neutral after 800ms
-      setTimeout(() => {
-        setWrongMatch(null);
-        setSelectedLeft(null);
-      }, 800);
-    }
+    setSelectedRight((current) => (current === id ? null : id));
   };
 
   // Wait for arrays to be shuffled before rendering
@@ -98,30 +134,49 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
       onSkip={onSkip}
     >
       {(handleComplete: (score?: number, accuracy?: number) => void) => (
-        <div className="space-y-4">
+        (() => {
+          completeHandlerRef.current = handleComplete;
+          return (
+            <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             {/* Left column */}
             <div className="space-y-2">
               <h3 className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-wider px-1 pb-1">
                 Terms
               </h3>
-              {leftItems.map((item, idx) => (
-                <button
-                  key={`left-${idx}-${item || 'blank'}`}
-                  onClick={() => handleLeftClick(item)}
-                  disabled={completed || !!matches[item]}
-                  style={{ animationDelay: `${idx * 45}ms` }}
-                  className={`w-full p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide ${
-                    matches[item]
-                      ? `microbreak-correct ${choiceButtonClass('matched')}`
-                      : selectedLeft === item
-                      ? choiceButtonClass('selected')
-                      : choiceButtonClass('idle')
-                  }`}
-                >
-                  <span className="text-base md:text-xl font-medium">{item}</span>
-                </button>
-              ))}
+              {leftItems.map((item, idx) => {
+                const isMatched = matchedPairs.has(item.id);
+                const isSelected = selectedLeft === item.id;
+                const isWrong = wrongMatch?.left === item.id;
+                const isMatching =
+                  selectedLeft !== null &&
+                  selectedRight !== null &&
+                  selectedLeft === selectedRight &&
+                  selectedLeft === item.id;
+
+                return (
+                  <button
+                    key={`left-${item.id}`}
+                    onClick={() => handleLeftClick(item.id)}
+                    disabled={completed || isMatched || wrongMatch !== null || isMatching}
+                    style={{ animationDelay: `${idx * 45}ms` }}
+                    className={`
+                      w-full relative p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide
+                      rounded-2xl border-2 transition-all duration-200
+                      ${isMatched ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-default opacity-40' :
+                        isMatching ? 'bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
+                        isWrong ? 'bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
+                        isSelected ? 'bg-indigo-50 border-indigo-500 text-indigo-900 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20 scale-[1.02]' :
+                        'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5'}
+                    `}
+                  >
+                    <span className="text-base md:text-xl font-medium">{item.text}</span>
+                    {isMatched && (
+                      <CheckCircle2 className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-emerald-500 opacity-50" />
+                    )}
+                  </button>
+                );
+              })}
             </div>
 
             {/* Right column */}
@@ -130,22 +185,35 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                 Definitions
               </h3>
               {rightItems.map((item, idx) => {
-                const isMatched = Object.values(matches).includes(item);
+                const isMatched = matchedPairs.has(item.id);
+                const isSelected = selectedRight === item.id;
+                const isWrong = wrongMatch?.right === item.id;
+                const isMatching =
+                  selectedLeft !== null &&
+                  selectedRight !== null &&
+                  selectedLeft === selectedRight &&
+                  selectedRight === item.id;
+
                 return (
                   <button
-                    key={`right-${idx}-${item || 'blank'}`}
-                    onClick={() => handleRightClick(item, handleComplete)}
-                    disabled={completed || isMatched || !selectedLeft}
+                    key={`right-${item.id}`}
+                    onClick={() => handleRightClick(item.id)}
+                    disabled={completed || isMatched || wrongMatch !== null || isMatching}
                     style={{ animationDelay: `${idx * 55}ms` }}
-                    className={`w-full p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide ${
-                      isMatched
-                        ? `microbreak-correct ${choiceButtonClass('matched')}`
-                        : wrongMatch === item
-                        ? `microbreak-wrong ${choiceButtonClass('wrong')}`
-                        : choiceButtonClass('idle')
-                    }`}
+                    className={`
+                      w-full relative p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide
+                      rounded-2xl border-2 transition-all duration-200
+                      ${isMatched ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-default opacity-40' :
+                        isMatching ? 'bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
+                        isWrong ? 'bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
+                        isSelected ? 'bg-indigo-50 border-indigo-500 text-indigo-900 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20 scale-[1.02]' :
+                        'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5'}
+                    `}
                   >
-                    <span className="text-sm md:text-lg leading-relaxed">{item}</span>
+                    <span className="text-sm md:text-lg leading-relaxed">{item.text}</span>
+                    {isMatched && (
+                      <CheckCircle2 className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-emerald-500 opacity-50" />
+                    )}
                   </button>
                 );
               })}
@@ -157,7 +225,9 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
               Perfect! All matched correctly.
             </div>
           )}
-        </div>
+            </div>
+          );
+        })()
       )}
     </GameWrapper>
   );

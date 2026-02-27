@@ -1,12 +1,8 @@
 # Phases 10-13: Lesson Improvement Contracts (Current Implementation)
 
 Version: 2.1
-Last verified against code: 2026-02-17
+Last verified against code: 2026-02-27
 Scope: `Phase10_Score`, `Phase12_Refine`, `Phase13_Rescore`, and orchestration in `SequentialLessonGenerator`
-
-Note (2026-02-17 sync):
-- Module Planner now stops at M5 for planning and uses explicit per-lesson generation actions.
-- No change to Phase 10-13 lesson generator contracts documented here.
 
 ---
 
@@ -31,8 +27,8 @@ Activation rule:
 - refinement path runs when `initialScore.total < 95`
 - if score is `>= 95`, refine path is skipped
 
-Compatibility note:
-- generator currently passes `96` as the Phase 13 `threshold` argument, but Phase 13 acceptance is comparison-based and does not require crossing that threshold.
+Runtime note:
+- `SequentialLessonGenerator` passes `refinementConfig.scoreThreshold` into the rescore stage and final quality-gate metadata.
 
 ---
 

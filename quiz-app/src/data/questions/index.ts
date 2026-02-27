@@ -90,11 +90,13 @@ import { introductionToWavesQuestions } from './introductionToWavesQuestions';
 import { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQuestions';
 import { electronicComponentsAndPrinciplesQuestions } from './electronicComponentsAndPrinciplesQuestions';
 import { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
+import { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPhotosynthesisQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...limitingFactorsOfPhotosynthesisQuestions,
   ...photosynthesisAndProducersQuestions,
   ...electronicComponentsAndPrinciplesQuestions,
   ...eukaryoticCellStructuresQuestions,
@@ -272,6 +274,7 @@ export { introductionToWavesQuestions } from './introductionToWavesQuestions';
 export { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQuestions';
 export { electronicComponentsAndPrinciplesQuestions } from './electronicComponentsAndPrinciplesQuestions';
 export { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
+export { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPhotosynthesisQuestions';
 
 /**
  * Filter questions by tags
