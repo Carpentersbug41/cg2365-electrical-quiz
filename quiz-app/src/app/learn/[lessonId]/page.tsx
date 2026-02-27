@@ -66,7 +66,7 @@ import lesson203_3L1A from '@/data/lessons/2365/203-3L1A-alarm-emergency-systems
 import lessonPHY_4_1A from '@/data/lessons/gcse/physics/PHY-4-1A-introduction-to-waves.json';
 import lessonBIO_1_1A from '@/data/lessons/gcse/biology/BIO-1-1A-eukaryotic-cell-structures.json';
 import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-principles.json';
-import lessonBIO_6_1A from '@/data/lessons/BIO-6-1A-photosynthesis-and-producers.json';
+import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-and-producers.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {

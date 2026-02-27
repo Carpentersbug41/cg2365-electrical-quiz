@@ -330,10 +330,28 @@ export default function ModulePlannerPage() {
         }
 
         const contentType = response.headers.get('content-type') ?? '';
-        const payload = contentType.includes('application/json')
-          ? await response.json()
-          : { rawBody: await response.text() };
-        const data = (payload && typeof payload === 'object' ? payload : {}) as Record<string, unknown>;
+        const rawBody = await response.text();
+        const hasBody = rawBody.trim().length > 0;
+        const expectsJson = /\bjson\b/i.test(contentType);
+        let data: Record<string, unknown> = {};
+
+        if (hasBody) {
+          if (expectsJson) {
+            try {
+              const parsed = JSON.parse(rawBody) as unknown;
+              data = parsed && typeof parsed === 'object'
+                ? (parsed as Record<string, unknown>)
+                : { value: parsed };
+            } catch {
+              if (response.ok) {
+                throw new Error(`Invalid JSON response from ${url}`);
+              }
+              data = { rawBody };
+            }
+          } else {
+            data = { rawBody };
+          }
+        }
         if (!response.ok || data.success === false) {
           const fallbackMessage = (() => {
             if (typeof data.rawBody === 'string' && data.rawBody.trim().length > 0) {
