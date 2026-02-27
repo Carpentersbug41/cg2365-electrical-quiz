@@ -102,7 +102,10 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
     parts: [{ text: turn.content }],
   })) as Array<{ role: 'user' | 'model'; parts: Array<{ text: string }> }>;
 
-  if (history.length === 0) {
+  const firstUserIndex = history.findIndex((turn) => turn.role === 'user');
+  const validHistory = firstUserIndex >= 0 ? history.slice(firstUserIndex) : [];
+
+  if (validHistory.length === 0) {
     const first = await model.generateContent({
       contents: [{ role: 'user', parts: [{ text: NEXT_QUESTION_PROMPT }] }],
       generationConfig: {
@@ -114,7 +117,7 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
   }
 
   const chat = model.startChat({
-    history,
+    history: validHistory,
     generationConfig: {
       temperature: 0.6,
       maxOutputTokens: 120,
