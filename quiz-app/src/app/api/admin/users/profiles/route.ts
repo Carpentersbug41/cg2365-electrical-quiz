@@ -12,6 +12,9 @@ type ProfileRow = {
   updated_at: string;
 };
 
+const AUTH_USERS_PER_PAGE = 1000;
+const MAX_AUTH_USER_PAGES = 20;
+
 function normalizeSummary(value: unknown): string | null {
   if (value == null) return null;
   if (typeof value !== 'string') return null;
@@ -22,6 +25,29 @@ function normalizeSummary(value: unknown): string | null {
 
 function isUuid(value: string): boolean {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(value);
+}
+
+async function buildEmailLookup(
+  adminClient: NonNullable<ReturnType<typeof createSupabaseAdminClient>>
+): Promise<Map<string, string | null>> {
+  const lookup = new Map<string, string | null>();
+  for (let page = 1; page <= MAX_AUTH_USER_PAGES; page += 1) {
+    const { data, error } = await adminClient.auth.admin.listUsers({
+      page,
+      perPage: AUTH_USERS_PER_PAGE,
+    });
+    if (error) throw error;
+
+    const users = data.users ?? [];
+    for (const user of users) {
+      lookup.set(user.id, user.email ?? null);
+    }
+
+    if (users.length < AUTH_USERS_PER_PAGE) {
+      break;
+    }
+  }
+  return lookup;
 }
 
 export async function GET(request: NextRequest) {
@@ -47,18 +73,7 @@ export async function GET(request: NextRequest) {
       throw profilesError;
     }
 
-    const { data: usersData, error: usersError } = await adminClient.auth.admin.listUsers({
-      page: 1,
-      perPage: 1000,
-    });
-
-    if (usersError) {
-      throw usersError;
-    }
-
-    const emailById = new Map<string, string | null>(
-      (usersData.users ?? []).map((user) => [user.id, user.email ?? null])
-    );
+    const emailById = await buildEmailLookup(adminClient);
 
     const rows = (profiles ?? []).map((row) => {
       const profile = row as ProfileRow;
