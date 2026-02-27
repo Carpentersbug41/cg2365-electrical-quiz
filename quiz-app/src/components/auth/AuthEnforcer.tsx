@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { courseHref } from '@/lib/routing/courseHref';
 
 interface AuthEnforcerProps {
   children: ReactNode;
@@ -10,6 +11,7 @@ interface AuthEnforcerProps {
 
 const COURSE_PREFIX = '/2365';
 const PUBLIC_PATH_PREFIXES = ['/auth'];
+const ONBOARDING_PATH = '/onboarding';
 
 function normalizePathname(pathname: string): string {
   if (pathname === COURSE_PREFIX) {
@@ -23,6 +25,14 @@ function normalizePathname(pathname: string): string {
 
 function isPublicPath(pathname: string): boolean {
   return PUBLIC_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix));
+}
+
+function isOnboardingPath(pathname: string): boolean {
+  return pathname === ONBOARDING_PATH || pathname.startsWith(`${ONBOARDING_PATH}/`);
+}
+
+function hasOnboardingSummary(value: unknown): boolean {
+  return typeof value === 'string' && value.trim().length > 0;
 }
 
 export default function AuthEnforcer({ children }: AuthEnforcerProps) {
@@ -66,6 +76,25 @@ export default function AuthEnforcer({ children }: AuthEnforcerProps) {
         return;
       }
 
+      if (!isOnboardingPath(currentPath)) {
+        const { data: profile, error: profileError } = await client
+          .from('profiles')
+          .select('tutor_profile_summary')
+          .eq('user_id', data.user.id)
+          .maybeSingle<{ tutor_profile_summary: string | null }>();
+
+        if (!isActive) {
+          return;
+        }
+
+        if (profileError || !hasOnboardingSummary(profile?.tutor_profile_summary ?? null)) {
+          const nextTarget = `${currentPath}${searchParams.toString() ? `?${searchParams.toString()}` : ''}`;
+          router.replace(`${courseHref('/onboarding')}?next=${encodeURIComponent(nextTarget)}`);
+          setAuthorized(false);
+          return;
+        }
+      }
+
       setAuthorized(true);
     };
 
@@ -83,7 +112,7 @@ export default function AuthEnforcer({ children }: AuthEnforcerProps) {
         return;
       }
 
-      setAuthorized(true);
+      void validateSession();
     });
 
     return () => {

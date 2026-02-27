@@ -2,11 +2,17 @@
 
 import Link from 'next/link';
 import { FormEvent, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import type { User } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { courseHref } from '@/lib/routing/courseHref';
 
+function isSafeRedirect(value: string | null): value is string {
+  return typeof value === 'string' && value.startsWith('/');
+}
+
 export default function SignInPage() {
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
@@ -44,9 +50,12 @@ export default function SignInPage() {
     }
 
     setIsSubmitting(true);
+    const nextTarget = isSafeRedirect(searchParams.get('next'))
+      ? searchParams.get('next')!
+      : courseHref('/onboarding');
     const redirectTo =
       typeof window !== 'undefined'
-        ? `${window.location.origin}/auth/callback?next=${courseHref('/learn')}`
+        ? `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextTarget)}`
         : undefined;
 
     const { error } = await client.auth.signInWithOtp({
