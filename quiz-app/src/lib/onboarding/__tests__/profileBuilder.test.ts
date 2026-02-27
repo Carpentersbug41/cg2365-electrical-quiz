@@ -53,6 +53,15 @@ describe('buildTutorProfile', () => {
       { role: 'user' as const, content: 'I like football and coding.' },
     ];
     const output = {
+      preferred_name: 'Sam',
+      age_band: '16_17',
+      current_course_level: 'GCSE Physics + 2365 Level 2',
+      goal: 'top_grade',
+      study_time_minutes_per_week: '60',
+      teaching_style: 'mixed',
+      feedback_strictness: 'normal',
+      detail_level: 'medium',
+      example_themes: ['sport', 'gaming'],
       learning_goals: ['pass exams', 'pass exams', 'understand concepts'],
       hobbies: ['football', 'Football'],
       interests: ['coding'],
@@ -66,6 +75,9 @@ describe('buildTutorProfile', () => {
 
     expect(built.profileJson.learning_goals).toEqual(['pass exams', 'understand concepts']);
     expect(built.profileJson.hobbies).toEqual(['football']);
+    expect(built.profileJson.preferred_name).toBe('Sam');
+    expect(built.profileJson.goal).toBe('top_grade');
+    expect(built.profileJson.example_themes).toEqual(['sport', 'gaming']);
     expect(built.profileSummary).toBe('Sentence one. Sentence two! Sentence three?');
   });
 

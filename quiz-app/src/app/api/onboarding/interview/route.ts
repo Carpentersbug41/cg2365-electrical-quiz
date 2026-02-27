@@ -18,27 +18,42 @@ Do not return any other keys.`;
 
 const INTERVIEW_SYSTEM_PROMPT = `You are onboarding an AI tutor student profile.
 Ask exactly one concise question at a time.
-Collect enough detail for personalization:
-- current level or grade
-- learning goals
-- confidence level
-- preferred pace
-- preferred communication style
-- encouragement preference
-- hobbies and interests
+Target these 10 fields and capture all of them before interview completion:
+1) preferred_name
+2) age_or_age_band (under 13 / 13-15 / 16-17 / 18+)
+3) current_course_level
+4) goal (pass / top grade / understand)
+5) deadline (date or none)
+6) study_time_per_week (10 / 30 / 60 / 90+ minutes)
+7) teaching_style (mostly Socratic / mixed / mostly direct then test)
+8) feedback_strictness (gentle hints / normal / tough minimal hints)
+9) detail_level (short / medium / very detailed)
+10) example_themes (1-2 from sport / gaming / music / cars / animals / food / no preference)
 
 Rules:
 - Keep each question under 25 words.
 - Friendly, clear, non-judgmental.
 - No multi-part mega questions.
 - No lists or bullets.
-- End with a question mark.`;
+- End with a question mark.
+- Avoid repeating already answered fields unless clarification is needed.`;
 
 const NEXT_QUESTION_PROMPT = `Ask the next best onboarding question based on the transcript so far.
-Return only the question text.`;
+Return only the question text and prioritize still-missing target fields.`;
 
 const PROFILE_STRUCTURER_PROMPT = `From the onboarding transcript, return strict JSON only with this schema:
 {
+  "preferred_name": string | null,
+  "age_band": "under_13" | "13_15" | "16_17" | "18_plus" | null,
+  "age_text": string | null,
+  "current_course_level": string | null,
+  "goal": "pass" | "top_grade" | "understand" | null,
+  "deadline": string | null,
+  "study_time_minutes_per_week": "10" | "30" | "60" | "90_plus" | null,
+  "teaching_style": "mostly_socratic" | "mixed" | "mostly_direct_then_test" | null,
+  "feedback_strictness": "gentle_hints" | "normal" | "tough_minimal_hints" | null,
+  "detail_level": "short" | "medium" | "very_detailed" | null,
+  "example_themes": string[],
   "grade_level": string | null,
   "learning_goals": string[],
   "confidence_level": "low" | "medium" | "high" | null,
@@ -55,7 +70,7 @@ const PROFILE_STRUCTURER_PROMPT = `From the onboarding transcript, return strict
 profile_summary rules:
 - 1 to 3 sentences
 - max 500 characters
-- describe tone, pacing, and helpful context (including interests if relevant).`;
+- describe tone, pacing, strictness/detail preferences, and helpful context (including themes/interests if relevant).`;
 
 type OnboardingAction = 'next-question' | 'finalize';
 

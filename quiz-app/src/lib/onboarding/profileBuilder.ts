@@ -6,6 +6,17 @@ export interface InterviewTurn {
 }
 
 export interface TutorProfileModelOutput {
+  preferred_name: string | null;
+  age_band: 'under_13' | '13_15' | '16_17' | '18_plus' | null;
+  age_text: string | null;
+  current_course_level: string | null;
+  goal: 'pass' | 'top_grade' | 'understand' | null;
+  deadline: string | null;
+  study_time_minutes_per_week: '10' | '30' | '60' | '90_plus' | null;
+  teaching_style: 'mostly_socratic' | 'mixed' | 'mostly_direct_then_test' | null;
+  feedback_strictness: 'gentle_hints' | 'normal' | 'tough_minimal_hints' | null;
+  detail_level: 'short' | 'medium' | 'very_detailed' | null;
+  example_themes: string[];
   grade_level: string | null;
   learning_goals: string[];
   confidence_level: 'low' | 'medium' | 'high' | null;
@@ -173,11 +184,24 @@ function normalizeSummary(summary: unknown): string {
 }
 
 function buildFallbackSummary(profile: Omit<TutorProfileModelOutput, 'profile_summary'>): string {
-  const tone = profile.communication_style ?? 'balanced';
+  const tone =
+    profile.feedback_strictness === 'tough_minimal_hints'
+      ? 'direct'
+      : profile.feedback_strictness === 'gentle_hints'
+        ? 'supportive'
+        : profile.communication_style ?? 'balanced';
   const pace = profile.preferred_pace ?? 'medium';
   const goalsText =
-    profile.learning_goals.length > 0 ? profile.learning_goals.slice(0, 2).join(' and ') : 'steady progress';
-  const interests = [...profile.hobbies, ...profile.interests].slice(0, 2);
+    profile.goal === 'top_grade'
+      ? 'top grades'
+      : profile.goal === 'pass'
+        ? 'passing assessments'
+        : profile.goal === 'understand'
+          ? 'deep understanding'
+          : profile.learning_goals.length > 0
+            ? profile.learning_goals.slice(0, 2).join(' and ')
+            : 'steady progress';
+  const interests = [...profile.example_themes, ...profile.hobbies, ...profile.interests].slice(0, 2);
   const interestsText = interests.length > 0 ? ` Use examples connected to ${interests.join(' and ')}.` : '';
 
   return `Learner prefers a ${tone} tone with ${pace} pacing and is focused on ${goalsText}.${interestsText}`.trim();
@@ -190,6 +214,27 @@ export function buildTutorProfile(
   const source = parsed ?? {};
 
   const profileBase: Omit<TutorProfileModelOutput, 'profile_summary'> = {
+    preferred_name:
+      typeof source.preferred_name === 'string' ? compactWhitespace(source.preferred_name).slice(0, 80) : null,
+    age_band: readEnum(source.age_band, ['under_13', '13_15', '16_17', '18_plus'] as const),
+    age_text: typeof source.age_text === 'string' ? compactWhitespace(source.age_text).slice(0, 40) : null,
+    current_course_level:
+      typeof source.current_course_level === 'string'
+        ? compactWhitespace(source.current_course_level).slice(0, 120)
+        : null,
+    goal: readEnum(source.goal, ['pass', 'top_grade', 'understand'] as const),
+    deadline: typeof source.deadline === 'string' ? compactWhitespace(source.deadline).slice(0, 60) : null,
+    study_time_minutes_per_week: readEnum(source.study_time_minutes_per_week, ['10', '30', '60', '90_plus'] as const),
+    teaching_style: readEnum(
+      source.teaching_style,
+      ['mostly_socratic', 'mixed', 'mostly_direct_then_test'] as const
+    ),
+    feedback_strictness: readEnum(
+      source.feedback_strictness,
+      ['gentle_hints', 'normal', 'tough_minimal_hints'] as const
+    ),
+    detail_level: readEnum(source.detail_level, ['short', 'medium', 'very_detailed'] as const),
+    example_themes: readStringArray(source.example_themes),
     grade_level: typeof source.grade_level === 'string' ? compactWhitespace(source.grade_level).slice(0, 80) : null,
     learning_goals: readStringArray(source.learning_goals ?? source.goals),
     confidence_level: readEnum(source.confidence_level, ['low', 'medium', 'high'] as const),
