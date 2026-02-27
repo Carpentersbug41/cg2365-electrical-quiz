@@ -105,6 +105,23 @@ function isValidInterviewQuestion(question: string): boolean {
   return true;
 }
 
+function logQuestionDebug(context: {
+  stage: string;
+  attempt?: number;
+  transcriptTurns?: number;
+  userTurns?: number;
+  raw?: string;
+  sanitized?: string;
+  valid?: boolean;
+  reason?: string;
+}) {
+  const payload = {
+    ...context,
+    timestamp: new Date().toISOString(),
+  };
+  console.log('[OnboardingQuestionDebug]', JSON.stringify(payload));
+}
+
 async function getClientAndModel() {
   if (!llmClientPromise) {
     llmClientPromise = createLLMClientWithFallback();
@@ -131,6 +148,14 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
 
   const firstUserIndex = history.findIndex((turn) => turn.role === 'user');
   const validHistory = firstUserIndex >= 0 ? history.slice(firstUserIndex) : [];
+  const userTurns = transcript.filter((turn) => turn.role === 'user').length;
+
+  logQuestionDebug({
+    stage: 'start',
+    transcriptTurns: transcript.length,
+    userTurns,
+    reason: validHistory.length === 0 ? 'no-valid-history-yet' : 'chat-history-ready',
+  });
 
   let lastCandidate = '';
 
@@ -143,7 +168,16 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
           maxOutputTokens: 120,
         },
       });
-      lastCandidate = sanitizeQuestion(first.response.text());
+      const rawQuestion = first.response.text();
+      lastCandidate = sanitizeQuestion(rawQuestion);
+      logQuestionDebug({
+        stage: 'attempt-generateContent',
+        attempt,
+        transcriptTurns: transcript.length,
+        userTurns,
+        raw: rawQuestion,
+        sanitized: lastCandidate,
+      });
     } else {
       const chat = model.startChat({
         history: validHistory,
@@ -159,14 +193,50 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
           : `Your previous question was invalid or truncated: "${lastCandidate}".
 Rewrite as a complete, natural, single onboarding question with clear intent. Return only the question text.`;
       const result = await chat.sendMessage(prompt);
-      lastCandidate = sanitizeQuestion(result.response.text());
+      const rawQuestion = result.response.text();
+      lastCandidate = sanitizeQuestion(rawQuestion);
+      logQuestionDebug({
+        stage: 'attempt-chat',
+        attempt,
+        transcriptTurns: transcript.length,
+        userTurns,
+        raw: rawQuestion,
+        sanitized: lastCandidate,
+      });
     }
 
-    if (isValidInterviewQuestion(lastCandidate)) {
+    const valid = isValidInterviewQuestion(lastCandidate);
+    logQuestionDebug({
+      stage: 'attempt-validation',
+      attempt,
+      transcriptTurns: transcript.length,
+      userTurns,
+      sanitized: lastCandidate,
+      valid,
+      reason: valid ? 'accepted' : 'rejected',
+    });
+
+    if (valid) {
+      logQuestionDebug({
+        stage: 'accepted',
+        attempt,
+        transcriptTurns: transcript.length,
+        userTurns,
+        sanitized: lastCandidate,
+        valid: true,
+      });
       return lastCandidate;
     }
   }
 
+  logQuestionDebug({
+    stage: 'failed',
+    transcriptTurns: transcript.length,
+    userTurns,
+    sanitized: lastCandidate,
+    valid: false,
+    reason: 'max-attempts-reached',
+  });
   throw new Error(`Question generation produced invalid output after ${QUESTION_GENERATION_MAX_ATTEMPTS} attempts.`);
 }
 
@@ -233,6 +303,16 @@ export async function POST(request: NextRequest) {
   }
 
   const transcript = sanitizeInterviewTranscript(body.transcript).slice(-MAX_TRANSCRIPT_TURNS);
+  const userTurns = transcript.filter((turn) => turn.role === 'user').length;
+  console.log(
+    '[OnboardingInterviewRequest]',
+    JSON.stringify({
+      action,
+      transcriptTurns: transcript.length,
+      userTurns,
+      timestamp: new Date().toISOString(),
+    })
+  );
 
   try {
     if (action === 'next-question') {
