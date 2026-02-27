@@ -18,7 +18,7 @@ Return ONLY JSON.
 Never include markdown.
 Respect hard constraints and slot count exactly.`;
 
-const GENERATOR_PROMPT = `You are an educational game generator.
+const GENERATOR_BASE_PROMPT = `You are an educational game generator.
 Return ONLY JSON.
 Never include markdown.
 Use only the provided lesson digest.
@@ -113,6 +113,115 @@ function buildAudienceTonePromptSection(profile?: GamePromptProfile): string {
 - Keep game wording and definition-style phrasing aligned to this audience/tone.`;
 }
 
+function buildGameTypePromptSection(gameType: GameType): string {
+  switch (gameType) {
+    case 'matching':
+      return `GAME-TYPE RULES (matching):
+- Generate 4-6 pairs.
+- Left side must be concise terms/labels (prefer 1-4 words).
+- Right side must be concise clues/definitions (prefer <=22 words).
+- CRITICAL: For each pair, the right text must NOT contain the exact left term text.
+- Avoid repetitive starter phrases across right-side definitions.`;
+    case 'sorting':
+      return `GAME-TYPE RULES (sorting):
+- Exactly 2 buckets.
+- At least 6 items.
+- Item text must be short gameplay-ready phrases, not long prose.`;
+    case 'spot-error':
+      return `GAME-TYPE RULES (spot-error):
+- Include one clear scenario.
+- Include >=3 options.
+- Exactly one option must be marked isError=true.`;
+    case 'tap-label':
+      return `GAME-TYPE RULES (tap-label):
+- Include >=3 label items.
+- Use diagram labels from digest when available.
+- Use imageUrl if digest provides one.`;
+    case 'quick-win':
+      return `GAME-TYPE RULES (quick-win):
+- Include >=5 questions.
+- Every answer must be exactly one or two words.
+- Keep question stems concise and recall-focused.`;
+    case 'sequencing':
+      return `GAME-TYPE RULES (sequencing):
+- Include >=4 steps.
+- Provide both shuffled steps and exact correctOrder.`;
+    case 'fill-gap':
+      return `GAME-TYPE RULES (fill-gap):
+- Produce about 5 gaps (minimum 5, maximum 6).
+- Each gap options list must be single-word choices.
+- Keep template concise and gameplay-ready.`;
+    case 'is-correct-why':
+      return `GAME-TYPE RULES (is-correct-why):
+- Provide one declarative statement.
+- Provide exactly one best reason index.
+- Keep reasons concise and grounded in digest facts.`;
+    case 'diagnosis-ranked':
+      return `GAME-TYPE RULES (diagnosis-ranked):
+- Provide one scenario.
+- Provide at least 4 options.
+- Provide exactly two ranked correct indices.`;
+    case 'classify-two-bins':
+      return `GAME-TYPE RULES (classify-two-bins):
+- Provide two meaningful bin labels (not generic "Term/Definition").
+- Provide at least 6 concise items.
+- Use both bins with balanced plausible items.`;
+    case 'scenario-match':
+      return `GAME-TYPE RULES (scenario-match):
+- Provide at least 4 scenario-answer pairs.
+- Keep scenarios brief and specific.
+- Keep answers concise and distinct from distractors.`;
+    case 'formula-build':
+      return `GAME-TYPE RULES (formula-build):
+- Provide prompt, shuffled tokens, correctSequence, timerSeconds.
+- Include at least one distractor token not in correctSequence.
+- Keep formula symbolic, not sentence fragments.`;
+    case 'tap-the-line':
+      return `GAME-TYPE RULES (tap-the-line):
+- Provide >=3 lines.
+- Provide exactly one correctLineIndex in bounds.`;
+    case 'tap-the-word':
+      return `GAME-TYPE RULES (tap-the-word):
+- Provide one sentence and >=3 options.
+- Provide exactly one correctOptionIndex in bounds.`;
+    case 'elimination':
+      return `GAME-TYPE RULES (elimination):
+- Provide one question and >=4 options.
+- Provide exactly one correctIndex in bounds.
+- Add a concise explanation when possible.`;
+    default:
+      return 'GAME-TYPE RULES: Follow strict schema for the requested gameType.';
+  }
+}
+
+function buildSingleGameGenerationPrompt(
+  plan: Plan,
+  digest: LessonDigest,
+  promptProfile?: GamePromptProfile
+): string {
+  const input = {
+    plan,
+    digest,
+    rules: {
+      includeSlotId: true,
+      schemaStrict: true,
+      digestOnly: true,
+      singleGameOnly: true,
+    },
+  };
+
+  return `${GENERATOR_BASE_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\n${buildGameTypePromptSection(plan.gameType)}\n\nGenerate exactly ONE game for the provided slot.\nInput:\n${JSON.stringify(input, null, 2)}\n\nReturn exactly:\n{"slotId":"${plan.slotId}","content":{"breakType":"game","gameType":"${plan.gameType}",...}}`;
+}
+
+function buildSingleGameRepairPrompt(
+  plan: Plan,
+  digest: LessonDigest,
+  failingReasons: string[],
+  promptProfile?: GamePromptProfile
+): string {
+  return `${GENERATOR_BASE_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\n${buildGameTypePromptSection(plan.gameType)}\n\nRepair one invalid game object.\nPlan:\n${JSON.stringify(plan, null, 2)}\n\nDigest:\n${JSON.stringify(digest, null, 2)}\n\nValidation failures:\n${JSON.stringify(failingReasons, null, 2)}\n\nReturn exactly:\n{"slotId":"${plan.slotId}","content":{"breakType":"game","gameType":"${plan.gameType}",...}}`;
+}
+
 function roundOrder(order: number): number {
   return Math.round(order * 1000) / 1000;
 }
@@ -122,6 +231,30 @@ function cleanText(raw: string): string {
     .replace(/\*\*|__|`|#+|\[|\]|\(|\)/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+}
+
+function normalizeForContainment(text: string): string {
+  return String(text || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function escapeRegex(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function definitionContainsTerm(definition: string, term: string): boolean {
+  const normalizedDefinition = normalizeForContainment(definition);
+  const normalizedTerm = normalizeForContainment(term);
+  if (!normalizedDefinition || !normalizedTerm) return false;
+
+  const tokens = normalizedTerm.split(' ').filter(Boolean);
+  if (tokens.length === 0) return false;
+
+  const phrasePattern = `\\b${tokens.map(escapeRegex).join('\\s+')}\\b`;
+  return new RegExp(phrasePattern, 'i').test(normalizedDefinition);
 }
 
 function splitSentences(text: string): string[] {
@@ -547,7 +680,8 @@ function extractDigestTokenSet(digest: LessonDigest): Set<string> {
   const tokens = corpus
     .split(/[^a-z0-9]+/)
     .map(t => t.trim())
-    .filter(t => t.length >= 4);
+    // Keep 3+ chars so common domain acronyms (RCD, MCB, CPC) are grounded.
+    .filter(t => t.length >= 3);
 
   return new Set(tokens);
 }
@@ -557,7 +691,7 @@ function hasDigestGrounding(text: string, digestTokens: Set<string>): boolean {
     .toLowerCase()
     .split(/[^a-z0-9]+/)
     .map(t => t.trim())
-    .filter(t => t.length >= 4);
+    .filter(t => t.length >= 3);
 
   if (tokens.length === 0) return false;
   return tokens.some(t => digestTokens.has(t));
@@ -808,19 +942,44 @@ function buildSafeClassifyTwoBinsContentFromDigest(digest: LessonDigest): Microb
   const isProtective = (text: string) => /(ocpd|rcd|mcb|fuse|breaker|protective|device)/i.test(text);
   const leftTerms = vocab.filter(v => !isProtective(v)).slice(0, 4).map(text => ({ text, correctBin: 'left' as const }));
   const rightTerms = vocab.filter(v => isProtective(v)).slice(0, 4).map(text => ({ text, correctBin: 'right' as const }));
-  let items = [...leftTerms.slice(0, 3), ...rightTerms.slice(0, 3)];
+  const items = [...leftTerms.slice(0, 3), ...rightTerms.slice(0, 3)];
 
   if (items.length < 6) {
-    const fallback = ['Line Conductor', 'Neutral Conductor', 'Radial Circuit', 'OCPD', 'RCD', 'CPC']
-      .map((text, idx) => ({
+    const digestCandidates = dedupeTokens([
+      ...digest.vocabPairs
+        .map((pair) => normalizeGameplaySnippet(pair.term, 55))
+        .filter((text) => !isInvalidQuickGameplayItem(text, 70)),
+      ...digest.keyFacts
+        .flatMap((fact) =>
+          String(fact || '')
+            .split(/[^A-Za-z0-9-]+/)
+            .map(normalizeSingleWordCandidate)
+            .filter(isSingleWordCandidate)
+        )
+        .map((word) => `${word.charAt(0).toUpperCase()}${word.slice(1)}`),
+    ])
+      .filter(Boolean)
+      .map((text) => ({
         text,
-        correctBin: idx < 3 ? ('left' as const) : ('right' as const),
+        correctBin: isProtective(text) ? ('right' as const) : ('left' as const),
       }));
-    for (const candidate of fallback) {
+
+    for (const candidate of digestCandidates) {
       if (items.length >= 6) break;
       if (items.some(i => i.text.toLowerCase() === candidate.text.toLowerCase())) continue;
       items.push(candidate);
     }
+  }
+
+  // Last resort: duplicate grounded items with suffix so validator still sees digest tokens.
+  let copyIndex = 1;
+  while (items.length < 6 && items.length > 0) {
+    const source = items[(copyIndex - 1) % items.length];
+    const text = `${source.text} ${copyIndex + 1}`;
+    if (!items.some(i => i.text.toLowerCase() === text.toLowerCase())) {
+      items.push({ text, correctBin: source.correctBin });
+    }
+    copyIndex++;
   }
 
   return {
@@ -1021,8 +1180,45 @@ function hardenQuickWinContent(content: MicrobreakContent, digest: LessonDigest)
   };
 }
 
+function hardenMatchingContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
+  if (content.breakType !== 'game' || content.gameType !== 'matching') return content;
+
+  const fallbackPairs = buildFallbackMatchingPairs(digest);
+  const incoming = Array.isArray(content.pairs) ? content.pairs : [];
+  const seenLeft = new Set<string>();
+
+  const sanitized = incoming
+    .map((pair) => ({
+      left: normalizeGameplaySnippet(String(pair?.left || '').trim(), 80),
+      right: normalizeGameplaySnippet(String(pair?.right || '').trim(), 160),
+    }))
+    .filter((pair) => pair.left.length > 0 && pair.right.length > 0)
+    .filter((pair) => !definitionContainsTerm(pair.right, pair.left))
+    .filter((pair) => {
+      if (seenLeft.has(pair.left)) return false;
+      seenLeft.add(pair.left);
+      return true;
+    });
+
+  const merged = [...sanitized];
+  for (const pair of fallbackPairs) {
+    if (merged.length >= 6) break;
+    if (merged.some((existing) => existing.left === pair.left)) continue;
+    if (definitionContainsTerm(pair.right, pair.left)) continue;
+    merged.push(pair);
+  }
+
+  const pairs = merged.length >= 4 ? merged.slice(0, 6) : fallbackPairs.slice(0, 4);
+
+  return {
+    ...content,
+    pairs,
+  };
+}
+
 function hardenGeneratedGameContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
   let hardened = content;
+  hardened = hardenMatchingContent(hardened, digest);
   hardened = hardenSortingContent(hardened, digest);
   hardened = hardenClassifyTwoBinsContent(hardened, digest);
   hardened = hardenFormulaBuildContent(hardened, digest);
@@ -1116,7 +1312,8 @@ function normalizeSingleWordCandidate(value: string): string {
 function isSingleWordCandidate(value: string): boolean {
   if (!value) return false;
   if (/\s/.test(value)) return false;
-  return /^[a-z0-9-]{2,24}$/i.test(value);
+  // Keep >=4 chars so every option can be digest-grounded by token matcher.
+  return /^[a-z0-9-]{4,24}$/i.test(value);
 }
 
 function collectFillGapWordPool(digest: LessonDigest): string[] {
@@ -1158,7 +1355,23 @@ function buildFillGapSentence(answer: string, gapId: string, digest: LessonDiges
   if (fromFact) {
     return String(fromFact).replace(re, `[${gapId}]`);
   }
-  return `Choose the best word: [${gapId}]`;
+
+  // Keep fallback sentence grounded to digest vocabulary/facts for validator safety.
+  const factAnchor = normalizeGameplaySnippet(String(facts[0] || '').trim(), 120);
+  if (factAnchor) {
+    const replaced = factAnchor.replace(/\b[a-z0-9-]{4,}\b/i, `[${gapId}]`);
+    if (replaced !== factAnchor) return replaced;
+    return `${factAnchor} [${gapId}]`;
+  }
+
+  const vocabAnchor = normalizeGameplaySnippet(String(digest.vocabPairs[0]?.definition || '').trim(), 100);
+  if (vocabAnchor) {
+    const replaced = vocabAnchor.replace(/\b[a-z0-9-]{4,}\b/i, `[${gapId}]`);
+    if (replaced !== vocabAnchor) return replaced;
+    return `${vocabAnchor} [${gapId}]`;
+  }
+
+  return `Use lesson context to choose [${gapId}]`;
 }
 
 function pickFillGapDistractors(answer: string, pool: string[], count: number): string[] {
@@ -1350,6 +1563,9 @@ function validateGameSchemaAndContent(
       if (pairs.length < 4) errors.push('matching requires >=4 pairs');
       if (pairs.some(p => !String(p.left || '').trim() || !String(p.right || '').trim())) {
         errors.push('matching pairs must include non-empty left and right text');
+      }
+      if (pairs.some(p => definitionContainsTerm(String(p.right || ''), String(p.left || '')))) {
+        errors.push('matching definitions must not include the target term text');
       }
       requireGrounding(pairs.flatMap(p => [p.left, p.right]), 'matching pair');
       break;
@@ -1574,7 +1790,8 @@ function validateGameSchemaAndContent(
 function buildFallbackMatchingPairs(digest: LessonDigest): Array<{ left: string; right: string }> {
   const vocabPairs = digest.vocabPairs
     .map(v => ({ left: String(v.term || '').trim(), right: String(v.definition || '').trim() }))
-    .filter(v => v.left.length > 0 && v.right.length > 0);
+    .filter(v => v.left.length > 0 && v.right.length > 0)
+    .filter(v => !definitionContainsTerm(v.right, v.left));
 
   const pairs: Array<{ left: string; right: string }> = [...vocabPairs.slice(0, 6)];
   const facts = digest.keyFacts.map(f => String(f || '').trim()).filter(Boolean);
@@ -1583,7 +1800,7 @@ function buildFallbackMatchingPairs(digest: LessonDigest): Array<{ left: string;
   while (pairs.length < 4 && idx + 1 < facts.length) {
     const left = facts[idx];
     const right = facts[idx + 1];
-    if (left && right) {
+    if (left && right && !definitionContainsTerm(right, left)) {
       pairs.push({ left, right });
     }
     idx += 2;
@@ -1591,7 +1808,7 @@ function buildFallbackMatchingPairs(digest: LessonDigest): Array<{ left: string;
 
   while (pairs.length < 4) {
     const n = pairs.length + 1;
-    pairs.push({ left: `Term ${n}`, right: `Definition ${n}` });
+    pairs.push({ left: `Term ${n}`, right: `Key concept from the lesson ${n}.` });
   }
 
   const seen = new Set<string>();
@@ -1599,7 +1816,11 @@ function buildFallbackMatchingPairs(digest: LessonDigest): Array<{ left: string;
     let left = p.left;
     if (seen.has(left)) left = `${left} (${i + 1})`;
     seen.add(left);
-    return { left, right: p.right || `Definition ${i + 1}` };
+    const safeRight =
+      p.right && !definitionContainsTerm(p.right, left)
+        ? p.right
+        : `Core idea from the lesson ${i + 1}.`;
+    return { left, right: safeRight };
   });
 }
 
@@ -1776,7 +1997,7 @@ async function repairSingleGame(
   failingReasons: string[],
   promptProfile?: GamePromptProfile
 ): Promise<GeneratedPlannedGame> {
-  const prompt = `${GENERATOR_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\nRepair one game object.\nPlan:\n${JSON.stringify(plan, null, 2)}\n\nDigest:\n${JSON.stringify(digest, null, 2)}\n\nValidation failures:\n${JSON.stringify(failingReasons, null, 2)}\n\nReturn exactly:\n{"slotId":"${plan.slotId}","content":{...valid game...}}`;
+  const prompt = buildSingleGameRepairPrompt(plan, digest, failingReasons, promptProfile);
 
   const result = await model.generateContent(prompt);
   const parsed = parseJson<GeneratedPlannedGame>(result.response.text());
@@ -1808,37 +2029,29 @@ export async function generateMicrobreaksFromPlan(
   if (plan.length === 0) return [];
 
   const model = await getJsonModel();
-  const generationInput = {
-    plan,
-    digest,
-    rules: {
-      exactLength: plan.length,
-      includeSlotId: true,
-      schemaStrict: true,
-      digestOnly: true,
-    },
-  };
-
-  let generated: GeneratedPlannedGame[];
-  try {
-    const prompt = `${GENERATOR_PROMPT}\n\n${buildAudienceTonePromptSection(promptProfile)}\n\nInput:\n${JSON.stringify(generationInput, null, 2)}\n\nReturn JSON array of length ${plan.length}. Each item format:\n{"slotId":"...","content":{"breakType":"game","gameType":"...",...}}`;
-    const result = await model.generateContent(prompt);
-    generated = parseJson<GeneratedPlannedGame[]>(result.response.text());
-  } catch (error) {
-    console.warn(`[GameGenerator] bulk generation failed; using deterministic fallback. ${error instanceof Error ? error.message : 'unknown'}`);
-    return plan.map(p => ({
-      slotId: p.slotId,
-      content: hardenGeneratedGameContent(fallbackGameFromDigest(p, digest), digest),
-    }));
-  }
-
-  if (!Array.isArray(generated) || generated.length !== plan.length) {
-    console.warn('[GameGenerator] Generated batch length mismatch; using deterministic fallback.');
-    return plan.map(p => ({
-      slotId: p.slotId,
-      content: hardenGeneratedGameContent(fallbackGameFromDigest(p, digest), digest),
-    }));
-  }
+  const generated = await Promise.all(
+    plan.map(async (planItem) => {
+      try {
+        const prompt = buildSingleGameGenerationPrompt(planItem, digest, promptProfile);
+        const result = await model.generateContent(prompt);
+        const parsed = parseJson<GeneratedPlannedGame>(result.response.text());
+        if (!parsed || parsed.slotId !== planItem.slotId || !parsed.content) {
+          throw new Error('single-game response missing expected slotId/content');
+        }
+        return parsed;
+      } catch (error) {
+        console.warn(
+          `[GameGenerator] single-game generation failed for slot ${planItem.slotId}; using fallback. ${
+            error instanceof Error ? error.message : 'unknown'
+          }`
+        );
+        return {
+          slotId: planItem.slotId,
+          content: hardenGeneratedGameContent(fallbackGameFromDigest(planItem, digest), digest),
+        } as GeneratedPlannedGame;
+      }
+    })
+  );
 
   const digestTokenSet = extractDigestTokenSet(digest);
 
