@@ -11,6 +11,7 @@ import {
 
 const MAX_TRANSCRIPT_TURNS = 40;
 const MAX_QUESTION_CHARS = 220;
+const QUESTION_GENERATION_MAX_ATTEMPTS = 3;
 
 const INTERVIEW_SYSTEM_PROMPT = `You are onboarding an AI tutor student profile.
 Ask exactly one concise question at a time.
@@ -65,10 +66,10 @@ let modelName: string | null = null;
 
 function sanitizeQuestion(raw: string): string {
   const compact = raw.replace(/[\r\n\t]+/g, ' ').replace(/\s+/g, ' ').trim();
-  if (!compact) return 'What would you like your tutor to help you improve first?';
+  if (!compact) return '';
   const withoutQuotes = compact.replace(/^["']+|["']+$/g, '');
   const cropped = withoutQuotes.slice(0, MAX_QUESTION_CHARS).trim();
-  if (!cropped) return 'What would you like your tutor to help you improve first?';
+  if (!cropped) return '';
   return /[?]$/.test(cropped) ? cropped : `${cropped}?`;
 }
 
@@ -76,6 +77,32 @@ function transcriptToPlainText(transcript: InterviewTurn[]): string {
   return transcript
     .map((turn) => `${turn.role === 'assistant' ? 'Tutor' : 'Student'}: ${turn.content}`)
     .join('\n');
+}
+
+function isIncompleteQuestion(question: string): boolean {
+  const compact = question.trim();
+  if (!compact) return true;
+
+  const words = compact.replace(/[?!.]+$/g, '').split(/\s+/).filter(Boolean);
+  if (words.length < 4) return true;
+
+  const lowered = compact.toLowerCase();
+  if (/\b(what|which|where|when|why|how)\s+are\s+your\?\s*$/i.test(compact)) return true;
+  if (/\b(what|which|where|when|why|how)\s+is\s+your\?\s*$/i.test(compact)) return true;
+  if (/\bwhat\s+are\s+you\?\s*$/i.test(compact)) return true;
+  if (/\bwhat\s+is\s+you\?\s*$/i.test(compact)) return true;
+
+  if (lowered.includes('...')) return true;
+  if (lowered.includes('???')) return true;
+
+  return false;
+}
+
+function isValidInterviewQuestion(question: string): boolean {
+  if (!question.endsWith('?')) return false;
+  if (question.length > MAX_QUESTION_CHARS) return false;
+  if (isIncompleteQuestion(question)) return false;
+  return true;
 }
 
 async function getClientAndModel() {
@@ -105,26 +132,42 @@ async function askNextQuestion(transcript: InterviewTurn[]): Promise<string> {
   const firstUserIndex = history.findIndex((turn) => turn.role === 'user');
   const validHistory = firstUserIndex >= 0 ? history.slice(firstUserIndex) : [];
 
-  if (validHistory.length === 0) {
-    const first = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text: NEXT_QUESTION_PROMPT }] }],
-      generationConfig: {
-        temperature: 0.6,
-        maxOutputTokens: 120,
-      },
-    });
-    return sanitizeQuestion(first.response.text());
+  let lastCandidate = '';
+
+  for (let attempt = 1; attempt <= QUESTION_GENERATION_MAX_ATTEMPTS; attempt += 1) {
+    if (validHistory.length === 0) {
+      const first = await model.generateContent({
+        contents: [{ role: 'user', parts: [{ text: NEXT_QUESTION_PROMPT }] }],
+        generationConfig: {
+          temperature: 0.6,
+          maxOutputTokens: 120,
+        },
+      });
+      lastCandidate = sanitizeQuestion(first.response.text());
+    } else {
+      const chat = model.startChat({
+        history: validHistory,
+        generationConfig: {
+          temperature: 0.6,
+          maxOutputTokens: 120,
+        },
+      });
+
+      const prompt =
+        attempt === 1
+          ? NEXT_QUESTION_PROMPT
+          : `Your previous question was invalid or truncated: "${lastCandidate}".
+Rewrite as a complete, natural, single onboarding question with clear intent. Return only the question text.`;
+      const result = await chat.sendMessage(prompt);
+      lastCandidate = sanitizeQuestion(result.response.text());
+    }
+
+    if (isValidInterviewQuestion(lastCandidate)) {
+      return lastCandidate;
+    }
   }
 
-  const chat = model.startChat({
-    history: validHistory,
-    generationConfig: {
-      temperature: 0.6,
-      maxOutputTokens: 120,
-    },
-  });
-  const result = await chat.sendMessage(NEXT_QUESTION_PROMPT);
-  return sanitizeQuestion(result.response.text());
+  throw new Error(`Question generation produced invalid output after ${QUESTION_GENERATION_MAX_ATTEMPTS} attempts.`);
 }
 
 async function finalizeProfile(transcript: InterviewTurn[]) {
