@@ -7,27 +7,27 @@ export type ChoiceButtonState =
   | 'used';
 
 const choiceBaseClass =
-  'rounded-2xl border-2 transition-[transform,box-shadow,border-color,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[1px] active:translate-y-0 active:scale-[0.995] disabled:opacity-50 disabled:cursor-not-allowed';
+  'rounded-2xl border-2 transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none';
 
 const choiceStateClasses: Record<ChoiceButtonState, string> = {
-  idle: 'bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 shadow-[0_2px_10px_rgba(15,23,42,0.05)] hover:bg-white hover:border-indigo-200 dark:hover:border-indigo-500 hover:shadow-[0_10px_22px_rgba(79,70,229,0.12)]',
+  idle: 'bg-white dark:bg-slate-700 border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:border-indigo-300 dark:hover:border-indigo-500 hover:shadow-md hover:-translate-y-0.5',
   selected:
-    'bg-white dark:bg-slate-700 border-indigo-400 dark:border-indigo-400 text-indigo-900 dark:text-indigo-100 shadow-[0_0_0_1px_rgba(99,102,241,0.2),0_10px_24px_rgba(99,102,241,0.16)] ring-2 ring-indigo-300/30',
+    'bg-indigo-50 dark:bg-indigo-950/50 border-indigo-500 dark:border-indigo-400 text-indigo-900 dark:text-indigo-100 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20',
   matched:
-    'bg-white dark:bg-slate-700 border-emerald-400 dark:border-emerald-500 text-emerald-800 dark:text-emerald-100 shadow-[0_0_0_1px_rgba(16,185,129,0.2),0_10px_24px_rgba(16,185,129,0.15)] ring-2 ring-emerald-300/30',
+    'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 cursor-default opacity-40',
   correct:
-    'bg-white dark:bg-slate-700 border-emerald-400 dark:border-emerald-500 text-emerald-800 dark:text-emerald-100 shadow-[0_0_0_1px_rgba(16,185,129,0.2),0_10px_24px_rgba(16,185,129,0.15)] ring-2 ring-emerald-300/30',
+    'bg-emerald-50 dark:bg-emerald-950/50 border-emerald-400 dark:border-emerald-500 text-emerald-800 dark:text-emerald-100 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30',
   wrong:
-    'bg-white dark:bg-slate-700 border-rose-300 dark:border-rose-500 text-rose-700 dark:text-rose-100 shadow-[0_8px_20px_rgba(244,63,94,0.12)]',
-  used: 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 line-through',
+    'bg-red-50 dark:bg-red-950/50 border-red-300 dark:border-red-500 text-red-700 dark:text-red-100 shadow-[0_0_15px_rgba(239,68,68,0.2)]',
+  used: 'bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 line-through',
 };
 
 const actionBaseClass =
-  'rounded-xl font-semibold transition-[transform,box-shadow,border-color,background-color,color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-[1px] active:translate-y-0 active:scale-[0.995] disabled:opacity-50 disabled:cursor-not-allowed';
+  'rounded-xl font-semibold transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed';
 
-export const primaryActionButtonClass = `${actionBaseClass} bg-white text-indigo-700 border border-indigo-200 hover:border-indigo-300 hover:bg-indigo-50 shadow-[0_8px_22px_rgba(79,70,229,0.12)] dark:bg-slate-700 dark:text-indigo-100 dark:border-indigo-500/50 dark:hover:bg-slate-600`;
-export const secondaryActionButtonClass = `${actionBaseClass} bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-[0_6px_18px_rgba(15,23,42,0.08)] dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100 dark:border-slate-600`;
-export const positiveActionButtonClass = `${actionBaseClass} bg-white text-emerald-700 border border-emerald-200 hover:border-emerald-300 hover:bg-emerald-50 shadow-[0_8px_22px_rgba(16,185,129,0.12)] dark:bg-slate-700 dark:text-emerald-100 dark:border-emerald-500/50 dark:hover:bg-slate-600`;
+export const primaryActionButtonClass = `${actionBaseClass} bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg`;
+export const secondaryActionButtonClass = `${actionBaseClass} bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-700 dark:hover:bg-slate-600 dark:text-slate-100`;
+export const positiveActionButtonClass = `${actionBaseClass} bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg`;
 
 export function choiceButtonClass(state: ChoiceButtonState): string {
   return `${choiceBaseClass} ${choiceStateClasses[state]}`;

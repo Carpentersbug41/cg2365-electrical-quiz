@@ -102,13 +102,16 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
           <div className="grid grid-cols-2 gap-4">
             {/* Left column */}
             <div className="space-y-2">
+              <h3 className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-wider px-1 pb-1">
+                Terms
+              </h3>
               {leftItems.map((item, idx) => (
                 <button
                   key={`left-${idx}-${item || 'blank'}`}
                   onClick={() => handleLeftClick(item)}
                   disabled={completed || !!matches[item]}
                   style={{ animationDelay: `${idx * 45}ms` }}
-                  className={`w-full p-3 text-sm font-medium text-left microbreak-stagger microbreak-card-glide ${
+                  className={`w-full p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide ${
                     matches[item]
                       ? `microbreak-correct ${choiceButtonClass('matched')}`
                       : selectedLeft === item
@@ -116,13 +119,16 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                       : choiceButtonClass('idle')
                   }`}
                 >
-                  {item}
+                  <span className="text-base md:text-xl font-medium">{item}</span>
                 </button>
               ))}
             </div>
 
             {/* Right column */}
             <div className="space-y-2">
+              <h3 className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-wider px-1 pb-1">
+                Definitions
+              </h3>
               {rightItems.map((item, idx) => {
                 const isMatched = Object.values(matches).includes(item);
                 return (
@@ -131,7 +137,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                     onClick={() => handleRightClick(item, handleComplete)}
                     disabled={completed || isMatched || !selectedLeft}
                     style={{ animationDelay: `${idx * 55}ms` }}
-                    className={`w-full p-3 text-sm font-medium text-left microbreak-stagger microbreak-card-glide ${
+                    className={`w-full p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide ${
                       isMatched
                         ? `microbreak-correct ${choiceButtonClass('matched')}`
                         : wrongMatch === item
@@ -139,7 +145,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                         : choiceButtonClass('idle')
                     }`}
                   >
-                    {item}
+                    <span className="text-sm md:text-lg leading-relaxed">{item}</span>
                   </button>
                 );
               })}
