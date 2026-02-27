@@ -71,7 +71,7 @@ export default function GameWrapper({
               playClickSound(0.3);
               onSkip();
             }}
-            className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-slate-400 dark:hover:text-white"
+            className="rounded-full border border-slate-200 bg-white/80 px-3 py-1 text-sm font-medium text-slate-600 transition-all duration-200 hover:-translate-y-0.5 hover:border-indigo-300 hover:text-indigo-700 hover:shadow-md dark:border-slate-600 dark:bg-slate-800/70 dark:text-slate-300 dark:hover:border-indigo-500 dark:hover:text-indigo-200"
           >
             Skip {'->'}
           </button>

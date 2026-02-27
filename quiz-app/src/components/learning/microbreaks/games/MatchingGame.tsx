@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import GameWrapper from '../GameWrapper';
 import { MatchingGameContent } from '@/data/lessons/types';
 import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects';
+import { choiceButtonClass } from './buttonStyles';
 
 interface MatchingGameProps {
   content: MatchingGameContent;
@@ -23,8 +24,8 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
 
   // Shuffle only on client side after mount to avoid hydration mismatch
   useEffect(() => {
-    setLeftItems([...content.pairs].sort(() => Math.random() - 0.5).map(p => p.left));
-    setRightItems([...content.pairs].sort(() => Math.random() - 0.5).map(p => p.right));
+    setLeftItems([...content.pairs].sort(() => Math.random() - 0.5).map((p) => p.left));
+    setRightItems([...content.pairs].sort(() => Math.random() - 0.5).map((p) => p.right));
   }, [content.pairs]);
 
   const handleLeftClick = (item: string) => {
@@ -40,10 +41,10 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
     playClickSound(0.3);
 
     // Check if this is a correct match
-    const correctPair = content.pairs.find(p => p.left === selectedLeft);
+    const correctPair = content.pairs.find((p) => p.left === selectedLeft);
     if (correctPair && correctPair.right === item) {
       // Correct match
-      playSound('success', 0.5); // Louder, clearer ding
+      playSound('success', 0.5);
       const newMatches = { ...matches, [selectedLeft]: item };
       setMatches(newMatches);
       setSelectedLeft(null);
@@ -58,7 +59,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
       // Wrong match - show red flash
       playSound('failure', 0.5);
       setWrongMatch(item);
-      
+
       // Flash red then return to neutral after 800ms
       setTimeout(() => {
         setWrongMatch(null);
@@ -70,7 +71,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
   // Wait for arrays to be shuffled before rendering
   if (leftItems.length === 0 || rightItems.length === 0) {
     return (
-      <GameWrapper 
+      <GameWrapper
         title="Match the Terms"
         duration={content.duration}
         instruction="Tap a term on the left, then tap its matching definition on the right."
@@ -78,7 +79,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
         onComplete={onComplete}
         onSkip={onSkip}
       >
-        {(_handleComplete: (score?: number, accuracy?: number) => void) => (
+        {() => (
           <div className="flex justify-center items-center py-8">
             <div className="text-gray-600 dark:text-slate-400">Loading...</div>
           </div>
@@ -88,7 +89,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
   }
 
   return (
-    <GameWrapper 
+    <GameWrapper
       title="Match the Terms"
       duration={content.duration}
       instruction="Tap a term on the left, then tap its matching definition on the right."
@@ -107,13 +108,13 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                   onClick={() => handleLeftClick(item)}
                   disabled={completed || !!matches[item]}
                   style={{ animationDelay: `${idx * 45}ms` }}
-                    className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${
-                      matches[item]
-                      ? 'microbreak-correct bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-2 border-green-300 dark:border-green-700'
+                  className={`w-full p-3 text-sm font-medium text-left microbreak-stagger microbreak-card-glide ${
+                    matches[item]
+                      ? `microbreak-correct ${choiceButtonClass('matched')}`
                       : selectedLeft === item
-                      ? 'bg-blue-200 dark:bg-blue-800 text-blue-900 dark:text-blue-100 border-2 border-blue-400 dark:border-blue-600 shadow-md'
-                      : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-2 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'
-                  } microbreak-stagger microbreak-card-glide disabled:opacity-50 disabled:cursor-not-allowed`}
+                      ? choiceButtonClass('selected')
+                      : choiceButtonClass('idle')
+                  }`}
                 >
                   {item}
                 </button>
@@ -130,13 +131,13 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                     onClick={() => handleRightClick(item, handleComplete)}
                     disabled={completed || isMatched || !selectedLeft}
                     style={{ animationDelay: `${idx * 55}ms` }}
-                    className={`w-full p-3 rounded-lg text-sm font-medium transition-all text-left ${
+                    className={`w-full p-3 text-sm font-medium text-left microbreak-stagger microbreak-card-glide ${
                       isMatched
-                        ? 'microbreak-correct bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-2 border-green-300 dark:border-green-700'
+                        ? `microbreak-correct ${choiceButtonClass('matched')}`
                         : wrongMatch === item
-                        ? 'microbreak-wrong bg-red-200 dark:bg-red-800 text-red-900 dark:text-red-100 border-2 border-red-500 dark:border-red-600'
-                        : 'bg-white dark:bg-slate-700 text-gray-800 dark:text-slate-200 border-2 border-gray-300 dark:border-slate-600 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-sm'
-                    } microbreak-stagger microbreak-card-glide disabled:opacity-50 disabled:cursor-not-allowed`}
+                        ? `microbreak-wrong ${choiceButtonClass('wrong')}`
+                        : choiceButtonClass('idle')
+                    }`}
                   >
                     {item}
                   </button>
@@ -147,7 +148,7 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
 
           {completed && (
             <div className="text-center text-green-700 dark:text-green-300 font-semibold text-lg">
-              Perfect! All matched correctly! 🎉
+              Perfect! All matched correctly.
             </div>
           )}
         </div>

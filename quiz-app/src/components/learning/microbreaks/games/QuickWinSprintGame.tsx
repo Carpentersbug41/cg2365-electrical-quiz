@@ -4,6 +4,11 @@ import { useState, useEffect } from 'react';
 import GameWrapper from '../GameWrapper';
 import { QuickWinGameContent } from '@/data/lessons/types';
 import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects';
+import {
+  positiveActionButtonClass,
+  primaryActionButtonClass,
+  secondaryActionButtonClass,
+} from './buttonStyles';
 
 interface QuickWinSprintGameProps {
   content: QuickWinGameContent;
@@ -359,7 +364,7 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                         <button 
                           onClick={() => handleSubmitAnswer(handleComplete)} 
                           disabled={!userAnswer.trim() || isValidating}
-                          className="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors microbreak-card-glide"
+                          className={`w-full py-3 microbreak-card-glide ${primaryActionButtonClass}`}
                         >
                           Submit Answer
                         </button>
@@ -376,13 +381,13 @@ export default function QuickWinSprintGame({ content, onComplete, onSkip }: Quic
                     <div className="flex gap-3">
                       <button
                         onClick={() => handleKnowIt()}
-                        className="flex-1 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors microbreak-card-glide"
+                        className={`flex-1 py-3 microbreak-card-glide ${positiveActionButtonClass}`}
                       >
                         I Know It! ✓
                       </button>
                       <button
                         onClick={() => handleSkipQuestion(handleComplete)}
-                        className="flex-1 py-3 bg-gray-400 text-white font-semibold rounded-lg hover:bg-gray-500 transition-colors microbreak-card-glide"
+                        className={`flex-1 py-3 microbreak-card-glide ${secondaryActionButtonClass}`}
                       >
                         Show Answer
                       </button>

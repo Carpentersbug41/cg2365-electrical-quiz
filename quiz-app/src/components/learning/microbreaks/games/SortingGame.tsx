@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import GameWrapper from '../GameWrapper';
 import { SortingGameContent } from '@/data/lessons/types';
 import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects';
+import { choiceButtonClass, primaryActionButtonClass } from './buttonStyles';
 
 interface SortingGameProps {
   content: SortingGameContent;
@@ -37,14 +38,14 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
 
     // Calculate score
     let correct = 0;
-    content.items.forEach(item => {
+    content.items.forEach((item) => {
       if (assignments[item.text] === item.correctBucket) {
         correct++;
       }
     });
 
     const accuracy = (correct / content.items.length) * 100;
-    
+
     // Play appropriate sound based on accuracy
     if (accuracy === 100) {
       playSound('success');
@@ -53,16 +54,18 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
     } else {
       playSound('failure');
     }
-    
+
     handleComplete(correct, accuracy);
   };
 
-  const allAssigned = shuffledItems.every(item => assignments[item.text] !== undefined && assignments[item.text] !== null);
+  const allAssigned = shuffledItems.every(
+    (item) => assignments[item.text] !== undefined && assignments[item.text] !== null,
+  );
 
   // Wait for items to be shuffled before rendering
   if (shuffledItems.length === 0) {
     return (
-      <GameWrapper 
+      <GameWrapper
         title="Sort into Categories"
         duration={content.duration}
         instruction="Assign every item to the correct category, then press Check Answers."
@@ -80,7 +83,7 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
   }
 
   return (
-    <GameWrapper 
+    <GameWrapper
       title="Sort into Categories"
       duration={content.duration}
       instruction="Assign every item to the correct category, then press Check Answers."
@@ -93,7 +96,7 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
           {/* Category headers */}
           <div className="grid grid-cols-2 gap-4 mb-2">
             {content.buckets.map((bucket, index) => (
-              <div 
+              <div
                 key={index}
                 style={{ animationDelay: `${index * 70}ms` }}
                 className="microbreak-stagger microbreak-card-glide bg-indigo-100 dark:bg-indigo-900 border-2 border-indigo-300 dark:border-indigo-700 rounded-lg p-3 text-center font-bold text-indigo-900 dark:text-indigo-100"
@@ -108,10 +111,9 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
             {shuffledItems.map((item, idx) => {
               const assignedBucket = assignments[item.text];
               const isCorrect = showResults && assignedBucket === item.correctBucket;
-              const isWrong = showResults && assignedBucket !== item.correctBucket;
 
               return (
-                <div 
+                <div
                   key={item.text}
                   style={{ animationDelay: `${idx * 40}ms` }}
                   className="microbreak-stagger microbreak-card-glide bg-white dark:bg-slate-700 rounded-lg border-2 border-gray-300 dark:border-slate-600 p-3"
@@ -120,33 +122,29 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
                     <span className="text-sm font-medium text-gray-800 dark:text-slate-200 flex-1">
                       {item.text}
                     </span>
-                    
+
                     <div className="flex gap-2">
                       {content.buckets.map((_, index) => (
                         <button
                           key={index}
                           onClick={() => handleAssignment(item.text, index)}
                           disabled={completed}
-                          className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
+                          className={`min-w-10 px-4 py-2 text-xs font-semibold microbreak-card-glide ${
                             assignedBucket === index
                               ? showResults
                                 ? isCorrect
-                                  ? 'microbreak-correct bg-green-500 text-white'
-                                  : 'microbreak-wrong bg-red-500 text-white'
-                                : 'bg-indigo-600 text-white'
-                              : 'bg-gray-200 dark:bg-slate-600 text-gray-700 dark:text-slate-300 hover:bg-gray-300 dark:hover:bg-slate-500'
-                          } microbreak-card-glide disabled:cursor-not-allowed`}
+                                  ? `microbreak-correct ${choiceButtonClass('correct')}`
+                                  : `microbreak-wrong ${choiceButtonClass('wrong')}`
+                                : choiceButtonClass('selected')
+                              : choiceButtonClass('idle')
+                          }`}
                         >
                           {index === 0 ? '1' : '2'}
                         </button>
                       ))}
                     </div>
 
-                    {showResults && (
-                      <span className="text-lg">
-                        {isCorrect ? '✓' : '✗'}
-                      </span>
-                    )}
+                    {showResults && <span className="text-lg">{isCorrect ? 'OK' : 'NO'}</span>}
                   </div>
                 </div>
               );
@@ -157,7 +155,7 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
             <button
               onClick={() => handleSubmit(handleComplete)}
               disabled={!allAssigned}
-              className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors"
+              className={`w-full py-3 ${primaryActionButtonClass}`}
             >
               Check Answers
             </button>
@@ -165,7 +163,12 @@ export default function SortingGame({ content, onComplete, onSkip }: SortingGame
 
           {showResults && (
             <div className="text-center text-gray-700 dark:text-slate-300 font-semibold">
-              {Math.round((shuffledItems.filter((item) => assignments[item.text] === item.correctBucket).length / content.items.length) * 100)}% correct!
+              {Math.round(
+                (shuffledItems.filter((item) => assignments[item.text] === item.correctBucket).length /
+                  content.items.length) *
+                  100,
+              )}
+              % correct!
             </div>
           )}
         </div>
