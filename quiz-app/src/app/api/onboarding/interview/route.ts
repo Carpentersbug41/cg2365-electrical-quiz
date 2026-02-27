@@ -26,7 +26,7 @@ Target these 8 fields and capture all of them before interview completion:
 5) teaching_style (mostly Socratic / mixed / mostly direct then test)
 6) feedback_strictness (gentle hints / normal / tough minimal hints)
 7) language_level (simple/basic / balanced / technical)
-8) example_themes (1-2 from sport / gaming / music / cars / animals / food / no preference)
+8) example_themes (1-2 themes the learner likes; any themes are allowed)
 
 Rules:
 - Keep each question under 25 words.
