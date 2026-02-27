@@ -12,6 +12,10 @@ type OnboardingMessage = {
   content: string;
 };
 
+const TARGET_INTERVIEW_RESPONSES = 10;
+const FINAL_WRAP_UP_PROMPT = 'Thanks, is there anything else you want me to know before we finish your tutor profile?';
+const MIN_RESPONSES_TO_FINALIZE = TARGET_INTERVIEW_RESPONSES + 1;
+
 async function authedFetch(path: string, init?: RequestInit): Promise<Response> {
   const client = getSupabaseBrowserClient();
   const session = client ? await client.auth.getSession() : null;
@@ -116,22 +120,7 @@ export default function OnboardingPage() {
     }
   };
 
-  const onSubmit = async (event: FormEvent) => {
-    event.preventDefault();
-    if (!input.trim() || isLoadingQuestion || isFinalizing) return;
-
-    const userMessage: OnboardingMessage = {
-      role: 'user',
-      content: input.trim().slice(0, 1000),
-    };
-    const transcript = [...messages, userMessage];
-    setMessages(transcript);
-    setInput('');
-    await requestNextQuestion(transcript);
-  };
-
-  const onFinalize = async () => {
-    if (isFinalizing || isLoadingQuestion) return;
+  const finalizeWithTranscript = async (transcript: OnboardingMessage[]) => {
     setIsFinalizing(true);
     setError(null);
     try {
@@ -140,7 +129,7 @@ export default function OnboardingPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           action: 'finalize',
-          transcript: messages,
+          transcript,
         }),
       });
       const data = await response.json();
@@ -158,8 +147,48 @@ export default function OnboardingPage() {
     }
   };
 
+  const onSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!input.trim() || isLoadingQuestion || isFinalizing) return;
+
+    const userMessage: OnboardingMessage = {
+      role: 'user',
+      content: input.trim().slice(0, 1000),
+    };
+    const transcript = [...messages, userMessage];
+    const userTurnCountAfterSubmit = transcript.filter((msg) => msg.role === 'user').length;
+    const hasWrapUpPrompt = transcript.some(
+      (msg) => msg.role === 'assistant' && msg.content === FINAL_WRAP_UP_PROMPT
+    );
+
+    if (userTurnCountAfterSubmit === TARGET_INTERVIEW_RESPONSES && !hasWrapUpPrompt) {
+      const transcriptWithWrapUp = [
+        ...transcript,
+        { role: 'assistant' as const, content: FINAL_WRAP_UP_PROMPT },
+      ];
+      setMessages(transcriptWithWrapUp);
+      setInput('');
+      return;
+    }
+
+    setMessages(transcript);
+    setInput('');
+
+    if (hasWrapUpPrompt && userTurnCountAfterSubmit >= MIN_RESPONSES_TO_FINALIZE) {
+      await finalizeWithTranscript(transcript);
+      return;
+    }
+
+    await requestNextQuestion(transcript);
+  };
+
+  const onFinalize = async () => {
+    if (isFinalizing || isLoadingQuestion) return;
+    await finalizeWithTranscript(messages);
+  };
+
   const userTurnCount = messages.filter((msg) => msg.role === 'user').length;
-  const canFinalize = userTurnCount >= 2 && !isLoadingQuestion && !isFinalizing;
+  const canFinalize = userTurnCount >= MIN_RESPONSES_TO_FINALIZE && !isLoadingQuestion && !isFinalizing;
 
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 text-slate-100">
@@ -214,7 +243,9 @@ export default function OnboardingPage() {
           </form>
 
           <div className="mt-4 flex items-center justify-between gap-2">
-            <p className="text-xs text-slate-400">Responses captured: {userTurnCount}</p>
+            <p className="text-xs text-slate-400">
+              Responses captured: {userTurnCount}/{MIN_RESPONSES_TO_FINALIZE}
+            </p>
             <button
               type="button"
               onClick={onFinalize}
