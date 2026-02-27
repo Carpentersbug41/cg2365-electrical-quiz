@@ -99,6 +99,7 @@ import { eukaryoticCellStructuresQuestions } from './questions/eukaryoticCellStr
 import { electronicComponentsAndPrinciplesQuestions } from './questions/electronicComponentsAndPrinciplesQuestions';
 import { photosynthesisAndProducersQuestions } from './questions/photosynthesisAndProducersQuestions';
 import { limitingFactorsOfPhotosynthesisQuestions } from './questions/limitingFactorsOfPhotosynthesisQuestions';
+import { investigatingLightIntensityQuestions } from './questions/investigatingLightIntensityQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -190,6 +191,7 @@ export const questions: Question[] = [
   ...electronicComponentsAndPrinciplesQuestions,
   ...photosynthesisAndProducersQuestions,
   ...limitingFactorsOfPhotosynthesisQuestions,
+  ...investigatingLightIntensityQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

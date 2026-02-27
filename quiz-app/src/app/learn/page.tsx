@@ -60,6 +60,7 @@ import lessonBIO_1_1A from '@/data/lessons/gcse/biology/BIO-1-1A-eukaryotic-cell
 import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-principles.json';
 import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-and-producers.json';
 import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factors-of-photosynthesis.json';
+import lessonBIO_6_1C from '@/data/lessons/BIO-6-1C-investigating-light-intensity.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -106,6 +107,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lessonBIO_6_1C,
   lessonBIO_6_1B,
   lessonBIO_6_1A,
   lesson202_6A,

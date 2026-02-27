@@ -33,6 +33,12 @@ const workspaceLinks: AdminLink[] = [
     href: '/admin/simulations',
     badge: 'Sim',
   },
+  {
+    title: 'User Profiles',
+    description: 'Edit per-user tutor profile injection text used for personalized tone and pacing.',
+    href: '/admin/users',
+    badge: 'Users',
+  },
 ];
 
 const generatorLinks: AdminLink[] = [

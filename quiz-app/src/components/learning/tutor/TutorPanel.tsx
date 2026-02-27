@@ -9,6 +9,7 @@ import { useState, useRef, useEffect } from 'react';
 import { TutorMode, TutorMessage } from '@/lib/tutor/types';
 import { Block } from '@/data/lessons/types';
 import { createLessonContext } from '@/lib/tutor/groundingService';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import TutorMessageComponent from './TutorMessage';
 import TutorInput from './TutorInput';
 import ModeSwitcher from './ModeSwitcher';
@@ -106,9 +107,19 @@ export default function TutorPanel({
       }));
 
       // Call tutor API
+      const client = getSupabaseBrowserClient();
+      const session = client ? await client.auth.getSession() : null;
+      const token = session?.data.session?.access_token ?? null;
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+      };
+      if (token) {
+        headers.Authorization = `Bearer ${token}`;
+      }
+
       const response = await fetch('/api/tutor', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({
           message: content,
           mode,

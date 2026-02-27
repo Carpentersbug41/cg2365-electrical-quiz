@@ -68,9 +68,11 @@ import lessonBIO_1_1A from '@/data/lessons/gcse/biology/BIO-1-1A-eukaryotic-cell
 import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-principles.json';
 import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-and-producers.json';
 import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factors-of-photosynthesis.json';
+import lessonBIO_6_1C from '@/data/lessons/BIO-6-1C-investigating-light-intensity.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  'BIO-6-1C': lessonBIO_6_1C as Lesson,
   'BIO-6-1B': lessonBIO_6_1B as Lesson,
   'BIO-6-1A': lessonBIO_6_1A as Lesson,
   '202-6A': lesson202_6A as Lesson,

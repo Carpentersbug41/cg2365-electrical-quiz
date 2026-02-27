@@ -1,0 +1,543 @@
+{
+  "id": "BIO-6-1C",
+  "title": "BIO.6-1C — Investigating Light Intensity",
+  "description": "Learn about Investigating Light Intensity in GCSE Science Biology",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-6",
+  "topic": "Investigating Light Intensity",
+  "learningOutcomes": [
+    "Identify the equipment and variables required for the photosynthesis core practical",
+    "Describe the procedure for measuring the rate of photosynthesis as light intensity changes",
+    "Calculate relative light intensity using the inverse square law based on distance from a source"
+  ],
+  "prerequisites": [
+    "BIO-6-1B"
+  ],
+  "blocks": [
+    {
+      "id": "BIO-6-1C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Identify the equipment and variables required for the photosynthesis core practical",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the procedure for measuring the rate of photosynthesis as light intensity changes",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Calculate relative light intensity using the inverse square law based on distance from a source",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Independent Variable",
+            "definition": "The factor that is intentionally changed in an experiment to observe its effect, not the factor that is being measured."
+          },
+          {
+            "term": "Dependent Variable",
+            "definition": "The factor that is measured or recorded to provide data, which changes in response to the independent variable."
+          },
+          {
+            "term": "Rate",
+            "definition": "A measurement of how quickly a process occurs over a specific unit of time, different from the total amount produced because it factors in duration."
+          },
+          {
+            "term": "Inverse Square Law",
+            "definition": "A mathematical principle stating that the intensity of energy decreases in proportion to the square of the distance from the source, not at a constant linear rate."
+          },
+          {
+            "term": "Relative Light Intensity",
+            "definition": "A calculated value used to compare light strength at different points, determined by the formula 1/d² rather than using a direct measurement tool."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Investigating Light Intensity Diagram",
+        "description": "Visual representation of Investigating Light Intensity",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "light-source",
+          "measuring-ruler",
+          "water-bath",
+          "pondweed-stem",
+          "oxygen-bubbles"
+        ],
+        "placeholderText": "The diagram should show a horizontal setup. On the left is a 'light-source' (lamp). Stretching out to the right is a 'measuring-ruler' placed on the table. At a specific mark on the ruler sits a large beaker labeled 'water-bath' containing a test tube. Inside the test tube is a 'pondweed-stem' submerged in water, with small 'oxygen-bubbles' rising from the cut end of the stem to the surface. The diagram illustrates the relationship between the distance on the ruler and the production of bubbles."
+      }
+    },
+    {
+      "id": "BIO-6-1C-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Investigating Photosynthesis Rate",
+        "content": "### In this lesson\nThis lesson teaches you how to set up and carry out a scientific experiment to see how light affects plants. You will learn how to organize your equipment and track your data accurately.\n\n*   Identify the equipment and variables needed for the photosynthesis practical.\n*   Describe the procedure for measuring how fast a plant produces oxygen.\n*   Understand how to control factors to ensure a fair test.\n\n**What this is**\nThe core practical for photosynthesis involves using a water plant (like pondweed) to observe how it reacts to different amounts of light. In this experiment, we change the **Independent Variable**, which is the factor we intentionally adjust to see what happens. Here, we move a lamp to different distances to change the light intensity. We then measure the **Dependent Variable**, which is the factor that provides our data. In this case, we count the bubbles of oxygen the plant releases to determine the **Rate** of photosynthesis.\n\n**Why it matters**\nUnderstanding how light affects plants helps us grow food more efficiently. If a farmer knows exactly how much light a tomato plant needs to produce the most fruit, they can save energy and grow more food for everyone. It is like knowing exactly how much power a machine needs to run at its best speed without wasting electricity.\n\n**Key facts / rules**\n*   The **Independent Variable** is the light intensity (changed by moving the lamp).\n*   The **Dependent Variable** is the number of bubbles produced per minute.\n*   Control variables, like water temperature, must stay the same to keep the test fair.\n*   Sodium hydrogen carbonate is often added to the water to ensure the plant has enough carbon dioxide.\n*   A ruler is used to measure the exact distance between the light source and the plant.\n*   The plant must be allowed to adjust (equilibrate) for a few minutes every time the light is moved.\n\n**How to do it**\nTo begin, place a piece of pondweed into a test tube filled with water and a little sodium hydrogen carbonate. Cut the stem of the pondweed at an angle so bubbles can escape easily. Place the test tube in a beaker of water; this acts as a 'heat shield' to stop the lamp from warming up the plant. Set up a lamp at a specific distance, such as 10 cm, using a meter ruler. \n\nWait for two minutes so the plant can get used to the light. Then, start a stopwatch and count every single bubble that floats to the top for one minute. This gives you the **Rate** of photosynthesis. Repeat this at least twice more at the same distance to get an average. Finally, move the lamp further away (e.g., to 20 cm) and repeat the whole process. By comparing the bubble counts, you can see how the plant's activity changes as the light gets dimmer.\n\n**Common mistakes**\nLearners often confuse the **Independent Variable** with the distance; the distance is just the method we use to change the light intensity, whereas the **Independent Variable** is the intensity itself. Another mistake is forgetting to wait for the plant to adjust after moving the lamp; if you start counting immediately, the plant might still be reacting to the previous light level.\n\nMisconceptions (targeted):\n*   Misconception: The distance is the independent variable. | Correction: The independent variable is the light intensity; distance is simply how we manipulate it. | AC: AC6.5\n*   Misconception: Bubbles represent the amount of food made. | Correction: Bubbles represent the oxygen released, which we use to measure the rate of the reaction. | AC: AC6.5\n\n**Key Points**\n*   Use pondweed to observe oxygen bubbles as a sign of photosynthesis.\n*   The **Independent Variable** is the light intensity controlled by distance.\n*   The **Dependent Variable** is the **Rate** (bubbles per minute).\n*   Keep temperature constant to ensure the results are valid.\n\n**Quick recap**\nWe measure the **Rate** of photosynthesis by counting bubbles from pondweed. By moving a lamp, we change the **Independent Variable** (light intensity) and record how the **Dependent Variable** (bubble count) responds. Keeping other factors the same ensures our experiment is a fair test.\n\n### Coming Up Next\nNow that we know how to collect the data, we need to look at the mathematical relationship between the distance of the lamp and the strength of the light using the **Inverse Square Law**."
+      }
+    },
+    {
+      "id": "BIO-6-1C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Investigating Photosynthesis Rate",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1C-C1-L1-A",
+            "questionText": "What is the independent variable in this experiment, which is changed by moving the lamp?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "light intensity",
+              "the light intensity",
+              "intensity of light"
+            ],
+            "hint": "Think about the specific factor we are trying to test by moving the light source."
+          },
+          {
+            "id": "BIO-6-1C-C1-L1-B",
+            "questionText": "What is the dependent variable used to provide data for the rate of photosynthesis?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "bubbles produced per minute",
+              "number of bubbles",
+              "bubble count",
+              "bubbles per minute"
+            ],
+            "hint": "Recall what we are physically counting during the one-minute stopwatch period."
+          },
+          {
+            "id": "BIO-6-1C-C1-L1-C",
+            "questionText": "Why must control variables like water temperature stay the same during the experiment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "keep the test fair",
+              "ensure a fair test",
+              "to keep it fair"
+            ],
+            "hint": "Consider why we want to make sure only one factor is changing at a time."
+          },
+          {
+            "id": "BIO-6-1C-C1-L2",
+            "questionText": "Using your answers to Q1 (independent variable), Q2 (dependent variable), and Q3 (control variables), explain how these facts connect. Why must we control temperature while measuring bubbles at different light intensities?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Light intensity is the independent variable being tested to see its effect on the plant",
+              "The dependent variable of bubble count provides the data to measure that effect",
+              "Control variables like temperature must be constant so they do not interfere with the results",
+              "If temperature changed, we would not know if the bubbles changed because of light or heat"
+            ],
+            "expectedAnswer": [
+              "To have a fair test, we keep control variables like temperature constant while we change the independent variable of light intensity. This ensures that any change in the dependent variable, which is the bubble count, is caused only by the light level.",
+              "We must control temperature so that the experiment remains a fair test. If temperature changed alongside the light intensity, we could not be certain if the number of bubbles produced per minute was reacting to the light or the heat."
+            ],
+            "hint": "Think about how controlling outside factors allows you to trust that the independent variable is the only thing affecting your data."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Inverse Square Law",
+        "content": "### In this lesson\nYou will learn how to calculate the strength of light at different distances using a special mathematical rule. This helps scientists predict exactly how much energy a plant receives.\n\n*   Define the **Inverse Square Law** in the context of light.\n*   Calculate **Relative Light Intensity** using a simple formula.\n*   Explain why light intensity drops so quickly as you move away from a source.\n\n**What this is**\nThe **Inverse Square Law** is a rule that describes how the intensity of light changes as you move away from a lamp. It isn't a simple \"double the distance, half the light\" relationship. Instead, if you double the distance, the light spreads out over a much larger area, making it four times dimmer. To compare these levels without using a light meter, we calculate **Relative Light Intensity**, which gives us a value to represent how strong the light is at a specific spot.\n\n**Why it matters**\nIn science, we need to be precise. If you are designing a greenhouse or even a desk lamp, you need to know exactly how the energy spreads out. This law allows us to calculate the energy available for photosynthesis at any distance, ensuring plants get exactly what they need to thrive without guessing. It is a universal rule that applies to light, gravity, and even sound!\n\n**Key facts / rules**\n*   Light intensity is inversely proportional to the square of the distance ($d^2$).\n*   The formula for **Relative Light Intensity** is $1 / d^2$.\n*   As distance increases, the light intensity decreases very rapidly.\n*   If you triple the distance ($3d$), the light intensity becomes nine times weaker ($1/3^2 = 1/9$).\n*   This law explains why a small move away from a light source causes a big drop in the **Rate** of photosynthesis.\n\n**How to calculate it**\nTo find the **Relative Light Intensity**, you only need to know the distance ($d$) from the light source to the plant. First, take the distance and square it (multiply it by itself). Then, divide 1 by that number. \n\nFor example, if your lamp is 10 cm away: \n1. Square the distance: $10 \\times 10 = 100$. \n2. Apply the formula: $1 / 100 = 0.01$. \n\nIf you move the lamp to 20 cm away: \n1. Square the distance: $20 \\times 20 = 400$. \n2. Apply the formula: $1 / 400 = 0.0025$. \n\nBy comparing $0.01$ and $0.0025$, you can see that doubling the distance from 10 cm to 20 cm made the light four times weaker! This is much more accurate than just saying the light is \"further away.\"\n\n**Common mistakes**\nLearners often confuse a linear relationship with the **Inverse Square Law**; they might think that doubling the distance halves the light, whereas the **Inverse Square Law** shows it actually quarters it. Another common error is forgetting to square the distance before dividing, which leads to the wrong intensity value.\n\nMisconceptions (targeted):\n*   Misconception: Light intensity decreases at the same rate as distance increases. | Correction: Light intensity decreases by the square of the distance, meaning it drops much faster than distance increases. | AC: AC6.6\n*   Misconception: The formula is just 1 divided by distance. | Correction: You must square the distance ($1/d^2$) to account for the light spreading out in two dimensions. | AC: AC6.6\n\n**Key Points**\n*   The **Inverse Square Law** states intensity $= 1 / d^2$.\n*   Doubling distance makes light $4$ times dimmer.\n*   Tripling distance makes light $9$ times dimmer.\n*   **Relative Light Intensity** allows for mathematical comparison of experimental conditions.\n\n**Quick recap**\nLight doesn't just fade linearly; it follows the **Inverse Square Law**. By using the formula $1/d^2$, we can calculate the **Relative Light Intensity** at any distance. This explains why the **Rate** of photosynthesis drops so significantly even with small increases in distance from a lamp.\n\n### Coming Up Next\nNow that you can calculate light intensity, we will explore other \"limiting factors\" like temperature and carbon dioxide that can also slow down how fast a plant grows."
+      }
+    },
+    {
+      "id": "BIO-6-1C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Inverse Square Law",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1C-C2-L1-A",
+            "questionText": "How is light intensity related to the square of the distance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "inversely proportional",
+              "it is inversely proportional",
+              "inversely related"
+            ],
+            "hint": "This term describes a relationship where one value goes up as the other goes down according to a specific rule."
+          },
+          {
+            "id": "BIO-6-1C-C2-L1-B",
+            "questionText": "What is the specific formula used to calculate Relative Light Intensity?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "1 / d^2",
+              "1 divided by d squared",
+              "1/d2"
+            ],
+            "hint": "Look for the mathematical expression that uses the distance squared."
+          },
+          {
+            "id": "BIO-6-1C-C2-L1-C",
+            "questionText": "What happens to the intensity of light as the distance from the source increases?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "decreases very rapidly",
+              "drops very quickly",
+              "decreases rapidly"
+            ],
+            "hint": "Think about whether the light fades slowly or very fast as you move away."
+          },
+          {
+            "id": "BIO-6-1C-C2-L2",
+            "questionText": "Using your answers to Q1 (inverse proportionality), Q2 (the formula), and Q3 (rapid decrease), explain how these facts connect. How do we know that doubling the distance results in a four-fold drop in intensity?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The formula 1 divided by d squared mathematically defines the inverse square law",
+              "Because the distance is squared, any increase in distance leads to a much larger decrease in intensity",
+              "Inverse proportionality means intensity drops as distance grows",
+              "Doubling the distance (2) means squaring it to 4, which results in 1/4 of the light"
+            ],
+            "expectedAnswer": [
+              "Because light intensity is inversely proportional to the square of the distance, we use the formula 1/d^2. This squaring effect explains why the intensity decreases very rapidly; for example, doubling the distance squares the change, making the light four times weaker.",
+              "The formula 1 divided by d squared shows the connection between distance and intensity. Since the relationship is inversely proportional and involves squaring, as distance increases, the light intensity must decrease very rapidly."
+            ],
+            "hint": "Consider how the math in the formula explains why the light doesn't just fade in a straight line."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Measuring and Calculating Light Intensity",
+        "given": "A lamp is placed at a distance of 10 cm from a test tube containing pondweed to measure the rate of photosynthesis.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Allow the plant to adjust (equilibrate) to the new light level before starting the measurement.",
+            "formula": null,
+            "calculation": null,
+            "result": "Wait for 2 minutes"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Record the rate of photosynthesis by counting the oxygen bubbles released.",
+            "formula": null,
+            "calculation": null,
+            "result": "Count bubbles for 1 minute"
+          },
+          {
+            "stepNumber": 3,
+            "description": "Square the distance to prepare for the Inverse Square Law calculation.",
+            "formula": "d * d",
+            "calculation": "10 * 10",
+            "result": "100"
+          },
+          {
+            "stepNumber": 4,
+            "description": "Calculate the Relative Light Intensity using the squared distance.",
+            "formula": "1 / d^2",
+            "calculation": "1 / 100",
+            "result": "0.01"
+          }
+        ],
+        "notes": "Ensure the plant is in a beaker of water to act as a heat shield. Results should be repeated at least twice to find an average."
+      }
+    },
+    {
+      "id": "BIO-6-1C-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "The lamp is now moved to a distance of 20 cm from the pondweed to observe how the rate changes.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "How many minutes must you wait for the plant to adjust to the 20 cm distance before you begin counting bubbles?",
+            "expectedAnswer": [
+              "2",
+              "2 minutes"
+            ],
+            "hint": "Check the 'How to do it' section for the standard equilibration time required for the plant."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "To determine the rate of photosynthesis, for how long should you count the oxygen bubbles produced?",
+            "expectedAnswer": [
+              "1",
+              "1 minute"
+            ],
+            "hint": "The rate is defined as the number of bubbles produced per this specific unit of time."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Calculate the square of the current distance (20 cm) for the Inverse Square Law formula.",
+            "expectedAnswer": [
+              "400"
+            ],
+            "hint": "Multiply the distance of 20 by itself."
+          },
+          {
+            "stepNumber": 4,
+            "prompt": "Using the squared distance, calculate the Relative Light Intensity at 20 cm.",
+            "expectedAnswer": [
+              "0.0025"
+            ],
+            "hint": "Divide 1 by the squared distance value you calculated in the previous step."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "BIO-6-1C-P1",
+            "questionText": "Using the formula for relative intensity (1/d²), calculate the value when the distance (d) between the source and the subject is 5 cm.",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "0.04"
+            ],
+            "hint": "Square the distance first (5 x 5), then divide 1 by that result."
+          },
+          {
+            "id": "BIO-6-1C-P2",
+            "questionText": "Why is it necessary to place a transparent water barrier between a high-energy lamp and the subject during this experiment?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "heat shield",
+              "control temperature",
+              "absorb heat",
+              "prevent warming"
+            ],
+            "hint": "Think about which environmental factor must be kept constant to ensure the test is fair and valid."
+          },
+          {
+            "id": "BIO-6-1C-P3",
+            "questionText": "A technician moves a light source so that it is exactly three times further away from a surface than it was originally. By what factor has the light intensity decreased?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "9",
+              "9.0"
+            ],
+            "hint": "According to the Inverse Square Law, if distance triples, the intensity decreases by the square of that multiplier."
+          },
+          {
+            "id": "BIO-6-1C-P4",
+            "questionText": "In a scientific investigation, what specific term is used for the factor that is intentionally changed to observe its effect, such as the light intensity in this study?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "independent variable",
+              "the independent variable",
+              "independent variables"
+            ],
+            "hint": "This is the factor the researcher manipulates, not the one being recorded as data."
+          },
+          {
+            "id": "BIO-6-1C-P5",
+            "questionText": "Explain why the rate of a process cannot be accurately measured if a researcher begins recording data immediately after changing the distance of the light source.",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "needs to equilibrate",
+              "needs to adjust",
+              "time to stabilize",
+              "time to adapt"
+            ],
+            "hint": "The subject requires a period of time to react to the new light level before the output becomes consistent."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-6-1C-INT-1",
+            "questionText": "Analyze how the spatial arrangement of equipment in the photosynthesis practical determines the quantitative input for the inverse square law. In your answer, include: (1) the variable changed by moving the light source, (2) the specific mathematical relationship between distance and light intensity, and (3) the effect of this relationship on the energy reaching the specimen. Why does a small change in distance result in a disproportionate change in the rate of photosynthesis? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies distance as the independent variable being manipulated.",
+              "States the inverse square law relationship (1/d²).",
+              "Explains that light intensity is the energy source for the reaction.",
+              "Connects the non-linear drop in intensity to the non-linear change in reaction rate.",
+              "Reasons that because intensity is inversely proportional to the square of distance, doubling distance quarters the energy."
+            ],
+            "expectedAnswer": [
+              "By moving the lamp, the distance (independent variable) is changed, which dictates the light intensity according to the inverse square law (1/d²). This relationship means that as the distance increases, the energy reaching the plant decreases exponentially rather than linearly. Consequently, a small increase in distance causes a significant drop in light intensity, which directly limits the rate of photosynthesis because there is much less energy available for the chemical process.",
+              "The independent variable is the distance from the light source, which relates to light intensity via the formula 1/d². This relationship holds because light spreads out in all directions from the source, meaning the energy reaching the plant's surface area decreases by the square of the distance. We know this because doubling the distance results in the plant receiving only one-quarter of the original light energy, causing a sharp decline in the rate of oxygen production."
+            ],
+            "hint": "Think about how the energy from the lamp spreads out as it moves further away and what that means for the mathematical formula."
+          },
+          {
+            "id": "BIO-6-1C-INT-2",
+            "questionText": "Synthesize the experimental design and mathematical modeling required to accurately assess how light energy influences biological productivity. In your answer, include: (1) the apparatus used to observe the dependent variable, (2) the method for maintaining constant environmental conditions, (3) the formula for calculating relative light intensity, and (4) how the integration of these factors allows for a valid conclusion regarding limiting factors. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Identifies pondweed and bubble counting/gas syringe for measuring oxygen.",
+              "Mentions use of a water bath or heat shield to control temperature.",
+              "Mentions sodium hydrogen carbonate to control CO2 levels.",
+              "Correctly cites the 1/d² formula for relative light intensity.",
+              "Explains that controlling variables ensures light is the only limiting factor being tested.",
+              "Links the mathematical calculation to the biological observation of oxygen production.",
+              "Explains that valid data requires comparing calculated intensity against measured rate.",
+              "Maintains technical precision regarding the setup and data processing."
+            ],
+            "expectedAnswer": [
+              "To assess productivity, pondweed is placed in a solution of sodium hydrogen carbonate to provide CO2, while a water bath is used to keep temperature constant. The rate of photosynthesis is measured by counting oxygen bubbles or using a gas syringe as the light source is moved to specific distances. By applying the inverse square law (1/d²), researchers can calculate the exact relative light intensity at each point. This integration of controlled biological variables and mathematical modeling ensures that any change in the rate of oxygen production is strictly due to the change in light energy, allowing for a valid conclusion.",
+              "• The dependent variable is measured by counting oxygen bubbles produced by pondweed in a set timeframe.\n• Environmental consistency is maintained using a heat shield to block infrared radiation and adding sodium hydrogen carbonate for stable CO2 levels.\n• Relative light intensity is modeled using the inverse square law formula: 1 / distance squared.\n• Integrating these controls with mathematical calculations allows scientists to isolate light as the limiting factor and accurately correlate energy input with biological output."
+            ],
+            "hint": "Consider how you ensure the test is 'fair' while using a mathematical rule to quantify your independent variable."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-6-1C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "BIO-6-1C-SR-1",
+            "questionText": "What biological process is being investigated in this core practical?",
+            "expectedAnswer": [
+              "Photosynthesis",
+              "photosynthesis"
+            ],
+            "hint": "This process is mentioned in the first two learning outcomes.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-6-1C-SR-2",
+            "questionText": "What is the general term for factors in an investigation that can be changed or measured?",
+            "expectedAnswer": [
+              "Variables",
+              "variable",
+              "experimental variables"
+            ],
+            "hint": "Check the first learning outcome for this term.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-6-1C-SR-3",
+            "questionText": "What measurement is used to describe how far an object is from a light source?",
+            "expectedAnswer": [
+              "Distance",
+              "distance"
+            ],
+            "hint": "This is used in the third learning outcome to calculate intensity.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Investigating Light Intensity"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC6.5",
+    "AC6.6"
+  ],
+  "metadata": {
+    "created": "2026-02-27",
+    "updated": "2026-02-27",
+    "version": "1.0",
+    "author": "GCSE Science Learning Team",
+    "taskMode": "PROCEDURE, CALCULATION",
+    "syllabusAnchors": {
+      "unit": "BIO-6",
+      "learningOutcome": "LO1",
+      "coveredAC": [
+        "AC6.5",
+        "AC6.6"
+      ],
+      "outOfScopeAC": [
+        "AC6.1",
+        "AC6.2",
+        "AC6.3",
+        "AC6.4",
+        "AC6.7",
+        "AC6.8a",
+        "AC6.8b",
+        "AC6.9",
+        "AC6.10",
+        "AC6.11B",
+        "AC6.12",
+        "AC6.13"
+      ]
+    },
+    "scope": {
+      "inScope": "The practical investigation of light intensity on photosynthesis and the application of the inverse square law.",
+      "outOfScope": "The chemical equations of photosynthesis, internal leaf structures, and transpiration mechanisms.",
+      "rationale": "Focus is restricted to the core practical and mathematical modeling of light intensity as per the specific AC anchors provided."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": false,
+      "purposeOnly": false,
+      "identificationOnly": false,
+      "noCalculations": false,
+      "specificScope": "Includes both experimental procedure and mathematical inverse square law calculations."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The independent variable is the distance between the lamp and the pondweed.",
+        "correction": "The independent variable is actually the light intensity; distance is the tool we use to change that intensity.",
+        "relatedAC": "AC6.5"
+      },
+      {
+        "misconception": "If you double the distance of the lamp, the light intensity is halved.",
+        "correction": "According to the Inverse Square Law, doubling the distance actually reduces the light intensity to one-quarter of its original strength.",
+        "relatedAC": "AC6.6"
+      }
+    ],
+    "generationScore": 96,
+    "generationScoreDetails": {
+      "originalScore": 96,
+      "finalScore": 96,
+      "wasRefined": false,
+      "generatedAt": "2026-02-27T18:12:58.701Z",
+      "source": "phase10-13"
+    }
+  }
+}

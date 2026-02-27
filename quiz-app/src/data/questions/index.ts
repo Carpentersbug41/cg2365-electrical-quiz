@@ -91,11 +91,13 @@ import { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQue
 import { electronicComponentsAndPrinciplesQuestions } from './electronicComponentsAndPrinciplesQuestions';
 import { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
 import { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPhotosynthesisQuestions';
+import { investigatingLightIntensityQuestions } from './investigatingLightIntensityQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...investigatingLightIntensityQuestions,
   ...limitingFactorsOfPhotosynthesisQuestions,
   ...photosynthesisAndProducersQuestions,
   ...electronicComponentsAndPrinciplesQuestions,
@@ -275,6 +277,7 @@ export { eukaryoticCellStructuresQuestions } from './eukaryoticCellStructuresQue
 export { electronicComponentsAndPrinciplesQuestions } from './electronicComponentsAndPrinciplesQuestions';
 export { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
 export { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPhotosynthesisQuestions';
+export { investigatingLightIntensityQuestions } from './investigatingLightIntensityQuestions';
 
 /**
  * Filter questions by tags

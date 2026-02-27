@@ -6,12 +6,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPromptForMode, TUTOR_MODE_CONFIGS } from '@/lib/tutor/prompts';
 import { formatLessonContextForLLM, validateGrounding, extractBlockReferences } from '@/lib/tutor/groundingService';
-import { TutorRequest, TutorResponse, TutorMode, ContextType } from '@/lib/tutor/types';
+import { TutorRequest, TutorResponse, TutorMode } from '@/lib/tutor/types';
 import { applyContextBudget, logContextBudget, DEFAULT_CONTEXT_BUDGET } from '@/lib/tutor/contextBudgetService';
 import { logTutorRequest, logTutorResponse, logTutorError, logGroundingFailure, logRateLimitExceeded } from '@/lib/observability/loggingService';
 import { Block, OutcomesBlockContent } from '@/data/lessons/types';
-import { getGeminiModel, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
+import { getGeminiModel } from '@/lib/config/geminiConfig';
 import { createLLMClientWithFallback, ChatHistoryEntry } from '@/lib/llm/client';
+import { getSupabaseSessionFromRequest } from '@/lib/supabase/server';
 
 // Initialize LLM client (will be created on first request with fallback support)
 let llmClientPromise: Promise<Awaited<ReturnType<typeof createLLMClientWithFallback>>> | null = null;
@@ -104,6 +105,30 @@ async function callLLM(
   return result.response.text();
 }
 
+function sanitizeProfileSummary(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const flattened = value
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!flattened) return null;
+  return flattened.slice(0, 500);
+}
+
+async function getUserTutorProfileSummary(request: NextRequest): Promise<string | null> {
+  const session = await getSupabaseSessionFromRequest(request);
+  if (!session) return null;
+
+  const { data, error } = await session.client
+    .from('profiles')
+    .select('tutor_profile_summary')
+    .eq('user_id', session.user.id)
+    .maybeSingle<{ tutor_profile_summary: string | null }>();
+
+  if (error) return null;
+  return sanitizeProfileSummary(data?.tutor_profile_summary ?? null);
+}
+
 export async function POST(request: NextRequest) {
   const startTime = Date.now();
 
@@ -116,7 +141,7 @@ export async function POST(request: NextRequest) {
     let client;
     try {
       client = await llmClientPromise;
-    } catch (error) {
+    } catch {
       return NextResponse.json(
         { error: 'Tutor is not configured. Please check API key or Vertex AI configuration.' },
         { status: 503 }
@@ -146,6 +171,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body: TutorRequest = await request.json();
+    const tutorProfileSummary = await getUserTutorProfileSummary(request);
     const { message, mode, contextType, lessonContext, questionContext, history, userProgress, blockIdsToInclude, currentPracticeBlockId } = body;
 
     // Log tutor request
@@ -195,6 +221,13 @@ export async function POST(request: NextRequest) {
 
     // Build contextual prompt with grounding
     let contextualPrompt = systemPrompt;
+
+    if (tutorProfileSummary) {
+      contextualPrompt += `\n\nLEARNER PERSONALIZATION PROFILE:
+${tutorProfileSummary}
+
+Apply this profile for tone, pacing, examples, and encouragement style while still following all mode rules and grounding constraints above.`;
+    }
 
     if (lessonContext) {
       // Apply context budget to manage token usage
@@ -380,4 +413,3 @@ ${userProgress.identifiedMisconceptions ? `Identified misconceptions: ${userProg
     );
   }
 }
-

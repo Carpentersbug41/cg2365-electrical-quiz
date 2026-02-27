@@ -640,6 +640,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     available: true,
     order: 2,
   },
+  {
+    id: 'BIO-6-1C',
+    title: 'Investigating Light Intensity',
+    unit: 'Unit BIO-6',
+    unitNumber: 'BIO-6',
+    topic: 'Investigating Light Intensity',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('BIO-6-1C'),
+    available: true,
+    order: 3,
+  },
 ];
 
 /**
