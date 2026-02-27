@@ -12,7 +12,6 @@ export interface TutorProfileModelOutput {
   current_course_level: string | null;
   goal: 'pass' | 'top_grade' | 'understand' | null;
   deadline: string | null;
-  study_time_minutes_per_week: '10' | '30' | '60' | '90_plus' | null;
   teaching_style: 'mostly_socratic' | 'mixed' | 'mostly_direct_then_test' | null;
   feedback_strictness: 'gentle_hints' | 'normal' | 'tough_minimal_hints' | null;
   detail_level: 'short' | 'medium' | 'very_detailed' | null;
@@ -224,7 +223,6 @@ export function buildTutorProfile(
         : null,
     goal: readEnum(source.goal, ['pass', 'top_grade', 'understand'] as const),
     deadline: typeof source.deadline === 'string' ? compactWhitespace(source.deadline).slice(0, 60) : null,
-    study_time_minutes_per_week: readEnum(source.study_time_minutes_per_week, ['10', '30', '60', '90_plus'] as const),
     teaching_style: readEnum(
       source.teaching_style,
       ['mostly_socratic', 'mixed', 'mostly_direct_then_test'] as const

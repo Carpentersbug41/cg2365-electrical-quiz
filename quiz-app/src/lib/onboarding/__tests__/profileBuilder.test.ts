@@ -57,7 +57,6 @@ describe('buildTutorProfile', () => {
       age_band: '16_17',
       current_course_level: 'GCSE Physics + 2365 Level 2',
       goal: 'top_grade',
-      study_time_minutes_per_week: '60',
       teaching_style: 'mixed',
       feedback_strictness: 'normal',
       detail_level: 'medium',
