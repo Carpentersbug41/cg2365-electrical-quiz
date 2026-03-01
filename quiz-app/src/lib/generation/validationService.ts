@@ -262,7 +262,10 @@ export class ValidationService {
       const guidedSteps = guidedContent.steps?.length || 0;
       
       if (workedSteps > 0 && guidedSteps > 0 && Math.abs(workedSteps - guidedSteps) > 1) {
-        warnings.push(`Worked example (${workedSteps} steps) and guided practice (${guidedSteps} steps) should have similar number of steps`);
+        errors.push(
+          `Worked example (${workedSteps} steps) and guided practice (${guidedSteps} steps) are misaligned. ` +
+          `Guided practice must mirror the worked example within +/-1 step.`
+        );
       }
     }
   }

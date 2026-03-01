@@ -13,10 +13,11 @@ import BlockTTSButton from '../tts/BlockTTSButton';
 export default function GuidedPracticeBlock({ block }: BlockProps) {
   const MIN_REFLECTION_CHARS = 20;
   const content = block.content as GuidedPracticeBlockContent;
+  const totalSteps = content.steps.length;
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>(new Array(content.steps.length).fill(''));
   const [feedback, setFeedback] = useState<(MarkingResponse | null)[]>(new Array(content.steps.length).fill(null));
-  const [showHint, setShowHint] = useState(false);
+  const [showHintByStep, setShowHintByStep] = useState<boolean[]>(new Array(content.steps.length).fill(false));
   const [loading, setLoading] = useState(false);
   const [attemptCount, setAttemptCount] = useState<number[]>(new Array(content.steps.length).fill(0));
   const [revealedAnswers, setRevealedAnswers] = useState<boolean[]>(new Array(content.steps.length).fill(false));
@@ -85,6 +86,44 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
     return `Transfer check: answer "${stem}" in a different context, then explain why your answer still works.`;
   };
 
+  const getHintUnlockAttempts = (stepIndex: number) => {
+    // Fade support across the sequence: later steps need more independent effort first.
+    if (stepIndex === 0) return 0;
+    if (stepIndex >= totalSteps - 1) return 2;
+    return 1;
+  };
+
+  const getRevealUnlockAttempts = (stepIndex: number) => {
+    // Reveal remains available, but later steps require deeper persistence.
+    if (stepIndex === 0) return 2;
+    return 3;
+  };
+
+  const hideHintForStep = (stepIndex: number) => {
+    setShowHintByStep((prev) => {
+      const next = [...prev];
+      next[stepIndex] = false;
+      return next;
+    });
+  };
+
+  const getScaffoldStatusText = (stepIndex: number, hasHint: boolean) => {
+    const attempts = attemptCount[stepIndex] || 0;
+    const hintUnlock = getHintUnlockAttempts(stepIndex);
+    const revealUnlock = getRevealUnlockAttempts(stepIndex);
+
+    if (attempts === 0) {
+      return 'Try this step independently first.';
+    }
+    if (hasHint && attempts < hintUnlock) {
+      return `Hint unlocks after ${hintUnlock} incorrect attempts (${attempts}/${hintUnlock}).`;
+    }
+    if (attempts < revealUnlock) {
+      return `Answer reveal unlocks after ${revealUnlock} incorrect attempts (${attempts}/${revealUnlock}).`;
+    }
+    return 'Hint and answer-reveal support are unlocked for this step.';
+  };
+
   const checkAnswer = async (stepIndex: number) => {
     if (verificationRequired[stepIndex] && !verificationPassed[stepIndex]) return;
     setLoading(true);
@@ -128,7 +167,7 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
       if (result.isCorrect && stepIndex < content.steps.length - 1) {
         setTimeout(() => {
           setCurrentStep(stepIndex + 1);
-          setShowHint(false);
+          hideHintForStep(stepIndex);
         }, 1500);
       }
     } catch (error) {
@@ -223,7 +262,7 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
         if (stepIndex === currentStep && stepIndex < content.steps.length - 1) {
           setTimeout(() => {
             setCurrentStep(stepIndex + 1);
-            setShowHint(false);
+            hideHintForStep(stepIndex);
           }, 900);
         }
       }
@@ -263,6 +302,9 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
         <p className="text-sm font-semibold text-gray-600 mb-2">Problem:</p>
         <p className="text-gray-800 font-medium">{content.problem}</p>
       </div>
+      <p className="mb-4 text-xs text-blue-800">
+        Fading support: early steps unlock hints sooner; later steps require more independent attempts before hints or answer reveal.
+      </p>
 
       <div className="space-y-4">
         {content.steps.map((step, stepIndex) => (
@@ -352,15 +394,22 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                         
                         {step.hint && (
                           <button
-                            onClick={() => setShowHint(!showHint)}
+                            onClick={() =>
+                              setShowHintByStep((prev) => {
+                                const next = [...prev];
+                                next[stepIndex] = !next[stepIndex];
+                                return next;
+                              })
+                            }
+                            disabled={(attemptCount[stepIndex] || 0) < getHintUnlockAttempts(stepIndex)}
                             className="px-4 py-2 bg-amber-100 text-amber-800 rounded-lg font-semibold hover:bg-amber-200 transition-colors text-sm border border-amber-300"
                           >
-                            {showHint ? 'Hide' : 'Show'} Hint
+                            {showHintByStep[stepIndex] ? 'Hide' : 'Show'} Hint
                           </button>
                         )}
                         
-                        {/* Show Answer Button - appears after 2 failed attempts */}
-                        {attemptCount[stepIndex] >= 2 && !revealedAnswers[stepIndex] && (
+                        {/* Reveal answer after enough independent attempts for this step */}
+                        {(attemptCount[stepIndex] || 0) >= getRevealUnlockAttempts(stepIndex) && !revealedAnswers[stepIndex] && (
                           <div className="w-full">
                             <label className="block text-xs font-semibold text-amber-900 mb-1">
                               Before revealing, explain what you think you are missing.
@@ -393,7 +442,13 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                       </div>
                     )}
                     
-                    {showHint && step.hint && stepIndex === currentStep && (
+                    {stepIndex === currentStep && !feedback[stepIndex]?.isCorrect && (
+                      <p className="mt-2 text-xs text-blue-700">
+                        {getScaffoldStatusText(stepIndex, Boolean(step.hint))}
+                      </p>
+                    )}
+
+                    {showHintByStep[stepIndex] && step.hint && stepIndex === currentStep && (
                       <div className="mt-3 bg-amber-50 rounded-lg p-3 border border-amber-200">
                         <p className="text-sm text-amber-900 flex items-start gap-2">
                           <span className="text-amber-600 flex-shrink-0">💡</span>
