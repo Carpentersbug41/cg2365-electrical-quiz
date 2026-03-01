@@ -10,6 +10,7 @@ export interface UnderstandingChecksInput {
   lessonId: string;
   explanations: ExplanationBlock[];
   taskMode: string; // Explicit task mode string
+  lessonProfileInjection?: string;
 }
 
 export interface UnderstandingQuestion {
@@ -40,10 +41,15 @@ export class Phase4_UnderstandingChecks extends PhasePromptBuilder {
     return 'Phase 4: Understanding Checks';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: UnderstandingChecksInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Apply this to wording difficulty and tone only.\n`
+      : '';
+
     return `You are an assessment specialist for City & Guilds technical and vocational training.
 
 Your task is to create formative assessment questions that check understanding of taught concepts.
+${profileBlock}
 
 DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
 - Do not assume any specific trade, science branch, equipment family, or regulation set.
@@ -136,7 +142,10 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: UnderstandingChecksInput): string {
-    const { lessonId, explanations, taskMode } = input;
+    const { lessonId, explanations, taskMode, lessonProfileInjection } = input;
+    const profileSection = lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this for wording, readability, and tone while keeping assessment rigor.`
+      : '';
 
     return `Create understanding check questions for this lesson's explanations.
 
@@ -155,6 +164,7 @@ CRITICAL REMINDERS based on task mode:
 ${taskMode.includes('PURPOSE_ONLY') ? '- Test "what for / when to choose / identify", not operation procedure.' : ''}
 ${taskMode.includes('IDENTIFICATION') ? '- Focus on recognition and selection cues.' : ''}
 ` : ''}
+${profileSection}
 
 Create ${explanations.length} understanding check block(s), one immediately after each explanation.
 

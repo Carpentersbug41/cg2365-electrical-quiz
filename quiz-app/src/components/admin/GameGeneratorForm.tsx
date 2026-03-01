@@ -35,6 +35,9 @@ interface LessonOption {
   availableMicrobreakSlots: number;
   simulationEmbedUrl?: string | null;
   simulationRepoName?: string | null;
+  hasSocratic?: boolean;
+  socraticQuestionCount?: number | null;
+  socraticStartLevel?: number | null;
 }
 
 type GameType =
@@ -93,6 +96,10 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     embedUrl?: string;
     path?: string;
   } | null>(null);
+  const [socraticEnabled, setSocraticEnabled] = useState(false);
+  const [socraticQuestionCount, setSocraticQuestionCount] = useState(8);
+  const [socraticStartLevel, setSocraticStartLevel] = useState<1 | 2 | 3 | 4>(1);
+  const [socraticStatus, setSocraticStatus] = useState<'idle' | 'saving'>('idle');
 
   const fetchLessons = useCallback(async () => {
     try {
@@ -133,6 +140,25 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
   const estimatedGenerationCount = selectedLesson?.availableMicrobreakSlots || 0;
   const isManualMode = selectionMode === 'manual';
   const hasManualWhitelist = selectedGameTypes.size > 0;
+
+  useEffect(() => {
+    if (!selectedLesson) {
+      setSocraticEnabled(false);
+      setSocraticQuestionCount(8);
+      setSocraticStartLevel(1);
+      return;
+    }
+
+    setSocraticEnabled(Boolean(selectedLesson.hasSocratic));
+    setSocraticQuestionCount(
+      typeof selectedLesson.socraticQuestionCount === 'number' ? selectedLesson.socraticQuestionCount : 8
+    );
+    setSocraticStartLevel(
+      (typeof selectedLesson.socraticStartLevel === 'number'
+        ? Math.max(1, Math.min(4, selectedLesson.socraticStartLevel))
+        : 1) as 1 | 2 | 3 | 4
+    );
+  }, [selectedLesson]);
 
   const toggleGameType = (gameType: GameType) => {
     const newTypes = new Set(selectedGameTypes);
@@ -431,6 +457,49 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     }
   };
 
+  const handleSaveSocraticConfig = async () => {
+    if (!selectedLesson) {
+      setErrorMessage('Please select a lesson first.');
+      return;
+    }
+
+    setSocraticStatus('saving');
+    setErrorMessage(null);
+    setSuccessMessage(null);
+
+    try {
+      const response = await fetch('/api/admin/socratic-block', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
+        body: JSON.stringify({
+          filename: selectedLesson.filename,
+          enabled: socraticEnabled,
+          questionCount: socraticQuestionCount,
+          startLevel: socraticStartLevel,
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || 'Failed to save Socratic settings.');
+      }
+
+      setSuccessMessage(
+        socraticEnabled
+          ? `Socratic questions enabled (${socraticQuestionCount} questions, start Level ${socraticStartLevel}).`
+          : 'Socratic questions disabled for this lesson.'
+      );
+      await fetchLessons();
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'Failed to save Socratic settings.');
+    } finally {
+      setSocraticStatus('idle');
+    }
+  };
+
   const gameTypeOptions: Array<{ value: GameType; label: string; description: string }> = [
     { value: 'matching', label: 'Matching', description: 'Match terms to definitions' },
     { value: 'sorting', label: 'Sorting', description: 'Sort items into two categories' },
@@ -603,6 +672,83 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
               Will generate <span className="font-semibold text-amber-700 dark:text-amber-300">{estimatedGenerationCount}</span> game{estimatedGenerationCount !== 1 ? 's' : ''}.
             </p>
           </div>
+        </div>
+      </div>
+
+      <div className="rounded-2xl border border-white/70 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/70">
+        <h2 className="mb-4 flex items-center gap-2 text-xl font-black tracking-tight text-gray-900 dark:text-white">
+          <BookOpen className="h-5 w-5 text-indigo-600 dark:text-indigo-300" />
+          End-of-Lesson Socratic Questions
+        </h2>
+
+        <div className="space-y-4">
+          <label className="flex items-center gap-3 text-sm font-semibold text-gray-800 dark:text-slate-200">
+            <input
+              type="checkbox"
+              checked={socraticEnabled}
+              onChange={(event) => setSocraticEnabled(event.target.checked)}
+              disabled={!selectedLesson || socraticStatus === 'saving' || isGenerating}
+            />
+            Add Socratic voice questions block (optional)
+          </label>
+
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <label className="flex flex-col gap-2 text-sm">
+              <span className="font-semibold text-gray-700 dark:text-slate-300">Question Count</span>
+              <input
+                type="number"
+                min={8}
+                max={10}
+                value={socraticQuestionCount}
+                onChange={(event) => {
+                  const parsed = Number(event.target.value);
+                  if (Number.isNaN(parsed)) return;
+                  setSocraticQuestionCount(Math.max(8, Math.min(10, parsed)));
+                }}
+                disabled={!selectedLesson || !socraticEnabled || socraticStatus === 'saving' || isGenerating}
+                className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
+              />
+            </label>
+
+            <label className="flex flex-col gap-2 text-sm">
+              <span className="font-semibold text-gray-700 dark:text-slate-300">Starting Level</span>
+              <select
+                value={socraticStartLevel}
+                onChange={(event) => setSocraticStartLevel(Number(event.target.value) as 1 | 2 | 3 | 4)}
+                disabled={!selectedLesson || !socraticEnabled || socraticStatus === 'saving' || isGenerating}
+                className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
+              >
+                <option value={1}>Level 1 (Recall)</option>
+                <option value={2}>Level 2 (Connection)</option>
+                <option value={3}>Level 3 (Synthesis)</option>
+                <option value={4}>Level 4 (Hypothesis)</option>
+              </select>
+            </label>
+          </div>
+
+          <button
+            onClick={handleSaveSocraticConfig}
+            disabled={!selectedLesson || socraticStatus === 'saving' || isGenerating}
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,#4338ca,#6366f1)] px-5 py-3 font-semibold text-white shadow-lg shadow-indigo-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            {socraticStatus === 'saving' ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin" />
+                Saving Socratic Settings...
+              </>
+            ) : (
+              <>
+                <Save className="h-5 w-5" />
+                Save Socratic Settings
+              </>
+            )}
+          </button>
+
+          {selectedLesson?.hasSocratic && (
+            <p className="text-sm text-indigo-700 dark:text-indigo-300">
+              Current lesson has Socratic block enabled.
+            </p>
+          )}
         </div>
       </div>
 

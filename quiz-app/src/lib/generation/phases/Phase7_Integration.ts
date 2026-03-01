@@ -11,6 +11,7 @@ export interface IntegrationInput {
   lessonId: string;
   plan: PlanningOutput;
   explanations: ExplanationBlock[];
+  lessonProfileInjection?: string;
 }
 
 export interface IntegrativeQuestion {
@@ -41,10 +42,15 @@ export class Phase7_Integration extends PhasePromptBuilder {
     return 'Phase 7: Integration';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: IntegrationInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Apply this to wording and explanation style only.\n`
+      : '';
+
     return `You are an advanced assessment specialist for City & Guilds technical and vocational training.
 
 Your task is to create integrative questions that synthesize lesson concepts.
+${profileBlock}
 
 DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
 - Use assessment language transferable across all technical subjects.
@@ -73,11 +79,14 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: IntegrationInput): string {
-    const { lessonId, plan, explanations } = input;
+    const { lessonId, plan, explanations, lessonProfileInjection } = input;
 
     const learningOutcomes = plan.learningOutcomes.map((lo, i) => `${i + 1}. ${lo}`).join('\n');
     const majorConcepts = explanations.map(exp => `- ${exp.title}`).join('\n');
     const explanationTexts = explanations.map(exp => `${exp.title}:\n${exp.content.substring(0, 500)}...`).join('\n\n---\n\n');
+    const profileSection = lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this to tune complexity and voice for the target learner profile.`
+      : '';
 
     return `Create integrative questions that synthesize this lesson's concepts.
 
@@ -89,6 +98,7 @@ ${majorConcepts}
 
 EXPLANATION SUMMARIES:
 ${explanationTexts}
+${profileSection}
 
 Create 2 integrative questions at order 9.5.
 

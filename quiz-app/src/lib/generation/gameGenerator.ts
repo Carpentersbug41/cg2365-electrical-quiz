@@ -319,7 +319,7 @@ export function findMicrobreakSlots(lessonBlocks: Block[]): Slot[] {
     const nextBlock = sortedBlocks[i + 1];
     const nextOrder = nextBlock ? nextBlock.order : anchor.order + 1;
 
-    if (nextBlock?.type === 'spaced-review') continue;
+    if (nextBlock?.type === 'spaced-review' || nextBlock?.type === 'socratic') continue;
 
     const gap = nextOrder - anchor.order;
     if (gap <= 0.05) continue;

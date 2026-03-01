@@ -38,6 +38,7 @@ import { Phase12_Refine } from './phases/Phase12_Refine';
 import { Phase13_Rescore } from './phases/Phase13_Rescore';
 import { getRefinementConfig } from './config';
 import { normalizeLessonSchema } from './lessonNormalizer';
+import { getPromptInjectionSettings } from '@/lib/prompting/profileInjections';
 
 export interface PhaseProgress {
   phase: string;
@@ -169,6 +170,8 @@ export class SequentialLessonGenerator {
     const lessonId = `${request.unit}-${request.lessonId}`;
     const phases: PhaseProgress[] = [];
     const refinementConfig = getRefinementConfig();
+    const promptInjectionSettings = await getPromptInjectionSettings();
+    const lessonProfileInjection = promptInjectionSettings.lessonGenerationProfile;
     const configuredMaxFixes = (refinementConfig as { maxFixes?: number }).maxFixes;
     
     // Create debug bundle collector
@@ -203,7 +206,7 @@ export class SequentialLessonGenerator {
 
       // Phase 1: Planning
       let phaseStart = Date.now();
-      const planResult = await this.runPhase1(request);
+      const planResult = await this.runPhase1(request, lessonProfileInjection);
       phases.push({
         phase: 'Planning',
         status: planResult ? 'completed' : 'failed',
@@ -217,7 +220,7 @@ export class SequentialLessonGenerator {
 
       // Phase 2: Vocabulary
       phaseStart = Date.now();
-      const vocabResult = await this.runPhase2(request, planResult);
+      const vocabResult = await this.runPhase2(request, planResult, lessonProfileInjection);
       phases.push({
         phase: 'Vocabulary',
         status: vocabResult ? 'completed' : 'failed',
@@ -231,7 +234,12 @@ export class SequentialLessonGenerator {
 
       // Phase 3: Explanation
       phaseStart = Date.now();
-      const explanationResult = await this.runPhase3(request, planResult, vocabResult);
+      const explanationResult = await this.runPhase3(
+        request,
+        planResult,
+        vocabResult,
+        lessonProfileInjection
+      );
       phases.push({
         phase: 'Explanation',
         status: explanationResult ? 'completed' : 'failed',
@@ -245,7 +253,12 @@ export class SequentialLessonGenerator {
 
       // Phase 4: Understanding Checks
       phaseStart = Date.now();
-      const checksResult = await this.runPhase4(lessonId, planResult, explanationResult);
+      const checksResult = await this.runPhase4(
+        lessonId,
+        planResult,
+        explanationResult,
+        lessonProfileInjection
+      );
       phases.push({
         phase: 'Understanding Checks',
         status: checksResult ? 'completed' : 'failed',
@@ -259,7 +272,12 @@ export class SequentialLessonGenerator {
 
       // Phase 5: Worked Example (conditional)
       phaseStart = Date.now();
-      const workedExampleResult = await this.runPhase5(request, planResult, explanationResult);
+      const workedExampleResult = await this.runPhase5(
+        request,
+        planResult,
+        explanationResult,
+        lessonProfileInjection
+      );
       phases.push({
         phase: 'Worked Example',
         status: workedExampleResult ? 'completed' : 'failed',
@@ -273,7 +291,14 @@ export class SequentialLessonGenerator {
 
       // Phase 6: Practice
       phaseStart = Date.now();
-      const practiceResult = await this.runPhase6(lessonId, planResult, explanationResult, vocabResult, workedExampleResult);
+      const practiceResult = await this.runPhase6(
+        lessonId,
+        planResult,
+        explanationResult,
+        vocabResult,
+        workedExampleResult,
+        lessonProfileInjection
+      );
       phases.push({
         phase: 'Practice',
         status: practiceResult ? 'completed' : 'failed',
@@ -287,7 +312,12 @@ export class SequentialLessonGenerator {
 
       // Phase 7: Integration
       phaseStart = Date.now();
-      const integrationResult = await this.runPhase7(lessonId, planResult, explanationResult);
+      const integrationResult = await this.runPhase7(
+        lessonId,
+        planResult,
+        explanationResult,
+        lessonProfileInjection
+      );
       phases.push({
         phase: 'Integration',
         status: integrationResult ? 'completed' : 'failed',
@@ -301,7 +331,11 @@ export class SequentialLessonGenerator {
 
       // Phase 8: Spaced Review
       phaseStart = Date.now();
-      const spacedReviewResult = await this.runPhase8(request, planResult);
+      const spacedReviewResult = await this.runPhase8(
+        request,
+        planResult,
+        lessonProfileInjection
+      );
       phases.push({
         phase: 'Spaced Review',
         status: spacedReviewResult ? 'completed' : 'failed',
@@ -649,7 +683,10 @@ export class SequentialLessonGenerator {
   /**
    * Phase 1: Planning
    */
-  private async runPhase1(request: GenerationRequest): Promise<PlanningOutput | null> {
+  private async runPhase1(
+    request: GenerationRequest,
+    lessonProfileInjection?: string
+  ): Promise<PlanningOutput | null> {
     console.log('  📋 Phase 1: Planning lesson structure...');
     debugLog('PHASE1_START', { lessonId: `${request.unit}-${request.lessonId}` });
 
@@ -658,7 +695,11 @@ export class SequentialLessonGenerator {
     const blueprintRequirement = this.getBlueprintWorkedRequirement(request);
     const needsWorkedExample = requiresWorkedExample(taskTypes) || blueprintRequirement.requireWorkedExample;
 
-    const input = { request, requiresWorkedExample: needsWorkedExample };
+    const input = {
+      request,
+      requiresWorkedExample: needsWorkedExample,
+      lessonProfileInjection,
+    };
     const prompts = this.phase1.getPrompts(input);
 
     const response = await this.generateWithRetry(
@@ -706,7 +747,11 @@ export class SequentialLessonGenerator {
   /**
    * Phase 2: Vocabulary
    */
-  private async runPhase2(request: GenerationRequest, plan: PlanningOutput): Promise<VocabularyOutput | null> {
+  private async runPhase2(
+    request: GenerationRequest,
+    plan: PlanningOutput,
+    lessonProfileInjection?: string
+  ): Promise<VocabularyOutput | null> {
     console.log('  📚 Phase 2: Generating vocabulary...');
     debugLog('PHASE2_START', { lessonId: `${request.unit}-${request.lessonId}` });
 
@@ -715,6 +760,7 @@ export class SequentialLessonGenerator {
       topic: request.topic,
       section: request.section,
       plan,
+      lessonProfileInjection,
     };
     const prompts = this.phase2.getPrompts(input);
 
@@ -745,7 +791,8 @@ export class SequentialLessonGenerator {
   private async runPhase3(
     request: GenerationRequest,
     plan: PlanningOutput,
-    vocabulary: VocabularyOutput
+    vocabulary: VocabularyOutput,
+    lessonProfileInjection?: string
   ): Promise<ExplanationOutput | null> {
     console.log('  📝 Phase 3: Writing explanations...');
     debugLog('PHASE3_START', { lessonId: `${request.unit}-${request.lessonId}` });
@@ -760,6 +807,7 @@ export class SequentialLessonGenerator {
       plan,
       vocabulary,
       taskMode: plan.taskMode,
+      lessonProfileInjection,
     };
     const prompts = this.phase3.getPrompts(input);
 
@@ -790,7 +838,8 @@ export class SequentialLessonGenerator {
   private async runPhase4(
     lessonId: string,
     plan: PlanningOutput,
-    explanations: ExplanationOutput
+    explanations: ExplanationOutput,
+    lessonProfileInjection?: string
   ): Promise<UnderstandingChecksOutput | null> {
     console.log('  ✅ Phase 4: Creating understanding checks...');
     debugLog('PHASE4_START', { lessonId });
@@ -799,6 +848,7 @@ export class SequentialLessonGenerator {
       lessonId,
       explanations: explanations.explanations,
       taskMode: plan.taskMode,
+      lessonProfileInjection,
     };
     const prompts = this.phase4.getPrompts(input);
 
@@ -829,7 +879,8 @@ export class SequentialLessonGenerator {
   private async runPhase5(
     request: GenerationRequest,
     plan: PlanningOutput,
-    explanations: ExplanationOutput
+    explanations: ExplanationOutput,
+    lessonProfileInjection?: string
   ): Promise<WorkedExampleOutput | null> {
     console.log('  🔢 Phase 5: Worked example...');
     const lessonId = `${request.unit}-${request.lessonId}`;
@@ -845,6 +896,7 @@ export class SequentialLessonGenerator {
       explanations: explanations.explanations,
       needsWorkedExample: shouldGenerateWorkedExample,
       taskMode: plan.taskMode,
+      lessonProfileInjection,
     };
 
     if (!shouldGenerateWorkedExample) {
@@ -1110,7 +1162,8 @@ export class SequentialLessonGenerator {
     plan: PlanningOutput,
     explanations: ExplanationOutput,
     vocabulary: VocabularyOutput,
-    workedExample: WorkedExampleOutput
+    workedExample: WorkedExampleOutput,
+    lessonProfileInjection?: string
   ): Promise<PracticeOutput | null> {
     console.log('  💪 Phase 6: Practice questions...');
     debugLog('PHASE6_START', { lessonId });
@@ -1121,6 +1174,7 @@ export class SequentialLessonGenerator {
       vocabulary,
       hasWorkedExample: !!workedExample.workedExample,
       taskMode: plan.taskMode,
+      lessonProfileInjection,
     };
     const prompts = this.phase6.getPrompts(input);
 
@@ -1151,7 +1205,8 @@ export class SequentialLessonGenerator {
   private async runPhase7(
     lessonId: string,
     plan: PlanningOutput,
-    explanations: ExplanationOutput
+    explanations: ExplanationOutput,
+    lessonProfileInjection?: string
   ): Promise<IntegrationOutput | null> {
     console.log('  🔗 Phase 7: Integration questions...');
     debugLog('PHASE7_START', { lessonId });
@@ -1160,6 +1215,7 @@ export class SequentialLessonGenerator {
       lessonId,
       plan,
       explanations: explanations.explanations,
+      lessonProfileInjection,
     };
     const prompts = this.phase7.getPrompts(input);
 
@@ -1258,7 +1314,11 @@ export class SequentialLessonGenerator {
   /**
    * Phase 8: Spaced Review (Foundation Check)
    */
-  private async runPhase8(request: GenerationRequest, planResult: PlanningOutput): Promise<SpacedReviewOutput | null> {
+  private async runPhase8(
+    request: GenerationRequest,
+    planResult: PlanningOutput,
+    lessonProfileInjection?: string
+  ): Promise<SpacedReviewOutput | null> {
     console.log('  🔄 Phase 8: Foundation check (spaced review)...');
     const lessonId = `${request.unit}-${request.lessonId}`;
     debugLog('PHASE8_START', { lessonId });
@@ -1281,6 +1341,7 @@ export class SequentialLessonGenerator {
       previousLessonTitles: prevTitles,
       prerequisiteAnchors: request.prerequisiteAnchors,
       foundationAnchors: request.foundationAnchors,
+      lessonProfileInjection,
     };
     const prompts = this.phase8.getPrompts(input);
 

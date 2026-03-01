@@ -10,6 +10,7 @@ import { Lesson } from '@/data/lessons/types';
 import LayoutA from '@/components/learning/layouts/LayoutA';
 import LayoutB from '@/components/learning/layouts/LayoutB';
 import DiagnosticGate from '@/components/learning/DiagnosticGate';
+import MasteryUnlockGate from '@/components/learning/MasteryUnlockGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 import { getCoursePrefixFromHeader } from '@/lib/routing/curricula';
 import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
@@ -68,7 +69,7 @@ import lessonBIO_1_1A from '@/data/lessons/gcse/biology/BIO-1-1A-eukaryotic-cell
 import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-principles.json';
 import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-and-producers.json';
 import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factors-of-photosynthesis.json';
-import lessonBIO_6_1C from '@/data/lessons/BIO-6-1C-investigating-light-intensity.json';
+import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-light-intensity.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
@@ -154,13 +155,19 @@ export default async function LessonPage({ params }: PageProps) {
   // Check if diagnostic gate is required
   if (lesson.diagnostic?.enabled) {
     return (
-      <DiagnosticGate lessonId={lessonId} diagnostic={lesson.diagnostic}>
-        <LayoutComponent lesson={lesson} />
-      </DiagnosticGate>
+      <MasteryUnlockGate lessonId={lessonId}>
+        <DiagnosticGate lessonId={lessonId} diagnostic={lesson.diagnostic}>
+          <LayoutComponent lesson={lesson} />
+        </DiagnosticGate>
+      </MasteryUnlockGate>
     );
   }
 
-  return <LayoutComponent lesson={lesson} />;
+  return (
+    <MasteryUnlockGate lessonId={lessonId}>
+      <LayoutComponent lesson={lesson} />
+    </MasteryUnlockGate>
+  );
 }
 
 // Generate static paths for known lessons (optional for SSG)

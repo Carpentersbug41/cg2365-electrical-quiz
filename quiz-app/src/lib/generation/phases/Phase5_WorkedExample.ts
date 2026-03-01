@@ -12,6 +12,7 @@ export interface WorkedExampleInput {
   explanations: ExplanationBlock[];
   needsWorkedExample: boolean;
   taskMode: string; // Explicit task mode string
+  lessonProfileInjection?: string;
 }
 
 export interface WorkedExampleStep {
@@ -56,10 +57,15 @@ export class Phase5_WorkedExample extends PhasePromptBuilder {
     return 'Phase 5: Worked Example';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: WorkedExampleInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Apply this to phrasing, complexity, and examples only.\n`
+      : '';
+
     return `You are a practical training specialist for City & Guilds technical and vocational training.
 
 Your task is to create a Worked Example (I Do) and a Guided Practice (We Do) that model and scaffold the SAME skill.
+${profileBlock}
 
 DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
 - Do not assume any specific trade or subject domain.
@@ -119,7 +125,7 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: WorkedExampleInput): string {
-    const { lessonId, topic, explanations, needsWorkedExample, taskMode } = input;
+    const { lessonId, topic, explanations, needsWorkedExample, taskMode, lessonProfileInjection } = input;
 
     const isPurposeOnlyTask = taskMode?.includes('PURPOSE_ONLY') || taskMode?.includes('IDENTIFICATION');
 
@@ -133,6 +139,10 @@ Return:
 }`;
     }
 
+    const profileSection = lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this for readability and tone while preserving technical correctness.`
+      : '';
+
     return `Create a worked example and guided practice for this lesson.
 
 LESSON TOPIC: ${topic}
@@ -143,6 +153,7 @@ EXPLANATION CONTENT (use as the ONLY source of taught facts/terms):
 ${explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n')}
 
 TASK MODE: ${taskMode || 'GENERAL'}
+${profileSection}
 
 If NEEDS WORKED EXAMPLE is false AND TASK MODE is not PURPOSE_ONLY/IDENTIFICATION:
 Return:

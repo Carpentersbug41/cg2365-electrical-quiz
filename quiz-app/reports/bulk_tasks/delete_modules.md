@@ -1,6 +1,6 @@
 # How to Delete Lessons/Modules: Step-by-Step Guide
 
-## Overview
+## Overview2
 
 This guide documents the complete process for removing lessons from the system. When a lesson is generated, it creates files and integrates into 7 different locations. All of these must be cleaned up to fully remove a lesson.
 

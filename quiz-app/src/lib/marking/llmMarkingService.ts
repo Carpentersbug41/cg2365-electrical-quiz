@@ -27,6 +27,7 @@ export interface LLMMarkingRequest {
   cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis';
   answerType?: 'short-text' | 'long-text';
   keyPoints?: string[];
+  promptProfile?: string;
 }
 
 /**
@@ -135,6 +136,14 @@ ${params.questionText}
 COGNITIVE LEVEL: ${params.cognitiveLevel || 'understanding'}
 This question tests: ${cognitiveDescriptions[params.cognitiveLevel || 'understanding'] || 'understanding of concepts'}
 `;
+
+  if (params.promptProfile) {
+    prompt += `
+PROFILE INJECTION (MANDATORY STYLE/TONE):
+${params.promptProfile}
+Apply this profile for tone, readability, and feedback style only. Do not relax technical accuracy standards.
+`;
+  }
 
   // Add keyPoints rubric if present
   if (params.answerType === 'long-text' && params.keyPoints && params.keyPoints.length > 0) {
@@ -337,6 +346,7 @@ export async function markConceptualQuestion(
     cognitiveLevel?: 'connection' | 'synthesis' | 'hypothesis';
     answerType?: 'short-text' | 'long-text';
     keyPoints?: string[];
+    promptProfile?: string;
   }
 ): Promise<ExtendedMarkingResult> {
   
@@ -362,6 +372,7 @@ export async function markConceptualQuestion(
       cognitiveLevel: options?.cognitiveLevel,
       answerType: options?.answerType,
       keyPoints: options?.keyPoints,
+      promptProfile: options?.promptProfile,
     });
     
     // Get model name for metadata

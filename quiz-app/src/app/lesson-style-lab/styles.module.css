@@ -1,0 +1,512 @@
+.page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  /* Default token values; theme classes override these. */
+  --lab-body-font: var(--font-plus-jakarta);
+  --lab-display-font: var(--font-fraunces);
+
+  --bg0: #f7fbff;
+  --bg1: #f1f5ff;
+  --grid: rgba(24, 39, 75, 0.06);
+
+  --surface: rgba(255, 255, 255, 0.92);
+  --surface2: rgba(255, 255, 255, 0.78);
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: rgba(15, 23, 42, 0.12);
+
+  --accent: #2563eb;
+  --accent2: #06b6d4;
+
+  --radius: 24px;
+  --radius-sm: 14px;
+
+  --shadow: 0 26px 70px -54px rgba(3, 7, 18, 0.55);
+  --shadow2: 0 18px 45px -38px rgba(3, 7, 18, 0.35);
+  --focus: 0 0 0 4px rgba(37, 99, 235, 0.25);
+
+  font-family: var(--lab-body-font), system-ui, sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 520px at 0% 0%, rgba(34, 211, 238, 0.18) 0%, transparent 60%),
+    radial-gradient(900px 520px at 100% 0%, rgba(249, 115, 22, 0.16) 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg0) 0%, var(--bg1) 100%);
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(circle at 50% 18%, #000 0%, transparent 78%);
+  pointer-events: none;
+}
+
+.glowA,
+.glowB {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(70px);
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.glowA {
+  width: 340px;
+  height: 340px;
+  left: -120px;
+  top: -120px;
+  background: rgba(34, 211, 238, 0.35);
+}
+
+.glowB {
+  width: 420px;
+  height: 420px;
+  right: -180px;
+  top: 160px;
+  background: rgba(249, 115, 22, 0.26);
+}
+
+.shell {
+  width: min(1360px, 96vw);
+  margin: 0 auto;
+  padding: 1rem 0 2.4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.showcaseWrap {
+  display: grid;
+  gap: 0.95rem;
+}
+
+/* Theme Templates */
+.themeOriginal {
+  /* Minimal shell so the lesson components feel close to the app. */
+  --lab-body-font: var(--font-plus-jakarta);
+  --lab-display-font: var(--font-plus-jakarta);
+  --bg0: #f8fafc;
+  --bg1: #f1f5f9;
+  --surface: rgba(255, 255, 255, 0.96);
+  --surface2: rgba(255, 255, 255, 0.86);
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: rgba(15, 23, 42, 0.10);
+  --accent: #4f46e5;
+  --accent2: #0ea5e9;
+}
+
+.themeSwiss {
+  --lab-body-font: var(--font-instrument-sans);
+  --lab-display-font: var(--font-instrument-sans);
+  --bg0: #ffffff;
+  --bg1: #fbfbfb;
+  --grid: rgba(0, 0, 0, 0.045);
+  --surface: rgba(255, 255, 255, 0.96);
+  --surface2: rgba(255, 255, 255, 0.90);
+  --ink: #0b1220;
+  --muted: #6b7280;
+  --line: rgba(11, 18, 32, 0.14);
+  --accent: #d92d20; /* single Swiss red */
+  --accent2: #111827;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --shadow: 0 18px 60px -56px rgba(0, 0, 0, 0.55);
+  --shadow2: 0 10px 32px -30px rgba(0, 0, 0, 0.35);
+}
+
+.themeControl {
+  --lab-body-font: var(--font-plus-jakarta);
+  --lab-display-font: var(--font-space-mono);
+  --bg0: #070b14;
+  --bg1: #0b1220;
+  --grid: rgba(94, 234, 212, 0.08);
+  --surface: rgba(15, 23, 42, 0.80);
+  --surface2: rgba(15, 23, 42, 0.62);
+  --ink: #eaf2ff;
+  --muted: #b7c6e3;
+  --line: rgba(203, 213, 225, 0.20);
+  --accent: #14b8a6;
+  --accent2: #60a5fa;
+  --shadow: 0 30px 90px -62px rgba(0, 0, 0, 0.85);
+  --shadow2: 0 22px 60px -44px rgba(0, 0, 0, 0.65);
+  --focus: 0 0 0 4px rgba(20, 184, 166, 0.25);
+}
+
+.themeStudio {
+  --lab-body-font: var(--font-plus-jakarta);
+  --lab-display-font: var(--font-fraunces);
+  --bg0: #fff8ef;
+  --bg1: #fff1e6;
+  --grid: rgba(45, 37, 80, 0.06);
+  --surface: rgba(255, 255, 255, 0.94);
+  --surface2: rgba(255, 255, 255, 0.82);
+  --ink: #1f1332;
+  --muted: #5e4a7a;
+  --line: rgba(45, 37, 80, 0.14);
+  --accent: #ff6b6b;
+  --accent2: #f59e0b;
+  --radius: 28px;
+  --radius-sm: 16px;
+  --shadow: 0 26px 80px -60px rgba(74, 52, 112, 0.65);
+  --shadow2: 0 18px 54px -42px rgba(74, 52, 112, 0.40);
+  --focus: 0 0 0 4px rgba(255, 107, 107, 0.20);
+}
+
+.themeNotebook {
+  --lab-body-font: var(--font-newsreader);
+  --lab-display-font: var(--font-instrument-sans);
+  --bg0: #fbf7f0;
+  --bg1: #f6f1e8;
+  --grid: rgba(31, 41, 55, 0.05);
+  --surface: rgba(255, 254, 252, 0.92);
+  --surface2: rgba(255, 254, 252, 0.82);
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --line: rgba(31, 41, 55, 0.14);
+  --accent: #0f766e;
+  --accent2: #a16207;
+  --radius: 20px;
+  --radius-sm: 14px;
+  --shadow: 0 22px 70px -60px rgba(17, 24, 39, 0.55);
+  --shadow2: 0 16px 48px -42px rgba(17, 24, 39, 0.28);
+  --focus: 0 0 0 4px rgba(15, 118, 110, 0.20);
+}
+
+.themeBlueprint {
+  --lab-body-font: var(--font-instrument-sans);
+  --lab-display-font: var(--font-space-mono);
+  --bg0: #061425;
+  --bg1: #04101e;
+  --grid: rgba(56, 189, 248, 0.12);
+  --surface: rgba(7, 21, 40, 0.78);
+  --surface2: rgba(7, 21, 40, 0.60);
+  --ink: #e6f6ff;
+  --muted: #b6d3e3;
+  --line: rgba(56, 189, 248, 0.22);
+  --accent: #38bdf8;
+  --accent2: #a78bfa;
+  --radius: 22px;
+  --radius-sm: 14px;
+  --shadow: 0 32px 90px -66px rgba(0, 0, 0, 0.85);
+  --shadow2: 0 20px 56px -44px rgba(0, 0, 0, 0.55);
+  --focus: 0 0 0 4px rgba(56, 189, 248, 0.22);
+}
+
+/* Dark theme legibility tweaks */
+.themeControl .stageCard,
+.themeControl .contextCard,
+.themeControl .hero {
+  backdrop-filter: blur(12px);
+}
+
+.themeControl .selectorInput,
+.themeControl .stageJump,
+.themeControl .stageBtn {
+  background: rgba(8, 14, 26, 0.72);
+}
+
+.themeControl .rawToggle {
+  background: rgba(8, 14, 26, 0.62);
+}
+
+.themeBlueprint .selectorInput,
+.themeBlueprint .stageJump,
+.themeBlueprint .stageBtn {
+  background: rgba(5, 13, 24, 0.72);
+}
+
+.themeBlueprint .rawToggle {
+  background: rgba(5, 13, 24, 0.62);
+}
+
+/* Shell components */
+.hero {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  padding: 1.15rem 1.25rem;
+}
+
+.heroTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.unitBadge {
+  margin: 0;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface2);
+  padding: 0.35rem 0.7rem;
+  color: var(--ink);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 0.78rem;
+}
+
+.title {
+  margin: 0.7rem 0 0;
+  font-family: var(--lab-display-font), Georgia, serif;
+  font-size: clamp(1.9rem, 2.8vw + 1rem, 3.6rem);
+  line-height: 1.03;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.subtitle {
+  margin: 0.7rem 0 0.95rem;
+  max-width: 92ch;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.commandBar {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 280px;
+  gap: 0.8rem;
+}
+
+.commandSelect,
+.commandStats {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface2);
+  box-shadow: var(--shadow2);
+  padding: 0.65rem;
+}
+
+.selectorLabel,
+.statLabel {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--muted);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.selectorInput {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.62rem 0.7rem;
+  background: var(--surface);
+  color: var(--ink);
+  outline: none;
+}
+
+.selectorInput:focus {
+  box-shadow: var(--focus);
+}
+
+.statValue {
+  margin: 0 0 0.45rem;
+  color: var(--ink);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 1.18rem;
+}
+
+.progressTrack {
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 100%);
+}
+
+.rawToggle {
+  margin-top: 0.55rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: 12px;
+  border: 1px dashed var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 0.7rem;
+}
+
+.experienceGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 480px;
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.stageArea {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.stageHeader {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  box-shadow: var(--shadow2);
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.stageLabel {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.stageTitle {
+  margin: 0.14rem 0 0;
+  color: var(--ink);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 1.02rem;
+}
+
+.stageActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.stageJump {
+  min-width: 320px;
+  max-width: 520px;
+}
+
+.stageJump,
+.stageBtn {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink);
+  padding: 0.5rem 0.65rem;
+  outline: none;
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stageJump:focus,
+.stageBtn:focus-visible {
+  box-shadow: var(--focus);
+}
+
+.stageBtn {
+  cursor: pointer;
+}
+
+.stageBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px -22px rgba(3, 7, 18, 0.55);
+}
+
+.stageBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.stageCard {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 0.85rem;
+  min-height: 70vh;
+}
+
+.contextRail {
+  position: sticky;
+  top: 10px;
+  display: grid;
+  gap: 0.9rem;
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+}
+
+.contextCard {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 0.8rem;
+}
+
+.contextLabel {
+  margin: 0 0 0.55rem;
+  color: var(--muted);
+  font-family: var(--lab-display-font), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tutorWrap {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  min-height: 56vh;
+  background: var(--surface);
+}
+
+@media (max-width: 1020px) {
+  .experienceGrid {
+    grid-template-columns: 1fr;
+  }
+  .contextRail {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 760px) {
+  .shell {
+    width: min(1360px, 97vw);
+    padding-top: 0.75rem;
+  }
+  .commandBar {
+    grid-template-columns: 1fr;
+  }
+  .heroTop {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stageHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stageJump {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+  }
+}

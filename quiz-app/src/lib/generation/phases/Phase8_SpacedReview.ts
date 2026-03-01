@@ -12,6 +12,7 @@ export interface SpacedReviewInput {
   previousLessonTitles: string[]; // Up to 4 previous lesson titles
   prerequisiteAnchors?: string;
   foundationAnchors?: string;
+  lessonProfileInjection?: string;
 }
 
 export interface SpacedReviewQuestion {
@@ -39,10 +40,15 @@ export class Phase8_SpacedReview extends PhasePromptBuilder {
     return 'Phase 8: Spaced Review';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: SpacedReviewInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Apply this to readability and learner-facing style only.\n`
+      : '';
+
     return `You are a foundation check specialist for City & Guilds technical and vocational training.
 
 Your task: write 3 foundation check questions the learner should already know before starting this lesson.
+${profileBlock}
 
 DOMAIN-AGNOSTIC RULE:
 - Questions must be transferable across technical subjects.
@@ -64,7 +70,15 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: SpacedReviewInput): string {
-    const { lessonId, title, learningOutcomes, previousLessonTitles, prerequisiteAnchors, foundationAnchors } = input;
+    const {
+      lessonId,
+      title,
+      learningOutcomes,
+      previousLessonTitles,
+      prerequisiteAnchors,
+      foundationAnchors,
+      lessonProfileInjection,
+    } = input;
 
     const contextSection = previousLessonTitles.length > 0
       ? `PREVIOUS LESSON TITLES (for context):
@@ -78,6 +92,9 @@ ${prerequisiteAnchors.trim()}`
         ? `FOUNDATION ANCHORS (SECONDARY SOURCE):
 ${foundationAnchors.trim()}`
         : `No explicit anchors provided. Use only terms already present in lesson title/learning outcomes.`;
+    const profileSection = lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this for wording difficulty and tone only.`
+      : '';
 
     return `Create 3 foundation check questions for learners starting this lesson.
 
@@ -89,6 +106,7 @@ ${learningOutcomes.map((o, i) => `  ${i + 1}. ${o}`).join('\n')}
 
 ${contextSection}
 ${anchorSection}
+${profileSection}
 
 Return JSON in this exact format:
 {

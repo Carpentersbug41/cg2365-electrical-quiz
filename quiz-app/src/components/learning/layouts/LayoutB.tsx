@@ -19,6 +19,7 @@ import WorkedExampleBlock from '../blocks/WorkedExampleBlock';
 import GuidedPracticeBlock from '../blocks/GuidedPracticeBlock';
 import PracticeBlock from '../blocks/PracticeBlock';
 import SpacedReviewBlock from '../blocks/SpacedReviewBlock';
+import SocraticVoiceBlock from '../blocks/SocraticVoiceBlock';
 import DiagramStage from '../diagram/DiagramStage';
 import TutorPanel from '../tutor/TutorPanel';
 import TTSVoiceSelector from '../tts/TTSVoiceSelector';
@@ -77,6 +78,8 @@ export default function LayoutB({ lesson }: LayoutProps) {
         return <PracticeBlock key={key} block={block} lessonId={lesson.id} />;
       case 'spaced-review':
         return <SpacedReviewBlock key={key} block={block} lessonId={lesson.id} />;
+      case 'socratic':
+        return <SocraticVoiceBlock key={key} block={block} lessonId={lesson.id} />;
       case 'diagram':
         return (
           <div key={key} className={diagramExpanded ? 'fixed inset-0 z-50 p-4 bg-black/30 backdrop-blur-sm' : ''}>

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getGeminiModel, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { createLLMClientWithFallback } from '@/lib/llm/client';
+import {
+  getPromptInjectionSettings,
+  getUserTutorProfileSummaryForRequest,
+} from '@/lib/prompting/profileInjections';
 
 // Initialize LLM client (will be created on first request with fallback support)
 let llmClientPromise: Promise<Awaited<ReturnType<typeof createLLMClientWithFallback>>> | null = null;
@@ -95,6 +99,10 @@ export async function POST(request: NextRequest) {
 
     const body = await request.json();
     const { message, questionContext, contextType } = body;
+    const [promptInjections, learnerProfileSummary] = await Promise.all([
+      getPromptInjectionSettings(),
+      getUserTutorProfileSummaryForRequest(request),
+    ]);
 
     // Validation
     if (!message || typeof message !== 'string') {
@@ -202,6 +210,18 @@ WHAT YOU SHOULD NOT DO:
 - Write equations in plain text like: I = P / (V x PF)
 
 REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writing an essay.`;
+    }
+
+    if (promptInjections.tutorResponseProfile) {
+      systemPrompt += `\n\nGLOBAL RESPONSE PROFILE (MANDATORY STYLE/TONE):
+${promptInjections.tutorResponseProfile}
+Apply this profile while preserving all assessment and safety constraints.`;
+    }
+
+    if (learnerProfileSummary) {
+      systemPrompt += `\n\nLEARNER-SPECIFIC PROFILE:
+${learnerProfileSummary}
+Use this for pacing, examples, and tone.`;
     }
 
     // Initialize model

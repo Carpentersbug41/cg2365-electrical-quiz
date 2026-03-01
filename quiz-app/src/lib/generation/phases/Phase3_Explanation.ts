@@ -17,6 +17,7 @@ export interface ExplanationInput {
   plan: PlanningOutput;
   vocabulary: VocabularyOutput;
   taskMode: string; // Explicit task mode string (e.g., "IDENTIFICATION, PURPOSE_ONLY")
+  lessonProfileInjection?: string;
 }
 
 export interface ExplanationBlock {
@@ -56,12 +57,16 @@ export class Phase3_Explanation extends PhasePromptBuilder {
     const toneInstruction = isGcse
       ? 'Use a fun, warm, engaging tone while staying technically accurate.'
       : 'Use a professional vocational teaching tone.';
+    const profileBlock = input.lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY):\n- ${input.lessonProfileInjection}\n- Use this to control readability, tone, pacing, and examples only.\n`
+      : '';
 
     return `You are an expert technical training content writer.
 
 AUDIENCE + TONE (MANDATORY):
 - ${audienceInstruction}
 - ${toneInstruction}
+${profileBlock}
 
 Your task: write clear, accurate teaching explanations that match lesson scope and learning outcomes.
 
@@ -174,11 +179,14 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: ExplanationInput): string {
-    const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, taskMode } = input;
+    const { lessonId, topic, section, mustHaveTopics, additionalInstructions, plan, vocabulary, taskMode, lessonProfileInjection } = input;
     const isGcse = input.curriculum !== 'cg2365';
     const audienceToneInstruction = isGcse
       ? 'Write for a 12-year-old girl learning GCSE Science: fun, welcoming, clear, and age-appropriate.'
       : 'Write for Level 2 electrical trainees: practical, precise, and professional.';
+    const profileSection = lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY):\n- ${lessonProfileInjection}\n- Apply this style profile while preserving all scope and safety constraints.`
+      : '';
 
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\\n');
 
@@ -193,6 +201,7 @@ TASK MODE: ${taskMode}
 
 AUDIENCE + TONE:
 - ${audienceToneInstruction}
+${profileSection}
 
 CRITICAL:
 - Do NOT include specific numeric values from standards/tables unless they appear in the inputs above.

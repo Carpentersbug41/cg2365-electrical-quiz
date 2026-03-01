@@ -24,6 +24,7 @@ interface ErrorState {
 }
 
 export default function PracticeBlock({ block, lessonId }: BlockProps) {
+  const MIN_REFLECTION_CHARS = 20;
   const content = block.content as PracticeBlockContent;
   const resolvedLessonId = lessonId ?? extractLessonIdFromBlockId(block.id);
   const [answers, setAnswers] = useState<Record<string, string>>({});
@@ -34,6 +35,12 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
   const [errors, setErrors] = useState<Record<string, ErrorState | null>>({});
   const [attemptCount, setAttemptCount] = useState<Record<string, number>>({});
   const [revealedAnswers, setRevealedAnswers] = useState<Record<string, boolean>>({});
+  const [revealReflections, setRevealReflections] = useState<Record<string, string>>({});
+  const [verificationRequired, setVerificationRequired] = useState<Record<string, boolean>>({});
+  const [verificationPassed, setVerificationPassed] = useState<Record<string, boolean>>({});
+  const [verificationLoading, setVerificationLoading] = useState<Record<string, boolean>>({});
+  const [verificationFeedback, setVerificationFeedback] = useState<Record<string, MarkingResponse | null>>({});
+  const [verificationPrompts, setVerificationPrompts] = useState<Record<string, string>>({});
 
   // Soft ding sound for correct answers
   const playSoftDing = () => {
@@ -74,8 +81,26 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
 
   const isSequential = content.sequential === true;
 
+  const resolveExpectedAnswer = (question: PracticeBlockContent['questions'][number]): string => {
+    if (Array.isArray(question.expectedAnswer)) return question.expectedAnswer[0] ?? '';
+    if (typeof question.expectedAnswer === 'string' && question.expectedAnswer.trim().length > 0) return question.expectedAnswer;
+    return 'Explain the core principle correctly and give one concrete example.';
+  };
+
+  const buildVerificationPrompt = (question: PracticeBlockContent['questions'][number]): string => {
+    const stem = question.questionText.replace(/\?+$/, '').trim();
+    const level = question.cognitiveLevel ?? 'recall';
+    if (level === 'synthesis') {
+      return `Transfer check: apply the same principle to a different scenario than "${stem}" and explain why your approach works.`;
+    }
+    if (level === 'connection') {
+      return `Connection check: answer "${stem}" in new words, then link it to one related concept from this lesson.`;
+    }
+    return `Verification check: restate the key idea behind "${stem}" and give one fresh example.`;
+  };
+
   const handleAnswerChange = (questionId: string, value: string) => {
-    setAnswers({ ...answers, [questionId]: value });
+    setAnswers((prev) => ({ ...prev, [questionId]: value }));
   };
 
   const handleSubmit = async (questionId: string, questionIndex: number) => {
@@ -168,10 +193,67 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
     }
   };
 
-  const handleShowAnswer = (questionId: string, questionIndex: number) => {
-    setRevealedAnswers({ ...revealedAnswers, [questionId]: true });
-    // Mark as attempted for sequential unlocking
-    setAttemptedQuestions(prev => new Set(prev).add(questionIndex));
+  const handleShowAnswer = (questionId: string) => {
+    const question = content.questions.find((q) => q.id === questionId);
+    const reflection = (revealReflections[questionId] || '').trim();
+    if (reflection.length < MIN_REFLECTION_CHARS || !question) {
+      return;
+    }
+    setRevealedAnswers((prev) => ({ ...prev, [questionId]: true }));
+    setVerificationRequired((prev) => ({ ...prev, [questionId]: true }));
+    setVerificationPassed((prev) => ({ ...prev, [questionId]: false }));
+    setVerificationFeedback((prev) => ({ ...prev, [questionId]: null }));
+    setVerificationPrompts((prev) => ({ ...prev, [questionId]: buildVerificationPrompt(question) }));
+    // Force a fresh independent retrieval attempt after reveal.
+    setAnswers((prev) => ({ ...prev, [questionId]: '' }));
+  };
+
+  const handleVerificationSubmit = async (questionId: string, questionIndex: number) => {
+    setVerificationLoading((prev) => ({ ...prev, [questionId]: true }));
+    const question = content.questions.find(q => q.id === questionId);
+    if (!question) {
+      setVerificationLoading((prev) => ({ ...prev, [questionId]: false }));
+      return;
+    }
+
+    try {
+      const response = await fetch('/api/marking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId,
+          questionText: verificationPrompts[questionId] || buildVerificationPrompt(question),
+          userAnswer: answers[questionId],
+          expectedAnswer: resolveExpectedAnswer(question),
+          answerType: question.answerType || 'short-text',
+          cognitiveLevel: question.cognitiveLevel || 'recall',
+          keyPoints: question.keyPoints,
+        }),
+      });
+
+      const result: MarkingResponse = await response.json();
+      setVerificationFeedback((prev) => ({ ...prev, [questionId]: result }));
+
+      if (result.isCorrect) {
+        setVerificationPassed((prev) => ({ ...prev, [questionId]: true }));
+        setVerificationRequired((prev) => ({ ...prev, [questionId]: false }));
+        setAttemptedQuestions(prev => new Set(prev).add(questionIndex));
+      }
+    } catch {
+      setVerificationFeedback((prev) => ({
+        ...prev,
+        [questionId]: {
+          isCorrect: false,
+          score: 0,
+          userAnswer: answers[questionId],
+          expectedAnswer: [],
+          feedback: 'Verification check failed. Please try again.',
+          suggestedNextAction: 'retry',
+        } as MarkingResponse
+      }));
+    } finally {
+      setVerificationLoading((prev) => ({ ...prev, [questionId]: false }));
+    }
   };
 
   // Check if a question is accessible (for sequential mode)
@@ -211,6 +293,10 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
     };
   };
 
+  const activePendingVerificationQuestionId = Object.keys(verificationRequired).find(
+    (qid) => verificationRequired[qid] && !verificationPassed[qid]
+  );
+
   return (
     <div 
       className="rounded-2xl shadow-lg p-6 border-2 bg-gradient-to-br from-purple-50 to-pink-50 border-purple-200" 
@@ -237,12 +323,18 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
         {content.questions.map((question, index) => {
           const accessible = isQuestionAccessible(index);
           const cognitiveLabel = getCognitiveLevelLabel(question.cognitiveLevel);
+          const blockedByVerification = Boolean(
+            activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id
+          );
+          const verificationPendingForThisQuestion = Boolean(
+            verificationRequired[question.id] && !verificationPassed[question.id]
+          );
           
           return (
             <div 
               key={question.id} 
               className={`bg-white rounded-xl p-5 border-2 ${
-                accessible ? 'border-purple-200' : 'border-gray-200 opacity-50'
+                accessible && !blockedByVerification ? 'border-purple-200' : 'border-gray-200 opacity-50'
               }`}
             >
               <div className="flex items-start gap-3 mb-4">
@@ -276,9 +368,11 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
                 </div>
               </div>
 
-              {!accessible ? (
+              {!accessible || blockedByVerification ? (
                 <div className="text-center text-gray-500 text-sm py-4">
-                  Complete the previous question to unlock this one
+                  {blockedByVerification
+                    ? 'Complete the mandatory verification check on the revealed-answer question first'
+                    : 'Complete the previous question to unlock this one'}
                 </div>
               ) : (
                 <>
@@ -310,8 +404,24 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
                 {/* Show Answer Button - appears after 2 failed attempts */}
                 {!submitted[question.id] && attemptCount[question.id] >= 2 && !revealedAnswers[question.id] && (
                   <div className="mb-3">
+                    <label className="block text-xs font-semibold text-amber-900 mb-1">
+                      Before revealing, explain what you think you are missing.
+                    </label>
+                    <textarea
+                      value={revealReflections[question.id] || ''}
+                      onChange={(e) =>
+                        setRevealReflections({ ...revealReflections, [question.id]: e.target.value })
+                      }
+                      rows={2}
+                      className="w-full mb-2 px-3 py-2 rounded-lg border border-amber-300 bg-amber-50 text-gray-900 focus:border-amber-500 focus:outline-none"
+                      placeholder="Write a short reflection first..."
+                    />
+                    <p className="text-xs text-amber-800 mb-2">
+                      Minimum {MIN_REFLECTION_CHARS} characters.
+                    </p>
                     <button
-                      onClick={() => handleShowAnswer(question.id, index)}
+                      onClick={() => handleShowAnswer(question.id)}
+                      disabled={(revealReflections[question.id] || '').trim().length < MIN_REFLECTION_CHARS}
                       className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 transition-colors text-sm border-2 border-amber-600"
                     >
                       👁️ Show Answer
@@ -332,8 +442,40 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
                         : question.expectedAnswer}
                     </p>
                     <p className="text-xs text-amber-700 mt-2">
-                      💡 You can still submit your answer to practice and get feedback.
+                      💡 Mandatory step: complete the verification check correctly to continue.
                     </p>
+                  </div>
+                )}
+
+                {revealedAnswers[question.id] && verificationRequired[question.id] && !verificationPassed[question.id] && (
+                  <div className="mb-3 bg-blue-50 rounded-lg p-4 border-2 border-blue-300">
+                    <p className="text-sm font-semibold text-blue-900 mb-2">
+                      Mandatory Verification Check
+                    </p>
+                    <p className="text-xs text-blue-800 mb-3">
+                      Re-answer from memory using this transfer check:
+                    </p>
+                    <p className="text-sm text-blue-900 mb-3">
+                      {verificationPrompts[question.id] || buildVerificationPrompt(question)}
+                    </p>
+                    <button
+                      onClick={() => handleVerificationSubmit(question.id, index)}
+                      disabled={!answers[question.id]?.trim() || verificationLoading[question.id]}
+                      className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
+                    >
+                      {verificationLoading[question.id] ? 'Checking...' : 'Complete Verification Check'}
+                    </button>
+                    {verificationFeedback[question.id] && (
+                      <p className={`mt-2 text-sm ${verificationFeedback[question.id]!.isCorrect ? 'text-green-800' : 'text-red-800'}`}>
+                        {verificationFeedback[question.id]!.feedback}
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {verificationPassed[question.id] && (
+                  <div className="mb-3 bg-green-50 rounded-lg p-3 border border-green-300 text-sm text-green-800">
+                    Verification passed. You can continue.
                   </div>
                 )}
 
@@ -372,7 +514,7 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
                 {!submitted[question.id] ? (
                   <button
                     onClick={() => handleSubmit(question.id, index)}
-                    disabled={!answers[question.id] || loading[question.id]}
+                    disabled={!answers[question.id] || loading[question.id] || verificationPendingForThisQuestion}
                     className="px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
                   >
                     {loading[question.id] ? 'Checking...' : 'Submit Answer'}

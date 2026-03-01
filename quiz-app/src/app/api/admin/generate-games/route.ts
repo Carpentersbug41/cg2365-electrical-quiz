@@ -52,6 +52,32 @@ function getLessonSimulationInfo(lesson: Lesson): { simulationEmbedUrl: string |
   };
 }
 
+function getLessonSocraticInfo(lesson: Lesson): {
+  hasSocratic: boolean;
+  socraticQuestionCount: number | null;
+  socraticStartLevel: number | null;
+} {
+  const socraticBlock = lesson.blocks.find((block) => block.type === 'socratic');
+  if (!socraticBlock) {
+    return {
+      hasSocratic: false,
+      socraticQuestionCount: null,
+      socraticStartLevel: null,
+    };
+  }
+
+  const content = socraticBlock.content as {
+    questionCount?: number;
+    startLevel?: number;
+  };
+
+  return {
+    hasSocratic: true,
+    socraticQuestionCount: typeof content.questionCount === 'number' ? content.questionCount : null,
+    socraticStartLevel: typeof content.startLevel === 'number' ? content.startLevel : null,
+  };
+}
+
 function isGenerationMode(value: unknown): value is GenerationMode {
   return value === 'auto' || value === 'manual';
 }
@@ -124,6 +150,7 @@ export async function GET(request: Request) {
         const explanationCount = lesson.blocks.filter(b => b.type === 'explanation').length;
         const availableMicrobreakSlots = findMicrobreakSlots(lesson.blocks).length;
         const simulationInfo = getLessonSimulationInfo(lesson);
+        const socraticInfo = getLessonSocraticInfo(lesson);
 
         return {
           id: lesson.id,
@@ -140,6 +167,9 @@ export async function GET(request: Request) {
           availableMicrobreakSlots,
           simulationEmbedUrl: simulationInfo.simulationEmbedUrl,
           simulationRepoName: simulationInfo.simulationRepoName,
+          hasSocratic: socraticInfo.hasSocratic,
+          socraticQuestionCount: socraticInfo.socraticQuestionCount,
+          socraticStartLevel: socraticInfo.socraticStartLevel,
         };
       } catch (error) {
         console.error(`Error loading lesson ${lessonPath}:`, error);

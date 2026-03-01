@@ -11,6 +11,7 @@ export interface VocabularyInput {
   topic: string;
   section: string;
   plan: PlanningOutput;
+  lessonProfileInjection?: string;
 }
 
 export interface VocabularyTerm {
@@ -27,10 +28,15 @@ export class Phase2_Vocabulary extends PhasePromptBuilder {
     return 'Phase 2: Vocabulary';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: VocabularyInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nLEARNER PROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Apply this to word choice and definition clarity only.\n`
+      : '';
+
     return `You are a technical vocabulary specialist for City & Guilds technical and vocational training.
 
 Your task is to identify and define the 4-6 most essential technical terms for this lesson.
+${profileBlock}
 
 DEFINITION QUALITY:
 - One sentence per definition
@@ -46,7 +52,10 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: VocabularyInput): string {
-    const { lessonId, topic, section, plan } = input;
+    const { lessonId, topic, section, plan, lessonProfileInjection } = input;
+    const profileSection = lessonProfileInjection
+      ? `\nLEARNER PROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this to keep definitions age/readability appropriate.`
+      : '';
 
     return `Generate essential vocabulary terms for this lesson:
 
@@ -60,6 +69,7 @@ ${plan.explanationSections.map((s, i) => `${i + 1}. ${s.title}: ${s.topic}`).joi
 
 LEARNING OUTCOMES:
 ${plan.learningOutcomes.map((lo, i) => `${i + 1}. ${lo}`).join('\n')}
+${profileSection}
 
 Generate 4-6 essential technical terms that students MUST understand to meet the learning outcomes.
 

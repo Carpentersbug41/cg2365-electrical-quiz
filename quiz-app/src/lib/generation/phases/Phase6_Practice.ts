@@ -13,6 +13,7 @@ export interface PracticeInput {
   vocabulary: VocabularyOutput;
   hasWorkedExample: boolean;
   taskMode: string; // Explicit task mode string
+  lessonProfileInjection?: string;
 }
 
 export interface PracticeQuestion {
@@ -40,10 +41,15 @@ export class Phase6_Practice extends PhasePromptBuilder {
     return 'Phase 6: Practice';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: PracticeInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Apply this to language difficulty and learner-facing tone only.\n`
+      : '';
+
     return `You are an assessment specialist for City & Guilds technical and vocational training.
 
 Your task is to create independent practice questions that assess understanding of taught concepts.
+${profileBlock}
 
 DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
 - Do not assume a specific trade or subject domain.
@@ -93,10 +99,13 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: PracticeInput): string {
-    const { lessonId, explanations, vocabulary, hasWorkedExample, taskMode } = input;
+    const { lessonId, explanations, vocabulary, hasWorkedExample, taskMode, lessonProfileInjection } = input;
 
     const explanationTexts = explanations.map(exp => `${exp.title}:\n${exp.content}`).join('\n\n---\n\n');
     const vocabTerms = vocabulary.terms.map(t => `- ${t.term}: ${t.definition}`).join('\n');
+    const profileSection = lessonProfileInjection
+      ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this to keep question wording audience-appropriate.`
+      : '';
 
     return `Create independent practice questions for this lesson.
 
@@ -116,6 +125,7 @@ ${taskMode.includes('PURPOSE_ONLY') ? '- Test "what for / when to choose", not o
 ${taskMode.includes('IDENTIFICATION') ? '- Focus on recognition/selection cues.' : ''}
 ${taskMode.includes('CALCULATION') ? '- Include numeric questions where taught content supports them.' : ''}
 ` : ''}
+${profileSection}
 
 Create 3-5 practice questions at order 8.
 

@@ -10,6 +10,7 @@ import { classifyLessonTask, isPurposeOnly, getTaskModeString } from '../taskCla
 export interface PlanningInput {
   request: GenerationRequest;
   requiresWorkedExample: boolean;
+  lessonProfileInjection?: string;
 }
 
 export interface PlanningOutput {
@@ -50,10 +51,15 @@ export class Phase1_Planning extends PhasePromptBuilder {
     return 'Phase 1: Planning';
   }
 
-  protected buildSystemPrompt(): string {
+  protected buildSystemPrompt(input: PlanningInput): string {
+    const profileBlock = input.lessonProfileInjection
+      ? `\nLEARNER PROFILE INJECTION (MANDATORY STYLE/TONE):\n- ${input.lessonProfileInjection}\n- Use this only for tone, clarity, and example style. Do not alter scope constraints.\n`
+      : '';
+
     return `You are a lesson structure planner for City & Guilds technical and vocational courses.
 
 Your task is to analyze the lesson requirements and create a structural plan.
+${profileBlock}
 
 DOMAIN-AGNOSTIC RULE (NON-NEGOTIABLE):
 - Do not assume any specific trade, science domain, or qualification pathway.
@@ -105,8 +111,11 @@ ${this.getJsonOutputInstructions()}`;
   }
 
   protected buildUserPrompt(input: PlanningInput): string {
-    const { request, requiresWorkedExample } = input;
+    const { request, requiresWorkedExample, lessonProfileInjection } = input;
     const fullLessonId = `${request.unit}-${request.lessonId}`;
+    const lessonProfileSection = lessonProfileInjection
+      ? `\nLEARNER PROFILE INJECTION (MANDATORY STYLE/TONE):\n${lessonProfileInjection}\nUse this for reading level, tone, and examples only.`
+      : '';
 
     return `Analyze this lesson and create a structural plan:
 
@@ -118,6 +127,7 @@ LESSON DETAILS:
 - Prerequisites: ${request.prerequisites?.length ? request.prerequisites.join(', ') : 'None'}
 ${request.mustHaveTopics ? `\nMUST HAVE TOPICS:\n${request.mustHaveTopics}` : ''}
 ${request.additionalInstructions ? `\nADDITIONAL INSTRUCTIONS (AUTHORITATIVE WHEN PRESENT):\n${request.additionalInstructions}` : ''}
+${lessonProfileSection}
 
 ANALYSIS REQUIRED:
 1. Determine if layout is 'split-vis' (needs diagram), 'linear-flow', or 'focus-mode'

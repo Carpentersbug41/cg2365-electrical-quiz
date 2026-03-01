@@ -149,7 +149,8 @@ export class LLMScoringService {
       'guided-practice',   // Scaffolded practice block
       'practice',          // Quiz questions block
       'spaced-review',     // Review questions block
-      'microbreak'         // Break/rest block
+      'microbreak',        // Break/rest block
+      'socratic'           // Adaptive oral Socratic block
     ];
     for (let i = 0; i < lesson.blocks.length; i++) {
       const block = lesson.blocks[i];

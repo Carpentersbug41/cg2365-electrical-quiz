@@ -21,6 +21,7 @@ import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 import { getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 import { getRefinementConfig } from '@/lib/generation/config';
 import { getCurriculumScopeFromReferer } from '@/lib/routing/curriculumScope';
+import { getPromptInjectionSettings } from '@/lib/prompting/profileInjections';
 import fs from 'fs';
 import path from 'path';
 
@@ -267,6 +268,19 @@ export async function POST(request: NextRequest) {
         { success: false, error: 'Invalid curriculum. Use "cg2365", "gcse-science-physics", or "gcse-science-biology".' },
         { status: 400 }
       );
+    }
+
+    const promptInjections = await getPromptInjectionSettings();
+    const useSequentialGeneration = process.env.USE_SEQUENTIAL_GENERATION === 'true';
+    if (promptInjections.lessonGenerationProfile && !useSequentialGeneration) {
+      const lessonProfileSection = [
+        'LESSON PROFILE INJECTION (MANDATORY STYLE/TONE):',
+        promptInjections.lessonGenerationProfile,
+        'Apply this profile for tone, readability, and example style only. Do not change syllabus scope or safety constraints.',
+      ].join('\n');
+      body.additionalInstructions = [lessonProfileSection, body.additionalInstructions?.trim()]
+        .filter((value): value is string => Boolean(value && value.length > 0))
+        .join('\n\n');
     }
 
     const normalizedSection = body.section?.trim() || inferSectionFromUnit(body.unit);

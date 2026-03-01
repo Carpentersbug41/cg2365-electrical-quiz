@@ -172,17 +172,26 @@ export default function Quiz({
   context = 'practice',
   onComplete 
 }: QuizProps = {}) {
+  const MIN_REASONING_CHARS = 20;
+  const MIN_CORRECTION_CHARS = 20;
+  const requireReasoning = context === 'lesson' || context === 'diagnostic';
   const [quizStarted, setQuizStarted] = useState(false);
   const [selectedQuestions, setSelectedQuestions] = useState<Question[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState<(number | null)[]>([]);
   const [selectedConfidences, setSelectedConfidences] = useState<('not-sure' | 'somewhat-sure' | 'very-sure' | null)[]>([]);
+  const [selectedRationales, setSelectedRationales] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
   const [isReviewing, setIsReviewing] = useState(false);
   const [wrongAnswerFlash, setWrongAnswerFlash] = useState<number | null>(null);
   const [showFeedback, setShowFeedback] = useState(false);
   const [pendingAnswer, setPendingAnswer] = useState<number | null>(null);
   const [pendingConfidence, setPendingConfidence] = useState<'not-sure' | 'somewhat-sure' | 'very-sure' | null>(null);
+  const [pendingRationale, setPendingRationale] = useState('');
+  const [correctionDraft, setCorrectionDraft] = useState('');
+  const [correctionSubmitting, setCorrectionSubmitting] = useState(false);
+  const [correctionSubmitted, setCorrectionSubmitted] = useState(false);
+  const [correctionFeedback, setCorrectionFeedback] = useState<string | null>(null);
   
   // Gamification State
   const [streak, setStreak] = useState(0);
@@ -203,14 +212,15 @@ export default function Quiz({
   const questions = selectedQuestions;
 
   const handleAnswerSelect = (answerIndex: number) => {
-    // With confidence enabled, just set pending answer
-    if (enableConfidence) {
+    // Collect required metadata before final submission.
+    if (enableConfidence || requireReasoning) {
       setPendingAnswer(answerIndex);
+      setPendingRationale(selectedRationales[currentQuestion] || '');
       return;
     }
 
     // Without confidence, immediately submit (old behavior)
-    submitAnswer(answerIndex, null);
+    submitAnswer(answerIndex, null, null);
   };
 
   const handleConfidenceSelect = (confidence: 'not-sure' | 'somewhat-sure' | 'very-sure') => {
@@ -220,11 +230,16 @@ export default function Quiz({
   const handleSubmitAnswer = () => {
     if (pendingAnswer === null) return;
     if (enableConfidence && pendingConfidence === null) return;
+    if (requireReasoning && pendingRationale.trim().length < MIN_REASONING_CHARS) return;
 
-    submitAnswer(pendingAnswer, pendingConfidence);
+    submitAnswer(pendingAnswer, pendingConfidence, requireReasoning ? pendingRationale.trim() : null);
   };
 
-  const submitAnswer = (answerIndex: number, confidence: 'not-sure' | 'somewhat-sure' | 'very-sure' | null) => {
+  const submitAnswer = (
+    answerIndex: number,
+    confidence: 'not-sure' | 'somewhat-sure' | 'very-sure' | null,
+    rationale: string | null
+  ) => {
     // Prevent changing answer once selected
     if (selectedAnswers[currentQuestion] !== null) {
       return;
@@ -239,6 +254,11 @@ export default function Quiz({
       newConfidences[currentQuestion] = confidence;
       setSelectedConfidences(newConfidences);
     }
+    if (rationale) {
+      const newRationales = [...selectedRationales];
+      newRationales[currentQuestion] = rationale;
+      setSelectedRationales(newRationales);
+    }
 
     const currentQ = questions[currentQuestion];
     const isCorrect = answerIndex === currentQ.correctAnswer;
@@ -248,8 +268,12 @@ export default function Quiz({
       const newStreak = streak + 1;
       setStreak(newStreak);
       
-      // Points Calculation: Base 100 + Streak Bonus
-      const earnedPoints = 100 + (newStreak * 10);
+      // Reward learning behaviors over speed-only behavior.
+      const confidenceBonus =
+        confidence === 'very-sure' ? 10 : confidence === 'somewhat-sure' ? 5 : 0;
+      const reasoningBonus =
+        rationale && rationale.length >= MIN_REASONING_CHARS ? 20 : 0;
+      const earnedPoints = 80 + (newStreak * 5) + confidenceBonus + reasoningBonus;
       setPoints(p => p + earnedPoints);
       setPointAnimation(earnedPoints);
       
@@ -335,15 +359,61 @@ export default function Quiz({
     setShowFeedback(false);
     setPendingAnswer(null);
     setPendingConfidence(null);
+    setPendingRationale('');
+    setCorrectionDraft('');
+    setCorrectionSubmitting(false);
+    setCorrectionSubmitted(false);
+    setCorrectionFeedback(null);
     // Auto-advance to next question
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     }
   };
 
+  const handleSubmitCorrectionAttempt = async () => {
+    const currentQ = questions[currentQuestion] as TaggedQuestion | undefined;
+    const draft = correctionDraft.trim();
+    if (!currentQ || draft.length < MIN_CORRECTION_CHARS || correctionSubmitting || correctionSubmitted) {
+      return;
+    }
+
+    setCorrectionSubmitting(true);
+
+    try {
+      const response = await fetch('/api/marking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId: `mcq-correction-${currentQ.id}`,
+          questionText: `Correction check: explain why "${currentQ.options[currentQ.correctAnswer]}" is correct for "${currentQ.question}", and why your previous choice was incorrect.`,
+          expectedAnswer: `Correct option: "${currentQ.options[currentQ.correctAnswer]}". ${(currentQ as TaggedQuestion).explanation || ''}`.trim(),
+          userAnswer: draft,
+          answerType: 'short-text',
+          cognitiveLevel: 'understand',
+        }),
+      });
+
+      if (!response.ok) {
+        setCorrectionFeedback('Correction attempt recorded. Marking service unavailable, but you can continue.');
+      } else {
+        const result = await response.json();
+        setCorrectionFeedback(result?.feedback || 'Correction attempt recorded. You can continue.');
+      }
+    } catch {
+      setCorrectionFeedback('Correction attempt recorded. Connection issue while checking, but you can continue.');
+    } finally {
+      setCorrectionSubmitted(true);
+      setCorrectionSubmitting(false);
+    }
+  };
+
   // Clear flash when changing questions
   useEffect(() => {
     setWrongAnswerFlash(null);
+    setCorrectionDraft('');
+    setCorrectionSubmitting(false);
+    setCorrectionSubmitted(false);
+    setCorrectionFeedback(null);
   }, [currentQuestion]);
 
   const goToNextQuestion = () => {
@@ -441,6 +511,9 @@ export default function Quiz({
         // This is a delayed retest
         if (passed) {
           confirmLessonMastery(lessonId);
+          // Strongly reward delayed recall success.
+          setPoints((prev) => prev + 300);
+          setPointAnimation(300);
         } else {
           resetLessonMastery(lessonId);
         }
@@ -472,12 +545,14 @@ export default function Quiz({
     setCurrentQuestion(0);
     setSelectedAnswers([]);
     setSelectedConfidences([]);
+    setSelectedRationales([]);
     setShowResults(false);
     setIsReviewing(false);
     setStreak(0);
     setPoints(0);
     setPendingAnswer(null);
     setPendingConfidence(null);
+    setPendingRationale('');
     setShowFeedback(false);
     setLlmReport(null);
     setIsGeneratingReport(false);
@@ -494,11 +569,13 @@ export default function Quiz({
     setSelectedQuestions(randomQuestions);
     setSelectedAnswers(new Array(questionCount).fill(null));
     setSelectedConfidences(new Array(questionCount).fill(null));
+    setSelectedRationales(new Array(questionCount).fill(''));
     setQuizStarted(true);
     setStreak(0);
     setPoints(0);
     setPendingAnswer(null);
     setPendingConfidence(null);
+    setPendingRationale('');
     setShowFeedback(false);
 
     if (lessonId) {
@@ -763,7 +840,7 @@ export default function Quiz({
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">✓</span>
-                  <span>Earn streak bonuses for consecutive correct answers! 🔥</span>
+                  <span>Earn bonuses for clear reasoning, calibrated confidence, and delayed retest mastery.</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-2">✓</span>
@@ -1269,35 +1346,56 @@ export default function Quiz({
             })}
           </div>
 
-          {/* Confidence Rating (if enabled and answer selected but not submitted) */}
-          {enableConfidence && pendingAnswer !== null && !isAnswered && !showFeedback && (
+          {/* Submission metadata panel: confidence and/or reasoning before final submit */}
+          {pendingAnswer !== null && !isAnswered && !showFeedback && (enableConfidence || requireReasoning) && (
             <div className="mt-6 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl relative z-10">
-              <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-4">
-                How confident are you in this answer?
-              </h3>
-              <div className="flex flex-col sm:flex-row gap-3">
-                {[
-                  { value: 'not-sure', label: 'Not Sure', emoji: '🤔' },
-                  { value: 'somewhat-sure', label: 'Somewhat Sure', emoji: '🤷' },
-                  { value: 'very-sure', label: 'Very Sure', emoji: '💪' }
-                ].map((conf) => (
-                  <button
-                    key={conf.value}
-                    onClick={() => handleConfidenceSelect(conf.value as 'not-sure' | 'somewhat-sure' | 'very-sure')}
-                    className={`flex-1 p-4 rounded-lg border-2 transition-all ${
-                      pendingConfidence === conf.value
-                        ? 'border-blue-600 bg-blue-100 dark:bg-blue-900/40 dark:border-blue-500 shadow-md transform scale-[1.02]'
-                        : 'border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10'
-                    }`}
-                  >
-                    <div className="text-2xl mb-1">{conf.emoji}</div>
-                    <div className="font-medium text-gray-800 dark:text-slate-200">{conf.label}</div>
-                  </button>
-                ))}
-              </div>
+              {enableConfidence && (
+                <>
+                  <h3 className="font-semibold text-blue-900 dark:text-blue-300 mb-4">
+                    How confident are you in this answer?
+                  </h3>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    {[
+                      { value: 'not-sure', label: 'Not Sure', emoji: '🤔' },
+                      { value: 'somewhat-sure', label: 'Somewhat Sure', emoji: '🤷' },
+                      { value: 'very-sure', label: 'Very Sure', emoji: '💪' }
+                    ].map((conf) => (
+                      <button
+                        key={conf.value}
+                        onClick={() => handleConfidenceSelect(conf.value as 'not-sure' | 'somewhat-sure' | 'very-sure')}
+                        className={`flex-1 p-4 rounded-lg border-2 transition-all ${
+                          pendingConfidence === conf.value
+                            ? 'border-blue-600 bg-blue-100 dark:bg-blue-900/40 dark:border-blue-500 shadow-md transform scale-[1.02]'
+                            : 'border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/10'
+                        }`}
+                      >
+                        <div className="text-2xl mb-1">{conf.emoji}</div>
+                        <div className="font-medium text-gray-800 dark:text-slate-200">{conf.label}</div>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+              {requireReasoning && (
+                <div className={enableConfidence ? 'mt-4' : ''}>
+                  <label className="block text-sm font-semibold text-blue-900 dark:text-blue-300 mb-2">
+                    Why did you choose this answer?
+                  </label>
+                  <textarea
+                    value={pendingRationale}
+                    onChange={(e) => setPendingRationale(e.target.value)}
+                    rows={3}
+                    className="w-full p-3 border-2 border-blue-200 dark:border-blue-800 rounded-lg focus:border-blue-500 focus:outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100"
+                    placeholder="Write 1-2 sentences to explain your reasoning..."
+                  />
+                  <p className="mt-1 text-xs text-blue-700 dark:text-blue-300">
+                    Minimum {MIN_REASONING_CHARS} characters.
+                  </p>
+                </div>
+              )}
               <button
                 onClick={handleSubmitAnswer}
-                disabled={pendingConfidence === null}
+                disabled={(enableConfidence && pendingConfidence === null) || (requireReasoning && pendingRationale.trim().length < MIN_REASONING_CHARS)}
                 className="w-full mt-4 px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white rounded-lg font-semibold hover:bg-indigo-700 dark:hover:bg-indigo-600 disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed transition-colors shadow-md"
               >
                 Submit Answer
@@ -1320,47 +1418,83 @@ export default function Quiz({
                   </div>
                   {!isCorrect && (
                     <>
-                      <div className="mb-3">
-                        <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Correct Answer:</div>
-                        <div className="p-3 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
-                          <div className="font-semibold text-green-900 dark:text-green-200">
-                            {currentQ.options[currentQ.correctAnswer]}
+                      {!correctionSubmitted && (
+                        <div className="mb-4 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-300 dark:border-amber-700 rounded-lg">
+                          <div className="text-sm font-semibold text-amber-900 dark:text-amber-300 mb-2">
+                            Mandatory Correction Attempt
                           </div>
-                        </div>
-                      </div>
-                      {(currentQ as TaggedQuestion).explanation && (
-                        <div className="mb-3">
-                          <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Explanation:</div>
-                          <div className="text-gray-800 dark:text-slate-300">
-                            {(currentQ as TaggedQuestion).explanation}
-                          </div>
+                          <p className="text-sm text-amber-800 dark:text-amber-200 mb-3">
+                            Before seeing the correct answer, explain what you now think the correct idea is.
+                          </p>
+                          <textarea
+                            value={correctionDraft}
+                            onChange={(e) => setCorrectionDraft(e.target.value)}
+                            rows={3}
+                            className="w-full p-3 border-2 border-amber-200 dark:border-amber-700 rounded-lg focus:border-amber-500 focus:outline-none bg-white dark:bg-slate-800 text-gray-900 dark:text-slate-100"
+                            placeholder="Write 1-2 sentences..."
+                          />
+                          <p className="mt-1 text-xs text-amber-700 dark:text-amber-300">
+                            Minimum {MIN_CORRECTION_CHARS} characters.
+                          </p>
+                          <button
+                            onClick={() => void handleSubmitCorrectionAttempt()}
+                            disabled={correctionSubmitting || correctionDraft.trim().length < MIN_CORRECTION_CHARS}
+                            className="mt-3 px-4 py-2 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed transition-colors"
+                          >
+                            {correctionSubmitting ? 'Checking...' : 'Submit Correction Attempt'}
+                          </button>
                         </div>
                       )}
-                      {(() => {
-                        const taggedQ = currentQ as TaggedQuestion;
-                        const userAnswer = selectedAnswers[currentQuestion];
-                        if (taggedQ.misconceptionCodes && userAnswer !== null && userAnswer !== taggedQ.correctAnswer) {
-                          const misconceptionCode = taggedQ.misconceptionCodes[userAnswer];
-                          if (misconceptionCode) {
-                            try {
-                              const misconception = getMisconception(misconceptionCode);
-                              return (
-                                <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg">
-                                  <div className="text-sm font-semibold text-amber-900 dark:text-amber-300 mb-1">
-                                    Common Mistake:
-                                  </div>
-                                  <div className="text-sm text-amber-800 dark:text-amber-400">
-                                    {misconception.fixPrompt}
-                                  </div>
-                                </div>
-                              );
-                            } catch (e) {
-                              return null;
+                      {correctionSubmitted && (
+                        <>
+                          <div className="mb-3">
+                            <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Correct Answer:</div>
+                            <div className="p-3 bg-green-100 dark:bg-green-900/30 border border-green-300 dark:border-green-700 rounded-lg">
+                              <div className="font-semibold text-green-900 dark:text-green-200">
+                                {currentQ.options[currentQ.correctAnswer]}
+                              </div>
+                            </div>
+                          </div>
+                          {(currentQ as TaggedQuestion).explanation && (
+                            <div className="mb-3">
+                              <div className="text-sm font-semibold text-gray-700 dark:text-slate-400 mb-1">Explanation:</div>
+                              <div className="text-gray-800 dark:text-slate-300">
+                                {(currentQ as TaggedQuestion).explanation}
+                              </div>
+                            </div>
+                          )}
+                          {(() => {
+                            const taggedQ = currentQ as TaggedQuestion;
+                            const userAnswer = selectedAnswers[currentQuestion];
+                            if (taggedQ.misconceptionCodes && userAnswer !== null && userAnswer !== taggedQ.correctAnswer) {
+                              const misconceptionCode = taggedQ.misconceptionCodes[userAnswer];
+                              if (misconceptionCode) {
+                                try {
+                                  const misconception = getMisconception(misconceptionCode);
+                                  return (
+                                    <div className="mt-3 p-3 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-700 rounded-lg">
+                                      <div className="text-sm font-semibold text-amber-900 dark:text-amber-300 mb-1">
+                                        Common Mistake:
+                                      </div>
+                                      <div className="text-sm text-amber-800 dark:text-amber-400">
+                                        {misconception.fixPrompt}
+                                      </div>
+                                    </div>
+                                  );
+                                } catch {
+                                  return null;
+                                }
+                              }
                             }
-                          }
-                        }
-                        return null;
-                      })()}
+                            return null;
+                          })()}
+                          {correctionFeedback && (
+                            <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg">
+                              <div className="text-sm text-blue-900 dark:text-blue-300">{correctionFeedback}</div>
+                            </div>
+                          )}
+                        </>
+                      )}
                     </>
                   )}
                   {isCorrect && (currentQ as TaggedQuestion).explanation && (
@@ -1372,13 +1506,14 @@ export default function Quiz({
               </div>
               <button
                 onClick={handleContinueAfterFeedback}
-                className={`w-full px-6 py-3 text-white rounded-lg font-semibold transition-colors shadow-md ${
+                disabled={!isCorrect && !correctionSubmitted}
+                className={`w-full px-6 py-3 text-white rounded-lg font-semibold transition-colors shadow-md disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed ${
                   isCorrect
                     ? 'bg-green-600 dark:bg-green-700 hover:bg-green-700 dark:hover:bg-green-600'
                     : 'bg-red-600 dark:bg-red-700 hover:bg-red-700 dark:hover:bg-red-600'
                 }`}
               >
-                Continue →
+                {!isCorrect && !correctionSubmitted ? 'Submit correction to continue' : 'Continue ->'}
               </button>
             </div>
           )}
@@ -1388,7 +1523,7 @@ export default function Quiz({
               isCorrect ? 'bg-green-100 dark:bg-green-900/20 border border-green-300 dark:border-green-600' : 'bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-600'
             }`}>
               <div className="flex items-start">
-                <span className="text-2xl mr-3">{isCorrect ? '✓' : '✗'}</span>
+                <span className="text-2xl mr-3">{isCorrect ? 'OK' : 'X'}</span>
                 <div>
                   <div className={`font-bold mb-1 ${isCorrect ? 'text-green-800 dark:text-green-300' : 'text-red-800 dark:text-red-300'}`}>
                     {isCorrect ? 'Correct!' : 'Incorrect'}

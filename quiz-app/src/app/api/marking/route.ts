@@ -10,6 +10,10 @@ import { MarkingRequest, MarkingResponse } from '@/lib/marking/types';
 import { markMCQ } from '@/lib/marking/markingService';
 import { markConceptualQuestion } from '@/lib/marking/llmMarkingService';
 import { logMarkingRequest, logMarkingResponse, logMarkingError } from '@/lib/observability/loggingService';
+import {
+  getPromptInjectionSettings,
+  getUserTutorProfileSummaryForRequest,
+} from '@/lib/prompting/profileInjections';
 
 export async function POST(request: NextRequest) {
   try {
@@ -85,6 +89,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    const [promptInjections, learnerProfileSummary] = await Promise.all([
+      getPromptInjectionSettings(),
+      getUserTutorProfileSummaryForRequest(request),
+    ]);
+
+    const responseProfileParts = [
+      promptInjections.tutorResponseProfile,
+      learnerProfileSummary,
+    ].filter((value): value is string => Boolean(value && value.trim().length > 0));
+
     const llmResult = await markConceptualQuestion(
       providedQuestionText,
       providedExpectedAnswer,
@@ -93,6 +107,7 @@ export async function POST(request: NextRequest) {
         cognitiveLevel: cognitiveLevel,
         answerType: answerType as 'short-text' | 'long-text' | undefined,
         keyPoints: keyPoints,
+        promptProfile: responseProfileParts.join(' '),
       }
     );
 
@@ -150,4 +165,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-

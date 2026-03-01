@@ -11,6 +11,7 @@ import { MarkingResponse } from '@/lib/marking/types';
 import BlockTTSButton from '../tts/BlockTTSButton';
 
 export default function GuidedPracticeBlock({ block }: BlockProps) {
+  const MIN_REFLECTION_CHARS = 20;
   const content = block.content as GuidedPracticeBlockContent;
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>(new Array(content.steps.length).fill(''));
@@ -19,6 +20,14 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
   const [loading, setLoading] = useState(false);
   const [attemptCount, setAttemptCount] = useState<number[]>(new Array(content.steps.length).fill(0));
   const [revealedAnswers, setRevealedAnswers] = useState<boolean[]>(new Array(content.steps.length).fill(false));
+  const [revealReflections, setRevealReflections] = useState<string[]>(new Array(content.steps.length).fill(''));
+  const [verificationRequired, setVerificationRequired] = useState<boolean[]>(new Array(content.steps.length).fill(false));
+  const [verificationPassed, setVerificationPassed] = useState<boolean[]>(new Array(content.steps.length).fill(false));
+  const [verificationLoading, setVerificationLoading] = useState<boolean[]>(new Array(content.steps.length).fill(false));
+  const [verificationFeedback, setVerificationFeedback] = useState<(MarkingResponse | null)[]>(
+    new Array(content.steps.length).fill(null)
+  );
+  const [verificationPrompts, setVerificationPrompts] = useState<string[]>(new Array(content.steps.length).fill(''));
 
   // Soft ding sound for correct answers
   const playSoftDing = () => {
@@ -58,12 +67,26 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
   };
 
   const handleAnswerChange = (stepIndex: number, value: string) => {
-    const newAnswers = [...answers];
-    newAnswers[stepIndex] = value;
-    setAnswers(newAnswers);
+    setAnswers((prev) => {
+      const next = [...prev];
+      next[stepIndex] = value;
+      return next;
+    });
+  };
+
+  const resolveExpectedAnswer = (expectedAnswer: string | string[]) => {
+    const raw = Array.isArray(expectedAnswer) ? (expectedAnswer[0] ?? '') : expectedAnswer;
+    const trimmed = String(raw ?? '').trim();
+    return trimmed || 'Explain the main idea and include one concrete example.';
+  };
+
+  const buildVerificationPrompt = (prompt: string) => {
+    const stem = prompt.replace(/\?+$/, '').trim();
+    return `Transfer check: answer "${stem}" in a different context, then explain why your answer still works.`;
   };
 
   const checkAnswer = async (stepIndex: number) => {
+    if (verificationRequired[stepIndex] && !verificationPassed[stepIndex]) return;
     setLoading(true);
     
     try {
@@ -112,6 +135,117 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
       console.error('Error marking answer:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleShowAnswer = (stepIndex: number) => {
+    const reflection = (revealReflections[stepIndex] || '').trim();
+    const step = content.steps[stepIndex];
+    if (!step || reflection.length < MIN_REFLECTION_CHARS) {
+      return;
+    }
+
+    setRevealedAnswers((prev) => {
+      const next = [...prev];
+      next[stepIndex] = true;
+      return next;
+    });
+    setVerificationRequired((prev) => {
+      const next = [...prev];
+      next[stepIndex] = true;
+      return next;
+    });
+    setVerificationPassed((prev) => {
+      const next = [...prev];
+      next[stepIndex] = false;
+      return next;
+    });
+    setVerificationFeedback((prev) => {
+      const next = [...prev];
+      next[stepIndex] = null;
+      return next;
+    });
+    setVerificationPrompts((prev) => {
+      const next = [...prev];
+      next[stepIndex] = buildVerificationPrompt(step.prompt);
+      return next;
+    });
+    setAnswers((prev) => {
+      const next = [...prev];
+      next[stepIndex] = '';
+      return next;
+    });
+  };
+
+  const handleVerificationSubmit = async (stepIndex: number) => {
+    const step = content.steps[stepIndex];
+    if (!step) return;
+
+    setVerificationLoading((prev) => {
+      const next = [...prev];
+      next[stepIndex] = true;
+      return next;
+    });
+
+    try {
+      const response = await fetch('/api/marking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId: `${block.id}-guided-verify-${stepIndex}`,
+          questionText: verificationPrompts[stepIndex] || buildVerificationPrompt(step.prompt),
+          userAnswer: answers[stepIndex],
+          expectedAnswer: resolveExpectedAnswer(step.expectedAnswer),
+          answerType: 'conceptual',
+          cognitiveLevel: 'connection',
+        }),
+      });
+
+      const result: MarkingResponse = await response.json();
+      setVerificationFeedback((prev) => {
+        const next = [...prev];
+        next[stepIndex] = result;
+        return next;
+      });
+
+      if (result.isCorrect) {
+        playSoftDing();
+        setVerificationPassed((prev) => {
+          const next = [...prev];
+          next[stepIndex] = true;
+          return next;
+        });
+        setVerificationRequired((prev) => {
+          const next = [...prev];
+          next[stepIndex] = false;
+          return next;
+        });
+        if (stepIndex === currentStep && stepIndex < content.steps.length - 1) {
+          setTimeout(() => {
+            setCurrentStep(stepIndex + 1);
+            setShowHint(false);
+          }, 900);
+        }
+      }
+    } catch {
+      setVerificationFeedback((prev) => {
+        const next = [...prev];
+        next[stepIndex] = {
+          isCorrect: false,
+          score: 0,
+          userAnswer: answers[stepIndex],
+          expectedAnswer: [],
+          feedback: 'Verification check failed. Please try again.',
+          suggestedNextAction: 'retry',
+        } as MarkingResponse;
+        return next;
+      });
+    } finally {
+      setVerificationLoading((prev) => {
+        const next = [...prev];
+        next[stepIndex] = false;
+        return next;
+      });
     }
   };
 
@@ -166,11 +300,15 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                 
                 {stepIndex <= currentStep && (
                   <>
+                    {(() => {
+                      const verificationPendingForStep = verificationRequired[stepIndex] && !verificationPassed[stepIndex];
+                      return (
+                        <>
                     <input
                       type="text"
                       value={answers[stepIndex]}
                       onChange={(e) => handleAnswerChange(stepIndex, e.target.value)}
-                      disabled={feedback[stepIndex]?.isCorrect || loading}
+                      disabled={feedback[stepIndex]?.isCorrect || loading || verificationPendingForStep}
                       placeholder="Type your answer..."
                       className={`w-full px-4 py-3 rounded-lg border-2 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-400 ${
                         feedback[stepIndex]?.isCorrect
@@ -206,7 +344,7 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                       <div className="flex gap-2 mt-3">
                         <button
                           onClick={() => checkAnswer(stepIndex)}
-                          disabled={!answers[stepIndex].trim() || loading}
+                          disabled={!answers[stepIndex].trim() || loading || verificationPendingForStep}
                           className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
                         >
                           {loading ? 'Checking...' : 'Check Answer'}
@@ -223,16 +361,34 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                         
                         {/* Show Answer Button - appears after 2 failed attempts */}
                         {attemptCount[stepIndex] >= 2 && !revealedAnswers[stepIndex] && (
-                          <button
-                            onClick={() => {
-                              const newRevealed = [...revealedAnswers];
-                              newRevealed[stepIndex] = true;
-                              setRevealedAnswers(newRevealed);
-                            }}
-                            className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 transition-colors text-sm border-2 border-amber-600"
-                          >
-                            👁️ Show Answer
-                          </button>
+                          <div className="w-full">
+                            <label className="block text-xs font-semibold text-amber-900 mb-1">
+                              Before revealing, explain what you think you are missing.
+                            </label>
+                            <textarea
+                              value={revealReflections[stepIndex] || ''}
+                              onChange={(e) =>
+                                setRevealReflections((prev) => {
+                                  const next = [...prev];
+                                  next[stepIndex] = e.target.value;
+                                  return next;
+                                })
+                              }
+                              rows={2}
+                              className="w-full mb-2 px-3 py-2 rounded-lg border border-amber-300 bg-amber-50 text-gray-900 focus:border-amber-500 focus:outline-none"
+                              placeholder="Write a short reflection first..."
+                            />
+                            <p className="text-xs text-amber-800 mb-2">
+                              Minimum {MIN_REFLECTION_CHARS} characters.
+                            </p>
+                            <button
+                              onClick={() => handleShowAnswer(stepIndex)}
+                              disabled={(revealReflections[stepIndex] || '').trim().length < MIN_REFLECTION_CHARS}
+                              className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm border-2 border-amber-600"
+                            >
+                              👁️ Show Answer
+                            </button>
+                          </div>
                         )}
                       </div>
                     )}
@@ -255,8 +411,46 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
                             ? step.expectedAnswer[0] 
                             : step.expectedAnswer}
                         </p>
+                        <p className="text-xs text-amber-700 mt-2">
+                          Mandatory step: complete the verification check correctly to continue.
+                        </p>
                       </div>
                     )}
+                    {revealedAnswers[stepIndex] &&
+                      verificationRequired[stepIndex] &&
+                      !verificationPassed[stepIndex] && (
+                      <div className="mt-3 bg-blue-50 rounded-lg p-4 border-2 border-blue-300">
+                        <p className="text-sm font-semibold text-blue-900 mb-2">
+                          Mandatory Verification Check
+                        </p>
+                        <p className="text-xs text-blue-800 mb-3">
+                          Re-answer from memory using this transfer check:
+                        </p>
+                        <p className="text-sm text-blue-900 mb-3">
+                          {verificationPrompts[stepIndex] || buildVerificationPrompt(step.prompt)}
+                        </p>
+                        <button
+                          onClick={() => handleVerificationSubmit(stepIndex)}
+                          disabled={!answers[stepIndex]?.trim() || verificationLoading[stepIndex]}
+                          className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
+                        >
+                          {verificationLoading[stepIndex] ? 'Checking...' : 'Complete Verification Check'}
+                        </button>
+                        {verificationFeedback[stepIndex] && (
+                          <p className={`mt-2 text-sm ${verificationFeedback[stepIndex]!.isCorrect ? 'text-green-800' : 'text-red-800'}`}>
+                            {verificationFeedback[stepIndex]!.feedback}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                    {verificationPassed[stepIndex] && (
+                      <div className="mt-3 bg-green-50 rounded-lg p-3 border border-green-300 text-sm text-green-800">
+                        Verification passed. You can continue.
+                      </div>
+                    )}
+                        </>
+                      );
+                    })()}
                   </>
                 )}
               </div>

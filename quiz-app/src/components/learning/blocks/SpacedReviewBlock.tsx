@@ -18,6 +18,7 @@ import {
 } from '@/lib/authProgress/questionIdentity';
 
 export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
+  const MIN_REFLECTION_CHARS = 20;
   const content = block.content as SpacedReviewBlockContent;
   const resolvedLessonId = lessonId ?? extractLessonIdFromBlockId(block.id);
 
@@ -61,14 +62,89 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
   const [attemptCount, setAttemptCount] = useState<Record<string, number>>({});
   const [revealedAnswers, setRevealedAnswers] = useState<Record<string, boolean>>({});
   const [showHint, setShowHint] = useState<Record<string, boolean>>({});
+  const [revealReflections, setRevealReflections] = useState<Record<string, string>>({});
+  const [verificationRequired, setVerificationRequired] = useState<Record<string, boolean>>({});
+  const [verificationPassed, setVerificationPassed] = useState<Record<string, boolean>>({});
+  const [verificationLoading, setVerificationLoading] = useState<Record<string, boolean>>({});
+  const [verificationFeedback, setVerificationFeedback] = useState<Record<string, MarkingResponse | null>>({});
+  const [verificationPrompts, setVerificationPrompts] = useState<Record<string, string>>({});
+
+  const LEGACY_PLACEHOLDER_ANSWER = 'This is a review question. Provide a thoughtful answer based on your prior knowledge.';
+
+  const resolveExpectedAnswer = (expectedAnswer: string | string[]): string => {
+    const raw = Array.isArray(expectedAnswer) ? (expectedAnswer[0] ?? '') : expectedAnswer;
+    const trimmed = String(raw ?? '').trim();
+    if (!trimmed || trimmed === LEGACY_PLACEHOLDER_ANSWER) {
+      return 'Explain the core idea correctly and include one concrete example.';
+    }
+    return trimmed;
+  };
+
+  const buildVerificationPrompt = (questionText: string): string => {
+    const stem = questionText.replace(/\?+$/, '').trim();
+    return `Transfer check: answer the same concept in a different context than "${stem}", then explain why it is still true.`;
+  };
 
   const handleAnswerChange = (questionId: string, value: string) => {
-    setAnswers({ ...answers, [questionId]: value });
+    setAnswers((prev) => ({ ...prev, [questionId]: value }));
   };
 
-  const handleShowAnswer = (questionId: string) => {
-    setRevealedAnswers({ ...revealedAnswers, [questionId]: true });
+  const handleShowAnswer = (questionId: string, questionText: string) => {
+    const reflection = (revealReflections[questionId] || '').trim();
+    if (reflection.length < MIN_REFLECTION_CHARS) {
+      return;
+    }
+    setRevealedAnswers((prev) => ({ ...prev, [questionId]: true }));
+    setVerificationRequired((prev) => ({ ...prev, [questionId]: true }));
+    setVerificationPassed((prev) => ({ ...prev, [questionId]: false }));
+    setVerificationFeedback((prev) => ({ ...prev, [questionId]: null }));
+    setVerificationPrompts((prev) => ({ ...prev, [questionId]: buildVerificationPrompt(questionText) }));
+    setAnswers((prev) => ({ ...prev, [questionId]: '' }));
   };
+
+  const handleVerificationSubmit = async (questionId: string, questionText: string, expectedAnswer: string | string[]) => {
+    setVerificationLoading((prev) => ({ ...prev, [questionId]: true }));
+    try {
+      const response = await fetch('/api/marking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questionId,
+          questionText: verificationPrompts[questionId] || buildVerificationPrompt(questionText),
+          userAnswer: answers[questionId],
+          expectedAnswer: resolveExpectedAnswer(expectedAnswer),
+          answerType: 'conceptual',
+          cognitiveLevel: 'recall',
+        }),
+      });
+
+      const result: MarkingResponse = await response.json();
+      setVerificationFeedback((prev) => ({ ...prev, [questionId]: result }));
+
+      if (result.isCorrect) {
+        setVerificationPassed((prev) => ({ ...prev, [questionId]: true }));
+        setVerificationRequired((prev) => ({ ...prev, [questionId]: false }));
+      }
+    } catch {
+      setVerificationFeedback((prev) => ({
+        ...prev,
+        [questionId]: {
+          isCorrect: false,
+          score: 0,
+          userAnswer: answers[questionId],
+          expectedAnswer: [],
+          feedback: 'Verification check failed. Please try again.',
+          suggestedNextAction: 'retry',
+        } as MarkingResponse
+      }));
+    } finally {
+      setVerificationLoading((prev) => ({ ...prev, [questionId]: false }));
+    }
+  };
+
+  const activePendingVerificationQuestionId = Object.keys(verificationRequired).find(
+    (qid) => verificationRequired[qid] && !verificationPassed[qid]
+  );
 
   const handleSubmit = async (questionId: string, questionText: string, expectedAnswer: string | string[]) => {
     setLoading({ ...loading, [questionId]: true });
@@ -161,6 +237,12 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
         
         {normalizedQuestions.map((question, index) => (
           <div key={question.id} className="bg-white rounded-xl p-4 border-2 border-amber-200">
+            {(() => {
+              const verificationPendingForThisQuestion = Boolean(
+                verificationRequired[question.id] && !verificationPassed[question.id]
+              );
+              return (
+                <>
             <div className="flex items-start gap-3 mb-3">
               <span className="flex-shrink-0 w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-sm font-bold">
                 {index + 1}
@@ -179,7 +261,7 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
             <textarea
               value={answers[question.id] || ''}
               onChange={(e) => handleAnswerChange(question.id, e.target.value)}
-              disabled={submitted[question.id]}
+              disabled={submitted[question.id] || Boolean(activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id)}
               placeholder="Type your answer..."
               rows={3}
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-slate-400 focus:border-amber-400 dark:focus:border-amber-500 focus:outline-none focus:ring-2 focus:ring-amber-400 dark:focus:ring-amber-500 mb-3 disabled:bg-gray-100 dark:disabled:bg-slate-700 resize-y"
@@ -202,15 +284,49 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
                   </p>
                 )}
                 {question.expectedAnswer && 
-                 question.expectedAnswer !== 'This is a review question. Provide a thoughtful answer based on your prior knowledge.' && (
+                 question.expectedAnswer !== LEGACY_PLACEHOLDER_ANSWER && (
                   <p className="text-xs text-amber-700 mt-2">
-                    💡 You can still submit your answer to practice and get feedback.
+                    Mandatory step: complete the verification check correctly to continue.
                   </p>
                 )}
               </div>
             )}
 
-            {!submitted[question.id] && (
+            {revealedAnswers[question.id] &&
+              verificationRequired[question.id] &&
+              !verificationPassed[question.id] &&
+              !Boolean(activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id) && (
+                <div className="mb-3 bg-blue-50 rounded-lg p-4 border-2 border-blue-300">
+                  <p className="text-sm font-semibold text-blue-900 mb-2">Mandatory Verification Check</p>
+                  <p className="text-xs text-blue-800 mb-3">
+                    Re-answer from memory using this transfer check:
+                  </p>
+                  <p className="text-sm text-blue-900 mb-3">
+                    {verificationPrompts[question.id] || buildVerificationPrompt(question.questionText)}
+                  </p>
+                  <button
+                    onClick={() => handleVerificationSubmit(question.id, question.questionText, question.expectedAnswer)}
+                    disabled={!answers[question.id]?.trim() || verificationLoading[question.id]}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
+                  >
+                    {verificationLoading[question.id] ? 'Checking...' : 'Complete Verification Check'}
+                  </button>
+                  {verificationFeedback[question.id] && (
+                    <p className={`mt-2 text-sm ${verificationFeedback[question.id]!.isCorrect ? 'text-green-800' : 'text-red-800'}`}>
+                      {verificationFeedback[question.id]!.feedback}
+                    </p>
+                  )}
+                </div>
+              )}
+
+            {verificationPassed[question.id] && (
+              <div className="mb-3 bg-green-50 rounded-lg p-3 border border-green-300 text-sm text-green-800">
+                Verification passed. You can continue.
+              </div>
+            )}
+
+            {!submitted[question.id] &&
+              !Boolean(activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id) && (
               <div className="flex gap-2 flex-wrap mb-3">
                 {question.hint && (
                   <button
@@ -223,18 +339,45 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
                 
                 {/* Show Answer Button - appears after 2 failed attempts */}
                 {attemptCount[question.id] >= 2 && !revealedAnswers[question.id] && (
-                  <button
-                    onClick={() => handleShowAnswer(question.id)}
-                    className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 transition-colors text-sm border-2 border-amber-600"
-                  >
-                    👁️ Show Answer
-                  </button>
+                  <div className="w-full">
+                    <label className="block text-xs font-semibold text-amber-900 mb-1">
+                      Before revealing, write what you think you got wrong.
+                    </label>
+                    <textarea
+                      value={revealReflections[question.id] || ''}
+                      onChange={(e) =>
+                        setRevealReflections({ ...revealReflections, [question.id]: e.target.value })
+                      }
+                      rows={2}
+                      className="w-full mb-2 px-3 py-2 rounded-lg border border-amber-300 bg-amber-50 text-gray-900 focus:border-amber-500 focus:outline-none"
+                      placeholder="Write a short reflection first..."
+                    />
+                    <p className="text-xs text-amber-800 mb-2">
+                      Minimum {MIN_REFLECTION_CHARS} characters.
+                    </p>
+                    <button
+                      onClick={() => handleShowAnswer(question.id, question.questionText)}
+                      disabled={(revealReflections[question.id] || '').trim().length < MIN_REFLECTION_CHARS}
+                      className="px-4 py-2 bg-amber-500 text-white rounded-lg font-semibold hover:bg-amber-600 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm border-2 border-amber-600"
+                    >
+                      👁️ Show Answer
+                    </button>
+                  </div>
                 )}
               </div>
             )}
 
+            {Boolean(activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id) && (
+              <div className="mb-3 text-center text-sm text-gray-600">
+                Complete the mandatory verification check on the revealed-answer question first.
+              </div>
+            )}
+
             {/* Display Hint */}
-            {showHint[question.id] && question.hint && !submitted[question.id] && (
+            {showHint[question.id] &&
+              question.hint &&
+              !submitted[question.id] &&
+              !Boolean(activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id) && (
               <div className="mb-3">
                 <p className="text-sm text-gray-600 bg-amber-50 rounded-lg p-3 border border-amber-200">
                   {question.hint}
@@ -245,7 +388,12 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
             {!submitted[question.id] ? (
               <button
                 onClick={() => handleSubmit(question.id, question.questionText, question.expectedAnswer)}
-                disabled={!answers[question.id]?.trim() || loading[question.id]}
+                disabled={
+                  !answers[question.id]?.trim() ||
+                  loading[question.id] ||
+                  Boolean(activePendingVerificationQuestionId && activePendingVerificationQuestionId !== question.id) ||
+                  verificationPendingForThisQuestion
+                }
                 className="mt-3 px-4 py-2 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors text-sm"
               >
                 {loading[question.id] ? 'Checking...' : 'Check Answer'}
@@ -292,6 +440,9 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
                 )}
               </div>
             ) : null}
+                </>
+              );
+            })()}
           </div>
         ))}
       </div>

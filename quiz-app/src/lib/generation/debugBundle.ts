@@ -249,7 +249,7 @@ export class DebugBundleCollector {
     const seenIds = new Set<string>();
 
     // Check block IDs
-    const blockIdPattern = /^(outcomes|vocab|diagram|explanation|worked-example|guided-practice|practice|integrative|spaced-review|microbreak)-\d+$/;
+    const blockIdPattern = /^(outcomes|vocab|diagram|explanation|worked-example|guided-practice|practice|integrative|spaced-review|microbreak|socratic)-\d+$/;
     
     for (const block of lesson.blocks || []) {
       if (!block.id) {

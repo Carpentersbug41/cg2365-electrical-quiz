@@ -235,6 +235,43 @@
       }
     },
     {
+      "id": "BIO-6-1A-microbreak-1",
+      "type": "microbreak",
+      "order": 5.75,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Accurate Statement",
+        "rightLabel": "Misconception",
+        "items": [
+          {
+            "text": "We are exploring how energy from space is turned into the physical stuff that makes up living...",
+            "correctBin": "left"
+          },
+          {
+            "text": "A Producer is a special kind of organism, like a green plant on land or algae in the ocean,...",
+            "correctBin": "left"
+          },
+          {
+            "text": "Instead, it creates its own food and Biomass by converting light energy from the sun into...",
+            "correctBin": "left"
+          },
+          {
+            "text": "Photosynthesis is just 'breathing' for plants.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Photosynthesis is a chemical reaction that creates food glucose ; it is not the same as the...",
+            "correctBin": "right"
+          },
+          {
+            "text": "Biomass is just another word for waste or dead leaves.",
+            "correctBin": "right"
+          }
+        ]
+      }
+    },
+    {
       "id": "BIO-6-1A-practice",
       "type": "practice",
       "order": 8,
@@ -297,6 +334,33 @@
       }
     },
     {
+      "id": "BIO-6-1A-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "spot-error",
+        "scenario": "Imagine you are watching a tiny sunflower seed grow into a giant, golden flower! Your friend is trying to explain how the plant gets so big and heavy. Which of these ideas is actually a mistake?",
+        "options": [
+          {
+            "text": "The plant captures light energy from the sun to create its own food and biomass.",
+            "isError": false,
+            "explanation": "Spot on! Plants are producers that turn light into chemical energy to build their bodies."
+          },
+          {
+            "text": "The plant acts like a solar-powered 3D printer, using water and gases to grow.",
+            "isError": false,
+            "explanation": "Exactly! It uses 'ink' from the environment and solar power to 'print' more of itself."
+          },
+          {
+            "text": "The plant gets its food by eating the soil through its roots, just like we eat from a plate.",
+            "isError": true,
+            "explanation": "Aha! You found the error! Plants don't 'eat' soil; they use it for water and minerals, but their actual food energy comes from the sun."
+          }
+        ]
+      }
+    },
+    {
       "id": "BIO-6-1A-integrative",
       "type": "practice",
       "order": 9.5,
@@ -345,6 +409,20 @@
             "hint": "Consider how the energy from the sun is 'packaged' into the physical stuff that other animals eat."
           }
         ]
+      }
+    },
+    {
+      "id": "BIO-6-1A-socratic",
+      "type": "socratic",
+      "order": 9.75,
+      "content": {
+        "title": "Socratic Voice Questions",
+        "description": "Adaptive end-of-lesson Socratic oral check.",
+        "enabled": true,
+        "questionCount": 8,
+        "startLevel": 1,
+        "allowVoiceInput": true,
+        "allowVoiceOutput": true
       }
     },
     {
@@ -402,7 +480,7 @@
   "metadata": {
     "created": "2026-02-27",
     "updated": "2026-02-27",
-    "version": "1.0",
+    "version": "1.3",
     "author": "GCSE Science Learning Team",
     "taskMode": "DEFINITION, IDENTIFICATION",
     "syllabusAnchors": {

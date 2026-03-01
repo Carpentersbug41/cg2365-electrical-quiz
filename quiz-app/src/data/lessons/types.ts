@@ -12,7 +12,8 @@ export type BlockType =
   | 'practice'
   | 'spaced-review'
   | 'diagram'
-  | 'microbreak';
+  | 'microbreak'
+  | 'socratic';
 
 export type LayoutType = 'split-vis' | 'linear-flow' | 'focus-mode';
 
@@ -111,6 +112,19 @@ export interface SpacedReviewBlockContent {
     hint?: string;
   }[];
   notes?: string;
+}
+
+/**
+ * Socratic Voice Block: Adaptive one-question-at-a-time oral questioning
+ */
+export interface SocraticBlockContent {
+  title: string;
+  description?: string;
+  enabled?: boolean;
+  questionCount: number; // 8-10 recommended
+  startLevel: 1 | 2 | 3 | 4;
+  allowVoiceInput?: boolean;
+  allowVoiceOutput?: boolean;
 }
 
 /**
@@ -343,7 +357,8 @@ export type BlockContent =
   | PracticeBlockContent
   | SpacedReviewBlockContent
   | DiagramBlockContent
-  | MicrobreakContent;
+  | MicrobreakContent
+  | SocraticBlockContent;
 
 /**
  * Block: Single content unit with stable ID

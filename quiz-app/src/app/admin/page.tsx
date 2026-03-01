@@ -39,6 +39,12 @@ const workspaceLinks: AdminLink[] = [
     href: '/admin/users',
     badge: 'Users',
   },
+  {
+    title: 'Prompt Profiles',
+    description: 'Edit global profile injections used by lesson generation and tutor/marking/socratic responses.',
+    href: '/admin/prompt-profiles',
+    badge: 'Prompts',
+  },
 ];
 
 const generatorLinks: AdminLink[] = [

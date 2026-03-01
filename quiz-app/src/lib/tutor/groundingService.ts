@@ -65,6 +65,13 @@ Spaced Review: ${content.title as string}
 ${(content.questions as Array<string>).map((q, i: number) => `${i + 1}. ${q}`).join('\n')}
 ${content.notes ? `\nNote: ${content.notes as string}` : ''}`;
 
+    case 'socratic':
+      return `[${block.id}]
+Socratic Voice Questions: ${String(content.title ?? 'Socratic Voice Questions')}
+Question count: ${String(content.questionCount ?? '')}
+Start level: ${String(content.startLevel ?? '')}
+One-question-at-a-time adaptive oral questioning block.`;
+
     case 'diagram':
       return `[${block.id}]
 Diagram: ${content.title as string}
@@ -177,7 +184,6 @@ export function validateGrounding(
     invalidReferences,
   };
 }
-
 
 
 
