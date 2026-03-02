@@ -143,4 +143,4 @@ Schedule future retrieval
 
 Unlock next concept only after mastery
 
-If your app does this reliably, the evidence says it will outperform most commercial “learning” apps—regardless of how flashy they are.
+If your app does this reliably, t/he evidence says it will outperform most commercial “learning” apps—regardless of how flashy they are.

@@ -118,6 +118,15 @@ export async function POST(request: NextRequest) {
 
     // Prepare system prompt with question context
     let systemPrompt = `You are an educational tutor specializing in 2365 Electrical Installation qualifications.`;
+
+    if (promptInjections.tutorResponseProfile || learnerProfileSummary) {
+      systemPrompt += `
+
+STYLE PRIORITY RULES:
+- LEARNER-SPECIFIC PROFILE is the authoritative voice/tone/style for this user.
+- GLOBAL RESPONSE PROFILE is fallback/default style guidance.
+- If style guidance conflicts, keep safety/assessment constraints but preserve LEARNER style voice.`;
+    }
     
     if (isAssessment) {
       systemPrompt += ` You are a quiz assistant helping students with electrical installation concepts.
@@ -137,12 +146,9 @@ Section: ${questionContext.section}
 YOUR ROLE:
 You are an ELECTRICAL SUBJECT MATTER EXPERT. You fully understand what this question is testing and you're here to TEACH the underlying electrical concepts, principles, and regulations that relate to this question.
 
-COMMUNICATION STYLE:
-- Use SIMPLE, PLAIN LANGUAGE - talk like you are speaking to a 14 year old, not an expert.
-- Keep responses SHORT and FOCUSED - aim for 2 sentences max.
-- Don't overcomplicate - your explanation should be SIMPLER than a textbook
-- Get straight to the point - no long introductions or unnecessary detail
-- Use everyday analogies when helpful that a 12 year old would understand.
+RESPONSE CONSTRAINTS:
+- Keep responses short and focused (typically 1-3 short sentences unless asked for detail).
+- Be clear and direct.
 
 WHAT YOU SHOULD DO:
 - Explain electrical concepts clearly and briefly
@@ -169,7 +175,7 @@ You: "Impedance is the total opposition to current flow in AC circuits. Think of
 Student: "I don't understand this question"
 You: "This is asking about [concept]. Here's the key: [1-2 sentences explaining the core principle as if to a 14 year old]. That's what you need to work this out."
 
-REMEMBER: SHORT, SIMPLE, FOCUSED. You're a helpful expert, not a textbook.`;
+REMEMBER: Teach the concept, not just wording.`;
     } else {
       systemPrompt += ` You are a quiz assistant helping students with electrical installation concepts.
 
@@ -188,12 +194,9 @@ Section: ${questionContext.section}
 YOUR ROLE:
 You are an ELECTRICAL SUBJECT MATTER EXPERT in teaching mode. You fully understand this question and can teach the concepts, provide answers, and explain WHY.
 
-COMMUNICATION STYLE:
-- Use SIMPLE, PLAIN LANGUAGE - talk like a helpful colleague
-- Keep responses SHORT and FOCUSED - aim for 100-150 words maximum
-- Don't overcomplicate - make it easy to understand
-- Get straight to the point
-- Use everyday analogies when helpful
+RESPONSE CONSTRAINTS:
+- Keep responses short and focused.
+- Be clear and direct.
 
 WHAT YOU SHOULD DO:
 - Explain electrical concepts, principles, and regulations clearly and briefly
@@ -209,19 +212,17 @@ WHAT YOU SHOULD NOT DO:
 - DO NOT use LaTeX or math delimiters like $, $$, \\frac{}, \\times, or curly-brace formula syntax
 - Write equations in plain text like: I = P / (V x PF)
 
-REMEMBER: SHORT, SIMPLE, FOCUSED. You're teaching ELECTRICAL CONCEPTS, not writing an essay.`;
+REMEMBER: You're teaching electrical concepts, not writing an essay.`;
     }
 
     if (promptInjections.tutorResponseProfile) {
-      systemPrompt += `\n\nGLOBAL RESPONSE PROFILE (MANDATORY STYLE/TONE):
-${promptInjections.tutorResponseProfile}
-Apply this profile while preserving all assessment and safety constraints.`;
+      systemPrompt += `\n\nGLOBAL RESPONSE PROFILE (FALLBACK STYLE):
+${promptInjections.tutorResponseProfile}`;
     }
 
     if (learnerProfileSummary) {
-      systemPrompt += `\n\nLEARNER-SPECIFIC PROFILE:
-${learnerProfileSummary}
-Use this for pacing, examples, and tone.`;
+      systemPrompt += `\n\nLEARNER-SPECIFIC PROFILE (AUTHORITATIVE FOR THIS USER):
+${learnerProfileSummary}`;
     }
 
     // Initialize model

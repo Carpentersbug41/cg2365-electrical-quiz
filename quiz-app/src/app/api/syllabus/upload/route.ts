@@ -20,7 +20,7 @@ import { createLLMClient } from '@/lib/llm/client';
 import { getGeminiApiKey, getGeminiModelWithDefault } from '@/lib/config/geminiConfig';
 import { cleanCodeBlocks, preprocessToValidJson, safeJsonParse } from '@/lib/generation/utils';
 import { CanonicalUnitStructure } from '@/lib/module_planner/types';
-import { getCurriculumScopeFromReferer } from '@/lib/routing/curriculumScope';
+import { getCurriculumScopeFromHeaderOrReferer } from '@/lib/routing/curriculumScope';
 
 function guardUploadAccess(request: NextRequest): NextResponse | null {
   if (!isModulePlannerEnabled()) {
@@ -494,7 +494,10 @@ async function tryDeriveGcseStructureWithLlmBatched(
 export async function POST(request: NextRequest) {
   const denied = guardUploadAccess(request);
   if (denied) return denied;
-  const scope = getCurriculumScopeFromReferer(request.headers.get('referer'));
+  const scope = getCurriculumScopeFromHeaderOrReferer(
+    request.headers.get('x-course-prefix'),
+    request.headers.get('referer')
+  );
 
   try {
     const formData = await request.formData();

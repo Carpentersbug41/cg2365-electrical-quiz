@@ -399,11 +399,17 @@ async function generateQuestion(
   history: TurnHistoryItem[],
   lessonMisconceptions: LessonMisconception[],
   profileInjection?: string
-): Promise<{ question: string; intent: QuestionIntent }> {
-  const recentHistory = history
-    .slice(-6)
-    .map((item, index) => `${index + 1}. [Level ${item.level}] Q: ${compact(item.question, 140)} | A: ${compact(item.answer, 140)}`)
-    .join('\n');
+  ): Promise<{ question: string; intent: QuestionIntent }> {
+    const recentHistory = history
+      .slice(-6)
+      .map((item, index) => `${index + 1}. [Level ${item.level}] Q: ${compact(item.question, 140)} | A: ${compact(item.answer, 140)}`)
+      .join('\n');
+
+    const conceptWindowSize = 4;
+    const questionPositionInConcept = (askedCount % conceptWindowSize) + 1;
+    const previousQuestion = history.length > 0 ? history[history.length - 1].question : '';
+    const previousAnswer = history.length > 0 ? history[history.length - 1].answer : '';
+    const isFollowUpStep = questionPositionInConcept > 1;
 
   const levelGuide = `Level 1 Recall: simple factual check.
 Level 2 Connection: link two ideas.
@@ -425,26 +431,42 @@ Level 4 Hypothesis: prediction/justification beyond direct text.`;
 
   const prompt = `You are generating ONE Socratic question for a student.
 Return strict JSON only: {"question":"...","intent":"diagnose|repair|verify|transfer"}.
-
-Rules:
-- Ask exactly one question.
-- Keep it concise and clear for spoken dialogue.
-- Use the requested level only.
-- Keep intent exactly equal to requested intent.
-- Do not ask multiple sub-questions.
-- Do not include answer hints.
-- No markdown.
-- If Active misconception code is present, target that misconception explicitly.
-
-Session progress: next question number ${askedCount + 1} of ${questionCount}
-Target level: ${level}
-Target intent: ${intent}
-Active misconception code: ${activeMisconception || 'none'}
-Misconception map for this lesson:
-${misconceptionSection}
 ${profileSection}
 
-${levelGuide}
+  Rules:
+  - Ask exactly one question at a time.
+  - Keep it concise and clear for spoken dialogue.
+  - One question at a time, but keep conceptual continuity.
+  - Work in concept chains of 3-4 questions on the SAME concept area before switching.
+  - Do NOT jump between unrelated concepts question-to-question.
+  - Use the requested level only.
+  - Keep intent exactly equal to requested intent.
+  - Do not ask multiple sub-questions.
+  - Do not include answer hints.
+- No markdown.
+- If Active misconception code is present, target that misconception explicitly.
+- Remember: Always Work in concept chains of 3-4 questions on the SAME concept area before switching.
+
+  Session progress: next question number ${askedCount + 1} of ${questionCount}
+  Target level: ${level}
+  Target intent: ${intent}
+  Concept-chain position: ${questionPositionInConcept} of 4
+  Active misconception code: ${activeMisconception || 'none'}
+  Misconception map for this lesson:
+  ${misconceptionSection}
+
+  ${isFollowUpStep
+    ? `FOLLOW-UP REQUIREMENT (MANDATORY):
+  - Stay in the exact same concept area as the immediately previous question.
+  - Deepen understanding of that same area using a tighter probe (mechanism, contrast, justification, or near-transfer).
+  - Base the follow-up on the prior exchange below.
+  Previous question: ${compact(previousQuestion, 200)}
+  Student answer: ${compact(previousAnswer, 200)}`
+    : `NEW-CONCEPT STEP:
+  - Start a fresh concept area from the lesson, specific and foundational.
+  - The next 2-3 questions will stay in this same area.`}
+
+  ${levelGuide}
 
 Avoid repeating these recent questions:
 ${recentHistory || 'None'}
@@ -505,7 +527,7 @@ async function evaluateAnswer(
   profileInjection?: string
 ): Promise<EvaluatePayload> {
   const profileSection = profileInjection
-    ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${profileInjection}\nUse this for feedback tone and clarity only; keep marking rigor unchanged.`
+    ? `\nPROFILE (TOP PRIORITY FOR STYLE):\n${profileInjection}\nUse this for wording, tone, and pacing. Keep scoring rigor unchanged.`
     : '';
   const allowedCodes = new Set(lessonMisconceptions.map((item) => normalizeMisconceptionCode(item.code)).filter(Boolean));
   const misconceptionSection =
@@ -518,26 +540,27 @@ async function evaluateAnswer(
           .join('\n')
       : '- NONE';
 
-  const prompt = `You are evaluating a student's answer to a Socratic question.
+  const prompt = `Evaluate a student's answer to one Socratic question.
 Return strict JSON only:
-{"feedback":"short feedback in 1-2 sentences","score":0,"isCorrect":false,"misconceptionCode":null,"evidenceQuote":"","nextAction":"retry|advance|repair"}
+{"feedback":"...", "score":0, "isCorrect":false, "misconceptionCode":null, "evidenceQuote":"", "nextAction":"retry|advance|repair"}
+${profileSection}
+
+Marking rubric:
+- 0 = incorrect / off-topic / no understanding
+- 1 = partially correct but important gap remains
+- 2 = conceptually correct and sufficient
 
 Rules:
-- Judge conceptual correctness for the given lesson context.
-- Be tolerant of wording if concept is correct.
-- Use rubric score:
-  0 = incorrect/no understanding,
-  1 = partially correct but key gap remains,
-  2 = conceptually correct and sufficient.
-- Feedback is mandatory for every answer.
-- If correct: first sentence confirms what was right. second sentence gives a small extension or connection.
-- If incorrect or partial: first sentence briefly identifies the gap. second sentence gives the key correction and a hint for the next try.
-- Keep feedback concise, learner-friendly, and specific to the student's answer.
+- Judge conceptual correctness against the lesson context.
+- Accept equivalent phrasing when meaning is correct.
+- Do not force an off-topic redirect; keep feedback natural in profile tone.
+- Feedback must be short, specific to this answer, and written naturally in the profile style.
+- Avoid stock/canned lines and avoid repeating fixed templates.
 - No markdown.
-- If score <= 1 and a mapped misconception applies, set misconceptionCode to one code from allowed map below.
-- If score <= 1 but no mapped misconception fits, set misconceptionCode to "NONE".
+- If score <= 1 and a mapped misconception applies, set misconceptionCode to one code from the allowed map.
+- If score <= 1 and no mapped misconception fits, set misconceptionCode to "NONE".
 - If score = 2, set misconceptionCode to null.
-- evidenceQuote should be a short phrase from the learner answer that justifies your score.
+- evidenceQuote should be a short phrase from the learner answer supporting your score.
 
 Question level: ${level}
 Question: ${question}
@@ -546,8 +569,7 @@ Allowed misconception map:
 ${misconceptionSection}
 
 Lesson context:
-${lessonSummary}
-${profileSection}`;
+${lessonSummary}`;
 
   try {
     const payload = await generateJson<EvaluatePayload>(prompt);
@@ -617,12 +639,21 @@ export async function POST(request: NextRequest) {
       getPromptInjectionSettings(),
       getUserTutorProfileSummaryForRequest(request),
     ]);
+    const hasGlobalProfile = Boolean(promptInjections.tutorResponseProfile?.trim());
+    const hasLearnerProfile = Boolean(learnerProfileSummary?.trim());
     const responseProfileInjection = [
-      promptInjections.tutorResponseProfile,
-      learnerProfileSummary,
+      hasGlobalProfile
+        ? `GLOBAL STYLE (FALLBACK): ${promptInjections.tutorResponseProfile.trim()}`
+        : null,
+      hasLearnerProfile
+        ? `LEARNER PROFILE (AUTHORITATIVE FOR THIS USER): ${learnerProfileSummary!.trim()}`
+        : null,
+      hasGlobalProfile || hasLearnerProfile
+        ? 'Priority: follow LEARNER PROFILE for voice/tone; use GLOBAL STYLE only as fallback/default.'
+        : null,
     ]
       .filter((value): value is string => Boolean(value && value.trim().length > 0))
-      .join(' ');
+      .join('\n');
 
     const lessonId = sanitizeText(body.lessonId);
     if (!lessonId) {

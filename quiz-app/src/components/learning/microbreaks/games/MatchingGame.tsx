@@ -161,18 +161,18 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                     disabled={completed || isMatched || wrongMatch !== null || isMatching}
                     style={{ animationDelay: `${idx * 45}ms` }}
                     className={`
-                      w-full relative p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide
+                      w-full relative p-3 md:p-4 text-left microbreak-stagger microbreak-card-glide
                       rounded-2xl border-2 transition-all duration-200
                       ${isMatched ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-default opacity-40' :
-                        isMatching ? 'bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
-                        isWrong ? 'bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
+                        isMatching ? 'microbreak-correct bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
+                        isWrong ? 'microbreak-wrong bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
                         isSelected ? 'bg-indigo-50 border-indigo-500 text-indigo-900 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20 scale-[1.02]' :
                         'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5'}
                     `}
                   >
-                    <span className="text-base md:text-xl font-medium">{item.text}</span>
+                    <span className="text-sm md:text-base font-medium leading-snug">{item.text}</span>
                     {isMatched && (
-                      <CheckCircle2 className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-emerald-500 opacity-50" />
+                      <CheckCircle2 className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-emerald-500 opacity-50" />
                     )}
                   </button>
                 );
@@ -201,18 +201,18 @@ export default function MatchingGame({ content, onComplete, onSkip }: MatchingGa
                     disabled={completed || isMatched || wrongMatch !== null || isMatching}
                     style={{ animationDelay: `${idx * 55}ms` }}
                     className={`
-                      w-full relative p-4 md:p-6 text-left microbreak-stagger microbreak-card-glide
+                      w-full relative p-3 md:p-4 text-left microbreak-stagger microbreak-card-glide
                       rounded-2xl border-2 transition-all duration-200
                       ${isMatched ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-default opacity-40' :
-                        isMatching ? 'bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
-                        isWrong ? 'bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
+                        isMatching ? 'microbreak-correct bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
+                        isWrong ? 'microbreak-wrong bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
                         isSelected ? 'bg-indigo-50 border-indigo-500 text-indigo-900 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20 scale-[1.02]' :
                         'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5'}
                     `}
                   >
-                    <span className="text-sm md:text-lg leading-relaxed">{item.text}</span>
+                    <span className="text-xs md:text-sm leading-relaxed">{item.text}</span>
                     {isMatched && (
-                      <CheckCircle2 className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 text-emerald-500 opacity-50" />
+                      <CheckCircle2 className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-emerald-500 opacity-50" />
                     )}
                   </button>
                 );

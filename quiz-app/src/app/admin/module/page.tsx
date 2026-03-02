@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
 type StageKey = 'M0' | 'M1' | 'M2' | 'M3' | 'M4' | 'M5' | 'M6';
 
@@ -295,6 +296,7 @@ export default function ModulePlannerPage() {
     (contentType?: string): HeadersInit => {
       const headers: Record<string, string> = {};
       if (contentType) headers['content-type'] = contentType;
+      headers['x-course-prefix'] = getCoursePrefixForClient();
       if (adminToken.trim().length > 0) headers['x-module-admin-token'] = adminToken.trim();
       return headers;
     },

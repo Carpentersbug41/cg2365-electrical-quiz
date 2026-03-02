@@ -1,0 +1,457 @@
+{
+  "id": "203-3L1P",
+  "title": "203.3L1P — Power & Heating Circuits (Noob): What They Are + Simple Operation ",
+  "description": "Learn about Power & Heating Circuits (Noob): What They Are + Simple Operation  in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Power & Heating Circuits (Noob): What They Are + Simple Operation ",
+  "learningOutcomes": [
+    "State the purpose of power and heating circuits and list common examples found in installations.",
+    "Explain the characteristics of a radial circuit layout compared to other types.",
+    "Identify the roles of the Line, Neutral, and CPC conductors within a simple circuit path."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3L1P-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "State the purpose of power and heating circuits and list common examples found in installations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain the characteristics of a radial circuit layout compared to other types.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify the roles of the Line, Neutral, and CPC conductors within a simple circuit path.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1P-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Radial Circuit",
+            "definition": "A radial circuit is an electrical layout where the cable runs in a single path from the consumer unit to the equipment, rather than looping back to the source like a ring circuit."
+          },
+          {
+            "term": "High-Power Load",
+            "definition": "A high-power load refers to appliances like electric showers or cookers that require a large amount of current to operate and usually need their own dedicated circuit."
+          },
+          {
+            "term": "Line Conductor",
+            "definition": "The Line conductor is the wire that carries the electrical energy from the source to the appliance, providing the live voltage needed for the circuit to function."
+          },
+          {
+            "term": "Neutral Conductor",
+            "definition": "The Neutral conductor is the wire that completes the electrical path by carrying current back from the appliance to the source under normal operating conditions."
+          },
+          {
+            "term": "Circuit Protective Conductor (CPC)",
+            "definition": "The CPC is a dedicated safety wire that connects all metal parts of an installation to earth to protect users from electric shock in the event of a fault."
+          },
+          {
+            "term": "Dedicated Circuit",
+            "definition": "A dedicated circuit is a single electrical run designed to supply power to only one specific appliance, ensuring that high-power equipment does not overload the rest of the installation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1P-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Power & Heating Circuits (Noob): What They Are + Simple Operation  Diagram",
+        "description": "Visual representation of Power & Heating Circuits (Noob): What They Are + Simple Operation ",
+        "videoUrl": "",
+        "diagramType": "circuit",
+        "elementIds": [
+          "consumer-unit",
+          "radial-cable",
+          "local-isolator",
+          "high-power-load",
+          "cpc-connection"
+        ],
+        "placeholderText": "The diagram should show a linear flow starting from a 'consumer-unit' on the left. A single 'radial-cable' exits the unit and travels to a 'local-isolator' (a wall switch). From the isolator, the cable continues to a 'high-power-load' (represented by a cooker or shower icon). Inside the cable, three distinct lines should represent the Line, Neutral, and 'cpc-connection', with the CPC clearly shown bonded to the metal casing of the load for safety. The diagram reads from left to right, showing the 'one-way' nature of the radial path."
+      }
+    },
+    {
+      "id": "203-3L1P-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Power and Heating Circuit Basics",
+        "content": "### In this lesson\nThis lesson introduces the fundamental purpose of circuits designed specifically for power and heating equipment.\nYou will learn how to identify these circuits in domestic and commercial settings to ensure safe installation design.\n\n*   Identify the purpose of power and heating circuits.\n*   List common examples of high-power equipment.\n*   Understand the concept of a dedicated supply.\n\n**What this is**\nA power and heating circuit is a specific type of electrical arrangement designed to supply energy to equipment that converts electricity into heat or mechanical work. Unlike lighting circuits, which typically handle very low levels of current, these circuits are built to manage a **High-Power Load**. This means the appliances connected to them draw a significant amount of electrical energy, requiring robust wiring and specific layouts. In many cases, these are installed as a **Dedicated Circuit**, meaning the run of cable serves only one specific appliance to prevent interference with other parts of the building's electrical system.\n\n**Why it matters**\nUnderstanding the purpose of these circuits is vital for safety and system reliability. If a **High-Power Load**, such as an electric shower, were connected to a standard socket circuit, it would likely blow the fuse or trip the circuit breaker immediately because the demand exceeds the circuit's capacity. By identifying which appliances need their own supply, you ensure the installation can handle the heat generated by the electricity moving through the wires without causing a fire hazard.\n\n**Key facts / rules**\n*   Power and heating circuits typically serve loads with higher current demands than lighting.\n*   A **Dedicated Circuit** is commonly used for fixed appliances to ensure they have an uninterrupted supply.\n*   Common examples include electric cookers, immersion heaters, and electric showers.\n*   Heating loads can also include fixed space heaters like storage heaters or underfloor heating.\n*   These circuits usually originate from the consumer unit and terminate at a local switch or the appliance itself.\n*   To determine the exact current demand of a load, you should typically consult the manufacturer’s data plate or technical manual (verify current edition/version).\n\n**When to choose it**\nYou choose to install a power or heating circuit when an appliance is \"fixed\" (permanently wired) and has a high energy demand. For example, an electric cooker cannot simply be plugged into a standard wall outlet; it requires a heavy-duty cable and its own fuse at the consumer unit. You would also select this circuit type for water heating systems, such as an immersion heater in a hot water cylinder, or for comfort heating like an electric towel rail in a bathroom. \n\nConsider a comparison between a 3,000W (3kW) immersion heater and a 10W LED light bulb. The heater is a **High-Power Load** that draws 300 times more energy than the bulb; therefore, it requires a specialized circuit rather than sharing a path with the lights. Think of it like a fire hose versus a garden hose: you use the fire hose (power circuit) when you need a massive volume of water (current) delivered quickly.\n\n**Common mistakes**\nLearners often confuse a **High-Power Load** with a standard portable appliance; a **High-Power Load** is usually fixed and requires a **Dedicated Circuit**, whereas portable items use general-purpose socket circuits.\n\nMisconceptions (targeted):\n*   Misconception: Any appliance that gets hot can go on a standard plug circuit. | Correction: High-power heating appliances like cookers and showers require dedicated, heavy-duty circuits to operate safely. | AC1\n*   Misconception: Power circuits are only for industrial buildings. | Correction: Every modern home uses power and heating circuits for essential items like water heaters and ovens. | AC1\n\n**Key Points**\n*   Power/heating circuits handle high-current equipment.\n*   They often use a **Dedicated Circuit** for a single appliance.\n*   Examples include cookers, showers, and immersion heaters.\n*   They are separated from lighting to ensure safety and capacity.\n\n**Quick recap**\nPower and heating circuits are designed to safely deliver large amounts of energy to specific fixed appliances like ovens and water heaters. Because these loads draw significant current, they are usually separated into their own dedicated paths starting from the consumer unit.\n\n### Coming Up Next\nWe will look at the specific physical layout of these runs, known as the radial path, and identify the individual wires involved."
+      }
+    },
+    {
+      "id": "203-3L1P-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Power and Heating Circuit Basics",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1P-C1-L1-A",
+            "questionText": "What term describes the significant amount of electrical energy that power and heating circuits are built to manage?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "High-Power Load",
+              "High power load",
+              "High-power loads"
+            ],
+            "hint": "Look for the term used to describe appliances that draw a lot of energy compared to lights."
+          },
+          {
+            "id": "203-3L1P-C1-L1-B",
+            "questionText": "What is the term for a circuit arrangement where the run of cable serves only one specific appliance?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Dedicated Circuit",
+              "Dedicated supply",
+              "Dedicated circuits"
+            ],
+            "hint": "This term refers to a circuit that is not shared with any other equipment."
+          },
+          {
+            "id": "203-3L1P-C1-L1-C",
+            "questionText": "Compared to lighting circuits, what type of current demands do power and heating circuits typically serve?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Higher current demands",
+              "Higher current",
+              "High current demands"
+            ],
+            "hint": "Think about whether these circuits handle more or less current than a standard light bulb."
+          },
+          {
+            "id": "203-3L1P-C1-L2",
+            "questionText": "Using your answers to Q1 (High-Power Load), Q2 (Dedicated Circuit), and Q3 (higher current demands), why must high-power loads be separated from lighting circuits? Explain why this cannot be done with a standard shared circuit.",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "High-power loads draw significantly more energy than lighting",
+              "Standard circuits lack the capacity for these higher current demands",
+              "A dedicated circuit prevents overloading and potential fire hazards",
+              "Separation ensures the wiring can safely handle the heat generated"
+            ],
+            "expectedAnswer": [
+              "Because high-power loads have much higher current demands than lighting, they need a dedicated circuit to avoid overloading the system. If they shared a circuit, the high demand could cause the wiring to overheat or the fuse to blow.",
+              "High-power loads require more energy than lighting circuits can provide. By using a dedicated circuit, we ensure that these higher current demands do not interfere with other parts of the building or create a fire hazard."
+            ],
+            "hint": "Consider what would happen to the wiring if a massive energy demand was placed on a low-capacity lighting path."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1P-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "The Radial Path",
+        "content": "### In this lesson\nThis lesson explains the characteristics of the radial layout and the roles of the conductors within that path.\nYou will learn how to recognise a radial circuit and understand how electricity travels to and from the load.\n\n*   Define the characteristics of a **Radial Circuit**.\n*   Identify the roles of the Line, Neutral, and CPC conductors.\n*   Compare the radial layout to other common circuit types.\n\n**What this is**\nA **Radial Circuit** is an electrical layout where the cable leaves the consumer unit and travels in a single, continuous path to the equipment. It does not loop back to the start. In this path, three main conductors work together. The **Line Conductor** carries the energy to the appliance. The **Neutral Conductor** provides the return path for the current to go back to the source. Finally, the **Circuit Protective Conductor (CPC)** is the safety wire that connects the metal parts of the system to the earth, ensuring that if a fault occurs, the electricity has a safe way to escape without shocking the user.\n\n**Why it matters**\nRecognising a radial layout is essential for identifying how a system is powered. Because it is a single line, it is straightforward to install and troubleshoot. Understanding the roles of the conductors—**Line Conductor**, **Neutral Conductor**, and **CPC**—is the foundation of all electrical safety. If the Neutral is broken, the appliance won't work; if the CPC is missing or damaged, the appliance might still work, but it becomes a deadly shock hazard during a fault.\n\n**Key facts / rules**\n*   A **Radial Circuit** functions like a \"dead-end\" street; the power goes to the end and returns through the same cable.\n*   The **Line Conductor** is the \"live\" wire that provides the voltage.\n*   The **Neutral Conductor** completes the circuit loop under normal conditions.\n*   The **CPC** only carries current when there is an electrical fault.\n*   Most high-power heating loads are wired as radials to keep the installation simple and dedicated.\n*   You can identify a radial by looking for a single cable entering a local isolator or appliance without a second cable returning to the source.\n\n**How to recognise it**\nYou can recognise a **Radial Circuit** by its \"one-way\" nature. If you were to trace the cable from the consumer unit, it would go to a **Local Isolator** (a switch nearby) and then directly into the appliance, such as a storage heater. Unlike a ring circuit, which has two cables connected to the circuit breaker in the consumer unit, a radial usually only has one cable per breaker.\n\nAn everyday anchor for a **Radial Circuit** is a dead-end road leading to a single house. The cars (current) drive down the road (Line) to the house (load), and then drive back out the same way (Neutral). There is no other way in or out. In a micro-scenario, if you inspect a cooker connection unit and see only one set of supply wires entering the box, you are identifying a radial path. If there were two sets of supply wires, it might indicate a different, looped system.\n\n**Common mistakes**\nLearners often confuse the **Neutral Conductor** with the **Circuit Protective Conductor (CPC)**; the **Neutral Conductor** is a functional wire that carries current normally, whereas the **CPC** is a safety wire that should only carry current during a fault.\n\nMisconceptions (targeted):\n*   Misconception: A radial circuit must return to the consumer unit to work. | Correction: Only ring circuits return to the source; a radial terminates at the final appliance or socket. | AC2\n*   Misconception: The CPC is just an extra wire that isn't really needed for the appliance to run. | Correction: While the appliance may run without it, the CPC is the primary safety mechanism preventing electric shock. | AC3\n\n**Key Points**\n*   Radials run in a single path from the source to the load.\n*   Line supplies power; Neutral returns it; CPC provides safety.\n*   Radial circuits are the standard choice for **High-Power Load** appliances.\n*   Local isolation is usually found at the end of the radial run.\n\n**Quick recap**\nA radial circuit is a simple, one-way electrical path from the consumer unit to an appliance. It uses a **Line Conductor** to deliver power, a **Neutral Conductor** to return it, and a **CPC** to ensure user safety in case of a fault. This layout is the most common way to supply dedicated power to heating and high-demand equipment.\n\n### Coming Up Next\nIn the next lesson, we will explore the different types of protective devices that sit at the start of these radial circuits to keep them from overheating."
+      }
+    },
+    {
+      "id": "203-3L1P-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: The Radial Path",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1P-C2-L1-A",
+            "questionText": "In what type of path does a radial circuit travel from the consumer unit to the equipment?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Single continuous path",
+              "Single path",
+              "Continuous path"
+            ],
+            "hint": "Think about whether the cable loops back or goes in one direction to a dead-end."
+          },
+          {
+            "id": "203-3L1P-C2-L1-B",
+            "questionText": "Which specific conductor provides the return path for the current to go back to the source?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Neutral Conductor",
+              "Neutral",
+              "The neutral"
+            ],
+            "hint": "One wire brings the energy in, and this wire completes the loop by taking it back."
+          },
+          {
+            "id": "203-3L1P-C2-L1-C",
+            "questionText": "Under what specific condition does the Circuit Protective Conductor (CPC) carry current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Electrical fault",
+              "A fault",
+              "Fault conditions"
+            ],
+            "hint": "This wire is for safety and does not carry current during normal operation."
+          },
+          {
+            "id": "203-3L1P-C2-L2",
+            "questionText": "Using your answers to Q1 (single continuous path), Q2 (Neutral Conductor), and Q3 (electrical fault), explain why the CPC is considered a safety device. How do we know it is not part of the normal energy delivery path?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The normal path is completed by the Line and Neutral conductors",
+              "The CPC remains inactive during normal operation",
+              "The CPC only carries current to provide a safe exit during a fault",
+              "Its purpose is protection rather than functional power delivery"
+            ],
+            "expectedAnswer": [
+              "In a single continuous path, the Line and Neutral conductors handle the delivery and return of power. We know the CPC is a safety device because it only carries current during an electrical fault, meaning it is not needed for the appliance to function normally.",
+              "The Neutral conductor is the functional return path for current, whereas the CPC is a separate safety wire. Because the CPC only activates during a fault, it serves as a protection mechanism rather than a part of the standard power delivery loop."
+            ],
+            "hint": "Compare which wires are needed to make the appliance work versus which wire is there to prevent a shock."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1P-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3L1P-P1",
+            "questionText": "A standard LED bulb uses 10 Watts of power, while a high-power immersion heater uses 3,000 Watts. How many times more power does the immersion heater draw compared to the light bulb?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "300"
+            ],
+            "hint": "Divide the higher power value by the lower power value to find the ratio."
+          },
+          {
+            "id": "203-3L1P-P2",
+            "questionText": "Why must a high-power load, such as an electric shower, be installed on its own dedicated circuit rather than sharing a path with lights or standard sockets?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "prevent overloading",
+              "avoid overloading",
+              "stop overloading",
+              "prevent overload"
+            ],
+            "hint": "Think about what happens to the system capacity when the demand for energy is too high for the wiring to handle."
+          },
+          {
+            "id": "203-3L1P-P3",
+            "questionText": "You are identifying a circuit where the cable travels from the consumer unit to a local switch and then directly into a storage heater without returning to the source. What is the name of this circuit layout?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "radial circuit",
+              "radial",
+              "a radial circuit",
+              "radial layout"
+            ],
+            "hint": "This layout follows a single, one-way path like a dead-end street."
+          },
+          {
+            "id": "203-3L1P-P4",
+            "questionText": "A large industrial cooling unit is a high-power load that requires a continuous supply to keep stock frozen. To ensure it does not interfere with other equipment, what specific type of circuit arrangement should be selected?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "dedicated circuit",
+              "dedicated supply",
+              "a dedicated circuit",
+              "dedicated"
+            ],
+            "hint": "This term describes a circuit that serves only one specific piece of equipment."
+          },
+          {
+            "id": "203-3L1P-P5",
+            "questionText": "In a standard radial circuit, which conductor is responsible for providing the return path for the electrical current back to the source under normal operating conditions?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "neutral conductor",
+              "neutral",
+              "the neutral conductor",
+              "the neutral"
+            ],
+            "hint": "While the Line carries energy to the appliance, this wire completes the loop."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1P-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L1P-INT-1",
+            "questionText": "Explain how a radial circuit layout is used to provide a dedicated supply for high-power heating equipment. In your answer, include: (1) the specific purpose of a dedicated power circuit, (2) the physical characteristic of a radial path, (3) how these two concepts relate to ensure safe operation. Why must we use a dedicated radial path for these items rather than sharing a circuit with many other outlets? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies dedicated supply for load management and safety",
+              "Describes radial path as a direct run from source to equipment",
+              "Links high-power demand to the need for independent cabling",
+              "Explains that sharing circuits could lead to overloading or nuisance tripping",
+              "References the direct connection between the distribution board and the load"
+            ],
+            "expectedAnswer": [
+              "A dedicated power circuit ensures that high-power equipment like an electric heater has its own independent supply to prevent overloading other parts of the installation. A radial path is used because it runs directly from the consumer unit to the appliance, which is ideal for high-load items. This relationship is necessary because high-power devices draw significant current, and a dedicated radial path ensures the conductors are not shared with other loads that could cause the circuit protection to trip.",
+              "Heating circuits require a radial layout to provide a dedicated supply that won't be interrupted by other appliances. Since a radial circuit starts at the source and ends at the load, it allows for clear isolation and protection of high-power equipment. This must be a dedicated path because high-current loads need their own protection to ensure the circuit conductors do not overheat under heavy use."
+            ],
+            "hint": "Think about how a direct line from the source to one specific appliance helps manage high electrical loads."
+          },
+          {
+            "id": "203-3L1P-INT-2",
+            "questionText": "When installing a fixed heating appliance using a radial circuit, explain how the circuit conductors and the layout work together to ensure the system is safe and functional. In your answer, include: (1) the role of the Line and Neutral conductors, (2) the purpose of the CPC, (3) the physical path of the radial layout, (4) how these elements combine to support high-power equipment. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Line conductor carries current to the load",
+              "Neutral conductor provides the return path",
+              "CPC (Circuit Protective Conductor) provides a safety path to earth",
+              "Radial path travels from the source to the appliance and terminates there",
+              "Explains integration of conductors within a dedicated radial run",
+              "Safety: CPC ensures metal casings are grounded",
+              "Efficiency: Direct radial path minimizes complexity for high-load items"
+            ],
+            "expectedAnswer": [
+              "In a radial heating circuit, the Line and Neutral conductors create the main path for electricity to reach and return from the heater, while the CPC provides a vital safety path to earth. The radial layout sends these conductors directly from the distribution board to the appliance, ensuring a dedicated supply for the high-power demand. This combination allows for specific fuse protection and ensures that any faults are safely directed away from the user via the CPC.",
+              "• The Line and Neutral conductors deliver and return the electrical energy required to power high-heat appliances.\n• A CPC is included to provide a low-resistance path to earth, ensuring safety if a fault occurs in the equipment.\n• The radial path connects these conductors directly from the source to the load, providing a dedicated circuit that can handle high current.\n• Together, these elements ensure the high-power equipment operates reliably within a protected, dedicated electrical environment."
+            ],
+            "hint": "Consider the journey of the current through the three conductors and why a direct radial path is the simplest way to connect one high-power item."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1P-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3L1P-SR-1",
+            "questionText": "What is the general name for the complete loop or path that electricity flows through to power an appliance?",
+            "expectedAnswer": [
+              "Circuit",
+              "Electrical circuit",
+              "Electric circuit"
+            ],
+            "hint": "Think of a continuous track that returns to its starting point.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L1P-SR-2",
+            "questionText": "Materials like copper are used in installations to carry electricity. What is the technical term for these materials?",
+            "expectedAnswer": [
+              "Conductors",
+              "Conductor",
+              "Wiring"
+            ],
+            "hint": "This term describes a material that allows energy to flow through it easily.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L1P-SR-3",
+            "questionText": "In the context of circuit conductors, what does the abbreviation 'CPC' stand for?",
+            "expectedAnswer": [
+              "Circuit Protective Conductor",
+              "Circuit Protection Conductor"
+            ],
+            "hint": "It is the conductor responsible for safety and protection in the circuit.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Power & Heating Circuits (Noob): What They Are + Simple Operation "
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1"
+  ],
+  "metadata": {
+    "created": "2026-03-02",
+    "updated": "2026-03-02",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC1"
+      ],
+      "outOfScopeAC": [
+        "AC2",
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Definition of power/heating circuits, radial layout concepts, and identification of local isolation components.",
+      "outOfScope": "Cable sizing calculations, diversity factors, and physical termination or installation procedures.",
+      "rationale": "Focusing on conceptual identification and purpose ensures beginners grasp circuit logic before moving to technical calculations or practical tasks."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Dead-safe awareness and conceptual circuit paths only; no live testing or installation steps."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Any appliance that gets hot can go on a standard plug circuit.",
+        "correction": "High-power heating appliances like cookers and showers require dedicated, heavy-duty circuits to operate safely.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "A radial circuit must return to the consumer unit to work.",
+        "correction": "Only ring circuits return to the source; a radial terminates at the final appliance or socket.",
+        "relatedAC": "AC2"
+      },
+      {
+        "misconception": "The CPC is just an extra wire that isn't really needed for the appliance to run.",
+        "correction": "While the appliance may run without it, the CPC is the primary safety mechanism preventing electric shock.",
+        "relatedAC": "AC3"
+      }
+    ],
+    "generationScore": 98,
+    "generationScoreDetails": {
+      "originalScore": 98,
+      "finalScore": 98,
+      "wasRefined": false,
+      "generatedAt": "2026-03-02T15:00:46.878Z",
+      "source": "phase10-13"
+    }
+  }
+}

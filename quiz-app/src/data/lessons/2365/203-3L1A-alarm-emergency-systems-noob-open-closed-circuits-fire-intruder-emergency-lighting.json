@@ -2,7 +2,7 @@
   "id": "203-3L1A",
   "title": "203.3L1A — Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting",
   "description": "Learn about Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting in Installation 2365 Level 2",
-  "layout": "linear-flow",
+  "layout": "split-vis",
   "unit": "Unit 203",
   "topic": "Alarm & Emergency Systems (Noob): Open/Closed Circuits, Fire, Intruder, Emergency Lighting",
   "learningOutcomes": [
@@ -77,7 +77,8 @@
           "tamper-loop-path",
           "maintained-luminaire-unit"
         ],
-        "placeholderText": "The diagram should show two parallel comparisons. On the left, a series-wired loop representing a closed-circuit-loop connecting three sensors back to a control panel. On the right, an open-circuit fire zone showing detectors in parallel with an eol-resistor-point at the very end. Below these, a separate tamper-loop-path should be shown protecting a sensor housing. Finally, a side-by-side comparison of a maintained-luminaire-unit (lit) and a non-maintained unit (unlit) under normal power conditions."
+        "placeholderText": "The diagram should show two parallel comparisons. On the left, a series-wired loop representing a closed-circuit-loop connecting three sensors back to a control panel. On the right, an open-circuit fire zone showing detectors in parallel with an eol-resistor-point at the very end. Below these, a separate tamper-loop-path should be shown protecting a sensor housing. Finally, a side-by-side comparison of a maintained-luminaire-unit (lit) and a non-maintained unit (unlit) under normal power conditions.",
+        "embedUrl": "/simulations/Alarm-systems/dist/index.html"
       }
     },
     {
@@ -229,6 +230,43 @@
       }
     },
     {
+      "id": "203-3L1A-microbreak-3",
+      "type": "microbreak",
+      "order": 5.6,
+      "content": {
+        "breakType": "game",
+        "gameType": "classify-two-bins",
+        "leftLabel": "Accurate Statement",
+        "rightLabel": "Misconception",
+        "items": [
+          {
+            "text": "A closed-circuit alarm loop is fail-safe because a broken wire triggers a fault or alarm.",
+            "correctBin": "left"
+          },
+          {
+            "text": "End-of-line monitoring helps a fire alarm panel distinguish a wiring fault from an alarm condition.",
+            "correctBin": "left"
+          },
+          {
+            "text": "A tamper circuit remains active even when the main intruder alarm is unset.",
+            "correctBin": "left"
+          },
+          {
+            "text": "An open circuit is better because it uses less power when the alarm is off.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Sensors in a closed-circuit alarm are wired in parallel.",
+            "correctBin": "right"
+          },
+          {
+            "text": "Emergency lighting is the same as standby lighting.",
+            "correctBin": "right"
+          }
+        ]
+      }
+    },
+    {
       "id": "203-3L1A-microbreak-1",
       "type": "microbreak",
       "order": 5.75,
@@ -320,6 +358,41 @@
               "it is always active"
             ],
             "hint": "Review the facts regarding the operational duration of protection against sabotage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L1A-microbreak-4",
+      "type": "microbreak",
+      "order": 8.1,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "pairs": [
+          {
+            "left": "Closed Circuit",
+            "right": "A series configuration where current flows continuously, triggering an alert if the wiring path is interrupted."
+          },
+          {
+            "left": "EOL Monitoring",
+            "right": "Resistors placed at the furthest point to help the control panel distinguish between genuine signals and wiring faults."
+          },
+          {
+            "left": "Tamper Circuit",
+            "right": "A 24-hour monitoring loop that triggers if equipment covers are removed or cables are cut, even when unset."
+          },
+          {
+            "left": "Maintained Luminaire",
+            "right": "An emergency lighting unit that runs constantly from the normal supply and switches to internal batteries during power loss."
+          },
+          {
+            "left": "Non-maintained Luminaire",
+            "right": "A lighting unit that stays off during normal operation, only activating via battery when the local mains supply fails."
+          },
+          {
+            "left": "End of Line EOL Monitoring",
+            "right": "The use of resistors at the furthest point of a circuit to allow the control panel to monitor circuit integrity and distinguish between a genuine alarm signal..."
           }
         ]
       }
@@ -444,8 +517,8 @@
   ],
   "metadata": {
     "created": "2026-02-26",
-    "updated": "2026-02-26",
-    "version": "1.1",
+    "updated": "2026-03-02",
+    "version": "1.3",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

@@ -1,5 +1,6 @@
 import { NextRequest } from 'next/server';
 import { getSupabaseSessionFromRequest } from '@/lib/supabase/server';
+import { isAdminOverrideEmail } from '@/lib/auth/adminOverrides';
 
 export type AppRole = 'student' | 'admin';
 
@@ -9,6 +10,10 @@ export async function getUserRoleFromRequest(
   const session = await getSupabaseSessionFromRequest(request);
   if (!session) {
     return null;
+  }
+
+  if (isAdminOverrideEmail(session.user.email)) {
+    return 'admin';
   }
 
   const { data, error } = await session.client
@@ -28,4 +33,3 @@ export async function isAdminRequest(request: NextRequest | Request): Promise<bo
   const role = await getUserRoleFromRequest(request);
   return role === 'admin';
 }
-

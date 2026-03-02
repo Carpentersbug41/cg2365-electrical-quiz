@@ -464,7 +464,7 @@ function ClassifyTwoBinsGame({ content, soundEnabled, onDone }: { content: Class
             : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700';
 
         return (
-          <div key={item.text} style={{ animationDelay: `${idx * 35}ms` }} className={`microbreak-stagger microbreak-card-glide flex items-center justify-between rounded border p-2 text-xs ${rowTone}`}>
+          <div key={item.text} style={{ animationDelay: `${idx * 35}ms` }} className={`microbreak-stagger microbreak-card-glide flex items-center justify-between rounded border p-2 text-xs ${checked ? (assignedBin === item.correctBin ? 'microbreak-correct' : 'microbreak-wrong') : ''} ${rowTone}`}>
             <span>{item.text}</span>
             <div className="flex gap-1">
               <button
@@ -500,7 +500,7 @@ function ScenarioMatchGame({ content, soundEnabled, onDone }: { content: Scenari
   return (
     <div className="space-y-2">
       {content.pairs.map((pair, idx) => (
-        <div key={`${pair.scenario}-${idx}`} style={{ animationDelay: `${idx * 35}ms` }} className={`microbreak-stagger microbreak-card-glide rounded border p-2 text-xs ${checked ? (assigned[idx] === pair.answer ? 'border-green-500 bg-green-100 dark:border-green-600 dark:bg-green-900/30' : 'border-red-500 bg-red-100 dark:border-red-600 dark:bg-red-900/30') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
+        <div key={`${pair.scenario}-${idx}`} style={{ animationDelay: `${idx * 35}ms` }} className={`microbreak-stagger microbreak-card-glide rounded border p-2 text-xs ${checked ? (assigned[idx] === pair.answer ? 'microbreak-correct border-green-500 bg-green-100 dark:border-green-600 dark:bg-green-900/30' : 'microbreak-wrong border-red-500 bg-red-100 dark:border-red-600 dark:bg-red-900/30') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
           <p className="mb-1">{pair.scenario}</p>
           <select disabled={checked} value={assigned[idx] ?? ''} onChange={(e) => { if (soundEnabled) playClickSound(0.2); setAssigned((p) => ({ ...p, [idx]: e.target.value })); }} className="w-full rounded border border-gray-300 px-2 py-1 text-xs dark:border-slate-600 dark:bg-slate-800">
             <option value="">Select answer</option>
@@ -527,7 +527,7 @@ function FormulaBuildGame({ content, soundEnabled, onDone }: { content: FormulaB
       <p className="text-xs text-gray-600 dark:text-slate-400">
         Build the full formula in the answer box. You need {expectedLength} token{expectedLength === 1 ? '' : 's'} in the right order.
       </p>
-      <div className={`min-h-10 rounded border p-2 text-xs ${checked ? (isCorrect ? 'border-green-500 bg-green-100 text-green-900 dark:border-green-600 dark:bg-green-900/30 dark:text-green-200' : 'border-red-500 bg-red-100 text-red-900 dark:border-red-600 dark:bg-red-900/30 dark:text-red-200') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
+      <div className={`min-h-10 rounded border p-2 text-xs ${checked ? (isCorrect ? 'microbreak-correct border-green-500 bg-green-100 text-green-900 dark:border-green-600 dark:bg-green-900/30 dark:text-green-200' : 'microbreak-wrong border-red-500 bg-red-100 text-red-900 dark:border-red-600 dark:bg-red-900/30 dark:text-red-200') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
         {sequence.join(' ') || 'Build the formula here'}
       </div>
       {checked && lastAttemptWrong ? (

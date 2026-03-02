@@ -9,6 +9,7 @@ import { BlockProps } from './types';
 import { SpacedReviewBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
 import BlockTTSButton from '../tts/BlockTTSButton';
+import { authedFetch } from '@/lib/api/authedFetch';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 import { logAttempt } from '@/lib/authProgress/clientTelemetry';
 import {
@@ -105,7 +106,7 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
   const handleVerificationSubmit = async (questionId: string, questionText: string, expectedAnswer: string | string[]) => {
     setVerificationLoading((prev) => ({ ...prev, [questionId]: true }));
     try {
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -151,7 +152,7 @@ export default function SpacedReviewBlock({ block, lessonId }: BlockProps) {
     const nextAttemptNumber = (attemptCount[questionId] || 0) + 1;
     
     try {
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

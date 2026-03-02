@@ -417,6 +417,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3L1A'),
     available: true,
     order: 22,
+  },
+  {
+    id: '203-3L1P',
+    title: 'Power & Heating Circuits (Noob): What They Are + Simple Operation ',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Power & Heating Circuits (Noob): What They Are + Simple Operation ',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3L1P'),
+    available: true,
+    order: 23,
   },// Unit 210: Communication
   {
     id: '204-10A',

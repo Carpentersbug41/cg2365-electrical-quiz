@@ -22,6 +22,7 @@ import { saveAttempt, updateNeedsReview } from '@/lib/storage/indexedDBService';
 import { logAttempt, markLessonCompleted, markLessonStarted } from '@/lib/authProgress/clientTelemetry';
 import { getAcMetaFromQuestion, getStableIdForMcqQuestion } from '@/lib/authProgress/questionIdentity';
 import BlockTTSButton from './learning/tts/BlockTTSButton';
+import { authedFetch } from '@/lib/api/authedFetch';
 
 interface QuizProps {
   section?: string;
@@ -380,7 +381,7 @@ export default function Quiz({
     setCorrectionSubmitting(true);
 
     try {
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

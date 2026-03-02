@@ -1,0 +1,5 @@
+{
+  "name": "Alarm Circuits Explained",
+  "description": "Interactive animation showing Normally Open (Parallel) vs Normally Closed (Series) alarm circuits.",
+  "requestFramePermissions": []
+}

@@ -9,6 +9,14 @@ import { getAllLessonQuizStatuses } from '@/lib/generation/lessonDetector';
 import { Lesson } from '@/lib/generation/types';
 import { getCurriculumScopeFromHeaderOrReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 
+type ExplanationSummary = {
+  id: string;
+  title: string;
+  order: number;
+  linkedDiagramId: string | null;
+  linkedDiagramEmbedUrl: string | null;
+};
+
 function extractRepoFromEmbedUrl(embedUrl: unknown): string | null {
   if (typeof embedUrl !== 'string') return null;
   const normalized = embedUrl.trim();
@@ -16,11 +24,18 @@ function extractRepoFromEmbedUrl(embedUrl: unknown): string | null {
   return match?.[1] ?? null;
 }
 
-function getSimulationInfoFromLessonFile(lessonFilePath?: string): { simulationEmbedUrl: string | null; simulationRepoName: string | null } {
+function getSimulationInfoFromLessonFile(
+  lessonFilePath?: string
+): {
+  simulationEmbedUrl: string | null;
+  simulationRepoName: string | null;
+  explanations: ExplanationSummary[];
+} {
   if (!lessonFilePath) {
     return {
       simulationEmbedUrl: null,
       simulationRepoName: null,
+      explanations: [],
     };
   }
 
@@ -37,14 +52,59 @@ function getSimulationInfoFromLessonFile(lessonFilePath?: string): { simulationE
         ? diagramBlock.content.embedUrl
         : null;
 
+    const explanationBlocks = (lesson.blocks ?? []).filter(
+      (block) => block.type === 'explanation' && typeof block.id === 'string'
+    );
+
+    const diagramBlocks = (lesson.blocks ?? []).filter(
+      (block) =>
+        block.type === 'diagram' &&
+        typeof block.id === 'string' &&
+        typeof block.content === 'object' &&
+        block.content !== null
+    );
+
+    const explanations: ExplanationSummary[] = explanationBlocks.map((explanation) => {
+      const linkedDiagram = diagramBlocks.find((block) => {
+        const content = block.content as Record<string, unknown>;
+        return typeof content.linkedExplanationId === 'string' && content.linkedExplanationId === explanation.id;
+      });
+
+      const fallbackSingleDiagram =
+        !linkedDiagram &&
+        explanationBlocks.length === 1 &&
+        diagramBlocks.length === 1 &&
+        typeof (diagramBlocks[0].content as Record<string, unknown>).embedUrl === 'string'
+          ? diagramBlocks[0]
+          : null;
+      const resolved = linkedDiagram ?? fallbackSingleDiagram;
+      const explanationContent = explanation.content as Record<string, unknown> | undefined;
+      const resolvedContent = resolved?.content as Record<string, unknown> | undefined;
+
+      return {
+        id: explanation.id,
+        title:
+          (typeof explanationContent?.title === 'string' && explanationContent.title.trim()) ||
+          explanation.id,
+        order: typeof explanation.order === 'number' ? explanation.order : 0,
+        linkedDiagramId: resolved?.id ?? null,
+        linkedDiagramEmbedUrl:
+          resolved && typeof resolvedContent?.embedUrl === 'string'
+            ? resolvedContent.embedUrl
+            : null,
+      };
+    });
+
     return {
       simulationEmbedUrl: embedUrl,
       simulationRepoName: extractRepoFromEmbedUrl(embedUrl),
+      explanations,
     };
   } catch {
     return {
       simulationEmbedUrl: null,
       simulationRepoName: null,
+      explanations: [],
     };
   }
 }

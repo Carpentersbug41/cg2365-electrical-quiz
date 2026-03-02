@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import ChatMessage from './ChatMessage';
 import ChatInput from './ChatInput';
 import { Question } from '@/data/questions';
+import { authedFetch } from '@/lib/api/authedFetch';
 
 interface ChatAssistantProps {
   currentQuestion: Question;
@@ -74,7 +75,7 @@ export default function ChatAssistant({
         section: currentQuestion.section,
       };
 
-      const response = await fetch('/api/chat', {
+      const response = await authedFetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -367,4 +368,3 @@ export default function ChatAssistant({
     </div>
   );
 }
-

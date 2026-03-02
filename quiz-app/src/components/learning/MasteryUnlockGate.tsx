@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { getLessonById, getLessonsByUnit, LessonIndexEntry } from '@/data/lessons/lessonIndex';
 import { getQuizProgress } from '@/lib/progress/progressService';
 import { courseHref } from '@/lib/routing/courseHref';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { isAdminOverrideEmail } from '@/lib/auth/adminOverrides';
 
 interface MasteryUnlockGateProps {
   lessonId: string;
@@ -16,6 +18,42 @@ type GateState = 'checking' | 'locked' | 'unlocked';
 export default function MasteryUnlockGate({ lessonId, children }: MasteryUnlockGateProps) {
   const [state, setState] = useState<GateState>('checking');
   const [previousLesson, setPreviousLesson] = useState<LessonIndexEntry | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [adminBypass, setAdminBypass] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadAdminRole = async () => {
+      const client = getSupabaseBrowserClient();
+      if (!client) return;
+
+      const { data: authData } = await client.auth.getUser();
+      const userId = authData.user?.id;
+      const userEmail = authData.user?.email;
+      if (!userId || cancelled) return;
+
+      if (isAdminOverrideEmail(userEmail)) {
+        setIsAdmin(true);
+        return;
+      }
+
+      const { data } = await client
+        .from('profiles')
+        .select('role')
+        .eq('user_id', userId)
+        .maybeSingle<{ role: 'student' | 'admin' }>();
+
+      if (cancelled) return;
+      setIsAdmin(data?.role === 'admin');
+    };
+
+    void loadAdminRole();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const currentLesson = getLessonById(lessonId);
@@ -55,7 +93,7 @@ export default function MasteryUnlockGate({ lessonId, children }: MasteryUnlockG
     );
   }
 
-  if (state === 'locked') {
+  if (state === 'locked' && !adminBypass) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4 flex items-center justify-center">
         <div className="max-w-2xl w-full">
@@ -78,6 +116,15 @@ export default function MasteryUnlockGate({ lessonId, children }: MasteryUnlockG
             )}
 
             <div className="flex flex-col sm:flex-row gap-3">
+              {isAdmin && (
+                <button
+                  type="button"
+                  onClick={() => setAdminBypass(true)}
+                  className="flex-1 px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-semibold text-center transition-colors"
+                >
+                  Proceed (Admin)
+                </button>
+              )}
               {previousLesson && (
                 <Link
                   href={courseHref(`/learn/${previousLesson.id}`)}
@@ -101,4 +148,3 @@ export default function MasteryUnlockGate({ lessonId, children }: MasteryUnlockG
 
   return <>{children}</>;
 }
-

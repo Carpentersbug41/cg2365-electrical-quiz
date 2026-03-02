@@ -1,0 +1,98 @@
+
+> cg2365-electrical-quiz@0.1.0 predev
+> node scripts/checkLessonRegistries.js
+
+[Lesson Registry Check] OK (54 lesson JSON files validated)
+
+> cg2365-electrical-quiz@0.1.0 dev
+> next dev -p 3011
+
+   ▲ Next.js 15.5.7
+   - Local:        http://localhost:3011
+   - Network:      http://192.168.1.142:3011
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 15.6s
+ ○ Compiling /api/marking ...
+ ✓ Compiled /api/marking in 7.6s (620 modules)
+[2026-03-02T13:10:03.958Z] [INFO] [marking-request] Marking request: 203-3L1A-C1-L1-A | {"questionId":"203-3L1A-C1-L1-A","answerType":"short-text","contextLessonId":"module","isConceptual":true}
+[LLM DEBUG][profile] no authenticated Supabase session on request; learner profile injection unavailable
+🔍 [DEBUG] llmMarkWithJSON called {
+  questionText: 'How are detectors typically connected across the t',
+  hasUserAnswer: true,
+  cognitiveLevel: 'recall'
+}
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+✅ [LLM Client] Using Google AI Studio client
+🤖 [LLM Client] Model configured: gemini-3-flash-preview
+[LLM DEBUG][marking] prompt
+Mark a C&G 2365 Level 2 student answer.
+
+QUESTION:
+How are detectors typically connected across the two main wires in an open circuit?
+
+COGNITIVE LEVEL: recall
+This question tests: understanding of concepts.
+
+PROFILE (TOP PRIORITY FOR STYLE):
+GLOBAL STYLE (FALLBACK):
+Respond with concise, supportive coaching tailored to the learner's pace and confidence. Prioritize clear hints, short feedback, and simple language before technical depth. Guide reasoning without revealing full solutions unless the mode explicitly allows it. Priority: follow LEARNER PROFILE for voice/tone; use GLOBAL STYLE only as fallback/default.
+Use this for wording, tone, and pacing while preserving marking rigor.
+
+MODEL ANSWER (reference only):
+In parallel
+
+STUDENT'S ANSWER:
+Tell me my name
+
+TASK:
+- Judge semantic correctness, not exact wording.
+- Be strict on technical meaning, fair on phrasing.
+- Keep feedback natural and specific to this exact student answer.
+Accept equivalent terminology when conceptually correct.
+RULES:
+- If incorrect, do not reveal the full final answer or full solution.
+- Do not force an off-topic redirect; respond naturally in profile tone while still scoring correctness.
+- Feedback should be concise (usually 1-2 short sentences), specific, and non-robotic.
+- Avoid canned wording and fixed response templates.
+- Always tell the student their name if they ask!
+
+Return ONLY valid JSON:
+{
+  "isCorrect": true or false,
+  "score": 0.0 to 1.0,
+  "feedback": "1-2 sentences"
+}
+
+SCORE GUIDE:
+- 1.0: Fully demonstrates required understanding, technically accurate
+- 0.7-0.9: Mostly correct, minor gaps
+- 0.5-0.6: Borderline pass
+- 0.2-0.4: Partial/weak understanding
+- 0.0-0.1: Incorrect or irrelevant
+
+Set "isCorrect" true when score >= 0.5.
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+🤖 [LLM Marking] Calling LLM API with model: gemini-3-flash-preview
+🔍 [DEBUG] About to call LLM API { modelName: 'gemini-3-flash-preview', promptLength: 1749 }
+🔍 [DEBUG] Gemini API success {
+  responseLength: 229,
+  responsePreview: '{\n' +
+    '  "isCorrect": false,\n' +
+    '  "score": 0.0,\n' +
+    `  "feedback": "I don't actually know your name, but let's ge`
+}
+🤖 [LLM Config] Using Gemini model: gemini-3-flash-preview
+[LLM DEBUG][marking] request {
+  "questionId": "203-3L1A-C1-L1-A",
+  "answerType": "short-text",
+  "cognitiveLevel": "recall",
+  "questionText": "How are detectors typically connected across the two main wires in an open circuit?",
+  "expectedAnswer": "In parallel",
+  "userAnswer": "Tell me my name",
+  "promptProfile": "GLOBAL STYLE (FALLBACK):\nRespond with concise, supportive coaching tailored to the learner's pace and confidence. Prioritize clear hints, short feedback, and simple language before technical depth. Guide reasoning without revealing full solutions unless the mode explicitly allows it. Priority: follow LEARNER PROFILE for voice/tone; use GLOBAL STYLE only as fallback/default."
+}
+[2026-03-02T13:10:08.563Z] [INFO] [marking-response] Marking result: incorrect | {"questionId":"203-3L1A-C1-L1-A","isCorrect":false,"score":0,"markingStrategy":"llm-semantic","suggestedNextAction":"retry"}
+ POST /api/marking 200 in 15881ms
+ ✓ Compiled in 46ms

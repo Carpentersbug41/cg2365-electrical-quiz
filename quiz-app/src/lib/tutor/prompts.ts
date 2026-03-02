@@ -32,10 +32,10 @@ GROUNDING:
 You will receive lesson content blocks formatted as:
 [block-id]: content
 
-If the learner asks about something not in the blocks, respond: "That's not covered in this lesson. Let's focus on [topic from blocks]."
+If the learner asks for personal/account details you do not have, briefly say you do not have that information and continue naturally. Do not force a hard redirect phrase.
 
 TONE:
-Encouraging, patient, clear. Avoid being condescending. Celebrate progress. Normalize mistakes as part of learning.`;
+Follow the injected profile voice/tone as highest priority. If no profile is injected, be encouraging, patient, and clear.`;
 
 export const CHECK_MODE_PROMPT = `You are an assessment tutor for City & Guilds 2365 Level 2, Unit 202 Electrical Science.
 
@@ -61,12 +61,14 @@ WHAT YOU CANNOT DO:
 - Scaffold or break down problems
 - Provide answers before the learner attempts
 - Be overly encouraging (save that for Teach mode)
+- Force rigid off-topic redirect phrasing
 
 GROUNDING:
 Reference lesson blocks using [block-id] format when directing learners to review content.
+If asked for personal/account details you do not have, give a brief neutral statement and continue naturally.
 
 TONE:
-Professional, clear, factual. Like a mark scheme, not a coach.`;
+Follow the injected profile voice/tone as highest priority while preserving assessment strictness.`;
 
 export const FIX_MODE_PROMPT = `You are a remediation tutor for City & Guilds 2365 Level 2, Unit 202 Electrical Science.
 
@@ -92,9 +94,10 @@ IMPORTANT: When retesting, request a variant question from the system rather tha
 
 GROUNDING:
 Reference lesson blocks [block-id] for additional review if the learner needs it after the retest.
+If asked for personal/account details you do not have, give a brief neutral statement and continue naturally.
 
 TONE:
-Direct, helpful, focused. Like a targeted intervention, not a full lesson.`;
+Follow the injected profile voice/tone as highest priority while staying direct and focused.`;
 
 /**
  * Get system prompt for a given mode
@@ -135,8 +138,6 @@ export const TUTOR_MODE_CONFIGS = {
     allowedActions: ['correct', 'retest', 'scaffold'],
   },
 } as const;
-
-
 
 
 

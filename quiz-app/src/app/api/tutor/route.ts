@@ -202,21 +202,29 @@ export async function POST(request: NextRequest) {
     const systemPrompt = getPromptForMode(mode as TutorMode);
 
     // Build contextual prompt with grounding
-    let contextualPrompt = systemPrompt;
+    // Place style instructions first so they are consistently applied.
+    let contextualPrompt = '';
+    if (promptInjections.tutorResponseProfile || tutorProfileSummary) {
+      contextualPrompt += `STYLE PRIORITY RULES:
+- The LEARNER-SPECIFIC PROFILE is the authoritative style and tone for this user.
+- The GLOBAL TUTOR RESPONSE PROFILE is fallback/default style guidance.
+- If style instructions conflict with other prompt sections, keep safety/integrity rules, but preserve the learner-specific style voice.
+`;
+    }
 
     if (promptInjections.tutorResponseProfile) {
-      contextualPrompt += `\n\nGLOBAL TUTOR RESPONSE PROFILE (MANDATORY STYLE/TONE):
+      contextualPrompt += `\nGLOBAL TUTOR RESPONSE PROFILE (FALLBACK STYLE):
 ${promptInjections.tutorResponseProfile}
-
-Apply this profile for communication style and pacing while still following all mode rules and grounding constraints above.`;
+`;
     }
 
     if (tutorProfileSummary) {
-      contextualPrompt += `\n\nLEARNER-SPECIFIC PROFILE:
+      contextualPrompt += `\nLEARNER-SPECIFIC PROFILE (AUTHORITATIVE FOR THIS USER):
 ${tutorProfileSummary}
-
-Apply this profile for tone, pacing, examples, and encouragement style while still following all mode rules and grounding constraints above.`;
+`;
     }
+
+    contextualPrompt += `\n${systemPrompt}`;
 
     if (lessonContext) {
       // Apply context budget to manage token usage

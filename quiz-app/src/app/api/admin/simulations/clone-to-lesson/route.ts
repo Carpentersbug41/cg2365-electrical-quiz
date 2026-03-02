@@ -14,15 +14,29 @@ type CloneRequestBody = {
   repoUrl?: string;
   embedPath?: string;
   overwrite?: boolean;
+  explanationBlockId?: string;
 };
 type DeleteRequestBody = {
   lessonId?: string;
   repoUrl?: string;
+  explanationBlockId?: string;
 };
 type PackageJsonLike = {
   scripts?: Record<string, string>;
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
+};
+
+type EditableLessonBlock = {
+  id?: string;
+  type?: string;
+  order?: number;
+  content?: Record<string, unknown>;
+};
+
+type EditableLesson = {
+  blocks?: EditableLessonBlock[];
+  metadata?: Record<string, unknown>;
 };
 
 function parseGithubRepo(url: string): { owner: string; repo: string } | null {
@@ -204,6 +218,114 @@ function isLikelyUnbuiltViteSource(repoDir: string, packageJson: PackageJsonLike
   }
 }
 
+function computeInsertedOrder(blocks: EditableLessonBlock[], insertAtIndex: number): number {
+  const previous = blocks[insertAtIndex - 1];
+  const next = blocks[insertAtIndex];
+  const previousOrder = typeof previous?.order === 'number' ? previous.order : insertAtIndex;
+  const nextOrder = typeof next?.order === 'number' ? next.order : null;
+
+  if (nextOrder !== null && nextOrder > previousOrder) {
+    return Number(((previousOrder + nextOrder) / 2).toFixed(4));
+  }
+
+  return Number((previousOrder + 0.1).toFixed(4));
+}
+
+function getDiagramBlockForExplanation(
+  lesson: EditableLesson,
+  explanationBlockId: string
+): { block: EditableLessonBlock; index: number } | null {
+  const blocks = lesson.blocks ?? [];
+  for (let index = 0; index < blocks.length; index += 1) {
+    const block = blocks[index];
+    if (block?.type !== 'diagram') continue;
+    const linkedExplanationId = block.content?.linkedExplanationId;
+    if (typeof linkedExplanationId === 'string' && linkedExplanationId === explanationBlockId) {
+      return { block, index };
+    }
+  }
+  return null;
+}
+
+function attachEmbedToLessonDiagram(
+  lesson: EditableLesson,
+  lessonId: string,
+  embedUrl: string,
+  explanationBlockId?: string
+): { diagramBlockId: string; explanationBlockId?: string } {
+  const blocks = lesson.blocks ?? [];
+  lesson.blocks = blocks;
+
+  if (explanationBlockId) {
+    const explanationIndex = blocks.findIndex(
+      (block) => block?.type === 'explanation' && block.id === explanationBlockId
+    );
+    if (explanationIndex === -1) {
+      throw new Error(`Explanation block ${explanationBlockId} was not found in lesson ${lessonId}.`);
+    }
+
+    const linkedDiagram = getDiagramBlockForExplanation(lesson, explanationBlockId);
+    const targetInsertIndex = explanationIndex + 1;
+    let diagramBlock: EditableLessonBlock;
+    let diagramIndex: number;
+
+    if (linkedDiagram) {
+      diagramBlock = linkedDiagram.block;
+      diagramIndex = linkedDiagram.index;
+      if (diagramIndex !== targetInsertIndex) {
+        const [moved] = blocks.splice(diagramIndex, 1);
+        const adjustedInsertIndex = diagramIndex < targetInsertIndex ? targetInsertIndex - 1 : targetInsertIndex;
+        blocks.splice(adjustedInsertIndex, 0, moved);
+        diagramBlock = moved;
+        diagramIndex = adjustedInsertIndex;
+      }
+    } else {
+      const explanationBlock = blocks[explanationIndex];
+      const explanationTitle =
+        typeof explanationBlock?.content?.title === 'string'
+          ? explanationBlock.content.title
+          : explanationBlockId;
+      const newDiagramId = `${lessonId}-diagram-${explanationBlockId.replace(/[^a-zA-Z0-9_-]/g, '-')}`;
+      diagramBlock = {
+        id: newDiagramId,
+        type: 'diagram',
+        order: 0,
+        content: {
+          title: `Visual: ${explanationTitle}`,
+          description: `Embedded visual for ${explanationTitle}`,
+          diagramType: 'concept',
+          elementIds: [],
+          linkedExplanationId: explanationBlockId,
+        },
+      };
+      blocks.splice(targetInsertIndex, 0, diagramBlock);
+      diagramIndex = targetInsertIndex;
+    }
+
+    diagramBlock.content = diagramBlock.content ?? {};
+    diagramBlock.content.embedUrl = embedUrl;
+    diagramBlock.content.linkedExplanationId = explanationBlockId;
+    diagramBlock.order = computeInsertedOrder(blocks, diagramIndex);
+
+    return {
+      diagramBlockId: typeof diagramBlock.id === 'string' ? diagramBlock.id : `${lessonId}-diagram`,
+      explanationBlockId,
+    };
+  }
+
+  const diagramBlock = blocks.find((block) => block?.type === 'diagram');
+  if (!diagramBlock) {
+    throw new Error(`Lesson ${lessonId} has no diagram block to attach an iframe URL.`);
+  }
+
+  diagramBlock.content = diagramBlock.content ?? {};
+  diagramBlock.content.embedUrl = embedUrl;
+
+  return {
+    diagramBlockId: typeof diagramBlock.id === 'string' ? diagramBlock.id : `${lessonId}-diagram`,
+  };
+}
+
 async function runCommand(command: string, args: string[], cwd: string): Promise<void> {
   if (process.platform === 'win32') {
     const quoteArg = (value: string): string =>
@@ -273,6 +395,7 @@ export async function POST(request: NextRequest) {
     const lessonId = body.lessonId?.trim();
     const repoUrl = body.repoUrl?.trim();
     const overwrite = Boolean(body.overwrite);
+    const explanationBlockId = body.explanationBlockId?.trim();
     const scope = getCurriculumScopeFromHeaderOrReferer(
       request.headers.get('x-course-prefix'),
       request.headers.get('referer')
@@ -362,23 +485,20 @@ export async function POST(request: NextRequest) {
 
     const embedUrl = normalizeEmbedUrl(parsed.repo, resolvedEmbedPath);
     const rawLesson = fs.readFileSync(lessonFile, 'utf8');
-    const lesson = JSON.parse(rawLesson) as {
-      blocks?: Array<{ type?: string; content?: Record<string, unknown> }>;
-      metadata?: Record<string, unknown>;
-    };
-
-    const diagramBlock = lesson.blocks?.find((block) => block?.type === 'diagram');
-    if (!diagramBlock || !diagramBlock.content) {
+    const lesson = JSON.parse(rawLesson) as EditableLesson;
+    let attachResult: { diagramBlockId: string; explanationBlockId?: string };
+    try {
+      attachResult = attachEmbedToLessonDiagram(lesson, lessonId, embedUrl, explanationBlockId);
+    } catch (error) {
       return NextResponse.json(
         {
           success: false,
-          error: `Lesson ${lessonId} has no diagram block to attach an iframe URL.`,
+          error: error instanceof Error ? error.message : 'Failed to attach embed URL to lesson.',
         },
         { status: 400 }
       );
     }
 
-    diagramBlock.content.embedUrl = embedUrl;
     if (lesson.metadata && typeof lesson.metadata === 'object') {
       lesson.metadata.updated = new Date().toISOString().slice(0, 10);
     }
@@ -394,6 +514,8 @@ export async function POST(request: NextRequest) {
         name: parsed.repo,
         path: toPosixPath(path.relative(process.cwd(), targetDir)),
       },
+      explanationBlockId: attachResult.explanationBlockId,
+      diagramBlockId: attachResult.diagramBlockId,
       buildWarning: buildErrorMessage ?? undefined,
       lessonFile: toPosixPath(path.relative(process.cwd(), lessonFile)),
     });
@@ -413,6 +535,7 @@ export async function DELETE(request: NextRequest) {
     const body = (await request.json()) as DeleteRequestBody;
     const lessonId = body.lessonId?.trim();
     const repoUrl = body.repoUrl?.trim();
+    const explanationBlockId = body.explanationBlockId?.trim();
     const scope = getCurriculumScopeFromHeaderOrReferer(
       request.headers.get('x-course-prefix'),
       request.headers.get('referer')
@@ -433,12 +556,7 @@ export async function DELETE(request: NextRequest) {
     }
 
     let lessonFile: string | null = null;
-    let lesson:
-      | {
-          blocks?: Array<{ type?: string; content?: Record<string, unknown> }>;
-          metadata?: Record<string, unknown>;
-        }
-      | null = null;
+    let lesson: EditableLesson | null = null;
 
     if (lessonId) {
       lessonFile = findLessonFile(lessonId) ?? null;
@@ -448,14 +566,14 @@ export async function DELETE(request: NextRequest) {
           { status: 404 }
         );
       }
-      lesson = JSON.parse(fs.readFileSync(lessonFile, 'utf8')) as {
-        blocks?: Array<{ type?: string; content?: Record<string, unknown> }>;
-        metadata?: Record<string, unknown>;
-      };
+      lesson = JSON.parse(fs.readFileSync(lessonFile, 'utf8')) as EditableLesson;
     }
 
     const repoFromUrl = repoUrl ? (parseGithubRepo(repoUrl)?.repo ?? null) : null;
-    const diagramBlock = lesson?.blocks?.find((block) => block?.type === 'diagram');
+    const diagramBlock =
+      explanationBlockId && lesson
+        ? getDiagramBlockForExplanation(lesson, explanationBlockId)?.block
+        : lesson?.blocks?.find((block) => block?.type === 'diagram');
     const repoFromEmbed = extractRepoFromEmbedUrl(diagramBlock?.content?.embedUrl);
     const repoName = repoFromUrl ?? repoFromEmbed;
 
@@ -498,6 +616,7 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({
       success: true,
       lessonId: lessonId ?? null,
+      explanationBlockId: explanationBlockId ?? null,
       repo: {
         name: repoName,
         path: targetRelative,

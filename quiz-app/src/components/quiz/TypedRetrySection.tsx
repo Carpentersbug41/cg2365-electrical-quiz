@@ -9,6 +9,7 @@
 import { useState, useEffect } from 'react';
 import { Question } from '@/data/questions';
 import BlockTTSButton from '../learning/tts/BlockTTSButton';
+import { authedFetch } from '@/lib/api/authedFetch';
 
 interface TypedRetryProps {
   wrongAnswers: Array<{
@@ -107,7 +108,7 @@ export default function TypedRetrySection({ wrongAnswers, context, lessonId }: T
 
     try {
       // Call LLM marking API
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

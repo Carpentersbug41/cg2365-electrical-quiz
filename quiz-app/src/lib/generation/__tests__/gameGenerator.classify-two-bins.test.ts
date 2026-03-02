@@ -72,4 +72,28 @@ describe('gameGenerator classify-two-bins safeguards', () => {
     expect(content.items).toHaveLength(6);
     expect(content.items.some(i => i.text.length > 110)).toBe(false);
   });
+
+  it('rejects truncated and correction-style misconception items', () => {
+    const errors = __testValidateGameSchemaAndContent(
+      'classify-two-bins',
+      {
+        breakType: 'game',
+        gameType: 'classify-two-bins',
+        leftLabel: 'Accurate Statement',
+        rightLabel: 'Misconception',
+        items: [
+          { text: 'A cooker circuit is typically a dedicated radial circuit...', correctBin: 'left' },
+          { text: 'The line conductor carries energy to the load.', correctBin: 'left' },
+          { text: 'The neutral conductor provides the return path in normal operation.', correctBin: 'left' },
+          { text: 'A cooker circuit must be part of the kitchen socket ring.', correctBin: 'right' },
+          { text: 'Radial means the wiring forms a complete loop.', correctBin: 'right' },
+          { text: 'While it uses less standby power, it is less secure because it cannot detect a broken wire.', correctBin: 'right' },
+        ],
+      },
+      digest
+    );
+
+    expect(errors).toContain('classify-two-bins items must be complete statements, not truncated with ellipses');
+    expect(errors).toContain('classify-two-bins misconception bin includes correction-style statements');
+  });
 });

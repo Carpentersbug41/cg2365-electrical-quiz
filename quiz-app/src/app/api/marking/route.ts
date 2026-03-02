@@ -94,9 +94,18 @@ export async function POST(request: NextRequest) {
       getUserTutorProfileSummaryForRequest(request),
     ]);
 
+    const hasGlobalProfile = Boolean(promptInjections.tutorResponseProfile?.trim());
+    const hasLearnerProfile = Boolean(learnerProfileSummary?.trim());
     const responseProfileParts = [
-      promptInjections.tutorResponseProfile,
-      learnerProfileSummary,
+      hasGlobalProfile
+        ? `GLOBAL STYLE (FALLBACK):\n${promptInjections.tutorResponseProfile.trim()}`
+        : null,
+      hasLearnerProfile
+        ? `LEARNER PROFILE (AUTHORITATIVE FOR THIS USER):\n${learnerProfileSummary!.trim()}`
+        : null,
+      hasGlobalProfile || hasLearnerProfile
+        ? 'Priority: follow LEARNER PROFILE for voice/tone; use GLOBAL STYLE only as fallback/default.'
+        : null,
     ].filter((value): value is string => Boolean(value && value.trim().length > 0));
 
     const llmResult = await markConceptualQuestion(

@@ -128,20 +128,20 @@ function buildMarkingPrompt(params: LLMMarkingRequest): string {
     hypothesis: "predicting or justifying beyond the text",
   };
   
-  let prompt = `You are an expert electrical science educator marking a C&G 2365 Level 2 student answer.
+  let prompt = `Mark a C&G 2365 Level 2 student answer.
 
 QUESTION:
 ${params.questionText}
 
 COGNITIVE LEVEL: ${params.cognitiveLevel || 'understanding'}
-This question tests: ${cognitiveDescriptions[params.cognitiveLevel || 'understanding'] || 'understanding of concepts'}
+This question tests: ${cognitiveDescriptions[params.cognitiveLevel || 'understanding'] || 'understanding of concepts'}.
 `;
 
   if (params.promptProfile) {
     prompt += `
-PROFILE INJECTION (MANDATORY STYLE/TONE):
+PROFILE (TOP PRIORITY FOR STYLE):
 ${params.promptProfile}
-Apply this profile for tone, readability, and feedback style only. Do not relax technical accuracy standards.
+Use this for wording, tone, and pacing while preserving marking rigor.
 `;
   }
 
@@ -154,88 +154,55 @@ Apply this profile for tone, readability, and feedback style only. Do not relax 
     prompt += `
 ANSWER TYPE: Long-text (explanation/synthesis)
 
-KEY POINTS RUBRIC:
-The student's answer must address these specific points:
+KEY POINTS:
 ${params.keyPoints.map((point, idx) => `${idx + 1}. ${point}`).join('\n')}
 
-RUBRIC-BASED SCORING:
-- Award credit for EACH key point demonstrated (${params.keyPoints.length} total)
-- Pass threshold: Student must address at least ${minPoints} out of ${params.keyPoints.length} points (${Math.round(threshold * 100)}% for ${cogLevel})
-- Allow different phrasing as long as the core concept is present
-- Score calculation: (points addressed / total points)
-- Check for semantic understanding, not exact wording
-
+Passing target: at least ${minPoints}/${params.keyPoints.length} key points (${Math.round(threshold * 100)}%).
 `;
   }
 
   prompt += `
-MODEL ANSWER (for reference):
+MODEL ANSWER (reference only):
 ${params.modelAnswer}
 
 STUDENT'S ANSWER:
 ${params.userAnswer}
 
-MARKING INSTRUCTIONS:
-1. Determine if the student demonstrates understanding of the core concept
-2. Award credit for SEMANTIC correctness, not exact word matching`;
+TASK:
+- Judge semantic correctness, not exact wording.
+- Be strict on technical meaning, fair on phrasing.
+- Keep feedback natural and specific to this exact student answer.`;
 
   if (params.answerType === 'long-text' && params.keyPoints) {
     prompt += `
-3. CHECK EACH KEY POINT: Does the student's answer address this point? (yes/no/partial)
-4. Count how many points are adequately addressed
-5. Score = (points addressed) / ${params.keyPoints?.length || 1}`;
+Use key-point coverage to determine score.`;
   } else {
     prompt += `
-3. Students may use different terminology but still show understanding`;
+Accept equivalent terminology when conceptually correct.`;
   }
 
   prompt += `
-4. Consider the cognitive level being tested
-5. Be fair but maintain C&G 2365 Level 2 standards
-6. Assess technical accuracy, not writing style
+RULES:
+- If incorrect, do not reveal the full final answer or full solution.
+- Do not force an off-topic redirect; respond naturally in profile tone while still scoring correctness.
+- Feedback should be concise (usually 1-2 short sentences), specific, and non-robotic.
+- Avoid canned wording and fixed response templates.
 
-Respond with ONLY valid JSON in this exact format:
+Return ONLY valid JSON:
 {
   "isCorrect": true or false,
   "score": 0.0 to 1.0,
-  "feedback": "1-2 sentences maximum, following the template patterns below"
+  "feedback": "1-2 sentences"
 }
 
-SCORING SCALE:
+SCORE GUIDE:
 - 1.0: Fully demonstrates required understanding, technically accurate
-- 0.8-0.9: Strong understanding, minor gaps or imprecision
-- 0.6-0.7: Adequate understanding, meets minimum standard
-- 0.4-0.5: Partial understanding, significant gaps
-- 0.2-0.3: Minimal understanding, mostly incorrect
-- 0.0-0.1: Incorrect, irrelevant, or no understanding demonstrated
+- 0.7-0.9: Mostly correct, minor gaps
+- 0.5-0.6: Borderline pass
+- 0.2-0.4: Partial/weak understanding
+- 0.0-0.1: Incorrect or irrelevant
 
-PASSING THRESHOLD: Mark "isCorrect" as true if score >= 0.5
-
-FEEDBACK TEMPLATES (USE EXACTLY THESE PATTERNS):
-
-For CORRECT answers:
-- "Correct. [One-sentence rule or causal explanation]"
-- OR if vague but correct: "Correct. More precisely, [refined statement]."
-
-For INCORRECT answers:
-- Conceptual error: "Not quite. [Name the misconception]. [Point toward the correct concept WITHOUT stating the full answer]."
-- Calculation error: "Incorrect. [Identify wrong step]. [Hint at the correct method WITHOUT giving the formula]."
-- Near-miss: "Close, but not correct. [Wrong intuition]. [Point to what they should reconsider]."
-
-CRITICAL RULES FOR INCORRECT ANSWERS:
-- NEVER give the complete answer or full solution
-- NEVER state the complete rule or formula
-- POINT and GUIDE, don't TELL
-- Name the misconception, then point toward the correct direction
-- Example BAD: "Not quite. Voltage doesn't stay the same. In fact, voltage divides across components while current stays constant."
-- Example GOOD: "Not quite. Voltage doesn't stay the same in series circuits. Consider what happens to voltage across each component."
-
-OTHER STRICT RULES:
-- Maximum 1-2 sentences
-- NO praise words: "Excellent", "Perfect", "Amazing", "Well done", "Great"
-- Use neutral tone: "Correct" not "Correct!"
-- Confirm → compress → stop (no follow-up prompts)
-- Focus on the core concept or rule, not encouragement`;
+Set "isCorrect" true when score >= 0.5.`;
 
   return prompt;
 }

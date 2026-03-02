@@ -7,6 +7,7 @@ import { useSpeechToText } from '@/app/simulations/Echo-Questions/hooks/useSpeec
 import { getAudioContext, speakNativeWithEvents } from '@/app/simulations/Echo-Questions/utils/audioUtils';
 import AudioVisualizer from '@/app/simulations/Echo-Questions/components/AudioVisualizer';
 import { Mic, Send, Sparkles, Square } from 'lucide-react';
+import { authedFetch } from '@/lib/api/authedFetch';
 
 type SocraticTurn = {
   question: string;
@@ -120,7 +121,7 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/socratic/turn', {
+      const response = await authedFetch('/api/socratic/turn', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -232,7 +233,7 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/socratic/turn', {
+      const response = await authedFetch('/api/socratic/turn', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

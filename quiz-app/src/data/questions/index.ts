@@ -92,11 +92,13 @@ import { electronicComponentsAndPrinciplesQuestions } from './electronicComponen
 import { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
 import { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPhotosynthesisQuestions';
 import { investigatingLightIntensityQuestions } from './investigatingLightIntensityQuestions';
+import { powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions } from './powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions,
   ...investigatingLightIntensityQuestions,
   ...limitingFactorsOfPhotosynthesisQuestions,
   ...photosynthesisAndProducersQuestions,
@@ -278,6 +280,7 @@ export { electronicComponentsAndPrinciplesQuestions } from './electronicComponen
 export { photosynthesisAndProducersQuestions } from './photosynthesisAndProducersQuestions';
 export { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPhotosynthesisQuestions';
 export { investigatingLightIntensityQuestions } from './investigatingLightIntensityQuestions';
+export { powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions } from './powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions';
 
 /**
  * Filter questions by tags

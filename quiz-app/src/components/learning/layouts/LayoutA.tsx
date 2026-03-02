@@ -47,9 +47,21 @@ export default function LayoutA({ lesson }: LayoutProps) {
     void markLessonStarted(lesson.id);
   }, [lesson.id]);
 
-  // Extract diagram block
-  const diagramBlock = lesson.blocks.find(b => b.type === 'diagram');
-  const contentBlocks = lesson.blocks.filter(b => b.type !== 'diagram').sort((a, b) => a.order - b.order);
+  // Keep one primary diagram in the persistent stage; render any additional diagrams inline.
+  const diagramBlocks = lesson.blocks.filter((b) => b.type === 'diagram');
+  const primaryDiagramBlock =
+    diagramBlocks.find((block) => {
+      const linkedExplanationId =
+        typeof block.content === 'object' &&
+        block.content !== null &&
+        'linkedExplanationId' in block.content
+          ? block.content.linkedExplanationId
+          : undefined;
+      return typeof linkedExplanationId !== 'string' || !linkedExplanationId.trim();
+    }) ?? diagramBlocks[0];
+  const contentBlocks = lesson.blocks
+    .filter((b) => b.id !== primaryDiagramBlock?.id)
+    .sort((a, b) => a.order - b.order);
 
   const handleDiagramAction = (action: 'highlight' | 'focus' | 'clear' | 'jumpToTimestamp', elementIds?: string[]) => {
     if (action === 'clear') {
@@ -84,6 +96,18 @@ export default function LayoutA({ lesson }: LayoutProps) {
         return <SocraticVoiceBlock key={key} block={block} lessonId={lesson.id} />;
       case 'microbreak':
         return <MicrobreakBlock key={key} block={block} lessonId={lesson.id} />;
+      case 'diagram':
+        return (
+          <div key={key} className={diagramExpanded ? 'fixed inset-0 z-50 p-4 bg-black/30 backdrop-blur-sm' : ''}>
+            <DiagramStage
+              block={block}
+              highlightedElements={highlightedElements}
+              onAction={handleDiagramAction}
+              isExpanded={diagramExpanded}
+              onToggleExpand={() => setDiagramExpanded(!diagramExpanded)}
+            />
+          </div>
+        );
       default:
         return null;
     }
@@ -131,7 +155,7 @@ export default function LayoutA({ lesson }: LayoutProps) {
       </header>
 
       {/* Main Layout - Conditional based on diagram existence */}
-      {diagramBlock ? (
+      {primaryDiagramBlock ? (
         // Original Split Layout: Diagram + Tutor on LEFT, Content on RIGHT
         <div className="lg:grid lg:grid-cols-2 lg:h-[calc(100vh-3.5rem)]">
           {/* LEFT: Diagram Stage + Tutor (Desktop) / TOP: Diagram (Mobile) */}
@@ -143,7 +167,7 @@ export default function LayoutA({ lesson }: LayoutProps) {
           >
             <div className="p-4 space-y-4">
               <DiagramStage
-                block={diagramBlock}
+                block={primaryDiagramBlock}
                 highlightedElements={highlightedElements}
                 onAction={handleDiagramAction}
                 isExpanded={diagramExpanded}

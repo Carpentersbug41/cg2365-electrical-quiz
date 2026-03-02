@@ -100,6 +100,7 @@ import { electronicComponentsAndPrinciplesQuestions } from './questions/electron
 import { photosynthesisAndProducersQuestions } from './questions/photosynthesisAndProducersQuestions';
 import { limitingFactorsOfPhotosynthesisQuestions } from './questions/limitingFactorsOfPhotosynthesisQuestions';
 import { investigatingLightIntensityQuestions } from './questions/investigatingLightIntensityQuestions';
+import { powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions } from './questions/powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -192,6 +193,7 @@ export const questions: Question[] = [
   ...photosynthesisAndProducersQuestions,
   ...limitingFactorsOfPhotosynthesisQuestions,
   ...investigatingLightIntensityQuestions,
+  ...powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

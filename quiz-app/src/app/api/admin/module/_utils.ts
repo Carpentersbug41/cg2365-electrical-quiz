@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ModulePlannerError, getPlannerRunSummary, isModulePlannerEnabled } from '@/lib/module_planner';
-import { getCurriculumScopeFromReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import { getCurriculumScopeFromHeaderOrReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
 import { SyllabusVersionRow } from '@/lib/module_planner/types';
 import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 
@@ -80,7 +80,10 @@ export function toErrorResponse(error: unknown): NextResponse {
 }
 
 export function getModulePlannerScope(request: NextRequest | Request): CurriculumScope {
-  return getCurriculumScopeFromReferer(request.headers.get('referer'));
+  return getCurriculumScopeFromHeaderOrReferer(
+    request.headers.get('x-course-prefix'),
+    request.headers.get('referer')
+  );
 }
 
 export function isSyllabusVersionInScope(version: SyllabusVersionRow, scope: CurriculumScope): boolean {

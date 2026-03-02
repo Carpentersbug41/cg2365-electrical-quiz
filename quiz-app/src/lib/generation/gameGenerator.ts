@@ -266,6 +266,25 @@ function splitSentences(text: string): string[] {
     .filter(s => s.length >= 12);
 }
 
+function extractStructuredMisconceptions(text: string): string[] {
+  const lines = String(text || '').split(/\r?\n/);
+  const extracted: string[] = [];
+
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    const match = line.match(/misconception:\s*(.+?)(?:\s*\|\s*correction:|$)/i);
+    if (!match) continue;
+
+    const value = cleanText(match[1] || '');
+    if (!value) continue;
+    extracted.push(value);
+  }
+
+  return extracted;
+}
+
 function extractBulletLines(text: string): string[] {
   return text
     .split(/\r?\n/)
@@ -371,6 +390,13 @@ export function buildLessonDigest(lesson: Lesson): LessonDigest {
       return [...splitSentences(content.title || ''), ...splitSentences(content.content || ''), ...extractBulletLines(content.content || '')];
     });
 
+  const explanationMisconceptions = lesson.blocks
+    .filter(b => b.type === 'explanation')
+    .flatMap(b => {
+      const content = b.content as ExplanationBlockContent;
+      return extractStructuredMisconceptions(content.content || '');
+    });
+
   const practiceFacts = lesson.blocks
     .filter(b => b.type === 'practice' || b.type === 'spaced-review')
     .flatMap(b => {
@@ -430,7 +456,9 @@ export function buildLessonDigest(lesson: Lesson): LessonDigest {
     .filter((v, i, arr) => arr.indexOf(v) === i)
     .slice(0, 30);
 
-  const misconceptions = metaMisconceptions
+  const misconceptions = [...metaMisconceptions, ...explanationMisconceptions]
+    .map(cleanText)
+    .filter(Boolean)
     .filter((v, i, arr) => arr.indexOf(v) === i)
     .slice(0, 20);
 
@@ -1010,9 +1038,14 @@ function hardenClassifyTwoBinsContent(content: MicrobreakContent, digest: Lesson
       text: normalizeGameplaySnippet(String(item?.text || ''), 100),
       correctBin: item?.correctBin === 'left' || item?.correctBin === 'right' ? item.correctBin : 'left' as const,
     }))
-    .filter(item => !isInvalidQuickGameplayItem(item.text, 100));
+    .filter(item => !isInvalidQuickGameplayItem(item.text, 100))
+    .filter(item => !hasDanglingEllipsis(item.text));
 
-  if (cleanedItems.length < 6 || labelsInvalid || hasObviousFormatSplit(cleanedItems)) {
+  const truthVsMisconceptionLabels = labelsIndicateTruthVsMisconception(leftLabel, rightLabel);
+  const hasCorrectionStyleMisconception = truthVsMisconceptionLabels
+    && cleanedItems.some(item => item.correctBin === 'right' && isLikelyCorrectionStatement(item.text));
+
+  if (cleanedItems.length < 6 || labelsInvalid || hasObviousFormatSplit(cleanedItems) || hasCorrectionStyleMisconception) {
     return safeFallback;
   }
 
@@ -1256,6 +1289,7 @@ function isLikelyInstructionalFraming(text: string): boolean {
   if (
     /^[-*#]/.test(normalized) ||
     normalized.startsWith('in this lesson') ||
+    normalized.startsWith('you will learn') ||
     normalized.startsWith('what this is') ||
     normalized.startsWith('why it matters') ||
     normalized.startsWith('key takeaways') ||
@@ -1266,6 +1300,31 @@ function isLikelyInstructionalFraming(text: string): boolean {
   }
 
   return false;
+}
+
+function hasDanglingEllipsis(text: string): boolean {
+  return /\.\.\.\s*$/.test(String(text || '').trim());
+}
+
+function labelsIndicateTruthVsMisconception(leftLabel: string, rightLabel: string): boolean {
+  const left = String(leftLabel || '').toLowerCase();
+  const right = String(rightLabel || '').toLowerCase();
+  const leftIsTruth = /(accurate|correct|true|fact)/.test(left);
+  const rightIsMisconception = /(misconception|incorrect|false|myth)/.test(right);
+  return leftIsTruth && rightIsMisconception;
+}
+
+function isLikelyCorrectionStatement(text: string): boolean {
+  const normalized = String(text || '').trim().toLowerCase();
+  if (!normalized) return false;
+  return (
+    normalized.startsWith('correction:') ||
+    normalized.startsWith('while ') ||
+    normalized.startsWith('however ') ||
+    normalized.startsWith('therefore ') ||
+    normalized.startsWith('in contrast ') ||
+    normalized.startsWith('this means ')
+  );
 }
 
 function normalizeGameplaySnippet(text: string, maxLength: number = 90): string {
@@ -1712,6 +1771,15 @@ function validateGameSchemaAndContent(
       }
       if (items.some(i => String(i?.text || '').trim().length > 120)) {
         errors.push('classify-two-bins items are too long for quick classification');
+      }
+      if (items.some(i => hasDanglingEllipsis(String(i?.text || '')))) {
+        errors.push('classify-two-bins items must be complete statements, not truncated with ellipses');
+      }
+      if (
+        labelsIndicateTruthVsMisconception(leftLabel, rightLabel) &&
+        items.some(i => i?.correctBin === 'right' && isLikelyCorrectionStatement(String(i?.text || '')))
+      ) {
+        errors.push('classify-two-bins misconception bin includes correction-style statements');
       }
       if (hasObviousFormatSplit(items.map(i => ({ text: String(i?.text || ''), correctBin: i?.correctBin === 'right' ? 'right' : 'left' })))) {
         errors.push('classify-two-bins must not rely on obvious format split (short terms vs long definitions)');

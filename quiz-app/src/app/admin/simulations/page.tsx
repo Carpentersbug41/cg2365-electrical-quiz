@@ -4,11 +4,20 @@ import { FormEvent, useEffect, useMemo, useState } from 'react';
 import { courseHref } from '@/lib/routing/courseHref';
 import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 
+type LessonExplanationOption = {
+  id: string;
+  title: string;
+  order: number;
+  linkedDiagramId?: string | null;
+  linkedDiagramEmbedUrl?: string | null;
+};
+
 type LessonOption = {
   lessonId: string;
   title: string;
   simulationEmbedUrl?: string | null;
   simulationRepoName?: string | null;
+  explanations?: LessonExplanationOption[];
 };
 
 type LessonsStatusResponse = {
@@ -21,6 +30,8 @@ type CloneResponse = {
   success: boolean;
   error?: string;
   lessonId?: string;
+  explanationBlockId?: string | null;
+  diagramBlockId?: string;
   embedUrl?: string;
   deleted?: boolean;
   embedCleared?: boolean;
@@ -32,7 +43,24 @@ type CloneResponse = {
   };
 };
 
+type VisualConceptPrompt = {
+  conceptTitle: string;
+  diagramPrompt: string;
+  animationPrompt: string;
+};
+
+type VisualPromptResponse = {
+  success: boolean;
+  error?: string;
+  lessonId?: string;
+  explanationBlockId?: string;
+  model?: string;
+  concepts?: VisualConceptPrompt[];
+};
+
 export default function AdminSimulationsPage() {
+  type PlacementMode = 'main-diagram' | 'below-explanation';
+
   const extractRepoFromEmbedUrl = (embedUrl?: string | null): string | null => {
     if (!embedUrl) return null;
     const match = embedUrl.trim().match(/^\/simulations\/([^/?#]+)/i);
@@ -45,8 +73,14 @@ export default function AdminSimulationsPage() {
   const [actionStatus, setActionStatus] = useState<'idle' | 'cloning' | 'updating' | 'deleting'>('idle');
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<CloneResponse | null>(null);
+  const [isGeneratingPrompts, setIsGeneratingPrompts] = useState(false);
+  const [visualPrompts, setVisualPrompts] = useState<VisualConceptPrompt[]>([]);
+  const [visualPromptModel, setVisualPromptModel] = useState<string | null>(null);
+  const [visualPromptError, setVisualPromptError] = useState<string | null>(null);
 
   const [lessonId, setLessonId] = useState('');
+  const [explanationBlockId, setExplanationBlockId] = useState('');
+  const [placementMode, setPlacementMode] = useState<PlacementMode>('below-explanation');
   const [repoUrl, setRepoUrl] = useState('');
   const [embedPath, setEmbedPath] = useState('');
   const [overwrite, setOverwrite] = useState(false);
@@ -92,18 +126,79 @@ export default function AdminSimulationsPage() {
     () => lessons.find((lesson) => lesson.lessonId === lessonId),
     [lessons, lessonId]
   );
+  const selectedExplanations = selectedLesson?.explanations ?? [];
+  const selectedExplanation =
+    selectedExplanations.find((item) => item.id === explanationBlockId) ?? null;
   const selectedLessonTitle = selectedLesson?.title ?? '';
-  const selectedLessonEmbedUrl = selectedLesson?.simulationEmbedUrl ?? null;
-  const selectedLessonRepo =
+  const selectedEmbedUrl =
+    placementMode === 'below-explanation'
+      ? selectedExplanation?.linkedDiagramEmbedUrl ?? null
+      : selectedLesson?.simulationEmbedUrl ?? null;
+  const selectedRepo =
+    (placementMode === 'below-explanation'
+      ? extractRepoFromEmbedUrl(selectedExplanation?.linkedDiagramEmbedUrl)
+      : null) ??
     selectedLesson?.simulationRepoName ??
-    extractRepoFromEmbedUrl(selectedLessonEmbedUrl);
+    extractRepoFromEmbedUrl(selectedLesson?.simulationEmbedUrl ?? null);
 
   const isSubmitting = actionStatus !== 'idle';
+
+  useEffect(() => {
+    const fallback = selectedExplanations[0]?.id ?? '';
+    if (fallback !== explanationBlockId) {
+      setExplanationBlockId(fallback);
+      setVisualPrompts([]);
+      setVisualPromptError(null);
+      setVisualPromptModel(null);
+    }
+  }, [selectedExplanations, explanationBlockId]);
+
+  const onGenerateVisualPrompts = async () => {
+    if (!lessonId || !explanationBlockId) {
+      setVisualPromptError('Select a lesson and explanation section first.');
+      return;
+    }
+
+    setIsGeneratingPrompts(true);
+    setVisualPromptError(null);
+    setVisualPromptModel(null);
+    setVisualPrompts([]);
+
+    try {
+      const response = await fetch('/api/admin/simulations/visual-prompts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': coursePrefix,
+        },
+        body: JSON.stringify({
+          lessonId,
+          explanationBlockId,
+        }),
+      });
+
+      const data = (await response.json()) as VisualPromptResponse;
+      if (!response.ok || !data.success || !Array.isArray(data.concepts)) {
+        throw new Error(data.error || 'Failed to generate visual prompts.');
+      }
+
+      setVisualPrompts(data.concepts.slice(0, 2));
+      setVisualPromptModel(data.model ?? null);
+    } catch (err) {
+      setVisualPromptError(err instanceof Error ? err.message : 'Failed to generate visual prompts.');
+    } finally {
+      setIsGeneratingPrompts(false);
+    }
+  };
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!lessonId || !repoUrl.trim()) {
       setError('Lesson and GitHub URL are required.');
+      return;
+    }
+    if (placementMode === 'below-explanation' && !explanationBlockId) {
+      setError('Explanation section is required for block placement.');
       return;
     }
 
@@ -120,6 +215,7 @@ export default function AdminSimulationsPage() {
         },
         body: JSON.stringify({
           lessonId,
+          explanationBlockId: placementMode === 'below-explanation' ? explanationBlockId : undefined,
           repoUrl: repoUrl.trim(),
           embedPath: embedPath.trim() || undefined,
           overwrite,
@@ -132,6 +228,10 @@ export default function AdminSimulationsPage() {
       }
 
       if (data.lessonId) {
+        const targetExplanationId =
+          typeof data.explanationBlockId === 'string' && data.explanationBlockId.trim()
+            ? data.explanationBlockId
+            : null;
         setLessons((prev) =>
           prev.map((lesson) =>
             lesson.lessonId === data.lessonId
@@ -140,6 +240,17 @@ export default function AdminSimulationsPage() {
                   simulationEmbedUrl: data.embedUrl ?? lesson.simulationEmbedUrl ?? null,
                   simulationRepoName:
                     data.repo?.name ?? extractRepoFromEmbedUrl(data.embedUrl ?? lesson.simulationEmbedUrl),
+                  explanations: targetExplanationId
+                    ? (lesson.explanations ?? []).map((explanation) =>
+                        explanation.id === targetExplanationId
+                          ? {
+                              ...explanation,
+                              linkedDiagramEmbedUrl: data.embedUrl ?? explanation.linkedDiagramEmbedUrl ?? null,
+                              linkedDiagramId: data.diagramBlockId ?? explanation.linkedDiagramId ?? null,
+                            }
+                          : explanation
+                      )
+                    : lesson.explanations,
                 }
               : lesson
           )
@@ -158,6 +269,10 @@ export default function AdminSimulationsPage() {
       setError('Lesson and GitHub URL are required.');
       return;
     }
+    if (placementMode === 'below-explanation' && !explanationBlockId) {
+      setError('Explanation section is required for block placement.');
+      return;
+    }
 
     setActionStatus('updating');
     setError(null);
@@ -172,6 +287,7 @@ export default function AdminSimulationsPage() {
         },
         body: JSON.stringify({
           lessonId,
+          explanationBlockId: placementMode === 'below-explanation' ? explanationBlockId : undefined,
           repoUrl: repoUrl.trim(),
           embedPath: embedPath.trim() || undefined,
           overwrite: true,
@@ -184,6 +300,10 @@ export default function AdminSimulationsPage() {
       }
 
       if (data.lessonId) {
+        const targetExplanationId =
+          typeof data.explanationBlockId === 'string' && data.explanationBlockId.trim()
+            ? data.explanationBlockId
+            : null;
         setLessons((prev) =>
           prev.map((lesson) =>
             lesson.lessonId === data.lessonId
@@ -192,6 +312,17 @@ export default function AdminSimulationsPage() {
                   simulationEmbedUrl: data.embedUrl ?? lesson.simulationEmbedUrl ?? null,
                   simulationRepoName:
                     data.repo?.name ?? extractRepoFromEmbedUrl(data.embedUrl ?? lesson.simulationEmbedUrl),
+                  explanations: targetExplanationId
+                    ? (lesson.explanations ?? []).map((explanation) =>
+                        explanation.id === targetExplanationId
+                          ? {
+                              ...explanation,
+                              linkedDiagramEmbedUrl: data.embedUrl ?? explanation.linkedDiagramEmbedUrl ?? null,
+                              linkedDiagramId: data.diagramBlockId ?? explanation.linkedDiagramId ?? null,
+                            }
+                          : explanation
+                      )
+                    : lesson.explanations,
                 }
               : lesson
           )
@@ -208,6 +339,10 @@ export default function AdminSimulationsPage() {
   const onDeleteRepo = async () => {
     if (!lessonId) {
       setError('Lesson is required.');
+      return;
+    }
+    if (placementMode === 'below-explanation' && !explanationBlockId) {
+      setError('Explanation section is required for block placement.');
       return;
     }
 
@@ -229,6 +364,7 @@ export default function AdminSimulationsPage() {
         },
         body: JSON.stringify({
           lessonId,
+          explanationBlockId: placementMode === 'below-explanation' ? explanationBlockId : undefined,
           repoUrl: repoUrl.trim() || undefined,
         }),
       });
@@ -239,6 +375,10 @@ export default function AdminSimulationsPage() {
       }
 
       if (data.lessonId) {
+        const targetExplanationId =
+          typeof data.explanationBlockId === 'string' && data.explanationBlockId.trim()
+            ? data.explanationBlockId
+            : null;
         setLessons((prev) =>
           prev.map((lesson) =>
             lesson.lessonId === data.lessonId
@@ -246,6 +386,18 @@ export default function AdminSimulationsPage() {
                   ...lesson,
                   simulationEmbedUrl: data.embedCleared ? null : lesson.simulationEmbedUrl ?? null,
                   simulationRepoName: data.embedCleared ? null : lesson.simulationRepoName ?? null,
+                  explanations: targetExplanationId
+                    ? (lesson.explanations ?? []).map((explanation) =>
+                        explanation.id === targetExplanationId
+                          ? {
+                              ...explanation,
+                              linkedDiagramEmbedUrl: data.embedCleared
+                                ? null
+                                : explanation.linkedDiagramEmbedUrl ?? null,
+                            }
+                          : explanation
+                      )
+                    : lesson.explanations,
                 }
               : lesson
           )
@@ -264,15 +416,15 @@ export default function AdminSimulationsPage() {
       <div className="mx-auto max-w-4xl space-y-6">
         <header className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Admin</p>
-          <h1 className="mt-2 text-2xl font-semibold">Simulation Clone + Lesson Iframe Linker</h1>
+          <h1 className="mt-2 text-2xl font-semibold">Explanation Visuals + Simulation Linker</h1>
           <p className="mt-2 text-sm text-slate-600">
-            Clone a GitHub repo into <code>src/app/simulations</code> and set the selected lesson&apos;s diagram
-            <code className="ml-1">embedUrl</code>.
+            Generate 1-2 visual prompts for a specific explanation section, then clone/link a GitHub simulation into
+            <code className="ml-1">src/app/simulations</code> and attach its <code>embedUrl</code> right after that explanation.
           </p>
         </header>
 
         <form onSubmit={onSubmit} className="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-4">
             <label className="flex flex-col gap-2 text-sm">
               <span className="font-medium">Lesson</span>
               <select
@@ -301,6 +453,40 @@ export default function AdminSimulationsPage() {
                 required
               />
             </label>
+
+            <label className="flex flex-col gap-2 text-sm">
+              <span className="font-medium">Placement Target</span>
+              <select
+                className="rounded-lg border border-slate-300 px-3 py-2"
+                value={placementMode}
+                onChange={(event) => setPlacementMode(event.target.value as PlacementMode)}
+                disabled={isLoadingLessons || isSubmitting}
+              >
+                <option value="below-explanation">Below explanation block</option>
+                <option value="main-diagram">Main diagram area</option>
+              </select>
+            </label>
+
+            <label className="flex flex-col gap-2 text-sm">
+              <span className="font-medium">Explanation Section</span>
+              <select
+                className="rounded-lg border border-slate-300 px-3 py-2"
+                value={explanationBlockId}
+                onChange={(event) => setExplanationBlockId(event.target.value)}
+                disabled={
+                  placementMode !== 'below-explanation' ||
+                  isLoadingLessons ||
+                  isSubmitting ||
+                  selectedExplanations.length === 0
+                }
+              >
+                {selectedExplanations.map((explanation) => (
+                  <option key={explanation.id} value={explanation.id}>
+                    {explanation.id} - {explanation.title}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
 
           <div className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-700">
@@ -308,12 +494,69 @@ export default function AdminSimulationsPage() {
               Selected lesson: <strong>{selectedLesson ? `${selectedLesson.lessonId} - ${selectedLesson.title}` : 'None selected'}</strong>
             </p>
             <p>
-              Current simulation repo: <strong>{selectedLessonRepo ?? 'No repo cloned'}</strong>
+              Placement target:{' '}
+              <strong>
+                {placementMode === 'below-explanation' ? 'Below explanation block' : 'Main diagram area'}
+              </strong>
             </p>
-            {selectedLessonEmbedUrl && (
+            {placementMode === 'below-explanation' && (
               <p>
-                Current embed URL: <code>{selectedLessonEmbedUrl}</code>
+                Selected explanation:{' '}
+                <strong>
+                  {selectedExplanation ? `${selectedExplanation.id} - ${selectedExplanation.title}` : 'No explanation selected'}
+                </strong>
               </p>
+            )}
+            <p>
+              Current simulation repo: <strong>{selectedRepo ?? 'No repo linked'}</strong>
+            </p>
+            {selectedEmbedUrl && (
+              <p>
+                Current embed URL: <code>{selectedEmbedUrl}</code>
+              </p>
+            )}
+          </div>
+
+          <div className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={onGenerateVisualPrompts}
+                disabled={
+                  placementMode !== 'below-explanation' ||
+                  isGeneratingPrompts ||
+                  isSubmitting ||
+                  !lessonId ||
+                  !explanationBlockId
+                }
+                className="rounded-lg bg-violet-700 px-4 py-2 text-sm font-medium text-white hover:bg-violet-800 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isGeneratingPrompts ? 'Generating Visual Prompts...' : 'Generate 1-2 Visual Prompts'}
+              </button>
+              {visualPromptModel && <span className="text-xs text-slate-600">Model: {visualPromptModel}</span>}
+            </div>
+            {placementMode !== 'below-explanation' && (
+              <p className="mt-2 text-sm text-slate-600">
+                Visual prompt generation is tied to explanation content. Switch placement target to "Below explanation block" to use it.
+              </p>
+            )}
+            {visualPromptError && <p className="mt-2 text-sm font-medium text-red-700">{visualPromptError}</p>}
+            {visualPrompts.length > 0 && (
+              <div className="mt-3 space-y-3">
+                {visualPrompts.map((concept, index) => (
+                  <div key={`${concept.conceptTitle}-${index}`} className="rounded-md border border-slate-200 bg-white p-3">
+                    <p className="text-sm font-semibold text-slate-800">
+                      Concept {index + 1}: {concept.conceptTitle}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-700">
+                      <span className="font-medium">Diagram:</span> {concept.diagramPrompt}
+                    </p>
+                    <p className="mt-1 text-sm text-slate-700">
+                      <span className="font-medium">Animation:</span> {concept.animationPrompt}
+                    </p>
+                  </div>
+                ))}
+              </div>
             )}
           </div>
 
@@ -347,7 +590,7 @@ export default function AdminSimulationsPage() {
               disabled={isSubmitting || isLoadingLessons}
               className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {actionStatus === 'cloning' ? 'Cloning + Updating...' : 'Clone and Link to Lesson'}
+              {actionStatus === 'cloning' ? 'Cloning + Linking...' : 'Clone + Attach to Explanation'}
             </button>
             <button
               type="button"
@@ -379,6 +622,16 @@ export default function AdminSimulationsPage() {
               Lesson: <strong>{result.lessonId}</strong>
               {selectedLessonTitle ? ` (${selectedLessonTitle})` : ''}
             </p>
+            {result.explanationBlockId && (
+              <p>
+                Explanation block: <code>{result.explanationBlockId}</code>
+              </p>
+            )}
+            {result.diagramBlockId && (
+              <p>
+                Diagram block: <code>{result.diagramBlockId}</code>
+              </p>
+            )}
             {result.embedUrl && <p>Embed URL: <code>{result.embedUrl}</code></p>}
             {typeof result.embedCleared === 'boolean' && (
               <p>Embed link cleared: <code>{String(result.embedCleared)}</code></p>

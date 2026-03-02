@@ -20,7 +20,7 @@ import { MasterLessonBlueprint } from '@/lib/module_planner/types';
 import { listSyllabusVersions } from '@/lib/module_planner/syllabus';
 import { getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 import { getRefinementConfig } from '@/lib/generation/config';
-import { getCurriculumScopeFromReferer } from '@/lib/routing/curriculumScope';
+import { getCurriculumScopeFromHeaderOrReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
 import { getPromptInjectionSettings } from '@/lib/prompting/profileInjections';
 import fs from 'fs';
 import path from 'path';
@@ -57,9 +57,18 @@ function inferSectionFromUnit(unit: number | string): string {
 
 async function resolveGroundingStructure(
   unit: number | string,
+  curriculum: CurriculumScope,
   requestedVersionId?: string
 ): Promise<{ versionId: string; structure: Record<string, unknown> } | null> {
-  const versions = await listSyllabusVersions();
+  const versions = (await listSyllabusVersions()).filter((version) => {
+    const tagged =
+      version.meta_json && typeof version.meta_json === 'object'
+        ? (version.meta_json as Record<string, unknown>).curriculum
+        : null;
+    if (curriculum === 'gcse-science-physics') return tagged === 'gcse-science-physics';
+    if (curriculum === 'gcse-science-biology') return tagged === 'gcse-science-biology';
+    return tagged === 'cg2365' || tagged == null;
+  });
   if (versions.length === 0) return null;
 
   const resolvedVersionId =
@@ -256,7 +265,10 @@ export async function POST(request: NextRequest) {
   try {
     const body: GenerationRequest = await request.json();
     if (!body.curriculum) {
-      body.curriculum = getCurriculumScopeFromReferer(request.headers.get('referer'));
+      body.curriculum = getCurriculumScopeFromHeaderOrReferer(
+        request.headers.get('x-course-prefix'),
+        request.headers.get('referer')
+      );
     }
 
     if (
@@ -287,7 +299,7 @@ export async function POST(request: NextRequest) {
     body.section = normalizedSection;
 
     const hasMasterBlueprint = Boolean(body.masterLessonBlueprint);
-    const grounding = await resolveGroundingStructure(body.unit, body.syllabusVersionId);
+    const grounding = await resolveGroundingStructure(body.unit, body.curriculum, body.syllabusVersionId);
     if (!grounding && !hasMasterBlueprint) {
       return NextResponse.json(
         {

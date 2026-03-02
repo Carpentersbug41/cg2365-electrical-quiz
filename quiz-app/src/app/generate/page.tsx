@@ -307,7 +307,11 @@ export default function GeneratePage() {
 
   const fetchSyllabusMetadata = useCallback(async () => {
     try {
-      const response = await fetch('/api/syllabus/metadata');
+      const response = await fetch('/api/syllabus/metadata', {
+        headers: {
+          'x-course-prefix': getCoursePrefixForClient(),
+        },
+      });
       const data = (await response.json()) as SyllabusMetadataResponse;
       if (!response.ok || !data.success) return;
 
@@ -424,7 +428,10 @@ export default function GeneratePage() {
       // Call API
       const response = await fetch('/api/lesson-generator', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-course-prefix': getCoursePrefixForClient(),
+        },
         body: JSON.stringify(request),
       });
 

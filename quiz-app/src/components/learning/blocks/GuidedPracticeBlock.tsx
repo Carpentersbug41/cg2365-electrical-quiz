@@ -9,6 +9,7 @@ import { BlockProps } from './types';
 import { GuidedPracticeBlockContent } from '@/data/lessons/types';
 import { MarkingResponse } from '@/lib/marking/types';
 import BlockTTSButton from '../tts/BlockTTSButton';
+import { authedFetch } from '@/lib/api/authedFetch';
 
 export default function GuidedPracticeBlock({ block }: BlockProps) {
   const MIN_REFLECTION_CHARS = 20;
@@ -131,7 +132,7 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
     try {
       const step = content.steps[stepIndex];
 
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -227,7 +228,7 @@ export default function GuidedPracticeBlock({ block }: BlockProps) {
     });
 
     try {
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

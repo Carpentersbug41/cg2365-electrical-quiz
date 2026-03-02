@@ -61,12 +61,15 @@ import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-p
 import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-and-producers.json';
 import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factors-of-photosynthesis.json';
 import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-light-intensity.json';
+import lesson203_3L1P from '@/data/lessons/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 import { courseHref } from '@/lib/routing/courseHref';
 import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
+import { isAdminOverrideEmail } from '@/lib/auth/adminOverrides';
 
 /**
  * Natural sort function for lesson IDs
@@ -107,6 +110,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_3L1P,
   lessonBIO_6_1C,
   lessonBIO_6_1B,
   lessonBIO_6_1A,
@@ -234,6 +238,7 @@ const getUnitColors = (lessonId: string) => {
 
 export default function LearnPage() {
   const [lessonsProgress, setLessonsProgress] = useState<Record<string, QuizProgress | null>>({});
+  const [isAdmin, setIsAdmin] = useState(false);
   const coursePrefix = getCoursePrefixForClient();
   const scope = getCurriculumScopeFromCoursePrefix(coursePrefix);
   const isGcsePhysics = scope === 'gcse-science-physics';
@@ -248,6 +253,40 @@ export default function LearnPage() {
     });
     setLessonsProgress(progress);
   }, [coursePrefix]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadAdminRole = async () => {
+      const client = getSupabaseBrowserClient();
+      if (!client) return;
+
+      const { data: authData } = await client.auth.getUser();
+      const userId = authData.user?.id;
+      const userEmail = authData.user?.email;
+      if (!userId || cancelled) return;
+
+      if (isAdminOverrideEmail(userEmail)) {
+        setIsAdmin(true);
+        return;
+      }
+
+      const { data } = await client
+        .from('profiles')
+        .select('role')
+        .eq('user_id', userId)
+        .maybeSingle<{ role: 'student' | 'admin' }>();
+
+      if (cancelled) return;
+      setIsAdmin(data?.role === 'admin');
+    };
+
+    void loadAdminRole();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const unitMeta: Record<string, { title: string; description: string }> = {
     '201': {
@@ -292,12 +331,22 @@ export default function LearnPage() {
                 {isGcsePhysics ? 'GCSE Physics pathway' : isGcseBiology ? 'GCSE Biology pathway' : 'Select a lesson to start learning'}
               </p>
             </div>
-            <Link
-              href={courseHref('/')}
-              className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
-            >
-              ? Home
-            </Link>
+            <div className="flex items-center gap-2">
+              {isAdmin && (
+                <Link
+                  href={courseHref('/admin')}
+                  className="px-4 py-2 text-sm font-semibold text-indigo-700 dark:text-indigo-300 bg-indigo-100 dark:bg-indigo-900/30 border border-indigo-300 dark:border-indigo-700 rounded-lg hover:bg-indigo-200 dark:hover:bg-indigo-900/50 transition-colors"
+                >
+                  Admin
+                </Link>
+              )}
+              <Link
+                href={courseHref('/')}
+                className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-slate-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg transition-colors"
+              >
+                ? Home
+              </Link>
+            </div>
           </div>
         </div>
       </header>

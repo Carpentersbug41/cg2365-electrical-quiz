@@ -16,6 +16,7 @@ import {
   getAcMetaFromQuestion,
   normalizeQuestionStableId,
 } from '@/lib/authProgress/questionIdentity';
+import { authedFetch } from '@/lib/api/authedFetch';
 
 interface ErrorState {
   message: string;
@@ -118,7 +119,7 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
     
     try {
       // All questions use LLM marking
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -217,7 +218,7 @@ export default function PracticeBlock({ block, lessonId }: BlockProps) {
     }
 
     try {
-      const response = await fetch('/api/marking', {
+      const response = await authedFetch('/api/marking', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
