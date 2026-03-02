@@ -1,0 +1,451 @@
+{
+  "id": "203-3L5C",
+  "title": "203.3L5C — Cable Selection (Noob): What Affects Choosing a Cable",
+  "description": "Learn about Cable Selection (Noob): What Affects Choosing a Cable in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Cable Selection (Noob): What Affects Choosing a Cable",
+  "learningOutcomes": [
+    "List the five main factors that influence the selection of an electrical cable.",
+    "Explain why heat is the primary limiting factor for safe cable operation.",
+    "Identify which selection factor is most relevant in basic installation scenarios."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-3L5C-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "List the five main factors that influence the selection of an electrical cable.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Explain why heat is the primary limiting factor for safe cable operation.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify which selection factor is most relevant in basic installation scenarios.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L5C-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Current-Carrying Capacity",
+            "definition": "The maximum amount of electrical current a cable can safely handle before the heat generated damages its insulation."
+          },
+          {
+            "term": "Voltage Drop",
+            "definition": "The reduction in electrical pressure that occurs as current flows through a cable, which must be limited to ensure equipment operates correctly."
+          },
+          {
+            "term": "Ambient Temperature",
+            "definition": "The temperature of the air or surrounding environment where a cable is installed, which acts as a primary limit on how well a cable can dissipate heat."
+          },
+          {
+            "term": "Grouping Factor",
+            "definition": "A calculation adjustment used when multiple cables are run together, as shared heat reduces the individual current-carrying capacity of each cable."
+          },
+          {
+            "term": "Mechanical Protection",
+            "definition": "The use of external materials like conduit or armoring to prevent physical damage to a cable, which is different from the electrical insulation used to contain current."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L5C-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Cable Selection (Noob): What Affects Choosing a Cable Diagram",
+        "description": "Visual representation of Cable Selection (Noob): What Affects Choosing a Cable",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "current-carrying-capacity",
+          "ambient-temperature",
+          "grouping-factor",
+          "voltage-drop",
+          "mechanical-protection"
+        ],
+        "placeholderText": "A central cable cross-section showing heat radiating outwards. Arrows labeled 'current-carrying-capacity' point to the copper core. External sun icons represent 'ambient-temperature' pressing in. A cluster of neighboring cables represents the 'grouping-factor'. A long horizontal line represents 'voltage-drop' over distance. An outer thick grey shell represents 'mechanical-protection' shielding the cable from a hammer icon."
+      }
+    },
+    {
+      "id": "203-3L5C-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "Heat and Capacity",
+        "content": "### In this lesson\n- You will learn why heat is the primary safety limit for electrical cables.\n- This knowledge is used to ensure cables do not cause fires or equipment failure.\n- Key takeaways: Defining current-carrying capacity, understanding heat as a limit, and identifying the role of insulation.\n\n**What this is**\n**Current-Carrying Capacity** is the maximum amount of electrical current a cable can safely handle before the heat generated damages its insulation. In the world of electrical installations, every cable has a limit. This limit is not just about how much electricity can fit through the wire, but about how much heat the wire can release into the surrounding air. When electricity flows through a conductor, it naturally meets resistance, which generates heat. If that heat builds up faster than it can escape, the cable temperature rises to dangerous levels.\n\n**Why it matters**\nSelecting the right cable is a matter of safety and longevity. If you choose a cable with a **Current-Carrying Capacity** that is too low for the load, the cable will overheat. This overheating can cause the plastic insulation to become brittle, melt, or even catch fire. By understanding that heat is the primary limiting factor, you ensure that the electrical system remains stable over many years of use. It is the most critical factor because it directly relates to the prevention of fire and the protection of the building structure.\n\n**Key facts / rules**\n- Heat is the primary limiting factor for safe cable operation.\n- A larger conductor (thicker wire) typically has a higher **Current-Carrying Capacity**.\n- Insulation has a maximum temperature rating that must never be exceeded.\n- Resistance in the wire converts electrical energy into heat energy.\n- The goal of cable selection is to keep the operating temperature below the insulation's melting point.\n- Safe current limits are determined by how quickly a cable can dissipate heat.\n\n**When to choose it**\nYou choose a cable based on its capacity whenever you know the total electrical load (in Amps) that a circuit will carry. This is the first step in any selection process. If a circuit is designed for a high-power appliance, you must identify a cable size that can handle that specific intensity without the temperature rising above safe limits. \n\n**Concrete Anchor:** Think of a narrow hallway in a busy building. If five people walk through at once, they move easily. If fifty people try to run through at the same time, they will bump into each other, creating friction and heat. The \"width\" of the hallway is like the cable size, and the \"friction\" is the heat generated by the current.\n\n**Micro-scenario:** Consider two cables. Cable A is thin and carrying 20 Amps, causing it to feel hot to the touch. Cable B is twice as thick and carrying the same 20 Amps, but it remains cool. Cable B is the safer choice because its capacity is higher than the load.\n\n**Common mistakes**\nLearners often confuse **Current-Carrying Capacity** with **Mechanical Protection**; **Current-Carrying Capacity** is the internal limit based on heat and electrical flow, whereas **Mechanical Protection** is the external shield against physical impact. \n\nMisconceptions (targeted):\n- Misconception: Cables only get hot if there is a short circuit. | Correction: All cables generate some heat when current flows; selection ensures this heat stays at a safe level. | AC1\n- Misconception: A cable's thickness is only about the physical strength of the wire. | Correction: Thickness is primarily about reducing resistance and managing heat. | AC1\n\n**Key Points**\n- Heat is the main danger in cable selection.\n- **Current-Carrying Capacity** defines the safe limit of Amps.\n- Overheating destroys insulation and causes fires.\n- Selecting the right size prevents heat build-up.\n\n**Quick recap**\nSelecting a cable starts with understanding its **Current-Carrying Capacity**. Because current creates heat through resistance, we must choose a cable size that allows heat to escape effectively. Heat is the primary limit we must respect to keep the insulation intact and the building safe.\n\n### Coming Up Next\nWe will look at how the environment around the cable, such as nearby cables or wall insulation, changes how much current a cable can safely carry."
+      }
+    },
+    {
+      "id": "203-3L5C-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: Heat and Capacity",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L5C-C1-L1-A",
+            "questionText": "What is the primary limiting factor for safe cable operation?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Heat",
+              "Heat energy",
+              "Temperature"
+            ],
+            "hint": "Think about what is generated when electricity flows through a wire and meets resistance."
+          },
+          {
+            "id": "203-3L5C-C1-L1-B",
+            "questionText": "What process in the wire converts electrical energy into heat energy?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Resistance",
+              "Electrical resistance",
+              "Wire resistance"
+            ],
+            "hint": "This is the friction-like force that electricity meets as it flows through a conductor."
+          },
+          {
+            "id": "203-3L5C-C1-L1-C",
+            "questionText": "Which part of a cable has a maximum temperature rating that must never be exceeded?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Insulation",
+              "The insulation",
+              "Cable insulation",
+              "Plastic insulation"
+            ],
+            "hint": "This is the protective layer that can melt or catch fire if the cable gets too hot."
+          },
+          {
+            "id": "203-3L5C-C1-L2",
+            "questionText": "Using your answers to Q1 (heat limits), Q2 (resistance), and Q3 (insulation ratings), explain why current-carrying capacity is the most important factor in cable selection. Why does this relationship matter for safety?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Resistance naturally converts current into heat as it flows",
+              "The cable capacity ensures this heat does not exceed the insulation's maximum rating",
+              "Exceeding these limits leads to insulation failure or fire",
+              "Capacity is the safety limit that balances heat generation with heat dissipation"
+            ],
+            "expectedAnswer": [
+              "Because resistance converts electricity into heat, we must select a cable with enough capacity to ensure that heat doesn't exceed the insulation's temperature rating. This matters because it prevents the insulation from melting and causing a fire.",
+              "Current-carrying capacity is vital because it manages the heat created by resistance. If the heat goes above the insulation's maximum rating, the cable becomes unsafe. We use capacity to keep the system stable and protect the building from fire."
+            ],
+            "hint": "Connect how the heat created by resistance is managed by the cable's capacity to protect the insulation."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L5C-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Environmental and External Factors",
+        "content": "### In this lesson\n- You will learn the five main factors that influence cable selection beyond just the electrical load.\n- This helps you adjust cable choices for long distances, hot environments, or crowded spaces.\n- Key takeaways: Identifying voltage drop, grouping, ambient temperature, and mechanical protection.\n\n**What this is**\nCable selection involves more than just the load; it involves the environment. **Ambient Temperature** is the temperature of the air or surrounding environment where a cable is installed. If the air is already hot, the cable cannot shed its own heat easily. **Grouping Factor** is a calculation adjustment used when multiple cables are run together, as shared heat reduces the individual current-carrying capacity of each cable. **Voltage Drop** is the reduction in electrical pressure that occurs as current flows through a cable, and **Mechanical Protection** is the use of external materials like conduit to prevent physical damage.\n\n**Why it matters**\nA cable that works perfectly in a cold basement might fail if it is moved to a hot attic or buried in thermal insulation. If you ignore the **Grouping Factor**, a bundle of cables will cook each other from the outside in. Furthermore, if a cable is too long, **Voltage Drop** will mean the equipment at the end doesn't get enough power to run. Finally, without **Mechanical Protection**, a cable could be cut or crushed, leading to dangerous faults. You must consider all five factors to ensure the system is functional and durable.\n\n**Key facts / rules**\n- **Ambient Temperature** acts as a primary limit on heat dissipation.\n- **Grouping Factor** must be applied whenever cables are bunched together.\n- **Voltage Drop** increases as the cable length increases.\n- **Mechanical Protection** is required if the cable is at risk of physical impact.\n- Environmental conditions (like moisture or chemicals) dictate the type of cable sheath needed.\n- High ambient temperatures require a larger cable size for the same load.\n\n**When to choose it**\nYou identify these factors by looking at the installation route. If the route goes through a hot loft, you must account for **Ambient Temperature**. If the route is very long (e.g., to a garden shed), you must choose a larger cable to combat **Voltage Drop**. If the cable is exposed on a workshop wall, you choose **Mechanical Protection** like steel conduit. \n\n**Concrete Anchor:** Imagine a garden hose. If the hose is very long, the water pressure at the end is lower than at the tap; this is like **Voltage Drop**. If you wrap the hose in a thick blanket (thermal insulation), it can't stay cool; this is like a high **Ambient Temperature** affecting a cable.\n\n**Micro-scenario:** A cable is carrying 15 Amps. In Scenario A, it is the only cable in a cool pipe. In Scenario B, it is bundled with ten other cables in a hot ceiling. Even though the load is the same, Scenario B requires a much larger cable to prevent overheating.\n\n**Common mistakes**\nLearners often confuse **Ambient Temperature** with the heat generated by the cable itself; **Ambient Temperature** is the heat from the surrounding room, whereas the cable's heat is generated internally by the current. \n\nMisconceptions (targeted):\n- Misconception: Voltage drop only happens if the cable is damaged. | Correction: Voltage drop is a natural result of cable length and resistance. | AC1\n- Misconception: Putting many cables together is fine as long as they are tied neatly. | Correction: Grouping cables traps heat, meaning each cable can carry less current than if it were alone. | AC1\n\n**Key Points**\n- Five factors: Capacity, Voltage Drop, Environment, Grouping, and Protection.\n- Long runs require larger cables to stop **Voltage Drop**.\n- Bunched cables need to be \"de-rated\" because of the **Grouping Factor**.\n- Physical risks require **Mechanical Protection**.\n\n**Quick recap**\nSafe cable selection looks at the whole picture. We must account for the surrounding **Ambient Temperature**, the effect of **Grouping** multiple cables, the loss of pressure via **Voltage Drop**, and the need for **Mechanical Protection**. Ignoring these external factors can lead to equipment failure or fire, even if the cable seems thick enough for the load.\n\n### Coming Up Next\nIn the next module, we will learn how to use reference tables to find the exact cable sizes for different installation methods."
+      }
+    },
+    {
+      "id": "203-3L5C-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Environmental and External Factors",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L5C-C2-L1-A",
+            "questionText": "What environmental factor acts as a primary limit on how effectively a cable can dissipate heat?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Ambient Temperature",
+              "The ambient temperature",
+              "Surrounding temperature"
+            ],
+            "hint": "This refers to the temperature of the air or space surrounding the installed cable."
+          },
+          {
+            "id": "203-3L5C-C2-L1-B",
+            "questionText": "What specific adjustment factor must be applied whenever cables are bunched together?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Grouping Factor",
+              "The grouping factor",
+              "Grouping"
+            ],
+            "hint": "This calculation accounts for the extra heat trapped when multiple cables are run in the same space."
+          },
+          {
+            "id": "203-3L5C-C2-L1-C",
+            "questionText": "What happens to the voltage drop as the length of a cable increases?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "It increases",
+              "Increases",
+              "Voltage drop increases",
+              "It gets higher"
+            ],
+            "hint": "Think about the garden hose example; longer runs lead to more loss of pressure."
+          },
+          {
+            "id": "203-3L5C-C2-L2",
+            "questionText": "Using your answers to Q1 (ambient temperature), Q2 (grouping factor), and Q3 (voltage drop), explain how the installation route determines the required cable size. How do we know these factors change the selection?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The route determines if the cable is in a hot area (ambient temperature) or bunched with others (grouping factor)",
+              "Both ambient heat and grouping reduce the cable's ability to stay cool, requiring a larger size",
+              "The length of the route determines the total voltage drop, which may require an even larger conductor",
+              "We know these factors change selection because ignoring them leads to overheating or equipment failure"
+            ],
+            "expectedAnswer": [
+              "The installation route tells us the ambient temperature and if grouping factors apply, which both limit heat dissipation. Additionally, the route's length determines the voltage drop. We know these matter because a cable must be sized up if it is in a hot, crowded, or long run to stay safe and functional.",
+              "We choose cable size based on the route because the surroundings (ambient temperature) and bunching (grouping) trap heat, while the distance increases voltage drop. These factors prove that a cable's capacity isn't fixed; it must be adjusted to ensure the insulation doesn't melt and the power reaches the equipment."
+            ],
+            "hint": "Consider how the physical path of the cable introduces heat and length issues that the cable size must overcome."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L5C-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-3L5C-P1",
+            "questionText": "Why is heat considered the primary safety limit when determining how much current a cable can carry?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "protect insulation",
+              "prevent fire",
+              "prevent overheating",
+              "prevent melting"
+            ],
+            "hint": "Consider what part of the cable is most likely to be damaged by high temperatures."
+          },
+          {
+            "id": "203-3L5C-P2",
+            "questionText": "A cable has a current-carrying capacity of 20 Amps. If a piece of equipment draws 28 Amps through this cable, by how many Amps is the safe limit being exceeded?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "8"
+            ],
+            "hint": "Subtract the safe capacity from the actual load to find the difference in Amps."
+          },
+          {
+            "id": "203-3L5C-P3",
+            "questionText": "A single cable is rated for 30 Amps. Because it is being bundled with several other cables, its safe capacity is reduced by 7 Amps due to the grouping factor. What is its new safe capacity?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "23"
+            ],
+            "hint": "Calculate the new limit in Amps after the reduction is applied."
+          },
+          {
+            "id": "203-3L5C-P4",
+            "questionText": "What must be true about the physical size of a cable if it is being installed in a very hot attic compared to the same cable installed in a cool basement?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "it must be larger",
+              "larger",
+              "larger size",
+              "bigger"
+            ],
+            "hint": "Think about how ambient temperature affects a cable's ability to release heat."
+          },
+          {
+            "id": "203-3L5C-P5",
+            "questionText": "Which term describes the natural reduction in electrical pressure that occurs specifically because a cable run is very long?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "voltage drop",
+              "volt drop"
+            ],
+            "hint": "This factor relates to the length of the cable rather than the surrounding temperature."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L5C-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-3L5C-INT-1",
+            "questionText": "Explain how the surrounding environment affects the amount of current a cable can safely carry. In your answer, include: (1) the definition of current-carrying capacity, (2) the role of ambient temperature, (3) how these two factors influence each other. Why does this relationship hold? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Defines current-carrying capacity as the maximum current before heat damages insulation",
+              "Identifies ambient temperature as the temperature of the surrounding air/environment",
+              "Explains that higher ambient temperatures reduce the cable's ability to dissipate heat",
+              "Concludes that safe current capacity must be lowered in hot environments to protect the cable",
+              "Uses reasoning based on the thermal limits of insulation material"
+            ],
+            "expectedAnswer": [
+              "Current-carrying capacity is the maximum current a cable can handle before heat damages its insulation. If the ambient temperature is high, the cable cannot shed heat effectively, meaning the safe current limit must be reduced. This relationship holds because the total heat from the current and the environment must never exceed the safety limit of the insulation.",
+              "A cable's capacity is limited by the heat it generates; if the ambient temperature is already high, the cable will reach its safety limit faster. Therefore, we must decrease the allowable current in hotter environments to prevent the insulation from melting or failing. This is necessary because heat is the primary factor that determines the safe operating life of any electrical cable."
+            ],
+            "hint": "Think about how hard it is for a cable to stay cool when the air around it is already hot."
+          },
+          {
+            "id": "203-3L5C-INT-2",
+            "questionText": "Describe the complete process of selecting a safe cable for a specific installation by considering both electrical and environmental needs. In your answer, include: (1) the five main selection factors, (2) why heat is the primary safety concern, (3) how factors like grouping affect the final choice, (4) how these elements work together to ensure a safe installation. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Lists the five factors: load, ambient temperature, grouping, voltage drop, and mechanical protection",
+              "Explains that heat is the primary limit because it causes insulation breakdown and fire risks",
+              "Notes that grouping cables together increases heat build-up between them",
+              "Describes how voltage drop and distance influence the size of the conductor",
+              "Explains that mechanical protection ensures the cable survives its physical environment",
+              "Synthesizes how all factors are used to adjust the required cable size for safety",
+              "Maintains technical precision regarding capacity and environmental limits"
+            ],
+            "expectedAnswer": [
+              "To select a cable, you must evaluate the load, ambient temperature, grouping, voltage drop, and mechanical protection. Heat is the primary concern because it degrades insulation, so factors like grouping several cables together require you to reduce the allowable current or increase cable size. By balancing these factors, you ensure the cable operates within its thermal limits and provides the correct voltage without risk of fire.",
+              "• Cable selection involves checking the current load, surrounding temperature, grouping with other cables, voltage drop over distance, and physical protection needs.\n• Heat is the main safety limit because excessive temperatures lead to insulation failure and potential hazards.\n• Factors like grouping and high temperatures reduce the cable's capacity, requiring a larger size to manage heat safely.\n• Together, these checks ensure the installation is safe, efficient, and protected from environmental damage."
+            ],
+            "hint": "Consider how every factor—from the air temperature to the number of cables in a tray—impacts the total heat the cable has to manage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-3L5C-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-3L5C-SR-1",
+            "questionText": "What is the primary purpose of an electrical cable in a circuit?",
+            "expectedAnswer": [
+              "carry electricity",
+              "conduct current",
+              "transfer power"
+            ],
+            "hint": "Think about how electricity gets from the source to an appliance.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L5C-SR-2",
+            "questionText": "When we talk about 'safe operation' in an installation, what are we trying to prevent?",
+            "expectedAnswer": [
+              "danger",
+              "harm",
+              "accidents",
+              "injury"
+            ],
+            "hint": "Consider the main goal of following safety rules in electrical work.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-3L5C-SR-3",
+            "questionText": "What term is used to describe the process of picking the correct components for an electrical installation?",
+            "expectedAnswer": [
+              "selection",
+              "choosing",
+              "selecting"
+            ],
+            "hint": "This word is used in the lesson title to describe how we decide which cable to use.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Cable Selection (Noob): What Affects Choosing a Cable"
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-03-02",
+    "updated": "2026-03-02",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO3",
+      "coveredAC": [
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC1",
+        "AC2",
+        "AC4"
+      ]
+    },
+    "scope": {
+      "inScope": "The five qualitative factors affecting cable choice and the conceptual impact of heat on safety.",
+      "outOfScope": "Mathematical calculations for cable sizing (Ib, In, Iz), correction factor tables, and installation procedures.",
+      "rationale": "Focuses on building a conceptual foundation of 'why' cables are chosen before introducing the 'how' of technical calculations."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Level 1 style conceptual overview excluding all BS 7671 table data."
+    },
+    "misconceptions": [
+      {
+        "misconception": "Cables only get hot if there is a short circuit.",
+        "correction": "All cables generate some heat when current flows; selection ensures this heat stays at a safe level.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Voltage drop only happens if the cable is damaged.",
+        "correction": "Voltage drop is a natural result of cable length and resistance in any circuit.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Insulation protects a cable from being crushed.",
+        "correction": "Insulation is for electrical containment; mechanical protection like conduit is needed for physical impact.",
+        "relatedAC": "AC2"
+      }
+    ],
+    "generationScore": 97,
+    "generationScoreDetails": {
+      "originalScore": 97,
+      "finalScore": 97,
+      "wasRefined": false,
+      "generatedAt": "2026-03-02T20:35:48.171Z",
+      "source": "phase10-13"
+    }
+  }
+}

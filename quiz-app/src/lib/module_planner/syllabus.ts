@@ -632,7 +632,12 @@ export function serializeRetrievedChunkRecords(records: RetrievedChunkRecord[]):
 
 export function deserializeRetrievedChunkRecords(value: string): RetrievedChunkRecord[] {
   if (!value || value.trim().length === 0) return [];
-  const parsed = JSON.parse(value) as unknown;
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(value) as unknown;
+  } catch {
+    return [];
+  }
   if (!Array.isArray(parsed)) return [];
   return parsed
     .map((item) => item as Partial<RetrievedChunkRecord>)

@@ -428,6 +428,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3L1P'),
     available: true,
     order: 23,
+  },
+  {
+    id: '203-3L5C',
+    title: 'Cable Selection (Noob): What Affects Choosing a Cable',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Cable Selection (Noob): What Affects Choosing a Cable',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-3L5C'),
+    available: true,
+    order: 24,
   },// Unit 210: Communication
   {
     id: '204-10A',

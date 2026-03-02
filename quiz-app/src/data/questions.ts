@@ -101,6 +101,7 @@ import { photosynthesisAndProducersQuestions } from './questions/photosynthesisA
 import { limitingFactorsOfPhotosynthesisQuestions } from './questions/limitingFactorsOfPhotosynthesisQuestions';
 import { investigatingLightIntensityQuestions } from './questions/investigatingLightIntensityQuestions';
 import { powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions } from './questions/powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions';
+import { cableSelectionNoobWhatAffectsChoosingACableQuestions } from './questions/cableSelectionNoobWhatAffectsChoosingACableQuestions';
 
 export const questions: Question[] = [
   ...healthAndSafetyQuestions,
@@ -194,6 +195,7 @@ export const questions: Question[] = [
   ...limitingFactorsOfPhotosynthesisQuestions,
   ...investigatingLightIntensityQuestions,
   ...powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions,
+  ...cableSelectionNoobWhatAffectsChoosingACableQuestions,
 ];
 
 // Re-export allTaggedQuestions for API routes

@@ -1,0 +1,5 @@
+{
+  "name": "Dedicated Circuit Animation",
+  "description": "An interactive educational animation demonstrating the concept of a dedicated circuit versus a shared circuit.",
+  "requestFramePermissions": []
+}

@@ -82,7 +82,8 @@
           "high-power-load",
           "cpc-connection"
         ],
-        "placeholderText": "The diagram should show a linear flow starting from a 'consumer-unit' on the left. A single 'radial-cable' exits the unit and travels to a 'local-isolator' (a wall switch). From the isolator, the cable continues to a 'high-power-load' (represented by a cooker or shower icon). Inside the cable, three distinct lines should represent the Line, Neutral, and 'cpc-connection', with the CPC clearly shown bonded to the metal casing of the load for safety. The diagram reads from left to right, showing the 'one-way' nature of the radial path."
+        "placeholderText": "The diagram should show a linear flow starting from a 'consumer-unit' on the left. A single 'radial-cable' exits the unit and travels to a 'local-isolator' (a wall switch). From the isolator, the cable continues to a 'high-power-load' (represented by a cooker or shower icon). Inside the cable, three distinct lines should represent the Line, Neutral, and 'cpc-connection', with the CPC clearly shown bonded to the metal casing of the load for safety. The diagram reads from left to right, showing the 'one-way' nature of the radial path.",
+        "embedUrl": "/simulations/power-1/dist/index.html"
       }
     },
     {

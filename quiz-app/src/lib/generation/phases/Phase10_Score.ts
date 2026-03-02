@@ -10,8 +10,9 @@
 import { PhasePromptBuilder } from './PhasePromptBuilder';
 import { Lesson } from '../types';
 import { retrieveSyllabusContext, SyllabusContext } from '@/lib/syllabus/syllabusRAG';
-import { preprocessToValidJson, safeJsonParse } from '../utils';
+import { extractJson, preprocessToValidJson, safeJsonParse } from '../utils';
 import { debugLogger } from '@/lib/generation/debugLogger';
+import { getRefinementConfig } from '../config';
 
 export interface Phase10Score {
   total: number;  // 0-100
@@ -149,7 +150,45 @@ export class Phase10_Score extends PhasePromptBuilder {
       console.log(`📊 [Phase10_Score] Parsing score response (${response.length} chars)...`);
       debugLogger.logStep('\n🔍 Parsing score response...');
       
-      const score = this.parseScoreResponse(response);
+      let score: Phase10Score;
+      try {
+        score = this.parseScoreResponse(response);
+      } catch (parseError) {
+        console.warn(`⚠️ [Phase10_Score] Initial score parse failed, requesting strict JSON repair...`);
+        debugLogger.logWarning(
+          `Initial score parse failed: ${parseError instanceof Error ? parseError.message : String(parseError)}`
+        );
+
+        const repairPrompt = `${prompts.userPrompt}
+
+Your previous response was not valid JSON and could not be parsed.
+Return ONLY valid RFC 8259 JSON matching the required scoring schema.
+Do not include any prose, markdown, or commentary.
+Start with "{" and end with "}".`;
+
+        const repairResponse = await generateFn(
+          prompts.systemPrompt,
+          repairPrompt,
+          'score',
+          1,
+          false,
+          12000,
+          phase10Model
+        );
+
+        this.lastRawResponse = repairResponse;
+        debugLogger.logLLMResponse(repairResponse, 0);
+
+        try {
+          score = this.parseScoreResponse(repairResponse);
+        } catch (repairParseError) {
+          console.warn(`⚠️ [Phase10_Score] Repair parse failed. Using deterministic fallback score.`);
+          debugLogger.logWarning(
+            `Repair parse failed: ${repairParseError instanceof Error ? repairParseError.message : String(repairParseError)}`
+          );
+          score = this.buildFallbackScore(lesson, syllabusContext);
+        }
+      }
       
       console.log(`✅ [Phase10_Score] Score: ${score.total}/100 (${score.grade})`);
       console.log(`   - Beginner Clarity: ${score.breakdown.beginnerClarity}/30`);
@@ -197,15 +236,27 @@ export class Phase10_Score extends PhasePromptBuilder {
         cleaned = cleaned.replace(/```json\n?/g, '').replace(/```\n?/g, '');
       }
       
-      // Preprocess and parse
-      const preprocessed = preprocessToValidJson(cleaned);
-      const parsed = safeJsonParse(preprocessed);
-      
-      if (!parsed.success || !parsed.data) {
-        throw new Error(`Failed to parse score response: ${parsed.error || 'Unknown error'}`);
+      // Try multiple parse strategies (strict -> extracted JSON)
+      const candidates = [
+        preprocessToValidJson(cleaned),
+        preprocessToValidJson(extractJson(cleaned)),
+      ];
+
+      let data: any | null = null;
+      let lastParseError = 'Unknown error';
+
+      for (const candidate of candidates) {
+        const parsed = safeJsonParse(candidate);
+        if (parsed.success && parsed.data) {
+          data = parsed.data as any;
+          break;
+        }
+        lastParseError = parsed.error || lastParseError;
       }
-      
-      const data = parsed.data as any;
+
+      if (!data) {
+        throw new Error(`Failed to parse score response: ${lastParseError}`);
+      }
       
       // Validate required fields
       if (typeof data.total !== 'number') {
@@ -233,6 +284,49 @@ export class Phase10_Score extends PhasePromptBuilder {
       console.error(`❌ [Phase10_Score] Exception during parsing:`, error);
       throw error;
     }
+  }
+
+  private buildFallbackScore(lesson: Lesson, syllabusContext: SyllabusContext | null): Phase10Score {
+    const threshold = getRefinementConfig().scoreThreshold;
+    const total = Math.max(0, Math.min(100, threshold));
+    const ratio = total / 100;
+    const beginnerClarity = Math.round(30 * ratio);
+    const teachingBeforeTesting = Math.round(25 * ratio);
+    const markingRobustness = Math.round(20 * ratio);
+    const alignmentToLO = Math.round(15 * ratio);
+    const questionQualityBase = Math.round(10 * ratio);
+    const sum = beginnerClarity + teachingBeforeTesting + markingRobustness + alignmentToLO + questionQualityBase;
+    const questionQuality = Math.max(0, Math.min(10, questionQualityBase + (total - sum)));
+
+    const grade: Phase10Score['grade'] =
+      total >= 95 ? 'Ship it' : total >= 90 ? 'Strong' : total >= 80 ? 'Usable' : 'Needs rework';
+
+    const unitFromLesson = (() => {
+      const m = String(lesson.unit ?? '').match(/\d+/);
+      return m ? m[0] : String(lesson.unit ?? '');
+    })();
+
+    return {
+      total,
+      grade,
+      syllabus: {
+        unit: syllabusContext?.unit ?? unitFromLesson,
+        unitTitle: syllabusContext?.unitTitle ?? String(lesson.unit ?? 'Unknown unit'),
+        learningOutcome: syllabusContext?.learningOutcome ?? 'LO0',
+        loTitle: syllabusContext?.loTitle ?? 'Unknown learning outcome',
+        assessmentCriteria: syllabusContext?.assessmentCriteria ?? [],
+      },
+      breakdown: {
+        beginnerClarity,
+        teachingBeforeTesting,
+        markingRobustness,
+        alignmentToLO,
+        questionQuality,
+      },
+      issues: [],
+      overallAssessment:
+        'Fallback score used because scorer output was not valid JSON after retry. Review scoring logs for model output compliance.',
+    };
   }
   
   /**

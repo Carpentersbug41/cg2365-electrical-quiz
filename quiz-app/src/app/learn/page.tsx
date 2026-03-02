@@ -61,7 +61,8 @@ import lesson202_6A from '@/data/lessons/2365/202-6A-electronic-components-and-p
 import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-and-producers.json';
 import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factors-of-photosynthesis.json';
 import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-light-intensity.json';
-import lesson203_3L1P from '@/data/lessons/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
+import lesson203_3L1P from '@/data/lessons/2365/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
+import lesson203_3L5C from '@/data/lessons/203-3L5C-cable-selection-noob-what-affects-choosing-a-cable.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -110,6 +111,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_3L5C,
   lesson203_3L1P,
   lessonBIO_6_1C,
   lessonBIO_6_1B,

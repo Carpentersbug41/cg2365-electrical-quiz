@@ -34,6 +34,12 @@ const workspaceLinks: AdminLink[] = [
     badge: 'Sim',
   },
   {
+    title: 'Explanation Visuals',
+    description: 'Generate 1-2 visual prompts from explanation blocks and place embeds under that block or in the main diagram area.',
+    href: '/admin/simulations',
+    badge: 'Visuals',
+  },
+  {
     title: 'User Profiles',
     description: 'Edit per-user tutor profile injection text used for personalized tone and pacing.',
     href: '/admin/users',
