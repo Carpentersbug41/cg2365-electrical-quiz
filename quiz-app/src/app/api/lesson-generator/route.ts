@@ -547,20 +547,28 @@ export async function POST(request: NextRequest) {
     }
 
     const lessonFilename = lessonFilePath.split(/[/\\]/).pop() || '';
+    const lessonsRootPath = path.join(process.cwd(), 'src', 'data', 'lessons');
+    const lessonImportPathCandidate = path
+      .relative(lessonsRootPath, lessonFilePath)
+      .replace(/\\/g, '/');
+    const lessonImportPath = lessonImportPathCandidate.startsWith('..')
+      ? lessonFilename
+      : lessonImportPathCandidate;
     const quizFilename = quizFilePath.split(/[/\\]/).pop() || '';
     
     debugLog('STEP_5_COMPLETE', { 
       lessonFilename, 
+      lessonImportPath,
       quizFilename,
       wasRefined: lessonResult.refinementMetadata?.wasRefined || false
     });
 
     // Step 6: Integrate files
-    debugLog('STEP_6_START', { step: 'integrateFiles', lessonFilename, quizFilename });
+    debugLog('STEP_6_START', { step: 'integrateFiles', lessonImportPath, quizFilename });
     console.log('[Generator] Step 6: Integrating files...');
     const integrationResult = await integrator.integrateAllFiles(
       body,
-      lessonFilename,
+      lessonImportPath,
       quizFilename
     );
 

@@ -48,17 +48,27 @@ function diff(left, right) {
   return left.filter((value) => !rightSet.has(value));
 }
 
-function extractLearnPageIds() {
-  const content = read(learnPagePath);
+function parseLessonImports(content, sourcePath) {
   const importMatches = Array.from(
     content.matchAll(/import\s+([A-Za-z0-9_]+)\s+from\s+'@\/data\/lessons\/([^']+)\.json';/g)
   );
 
   const varToLessonId = new Map();
   for (const [, varName, fileBase] of importMatches) {
-    const id = parseLessonJson(`${fileBase}.json`);
+    const lessonFile = `${fileBase}.json`;
+    const fullPath = path.join(lessonsDir, lessonFile);
+    if (!fs.existsSync(fullPath)) {
+      throw new Error(`${sourcePath} imports missing lesson file: ${lessonFile}`);
+    }
+    const id = parseLessonJson(lessonFile);
     varToLessonId.set(varName, id);
   }
+  return varToLessonId;
+}
+
+function extractLearnPageIds() {
+  const content = read(learnPagePath);
+  const varToLessonId = parseLessonImports(content, 'src/app/learn/page.tsx');
 
   const rawLessonsMatch = content.match(/const RAW_LESSONS = \[([\s\S]*?)\];/);
   if (!rawLessonsMatch) {
@@ -80,7 +90,22 @@ function extractLearnPageIds() {
 
 function extractLessonDetailPageIds() {
   const content = read(lessonPagePath);
-  return Array.from(new Set(Array.from(content.matchAll(/'([^']+)':\s*lesson[A-Za-z0-9_]+\s+as Lesson/g)).map((m) => m[1])));
+  const varToLessonId = parseLessonImports(content, 'src/app/learn/[lessonId]/page.tsx');
+  const registryEntries = Array.from(
+    content.matchAll(/'([^']+)':\s*(lesson[A-Za-z0-9_]+)\s+as Lesson/g)
+  );
+
+  const unknownVars = registryEntries
+    .map(([, , varName]) => varName)
+    .filter((varName) => !varToLessonId.has(varName));
+
+  if (unknownVars.length > 0) {
+    throw new Error(
+      `LESSONS map in src/app/learn/[lessonId]/page.tsx contains variables with no lesson import mapping: ${Array.from(new Set(unknownVars)).join(', ')}`
+    );
+  }
+
+  return Array.from(new Set(registryEntries.map((m) => m[1])));
 }
 
 function extractLessonIndexIds() {

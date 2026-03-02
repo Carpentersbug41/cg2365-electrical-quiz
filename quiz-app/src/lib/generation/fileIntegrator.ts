@@ -41,6 +41,33 @@ export class FileIntegrator {
     this.basePath = process.cwd();
   }
 
+  private escapeRegex(value: string): string {
+    return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  private getLessonSubdirectory(request: GenerationRequest): string {
+    if (request.curriculum === 'gcse-science-physics') return 'gcse/physics';
+    if (request.curriculum === 'gcse-science-biology') return 'gcse/biology';
+
+    const normalizedUnit = String(request.unit).trim();
+    if (/^PHY/i.test(normalizedUnit)) return 'gcse/physics';
+    if (/^BIO/i.test(normalizedUnit)) return 'gcse/biology';
+    if (/^\d/.test(normalizedUnit)) return '2365';
+    return '';
+  }
+
+  private resolveLessonImportPath(request: GenerationRequest, lessonFilename: string): string {
+    const normalized = lessonFilename.replace(/\\/g, '/').replace(/^\.?\//, '');
+    const withExtension = normalized.endsWith('.json') ? normalized : `${normalized}.json`;
+
+    if (withExtension.includes('/')) {
+      return withExtension;
+    }
+
+    const subdirectory = this.getLessonSubdirectory(request);
+    return subdirectory ? `${subdirectory}/${withExtension}` : withExtension;
+  }
+
   /**
    * Integrate all files for new lesson
    */
@@ -322,8 +349,7 @@ export class FileIntegrator {
     const variableName = generateVariableName(request.unit, request.lessonId);
     const fullLessonId = generateLessonId(request.unit, request.lessonId);
     
-    // Ensure .json extension is included in import path
-    const lessonPath = lessonFilename.endsWith('.json') ? lessonFilename : `${lessonFilename}.json`;
+    const lessonPath = this.resolveLessonImportPath(request, lessonFilename);
     const importStatement = `import ${variableName} from '@/data/lessons/${lessonPath}';`;
     const registryEntry = `  '${fullLessonId}': ${variableName} as Lesson,`;
 
@@ -342,10 +368,12 @@ export class FileIntegrator {
     }
 
     // Check if variable already in LESSONS registry
-    const registryRegex = new RegExp(`['"]${fullLessonId}['"]\\s*:\\s*${variableName}\\b`, 'g');
-    const variableAlreadyInRegistry = registryRegex.test(content);
+    const escapedLessonId = this.escapeRegex(fullLessonId);
+    const escapedVariableName = this.escapeRegex(variableName);
+    const registryHasLessonId = new RegExp(`['"]${escapedLessonId}['"]\\s*:`, 'g').test(content);
+    const registryHasVariable = new RegExp(`:\\s*${escapedVariableName}\\b\\s+as\\s+Lesson`, 'g').test(content);
 
-    if (!variableAlreadyInRegistry) {
+    if (!registryHasLessonId && !registryHasVariable) {
       // Add to LESSONS registry
       const registryMarker = 'const LESSONS: Record<string, Lesson> = {';
       const registryIndex = content.indexOf(registryMarker);
@@ -366,8 +394,7 @@ export class FileIntegrator {
 
     const variableName = generateVariableName(request.unit, request.lessonId);
     
-    // Ensure .json extension is included in import path
-    const lessonPath = lessonFilename.endsWith('.json') ? lessonFilename : `${lessonFilename}.json`;
+    const lessonPath = this.resolveLessonImportPath(request, lessonFilename);
     const importStatement = `import ${variableName} from '@/data/lessons/${lessonPath}';`;
     const arrayEntry = `  ${variableName},`;
 
@@ -385,34 +412,39 @@ export class FileIntegrator {
       }
     }
 
-    // Check if variable already in LESSONS array
-    const arrayEntryRegex = new RegExp(`^\\s*${variableName},\\s*$`, 'gm');
-    const variableAlreadyInArray = arrayEntryRegex.test(content);
+    // Add to lesson source array (supports old/new page structures).
+    const arrayMarkers = [
+      'const RAW_LESSONS = [',
+      'const LESSONS = [',
+    ];
 
-    if (!variableAlreadyInArray) {
-      // Add to lesson source array (supports old/new page structures).
-      const arrayMarkers = [
-        'const RAW_LESSONS = [',
-        'const LESSONS = [',
-      ];
-
-      let inserted = false;
-      for (const marker of arrayMarkers) {
-        const arrayIndex = content.indexOf(marker);
-        if (arrayIndex !== -1) {
-          const insertIndex = arrayIndex + marker.length;
-          content = content.slice(0, insertIndex) + '\n' + arrayEntry + content.slice(insertIndex);
-          inserted = true;
-          break;
-        }
+    let foundArray = false;
+    for (const marker of arrayMarkers) {
+      const arrayIndex = content.indexOf(marker);
+      if (arrayIndex === -1) {
+        continue;
       }
 
-      if (!inserted) {
-        throw new Error(
-          '[FileIntegrator] Could not find lessons array marker in learn/page.tsx. ' +
-          'Expected one of: const RAW_LESSONS = [, const LESSONS = ['
-        );
+      foundArray = true;
+      const arrayEndIndex = content.indexOf('];', arrayIndex);
+      if (arrayEndIndex === -1) {
+        throw new Error('[FileIntegrator] Could not find end of lessons array in learn/page.tsx');
       }
+
+      const arrayBody = content.slice(arrayIndex, arrayEndIndex);
+      const variableAlreadyInArray = new RegExp(`\\b${this.escapeRegex(variableName)}\\b`).test(arrayBody);
+      if (!variableAlreadyInArray) {
+        const insertIndex = arrayIndex + marker.length;
+        content = content.slice(0, insertIndex) + '\n' + arrayEntry + content.slice(insertIndex);
+      }
+      break;
+    }
+
+    if (!foundArray) {
+      throw new Error(
+        '[FileIntegrator] Could not find lessons array marker in learn/page.tsx. ' +
+        'Expected one of: const RAW_LESSONS = [, const LESSONS = ['
+      );
     }
 
     fs.writeFileSync(filePath, content, 'utf-8');

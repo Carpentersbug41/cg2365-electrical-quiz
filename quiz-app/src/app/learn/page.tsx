@@ -62,7 +62,7 @@ import lessonBIO_6_1A from '@/data/lessons/gcse/biology/BIO-6-1A-photosynthesis-
 import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factors-of-photosynthesis.json';
 import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-light-intensity.json';
 import lesson203_3L1P from '@/data/lessons/2365/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
-import lesson203_3L5C from '@/data/lessons/203-3L5C-cable-selection-noob-what-affects-choosing-a-cable.json';
+import lesson203_3L5C from '@/data/lessons/2365/203-3L5C-cable-selection-noob-what-affects-choosing-a-cable.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
