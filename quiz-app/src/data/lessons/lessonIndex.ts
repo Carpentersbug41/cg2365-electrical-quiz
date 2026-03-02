@@ -439,6 +439,17 @@ export const lessonIndex: LessonIndexEntry[] = [
     questionCount: getLessonQuestionCount('203-3L5C'),
     available: true,
     order: 24,
+  },
+  {
+    id: '203-4L1E',
+    title: 'Earthing Systems (Noob): TT, TN-S, TN-C-S ',
+    unit: 'Unit 203',
+    unitNumber: '203',
+    topic: 'Earthing Systems (Noob): TT, TN-S, TN-C-S ',
+    description: '[Generated lesson]',
+    questionCount: getLessonQuestionCount('203-4L1E'),
+    available: true,
+    order: 25,
   },// Unit 210: Communication
   {
     id: '204-10A',

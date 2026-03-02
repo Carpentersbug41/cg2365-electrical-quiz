@@ -1,0 +1,514 @@
+{
+  "id": "203-4L1E",
+  "title": "203.4L1E — Earthing Systems (Noob): TT, TN-S, TN-C-S ",
+  "description": "Learn about Earthing Systems (Noob): TT, TN-S, TN-C-S  in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Earthing Systems (Noob): TT, TN-S, TN-C-S ",
+  "learningOutcomes": [
+    "Recall the names of the three main earthing systems used in electrical installations.",
+    "Describe the source of the earth connection for TT, TN-S, and TN-C-S systems.",
+    "Identify an earthing system based on a simple description of its components, such as an earth electrode or PEN conductor."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-4L1E-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Recall the names of the three main earthing systems used in electrical installations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the source of the earth connection for TT, TN-S, and TN-C-S systems.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify an earthing system based on a simple description of its components, such as an earth electrode or PEN conductor.",
+            "bloomLevel": "remember"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "Earthing System",
+            "definition": "The specific method used to connect an electrical installation to the mass of the earth to provide a safe path for fault currents."
+          },
+          {
+            "term": "TT System",
+            "definition": "An arrangement where the consumer's earth connection is made locally via an earth electrode driven into the ground rather than through the supplier's cable."
+          },
+          {
+            "term": "TN-S System",
+            "definition": "A system where the supplier provides a separate, dedicated protective earth conductor all the way from the transformer to the consumer's installation."
+          },
+          {
+            "term": "TN-C-S System",
+            "definition": "A common system where the earth and neutral are combined in the supply cable but separated into two distinct conductors at the consumer's intake point."
+          },
+          {
+            "term": "PEN Conductor",
+            "definition": "A single conductor that performs the functions of both Protective Earth and Neutral, found in the supply side of a TN-C-S system but not within the installation itself."
+          },
+          {
+            "term": "Earth Electrode",
+            "definition": "A conductive part, such as a metal rod or plate, buried in the ground to provide a reliable physical connection to the earth for TT systems."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Earthing Systems (Noob): TT, TN-S, TN-C-S  Diagram",
+        "description": "Visual representation of Earthing Systems (Noob): TT, TN-S, TN-C-S ",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "earth-electrode",
+          "pen-conductor",
+          "separate-earth-conductor",
+          "transformer-connection"
+        ],
+        "placeholderText": "A three-part comparison diagram showing the source-to-installation path for TT, TN-S, and TN-C-S systems. The first part (TT) shows a transformer connected to earth and a separate house connected to an earth-electrode. The second part (TN-S) shows a transformer-connection with three separate lines (L, N, E) going to the house. The third part (TN-C-S) shows two lines leaving the transformer (L and a combined pen-conductor), with the pen-conductor splitting into Neutral and Earth at the house service head. Use clear labels for each conductor type."
+      }
+    },
+    {
+      "id": "203-4L1E-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Purpose of Earthing",
+        "content": "### In this lesson\n- You will learn why electrical installations must be connected to the mass of the earth for safety.\n- This knowledge is applied whenever you assess the safety requirements of a new or existing circuit.\n- Key takeaways: Understanding the fault path, the role of protective earthing, and how earthing triggers safety devices.\n\n**What this is**\nAn **Earthing System** is the specific method used to connect an electrical installation to the mass of the earth to provide a safe path for fault currents. In any standard electrical setup, we use conductors to carry power to appliances. However, if an insulation failure occurs, electricity may try to flow through the metal casing of an appliance. The earthing system ensures that this energy has a predetermined, low-resistance route to the ground rather than passing through a person who touches the equipment.\n\n**Why it matters**\nSafety is the primary driver for earthing. Without a functional **Earthing System**, a fault could leave metal enclosures \"live\" at 230V without any outward sign of danger. By providing a dedicated path back to the source, the earthing system allows a high volume of current to flow during a fault. This high current is what causes a fuse to blow or a circuit breaker to trip, effectively disconnecting the power and removing the danger. It transforms a potentially lethal situation into a simple circuit interruption.\n\n**Key facts / rules**\n- Earthing provides a low-resistance path for fault current to return to the transformer.\n- All exposed metal parts that could become live under fault conditions must be earthed.\n- The system must be robust enough to carry the full fault current without melting or failing.\n- Protective earthing is a core requirement for Automatic Disconnection of Supply (ADS).\n- The connection to the earth must be permanent and mechanically secure.\n- A fault is defined as an accidental connection between a live conductor and an exposed conductive part.\n\n**When to choose it**\nThe purpose of selecting an earthing arrangement is to ensure that the protective device (like a breaker) operates fast enough to prevent electric shock. You rely on the earthing system the moment a \"short circuit to earth\" occurs. \n\n**Micro-scenario:** Imagine a heater with a metal frame. If a live wire touches the frame and the resistance to earth is 100 ohms, only 2.3 amps flow—not enough to trip a 20A breaker, leaving the frame live. If the resistance is 0.5 ohms, 460 amps flow, tripping the breaker instantly. You choose high-quality earthing to ensure that 460-amp response.\n\n**Common mistakes**\nLearners often confuse **Earthing** with **Bonding**; **Earthing** is the path for fault current from an appliance back to the source, whereas **Bonding** is the connection of metal pipes (like gas or water) to ensure they stay at the same potential. \n\nMisconceptions (targeted):\n- Misconception: The earth wire carries current during normal operation. | Correction: The earth wire only carries current during a fault condition; the neutral wire carries normal return current. | AC1\n- Misconception: Any metal rod in the ground provides a perfect earth. | Correction: The effectiveness of an earth connection depends on the specific system type and soil conditions, which must be verified. | AC2\n\n**Key Points**\n- Earthing creates a safe, low-resistance path for fault currents.\n- It ensures protective devices like breakers trip quickly during a fault.\n- It prevents metal enclosures from remaining live and dangerous.\n- It is a mandatory safety component in all standard installations.\n\n**Quick recap**\nEarthing is your primary safety net. It connects metal parts to the ground so that if a fault occurs, the electricity has a path to follow that isn't a human body. This path allows enough current to flow to trigger a fuse or breaker, shutting down the circuit immediately.\n\n### Coming Up Next\nNow that we understand why we earth, we will look at the three specific ways the electricity supplier provides that earth connection to a building."
+      }
+    },
+    {
+      "id": "203-4L1E-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: The Purpose of Earthing",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4L1E-C1-L1-A",
+            "questionText": "What does earthing provide to allow fault current to return to the transformer?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "low-resistance path",
+              "a low-resistance path",
+              "low resistance path"
+            ],
+            "hint": "Think about the type of route electricity needs to flow easily back to its source."
+          },
+          {
+            "id": "203-4L1E-C1-L1-B",
+            "questionText": "Which components must be earthed if they have the potential to become live during a fault?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "all exposed metal parts",
+              "exposed metal parts",
+              "exposed conductive parts"
+            ],
+            "hint": "This refers to the outer casings or frames of electrical equipment."
+          },
+          {
+            "id": "203-4L1E-C1-L1-C",
+            "questionText": "Under what specific condition does the earth wire carry electrical current?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "fault condition",
+              "a fault condition",
+              "during a fault"
+            ],
+            "hint": "The neutral wire carries current normally, but the earth wire only acts during an accident."
+          },
+          {
+            "id": "203-4L1E-C1-L2",
+            "questionText": "Using your answers to Q1 (the low-resistance path), Q2 (exposed metal parts), and Q3 (current during a fault), explain why the resistance of the path is critical for safety. Why must the path be low-resistance if it only carries current during a fault?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Exposed metal parts are earthed to ensure they have a path to the transformer",
+              "The path must be low-resistance to allow a high volume of current to flow",
+              "High current during a fault condition is necessary to trip the circuit breaker or blow the fuse",
+              "Low resistance ensures the protective device operates fast enough to remove the danger"
+            ],
+            "expectedAnswer": [
+              "Earthing connects exposed metal parts to a low-resistance path that only carries current during a fault. This low resistance is vital because it allows enough current to flow to instantly trip a breaker, which wouldn't happen if the resistance was too high.",
+              "Because the earth wire only carries current during a fault, it must have low resistance to ensure that the fault current is high enough to trigger the safety device. This protects people touching exposed metal parts by disconnecting the power immediately."
+            ],
+            "hint": "Think about how the amount of current affects how quickly a fuse or breaker works."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Types of Earthing Systems",
+        "content": "### In this lesson\n- You will learn to identify the three main earthing systems: TT, TN-S, and TN-C-S.\n- This allows you to correctly identify the source of the earth connection during site surveys or inspections.\n- Key takeaways: Recognising earth electrodes, identifying PEN conductors, and distinguishing supplier earth types.\n\n**What this is**\nThere are three primary ways an installation receives its connection to earth. A **TT System** relies on a local **Earth Electrode** (usually a rod) driven into the ground by the consumer. A **TN-S System** uses a separate, dedicated protective earth conductor provided by the supplier. A **TN-C-S System** uses a **PEN Conductor** (Protective Earth and Neutral combined) in the supply cable, which is then split into separate earth and neutral terminals at the property's intake.\n\n**Why it matters**\nKnowing which system is in place determines how you test the installation and what safety components are required. For example, because the earth path in a **TT System** typically has a higher resistance (relying on soil), it almost always requires an RCD (Residual Current Device) to ensure safety. In contrast, TN systems have very low resistance paths provided by metal cables, allowing for faster disconnection times.\n\n**Key facts / rules**\n- In a **TT System**, the \"T\" stands for Terra (Earth), meaning both the source and the installation are connected to earth via electrodes.\n- In a **TN-S System**, the \"S\" stands for Separate, meaning the neutral and earth wires are never joined after the transformer.\n- In a **TN-C-S System**, the \"C\" stands for Combined, referring to the **PEN Conductor** in the supply.\n- The **PEN Conductor** is only found on the supplier's side of a TN-C-S system.\n- A **TN-C-S System** is the most common arrangement for modern UK domestic properties.\n- An **Earth Electrode** is mandatory for TT systems but not usually for TN systems.\n\n**How to recognise it**\nTo identify a system, look at the service head (where the main fuse is). If you see a separate thick green/yellow cable coming out of the supplier's cable sheath, it is likely a **TN-S System**. If the earth wire is connected to a block that is linked directly to the neutral terminal at the cutout, it is a **TN-C-S System**. If there is no earth provided by the supplier at all, and instead a wire leads to a rod in the garden, it is a **TT System**.\n\n**Micro-scenario:** You arrive at a remote farm. You see a green/yellow wire disappearing into a plastic pipe in the ground outside. Because the earth comes from a local **Earth Electrode** rather than the supplier's cable, you identify this as a **TT System**.\n\n**Common mistakes**\nLearners often confuse **TN-S** with **TN-C-S**; **TN-S** is where the earth and neutral are separate all the way from the transformer, whereas **TN-C-S** is where they are combined in the street but split at the house. \n\nMisconceptions (targeted):\n- Misconception: A TN-C-S system has a combined earth and neutral throughout the whole house. | Correction: The earth and neutral are only combined (PEN) in the supply cable; they must be separate inside the installation. | AC3\n- Misconception: All houses have an earth rod. | Correction: Only TT systems (and some specific TN-C-S variants) require an earth rod; most modern homes use the supplier's cable for earth. | AC2\n\n**Key Points**\n- TT systems use a local **Earth Electrode**.\n- TN-S systems have a separate supply earth conductor.\n- TN-C-S systems use a **PEN Conductor** that splits at the intake.\n- Identification is done by observing the connection at the main service head.\n\n**Quick recap**\nIdentifying the earthing system is about finding the \"source.\" TT means you provide your own earth via a rod. TN-S means the supplier gives you a dedicated wire. TN-C-S means the supplier gives you a combined wire that you split into two at your fuse board. The diagram shows how these connections physically look at the intake point.\n\n### Coming Up Next\nNow that you can identify these systems, we will explore the specific components like the Main Earthing Terminal (MET) where all these connections meet."
+      }
+    },
+    {
+      "id": "203-4L1E-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: Types of Earthing Systems",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4L1E-C2-L1-A",
+            "questionText": "What does a TT system rely on to create a connection to the ground?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "local Earth Electrode",
+              "earth electrode",
+              "an earth electrode",
+              "earth rod"
+            ],
+            "hint": "This is a component usually driven into the soil by the consumer."
+          },
+          {
+            "id": "203-4L1E-C2-L1-B",
+            "questionText": "In a TN-S system, what is the connection status of the neutral and earth wires after they leave the transformer?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "never joined",
+              "not joined",
+              "separate"
+            ],
+            "hint": "The 'S' in TN-S stands for 'Separate'."
+          },
+          {
+            "id": "203-4L1E-C2-L1-C",
+            "questionText": "Where is the PEN conductor located in a TN-C-S earthing arrangement?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "supplier's side",
+              "the supplier's side",
+              "suppliers side"
+            ],
+            "hint": "Consider whether this combined conductor is found inside the house or in the street cables."
+          },
+          {
+            "id": "203-4L1E-C2-L2",
+            "questionText": "Using your answers to Q1 (local electrodes), Q2 (separate conductors), and Q3 (PEN conductors), explain how an electrician identifies the system type at the intake. How do we know which system is present by observing the incoming supply connections?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identification is based on where the earth connection originates at the service head",
+              "A TT system is identified by a wire leading to a local earth electrode rather than the supplier cable",
+              "A TN-S system is identified by a separate earth conductor that is never joined to the neutral",
+              "A TN-C-S system is identified by an earth connection that joins the neutral (PEN) on the supplier side"
+            ],
+            "expectedAnswer": [
+              "We identify the system by looking at the intake. If there is a PEN conductor split on the supplier side, it is TN-C-S. If the earth and neutral are never joined and come in separately, it is TN-S. If there is no supplier earth and only a local earth electrode, it is a TT system.",
+              "By observing the service head, we can see the source of the earth. A TT system uses a local electrode, a TN-S system uses a dedicated separate wire from the supplier, and a TN-C-S system uses a combined PEN conductor on the supplier's side that is split at the intake."
+            ],
+            "hint": "Look at where the green/yellow wire starts: does it go to a rod, a separate cable sheath, or a neutral block?"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Applying The Purpose of Earthing",
+        "given": "A learner must apply Earthing Systems (Noob): TT, TN-S, TN-C-S  to a realistic workplace-style scenario using the lesson rules.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the scenario context and the key requirement linked to The Purpose of Earthing.",
+            "formula": null,
+            "calculation": null,
+            "result": "Key requirement identified."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Select the relevant rule, criterion, or information source from the taught explanation content.",
+            "formula": null,
+            "calculation": null,
+            "result": "Relevant rule selected."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Apply the selected rule and justify why the chosen outcome is appropriate for the scenario.",
+            "formula": null,
+            "calculation": null,
+            "result": "Outcome justified with taught reasoning."
+          }
+        ],
+        "notes": "Deterministic fallback: generated to satisfy required blueprint structure."
+      }
+    },
+    {
+      "id": "203-4L1E-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice (We Do)",
+        "problem": "Apply Earthing Systems (Noob): TT, TN-S, TN-C-S  to a similar scenario and justify each step.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Step 1: Identify the scenario context and the key requirement linked to The Purpose of Earthing.",
+            "expectedAnswer": [
+              "Key requirement identified."
+            ],
+            "hint": "Use the same reasoning pattern as the worked example."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Step 2: Select the relevant rule, criterion, or information source from the taught explanation content.",
+            "expectedAnswer": [
+              "Relevant rule selected."
+            ],
+            "hint": "Use the same reasoning pattern as the worked example."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Step 3: Apply the selected rule and justify why the chosen outcome is appropriate for the scenario.",
+            "expectedAnswer": [
+              "Outcome justified with taught reasoning."
+            ],
+            "hint": "Use the same reasoning pattern as the worked example."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "Your Turn (You Do)",
+        "questions": [
+          {
+            "id": "203-4L1E-P1",
+            "questionText": "If a fault occurs on a 230V circuit with an earth path resistance of 0.25 ohms, what is the resulting fault current?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "920"
+            ],
+            "hint": "Divide the voltage (230) by the resistance (0.25). Value in Amps."
+          },
+          {
+            "id": "203-4L1E-P2",
+            "questionText": "Why is a high fault current desirable when an insulation failure occurs?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "trip the breaker",
+              "operate the protective device",
+              "blow the fuse",
+              "disconnect the supply"
+            ],
+            "hint": "Think about what needs to happen to the circuit breaker or fuse to make the area safe."
+          },
+          {
+            "id": "203-4L1E-P3",
+            "questionText": "Which earthing system uses a combined conductor for earth and neutral in the supply cable that is then split at the intake?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "TN-C-S",
+              "TN-C-S system",
+              "TNC-S"
+            ],
+            "hint": "This system uses a PEN conductor in the supply side."
+          },
+          {
+            "id": "203-4L1E-P4",
+            "questionText": "During a site survey, you notice the consumer has provided their own earth connection via a metal rod driven into the soil. What type of earthing system is this?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "TT",
+              "TT system",
+              "Terra-Terra"
+            ],
+            "hint": "This system relies on a local earth electrode rather than a supplier cable."
+          },
+          {
+            "id": "203-4L1E-P5",
+            "questionText": "In a 230V system, if the resistance to earth is 46 ohms, how many amps will flow during a fault?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "5",
+              "5.0"
+            ],
+            "hint": "Divide voltage by resistance to find the current in Amps."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "Putting It All Together",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4L1E-INT-1",
+            "questionText": "How does the source of the earth connection determine the path used for fault protection in different installations? In your answer, include: (1) the general purpose of earthing, (2) the specific earth source for a TT system versus a TN-S system, and (3) how the connection method affects the path to the mass of the earth. Why must we know the source type before testing safety devices? (2-3 sentences)",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "States that earthing provides a safe path for fault current to reach the mass of the earth.",
+              "Identifies that a TT system uses a local earth electrode (rod) as the source.",
+              "Identifies that a TN-S system uses a separate conductor provided by the supplier back to the transformer.",
+              "Explains that the source determines whether the fault current travels through the ground or through a metallic cable path.",
+              "Reasoning: Knowing the source is essential because it dictates the expected resistance, which determines if safety devices will trip fast enough."
+            ],
+            "expectedAnswer": [
+              "The purpose of earthing is to provide a safe path for fault current to reach the mass of the earth, which allows safety devices to trip. In a TT system, the source is a local earth electrode driven into the ground, while a TN-S system uses a separate protective conductor provided by the supplier. We must know the source type because the metallic path in a TN-S system usually has much lower resistance than the ground path in a TT system, changing how we test the safety of the installation.",
+              "Earthing ensures that fault current is directed away from users to the mass of the earth. A TT system relies on a local rod, whereas a TN-S system relies on the supplier's cable sheath or a separate conductor. It is vital to identify these because the source type determines the path the current takes, which must be verified to ensure safety devices operate correctly during a fault."
+            ],
+            "hint": "Think about where the 'earth' actually comes from for the consumer—is it a rod in the garden or a wire from the street?"
+          },
+          {
+            "id": "203-4L1E-INT-2",
+            "questionText": "During a site survey, you are required to identify the earthing arrangement to ensure the installation is safe. Explain how the physical components you find help you distinguish between the three main systems and how they fulfill their safety role. In your answer, include: (1) the identification of a TT system via an earth electrode, (2) the identification of TN-S and TN-C-S systems via supplier connections, (3) the role of the PEN conductor in specific systems, and (4) how these systems collectively ensure user safety during a fault. Answer in 3-4 sentences OR concise bullet points.",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "Correctly identifies TT by the presence of a local earth electrode (rod).",
+              "Distinguishes TN-S by its separate earth and neutral conductors from the supplier.",
+              "Identifies TN-C-S by the use of a combined Protective Earth and Neutral (PEN) conductor at the supply point.",
+              "Explains that the PEN conductor provides a low-resistance return path to the supplier's transformer.",
+              "Describes how all systems prevent metalwork from becoming live by providing a path to earth.",
+              "Relates component identification to the successful operation of protective devices (fuses/breakers)."
+            ],
+            "expectedAnswer": [
+              "A TT system is identified by a local earth electrode, while TN-S and TN-C-S are identified by cables provided by the electricity supplier. In a TN-C-S system, the supplier provides a PEN conductor which combines the earth and neutral functions into one cable before splitting them at the intake. All these systems work by providing a low-resistance path for fault current, which ensures that protective devices like circuit breakers trip instantly to protect the user. Identifying these components correctly ensures that the installation's safety path is continuous and functional.",
+              "To identify the systems, look for a local rod (TT), a separate earth lead from the supplier's cable (TN-S), or a connection to a shared PEN conductor at the cutout (TN-C-S). The PEN conductor is critical in TN-C-S systems as it provides the return path for both neutral and fault currents. By providing these structured paths to the mass of the earth, the systems prevent electric shocks by triggering safety devices during a fault. This identification process is the first step in verifying that the installation can safely handle an electrical failure."
+            ],
+            "hint": "Consider the physical parts you would see at the service head, such as a rod, a cable sheath, or a combined neutral-earth terminal."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-4L1E-SR-1",
+            "questionText": "What general term describes the complete assembly of wiring and equipment used to provide power within a building?",
+            "expectedAnswer": [
+              "electrical installation",
+              "installation",
+              "wiring installation"
+            ],
+            "hint": "Think of the formal name for the electrical setup in a house or workplace.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4L1E-SR-2",
+            "questionText": "What word is used to describe a point where two electrical parts are joined together to allow current to flow?",
+            "expectedAnswer": [
+              "connection",
+              "electrical connection",
+              "joint"
+            ],
+            "hint": "This word describes how a wire is attached to a terminal.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4L1E-SR-3",
+            "questionText": "What name is given to the individual items or parts that make up an electrical system?",
+            "expectedAnswer": [
+              "components",
+              "parts",
+              "electrical components"
+            ],
+            "hint": "This term refers to the separate pieces used to build the installation.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Foundation check before starting Earthing Systems (Noob): TT, TN-S, TN-C-S "
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2"
+  ],
+  "metadata": {
+    "created": "2026-03-02",
+    "updated": "2026-03-02",
+    "version": "1.0",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC1",
+        "AC2"
+      ],
+      "outOfScopeAC": [
+        "AC3",
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Conceptual definitions and visual identification of TT, TN-S, and TN-C-S systems and the basic safety role of earthing.",
+      "outOfScope": "Technical calculations for loop impedance (Zs/Ze), disconnection time tables, bonding conductor sizing, and practical testing procedures.",
+      "rationale": "This is an introductory lesson for beginners focused on recognition and purpose rather than mathematical application or regulatory compliance."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Level 1 style introductory concepts only; avoid technical jargon like ADS or specific BS 7671 regulation numbers."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The earth wire carries current during normal operation.",
+        "correction": "The earth wire only carries current during a fault condition; the neutral wire carries normal return current.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "Any metal rod in the ground provides a perfect earth.",
+        "correction": "The effectiveness of an earth connection depends on the specific system type and soil conditions, which must be verified.",
+        "relatedAC": "AC2"
+      },
+      {
+        "misconception": "A TN-C-S system has a combined earth and neutral throughout the whole house.",
+        "correction": "The earth and neutral are only combined (PEN) in the supply cable; they must be separate inside the installation.",
+        "relatedAC": "AC3"
+      }
+    ]
+  }
+}

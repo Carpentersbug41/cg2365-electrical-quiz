@@ -1,0 +1,521 @@
+{
+  "id": "203-4L1E",
+  "title": "203.4L1E — Earthing Systems (Noob): TT, TN-S, TN-C-S",
+  "description": "Learn about Earthing Systems (Noob): TT, TN-S, TN-C-S in Installation 2365 Level 2",
+  "layout": "split-vis",
+  "unit": "Unit 203",
+  "topic": "Earthing Systems (Noob): TT, TN-S, TN-C-S",
+  "learningOutcomes": [
+    "Recall the names of the three main earthing systems used in electrical installations.",
+    "Identify the component parts of an Automatic Disconnection of Supply (ADS) system.",
+    "Describe the source of the earth connection for TT, TN-S, and TN-C-S systems.",
+    "Identify an earthing system based on a simple description of its components, such as an earth electrode or PEN conductor."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "203-4L1E-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          {
+            "text": "Recall the names of the three main earthing systems used in electrical installations.",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Identify the core components of an ADS system (MET, protective conductors, and devices).",
+            "bloomLevel": "remember"
+          },
+          {
+            "text": "Describe the source of the earth connection for TT, TN-S, and TN-C-S systems.",
+            "bloomLevel": "understand"
+          },
+          {
+            "text": "Identify an earthing system based on its physical components, such as electrodes or PEN conductors.",
+            "bloomLevel": "apply"
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          {
+            "term": "ADS",
+            "definition": "Automatic Disconnection of Supply; a safety strategy that automatically cuts off power during a fault to prevent electric shock."
+          },
+          {
+            "term": "Exposed Conductive Part",
+            "definition": "A metal part of electrical equipment (like a toaster casing) that can be touched and might become live if insulation fails."
+          },
+          {
+            "term": "Main Earthing Terminal (MET)",
+            "definition": "The central point in an installation where all earthing and bonding conductors are connected together."
+          },
+          {
+            "term": "TT System",
+            "definition": "An arrangement where the earth connection is made via a local earth electrode (rod) driven into the ground."
+          },
+          {
+            "term": "TN-S System",
+            "definition": "A system where the supplier provides a separate, dedicated protective earth conductor from the transformer to the house."
+          },
+          {
+            "term": "TN-C-S System",
+            "definition": "A system where earth and neutral are combined in the supply cable (PEN) but split into two wires at the intake."
+          },
+          {
+            "term": "PEN Conductor",
+            "definition": "A single wire that performs both 'Protective Earth' and 'Neutral' functions simultaneously."
+          },
+          {
+            "term": "Earth Electrode",
+            "definition": "A metal rod or plate buried in the ground to provide a physical connection to the earth."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-diagram",
+      "type": "diagram",
+      "order": 3,
+      "content": {
+        "title": "Comparison of TT, TN-S, and TN-C-S Systems",
+        "description": "Visualizing how the earth connection reaches the installation from the source.",
+        "videoUrl": "",
+        "diagramType": "concept",
+        "elementIds": [
+          "earth-electrode",
+          "pen-conductor",
+          "separate-earth-conductor",
+          "transformer-connection",
+          "met"
+        ],
+        "placeholderText": "A three-part comparison diagram. TT: Shows a local earth electrode (rod) connected to the house. TN-S: Shows three separate lines (L, N, E) from the transformer to the house. TN-C-S: Shows two lines (L and PEN) from the transformer, with the PEN splitting into N and E at the house service head. All systems show the earth wires meeting at a Main Earthing Terminal (MET)."
+      }
+    },
+    {
+      "id": "203-4L1E-explain-1",
+      "type": "explanation",
+      "order": 4,
+      "content": {
+        "title": "The Purpose of ADS and Earthing",
+        "content": "### What is ADS?\n**Automatic Disconnection of Supply (ADS)** is your primary defense against electric shock. It is a system designed to detect a fault and 'automatically' switch off the power before a person can be harmed. \n\n**The Components of ADS:**\nTo work, ADS needs three main parts working together:\n1.  **Exposed Conductive Parts:** These are the metal casings (like on a washing machine) that we earth so they don't stay live during a fault.\n2.  **Protective Conductors:** The green/yellow wires that provide the path for electricity to flow away from the metal casing.\n3.  **A Protective Device:** A fuse or circuit breaker that 'trips' or blows when it senses the high current flowing through the earth path.\n4.  **The MET:** The Main Earthing Terminal where all these paths meet.\n\n**Concrete Anchor:** Imagine a metal kettle. The metal body is an **exposed conductive part**. If a live wire inside touches the metal body, electricity flows down the green/yellow **protective conductor** to the **MET**, then back to the source. This surge of electricity causes the circuit breaker (the **protective device**) to trip 'OFF' instantly. This is ADS in action.\n\n**Why it matters**\nWithout earthing, an insulation fault would leave the metal casing live at 230V. If you touched it, you would become the path to earth. By providing a low-resistance path, we ensure the electricity chooses the wire instead of you, and that the current is high enough to trigger the safety switch immediately.\n\n**Key facts**\n- **Exposed conductive parts** are metal parts you can touch that aren't normally live but could become live.\n- **ADS** requires a complete loop (the earth fault loop) to function.\n- A **fault** is an accidental connection between a live wire and an exposed conductive part."
+      }
+    },
+    {
+      "id": "203-4L1E-check-1",
+      "type": "practice",
+      "order": 4.5,
+      "content": {
+        "title": "Check Your Understanding: ADS Components",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4L1E-C1-L1-A",
+            "questionText": "What does the acronym 'ADS' stand for in electrical safety?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "Automatic Disconnection of Supply"
+            ],
+            "hint": "It describes a system that turns off power automatically during a fault."
+          },
+          {
+            "id": "203-4L1E-C1-L1-B",
+            "questionText": "What is the technical term for a metal part, like a motor casing, that must be earthed because it could become live during a fault?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "exposed conductive part",
+              "exposed conductive parts"
+            ],
+            "hint": "It's an 'exposed' part that can 'conduct' electricity."
+          },
+          {
+            "id": "203-4L1E-C1-L1-C",
+            "questionText": "Which component in an ADS system is responsible for physically breaking the circuit (tripping) when a fault occurs?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "protective device",
+              "circuit breaker",
+              "fuse",
+              "breaker"
+            ],
+            "hint": "Think of the device in the consumer unit that clicks to the 'off' position."
+          },
+          {
+            "id": "203-4L1E-C1-L2",
+            "questionText": "Explain how the 'exposed conductive part' and the 'protective device' work together to provide safety. What happens between these two components during a fault?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "The exposed conductive part becomes live during a fault",
+              "The protective conductor carries the fault current away from the metal part",
+              "The surge of current causes the protective device to trip",
+              "This results in the automatic disconnection of the supply (ADS)"
+            ],
+            "expectedAnswer": [
+              "When a fault occurs, the exposed conductive part becomes live, but the earthing provides a path for the current to flow. This high current is detected by the protective device (like a breaker), which trips to disconnect the power automatically.",
+              "The exposed conductive part is connected to earth so that if a fault happens, electricity flows through the protective conductor. This high flow of electricity causes the protective device to blow or trip, cutting off the power safely."
+            ],
+            "hint": "Describe the journey of the electricity from the metal casing to the fuse box."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-explain-2",
+      "type": "explanation",
+      "order": 5,
+      "content": {
+        "title": "Identifying the Three Main Earthing Systems",
+        "content": "### The Three Systems\nWe identify earthing systems by where the earth connection comes from. \n\n**1. TT System (Terra-Terra)**\n- **The Source:** A local **earth electrode** (usually a copper-plated rod) driven into the soil near the building.\n- **Identification:** Look for a green/yellow wire leaving the house and going into a pipe in the ground. There is no earth wire coming from the supplier's cable.\n\n**2. TN-S System (Terra-Neutral Separate)**\n- **The Source:** The electricity supplier provides a dedicated earth path, usually the metal sheath of their underground cable.\n- **Identification:** You will see a separate earth wire clamped to the outside of the supplier's incoming cable. The neutral and earth are **separate** all the way back to the transformer.\n\n**3. TN-C-S System (Terra-Neutral Combined Separate)**\n- **The Source:** The supplier uses one wire for both Neutral and Earth (the **PEN conductor**) in the street. It is split into two separate terminals at the house intake.\n- **Identification:** You will see a green/yellow wire connected to a terminal block that is physically part of the supplier's neutral cutout. This is the most common modern system.\n\n**Micro-scenario:** You are looking at a service head. You see the main fuse, and a thick green/yellow wire is bolted to a metal clamp on the outside of the lead cable. This is a **TN-S** system because the earth is provided by the separate cable sheath."
+      }
+    },
+    {
+      "id": "203-4L1E-check-2",
+      "type": "practice",
+      "order": 5.5,
+      "content": {
+        "title": "Check Your Understanding: System Identification",
+        "mode": "conceptual",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4L1E-C2-L1-A",
+            "questionText": "Which system is identified by the presence of a local earth electrode (rod) in the ground?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "TT",
+              "TT system"
+            ],
+            "hint": "The 'T' stands for 'Terra' (Earth)."
+          },
+          {
+            "id": "203-4L1E-C2-L1-B",
+            "questionText": "What does the 'S' stand for in a TN-S system regarding the earth and neutral conductors?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "separate"
+            ],
+            "hint": "It means the wires are never joined together."
+          },
+          {
+            "id": "203-4L1E-C2-L1-C",
+            "questionText": "What is the name of the combined conductor used in the supply of a TN-C-S system?",
+            "answerType": "short-text",
+            "cognitiveLevel": "recall",
+            "expectedAnswer": [
+              "PEN conductor",
+              "PEN",
+              "Protective Earth Neutral"
+            ],
+            "hint": "It combines Protective Earth and Neutral."
+          },
+          {
+            "id": "203-4L1E-C2-L2",
+            "questionText": "If you are at a property and see the earth wire connected directly to the supplier's neutral terminal at the cutout, which system have you identified, and why is this different from a TN-S system?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Identifies the system as TN-C-S",
+              "Explains that in TN-C-S, earth and neutral are combined in the supply (PEN)",
+              "Contrast: In TN-S, the earth and neutral are separate conductors",
+              "Identification is based on the connection point at the service head"
+            ],
+            "expectedAnswer": [
+              "This is a TN-C-S system. It is different from TN-S because the earth and neutral are combined into a single PEN conductor by the supplier, whereas in TN-S they are kept completely separate.",
+              "It is a TN-C-S system because the earth is joined to the neutral at the intake. In a TN-S system, you would see the earth connected to the cable sheath or a separate wire, never to the neutral terminal."
+            ],
+            "hint": "Think about whether the earth and neutral 'meet' at the intake point."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-worked-example",
+      "type": "worked-example",
+      "order": 6,
+      "content": {
+        "title": "Worked Example: Identifying an Earthing System",
+        "given": "You are inspecting the electrical intake of an old house. You see a large lead-covered cable entering the building. A green/yellow wire is clamped to the metal outer sheath of this cable. The neutral wire goes into a separate terminal and does not touch the earth wire.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Observe where the earth connection originates.",
+            "formula": null,
+            "calculation": null,
+            "result": "The earth comes from the metal sheath of the supplier's cable."
+          },
+          {
+            "stepNumber": 2,
+            "description": "Check if the earth and neutral are joined at the intake.",
+            "formula": null,
+            "calculation": null,
+            "result": "They are separate; the earth is on the sheath, and the neutral is in a terminal."
+          },
+          {
+            "stepNumber": 3,
+            "description": "Select the system name based on these physical characteristics.",
+            "formula": null,
+            "calculation": null,
+            "result": "Because they are separate and the supplier provides the earth via the cable sheath, this is a TN-S system."
+          }
+        ],
+        "notes": "Remember: 'S' for Separate."
+      }
+    },
+    {
+      "id": "203-4L1E-guided",
+      "type": "guided-practice",
+      "order": 7,
+      "content": {
+        "title": "Guided Practice: Recognizing TT Systems",
+        "problem": "You arrive at a remote cabin. You see no earth wire attached to the supplier's cable. Instead, you see a green/yellow wire coming from the Main Earthing Terminal (MET) and passing through the wall to a copper rod in the garden.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Step 1: Does the earth connection come from the electricity supplier's cable?",
+            "expectedAnswer": [
+              "No"
+            ],
+            "hint": "Look at where the wire goes—is it the supplier's cable or the ground?"
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "Step 2: What is the name of the component driven into the garden soil?",
+            "expectedAnswer": [
+              "earth electrode",
+              "earth rod",
+              "electrode"
+            ],
+            "hint": "Check the vocabulary for a buried metal part."
+          },
+          {
+            "stepNumber": 3,
+            "prompt": "Step 3: Based on using a local electrode, what is the 2-letter name for this earthing system?",
+            "expectedAnswer": [
+              "TT"
+            ],
+            "hint": "This system relies on 'Terra' to 'Terra' connections."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-practice",
+      "type": "practice",
+      "order": 8,
+      "content": {
+        "title": "System Check & ADS Components",
+        "questions": [
+          {
+            "id": "203-4L1E-P1",
+            "questionText": "How many main types of earthing systems (TT, TN-S, and TN-C-S) are standard in the UK?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "3"
+            ],
+            "hint": "Count the acronyms we have studied in this lesson."
+          },
+          {
+            "id": "203-4L1E-P2",
+            "questionText": "What is the name of the central terminal where all earthing conductors in a building meet?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "Main Earthing Terminal",
+              "MET"
+            ],
+            "hint": "It's the 'Main' point for 'Earthing'."
+          },
+          {
+            "id": "203-4L1E-P3",
+            "questionText": "Which system uses a single PEN conductor to provide both neutral and earth in the supply cable?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "TN-C-S",
+              "TN-C-S system"
+            ],
+            "hint": "The 'C' stands for 'Combined'."
+          },
+          {
+            "id": "203-4L1E-P4",
+            "questionText": "In an ADS system, what is the technical name for the green/yellow wire that connects an appliance to the MET?",
+            "answerType": "short-text",
+            "expectedAnswer": [
+              "protective conductor",
+              "circuit protective conductor",
+              "CPC",
+              "earthing conductor"
+            ],
+            "hint": "It 'protects' by providing a path."
+          },
+          {
+            "id": "203-4L1E-P5",
+            "questionText": "In a TN-C-S system, how many distinct functions (Neutral and Earth) does the PEN conductor perform at the same time?",
+            "answerType": "numeric",
+            "expectedAnswer": [
+              "2"
+            ],
+            "hint": "Count the functions: Protective Earth and Neutral."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-integrative",
+      "type": "practice",
+      "order": 9.5,
+      "content": {
+        "title": "The Big Picture: ADS and System Types",
+        "mode": "integrative",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "203-4L1E-INT-1",
+            "questionText": "Explain the relationship between an 'exposed conductive part' and 'ADS'. How does earthing turn a dangerous fault into a safe disconnection?",
+            "answerType": "long-text",
+            "cognitiveLevel": "connection",
+            "keyPoints": [
+              "Exposed conductive parts are metal casings that can become live",
+              "Earthing provides a low-resistance path from these parts to the source",
+              "A fault causes high current to flow through this path",
+              "The high current triggers the protective device (ADS)",
+              "This removes the danger by disconnecting the supply automatically"
+            ],
+            "expectedAnswer": [
+              "An exposed conductive part is the metal casing of equipment. Earthing connects this part to the source so that if a fault occurs, a high current flows. This high current causes the ADS system (the protective device) to trip, automatically disconnecting the power and making the situation safe.",
+              "ADS stands for Automatic Disconnection of Supply. When a fault hits an exposed conductive part, the earthing path allows enough current to flow to instantly trip the circuit breaker. This 'automatic' action stops the metal casing from staying live and dangerous."
+            ],
+            "hint": "Think about the path electricity takes from a live casing to the fuse box."
+          },
+          {
+            "id": "203-4L1E-INT-2",
+            "questionText": "Describe the physical differences you would see at the service intake for a TT system versus a TN-C-S system. Why is the PEN conductor significant in your description?",
+            "answerType": "long-text",
+            "cognitiveLevel": "synthesis",
+            "keyPoints": [
+              "TT system uses a local earth electrode (rod) in the ground",
+              "TN-C-S system uses the supplier's cable for earth",
+              "TN-C-S has a PEN conductor (Combined Neutral and Earth) in the supply",
+              "In TN-C-S, the earth is split from the neutral at the intake terminal"
+            ],
+            "expectedAnswer": [
+              "In a TT system, you would see a wire going to an earth electrode in the ground. In a TN-C-S system, the earth comes from the supplier via a PEN conductor. This PEN conductor is significant because it combines earth and neutral into one wire before they are split into separate terminals at the house intake.",
+              "The TT system relies on a local rod, while the TN-C-S system relies on the supplier's cable. The PEN conductor in a TN-C-S system is the key difference, as it carries both neutral and earth currents until it reaches the cutout where it is split."
+            ],
+            "hint": "One uses a rod in the dirt; the other uses a special combined wire from the street."
+          }
+        ]
+      }
+    },
+    {
+      "id": "203-4L1E-spaced-review",
+      "type": "spaced-review",
+      "order": 10,
+      "content": {
+        "title": "Foundation Check",
+        "questions": [
+          {
+            "id": "203-4L1E-SR-1",
+            "questionText": "What is the general term for the wiring and equipment that makes up the electrical system in a building?",
+            "expectedAnswer": [
+              "electrical installation",
+              "installation"
+            ],
+            "hint": "It's the whole 'installation'.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4L1E-SR-2",
+            "questionText": "What name is given to a point where two wires are joined together?",
+            "expectedAnswer": [
+              "connection",
+              "joint",
+              "termination"
+            ],
+            "hint": "You make a 'connection' at a terminal.",
+            "answerType": "short-text"
+          },
+          {
+            "id": "203-4L1E-SR-3",
+            "questionText": "What term describes the separate parts (like switches or breakers) used in an electrical system?",
+            "expectedAnswer": [
+              "components",
+              "parts"
+            ],
+            "hint": "These are the building blocks or 'components'.",
+            "answerType": "short-text"
+          }
+        ],
+        "notes": "Reviewing basics before moving on to advanced earthing."
+      }
+    }
+  ],
+  "targetAssessmentCriteria": [
+    "AC1",
+    "AC2",
+    "AC3"
+  ],
+  "metadata": {
+    "created": "2026-03-02",
+    "updated": "2026-03-02",
+    "version": "1.1",
+    "author": "C&G 2365 Learning Team",
+    "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
+    "syllabusAnchors": {
+      "unit": "203",
+      "learningOutcome": "LO4",
+      "coveredAC": [
+        "AC1",
+        "AC2",
+        "AC3"
+      ],
+      "outOfScopeAC": [
+        "AC4",
+        "AC5"
+      ]
+    },
+    "scope": {
+      "inScope": "Conceptual definitions and visual identification of TT, TN-S, and TN-C-S systems; ADS components (MET, protective conductors, devices); basic safety role of earthing.",
+      "outOfScope": "Ohm's Law calculations (Zs/Ze), disconnection time tables, bonding conductor sizing, and practical testing procedures.",
+      "rationale": "Introductory lesson focused on recognition and system components as per AC1, AC2, and AC3."
+    },
+    "teachingConstraints": {
+      "excludeHowTo": true,
+      "purposeOnly": true,
+      "identificationOnly": true,
+      "noCalculations": true,
+      "specificScope": "Level 1/2 introductory concepts; define ADS and components clearly before testing."
+    },
+    "misconceptions": [
+      {
+        "misconception": "The earth wire carries current during normal operation.",
+        "correction": "The earth wire only carries current during a fault condition; the neutral wire carries normal return current.",
+        "relatedAC": "AC1"
+      },
+      {
+        "misconception": "A TN-C-S system has a combined earth and neutral throughout the whole house.",
+        "correction": "The earth and neutral are only combined (PEN) in the supply cable; they must be separate inside the installation.",
+        "relatedAC": "AC3"
+      }
+    ],
+    "generationScore": 95,
+    "generationScoreDetails": {
+      "originalScore": 87,
+      "finalScore": 95,
+      "wasRefined": true,
+      "generatedAt": "2026-03-02T22:35:25.818Z",
+      "source": "phase10-13"
+    }
+  }
+}

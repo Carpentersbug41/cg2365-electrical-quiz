@@ -72,9 +72,11 @@ import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factor
 import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-light-intensity.json';
 import lesson203_3L1P from '@/data/lessons/2365/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
 import lesson203_3L5C from '@/data/lessons/2365/203-3L5C-cable-selection-noob-what-affects-choosing-a-cable.json';
+import lesson203_4L1E from '@/data/lessons/2365/203-4L1E-earthing-systems-noob-tt-tn-s-tn-c-s.json';
 
 // Lesson registry (expand as more lessons are added)
 const LESSONS: Record<string, Lesson> = {
+  '203-4L1E': lesson203_4L1E as Lesson,
   '203-3L5C': lesson203_3L5C as Lesson,
   '203-3L1P': lesson203_3L1P as Lesson,
   'BIO-6-1C': lessonBIO_6_1C as Lesson,

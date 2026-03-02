@@ -94,11 +94,13 @@ import { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPho
 import { investigatingLightIntensityQuestions } from './investigatingLightIntensityQuestions';
 import { powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions } from './powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions';
 import { cableSelectionNoobWhatAffectsChoosingACableQuestions } from './cableSelectionNoobWhatAffectsChoosingACableQuestions';
+import { earthingSystemsNoobTtTnSTnCSQuestions } from './earthingSystemsNoobTtTnSTnCSQuestions';
 
 /**
  * All tagged questions from all banks
  */
 export const allTaggedQuestions: TaggedQuestion[] = [
+  ...earthingSystemsNoobTtTnSTnCSQuestions,
   ...cableSelectionNoobWhatAffectsChoosingACableQuestions,
   ...powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions,
   ...investigatingLightIntensityQuestions,
@@ -284,6 +286,7 @@ export { limitingFactorsOfPhotosynthesisQuestions } from './limitingFactorsOfPho
 export { investigatingLightIntensityQuestions } from './investigatingLightIntensityQuestions';
 export { powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions } from './powerHeatingCircuitsNoobWhatTheyAreSimpleOperationQuestions';
 export { cableSelectionNoobWhatAffectsChoosingACableQuestions } from './cableSelectionNoobWhatAffectsChoosingACableQuestions';
+export { earthingSystemsNoobTtTnSTnCSQuestions } from './earthingSystemsNoobTtTnSTnCSQuestions';
 
 /**
  * Filter questions by tags

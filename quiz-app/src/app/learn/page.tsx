@@ -63,6 +63,7 @@ import lessonBIO_6_1B from '@/data/lessons/gcse/biology/BIO-6-1B-limiting-factor
 import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-light-intensity.json';
 import lesson203_3L1P from '@/data/lessons/2365/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
 import lesson203_3L5C from '@/data/lessons/2365/203-3L5C-cable-selection-noob-what-affects-choosing-a-cable.json';
+import lesson203_4L1E from '@/data/lessons/2365/203-4L1E-earthing-systems-noob-tt-tn-s-tn-c-s.json';
 import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
@@ -111,6 +112,7 @@ function sortLessonsByIdNaturally(a: { id: string }, b: { id: string }) {
 }
 
 const RAW_LESSONS = [
+  lesson203_4L1E,
   lesson203_3L5C,
   lesson203_3L1P,
   lessonBIO_6_1C,

@@ -272,7 +272,7 @@ export class SequentialLessonGenerator {
 
       // Phase 5: Worked Example (conditional)
       phaseStart = Date.now();
-      const workedExampleResult = await this.runPhase5(
+      let workedExampleResult = await this.runPhase5(
         request,
         planResult,
         explanationResult,
@@ -308,6 +308,31 @@ export class SequentialLessonGenerator {
       if (!practiceResult) {
         debugLog('SEQUENTIAL_PHASES_SUMMARY', { lessonId, phases, failedAt: 'Practice' });
         return { ...this.errorResult('Phase 6 (Practice) failed'), phases };
+      }
+
+      // Hard rule: if lesson contains calculation questions, worked example + guided practice are mandatory.
+      const hasCalculationQuestions = practiceResult.practice.questions.some((question) => {
+        const answerType = String((question as { answerType?: unknown }).answerType ?? '').toLowerCase();
+        return answerType === 'numeric' || answerType === 'calculation';
+      });
+      if (
+        hasCalculationQuestions &&
+        (!workedExampleResult.workedExample || !workedExampleResult.guidedPractice)
+      ) {
+        console.warn('⚠️ [Sequential] Calculation questions detected; enforcing worked-example and guided-practice blocks.');
+        workedExampleResult = this.createFallbackWorkedExampleOutput(
+          lessonId,
+          request.topic,
+          explanationResult.explanations,
+          {
+            requireWorkedExample: true,
+            requireGuidedPractice: true,
+            workedExampleId: `${lessonId}-worked-example`,
+            guidedPracticeId: `${lessonId}-guided`,
+            workedExampleOrder: 6,
+            guidedPracticeOrder: 7,
+          }
+        );
       }
 
       // Phase 7: Integration
