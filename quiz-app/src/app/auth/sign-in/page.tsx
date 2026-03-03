@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { FormEvent, useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import type { User } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { courseHref } from '@/lib/routing/courseHref';
@@ -35,12 +35,21 @@ function friendlyAuthError(message: string, mode: AuthMode): string {
   if (normalized.includes('invalid email')) {
     return 'Please enter a valid email address.';
   }
+  if (normalized.includes('password should be')) {
+    return 'Password must meet the minimum length requirement.';
+  }
+  if (normalized.includes('weak password')) {
+    return 'Choose a stronger password and try again.';
+  }
   return 'Authentication failed. Please try again.';
 }
 
 export default function SignInPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [mode, setMode] = useState<AuthMode>('sign-in');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
@@ -81,30 +90,51 @@ export default function SignInPage() {
     const nextTarget = isSafeRedirect(searchParams.get('next'))
       ? searchParams.get('next')!
       : courseHref('/onboarding');
-    const redirectTo =
-      typeof window !== 'undefined'
-        ? `${window.location.origin}/auth/callback?next=${encodeURIComponent(nextTarget)}`
-        : undefined;
 
-    const { error } = await client.auth.signInWithOtp({
-      email,
-      options: {
-        shouldCreateUser: mode === 'sign-up',
-        emailRedirectTo: redirectTo,
-      },
-    });
-    setIsSubmitting(false);
-
-    if (error) {
-      setErrorMessage(friendlyAuthError(error.message, mode));
+    if (mode === 'sign-up' && password !== confirmPassword) {
+      setIsSubmitting(false);
+      setErrorMessage('Passwords do not match.');
       return;
     }
 
-    setStatusMessage(
-      mode === 'sign-up'
-        ? 'Signup link sent. Check your email to create your account.'
-        : 'Sign-in link sent. Check your email to continue.'
-    );
+    let error: string | null = null;
+
+    if (mode === 'sign-in') {
+      const { error: signInError } = await client.auth.signInWithPassword({
+        email,
+        password,
+      });
+      if (signInError) {
+        error = signInError.message;
+      } else {
+        setIsSubmitting(false);
+        router.replace(nextTarget);
+        return;
+      }
+    } else {
+      const { data, error: signUpError } = await client.auth.signUp({
+        email,
+        password,
+      });
+      if (signUpError) {
+        error = signUpError.message;
+      } else if (data.session) {
+        setIsSubmitting(false);
+        router.replace(nextTarget);
+        return;
+      } else {
+        setStatusMessage('Account created. If email confirmation is enabled, please check your inbox.');
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
+    setIsSubmitting(false);
+
+    if (error) {
+      setErrorMessage(friendlyAuthError(error, mode));
+      return;
+    }
   };
 
   const handleSignOut = async () => {
@@ -123,7 +153,7 @@ export default function SignInPage() {
       <div className="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-xl">
         <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Account access</h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-          Use email magic links for both sign in and sign up.
+          Sign in with your email and password.
         </p>
 
         {user ? (
@@ -148,6 +178,8 @@ export default function SignInPage() {
                   setMode('sign-in');
                   setStatusMessage(null);
                   setErrorMessage(null);
+                  setPassword('');
+                  setConfirmPassword('');
                 }}
                 className={`rounded-md px-3 py-2 text-sm font-semibold transition ${
                   mode === 'sign-in'
@@ -163,6 +195,8 @@ export default function SignInPage() {
                   setMode('sign-up');
                   setStatusMessage(null);
                   setErrorMessage(null);
+                  setPassword('');
+                  setConfirmPassword('');
                 }}
                 className={`rounded-md px-3 py-2 text-sm font-semibold transition ${
                   mode === 'sign-up'
@@ -186,16 +220,42 @@ export default function SignInPage() {
                 placeholder="you@example.com"
               />
             </label>
+            <label className="block">
+              <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200">
+                Password
+              </span>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-slate-900 dark:text-slate-100"
+                placeholder="Enter password"
+                minLength={6}
+              />
+            </label>
+            {mode === 'sign-up' && (
+              <label className="block">
+                <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200">
+                  Confirm password
+                </span>
+                <input
+                  type="password"
+                  required
+                  value={confirmPassword}
+                  onChange={(event) => setConfirmPassword(event.target.value)}
+                  className="w-full rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 px-3 py-2 text-slate-900 dark:text-slate-100"
+                  placeholder="Re-enter password"
+                  minLength={6}
+                />
+              </label>
+            )}
             <button
               type="submit"
               disabled={isSubmitting}
               className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isSubmitting
-                ? 'Sending link...'
-                : mode === 'sign-up'
-                ? 'Send signup link'
-                : 'Send sign-in link'}
+              {isSubmitting ? 'Submitting...' : mode === 'sign-up' ? 'Create account' : 'Sign in'}
             </button>
           </form>
         )}
