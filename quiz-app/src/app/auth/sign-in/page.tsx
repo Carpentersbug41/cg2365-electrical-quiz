@@ -7,13 +7,41 @@ import type { User } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { courseHref } from '@/lib/routing/courseHref';
 
+type AuthMode = 'sign-in' | 'sign-up';
+
 function isSafeRedirect(value: string | null): value is string {
   return typeof value === 'string' && value.startsWith('/');
+}
+
+function friendlyAuthError(message: string, mode: AuthMode): string {
+  const normalized = message.toLowerCase();
+  if (normalized.includes('email not confirmed')) {
+    return 'Check your inbox and confirm your email before signing in.';
+  }
+  if (normalized.includes('user not found') || normalized.includes('invalid login credentials')) {
+    return mode === 'sign-in'
+      ? "We couldn't find an account for that email. Try Sign up first."
+      : 'That email is not registered yet. Use Sign up to create an account.';
+  }
+  if (normalized.includes('already registered') || normalized.includes('already been registered')) {
+    return 'This email already has an account. Switch to Sign in.';
+  }
+  if (normalized.includes('signups not allowed') || normalized.includes('signup is disabled')) {
+    return 'New sign-ups are currently disabled. Please contact an admin.';
+  }
+  if (normalized.includes('email rate limit')) {
+    return 'Too many attempts. Please wait a minute and try again.';
+  }
+  if (normalized.includes('invalid email')) {
+    return 'Please enter a valid email address.';
+  }
+  return 'Authentication failed. Please try again.';
 }
 
 export default function SignInPage() {
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
+  const [mode, setMode] = useState<AuthMode>('sign-in');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -38,7 +66,7 @@ export default function SignInPage() {
     };
   }, []);
 
-  const handleSignIn = async (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setStatusMessage(null);
     setErrorMessage(null);
@@ -61,17 +89,22 @@ export default function SignInPage() {
     const { error } = await client.auth.signInWithOtp({
       email,
       options: {
+        shouldCreateUser: mode === 'sign-up',
         emailRedirectTo: redirectTo,
       },
     });
     setIsSubmitting(false);
 
     if (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(friendlyAuthError(error.message, mode));
       return;
     }
 
-    setStatusMessage('Magic link sent. Check your email to continue.');
+    setStatusMessage(
+      mode === 'sign-up'
+        ? 'Signup link sent. Check your email to create your account.'
+        : 'Sign-in link sent. Check your email to continue.'
+    );
   };
 
   const handleSignOut = async () => {
@@ -88,9 +121,9 @@ export default function SignInPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center p-6">
       <div className="w-full max-w-md rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 p-8 shadow-xl">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Sign in</h1>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Account access</h1>
         <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-          Use an email magic link to enable server-side progress tracking.
+          Use email magic links for both sign in and sign up.
         </p>
 
         {user ? (
@@ -107,7 +140,39 @@ export default function SignInPage() {
             </button>
           </div>
         ) : (
-          <form onSubmit={handleSignIn} className="mt-6 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+            <div className="grid grid-cols-2 gap-2 rounded-lg bg-slate-100 dark:bg-slate-900 p-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setMode('sign-in');
+                  setStatusMessage(null);
+                  setErrorMessage(null);
+                }}
+                className={`rounded-md px-3 py-2 text-sm font-semibold transition ${
+                  mode === 'sign-in'
+                    ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow'
+                    : 'text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                Sign in
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMode('sign-up');
+                  setStatusMessage(null);
+                  setErrorMessage(null);
+                }}
+                className={`rounded-md px-3 py-2 text-sm font-semibold transition ${
+                  mode === 'sign-up'
+                    ? 'bg-white dark:bg-slate-700 text-slate-900 dark:text-slate-100 shadow'
+                    : 'text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                Sign up
+              </button>
+            </div>
             <label className="block">
               <span className="mb-1 block text-sm font-medium text-slate-700 dark:text-slate-200">
                 Email
@@ -126,7 +191,11 @@ export default function SignInPage() {
               disabled={isSubmitting}
               className="w-full rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {isSubmitting ? 'Sending link...' : 'Send magic link'}
+              {isSubmitting
+                ? 'Sending link...'
+                : mode === 'sign-up'
+                ? 'Send signup link'
+                : 'Send sign-in link'}
             </button>
           </form>
         )}

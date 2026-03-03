@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
+import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type { EmailOtpType } from '@supabase/supabase-js';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
@@ -8,6 +9,20 @@ import { DEFAULT_COURSE_PREFIX } from '@/lib/routing/curricula';
 
 function isSafeRedirect(value: string | null): value is string {
   return typeof value === 'string' && value.startsWith('/');
+}
+
+function friendlyCallbackError(message: string): string {
+  const normalized = message.toLowerCase();
+  if (normalized.includes('otp') || normalized.includes('expired') || normalized.includes('token')) {
+    return 'This login link is invalid or expired. Please request a new one.';
+  }
+  if (normalized.includes('email not confirmed')) {
+    return 'Please confirm your email and try again.';
+  }
+  if (normalized.includes('rate limit')) {
+    return 'Too many attempts. Please wait a minute and request a new link.';
+  }
+  return 'Authentication could not be completed. Please try again.';
 }
 
 function AuthCallbackContent() {
@@ -51,7 +66,7 @@ function AuthCallbackContent() {
       }
 
       if (authError) {
-        setErrorMessage(authError);
+        setErrorMessage(friendlyCallbackError(authError));
         return;
       }
 
@@ -69,9 +84,17 @@ function AuthCallbackContent() {
           This page will redirect automatically once authentication is complete.
         </p>
         {errorMessage && (
-          <p className="mt-4 rounded-lg bg-rose-950/50 border border-rose-700 p-3 text-sm text-rose-200">
-            {errorMessage}
-          </p>
+          <div className="mt-4 space-y-3">
+            <p className="rounded-lg bg-rose-950/50 border border-rose-700 p-3 text-sm text-rose-200">
+              {errorMessage}
+            </p>
+            <Link
+              href="/auth/sign-in"
+              className="inline-flex rounded-lg bg-slate-100 px-3 py-2 text-sm font-medium text-slate-900 hover:bg-white"
+            >
+              Back to sign in
+            </Link>
+          </div>
         )}
       </div>
     </main>

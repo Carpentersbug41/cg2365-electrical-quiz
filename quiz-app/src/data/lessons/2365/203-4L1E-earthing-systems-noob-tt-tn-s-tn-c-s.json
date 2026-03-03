@@ -242,6 +242,42 @@
       }
     },
     {
+      "id": "203-4L1E-microbreak-1",
+      "type": "microbreak",
+      "order": 5.7,
+      "content": {
+        "breakType": "game",
+        "gameType": "matching",
+        "instructions": "Match the electrical earthing component or system to its correct practical description.",
+        "pairs": [
+          {
+            "left": "ADS",
+            "right": "Safety strategy that automatically cuts off power during a fault to prevent electric shock."
+          },
+          {
+            "left": "Exposed Conductive Part",
+            "right": "Metal casing of equipment that can be touched and might become live if insulation fails."
+          },
+          {
+            "left": "MET",
+            "right": "Central point in an installation where all earthing and bonding conductors are connected together."
+          },
+          {
+            "left": "TT System",
+            "right": "Arrangement where the earth connection is made via a local electrode rod driven into the ground."
+          },
+          {
+            "left": "PEN Conductor",
+            "right": "Single wire that performs both protective earth and neutral functions simultaneously."
+          },
+          {
+            "left": "Protective Device",
+            "right": "Fuse or circuit breaker that trips when it senses high current flowing through the earth path."
+          }
+        ]
+      }
+    },
+    {
       "id": "203-4L1E-worked-example",
       "type": "worked-example",
       "order": 6,
@@ -372,6 +408,37 @@
       }
     },
     {
+      "id": "203-4L1E-microbreak-2",
+      "type": "microbreak",
+      "order": 8.25,
+      "content": {
+        "breakType": "game",
+        "gameType": "scenario-match",
+        "pairs": [
+          {
+            "scenario": "The Purpose of ADS and Earthing",
+            "answer": "ADS"
+          },
+          {
+            "scenario": "What is ADS?",
+            "answer": "Exposed Conductive Part"
+          },
+          {
+            "scenario": "Automatic Disconnection of Supply ADS is your primary defense against electric shock.",
+            "answer": "Main Earthing Terminal MET"
+          },
+          {
+            "scenario": "It is a system designed to detect a fault and 'automatically' switch off the power before a person can be harmed.",
+            "answer": "TT System"
+          }
+        ],
+        "distractors": [
+          "The Components of ADS: To work, ADS needs three main parts working together: 1.",
+          "Exposed Conductive Parts: These are the metal casings like on a washing machine that we earth so they don't stay live during a fault."
+        ]
+      }
+    },
+    {
       "id": "203-4L1E-integrative",
       "type": "practice",
       "order": 9.5,
@@ -469,7 +536,7 @@
   "metadata": {
     "created": "2026-03-02",
     "updated": "2026-03-02",
-    "version": "1.1",
+    "version": "1.2",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {
