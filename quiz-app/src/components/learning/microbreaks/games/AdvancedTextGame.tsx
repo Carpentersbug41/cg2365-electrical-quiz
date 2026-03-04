@@ -2,6 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import GameWrapper from '../GameWrapper';
+import { ArrowUp, ArrowDown, CheckCircle, XCircle, GripVertical, Clock, RotateCcw } from 'lucide-react';
+import { Reorder } from 'motion/react';
 import {
   ClassifyTwoBinsGameContent,
   DiagnosisRankedGameContent,
@@ -90,7 +92,8 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
   const [done, setDone] = useState(false);
   const defaultTimerSeconds = content.gameType === 'formula-build' ? 11 : 30;
   const safeTimerSeconds = typeof content.timerSeconds === 'number' && content.timerSeconds > 0 ? content.timerSeconds : defaultTimerSeconds;
-  const [timeLeft, setTimeLeft] = useState<number | null>(safeTimerSeconds);
+  const isSequencing = content.gameType === 'sequencing';
+  const [timeLeft, setTimeLeft] = useState<number | null>(isSequencing ? null : safeTimerSeconds);
   const [hasStarted, setHasStarted] = useState(false);
 
   const soundEnabled = content.enableSound !== false;
@@ -117,6 +120,10 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
     playCustomSound('/sounds/The Countdown Clock 11.mp3', 0.35);
   }, [hasStarted, soundEnabled, content.gameType]);
 
+  useEffect(() => {
+    setTimeLeft(content.gameType === 'sequencing' ? null : safeTimerSeconds);
+  }, [content.gameType, safeTimerSeconds]);
+
   if (timeLeft !== null && timeLeft <= 0 && !done) {
     finish(0, 0);
   }
@@ -138,8 +145,8 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
           onPointerDownCapture={() => setHasStarted(true)}
           onKeyDownCapture={() => setHasStarted(true)}
         >
-          {content.prompt ? <p className="text-sm font-medium text-gray-700 dark:text-slate-300">{content.prompt}</p> : null}
-          {timeLeft !== null ? (
+          {!isSequencing && content.prompt ? <p className="text-sm font-medium text-gray-700 dark:text-slate-300">{content.prompt}</p> : null}
+          {!isSequencing && timeLeft !== null ? (
             <div className={`text-xs font-semibold ${timeLeft <= 8 ? 'text-red-700 dark:text-red-300' : 'text-blue-700 dark:text-blue-300'}`}>
               {hasStarted ? `Time left: ${timeLeft}s` : `Time starts on first tap: ${timeLeft}s`}
             </div>
@@ -148,6 +155,7 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
             content={content}
             done={done}
             soundEnabled={soundEnabled}
+            onSkip={onSkip}
             onDone={(score, accuracy) => {
               finish(score, accuracy);
               wrapperComplete(score, accuracy);
@@ -159,33 +167,234 @@ export default function AdvancedTextGame({ content, onComplete, onSkip }: Advanc
   );
 }
 
-function SequencingGame({ content, done, soundEnabled, onDone }: { content: SequencingGameContent; done: boolean; soundEnabled: boolean; onDone: (score: number, accuracy: number) => void; }) {
-  const [steps, setSteps] = useState(content.steps);
-  const [checked, setChecked] = useState(false);
-  const isCorrect = useMemo(() => steps.length === content.correctOrder.length && steps.every((s, i) => s === content.correctOrder[i]), [steps, content.correctOrder]);
+function SequencingGame({ content, done, soundEnabled, onDone, onSkip }: { content: SequencingGameContent; done: boolean; soundEnabled: boolean; onDone: (score: number, accuracy: number) => void; onSkip: () => void; }) {
+  const sequencingTimerSeconds = 33;
+  const [items, setItems] = useState<Array<{ id: string; text: string }>>(
+    content.steps.map((step, index) => ({ id: `step-${index}`, text: step }))
+  );
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [results, setResults] = useState<{ score: number; accuracy: number } | null>(null);
+  const [timeLeft, setTimeLeft] = useState<number | null>(sequencingTimerSeconds);
+  const [hasStarted, setHasStarted] = useState(false);
+  const countdownStartedRef = useRef(false);
 
-  const move = (index: number, delta: -1 | 1) => {
-    if (done || checked) return;
-    const nextIndex = index + delta;
-    if (nextIndex < 0 || nextIndex >= steps.length) return;
-    if (soundEnabled) playClickSound(0.2);
-    const next = [...steps];
-    [next[index], next[nextIndex]] = [next[nextIndex], next[index]];
-    setSteps(next);
+  useEffect(() => {
+    setItems(content.steps.map((step, index) => ({ id: `step-${index}`, text: step })));
+    setIsSubmitted(false);
+    setResults(null);
+    setTimeLeft(sequencingTimerSeconds);
+    setHasStarted(false);
+    countdownStartedRef.current = false;
+  }, [content]);
+
+  useEffect(() => {
+    if (!hasStarted || timeLeft === null || isSubmitted || timeLeft <= 0 || done) return;
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev === null) return null;
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, [hasStarted, timeLeft, isSubmitted, done]);
+
+  const moveItem = (index: number, direction: 'up' | 'down') => {
+    if (isSubmitted || done) return;
+    const nextItems = [...items];
+    if (direction === 'up' && index > 0) {
+      [nextItems[index - 1], nextItems[index]] = [nextItems[index], nextItems[index - 1]];
+      setItems(nextItems);
+      if (soundEnabled) playClickSound(0.2);
+    } else if (direction === 'down' && index < nextItems.length - 1) {
+      [nextItems[index + 1], nextItems[index]] = [nextItems[index], nextItems[index + 1]];
+      setItems(nextItems);
+      if (soundEnabled) playClickSound(0.2);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (isSubmitted || done) return;
+    let correctCount = 0;
+    items.forEach((item, index) => {
+      if (item.text === content.correctOrder[index]) correctCount++;
+    });
+    const accuracy = (correctCount / Math.max(1, items.length)) * 100;
+    setIsSubmitted(true);
+    setResults({ score: correctCount, accuracy });
+  };
+
+  useEffect(() => {
+    if (timeLeft === 0 && !isSubmitted && !done) handleSubmit();
+    // intentionally reacts only to timer/submitted flags
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, isSubmitted, done]);
+
+  useEffect(() => {
+    if (!hasStarted || done || isSubmitted || timeLeft === null || timeLeft <= 0 || countdownStartedRef.current) return;
+    countdownStartedRef.current = true;
+    if (soundEnabled) playCustomSound('/sounds/Countdown clock.mp3', 0.35);
+  }, [hasStarted, done, isSubmitted, soundEnabled, timeLeft]);
+
+  const handleContinue = () => {
+    if (results) onDone(results.score, results.accuracy);
+    else onDone(0, 0);
+  };
+
+  const handleReset = () => {
+    setItems(content.steps.map((step, index) => ({ id: `step-${index}`, text: step })));
+    setIsSubmitted(false);
+    setResults(null);
+    setTimeLeft(sequencingTimerSeconds);
+    setHasStarted(false);
+    countdownStartedRef.current = false;
   };
 
   return (
-    <div className="space-y-2">
-      {steps.map((step, idx) => (
-        <div key={`${step}-${idx}`} style={{ animationDelay: `${idx * 40}ms` }} className={`microbreak-stagger microbreak-card-glide flex items-center justify-between rounded border p-2 text-sm ${checked ? (isCorrect ? 'microbreak-correct border-green-300 bg-green-50 dark:border-green-700 dark:bg-green-900/20' : 'microbreak-wrong border-red-300 bg-red-50 dark:border-red-700 dark:bg-red-900/20') : 'border-gray-300 bg-white dark:border-slate-600 dark:bg-slate-700'}`}>
-          <span>{step}</span>
-          <div className="flex gap-1">
-          <button disabled={checked} onClick={() => move(idx, -1)} className="rounded border px-2 py-1 text-xs microbreak-card-glide">Up</button>
-          <button disabled={checked} onClick={() => move(idx, 1)} className="rounded border px-2 py-1 text-xs microbreak-card-glide">Down</button>
-          </div>
+    <div
+      className="w-full max-w-2xl mx-auto p-6 bg-white rounded-2xl shadow-sm border border-slate-200"
+      onPointerDownCapture={() => setHasStarted(true)}
+      onKeyDownCapture={() => setHasStarted(true)}
+    >
+      <div className="flex justify-between items-start mb-6 gap-4">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 mb-2">
+            {content.prompt || 'Order the steps'}
+          </h2>
+          {content.instructions ? <p className="text-slate-600">{content.instructions}</p> : null}
         </div>
-      ))}
-      <button disabled={checked} onClick={() => { if (soundEnabled) playClickSound(0.25); setChecked(true); onDone(isCorrect ? 1 : 0, isCorrect ? 100 : 0); }} className={primaryActionButtonClass}>Check</button>
+        {timeLeft !== null ? (
+          <div
+            className={`flex items-center gap-2 px-4 py-2 rounded-full font-mono text-sm font-medium shrink-0 transition-colors ${
+              timeLeft <= 10 ? 'bg-red-100 text-red-700' : 'bg-slate-100 text-slate-700'
+            }`}
+            role="timer"
+            aria-live="polite"
+          >
+            <Clock className="w-4 h-4" />
+            {Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}
+          </div>
+        ) : null}
+      </div>
+
+      <Reorder.Group
+        axis="y"
+        values={items}
+        onReorder={isSubmitted || done ? () => undefined : setItems}
+        className="space-y-3 mb-8"
+        as="ul"
+      >
+        {items.map((item, index) => {
+          const isCorrect = isSubmitted ? item.text === content.correctOrder[index] : null;
+          return (
+            <Reorder.Item
+              key={item.id}
+              value={item}
+              dragListener={!isSubmitted && !done}
+              as="li"
+              className={`relative flex items-center gap-3 p-4 rounded-xl border transition-colors ${
+                isSubmitted
+                  ? (isCorrect ? 'border-emerald-200 bg-emerald-50' : 'border-red-200 bg-red-50')
+                  : 'border-slate-200 bg-white shadow-sm hover:border-slate-300'
+              }`}
+            >
+              {!isSubmitted && !done ? (
+                <div className="text-slate-400 cursor-grab active:cursor-grabbing p-1" aria-hidden="true">
+                  <GripVertical className="w-5 h-5" />
+                </div>
+              ) : null}
+
+              {isSubmitted ? (
+                <div className="flex-shrink-0">
+                  {isCorrect ? (
+                    <CheckCircle className="w-5 h-5 text-emerald-500" aria-label="Correct position" />
+                  ) : (
+                    <XCircle className="w-5 h-5 text-red-500" aria-label="Incorrect position" />
+                  )}
+                </div>
+              ) : null}
+
+              <div className="flex-1 text-slate-700 font-medium select-none">{item.text}</div>
+
+              {!isSubmitted && !done ? (
+                <div className="flex flex-col gap-1">
+                  <button
+                    onClick={() => moveItem(index, 'up')}
+                    disabled={index === 0}
+                    aria-label={`Move "${item.text}" up`}
+                    className="p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <ArrowUp className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => moveItem(index, 'down')}
+                    disabled={index === items.length - 1}
+                    aria-label={`Move "${item.text}" down`}
+                    className="p-1 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded disabled:opacity-30 disabled:hover:bg-transparent disabled:cursor-not-allowed transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  >
+                    <ArrowDown className="w-4 h-4" />
+                  </button>
+                </div>
+              ) : null}
+            </Reorder.Item>
+          );
+        })}
+      </Reorder.Group>
+
+      <div className="flex items-center justify-between border-t border-slate-100 pt-6">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => {
+              if (soundEnabled) playClickSound(0.2);
+              onSkip();
+            }}
+            className="px-6 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-50 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-slate-200"
+          >
+            Skip
+          </button>
+          <button
+            onClick={() => {
+              if (soundEnabled) playClickSound(0.2);
+              handleReset();
+            }}
+            className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-700 hover:bg-slate-50 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-slate-200"
+            aria-label="Reset order"
+          >
+            <RotateCcw className="w-4 h-4" />
+            Reset
+          </button>
+        </div>
+
+        {!isSubmitted ? (
+          <button
+            onClick={() => {
+              if (soundEnabled) playClickSound(0.25);
+              handleSubmit();
+            }}
+            className="px-8 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-xl shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          >
+            Check Answer
+          </button>
+        ) : (
+          <div className="flex items-center gap-4">
+            <div className="text-sm font-medium text-slate-700" aria-live="polite">
+              Score: <span className={results?.accuracy === 100 ? 'text-emerald-600 font-bold' : 'text-indigo-600 font-bold'}>{results?.score} / {items.length}</span>
+            </div>
+            <button
+              onClick={() => {
+                if (soundEnabled) playClickSound(0.25);
+                handleContinue();
+              }}
+              className="px-8 py-2.5 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+            >
+              Continue
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -643,6 +852,7 @@ function AdvancedGameBody(props: {
   done: boolean;
   soundEnabled: boolean;
   onDone: (score: number, accuracy: number) => void;
+  onSkip: () => void;
 }) {
   switch (props.content.gameType) {
     case 'sequencing':
