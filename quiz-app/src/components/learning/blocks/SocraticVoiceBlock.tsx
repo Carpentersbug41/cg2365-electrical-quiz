@@ -36,6 +36,26 @@ type SocraticTurnResponse = {
   error?: string;
 };
 
+type ProcessingPhase = 'idle' | 'start' | 'answer';
+const PROCESSING_MESSAGE_BANK: Record<Exclude<ProcessingPhase, 'idle'>, string[]> = {
+  start: [
+    'Thinking...',
+    'Reading lesson context...',
+    'Preparing first question...',
+    'Setting up your first prompt...',
+    'Warming up the tutor...',
+  ],
+  answer: [
+    'Thinking...',
+    'Analysing answer...',
+    'Checking understanding...',
+    'Comparing to lesson goals...',
+    'Preparing next question...',
+    'Crafting a focused follow-up...',
+    'Building your next prompt...',
+  ],
+};
+
 export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
   const content = block.content as SocraticBlockContent;
   const resolvedLessonId = lessonId ?? block.id.split('-').slice(0, 2).join('-');
@@ -49,14 +69,16 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
   const [answerInput, setAnswerInput] = useState<string>('');
   const [history, setHistory] = useState<SocraticTurn[]>([]);
   const [lastFeedback, setLastFeedback] = useState<string>('');
-  const [lastNextAction, setLastNextAction] = useState<'retry' | 'advance' | 'repair' | ''>('');
-  const [activeMisconceptionCode, setActiveMisconceptionCode] = useState<string>('');
-  const [mandatoryRetest, setMandatoryRetest] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
+  const [sessionStarted, setSessionStarted] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [processingPhase, setProcessingPhase] = useState<ProcessingPhase>('idle');
+  const [processingPlan, setProcessingPlan] = useState<string[]>([]);
+  const [processingStep, setProcessingStep] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [speakingAmplitude, setSpeakingAmplitude] = useState<number>(0.06);
+  const processingTimerRef = useRef<number | null>(null);
   const prevIsListeningRef = useRef<boolean>(false);
   const speechTokenRef = useRef<number>(0);
   const boundaryEnergyRef = useRef<number>(0);
@@ -70,6 +92,51 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
     resetTranscript,
     error: sttError,
   } = useSpeechToText();
+
+  const currentProcessingMessage =
+    processingPhase === 'idle' || processingPlan.length === 0
+      ? ''
+      : processingPlan[Math.min(processingStep, processingPlan.length - 1)];
+
+  useEffect(() => {
+    if (processingTimerRef.current !== null) {
+      window.clearTimeout(processingTimerRef.current);
+      processingTimerRef.current = null;
+    }
+
+    if (!isLoading || processingPhase === 'idle') return;
+
+    const bank = [...PROCESSING_MESSAGE_BANK[processingPhase]];
+    for (let i = bank.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [bank[i], bank[j]] = [bank[j], bank[i]];
+    }
+    const messageCount = processingPhase === 'start' ? Math.min(3, bank.length) : Math.min(4, bank.length);
+    const messages = bank.slice(0, messageCount);
+    let step = 0;
+    setProcessingPlan(messages);
+    setProcessingStep(0);
+
+    const queueNext = () => {
+      if (step >= messages.length - 1) return;
+      const delayMs = 1000 + Math.floor(Math.random() * 3001);
+      processingTimerRef.current = window.setTimeout(() => {
+        step += 1;
+        setProcessingStep(step);
+        queueNext();
+      }, delayMs);
+    };
+
+    queueNext();
+
+    return () => {
+      if (processingTimerRef.current !== null) {
+        window.clearTimeout(processingTimerRef.current);
+        processingTimerRef.current = null;
+      }
+      setProcessingPlan([]);
+    };
+  }, [isLoading, processingPhase]);
 
   useEffect(() => {
     if (!content.allowVoiceInput) return;
@@ -118,6 +185,8 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
 
   const fetchFirstQuestion = async () => {
     setIsLoading(true);
+    setProcessingPhase('start');
+    setProcessingStep(0);
     setErrorMessage('');
 
     try {
@@ -145,22 +214,27 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
       setAskedCount(data.askedCount);
       setComplete(Boolean(data.complete));
       setLastFeedback('');
-      setLastNextAction('');
-      setMandatoryRetest(false);
-      setActiveMisconceptionCode('');
       speakText(data.question);
     } catch (error) {
+      setSessionStarted(false);
       setErrorMessage(error instanceof Error ? error.message : 'Failed to start Socratic session.');
     } finally {
+      setProcessingPhase('idle');
+      setProcessingStep(0);
       setIsLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (content.enabled === false) return;
-    void fetchFirstQuestion();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [block.id, resolvedLessonId]);
+  const handleStartSession = async () => {
+    if (isLoading || sessionStarted) return;
+    setSessionStarted(true);
+    setComplete(false);
+    setHistory([]);
+    setAskedCount(0);
+    setAnswerInput('');
+    resetTranscript();
+    await fetchFirstQuestion();
+  };
 
   useEffect(() => {
     let frame = 0;
@@ -230,6 +304,8 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
     if (!trimmed || !question || complete || isLoading) return;
 
     setIsLoading(true);
+    setProcessingPhase('answer');
+    setProcessingStep(0);
     setErrorMessage('');
 
     try {
@@ -255,9 +331,6 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
       }
 
       setLastFeedback(data.feedback || '');
-      setLastNextAction(data.nextAction ?? '');
-      setMandatoryRetest(Boolean(data.mandatoryRetest));
-      setActiveMisconceptionCode(data.misconceptionCode ?? '');
       setHistory((prev) => [
         ...prev,
         {
@@ -303,26 +376,13 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : 'Failed to process answer.');
     } finally {
+      setProcessingPhase('idle');
+      setProcessingStep(0);
       setIsLoading(false);
     }
   };
 
   if (content.enabled === false) return null;
-
-  const levelStats = history.reduce(
-    (acc, turn) => {
-      const level = Math.max(1, Math.min(4, turn.level));
-      acc[level].asked += 1;
-      if (turn.correct) acc[level].correct += 1;
-      return acc;
-    },
-    {
-      1: { asked: 0, correct: 0 },
-      2: { asked: 0, correct: 0 },
-      3: { asked: 0, correct: 0 },
-      4: { asked: 0, correct: 0 },
-    } as Record<number, { asked: number; correct: number }>
-  );
 
   return (
     <div
@@ -339,38 +399,23 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
             Socratic Voice Questions
           </h2>
           <p className="mt-1 text-sm text-slate-300">
-            Starts at Level {configuredStartLevel}. One question at a time for {configuredQuestionCount} questions.
+            Simple Q+A chat for this lesson.
           </p>
+          {sessionStarted && (
+            <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-indigo-300">
+              Question {askedCount}/{configuredQuestionCount}
+            </p>
+          )}
         </div>
-        <span className="rounded-full border border-indigo-500/40 bg-indigo-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-indigo-300">
-          {askedCount}/{configuredQuestionCount}
-        </span>
-      </div>
-      <div className="relative z-10 mb-4 flex flex-wrap items-center gap-2">
-        <span className="rounded-full border border-cyan-500/40 bg-cyan-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan-200">
-          Intent: {questionIntent}
-        </span>
-        <span className="rounded-full border border-slate-700 bg-slate-900/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-slate-200">
-          Last action: {lastNextAction || 'n/a'}
-        </span>
-        {[1, 2, 3, 4].map((level) => (
-          <span
-            key={level}
-            className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-emerald-200"
-          >
-            L{level}: {levelStats[level].correct}/{levelStats[level].asked}
-          </span>
-        ))}
       </div>
 
       <div className="relative z-10 mb-4 rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-        {question ? (
+        {sessionStarted && question ? (
           <>
-            <p className="mb-2 text-xs font-bold uppercase tracking-widest text-indigo-300">{`Level ${questionLevel}`}</p>
             <p className="text-base text-slate-100">{question}</p>
           </>
         ) : (
-          <p className="text-sm text-slate-300">{isLoading ? 'Preparing first question...' : 'Ready to start.'}</p>
+          <p className="text-sm text-slate-300">{isLoading ? 'Preparing first question...' : 'Click Start to begin.'}</p>
         )}
       </div>
 
@@ -380,20 +425,36 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
           <p className="text-sm text-slate-100">{lastFeedback}</p>
         </div>
       )}
-      {mandatoryRetest && !complete && (
-        <div className="relative z-10 mb-4 rounded-2xl border border-amber-500/40 bg-amber-500/10 p-4">
-          <p className="mb-1 text-xs font-bold uppercase tracking-widest text-amber-300">Mandatory Retest Active</p>
-          <p className="text-sm text-amber-100">
-            You are in a repair/verification loop at this level. Clear this check before progressing.
-            {activeMisconceptionCode ? ` Focus misconception: ${activeMisconceptionCode}.` : ''}
-          </p>
+      {!sessionStarted && !complete && (
+        <div className="relative z-10">
+          <button
+            onClick={() => void handleStartSession()}
+            disabled={isLoading}
+            className="inline-flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {isLoading ? 'Starting...' : 'Start Socratic Questions'}
+          </button>
         </div>
       )}
 
-      {!complete && (
+      {!complete && sessionStarted && (
         <div className="relative z-10 space-y-3">
           <div className="rounded-2xl border border-slate-800 bg-slate-900/70 p-3">
-            {isListening || isSpeaking ? (
+            {isLoading ? (
+              <>
+                <AudioVisualizer
+                  isActive
+                  height="h-20"
+                  theme="indigo"
+                  mode="playback"
+                  simulate
+                  forcedAmplitude={0.22}
+                />
+                <p className="mt-2 text-center text-xs font-semibold uppercase tracking-widest text-indigo-300">
+                  {currentProcessingMessage || 'Thinking...'}
+                </p>
+              </>
+            ) : isListening || isSpeaking ? (
               <AudioVisualizer
                 isActive
                 height="h-20"
@@ -436,12 +497,12 @@ export default function SocraticVoiceBlock({ block, lessonId }: BlockProps) {
                 disabled={isLoading}
                 className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition ${
                   isListening
-                    ? 'border-red-400/50 bg-red-500/20 text-red-200 hover:bg-red-500/30'
+                    ? 'border-emerald-400/50 bg-emerald-500/20 text-emerald-200 hover:bg-emerald-500/30'
                     : 'border-indigo-400/40 bg-indigo-500/20 text-indigo-200 hover:bg-indigo-500/30'
                 } disabled:cursor-not-allowed disabled:opacity-40`}
               >
                 {isListening ? <Square className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
-                {isListening ? 'Stop & Submit' : 'Speak'}
+                {isListening ? 'Submit' : 'Speak'}
               </button>
             )}
           </div>

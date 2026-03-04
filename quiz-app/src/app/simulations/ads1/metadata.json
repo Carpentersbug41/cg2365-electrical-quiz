@@ -1,0 +1,5 @@
+{
+  "name": "Automatic Disconnection of Supply (ADS)",
+  "description": "Interactive educational animation demonstrating how a fuse or circuit breaker trips to protect against electric shock when a fault occurs.",
+  "requestFramePermissions": []
+}

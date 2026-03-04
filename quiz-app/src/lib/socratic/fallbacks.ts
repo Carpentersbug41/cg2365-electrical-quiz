@@ -26,6 +26,17 @@ export function stripWrappingQuotes(value: string): string {
     .trim();
 }
 
+export function sanitizeSocraticQuestionText(value: string): string {
+  let output = stripWrappingQuotes(value);
+  output = output.replace(/^[`'"]+|[`'"]+$/g, '').trim();
+  output = output.replace(/^\s*"?question"?\s*:\s*/i, '').trim();
+  output = output.replace(/^\s*question"\s*:\s*/i, '').trim();
+  output = output.replace(/^[`'"]+|[`'"]+$/g, '').trim();
+  output = output.replace(/[}\]]+\s*$/g, '').trim();
+  output = output.replace(/\s+/g, ' ').trim();
+  return output;
+}
+
 export function salvageSocraticPayload(raw: string, mode: SocraticParseMode): NextQuestionPayload | EvaluatePayload {
   const text = raw.trim();
 
@@ -38,18 +49,18 @@ export function salvageSocraticPayload(raw: string, mode: SocraticParseMode): Ne
         ? intent
         : undefined;
     if (quoted?.[1]) {
-      return { question: stripWrappingQuotes(quoted[1]), intent: normalizedIntent };
+      return { question: sanitizeSocraticQuestionText(quoted[1]), intent: normalizedIntent };
     }
 
-    const loose = text.match(/question\s*[:\-]\s*([\s\S]+)/i);
+    const loose = text.match(/(?:^|\n)\s*"?question"?\s*[:\-]\s*([\s\S]+)/i);
     if (loose?.[1]) {
       return {
-        question: stripWrappingQuotes(loose[1]).replace(/[}\]]+$/, '').trim(),
+        question: sanitizeSocraticQuestionText(loose[1]),
         intent: normalizedIntent,
       };
     }
 
-    return { question: stripWrappingQuotes(text.replace(/[{}\[\]]/g, '')), intent: normalizedIntent };
+    return { question: sanitizeSocraticQuestionText(text.replace(/[{}\[\]]/g, '')), intent: normalizedIntent };
   }
 
   const feedbackQuoted = text.match(/"feedback"\s*:\s*"([\s\S]*?)"\s*(?:,|})/i);

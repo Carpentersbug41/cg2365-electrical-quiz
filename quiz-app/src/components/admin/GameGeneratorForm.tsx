@@ -96,9 +96,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     embedUrl?: string;
     path?: string;
   } | null>(null);
-  const [socraticEnabled, setSocraticEnabled] = useState(false);
   const [socraticQuestionCount, setSocraticQuestionCount] = useState(8);
-  const [socraticStartLevel, setSocraticStartLevel] = useState<1 | 2 | 3 | 4>(1);
   const [socraticStatus, setSocraticStatus] = useState<'idle' | 'saving'>('idle');
 
   const fetchLessons = useCallback(async () => {
@@ -143,21 +141,15 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
 
   useEffect(() => {
     if (!selectedLesson) {
-      setSocraticEnabled(false);
       setSocraticQuestionCount(8);
-      setSocraticStartLevel(1);
       return;
     }
-
-    setSocraticEnabled(Boolean(selectedLesson.hasSocratic));
-    setSocraticQuestionCount(
-      typeof selectedLesson.socraticQuestionCount === 'number' ? selectedLesson.socraticQuestionCount : 8
-    );
-    setSocraticStartLevel(
-      (typeof selectedLesson.socraticStartLevel === 'number'
-        ? Math.max(1, Math.min(4, selectedLesson.socraticStartLevel))
-        : 1) as 1 | 2 | 3 | 4
-    );
+    const current = selectedLesson.socraticQuestionCount;
+    if (typeof current === 'number') {
+      setSocraticQuestionCount(Math.max(8, Math.min(10, Math.round(current))));
+      return;
+    }
+    setSocraticQuestionCount(8);
   }, [selectedLesson]);
 
   const toggleGameType = (gameType: GameType) => {
@@ -457,11 +449,14 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
     }
   };
 
-  const handleSaveSocraticConfig = async () => {
+  const handleAddSocraticQuestions = async () => {
     if (!selectedLesson) {
       setErrorMessage('Please select a lesson first.');
       return;
     }
+
+    const defaultQuestionCount = Math.max(8, Math.min(10, Math.round(socraticQuestionCount)));
+    const defaultStartLevel = 1;
 
     setSocraticStatus('saving');
     setErrorMessage(null);
@@ -476,9 +471,9 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         },
         body: JSON.stringify({
           filename: selectedLesson.filename,
-          enabled: socraticEnabled,
-          questionCount: socraticQuestionCount,
-          startLevel: socraticStartLevel,
+          enabled: true,
+          questionCount: defaultQuestionCount,
+          startLevel: defaultStartLevel,
         }),
       });
 
@@ -487,11 +482,7 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         throw new Error(data.error || 'Failed to save Socratic settings.');
       }
 
-      setSuccessMessage(
-        socraticEnabled
-          ? `Socratic questions enabled (${socraticQuestionCount} questions, start Level ${socraticStartLevel}).`
-          : 'Socratic questions disabled for this lesson.'
-      );
+      setSuccessMessage(`Socratic questions enabled (${defaultQuestionCount} questions, start Level ${defaultStartLevel}).`);
       await fetchLessons();
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : 'Failed to save Socratic settings.');
@@ -682,73 +673,58 @@ export default function GameGeneratorForm({ initialSelectedLessonFilename = null
         </h2>
 
         <div className="space-y-4">
-          <label className="flex items-center gap-3 text-sm font-semibold text-gray-800 dark:text-slate-200">
-            <input
-              type="checkbox"
-              checked={socraticEnabled}
-              onChange={(event) => setSocraticEnabled(event.target.checked)}
-              disabled={!selectedLesson || socraticStatus === 'saving' || isGenerating}
-            />
-            Add Socratic voice questions block (optional)
-          </label>
+          <p className="text-sm text-gray-700 dark:text-slate-300">One click adds Socratic questions (question count 8-10, start Level 1).</p>
 
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-            <label className="flex flex-col gap-2 text-sm">
-              <span className="font-semibold text-gray-700 dark:text-slate-300">Question Count</span>
-              <input
-                type="number"
-                min={8}
-                max={10}
-                value={socraticQuestionCount}
-                onChange={(event) => {
-                  const parsed = Number(event.target.value);
-                  if (Number.isNaN(parsed)) return;
-                  setSocraticQuestionCount(Math.max(8, Math.min(10, parsed)));
-                }}
-                disabled={!selectedLesson || !socraticEnabled || socraticStatus === 'saving' || isGenerating}
-                className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
-              />
-            </label>
-
-            <label className="flex flex-col gap-2 text-sm">
-              <span className="font-semibold text-gray-700 dark:text-slate-300">Starting Level</span>
-              <select
-                value={socraticStartLevel}
-                onChange={(event) => setSocraticStartLevel(Number(event.target.value) as 1 | 2 | 3 | 4)}
-                disabled={!selectedLesson || !socraticEnabled || socraticStatus === 'saving' || isGenerating}
-                className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
-              >
-                <option value={1}>Level 1 (Recall)</option>
-                <option value={2}>Level 2 (Connection)</option>
-                <option value={3}>Level 3 (Synthesis)</option>
-                <option value={4}>Level 4 (Hypothesis)</option>
-              </select>
-            </label>
+          <div className="rounded-lg border border-indigo-200 bg-indigo-50/70 px-3 py-2 text-sm dark:border-indigo-800/70 dark:bg-indigo-900/20">
+            <p className="font-semibold text-indigo-800 dark:text-indigo-200">
+              Status:{' '}
+              {selectedLesson
+                ? selectedLesson.hasSocratic
+                  ? 'Added'
+                  : 'Not added'
+                : 'Select a lesson'}
+            </p>
+            {selectedLesson?.hasSocratic && (
+              <p className="mt-1 text-indigo-700 dark:text-indigo-300">
+                Current settings: {selectedLesson.socraticQuestionCount ?? 8} questions, start Level {selectedLesson.socraticStartLevel ?? 1}.
+              </p>
+            )}
           </div>
 
+          <label className="flex max-w-xs flex-col gap-2 text-sm">
+            <span className="font-semibold text-gray-700 dark:text-slate-300">Question Count</span>
+            <input
+              type="number"
+              min={8}
+              max={10}
+              value={socraticQuestionCount}
+              onChange={(event) => {
+                const parsed = Number(event.target.value);
+                if (Number.isNaN(parsed)) return;
+                setSocraticQuestionCount(Math.max(8, Math.min(10, Math.round(parsed))));
+              }}
+              disabled={!selectedLesson || socraticStatus === 'saving' || isGenerating}
+              className="rounded-lg border border-gray-300 px-3 py-2 dark:border-slate-600 dark:bg-slate-900/60 dark:text-white"
+            />
+          </label>
+
           <button
-            onClick={handleSaveSocraticConfig}
+            onClick={handleAddSocraticQuestions}
             disabled={!selectedLesson || socraticStatus === 'saving' || isGenerating}
             className="inline-flex items-center justify-center gap-2 rounded-xl bg-[linear-gradient(135deg,#4338ca,#6366f1)] px-5 py-3 font-semibold text-white shadow-lg shadow-indigo-900/20 transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-50"
           >
             {socraticStatus === 'saving' ? (
               <>
                 <Loader2 className="h-5 w-5 animate-spin" />
-                Saving Socratic Settings...
+                Adding Socratic Questions...
               </>
             ) : (
               <>
                 <Save className="h-5 w-5" />
-                Save Socratic Settings
+                {selectedLesson?.hasSocratic ? 'Update Socratic Questions' : 'Add Socratic Questions'}
               </>
             )}
           </button>
-
-          {selectedLesson?.hasSocratic && (
-            <p className="text-sm text-indigo-700 dark:text-indigo-300">
-              Current lesson has Socratic block enabled.
-            </p>
-          )}
         </div>
       </div>
 

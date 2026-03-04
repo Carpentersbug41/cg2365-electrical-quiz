@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "noEmit": true, "incremental": false },
+  "include": [
+    "next-env.d.ts",
+    "src/components/learning/microbreaks/games/AdvancedTextGame.tsx",
+    "src/data/lessons/types.ts",
+    "src/lib/microbreaks/celebrationEffects.ts",
+    "src/components/learning/microbreaks/GameWrapper.tsx"
+  ],
+  "exclude": [".next", "node_modules"]
+}

@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { CheckCircle2 } from 'lucide-react';
-import GameWrapper from '../GameWrapper';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import { Trophy, Clock, AlertCircle, Check, X } from 'lucide-react';
 import { MatchingGameContent } from '@/data/lessons/types';
 import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects';
 
@@ -12,223 +12,360 @@ interface MatchingGameProps {
   onSkip: () => void;
 }
 
-interface MatchingItem {
+interface MatchingPair {
   id: string;
-  text: string;
+  leftContent: string;
+  rightContent: string;
 }
 
-function shuffleArray<T>(array: T[]): T[] {
-  const next = [...array];
-  for (let i = next.length - 1; i > 0; i -= 1) {
+type CardState = 'idle' | 'selected' | 'matched' | 'error';
+
+const shuffle = <T,>(array: T[]): T[] => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i -= 1) {
     const j = Math.floor(Math.random() * (i + 1));
-    [next[i], next[j]] = [next[j], next[i]];
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
-  return next;
+  return newArray;
+};
+
+function MatchingCard({
+  content,
+  side,
+  state,
+  onClick,
+  onDragStart,
+  onDragOver,
+  onDrop,
+}: {
+  content: string;
+  side: 'left' | 'right';
+  state: CardState;
+  onClick: () => void;
+  onDragStart?: (e: React.DragEvent) => void;
+  onDragOver?: (e: React.DragEvent) => void;
+  onDrop?: (e: React.DragEvent) => void;
+}) {
+  const isMatched = state === 'matched';
+  const isSelected = state === 'selected';
+  const isError = state === 'error';
+
+  let bgClass = 'bg-white';
+  let borderClass = 'border-stone-200';
+  let textClass = 'text-stone-800';
+  let shadowClass = 'shadow-sm hover:shadow-md';
+
+  if (isMatched) {
+    bgClass = 'bg-emerald-50';
+    borderClass = 'border-emerald-200';
+    textClass = 'text-emerald-700';
+    shadowClass = 'shadow-none';
+  } else if (isError) {
+    bgClass = 'bg-red-50';
+    borderClass = 'border-red-300';
+    textClass = 'text-red-700';
+  } else if (isSelected) {
+    bgClass = 'bg-indigo-50';
+    borderClass = 'border-indigo-400';
+    textClass = 'text-indigo-900';
+    shadowClass = 'shadow-md ring-2 ring-indigo-400 ring-opacity-50';
+  }
+
+  return (
+    <motion.button
+      layout
+      initial={false}
+      animate={isError ? { x: [-5, 5, -5, 5, 0] } : {}}
+      transition={isError ? { duration: 0.4 } : { type: 'spring', stiffness: 300, damping: 20 }}
+      whileHover={!isMatched && !isSelected ? { scale: 1.02 } : {}}
+      whileTap={!isMatched ? { scale: 0.98 } : {}}
+      onClick={onClick}
+      disabled={isMatched}
+      draggable={side === 'left' && !isMatched}
+      onDragStartCapture={onDragStart}
+      onDragOverCapture={onDragOver}
+      onDropCapture={onDrop}
+      className={`
+        relative w-full p-4 min-h-[80px] flex items-center justify-center text-center
+        rounded-xl border-2 transition-colors duration-200 ease-in-out
+        focus:outline-none focus-visible:ring-4 focus-visible:ring-indigo-500 focus-visible:ring-opacity-50
+        ${bgClass} ${borderClass} ${textClass} ${shadowClass}
+        ${isMatched ? 'opacity-60 cursor-default' : 'cursor-pointer'}
+        ${side === 'left' && !isMatched ? 'cursor-grab active:cursor-grabbing' : ''}
+      `}
+      aria-pressed={isSelected}
+      aria-disabled={isMatched}
+      aria-label={`${content}${isMatched ? ' (Matched)' : ''}`}
+    >
+      <span className="font-medium text-sm md:text-base leading-snug">{content}</span>
+
+      {isMatched && (
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="absolute top-2 right-2 text-emerald-500"
+        >
+          <Check size={16} strokeWidth={3} />
+        </motion.div>
+      )}
+
+      {isError && (
+        <motion.div
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className="absolute top-2 right-2 text-red-500"
+        >
+          <X size={16} strokeWidth={3} />
+        </motion.div>
+      )}
+    </motion.button>
+  );
 }
 
 export default function MatchingGame({ content, onComplete, onSkip }: MatchingGameProps) {
+  const pairs: MatchingPair[] = content.pairs.map((pair, index) => ({
+    id: `pair-${index}`,
+    leftContent: pair.left,
+    rightContent: pair.right,
+  }));
+
+  const [leftItems, setLeftItems] = useState<{ id: string; content: string }[]>([]);
+  const [rightItems, setRightItems] = useState<{ id: string; content: string }[]>([]);
   const [selectedLeft, setSelectedLeft] = useState<string | null>(null);
   const [selectedRight, setSelectedRight] = useState<string | null>(null);
-  const [matchedPairs, setMatchedPairs] = useState<Set<string>>(new Set());
-  const [wrongMatch, setWrongMatch] = useState<{ left: string; right: string } | null>(null);
-  const [completed, setCompleted] = useState(false);
-
-  // Shuffle arrays for display - initialize as empty to avoid hydration mismatch
-  const [leftItems, setLeftItems] = useState<MatchingItem[]>([]);
-  const [rightItems, setRightItems] = useState<MatchingItem[]>([]);
-  const completeHandlerRef = useRef<((score?: number, accuracy?: number) => void) | null>(null);
+  const [matchedIds, setMatchedIds] = useState<Set<string>>(new Set());
+  const [errorPair, setErrorPair] = useState<[string, string] | null>(null);
+  const [mistakes, setMistakes] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
+  const [draggedLeftId, setDraggedLeftId] = useState<string | null>(null);
+  const [timeLeft, setTimeLeft] = useState(content.duration);
   const completionSentRef = useRef(false);
 
-  // Shuffle only on client side after mount to avoid hydration mismatch
   useEffect(() => {
-    const indexedPairs = content.pairs.map((pair, index) => ({
-      id: `pair-${index}`,
-      left: pair.left,
-      right: pair.right,
-    }));
-    setLeftItems(shuffleArray(indexedPairs).map((pair) => ({ id: pair.id, text: pair.left })));
-    setRightItems(shuffleArray(indexedPairs).map((pair) => ({ id: pair.id, text: pair.right })));
+    if (pairs.length === 0) return;
+    setLeftItems(shuffle(pairs.map((p) => ({ id: p.id, content: p.leftContent }))));
+    setRightItems(shuffle(pairs.map((p) => ({ id: p.id, content: p.rightContent }))));
     setSelectedLeft(null);
     setSelectedRight(null);
-    setMatchedPairs(new Set());
-    setWrongMatch(null);
-    setCompleted(false);
+    setMatchedIds(new Set());
+    setErrorPair(null);
+    setMistakes(0);
+    setIsCompleted(false);
+    setDraggedLeftId(null);
+    setTimeLeft(content.duration);
     completionSentRef.current = false;
-  }, [content.pairs]);
+  }, [content.duration, pairs.length]);
 
   useEffect(() => {
-    if (!selectedLeft || !selectedRight) return;
+    if (timeLeft <= 0 || isCompleted) return;
+    const timer = setTimeout(() => setTimeLeft((v) => v - 1), 1000);
+    return () => clearTimeout(timer);
+  }, [isCompleted, timeLeft]);
 
-    if (selectedLeft === selectedRight) {
-      const matchedId = selectedLeft;
-      playSound('success', 0.45);
-      setTimeout(() => {
-        setMatchedPairs((prev) => {
-          const next = new Set(prev);
-          next.add(matchedId);
+  const finishIfComplete = useCallback(
+    (next: Set<string>, nextMistakes: number) => {
+      if (next.size !== pairs.length || completionSentRef.current) return;
+      completionSentRef.current = true;
+      setIsCompleted(true);
+      playSound('success', 0.55);
+      const totalAttempts = pairs.length + nextMistakes;
+      const accuracy = totalAttempts > 0 ? Math.round((pairs.length / totalAttempts) * 100) : 100;
+      onComplete(pairs.length, accuracy);
+    },
+    [onComplete, pairs.length]
+  );
 
-          if (next.size === content.pairs.length && !completionSentRef.current) {
-            completionSentRef.current = true;
-            setCompleted(true);
-            completeHandlerRef.current?.(content.pairs.length, 100);
-          }
-
+  const handleMatchAttempt = useCallback(
+    (leftId: string, rightId: string) => {
+      if (leftId === rightId) {
+        playSound('success', 0.45);
+        setMatchedIds((prev) => {
+          const next = new Set(prev).add(leftId);
+          finishIfComplete(next, mistakes);
           return next;
         });
         setSelectedLeft(null);
         setSelectedRight(null);
+        return;
+      }
+
+      playSound('failure', 0.45);
+      setMistakes((m) => m + 1);
+      setErrorPair([leftId, rightId]);
+      setTimeout(() => {
+        setErrorPair(null);
+        setSelectedLeft(null);
+        setSelectedRight(null);
       }, 600);
-      return;
+    },
+    [finishIfComplete, mistakes]
+  );
+
+  const selectLeft = useCallback(
+    (id: string) => {
+      if (matchedIds.has(id) || errorPair) return;
+      if (selectedLeft === id) {
+        setSelectedLeft(null);
+        return;
+      }
+      playClickSound(0.3);
+      setSelectedLeft(id);
+      if (selectedRight) handleMatchAttempt(id, selectedRight);
+    },
+    [errorPair, handleMatchAttempt, matchedIds, selectedLeft, selectedRight]
+  );
+
+  const selectRight = useCallback(
+    (id: string) => {
+      if (matchedIds.has(id) || errorPair) return;
+      if (selectedRight === id) {
+        setSelectedRight(null);
+        return;
+      }
+      playClickSound(0.3);
+      setSelectedRight(id);
+      if (selectedLeft) handleMatchAttempt(selectedLeft, id);
+    },
+    [errorPair, handleMatchAttempt, matchedIds, selectedLeft, selectedRight]
+  );
+
+  const handleDragStart = (e: React.DragEvent, id: string) => {
+    setDraggedLeftId(id);
+    e.dataTransfer.effectAllowed = 'link';
+    selectLeft(id);
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'link';
+  };
+
+  const handleDrop = (e: React.DragEvent, rightId: string) => {
+    e.preventDefault();
+    if (draggedLeftId && !matchedIds.has(rightId)) {
+      handleMatchAttempt(draggedLeftId, rightId);
     }
-
-    const wrongLeft = selectedLeft;
-    const wrongRight = selectedRight;
-    playSound('failure', 0.45);
-    setWrongMatch({ left: wrongLeft, right: wrongRight });
-    setTimeout(() => {
-      setWrongMatch(null);
-      setSelectedLeft(null);
-      setSelectedRight(null);
-    }, 800);
-  }, [content.pairs.length, selectedLeft, selectedRight]);
-
-  const handleLeftClick = (id: string) => {
-    if (matchedPairs.has(id) || wrongMatch) return;
-    playClickSound(0.3);
-    setSelectedLeft((current) => (current === id ? null : id));
+    setDraggedLeftId(null);
   };
 
-  const handleRightClick = (id: string) => {
-    if (matchedPairs.has(id) || wrongMatch) return;
-    playClickSound(0.3);
-    setSelectedRight((current) => (current === id ? null : id));
-  };
-
-  // Wait for arrays to be shuffled before rendering
-  if (leftItems.length === 0 || rightItems.length === 0) {
-    return (
-      <GameWrapper
-        title="Match the Terms"
-        duration={content.duration}
-        instruction="Tap a term on the left, then tap its matching definition on the right."
-        motionPreset="bold"
-        onComplete={onComplete}
-        onSkip={onSkip}
-      >
-        {() => (
-          <div className="flex justify-center items-center py-8">
-            <div className="text-gray-600 dark:text-slate-400">Loading...</div>
-          </div>
-        )}
-      </GameWrapper>
-    );
+  if (pairs.length === 0) {
+    return <div className="p-8 text-center text-stone-500">No pairs provided.</div>;
   }
 
   return (
-    <GameWrapper
-      title="Match the Terms"
-      duration={content.duration}
-      instruction="Tap a term on the left, then tap its matching definition on the right."
-      motionPreset="bold"
-      onComplete={onComplete}
-      onSkip={onSkip}
-    >
-      {(handleComplete: (score?: number, accuracy?: number) => void) => (
-        (() => {
-          completeHandlerRef.current = handleComplete;
-          return (
-            <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            {/* Left column */}
-            <div className="space-y-2">
-              <h3 className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-wider px-1 pb-1">
-                Terms
-              </h3>
-              {leftItems.map((item, idx) => {
-                const isMatched = matchedPairs.has(item.id);
-                const isSelected = selectedLeft === item.id;
-                const isWrong = wrongMatch?.left === item.id;
-                const isMatching =
-                  selectedLeft !== null &&
-                  selectedRight !== null &&
-                  selectedLeft === selectedRight &&
-                  selectedLeft === item.id;
-
-                return (
-                  <button
-                    key={`left-${item.id}`}
-                    onClick={() => handleLeftClick(item.id)}
-                    disabled={completed || isMatched || wrongMatch !== null || isMatching}
-                    style={{ animationDelay: `${idx * 45}ms` }}
-                    className={`
-                      w-full relative p-3 md:p-4 text-left microbreak-stagger microbreak-card-glide
-                      rounded-2xl border-2 transition-all duration-200
-                      ${isMatched ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-default opacity-40' :
-                        isMatching ? 'microbreak-correct bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
-                        isWrong ? 'microbreak-wrong bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
-                        isSelected ? 'bg-indigo-50 border-indigo-500 text-indigo-900 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20 scale-[1.02]' :
-                        'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5'}
-                    `}
-                  >
-                    <span className="text-sm md:text-base font-medium leading-snug">{item.text}</span>
-                    {isMatched && (
-                      <CheckCircle2 className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-emerald-500 opacity-50" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Right column */}
-            <div className="space-y-2">
-              <h3 className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-wider px-1 pb-1">
-                Definitions
-              </h3>
-              {rightItems.map((item, idx) => {
-                const isMatched = matchedPairs.has(item.id);
-                const isSelected = selectedRight === item.id;
-                const isWrong = wrongMatch?.right === item.id;
-                const isMatching =
-                  selectedLeft !== null &&
-                  selectedRight !== null &&
-                  selectedLeft === selectedRight &&
-                  selectedRight === item.id;
-
-                return (
-                  <button
-                    key={`right-${item.id}`}
-                    onClick={() => handleRightClick(item.id)}
-                    disabled={completed || isMatched || wrongMatch !== null || isMatching}
-                    style={{ animationDelay: `${idx * 55}ms` }}
-                    className={`
-                      w-full relative p-3 md:p-4 text-left microbreak-stagger microbreak-card-glide
-                      rounded-2xl border-2 transition-all duration-200
-                      ${isMatched ? 'bg-slate-100 border-slate-200 text-slate-400 cursor-default opacity-40' :
-                        isMatching ? 'microbreak-correct bg-emerald-50 border-emerald-400 text-emerald-800 shadow-[0_0_20px_rgba(16,185,129,0.3)] ring-2 ring-emerald-400/30 scale-[1.02]' :
-                        isWrong ? 'microbreak-wrong bg-red-50 border-red-300 text-red-700 shadow-[0_0_15px_rgba(239,68,68,0.2)]' :
-                        isSelected ? 'bg-indigo-50 border-indigo-500 text-indigo-900 shadow-[0_0_20px_rgba(99,102,241,0.2)] ring-2 ring-indigo-500/20 scale-[1.02]' :
-                        'bg-white border-slate-200 text-slate-700 hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5'}
-                    `}
-                  >
-                    <span className="text-xs md:text-sm leading-relaxed">{item.text}</span>
-                    {isMatched && (
-                      <CheckCircle2 className="absolute right-2 md:right-3 top-1/2 -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-emerald-500 opacity-50" />
-                    )}
-                  </button>
-                );
-              })}
-            </div>
+    <div className="rounded-2xl border border-stone-200 bg-stone-50 p-4 md:p-6">
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <div className="text-xs md:text-sm font-semibold text-stone-600 uppercase tracking-wider">
+          Match the Pairs
+        </div>
+        <div className="flex items-center gap-3">
+          <div className="inline-flex items-center gap-1 rounded-full bg-white border border-stone-200 px-3 py-1 text-xs font-semibold text-stone-700">
+            <Clock size={13} />
+            <span>{Math.floor(timeLeft / 60)}:{(timeLeft % 60).toString().padStart(2, '0')}</span>
           </div>
+          <button
+            type="button"
+            onClick={onSkip}
+            className="rounded-full border border-stone-300 bg-white px-3 py-1 text-xs font-semibold text-stone-700 hover:bg-stone-100"
+          >
+            Skip
+          </button>
+        </div>
+      </div>
 
-          {completed && (
-            <div className="text-center text-green-700 dark:text-green-300 font-semibold text-lg">
-              Perfect! All matched correctly.
-            </div>
+      <div className="w-full max-w-4xl mx-auto p-4 md:p-8">
+        <div className="mb-8 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-stone-900 mb-2">Match the Pairs</h2>
+          <p className="text-stone-600">Select an item from the left and its match on the right.</p>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {!isCompleted ? (
+            <motion.div
+              key="game-board"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"
+            >
+              <div className="flex flex-col gap-3">
+                {leftItems.map((item) => {
+                  const isMatched = matchedIds.has(item.id);
+                  const isSelected = selectedLeft === item.id;
+                  const isError = errorPair?.[0] === item.id;
+
+                  return (
+                    <MatchingCard
+                      key={`left-${item.id}`}
+                      content={item.content}
+                      side="left"
+                      state={isMatched ? 'matched' : isError ? 'error' : isSelected ? 'selected' : 'idle'}
+                      onClick={() => selectLeft(item.id)}
+                      onDragStart={(e) => handleDragStart(e, item.id)}
+                    />
+                  );
+                })}
+              </div>
+
+              <div className="flex flex-col gap-3">
+                {rightItems.map((item) => {
+                  const isMatched = matchedIds.has(item.id);
+                  const isSelected = selectedRight === item.id;
+                  const isError = errorPair?.[1] === item.id;
+
+                  return (
+                    <MatchingCard
+                      key={`right-${item.id}`}
+                      content={item.content}
+                      side="right"
+                      state={isMatched ? 'matched' : isError ? 'error' : isSelected ? 'selected' : 'idle'}
+                      onClick={() => selectRight(item.id)}
+                      onDragOver={handleDragOver}
+                      onDrop={(e) => handleDrop(e, item.id)}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="completion-screen"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-stone-100 text-center max-w-md mx-auto"
+            >
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: 'spring', bounce: 0.5, delay: 0.2 }}
+                className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6"
+              >
+                <Trophy size={40} strokeWidth={1.5} />
+              </motion.div>
+
+              <h3 className="text-2xl font-bold text-stone-900 mb-2">Excellent Work!</h3>
+              <p className="text-stone-600 mb-8">You successfully matched all pairs.</p>
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="bg-stone-50 rounded-xl p-4">
+                  <div className="flex items-center justify-center text-stone-500 mb-1">
+                    <AlertCircle size={16} className="mr-1" />
+                    <span className="text-sm font-medium uppercase tracking-wider">Mistakes</span>
+                  </div>
+                  <div className="text-2xl font-bold text-stone-900">{mistakes}</div>
+                </div>
+                <div className="bg-stone-50 rounded-xl p-4">
+                  <div className="flex items-center justify-center text-stone-500 mb-1">
+                    <Clock size={16} className="mr-1" />
+                    <span className="text-sm font-medium uppercase tracking-wider">Pairs</span>
+                  </div>
+                  <div className="text-2xl font-bold text-stone-900">{pairs.length}</div>
+                </div>
+              </div>
+            </motion.div>
           )}
-            </div>
-          );
-        })()
-      )}
-    </GameWrapper>
+        </AnimatePresence>
+      </div>
+    </div>
   );
 }

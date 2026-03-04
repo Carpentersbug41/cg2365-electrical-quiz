@@ -16,12 +16,9 @@ import {
   deterministicFallbackQuestion,
   EvaluatePayload,
   NextQuestionPayload,
+  sanitizeSocraticQuestionText,
   salvageSocraticPayload,
 } from '@/lib/socratic/fallbacks';
-import {
-  getPromptInjectionSettings,
-  getUserTutorProfileSummaryForRequest,
-} from '@/lib/prompting/profileInjections';
 
 type QuestionIntent = 'diagnose' | 'repair' | 'verify' | 'transfer';
 
@@ -52,6 +49,22 @@ type TurnRequest = {
   previousQuestion?: string;
   previousLevel?: number;
   userAnswer?: string;
+};
+
+type SimpleTurnPayload = {
+  feedback?: string;
+  isCorrect?: boolean;
+  score?: 0 | 1 | 2;
+  nextQuestion?: string;
+  nextIntent?: 'diagnose' | 'repair' | 'verify' | 'transfer';
+};
+
+type SingleCallTurnPayload = {
+  feedback?: string;
+  score?: 0 | 1 | 2;
+  isCorrect?: boolean;
+  nextLevel?: number;
+  nextQuestion?: string;
 };
 
 let llmClientPromise: Promise<Awaited<ReturnType<typeof createLLMClientWithFallback>>> | null = null;
@@ -250,6 +263,33 @@ function compact(value: string, limit = 320): string {
   return value.length > limit ? `${value.slice(0, limit)}...` : value;
 }
 
+function getFastThinkingOverrides(modelName: string): Record<string, unknown> {
+  const normalized = modelName.toLowerCase();
+  if (normalized.includes('gemini-3-flash')) {
+    return {
+      thinkingConfig: {
+        thinkingLevel: 'low',
+      },
+    };
+  }
+  if (normalized.includes('gemini-2.5-flash')) {
+    return {
+      thinkingConfig: {
+        thinkingBudget: 0,
+      },
+    };
+  }
+  return {};
+}
+
+function getSocraticModelName(): string {
+  const override = sanitizeText(process.env.SOCRATIC_GEMINI_MODEL);
+  if (override) {
+    return override;
+  }
+  return getGeminiModelWithDefault();
+}
+
 function extractLessonMisconceptions(lesson: Lesson): LessonMisconception[] {
   const metadata = (lesson as unknown as { metadata?: Record<string, unknown> }).metadata ?? {};
   const rawMisconceptions = Array.isArray(metadata.misconceptions)
@@ -327,53 +367,75 @@ function buildLessonSummary(lesson: Lesson, lessonMisconceptions: LessonMisconce
   ].join('\n');
 }
 
+function buildLiteLessonContext(lesson: Lesson): string {
+  const outcomes = lesson.learningOutcomes
+    .slice(0, 4)
+    .map((outcome, index) => `${index + 1}. ${sanitizeText(outcome)}`)
+    .join('\n');
+
+  const vocab = lesson.blocks
+    .filter((block) => block.type === 'vocab')
+    .flatMap((block) => {
+      const terms = (block.content as { terms?: Array<{ term: string; definition: string }> }).terms ?? [];
+      return terms
+        .slice(0, 6)
+        .map((entry) => `${sanitizeText(entry.term)}: ${compact(sanitizeText(entry.definition), 60)}`);
+    })
+    .slice(0, 6)
+    .join('\n');
+
+  return [
+    `Lesson: ${sanitizeText(lesson.title)} (${sanitizeText(lesson.id)})`,
+    'Outcomes:',
+    outcomes || '- None',
+    'Key vocab:',
+    vocab || '- None',
+  ].join('\n');
+}
+
 async function generateJson<T>(prompt: string): Promise<T> {
   if (!llmClientPromise) {
     llmClientPromise = createLLMClientWithFallback();
   }
   const client = await llmClientPromise;
+  const modelName = getSocraticModelName();
+  const generationConfig = {
+    temperature: 0.3,
+    maxOutputTokens: 240,
+    responseMimeType: 'application/json' as const,
+    ...getFastThinkingOverrides(modelName),
+  };
   const model = client.getGenerativeModel({
-    model: getGeminiModelWithDefault(),
-    generationConfig: {
-      temperature: 0.3,
-      maxOutputTokens: 600,
-      responseMimeType: 'application/json',
-    },
+    model: modelName,
+    generationConfig,
   });
 
   let lastError = 'Failed to parse model response.';
 
-  for (let attempt = 0; attempt < 2; attempt++) {
-    const result = await model.generateContent({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.3,
-        maxOutputTokens: 600,
-        responseMimeType: 'application/json',
-      },
-    });
+  const result = await model.generateContent({
+    contents: [{ role: 'user', parts: [{ text: prompt }] }],
+    generationConfig,
+  });
 
-    const raw = result.response.text();
-    const validation = validateLLMResponse(raw);
-    if (!validation.valid) {
-      lastError = validation.error ?? 'Invalid LLM response format.';
-      continue;
+  const raw = result.response.text();
+  const validation = validateLLMResponse(raw);
+  if (!validation.valid) {
+    throw new Error(validation.error ?? 'Invalid LLM response format.');
+  }
+
+  const extracted = extractJson(raw);
+  const candidates = [
+    extracted,
+    preprocessToValidJson(extracted),
+    repairMalformedJsonStrings(preprocessToValidJson(extracted)),
+  ];
+
+  for (const candidate of candidates) {
+    const parsed = safeJsonParse<T>(candidate);
+    if (parsed.success && parsed.data) {
+      return parsed.data;
     }
-
-    const extracted = extractJson(raw);
-    const candidates = [
-      extracted,
-      preprocessToValidJson(extracted),
-      repairMalformedJsonStrings(preprocessToValidJson(extracted)),
-    ];
-
-    for (const candidate of candidates) {
-      const parsed = safeJsonParse<T>(candidate);
-      if (parsed.success && parsed.data) {
-        return parsed.data;
-      }
-      lastError = parsed.error ?? lastError;
-    }
+    lastError = parsed.error ?? lastError;
   }
 
   throw new Error(lastError);
@@ -397,78 +459,30 @@ async function generateQuestion(
   askedCount: number,
   questionCount: number,
   history: TurnHistoryItem[],
-  lessonMisconceptions: LessonMisconception[],
-  profileInjection?: string
+  _lessonMisconceptions: LessonMisconception[],
+  _profileInjection?: string
   ): Promise<{ question: string; intent: QuestionIntent }> {
-    const recentHistory = history
-      .slice(-6)
-      .map((item, index) => `${index + 1}. [Level ${item.level}] Q: ${compact(item.question, 140)} | A: ${compact(item.answer, 140)}`)
-      .join('\n');
+  const recentHistory = history
+    .slice(-2)
+    .map((item, index) => `${index + 1}. Q: ${compact(item.question, 120)} | A: ${compact(item.answer, 120)}`)
+    .join('\n');
 
-    const conceptWindowSize = 4;
-    const questionPositionInConcept = (askedCount % conceptWindowSize) + 1;
-    const previousQuestion = history.length > 0 ? history[history.length - 1].question : '';
-    const previousAnswer = history.length > 0 ? history[history.length - 1].answer : '';
-    const isFollowUpStep = questionPositionInConcept > 1;
-
-  const levelGuide = `Level 1 Recall: simple factual check.
-Level 2 Connection: link two ideas.
-Level 3 Synthesis: combine ideas in reasoning.
-Level 4 Hypothesis: prediction/justification beyond direct text.`;
-
-  const profileSection = profileInjection
-    ? `\nPROFILE INJECTION (MANDATORY STYLE/TONE):\n${profileInjection}\nUse this for phrasing and pacing only.`
-    : '';
-  const misconceptionSection =
-    lessonMisconceptions.length > 0
-      ? lessonMisconceptions
-          .map(
-            (item) =>
-              `- ${item.code}: misconception="${compact(item.misconception, 140)}"; correction="${compact(item.correction, 140)}"`
-          )
-          .join('\n')
-      : '- No explicit misconception map available for this lesson.';
-
-  const prompt = `You are generating ONE Socratic question for a student.
+  const prompt = `Ask the learner one short next question for this lesson chat.
 Return strict JSON only: {"question":"...","intent":"diagnose|repair|verify|transfer"}.
-${profileSection}
 
-  Rules:
-  - Ask exactly one question at a time.
-  - Keep it concise and clear for spoken dialogue.
-  - One question at a time, but keep conceptual continuity.
-  - Work in concept chains of 3-4 questions on the SAME concept area before switching.
-  - Do NOT jump between unrelated concepts question-to-question.
-  - Use the requested level only.
-  - Keep intent exactly equal to requested intent.
-  - Do not ask multiple sub-questions.
-  - Do not include answer hints.
-- No markdown.
-- If Active misconception code is present, target that misconception explicitly.
-- Remember: Always Work in concept chains of 3-4 questions on the SAME concept area before switching.
+Rules:
+- One question only.
+- Keep it short and clear.
+- No markdown, no bullet points.
+- Keep continuity with recent exchange.
+- Use the requested level loosely as guidance.
+- If active misconception exists, address it.
 
-  Session progress: next question number ${askedCount + 1} of ${questionCount}
-  Target level: ${level}
-  Target intent: ${intent}
-  Concept-chain position: ${questionPositionInConcept} of 4
-  Active misconception code: ${activeMisconception || 'none'}
-  Misconception map for this lesson:
-  ${misconceptionSection}
-
-  ${isFollowUpStep
-    ? `FOLLOW-UP REQUIREMENT (MANDATORY):
-  - Stay in the exact same concept area as the immediately previous question.
-  - Deepen understanding of that same area using a tighter probe (mechanism, contrast, justification, or near-transfer).
-  - Base the follow-up on the prior exchange below.
-  Previous question: ${compact(previousQuestion, 200)}
-  Student answer: ${compact(previousAnswer, 200)}`
-    : `NEW-CONCEPT STEP:
-  - Start a fresh concept area from the lesson, specific and foundational.
-  - The next 2-3 questions will stay in this same area.`}
-
-  ${levelGuide}
-
-Avoid repeating these recent questions:
+Progress: ${askedCount + 1} of ${questionCount}
+Requested level: ${level}
+Requested intent: ${intent}
+Active misconception: ${activeMisconception || 'none'}
+Recent exchange:
 ${recentHistory || 'None'}
 
 Lesson context:
@@ -476,8 +490,12 @@ ${lessonSummary}`;
 
   try {
     const payload = await generateJson<NextQuestionPayload>(prompt);
+    const safeQuestion = sanitizeSocraticQuestionText(sanitizeText(payload.question));
+    if (!safeQuestion) {
+      throw new Error('Generated question was empty after sanitization.');
+    }
     return {
-      question: sanitizeText(payload.question),
+      question: safeQuestion,
       intent,
     };
   } catch {
@@ -501,7 +519,7 @@ ${lessonSummary}`;
         },
       });
       const salvaged = salvageSocraticPayload(fallbackResult.response.text(), 'question') as NextQuestionPayload;
-      const safeQuestion = sanitizeText(salvaged.question);
+      const safeQuestion = sanitizeSocraticQuestionText(sanitizeText(salvaged.question));
       if (safeQuestion) {
         return {
           question: safeQuestion,
@@ -632,28 +650,208 @@ ${lessonSummary}`;
   }
 }
 
+async function evaluateAndGenerateSimpleTurn(
+  lessonSummary: string,
+  question: string,
+  answer: string,
+  level: number,
+  askedCount: number,
+  questionCount: number,
+  history: TurnHistoryItem[],
+  lessonMisconceptions: LessonMisconception[],
+  profileInjection?: string
+): Promise<{ feedback: string; isCorrect: boolean; score: 0 | 1 | 2; nextQuestion: string; nextIntent: QuestionIntent }> {
+  const recentHistory = history
+    .slice(-2)
+    .map((item, index) => `${index + 1}. Q: ${compact(item.question, 110)} | A: ${compact(item.answer, 110)}`)
+    .join('\n');
+
+  const prompt = `You are a simple Q+A tutor. Evaluate the learner's last answer and ask exactly one next question.
+Return strict JSON only:
+{"feedback":"...","isCorrect":true,"score":2,"nextQuestion":"...","nextIntent":"diagnose|repair|verify|transfer"}
+
+Rules:
+- Keep it simple.
+- feedback: max 1 short sentence.
+- nextQuestion: one short clear question only.
+- No markdown, no bullet points, no extra keys.
+
+Progress: answered ${askedCount} of ${questionCount}
+Previous question (level ${level}): ${question}
+Learner answer: ${answer}
+Recent exchange:
+${recentHistory || 'None'}
+
+Lesson context:
+${lessonSummary}`;
+
+  try {
+    const payload = await generateJson<SimpleTurnPayload>(prompt);
+    const score = clampRubricScore(payload.score ?? (payload.isCorrect ? 2 : 0));
+    const rawIntent = sanitizeText(payload.nextIntent ?? '').toLowerCase();
+    const nextIntent: QuestionIntent =
+      rawIntent === 'diagnose' || rawIntent === 'repair' || rawIntent === 'verify' || rawIntent === 'transfer'
+        ? rawIntent
+        : score >= 2
+          ? 'verify'
+          : 'diagnose';
+    const nextQuestion = sanitizeSocraticQuestionText(sanitizeText(payload.nextQuestion ?? ''));
+    if (!nextQuestion) {
+      throw new Error('Missing nextQuestion');
+    }
+    return {
+      feedback: sanitizeText(payload.feedback) || 'Nice try. Let us do the next one.',
+      isCorrect: score >= 2,
+      score,
+      nextQuestion,
+      nextIntent,
+    };
+  } catch {
+    const evaluation = await evaluateAnswer(
+      lessonSummary,
+      question,
+      answer,
+      level,
+      lessonMisconceptions,
+      profileInjection
+    );
+    const score = clampRubricScore(evaluation.score ?? (evaluation.isCorrect ? 2 : 0));
+    const historyWithCurrent: TurnHistoryItem[] = [
+      ...history,
+      {
+        question,
+        answer,
+        level,
+        correct: score >= 2,
+        score,
+        misconceptionCode: sanitizeText(evaluation.misconceptionCode ?? '') || null,
+      },
+    ];
+    const nextLevel = nextLevelFromProgress(level, score, historyWithCurrent);
+    const activeMisconception = getActiveMisconception(historyWithCurrent);
+    const nextIntent = score <= 1 ? (activeMisconception ? 'repair' : 'verify') : selectQuestionIntent(nextLevel, historyWithCurrent, activeMisconception);
+    const nextTurn = await generateQuestion(
+      lessonSummary,
+      nextLevel,
+      nextIntent,
+      activeMisconception,
+      askedCount,
+      questionCount,
+      historyWithCurrent,
+      lessonMisconceptions,
+      profileInjection
+    );
+    return {
+      feedback: evaluation.feedback,
+      isCorrect: score >= 2,
+      score,
+      nextQuestion: nextTurn.question,
+      nextIntent: nextTurn.intent,
+    };
+  }
+}
+
+async function singleCallSocraticTurn(params: {
+  lessonContext: string;
+  askedCount: number;
+  questionCount: number;
+  mode: 'start' | 'continue';
+  history: TurnHistoryItem[];
+  previousQuestion?: string;
+  userAnswer?: string;
+  previousLevel?: number;
+}): Promise<{ feedback: string; score: 0 | 1 | 2; isCorrect: boolean; nextLevel: number; nextQuestion: string }> {
+  const { lessonContext, askedCount, questionCount, mode, history, previousQuestion, userAnswer, previousLevel } = params;
+  const safePrevLevel = clampLevel(Number(previousLevel ?? 1));
+  const fullHistoryText = history.length === 0
+    ? 'None'
+    : history
+        .map((turn, index) => {
+          const level = clampLevel(Number(turn.level ?? 1));
+          const q = compact(sanitizeText(turn.question), 140);
+          const a = compact(sanitizeText(turn.answer), 140);
+          return `${index + 1}. [L${level}] Q: ${q} | A: ${a}`;
+        })
+        .join('\n');
+  const levelGuide = `Level 1 Recall: retrieve a fact.
+Level 2 Connection: link two ideas.
+Level 3 Synthesis: combine ideas to explain.
+Level 4 Hypothesis: predict and justify.`;
+
+  const prompt = `System: You are a Socratic questioner.
+Subject matter:
+${lessonContext}
+
+Rules:
+- Ask exactly one concise question.
+- Stay on-topic.
+- No markdown.
+- Keep language clear for speech.
+
+Level progression:
+- Start at Level 1.
+- If answer is correct, move up one level (max 4).
+- If answer is incorrect, stay at same level or move down one level (min 1).
+
+${levelGuide}
+
+Return strict JSON only with this shape:
+{"feedback":"...","score":0,"isCorrect":false,"nextLevel":1,"nextQuestion":"..."}
+
+Mode: ${mode}
+Asked so far: ${askedCount} of ${questionCount}
+Full conversation history:
+${fullHistoryText}
+${mode === 'continue' ? `Previous level: ${safePrevLevel}
+Previous question: ${previousQuestion ?? ''}
+Learner answer: ${userAnswer ?? ''}` : ''}`;
+
+  try {
+    const payload = await generateJson<SingleCallTurnPayload>(prompt);
+    const score = clampRubricScore(payload.score ?? (payload.isCorrect ? 2 : 0));
+    const isCorrect = score >= 2;
+    const computedNextLevel = clampLevel(
+      Number(payload.nextLevel ?? (mode === 'start' ? 1 : isCorrect ? safePrevLevel + 1 : safePrevLevel))
+    );
+    const nextQuestion = sanitizeSocraticQuestionText(sanitizeText(payload.nextQuestion ?? ''));
+    if (!nextQuestion) {
+      throw new Error('Missing next question.');
+    }
+    return {
+      feedback: sanitizeText(payload.feedback) || (mode === 'start' ? '' : isCorrect ? 'Good. Next one.' : 'Good try. Next one.'),
+      score,
+      isCorrect,
+      nextLevel: computedNextLevel,
+      nextQuestion,
+    };
+  } catch {
+    if (mode === 'start') {
+      return {
+        feedback: '',
+        score: 0,
+        isCorrect: false,
+        nextLevel: 1,
+        nextQuestion: deterministicFallbackQuestion(lessonContext, 1, 'diagnose'),
+      };
+    }
+
+    const fallbackEval = deterministicFallbackEvaluation(userAnswer ?? '');
+    const isCorrect = fallbackEval.isCorrect;
+    const score = clampRubricScore(fallbackEval.score ?? (isCorrect ? 2 : 0));
+    const nextLevel = clampLevel(isCorrect ? safePrevLevel + 1 : safePrevLevel);
+    return {
+      feedback: fallbackEval.feedback,
+      score,
+      isCorrect,
+      nextLevel,
+      nextQuestion: deterministicFallbackQuestion(lessonContext, nextLevel, isCorrect ? 'verify' : 'diagnose'),
+    };
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json()) as TurnRequest;
-    const [promptInjections, learnerProfileSummary] = await Promise.all([
-      getPromptInjectionSettings(),
-      getUserTutorProfileSummaryForRequest(request),
-    ]);
-    const hasGlobalProfile = Boolean(promptInjections.tutorResponseProfile?.trim());
-    const hasLearnerProfile = Boolean(learnerProfileSummary?.trim());
-    const responseProfileInjection = [
-      hasGlobalProfile
-        ? `GLOBAL STYLE (FALLBACK): ${promptInjections.tutorResponseProfile.trim()}`
-        : null,
-      hasLearnerProfile
-        ? `LEARNER PROFILE (AUTHORITATIVE FOR THIS USER): ${learnerProfileSummary!.trim()}`
-        : null,
-      hasGlobalProfile || hasLearnerProfile
-        ? 'Priority: follow LEARNER PROFILE for voice/tone; use GLOBAL STYLE only as fallback/default.'
-        : null,
-    ]
-      .filter((value): value is string => Boolean(value && value.trim().length > 0))
-      .join('\n');
 
     const lessonId = sanitizeText(body.lessonId);
     if (!lessonId) {
@@ -661,15 +859,11 @@ export async function POST(request: NextRequest) {
     }
 
     const lesson = await loadLesson(lessonId);
-    const lessonMisconceptions = extractLessonMisconceptions(lesson);
-    const lessonSummary = buildLessonSummary(lesson, lessonMisconceptions);
+    const lessonSummary = buildLiteLessonContext(lesson);
     const questionCount = clampQuestionCount(Number(body.questionCount ?? 8));
     const startLevel = clampLevel(Number(body.startLevel ?? 1));
     const askedCount = Math.max(0, Number(body.askedCount ?? 0));
     const history = Array.isArray(body.history) ? body.history : [];
-    const openingLevel = computeOpeningLevel(startLevel, history);
-    const openingMisconception = getActiveMisconception(history);
-    const openingIntent = selectQuestionIntent(openingLevel, history, openingMisconception);
 
     const previousQuestion = sanitizeText(body.previousQuestion);
     const previousLevel = clampLevel(Number(body.previousLevel ?? startLevel));
@@ -685,105 +879,76 @@ export async function POST(request: NextRequest) {
         });
       }
 
-      const nextTurn = await generateQuestion(
-        lessonSummary,
-        openingLevel,
-        openingIntent,
-        openingMisconception,
+      const startTurn = await singleCallSocraticTurn({
+        lessonContext: lessonSummary,
         askedCount,
         questionCount,
+        mode: 'start',
         history,
-        lessonMisconceptions,
-        responseProfileInjection
-      );
-      if (!nextTurn.question) {
-        return NextResponse.json({ success: false, error: 'Could not generate first question.' }, { status: 500 });
-      }
+      });
 
       return NextResponse.json({
         success: true,
-        question: nextTurn.question,
-        questionIntent: nextTurn.intent,
-        questionLevel: openingLevel,
+        question: startTurn.nextQuestion,
+        questionIntent: 'diagnose',
+        questionLevel: 1,
         askedCount: askedCount + 1,
         complete: askedCount + 1 >= questionCount,
       });
     }
 
-    const evaluation = await evaluateAnswer(
-      lessonSummary,
-      previousQuestion,
-      userAnswer,
-      previousLevel,
-      lessonMisconceptions,
-      responseProfileInjection
-    );
-    const currentScore = clampRubricScore(evaluation.score ?? (evaluation.isCorrect ? 2 : 0));
-    const historyWithCurrent: TurnHistoryItem[] = [
-      ...history,
-      {
-        question: previousQuestion,
-        answer: userAnswer,
-        level: previousLevel,
-        correct: currentScore >= 2,
-        score: currentScore,
-        misconceptionCode: sanitizeText(evaluation.misconceptionCode ?? '') || null,
-      },
-    ];
-    const derivedNextLevel = nextLevelFromProgress(previousLevel, currentScore, historyWithCurrent);
-    const activeMisconception = getActiveMisconception(historyWithCurrent);
-    const defaultNextIntent = selectQuestionIntent(derivedNextLevel, historyWithCurrent, activeMisconception);
-    const mandatoryRetest = currentScore <= 1;
-    const forcedNextLevel = mandatoryRetest ? Math.min(previousLevel, derivedNextLevel) : derivedNextLevel;
-    const nextIntent = mandatoryRetest
-      ? (activeMisconception ? 'repair' : 'verify')
-      : defaultNextIntent;
     const shouldComplete = askedCount >= questionCount;
 
     if (shouldComplete) {
+      const finalTurn = await singleCallSocraticTurn({
+        lessonContext: lessonSummary,
+        askedCount,
+        questionCount,
+        mode: 'continue',
+        history,
+        previousQuestion,
+        userAnswer,
+        previousLevel,
+      });
       return NextResponse.json({
         success: true,
-        feedback: evaluation.feedback,
-        correct: currentScore >= 2,
-        score: currentScore,
-        misconceptionCode: activeMisconception,
-        evidenceQuote: evaluation.evidenceQuote ?? '',
-        nextAction: evaluation.nextAction ?? (currentScore >= 2 ? 'advance' : 'retry'),
-        nextLevel: forcedNextLevel,
-        mandatoryRetest,
+        feedback: finalTurn.feedback,
+        correct: finalTurn.isCorrect,
+        score: finalTurn.score,
+        misconceptionCode: null,
+        evidenceQuote: '',
+        nextAction: finalTurn.isCorrect ? 'advance' : 'retry',
+        nextLevel: finalTurn.nextLevel,
+        mandatoryRetest: false,
         askedCount,
         complete: true,
       });
     }
 
-    const nextTurn = await generateQuestion(
-      lessonSummary,
-      forcedNextLevel,
-      nextIntent,
-      activeMisconception,
+    const turn = await singleCallSocraticTurn({
+      lessonContext: lessonSummary,
       askedCount,
       questionCount,
-      historyWithCurrent,
-      lessonMisconceptions,
-      responseProfileInjection
-    );
-    if (!nextTurn.question) {
-      return NextResponse.json({ success: false, error: 'Could not generate next question.' }, { status: 500 });
-    }
+      mode: 'continue',
+      history,
+      previousQuestion,
+      userAnswer,
+      previousLevel,
+    });
 
     return NextResponse.json({
       success: true,
-      feedback: evaluation.feedback,
-      correct: currentScore >= 2,
-      score: currentScore,
-      misconceptionCode: activeMisconception,
-      evidenceQuote: evaluation.evidenceQuote ?? '',
-      nextAction: evaluation.nextAction ?? (currentScore >= 2 ? 'advance' : 'retry'),
-      nextLevel: forcedNextLevel,
-      mandatoryRetest,
-      question: nextTurn.question,
-      questionIntent: nextTurn.intent,
-      questionLevel: forcedNextLevel,
+      feedback: turn.feedback,
+      correct: turn.isCorrect,
+      score: turn.score,
+      misconceptionCode: null,
+      evidenceQuote: '',
+      nextAction: turn.isCorrect ? 'advance' : 'retry',
+      nextLevel: turn.nextLevel,
+      mandatoryRetest: false,
+      question: turn.nextQuestion,
+      questionIntent: turn.isCorrect ? 'verify' : 'diagnose',
+      questionLevel: turn.nextLevel,
       askedCount: askedCount + 1,
       complete: askedCount + 1 >= questionCount,
     });

@@ -95,7 +95,8 @@
           "transformer-connection",
           "met"
         ],
-        "placeholderText": "A three-part comparison diagram. TT: Shows a local earth electrode (rod) connected to the house. TN-S: Shows three separate lines (L, N, E) from the transformer to the house. TN-C-S: Shows two lines (L and PEN) from the transformer, with the PEN splitting into N and E at the house service head. All systems show the earth wires meeting at a Main Earthing Terminal (MET)."
+        "placeholderText": "A three-part comparison diagram. TT: Shows a local earth electrode (rod) connected to the house. TN-S: Shows three separate lines (L, N, E) from the transformer to the house. TN-C-S: Shows two lines (L and PEN) from the transformer, with the PEN splitting into N and E at the house service head. All systems show the earth wires meeting at a Main Earthing Terminal (MET).",
+        "embedUrl": "/simulations/ads1/dist/index.html"
       }
     },
     {
@@ -486,6 +487,20 @@
       }
     },
     {
+      "id": "203-4L1E-socratic",
+      "type": "socratic",
+      "order": 9.75,
+      "content": {
+        "title": "Socratic Voice Questions",
+        "description": "Adaptive end-of-lesson Socratic oral check.",
+        "enabled": true,
+        "questionCount": 8,
+        "startLevel": 1,
+        "allowVoiceInput": true,
+        "allowVoiceOutput": true
+      }
+    },
+    {
       "id": "203-4L1E-spaced-review",
       "type": "spaced-review",
       "order": 10,
@@ -535,8 +550,8 @@
   ],
   "metadata": {
     "created": "2026-03-02",
-    "updated": "2026-03-02",
-    "version": "1.2",
+    "updated": "2026-03-03",
+    "version": "1.4",
     "author": "C&G 2365 Learning Team",
     "taskMode": "IDENTIFICATION, PURPOSE_ONLY",
     "syllabusAnchors": {

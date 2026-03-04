@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   deterministicFallbackEvaluation,
   deterministicFallbackQuestion,
+  sanitizeSocraticQuestionText,
   salvageSocraticPayload,
   stripWrappingQuotes,
 } from '../fallbacks';
@@ -16,6 +17,12 @@ describe('socratic fallbacks', () => {
     const malformed = `{"question":"Why does resistance increase when temperature rises?`;
     const payload = salvageSocraticPayload(malformed, 'question') as { question: string };
     expect(payload.question).toContain('resistance increase');
+  });
+
+  it('removes question key artifacts from malformed plain text', () => {
+    const malformed = `question":"Ahoy! Name the three earthing systems used in UK homes.`;
+    const cleaned = sanitizeSocraticQuestionText(malformed);
+    expect(cleaned).toBe('Ahoy! Name the three earthing systems used in UK homes.');
   });
 
   it('salvages evaluation from loose plain-text payload', () => {
