@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { questions as allQuestions, Question } from '@/data/questions';
-import confetti from 'canvas-confetti';
+import type { Question } from '@/data/questions';
 import ChatAssistant from './chat/ChatAssistant';
 import ChatMessage from './chat/ChatMessage';
 import { courseHref } from '@/lib/routing/courseHref';
@@ -27,7 +26,7 @@ import { authedFetch } from '@/lib/api/authedFetch';
 interface QuizProps {
   section?: string;
   onBack?: () => void;
-  questions?: Question[]; // Optional: pass custom filtered questions
+  questions: Question[];
   lessonId?: string; // For mastery tracking
   isRetest?: boolean; // True if this is a delayed mastery retest
   enableConfidence?: boolean; // Enable confidence rating collection
@@ -70,6 +69,17 @@ interface ReportChatMessage {
   timestamp: Date;
 }
 
+type ConfettiFn = typeof import('canvas-confetti')['default'];
+let confettiLoader: Promise<ConfettiFn> | null = null;
+
+function fireConfetti(options: Parameters<ConfettiFn>[0]) {
+  if (!confettiLoader) {
+    confettiLoader = import('canvas-confetti').then((module) => module.default);
+  }
+
+  void confettiLoader.then((confetti) => confetti(options));
+}
+
 function getQuestionMeta(question: Question): {
   unitCode: string | null;
   loCode: string | null;
@@ -104,14 +114,10 @@ const shuffleQuestionOptions = (question: Question): Question => {
   };
 };
 
-// Function to randomly select n questions from the question bank (filtered by section or custom questions)
-const getRandomQuestions = (count: number, section?: string, customQuestions?: Question[]): Question[] => {
-  const filteredQuestions = customQuestions 
-    ? customQuestions
-    : section 
-    ? allQuestions.filter(q => q.section === section)
-    : allQuestions;
-  
+// Function to randomly select n questions from the available question list
+const getRandomQuestions = (count: number, availableQuestions: Question[]): Question[] => {
+  const filteredQuestions = availableQuestions;
+
   const shuffled = [...filteredQuestions].sort(() => Math.random() - 0.5);
   const selected = shuffled.slice(0, count);
   
@@ -179,7 +185,7 @@ const playCompletionSound = (score: number, total: number) => {
 export default function Quiz({ 
   section, 
   onBack, 
-  questions: customQuestions, 
+  questions: sourceQuestions,
   lessonId, 
   isRetest = false, 
   enableConfidence = false,
@@ -188,7 +194,7 @@ export default function Quiz({
   context = 'practice',
   quizSetId,
   onComplete 
-}: QuizProps = {}) {
+}: QuizProps) {
   const MIN_REASONING_CHARS = 20;
   const MIN_CORRECTION_CHARS = 20;
   const requireReasoning = context === 'lesson' || context === 'diagnostic';
@@ -297,7 +303,7 @@ export default function Quiz({
       // Sounds & Visuals
       if (newStreak % 5 === 0) {
          playStreakSound(newStreak);
-         confetti({
+        fireConfetti({
            particleCount: 50,
            spread: 60,
            origin: { y: 0.7 }
@@ -491,7 +497,7 @@ export default function Quiz({
     playCompletionSound(score, questions.length);
     
     if (score === questions.length) {
-      confetti({
+      fireConfetti({
         particleCount: 200,
         spread: 100,
         origin: { y: 0.6 }
@@ -583,7 +589,7 @@ export default function Quiz({
   };
 
   const startQuiz = (questionCount: number) => {
-    const randomQuestions = getRandomQuestions(questionCount, section, customQuestions);
+    const randomQuestions = getRandomQuestions(questionCount, sourceQuestions);
     setSelectedQuestions(randomQuestions);
     setSelectedAnswers(new Array(questionCount).fill(null));
     setSelectedConfidences(new Array(questionCount).fill(null));
@@ -601,12 +607,8 @@ export default function Quiz({
     }
   };
   
-  // Get questions for the selected section or custom questions
-  const sectionQuestions = customQuestions 
-    ? customQuestions
-    : section 
-    ? allQuestions.filter(q => q.section === section)
-    : allQuestions;
+  // Questions passed in by the caller for this quiz context.
+  const sectionQuestions = sourceQuestions;
 
   const handleReview = () => {
     setIsReviewing(true);

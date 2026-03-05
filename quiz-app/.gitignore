@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -30,6 +31,7 @@ yarn-debug.log*
 yarn-error.log*
 .tmp_dev_err.log
 .tmp_dev_out.log
+.tmp_*
 
 # env files
 .env
