@@ -5,6 +5,7 @@
 
 import { NextResponse } from 'next/server';
 import { lessonIndex } from '@/data/lessons/lessonIndex';
+import { getLessonQuestionCount } from '@/lib/questions/questionFilter';
 import { getCurriculumScopeFromReferer, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 import fs from 'fs';
 import path from 'path';
@@ -56,6 +57,7 @@ export async function GET(request: Request) {
 
     const lessonsWithScores = allLessons.map((lesson) => ({
       ...lesson,
+      questionCount: getLessonQuestionCount(lesson.id),
       generationScore: generationScores.get(lesson.id) ?? null,
     }));
     const byUnit = lessonsWithScores.reduce<Record<string, typeof lessonsWithScores>>((acc, lesson) => {
