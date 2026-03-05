@@ -3,6 +3,7 @@ import { ensureAuthProgressEnabled, requireSupabaseSession } from '@/lib/authPro
 import { AttemptPayload } from '@/lib/authProgress/types';
 import { normalizeQuestionStableId } from '@/lib/authProgress/questionIdentity';
 import { updateLessonProgressFromAttempt } from '@/lib/authProgress/serverProgress';
+import { resolveReviewQueueItemOnCorrect } from '@/lib/review/reviewQueueRepo';
 
 const VALID_QUESTION_TYPES = new Set(['mcq', 'short', 'numeric', 'other']);
 const VALID_AC_SOURCES = new Set(['question', 'block', 'lesson', 'none']);
@@ -57,6 +58,7 @@ export async function POST(request: NextRequest) {
     user_id: session.user.id,
     lesson_id: payload.lesson_id ?? null,
     block_id: payload.block_id ?? null,
+    quiz_set_id: payload.quiz_set_id ?? null,
     question_stable_id: normalizeQuestionStableId(payload.question_stable_id),
     question_type: payload.question_type,
     correct: payload.correct,
@@ -85,6 +87,17 @@ export async function POST(request: NextRequest) {
     console.warn('Failed to update lesson progress from attempt:', progressError);
   }
 
+  if (payload.correct) {
+    try {
+      await resolveReviewQueueItemOnCorrect(
+        session.client,
+        session.user.id,
+        normalizeQuestionStableId(payload.question_stable_id)
+      );
+    } catch (queueError) {
+      console.warn('Failed to resolve review queue item from attempt:', queueError);
+    }
+  }
+
   return NextResponse.json({ ok: true, id: data.id });
 }
-

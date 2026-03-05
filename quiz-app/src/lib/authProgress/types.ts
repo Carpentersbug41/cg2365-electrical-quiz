@@ -5,6 +5,7 @@ export type GradingMode = 'deterministic' | 'llm';
 export interface AttemptPayload {
   lesson_id?: string | null;
   block_id?: string | null;
+  quiz_set_id?: string | null;
   question_stable_id: string;
   question_type: QuestionType;
   correct: boolean;
@@ -26,4 +27,3 @@ export interface LessonCompletePayload {
   score?: number;
   masteryAchieved?: boolean;
 }
-

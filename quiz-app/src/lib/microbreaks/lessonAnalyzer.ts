@@ -1,4 +1,4 @@
-import { Lesson, VocabBlockContent, ExplanationBlockContent } from '@/data/lessons/types';
+import { Lesson, VocabBlockContent } from '@/data/lessons/types';
 
 export interface LessonAnalysis {
   hasVocab: boolean;
@@ -7,7 +7,7 @@ export interface LessonAnalysis {
   explanationCount: number;
   existingMicrobreaks: number;
   totalBlocks: number;
-  recommendedGames: Array<'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win'>;
+  recommendedGames: Array<'matching' | 'sorting' | 'spot-error' | 'quick-win'>;
   suitableForGames: boolean;
   warnings: string[];
 }
@@ -30,7 +30,7 @@ export function analyzeLessonForGames(lesson: Lesson): LessonAnalysis {
   const explanationCount = explanationBlocks.length;
   
   // Build recommendations based on content
-  const recommendedGames: Array<'matching' | 'sorting' | 'spot-error' | 'tap-label' | 'quick-win'> = [];
+  const recommendedGames: Array<'matching' | 'sorting' | 'spot-error' | 'quick-win'> = [];
   const warnings: string[] = [];
   
   // Matching game - good if vocab exists
@@ -53,12 +53,6 @@ export function analyzeLessonForGames(lesson: Lesson): LessonAnalysis {
   // Spot error - needs explanations with procedures/steps
   if (explanationCount >= 2) {
     recommendedGames.push('spot-error');
-  }
-  
-  // Tap to label - needs diagrams
-  const hasDiagram = lesson.blocks.some(b => b.type === 'diagram');
-  if (hasDiagram) {
-    recommendedGames.push('tap-label');
   }
   
   // Overall suitability

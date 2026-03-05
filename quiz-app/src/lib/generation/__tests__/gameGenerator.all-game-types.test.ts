@@ -11,7 +11,6 @@ const ALL_GAME_TYPES: GameType[] = [
   'matching',
   'sorting',
   'spot-error',
-  'tap-label',
   'quick-win',
   'sequencing',
   'fill-gap',

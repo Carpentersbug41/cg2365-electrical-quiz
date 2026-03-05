@@ -161,7 +161,6 @@ export type GameType =
   | 'matching'
   | 'sorting'
   | 'spot-error'
-  | 'tap-label'
   | 'quick-win'
   | 'sequencing'
   | 'fill-gap'
@@ -225,18 +224,6 @@ export interface SpotErrorGameContent {
   explanation?: string;
 }
 
-export interface TapLabelGameContent {
-  breakType: 'game';
-  gameType: 'tap-label';
-  duration: number;
-  imageUrl?: string; // Optional diagram reference
-  items: Array<{
-    id: string;
-    label: string;
-    correctPosition: { x: number; y: number }; // Percentage-based
-  }>;
-}
-
 export interface QuickWinGameContent {
   breakType: 'game';
   gameType: 'quick-win';
@@ -270,6 +257,13 @@ export interface IsCorrectWhyGameContent extends MicrobreakGameBase {
   reasons: string[];
   correctReasonIndex: number;
   explanation?: string;
+  questions?: Array<{
+    statement: string;
+    isCorrect: boolean;
+    reasons: string[];
+    correctReasonIndex: number;
+    explanation?: string;
+  }>;
 }
 
 export interface DiagnosisRankedGameContent extends MicrobreakGameBase {
@@ -303,6 +297,12 @@ export interface FormulaBuildGameContent extends MicrobreakGameBase {
   gameType: 'formula-build';
   tokens: string[];
   correctSequence: string[];
+  questions?: Array<{
+    prompt?: string;
+    tokens: string[];
+    correctSequence: string[];
+    timerSeconds?: number;
+  }>;
 }
 
 export interface TapTheLineGameContent extends MicrobreakGameBase {
@@ -332,7 +332,6 @@ export type MicrobreakContent =
   | MatchingGameContent
   | SortingGameContent
   | SpotErrorGameContent
-  | TapLabelGameContent
   | QuickWinGameContent
   | SequencingGameContent
   | FillGapGameContent

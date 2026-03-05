@@ -132,11 +132,6 @@ function buildGameTypePromptSection(gameType: GameType): string {
 - Include one clear scenario.
 - Include >=3 options.
 - Exactly one option must be marked isError=true.`;
-    case 'tap-label':
-      return `GAME-TYPE RULES (tap-label):
-- Include >=3 label items.
-- Use diagram labels from digest when available.
-- Use imageUrl if digest provides one.`;
     case 'quick-win':
       return `GAME-TYPE RULES (quick-win):
 - Include >=5 questions.
@@ -173,9 +168,10 @@ function buildGameTypePromptSection(gameType: GameType): string {
 - Keep answers concise and distinct from distractors.`;
     case 'formula-build':
       return `GAME-TYPE RULES (formula-build):
-- Provide prompt, shuffled tokens, correctSequence, timerSeconds.
+- Provide exactly one formula question per game (single prompt, single token set, single correctSequence).
 - Include at least one distractor token not in correctSequence.
-- Keep formula symbolic, not sentence fragments.`;
+- Keep formula symbolic, not sentence fragments.
+- Shuffle token order (do not return tokens in exact answer order).`;
     case 'tap-the-line':
       return `GAME-TYPE RULES (tap-the-line):
 - Provide >=3 lines.
@@ -476,7 +472,6 @@ function getGameFamily(gameType: GameType): string {
   if (['quick-win', 'fill-gap', 'tap-the-word', 'tap-the-line', 'elimination'].includes(gameType)) return 'recall';
   if (['spot-error', 'is-correct-why', 'diagnosis-ranked'].includes(gameType)) return 'reasoning';
   if (['sequencing', 'formula-build'].includes(gameType)) return 'ordering';
-  if (['tap-label'].includes(gameType)) return 'visual';
   return 'other';
 }
 
@@ -485,7 +480,6 @@ export function getGameTypeEligibility(gameType: GameType, digest: LessonDigest)
   const factCount = digest.keyFacts.length;
   const procedureCount = digest.procedures?.length || 0;
   const misconceptionCount = digest.misconceptions?.length || 0;
-  const diagramLabels = digest.diagram?.labels.length || 0;
 
   switch (gameType) {
     case 'matching':
@@ -498,8 +492,6 @@ export function getGameTypeEligibility(gameType: GameType, digest: LessonDigest)
       return misconceptionCount >= 1 || factCount >= 6
         ? { ok: true }
         : { ok: false, reason: 'requires misconceptions or enough factual contrast' };
-    case 'tap-label':
-      return { ok: false, reason: 'tap-label temporarily disabled' };
     case 'diagnosis-ranked':
       return misconceptionCount >= 2 || factCount >= 8
         ? { ok: true }
@@ -517,7 +509,7 @@ export function getGameTypeEligibility(gameType: GameType, digest: LessonDigest)
     case 'scenario-match':
       return factCount >= 6 ? { ok: true } : { ok: false, reason: 'insufficient facts for scenario matching' };
     case 'formula-build':
-      return extractFormulaSequenceFromDigest(digest)
+      return extractFormulaSequencesFromDigest(digest).length > 0
         ? { ok: true }
         : { ok: false, reason: 'requires at least one extractable formula in digest' };
     case 'tap-the-line':
@@ -676,9 +668,7 @@ export async function planMicrobreaks(
     gameType: fallbackTypes[index],
     rationale: `Fallback assignment for ${slot.anchorType} slot`,
     contentSource:
-      fallbackTypes[index] === 'tap-label'
-        ? 'diagram'
-        : fallbackTypes[index] === 'sequencing'
+      fallbackTypes[index] === 'sequencing'
           ? 'procedure'
           : fallbackTypes[index] === 'spot-error' || fallbackTypes[index] === 'diagnosis-ranked'
             ? 'misconception'
@@ -845,8 +835,42 @@ function buildFormulaDistractors(correctSequence: string[], digest: LessonDigest
   return candidates.slice(0, count);
 }
 
-function arraysMatch(a: string[], b: string[]): boolean {
-  return a.length === b.length && a.every((v, i) => v === b[i]);
+interface FormulaQuestionPayload {
+  prompt: string;
+  tokens: string[];
+  correctSequence: string[];
+  timerSeconds: number;
+}
+
+function buildFormulaQuestionFromSequence(
+  sequence: string[],
+  digest: LessonDigest,
+  index: number,
+  prompt?: string
+): FormulaQuestionPayload {
+  const normalizedSequence = sequence.map(normalizeFormulaToken).filter(isFormulaSymbolToken).slice(0, 10);
+  const correctSequence = isValidFormulaSequence(normalizedSequence) ? normalizedSequence : ['V', '=', 'I', '*', 'R'];
+  const distractors = buildFormulaDistractors(correctSequence, digest, 3);
+  const requiredDistractorCount = correctSequence.length >= 5 ? 2 : 1;
+  const selectedDistractors = distractors.slice(0, Math.max(requiredDistractorCount, 1));
+
+  let tokens = [...correctSequence, ...selectedDistractors];
+  if (tokens.length <= correctSequence.length) {
+    const fallbackDistractor = ['+', '-', '/'].find(token => !correctSequence.includes(token));
+    if (fallbackDistractor) tokens = [...tokens, fallbackDistractor];
+  }
+
+  let shuffledTokens = deterministicShuffleTokens(tokens, `${correctSequence.join('|')}|${index}`);
+  if (tokens.join('|') === shuffledTokens.join('|') && shuffledTokens.length > 1) {
+    shuffledTokens = [...shuffledTokens.slice(1), shuffledTokens[0]];
+  }
+
+  return {
+    prompt: normalizeToken(prompt) || `Build formula ${index + 1}: ${correctSequence.join(' ')}`,
+    tokens: shuffledTokens,
+    correctSequence,
+    timerSeconds: 11,
+  };
 }
 
 function buildSafeSortingContentFromDigest(digest: LessonDigest): MicrobreakContent {
@@ -1063,51 +1087,36 @@ function hardenClassifyTwoBinsContent(content: MicrobreakContent, digest: Lesson
 function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDigest): MicrobreakContent {
   if (content.breakType !== 'game' || content.gameType !== 'formula-build') return content;
 
-  const extracted = extractFormulaSequenceFromDigest(digest);
-  const providedSequence = dedupeTokens(
-    (Array.isArray(content.correctSequence) ? content.correctSequence : [])
-      .map(normalizeFormulaToken)
-      .filter(isFormulaSymbolToken)
-  );
-  const correctSequence = isValidFormulaSequence(providedSequence)
-    ? providedSequence
-    : (extracted && isValidFormulaSequence(extracted) ? extracted : ['V', '=', 'I', '*', 'R']);
+  const providedQuestionList = Array.isArray((content as { questions?: Array<{ prompt?: string; correctSequence?: string[] }> }).questions)
+    ? (content as { questions?: Array<{ prompt?: string; correctSequence?: string[] }> }).questions ?? []
+    : [];
+  const firstProvidedQuestion = providedQuestionList[0];
+  const firstProvidedSequence = Array.isArray(firstProvidedQuestion?.correctSequence)
+    ? firstProvidedQuestion.correctSequence
+    : [];
 
-  const correctSet = new Set(correctSequence.map(token => token.toLowerCase()));
-  const originalTokens = dedupeTokens(
-    (Array.isArray(content.tokens) ? content.tokens : [])
-      .map(normalizeFormulaToken)
-      .filter(isFormulaSymbolToken)
-  );
+  const topLevelProvidedSequence = Array.isArray(content.correctSequence) ? content.correctSequence : [];
+  const candidateSequence = firstProvidedSequence.length > 0 ? firstProvidedSequence : topLevelProvidedSequence;
+  const normalizedProvided = candidateSequence.map(normalizeFormulaToken).filter(isFormulaSymbolToken).slice(0, 10);
 
-  const existingDistractors = originalTokens.filter(token => !correctSet.has(token.toLowerCase()));
-  const generatedDistractors = buildFormulaDistractors(correctSequence, digest, 3);
+  const digestSequence = extractFormulaSequenceFromDigest(digest);
+  const selectedSequence = isValidFormulaSequence(normalizedProvided)
+    ? normalizedProvided
+    : (digestSequence && isValidFormulaSequence(digestSequence) ? digestSequence : ['V', '=', 'I', '*', 'R']);
 
-  const distractors = dedupeTokens([...existingDistractors, ...generatedDistractors]);
-  const requiredDistractorCount = correctSequence.length >= 5 ? 2 : 1;
-  const selectedDistractors = distractors.slice(0, Math.max(requiredDistractorCount, 1));
+  const prompt =
+    normalizeToken(firstProvidedQuestion?.prompt)
+    || normalizeToken((content as { prompt?: string }).prompt)
+    || `Build this formula: ${selectedSequence.join(' ')}`;
 
-  let tokens = dedupeTokens([...correctSequence, ...selectedDistractors]);
-  if (tokens.length <= correctSequence.length) {
-    const fallbackDistractor = ['+', '-', '/'].find(token => !correctSet.has(token.toLowerCase()));
-    if (fallbackDistractor) {
-      tokens = dedupeTokens([...tokens, fallbackDistractor]);
-    }
-  }
-
-  let shuffledTokens = deterministicShuffleTokens(tokens, correctSequence.join('|'));
-  if (arraysMatch(shuffledTokens.slice(0, correctSequence.length), correctSequence)) {
-    shuffledTokens = [...shuffledTokens.slice(1), shuffledTokens[0]];
-  }
-
-  const prompt = normalizeToken((content as { prompt?: string }).prompt) || `Build this formula: ${correctSequence.join(' ')}`;
+  const singleQuestion = buildFormulaQuestionFromSequence(selectedSequence, digest, 0, prompt);
 
   return {
     ...content,
-    prompt,
-    tokens: shuffledTokens,
-    correctSequence,
-    timerSeconds: 11,
+    prompt: singleQuestion.prompt,
+    tokens: singleQuestion.tokens,
+    correctSequence: singleQuestion.correctSequence,
+    timerSeconds: singleQuestion.timerSeconds,
   };
 }
 
@@ -1172,7 +1181,11 @@ function hardenFillGapContent(content: MicrobreakContent, digest: LessonDigest):
     ...content,
     prompt: normalizeToken((content as { prompt?: string }).prompt) || 'Pick the one-word term that best completes each gap.',
     textTemplate: template,
-    gaps: sanitized.map(({ answer: _answer, ...rest }) => rest),
+    gaps: sanitized.map((gap) => ({
+      id: gap.id,
+      options: gap.options,
+      correctOptionIndex: gap.correctOptionIndex,
+    })),
   };
 }
 
@@ -1260,12 +1273,15 @@ function hardenGeneratedGameContent(content: MicrobreakContent, digest: LessonDi
   return hardened;
 }
 
-function extractFormulaSequenceFromDigest(digest: LessonDigest): string[] | null {
+function extractFormulaSequencesFromDigest(digest: LessonDigest): string[][] {
   const corpus = [
     ...digest.keyFacts,
     ...digest.vocabPairs.flatMap(v => [v.term, v.definition]),
     ...(digest.procedures || []),
   ];
+
+  const seen = new Set<string>();
+  const sequences: string[][] = [];
 
   for (const raw of corpus) {
     const text = normalizeToken(raw);
@@ -1274,12 +1290,16 @@ function extractFormulaSequenceFromDigest(digest: LessonDigest): string[] | null
     for (const candidate of candidates) {
       const tokens = tokenizeFormulaExpression(candidate);
       if (isValidFormulaSequence(tokens)) {
-        return tokens;
+        const signature = tokens.join('|');
+        if (seen.has(signature)) continue;
+        seen.add(signature);
+        sequences.push(tokens);
+        if (sequences.length >= 6) return sequences;
       }
     }
   }
 
-  return null;
+  return sequences;
 }
 
 function isLikelyInstructionalFraming(text: string): boolean {
@@ -1558,8 +1578,6 @@ function getGameStem(content: MicrobreakContent): string {
       return (Array.isArray(content.items) ? String(content.items[0]?.text || '') : '').toLowerCase();
     case 'spot-error':
       return (content.scenario || '').toLowerCase();
-    case 'tap-label':
-      return (Array.isArray(content.items) ? String(content.items[0]?.label || '') : '').toLowerCase();
     case 'quick-win':
       return (Array.isArray(content.questions) ? String(content.questions[0]?.question || '') : '').toLowerCase();
     case 'sequencing':
@@ -1575,7 +1593,16 @@ function getGameStem(content: MicrobreakContent): string {
     case 'scenario-match':
       return (Array.isArray(content.pairs) ? String(content.pairs[0]?.scenario || '') : '').toLowerCase();
     case 'formula-build':
-      return (Array.isArray(content.correctSequence) ? content.correctSequence.join(' ') : '').toLowerCase();
+      {
+        const questions = Array.isArray((content as { questions?: Array<{ correctSequence?: string[] }> }).questions)
+          ? (content as { questions?: Array<{ correctSequence?: string[] }> }).questions ?? []
+          : [];
+        if (questions.length > 0) {
+          const first = Array.isArray(questions[0]?.correctSequence) ? questions[0]?.correctSequence ?? [] : [];
+          return first.join(' ').toLowerCase();
+        }
+        return (Array.isArray(content.correctSequence) ? content.correctSequence.join(' ') : '').toLowerCase();
+      }
     case 'tap-the-line':
       return safeFirst(content.lines).toLowerCase();
     case 'tap-the-word':
@@ -1590,8 +1617,7 @@ function getGameStem(content: MicrobreakContent): string {
 function validateGameSchemaAndContent(
   expectedType: GameType,
   content: MicrobreakContent,
-  digestTokenSet: Set<string>,
-  digest: LessonDigest
+  digestTokenSet: Set<string>
 ): string[] {
   const errors: string[] = [];
 
@@ -1654,15 +1680,6 @@ function validateGameSchemaAndContent(
       if (options.length < 3) errors.push('spot-error requires >=3 options');
       if (options.filter(o => o.isError).length !== 1) errors.push('spot-error requires exactly one error option');
       requireGrounding([scenario, ...options.map(o => o.text)], 'spot-error');
-      break;
-    }
-    case 'tap-label': {
-      const items = Array.isArray(content.items) ? content.items : [];
-      if (items.length < 3) errors.push('tap-label requires >=3 items');
-      if (digest.diagram?.imageUrl && (!content.imageUrl || !String(content.imageUrl).trim())) {
-        errors.push('tap-label requires imageUrl when diagram image is available');
-      }
-      requireGrounding(items.map(i => i.label), 'tap-label label');
       break;
     }
     case 'quick-win': {
@@ -1798,24 +1815,41 @@ function validateGameSchemaAndContent(
       break;
     }
     case 'formula-build': {
-      const tokens = Array.isArray(content.tokens) ? content.tokens : [];
-      const correctSequence = Array.isArray(content.correctSequence) ? content.correctSequence : [];
-      if (tokens.length < 4) errors.push('formula-build requires >=4 tokens');
-      if (correctSequence.length < 4) {
-        errors.push('formula-build requires >=4 correct sequence items');
+      const questions = Array.isArray((content as { questions?: Array<{ tokens?: string[]; correctSequence?: string[] }> }).questions)
+        ? (content as { questions?: Array<{ tokens?: string[]; correctSequence?: string[] }> }).questions ?? []
+        : [];
+
+      const targets = questions.length > 0
+        ? questions
+        : [{ tokens: content.tokens, correctSequence: content.correctSequence }];
+
+      if (targets.length === 0) {
+        errors.push('formula-build requires at least one question');
+        break;
       }
-      if (!isValidFormulaSequence(correctSequence.map(token => normalizeFormulaToken(String(token))))) {
-        errors.push('formula-build correctSequence must be a valid symbolic formula');
-      }
-      if (tokens.some(token => !isFormulaSymbolToken(normalizeFormulaToken(String(token))))) {
-        errors.push('formula-build tokens must only contain formula symbols/operators');
-      }
-      if (tokens.length <= correctSequence.length) {
-        errors.push('formula-build tokens must include at least one distractor token');
-      }
-      if (tokens.join('|') === correctSequence.join('|')) {
-        errors.push('formula-build tokens must be shuffled, not in exact answer order');
-      }
+
+      targets.forEach((question, questionIndex) => {
+        const tokens = Array.isArray(question.tokens) ? question.tokens : [];
+        const correctSequence = Array.isArray(question.correctSequence) ? question.correctSequence : [];
+        const label = questions.length > 0 ? `formula-build question ${questionIndex + 1}` : 'formula-build';
+
+        if (tokens.length < 4) errors.push(`${label} requires >=4 tokens`);
+        if (correctSequence.length < 4) {
+          errors.push(`${label} requires >=4 correct sequence items`);
+        }
+        if (!isValidFormulaSequence(correctSequence.map(token => normalizeFormulaToken(String(token))))) {
+          errors.push(`${label} correctSequence must be a valid symbolic formula`);
+        }
+        if (tokens.some(token => !isFormulaSymbolToken(normalizeFormulaToken(String(token))))) {
+          errors.push(`${label} tokens must only contain formula symbols/operators`);
+        }
+        if (tokens.length <= correctSequence.length) {
+          errors.push(`${label} tokens must include at least one distractor token`);
+        }
+        if (tokens.join('|') === correctSequence.join('|')) {
+          errors.push(`${label} tokens must be shuffled, not in exact answer order`);
+        }
+      });
       break;
     }
     case 'tap-the-line': {
@@ -1920,18 +1954,6 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
           { text: facts[2] || 'Correct statement two', isError: false },
         ],
       };
-    case 'tap-label':
-      return {
-        breakType: 'game',
-        gameType: 'tap-label',
-        duration: 75,
-        imageUrl: digest.diagram?.imageUrl,
-        items: (digest.diagram?.labels || ['Label A', 'Label B', 'Label C']).slice(0, 3).map((label, idx) => ({
-          id: `label-${idx + 1}`,
-          label,
-          correctPosition: { x: 20 + idx * 25, y: 50 },
-        })),
-      };
     case 'quick-win':
       return {
         breakType: 'game',
@@ -2000,25 +2022,19 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         distractors: facts.slice(4, 6),
       };
     case 'formula-build': {
-      const extracted = extractFormulaSequenceFromDigest(digest);
-      const tokenSource = extracted && extracted.length >= 4
-        ? extracted
+      const extractedSequence = extractFormulaSequenceFromDigest(digest);
+      const selectedSequence = extractedSequence && extractedSequence.length >= 4
+        ? extractedSequence
         : ['V', '=', 'I', '*', 'R'];
-
-      const correctSequence = dedupeTokens(tokenSource).slice(0, 6);
-      const distractors = buildFormulaDistractors(correctSequence, digest, 3);
-      const tokens = deterministicShuffleTokens(
-        dedupeTokens([...correctSequence, ...distractors.slice(0, correctSequence.length >= 5 ? 2 : 1)]),
-        correctSequence.join('|')
-      );
+      const first = buildFormulaQuestionFromSequence(selectedSequence, digest, 0, `Build this formula: ${selectedSequence.join(' ')}`);
 
       return {
         breakType: 'game',
         gameType: 'formula-build',
-        prompt: 'Build the target formula from the tokens.',
-        tokens,
-        correctSequence,
-        timerSeconds: 11,
+        prompt: first.prompt,
+        tokens: first.tokens,
+        correctSequence: first.correctSequence,
+        timerSeconds: first.timerSeconds,
       };
     }
     case 'tap-the-line':
@@ -2089,6 +2105,44 @@ function validateNoDuplicateStems(games: GeneratedPlannedGame[]): Map<number, st
   return duplicates;
 }
 
+function distributeFormulaBuildSequences(games: GeneratedPlannedGame[], digest: LessonDigest): GeneratedPlannedGame[] {
+  const formulaIndices = games
+    .map((game, index) => ({ game, index }))
+    .filter(({ game }) => game.content?.breakType === 'game' && game.content?.gameType === 'formula-build')
+    .map(({ index }) => index);
+
+  if (formulaIndices.length <= 1) return games;
+
+  const sequences = extractFormulaSequencesFromDigest(digest);
+  if (sequences.length <= 1) return games;
+
+  const updated = [...games];
+  formulaIndices.forEach((gameIndex, sequenceIndex) => {
+    const game = updated[gameIndex];
+    const content = game.content as Extract<MicrobreakContent, { gameType: 'formula-build' }>;
+    const targetSequence = sequences[sequenceIndex % sequences.length];
+    const question = buildFormulaQuestionFromSequence(
+      targetSequence,
+      digest,
+      sequenceIndex,
+      normalizeToken(content.prompt) || `Build this formula: ${targetSequence.join(' ')}`
+    );
+
+    updated[gameIndex] = {
+      ...game,
+      content: {
+        ...content,
+        prompt: question.prompt,
+        tokens: question.tokens,
+        correctSequence: question.correctSequence,
+        timerSeconds: question.timerSeconds,
+      },
+    };
+  });
+
+  return updated;
+}
+
 export async function generateMicrobreaksFromPlan(
   plan: Plan[],
   digest: LessonDigest,
@@ -2136,7 +2190,7 @@ export async function generateMicrobreaksFromPlan(
 
     if (planItem && game.content) {
       game.content = hardenGeneratedGameContent(game.content, digest);
-      const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
+      const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet);
       itemErrors.push(...schemaErrors);
     }
 
@@ -2179,7 +2233,7 @@ export async function generateMicrobreaksFromPlan(
   repaired.forEach((game, index) => {
     const planItem = slotById.get(game.slotId) || plan[index];
     game.content = hardenGeneratedGameContent(game.content, digest);
-    const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet, digest);
+    const schemaErrors = validateGameSchemaAndContent(planItem.gameType, game.content, digestTokenSet);
     const duplicateError = finalDuplicates.get(index);
 
     if (schemaErrors.length > 0 || duplicateError) {
@@ -2191,7 +2245,7 @@ export async function generateMicrobreaksFromPlan(
     }
   });
 
-  return repaired;
+  return distributeFormulaBuildSequences(repaired, digest);
 }
 function getNextMicrobreakNumber(lesson: Lesson): number {
   const maxExistingNumber = lesson.blocks
@@ -2342,7 +2396,7 @@ export function __testValidateGameSchemaAndContent(
   content: MicrobreakContent,
   digest: LessonDigest
 ): string[] {
-  return validateGameSchemaAndContent(expectedType, content, extractDigestTokenSet(digest), digest);
+  return validateGameSchemaAndContent(expectedType, content, extractDigestTokenSet(digest));
 }
 
 export function __testFallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakContent {

@@ -7,7 +7,6 @@ import RestMicrobreak from './RestMicrobreak';
 import MatchingGame from './games/MatchingGame';
 import SortingGame from './games/SortingGame';
 import SpotTheErrorGame from './games/SpotTheErrorGame';
-import TapToLabelGame from './games/TapToLabelGame';
 import QuickWinSprintGame from './games/QuickWinSprintGame';
 import AdvancedTextGame from './games/AdvancedTextGame';
 
@@ -52,8 +51,6 @@ export default function MicrobreakBlock({ block }: BlockProps) {
       return <SortingGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
     case 'spot-error':
       return <SpotTheErrorGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
-    case 'tap-label':
-      return <TapToLabelGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
     case 'quick-win':
       return <QuickWinSprintGame content={content} onComplete={handleComplete} onSkip={handleSkip} />;
     case 'sequencing':

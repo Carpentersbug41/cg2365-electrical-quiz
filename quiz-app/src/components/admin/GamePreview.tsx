@@ -32,7 +32,6 @@ export default function GamePreview({ games }: GamePreviewProps) {
       case 'matching': return 'Matching Game';
       case 'sorting': return 'Sorting Game';
       case 'spot-error': return 'Spot the Error';
-      case 'tap-label': return 'Tap to Label';
       case 'quick-win': return 'Quick Win Sprint';
       case 'sequencing': return 'Sequencing';
       case 'fill-gap': return 'Fill Gap';
@@ -54,7 +53,6 @@ export default function GamePreview({ games }: GamePreviewProps) {
       case 'matching': return 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-800 dark:text-cyan-300 border-cyan-300 dark:border-cyan-700';
       case 'sorting': return 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-300 border-emerald-300 dark:border-emerald-700';
       case 'spot-error': return 'bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-700';
-      case 'tap-label': return 'bg-indigo-100 dark:bg-indigo-900/30 text-indigo-800 dark:text-indigo-300 border-indigo-300 dark:border-indigo-700';
       case 'quick-win': return 'bg-rose-100 dark:bg-rose-900/30 text-rose-800 dark:text-rose-300 border-rose-300 dark:border-rose-700';
       case 'sequencing': return 'bg-sky-100 dark:bg-sky-900/30 text-sky-800 dark:text-sky-300 border-sky-300 dark:border-sky-700';
       case 'fill-gap': return 'bg-teal-100 dark:bg-teal-900/30 text-teal-800 dark:text-teal-300 border-teal-300 dark:border-teal-700';
@@ -149,21 +147,6 @@ export default function GamePreview({ games }: GamePreviewProps) {
                 Explanation: {content.explanation}
               </p>
             )}
-          </div>
-        );
-
-      case 'tap-label':
-        return (
-          <div className="space-y-2">
-            <p className="text-sm text-gray-600 dark:text-slate-400">{content.items.length} labels:</p>
-            <div className="space-y-1">
-              {content.items.map((item, idx) => (
-                <div key={idx} className="rounded p-2 text-sm bg-indigo-50 dark:bg-indigo-900/20">
-                  <span className="font-medium text-gray-900 dark:text-white">{item.id}:</span>{' '}
-                  <span className="text-gray-700 dark:text-slate-300">{item.label}</span>
-                </div>
-              ))}
-            </div>
           </div>
         );
 

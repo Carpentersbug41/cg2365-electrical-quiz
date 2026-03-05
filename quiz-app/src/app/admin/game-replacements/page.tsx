@@ -4,8 +4,13 @@ import { useState } from 'react';
 import MatchingGame from '@/components/learning/microbreaks/games/MatchingGame';
 import SortingGame from '@/components/learning/microbreaks/games/SortingGame';
 import AdvancedTextGame from '@/components/learning/microbreaks/games/AdvancedTextGame';
+import QuickWinSprintGame from '@/components/learning/microbreaks/games/QuickWinSprintGame';
 import {
+  FillGapGameContent,
+  FormulaBuildGameContent,
+  IsCorrectWhyGameContent,
   MatchingGameContent,
+  QuickWinGameContent,
   SortingGameContent,
   SequencingGameContent,
 } from '@/data/lessons/types';
@@ -65,6 +70,239 @@ const sequencingContent: SequencingGameContent = {
   ],
 };
 
+const quickWinContent: QuickWinGameContent = {
+  breakType: 'game',
+  gameType: 'quick-win',
+  duration: 33,
+  questions: [
+    { question: 'What is the SI unit of current?', answer: 'ampere' },
+    { question: 'What is the SI unit of voltage?', answer: 'volt' },
+    { question: 'What does R represent in Ohm\'s law?', answer: 'resistance' },
+    { question: 'What is 12 divided by 3?', answer: '4' },
+    { question: 'Name the device that protects from fault current.', answer: 'fuse' },
+  ],
+};
+
+const isCorrectWhyContent: IsCorrectWhyGameContent = {
+  breakType: 'game',
+  gameType: 'is-correct-why',
+  prompt: 'Decide if the statement is correct, then pick the best reason.',
+  statement: 'In a parallel circuit, each branch has the same voltage as the supply.',
+  isCorrect: true,
+  reasons: [
+    'Branches are connected across the same two supply points.',
+    'Current is always equal in every branch regardless of resistance.',
+    'Voltage is consumed by the first component in the circuit.',
+    'Parallel circuits force one single current path through all loads.',
+  ],
+  correctReasonIndex: 0,
+  explanation: 'Parallel branches are across the same potential difference, so branch voltages match the supply.',
+  questions: [
+    {
+      statement: 'In a parallel circuit, each branch has the same voltage as the supply.',
+      isCorrect: true,
+      reasons: [
+        'Branches are connected across the same two supply points.',
+        'Current is always equal in every branch regardless of resistance.',
+        'Voltage is consumed by the first component in the circuit.',
+        'Parallel circuits force one single current path through all loads.',
+      ],
+      correctReasonIndex: 0,
+      explanation: 'Parallel branches are across the same potential difference, so branch voltages match the supply.',
+    },
+    {
+      statement: 'In a series circuit, current splits into separate branch currents.',
+      isCorrect: false,
+      reasons: [
+        'Series circuits have one path, so current does not split.',
+        'Voltage always splits current into branch currents.',
+        'Resistors create extra current loops automatically.',
+        'Ammeter range settings force current splitting.',
+      ],
+      correctReasonIndex: 0,
+      explanation: 'Series circuits provide only one continuous path for current.',
+    },
+    {
+      statement: 'Increasing resistance with fixed voltage decreases current.',
+      isCorrect: true,
+      reasons: [
+        'From I = V / R, larger R gives smaller I when V stays constant.',
+        'Higher resistance creates extra voltage in the source.',
+        'Current and resistance always increase together.',
+        'Only AC circuits follow Ohm’s law.',
+      ],
+      correctReasonIndex: 0,
+      explanation: 'Ohm’s law directly links current inversely to resistance at fixed voltage.',
+    },
+    {
+      statement: 'A fuse protects a circuit by increasing current flow during faults.',
+      isCorrect: false,
+      reasons: [
+        'A fuse opens the circuit when current exceeds its rating.',
+        'A fuse stores current and releases it slowly.',
+        'A fuse boosts current to trip the MCB faster.',
+        'A fuse changes voltage to prevent overheating.',
+      ],
+      correctReasonIndex: 0,
+      explanation: 'A fuse melts and disconnects the circuit under overcurrent conditions.',
+    },
+    {
+      statement: 'Power can be calculated with P = V × I.',
+      isCorrect: true,
+      reasons: [
+        'Electrical power equals voltage multiplied by current.',
+        'Power is always voltage divided by resistance only.',
+        'Power has no relation to current.',
+        'P = V × I applies only to motors.',
+      ],
+      correctReasonIndex: 0,
+      explanation: 'P = V × I is a core electrical power relationship.',
+    },
+  ],
+};
+
+const fillGapQuestions: FillGapGameContent[] = [
+  {
+    breakType: 'game',
+    gameType: 'fill-gap',
+    prompt: 'Fill Gap 1/5: Series basics',
+    instructions: 'Tap each blank and choose the best option.',
+    timerSeconds: 45,
+    textTemplate: 'In a {{circuitType}} circuit, current has {{paths}} path(s) and the lamps are connected in {{layout}}.',
+    gaps: [
+      {
+        id: 'circuitType',
+        options: ['series', 'parallel', 'radial', 'ring'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'paths',
+        options: ['one', 'two', 'many', 'zero'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'layout',
+        options: ['a single loop', 'separate branches', 'star-delta', 'mesh only'],
+        correctOptionIndex: 0,
+      },
+    ],
+  },
+  {
+    breakType: 'game',
+    gameType: 'fill-gap',
+    prompt: 'Fill Gap 2/5: Parallel basics',
+    instructions: 'Tap each blank and choose the best option.',
+    timerSeconds: 45,
+    textTemplate: 'In a {{circuitType}} circuit, each branch has the same {{electricalQuantity}} and loads are wired on {{branchType}} branches.',
+    gaps: [
+      {
+        id: 'circuitType',
+        options: ['parallel', 'series', 'ring', 'radial'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'electricalQuantity',
+        options: ['voltage', 'resistance only', 'frequency drift', 'impedance spike'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'branchType',
+        options: ['separate', 'shared single', 'floating', 'temporary'],
+        correctOptionIndex: 0,
+      },
+    ],
+  },
+  {
+    breakType: 'game',
+    gameType: 'fill-gap',
+    prompt: 'Fill Gap 3/5: Protection',
+    instructions: 'Tap each blank and choose the best option.',
+    timerSeconds: 45,
+    textTemplate: 'A fuse protects a circuit by melting when {{cause}} exceeds its rating, which {{action}} the circuit.',
+    gaps: [
+      {
+        id: 'cause',
+        options: ['current', 'voltage color', 'wire label', 'frequency name'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'action',
+        options: ['disconnects', 'amplifies', 'stores', 'balances'],
+        correctOptionIndex: 0,
+      },
+    ],
+  },
+  {
+    breakType: 'game',
+    gameType: 'fill-gap',
+    prompt: 'Fill Gap 4/5: Ohm\'s law',
+    instructions: 'Tap each blank and choose the best option.',
+    timerSeconds: 45,
+    textTemplate: 'Ohm\'s law states that {{quantity1}} equals current multiplied by {{quantity2}}.',
+    gaps: [
+      {
+        id: 'quantity1',
+        options: ['voltage', 'power', 'frequency', 'capacitance'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'quantity2',
+        options: ['resistance', 'inductance', 'temperature', 'admittance'],
+        correctOptionIndex: 0,
+      },
+    ],
+  },
+  {
+    breakType: 'game',
+    gameType: 'fill-gap',
+    prompt: 'Fill Gap 5/5: Test safety',
+    instructions: 'Tap each blank and choose the best option.',
+    timerSeconds: 45,
+    textTemplate: 'Before testing for dead, first {{step1}} the tester on a known live source, then {{step2}} after the test.',
+    gaps: [
+      {
+        id: 'step1',
+        options: ['prove', 'store', 'disable', 'charge'],
+        correctOptionIndex: 0,
+      },
+      {
+        id: 'step2',
+        options: ['re-prove', 'rewire', 'repaint', 'relabel'],
+        correctOptionIndex: 0,
+      },
+    ],
+  },
+];
+
+const formulaBuildContent: FormulaBuildGameContent = {
+  breakType: 'game',
+  gameType: 'formula-build',
+  prompt: 'Build formula 1: Electrical power.',
+  tokens: ['P', '=', 'V', '×', 'I', '+', 'R'],
+  correctSequence: ['P', '=', 'V', '×', 'I'],
+  timerSeconds: 33,
+  questions: [
+    {
+      prompt: 'Build formula 1: Electrical power.',
+      tokens: ['P', '=', 'V', '×', 'I', '+', 'R'],
+      correctSequence: ['P', '=', 'V', '×', 'I'],
+      timerSeconds: 33,
+    },
+    {
+      prompt: 'Build formula 2: Ohm\'s law.',
+      tokens: ['V', '=', 'I', '×', 'R', '+', 'P'],
+      correctSequence: ['V', '=', 'I', '×', 'R'],
+      timerSeconds: 33,
+    },
+    {
+      prompt: 'Build formula 3: Electrical energy.',
+      tokens: ['E', '=', 'P', '×', 't', '+', 'I'],
+      correctSequence: ['E', '=', 'P', '×', 't'],
+      timerSeconds: 33,
+    },
+  ],
+};
+
 function ResultBadge({ label, result }: { label: string; result: ResultState }) {
   return (
     <div className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs text-slate-700">
@@ -82,24 +320,39 @@ export default function GameReplacementsPage() {
   const [matchingResult, setMatchingResult] = useState<ResultState>({ status: 'idle' });
   const [sortingResult, setSortingResult] = useState<ResultState>({ status: 'idle' });
   const [sequencingResult, setSequencingResult] = useState<ResultState>({ status: 'idle' });
+  const [quickWinResult, setQuickWinResult] = useState<ResultState>({ status: 'idle' });
+  const [formulaBuildResult, setFormulaBuildResult] = useState<ResultState>({ status: 'idle' });
+  const [fillGapResult, setFillGapResult] = useState<ResultState>({ status: 'idle' });
+  const [isCorrectWhyResult, setIsCorrectWhyResult] = useState<ResultState>({ status: 'idle' });
 
   const [matchingKey, setMatchingKey] = useState(0);
   const [sortingKey, setSortingKey] = useState(0);
   const [sequencingKey, setSequencingKey] = useState(0);
+  const [quickWinKey, setQuickWinKey] = useState(0);
+  const [formulaBuildKey, setFormulaBuildKey] = useState(0);
+  const [fillGapKey, setFillGapKey] = useState(0);
+  const [isCorrectWhyKey, setIsCorrectWhyKey] = useState(0);
+  const [fillGapIndex, setFillGapIndex] = useState(0);
+  const [fillGapCompleted, setFillGapCompleted] = useState<Array<{ score?: number; accuracy?: number }>>([]);
+  const [fillGapHandledIndex, setFillGapHandledIndex] = useState<number | null>(null);
 
   return (
     <main className="mx-auto w-full max-w-7xl space-y-6 p-6">
       <div className="space-y-2">
         <h1 className="text-2xl font-bold text-slate-900">Completed Game Replacements</h1>
         <p className="text-sm text-slate-600">
-          Test page for in-app microbreak ports: Matching, Sorting, and Sequencing.
+          Test page for in-app microbreak ports: Matching, Sorting, Sequencing, Is Correct Why, Quick Win, Fill Gap, and Formula Build.
         </p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-7">
         <ResultBadge label="Matching" result={matchingResult} />
         <ResultBadge label="Sorting" result={sortingResult} />
         <ResultBadge label="Sequencing" result={sequencingResult} />
+        <ResultBadge label="Is Correct Why" result={isCorrectWhyResult} />
+        <ResultBadge label="Quick Win" result={quickWinResult} />
+        <ResultBadge label="Formula Build" result={formulaBuildResult} />
+        <ResultBadge label="Fill Gap" result={fillGapResult} />
       </div>
 
       <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
@@ -162,6 +415,143 @@ export default function GameReplacementsPage() {
           content={sequencingContent}
           onComplete={(score, accuracy) => setSequencingResult({ status: 'completed', score, accuracy })}
           onSkip={() => setSequencingResult({ status: 'skipped' })}
+        />
+      </section>
+
+      <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900">Fill Gap</h2>
+          <button
+            onClick={() => {
+              setFillGapKey((k) => k + 1);
+              setFillGapIndex(0);
+              setFillGapCompleted([]);
+              setFillGapHandledIndex(null);
+              setFillGapResult({ status: 'idle' });
+            }}
+            className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+          >
+            Reset Fill Gap
+          </button>
+        </div>
+        <div className="text-xs text-slate-500">
+          {fillGapResult.status === 'completed'
+            ? `Question ${fillGapQuestions.length} of ${fillGapQuestions.length}`
+            : `Question ${fillGapIndex + 1} of ${fillGapQuestions.length}`}
+        </div>
+        {fillGapResult.status === 'completed' ? (
+          <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-6 text-center">
+            <h3 className="text-2xl font-bold text-emerald-800">Quiz finished</h3>
+            <p className="mt-2 text-sm text-emerald-700">
+              Final score: {fillGapResult.score ?? 0} | Accuracy: {(fillGapResult.accuracy ?? 0).toFixed(1)}%
+            </p>
+            <button
+              onClick={() => {
+                setFillGapKey((k) => k + 1);
+                setFillGapIndex(0);
+                setFillGapCompleted([]);
+                setFillGapHandledIndex(null);
+                setFillGapResult({ status: 'idle' });
+              }}
+              className="mt-4 rounded-md border border-emerald-300 bg-white px-4 py-2 text-sm font-medium text-emerald-800 hover:bg-emerald-100"
+            >
+              Play Fill Gap Again
+            </button>
+          </div>
+        ) : (
+          <AdvancedTextGame
+            key={`fill-gap-${fillGapKey}-${fillGapIndex}`}
+            content={fillGapQuestions[fillGapIndex]}
+            onComplete={(score, accuracy) => {
+              // Ignore duplicate completion events for the same visible question.
+              if (fillGapHandledIndex === fillGapIndex) return;
+              setFillGapHandledIndex(fillGapIndex);
+
+              const nextCompleted = [...fillGapCompleted, { score, accuracy }];
+              setFillGapCompleted(nextCompleted);
+
+              if (fillGapIndex < fillGapQuestions.length - 1) {
+                setFillGapIndex(fillGapIndex + 1);
+                return;
+              }
+
+              const totalScore = nextCompleted.reduce((sum, r) => sum + (r.score ?? 0), 0);
+              const totalGaps = fillGapQuestions.reduce((sum, q) => sum + q.gaps.length, 0);
+              const overallAccuracy = totalGaps > 0 ? (totalScore / totalGaps) * 100 : 0;
+              setFillGapResult({ status: 'completed', score: totalScore, accuracy: overallAccuracy });
+            }}
+            onSkip={() => {
+              setFillGapHandledIndex(fillGapIndex);
+              if (fillGapIndex < fillGapQuestions.length - 1) {
+                setFillGapIndex((i) => i + 1);
+                return;
+              }
+              setFillGapResult({ status: 'skipped' });
+            }}
+          />
+        )}
+      </section>
+
+      <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900">Is Correct Why</h2>
+          <button
+            onClick={() => {
+              setIsCorrectWhyKey((k) => k + 1);
+              setIsCorrectWhyResult({ status: 'idle' });
+            }}
+            className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+          >
+            Reset Is Correct Why
+          </button>
+        </div>
+        <AdvancedTextGame
+          key={`is-correct-why-${isCorrectWhyKey}`}
+          content={isCorrectWhyContent}
+          onComplete={(score, accuracy) => setIsCorrectWhyResult({ status: 'completed', score, accuracy })}
+          onSkip={() => setIsCorrectWhyResult({ status: 'skipped' })}
+        />
+      </section>
+
+      <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900">Quick Win</h2>
+          <button
+            onClick={() => {
+              setQuickWinKey((k) => k + 1);
+              setQuickWinResult({ status: 'idle' });
+            }}
+            className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+          >
+            Reset Quick Win
+          </button>
+        </div>
+        <QuickWinSprintGame
+          key={`quick-win-${quickWinKey}`}
+          content={quickWinContent}
+          onComplete={(score, accuracy) => setQuickWinResult({ status: 'completed', score, accuracy })}
+          onSkip={() => setQuickWinResult({ status: 'skipped' })}
+        />
+      </section>
+
+      <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900">Formula Build</h2>
+          <button
+            onClick={() => {
+              setFormulaBuildKey((k) => k + 1);
+              setFormulaBuildResult({ status: 'idle' });
+            }}
+            className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+          >
+            Reset Formula Build
+          </button>
+        </div>
+        <AdvancedTextGame
+          key={`formula-build-${formulaBuildKey}`}
+          content={formulaBuildContent}
+          onComplete={(score, accuracy) => setFormulaBuildResult({ status: 'completed', score, accuracy })}
+          onSkip={() => setFormulaBuildResult({ status: 'skipped' })}
         />
       </section>
     </main>

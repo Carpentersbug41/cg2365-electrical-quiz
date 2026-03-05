@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { questions as allQuestions, Question } from '@/data/questions';
 import confetti from 'canvas-confetti';
 import ChatAssistant from './chat/ChatAssistant';
@@ -34,6 +34,7 @@ interface QuizProps {
   enableImmediateFeedback?: boolean; // Show immediate feedback after each answer
   enableTypedRetries?: boolean; // Enable typed retry questions at end
   context?: 'diagnostic' | 'lesson' | 'practice'; // Quiz context for storage
+  quizSetId?: string;
   onComplete?: (results: {
     score: number;
     totalQuestions: number;
@@ -67,6 +68,20 @@ interface ReportChatMessage {
   role: 'user' | 'assistant';
   content: string;
   timestamp: Date;
+}
+
+function getQuestionMeta(question: Question): {
+  unitCode: string | null;
+  loCode: string | null;
+  acCode: string | null;
+  stableId: string | null;
+} {
+  const stableId = typeof question.stableId === 'string' ? question.stableId : null;
+  const categoryParts = (question.category || '').split(/\s+/).filter(Boolean);
+  const unitCode = categoryParts[0] ?? null;
+  const loCode = categoryParts[1] ?? null;
+  const acCode = categoryParts[2] ?? null;
+  return { unitCode, loCode, acCode, stableId };
 }
 
 // Function to shuffle answer options within a question
@@ -171,6 +186,7 @@ export default function Quiz({
   enableImmediateFeedback = false,
   enableTypedRetries = false,
   context = 'practice',
+  quizSetId,
   onComplete 
 }: QuizProps = {}) {
   const MIN_REASONING_CHARS = 20;
@@ -344,6 +360,7 @@ export default function Quiz({
     void logAttempt({
       lesson_id: lessonId ?? null,
       block_id: null,
+      quiz_set_id: quizSetId ?? null,
       question_stable_id: getStableIdForMcqQuestion(currentQ),
       question_type: 'mcq',
       correct: isCorrect,
@@ -597,7 +614,7 @@ export default function Quiz({
     setCurrentQuestion(0);
   };
 
-  const getIncorrectQuestions = () => {
+  const getIncorrectQuestions = useCallback(() => {
     return questions
       .map((q, index) => ({
         question: q,
@@ -605,7 +622,7 @@ export default function Quiz({
         userAnswer: selectedAnswers[index],
       }))
       .filter(({ question, userAnswer }) => userAnswer !== question.correctAnswer);
-  };
+  }, [questions, selectedAnswers]);
 
   useEffect(() => {
     if (!showResults) return;
@@ -623,6 +640,7 @@ export default function Quiz({
       try {
         const payload = incorrectQuestions.map(({ question, index, userAnswer }) => {
           const taggedQ = question as TaggedQuestion;
+          const meta = getQuestionMeta(question);
           let misconceptionName: string | undefined;
           let misconceptionFix: string | undefined;
 
@@ -641,9 +659,13 @@ export default function Quiz({
 
           return {
             questionNumber: index + 1,
+            questionStableId: meta.stableId,
             questionText: question.question,
             category: question.category,
             tags: taggedQ.tags || [],
+            unitCode: meta.unitCode,
+            loCode: meta.loCode,
+            acCode: meta.acCode,
             userAnswer: userAnswer !== null ? question.options[userAnswer] : 'Not answered',
             correctAnswer: question.options[question.correctAnswer],
             explanation: taggedQ.explanation,
@@ -652,11 +674,17 @@ export default function Quiz({
           };
         });
 
-        const response = await fetch('/api/quiz-feedback-report', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ wrongQuestions: payload }),
-        });
+        const response = quizSetId
+          ? await authedFetch(`/api/v1/quiz-sets/${quizSetId}/finalize`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ wrongQuestions: payload }),
+            })
+          : await fetch('/api/quiz-feedback-report', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ wrongQuestions: payload }),
+            });
 
         if (!response.ok) {
           throw new Error('Failed to generate feedback report');
@@ -674,7 +702,7 @@ export default function Quiz({
             },
           ]);
         }
-      } catch (error) {
+      } catch {
         if (!cancelled) {
           setReportError('Could not generate detailed feedback right now.');
         }
@@ -690,7 +718,7 @@ export default function Quiz({
     return () => {
       cancelled = true;
     };
-  }, [showResults]);
+  }, [showResults, llmReport, isGeneratingReport, reportError, getIncorrectQuestions, quizSetId]);
 
   useEffect(() => {
     if (!isGeneratingReport) {
@@ -763,7 +791,7 @@ export default function Quiz({
         timestamp: new Date(),
       };
       setReportChatMessages((prev) => [...prev, assistantMessage]);
-    } catch (error) {
+    } catch {
       setReportChatMessages((prev) => [
         ...prev,
         {
@@ -994,7 +1022,7 @@ export default function Quiz({
                                   </div>
                                 </div>
                               );
-                            } catch (e) {
+                            } catch {
                               return null;
                             }
                           }

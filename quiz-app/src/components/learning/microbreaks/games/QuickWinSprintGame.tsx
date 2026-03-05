@@ -1,14 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import GameWrapper from '../GameWrapper';
+import { useState, useEffect, useRef, useCallback, type FormEvent, type KeyboardEvent } from 'react';
+import { CheckCircle2, XCircle, ArrowRight, Trophy, SkipForward, Target, Zap } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { QuickWinGameContent } from '@/data/lessons/types';
 import { playSound, playClickSound } from '@/lib/microbreaks/celebrationEffects';
-import {
-  positiveActionButtonClass,
-  primaryActionButtonClass,
-  secondaryActionButtonClass,
-} from './buttonStyles';
 
 interface QuickWinSprintGameProps {
   content: QuickWinGameContent;
@@ -16,17 +12,11 @@ interface QuickWinSprintGameProps {
   onSkip: () => void;
 }
 
-// Levenshtein distance calculation for fuzzy matching
-function computeLevenshteinDistance(str1: string, str2: string): number {
+const computeLevenshteinDistance = (str1: string, str2: string): number => {
   const matrix: number[][] = [];
 
-  for (let i = 0; i <= str2.length; i++) {
-    matrix[i] = [i];
-  }
-
-  for (let j = 0; j <= str1.length; j++) {
-    matrix[0][j] = j;
-  }
+  for (let i = 0; i <= str2.length; i++) matrix[i] = [i];
+  for (let j = 0; j <= str1.length; j++) matrix[0][j] = j;
 
   for (let i = 1; i <= str2.length; i++) {
     for (let j = 1; j <= str1.length; j++) {
@@ -43,65 +33,47 @@ function computeLevenshteinDistance(str1: string, str2: string): number {
   }
 
   return matrix[str2.length][str1.length];
-}
+};
 
-// Calculate similarity score between two strings
-function calculateSimilarity(str1: string, str2: string): number {
+const calculateSimilarity = (str1: string, str2: string): number => {
   const longer = str1.length > str2.length ? str1 : str2;
   const shorter = str1.length > str2.length ? str2 : str1;
-  
-  if (longer.length === 0) return 1.0;
-  
+  if (longer.length === 0) return 1;
   const editDistance = computeLevenshteinDistance(longer, shorter);
   return (longer.length - editDistance) / longer.length;
-}
+};
 
-function tokenizeForMatching(value: string): string[] {
+const tokenizeForMatching = (value: string): string[] => {
   return value
     .toLowerCase()
     .trim()
     .replace(/[^a-z0-9\s]/g, ' ')
     .split(/\s+/)
-    .filter(token => token.length > 0);
-}
+    .filter((token) => token.length > 0);
+};
 
-function bestTokenSimilarity(token: string, candidates: string[]): number {
+const bestTokenSimilarity = (token: string, candidates: string[]): number => {
   let best = 0;
   for (const candidate of candidates) {
     const similarity = calculateSimilarity(token, candidate);
     if (similarity > best) best = similarity;
   }
   return best;
-}
+};
 
-function clampToTwoWords(value: string): string {
-  const tokens = value
-    .replace(/\s+/g, ' ')
-    .trim()
-    .split(' ')
-    .filter(Boolean);
-  return tokens.slice(0, 2).join(' ');
-}
-
-// Validate answer with fuzzy matching
-function validateAnswer(userInput: string, correctAnswer: string): boolean {
-  const normalizeCompact = (str: string) =>
-    str.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
-
+const checkAnswer = (userAnswer: string, correctAnswer: string): boolean => {
+  const normalizeCompact = (str: string) => str.toLowerCase().trim().replace(/[^a-z0-9]/g, '');
   const normalizeSpaced = (str: string) =>
     str.toLowerCase().trim().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
-  
-  const normalizedUser = normalizeCompact(userInput);
+
+  const normalizedUser = normalizeCompact(userAnswer);
   const normalizedCorrect = normalizeCompact(correctAnswer);
-  const spacedUser = normalizeSpaced(userInput);
+  const spacedUser = normalizeSpaced(userAnswer);
   const spacedCorrect = normalizeSpaced(correctAnswer);
 
   if (!normalizedUser || !normalizedCorrect) return false;
-  
-  // Exact match after normalization
   if (normalizedUser === normalizedCorrect) return true;
 
-  // Accept containment for close phrase variants: "line conductor" vs "the line conductor"
   if (
     normalizedUser.length >= 4 &&
     normalizedCorrect.length >= 4 &&
@@ -110,7 +82,6 @@ function validateAnswer(userInput: string, correctAnswer: string): boolean {
     return true;
   }
 
-  // Token-level fuzzy handling for multi-word answers
   const correctTokens = tokenizeForMatching(spacedCorrect);
   const userTokens = tokenizeForMatching(spacedUser);
   if (correctTokens.length > 1) {
@@ -123,301 +94,426 @@ function validateAnswer(userInput: string, correctAnswer: string): boolean {
     const coverage = matchedTokens / correctTokens.length;
     if (coverage >= 0.75) return true;
   }
-  
-  // Character-level fuzzy fallback with adaptive thresholds
+
   const distance = computeLevenshteinDistance(normalizedUser, normalizedCorrect);
   const maxLen = Math.max(normalizedUser.length, normalizedCorrect.length);
   const similarity = calculateSimilarity(normalizedUser, normalizedCorrect);
 
-  // Short answers should tolerate small typo count.
   if (maxLen <= 4) return distance <= 1 || similarity >= 0.72;
   if (maxLen <= 7) return distance <= 2 || similarity >= 0.7;
-
   return similarity >= 0.68 || distance <= Math.floor(maxLen * 0.25);
-}
+};
 
 export default function QuickWinSprintGame({ content, onComplete, onSkip }: QuickWinSprintGameProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [showInput, setShowInput] = useState(false);
-  const [userAnswer, setUserAnswer] = useState('');
-  const [isValidating, setIsValidating] = useState(false);
-  const [answerResult, setAnswerResult] = useState<'correct' | 'wrong' | null>(null);
-  
-  // Countdown timer state
-  const [countdownAudio, setCountdownAudio] = useState<HTMLAudioElement | null>(null);
-  const [timerStarted, setTimerStarted] = useState(false);
-  const [timeRemaining, setTimeRemaining] = useState(34);
-  const [gameFailed, setGameFailed] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [score, setScore] = useState(0);
+  const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
+  const [isFinished, setIsFinished] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(content.duration ?? 60);
+  const [hasStarted, setHasStarted] = useState(false);
 
-  const currentQuestion = content.questions[currentIndex];
-  const currentExpectedAnswer = clampToTwoWords(currentQuestion.answer || '');
-  const isLastQuestion = currentIndex === content.questions.length - 1;
+  const inputRef = useRef<HTMLInputElement>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const hasCompletedRef = useRef(false);
+  const countdownAudioRef = useRef<HTMLAudioElement | null>(null);
 
-  // Start countdown timer
-  const startCountdown = () => {
-    const audio = new Audio('/sounds/The Countdown Clock.mp3');
-    setCountdownAudio(audio);
-    setTimerStarted(true);
-    
-    audio.addEventListener('timeupdate', () => {
-      const remaining = Math.ceil(34 - audio.currentTime);
-      setTimeRemaining(remaining);
-    });
-    
-    audio.addEventListener('ended', () => {
-      handleTimeExpired();
-    });
-    
-    audio.play().catch(err => {
-      console.log('Countdown audio failed to play:', err.message);
-    });
-  };
+  const questions = content.questions || [];
+  const currentQuestion = questions[currentIndex];
+  const totalQuestions = questions.length;
+  const progressPercentage = totalQuestions > 0 ? (currentIndex / totalQuestions) * 100 : 0;
 
-  // Handle timer expiration
-  const handleTimeExpired = () => {
-    if (gameFailed) return; // Prevent double trigger
-    
-    setGameFailed(true);
-    playSound('failure', 0.7);
-    countdownAudio?.pause();
-    
-    // Complete game with current score after showing failure message
-    setTimeout(() => {
-      onComplete(correctCount, (correctCount / content.questions.length) * 100);
-    }, 2000);
-  };
-
-  // Handle "I Know It" button click
-  const handleKnowIt = () => {
-    playClickSound(0.3);
-    
-    // Start timer on first question
-    if (!timerStarted && currentIndex === 0) {
-      startCountdown();
+  useEffect(() => {
+    setCurrentIndex(0);
+    setInputValue('');
+    setScore(0);
+    setFeedback(null);
+    setIsFinished(false);
+    setTimeLeft(content.duration ?? 60);
+    setHasStarted(false);
+    hasCompletedRef.current = false;
+    if (countdownAudioRef.current) {
+      countdownAudioRef.current.pause();
+      countdownAudioRef.current.currentTime = 0;
+      countdownAudioRef.current = null;
     }
-    
-    setShowInput(true);
-  };
 
-  // Handle answer submission
-  const handleSubmitAnswer = (handleComplete: (score?: number, accuracy?: number) => void) => {
-    if (!userAnswer.trim() || isValidating || gameFailed) return;
-    playClickSound(0.3);
-    
-    setIsValidating(true);
-    const clampedUserAnswer = clampToTwoWords(userAnswer);
-    const isCorrect = validateAnswer(clampedUserAnswer, currentExpectedAnswer);
-    
-    setAnswerResult(isCorrect ? 'correct' : 'wrong');
-    
-    if (isCorrect) {
-      playSound('success', 0.3);
-      setCorrectCount(correctCount + 1);
-    } else {
-      playSound('failure', 0.3);
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
-    
-    // Show result briefly, then advance
-    setTimeout(() => {
-      if (isLastQuestion) {
-        // Cleanup audio before completing
-        if (countdownAudio) {
-          countdownAudio.pause();
-        }
-        const finalScore = isCorrect ? correctCount + 1 : correctCount;
-        const accuracy = (finalScore / content.questions.length) * 100;
-        handleComplete(finalScore, accuracy);
-      } else {
-        // Advance to next question
-        setCurrentIndex(currentIndex + 1);
-        setShowAnswer(false);
-        setShowInput(false);
-        setUserAnswer('');
-        setIsValidating(false);
-        setAnswerResult(null);
-      }
-    }, 1000);
-  };
 
-  // Handle "Show Answer" button click
-  const handleSkipQuestion = (handleComplete: (score?: number, accuracy?: number) => void) => {
-    playClickSound(0.3);
-    
-    // Start timer on first question
-    if (!timerStarted && currentIndex === 0) {
-      startCountdown();
-    }
-    
-    setShowAnswer(true);
-    playSound('failure', 0.15); // Very quiet
+    const focusTimer = setTimeout(() => inputRef.current?.focus(), 100);
+    return () => clearTimeout(focusTimer);
+  }, [content]);
 
-    setTimeout(() => {
-      if (isLastQuestion) {
-        // Cleanup audio before completing
-        if (countdownAudio) {
-          countdownAudio.pause();
-        }
-        const accuracy = (correctCount / content.questions.length) * 100;
-        handleComplete(correctCount, accuracy);
-      } else {
-        setCurrentIndex(currentIndex + 1);
-        setShowAnswer(false);
-      }
-    }, 2000);
-  };
-
-  // Cleanup audio on unmount
   useEffect(() => {
     return () => {
-      if (countdownAudio) {
-        countdownAudio.pause();
-        countdownAudio.currentTime = 0;
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (countdownAudioRef.current) {
+        countdownAudioRef.current.pause();
+        countdownAudioRef.current.currentTime = 0;
+        countdownAudioRef.current = null;
       }
     };
-  }, [countdownAudio]);
+  }, []);
+
+  const handleComplete = useCallback((finalScore: number, total: number) => {
+    if (hasCompletedRef.current) return;
+    hasCompletedRef.current = true;
+    if (countdownAudioRef.current) {
+      countdownAudioRef.current.pause();
+      countdownAudioRef.current.currentTime = 0;
+      countdownAudioRef.current = null;
+    }
+
+    setIsFinished(true);
+    const accuracy = total > 0 ? Math.round((finalScore / total) * 100) : 0;
+    onComplete(finalScore, accuracy);
+  }, [onComplete]);
+
+  useEffect(() => {
+    if (!hasStarted || isFinished || timeLeft <= 0) return;
+    const timerId = setInterval(() => {
+      setTimeLeft((prev) => prev - 1);
+    }, 1000);
+    return () => clearInterval(timerId);
+  }, [hasStarted, isFinished, timeLeft]);
+
+  useEffect(() => {
+    if (hasStarted && timeLeft <= 0 && !isFinished) {
+      playSound('failure', 0.35);
+      handleComplete(score, totalQuestions);
+    }
+  }, [hasStarted, timeLeft, isFinished, handleComplete, score, totalQuestions]);
+
+  const handleSubmit = (event?: FormEvent) => {
+    if (event) event.preventDefault();
+    if (!hasStarted || feedback !== null || isFinished || !currentQuestion) return;
+    if (!inputValue.trim()) return;
+
+    playClickSound(0.3);
+    const isCorrect = checkAnswer(inputValue, currentQuestion.answer);
+
+    let newScore = score;
+    if (isCorrect) {
+      newScore += 1;
+      setScore(newScore);
+      setFeedback('correct');
+      playSound('success', 0.25);
+    } else {
+      setFeedback('incorrect');
+      playSound('failure', 0.25);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setFeedback(null);
+      setInputValue('');
+
+      if (currentIndex + 1 < totalQuestions) {
+        setCurrentIndex((prev) => prev + 1);
+        setTimeout(() => inputRef.current?.focus(), 50);
+      } else {
+        handleComplete(newScore, totalQuestions);
+      }
+    }, 1500);
+  };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit();
+    }
+  };
+
+  if (isFinished) {
+    const accuracy = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+        className="w-full max-w-md mx-auto bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] border border-slate-100/80 overflow-hidden"
+      >
+        <div className="p-10 text-center space-y-8">
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', damping: 15, stiffness: 200, delay: 0.1 }}
+            className="mx-auto w-24 h-24 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-[2rem] shadow-lg shadow-emerald-500/30 flex items-center justify-center rotate-3"
+          >
+            <Trophy className="w-12 h-12 text-white -rotate-3" />
+          </motion.div>
+
+          <div className="space-y-3">
+            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Sprint Complete!</h2>
+            <p className="text-slate-500 font-medium">You&apos;ve successfully finished the challenge.</p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4 pt-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-gradient-to-br from-indigo-50 to-blue-50/50 p-5 rounded-3xl border border-indigo-100/50"
+            >
+              <div className="flex items-center justify-center gap-2 text-indigo-600 mb-2">
+                <Zap className="w-4 h-4" />
+                <div className="text-xs font-bold uppercase tracking-wider">Score</div>
+              </div>
+              <div className="text-4xl font-black text-indigo-950">
+                {score} <span className="text-xl text-indigo-300 font-bold">/ {totalQuestions}</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-gradient-to-br from-purple-50 to-fuchsia-50/50 p-5 rounded-3xl border border-purple-100/50"
+            >
+              <div className="flex items-center justify-center gap-2 text-purple-600 mb-2">
+                <Target className="w-4 h-4" />
+                <div className="text-xs font-bold uppercase tracking-wider">Accuracy</div>
+              </div>
+              <div className="text-4xl font-black text-purple-950">{accuracy}%</div>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  if (!currentQuestion) return null;
+
+  const isTimeLow = timeLeft <= 10;
+  const radius = 44;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (timeLeft / (content.duration ?? 60)) * circumference;
+
+  const tickRadius = 54;
+  const tickCircumference = 2 * Math.PI * tickRadius;
+  const tickDash = 2;
+  const tickGap = (tickCircumference / 60) - tickDash;
+  const tickOffset = tickCircumference - (timeLeft / (content.duration ?? 60)) * tickCircumference;
 
   return (
-    <GameWrapper 
-      title="Quick Win Sprint"
-      duration={34}
-      instruction="Answer fast using 1-2 words: tap I Know It, type, then submit before the timer ends."
-      motionPreset="bold"
-      onComplete={onComplete}
-      onSkip={onSkip}
-      disableTimer={true}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="w-full max-w-md mx-auto bg-white/95 backdrop-blur-xl rounded-[2rem] shadow-[0_20px_60px_-15px_rgba(0,0,0,0.08)] border border-slate-100/80 flex flex-col overflow-hidden"
     >
-      {(handleComplete: (score?: number, accuracy?: number) => void) => (
-        <div className="space-y-4">
-          {gameFailed ? (
-            // Time expired failure state
-            <div className="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-6 text-center">
-              <div className="text-4xl mb-3">⏰</div>
-              <h3 className="text-xl font-bold text-red-700 dark:text-red-400 mb-2">Time&apos;s Up!</h3>
-              <p className="text-red-600 dark:text-red-400">
-                You completed {correctCount} out of {content.questions.length} questions
-              </p>
-              <p className="text-sm text-gray-600 dark:text-slate-400 mt-2">
-                Final Score: {Math.round((correctCount / content.questions.length) * 100)}%
-              </p>
+      <div className="px-6 py-5 flex items-center justify-between bg-slate-50/50">
+        <div className="flex flex-col">
+          <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Question</span>
+          <span className="text-sm font-bold text-slate-700">
+            {currentIndex + 1} <span className="text-slate-300">/</span> {totalQuestions}
+          </span>
+        </div>
+
+        <button
+          onClick={() => {
+            playClickSound(0.3);
+            if (countdownAudioRef.current) {
+              countdownAudioRef.current.pause();
+              countdownAudioRef.current.currentTime = 0;
+              countdownAudioRef.current = null;
+            }
+            onSkip();
+          }}
+          className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 transition-colors text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-slate-600"
+          aria-label="Skip game"
+        >
+          Skip
+          <SkipForward className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+        </button>
+      </div>
+
+      <div className="w-full h-1 bg-slate-100/50">
+        <motion.div
+          className="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+          initial={{ width: 0 }}
+          animate={{ width: `${progressPercentage}%` }}
+          transition={{ duration: 0.5, ease: 'easeOut' }}
+        />
+      </div>
+
+      <div className="p-6 sm:p-8 flex-1 flex flex-col">
+        <div className="flex justify-center mb-6">
+          {hasStarted ? (
+            <div className="relative flex items-center justify-center w-36 h-36" aria-label={`${timeLeft} seconds remaining`}>
+              <svg className="w-full h-full transform -rotate-90 drop-shadow-sm" viewBox="0 0 120 120">
+                <circle
+                  cx="60" cy="60" r={tickRadius}
+                  className="stroke-slate-200"
+                  strokeWidth="4"
+                  fill="none"
+                  strokeDasharray={`${tickDash} ${tickGap}`}
+                />
+                <circle
+                  cx="60" cy="60" r={tickRadius}
+                  className={`transition-all duration-1000 ease-linear ${isTimeLow ? 'stroke-rose-500/40' : 'stroke-indigo-500/40'}`}
+                  strokeWidth="4"
+                  fill="none"
+                  strokeDasharray={`${tickDash} ${tickGap}`}
+                  strokeDashoffset={tickOffset}
+                />
+                <circle
+                  cx="60" cy="60" r={radius}
+                  className="stroke-slate-100"
+                  strokeWidth="8"
+                  fill="none"
+                />
+                <circle
+                  cx="60" cy="60" r={radius}
+                  className={`transition-all duration-1000 ease-linear ${isTimeLow ? 'stroke-rose-500' : 'stroke-indigo-500'}`}
+                  strokeWidth="8"
+                  fill="none"
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                />
+              </svg>
+              <div className="absolute flex flex-col items-center justify-center">
+                <motion.span
+                  animate={isTimeLow ? { scale: [1, 1.1, 1] } : {}}
+                  transition={isTimeLow ? { repeat: Infinity, duration: 1 } : {}}
+                  className={`text-5xl font-black tabular-nums tracking-tighter ${isTimeLow ? 'text-rose-600' : 'text-slate-800'}`}
+                >
+                  {timeLeft}
+                </motion.span>
+                <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400 -mt-1">sec</span>
+              </div>
             </div>
           ) : (
-            <>
-              <div className="flex justify-between items-center">
-                <span className="text-sm text-gray-600 dark:text-slate-400">
-                  Question {currentIndex + 1} of {content.questions.length}
-                </span>
-                
-                {timerStarted ? (
-                  <div className={`text-lg font-bold ${timeRemaining <= 10 ? 'text-red-600 dark:text-red-400 animate-pulse microbreak-soft-pulse' : 'text-blue-600 dark:text-blue-400'}`}>
-                    ⏱️ {timeRemaining}s
-                  </div>
-                ) : (
-                  <span className="text-sm text-gray-500 dark:text-slate-500">
-                    Click to start timer
-                  </span>
-                )}
-                
-                <span className="text-sm font-semibold text-green-600 dark:text-green-400">
-                  Score: {correctCount}/{content.questions.length}
-                </span>
-              </div>
-
-              <div key={`q-card-${currentIndex}-${showInput}-${showAnswer}-${answerResult}`} className="microbreak-enter-slow microbreak-card-glide bg-white dark:bg-slate-700 rounded-xl p-6 border-2 border-gray-300 dark:border-slate-600 min-h-[200px] flex flex-col justify-center">
-                {showInput ? (
-                  // Answer input mode
-                  <div className="space-y-4">
-                    <p className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-4">
-                      {currentQuestion.question}
-                    </p>
-                    
-                    {answerResult ? (
-                      // Show result
-                      <div className="text-center space-y-4">
-                        <div className={`text-5xl ${answerResult === 'correct' ? 'text-green-600' : 'text-red-600'}`}>
-                          <span className={answerResult === 'correct' ? 'microbreak-correct inline-block' : 'microbreak-wrong inline-block'}>
-                          {answerResult === 'correct' ? '✓' : '✗'}
-                          </span>
-                        </div>
-                        <p className="text-sm text-gray-600 dark:text-slate-400">
-                          Correct answer: <span className="font-bold text-gray-900 dark:text-white">{currentExpectedAnswer}</span>
-                        </p>
-                      </div>
-                    ) : (
-                      // Input field
-                      <div className="space-y-3">
-                        <input
-                          type="text"
-                          value={userAnswer}
-                          onChange={(e) => setUserAnswer(clampToTwoWords(e.target.value))}
-                          onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                              handleSubmitAnswer(handleComplete);
-                            }
-                          }}
-                          placeholder="Type 1-2 words..."
-                          autoFocus
-                          disabled={isValidating}
-                          className="w-full px-4 py-3 text-lg border-2 border-blue-400 dark:border-blue-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-800 dark:text-white microbreak-card-glide"
-                        />
-                        <button 
-                          onClick={() => handleSubmitAnswer(handleComplete)} 
-                          disabled={!userAnswer.trim() || isValidating}
-                          className={`w-full py-3 microbreak-card-glide ${primaryActionButtonClass}`}
-                        >
-                          Submit Answer
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ) : !showAnswer ? (
-                  // Initial buttons
-                  <>
-                    <p className="text-lg font-semibold text-gray-900 dark:text-white text-center mb-6">
-                      {currentQuestion.question}
-                    </p>
-
-                    <div className="flex gap-3">
-                      <button
-                        onClick={() => handleKnowIt()}
-                        className={`flex-1 py-3 microbreak-card-glide ${positiveActionButtonClass}`}
-                      >
-                        I Know It! ✓
-                      </button>
-                      <button
-                        onClick={() => handleSkipQuestion(handleComplete)}
-                        className={`flex-1 py-3 microbreak-card-glide ${secondaryActionButtonClass}`}
-                      >
-                        Show Answer
-                      </button>
-                    </div>
-                  </>
-                ) : (
-                  // Show answer mode (when skipped)
-                  <div className="text-center space-y-4">
-                    <div className="text-4xl">
-                      👁️
-                    </div>
-                    <p className="text-sm text-gray-600 dark:text-slate-400">
-                      {currentQuestion.question}
-                    </p>
-                    <p className="text-xl font-bold text-gray-900 dark:text-white">
-                      {currentExpectedAnswer}
-                    </p>
-                  </div>
-                )}
-              </div>
-
-              {isLastQuestion && showAnswer && (
-                <div className="text-center text-gray-700 dark:text-slate-300 font-semibold">
-                  Final Score: {correctCount}/{content.questions.length} ({Math.round((correctCount / content.questions.length) * 100)}%)
-                </div>
-              )}
-            </>
+            <button
+              type="button"
+              onClick={() => {
+                playClickSound(0.3);
+                const countdownAudio = new Audio('/sounds/Countdown clock.mp3');
+                countdownAudio.volume = 0.6;
+                countdownAudioRef.current = countdownAudio;
+                countdownAudio.play().catch(() => undefined);
+                setHasStarted(true);
+                setTimeout(() => inputRef.current?.focus(), 50);
+              }}
+              className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              Start Sprint
+            </button>
           )}
         </div>
-      )}
-    </GameWrapper>
+
+        <div className="flex-1 flex flex-col justify-center min-h-[120px] mb-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 15, filter: 'blur(4px)' }}
+              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -15, filter: 'blur(4px)' }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+              className="text-center"
+            >
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 leading-tight tracking-tight">
+                {currentQuestion.question}
+              </h2>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <form onSubmit={handleSubmit} className="relative mt-auto">
+          <label htmlFor="answer-input" className="sr-only">Your answer</label>
+          <motion.div
+            animate={feedback === 'incorrect' ? { x: [-5, 5, -5, 5, 0] } : {}}
+            transition={{ duration: 0.4 }}
+            className="relative flex items-center"
+          >
+            <input
+              ref={inputRef}
+              id="answer-input"
+              type="text"
+              value={inputValue}
+              onChange={(event) => setInputValue(event.target.value)}
+              onKeyDown={handleKeyDown}
+              disabled={!hasStarted || feedback !== null}
+              placeholder="Type your answer..."
+              className={`w-full px-6 py-5 pr-16 rounded-2xl border-2 outline-none transition-all text-lg font-medium shadow-sm
+                ${feedback === null
+                  ? 'border-slate-200 focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/15 bg-slate-50/50 focus:bg-white text-slate-800 placeholder:text-slate-400'
+                  : feedback === 'correct'
+                    ? 'border-emerald-500 bg-emerald-50 text-emerald-900 shadow-emerald-500/10'
+                    : 'border-rose-500 bg-rose-50 text-rose-900 shadow-rose-500/10'
+                }
+                disabled:opacity-100
+              `}
+              autoComplete="off"
+              autoCorrect="off"
+              spellCheck="false"
+            />
+
+            {hasStarted && feedback === null && (
+              <button
+                type="submit"
+                disabled={!inputValue.trim()}
+                className="absolute right-3 p-2.5 rounded-xl bg-indigo-600 text-white disabled:bg-slate-200 disabled:text-slate-400 transition-all hover:bg-indigo-700 hover:shadow-md hover:shadow-indigo-500/20 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 disabled:shadow-none active:scale-95"
+                aria-label="Submit answer"
+              >
+                <ArrowRight className="w-5 h-5" />
+              </button>
+            )}
+
+            <AnimatePresence>
+              {feedback === 'correct' && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="absolute right-5 text-emerald-500 bg-emerald-100 rounded-full p-1"
+                >
+                  <CheckCircle2 className="w-6 h-6" />
+                </motion.div>
+              )}
+              {feedback === 'incorrect' && (
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  className="absolute right-5 text-rose-500 bg-rose-100 rounded-full p-1"
+                >
+                  <XCircle className="w-6 h-6" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          <div aria-live="polite" className="h-10 mt-4 text-center flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              {feedback === 'correct' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-100 text-emerald-700 rounded-full font-bold text-sm"
+                >
+                  <CheckCircle2 className="w-4 h-4" />
+                  Brilliant!
+                </motion.div>
+              )}
+              {feedback === 'incorrect' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  className="inline-flex items-center gap-2 px-4 py-1.5 bg-rose-100 text-rose-700 rounded-full font-bold text-sm"
+                >
+                  <XCircle className="w-4 h-4" />
+                  Correct answer: <span className="bg-white/50 px-2 py-0.5 rounded-md">{currentQuestion.answer}</span>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </form>
+      </div>
+    </motion.div>
   );
 }

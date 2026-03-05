@@ -4,6 +4,7 @@ import { NextResponse } from 'next/server';
 const ensureAuthProgressEnabled = vi.fn();
 const requireSupabaseSession = vi.fn();
 const updateLessonProgressFromAttempt = vi.fn();
+const resolveReviewQueueItemOnCorrect = vi.fn();
 
 vi.mock('@/lib/authProgress/routeGuard', () => ({
   ensureAuthProgressEnabled,
@@ -12,6 +13,10 @@ vi.mock('@/lib/authProgress/routeGuard', () => ({
 
 vi.mock('@/lib/authProgress/serverProgress', () => ({
   updateLessonProgressFromAttempt,
+}));
+
+vi.mock('@/lib/review/reviewQueueRepo', () => ({
+  resolveReviewQueueItemOnCorrect,
 }));
 
 describe('POST /api/v1/attempts', () => {
@@ -75,5 +80,6 @@ describe('POST /api/v1/attempts', () => {
     expect(payload.ok).toBe(true);
     expect(from).toHaveBeenCalledWith('question_attempts');
     expect(updateLessonProgressFromAttempt).toHaveBeenCalledTimes(1);
+    expect(resolveReviewQueueItemOnCorrect).toHaveBeenCalledTimes(1);
   });
 });

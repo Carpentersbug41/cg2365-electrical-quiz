@@ -127,9 +127,14 @@ export default function QuizPage() {
       <div className="mx-auto max-w-4xl space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Question Bank Practice</h1>
-          <Link href={courseHref('/')} className="rounded border border-slate-300 px-3 py-2 text-sm">
-            Back Home
-          </Link>
+          <div className="flex gap-2">
+            <Link href={courseHref('/my-quizzes')} className="rounded border border-slate-300 px-3 py-2 text-sm">
+              My Quiz Sets
+            </Link>
+            <Link href={courseHref('/')} className="rounded border border-slate-300 px-3 py-2 text-sm">
+              Back Home
+            </Link>
+          </div>
         </div>
 
         <section className="rounded-lg border border-slate-200 bg-white p-4">
