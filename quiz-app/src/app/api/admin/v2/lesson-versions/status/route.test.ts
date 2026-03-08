@@ -108,7 +108,31 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
   });
 
   it('returns 400 when moderation checklist is missing for approve', async () => {
-    createSupabaseAdminClient.mockReturnValue({});
+    const versionQuery = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValue({
+        data: {
+          id: 'v1',
+          lesson_id: 'l1',
+          status: 'needs_review',
+          version_no: 2,
+          is_current: false,
+          source: 'ai',
+          quality_score: 90,
+          content_json: {},
+        },
+        error: null,
+      }),
+    };
+
+    createSupabaseAdminClient.mockReturnValue({
+      from: vi.fn((table: string) => {
+        if (table === 'v2_lesson_versions') return versionQuery;
+        throw new Error(`Unexpected table ${table}`);
+      }),
+    });
     const { POST } = await import('./route');
     const response = await POST(
       new NextRequest('http://localhost/api/admin/v2/lesson-versions/status', {
@@ -120,5 +144,36 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
     const payload = await response.json();
     expect(response.status).toBe(400);
     expect(payload.code).toBe('MODERATION_REQUIRED');
+  });
+
+  it('returns 404 for a missing version before moderation validation', async () => {
+    const versionQuery = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValue({
+        data: null,
+        error: null,
+      }),
+    };
+
+    createSupabaseAdminClient.mockReturnValue({
+      from: vi.fn((table: string) => {
+        if (table === 'v2_lesson_versions') return versionQuery;
+        throw new Error(`Unexpected table ${table}`);
+      }),
+    });
+
+    const { POST } = await import('./route');
+    const response = await POST(
+      new NextRequest('http://localhost/api/admin/v2/lesson-versions/status', {
+        method: 'POST',
+        body: JSON.stringify({ versionId: 'missing', action: 'approve' }),
+      })
+    );
+
+    const payload = await response.json();
+    expect(response.status).toBe(404);
+    expect(payload.code).toBe('NOT_FOUND');
   });
 });

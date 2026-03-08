@@ -35,6 +35,19 @@ describe('POST /api/admin/v2/generation-jobs', () => {
     expect(response.status).toBe(400);
   });
 
+  it('returns 400 for unsupported question_draft jobs', async () => {
+    createSupabaseAdminClient.mockReturnValue({});
+    const { POST } = await import('./route');
+    const response = await POST(new NextRequest('http://localhost/api/admin/v2/generation-jobs', {
+      method: 'POST',
+      body: JSON.stringify({ kind: 'question_draft' }),
+    }));
+
+    const payload = await response.json();
+    expect(response.status).toBe(400);
+    expect(payload.code).toBe('NOT_IMPLEMENTED');
+  });
+
   it('returns 503 when admin client is unavailable', async () => {
     createSupabaseAdminClient.mockReturnValue(null);
     const { GET } = await import('./route');

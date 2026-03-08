@@ -78,25 +78,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    if (action === 'approve' || action === 'publish') {
-      const objectivesVerified = moderation.objectivesVerified === true;
-      const factualCheckPassed = moderation.factualCheckPassed === true;
-      const policyCheckPassed = moderation.policyCheckPassed === true;
-      const notes = typeof moderation.notes === 'string' ? moderation.notes.trim() : '';
-
-      if (!objectivesVerified || !factualCheckPassed || !policyCheckPassed || notes.length < 10) {
-        return NextResponse.json(
-          {
-            success: false,
-            code: 'MODERATION_REQUIRED',
-            message:
-              'Moderation checklist is required for approve/publish (all checks true + notes >= 10 chars).',
-          },
-          { status: 400 }
-        );
-      }
-    }
-
     const { data: version, error: versionError } = await adminClient
       .from('v2_lesson_versions')
       .select('id, lesson_id, status, version_no, is_current, source, quality_score, content_json')
@@ -122,6 +103,25 @@ export async function POST(request: NextRequest) {
         },
         { status: 409 }
       );
+    }
+
+    if (action === 'approve' || action === 'publish') {
+      const objectivesVerified = moderation.objectivesVerified === true;
+      const factualCheckPassed = moderation.factualCheckPassed === true;
+      const policyCheckPassed = moderation.policyCheckPassed === true;
+      const notes = typeof moderation.notes === 'string' ? moderation.notes.trim() : '';
+
+      if (!objectivesVerified || !factualCheckPassed || !policyCheckPassed || notes.length < 10) {
+        return NextResponse.json(
+          {
+            success: false,
+            code: 'MODERATION_REQUIRED',
+            message:
+              'Moderation checklist is required for approve/publish (all checks true + notes >= 10 chars).',
+          },
+          { status: 400 }
+        );
+      }
     }
 
     const { data: lesson, error: lessonError } = await adminClient

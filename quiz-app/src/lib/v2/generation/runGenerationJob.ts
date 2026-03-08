@@ -308,6 +308,8 @@ export async function runGenerationJobById(
     console.warn('[V2 Admin] Failed to write generation start audit event:', startedEventError);
   }
 
+  let insertedVersionId: string | null = null;
+
   try {
     const { data: lesson, error: lessonError } = await adminClient
       .from('v2_lessons')
@@ -350,6 +352,7 @@ export async function runGenerationJobById(
       .select('id')
       .single<{ id: string }>();
     if (insertVersionError) throw insertVersionError;
+    insertedVersionId = insertedVersion.id;
 
     const output = {
       generatedLessonVersionId: insertedVersion.id,
@@ -459,6 +462,16 @@ export async function runGenerationJobById(
         lockOwner,
       },
     });
+
+    if (insertedVersionId) {
+      const { error: cleanupError } = await adminClient
+        .from('v2_lesson_versions')
+        .delete()
+        .eq('id', insertedVersionId);
+      if (cleanupError) {
+        console.warn('[V2 Generation] Failed to clean up draft version after run failure:', cleanupError);
+      }
+    }
 
     if (!canRetry) {
       await sendGenerationAlert({

@@ -49,6 +49,33 @@ export async function GET(request: NextRequest) {
     const lessonCodeFilter = (request.nextUrl.searchParams.get('lessonCode') ?? '').trim().toLowerCase();
     const dateFrom = (request.nextUrl.searchParams.get('dateFrom') ?? '').trim();
     const dateTo = (request.nextUrl.searchParams.get('dateTo') ?? '').trim();
+    let constrainedLessonVersionIds: string[] | null = null;
+
+    if (lessonCodeFilter) {
+      const { data: matchingLessons, error: matchingLessonsError } = await adminClient
+        .from('v2_lessons')
+        .select('id')
+        .ilike('code', `%${lessonCodeFilter}%`)
+        .returns<Array<{ id: string }>>();
+      if (matchingLessonsError) throw matchingLessonsError;
+
+      const lessonIds = (matchingLessons ?? []).map((lesson) => lesson.id);
+      if (lessonIds.length === 0) {
+        return NextResponse.json({ success: true, decisions: [] });
+      }
+
+      const { data: matchingVersions, error: matchingVersionsError } = await adminClient
+        .from('v2_lesson_versions')
+        .select('id')
+        .in('lesson_id', lessonIds)
+        .returns<Array<{ id: string }>>();
+      if (matchingVersionsError) throw matchingVersionsError;
+
+      constrainedLessonVersionIds = (matchingVersions ?? []).map((version) => version.id);
+      if (constrainedLessonVersionIds.length === 0) {
+        return NextResponse.json({ success: true, decisions: [] });
+      }
+    }
 
     let decisionsQuery = adminClient
       .from('v2_approval_decisions')
@@ -60,6 +87,9 @@ export async function GET(request: NextRequest) {
     }
     if (reviewerFilter) {
       decisionsQuery = decisionsQuery.eq('decided_by', reviewerFilter);
+    }
+    if (constrainedLessonVersionIds) {
+      decisionsQuery = decisionsQuery.in('lesson_version_id', constrainedLessonVersionIds);
     }
     if (dateFrom) {
       decisionsQuery = decisionsQuery.gte('created_at', dateFrom);
@@ -149,11 +179,6 @@ export async function GET(request: NextRequest) {
               }
             : null,
         };
-      })
-      .filter((row) => {
-        if (!lessonCodeFilter) return true;
-        const code = row.lesson?.code?.toLowerCase() ?? '';
-        return code.includes(lessonCodeFilter);
       });
 
     return NextResponse.json({

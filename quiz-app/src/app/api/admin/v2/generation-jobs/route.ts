@@ -105,6 +105,12 @@ export async function POST(request: NextRequest) {
 
     const body = (await request.json().catch(() => ({}))) as CreatePayload;
     const kind = body.kind === 'question_draft' ? 'question_draft' : 'lesson_draft';
+    if (kind !== 'lesson_draft') {
+      return NextResponse.json(
+        { success: false, code: 'NOT_IMPLEMENTED', message: 'Only lesson_draft jobs are supported.' },
+        { status: 400 }
+      );
+    }
     const lessonCode = typeof body.lessonCode === 'string' ? body.lessonCode.trim() : '';
     const lessonCodes = Array.isArray(body.lessonCodes)
       ? body.lessonCodes
@@ -113,9 +119,7 @@ export async function POST(request: NextRequest) {
       : [];
     const prompt = typeof body.prompt === 'string' ? body.prompt.trim().slice(0, 5000) : '';
 
-    const effectiveLessonCodes = kind === 'lesson_draft'
-      ? Array.from(new Set([lessonCode, ...lessonCodes].filter((entry) => entry.length > 0)))
-      : [];
+    const effectiveLessonCodes = Array.from(new Set([lessonCode, ...lessonCodes].filter((entry) => entry.length > 0)));
 
     if (kind === 'lesson_draft' && effectiveLessonCodes.length === 0) {
       return NextResponse.json(
@@ -174,8 +178,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const insertRows = (kind === 'lesson_draft' ? Array.from(lessonCodeToId.entries()) : [[null, null] as const]).map(
-      ([code, id]) => ({
+    const insertRows = Array.from(lessonCodeToId.entries()).map(([code, id]) => ({
         kind,
         status: 'queued' as GenerationStatus,
         lesson_id: id,
@@ -185,8 +188,7 @@ export async function POST(request: NextRequest) {
           lessonCode: code,
           requestedAt: new Date().toISOString(),
         },
-      })
-    );
+      }));
 
     if (insertRows.length === 0) {
       return NextResponse.json({
