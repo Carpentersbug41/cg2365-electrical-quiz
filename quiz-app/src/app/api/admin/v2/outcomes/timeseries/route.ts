@@ -20,6 +20,11 @@ type ReviewRow = {
   updated_at: string;
 };
 
+type ProfileRow = {
+  user_id: string;
+  role: 'student' | 'admin';
+};
+
 type DayBucket = {
   date: string;
   activeUsers: Set<string>;
@@ -110,6 +115,22 @@ export async function GET(request: NextRequest) {
     }
     const sinceIso = buildSinceIso(days);
     const dayKeys = listDayKeys(sinceIso);
+    let includedUserIds: Set<string> | null = null;
+
+    if (!userId) {
+      const profiles = await fetchAllRows<ProfileRow>(async (from, to) => {
+        const { data, error } = await adminClient
+          .from('profiles')
+          .select('user_id, role')
+          .range(from, to);
+        return { data: data as ProfileRow[] | null, error: error as Error | null };
+      });
+      includedUserIds = new Set(
+        profiles
+          .filter((profile) => profile.role !== 'admin')
+          .map((profile) => profile.user_id)
+      );
+    }
 
     const buckets = new Map<string, DayBucket>();
     for (const day of dayKeys) {
@@ -147,6 +168,7 @@ export async function GET(request: NextRequest) {
     ]);
 
     for (const row of attempts) {
+      if (includedUserIds && !includedUserIds.has(row.user_id)) continue;
       const day = toDayKey(row.created_at);
       if (!day) continue;
       const bucket = buckets.get(day);
@@ -157,6 +179,7 @@ export async function GET(request: NextRequest) {
     }
 
     for (const row of reviews) {
+      if (includedUserIds && !includedUserIds.has(row.user_id)) continue;
       const dueDay = toDayKey(row.due_at);
       if (dueDay) {
         const dueBucket = buckets.get(dueDay);
@@ -178,6 +201,7 @@ export async function GET(request: NextRequest) {
       const dayEndIso = `${day}T23:59:59.999Z`;
       let activeCount = 0;
       for (const row of reviews) {
+        if (includedUserIds && !includedUserIds.has(row.user_id)) continue;
         if (row.due_at > dayEndIso) continue;
         if (row.status !== 'resolved') {
           activeCount += 1;

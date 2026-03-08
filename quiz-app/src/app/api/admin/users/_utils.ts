@@ -6,6 +6,7 @@ export async function guardUserAdminAccess(request: NextRequest | Request): Prom
     process.env.USER_ADMIN_TOKEN ??
     process.env.QUESTION_ADMIN_TOKEN ??
     process.env.MODULE_PLANNER_ADMIN_TOKEN;
+  const isAdmin = await isAdminRequest(request);
 
   if (expectedToken && expectedToken.trim().length > 0) {
     const direct = request.headers.get('x-user-admin-token');
@@ -15,16 +16,17 @@ export async function guardUserAdminAccess(request: NextRequest | Request): Prom
         ? authHeader.slice('Bearer '.length).trim()
         : null;
     const provided = (direct && direct.trim().length > 0 ? direct : bearer) ?? '';
+    if (provided === expectedToken.trim() || isAdmin) {
+      return null;
+    }
     if (provided !== expectedToken.trim()) {
       return NextResponse.json(
         { success: false, code: 'UNAUTHORIZED', message: 'Missing or invalid user admin token.' },
         { status: 401 }
       );
     }
-    return null;
   }
 
-  const isAdmin = await isAdminRequest(request);
   if (!isAdmin) {
     return NextResponse.json(
       { success: false, code: 'UNAUTHORIZED', message: 'Admin role required.' },
