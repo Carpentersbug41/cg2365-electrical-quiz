@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import lesson204_10A from '@/data/lessons/2365/204-10A-dead-test-language-what-each-test-proves.json';
 import lesson204_10B from '@/data/lessons/2365/204-10B-circuit-map-thinking-conductor-roles-expected-outcomes.json';
@@ -64,7 +64,7 @@ import lessonBIO_6_1C from '@/data/lessons/gcse/biology/BIO-6-1C-investigating-l
 import lesson203_3L1P from '@/data/lessons/2365/203-3L1P-power-heating-circuits-noob-what-they-are-simple-operation.json';
 import lesson203_3L5C from '@/data/lessons/2365/203-3L5C-cable-selection-noob-what-affects-choosing-a-cable.json';
 import lesson203_4L1E from '@/data/lessons/2365/203-4L1E-earthing-systems-noob-tt-tn-s-tn-c-s.json';
-import { getLessonProgress, getQuizProgress } from '@/lib/progress/progressService';
+import { getQuizProgress } from '@/lib/progress/progressService';
 import { LessonProgress, QuizProgress } from '@/lib/progress/types';
 import ReviewDashboard from '@/components/learning/ReviewDashboard';
 import { courseHref } from '@/lib/routing/courseHref';
@@ -72,6 +72,22 @@ import { getCoursePrefixForClient } from '@/lib/routing/curricula';
 import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
 import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import { isAdminOverrideEmail } from '@/lib/auth/adminOverrides';
+import Quiz from '@/components/Quiz';
+import type { Question } from '@/data/questions';
+import type { Lesson } from '@/data/lessons/types';
+import { authedFetch } from '@/lib/api/authedFetch';
+
+interface StudentQuizSet {
+  id: string;
+  title: string;
+  unit_code: string;
+  level: 2 | 3;
+  question_count: number;
+  cadence_days: number;
+  is_active: boolean;
+  lesson_ids: string[];
+  lo_codes: string[];
+}
 
 /**
  * Natural sort function for lesson IDs
@@ -243,11 +259,45 @@ const getUnitColors = (lessonId: string) => {
 export default function LearnPage() {
   const [lessonsProgress, setLessonsProgress] = useState<Record<string, QuizProgress | null>>({});
   const [isAdmin, setIsAdmin] = useState(false);
+  const [mySets, setMySets] = useState<StudentQuizSet[]>([]);
+  const [setsLoading, setSetsLoading] = useState(false);
+  const [setsUnauthorized, setSetsUnauthorized] = useState(false);
+  const [setsError, setSetsError] = useState<string | null>(null);
+  const [runningSetId, setRunningSetId] = useState<string | null>(null);
+  const [runFeedback, setRunFeedback] = useState<string | null>(null);
+  const [runningSet, setRunningSet] = useState<StudentQuizSet | null>(null);
+  const [quizQuestions, setQuizQuestions] = useState<Question[] | null>(null);
+  const [v2PublishedLessons, setV2PublishedLessons] = useState<Lesson[]>([]);
   const coursePrefix = getCoursePrefixForClient();
   const scope = getCurriculumScopeFromCoursePrefix(coursePrefix);
   const isGcsePhysics = scope === 'gcse-science-physics';
   const isGcseBiology = scope === 'gcse-science-biology';
-  const visibleLessons = LESSONS.filter((lesson) => isLessonIdAllowedForScope(lesson.id, scope));
+  const baseLessons: Lesson[] =
+    isGcseBiology ? v2PublishedLessons : (LESSONS as Lesson[]);
+  const visibleLessons = baseLessons.filter((lesson) => isLessonIdAllowedForScope(lesson.id, scope));
+
+  const loadMySets = useCallback(async () => {
+    setSetsLoading(true);
+    setSetsError(null);
+    setSetsUnauthorized(false);
+    try {
+      const response = await authedFetch('/api/v1/quiz-sets', { cache: 'no-store' });
+      if (response.status === 401) {
+        setSetsUnauthorized(true);
+        setMySets([]);
+        return;
+      }
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload.error || 'Failed to load quiz sets.');
+      }
+      setMySets(Array.isArray(payload.sets) ? payload.sets : []);
+    } catch (e) {
+      setSetsError(e instanceof Error ? e.message : 'Failed to load quiz sets.');
+    } finally {
+      setSetsLoading(false);
+    }
+  }, []);
 
   useEffect(() => {
     // Load progress for all lessons
@@ -256,7 +306,41 @@ export default function LearnPage() {
       progress[lesson.id] = getQuizProgress(`${lesson.id}-quiz`);
     });
     setLessonsProgress(progress);
-  }, [coursePrefix]);
+  }, [visibleLessons]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadV2PublishedLessons = async () => {
+      if (!isGcseBiology) {
+        setV2PublishedLessons([]);
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/v2/published-lessons?scope=gcse-science-biology', {
+          cache: 'no-store',
+        });
+        const payload = await response.json();
+        if (!response.ok || !payload?.success || !Array.isArray(payload.lessons)) return;
+        if (cancelled) return;
+        setV2PublishedLessons(payload.lessons as Lesson[]);
+      } catch {
+        if (cancelled) return;
+        setV2PublishedLessons([]);
+      }
+    };
+
+    void loadV2PublishedLessons();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isGcseBiology]);
+
+  useEffect(() => {
+    void loadMySets();
+  }, [loadMySets]);
 
   useEffect(() => {
     let cancelled = false;
@@ -323,6 +407,54 @@ export default function LearnPage() {
     new Set(visibleLessons.map((lesson) => lesson.id.split('-')[0]))
   ).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
+  const handlePracticeSet = async (setItem: StudentQuizSet) => {
+    setRunningSetId(setItem.id);
+    setRunFeedback('Building quiz...');
+    setSetsError(null);
+    try {
+      const response = await authedFetch(`/api/v1/quiz-sets/${setItem.id}/build`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ count: setItem.question_count }),
+      });
+      const payload = await response.json();
+      if (!response.ok) {
+        throw new Error(payload.error || 'Failed to build quiz.');
+      }
+      const questions = Array.isArray(payload.questions) ? (payload.questions as Question[]) : [];
+      if (questions.length === 0) {
+        throw new Error('No questions available for this set yet.');
+      }
+      setRunFeedback(`Built ${questions.length} questions. Starting quiz...`);
+      setRunningSet(setItem);
+      setQuizQuestions(questions);
+    } catch (e) {
+      const message = e instanceof Error ? e.message : 'Failed to run set.';
+      setRunFeedback(message);
+      setSetsError(message);
+    } finally {
+      setRunningSetId(null);
+    }
+  };
+
+  if (quizQuestions && runningSet) {
+    return (
+      <Quiz
+        questions={quizQuestions}
+        section={`My Set: ${runningSet.title}`}
+        context="practice"
+        enableConfidence={true}
+        enableTypedRetries={true}
+        quizSetId={runningSet.id}
+        onBack={() => {
+          setQuizQuestions(null);
+          setRunningSet(null);
+          void loadMySets();
+        }}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 transition-colors duration-300">
       {/* Header */}
@@ -361,6 +493,57 @@ export default function LearnPage() {
         <div className="mb-8">
           <ReviewDashboard />
         </div>
+
+        <section className="mb-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-lg dark:border-slate-700 dark:bg-slate-800">
+          <div className="mb-4 flex items-center justify-between gap-3">
+            <div>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">My Quiz Sets</h2>
+              <p className="text-sm text-slate-600 dark:text-slate-300">Practice your generated sets directly from Learn.</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <Link
+                href={courseHref('/quiz-hub')}
+                className="rounded border border-slate-300 px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700"
+              >
+                Quiz Hub
+              </Link>
+              <Link
+                href={courseHref('/my-quizzes')}
+                className="rounded border border-slate-300 px-3 py-2 text-sm text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-700"
+              >
+                Manage Sets
+              </Link>
+            </div>
+          </div>
+          {setsLoading && <p className="text-sm text-slate-600 dark:text-slate-300">Loading your sets...</p>}
+          {!setsLoading && setsUnauthorized && (
+            <p className="text-sm text-amber-700 dark:text-amber-300">Sign in to view and practice your quiz sets.</p>
+          )}
+          {!setsLoading && !setsUnauthorized && mySets.length === 0 && (
+            <p className="text-sm text-slate-600 dark:text-slate-300">No sets yet. Create one in My Quizzes.</p>
+          )}
+          {!setsLoading && !setsUnauthorized && mySets.length > 0 && (
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              {mySets.map((setItem) => (
+                <div key={setItem.id} className="rounded-lg border border-slate-200 p-4 dark:border-slate-700">
+                  <p className="font-semibold text-slate-900 dark:text-white">{setItem.title}</p>
+                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                    Unit {setItem.unit_code} | Level {setItem.level} | {setItem.question_count} questions
+                  </p>
+                  <button
+                    onClick={() => void handlePracticeSet(setItem)}
+                    disabled={runningSetId === setItem.id}
+                    className="mt-3 rounded bg-indigo-600 px-3 py-1.5 text-sm text-white transition-colors hover:bg-indigo-700 active:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    {runningSetId === setItem.id ? 'Building...' : 'Practice Set'}
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+          {runFeedback && <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">{runFeedback}</p>}
+          {setsError && <p className="mt-2 text-sm text-rose-700 dark:text-rose-300">{setsError}</p>}
+        </section>
 
         {(isGcsePhysics || isGcseBiology) && visibleLessons.length === 0 && (
           <div className="mb-8 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-amber-200 dark:border-amber-800 p-6">

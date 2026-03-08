@@ -22,6 +22,7 @@ import { getSyllabusStructureByVersionAndUnit } from '@/lib/module_planner/db';
 import { getRefinementConfig } from '@/lib/generation/config';
 import { getCurriculumScopeFromHeaderOrReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
 import { getPromptInjectionSettings } from '@/lib/prompting/profileInjections';
+import { buildStrictLessonQuiz } from '@/lib/questions/strictLessonQuizBuilder';
 import fs from 'fs';
 import path from 'path';
 
@@ -53,6 +54,13 @@ function inferSectionFromUnit(unit: number | string): string {
   if (/^phy-/i.test(unitToken)) return 'GCSE Science Physics';
   if (/^bio-/i.test(unitToken)) return 'GCSE Science Biology';
   return SECTION_BY_UNIT[unitToken] ?? `Unit ${unitToken}`;
+}
+
+function inferLevelFromUnit(unit: number | string): 2 | 3 {
+  const token = String(unit).trim();
+  const numeric = Number(token.replace(/[^\d]/g, ''));
+  if (Number.isFinite(numeric) && numeric >= 300) return 3;
+  return 2;
 }
 
 async function resolveGroundingStructure(
@@ -413,8 +421,28 @@ export async function POST(request: NextRequest) {
 
     // Step 3: Generate quiz
     debugLog('STEP_3_START', { step: 'generateQuiz' });
-    console.log('[Generator] Step 3: Generating quiz (50 questions)...');
-    const quizResult = await fileGenerator.generateQuiz(body);
+    console.log('[Generator] Step 3: Generating quiz (strict-first, 50 questions)...');
+
+    const strictQuizResult = await buildStrictLessonQuiz({
+      lessonId: fullLessonId,
+      unitCode: String(body.unit),
+      level: inferLevelFromUnit(body.unit),
+      desiredCount: 50,
+      section: body.section,
+      learningOutcomes: Array.isArray((lessonResult.content as { learningOutcomes?: unknown }).learningOutcomes)
+        ? ((lessonResult.content as { learningOutcomes?: unknown }).learningOutcomes as string[])
+        : [],
+      allowAutoGenerate: true,
+    });
+    warnings.push(...strictQuizResult.warnings);
+
+    const quizResult = strictQuizResult.success && strictQuizResult.questions.length > 0
+      ? { success: true, questions: strictQuizResult.questions, error: undefined, debugInfo: undefined }
+      : await fileGenerator.generateQuiz(body);
+
+    if (!(strictQuizResult.success && strictQuizResult.questions.length > 0)) {
+      warnings.push('Strict bank produced no usable questions; used legacy generation fallback.');
+    }
     
     debugLog('STEP_3_COMPLETE', { success: quizResult.success, error: quizResult.error, questionCount: quizResult.questions?.length });
     

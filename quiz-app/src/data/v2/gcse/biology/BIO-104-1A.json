@@ -1,0 +1,114 @@
+{
+  "id": "BIO-104-1A",
+  "title": "Enzymes and Factors Affecting Rate",
+  "description": "Understand enzymes as biological catalysts and how temperature and pH affect activity.",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-104",
+  "topic": "Biological Molecules",
+  "learningOutcomes": [
+    "Define enzyme, substrate, and active site.",
+    "Explain how temperature and pH affect enzyme activity.",
+    "Interpret simple enzyme-rate observations."
+  ],
+  "prerequisites": ["BIO-101-1A", "BIO-102-1A"],
+  "blocks": [
+    {
+      "id": "BIO-104-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          { "text": "Define enzyme-related terms.", "bloomLevel": "remember" },
+          { "text": "Explain denaturation using active site shape.", "bloomLevel": "understand" }
+        ]
+      }
+    },
+    {
+      "id": "BIO-104-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          { "term": "Enzyme", "definition": "A protein that acts as a biological catalyst." },
+          { "term": "Substrate", "definition": "The reactant an enzyme acts on." },
+          { "term": "Active site", "definition": "The part of an enzyme where the substrate binds." },
+          { "term": "Denatured", "definition": "When enzyme shape changes so the active site no longer works." }
+        ]
+      }
+    },
+    {
+      "id": "BIO-104-1A-explain",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "Rate and conditions",
+        "content": "As temperature rises, particles move faster and collision rate increases. Above the optimum temperature, enzymes denature and activity drops. Extreme pH can also denature enzymes."
+      }
+    },
+    {
+      "id": "BIO-104-1A-worked",
+      "type": "worked-example",
+      "order": 4,
+      "content": {
+        "title": "Interpreting a trend",
+        "given": "An enzyme reaction rate rises from 20C to 37C, then falls sharply by 60C.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "description": "Identify the likely optimum temperature.",
+            "result": "around 37C"
+          },
+          {
+            "stepNumber": 2,
+            "description": "Explain why the rate falls at higher temperatures.",
+            "result": "enzyme denatures and active site changes shape"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-104-1A-practice",
+      "type": "practice",
+      "order": 5,
+      "content": {
+        "title": "Practice",
+        "questions": [
+          {
+            "id": "BIO-104-1A-Q1",
+            "questionText": "Why are enzymes described as catalysts?",
+            "expectedAnswer": ["they speed up reactions", "they increase reaction rate without being used up"],
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-104-1A-Q2",
+            "questionText": "What happens to the active site at very high temperature?",
+            "expectedAnswer": ["it changes shape", "it is denatured", "substrate no longer fits"],
+            "answerType": "short-text"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-104-1A-review",
+      "type": "spaced-review",
+      "order": 6,
+      "content": {
+        "title": "Review",
+        "questions": [
+          {
+            "id": "BIO-104-1A-R1",
+            "questionText": "State one factor other than temperature that affects enzyme activity.",
+            "expectedAnswer": ["ph", "substrate concentration", "enzyme concentration"]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-03-08T00:00:00.000Z",
+    "updated": "2026-03-08T00:00:00.000Z",
+    "version": "2.0.0",
+    "author": "v2-content",
+    "contentVersion": 1
+  }
+}

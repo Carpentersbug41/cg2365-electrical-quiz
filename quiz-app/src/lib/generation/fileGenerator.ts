@@ -347,7 +347,7 @@ OUTPUT FORMAT: Pure JSON only`;
    */
   async generateLesson(request: GenerationRequest): Promise<LessonGenerationResult> {
     // Feature flag: Use sequential generation if enabled
-    const USE_SEQUENTIAL = process.env.USE_SEQUENTIAL_GENERATION === 'true';
+    const USE_SEQUENTIAL = (process.env.USE_SEQUENTIAL_GENERATION || '').trim() === 'true';
     
     if (USE_SEQUENTIAL) {
       console.log('🔄 Using SEQUENTIAL generation pipeline (feature flag enabled)');

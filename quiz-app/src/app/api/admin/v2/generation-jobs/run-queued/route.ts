@@ -1,0 +1,89 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { createSupabaseAdminClient } from '@/lib/supabase/admin';
+import { guardUserAdminAccess, toUserAdminError } from '@/app/api/admin/users/_utils';
+import { GenerationJobError, runGenerationJobById } from '@/lib/v2/generation/runGenerationJob';
+
+type QueuedJob = {
+  id: string;
+};
+
+function hasCronAccess(request: NextRequest): boolean {
+  const secret =
+    process.env.V2_GENERATION_CRON_SECRET?.trim() ||
+    process.env.CRON_SECRET?.trim() ||
+    '';
+  if (!secret) return false;
+
+  const explicit = request.headers.get('x-cron-secret')?.trim();
+  if (explicit && explicit === secret) return true;
+
+  const authorization = request.headers.get('authorization')?.trim() || '';
+  if (authorization.toLowerCase().startsWith('bearer ')) {
+    const token = authorization.slice(7).trim();
+    if (token && token === secret) return true;
+  }
+
+  return false;
+}
+
+export async function POST(request: NextRequest) {
+  const cronAccess = hasCronAccess(request);
+  if (!cronAccess) {
+    const denied = await guardUserAdminAccess(request);
+    if (denied) return denied;
+  }
+
+  try {
+    const adminClient = createSupabaseAdminClient();
+    if (!adminClient) {
+      return NextResponse.json(
+        { success: false, code: 'SERVICE_UNAVAILABLE', message: 'Supabase admin client is not configured.' },
+        { status: 503 }
+      );
+    }
+
+    const body = (await request.json().catch(() => ({}))) as { limit?: number };
+    const limitRaw = Number(body.limit);
+    const limit = Number.isFinite(limitRaw) ? Math.max(1, Math.min(20, Math.floor(limitRaw))) : 5;
+
+    const { data: queuedJobs, error: queuedError } = await adminClient
+      .from('v2_generation_jobs')
+      .select('id')
+      .eq('status', 'queued')
+      .order('queued_at', { ascending: true })
+      .limit(limit)
+      .returns<QueuedJob[]>();
+    if (queuedError) throw queuedError;
+
+    const processed: Array<{
+      jobId: string;
+      status: 'succeeded' | 'skipped' | 'failed';
+      reason?: string;
+    }> = [];
+
+    for (const job of queuedJobs ?? []) {
+      try {
+        const result = await runGenerationJobById(adminClient, job.id, cronAccess ? 'cron-worker' : 'admin-worker');
+        processed.push({ jobId: result.jobId, status: 'succeeded' });
+      } catch (error) {
+        if (error instanceof GenerationJobError && (error.code === 'INVALID_STATE' || error.code === 'CLAIM_FAILED')) {
+          processed.push({ jobId: job.id, status: 'skipped', reason: error.message });
+          continue;
+        }
+        processed.push({
+          jobId: job.id,
+          status: 'failed',
+          reason: error instanceof Error ? error.message : 'Unknown error',
+        });
+      }
+    }
+
+    return NextResponse.json({
+      success: true,
+      attempted: queuedJobs?.length ?? 0,
+      processed,
+    });
+  } catch (error) {
+    return toUserAdminError(error);
+  }
+}

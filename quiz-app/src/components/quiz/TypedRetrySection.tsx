@@ -19,6 +19,7 @@ interface TypedRetryProps {
     correctAnswer: number;
     options: string[];
     confidence?: 'not-sure' | 'somewhat-sure' | 'very-sure';
+    retryReason?: 'misconception' | 'wrong' | 'guessing';
   }>;
   context: string;
   lessonId?: string;
@@ -29,7 +30,8 @@ interface TypedRetryQuestion {
   rephrasedQuestion: string;
   correctAnswerText: string;
   originalQuestion: string;
-  priority: number; // 1=highest (high confidence wrong), 2=repeated, 3=other
+  priority: number; // 1=misconception, 2=wrong, 3=guessing
+  retryReason: 'misconception' | 'wrong' | 'guessing';
 }
 
 interface RetryResult {
@@ -41,6 +43,13 @@ interface RetryResult {
   whatWasMissed?: string;
   modelAnswer?: string;
   passed: boolean;
+}
+
+function normalizeToPercentageScore(raw: unknown): number {
+  const numeric = Number(raw);
+  if (!Number.isFinite(numeric)) return 0;
+  const scaled = numeric <= 1 ? numeric * 100 : numeric;
+  return Math.max(0, Math.min(100, Math.round(scaled)));
 }
 
 export default function TypedRetrySection({ wrongAnswers, context, lessonId }: TypedRetryProps) {
@@ -61,13 +70,11 @@ export default function TypedRetrySection({ wrongAnswers, context, lessonId }: T
   function generateTypedRetries(wrongs: typeof wrongAnswers): TypedRetryQuestion[] {
     // Sort by priority
     const prioritized = [...wrongs].map(w => {
-      let priority = 3;
-      if (w.confidence === 'very-sure') {
-        priority = 1; // High confidence wrong = misconception
-      } else if (w.confidence === 'not-sure') {
-        priority = 2;
-      }
-      return { ...w, priority };
+      const retryReason =
+        w.retryReason ??
+        (w.confidence === 'very-sure' ? 'misconception' : 'wrong');
+      const priority = retryReason === 'misconception' ? 1 : retryReason === 'wrong' ? 2 : 3;
+      return { ...w, priority, retryReason };
     }).sort((a, b) => a.priority - b.priority);
 
     // Take up to 3
@@ -80,6 +87,7 @@ export default function TypedRetrySection({ wrongAnswers, context, lessonId }: T
       correctAnswerText: w.options[w.correctAnswer],
       originalQuestion: w.questionText,
       priority: w.priority,
+      retryReason: w.retryReason,
     }));
   }
 
@@ -126,19 +134,28 @@ export default function TypedRetrySection({ wrongAnswers, context, lessonId }: T
       }
 
       const result = await response.json();
+      const normalizedScore = normalizeToPercentageScore(result.score);
 
       const retryResult: RetryResult = {
         questionIndex: index,
         studentAnswer: studentAnswers[index],
-        score: result.score || 0,
+        score: normalizedScore,
         feedback: result.feedback || '',
         whatWasRight: result.metadata?.whatWasRight,
         whatWasMissed: result.metadata?.whatWasMissed,
         modelAnswer: result.metadata?.modelAnswer,
-        passed: (result.score || 0) >= 60,
+        passed: normalizedScore >= 60,
       };
 
       setResults(prev => [...prev, retryResult]);
+
+      if (retryResult.passed) {
+        await authedFetch('/api/v1/review/queue/retry-pass', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ questionStableId: retryQuestions[index].originalQuestionId }),
+        });
+      }
 
       // Move to next or show results
       if (index < retryQuestions.length - 1) {
@@ -264,13 +281,28 @@ export default function TypedRetrySection({ wrongAnswers, context, lessonId }: T
           </span>
         </div>
         <p className="text-gray-600 dark:text-slate-400">
-          Answer in 1-2 sentences to demonstrate your understanding.
+          Answer in 1-2 sentences to strengthen misconceptions, wrong answers, and low-confidence guesses.
         </p>
       </div>
 
       <div className="mb-6 p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl">
         <div className="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-2">
           Original Question:
+        </div>
+        <div className="mb-2">
+          <span className={`inline-flex rounded-full px-2 py-1 text-xs font-semibold ${
+            currentQuestion.retryReason === 'misconception'
+              ? 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-300'
+              : currentQuestion.retryReason === 'guessing'
+                ? 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300'
+                : 'bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200'
+          }`}>
+            {currentQuestion.retryReason === 'misconception'
+              ? 'Misconception Priority'
+              : currentQuestion.retryReason === 'guessing'
+                ? 'Guessing Review'
+                : 'Wrong Answer Review'}
+          </span>
         </div>
         <div className="text-gray-700 dark:text-slate-300 mb-4">
           {currentQuestion.originalQuestion}

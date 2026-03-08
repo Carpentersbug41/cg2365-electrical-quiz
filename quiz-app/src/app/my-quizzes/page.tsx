@@ -16,6 +16,7 @@ interface LessonSummary {
   id: string;
   title: string;
   unitNumber: string;
+  questionCount: number;
 }
 
 interface StudentQuizSet {
@@ -37,6 +38,17 @@ interface ReviewQueueRow {
   due_at: string;
   lo_code: string | null;
   llm_why_wrong: string | null;
+}
+
+interface RunFeedback {
+  setId: string;
+  tone: 'info' | 'success' | 'error';
+  message: string;
+}
+
+interface CreateFeedback {
+  tone: 'success' | 'error';
+  message: string;
 }
 
 const initialForm = {
@@ -61,6 +73,10 @@ export default function MyQuizzesPage() {
   const [unauthorized, setUnauthorized] = useState(false);
   const [runningSet, setRunningSet] = useState<StudentQuizSet | null>(null);
   const [quizQuestions, setQuizQuestions] = useState<Question[] | null>(null);
+  const [runningSetId, setRunningSetId] = useState<string | null>(null);
+  const [deletingSetId, setDeletingSetId] = useState<string | null>(null);
+  const [runFeedback, setRunFeedback] = useState<RunFeedback | null>(null);
+  const [createFeedback, setCreateFeedback] = useState<CreateFeedback | null>(null);
 
   const activeQueueCount = useMemo(
     () => reviewQueue.filter((item) => item.status === 'active').length,
@@ -105,8 +121,15 @@ export default function MyQuizzesPage() {
                 id: String(lesson.id ?? ''),
                 title: String(lesson.title ?? ''),
                 unitNumber: String(lesson.unitNumber ?? ''),
+                questionCount: Number(lesson.questionCount ?? 0),
               }))
-              .filter((lesson) => lesson.id.length > 0 && lesson.title.length > 0 && lesson.unitNumber.length > 0)
+              .filter(
+                (lesson) =>
+                  lesson.id.length > 0 &&
+                  lesson.title.length > 0 &&
+                  lesson.unitNumber.length > 0 &&
+                  Number.isFinite(lesson.questionCount)
+              )
           : [];
         setLessons(list);
       }
@@ -144,6 +167,7 @@ export default function MyQuizzesPage() {
   const handleCreateSet = async () => {
     setSaving(true);
     setError(null);
+    setCreateFeedback(null);
     try {
       const loCodes = form.lo_codes
         .split(',')
@@ -174,8 +198,17 @@ export default function MyQuizzesPage() {
         unit_code: prev.unit_code,
       }));
       await loadAll();
+      setCreateFeedback({
+        tone: 'success',
+        message: 'Quiz set created.',
+      });
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to create set.');
+      const message = e instanceof Error ? e.message : 'Failed to create set.';
+      setError(message);
+      setCreateFeedback({
+        tone: 'error',
+        message,
+      });
     } finally {
       setSaving(false);
     }
@@ -183,6 +216,7 @@ export default function MyQuizzesPage() {
 
   const handleDeleteSet = async (setId: string) => {
     setError(null);
+    setDeletingSetId(setId);
     try {
       const response = await authedFetch(`/api/v1/quiz-sets/${setId}`, { method: 'DELETE' });
       if (!response.ok) {
@@ -192,11 +226,19 @@ export default function MyQuizzesPage() {
       await loadAll();
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to delete set.');
+    } finally {
+      setDeletingSetId(null);
     }
   };
 
   const handleRunSet = async (setItem: StudentQuizSet) => {
     setError(null);
+    setRunFeedback({
+      setId: setItem.id,
+      tone: 'info',
+      message: 'Building quiz...',
+    });
+    setRunningSetId(setItem.id);
     try {
       const response = await authedFetch(`/api/v1/quiz-sets/${setItem.id}/build`, {
         method: 'POST',
@@ -209,12 +251,37 @@ export default function MyQuizzesPage() {
       }
       const questions = Array.isArray(data.questions) ? (data.questions as Question[]) : [];
       if (questions.length === 0) {
-        throw new Error('No questions available for this set yet.');
+        const matchedQuestionCount = Number(data?.meta?.lesson_filter?.matched_question_count ?? 0);
+        const selectedLessonCount = Number(data?.meta?.lesson_filter?.selected_lesson_count ?? 0);
+        const requestedCount = Number(data?.meta?.requested ?? setItem.question_count);
+        const noQuestionsMessage =
+          selectedLessonCount > 0 && matchedQuestionCount === 0
+            ? `No approved questions are tagged to the ${selectedLessonCount} selected lesson(s). Try fewer lessons, remove LO filters, or choose a unit/level with bank coverage.`
+            : `Built 0 of ${requestedCount} requested questions. Broaden lessons/LOs or check bank coverage.`;
+        setRunFeedback({
+          setId: setItem.id,
+          tone: 'error',
+          message: noQuestionsMessage,
+        });
+        throw new Error(noQuestionsMessage);
       }
+      setRunFeedback({
+        setId: setItem.id,
+        tone: 'success',
+        message: `Built ${questions.length} question${questions.length === 1 ? '' : 's'}. Starting quiz...`,
+      });
       setRunningSet(setItem);
       setQuizQuestions(questions);
     } catch (e) {
-      setError(e instanceof Error ? e.message : 'Failed to run set.');
+      const message = e instanceof Error ? e.message : 'Failed to run set.';
+      setRunFeedback({
+        setId: setItem.id,
+        tone: 'error',
+        message,
+      });
+      setError(message);
+    } finally {
+      setRunningSetId(null);
     }
   };
 
@@ -224,6 +291,8 @@ export default function MyQuizzesPage() {
         questions={quizQuestions}
         section={`My Set: ${runningSet.title}`}
         context="practice"
+        enableConfidence={true}
+        enableTypedRetries={true}
         quizSetId={runningSet.id}
         onBack={() => {
           setQuizQuestions(null);
@@ -240,10 +309,22 @@ export default function MyQuizzesPage() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">My Quiz Sets</h1>
           <div className="flex gap-2">
-            <Link href={courseHref('/quiz')} className="rounded border border-slate-300 px-3 py-2 text-sm">
+            <Link
+              href={courseHref('/quiz-hub')}
+              className="rounded border border-slate-300 px-3 py-2 text-sm transition-colors hover:bg-slate-100 active:bg-slate-200"
+            >
+              Quiz Hub
+            </Link>
+            <Link
+              href={courseHref('/quiz')}
+              className="rounded border border-slate-300 px-3 py-2 text-sm transition-colors hover:bg-slate-100 active:bg-slate-200"
+            >
               Question Bank
             </Link>
-            <Link href={courseHref('/')} className="rounded border border-slate-300 px-3 py-2 text-sm">
+            <Link
+              href={courseHref('/')}
+              className="rounded border border-slate-300 px-3 py-2 text-sm transition-colors hover:bg-slate-100 active:bg-slate-200"
+            >
               Back Home
             </Link>
           </div>
@@ -292,39 +373,57 @@ export default function MyQuizzesPage() {
               <option value={2}>Level 2</option>
               <option value={3}>Level 3</option>
             </select>
-            <select
-              multiple
-              value={form.lesson_ids}
-              onChange={(event) => {
-                const selected = Array.from(event.currentTarget.selectedOptions).map((option) => option.value);
-                setForm((prev) => ({ ...prev, lesson_ids: selected }));
-              }}
-              className="min-h-28 rounded border border-slate-300 px-3 py-2"
-            >
-              {lessonsForSelectedUnit.map((lesson) => (
-                <option key={lesson.id} value={lesson.id}>
-                  {lesson.id} - {lesson.title}
-                </option>
-              ))}
-            </select>
-            <input
-              type="number"
-              min={1}
-              max={100}
-              value={form.question_count}
-              onChange={(event) => setForm((prev) => ({ ...prev, question_count: Number(event.target.value || 20) }))}
-              className="rounded border border-slate-300 px-3 py-2"
-              placeholder="Question count"
-            />
-            <input
-              type="number"
-              min={1}
-              max={60}
-              value={form.cadence_days}
-              onChange={(event) => setForm((prev) => ({ ...prev, cadence_days: Number(event.target.value || 3) }))}
-              className="rounded border border-slate-300 px-3 py-2"
-              placeholder="Cadence days"
-            />
+            <div className="md:col-span-3 space-y-1">
+              <label htmlFor="lesson-ids" className="text-sm font-medium text-slate-700">
+                Lessons
+              </label>
+              <select
+                id="lesson-ids"
+                multiple
+                value={form.lesson_ids}
+                onChange={(event) => {
+                  const selected = Array.from(event.currentTarget.selectedOptions).map((option) => option.value);
+                  setForm((prev) => ({ ...prev, lesson_ids: selected }));
+                }}
+                className="min-h-56 w-full rounded border border-slate-300 px-3 py-2"
+              >
+                {lessonsForSelectedUnit.map((lesson) => (
+                  <option key={lesson.id} value={lesson.id}>
+                    {lesson.id} - {lesson.title} ({lesson.questionCount} questions)
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="question-count" className="text-sm font-medium text-slate-700">
+                Question count
+              </label>
+              <input
+                id="question-count"
+                type="number"
+                min={1}
+                max={100}
+                value={form.question_count}
+                onChange={(event) => setForm((prev) => ({ ...prev, question_count: Number(event.target.value || 20) }))}
+                className="w-full rounded border border-slate-300 px-3 py-2"
+                placeholder="Question count"
+              />
+            </div>
+            <div className="space-y-1">
+              <label htmlFor="cadence-days" className="text-sm font-medium text-slate-700">
+                Cadence days
+              </label>
+              <input
+                id="cadence-days"
+                type="number"
+                min={1}
+                max={60}
+                value={form.cadence_days}
+                onChange={(event) => setForm((prev) => ({ ...prev, cadence_days: Number(event.target.value || 3) }))}
+                className="w-full rounded border border-slate-300 px-3 py-2"
+                placeholder="Cadence days"
+              />
+            </div>
             <input
               placeholder="LO codes (comma separated, optional)"
               value={form.lo_codes}
@@ -348,10 +447,15 @@ export default function MyQuizzesPage() {
           <button
             onClick={() => void handleCreateSet()}
             disabled={saving || unauthorized || !form.title.trim() || !form.unit_code}
-            className="mt-4 rounded bg-slate-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-60"
+            className="mt-4 rounded bg-slate-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-800 active:bg-slate-950 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {saving ? 'Saving...' : 'Create Set'}
           </button>
+          {createFeedback && (
+            <p className={`mt-2 text-sm ${createFeedback.tone === 'error' ? 'text-rose-700' : 'text-emerald-700'}`}>
+              {createFeedback.message}
+            </p>
+          )}
         </section>
 
         <section className="rounded-lg border border-slate-200 bg-white p-4">
@@ -374,17 +478,32 @@ export default function MyQuizzesPage() {
                 <div className="mt-2 flex gap-2">
                   <button
                     onClick={() => void handleRunSet(setItem)}
-                    className="rounded bg-indigo-600 px-3 py-1.5 text-sm text-white"
+                    disabled={runningSetId === setItem.id || deletingSetId === setItem.id}
+                    className="rounded bg-indigo-600 px-3 py-1.5 text-sm text-white transition-colors hover:bg-indigo-700 active:bg-indigo-800 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Run
+                    {runningSetId === setItem.id ? 'Running...' : 'Run'}
                   </button>
                   <button
                     onClick={() => void handleDeleteSet(setItem.id)}
-                    className="rounded border border-rose-300 px-3 py-1.5 text-sm text-rose-700"
+                    disabled={deletingSetId === setItem.id || runningSetId === setItem.id}
+                    className="rounded border border-rose-300 px-3 py-1.5 text-sm text-rose-700 transition-colors hover:bg-rose-50 active:bg-rose-100 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Delete
+                    {deletingSetId === setItem.id ? 'Deleting...' : 'Delete'}
                   </button>
                 </div>
+                {runFeedback?.setId === setItem.id && (
+                  <p
+                    className={`mt-2 text-sm ${
+                      runFeedback.tone === 'error'
+                        ? 'text-rose-700'
+                        : runFeedback.tone === 'success'
+                          ? 'text-emerald-700'
+                          : 'text-slate-600'
+                    }`}
+                  >
+                    {runFeedback.message}
+                  </p>
+                )}
               </div>
             ))}
           </div>

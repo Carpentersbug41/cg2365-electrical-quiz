@@ -1,0 +1,115 @@
+{
+  "id": "BIO-102-1A",
+  "title": "Diffusion and Osmosis",
+  "description": "Understand particle movement across concentration gradients.",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-102",
+  "topic": "Transport in Cells",
+  "learningOutcomes": [
+    "Define diffusion and osmosis.",
+    "Predict direction of net movement.",
+    "Apply diffusion/osmosis to a biological example."
+  ],
+  "prerequisites": ["BIO-101-1A"],
+  "blocks": [
+    {
+      "id": "BIO-102-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          { "text": "Define diffusion and osmosis.", "bloomLevel": "remember" },
+          { "text": "Predict movement across membranes.", "bloomLevel": "apply" }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          { "term": "Diffusion", "definition": "Net movement from high to low concentration." },
+          { "term": "Osmosis", "definition": "Net movement of water through a partially permeable membrane." },
+          { "term": "Concentration gradient", "definition": "Difference in concentration between two areas." }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1A-explain",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "How particles move",
+        "content": "Particles move randomly, but net movement is down a concentration gradient. In osmosis, only water moves through a partially permeable membrane."
+      }
+    },
+    {
+      "id": "BIO-102-1A-guided",
+      "type": "guided-practice",
+      "order": 4,
+      "content": {
+        "title": "Predict movement",
+        "problem": "A cell is placed in a concentrated sugar solution.",
+        "steps": [
+          {
+            "stepNumber": 1,
+            "prompt": "Is water concentration inside the cell higher or lower than outside?",
+            "expectedAnswer": ["higher", "inside is higher"],
+            "hint": "Concentrated sugar outside means less water outside."
+          },
+          {
+            "stepNumber": 2,
+            "prompt": "What is the net direction of water movement?",
+            "expectedAnswer": ["out of the cell", "water leaves the cell"],
+            "hint": "Water moves from high to low water concentration."
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1A-practice",
+      "type": "practice",
+      "order": 5,
+      "content": {
+        "title": "Practice",
+        "questions": [
+          {
+            "id": "BIO-102-1A-Q1",
+            "questionText": "Define osmosis.",
+            "expectedAnswer": ["movement of water through a partially permeable membrane", "net movement of water from dilute to concentrated"],
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-102-1A-Q2",
+            "questionText": "Why does diffusion eventually slow down?",
+            "expectedAnswer": ["concentrations become more equal", "gradient decreases", "equilibrium"],
+            "answerType": "short-text"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1A-review",
+      "type": "spaced-review",
+      "order": 6,
+      "content": {
+        "title": "Review",
+        "questions": [
+          {
+            "id": "BIO-102-1A-R1",
+            "questionText": "In one sentence, compare diffusion and osmosis.",
+            "expectedAnswer": ["diffusion is movement of particles, osmosis is movement of water", "osmosis is a type of diffusion of water"]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-03-08T00:00:00.000Z",
+    "updated": "2026-03-08T00:00:00.000Z",
+    "version": "2.0.0",
+    "author": "v2-content",
+    "contentVersion": 1
+  }
+}

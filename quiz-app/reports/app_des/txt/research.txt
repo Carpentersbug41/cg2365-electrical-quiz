@@ -1,3 +1,10 @@
+Research Source Note (2026-03-05)
+
+This file is archived research input text, not a direct runtime spec for the current app.
+Use eports/app_des/*.md for implementation-accurate behavior.
+
+---
+
 
 
 

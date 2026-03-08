@@ -14,6 +14,7 @@ import MasteryUnlockGate from '@/components/learning/MasteryUnlockGate';
 import { decodeHtmlEntities } from '@/lib/utils/htmlEntities';
 import { getCoursePrefixFromHeader } from '@/lib/routing/curricula';
 import { getCurriculumScopeFromCoursePrefix, isLessonIdAllowedForScope } from '@/lib/routing/curriculumScope';
+import { getV2PublishedLessonByCode } from '@/lib/v2/publishedLessons';
 
 // Import lesson data
 import lesson204_10A from '@/data/lessons/2365/204-10A-dead-test-language-what-each-test-proves.json';
@@ -148,8 +149,9 @@ export default async function LessonPage({ params }: PageProps) {
     notFound();
   }
   
-  // Load lesson data
-  const lesson = LESSONS[lessonId];
+  const publishedLesson =
+    scope === 'gcse-science-biology' ? await getV2PublishedLessonByCode(lessonId) : null;
+  const lesson = scope === 'gcse-science-biology' ? publishedLesson : LESSONS[lessonId];
 
   if (!lesson) {
     notFound();
@@ -186,9 +188,12 @@ export async function generateStaticParams() {
 // Metadata
 export async function generateMetadata({ params }: PageProps) {
   const { lessonId } = await params;
-  const lesson = LESSONS[lessonId];
   const requestHeaders = await headers();
   const coursePrefix = getCoursePrefixFromHeader(requestHeaders.get('x-course-prefix'));
+  const scope = getCurriculumScopeFromCoursePrefix(coursePrefix);
+  const publishedLesson =
+    scope === 'gcse-science-biology' ? await getV2PublishedLessonByCode(lessonId) : null;
+  const lesson = scope === 'gcse-science-biology' ? publishedLesson : LESSONS[lessonId];
   const suffix =
     coursePrefix === '/gcse/science/physics'
       ? 'GCSE Physics Learning'

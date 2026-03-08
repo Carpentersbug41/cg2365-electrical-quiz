@@ -16,6 +16,16 @@ export interface WrongQuestionInput {
   misconceptionFix?: string;
 }
 
+export type ReviewReason = 'misconception' | 'wrong' | 'guessing';
+
+export interface ReviewSignalInput {
+  questionStableId?: string | null;
+  unitCode?: string | null;
+  loCode?: string | null;
+  acCode?: string | null;
+  reason: ReviewReason;
+}
+
 export interface QuizFeedbackReportItem {
   questionNumber: number;
   whyWrong: string;

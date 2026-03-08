@@ -1,4 +1,4 @@
-export const DEFAULT_COURSE_PREFIX = '/2365';
+export const DEFAULT_COURSE_PREFIX = '/gcse/science/biology';
 
 export const SUPPORTED_COURSE_PREFIXES = [
   '/2365',

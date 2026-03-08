@@ -1099,7 +1099,7 @@ function hardenFormulaBuildContent(content: MicrobreakContent, digest: LessonDig
   const candidateSequence = firstProvidedSequence.length > 0 ? firstProvidedSequence : topLevelProvidedSequence;
   const normalizedProvided = candidateSequence.map(normalizeFormulaToken).filter(isFormulaSymbolToken).slice(0, 10);
 
-  const digestSequence = extractFormulaSequenceFromDigest(digest);
+  const digestSequence = extractFormulaSequencesFromDigest(digest)[0];
   const selectedSequence = isValidFormulaSequence(normalizedProvided)
     ? normalizedProvided
     : (digestSequence && isValidFormulaSequence(digestSequence) ? digestSequence : ['V', '=', 'I', '*', 'R']);
@@ -2022,7 +2022,7 @@ function fallbackGameFromDigest(plan: Plan, digest: LessonDigest): MicrobreakCon
         distractors: facts.slice(4, 6),
       };
     case 'formula-build': {
-      const extractedSequence = extractFormulaSequenceFromDigest(digest);
+      const extractedSequence = extractFormulaSequencesFromDigest(digest)[0];
       const selectedSequence = extractedSequence && extractedSequence.length >= 4
         ? extractedSequence
         : ['V', '=', 'I', '*', 'R'];

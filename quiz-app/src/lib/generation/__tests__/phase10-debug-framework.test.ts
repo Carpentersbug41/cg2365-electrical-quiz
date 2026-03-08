@@ -1,16 +1,10 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-/**
- * Phase 10 Debug Framework - Basic Tests
- * 
- * Tests the new modules to verify they work correctly.
- */
-
+import { describe, expect, it } from 'vitest';
 import { generatePointerDiff } from '../pointerDiffGenerator';
-import { extractPointersFromIssue, extractPointersByRubricSection } from '../pointerExtractor';
+import { extractPointersByRubricSection, extractPointersFromIssue } from '../pointerExtractor';
+import { runStabilityCheck } from '../scoreStabilityChecker';
 import { Lesson } from '../types';
 
-// Simple test lesson for testing
-const testLessonBefore: Lesson = {
+const baseLesson: Lesson = {
   id: 'TEST-001',
   unit: 'test-unit',
   topic: 'Testing',
@@ -18,28 +12,19 @@ const testLessonBefore: Lesson = {
   description: 'A test lesson',
   layout: 'linear-flow',
   prerequisites: [],
-  learningOutcomes: [
-    'Learn testing'
-  ],
+  learningOutcomes: ['Learn testing'],
   blocks: [
     {
       id: 'outcomes-1',
       type: 'outcomes',
       order: 0,
-      content: {
-        outcomes: [
-          { text: 'Learn testing', bloomLevel: 'Remember' }
-        ]
-      }
+      content: { outcomes: [{ text: 'Learn testing', bloomLevel: 'Remember' }] },
     },
     {
       id: 'explanation-1',
       type: 'explanation',
       order: 1,
-      content: {
-        title: 'What is Testing?',
-        content: 'Testing is important for quality.'
-      }
+      content: { title: 'What is Testing?', content: 'Testing is important for quality.' },
     },
     {
       id: 'practice-1',
@@ -52,251 +37,80 @@ const testLessonBefore: Lesson = {
             questionText: 'What is testing?',
             expectedAnswer: ['quality assurance', 'verification'],
             answerType: 'short-text',
-            hint: 'Think about quality'
-          }
-        ]
-      }
-    }
+            hint: 'Think about quality',
+          },
+        ],
+      },
+    },
   ],
   metadata: {
     created: '2026-02-07T00:00:00Z',
     updated: '2026-02-07T00:00:00Z',
     version: '1.0',
-    author: 'Test Framework'
-  }
+    author: 'Test Framework',
+  },
 };
 
-const testLessonAfter: Lesson = {
-  ...testLessonBefore,
+const updatedLesson: Lesson = {
+  ...baseLesson,
   blocks: [
-    testLessonBefore.blocks[0],
+    baseLesson.blocks[0],
     {
-      ...testLessonBefore.blocks[1],
+      ...baseLesson.blocks[1],
       content: {
-        title: 'What is Software Testing?',  // Changed
-        content: 'Testing is very important for quality assurance.'  // Changed
-      }
+        title: 'What is Software Testing?',
+        content: 'Testing is very important for quality assurance.',
+      },
     },
     {
-      ...testLessonBefore.blocks[2],
+      ...baseLesson.blocks[2],
       content: {
         questions: [
           {
-            ...((testLessonBefore.blocks[2].content as { questions: Array<Record<string, unknown>> }).questions[0] as Record<string, unknown>),
-            hint: 'Think about quality and verification'  // Changed
-          }
-        ]
-      }
-    }
-  ]
+            ...((baseLesson.blocks[2].content as { questions: Array<Record<string, unknown>> }).questions[0] as Record<
+              string,
+              unknown
+            >),
+            hint: 'Think about quality and verification',
+          },
+        ],
+      },
+    },
+  ],
 };
 
-// Test 1: Pointer Diff Generator
-function testPointerDiff() {
-  console.log('\n=== Test 1: Pointer Diff Generator ===');
-  
-  const diff = generatePointerDiff(testLessonBefore, testLessonAfter);
-  
-  console.log(`Generated ${diff.changes.length} changes`);
-  console.log('Changes:');
-  diff.changes.forEach(change => {
-    console.log(`  ${change.op} at ${change.path}`);
-    console.log(`    Summary: ${change.summary}`);
+describe('phase10 debug framework helpers', () => {
+  it('generates pointer diff for changed lesson fields', () => {
+    const diff = generatePointerDiff(baseLesson, updatedLesson);
+    const paths = diff.changes.map((c) => c.path);
+
+    expect(paths).toContain('/blocks/1/content/title');
+    expect(paths).toContain('/blocks/1/content/content');
+    expect(paths).toContain('/blocks/2/content/questions/0/hint');
   });
-  
-  // Verify expected changes
-  const expectedPaths = [
-    '/blocks/1/content/title',
-    '/blocks/1/content/content',
-    '/blocks/2/content/questions/0/hint'
-  ];
-  
-  const actualPaths = diff.changes.map(c => c.path);
-  const allExpectedFound = expectedPaths.every(p => actualPaths.includes(p));
-  
-  if (allExpectedFound) {
-    console.log('✅ Test PASSED: All expected changes found');
-  } else {
-    console.log('❌ Test FAILED: Missing expected changes');
-    console.log('Expected:', expectedPaths);
-    console.log('Actual:', actualPaths);
-  }
-}
 
-// Test 2: Pointer Extractor
-function testPointerExtractor() {
-  console.log('\n=== Test 2: Pointer Extractor ===');
-  
-  const issueText = 'Explanation block at blocks[1] missing key points summary. Question blocks[2] needs better hint.';
-  const pointers = extractPointersFromIssue(issueText, testLessonBefore);
-  
-  console.log(`Extracted ${pointers.length} pointers from issue text`);
-  console.log('Pointers:', pointers);
-  
-  if (pointers.length > 0) {
-    console.log('✅ Test PASSED: Extracted pointers from issue text');
-  } else {
-    console.log('❌ Test FAILED: No pointers extracted');
-  }
-  
-  // Test rubric section extraction
-  const rubricPointers = extractPointersByRubricSection('B1', testLessonBefore);
-  console.log(`\nExtracted ${rubricPointers.length} pointers for rubric section B1`);
-  console.log('Pointers:', rubricPointers);
-}
+  it('extracts pointers from issue text and rubric section', () => {
+    const issueText = 'Explanation block at blocks[1] missing key points summary. Question blocks[2] needs better hint.';
+    const pointers = extractPointersFromIssue(issueText, baseLesson);
+    const rubricPointers = extractPointersByRubricSection('B1', baseLesson);
 
-// Test 3: Issue Lifecycle (simplified - just verify it runs)
-function testIssueLifecycle() {
-  console.log('\n=== Test 3: Issue Lifecycle Generator ===');
-  
-  try {
-    const { generateIssueLifecycle } = require('../issueLifecycleGenerator');
-    const { generatePointerDiff } = require('../pointerDiffGenerator');
-    
-    const pointerDiff = generatePointerDiff(testLessonBefore, testLessonAfter);
-    
-    const lifecycle = generateIssueLifecycle({
-      runId: 'test-run',
-      lessonId: 'TEST-001',
-      lesson: testLessonBefore,
-      scoreBeforeDetails: [
-        {
-          section: 'B1: Beginner Clarity',
-          score: 0,
-          maxScore: 5,
-          issues: ['Missing key points summary'],
-          suggestions: ['Add key points section'],
-          jsonPointers: ['/blocks/1/content/content']
-        }
-      ],
-      plan: undefined,
-      pointerDiff,
-      scoreAfterDetails: [
-        {
-          section: 'B1: Beginner Clarity',
-          score: 3,
-          maxScore: 5,
-          issues: ['Improved but still needs work'],
-          suggestions: [],
-          jsonPointers: ['/blocks/1/content/content']
-        }
-      ]
-    });
-    
-    console.log(`Generated lifecycle with ${lifecycle.issues.length} issues`);
-    if (lifecycle.issues.length > 0) {
-      console.log('First issue:');
-      console.log(`  ID: ${lifecycle.issues[0].issueId}`);
-      console.log(`  Outcome: ${lifecycle.issues[0].outcome}`);
-      console.log(`  Fixability: ${lifecycle.issues[0].fixability}`);
-    }
-    
-    console.log('✅ Test PASSED: Issue lifecycle generation works');
-  } catch (error) {
-    console.log('❌ Test FAILED:', error);
-  }
-}
+    expect(pointers.length).toBeGreaterThan(0);
+    expect(rubricPointers.length).toBeGreaterThan(0);
+  });
 
-// Test 4: Score Stability Checker (mocked)
-function testScoreStability() {
-  console.log('\n=== Test 4: Score Stability Checker ===');
-  
-  try {
-    const { runStabilityCheck } = require('../scoreStabilityChecker');
-    
-    // Mock scorer
+  it('runs stability check with mock scorer', async () => {
     const mockScorer = {
       scoreLesson: async () => ({
-        total: 90 + Math.floor(Math.random() * 5),  // Random 90-94
+        total: 92,
         grade: 'Strong',
         breakdown: {},
-        details: []
-      })
+        details: [{ section: 'B1: Beginner Clarity', score: 4, maxScore: 5, issues: [], suggestions: [] }],
+      }),
     };
-    
-    console.log('Running stability check with mock scorer...');
-    runStabilityCheck(testLessonBefore, mockScorer, 3).then((result: any) => {
-      console.log(`Stability check complete: ${result.runs.length} runs`);
-      console.log(`  Range: ${result.analysis.min} - ${result.analysis.max}`);
-      console.log(`  Variance: ${result.analysis.variance}`);
-      console.log(`  Stable: ${result.analysis.isStable}`);
-      
-      if (result.runs.length === 3) {
-        console.log('✅ Test PASSED: Stability check works');
-      } else {
-        console.log('❌ Test FAILED: Expected 3 runs');
-      }
-    }).catch((error: any) => {
-      console.log('❌ Test FAILED:', error);
-    });
-  } catch (error) {
-    console.log('❌ Test FAILED:', error);
-  }
-}
 
-// Test 5: Blockers Analyzer
-function testBlockersAnalyzer() {
-  console.log('\n=== Test 5: Blockers Analyzer ===');
-  
-  try {
-    const { analyzeBlockers } = require('../blockersAnalyzer');
-    
-    const mockPlan = {
-      lessonId: 'TEST-001',
-      timestamp: new Date().toISOString(),
-      plan: [
-        {
-          issueId: 'D3.synthesis',
-          rubricRef: 'D3',
-          fixability: 'blocked_by_policy',
-          targets: ['/blocks/2/content/questions/0/answerType'],
-          instructions: 'Change answerType to long-text for synthesis question'
-        }
-      ]
-    };
-    
-    const mockScore = {
-      total: 85,
-      grade: 'Usable',
-      breakdown: {},
-      details: [
-        {
-          section: 'D3: Synthesis',
-          score: 0,
-          maxScore: 5,
-          issues: ['Needs long-text for synthesis'],
-          suggestions: []
-        }
-      ]
-    };
-    
-    const blockers = analyzeBlockers(mockPlan, mockScore);
-    
-    console.log(`Found ${blockers.blockers.length} blockers`);
-    console.log(`Points blocked: ${blockers.summary.pointsBlocked}`);
-    
-    if (blockers.blockers.length > 0) {
-      console.log('First blocker:');
-      console.log(`  Type: ${blockers.blockers[0].type}`);
-      console.log(`  Description: ${blockers.blockers[0].description.substring(0, 80)}...`);
-    }
-    
-    console.log('✅ Test PASSED: Blockers analysis works');
-  } catch (error) {
-    console.log('❌ Test FAILED:', error);
-  }
-}
-
-// Run all tests
-console.log('Starting Phase 10 Debug Framework Tests...');
-console.log('==========================================');
-
-testPointerDiff();
-testPointerExtractor();
-testIssueLifecycle();
-testScoreStability();
-testBlockersAnalyzer();
-
-console.log('\n==========================================');
-console.log('Tests Complete!');
-
+    const result = await runStabilityCheck(baseLesson, mockScorer as never, 3);
+    expect(result.runs).toHaveLength(3);
+    expect(result.analysis.variance).toBe(0);
+    expect(result.analysis.isStable).toBe(true);
+  });
+});

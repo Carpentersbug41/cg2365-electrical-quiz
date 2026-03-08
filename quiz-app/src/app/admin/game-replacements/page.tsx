@@ -6,6 +6,7 @@ import SortingGame from '@/components/learning/microbreaks/games/SortingGame';
 import AdvancedTextGame from '@/components/learning/microbreaks/games/AdvancedTextGame';
 import QuickWinSprintGame from '@/components/learning/microbreaks/games/QuickWinSprintGame';
 import {
+  DiagnosisRankedGameContent,
   FillGapGameContent,
   FormulaBuildGameContent,
   IsCorrectWhyGameContent,
@@ -97,68 +98,65 @@ const isCorrectWhyContent: IsCorrectWhyGameContent = {
   ],
   correctReasonIndex: 0,
   explanation: 'Parallel branches are across the same potential difference, so branch voltages match the supply.',
+  timerSeconds: 45,
   questions: [
     {
-      statement: 'In a parallel circuit, each branch has the same voltage as the supply.',
+      statement: 'In a series circuit, current is the same at every point.',
       isCorrect: true,
       reasons: [
-        'Branches are connected across the same two supply points.',
-        'Current is always equal in every branch regardless of resistance.',
-        'Voltage is consumed by the first component in the circuit.',
-        'Parallel circuits force one single current path through all loads.',
+        'A series circuit has only one path for current.',
+        'Series circuits always split current into branches.',
+        'Current is consumed by the first component.',
+        'The battery forces different current in each resistor.',
       ],
       correctReasonIndex: 0,
-      explanation: 'Parallel branches are across the same potential difference, so branch voltages match the supply.',
+      explanation: 'With one path only, the same current flows through every component.',
     },
     {
-      statement: 'In a series circuit, current splits into separate branch currents.',
+      statement: 'Increasing resistance at fixed voltage increases current.',
       isCorrect: false,
       reasons: [
-        'Series circuits have one path, so current does not split.',
-        'Voltage always splits current into branch currents.',
-        'Resistors create extra current loops automatically.',
-        'Ammeter range settings force current splitting.',
-      ],
-      correctReasonIndex: 0,
-      explanation: 'Series circuits provide only one continuous path for current.',
-    },
-    {
-      statement: 'Increasing resistance with fixed voltage decreases current.',
-      isCorrect: true,
-      reasons: [
-        'From I = V / R, larger R gives smaller I when V stays constant.',
-        'Higher resistance creates extra voltage in the source.',
-        'Current and resistance always increase together.',
+        'From I = V/R, higher resistance gives lower current when voltage is fixed.',
+        'Resistance raises current to keep power constant.',
+        'Current and resistance always rise together.',
         'Only AC circuits follow Ohm’s law.',
       ],
       correctReasonIndex: 0,
-      explanation: 'Ohm’s law directly links current inversely to resistance at fixed voltage.',
+      explanation: 'Ohm’s law shows current is inversely proportional to resistance for fixed voltage.',
     },
     {
-      statement: 'A fuse protects a circuit by increasing current flow during faults.',
-      isCorrect: false,
-      reasons: [
-        'A fuse opens the circuit when current exceeds its rating.',
-        'A fuse stores current and releases it slowly.',
-        'A fuse boosts current to trip the MCB faster.',
-        'A fuse changes voltage to prevent overheating.',
-      ],
-      correctReasonIndex: 0,
-      explanation: 'A fuse melts and disconnects the circuit under overcurrent conditions.',
-    },
-    {
-      statement: 'Power can be calculated with P = V × I.',
+      statement: 'Electrical power can be calculated using P = V × I.',
       isCorrect: true,
       reasons: [
-        'Electrical power equals voltage multiplied by current.',
-        'Power is always voltage divided by resistance only.',
-        'Power has no relation to current.',
-        'P = V × I applies only to motors.',
+        'Power equals voltage multiplied by current.',
+        'Power always equals voltage divided by current.',
+        'Power has no relationship to current.',
+        'This formula applies only to motors.',
       ],
       correctReasonIndex: 0,
-      explanation: 'P = V × I is a core electrical power relationship.',
+      explanation: 'P = V × I is a standard power relationship for electrical circuits.',
     },
   ],
+};
+
+const diagnosisRankedContent: DiagnosisRankedGameContent = {
+  breakType: 'game',
+  gameType: 'diagnosis-ranked',
+  prompt: 'Rank the best and second-best immediate actions.',
+  instructions: 'Choose your 1st choice, then your 2nd choice, then check.',
+  timerSeconds: 50,
+  scenario:
+    'A learner reports: one lamp failed and all other lamps in the same loop went off. What are the best two immediate diagnostic steps?',
+  options: [
+    'Check for an open-circuit fault in the series path.',
+    'Verify supply voltage at the source terminals.',
+    'Assume a parallel branch fault and replace all lamps.',
+    'Increase fuse rating to force current through.',
+    'Bypass all protective devices and re-test.',
+  ],
+  correctRankedIndices: [0, 1],
+  rationale:
+    'In a series path, one open circuit can stop current everywhere. After identifying likely open-circuit behavior, confirm source voltage before deeper component-level checks.',
 };
 
 const fillGapQuestions: FillGapGameContent[] = [
@@ -324,7 +322,7 @@ export default function GameReplacementsPage() {
   const [formulaBuildResult, setFormulaBuildResult] = useState<ResultState>({ status: 'idle' });
   const [fillGapResult, setFillGapResult] = useState<ResultState>({ status: 'idle' });
   const [isCorrectWhyResult, setIsCorrectWhyResult] = useState<ResultState>({ status: 'idle' });
-
+  const [diagnosisRankedResult, setDiagnosisRankedResult] = useState<ResultState>({ status: 'idle' });
   const [matchingKey, setMatchingKey] = useState(0);
   const [sortingKey, setSortingKey] = useState(0);
   const [sequencingKey, setSequencingKey] = useState(0);
@@ -332,6 +330,7 @@ export default function GameReplacementsPage() {
   const [formulaBuildKey, setFormulaBuildKey] = useState(0);
   const [fillGapKey, setFillGapKey] = useState(0);
   const [isCorrectWhyKey, setIsCorrectWhyKey] = useState(0);
+  const [diagnosisRankedKey, setDiagnosisRankedKey] = useState(0);
   const [fillGapIndex, setFillGapIndex] = useState(0);
   const [fillGapCompleted, setFillGapCompleted] = useState<Array<{ score?: number; accuracy?: number }>>([]);
   const [fillGapHandledIndex, setFillGapHandledIndex] = useState<number | null>(null);
@@ -341,15 +340,16 @@ export default function GameReplacementsPage() {
       <div className="space-y-2">
         <h1 className="text-2xl font-bold text-slate-900">Completed Game Replacements</h1>
         <p className="text-sm text-slate-600">
-          Test page for in-app microbreak ports: Matching, Sorting, Sequencing, Is Correct Why, Quick Win, Fill Gap, and Formula Build.
+          Test page for in-app microbreak ports: Matching, Sorting, Sequencing, Is Correct Why, Diagnosis Ranked, Quick Win, Fill Gap, and Formula Build.
         </p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-7">
+      <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-8">
         <ResultBadge label="Matching" result={matchingResult} />
         <ResultBadge label="Sorting" result={sortingResult} />
         <ResultBadge label="Sequencing" result={sequencingResult} />
         <ResultBadge label="Is Correct Why" result={isCorrectWhyResult} />
+        <ResultBadge label="Diagnosis Ranked" result={diagnosisRankedResult} />
         <ResultBadge label="Quick Win" result={quickWinResult} />
         <ResultBadge label="Formula Build" result={formulaBuildResult} />
         <ResultBadge label="Fill Gap" result={fillGapResult} />
@@ -510,6 +510,27 @@ export default function GameReplacementsPage() {
           content={isCorrectWhyContent}
           onComplete={(score, accuracy) => setIsCorrectWhyResult({ status: 'completed', score, accuracy })}
           onSkip={() => setIsCorrectWhyResult({ status: 'skipped' })}
+        />
+      </section>
+
+      <section className="space-y-2 rounded-xl border border-slate-200 bg-slate-50 p-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-slate-900">Diagnosis Ranked</h2>
+          <button
+            onClick={() => {
+              setDiagnosisRankedKey((k) => k + 1);
+              setDiagnosisRankedResult({ status: 'idle' });
+            }}
+            className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-100"
+          >
+            Reset Diagnosis Ranked
+          </button>
+        </div>
+        <AdvancedTextGame
+          key={`diagnosis-ranked-${diagnosisRankedKey}`}
+          content={diagnosisRankedContent}
+          onComplete={(score, accuracy) => setDiagnosisRankedResult({ status: 'completed', score, accuracy })}
+          onSkip={() => setDiagnosisRankedResult({ status: 'skipped' })}
         />
       </section>
 

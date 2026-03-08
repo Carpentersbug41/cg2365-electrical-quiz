@@ -1,3 +1,12 @@
+Research Summary Context Note (2026-03-05)
+
+This file is background evidence that informed design choices.
+It is not an implementation contract and may include recommendations that are not fully implemented in code.
+
+Primary implementation contracts are the markdown docs in `reports/app_des/`.
+
+---
+
 Top 5 Evidence-Based Approaches (what to build)
 1. Retrieval Practice with Corrective Feedback
 
@@ -8,139 +17,3 @@ Learners must generate answers from memory, not recognize them.
 Immediate or slightly delayed feedback corrects errors.
 
 Works across vocational, GCSE, and A-level, especially in science/technical subjects.
-
-Implication for AI apps:
-AI should prompt recall first, then diagnose errors, then explain—never explain first.
-
-2. Worked Examples → Faded Guidance
-
-Critical for novices
-
-Seeing correct, annotated solutions builds schemas.
-
-Gradual removal of steps forces independent reasoning.
-
-Especially strong for vocational learners and GCSE.
-
-Implication:
-AI alternates between:
-
-“Here’s how it works”
-
-“Now you do one part”
-
-“Now do it all”
-
-3. Socratic Questioning Targeting Misconceptions
-
-Key for conceptual understanding
-
-Asking why, what would happen if, what’s wrong here exposes faulty mental models.
-
-Most effective when tied to known misconceptions, not generic “why?” questions.
-
-Implication:
-AI needs a misconception map, not free-form chat.
-
-4. Spacing + Interleaving
-
-Primary driver of long-term retention
-
-Revisiting concepts days/weeks later beats massed practice.
-
-Mixing related topics improves transfer and exam performance.
-
-Implication:
-AI schedules return questions, not just linear lessons.
-
-5. Mastery Gating (Evidence-Based Unlocking)
-
-Prevents illusion of competence
-
-Learners advance only after demonstrating understanding via retrieval.
-
-Completion ≠ mastery.
-
-Implication:
-Unlocks triggered by correct explanations or successful transfer, not time spent.
-
-What the Evidence Is Strongest For
-
-Conceptual understanding: very strong
-
-Long-term retention: very strong
-
-Exam performance: strong but mediated by alignment with assessment format
-
-Procedural accuracy: strong when paired with step-checking and error diagnosis
-
-What’s Less Certain
-
-Claims about AI “personalization” improving learning
-
-Purely conversational tutoring without structured tasks
-
-Engagement metrics predicting learning outcomes
-
-Top Pitfalls (what NOT to build)
-
-Passive content consumption (reading/watching without retrieval)
-
-Too much multiple choice (recognition ≠ understanding)
-
-Ungated progression (“Next” buttons everywhere)
-
-Immediate answer-giving by AI (kills learning effort)
-
-Shallow gamification (points without thinking)
-
-Blocked practice mistaken for mastery
-
-Over-scaffolding that never fades
-
-“Personalized” pacing without cognitive rationale
-
-AI dependency (learner stops retrieving independently)
-
-Completion metrics used as success indicators
-
-Each of these reliably produces confidence without competence.
-
-Group-Specific Summary
-Vocational / Technical (Level 2–3)
-
-Benefit most from worked examples, procedural checks, and error diagnosis
-
-AI should emphasize why steps exist, not just how
-
-GCSE
-
-Strong gains from retrieval + feedback, explicit misconception correction
-
-Socratic questioning must be structured and concrete
-
-A-Level
-
-Best supported by interleaving, transfer problems, and explanatory writing
-
-AI should push beyond recall into causal and relational reasoning
-
-The Winning AI App Loop (in plain English)
-
-Present a concept briefly
-
-Force recall or explanation
-
-Detect the error or gap
-
-Ask a targeted Socratic question
-
-Provide explanation only if needed
-
-Re-test
-
-Schedule future retrieval
-
-Unlock next concept only after mastery
-
-If your app does this reliably, t/he evidence says it will outperform most commercial “learning” apps—regardless of how flashy they are.

@@ -1,354 +1,47 @@
-# Microbreak Game Generator UI - Complete Implementation Guide
+# Microbreak Game Generator - Current Implementation
 
-Last verified: 2026-02-27  
-Status: Implemented and active  
-Scope: Admin UI, API, game generation engine, lesson mutation, runtime rendering, telemetry
-
----
-
-## 1. What This System Does
-
-The microbreak generator adds short, structured reinforcement games into existing lesson JSON files.
-
-It supports two operator workflows:
-1. `Preview` generated games without changing files.
-2. `Save` generated games into a lesson file.
-
-Primary surfaces:
-- UI: `/admin/generate-games`
-- API: `/api/admin/generate-games`
-
-This system is independent from Module Planner. It operates directly on lesson files in `src/data/lessons`.
+Last verified: 2026-03-05
+Status: Implemented and active
 
 ---
 
-## 2. End-to-End Flow
+## 1. Operator Surface
 
-1. Admin opens `/admin/generate-games`.
-2. UI fetches lesson list and readiness metadata from `GET /api/admin/generate-games`.
-3. Admin selects:
-- lesson file
-- one or more game types
-- count per type (UI currently 1 or 2)
-4. UI sends `POST /api/admin/generate-games` with:
-- `mode: "preview"` or `mode: "save"`
-5. API loads lesson JSON, calls `generateMicrobreaksForLesson(...)`, and:
-- returns generated blocks only in preview mode
-- appends/sorts/persists in save mode
-6. Learner lesson runtime renders the new `microbreak` blocks via `MicrobreakBlock`.
+- UI route: `/admin/generate-games`
+- API route: `/api/admin/generate-games`
 
----
+Supported operations:
+- list lessons + current microbreak status (`GET`)
+- preview generated games (`POST` with `operation=preview`)
+- save generated games to lesson JSON (`POST` with `operation=save`)
+- delete generated microbreak blocks (`DELETE`)
 
-## 3. Source Map (Code Ownership)
+## 2. Generation Modes
 
-UI:
-- `src/app/admin/generate-games/page.tsx`
-- `src/components/admin/GameGeneratorForm.tsx`
+- `mode=auto`: uses full supported game type pool
+- `mode=manual`: caller supplies `allowedGameTypes`
 
-API:
-- `src/app/api/admin/generate-games/route.ts`
+Supported game types include:
+`matching`, `sorting`, `spot-error`, `quick-win`, `sequencing`, `fill-gap`, `is-correct-why`, `diagnosis-ranked`, `classify-two-bins`, `scenario-match`, `formula-build`, `tap-the-line`, `tap-the-word`, `elimination`.
 
-Generation engine:
-- `src/lib/generation/gameGenerator.ts`
+## 3. Runtime Contracts
 
-Lesson types:
-- `src/data/lessons/types.ts`
+- lesson filename is sanitized and resolved recursively in `src/data/lessons`
+- curriculum scope is enforced (`isLessonIdAllowedForScope`)
+- `GEMINI_API_KEY` is required for generation path
+- if no valid microbreak slots exist, API returns success with `gamesPlanned=0`
+- save path can accept client-provided `games` payload for operator-controlled commit
 
-Learner runtime:
-- `src/components/learning/microbreaks/MicrobreakBlock.tsx`
-- `src/components/learning/microbreaks/games/*`
-- `src/components/learning/microbreaks/RestMicrobreak.tsx`
+## 4. Data Included in Lesson List Response
 
-Telemetry/effects:
-- `src/lib/microbreaks/telemetryService.ts`
-- `src/lib/microbreaks/celebrationEffects.ts`
+Per lesson the API returns:
+- basic lesson identity/title/unit
+- microbreak counts and slot availability
+- vocab/explanation availability counts
+- simulation embed metadata (if diagram embed exists)
+- socratic block presence and key settings
 
----
+## 5. Out-of-Scope
 
-## 4. Supported Game Types
-
-Active game type union:
-- `matching`
-- `sorting`
-- `spot-error`
-- `tap-label`
-- `quick-win`
-
-Current admin UI selectable types:
-- `matching`
-- `sorting`
-- `spot-error`
-- `quick-win`
-
-Block wrapper:
-- `type: "microbreak"`
-- `content.breakType: "game"` (or `"rest"` for non-game breaks)
-
-## 4.1 Game Catalog (What Each Game Is, When to Use It)
-
-`matching`
-- What it is: Pairing terms to definitions/related concepts.
-- Runtime shape: `pairs: [{ left, right }]`.
-- Typical use: Immediately after vocab or short explanation chunks to reinforce term-meaning mapping.
-- Best for: Recall and direct association.
-
-`sorting`
-- What it is: Place items into one of two categories.
-- Runtime shape: `buckets: [bucketA, bucketB]`, `items: [{ text, correctBucket }]`.
-- Typical use: After the lesson introduces a clear binary distinction (e.g. category A vs B).
-- Best for: Classification and light discrimination.
-
-`spot-error`
-- What it is: Identify the incorrect statement/step in a short scenario.
-- Runtime shape: `scenario`, `options[{ text, isError }]`, optional `explanation`.
-- Typical use: After procedural/concept explanation where common mistakes are known.
-- Best for: Misconception detection and quick corrective feedback.
-
-`tap-label`
-- What it is: Label component positions (diagram-assisted when `imageUrl` is present).
-- Runtime shape: `items: [{ id, label, correctPosition }]`, optional `imageUrl`.
-- Typical use: Diagram/component identification checkpoints.
-- Best for: Visual naming and component recall.
-- Current implementation note: Runtime renderer supports this type, but generation currently marks `tap-label` as unavailable (`tap-label temporarily disabled`) in game feasibility checks.
-
-`quick-win`
-- What it is: Fast recall sprint with short typed answers.
-- Runtime shape: `questions: [{ question, answer }]`.
-- Typical use: End-of-segment energy reset, quick confidence boost, lightweight retrieval.
-- Best for: Very short recall checks under time pressure.
-
----
-
-## 5. Admin UI Behavior
-
-## 5.1 Load state
-
-On page load, form calls:
-- `GET /api/admin/generate-games`
-
-Each lesson option includes:
-- `id`, `filename`, `title`, `unit`, `description`
-- `microbreakCount`
-- `vocabTermCount`, `explanationCount`, `totalBlocks`
-- `hasVocab`, `hasExplanations`
-
-This lets the admin see whether the selected lesson has enough teaching context for meaningful games.
-
-## 5.2 Generation state model
-
-UI tracks:
-- selected lesson filename
-- selected game types
-- count per type
-- preview blocks
-- pending/error/success status
-
-Computed request size:
-- `totalRequested = countPerType * selectedGameTypes.length`
-
-## 5.3 Preview mode
-
-`mode: "preview"` returns generated microbreak blocks only.  
-No file is modified.
-
-## 5.4 Save mode
-
-`mode: "save"` persists blocks into the lesson JSON file and then refreshes lesson metadata in UI.
-
----
-
-## 6. API Contract (Exact Behavior)
-
-## 6.1 GET `/api/admin/generate-games`
-
-Purpose:
-- enumerate lessons from `src/data/lessons/*.json`
-- parse and summarize readiness metadata
-
-Failure behavior:
-- unreadable individual file: skipped/logged
-- route-level failure: HTTP 500
-
-## 6.2 POST `/api/admin/generate-games`
-
-Request:
-```json
-{
-  "filename": "203-3A-circuit-types-what-they-do-principles-of-operation.json",
-  "gameTypes": ["matching", "sorting"],
-  "count": 2,
-  "mode": "preview"
-}
-```
-
-Validation:
-- `GEMINI_API_KEY` must be configured
-- `filename` required and sanitized
-- filename must end with `.json`
-- no path traversal/path separator usage
-- `gameTypes` must be non-empty array
-- `mode` must be `preview` or `save`
-
-Generation call:
-- API computes `totalGames = count * gameTypes.length`
-- invokes:
-  - `generateMicrobreaksForLesson(lesson, { gameTypes, count: totalGames })`
-
-Responses:
-- `preview`: generated games returned, lesson file unchanged
-- `save`: generated games returned + lesson file updated
-
----
-
-## 7. Generation Engine Internals
-
-Implementation:
-- `src/lib/generation/gameGenerator.ts`
-
-LLM backend:
-- Gemini via `@google/generative-ai`
-- model from `geminiConfig`
-- JSON-only response mode
-
-Prompt grounding sources:
-- vocabulary terms from lesson vocab blocks
-- explanation snippets from lesson explanation blocks
-
-Prompt intent:
-- reinforcement only
-- no new curriculum scope
-- concise interaction payloads suitable for short in-lesson interruptions
-
----
-
-## 8. Placement Algorithm (How Orders Are Chosen)
-
-The placement logic is designed to avoid pedagogically unsafe insertion.
-
-## 8.1 Minimum safe anchor
-
-`getMinimumSafeGameOrder()` chooses earliest legal insertion:
-- after last explanation block if explanations exist
-- otherwise after last vocabulary block
-
-## 8.2 Interleaving strategy
-
-`buildInterleavedGameOrders()`:
-- scans non-microbreak blocks in sequence
-- ignores spaced-review as an insertion anchor
-- permits at most one inserted game per eligible gap
-- skips gaps already containing microbreaks
-- avoids order collisions
-- caps output to available valid slots
-
-## 8.3 Manual placement option
-
-If generation is called with explicit `insertAfterBlocks`, engine can place against explicit block IDs.
-
-## 8.4 Post-placement validation
-
-`validateGamePlacement()` checks if any game is too early:
-- before vocab anchor
-- before explanation anchor
-
-Current behavior:
-- warns/logs placement issues
-- still returns generated blocks (non-fatal)
-
----
-
-## 9. Save Mutation Rules (File Writes)
-
-For `mode: "save"`, API mutates lesson object in this order:
-1. append generated game blocks to `lesson.blocks`
-2. sort all blocks by numeric `order`
-3. update metadata:
-- `lesson.metadata.updated = YYYY-MM-DD`
-- bump minor version segment when version exists
-4. write JSON back to original lesson file
-
-No patch intermediary is used.
-
----
-
-## 10. Runtime Rendering in Learner Lessons
-
-`MicrobreakBlock` dispatch:
-- `breakType: "rest"` -> rest component
-- `breakType: "game"` + `gameType` -> matching/sorting/spot-error/tap-label/quick-win component
-
-If content shape is invalid or unsupported, runtime falls back to safe rendering behavior instead of crashing the whole lesson.
-
----
-
-## 11. Telemetry and Feedback Effects
-
-Telemetry sink:
-- localStorage key: `microbreak-telemetry`
-
-Typical fields:
-- lesson/break identifiers
-- break type and game type
-- start/complete timestamps
-- skipped flag
-- optional score/accuracy
-
-User preference key:
-- `microbreak-preferences`
-
-Sound assets:
-- success: `/sounds/correct.mp3`
-- failure: `/sounds/wrong.mp3`
-- click: `/sounds/click.mp3`
-
----
-
-## 12. Operational Constraints and Limits
-
-- Requires `GEMINI_API_KEY` for generation.
-- UI currently constrains count-per-type to `1` or `2`.
-- Existing microbreaks are considered during placement to avoid clustering.
-- If the requested game count exceeds valid placement slots, output is capped.
-- Save writes directly into repo lesson JSON files; use source control discipline.
-
----
-
-## 13. Failure Modes and Troubleshooting
-
-1. `500` with key/config message:
-- verify `GEMINI_API_KEY` and model config.
-
-2. `400` bad request:
-- verify `filename`, `gameTypes`, `count`, `mode` shape.
-
-3. No games generated:
-- lesson may lack useful vocab/explanation context.
-- request may exceed legal insertion opportunities.
-
-4. Games generated but not visible:
-- ensure lesson file saved and loaded from expected source file.
-- verify block `type` and `order` after save.
-
-5. Placement seems too early:
-- inspect warning logs from `validateGamePlacement()`.
-- confirm vocab/explanation anchors exist in lesson.
-
----
-
-## 14. Security and Access Notes
-
-- Route-level explicit auth guard is not enforced in this API file.
-- In production, access control should be enforced at app/platform layer.
-- Filename sanitization/path checks protect against arbitrary file path writes.
-
----
-
-## 15. Quick Reference
-
-Core endpoint summary:
-- `GET /api/admin/generate-games` -> list lessons + generation readiness
-- `POST /api/admin/generate-games` (`preview`) -> generated blocks only
-- `POST /api/admin/generate-games` (`save`) -> generated blocks + persisted lesson file
-
-Core promise:
-- microbreak games reinforce already-taught material and are inserted in pedagogically safe positions within the lesson flow.
+This endpoint is focused on lesson microbreak blocks only.
+Simulation cloning and socratic block insertion are handled by separate admin APIs.

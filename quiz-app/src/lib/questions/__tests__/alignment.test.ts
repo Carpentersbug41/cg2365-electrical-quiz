@@ -43,7 +43,7 @@ describe('evaluateQuestionAlignment', () => {
 
   test('passes broad AC when LO/range overlap exists in options/answer context', () => {
     const result = evaluateQuestionAlignment({
-      stem: 'Which technology uses a collector to heat domestic hot water?',
+      stem: 'Which option is a type of micro-renewable energy used to heat domestic hot water?',
       options: ['Solar thermal', 'Nuclear fission', 'Coal boiler', 'Diesel generator'],
       correct: 'Solar thermal',
       context: {

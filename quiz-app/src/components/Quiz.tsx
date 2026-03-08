@@ -332,8 +332,9 @@ export default function Quiz({
       setShowFeedback(true);
     }
 
-    // Store attempt in IndexedDB if context provided
-    if (context && lessonId) {
+    // Store attempt in IndexedDB when we have a stable context key.
+    const trackingContextId = lessonId ?? (quizSetId ? `quiz-set:${quizSetId}` : null);
+    if (context && trackingContextId) {
       const taggedQ = currentQ as TaggedQuestion;
       const misconceptionCode = !isCorrect && taggedQ.misconceptionCodes && answerIndex !== null
         ? taggedQ.misconceptionCodes[answerIndex]
@@ -341,7 +342,7 @@ export default function Quiz({
 
       saveAttempt({
         questionId: currentQ.id.toString(),
-        lessonId,
+        lessonId: trackingContextId,
         context,
         userAnswer: answerIndex,
         correctAnswer: currentQ.correctAnswer,
@@ -356,7 +357,7 @@ export default function Quiz({
         updateNeedsReview(questions[currentQuestion].id.toString(), {
           confidence,
           isCorrect,
-          lessonId,
+          lessonId: trackingContextId,
           context,
         }).catch(err => console.error('Failed to update needs review:', err));
       }
@@ -434,6 +435,10 @@ export default function Quiz({
   // Clear flash when changing questions
   useEffect(() => {
     setWrongAnswerFlash(null);
+    setPendingAnswer(null);
+    setPendingConfidence(null);
+    setPendingRationale('');
+    setShowFeedback(false);
     setCorrectionDraft('');
     setCorrectionSubmitting(false);
     setCorrectionSubmitted(false);
@@ -466,7 +471,7 @@ export default function Quiz({
     return correct;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const score = calculateScore();
     const percentage = (score / questions.length) * 100;
     const passed = percentage >= 80; // 80% pass threshold
@@ -558,6 +563,28 @@ export default function Quiz({
         score: performanceRatio,
         masteryAchieved: passed,
       });
+
+      if (/^BIO-/i.test(lessonId) && context === 'lesson') {
+        try {
+          await authedFetch('/api/v2/runtime/lesson-quiz/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              lessonId,
+              sourceContext: 'lesson_quiz',
+              attempts: questions.map((q, idx) => ({
+                questionId: String(q.id),
+                questionStableId: getStableIdForMcqQuestion(q),
+                selectedAnswer: selectedAnswers[idx],
+                correctAnswer: q.correctAnswer,
+                isCorrect: selectedAnswers[idx] === q.correctAnswer,
+              })),
+            }),
+          });
+        } catch (error) {
+          console.warn('[Quiz] V2 runtime submit failed:', error);
+        }
+      }
     }
     
     setShowResults(true);
@@ -631,7 +658,52 @@ export default function Quiz({
     if (llmReport || isGeneratingReport || reportError) return;
 
     const incorrectQuestions = getIncorrectQuestions();
-    if (incorrectQuestions.length === 0) return;
+    const reviewSignals = questions
+      .map((question, index) => {
+        const answer = selectedAnswers[index];
+        if (answer === null) return null;
+        const confidence = selectedConfidences[index];
+        const isCorrect = answer === question.correctAnswer;
+        const meta = getQuestionMeta(question);
+        if (!meta.stableId) return null;
+
+        if (!isCorrect && confidence === 'very-sure') {
+          return {
+            questionStableId: meta.stableId,
+            unitCode: meta.unitCode,
+            loCode: meta.loCode,
+            acCode: meta.acCode,
+            reason: 'misconception' as const,
+          };
+        }
+        if (!isCorrect) {
+          return {
+            questionStableId: meta.stableId,
+            unitCode: meta.unitCode,
+            loCode: meta.loCode,
+            acCode: meta.acCode,
+            reason: 'wrong' as const,
+          };
+        }
+        if (confidence === 'not-sure') {
+          return {
+            questionStableId: meta.stableId,
+            unitCode: meta.unitCode,
+            loCode: meta.loCode,
+            acCode: meta.acCode,
+            reason: 'guessing' as const,
+          };
+        }
+        return null;
+      })
+      .filter((item): item is {
+        questionStableId: string;
+        unitCode: string | null;
+        loCode: string | null;
+        acCode: string | null;
+        reason: 'misconception' | 'wrong' | 'guessing';
+      } => Boolean(item));
+    if (incorrectQuestions.length === 0 && (!quizSetId || reviewSignals.length === 0)) return;
 
     let cancelled = false;
 
@@ -680,7 +752,7 @@ export default function Quiz({
           ? await authedFetch(`/api/v1/quiz-sets/${quizSetId}/finalize`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ wrongQuestions: payload }),
+              body: JSON.stringify({ wrongQuestions: payload, reviewSignals }),
             })
           : await fetch('/api/quiz-feedback-report', {
               method: 'POST',
@@ -720,7 +792,7 @@ export default function Quiz({
     return () => {
       cancelled = true;
     };
-  }, [showResults, llmReport, isGeneratingReport, reportError, getIncorrectQuestions, quizSetId]);
+  }, [showResults, llmReport, isGeneratingReport, reportError, getIncorrectQuestions, quizSetId, questions, selectedAnswers, selectedConfidences]);
 
   useEffect(() => {
     if (!isGeneratingReport) {
@@ -891,6 +963,38 @@ export default function Quiz({
 
   if (showResults) {
     const incorrectQuestions = getIncorrectQuestions();
+    const guessedCorrectQuestions = questions
+      .map((question, index) => ({
+        question,
+        index,
+        userAnswer: selectedAnswers[index],
+        confidence: selectedConfidences[index],
+      }))
+      .filter(
+        ({ question, userAnswer, confidence }) =>
+          userAnswer === question.correctAnswer && confidence === 'not-sure'
+      );
+    const typedRetryCandidates = [
+      ...incorrectQuestions.map(({ question, userAnswer, index }) => ({
+        questionId: getStableIdForMcqQuestion(question),
+        questionText: question.question,
+        userAnswer: userAnswer ?? -1,
+        correctAnswer: question.correctAnswer,
+        options: question.options,
+        confidence: selectedConfidences[index] || undefined,
+        retryReason:
+          selectedConfidences[index] === 'very-sure' ? ('misconception' as const) : ('wrong' as const),
+      })),
+      ...guessedCorrectQuestions.map(({ question, userAnswer, confidence }) => ({
+        questionId: getStableIdForMcqQuestion(question),
+        questionText: question.question,
+        userAnswer: userAnswer ?? -1,
+        correctAnswer: question.correctAnswer,
+        options: question.options,
+        confidence: confidence || undefined,
+        retryReason: 'guessing' as const,
+      })),
+    ];
 
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-slate-900 dark:to-slate-800 py-8 px-4">
@@ -1038,7 +1142,7 @@ export default function Quiz({
             </div>
           )}
 
-          {incorrectQuestions.length === 0 && (
+          {incorrectQuestions.length === 0 && guessedCorrectQuestions.length === 0 && (
             <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-8 text-center">
               <div className="text-6xl mb-4">🏆</div>
               <h3 className="text-2xl font-bold text-green-600 dark:text-green-400">Perfect Score!</h3>
@@ -1162,16 +1266,9 @@ export default function Quiz({
           )}
 
           {/* Typed Retry Section */}
-          {enableTypedRetries && incorrectQuestions.length > 0 && (
+          {enableTypedRetries && typedRetryCandidates.length > 0 && (
             <TypedRetrySection
-              wrongAnswers={incorrectQuestions.map(({ question, userAnswer }) => ({
-                questionId: question.id.toString(),
-                questionText: question.question,
-                userAnswer: userAnswer ?? -1,
-                correctAnswer: question.correctAnswer,
-                options: question.options,
-                confidence: selectedConfidences[questions.findIndex(q => q.id === question.id)] || undefined,
-              }))}
+              wrongAnswers={typedRetryCandidates}
               context={context}
               lessonId={lessonId}
             />
@@ -1607,7 +1704,7 @@ export default function Quiz({
 
             {currentQuestion === questions.length - 1 ? (
               <button
-                onClick={handleSubmit}
+                onClick={() => void handleSubmit()}
                 disabled={answeredCount < questions.length}
                 className="px-6 py-3 bg-green-600 dark:bg-green-700 text-white rounded-lg font-semibold hover:bg-green-700 dark:hover:bg-green-600 disabled:bg-gray-300 dark:disabled:bg-slate-700 disabled:cursor-not-allowed transition-colors w-full sm:w-auto shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
               >

@@ -17,6 +17,7 @@ import {
 } from '@/lib/generation/lessonDetector';
 import { generateQuizFilename, getCurrentTimestamp } from '@/lib/generation/utils';
 import { getCurriculumScopeFromReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import { buildStrictLessonQuiz } from '@/lib/questions/strictLessonQuizBuilder';
 import fs from 'fs';
 import path from 'path';
 
@@ -182,14 +183,36 @@ export async function POST(request: NextRequest) {
       warnings.push('Git is not configured - auto-commit disabled');
     }
 
-    // Generate quiz from lesson
-    console.log(`[QuizGenerator] Generating quiz...`);
-    const quizResult = await fileGenerator.generateQuizFromLesson(
-      body.lessonId,
-      lessonData,
-      lessonStatus.section,
-      curriculum
-    );
+    // Generate quiz from strict bank first, then fallback to legacy generation if strict yields nothing.
+    console.log(`[QuizGenerator] Generating quiz (strict-first)...`);
+    const strictResult = await buildStrictLessonQuiz({
+      lessonId: body.lessonId,
+      unitCode: lessonStatus.unitNumber,
+      desiredCount: 50,
+      section: lessonStatus.section,
+      learningOutcomes: extractLearningOutcomes(lessonData),
+      allowAutoGenerate: true,
+    });
+    warnings.push(...strictResult.warnings);
+
+    let quizResult:
+      | { success: true; questions: unknown[]; error?: string; debugInfo?: { rawResponse: string; parseError: string; attemptedOperation: string; timestamp: string } }
+      | { success: false; questions?: unknown[]; error?: string; debugInfo?: { rawResponse: string; parseError: string; attemptedOperation: string; timestamp: string } };
+
+    if (strictResult.success && strictResult.questions.length > 0) {
+      quizResult = {
+        success: true,
+        questions: strictResult.questions,
+      };
+    } else {
+      warnings.push('Strict bank produced no usable questions; used legacy lesson quiz generation fallback.');
+      quizResult = await fileGenerator.generateQuizFromLesson(
+        body.lessonId,
+        lessonData,
+        lessonStatus.section,
+        curriculum
+      );
+    }
 
     if (!quizResult.success) {
       debugLog('QUIZ_GEN_FAILED', { error: quizResult.error });

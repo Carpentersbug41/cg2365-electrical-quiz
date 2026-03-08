@@ -161,8 +161,8 @@ describe('Phase 8: Foundation Check', () => {
       };
 
       const prompts = phase8.getPrompts(input);
-      expect(prompts.userPrompt).toContain('early lesson in the module');
-      expect(prompts.userPrompt).toContain('baseline electrical knowledge');
+      expect(prompts.userPrompt).toContain('No previous lesson titles available');
+      expect(prompts.userPrompt).toContain('Use only terms already present in lesson title/learning outcomes');
       expect(prompts.userPrompt).not.toContain('PREVIOUS LESSON TITLES');
     });
 
@@ -205,7 +205,7 @@ describe('Phase 8: Foundation Check', () => {
       };
 
       const prompts = phase8.getPrompts(input);
-      expect(prompts.userPrompt).toContain('expectedAnswer: array of 2-4 strings');
+      expect(prompts.userPrompt).toContain('expectedAnswer arrays only');
       expect(prompts.userPrompt).toContain('"expectedAnswer": [');
     });
 
@@ -245,7 +245,7 @@ describe('Phase 8: Foundation Check', () => {
 
       const prompts = phase8.getPrompts(input);
       expect(prompts.systemPrompt).toContain('2-4 strings');
-      expect(prompts.systemPrompt).toContain('variants for normalization only');
+      expect(prompts.systemPrompt).toContain('Each expectedAnswer: array of 2-4 strings');
     });
 
     it('should use questionText field name consistently', () => {
@@ -258,7 +258,7 @@ describe('Phase 8: Foundation Check', () => {
 
       const prompts = phase8.getPrompts(input);
       expect(prompts.systemPrompt).toContain('Use "questionText"');
-      expect(prompts.systemPrompt).toContain('NOT "attText"');
+      expect(prompts.systemPrompt).toContain('NOT typo variants');
       expect(prompts.userPrompt).toContain('"questionText"');
       expect(prompts.userPrompt).not.toContain('"attText"');
     });

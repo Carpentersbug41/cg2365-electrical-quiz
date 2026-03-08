@@ -1,0 +1,94 @@
+{
+  "id": "BIO-101-1A",
+  "title": "Cell Structure Basics",
+  "description": "A starter lesson on animal and plant cell structures.",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-101",
+  "topic": "Cell Biology Foundations",
+  "learningOutcomes": [
+    "Identify core organelles in eukaryotic cells.",
+    "Explain the function of nucleus, membrane, and mitochondria.",
+    "Compare animal and plant cell structures."
+  ],
+  "prerequisites": [],
+  "blocks": [
+    {
+      "id": "BIO-101-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          { "text": "Identify core organelles in eukaryotic cells.", "bloomLevel": "remember" },
+          { "text": "Explain basic organelle functions.", "bloomLevel": "understand" }
+        ]
+      }
+    },
+    {
+      "id": "BIO-101-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          { "term": "Nucleus", "definition": "Contains DNA and controls cell activity." },
+          { "term": "Cell membrane", "definition": "Controls what enters and leaves the cell." },
+          { "term": "Mitochondria", "definition": "Site of aerobic respiration." },
+          { "term": "Chloroplast", "definition": "Site of photosynthesis in plant cells." }
+        ]
+      }
+    },
+    {
+      "id": "BIO-101-1A-explain",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "Animal vs Plant Cells",
+        "content": "Animal and plant cells are both eukaryotic. Plant cells have extra structures: a cellulose cell wall, chloroplasts, and a large permanent vacuole."
+      }
+    },
+    {
+      "id": "BIO-101-1A-practice",
+      "type": "practice",
+      "order": 4,
+      "content": {
+        "title": "Check",
+        "sequential": true,
+        "questions": [
+          {
+            "id": "BIO-101-1A-Q1",
+            "questionText": "Which organelle contains DNA?",
+            "expectedAnswer": ["nucleus", "the nucleus"],
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-101-1A-Q2",
+            "questionText": "Name one structure found in plant cells but not animal cells.",
+            "expectedAnswer": ["cell wall", "chloroplast", "large permanent vacuole"],
+            "answerType": "short-text"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-101-1A-review",
+      "type": "spaced-review",
+      "order": 5,
+      "content": {
+        "title": "Review",
+        "questions": [
+          {
+            "id": "BIO-101-1A-R1",
+            "questionText": "What is the job of the cell membrane?",
+            "expectedAnswer": ["controls entry and exit", "controls what enters and leaves"]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-03-08T00:00:00.000Z",
+    "updated": "2026-03-08T00:00:00.000Z",
+    "version": "2.0.0",
+    "author": "v2-content",
+    "contentVersion": 1
+  }
+}

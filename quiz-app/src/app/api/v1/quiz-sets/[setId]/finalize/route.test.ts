@@ -6,6 +6,7 @@ const requireSupabaseSession = vi.fn();
 const getStudentQuizSet = vi.fn();
 const generateQuizFeedbackReport = vi.fn();
 const upsertWrongItemsFromReport = vi.fn();
+const upsertReviewSignals = vi.fn();
 
 vi.mock('@/lib/authProgress/routeGuard', () => ({
   ensureAuthProgressEnabled,
@@ -22,6 +23,7 @@ vi.mock('@/lib/review/quizFeedbackService', () => ({
 
 vi.mock('@/lib/review/reviewQueueRepo', () => ({
   upsertWrongItemsFromReport,
+  upsertReviewSignals,
 }));
 
 describe('POST /api/v1/quiz-sets/[setId]/finalize', () => {
@@ -112,5 +114,47 @@ describe('POST /api/v1/quiz-sets/[setId]/finalize', () => {
     expect(payload.report.summary).toBe('s');
     expect(generateQuizFeedbackReport).toHaveBeenCalledTimes(1);
     expect(upsertWrongItemsFromReport).toHaveBeenCalledTimes(1);
+  });
+
+  it('persists review signals when there are no wrong answers', async () => {
+    ensureAuthProgressEnabled.mockReturnValue(null);
+    getStudentQuizSet.mockResolvedValue({
+      id: 'set-1',
+      user_id: 'user-1',
+    });
+    requireSupabaseSession.mockResolvedValue({
+      session: {
+        user: { id: 'user-1' },
+        client: {},
+      },
+      response: null,
+    });
+
+    const { POST } = await import('./route');
+    const response = await POST(
+      new NextRequest('http://localhost/api/v1/quiz-sets/set-1/finalize', {
+        method: 'POST',
+        body: JSON.stringify({
+          wrongQuestions: [],
+          reviewSignals: [
+            {
+              questionStableId: 'qid-guess',
+              unitCode: '203',
+              loCode: 'LO1',
+              acCode: 'AC1',
+              reason: 'guessing',
+            },
+          ],
+        }),
+      }),
+      { params: Promise.resolve({ setId: 'set-1' }) } as never
+    );
+    const payload = await response.json();
+
+    expect(response.status).toBe(200);
+    expect(payload.report.summary).toBe('No wrong answers to review.');
+    expect(generateQuizFeedbackReport).toHaveBeenCalledTimes(0);
+    expect(upsertWrongItemsFromReport).toHaveBeenCalledTimes(0);
+    expect(upsertReviewSignals).toHaveBeenCalledTimes(1);
   });
 });

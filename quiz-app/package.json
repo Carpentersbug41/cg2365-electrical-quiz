@@ -6,6 +6,8 @@
   "scripts": {
     "predev": "node scripts/checkLessonRegistries.js",
     "dev": "next dev",
+    "dev:v1": "set APP_SURFACE_MODE=v1&& next dev",
+    "dev:v2": "set APP_SURFACE_MODE=v2&& next dev",
     "prebuild": "node scripts/checkLessonRegistries.js",
     "build": "next build",
     "start": "next start",
@@ -15,6 +17,7 @@
     "test:questions-generation": "vitest run src/lib/questions/__tests__/validateAndInsert.batch.test.ts src/lib/questions/__tests__/validateAndInsert.test.ts",
     "questions:e2e": "npx tsx scripts/runQuestionGenerationE2E.ts",
     "test:golden-set": "vitest run src/tests/golden-set",
+    "test:e2e:v2": "node scripts/runV2E2E.mjs",
     "test:ui": "vitest --ui",
     "test:watch": "vitest watch",
     "generate:games": "tsx scripts/generateGamesForLesson.ts",
@@ -42,6 +45,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.58.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",

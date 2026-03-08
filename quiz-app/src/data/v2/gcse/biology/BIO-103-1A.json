@@ -1,0 +1,93 @@
+{
+  "id": "BIO-103-1A",
+  "title": "DNA, Genes, and Chromosomes",
+  "description": "Build core genetics language and relationships.",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-103",
+  "topic": "Genetics Foundations",
+  "learningOutcomes": [
+    "Define DNA, genes, and chromosomes.",
+    "Explain the relationship between genes and proteins.",
+    "Use key genetics vocabulary accurately."
+  ],
+  "prerequisites": ["BIO-101-1A"],
+  "blocks": [
+    {
+      "id": "BIO-103-1A-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          { "text": "Define core genetics terms.", "bloomLevel": "remember" },
+          { "text": "Explain how genes influence characteristics.", "bloomLevel": "understand" }
+        ]
+      }
+    },
+    {
+      "id": "BIO-103-1A-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          { "term": "DNA", "definition": "A molecule that carries genetic information." },
+          { "term": "Gene", "definition": "A section of DNA that codes for a protein." },
+          { "term": "Chromosome", "definition": "A long DNA molecule containing many genes." },
+          { "term": "Genome", "definition": "The complete set of genetic material in an organism." }
+        ]
+      }
+    },
+    {
+      "id": "BIO-103-1A-explain",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "From DNA to characteristics",
+        "content": "Genes are instructions for making proteins. Proteins can affect cell structure and chemical reactions, which contributes to observable characteristics."
+      }
+    },
+    {
+      "id": "BIO-103-1A-practice",
+      "type": "practice",
+      "order": 4,
+      "content": {
+        "title": "Practice",
+        "questions": [
+          {
+            "id": "BIO-103-1A-Q1",
+            "questionText": "What is a gene?",
+            "expectedAnswer": ["a section of dna that codes for a protein", "part of dna that carries instructions for proteins"],
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-103-1A-Q2",
+            "questionText": "Where are genes found?",
+            "expectedAnswer": ["on chromosomes", "in dna on chromosomes"],
+            "answerType": "short-text"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-103-1A-review",
+      "type": "spaced-review",
+      "order": 5,
+      "content": {
+        "title": "Review",
+        "questions": [
+          {
+            "id": "BIO-103-1A-R1",
+            "questionText": "What is the genome?",
+            "expectedAnswer": ["all the genetic material", "the complete set of dna", "the complete set of genetic information"]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-03-08T00:00:00.000Z",
+    "updated": "2026-03-08T00:00:00.000Z",
+    "version": "2.0.0",
+    "author": "v2-content",
+    "contentVersion": 1
+  }
+}

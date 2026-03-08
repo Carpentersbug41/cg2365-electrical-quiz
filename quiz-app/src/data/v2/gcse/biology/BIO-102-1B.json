@@ -1,0 +1,92 @@
+{
+  "id": "BIO-102-1B",
+  "title": "Active Transport and Exchange Surfaces",
+  "description": "Understand active transport and why exchange surfaces are adapted.",
+  "layout": "linear-flow",
+  "unit": "Unit BIO-102",
+  "topic": "Transport in Cells",
+  "learningOutcomes": [
+    "Define active transport.",
+    "Compare active transport with diffusion and osmosis.",
+    "Explain key adaptations of exchange surfaces."
+  ],
+  "prerequisites": ["BIO-102-1A"],
+  "blocks": [
+    {
+      "id": "BIO-102-1B-outcomes",
+      "type": "outcomes",
+      "order": 1,
+      "content": {
+        "outcomes": [
+          { "text": "Define active transport.", "bloomLevel": "remember" },
+          { "text": "Explain why active transport needs energy.", "bloomLevel": "understand" }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1B-vocab",
+      "type": "vocab",
+      "order": 2,
+      "content": {
+        "terms": [
+          { "term": "Active transport", "definition": "Movement of substances against a concentration gradient using energy from respiration." },
+          { "term": "Exchange surface", "definition": "A surface where substances move between two environments." },
+          { "term": "Villi", "definition": "Finger-like projections in the small intestine that increase surface area." }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1B-explain",
+      "type": "explanation",
+      "order": 3,
+      "content": {
+        "title": "When diffusion is not enough",
+        "content": "Diffusion only moves particles from high to low concentration. Active transport lets cells absorb substances from low to high concentration, so it requires energy from respiration."
+      }
+    },
+    {
+      "id": "BIO-102-1B-practice",
+      "type": "practice",
+      "order": 4,
+      "content": {
+        "title": "Practice",
+        "questions": [
+          {
+            "id": "BIO-102-1B-Q1",
+            "questionText": "Why does active transport require energy?",
+            "expectedAnswer": ["it moves against the concentration gradient", "because substances move from low to high concentration"],
+            "answerType": "short-text"
+          },
+          {
+            "id": "BIO-102-1B-Q2",
+            "questionText": "Name one adaptation of an exchange surface.",
+            "expectedAnswer": ["large surface area", "thin membrane", "good blood supply", "ventilation"],
+            "answerType": "short-text"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BIO-102-1B-review",
+      "type": "spaced-review",
+      "order": 5,
+      "content": {
+        "title": "Review",
+        "questions": [
+          {
+            "id": "BIO-102-1B-R1",
+            "questionText": "Compare diffusion and active transport in one sentence.",
+            "expectedAnswer": ["diffusion is down a gradient while active transport is against a gradient using energy", "active transport needs energy but diffusion does not"]
+          }
+        ]
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2026-03-08T00:00:00.000Z",
+    "updated": "2026-03-08T00:00:00.000Z",
+    "version": "2.0.0",
+    "author": "v2-content",
+    "contentVersion": 1
+  }
+}

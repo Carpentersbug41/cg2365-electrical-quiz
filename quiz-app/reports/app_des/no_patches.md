@@ -1,64 +1,27 @@
-# Phase 10-13 Policy and Reality: Full JSON Refinement (No Active Patch Runtime)
+# Refinement Policy Reality Check - No Patch Runtime
 
-Last verified: 2026-02-27
-Status: Policy + current-state reality check
-
----
-
-## 1. Active Architecture Policy
-
-The active generation runtime treats Phase 10-13 as:
-1. Phase 10 scores assembled lesson quality.
-2. Phase 12 produces a complete refined lesson JSON candidate.
-3. Phase 13 re-scores and keeps the better pedagogical result.
-
-Active runtime does not execute patch operations.
+Last verified: 2026-03-05
+Status: Accurate for current code
 
 ---
 
-## 2. What Is True in Current Runtime
+## 1. Current Truth
 
-In `SequentialLessonGenerator`:
-- active refinement path uses `Phase10_Score`, `Phase12_Refine`, `Phase13_Rescore`
-- `Phase11_Suggest` and `Phase12_Implement` are not called in this orchestration path
-- Phase 12 validates structure invariants on full-lesson output
-- Phase 13 decision is comparison-based (improved score or tie with fewer issues)
+Active lesson improvement uses full-candidate refinement and comparison:
+- Phase 10 score
+- Phase 12 full refined lesson candidate
+- Phase 13 compare and accept/reject
 
----
+The runtime does not apply incremental JSON patches as the operational mechanism.
 
-## 3. What Still Exists (Legacy Drift)
+## 2. Evidence in Current Code
 
-Patch-era residue remains in the repository:
-- legacy phase files still exist:
-  - `src/lib/generation/phases/Phase11_Suggest.ts`
-  - `src/lib/generation/phases/Phase12_Implement.ts`
-- compatibility naming remains in active flow outputs/metadata:
-  - `patchesApplied`
-- debug artifact naming still references patches:
-  - `<lessonId>-rejected-patches.json`
-- some comments/config text still mention old patch-oriented phase narratives
+- `SequentialLessonGenerator.runPhase10` comments and behavior show full lesson candidate path
+- compatibility `patchesApplied` field exists but is not the active mutation model
+- `improve-lesson` API is disabled (`501`) and explicitly marked for refactor
 
-So "no patches" is true for active runtime behavior, not for all repo naming/history artifacts.
+## 3. Practical Impact
 
----
-
-## 4. Operational Guardrail
-
-When modifying generation:
-- preserve full-lesson refine/rescore as the active pattern
-- do not wire `Phase11_Suggest` or `Phase12_Implement` back into runtime orchestration
-- do not introduce new patch-op execution paths in production generation flow
-
----
-
-## 5. Cleanup Criteria for a Full Repo-Level "No Patches" State
-
-Repository-wide cleanup would require:
-- removing/archiving patch-only code paths and tests
-- removing patch-era compatibility field names and filenames
-- aligning comments/config wording fully with active Phase10/12/13 architecture
-
-Until then, use this precise wording:
-- active runtime: no patch execution
-- repository: contains legacy patch-era residue
-
+- debugging is done by comparing original vs candidate lesson payloads
+- quality gating uses final score + regression checks, not patch counts
+- failures surface as quality/report statuses rather than patch-operation failures

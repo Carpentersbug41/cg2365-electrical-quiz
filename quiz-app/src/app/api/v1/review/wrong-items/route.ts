@@ -40,10 +40,40 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
+  const { data: v2Data, error: v2Error } = await session.client
+    .from('v2_attempts')
+    .select('id, lesson_id, question_stable_id, is_correct, score, attempt_no, created_at')
+    .eq('user_id', session.user.id)
+    .eq('is_correct', false)
+    .order('created_at', { ascending: false })
+    .limit(fetchLimit);
+  if (v2Error && (v2Error as { code?: string }).code !== '42P01') {
+    return NextResponse.json({ error: v2Error.message }, { status: 500 });
+  }
+
+  const merged = [
+    ...(data ?? []),
+    ...((v2Data ?? []).map((row) => ({
+      id: row.id,
+      lesson_id: row.lesson_id,
+      block_id: null,
+      question_stable_id: row.question_stable_id,
+      question_type: 'mcq',
+      correct: row.is_correct,
+      score: row.score,
+      user_answer: null,
+      attempt_number: row.attempt_no,
+      ac_key: null,
+      ac_source: 'none',
+      grading_mode: 'deterministic',
+      created_at: row.created_at,
+    })) as typeof data),
+  ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+
   const deduped: typeof data = [];
   const seen = new Set<string>();
 
-  for (const row of data ?? []) {
+  for (const row of merged) {
     if (seen.has(row.question_stable_id)) {
       continue;
     }
@@ -57,4 +87,3 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({ items: deduped, count: deduped.length, limit });
 }
-

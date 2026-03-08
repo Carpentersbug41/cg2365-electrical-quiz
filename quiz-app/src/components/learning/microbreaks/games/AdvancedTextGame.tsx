@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import GameWrapper from '../GameWrapper';
 import { ArrowUp, ArrowDown, CheckCircle, CheckCircle2, XCircle, GripVertical, Clock, RotateCcw, ArrowRight, SkipForward, X, AlertCircle, Sparkles } from 'lucide-react';
 import { Reorder, motion, AnimatePresence, LayoutGroup, useReducedMotion } from 'motion/react';
+import DiagnosisRankedReplacementGame from './DiagnosisRankedReplacementGame';
+import IsCorrectWhyReplacementGame from './IsCorrectWhyReplacementGame';
 import {
   ClassifyTwoBinsGameContent,
   DiagnosisRankedGameContent,
@@ -1658,9 +1660,9 @@ function AdvancedGameBody(props: {
     case 'fill-gap':
       return <FillGapGame {...props} content={props.content} />;
     case 'is-correct-why':
-      return <IsCorrectWhyGame {...props} content={props.content} />;
+      return <IsCorrectWhyReplacementGame {...props} content={props.content} />;
     case 'diagnosis-ranked':
-      return <DiagnosisRankedGame {...props} content={props.content} />;
+      return <DiagnosisRankedReplacementGame {...props} content={props.content} />;
     case 'classify-two-bins':
       return <ClassifyTwoBinsGame {...props} content={props.content} />;
     case 'scenario-match':
