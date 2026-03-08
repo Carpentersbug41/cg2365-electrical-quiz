@@ -1,17 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 
-const guardUserAdminAccess = vi.fn();
-const toUserAdminError = vi.fn((error: unknown) => Response.json({ success: false, error }, { status: 500 }));
-const createSupabaseAdminClient = vi.fn();
+const guardV2AdminAccess = vi.fn();
+const toV2AdminError = vi.fn((error: unknown) => Response.json({ success: false, error }, { status: 500 }));
+const createV2AdminClient = vi.fn();
 
-vi.mock('@/app/api/admin/users/_utils', () => ({
-  guardUserAdminAccess,
-  toUserAdminError,
-}));
-
-vi.mock('@/lib/supabase/admin', () => ({
-  createSupabaseAdminClient,
+vi.mock('@/lib/v2/admin/api', () => ({
+  guardV2AdminAccess,
+  toV2AdminError,
+  createV2AdminClient,
 }));
 
 vi.mock('@/lib/v2/generation/runGenerationJob', () => ({
@@ -23,11 +20,11 @@ describe('POST /api/admin/v2/generation-jobs/run-queued', () => {
   beforeEach(() => {
     vi.resetAllMocks();
     delete process.env.V2_GENERATION_CRON_SECRET;
-    guardUserAdminAccess.mockResolvedValue(null);
+    guardV2AdminAccess.mockResolvedValue(null);
   });
 
   it('returns denied response for non-admin requests without cron secret', async () => {
-    guardUserAdminAccess.mockResolvedValue(
+    guardV2AdminAccess.mockResolvedValue(
       Response.json({ success: false, code: 'FORBIDDEN' }, { status: 403 })
     );
     const { POST } = await import('./route');
@@ -40,7 +37,7 @@ describe('POST /api/admin/v2/generation-jobs/run-queued', () => {
 
   it('returns 503 when admin client is unavailable (cron auth path)', async () => {
     process.env.V2_GENERATION_CRON_SECRET = 'secret-1';
-    createSupabaseAdminClient.mockReturnValue(null);
+    createV2AdminClient.mockReturnValue(null);
     const { POST } = await import('./route');
     const response = await POST(new NextRequest('http://localhost/api/admin/v2/generation-jobs/run-queued', {
       method: 'POST',

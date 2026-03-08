@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
-import { guardUserAdminAccess, toUserAdminError } from '@/app/api/admin/users/_utils';
-import { getSupabaseSessionFromRequest } from '@/lib/supabase/server';
+import { createV2AdminClient, getV2ActorUserId, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 import { validateLessonVersionForPublish } from '@/lib/v2/content/publishGate';
 
 type ContentStatus = 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
@@ -62,11 +60,11 @@ const ALLOWED_TRANSITIONS: Record<ContentStatus, UpdateAction[]> = {
 };
 
 export async function POST(request: NextRequest) {
-  const denied = await guardUserAdminAccess(request);
+  const denied = await guardV2AdminAccess(request);
   if (denied) return denied;
 
   try {
-    const adminClient = createSupabaseAdminClient();
+    const adminClient = createV2AdminClient();
     if (!adminClient) {
       return NextResponse.json(
         { success: false, code: 'SERVICE_UNAVAILABLE', message: 'Supabase admin client is not configured.' },
@@ -169,8 +167,7 @@ export async function POST(request: NextRequest) {
 
     const nextStatus = resolveNextStatus(action);
     const nowIso = new Date().toISOString();
-    const session = await getSupabaseSessionFromRequest(request);
-    const actorUserId = session?.user?.id ?? null;
+    const actorUserId = await getV2ActorUserId(request);
 
     const { data: updatedVersion, error: transitionError } = await adminClient.rpc(
       'v2_apply_lesson_version_transition',
@@ -237,6 +234,6 @@ export async function POST(request: NextRequest) {
       },
     });
   } catch (error) {
-    return toUserAdminError(error);
+    return toV2AdminError(error);
   }
 }

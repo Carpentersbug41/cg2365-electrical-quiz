@@ -1,31 +1,26 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 
-const guardUserAdminAccess = vi.fn();
-const toUserAdminError = vi.fn((error: unknown) => Response.json({ success: false, error }, { status: 500 }));
-const createSupabaseAdminClient = vi.fn();
+const guardV2AdminAccess = vi.fn();
+const toV2AdminError = vi.fn((error: unknown) => Response.json({ success: false, error }, { status: 500 }));
+const createV2AdminClient = vi.fn();
+const getV2ActorUserId = vi.fn(async () => null);
 
-vi.mock('@/app/api/admin/users/_utils', () => ({
-  guardUserAdminAccess,
-  toUserAdminError,
-}));
-
-vi.mock('@/lib/supabase/admin', () => ({
-  createSupabaseAdminClient,
-}));
-
-vi.mock('@/lib/supabase/server', () => ({
-  getSupabaseSessionFromRequest: vi.fn(async () => null),
+vi.mock('@/lib/v2/admin/api', () => ({
+  guardV2AdminAccess,
+  toV2AdminError,
+  createV2AdminClient,
+  getV2ActorUserId,
 }));
 
 describe('POST /api/admin/v2/lesson-versions/status', () => {
   beforeEach(() => {
     vi.resetAllMocks();
-    guardUserAdminAccess.mockResolvedValue(null);
+    guardV2AdminAccess.mockResolvedValue(null);
   });
 
   it('returns 400 when versionId/action are missing', async () => {
-    createSupabaseAdminClient.mockReturnValue({});
+    createV2AdminClient.mockReturnValue({});
     const { POST } = await import('./route');
     const response = await POST(new NextRequest('http://localhost/api/admin/v2/lesson-versions/status', {
       method: 'POST',
@@ -36,7 +31,7 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
   });
 
   it('returns 503 when admin client is unavailable', async () => {
-    createSupabaseAdminClient.mockReturnValue(null);
+    createV2AdminClient.mockReturnValue(null);
     const { POST } = await import('./route');
     const response = await POST(new NextRequest('http://localhost/api/admin/v2/lesson-versions/status', {
       method: 'POST',
@@ -76,7 +71,7 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
       }),
     };
 
-    createSupabaseAdminClient.mockReturnValue({
+    createV2AdminClient.mockReturnValue({
       from: vi.fn((table: string) => {
         if (table === 'v2_lesson_versions') return versionQuery;
         if (table === 'v2_lessons') return lessonQuery;
@@ -127,7 +122,7 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
       }),
     };
 
-    createSupabaseAdminClient.mockReturnValue({
+    createV2AdminClient.mockReturnValue({
       from: vi.fn((table: string) => {
         if (table === 'v2_lesson_versions') return versionQuery;
         throw new Error(`Unexpected table ${table}`);
@@ -157,7 +152,7 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
       }),
     };
 
-    createSupabaseAdminClient.mockReturnValue({
+    createV2AdminClient.mockReturnValue({
       from: vi.fn((table: string) => {
         if (table === 'v2_lesson_versions') return versionQuery;
         throw new Error(`Unexpected table ${table}`);
