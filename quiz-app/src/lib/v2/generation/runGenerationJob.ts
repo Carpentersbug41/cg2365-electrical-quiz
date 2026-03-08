@@ -107,6 +107,25 @@ function toDurationMs(startedAtIso: string): number {
   return Math.max(0, duration);
 }
 
+async function sendGenerationAlert(alert: Record<string, unknown>): Promise<void> {
+  const webhookUrl = process.env.V2_ADMIN_ALERT_WEBHOOK_URL?.trim();
+  if (!webhookUrl) return;
+
+  try {
+    await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source: 'v2_generation_runner',
+        ts: new Date().toISOString(),
+        ...alert,
+      }),
+    });
+  } catch (error) {
+    console.warn('[V2 Generation] Failed to send alert webhook:', error);
+  }
+}
+
 function parseLessonCode(lessonCode: string): { unit: string; lessonId: string } | null {
   const parts = lessonCode.trim().toUpperCase().split('-');
   if (parts.length !== 3) return null;
@@ -440,6 +459,19 @@ export async function runGenerationJobById(
         lockOwner,
       },
     });
+
+    if (!canRetry) {
+      await sendGenerationAlert({
+        type: 'generation_retry_exhausted',
+        jobId: job.id,
+        lessonId: job.lesson_id,
+        lockOwner,
+        errorCode,
+        errorMessage,
+        attemptsMade: attemptsAfterClaim,
+        maxAttempts: job.max_attempts,
+      });
+    }
 
     throw runError;
   }
