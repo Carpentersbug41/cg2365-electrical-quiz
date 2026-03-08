@@ -59,6 +59,21 @@ export async function GET(request: NextRequest) {
 
     const statusParam = request.nextUrl.searchParams.get('status')?.trim() ?? '';
     const lessonCodeParam = request.nextUrl.searchParams.get('lessonCode')?.trim() ?? '';
+    let constrainedLessonIds: string[] | null = null;
+
+    if (lessonCodeParam) {
+      const { data: matchingLessons, error: matchingLessonsError } = await adminClient
+        .from('v2_lessons')
+        .select('id')
+        .ilike('code', `%${lessonCodeParam}%`)
+        .returns<Array<{ id: string }>>();
+      if (matchingLessonsError) throw matchingLessonsError;
+
+      constrainedLessonIds = (matchingLessons ?? []).map((row) => row.id);
+      if (constrainedLessonIds.length === 0) {
+        return NextResponse.json({ success: true, versions: [] });
+      }
+    }
 
     let versionQuery = adminClient
       .from('v2_lesson_versions')
@@ -68,6 +83,9 @@ export async function GET(request: NextRequest) {
 
     if (statusParam && VALID_STATUSES.has(statusParam as ContentStatus)) {
       versionQuery = versionQuery.eq('status', statusParam);
+    }
+    if (constrainedLessonIds) {
+      versionQuery = versionQuery.in('lesson_id', constrainedLessonIds);
     }
 
     const { data: versionsData, error: versionsError } = await versionQuery.returns<LessonVersionRow[]>();
@@ -86,10 +104,7 @@ export async function GET(request: NextRequest) {
       .returns<LessonRow[]>();
     if (lessonsError) throw lessonsError;
 
-    const lessons = (lessonsData ?? []).filter((row) => {
-      if (!lessonCodeParam) return true;
-      return row.code.toLowerCase().includes(lessonCodeParam.toLowerCase());
-    });
+    const lessons = lessonsData ?? [];
     const filteredLessonIdSet = new Set(lessons.map((row) => row.id));
 
     if (lessons.length === 0) {

@@ -36,6 +36,15 @@ type LessonRow = {
   title: string;
 };
 
+type TransitionedVersionRow = {
+  id: string;
+  lesson_id: string;
+  status: ContentStatus;
+  version_no: number;
+  is_current: boolean;
+  published_at: string | null;
+};
+
 function resolveNextStatus(action: UpdateAction): ContentStatus {
   if (action === 'submit_review') return 'needs_review';
   if (action === 'approve') return 'approved';
@@ -163,39 +172,23 @@ export async function POST(request: NextRequest) {
     const session = await getSupabaseSessionFromRequest(request);
     const actorUserId = session?.user?.id ?? null;
 
-    if (action === 'publish') {
-      const { error: retireOthersError } = await adminClient
-        .from('v2_lesson_versions')
-        .update({ status: 'retired', is_current: false })
-        .eq('lesson_id', version.lesson_id)
-        .eq('status', 'published')
-        .neq('id', version.id);
-      if (retireOthersError) throw retireOthersError;
-
-      const { error: unsetCurrentError } = await adminClient
-        .from('v2_lesson_versions')
-        .update({ is_current: false })
-        .eq('lesson_id', version.lesson_id)
-        .neq('id', version.id);
-      if (unsetCurrentError) throw unsetCurrentError;
+    const { data: updatedVersion, error: transitionError } = await adminClient.rpc(
+      'v2_apply_lesson_version_transition',
+      {
+        target_version_id: version.id,
+        target_status: nextStatus,
+        actor_user_id: actorUserId,
+        transition_ts: nowIso,
+      }
+    );
+    if (transitionError) throw transitionError;
+    if (!Array.isArray(updatedVersion) || updatedVersion.length === 0) {
+      return NextResponse.json(
+        { success: false, code: 'NOT_FOUND', message: 'Lesson version not found during transition.' },
+        { status: 404 }
+      );
     }
-
-    const updatePayload: Record<string, unknown> = {
-      status: nextStatus,
-      is_current: action === 'publish',
-      published_at: action === 'publish' ? nowIso : null,
-    };
-    if ((action === 'approve' || action === 'publish') && actorUserId) {
-      updatePayload.approved_by = actorUserId;
-    }
-
-    const { data: updatedVersion, error: updateError } = await adminClient
-      .from('v2_lesson_versions')
-      .update(updatePayload)
-      .eq('id', version.id)
-      .select('id, lesson_id, status, version_no, is_current, published_at')
-      .single<VersionRow & { published_at: string | null }>();
-    if (updateError) throw updateError;
+    const transitionedVersion = updatedVersion[0] as TransitionedVersionRow;
 
     if (actorUserId && (action === 'approve' || action === 'revert_draft' || action === 'publish')) {
       const decision =
@@ -236,7 +229,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      version: updatedVersion,
+      version: transitionedVersion,
       transition: {
         action,
         from: version.status,
