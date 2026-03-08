@@ -106,6 +106,27 @@ type TimeSeriesPoint = {
   review_active_backlog: number;
 };
 
+type ApprovalDecisionRow = {
+  id: string;
+  decision: 'approved' | 'rejected' | 'override_publish';
+  reason: string | null;
+  created_at: string;
+  reviewer: {
+    user_id: string;
+    display_name: string | null;
+  };
+  lesson_version: {
+    id: string;
+    version_no: number;
+    status: ContentStatus;
+  } | null;
+  lesson: {
+    id: string;
+    code: string;
+    title: string;
+  } | null;
+};
+
 type ModerationPayload = {
   objectivesVerified: boolean;
   factualCheckPassed: boolean;
@@ -140,6 +161,8 @@ export default function V2AdminContentPage() {
   const [selectedUser, setSelectedUser] = useState<V2OutcomesUserRow | null>(null);
   const [selectedUserTimeline, setSelectedUserTimeline] = useState<TimeSeriesPoint[]>([]);
   const [loadingUserTimeline, setLoadingUserTimeline] = useState(false);
+  const [approvalDecisions, setApprovalDecisions] = useState<ApprovalDecisionRow[]>([]);
+  const [loadingApprovalDecisions, setLoadingApprovalDecisions] = useState(false);
 
   function formatPct(value: number | null | undefined): string {
     if (value == null || Number.isNaN(value)) return '-';
@@ -229,6 +252,24 @@ export default function V2AdminContentPage() {
     }
   }
 
+  async function loadApprovalDecisions() {
+    setLoadingApprovalDecisions(true);
+    setError(null);
+    try {
+      const response = await authedFetch('/api/admin/v2/approval-decisions?limit=100', { cache: 'no-store' });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to load approval decisions.');
+      }
+      setApprovalDecisions(Array.isArray(payload.decisions) ? payload.decisions : []);
+    } catch (loadError) {
+      setError(loadError instanceof Error ? loadError.message : 'Failed to load approval decisions.');
+      setApprovalDecisions([]);
+    } finally {
+      setLoadingApprovalDecisions(false);
+    }
+  }
+
   useEffect(() => {
     void loadVersions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -236,6 +277,7 @@ export default function V2AdminContentPage() {
 
   useEffect(() => {
     void loadJobs();
+    void loadApprovalDecisions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -592,6 +634,40 @@ export default function V2AdminContentPage() {
             </table>
           )}
         </>
+      )}
+
+      <h2>Moderation History</h2>
+      <p>Latest admin approval decisions for V2 lesson versions.</p>
+      <p>
+        <button type="button" onClick={() => void loadApprovalDecisions()} disabled={loadingApprovalDecisions}>
+          {loadingApprovalDecisions ? 'Loading moderation history...' : 'Refresh moderation history'}
+        </button>
+      </p>
+      {approvalDecisions.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th align="left">Time</th>
+              <th align="left">Reviewer</th>
+              <th align="left">Lesson</th>
+              <th align="left">Decision</th>
+              <th align="left">Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            {approvalDecisions.map((decision) => (
+              <tr key={decision.id}>
+                <td>{new Date(decision.created_at).toLocaleString()}</td>
+                <td>{decision.reviewer.display_name ?? decision.reviewer.user_id}</td>
+                <td>
+                  {decision.lesson?.code ?? '-'} {decision.lesson_version ? `(v${decision.lesson_version.version_no})` : ''}
+                </td>
+                <td>{decision.decision}</td>
+                <td>{decision.reason ?? '-'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
 
       <h2>AI Generation Jobs (Phase 1 skeleton)</h2>

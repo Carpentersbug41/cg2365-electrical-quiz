@@ -138,11 +138,14 @@ Completed in this slice:
 - [x] Added V2 admin generation alerting:
   - retry-exhausted failed job alerts
   - 24-hour failure spike alert section
+- [x] Added V2 moderation history timeline:
+  - new API: `/api/admin/v2/approval-decisions`
+  - new V2 admin table showing reviewer, lesson/version, decision, reason, timestamp
 - [x] Verified test/build status after hardening:
-  - `44 passed / 44 files` (`171 passed` tests)
+  - `45 passed / 45 files` (`173 passed` tests)
   - production build successful
 - [x] Deployed reliability + publish-gate slice to V2 production URL:
-  - `https://quiz-app-v2-m2p9tv1s4-carpentersbugs-projects.vercel.app`
+  - `https://quiz-app-v2-hed1tepsg-carpentersbugs-projects.vercel.app`
 
 ## 5. Guardrails (Must Hold)
 
@@ -156,4 +159,4 @@ Completed in this slice:
 1. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
 2. Run Phase 1 release checklist and sign off go/no-go criteria.
 3. Add proactive notifications (email/webhook) for retry exhaustion and failure spikes.
-4. Add structured moderation history view in V2 admin (decision timeline per lesson version).
+4. Add richer moderation filters/export (by reviewer, decision type, lesson code, date range).
