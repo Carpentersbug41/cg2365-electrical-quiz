@@ -33,6 +33,13 @@ type LessonLookupRow = {
   title: string;
 };
 
+function isUniqueViolation(error: unknown): boolean {
+  if (!error || typeof error !== 'object') return false;
+  const code = 'code' in error ? String((error as { code?: unknown }).code ?? '') : '';
+  const message = 'message' in error ? String((error as { message?: unknown }).message ?? '') : '';
+  return code === '23505' || message.toLowerCase().includes('duplicate key');
+}
+
 export async function GET(request: NextRequest) {
   const denied = await guardUserAdminAccess(request);
   if (denied) return denied;
@@ -199,12 +206,24 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const { data: jobs, error: insertError } = await adminClient
-      .from('v2_generation_jobs')
-      .insert(insertRows)
-      .select('id, kind, status, lesson_id, payload, attempts_made, max_attempts, error_message, queued_at, started_at, finished_at, created_at')
-      .returns<GenerationJobRow[]>();
-    if (insertError) throw insertError;
+    const jobs: GenerationJobRow[] = [];
+    const skippedDuringInsert = new Set<string>();
+    for (const row of insertRows) {
+      const { data: insertedRows, error: insertError } = await adminClient
+        .from('v2_generation_jobs')
+        .insert(row)
+        .select('id, kind, status, lesson_id, payload, attempts_made, max_attempts, error_message, queued_at, started_at, finished_at, created_at')
+        .returns<GenerationJobRow[]>();
+      if (insertError) {
+        if (isUniqueViolation(insertError)) {
+          const skippedCode = typeof row.payload?.lessonCode === 'string' ? row.payload.lessonCode : null;
+          if (skippedCode) skippedDuringInsert.add(skippedCode);
+          continue;
+        }
+        throw insertError;
+      }
+      jobs.push(...(insertedRows ?? []));
+    }
 
     const { error: eventError } = await adminClient.from('v2_event_log').insert({
       event_type: 'admin_generation_job_created',
@@ -223,8 +242,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      jobs: jobs ?? [],
-      skipped: effectiveLessonCodes.filter((code) => !lessonCodeToId.has(code)),
+      jobs,
+      skipped: effectiveLessonCodes.filter((code) => !lessonCodeToId.has(code) || skippedDuringInsert.has(code)),
     });
   } catch (error) {
     return toUserAdminError(error);

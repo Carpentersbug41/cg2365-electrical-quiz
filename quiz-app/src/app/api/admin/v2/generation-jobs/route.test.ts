@@ -55,4 +55,59 @@ describe('POST /api/admin/v2/generation-jobs', () => {
 
     expect(response.status).toBe(503);
   });
+
+  it('gracefully skips lesson codes that hit a unique-violation race on insert', async () => {
+    const lessonLookup = {
+      select: vi.fn().mockReturnThis(),
+      in: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: [{ id: 'lesson-1', code: 'BIO-101-1A' }],
+        error: null,
+      }),
+    };
+
+    const existingJobsLookup = {
+      select: vi.fn().mockReturnThis(),
+      in: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: [],
+        error: null,
+      }),
+    };
+
+    const insertQuery = {
+      insert: vi.fn().mockReturnThis(),
+      select: vi.fn().mockReturnThis(),
+      returns: vi.fn().mockResolvedValue({
+        data: null,
+        error: { code: '23505', message: 'duplicate key value violates unique constraint' },
+      }),
+    };
+
+    const eventInsert = {
+      insert: vi.fn().mockResolvedValue({ error: null }),
+    };
+
+    createSupabaseAdminClient.mockReturnValue({
+      from: vi.fn((table: string) => {
+        if (table === 'v2_lessons') return lessonLookup;
+        if (table === 'v2_generation_jobs') {
+          return existingJobsLookup.in.mock.calls.length === 0 ? existingJobsLookup : insertQuery;
+        }
+        if (table === 'v2_event_log') return eventInsert;
+        throw new Error(`Unexpected table ${table}`);
+      }),
+    });
+
+    const { POST } = await import('./route');
+    const response = await POST(new NextRequest('http://localhost/api/admin/v2/generation-jobs', {
+      method: 'POST',
+      body: JSON.stringify({ kind: 'lesson_draft', lessonCode: 'BIO-101-1A' }),
+    }));
+
+    const payload = await response.json();
+    expect(response.status).toBe(200);
+    expect(payload.jobs).toEqual([]);
+    expect(payload.skipped).toEqual(['BIO-101-1A']);
+  });
 });
