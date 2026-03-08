@@ -123,6 +123,20 @@ Completed in this slice:
 - [x] Deployed V2 and ran live smoke verification against shared Supabase on 2026-03-08:
   - queued and executed job `4553e093-f40c-4f0b-a9a3-feb65852427e` for `BIO-104-1A`
   - created draft version `0e38c5f7-9287-4a0d-93d7-6a8338350175` as `version_no=3`, `source=ai`, `status=draft`.
+- [x] Added strict V2 publish gate on admin status transitions (`approve`/`publish`):
+  - validates lesson content schema presence and core fields
+  - blocks inline-style tokens to preserve style-agnostic content contract
+  - enforces minimum publish quality threshold when score is present (`<85` blocked)
+- [x] Added generation reliability hardening in V2 job runner:
+  - failure taxonomy (`TRANSIENT_TIMEOUT`, `TRANSIENT_RATE_LIMIT`, `TRANSIENT_NETWORK`, `CONFIG_AUTH`, `VALIDATION`, `UNKNOWN`)
+  - automatic retry re-queue for transient failures when attempts remain
+  - richer failure telemetry in `v2_generation_job_steps`, `v2_generation_jobs.payload`, and event log payload
+- [x] Updated V2 admin UI to surface publish-gate failures and generation retry/error metadata.
+- [x] Verified test/build status after hardening:
+  - `44 passed / 44 files` (`170 passed` tests)
+  - production build successful
+- [x] Deployed reliability + publish-gate slice to V2 production URL:
+  - `https://quiz-app-v2-q8p8laahc-carpentersbugs-projects.vercel.app`
 
 ## 5. Guardrails (Must Hold)
 
@@ -133,7 +147,7 @@ Completed in this slice:
 
 ## 6. Immediate Next Build Slice
 
-1. Add V2 generation reliability hardening (timeouts/retry policy, richer failure taxonomy, alerting hooks).
-2. Add moderation/approval QA checks for AI-generated draft lessons before publish.
-3. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
-4. Run Phase 1 release checklist and sign off go/no-go criteria.
+1. Add explicit admin moderation checklist UI for `needs_review` / `approved` transitions (human QA evidence capture).
+2. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
+3. Run Phase 1 release checklist and sign off go/no-go criteria.
+4. Add admin alerts/notifications for repeated generation failures and retry exhaustion.

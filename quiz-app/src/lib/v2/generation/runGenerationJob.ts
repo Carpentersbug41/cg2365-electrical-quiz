@@ -14,6 +14,14 @@ type GenerationJobRow = {
   max_attempts: number;
 };
 
+type GenerationErrorCode =
+  | 'TRANSIENT_TIMEOUT'
+  | 'TRANSIENT_RATE_LIMIT'
+  | 'TRANSIENT_NETWORK'
+  | 'CONFIG_AUTH'
+  | 'VALIDATION'
+  | 'UNKNOWN';
+
 type LessonVersionRow = {
   version_no: number;
   content_json: Record<string, unknown> | null;
@@ -53,6 +61,50 @@ export class GenerationJobError extends Error {
     this.code = code;
     this.status = status;
   }
+}
+
+function classifyGenerationError(error: unknown): GenerationErrorCode {
+  const message = (error instanceof Error ? error.message : String(error)).toLowerCase();
+  if (message.includes('timeout') || message.includes('timed out') || message.includes('deadline')) {
+    return 'TRANSIENT_TIMEOUT';
+  }
+  if (
+    message.includes('rate limit') ||
+    message.includes('quota') ||
+    message.includes('429') ||
+    message.includes('too many requests')
+  ) {
+    return 'TRANSIENT_RATE_LIMIT';
+  }
+  if (
+    message.includes('econnreset') ||
+    message.includes('enotfound') ||
+    message.includes('fetch') ||
+    message.includes('network')
+  ) {
+    return 'TRANSIENT_NETWORK';
+  }
+  if (
+    message.includes('api key') ||
+    message.includes('unauthorized') ||
+    message.includes('403') ||
+    message.includes('401')
+  ) {
+    return 'CONFIG_AUTH';
+  }
+  if (message.includes('validation') || message.includes('schema') || message.includes('invalid')) {
+    return 'VALIDATION';
+  }
+  return 'UNKNOWN';
+}
+
+function isRetryableErrorCode(code: GenerationErrorCode): boolean {
+  return code === 'TRANSIENT_TIMEOUT' || code === 'TRANSIENT_RATE_LIMIT' || code === 'TRANSIENT_NETWORK';
+}
+
+function toDurationMs(startedAtIso: string): number {
+  const duration = Date.now() - new Date(startedAtIso).getTime();
+  return Math.max(0, duration);
 }
 
 function parseLessonCode(lessonCode: string): { unit: string; lessonId: string } | null {
@@ -199,12 +251,13 @@ export async function runGenerationJobById(
   }
 
   const startedAt = new Date().toISOString();
+  const attemptsAfterClaim = (job.attempts_made ?? 0) + 1;
   const { data: claimRow, error: markRunningError } = await adminClient
     .from('v2_generation_jobs')
     .update({
       status: 'running',
       started_at: startedAt,
-      attempts_made: (job.attempts_made ?? 0) + 1,
+      attempts_made: attemptsAfterClaim,
       locked_by: lockOwner,
       locked_at: startedAt,
       error_message: null,
@@ -291,7 +344,7 @@ export async function runGenerationJobById(
       status: 'succeeded',
       input_json: job.payload ?? {},
       output_json: output,
-      duration_ms: null,
+      duration_ms: toDurationMs(startedAt),
     });
     if (stepError) throw stepError;
 
@@ -336,17 +389,43 @@ export async function runGenerationJobById(
   } catch (runError) {
     const finishedAt = new Date().toISOString();
     const errorMessage = runError instanceof Error ? runError.message : 'Unknown generation failure.';
+    const errorCode = classifyGenerationError(runError);
+    const canRetry = isRetryableErrorCode(errorCode) && attemptsAfterClaim < (job.max_attempts ?? 1);
+    const nextStatus: GenerationStatus = canRetry ? 'queued' : 'failed';
+    const updatedPayload = {
+      ...(job.payload ?? {}),
+      lastErrorCode: errorCode,
+      lastErrorMessage: errorMessage,
+      lastErrorAt: finishedAt,
+      retryScheduled: canRetry,
+    };
 
     await adminClient
       .from('v2_generation_jobs')
       .update({
-        status: 'failed',
+        status: nextStatus,
         finished_at: finishedAt,
         locked_by: null,
         locked_at: null,
-        error_message: errorMessage,
+        error_message: `[${errorCode}] ${errorMessage}`,
+        payload: updatedPayload,
       })
       .eq('id', job.id);
+
+    await adminClient.from('v2_generation_job_steps').insert({
+      job_id: job.id,
+      step_key: 'create_lesson_draft',
+      status: 'failed',
+      input_json: job.payload ?? {},
+      output_json: {
+        errorCode,
+        attemptsMade: attemptsAfterClaim,
+        maxAttempts: job.max_attempts,
+        retryScheduled: canRetry,
+      },
+      error_message: errorMessage,
+      duration_ms: toDurationMs(startedAt),
+    });
 
     await adminClient.from('v2_event_log').insert({
       event_type: 'admin_generation_job_failed',
@@ -354,7 +433,10 @@ export async function runGenerationJobById(
       source_context: 'admin_v2',
       payload: {
         jobId: job.id,
+        errorCode,
         error: errorMessage,
+        nextStatus,
+        retryScheduled: canRetry,
         lockOwner,
       },
     });

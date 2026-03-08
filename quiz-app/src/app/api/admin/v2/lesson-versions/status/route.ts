@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { guardUserAdminAccess, toUserAdminError } from '@/app/api/admin/users/_utils';
 import { getSupabaseSessionFromRequest } from '@/lib/supabase/server';
+import { validateLessonVersionForPublish } from '@/lib/v2/content/publishGate';
 
 type ContentStatus = 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
 type UpdateAction = 'submit_review' | 'approve' | 'publish' | 'retire' | 'revert_draft';
@@ -18,6 +19,15 @@ type VersionRow = {
   status: ContentStatus;
   version_no: number;
   is_current: boolean;
+  source: 'human' | 'ai';
+  quality_score: number | null;
+  content_json: Record<string, unknown>;
+};
+
+type LessonRow = {
+  id: string;
+  code: string;
+  title: string;
 };
 
 function resolveNextStatus(action: UpdateAction): ContentStatus {
@@ -27,6 +37,14 @@ function resolveNextStatus(action: UpdateAction): ContentStatus {
   if (action === 'retire') return 'retired';
   return 'draft';
 }
+
+const ALLOWED_TRANSITIONS: Record<ContentStatus, UpdateAction[]> = {
+  draft: ['submit_review', 'retire'],
+  needs_review: ['approve', 'revert_draft', 'retire'],
+  approved: ['publish', 'revert_draft', 'retire'],
+  published: ['retire'],
+  retired: ['revert_draft'],
+};
 
 export async function POST(request: NextRequest) {
   const denied = await guardUserAdminAccess(request);
@@ -55,7 +73,7 @@ export async function POST(request: NextRequest) {
 
     const { data: version, error: versionError } = await adminClient
       .from('v2_lesson_versions')
-      .select('id, lesson_id, status, version_no, is_current')
+      .select('id, lesson_id, status, version_no, is_current, source, quality_score, content_json')
       .eq('id', versionId)
       .limit(1)
       .maybeSingle<VersionRow>();
@@ -66,6 +84,52 @@ export async function POST(request: NextRequest) {
         { success: false, code: 'NOT_FOUND', message: 'Lesson version not found.' },
         { status: 404 }
       );
+    }
+
+    const allowedActions = ALLOWED_TRANSITIONS[version.status] ?? [];
+    if (!allowedActions.includes(action)) {
+      return NextResponse.json(
+        {
+          success: false,
+          code: 'INVALID_TRANSITION',
+          message: `Action ${action} is not allowed from status ${version.status}.`,
+        },
+        { status: 409 }
+      );
+    }
+
+    const { data: lesson, error: lessonError } = await adminClient
+      .from('v2_lessons')
+      .select('id, code, title')
+      .eq('id', version.lesson_id)
+      .limit(1)
+      .maybeSingle<LessonRow>();
+    if (lessonError) throw lessonError;
+    if (!lesson) {
+      return NextResponse.json(
+        { success: false, code: 'NOT_FOUND', message: 'Parent lesson not found.' },
+        { status: 404 }
+      );
+    }
+
+    if (action === 'approve' || action === 'publish') {
+      const publishGate = validateLessonVersionForPublish({
+        lessonCode: lesson.code,
+        lessonTitle: lesson.title,
+        qualityScore: version.quality_score,
+        content: version.content_json,
+      });
+      if (!publishGate.ok) {
+        return NextResponse.json(
+          {
+            success: false,
+            code: 'PUBLISH_VALIDATION_FAILED',
+            message: 'Lesson version failed publish gate checks.',
+            gate: publishGate,
+          },
+          { status: 409 }
+        );
+      }
     }
 
     const nextStatus = resolveNextStatus(action);

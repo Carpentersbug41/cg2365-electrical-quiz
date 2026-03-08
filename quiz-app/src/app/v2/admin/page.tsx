@@ -42,6 +42,8 @@ type GenerationJob = {
   payload: {
     lessonCode?: string | null;
     prompt?: string;
+    lastErrorCode?: string;
+    retryScheduled?: boolean;
   } | null;
   attempts_made: number;
   max_attempts: number;
@@ -257,6 +259,15 @@ export default function V2AdminContentPage() {
       });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
+        const gateIssues = Array.isArray(payload?.gate?.issues)
+          ? payload.gate.issues
+              .filter((issue: { severity?: string; message?: string }) => issue?.severity === 'error')
+              .map((issue: { message?: string }) => issue.message)
+              .filter((message: unknown): message is string => typeof message === 'string' && message.length > 0)
+          : [];
+        if (gateIssues.length > 0) {
+          throw new Error(`Publish gate failed: ${gateIssues.join(' | ')}`);
+        }
         throw new Error(payload.message || 'Failed to transition version.');
       }
       await loadVersions();
@@ -573,6 +584,7 @@ export default function V2AdminContentPage() {
               <th align="left">Attempts</th>
               <th align="left">Prompt</th>
               <th align="left">Error</th>
+              <th align="left">Retry</th>
               <th align="left">Action</th>
             </tr>
           </thead>
@@ -587,7 +599,8 @@ export default function V2AdminContentPage() {
                   {job.attempts_made}/{job.max_attempts}
                 </td>
                 <td>{job.payload?.prompt ?? '-'}</td>
-                <td>{job.error_message ?? '-'}</td>
+                <td>{job.error_message ?? job.payload?.lastErrorCode ?? '-'}</td>
+                <td>{job.payload?.retryScheduled ? 'queued' : '-'}</td>
                 <td>
                   <button
                     type="button"
