@@ -147,11 +147,14 @@ Completed in this slice:
 - [x] Added failure-spike webhook alerting with dedupe window:
   - queue worker triggers `generation_failure_spike` webhook when >=3 failures in a run
   - 30-minute dedupe via `v2_event_log` event (`admin_generation_failure_spike_alert`)
+- [x] Added moderation history filters/export:
+  - API filters: decision, reviewerId, lessonCode, dateFrom, dateTo
+  - UI filters + CSV export from `/v2/admin` moderation history section
 - [x] Verified test/build status after hardening:
   - `45 passed / 45 files` (`173 passed` tests)
   - production build successful
 - [x] Deployed reliability + publish-gate slice to V2 production URL:
-  - `https://quiz-app-v2-mlfyvfay6-carpentersbugs-projects.vercel.app`
+  - `https://quiz-app-v2-p40osdu0h-carpentersbugs-projects.vercel.app`
 
 ## 5. Guardrails (Must Hold)
 
@@ -164,5 +167,5 @@ Completed in this slice:
 
 1. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
 2. Run Phase 1 release checklist and sign off go/no-go criteria.
-3. Add richer moderation filters/export (by reviewer, decision type, lesson code, date range).
-4. Expand V2 biology inventory and run final Phase 1 release sign-off checklist.
+3. Expand V2 biology inventory and run final Phase 1 release sign-off checklist.
+4. Add optional background worker cadence upgrade (hourly) after observing queue reliability for one full day.

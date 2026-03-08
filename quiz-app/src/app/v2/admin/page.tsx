@@ -163,6 +163,11 @@ export default function V2AdminContentPage() {
   const [loadingUserTimeline, setLoadingUserTimeline] = useState(false);
   const [approvalDecisions, setApprovalDecisions] = useState<ApprovalDecisionRow[]>([]);
   const [loadingApprovalDecisions, setLoadingApprovalDecisions] = useState(false);
+  const [approvalDecisionFilter, setApprovalDecisionFilter] = useState<'all' | 'approved' | 'rejected' | 'override_publish'>('all');
+  const [approvalLessonCodeFilter, setApprovalLessonCodeFilter] = useState('');
+  const [approvalReviewerFilter, setApprovalReviewerFilter] = useState('');
+  const [approvalDateFromFilter, setApprovalDateFromFilter] = useState('');
+  const [approvalDateToFilter, setApprovalDateToFilter] = useState('');
 
   function formatPct(value: number | null | undefined): string {
     if (value == null || Number.isNaN(value)) return '-';
@@ -256,7 +261,14 @@ export default function V2AdminContentPage() {
     setLoadingApprovalDecisions(true);
     setError(null);
     try {
-      const response = await authedFetch('/api/admin/v2/approval-decisions?limit=100', { cache: 'no-store' });
+      const params = new URLSearchParams();
+      params.set('limit', '200');
+      if (approvalDecisionFilter !== 'all') params.set('decision', approvalDecisionFilter);
+      if (approvalLessonCodeFilter.trim()) params.set('lessonCode', approvalLessonCodeFilter.trim());
+      if (approvalReviewerFilter.trim()) params.set('reviewerId', approvalReviewerFilter.trim());
+      if (approvalDateFromFilter.trim()) params.set('dateFrom', approvalDateFromFilter.trim());
+      if (approvalDateToFilter.trim()) params.set('dateTo', approvalDateToFilter.trim());
+      const response = await authedFetch(`/api/admin/v2/approval-decisions?${params.toString()}`, { cache: 'no-store' });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to load approval decisions.');
@@ -268,6 +280,34 @@ export default function V2AdminContentPage() {
     } finally {
       setLoadingApprovalDecisions(false);
     }
+  }
+
+  function exportApprovalDecisionsCsv() {
+    if (approvalDecisions.length === 0) return;
+    const escape = (value: string) => `"${value.replace(/"/g, '""')}"`;
+    const rows = [
+      ['created_at', 'decision', 'reviewer', 'reviewer_id', 'lesson_code', 'lesson_title', 'version_no', 'reason'],
+      ...approvalDecisions.map((row) => [
+        row.created_at,
+        row.decision,
+        row.reviewer.display_name ?? '',
+        row.reviewer.user_id,
+        row.lesson?.code ?? '',
+        row.lesson?.title ?? '',
+        row.lesson_version ? String(row.lesson_version.version_no) : '',
+        row.reason ?? '',
+      ]),
+    ];
+    const csv = rows.map((row) => row.map((cell) => escape(cell)).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `v2-moderation-history-${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   }
 
   useEffect(() => {
@@ -639,8 +679,58 @@ export default function V2AdminContentPage() {
       <h2>Moderation History</h2>
       <p>Latest admin approval decisions for V2 lesson versions.</p>
       <p>
+        <label htmlFor="approvalDecisionFilter">Decision: </label>
+        <select
+          id="approvalDecisionFilter"
+          value={approvalDecisionFilter}
+          onChange={(event) =>
+            setApprovalDecisionFilter(
+              event.target.value as 'all' | 'approved' | 'rejected' | 'override_publish'
+            )
+          }
+        >
+          <option value="all">all</option>
+          <option value="approved">approved</option>
+          <option value="rejected">rejected</option>
+          <option value="override_publish">override_publish</option>
+        </select>{' '}
+        <label htmlFor="approvalLessonCodeFilter">Lesson code: </label>
+        <input
+          id="approvalLessonCodeFilter"
+          value={approvalLessonCodeFilter}
+          onChange={(event) => setApprovalLessonCodeFilter(event.target.value)}
+          placeholder="BIO-104"
+        />{' '}
+        <label htmlFor="approvalReviewerFilter">Reviewer ID: </label>
+        <input
+          id="approvalReviewerFilter"
+          value={approvalReviewerFilter}
+          onChange={(event) => setApprovalReviewerFilter(event.target.value)}
+          placeholder="user uuid"
+        />
+      </p>
+      <p>
+        <label htmlFor="approvalDateFromFilter">From: </label>
+        <input
+          id="approvalDateFromFilter"
+          type="datetime-local"
+          value={approvalDateFromFilter}
+          onChange={(event) => setApprovalDateFromFilter(event.target.value)}
+        />{' '}
+        <label htmlFor="approvalDateToFilter">To: </label>
+        <input
+          id="approvalDateToFilter"
+          type="datetime-local"
+          value={approvalDateToFilter}
+          onChange={(event) => setApprovalDateToFilter(event.target.value)}
+        />
+      </p>
+      <p>
         <button type="button" onClick={() => void loadApprovalDecisions()} disabled={loadingApprovalDecisions}>
           {loadingApprovalDecisions ? 'Loading moderation history...' : 'Refresh moderation history'}
+        </button>{' '}
+        <button type="button" onClick={exportApprovalDecisionsCsv} disabled={approvalDecisions.length === 0}>
+          Export CSV
         </button>
       </p>
       {approvalDecisions.length > 0 && (

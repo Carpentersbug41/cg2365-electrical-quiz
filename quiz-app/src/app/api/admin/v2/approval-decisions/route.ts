@@ -44,13 +44,31 @@ export async function GET(request: NextRequest) {
 
     const limitRaw = Number.parseInt(request.nextUrl.searchParams.get('limit') ?? '', 10);
     const limit = Number.isFinite(limitRaw) ? Math.max(1, Math.min(200, limitRaw)) : 100;
+    const decisionFilter = (request.nextUrl.searchParams.get('decision') ?? '').trim();
+    const reviewerFilter = (request.nextUrl.searchParams.get('reviewerId') ?? '').trim();
+    const lessonCodeFilter = (request.nextUrl.searchParams.get('lessonCode') ?? '').trim().toLowerCase();
+    const dateFrom = (request.nextUrl.searchParams.get('dateFrom') ?? '').trim();
+    const dateTo = (request.nextUrl.searchParams.get('dateTo') ?? '').trim();
 
-    const { data: decisionsData, error: decisionsError } = await adminClient
+    let decisionsQuery = adminClient
       .from('v2_approval_decisions')
       .select('id, lesson_version_id, decided_by, decision, reason, created_at')
       .order('created_at', { ascending: false })
-      .limit(limit)
-      .returns<ApprovalDecisionRow[]>();
+      .limit(limit);
+    if (decisionFilter) {
+      decisionsQuery = decisionsQuery.eq('decision', decisionFilter);
+    }
+    if (reviewerFilter) {
+      decisionsQuery = decisionsQuery.eq('decided_by', reviewerFilter);
+    }
+    if (dateFrom) {
+      decisionsQuery = decisionsQuery.gte('created_at', dateFrom);
+    }
+    if (dateTo) {
+      decisionsQuery = decisionsQuery.lte('created_at', dateTo);
+    }
+
+    const { data: decisionsData, error: decisionsError } = await decisionsQuery.returns<ApprovalDecisionRow[]>();
     if (decisionsError) throw decisionsError;
 
     const decisions = decisionsData ?? [];
@@ -105,9 +123,8 @@ export async function GET(request: NextRequest) {
       }
     }
 
-    return NextResponse.json({
-      success: true,
-      decisions: decisions.map((decision) => {
+    const filteredDecisions = decisions
+      .map((decision) => {
         const version = decision.lesson_version_id ? versionById.get(decision.lesson_version_id) ?? null : null;
         const lesson = version ? lessonById.get(version.lesson_id) ?? null : null;
         const profile = profileById.get(decision.decided_by) ?? null;
@@ -132,7 +149,16 @@ export async function GET(request: NextRequest) {
               }
             : null,
         };
-      }),
+      })
+      .filter((row) => {
+        if (!lessonCodeFilter) return true;
+        const code = row.lesson?.code?.toLowerCase() ?? '';
+        return code.includes(lessonCodeFilter);
+      });
+
+    return NextResponse.json({
+      success: true,
+      decisions: filteredDecisions,
     });
   } catch (error) {
     return toUserAdminError(error);
