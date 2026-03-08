@@ -150,11 +150,14 @@ Completed in this slice:
 - [x] Added moderation history filters/export:
   - API filters: decision, reviewerId, lessonCode, dateFrom, dateTo
   - UI filters + CSV export from `/v2/admin` moderation history section
+- [x] Added batch lesson generation queueing for content expansion:
+  - API accepts `lessonCodes[]` and de-duplicates active queued/running jobs
+  - V2 admin supports comma/newline batch code entry and one-click queueing
 - [x] Verified test/build status after hardening:
   - `45 passed / 45 files` (`173 passed` tests)
   - production build successful
 - [x] Deployed reliability + publish-gate slice to V2 production URL:
-  - `https://quiz-app-v2-p40osdu0h-carpentersbugs-projects.vercel.app`
+  - `https://quiz-app-v2-n1ncwwldz-carpentersbugs-projects.vercel.app`
 
 ## 5. Guardrails (Must Hold)
 

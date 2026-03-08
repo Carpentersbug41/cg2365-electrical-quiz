@@ -8,6 +8,7 @@ type GenerationStatus = 'queued' | 'running' | 'succeeded' | 'failed' | 'cancell
 type CreatePayload = {
   kind?: 'lesson_draft' | 'question_draft';
   lessonCode?: string;
+  lessonCodes?: string[];
   prompt?: string;
 };
 
@@ -105,63 +106,113 @@ export async function POST(request: NextRequest) {
     const body = (await request.json().catch(() => ({}))) as CreatePayload;
     const kind = body.kind === 'question_draft' ? 'question_draft' : 'lesson_draft';
     const lessonCode = typeof body.lessonCode === 'string' ? body.lessonCode.trim() : '';
+    const lessonCodes = Array.isArray(body.lessonCodes)
+      ? body.lessonCodes
+          .map((entry) => (typeof entry === 'string' ? entry.trim() : ''))
+          .filter((entry) => entry.length > 0)
+      : [];
     const prompt = typeof body.prompt === 'string' ? body.prompt.trim().slice(0, 5000) : '';
 
-    if (kind === 'lesson_draft' && !lessonCode) {
+    const effectiveLessonCodes = kind === 'lesson_draft'
+      ? Array.from(new Set([lessonCode, ...lessonCodes].filter((entry) => entry.length > 0)))
+      : [];
+
+    if (kind === 'lesson_draft' && effectiveLessonCodes.length === 0) {
       return NextResponse.json(
-        { success: false, code: 'INVALID_INPUT', message: 'lessonCode is required for lesson_draft jobs.' },
+        { success: false, code: 'INVALID_INPUT', message: 'lessonCode or lessonCodes is required for lesson_draft jobs.' },
         { status: 400 }
       );
     }
 
-    let lessonId: string | null = null;
-    if (lessonCode) {
-      const { data: lesson, error: lessonError } = await adminClient
+    const lessonCodeToId = new Map<string, string>();
+    if (effectiveLessonCodes.length > 0) {
+      const { data: lessons, error: lessonsError } = await adminClient
         .from('v2_lessons')
-        .select('id')
-        .eq('code', lessonCode)
-        .limit(1)
-        .maybeSingle<{ id: string }>();
-      if (lessonError) throw lessonError;
-      if (!lesson?.id) {
+        .select('id, code')
+        .in('code', effectiveLessonCodes)
+        .returns<Array<{ id: string; code: string }>>();
+      if (lessonsError) throw lessonsError;
+      for (const lesson of lessons ?? []) {
+        lessonCodeToId.set(lesson.code, lesson.id);
+      }
+
+      const missingCodes = effectiveLessonCodes.filter((code) => !lessonCodeToId.has(code));
+      if (missingCodes.length > 0) {
         return NextResponse.json(
-          { success: false, code: 'NOT_FOUND', message: `V2 lesson not found for code ${lessonCode}.` },
+          {
+            success: false,
+            code: 'NOT_FOUND',
+            message: `V2 lesson not found for code(s): ${missingCodes.join(', ')}.`,
+          },
           { status: 404 }
         );
       }
-      lessonId = lesson.id;
     }
 
     const session = await getSupabaseSessionFromRequest(request);
     const requestedBy = session?.user?.id ?? null;
 
-    const { data: job, error: insertError } = await adminClient
-      .from('v2_generation_jobs')
-      .insert({
+    const targetLessonIds = effectiveLessonCodes.map((code) => lessonCodeToId.get(code)!).filter(Boolean);
+    if (targetLessonIds.length > 0) {
+      const { data: existingJobs, error: existingError } = await adminClient
+        .from('v2_generation_jobs')
+        .select('id, lesson_id, status')
+        .in('lesson_id', targetLessonIds)
+        .in('status', ['queued', 'running'])
+        .returns<Array<{ id: string; lesson_id: string | null; status: GenerationStatus }>>();
+      if (existingError) throw existingError;
+      const activeLessonIds = new Set(
+        (existingJobs ?? [])
+          .map((row) => row.lesson_id)
+          .filter((id): id is string => Boolean(id))
+      );
+      for (const code of Array.from(lessonCodeToId.keys())) {
+        const id = lessonCodeToId.get(code);
+        if (id && activeLessonIds.has(id)) {
+          lessonCodeToId.delete(code);
+        }
+      }
+    }
+
+    const insertRows = (kind === 'lesson_draft' ? Array.from(lessonCodeToId.entries()) : [[null, null] as const]).map(
+      ([code, id]) => ({
         kind,
-        status: 'queued',
-        lesson_id: lessonId,
+        status: 'queued' as GenerationStatus,
+        lesson_id: id,
         requested_by: requestedBy,
         payload: {
           prompt,
-          lessonCode: lessonCode || null,
+          lessonCode: code,
           requestedAt: new Date().toISOString(),
         },
       })
-      .select('id, kind, status, lesson_id, payload, attempts_made, max_attempts, error_message, queued_at, started_at, finished_at, created_at')
-      .single<GenerationJobRow>();
+    );
 
+    if (insertRows.length === 0) {
+      return NextResponse.json({
+        success: true,
+        jobs: [],
+        skipped: effectiveLessonCodes,
+        message: 'No jobs queued because active jobs already exist for the selected lessons.',
+      });
+    }
+
+    const { data: jobs, error: insertError } = await adminClient
+      .from('v2_generation_jobs')
+      .insert(insertRows)
+      .select('id, kind, status, lesson_id, payload, attempts_made, max_attempts, error_message, queued_at, started_at, finished_at, created_at')
+      .returns<GenerationJobRow[]>();
     if (insertError) throw insertError;
 
     const { error: eventError } = await adminClient.from('v2_event_log').insert({
       event_type: 'admin_generation_job_created',
       user_id: requestedBy,
-      lesson_id: lessonId,
+      lesson_id: null,
       source_context: 'admin_v2',
       payload: {
-        jobId: job.id,
+        jobIds: (jobs ?? []).map((row) => row.id),
         kind,
-        lessonCode: lessonCode || null,
+        lessonCodes: effectiveLessonCodes,
       },
     });
     if (eventError) {
@@ -170,7 +221,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      job,
+      jobs: jobs ?? [],
+      skipped: effectiveLessonCodes.filter((code) => !lessonCodeToId.has(code)),
     });
   } catch (error) {
     return toUserAdminError(error);

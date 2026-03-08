@@ -153,6 +153,7 @@ export default function V2AdminContentPage() {
   const [loadingJobs, setLoadingJobs] = useState(false);
   const [busyJobId, setBusyJobId] = useState<string | null>(null);
   const [newJobLessonCode, setNewJobLessonCode] = useState('');
+  const [newJobLessonCodesBulk, setNewJobLessonCodesBulk] = useState('');
   const [newJobPrompt, setNewJobPrompt] = useState('');
   const [outcomesWindowDays, setOutcomesWindowDays] = useState(30);
   const [loadingOutcomes, setLoadingOutcomes] = useState(false);
@@ -432,6 +433,37 @@ export default function V2AdminContentPage() {
       setNewJobPrompt('');
     } catch (createError) {
       setError(createError instanceof Error ? createError.message : 'Failed to create generation job.');
+    }
+  }
+
+  async function createBatchLessonDraftJobs() {
+    setError(null);
+    try {
+      const lessonCodes = newJobLessonCodesBulk
+        .split(/\r?\n|,/)
+        .map((entry) => entry.trim())
+        .filter((entry) => entry.length > 0);
+      if (lessonCodes.length === 0) {
+        throw new Error('Enter one or more lesson codes for batch queueing.');
+      }
+      const response = await authedFetch('/api/admin/v2/generation-jobs', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          kind: 'lesson_draft',
+          lessonCodes,
+          prompt: newJobPrompt.trim(),
+        }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to create batch generation jobs.');
+      }
+      await loadJobs();
+      setNewJobLessonCodesBulk('');
+      setNewJobPrompt('');
+    } catch (createError) {
+      setError(createError instanceof Error ? createError.message : 'Failed to create batch generation jobs.');
     }
   }
 
@@ -798,9 +830,28 @@ export default function V2AdminContentPage() {
         >
           Queue lesson draft job
         </button>{' '}
+        <button
+          type="button"
+          onClick={() => void createBatchLessonDraftJobs()}
+          disabled={!newJobLessonCodesBulk.trim()}
+        >
+          Queue batch jobs
+        </button>{' '}
         <button type="button" onClick={() => void loadJobs()} disabled={loadingJobs}>
           {loadingJobs ? 'Loading jobs...' : 'Refresh jobs'}
         </button>
+      </p>
+      <p>
+        <label htmlFor="newJobLessonCodesBulk">Batch lesson codes (comma or newline separated): </label>
+        <br />
+        <textarea
+          id="newJobLessonCodesBulk"
+          value={newJobLessonCodesBulk}
+          onChange={(event) => setNewJobLessonCodesBulk(event.target.value)}
+          placeholder={'BIO-105-1A\nBIO-105-1B\nBIO-106-1A'}
+          rows={4}
+          cols={40}
+        />
       </p>
 
       {jobs.length > 0 && (
