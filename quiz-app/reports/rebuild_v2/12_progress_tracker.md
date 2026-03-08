@@ -132,11 +132,17 @@ Completed in this slice:
   - automatic retry re-queue for transient failures when attempts remain
   - richer failure telemetry in `v2_generation_job_steps`, `v2_generation_jobs.payload`, and event log payload
 - [x] Updated V2 admin UI to surface publish-gate failures and generation retry/error metadata.
+- [x] Added moderation evidence enforcement for `approve` / `publish` transitions:
+  - required checklist confirmations (objectives, factual correctness, policy check)
+  - required reviewer evidence notes (min length) before status transition
+- [x] Added V2 admin generation alerting:
+  - retry-exhausted failed job alerts
+  - 24-hour failure spike alert section
 - [x] Verified test/build status after hardening:
-  - `44 passed / 44 files` (`170 passed` tests)
+  - `44 passed / 44 files` (`171 passed` tests)
   - production build successful
 - [x] Deployed reliability + publish-gate slice to V2 production URL:
-  - `https://quiz-app-v2-q8p8laahc-carpentersbugs-projects.vercel.app`
+  - `https://quiz-app-v2-m2p9tv1s4-carpentersbugs-projects.vercel.app`
 
 ## 5. Guardrails (Must Hold)
 
@@ -147,7 +153,7 @@ Completed in this slice:
 
 ## 6. Immediate Next Build Slice
 
-1. Add explicit admin moderation checklist UI for `needs_review` / `approved` transitions (human QA evidence capture).
-2. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
-3. Run Phase 1 release checklist and sign off go/no-go criteria.
-4. Add admin alerts/notifications for repeated generation failures and retry exhaustion.
+1. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
+2. Run Phase 1 release checklist and sign off go/no-go criteria.
+3. Add proactive notifications (email/webhook) for retry exhaustion and failure spikes.
+4. Add structured moderation history view in V2 admin (decision timeline per lesson version).

@@ -88,7 +88,16 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
     const response = await POST(
       new NextRequest('http://localhost/api/admin/v2/lesson-versions/status', {
         method: 'POST',
-        body: JSON.stringify({ versionId: 'v1', action: 'publish' }),
+        body: JSON.stringify({
+          versionId: 'v1',
+          action: 'publish',
+          moderation: {
+            objectivesVerified: true,
+            factualCheckPassed: true,
+            policyCheckPassed: true,
+            notes: 'QA verified and approved for publish.',
+          },
+        }),
       })
     );
 
@@ -96,5 +105,20 @@ describe('POST /api/admin/v2/lesson-versions/status', () => {
     expect(response.status).toBe(409);
     expect(payload.code).toBe('PUBLISH_VALIDATION_FAILED');
     expect(Array.isArray(payload.gate?.issues)).toBe(true);
+  });
+
+  it('returns 400 when moderation checklist is missing for approve', async () => {
+    createSupabaseAdminClient.mockReturnValue({});
+    const { POST } = await import('./route');
+    const response = await POST(
+      new NextRequest('http://localhost/api/admin/v2/lesson-versions/status', {
+        method: 'POST',
+        body: JSON.stringify({ versionId: 'v1', action: 'approve' }),
+      })
+    );
+
+    const payload = await response.json();
+    expect(response.status).toBe(400);
+    expect(payload.code).toBe('MODERATION_REQUIRED');
   });
 });

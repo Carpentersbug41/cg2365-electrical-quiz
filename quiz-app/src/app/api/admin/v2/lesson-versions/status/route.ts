@@ -11,6 +11,12 @@ type UpdatePayload = {
   versionId?: string;
   action?: UpdateAction;
   reason?: string;
+  moderation?: {
+    objectivesVerified?: boolean;
+    factualCheckPassed?: boolean;
+    policyCheckPassed?: boolean;
+    notes?: string;
+  };
 };
 
 type VersionRow = {
@@ -63,12 +69,32 @@ export async function POST(request: NextRequest) {
     const versionId = typeof body.versionId === 'string' ? body.versionId.trim() : '';
     const action = body.action;
     const reason = typeof body.reason === 'string' ? body.reason.trim().slice(0, 500) : null;
+    const moderation = body.moderation ?? {};
 
     if (!versionId || !action) {
       return NextResponse.json(
         { success: false, code: 'INVALID_INPUT', message: 'versionId and action are required.' },
         { status: 400 }
       );
+    }
+
+    if (action === 'approve' || action === 'publish') {
+      const objectivesVerified = moderation.objectivesVerified === true;
+      const factualCheckPassed = moderation.factualCheckPassed === true;
+      const policyCheckPassed = moderation.policyCheckPassed === true;
+      const notes = typeof moderation.notes === 'string' ? moderation.notes.trim() : '';
+
+      if (!objectivesVerified || !factualCheckPassed || !policyCheckPassed || notes.length < 10) {
+        return NextResponse.json(
+          {
+            success: false,
+            code: 'MODERATION_REQUIRED',
+            message:
+              'Moderation checklist is required for approve/publish (all checks true + notes >= 10 chars).',
+          },
+          { status: 400 }
+        );
+      }
     }
 
     const { data: version, error: versionError } = await adminClient
@@ -174,11 +200,16 @@ export async function POST(request: NextRequest) {
     if (actorUserId && (action === 'approve' || action === 'revert_draft' || action === 'publish')) {
       const decision =
         action === 'approve' ? 'approved' : action === 'publish' ? 'override_publish' : 'rejected';
+      const moderationNotes =
+        typeof moderation.notes === 'string' && moderation.notes.trim().length > 0
+          ? moderation.notes.trim()
+          : null;
+      const decisionReason = [reason, moderationNotes].filter((part): part is string => Boolean(part)).join(' | ');
       const { error: decisionError } = await adminClient.from('v2_approval_decisions').insert({
         lesson_version_id: version.id,
         decided_by: actorUserId,
         decision,
-        reason: reason || null,
+        reason: decisionReason || null,
       });
       if (decisionError) {
         console.warn('[V2 Admin] Failed to record approval decision:', decisionError);
@@ -196,6 +227,7 @@ export async function POST(request: NextRequest) {
         from: version.status,
         to: nextStatus,
         reason: reason || null,
+        moderation: action === 'approve' || action === 'publish' ? moderation : null,
       },
     });
     if (eventError) {

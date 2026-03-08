@@ -106,6 +106,13 @@ type TimeSeriesPoint = {
   review_active_backlog: number;
 };
 
+type ModerationPayload = {
+  objectivesVerified: boolean;
+  factualCheckPassed: boolean;
+  policyCheckPassed: boolean;
+  notes: string;
+};
+
 function allowedActions(status: ContentStatus): UpdateAction[] {
   if (status === 'draft') return ['submit_review', 'retire'];
   if (status === 'needs_review') return ['approve', 'revert_draft', 'retire'];
@@ -247,15 +254,57 @@ export default function V2AdminContentPage() {
     () => versions.filter((version) => version.status === 'published').length,
     [versions]
   );
+  const retryExhaustedJobs = useMemo(
+    () => jobs.filter((job) => job.status === 'failed' && job.attempts_made >= job.max_attempts),
+    [jobs]
+  );
+  const recentFailedJobs = useMemo(
+    () =>
+      jobs.filter((job) => {
+        if (job.status !== 'failed') return false;
+        const createdTs = new Date(job.created_at).getTime();
+        if (Number.isNaN(createdTs)) return false;
+        return Date.now() - createdTs <= 24 * 60 * 60 * 1000;
+      }),
+    [jobs]
+  );
+
+  function collectModerationPayloadIfRequired(action: UpdateAction): ModerationPayload | null {
+    if (action !== 'approve' && action !== 'publish') return null;
+
+    const objectivesVerified = window.confirm('Moderation: Have learning outcomes/objectives been verified?');
+    if (!objectivesVerified) return null;
+    const factualCheckPassed = window.confirm('Moderation: Factual correctness check passed?');
+    if (!factualCheckPassed) return null;
+    const policyCheckPassed = window.confirm('Moderation: Policy/safety/content check passed?');
+    if (!policyCheckPassed) return null;
+    const notes = window.prompt(
+      'Add moderation evidence notes (required, at least 10 chars):',
+      'Checked alignment, factual accuracy, and content policy.'
+    );
+    if (notes == null || notes.trim().length < 10) return null;
+
+    return {
+      objectivesVerified,
+      factualCheckPassed,
+      policyCheckPassed,
+      notes: notes.trim(),
+    };
+  }
 
   async function transitionVersion(versionId: string, action: UpdateAction) {
     setBusyVersionId(versionId);
     setError(null);
     try {
+      const moderation = collectModerationPayloadIfRequired(action);
+      if ((action === 'approve' || action === 'publish') && !moderation) {
+        throw new Error('Moderation checklist was not completed.');
+      }
+
       const response = await authedFetch('/api/admin/v2/lesson-versions/status', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ versionId, action }),
+        body: JSON.stringify({ versionId, action, moderation }),
       });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
@@ -267,6 +316,9 @@ export default function V2AdminContentPage() {
           : [];
         if (gateIssues.length > 0) {
           throw new Error(`Publish gate failed: ${gateIssues.join(' | ')}`);
+        }
+        if (payload.code === 'MODERATION_REQUIRED') {
+          throw new Error('Moderation checklist and evidence notes are required.');
         }
         throw new Error(payload.message || 'Failed to transition version.');
       }
@@ -544,6 +596,18 @@ export default function V2AdminContentPage() {
 
       <h2>AI Generation Jobs (Phase 1 skeleton)</h2>
       <p>Create queued lesson draft jobs, then run them to produce V2 draft lesson versions.</p>
+      {retryExhaustedJobs.length > 0 && (
+        <>
+          <h3>Alert: Retry Exhausted Jobs</h3>
+          <p>{retryExhaustedJobs.length} job(s) failed after max attempts and need manual action.</p>
+        </>
+      )}
+      {recentFailedJobs.length >= 3 && (
+        <>
+          <h3>Alert: Failure Spike (24h)</h3>
+          <p>{recentFailedJobs.length} generation job failures detected in the last 24 hours.</p>
+        </>
+      )}
       <p>
         <label htmlFor="newJobLessonCode">Lesson code: </label>
         <input
