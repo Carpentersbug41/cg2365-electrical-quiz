@@ -144,11 +144,14 @@ Completed in this slice:
 - [x] Added proactive alert hook for generation retry exhaustion:
   - optional webhook via `V2_ADMIN_ALERT_WEBHOOK_URL`
   - emits `generation_retry_exhausted` payload with job/lesson/error/attempt metadata
+- [x] Added failure-spike webhook alerting with dedupe window:
+  - queue worker triggers `generation_failure_spike` webhook when >=3 failures in a run
+  - 30-minute dedupe via `v2_event_log` event (`admin_generation_failure_spike_alert`)
 - [x] Verified test/build status after hardening:
   - `45 passed / 45 files` (`173 passed` tests)
   - production build successful
 - [x] Deployed reliability + publish-gate slice to V2 production URL:
-  - `https://quiz-app-v2-45b9cs6x8-carpentersbugs-projects.vercel.app`
+  - `https://quiz-app-v2-mlfyvfay6-carpentersbugs-projects.vercel.app`
 
 ## 5. Guardrails (Must Hold)
 
@@ -161,5 +164,5 @@ Completed in this slice:
 
 1. Expand V2-native biology lesson inventory for demo breadth and publish pipeline QA.
 2. Run Phase 1 release checklist and sign off go/no-go criteria.
-3. Add failure-spike webhook alerts (not only retry exhaustion), with dedupe window to avoid alert storms.
-4. Add richer moderation filters/export (by reviewer, decision type, lesson code, date range).
+3. Add richer moderation filters/export (by reviewer, decision type, lesson code, date range).
+4. Expand V2 biology inventory and run final Phase 1 release sign-off checklist.

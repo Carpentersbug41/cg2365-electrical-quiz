@@ -7,6 +7,24 @@ type QueuedJob = {
   id: string;
 };
 
+async function sendAlertWebhook(payload: Record<string, unknown>): Promise<void> {
+  const webhookUrl = process.env.V2_ADMIN_ALERT_WEBHOOK_URL?.trim();
+  if (!webhookUrl) return;
+  try {
+    await fetch(webhookUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        source: 'v2_generation_queue_runner',
+        ts: new Date().toISOString(),
+        ...payload,
+      }),
+    });
+  } catch (error) {
+    console.warn('[V2 Admin] Failed to send queue-run alert webhook:', error);
+  }
+}
+
 function hasCronAccess(request: NextRequest): boolean {
   const secret =
     process.env.V2_GENERATION_CRON_SECRET?.trim() ||
@@ -74,6 +92,42 @@ export async function POST(request: NextRequest) {
           jobId: job.id,
           status: 'failed',
           reason: error instanceof Error ? error.message : 'Unknown error',
+        });
+      }
+    }
+
+    const failedCount = processed.filter((row) => row.status === 'failed').length;
+    const dedupeWindowMinutes = 30;
+    if (failedCount >= 3) {
+      const sinceIso = new Date(Date.now() - dedupeWindowMinutes * 60 * 1000).toISOString();
+      const { data: existingAlert, error: alertLookupError } = await adminClient
+        .from('v2_event_log')
+        .select('id')
+        .eq('event_type', 'admin_generation_failure_spike_alert')
+        .gte('event_ts', sinceIso)
+        .order('event_ts', { ascending: false })
+        .limit(1)
+        .maybeSingle<{ id: string }>();
+      if (alertLookupError) {
+        console.warn('[V2 Admin] Failed to check dedupe window for failure spike alert:', alertLookupError);
+      }
+
+      if (!existingAlert?.id) {
+        await sendAlertWebhook({
+          type: 'generation_failure_spike',
+          failedCount,
+          attempted: queuedJobs?.length ?? 0,
+          dedupeWindowMinutes,
+          processed,
+        });
+        await adminClient.from('v2_event_log').insert({
+          event_type: 'admin_generation_failure_spike_alert',
+          source_context: cronAccess ? 'cron-worker' : 'admin-worker',
+          payload: {
+            failedCount,
+            attempted: queuedJobs?.length ?? 0,
+            dedupeWindowMinutes,
+          },
         });
       }
     }
