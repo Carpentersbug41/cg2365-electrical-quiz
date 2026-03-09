@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireSupabaseSession } from '@/lib/authProgress/routeGuard';
+import { requireV2Session } from '@/lib/v2/session';
 
 type CompletePayload = {
   reviewItemId?: string;
@@ -7,7 +7,7 @@ type CompletePayload = {
 };
 
 export async function POST(request: NextRequest) {
-  const { session, response } = await requireSupabaseSession(request);
+  const { session, response } = await requireV2Session(request);
   if (!session) return response!;
 
   let body: CompletePayload;
@@ -69,4 +69,3 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json({ success: true });
 }
-

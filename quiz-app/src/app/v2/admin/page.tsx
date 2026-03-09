@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import V2Shell from '@/components/v2/V2Shell';
-import { authedFetch } from '@/lib/api/authedFetch';
+import { v2AuthedFetch } from '@/lib/v2/client';
 
 type ContentStatus = 'draft' | 'needs_review' | 'approved' | 'published' | 'retired';
 type UpdateAction = 'submit_review' | 'approve' | 'publish' | 'retire' | 'revert_draft';
@@ -183,7 +183,7 @@ export default function V2AdminContentPage() {
       if (statusFilter !== 'all') params.set('status', statusFilter);
       if (lessonFilter.trim()) params.set('lessonCode', lessonFilter.trim());
       const query = params.toString();
-      const response = await authedFetch(`/api/admin/v2/lesson-versions${query ? `?${query}` : ''}`, {
+      const response = await v2AuthedFetch(`/api/admin/v2/lesson-versions${query ? `?${query}` : ''}`, {
         cache: 'no-store',
       });
       const payload = await response.json();
@@ -203,7 +203,7 @@ export default function V2AdminContentPage() {
     setLoadingJobs(true);
     setError(null);
     try {
-      const response = await authedFetch('/api/admin/v2/generation-jobs', { cache: 'no-store' });
+      const response = await v2AuthedFetch('/api/admin/v2/generation-jobs', { cache: 'no-store' });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to load generation jobs.');
@@ -221,7 +221,7 @@ export default function V2AdminContentPage() {
     setLoadingOutcomes(true);
     setError(null);
     try {
-      const response = await authedFetch(`/api/admin/v2/outcomes/summary?days=${days}`, { cache: 'no-store' });
+      const response = await v2AuthedFetch(`/api/admin/v2/outcomes/summary?days=${days}`, { cache: 'no-store' });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to load V2 outcomes summary.');
@@ -241,7 +241,7 @@ export default function V2AdminContentPage() {
     setLoadingUserTimeline(true);
     setError(null);
     try {
-      const response = await authedFetch(
+      const response = await v2AuthedFetch(
         `/api/admin/v2/outcomes/timeseries?days=${days}&userId=${encodeURIComponent(userId)}`,
         { cache: 'no-store' }
       );
@@ -269,7 +269,7 @@ export default function V2AdminContentPage() {
       if (approvalReviewerFilter.trim()) params.set('reviewerId', approvalReviewerFilter.trim());
       if (approvalDateFromFilter.trim()) params.set('dateFrom', approvalDateFromFilter.trim());
       if (approvalDateToFilter.trim()) params.set('dateTo', approvalDateToFilter.trim());
-      const response = await authedFetch(`/api/admin/v2/approval-decisions?${params.toString()}`, { cache: 'no-store' });
+      const response = await v2AuthedFetch(`/api/admin/v2/approval-decisions?${params.toString()}`, { cache: 'no-store' });
       const payload = await response.json();
       if (!response.ok || payload.success === false) {
         throw new Error(payload.message || 'Failed to load approval decisions.');
@@ -384,7 +384,7 @@ export default function V2AdminContentPage() {
         throw new Error('Moderation checklist was not completed.');
       }
 
-      const response = await authedFetch('/api/admin/v2/lesson-versions/status', {
+      const response = await v2AuthedFetch('/api/admin/v2/lesson-versions/status', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ versionId, action, moderation }),
@@ -416,7 +416,7 @@ export default function V2AdminContentPage() {
   async function createLessonDraftJob() {
     setError(null);
     try {
-      const response = await authedFetch('/api/admin/v2/generation-jobs', {
+      const response = await v2AuthedFetch('/api/admin/v2/generation-jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -446,7 +446,7 @@ export default function V2AdminContentPage() {
       if (lessonCodes.length === 0) {
         throw new Error('Enter one or more lesson codes for batch queueing.');
       }
-      const response = await authedFetch('/api/admin/v2/generation-jobs', {
+      const response = await v2AuthedFetch('/api/admin/v2/generation-jobs', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -471,7 +471,7 @@ export default function V2AdminContentPage() {
     setBusyJobId(jobId);
     setError(null);
     try {
-      const response = await authedFetch(`/api/admin/v2/generation-jobs/${encodeURIComponent(jobId)}/run`, {
+      const response = await v2AuthedFetch(`/api/admin/v2/generation-jobs/${encodeURIComponent(jobId)}/run`, {
         method: 'POST',
       });
       const payload = await response.json();

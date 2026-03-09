@@ -1,20 +1,10 @@
 import { NextResponse } from 'next/server';
-import { getCurriculumScopeFromHeaderOrReferer, type CurriculumScope } from '@/lib/routing/curriculumScope';
 import { listV2PublishedLessons } from '@/lib/v2/publishedLessons';
+import { resolveV2CurriculumScope } from '@/lib/v2/scope';
 
 export async function GET(request: Request) {
   try {
-    const url = new URL(request.url);
-    const explicitScope = url.searchParams.get('scope');
-    const scope: CurriculumScope =
-      explicitScope === 'gcse-science-biology' ||
-      explicitScope === 'gcse-science-physics' ||
-      explicitScope === 'cg2365'
-        ? (explicitScope as CurriculumScope)
-        : getCurriculumScopeFromHeaderOrReferer(
-            request.headers.get('x-course-prefix'),
-            request.headers.get('referer')
-          );
+    const scope = resolveV2CurriculumScope(request);
 
     const lessons = await listV2PublishedLessons(scope);
     return NextResponse.json({

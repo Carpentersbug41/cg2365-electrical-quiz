@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { requireSupabaseSession } from '@/lib/authProgress/routeGuard';
+import { requireV2Session } from '@/lib/v2/session';
 
 type AttemptInput = {
   questionId?: string;
@@ -21,7 +21,7 @@ function isMissingTableError(error: unknown): boolean {
 }
 
 export async function POST(request: NextRequest) {
-  const { session, response } = await requireSupabaseSession(request);
+  const { session, response } = await requireV2Session(request);
   if (!session) {
     return response!;
   }

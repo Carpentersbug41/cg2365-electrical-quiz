@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { authedFetch } from '@/lib/api/authedFetch';
+import { v2AuthedFetch } from '@/lib/v2/client';
 import V2Shell from '@/components/v2/V2Shell';
 
 interface ReviewItem {
@@ -25,7 +25,7 @@ export default function V2ReviewPage() {
     setLoading(true);
     setError(null);
     try {
-      const response = await authedFetch('/api/v2/review/queue', { cache: 'no-store' });
+      const response = await v2AuthedFetch('/api/v2/review/queue', { cache: 'no-store' });
       const payload = await response.json();
       if (!response.ok) throw new Error(payload.error || 'Failed to load review queue.');
       setItems(Array.isArray(payload.items) ? payload.items : []);
@@ -44,7 +44,7 @@ export default function V2ReviewPage() {
     setBusyId(reviewItemId);
     setError(null);
     try {
-      const response = await authedFetch('/api/v2/review/complete', {
+      const response = await v2AuthedFetch('/api/v2/review/complete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reviewItemId, correct }),

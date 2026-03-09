@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { authedFetch } from '@/lib/api/authedFetch';
+import { v2AuthedFetch } from '@/lib/v2/client';
 import V2Shell from '@/components/v2/V2Shell';
 
 interface ProgressSummary {
@@ -32,7 +32,7 @@ export default function V2ProgressPage() {
       setLoading(true);
       setError(null);
       try {
-        const response = await authedFetch('/api/v2/progress/summary', { cache: 'no-store' });
+        const response = await v2AuthedFetch('/api/v2/progress/summary', { cache: 'no-store' });
         const payload = await response.json();
         if (!response.ok) throw new Error(payload.error || 'Failed to load V2 progress.');
         if (cancelled) return;
