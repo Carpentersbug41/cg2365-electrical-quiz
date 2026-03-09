@@ -1,6 +1,6 @@
 import type { Lesson } from '@/data/lessons/types';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
 import { isLessonIdAllowedForScope, type CurriculumScope } from '@/lib/routing/curriculumScope';
+import { createV2SupabaseAdminClient } from '@/lib/v2/supabase';
 
 interface PublishedLessonRow {
   content_json?: unknown;
@@ -33,7 +33,7 @@ function isMissingTableError(error: unknown): boolean {
 }
 
 export async function getV2PublishedLessonByCode(lessonCode: string): Promise<Lesson | null> {
-  const client = createSupabaseAdminClient();
+  const client = createV2SupabaseAdminClient();
   if (!client) return null;
 
   const { data, error } = await client
@@ -55,7 +55,7 @@ export async function getV2PublishedLessonByCode(lessonCode: string): Promise<Le
 }
 
 export async function listV2PublishedLessons(scope: CurriculumScope): Promise<Lesson[]> {
-  const client = createSupabaseAdminClient();
+  const client = createV2SupabaseAdminClient();
   if (!client) return [];
 
   const { data, error } = await client

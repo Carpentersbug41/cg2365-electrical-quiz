@@ -1,22 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
-import { getSupabaseSessionFromRequest } from '@/lib/supabase/server';
-import { isAdminOverrideEmail } from '@/lib/auth/adminOverrides';
+import { isV2AdminOverrideEmail } from '@/lib/v2/auth';
+import { createV2SupabaseAdminClient, getV2SupabaseSessionFromRequest } from '@/lib/v2/supabase';
 
 export function createV2AdminClient() {
-  return createSupabaseAdminClient();
+  return createV2SupabaseAdminClient();
 }
 
 export async function getV2ActorUserId(request: NextRequest | Request): Promise<string | null> {
-  const session = await getSupabaseSessionFromRequest(request);
+  const session = await getV2SupabaseSessionFromRequest(request);
   return session?.user?.id ?? null;
 }
 
 async function isV2AdminRequest(request: NextRequest | Request): Promise<boolean> {
-  const session = await getSupabaseSessionFromRequest(request);
+  const session = await getV2SupabaseSessionFromRequest(request);
   if (!session) return false;
 
-  if (isAdminOverrideEmail(session.user.email)) {
+  if (isV2AdminOverrideEmail(session.user.email)) {
     return true;
   }
 
