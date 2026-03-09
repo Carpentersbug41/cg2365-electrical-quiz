@@ -191,6 +191,10 @@ type ReadinessPayload = {
     lessons_missing_question_coverage: Array<{ id: string; code: string; title: string }>;
     lesson_versions_by_status: Record<string, number>;
     question_versions_by_status: Record<string, number>;
+    moderation_backlog: {
+      lessons: Record<string, number>;
+      questions: Record<string, number>;
+    };
   };
   access: {
     total_enrollments: number;
@@ -200,6 +204,28 @@ type ReadinessPayload = {
     generation_jobs_by_status: Record<string, number>;
     retry_exhausted_jobs: number;
     last_successful_job_at: string | null;
+    queue_run_is_stale: boolean;
+    queue_run_age_minutes: number | null;
+    stuck_running_jobs: Array<{
+      id: string;
+      kind: 'lesson_draft' | 'question_draft';
+      lesson_id: string | null;
+      lesson_code: string | null;
+      attempts_made: number;
+      max_attempts: number;
+      age_minutes: number | null;
+      error_message: string | null;
+    }>;
+    stale_queued_jobs: Array<{
+      id: string;
+      kind: 'lesson_draft' | 'question_draft';
+      lesson_id: string | null;
+      lesson_code: string | null;
+      attempts_made: number;
+      max_attempts: number;
+      age_minutes: number | null;
+      error_message: string | null;
+    }>;
     last_queue_run: {
       event_ts: string;
       attempted: number;
@@ -876,6 +902,27 @@ export default function V2AdminContentPage() {
     }
   }
 
+  async function requeueJob(jobId: string, force = false) {
+    setBusyJobId(jobId);
+    setError(null);
+    try {
+      const response = await v2AuthedFetch(`/api/admin/v2/generation-jobs/${encodeURIComponent(jobId)}/requeue`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ force }),
+      });
+      const payload = await response.json();
+      if (!response.ok || payload.success === false) {
+        throw new Error(payload.message || 'Failed to requeue generation job.');
+      }
+      await Promise.all([loadJobs(), loadReadiness()]);
+    } catch (requeueError) {
+      setError(requeueError instanceof Error ? requeueError.message : 'Failed to requeue generation job.');
+    } finally {
+      setBusyJobId(null);
+    }
+  }
+
   async function backfillQuestionBank() {
     setBackfillingQuestions(true);
     setError(null);
@@ -1148,6 +1195,15 @@ export default function V2AdminContentPage() {
           <p>Missing question coverage: {readiness.content.lessons_missing_question_coverage.length}</p>
           <p>Lesson versions by status: {JSON.stringify(readiness.content.lesson_versions_by_status)}</p>
           <p>Question versions by status: {JSON.stringify(readiness.content.question_versions_by_status)}</p>
+          <p>
+            Moderation backlog:
+            {' '}lesson draft {readiness.content.moderation_backlog.lessons.draft ?? 0},
+            {' '}lesson review {readiness.content.moderation_backlog.lessons.needs_review ?? 0},
+            {' '}lesson approved {readiness.content.moderation_backlog.lessons.approved ?? 0},
+            {' '}question draft {readiness.content.moderation_backlog.questions.draft ?? 0},
+            {' '}question review {readiness.content.moderation_backlog.questions.needs_review ?? 0},
+            {' '}question approved {readiness.content.moderation_backlog.questions.approved ?? 0}
+          </p>
           {readiness.content.lessons_missing_published.length > 0 && (
             <>
               <h4>Lessons missing published versions</h4>
@@ -1247,6 +1303,8 @@ export default function V2AdminContentPage() {
           <h3>Operational readiness</h3>
           <p>Generation jobs by status: {JSON.stringify(readiness.operations.generation_jobs_by_status)}</p>
           <p>Retry exhausted jobs: {readiness.operations.retry_exhausted_jobs}</p>
+          <p>Stuck running jobs: {readiness.operations.stuck_running_jobs.length}</p>
+          <p>Stale queued jobs: {readiness.operations.stale_queued_jobs.length}</p>
           <p>
             Last successful generation job:{' '}
             {readiness.operations.last_successful_job_at
@@ -1254,11 +1312,91 @@ export default function V2AdminContentPage() {
               : '-'}
           </p>
           <p>
+            Queue freshness:{' '}
+            {readiness.operations.queue_run_is_stale
+              ? `stale (${readiness.operations.queue_run_age_minutes ?? '-'} min since last run)`
+              : `ok${readiness.operations.queue_run_age_minutes == null ? '' : ` (${readiness.operations.queue_run_age_minutes} min ago)`}`}
+          </p>
+          <p>
             Last queue run:{' '}
             {readiness.operations.last_queue_run
               ? `${new Date(readiness.operations.last_queue_run.event_ts).toLocaleString()} | attempted ${readiness.operations.last_queue_run.attempted} | succeeded ${readiness.operations.last_queue_run.succeeded} | failed ${readiness.operations.last_queue_run.failed} | skipped ${readiness.operations.last_queue_run.skipped}`
               : '-'}
           </p>
+          {readiness.operations.stuck_running_jobs.length > 0 && (
+            <>
+              <h4>Stuck running jobs</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th align="left">Job</th>
+                    <th align="left">Kind</th>
+                    <th align="left">Lesson</th>
+                    <th align="left">Age</th>
+                    <th align="left">Attempts</th>
+                    <th align="left">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {readiness.operations.stuck_running_jobs.map((job) => (
+                    <tr key={`stuck-${job.id}`}>
+                      <td>{job.id.slice(0, 8)}</td>
+                      <td>{job.kind}</td>
+                      <td>{job.lesson_code ?? job.lesson_id ?? '-'}</td>
+                      <td>{job.age_minutes == null ? '-' : `${job.age_minutes} min`}</td>
+                      <td>{job.attempts_made}/{job.max_attempts}</td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => void requeueJob(job.id, true)}
+                          disabled={busyJobId === job.id}
+                        >
+                          {busyJobId === job.id ? 'Requeueing...' : 'Force requeue'}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
+          {readiness.operations.stale_queued_jobs.length > 0 && (
+            <>
+              <h4>Stale queued jobs</h4>
+              <table>
+                <thead>
+                  <tr>
+                    <th align="left">Job</th>
+                    <th align="left">Kind</th>
+                    <th align="left">Lesson</th>
+                    <th align="left">Age</th>
+                    <th align="left">Attempts</th>
+                    <th align="left">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {readiness.operations.stale_queued_jobs.map((job) => (
+                    <tr key={`queued-${job.id}`}>
+                      <td>{job.id.slice(0, 8)}</td>
+                      <td>{job.kind}</td>
+                      <td>{job.lesson_code ?? job.lesson_id ?? '-'}</td>
+                      <td>{job.age_minutes == null ? '-' : `${job.age_minutes} min`}</td>
+                      <td>{job.attempts_made}/{job.max_attempts}</td>
+                      <td>
+                        <button
+                          type="button"
+                          onClick={() => void runJob(job.id)}
+                          disabled={busyJobId === job.id}
+                        >
+                          {busyJobId === job.id ? 'Running...' : 'Run now'}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </>
+          )}
         </>
       )}
 
@@ -1801,6 +1939,16 @@ export default function V2AdminContentPage() {
                     disabled={job.status !== 'queued' || busyJobId === job.id}
                   >
                     {busyJobId === job.id ? 'Running...' : 'Run now'}
+                  </button>{' '}
+                  <button
+                    type="button"
+                    onClick={() => void requeueJob(job.id, job.status === 'running')}
+                    disabled={
+                      busyJobId === job.id ||
+                      (job.status !== 'failed' && job.status !== 'cancelled' && job.status !== 'running')
+                    }
+                  >
+                    {busyJobId === job.id ? 'Requeueing...' : job.status === 'running' ? 'Force requeue' : 'Requeue'}
                   </button>
                 </td>
               </tr>

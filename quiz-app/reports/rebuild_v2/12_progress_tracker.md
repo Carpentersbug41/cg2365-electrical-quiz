@@ -121,6 +121,7 @@ V2 admin now has release-readiness, intervention, and access-control visibility 
 - [~] V2 generation worker endpoint now exists (`run-queued`) but still needs scheduler wiring/ops hardening.
 - [~] V2 generation worker endpoint now exists (`run-queued`) and daily Vercel cron wiring is in place; needs production frequency upgrade/ops hardening.
 - [x] V2 generation runner now calls the shared lesson generation engine (Phase 1-9 path via `FileGenerator`) with context-aware request shaping from latest lesson version metadata/content.
+- [x] V2 admin now supports manual requeue for failed or stale generation jobs.
 
 ### 4.3 Deployment separation
 - [x] Separate V2 deployment URL/project from V1 deployment.
@@ -237,6 +238,20 @@ Completed in this slice:
 - [x] Verified current validation status after Biology target-set readiness + question-draft path re-enable:
   - focused V2 tests: `3 files`, `6 tests`
   - production build successful
+- [x] Added operational backlog visibility to V2 readiness:
+  - lesson/question moderation backlog counts
+  - stuck running generation jobs
+  - stale queued generation jobs
+  - queue-run freshness signal
+- [x] Added manual requeue endpoint for generation jobs:
+  - `POST /api/admin/v2/generation-jobs/[jobId]/requeue`
+- [x] Added operator actions in `/v2/admin` for:
+  - force requeue of stuck running jobs
+  - requeue of failed/cancelled jobs
+  - direct run of stale queued jobs
+- [x] Verified current validation status after ops hardening:
+  - focused V2 tests: `2 files`, `3 tests`
+  - production build successful
 
 ## 5. Guardrails (Must Hold)
 
@@ -249,5 +264,5 @@ Completed in this slice:
 
 1. Expand V2 Biology content inventory beyond the current 7-lesson target set.
 2. Harden question generation quality gates and moderation throughput now that the admin path is live again.
-3. Harden operational workflow around enrollments, generation jobs, and publish audits.
+3. Improve cron cadence/alerting and add publish-backlog prioritization in admin.
 4. Continue V2 wrapper isolation until only low-level infra and the intentional generation adapter remain.

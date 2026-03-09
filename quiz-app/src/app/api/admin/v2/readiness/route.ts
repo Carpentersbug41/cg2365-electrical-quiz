@@ -28,11 +28,15 @@ type EnrollmentRow = {
 
 type GenerationJobRow = {
   id: string;
+  kind: 'lesson_draft' | 'question_draft';
+  lesson_id: string | null;
   status: 'queued' | 'running' | 'succeeded' | 'failed' | 'cancelled';
   attempts_made: number;
   max_attempts: number;
+  created_at: string;
   started_at: string | null;
   finished_at: string | null;
+  error_message?: string | null;
 };
 
 type QueueRunEventRow = {
@@ -56,6 +60,17 @@ function getBiologySourceLessonCodes(): Set<string> {
       .map((fileName) => fileName.replace(/\.json$/i, '').toUpperCase())
   );
 }
+
+function toAgeMinutes(iso: string | null): number | null {
+  if (!iso) return null;
+  const ageMs = Date.now() - new Date(iso).getTime();
+  if (!Number.isFinite(ageMs) || ageMs < 0) return null;
+  return Math.round(ageMs / 60000);
+}
+
+const STUCK_RUNNING_THRESHOLD_MINUTES = 20;
+const STALE_QUEUED_THRESHOLD_MINUTES = 30;
+const STALE_QUEUE_RUN_THRESHOLD_MINUTES = 90;
 
 export async function GET(request: NextRequest) {
   const denied = await guardV2AdminAccess(request);
@@ -89,7 +104,7 @@ export async function GET(request: NextRequest) {
       adminClient.from('v2_enrollments').select('status').returns<EnrollmentRow[]>(),
       adminClient
         .from('v2_generation_jobs')
-        .select('id, status, attempts_made, max_attempts, started_at, finished_at')
+        .select('id, kind, lesson_id, status, attempts_made, max_attempts, created_at, started_at, finished_at, error_message')
         .returns<GenerationJobRow[]>(),
       adminClient
         .from('v2_event_log')
@@ -146,6 +161,16 @@ export async function GET(request: NextRequest) {
       acc[row.status] = (acc[row.status] ?? 0) + 1;
       return acc;
     }, {});
+    const lessonBacklog = {
+      draft: lessonVersions.filter((row) => row.status === 'draft').length,
+      needs_review: lessonVersions.filter((row) => row.status === 'needs_review').length,
+      approved: lessonVersions.filter((row) => row.status === 'approved').length,
+    };
+    const questionBacklog = {
+      draft: questionVersions.filter((row) => row.status === 'draft').length,
+      needs_review: questionVersions.filter((row) => row.status === 'needs_review').length,
+      approved: questionVersions.filter((row) => row.status === 'approved').length,
+    };
 
     const retryExhaustedJobs = generationJobs.filter(
       (row) => row.status === 'failed' && row.attempts_made >= row.max_attempts
@@ -154,6 +179,26 @@ export async function GET(request: NextRequest) {
       .filter((row) => row.status === 'succeeded' && row.finished_at)
       .map((row) => row.finished_at as string)
       .sort((a, b) => b.localeCompare(a))[0] ?? null;
+    const lessonById = new Map(lessons.map((lesson) => [lesson.id, lesson]));
+    const stuckRunningJobs = generationJobs
+      .filter((row) => row.status === 'running')
+      .map((row) => ({
+        ...row,
+        age_minutes: toAgeMinutes(row.started_at),
+        lesson_code: row.lesson_id ? lessonById.get(row.lesson_id)?.code ?? null : null,
+      }))
+      .filter((row) => (row.age_minutes ?? -1) >= STUCK_RUNNING_THRESHOLD_MINUTES)
+      .sort((a, b) => (b.age_minutes ?? 0) - (a.age_minutes ?? 0));
+    const staleQueuedJobs = generationJobs
+      .filter((row) => row.status === 'queued')
+      .map((row) => ({
+        ...row,
+        age_minutes: toAgeMinutes(row.created_at),
+        lesson_code: row.lesson_id ? lessonById.get(row.lesson_id)?.code ?? null : null,
+      }))
+      .filter((row) => (row.age_minutes ?? -1) >= STALE_QUEUED_THRESHOLD_MINUTES)
+      .sort((a, b) => (b.age_minutes ?? 0) - (a.age_minutes ?? 0));
+    const queueRunAgeMinutes = toAgeMinutes(queueRunResult.data?.event_ts ?? null);
 
     const lessonByCode = new Map(lessons.map((lesson) => [lesson.code.toUpperCase(), lesson]));
     const phase1BiologyLessons = GCSE_BIOLOGY_PHASE1_TARGET.map((targetLesson) => {
@@ -192,6 +237,10 @@ export async function GET(request: NextRequest) {
         lessons_missing_question_coverage: lessonsMissingQuestionCoverage,
         lesson_versions_by_status: lessonVersionsByStatus,
         question_versions_by_status: questionVersionsByStatus,
+        moderation_backlog: {
+          lessons: lessonBacklog,
+          questions: questionBacklog,
+        },
       },
       access: {
         total_enrollments: enrollments.length,
@@ -201,6 +250,29 @@ export async function GET(request: NextRequest) {
         generation_jobs_by_status: generationJobsByStatus,
         retry_exhausted_jobs: retryExhaustedJobs,
         last_successful_job_at: lastSuccessfulJobAt,
+        queue_run_is_stale:
+          queueRunResult.data != null && (queueRunAgeMinutes ?? 0) >= STALE_QUEUE_RUN_THRESHOLD_MINUTES,
+        queue_run_age_minutes: queueRunAgeMinutes,
+        stuck_running_jobs: stuckRunningJobs.map((row) => ({
+          id: row.id,
+          kind: row.kind,
+          lesson_id: row.lesson_id,
+          lesson_code: row.lesson_code,
+          attempts_made: row.attempts_made,
+          max_attempts: row.max_attempts,
+          age_minutes: row.age_minutes,
+          error_message: row.error_message ?? null,
+        })),
+        stale_queued_jobs: staleQueuedJobs.map((row) => ({
+          id: row.id,
+          kind: row.kind,
+          lesson_id: row.lesson_id,
+          lesson_code: row.lesson_code,
+          attempts_made: row.attempts_made,
+          max_attempts: row.max_attempts,
+          age_minutes: row.age_minutes,
+          error_message: row.error_message ?? null,
+        })),
         last_queue_run:
           queueRunResult.data
             ? {
