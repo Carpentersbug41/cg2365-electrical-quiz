@@ -50,6 +50,7 @@ describe('POST /api/admin/v2/question-versions/status', () => {
           quality_score: 60,
           stem: 'short',
           answer_key: {},
+          metadata: null,
         },
         error: null,
       }),
@@ -101,5 +102,81 @@ describe('POST /api/admin/v2/question-versions/status', () => {
     expect(response.status).toBe(409);
     expect(payload.code).toBe('PUBLISH_VALIDATION_FAILED');
     expect(payload.gate.ok).toBe(false);
+  });
+
+  it('blocks publish when MCQ options are invalid', async () => {
+    const versionQuery = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValue({
+        data: {
+          id: 'version-2',
+          question_id: 'question-2',
+          status: 'approved',
+          version_no: 1,
+          is_current: false,
+          source: 'ai',
+          quality_score: 90,
+          stem: 'Which cell structure contains DNA?',
+          answer_key: { acceptedAnswers: ['Nucleus'] },
+          metadata: { options: ['Membrane', 'Membrane', 'Cytoplasm'] },
+        },
+        error: null,
+      }),
+    };
+
+    const questionQuery = {
+      select: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      limit: vi.fn().mockReturnThis(),
+      maybeSingle: vi.fn().mockResolvedValue({
+        data: {
+          id: 'question-2',
+          lesson_id: 'lesson-1',
+          stable_key: 'BIO-101-1A::generated::q-1',
+          question_type: 'mcq',
+        },
+        error: null,
+      }),
+    };
+
+    createV2AdminClient.mockReturnValue({
+      from: vi.fn((table: string) => {
+        if (table === 'v2_question_versions') return versionQuery;
+        if (table === 'v2_questions') return questionQuery;
+        if (table === 'v2_event_log') return { insert: vi.fn().mockResolvedValue({ error: null }) };
+        throw new Error(`Unexpected table ${table}`);
+      }),
+      rpc: vi.fn(),
+    });
+
+    const { POST } = await import('./route');
+    const response = await POST(
+      new NextRequest('http://localhost/api/admin/v2/question-versions/status', {
+        method: 'POST',
+        body: JSON.stringify({
+          versionId: 'version-2',
+          action: 'publish',
+          moderation: {
+            objectivesVerified: true,
+            factualCheckPassed: true,
+            policyCheckPassed: true,
+            notes: 'Reviewed generated MCQ carefully before publish.',
+          },
+        }),
+      })
+    );
+    const payload = await response.json();
+
+    expect(response.status).toBe(409);
+    expect(payload.code).toBe('PUBLISH_VALIDATION_FAILED');
+    expect(payload.gate.issues).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          field: 'metadata.options',
+        }),
+      ])
+    );
   });
 });

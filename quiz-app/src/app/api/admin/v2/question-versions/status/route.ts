@@ -27,6 +27,7 @@ type QuestionVersionRow = {
   quality_score: number | null;
   stem: string;
   answer_key: unknown;
+  metadata: unknown;
 };
 
 type QuestionRow = {
@@ -89,7 +90,7 @@ export async function POST(request: NextRequest) {
 
     const { data: version, error: versionError } = await adminClient
       .from('v2_question_versions')
-      .select('id, question_id, status, version_no, is_current, source, quality_score, stem, answer_key')
+      .select('id, question_id, status, version_no, is_current, source, quality_score, stem, answer_key, metadata')
       .eq('id', versionId)
       .limit(1)
       .maybeSingle<QuestionVersionRow>();
@@ -151,6 +152,7 @@ export async function POST(request: NextRequest) {
         stableKey: question.stable_key,
         stem: version.stem,
         answerKey: version.answer_key,
+        metadata: version.metadata,
         qualityScore: version.quality_score,
       });
       if (!publishGate.ok) {

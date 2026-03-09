@@ -231,6 +231,12 @@ Completed in this slice:
 - [x] Re-enabled V2 question-draft queueing in admin after confirming the runner path is implemented.
 - [x] Added question-draft runner coverage:
   - `src/lib/v2/generation/runGenerationJob.test.ts`
+- [x] Added stricter V2 question-generation filtering before draft creation:
+  - rejects malformed/duplicate/low-signal generated MCQs
+  - prevents duplicate prompts in a single question-generation run
+- [x] Hardened V2 question publish gate for MCQs:
+  - requires unique non-empty options
+  - requires at least one accepted answer to match an option
 - [x] Verified current validation status after readiness/admin expansion:
   - focused V2 tests: `6 files`, `8 tests`
   - full test suite: `63 files`, `205 tests`
@@ -252,6 +258,9 @@ Completed in this slice:
 - [x] Verified current validation status after ops hardening:
   - focused V2 tests: `2 files`, `3 tests`
   - production build successful
+- [x] Verified current validation status after question-quality hardening:
+  - focused V2 tests: `3 files`, `7 tests`
+  - production build successful
 
 ## 5. Guardrails (Must Hold)
 
@@ -263,6 +272,6 @@ Completed in this slice:
 ## 6. Immediate Next Build Slice
 
 1. Expand V2 Biology content inventory beyond the current 7-lesson target set.
-2. Harden question generation quality gates and moderation throughput now that the admin path is live again.
+2. Continue moderation throughput improvements now that question generation quality is tighter.
 3. Improve cron cadence/alerting and add publish-backlog prioritization in admin.
 4. Continue V2 wrapper isolation until only low-level infra and the intentional generation adapter remain.

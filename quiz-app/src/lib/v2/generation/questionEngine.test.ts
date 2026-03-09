@@ -49,4 +49,46 @@ describe('generateV2QuestionDrafts', () => {
       questionType: 'mcq',
     });
   });
+
+  it('filters invalid and duplicate generated questions before creating drafts', async () => {
+    generateQuiz.mockResolvedValue({
+      success: true,
+      questions: [
+        {
+          id: 1,
+          question: 'short',
+          options: ['A', 'B'],
+          correctAnswer: 0,
+        },
+        {
+          id: 2,
+          question: 'Which organelle contains genetic material?',
+          options: ['Cell wall', 'Nucleus', 'Ribosome', 'Membrane'],
+          correctAnswer: 1,
+        },
+        {
+          id: 3,
+          question: 'Which organelle contains genetic material?',
+          options: ['Cell wall', 'Nucleus', 'Ribosome', 'Membrane'],
+          correctAnswer: 1,
+        },
+      ],
+    });
+
+    const { generateV2QuestionDrafts } = await import('./questionEngine');
+    const drafts = await generateV2QuestionDrafts(
+      {
+        curriculum: 'gcse-science-biology',
+        unit: 'BIO-101',
+        lessonId: '1A',
+        topic: 'Cells',
+        section: 'Cells',
+      },
+      'BIO-101-1A:job-2',
+      5
+    );
+
+    expect(drafts).toHaveLength(1);
+    expect(drafts[0].stableKey).toBe('BIO-101-1A:job-2::generated::q-2');
+  });
 });
