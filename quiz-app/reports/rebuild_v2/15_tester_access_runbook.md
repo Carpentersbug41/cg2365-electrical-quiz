@@ -3,6 +3,8 @@
 Last updated: 2026-03-08
 Goal: allow controlled demo/testing access without adding insecure in-app bypass logic.
 
+Read `progress.md` first for the current V2 state and current recommended test entrypoints.
+
 ## 1. Recommended Access Model
 
 - Keep app auth (Supabase sign-in) unchanged.

@@ -4,6 +4,8 @@ Last updated: 2026-03-09
 Owner: Carpe + Codex
 Scope: V2 implementation sequence after completion audit
 
+For the current operational status and immediate next-step summary, read `progress.md` first.
+
 ## Purpose
 
 This document converts the completion audit into an execution order.
@@ -255,6 +257,11 @@ These should not interrupt the items above.
 9. operational hardening
 10. teacher/cohort dashboards
 11. expansion work
+
+Use this backlog together with `progress.md`:
+
+- `progress.md` = current state + what is working now + immediate next actions
+- `21_ranked_implementation_backlog.md` = ranked long-form implementation order
 
 ## What Not To Do
 

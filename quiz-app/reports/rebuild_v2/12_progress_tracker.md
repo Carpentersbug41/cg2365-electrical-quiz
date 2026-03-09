@@ -4,6 +4,9 @@ Last updated: 2026-03-09
 Owner: Carpe + Codex
 Scope: V2 rebuild only (no V1 reuse)
 
+This is the detailed implementation tracker.
+For a new chat / new LLM, start with `progress.md` first.
+
 ## 1. Current Position
 
 V2 is established as a separate architecture baseline (schema + core APIs), with isolated learner and admin routes in place.
@@ -261,6 +264,17 @@ Completed in this slice:
 - [x] Verified current validation status after question-quality hardening:
   - focused V2 tests: `3 files`, `7 tests`
   - production build successful
+- [x] Hardened onboarding entry flow for V2:
+  - first-time V2 users are redirected into onboarding before `/v2/*`
+  - prefixed onboarding redirect loops were fixed in the global auth wrapper
+- [x] Upgraded onboarding UX:
+  - STT mic control added
+  - waveform/recording UI added
+  - more active progress states added
+  - responses captured and questions remaining now shown explicitly
+- [x] Removed spoken onboarding question playback so onboarding stays STT-focused.
+- [x] Strengthened tutor voice rules:
+  - teach/check/fix prompts now explicitly require simple-first explanations and plain language before technical depth
 
 ## 5. Guardrails (Must Hold)
 

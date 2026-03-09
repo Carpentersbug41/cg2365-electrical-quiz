@@ -11,28 +11,42 @@ The current application has validated the product direction. These docs are for 
 
 ## Reading Order
 
-1. `00_overview.md`
-2. `01_prd.md`
-3. `02_target_architecture.md`
-4. `03_domain_model_and_schema_v2.md`
-5. `04_learner_runtime.md`
-6. `05_admin_ops.md`
-7. `06_generation_platform.md`
-8. `07_event_and_analytics_spec.md`
-9. `08_migration_strategy.md`
-10. `09_execution_roadmap.md`
-11. `10_open_questions.md`
-12. `11_decision_log.md`
-13. `12_progress_tracker.md`
-14. `13_deployment_split.md`
-15. `14_phase1_release_checklist.md`
-16. `15_tester_access_runbook.md`
-17. `16_architecture_guardrails.md`
-18. `17_module_dependency_matrix.md`
-19. `18_data_invariants_and_state_machines.md`
-20. `19_non_negotiables_for_v2.md`
-21. `20_v2_completion_audit.md`
-22. `21_ranked_implementation_backlog.md`
+1. `progress.md` - master handover / first-read operational brief for a new chat or implementer
+2. `README.md`
+3. `00_overview.md`
+4. `01_prd.md`
+5. `02_target_architecture.md`
+6. `03_domain_model_and_schema_v2.md`
+7. `04_learner_runtime.md`
+8. `05_admin_ops.md`
+9. `06_generation_platform.md`
+10. `07_event_and_analytics_spec.md`
+11. `08_migration_strategy.md`
+12. `09_execution_roadmap.md`
+13. `10_open_questions.md`
+14. `11_decision_log.md`
+15. `12_progress_tracker.md`
+16. `13_deployment_split.md`
+17. `14_phase1_release_checklist.md`
+18. `15_tester_access_runbook.md`
+19. `16_architecture_guardrails.md`
+20. `17_module_dependency_matrix.md`
+21. `18_data_invariants_and_state_machines.md`
+22. `19_non_negotiables_for_v2.md`
+23. `20_v2_completion_audit.md`
+24. `21_ranked_implementation_backlog.md`
+
+## Document Roles
+
+- `progress.md`
+  - first-read handover for a new LLM/chat
+  - current state, what is working, what is left, what to do next, and where to read deeper
+- `12_progress_tracker.md`
+  - detailed implementation tracker / historical log
+- `20_v2_completion_audit.md`
+  - gap analysis between current implementation and target architecture
+- `21_ranked_implementation_backlog.md`
+  - ranked execution order for remaining implementation work
 
 ## Principles
 

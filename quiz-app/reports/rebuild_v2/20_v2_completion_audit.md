@@ -4,6 +4,8 @@ Last updated: 2026-03-09
 Owner: Carpe + Codex
 Scope: current V2 implementation vs rebuild docs
 
+For the current operational handover and next-step summary, read `progress.md` first.
+
 ## Purpose
 
 This document evaluates the current V2 implementation against the intended rebuild architecture.
@@ -139,33 +141,34 @@ Assessment:
 - good enough for Phase 1 demo
 - not good enough for a finished V2 architecture
 
-### 2. Question generation is not actually built
+### 2. Question generation is not fully built
 
-The docs describe question generation as part of the target and Phase 1 direction, but the implementation still rejects it.
+The docs describe question generation as part of the target and Phase 1 direction, but the implementation is still incomplete.
 
 Current behavior:
 
-- generation jobs accept only `lesson_draft`
-- `question_draft` is explicitly rejected as not implemented
+- lesson generation is operational
+- question-draft queueing/generation path now exists in V2 admin/runtime
+- question generation and moderation throughput are still not complete enough to call the content platform finished
 
 Implication:
 
-- generation exists, but only for lesson drafts
-- the content platform is incomplete relative to the planned system
+- generation is real, but not yet finished at the target architecture standard
+- the content platform is still incomplete relative to the planned system
 
 Assessment:
 
 - partial generation platform, not complete generation platform
 
-### 3. Analytics are still request-time and raw-table driven
+### 3. Analytics are improved but not yet fully aligned to the target contract
 
 The reporting architecture says analytics should be canonical-event based with daily aggregates, cohort metrics, and dashboards.
 
 Current behavior:
 
-- admin outcomes routes scan `v2_attempts`, `v2_lesson_sessions`, `v2_review_items`, `v2_generation_jobs`, and `profiles` directly
-- timeseries is built in request time from operational tables
-- daily aggregate tables exist in schema, but the implementation is not centered on a real aggregation pipeline yet
+- main outcomes surfaces now use aggregate-backed tables
+- reporting architecture is materially stronger than before
+- event naming/coverage and the final analytics contract still need full alignment
 
 Implication:
 
@@ -175,17 +178,18 @@ Implication:
 
 Assessment:
 
-- useful demo reporting
-- not yet finished reporting architecture
+- useful and materially improved reporting
+- not yet the final reporting architecture
 
-### 4. Access control is mostly authentication, not real learner access policy
+### 4. Access control is improved but not yet the final institutional model
 
 The runtime spec says lesson access should be driven by enrollment and gating policy.
 
 Current behavior:
 
-- V2 session enforcement checks authentication
-- runtime routes and APIs do not yet enforce a proper enrollment/access model before serving content or accepting progress writes
+- V2 learner access now requires an explicit active enrollment
+- runtime access is stronger than pure authentication
+- the full institutional/role model is still not finished
 
 Implication:
 
@@ -194,8 +198,8 @@ Implication:
 
 Assessment:
 
-- auth exists
-- access policy is incomplete
+- explicit learner access control exists
+- final access policy / role model is incomplete
 
 ### 5. Event model in code does not fully match the canonical event spec
 
