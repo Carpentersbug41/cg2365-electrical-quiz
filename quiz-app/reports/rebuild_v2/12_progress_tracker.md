@@ -117,6 +117,7 @@ V2 admin now has release-readiness, intervention, and access-control visibility 
   - enrollment status filtering and access counts
   - operational readiness including last queue run and retry exhaustion
   - at-risk learner and lesson intervention tables
+- [x] V2 readiness is now measured against an explicit Biology Phase 1 target set (7 named lessons), not just generic lesson counts.
 - [~] V2 generation worker endpoint now exists (`run-queued`) but still needs scheduler wiring/ops hardening.
 - [~] V2 generation worker endpoint now exists (`run-queued`) and daily Vercel cron wiring is in place; needs production frequency upgrade/ops hardening.
 - [x] V2 generation runner now calls the shared lesson generation engine (Phase 1-9 path via `FileGenerator`) with context-aware request shaping from latest lesson version metadata/content.
@@ -217,6 +218,7 @@ Completed in this slice:
   - focused V2 tests: `8 files`, `19 tests`
   - production build successful
 - [x] Added V2 readiness endpoint aggregating content, access, and operations health.
+- [x] Added explicit `GCSE_BIOLOGY_PHASE1_TARGET` manifest and surfaced target-set readiness in `/api/admin/v2/readiness` and `/v2/admin`.
 - [x] Added V2 intervention endpoint for at-risk learners and lessons.
 - [x] Extended V2 outcomes breakdown API with lesson/unit filters, sorting, and row limits.
 - [x] Added queue-run audit event logging so readiness can report the last successful admin queue sweep.
@@ -225,9 +227,15 @@ Completed in this slice:
 - [x] Continued V2 isolation pass:
   - moved V2 scope filtering off shared curriculum helpers into `src/lib/v2/scope.ts`
   - reduced remaining non-V2 dependencies in V2-owned paths to low-level Supabase wrappers and the intentional legacy generation adapter
+- [x] Re-enabled V2 question-draft queueing in admin after confirming the runner path is implemented.
+- [x] Added question-draft runner coverage:
+  - `src/lib/v2/generation/runGenerationJob.test.ts`
 - [x] Verified current validation status after readiness/admin expansion:
   - focused V2 tests: `6 files`, `8 tests`
   - full test suite: `63 files`, `205 tests`
+  - production build successful
+- [x] Verified current validation status after Biology target-set readiness + question-draft path re-enable:
+  - focused V2 tests: `3 files`, `6 tests`
   - production build successful
 
 ## 5. Guardrails (Must Hold)
@@ -239,7 +247,7 @@ Completed in this slice:
 
 ## 6. Immediate Next Build Slice
 
-1. Expand V2 Biology content inventory and surface lesson readiness against the target Phase 1 Biology set.
-2. Implement question generation and question moderation properly, then re-enable that admin path.
+1. Expand V2 Biology content inventory beyond the current 7-lesson target set.
+2. Harden question generation quality gates and moderation throughput now that the admin path is live again.
 3. Harden operational workflow around enrollments, generation jobs, and publish audits.
 4. Continue V2 wrapper isolation until only low-level infra and the intentional generation adapter remain.

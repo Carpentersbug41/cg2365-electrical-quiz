@@ -1,5 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import { NextRequest, NextResponse } from 'next/server';
 import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
+import { GCSE_BIOLOGY_PHASE1_TARGET } from '@/data/v2/gcse/biology/phase1Target';
 
 type LessonRow = {
   id: string;
@@ -41,6 +44,18 @@ type QueueRunEventRow = {
     skipped?: number;
   } | null;
 };
+
+function getBiologySourceLessonCodes(): Set<string> {
+  const baseDir = path.join(process.cwd(), 'src', 'data', 'v2', 'gcse', 'biology');
+  if (!fs.existsSync(baseDir)) return new Set();
+
+  return new Set(
+    fs
+      .readdirSync(baseDir)
+      .filter((fileName) => fileName.endsWith('.json'))
+      .map((fileName) => fileName.replace(/\.json$/i, '').toUpperCase())
+  );
+}
 
 export async function GET(request: NextRequest) {
   const denied = await guardV2AdminAccess(request);
@@ -97,6 +112,7 @@ export async function GET(request: NextRequest) {
     const questionVersions = questionVersionsResult.data ?? [];
     const enrollments = enrollmentsResult.data ?? [];
     const generationJobs = generationJobsResult.data ?? [];
+    const biologySourceLessonCodes = getBiologySourceLessonCodes();
 
     const publishedLessonIds = new Set(
       lessonVersions.filter((row) => row.status === 'published').map((row) => row.lesson_id)
@@ -139,6 +155,34 @@ export async function GET(request: NextRequest) {
       .map((row) => row.finished_at as string)
       .sort((a, b) => b.localeCompare(a))[0] ?? null;
 
+    const lessonByCode = new Map(lessons.map((lesson) => [lesson.code.toUpperCase(), lesson]));
+    const phase1BiologyLessons = GCSE_BIOLOGY_PHASE1_TARGET.map((targetLesson) => {
+      const lesson = lessonByCode.get(targetLesson.lessonCode);
+      const lessonId = lesson?.id ?? null;
+      const sourceAvailable = biologySourceLessonCodes.has(targetLesson.lessonCode);
+      const publishedReady = lessonId ? publishedLessonIds.has(lessonId) : false;
+      const questionCoverageReady = lessonId ? questionCoveredLessonIds.has(lessonId) : false;
+
+      return {
+        lesson_code: targetLesson.lessonCode,
+        title: lesson?.title ?? targetLesson.title,
+        unit_code: targetLesson.unitCode,
+        source_available: sourceAvailable,
+        published_ready: publishedReady,
+        question_coverage_ready: questionCoverageReady,
+      };
+    });
+
+    const phase1BiologyMissingFromSource = phase1BiologyLessons
+      .filter((lesson) => !lesson.source_available)
+      .map((lesson) => lesson.lesson_code);
+    const phase1BiologyMissingPublished = phase1BiologyLessons
+      .filter((lesson) => !lesson.published_ready)
+      .map((lesson) => lesson.lesson_code);
+    const phase1BiologyMissingQuestionCoverage = phase1BiologyLessons
+      .filter((lesson) => lesson.published_ready && !lesson.question_coverage_ready)
+      .map((lesson) => lesson.lesson_code);
+
     return NextResponse.json({
       success: true,
       content: {
@@ -167,6 +211,16 @@ export async function GET(request: NextRequest) {
                 skipped: queueRunResult.data.payload?.skipped ?? 0,
               }
             : null,
+      },
+      phase1_biology: {
+        target_lessons_total: GCSE_BIOLOGY_PHASE1_TARGET.length,
+        source_lessons_available: phase1BiologyLessons.filter((lesson) => lesson.source_available).length,
+        published_lessons_ready: phase1BiologyLessons.filter((lesson) => lesson.published_ready).length,
+        question_covered_lessons_ready: phase1BiologyLessons.filter((lesson) => lesson.question_coverage_ready).length,
+        missing_from_source: phase1BiologyMissingFromSource,
+        missing_published: phase1BiologyMissingPublished,
+        missing_question_coverage: phase1BiologyMissingQuestionCoverage,
+        lessons: phase1BiologyLessons,
       },
     });
   } catch (error) {

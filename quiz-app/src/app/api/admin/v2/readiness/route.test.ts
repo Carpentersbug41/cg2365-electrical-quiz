@@ -127,5 +127,19 @@ describe('GET /api/admin/v2/readiness', () => {
       failed: 1,
       skipped: 0,
     });
+    expect(payload.phase1_biology.target_lessons_total).toBe(7);
+    expect(payload.phase1_biology.source_lessons_available).toBe(7);
+    expect(payload.phase1_biology.missing_from_source).toEqual([]);
+    expect(payload.phase1_biology.missing_published).toContain('BIO-101-1B');
+    expect(payload.phase1_biology.lessons).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          lesson_code: 'BIO-101-1A',
+          source_available: true,
+          published_ready: true,
+          question_coverage_ready: true,
+        }),
+      ])
+    );
   });
 });

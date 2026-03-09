@@ -208,6 +208,23 @@ type ReadinessPayload = {
       skipped: number;
     } | null;
   };
+  phase1_biology: {
+    target_lessons_total: number;
+    source_lessons_available: number;
+    published_lessons_ready: number;
+    question_covered_lessons_ready: number;
+    missing_from_source: string[];
+    missing_published: string[];
+    missing_question_coverage: string[];
+    lessons: Array<{
+      lesson_code: string;
+      title: string;
+      unit_code: string;
+      source_available: boolean;
+      published_ready: boolean;
+      question_coverage_ready: boolean;
+    }>;
+  };
 };
 
 type ApprovalDecisionRow = {
@@ -1174,6 +1191,55 @@ export default function V2AdminContentPage() {
             </>
           )}
 
+          <h3>Phase 1 Biology target</h3>
+          <p>
+            Source lessons ready: {readiness.phase1_biology.source_lessons_available}/
+            {readiness.phase1_biology.target_lessons_total}
+          </p>
+          <p>
+            Published target lessons: {readiness.phase1_biology.published_lessons_ready}/
+            {readiness.phase1_biology.target_lessons_total}
+          </p>
+          <p>
+            Question-covered target lessons: {readiness.phase1_biology.question_covered_lessons_ready}/
+            {readiness.phase1_biology.target_lessons_total}
+          </p>
+          <p>
+            Missing from source: {readiness.phase1_biology.missing_from_source.join(', ') || '-'}
+          </p>
+          <p>
+            Missing published target lessons: {readiness.phase1_biology.missing_published.join(', ') || '-'}
+          </p>
+          <p>
+            Missing target question coverage:{' '}
+            {readiness.phase1_biology.missing_question_coverage.join(', ') || '-'}
+          </p>
+          <table>
+            <thead>
+              <tr>
+                <th align="left">Lesson</th>
+                <th align="left">Unit</th>
+                <th align="left">Source</th>
+                <th align="left">Published</th>
+                <th align="left">Questions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {readiness.phase1_biology.lessons.map((lesson) => (
+                <tr key={`phase1-bio-${lesson.lesson_code}`}>
+                  <td>
+                    <div>{lesson.lesson_code}</div>
+                    <div>{lesson.title}</div>
+                  </td>
+                  <td>{lesson.unit_code}</td>
+                  <td>{lesson.source_available ? 'yes' : 'no'}</td>
+                  <td>{lesson.published_ready ? 'yes' : 'no'}</td>
+                  <td>{lesson.question_coverage_ready ? 'yes' : 'no'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
           <h3>Access readiness</h3>
           <p>Total enrollments: {readiness.access.total_enrollments}</p>
           <p>Enrollments by status: {JSON.stringify(readiness.access.enrollments_by_status)}</p>
@@ -1664,9 +1730,10 @@ export default function V2AdminContentPage() {
         </button>{' '}
         <button
           type="button"
-          disabled
+          onClick={() => void createQuestionDraftJob()}
+          disabled={!newJobLessonCode.trim()}
         >
-          Queue question draft job (not implemented)
+          Queue question draft job
         </button>{' '}
         <button
           type="button"
@@ -1677,9 +1744,10 @@ export default function V2AdminContentPage() {
         </button>{' '}
         <button
           type="button"
-          disabled
+          onClick={() => void createBatchQuestionDraftJobs()}
+          disabled={!newJobLessonCodesBulk.trim()}
         >
-          Queue batch question jobs (not implemented)
+          Queue batch question jobs
         </button>{' '}
         <button type="button" onClick={() => void loadJobs()} disabled={loadingJobs}>
           {loadingJobs ? 'Loading jobs...' : 'Refresh jobs'}
