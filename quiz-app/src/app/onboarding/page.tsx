@@ -48,6 +48,27 @@ export default function OnboardingPage() {
     return next && next.startsWith('/') ? next : courseHref('/learn');
   }, [searchParams]);
 
+  const startInterview = async () => {
+    setError(null);
+    setIsLoadingQuestion(true);
+    try {
+      const qResponse = await authedFetch('/api/onboarding/interview', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'next-question', transcript: [] }),
+      });
+      const qData = await qResponse.json();
+      if (!qResponse.ok || qData.success === false || typeof qData.question !== 'string') {
+        throw new Error(qData.message ?? 'Failed to start onboarding interview.');
+      }
+      setMessages([{ role: 'assistant', content: qData.question }]);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to start onboarding.');
+    } finally {
+      setIsLoadingQuestion(false);
+    }
+  };
+
   useEffect(() => {
     let cancelled = false;
 
@@ -67,26 +88,13 @@ export default function OnboardingPage() {
           return;
         }
 
-        setIsLoadingQuestion(true);
-        const qResponse = await authedFetch('/api/onboarding/interview', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'next-question', transcript: [] }),
-        });
-        const qData = await qResponse.json();
-        if (!qResponse.ok || qData.success === false || typeof qData.question !== 'string') {
-          throw new Error(qData.message ?? 'Failed to start onboarding interview.');
-        }
-
         if (cancelled) return;
-        setMessages([{ role: 'assistant', content: qData.question }]);
+        if (messages.length === 0) {
+          await startInterview();
+        }
       } catch (err) {
         if (cancelled) return;
         setError(err instanceof Error ? err.message : 'Failed to start onboarding.');
-      } finally {
-        if (!cancelled) {
-          setIsLoadingQuestion(false);
-        }
       }
     };
 
@@ -204,6 +212,20 @@ export default function OnboardingPage() {
 
         <section className="rounded-2xl border border-slate-700 bg-slate-900 p-4">
           <div className="max-h-[55vh] space-y-3 overflow-y-auto rounded-xl border border-slate-800 bg-slate-950 p-4">
+            {messages.length === 0 && !isLoadingQuestion && (
+              <div className="space-y-3">
+                <p className="text-sm text-slate-300">
+                  Start the interview to let the tutor ask its first question.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => void startInterview()}
+                  className="rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white"
+                >
+                  Start interview
+                </button>
+              </div>
+            )}
             {messages.map((message, idx) => (
               <div
                 key={`${message.role}-${idx}-${message.content.slice(0, 12)}`}
@@ -257,7 +279,20 @@ export default function OnboardingPage() {
             </button>
           </div>
 
-          {error && <p className="mt-3 text-sm text-rose-300">{error}</p>}
+          {error && (
+            <div className="mt-3 space-y-2 text-sm text-rose-300">
+              <p>{error}</p>
+              {messages.length === 0 && (
+                <button
+                  type="button"
+                  onClick={() => void startInterview()}
+                  className="rounded-lg border border-rose-400 px-4 py-2 text-sm font-semibold text-rose-200"
+                >
+                  Retry interview start
+                </button>
+              )}
+            </div>
+          )}
           {interviewCapped && (
             <p className="mt-3 text-sm text-emerald-300">
               Interview complete. Click <strong>Complete Onboarding</strong> to finish.

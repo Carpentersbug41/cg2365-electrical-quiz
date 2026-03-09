@@ -8,6 +8,7 @@ import {
   sanitizeInterviewTranscript,
   type InterviewTurn,
 } from '@/lib/onboarding/profileBuilder';
+import { getFallbackInterviewQuestion } from '@/lib/onboarding/interviewQuestions';
 
 const MAX_TRANSCRIPT_TURNS = 40;
 const MAX_QUESTION_CHARS = 220;
@@ -278,7 +279,16 @@ ${transcriptText || '(empty)'}`,
     valid: false,
     reason: 'max-attempts-reached',
   });
-  throw new Error(`Question generation produced invalid output after ${QUESTION_GENERATION_MAX_ATTEMPTS} attempts.`);
+  const fallbackQuestion = getFallbackInterviewQuestion(transcript);
+  logQuestionDebug({
+    stage: 'fallback',
+    transcriptTurns: transcript.length,
+    userTurns,
+    sanitized: fallbackQuestion,
+    valid: true,
+    reason: 'deterministic-fallback-question',
+  });
+  return fallbackQuestion;
 }
 
 async function finalizeProfile(transcript: InterviewTurn[]) {
@@ -357,7 +367,17 @@ export async function POST(request: NextRequest) {
 
   try {
     if (action === 'next-question') {
-      const question = await askNextQuestion(transcript);
+      let question: string;
+      try {
+        question = await askNextQuestion(transcript);
+      } catch (error) {
+        const fallbackQuestion = getFallbackInterviewQuestion(transcript);
+        console.warn(
+          '[OnboardingInterviewFallback]',
+          error instanceof Error ? error.message : 'unknown onboarding question error'
+        );
+        question = fallbackQuestion;
+      }
       return NextResponse.json({ success: true, question });
     }
 
