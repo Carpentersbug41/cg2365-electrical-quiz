@@ -289,6 +289,7 @@ export default function OnboardingPage() {
   const userTurnCount = messages.filter((msg) => msg.role === 'user').length;
   const canFinalize = userTurnCount >= MIN_RESPONSES_TO_ENABLE_BUTTON && !isLoadingQuestion && !isFinalizing;
   const interviewCapped = userTurnCount >= TARGET_INTERVIEW_RESPONSES;
+  const questionsRemaining = Math.max(0, TARGET_INTERVIEW_RESPONSES - userTurnCount);
   const progressPercent = Math.min(100, Math.max(10, Math.round((userTurnCount / TARGET_INTERVIEW_RESPONSES) * 100)));
   const activeStep = isFinalizing ? 3 : messages.length === 0 && !isLoadingQuestion ? 1 : 2;
   const activeStageLabel = isCheckingStatus
@@ -496,9 +497,14 @@ export default function OnboardingPage() {
           </div>
 
           <div className="mt-4 flex items-center justify-between gap-2">
-            <p data-testid="onboarding-counter" className="text-xs text-slate-400">
-              Responses captured: {userTurnCount}/{TARGET_INTERVIEW_RESPONSES}
-            </p>
+            <div className="space-y-1">
+              <p data-testid="onboarding-counter" className="text-xs text-slate-400">
+                Responses captured: {userTurnCount}/{TARGET_INTERVIEW_RESPONSES}
+              </p>
+              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-300/80">
+                Questions remaining: {questionsRemaining}
+              </p>
+            </div>
             <button
               data-testid="onboarding-complete"
               type="button"
