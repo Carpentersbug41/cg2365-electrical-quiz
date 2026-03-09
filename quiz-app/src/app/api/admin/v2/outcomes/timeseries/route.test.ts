@@ -1,23 +1,20 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { NextRequest } from 'next/server';
 
-const guardUserAdminAccess = vi.fn();
-const toUserAdminError = vi.fn((error: unknown) => Response.json({ success: false, error }, { status: 500 }));
-const createSupabaseAdminClient = vi.fn();
+const guardV2AdminAccess = vi.fn();
+const toV2AdminError = vi.fn((error: unknown) => Response.json({ success: false, error }, { status: 500 }));
+const createV2AdminClient = vi.fn();
 
-vi.mock('@/app/api/admin/users/_utils', () => ({
-  guardUserAdminAccess,
-  toUserAdminError,
-}));
-
-vi.mock('@/lib/supabase/admin', () => ({
-  createSupabaseAdminClient,
+vi.mock('@/lib/v2/admin/api', () => ({
+  guardV2AdminAccess,
+  toV2AdminError,
+  createV2AdminClient,
 }));
 
 describe('GET /api/admin/v2/outcomes/timeseries', () => {
   beforeEach(() => {
     vi.resetAllMocks();
-    guardUserAdminAccess.mockResolvedValue(null);
+    guardV2AdminAccess.mockResolvedValue(null);
   });
 
   it('excludes admin users from cohort metrics when no userId is specified', async () => {
@@ -70,7 +67,7 @@ describe('GET /api/admin/v2/outcomes/timeseries', () => {
       }),
     };
 
-    createSupabaseAdminClient.mockReturnValue({
+    createV2AdminClient.mockReturnValue({
       from: vi.fn((table: string) => {
         if (table === 'profiles') return profilesQuery;
         if (table === 'v2_attempts') return attemptsQuery;

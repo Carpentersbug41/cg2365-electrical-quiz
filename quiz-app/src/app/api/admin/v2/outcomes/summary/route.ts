@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createSupabaseAdminClient } from '@/lib/supabase/admin';
-import { guardUserAdminAccess, toUserAdminError } from '@/app/api/admin/users/_utils';
+import { createV2AdminClient, guardV2AdminAccess, toV2AdminError } from '@/lib/v2/admin/api';
 
 const DEFAULT_DAYS = 30;
 const MAX_DAYS = 365;
@@ -74,11 +73,11 @@ async function fetchAllRows<T>(
 }
 
 export async function GET(request: NextRequest) {
-  const denied = await guardUserAdminAccess(request);
+  const denied = await guardV2AdminAccess(request);
   if (denied) return denied;
 
   try {
-    const adminClient = createSupabaseAdminClient();
+    const adminClient = createV2AdminClient();
     if (!adminClient) {
       return NextResponse.json(
         { success: false, code: 'SERVICE_UNAVAILABLE', message: 'Supabase admin client is not configured.' },
@@ -273,6 +272,6 @@ export async function GET(request: NextRequest) {
       users,
     });
   } catch (error) {
-    return toUserAdminError(error);
+    return toV2AdminError(error);
   }
 }
